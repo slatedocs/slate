@@ -1,4 +1,4 @@
-# Recipients
+# Recipient Accounts
 
 ## Create
 
@@ -44,11 +44,38 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/accounts \
 
 Recipient is a person or institution  who is the ultimate beneficiary of your payment. 
 
-Recipient bank account details are different for different currencies. For example you only need to know IBAN number to send payments to most European and Nordic countries. 
-But in order to send money to Canada you would need to know four fields: Institution No, Transit no, Account No & Account Type.
+Recipient data includes three data blocks.
+
+**1) General Data**
+<ul>
+<li>Recipient full name</li>
+<li>Legal type (private/business)</li>
+<li>Currency</li>
+</ul>
+
+**2) Bank account data**
+
+There are many different variations of bank account details needed depending on recipient target currency. For example:
+<ul>
+<li>GBP — sort code and account number </li>
+<li>BGN CHF, DKK, EUR, GEL, GBP, NOK, PKR, PLN, RON, SEK — IBAN</li>
+<li>USD — routing number, account number, account type</li>
+<li>INR — IFSC code, account number</li>
+<li>...</li>
+</ul>
+
+**3) Address data**
+ Recipient address data is required only if target currency is USD, PHP, THB or TRY, or if the source currency is USD or AUD. 
+<ul>
+<li>Country</li>
+<li>State (US, Canada, Brazil)</li>
+<li>City</li>
+<li>Address line</li>
+<li>Zip code</li>
+</ul>
 
 GBP example is provided here. You can find other currency examples below.<br/>
-Please also look at [Recipients.Requirements](#recipients-requirements) to figure out which fields are required to create recipients in specific countries.
+Please also look at [Recipients.Requirements](#recipient-accounts-requirements) to figure out which fields are required to create recipients in specific countries.
 
 
 ### Request
@@ -73,7 +100,7 @@ Recipient account id is needed for creating transfers in step 3.
 
 Field                 | Description                                   | Format
 ---------             | -------                                       | -----------
-id                    | recipientAccountId                            | Integer
+id                    | accountId                                     | Integer
 profile               | Personal or business profile id               | Integer
 acccountHolderName    | Recipient full name                           | Text
 currency              | 2 character country code                      | Text
@@ -120,15 +147,10 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/accounts \
 }
 
 ```
-If you don't know recipient bank account details you can set up **email recipient** so that TransferWise can collect bank details directly from the recipient. 
+If you don't know recipient bank account details you can set up **email recipient** so that TransferWise will collect bank details directly from the recipient. 
 
 TransferWise will then email your recipient with a link to collect their bank account details. 
-Once recipient provides bank account details to us we are able to complete your transfer.
-
-So all you need to know is recipient name and email to send payment.
-See below under Recipient API how to create email recipients.
-
-
+Once recipient provides bank account details securely to Transferwise we are able to complete your transfer.
 
 
 
@@ -137,7 +159,7 @@ See below under Recipient API how to create email recipients.
 
 ```shell
 
-curl -X GET https://api.sandbox.transferwise.tech/v1/accounts/{recipientAccountId} \
+curl -X GET https://api.sandbox.transferwise.tech/v1/accounts/{accountId} \
      -H "Authorization: Bearer <your api token>" 
 ```
 
@@ -161,17 +183,17 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/accounts/{recipientAccountI
 
 Get recipient account info by id.
 ### Request
-**`GET https://api.sandbox.transferwise.tech/v1/accounts/{recipientAccountId}`**
+**`GET https://api.sandbox.transferwise.tech/v1/accounts/{accountId}`**
 
 
 
 
-## List - todo
+## List
 > Example Request:
 
 ```shell
 
-curl -X GET https://api.sandbox.transferwise.tech/v1/accounts? \
+curl -X GET https://api.sandbox.transferwise.tech/v1/accounts?profile=<profileId>&currency=GBP \
      -H "Authorization: Bearer <your api token>" 
 ```
 
@@ -179,52 +201,350 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/accounts? \
 
 ```json
 [
-    {
-      "id": <your personal profile id>,
-      "type": "personal",
+  {
+      "id": 31273058,
+      "profile": <profileId>, 
+      "accountHolderName": "Ann Johnson",
+      "type": "sort_code", 
+      "country": "GB", 
+      "currency": "GBP",
       "details": {
-        "firstName": "Oliver",
-        "lastName": "Wilson",
-        "dateOfBirth": "1977-07-01",
-        "phoneNumber": "+3725064992",
-        "avatar": "",
-        "occupation": "",
-        "primaryAddress": null
+          "legalType": "PRIVATE",
+          "accountNumber": "28821822",
+          "sortCode": "231470"
       }
-    },
-    {
-      "id": <your business profile id>,
-      "type": "business",
+  },
+  {
+      "id": 31273090,
+      "profile": <profileId>, 
+      "accountHolderName": "George Johnson",
+      "type": "sort_code", 
+      "country": "GB", 
+      "currency": "GBP",
       "details": {
-         "name": "ABC Logistics Ltd",
-         "registrationNumber": "12144939",
-         "acn": null,
-         "abn": null,
-         "arbn": null,
-         "companyType": "LIMITED",
-         "companyRole": "OWNER",
-         "descriptionOfBusiness": "Information and communication",
-         "webpage": "https://abc-logistics.com",
-         "primaryAddress": null
-       }
-    }
-    
+          "legalType": "PRIVATE",
+          "accountNumber": "29912211",
+          "sortCode": "231470"
+      }
+  }
 ]
 
 ```
-List of all profiles belonging to user.
+Fetch list of your recipient accounts. Filter by currency and/or by user profile Id.
+This list does not currently support pagination.
+Therefore if you have very many recipient accounts defined in your business profile then please filter by currency to ensure a reasonable response time.
+
 
 ### Request
-**`GET https://api.sandbox.transferwise.tech/v1/profiles`**
+**`GET https://api.sandbox.transferwise.tech/v1/accounts?s?profile=<profileId>&currency=<currencyCode>`**
+
+Both query parameters are optional.
+
+Field                             | Description                                   | Format
+---------                         | -------                                       | -----------
+profileId                         | Personal or business profile id               | Integer
+currencyCode                      | Currency code                                 | Text
+
+
+## Requirements
+> Example Request:
+
+```shell
+
+curl -X GET https://api.sandbox.transferwise.tech/v1/account-requirements \
+     -H "Authorization: Bearer <your api token>" 
+```
+
+> Example Response:
+
+```json
+[
+  {
+    "type": "address",
+    "fields": [
+      {
+        "name": "Country",
+        "group": [
+          {
+            "key": "country",
+            "type": "select",
+            "refreshRequirementsOnChange": true,
+            "required": true,
+            "displayFormat": null,
+            "example": "Germany",
+            "minLength": null,
+            "maxLength": null,
+            "validationRegexp": null,
+            "validationAsync": null,
+            "valuesAllowed": [
+              {
+                "key": "AX",
+                "name": "Åland Islands"
+              },
+              ...
+              {
+                "key": "ZM",
+                "name": "Zambia"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "City",
+        "group": [
+          {
+            "key": "city",
+            "type": "text",
+            "refreshRequirementsOnChange": false,
+            "required": true,
+            "displayFormat": null,
+            "example": "London",
+            "minLength": null,
+            "maxLength": null,
+            "validationRegexp": null,
+            "validationAsync": null,
+            "valuesAllowed": null
+          }
+        ]
+      },
+      {
+        "name": "Postal code",
+        "group": [
+          {
+            "key": "postCode",
+            "type": "text",
+            "refreshRequirementsOnChange": false,
+            "required": true,
+            "displayFormat": null,
+            "example": "10025",
+            "minLength": null,
+            "maxLength": null,
+            "validationRegexp": null,
+            "validationAsync": null,
+            "valuesAllowed": null
+          }
+        ]
+      }
+      ...
+    ]
+  }
+]
+```
+### Request
+**` GET https://api.sandbox.transferwise.tech/v1/address-requirements`**<br/>
+**` POST https://api.sandbox.transferwise.tech/v1/address-requirements`**<br/>
+
+GET and POST address-requirements endpoints help you to figure out which fields are required to create a valid address for different countries.
+You could even build a dynamic user interface on top of these endpoints. This is a step-by-step guide on how these endpoints work.
+
+1. Call GET /v1/address-requirements to get list of fields you need to fill with values in "details" section for creating a valid address.  Response contains 4 required top level fields: 
+ * country   (select field with list of values)
+ * city      (text field)
+ * postCode  (text field)
+ * firstLine (text field)
+
+2. Analyze the list of fields. Because refreshRequirementsOnChange=true for field 'country' then this indicates that there could be additional fields required depending on the selected value.
+3. Call POST /v1/address-requirements with selected country value to figure out if this is the case.  <br/>
+For example posting {"details": {"country" : "US"}} will also add "state" to list of fields.<br/>
+But posting {"details": {"country" : "GB"}} will not.
+
+4. If you choose "US" as country you will notice that "state" field also has refreshRequirementsOnChange=true.  This means you would need to make another POST call to /v1/address-requirements with a specific state value.<br/>
+For example posting {"details": { "country" : "US", "state": "AZ" }} will also add "occupation" to list of fields.<br/>
+But posting {"details": { "country" : "US", "state": "AL" }} will not.
+
+5. So once you get to the point where you have provided values for all fields which have refreshRequirementsOnChange=true then you have complete set of fields to compose a valid request to create an address object. 
+For example this is a valid request to create address in US Arizona:
+<br/> POST /v1/addresses:<br/>
+{
+    "profile" : your-profile-id,<br/>
+    "details": {<br/>
+        "country" : "US",<br/>
+        "state": "AZ",<br/>
+        "city": "Phoenix",<br/>
+        "postCode": "10025",<br/>
+        "firstLine": "50 Sunflower Ave.",<br/>
+        "occupation": "software engineer"<br/>
+    }
+}<br/>
+
+
+### Response
+Field                                       | Description                                        | Format
+---------                                   | -------                                            | -----------
+type                                        | "address"                                          | Text
+fields[n].name                              | Field description                                  | Text
+fields[n].group[n].key                      | Key is name of the field you should include in the JSON                                     | Text
+fields[n].group[n].type                     | Display type of field (e.g. text, select, etc)                                  | Text
+fields[n].group[n].refreshRequirementsOnChange |  Tells you whether you should call POST address-requirements once the field value is set to discover required lower level fields.  | Boolean
+fields[n].group[n].required                 | Indicates if the field is mandatory or not                                 | Boolean
+fields[n].group[n].displayFormat            | Display format pattern.                                | Text
+fields[n].group[n].example                  | Example value.                                | Text
+fields[n].group[n].minLength                | Min valid length of field value.                                   | Integer
+fields[n].group[n].maxLength                | Max valid length of field value.                             | Integer
+fields[n].group[n].validationRegexp         | Regexp validation pattern.                                     | Text
+fields[n].group[n].validationAsync          | Validator URL and parameter name you should use when submitting the value for validation | Text
+fields[n].group[n].valuesAllowed[n].key     | List of allowed values. Value key                           | Text
+fields[n].group[n].valuesAllowed[n].name    | List of allowed values. Value name.                          | Text
 
 
 
-## Requirements - todo
+## Validate Recipient Fields
+
+> Example Request (Validate sort code (GBP):
+
+```shell
+
+curl -X GET https://api.sandbox.transferwise.tech/v1/validators/sort-code?sortCode=231470
+```
+
+> Example Response (Validate sort code (GBP):
+
+```json
+{
+    "validation": "success"
+}
+
+or  
+
+{
+    "errors": [
+        {
+            "code": "VALIDATION_NOT_SUCCESSFUL",
+            "message": "sortCode has not passed validation.",
+            "path": "sortCode",
+            "arguments": [
+                "2314701"
+            ]
+        }
+    ]
+}
+
+```
 
 
 
-## Validate Field - todo
-AUD aadressi teema ka !
+There are several validation URLs that make creating correct recipient accounts easier. 
+These URLs are also included in fields provided by [Recipients.Requirements](#recipients-requirements) endpoint.
+
+**GBP**
+
+Validate UK bank sort code
+
+[https://api.transferwise.com/v1/validators/sort-code?sortCode=231470](https://api.transferwise.com/v1/validators/sort-code?sortCode=231470)
+
+Validate UK bank account number
+
+[https://api.transferwise.com/v1/validators/sort-code-account-number?accountNumber=10000246](https://api.transferwise.com/v1/validators/sort-code-account-number?accountNumber=10000246)
+
+**BGN CHF, DKK, EUR, GEL, GBP, NOK, PKR, PLN, RON, SEK** 
+
+Validate IBAN
+
+[https://api.transferwise.com/v1/validators/iban?iban=EE867700771000187087](https://api.transferwise.com/v1/validators/iban?iban=EE867700771000187087)
+
+Validate BIC and IBAN
+
+[https://api.transferwise.com/v1/validators/bic?bic=LHVBEE22&iban=EE867700771000187087](https://api.transferwise.com/v1/validators/bic?bic=LHVBEE22&iban=EE867700771000187087)
+
+**USD** 
+
+Validate ABA routing number
+
+[https://api.transferwise.com/v1/validators/abartn?abartn=011103093](https://api.transferwise.com/v1/validators/abartn?abartn=011103093)
+
+Validate ABA bank account number
+
+[https://api.transferwise.com/v1/validators/aba-account-number?accountNumber=111000025](https://api.transferwise.com/v1/validators/aba-account-number?accountNumber=111000025)
+
+**INR**
+
+Validate IFSC code
+
+[https://api.transferwise.com/v1/validators/ifsc-code?ifscCode=YESB0236041](https://api.transferwise.com/v1/validators/ifsc-code?ifscCode=YESB0236041)
+
+Validate Indian bank account number 
+
+[https://api.transferwise.com/v1/validators/indian-account-number?accountNumber=678911234567891](https://api.transferwise.com/v1/validators/indian-account-number?accountNumber=678911234567891)
+
+
+**AUD**
+
+Validate BSB code
+
+[https://api.transferwise.com/v1/validators/bsb-code?bsbCode=112879](https://api.transferwise.com/v1/validators/bsb-code?bsbCode=112879)
+
+Validate Australian bank account number
+
+[https://api.transferwise.com/v1/validators/australian-account-number?accountNumber=123456789](https://api.transferwise.com/v1/validators/australian-account-number?accountNumber=123456789)
+
+**CAD**
+
+Validate Canadian institution number
+
+[https://api.transferwise.com/v1/validators/canadian-institution-number?institutionNumber=006](https://api.transferwise.com/v1/validators/canadian-institution-number?institutionNumber=006)
+
+Validate Canadian bank transit number
+
+[https://api.transferwise.com/v1/validators/canadian-transit-number?institutionNumber=006&transitNumber=04841](https://api.transferwise.com/v1/validators/canadian-transit-number?institutionNumber=006&transitNumber=04841)
+
+Validate Canadian bank account number
+
+[https://api.transferwise.com/v1/validators/canadian-account-number?institutionNumber=006&transitNumber=04841&accountNumber=3456712](https://api.transferwise.com/v1/validators/canadian-account-number?institutionNumber=006&transitNumber=04841&accountNumber=3456712)
+
+**SEK** Validate Bank Giro number
+
+[https://api.transferwise.com/v1/validators/bankgiro-number?bankgiroNumber=12345674](https://api.transferwise.com/v1/validators/bankgiro-number?bankgiroNumber=12345674)
+
+**HUF**
+
+Validate Hungarian bank account number
+
+[https://api.transferwise.com/v1/validators/hungarian-account-number?accountNumber=12000000-12345678-00000000](https://api.transferwise.com/v1/validators/hungarian-account-number?accountNumber=12000000-12345678-00000000)
+
+**PLN**
+
+Validate Polish bank account number
+
+[https://api.transferwise.com/v1/validators/polish-account-number?accountNumber=12345678901234567890123456](https://api.transferwise.com/v1/validators/polish-account-number?accountNumber=12345678901234567890123456)
+
+**UAH**
+
+Validate Ukrainian bank account number
+
+[https://api.transferwise.com/v1/validators/privatbank-account-number?accountNumber=1234](https://api.transferwise.com/v1/validators/privatbank-account-number?accountNumber=1234)
+
+Validate Ukrainian phone number
+
+[https://api.transferwise.com/v1/validators/privatbank-phone-number?phoneNumber=123456789](https://api.transferwise.com/v1/validators/privatbank-phone-number?phoneNumber=123456789)
+
+
+**NZD**
+
+Validate New Zealand bank account number
+
+[https://api.transferwise.com/v1/validators/new-zealand-account-number?accountNumber=03-1587-0050000-00](https://api.transferwise.com/v1/validators/new-zealand-account-number?accountNumber=03-1587-0050000-00)
+
+
+**AED**
+
+Validate United Arab Emirates BIC code
+
+[https://api.transferwise.com/v1/validators/emirates-bic?bic=AZIZAEAD&iban=AE070331234567890123456](https://api.transferwise.com/v1/validators/emirates-bic?bic=AZIZAEAD&iban=AE070331234567890123456)
+
+**CNY**
+
+Validate Chinese Union Pay card number
+
+[https://api.transferwise.com/v1/validators/chinese-card-number?cardNumber=6240008631401148](https://api.transferwise.com/v1/validators/chinese-card-number?cardNumber=6240008631401148)
+
+**THB**
+
+Validate Thailand bank account number
+
+[https://api.transferwise.com/v1/validators/thailand-account-number?accountNumber=9517384260](https://api.transferwise.com/v1/validators/thailand-account-number?accountNumber=9517384260)
+
+
 
 
 
