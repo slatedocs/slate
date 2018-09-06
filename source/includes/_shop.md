@@ -1,6 +1,6 @@
 # Shop
 
-## Get List
+## Get Category List
 
 ```shell
 curl "http://example.com/api/shop"
@@ -196,6 +196,55 @@ item_id   | Integer   | The id of the item to purchase
 </aside>
 <aside class="warning">
 400 - Not enough xon credits
+</aside>
+<aside class="warning">
+401 - Unauthorized
+</aside>
+
+## Get Item List
+
+```shell
+curl "http://example.com/shop/category/1"
+  -H "Authorization: Bearer<TOKEN>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status_code": 200,
+  "message": "Success",
+  "body": [
+    {
+      "id": 6,
+      "title": "Star Wars: The Last Jedi",
+      "thumbnail_url": "https://images.redbox.com/Images/EPC/boxartlarge/203216.jpg",
+      "display_price": 123
+    },
+    {
+      "id": 7,
+      "title": "Spiderman: Homecoming",
+      "thumbnail_url": "https://i.pinimg.com/originals/42/48/a3/4248a32f8ae5652c1ec1466217c651e5.jpg",
+      "display_price": 200
+    }
+  ]
+}
+```
+
+This endpoint retrieves category items.
+
+#### HTTP Request
+
+`GET http://example.com/shop/category/{id}`
+
+### URL Parameters
+
+Parameter | Data Type | Description
+--------- | --------- | ------------
+ID        | Integer   | The id of category to retrieve.
+
+<aside class="success">
+200 - Success
 </aside>
 <aside class="warning">
 401 - Unauthorized
