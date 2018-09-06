@@ -62,6 +62,9 @@ bundle install
 
 Not seeing any data?
 
+<aside class="notice">Using Heroku? View our <a href="https://devcenter.heroku.com/articles/scout#troubleshooting">Heroku-specific troubleshooting instructions.</a></aside>
+
+
 <table class="help">
   <tbody>
     <tr>
