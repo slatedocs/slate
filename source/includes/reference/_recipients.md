@@ -243,7 +243,7 @@ Both query parameters are optional.
 Field                             | Description                                   | Format
 ---------                         | -------                                       | -----------
 profileId                         | Personal or business profile id               | Integer
-currencyCode                      | Currency code                                 | Text
+currency                          | Currency code                                 | Text
 
 
 ## Requirements
