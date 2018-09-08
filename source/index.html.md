@@ -10,6 +10,7 @@ toc_footers:
 includes:
   - profile
   - playlist
+  - goal
   - chat
   - event
   - event_list
