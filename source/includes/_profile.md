@@ -22,7 +22,7 @@ curl --data-binary '{"id":"10", "method":"profile.Update", "params":{"function":
 }
 ```
 
-Updates the given user’s profile data. Acts as a create in case there is no data associated with the use identifier.
+Updates the user’s profile data. Acts as a create in case there is no data associated with the user.
 
 ### HTTP Request
 
@@ -37,7 +37,7 @@ sector | integer | the user’s sector input identifier
 seniority | integer | the user’s seniority input identifier
 
 <aside class="success">
-Returns — Profile Model - the user’s updated profile data
+Returns — Profile Model — the user’s updated profile data
 </aside>
 
 ### Errors
@@ -54,7 +54,7 @@ Error Code | Meaning
 ## Get
 
 ```shell
-curl --data-binary '{"id":"5", "method":"profile.Get", "params":[], "jsonrpc":"2.0"}'
+curl --data-binary '{"id":"5", "method":"profile.Get", "jsonrpc":"2.0"}'
   -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
   -H 'content-type:application/json;'
 ```
@@ -73,7 +73,7 @@ curl --data-binary '{"id":"5", "method":"profile.Get", "params":[], "jsonrpc":"2
 }
 ```
 
-Retrieves an user’s profile information.
+Retrieves a user’s profile information.
 
 ### HTTP Request
 
@@ -100,7 +100,7 @@ Error Code | Meaning
 ## GetInputOptions
 
 ```shell
-curl --data-binary '{"id":"3", "method":"profile.GetInputOptions", "params":[], "jsonrpc":"2.0"}'
+curl --data-binary '{"id":"3", "method":"profile.GetInputOptions", "jsonrpc":"2.0"}'
   -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
   -H 'content-type:application/json;'
 ```
@@ -217,7 +217,7 @@ Mark an asset as <code>favourite</code> for an user.
 
 Parameter | Type | Description
 --------- | ------- | -----------
-id | integer | the asset to be favourited id
+id | integer | the asset to be favourited's id
 saved | boolean | the true/false status
 
 <aside class="success">
@@ -236,7 +236,7 @@ Error Code | Meaning
 ## FetchCompetencies
 
 ```shell
-curl --data-binary '{"id":"7","method":"profile.FetchCompetencies","params":[], "jsonrpc": "2.0"}'
+curl --data-binary '{"id":"7","method":"profile.FetchCompetencies","jsonrpc": "2.0"}'
   -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
   -H 'content-type:application/json;'
 ```
@@ -319,7 +319,7 @@ curl --data-binary '{"id":"7","method":"profile.FetchCompetencies","params":[], 
 }
 ```
 
-Retrieve organisation afferent competencies for an user.
+Retrieve organisation afferent competencies.
 
 ### HTTP Request
 

@@ -3,7 +3,7 @@
 ## FetchScript
 
 ```shell
-curl --data-binary '{"id":"2","method":"chat.FetchScript", "params":[], "jsonrpc": "2.0"}'
+curl --data-binary '{"id":"2","method":"chat.FetchScript", "jsonrpc": "2.0"}'
   -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
   -H 'content-type:application/json;'
 ```
