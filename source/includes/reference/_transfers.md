@@ -322,7 +322,109 @@ estimatedDeliveryDate     | Estimated time when funds will arrive to recipient's
 
 
 
-## List - todo
+
+
+## List
+
+> Example Request:
+
+```shell
+
+curl -X GET https://api.sandbox.transferwise.tech/v1/transfers?offset=0&limit=100&profile=<your profile id>&status=funds_refunded&createdDateStart=2018-12-15&createdDateEnd=2018-12-30  \
+     -H "Authorization: Bearer <your api token>" 
+```
+
+> Example Response:
+```json
+
+[
+  {
+    "id": 15574445,
+    "user": 294205,
+    "targetAccount": 7993919,
+    "sourceAccount": null,
+    "quote": 113379,
+    "status": "funds_refunded",
+    "reference": "good times",
+    "rate": 1.1179,
+    "created": "2018-12-16 15:25:51",
+    "business": null,
+    "transferRequest": null,
+    "details": {
+      "reference": "good times"
+    },
+    "hasActiveIssues": false,
+    "sourceValue": 1000,
+    "sourceCurrency": "EUR",
+    "targetValue": 895.32,
+    "targetCurrency": "GPB",
+    "customerTransactionId": "6D9188CF-FA59-44C3-87A2-4506CE9C1EA3"
+  },
+  {
+    "id": 14759252,
+    "user": 294205,
+    "targetAccount": 5570192,
+    "sourceAccount": null,
+    "quote": 113371,
+    "status": "funds_refunded",
+    "reference": "",
+    "rate": 1.1179,
+    "created": "2018-12-26 15:25:51",
+    "business": null,
+    "transferRequest": null,
+    "details": {
+      "reference": ""
+    },
+    "hasActiveIssues": false,
+    "sourceValue": 1000,
+    "sourceCurrency": "EUR",
+    "targetValue": 895.32,
+    "targetCurrency": "GPB",
+    "customerTransactionId": "785C67AD-7E29-4DBC-9D4A-4C45D4D5333A"
+  }
+]
+
+```
+
+Get the list of transfers for given user's profile (defaults to user's personal profile). 
+
+You can add query parameters to specify user's profile (personal or business), time period and/or payment status. 
+
+For example you can query:
+* all failed payments created since last week
+* all completed payments created since yesterday
+
+
+
+### Request
+
+**`GET https://api.sandbox.transferwise.tech/v1/transfers/?offset=0&limit=100&profile=<your profile id>&status=funds_refunded&createdDateStart=2018-12-15&createdDateEnd=2018-12-30`**
+
+Field                     | Description             | Format
+---------                 | -------                 | -----------
+profile                   |        | Integer
+status                    |        | Integer
+createdDateStart          |        | Integer
+createdDateEnd            |        | Integer
+limit                     | Maximum !!!! todo       | Integer
+offset                    | Offset       | Integer
+
+
+
+
+
+#borderless-payouts-guide-track-transfer-status
+
+### Response
+
+You need to save transfer id for tracking its status later.
+
+Field                     | Description             | Format
+---------                 | -------                 | -----------
+estimatedDeliveryDate     | Estimated time when funds will arrive to recipient's bank account  | Timestamp
+
+
+
 
 
 
