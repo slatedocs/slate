@@ -132,7 +132,7 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/accounts \
          }'
 ```
 
-> Example Response (Create email recipient):
+> Example Response (Lookup email recipient):
 
 ```json
 {
