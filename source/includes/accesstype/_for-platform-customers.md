@@ -35,19 +35,19 @@ An `attempt_token` is the identifier of a subscription attempt. It should be sen
 We highly recommend use of this API before accepting payment form a user.
 
 
-## POST Subscribe a plan
+## POST Subscribe to a plan
 
 ```shell--request
-curl -H "X-QT-AUTH: <x-qt-auth>” -H "Content-Type: application/json" http://sketches.quintype.com/api/v1/subscribe -d ‘{
+curl -H "X-QT-AUTH: <x-qt-auth>" -H "Content-Type: application/json" https://sketches.quintype.com/api/v1/subscribe -d '{
    "options": {
-        "gateway-name": "manual"
+        "gateway-name": "razorpay"
     },
     "payment": {
         "attributes": {
             "currency": "INR",
-            "amount": 29900,
-            "payment-type": "manual"
-        }
+            "amount": 100,
+            "gateway-payment-id": "pay_123trt465"
+          }
     },
     "subscription": {
         "accesstype-plan-id": 20,
@@ -60,10 +60,9 @@ curl -H "X-QT-AUTH: <x-qt-auth>” -H "Content-Type: application/json" http://sk
           "pincode": "560017",
           "mobile": "9879310927"
          }
-    }}’
-
-
-
+    }
+  }
+'
 ```
 ```shell--response
 {
@@ -147,11 +146,16 @@ curl -H "X-QT-AUTH: <x-qt-auth>” -H "Content-Type: application/json" http://sk
 }
 ```
 
-It creates a Subscription for registered member. 
+This request creates a Subscription for registered subscriber.
 
-`gateway-name` can be any valid payment-type supported by Accesstype.
-
-`accesstype-plan-id` is the Id of plan in Accesstype.
+|Parameter|Type|Mandatory|Description|
+|-|-|-|-|
+|options.gateway-name|String|Yes|The name of the payment gateway used for creating the subscription. Valid values are `sponsored` - where no payment gateway is involved, `razorpay` - for one-time Razorpay payments, `razorpay_recurring` - for recurring razorpay payments, `simpl` - for simpl payment gateway, `androidpay`- Google Pay one-time payments,  `androidpay_recurring` - for Google Pay recurring payments.|
+|payment.attributes.currency|String|No|Valid values are `INR` and `USD`|
+|payment.attributes.amount|Integer|No|The amount in cents when the currency is USD and paise when the currency is INR|
+|payment.attributes.gateway-payment-id|String|Conditional|Required only when the gateway-name is  not `sponsored`. The payment token returned by the payment gateway once the payment was authorized by the subscriber. |
+|subscription.accesstype-plan-id|Integer|Yes|The identifier for the plan to which the subscription is made.|
+|subscription.metadata|Object|No|The metadata elements of the subscription plan, and their values.|
 
 ## POST Register And Subscribe a user
 
