@@ -1,7 +1,6 @@
 # Transfers
 
-
-## Create  - todo
+## Create
 
 > Example Request:
 
@@ -49,13 +48,13 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/transfers \
 
 ```
 
-Transfer is a payout order which consists of quote and recipient account. You can also add reference text and you need to specify unique identifier to avoid creating duplicate transfers. 
-Once created then a transfer needs to be funded during next 5 working days. In case not it will get automatically cancelled.  
+Transfer is a payout order to recipient account based on a quote. Once created then a transfer needs to be funded during next 5 working days. 
+In case not it will get automatically cancelled.  
 
 
 ### Request
 
-**`POST https://api.sandbox.transferwise.tech/v1/accounts`**
+**`POST https://api.sandbox.transferwise.tech/v1/transfers`**
 
 Field                          | Description                                   | Format
 ---------                      | -------                                       | -----------
@@ -97,7 +96,7 @@ When your first call fails (error or timeout) then you should use the same value
 This way we can treat subsequent retry messages as **repeat messages** and will not create duplicate transfers to your account. 
 
 
-## Fund - todo
+## Fund
 
 > Example Request:
 
@@ -150,11 +149,141 @@ errorCode             | Failure reason. For example "balance.payment-option-unav
 
 
 
-## Cancel - todo
+## Cancel
 
-## Get by Id - todo
 
-## Get Issues - todo
+> Example Request:
+
+```shell
+
+curl -X PUT https://api.sandbox.transferwise.tech/v1/transfers/{transferId}/cancel \
+     -H "Authorization: Bearer <your api token>" 
+
+```
+
+> Example Response:
+
+```json
+{
+  "id": 16521632,
+  "user": 4342275,
+  "targetAccount": 8692237,
+  "sourceAccount": null,
+  "quote": 657171,
+  "status": "cancelled",
+  "reference": "reference text",
+  "rate": 0.89,
+  "created": "2017-11-24 10:47:49",
+  "business": null,
+  "transferRequest": null,
+  "details": {
+    "reference": "vambo 3"
+  },
+  "hasActiveIssues": false,
+  "sourceCurrency": "EUR",
+  "sourceValue": 0,
+  "targetCurrency": "GBP",
+  "targetValue": 150,
+  "customerTransactionId": "54a6bc09-cef9-49a8-9041-f1f0c654cd88"
+}
+
+```
+
+Only transfers which are not funded can be cancelled. Cancellation is final it can not be undone.  
+
+### Request
+
+**`PUT https://api.sandbox.transferwise.tech/v1/transfers/{transferId}/cancel`**
+
+Use transfer id that you obtained when creating a transfer. 
+
+
+## Get by Id
+
+> Example Request:
+
+```shell
+
+curl -X GET https://api.sandbox.transferwise.tech/v1/transfers/{transferId} \
+     -H "Authorization: Bearer <your api token>" 
+```
+
+> Example Response:
+
+```json
+{
+  "id": 15574445,
+  "user": 294205,
+  "targetAccount": 7993919,
+  "sourceAccount": null,
+  "quote": 113379,
+  "status": "incoming_payment_waiting",
+  "reference": "good times",
+  "rate": 1.2151,
+  "created": "2017-03-14 15:25:51",
+  "business": null,
+  "transferRequest": null,
+  "details": {
+    "reference": "good times"
+  },
+  "hasActiveIssues": false,
+  "sourceValue": 1000,
+  "sourceCurrency": "EUR",
+  "targetValue": 895.32,
+  "targetCurrency": "GPB",
+  "customerTransactionId": "6D9188CF-FA59-44C3-87A2-4506CE9C1EA3"
+}
+```
+
+Get transfer info by id. Since we don't have push notifications yet, you can poll this endpoint to track your transfer status.
+### Request
+**`GET https://api.sandbox.transferwise.tech/v1/transfers/{transferId}`**
+
+
+
+
+
+
+
+## Get Issues
+
+> Example Request:
+
+```shell
+
+curl -X GET https://api.sandbox.transferwise.tech/v1/transfers/{transferId}/issues \
+     -H "Authorization: Bearer <your api token>" 
+
+```
+
+> Example Response:
+
+```json
+[
+  {
+    "type": "Payment has bounced back",
+    "state": "OPENED",
+    "description": "Inorrect recipient account number"
+  }
+]
+```
+
+Get pending issues that are suspending a transfer from further processing. This is more applicable for Bank Integrations use case when transfers are NOT funded from borderless account but funding is sent via bank transfer.
+For example "DEPOSIT_AMOUNT_LESS_INVOICE" means that arrived funding does not cover total transfer amount.
+
+### Request
+
+**`GET https://api.sandbox.transferwise.tech/v1/transfers/{transferId}/issues`**
+
+
+### Response
+Field                 | Description             | Format
+---------             | -------                 | -----------
+type                  | Issue type: <br/><ul><li>DEPOSIT_AMOUNT_LESS_INVOICE</li><li>DEPOSIT_AMOUNT_MORE_INVOICE</li><li>PROVE_ACCOUNT_OWNERSHIP_WITH_REFERENCE_CODE</li><li>PROVE_ACCOUNT_OWNERSHIP_WITH_MICRO_DEPOSIT</li><li>JOINT_ACCOUNT_PROOF_NEEDED</li><li>BUSINESS_ORDER_PERSONAL_DEPO</li><li>INCORRECT_NAME_DEPOSIT</li><li>DEPOSIT_PROOF_NEEDED</li><li>PERSONAL_ORDER_BUSINESS_DEPO</li><li>INCORRECT_DEPOSIT_RECIPIENT_DETAILS</li><li>INCORRECT_SOURCE_ACCOUNT_NUMBER</li><ul>  | Text
+status                | Issue state: OPENED, IN_PROGRESS, CLOSED              | Text
+description           | Additional details about issue. For example 'Incorrect recipient account number'          | Text
+
+
 
 ## Get Delivery Time
 > Example Request:
@@ -194,6 +323,15 @@ estimatedDeliveryDate     | Estimated time when funds will arrive to recipient's
 
 
 ## List - todo
+
+
+
+
+
+
+
+
+
 
 
 ## Requirements - todo

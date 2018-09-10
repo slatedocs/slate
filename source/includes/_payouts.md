@@ -411,13 +411,13 @@ Step 2: Create a recipient account
 Step 4: Fund a transfer
 
 <br/>
-Transfer is a payout order which consists of quote and recipient account. You can also add reference text and you need to specify unique identifier to avoid creating duplicate transfers. 
-Once created then a transfer needs to be funded during next 5 working days. In case not it will get automatically cancelled.  
+Transfer is a payout order to recipient account based on a quote. Once created then a transfer needs to be funded during next 5 working days. 
+In case not it will get automatically cancelled.  
 
 
 ### Request
 
-**`POST https://api.sandbox.transferwise.tech/v1/accounts`**
+**`POST https://api.sandbox.transferwise.tech/v1/transfers`**
 
 Field                          | Description                                   | Format
 ---------                      | -------                                       | -----------
