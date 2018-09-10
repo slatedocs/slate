@@ -25,9 +25,9 @@ EXEMPLO
     "notification_emails":["myemail@gmail.com"],
     "received":true, # deprecated
     "received_amount":"10.07", # deprecated
-    "received_at":"2015-01-30", # deprecated
+    "received_at":"2015-01-30T04:00:00Z", # deprecated
     "paid_amount":"10.07",
-    "paid_at":"2015-01-30",
+    "paid_at":"2015-01-30T04:00:00Z",
     "paid_discount":"4.56",
     "paid_additions":"0.50",
     "paid_rebate":"0.30",
@@ -94,9 +94,9 @@ validações e alguns comportamentos serão variáveis de acordo com o tipo de c
 | payer_emails                   | array of strings | (DEPRECATED: use notification_emails) emails que receberão notificações sobre a cobrança                                                            |
 | received                       | boolean          | (DEPRECATED: use paid_at) indica se a cobrança foi recebida                                                                                         |
 | received_amount                | decimal          | (DEPRECATED: use paid_amount) valor pago                                                                                                            |
-| received_at                    | datetime         | (DEPRECATED: use paid_at) date e horário em que a cobrança foi paga                                                                                 |
+| received_at                    | datetime         | (DEPRECATED: use paid_at) date e horário em que a cobrança foi paga. (Utilize o timezone da configuração de cobrança ao converter para data)        |
 | paid_amount                    | decimal          | valor pago                                                                                                                                          |
-| paid_at                        | datetime         | date e horário em que a cobrança foi paga                                                                                                           |
+| paid_at                        | datetime         | date e horário em que a cobrança foi paga. (Utilize o timezone da configuração de cobrança ao converter para data)                                  |
 | paid_discount                  | decimal          | valor do desconto no momento do pagamento                                                                                                           |
 | paid_additions                 | decimal          | valor do juros, multas e encargos no momento do pagamento                                                                                           |
 | paid_rebate                    | decimal          | valor do abatimento no momento do pagamento                                                                                                         |
@@ -161,7 +161,7 @@ e tem suas respostas dadas em payloads via webhook.
 | for_homologation               | boolean          | indica se é uma cobrança que foi criada com o objetivo de homologar uma Configuração de cobrança ou um Cartão de Crédito                      |
 | payment_gateway_status         | string           | status da cobrança em relação ao gateway de pagamento (pending, authorized, captured, canceled, authorize_error, capture_error, cancel_error) |
 | payment_gateway_message        | string           | mensagem do gateway de pagamento relacionada ao seu status                                                                                    |
-| canceled_at                    | datetime         | data e horário em que a cobrança foi cancelada, se for o caso                                                                                 |
+| canceled_at                    | datetime         | data e horário em que a cobrança foi cancelada, se for o caso. (Utilize o timezone da configuração de cobrança ao converter para data)        |                                                                                  |
 | _links                         | array of object  | links relacionados à cobrança                                                                                                                 |
 
 
@@ -243,9 +243,9 @@ EXEMPLO DE CORPO DA RESPOSTA (BOLETO)
     "notification_emails":["myemail@gmail.com"],
     "received":true, # deprecated
     "received_amount":"10.07", # deprecated
-    "received_at":"2015-01-30", # deprecated
+    "received_at":"2015-01-30T04:00:00Z", # deprecated
     "paid_amount":"10.07",
-    "paid_at":"2015-01-30",
+    "paid_at":"2015-01-30T04:00:00Z",
     "paid_discount":"4.56",
     "paid_additions":"0.50",
     "paid_rebate":"0.30",

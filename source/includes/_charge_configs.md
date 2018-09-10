@@ -83,7 +83,7 @@ As Configurações de Cobrança do tipo **Conta bancária** (billet), pertencem 
 | pre_released_billet       | boolean          | caso a configuração de cobrança utilize boletos registrados, este atributo indica se os boletos podem ser acessados antes do registro no banco ser confirmado             |
 | writing_off_deadline      | integer          | número de dias após o vencimento da cobrança para que seja feita a baixa automática do título no banco (apenas para cobranças registradas com padrão 240)                 |
 | available_charge_types    | array of strings | tipos de cobrança disponíveis. No caso de Configuração de Cobrança por Conta Bancária, será disponível somente a opção "billet". Este campo será gerenciado pelo Cobrato  |
-| timezone                  | array of strings | fuso horário utilizado pelo banco. Utilize essa informação para converter e apresentar atributos do tipo "datetime" das cobranças dessa configuração de forma adequada    |
+| timezone                  | string           | fuso horário utilizado pelo banco. Utilize essa informação para converter e apresentar atributos do tipo "datetime" das cobranças dessa configuração de forma adequada    |
 | _links                    | array of object  | links da configuração de cobrança e de sua conta bancária                                                                                                                 |
 
 
@@ -107,7 +107,7 @@ As Configurações de Cobrança do tipo **Conta bancária** (billet), pertencem 
 | payee_id                | integer          | identificador do beneficiário desta configuração de cobrança no Cobrato                                                                                                                |
 | gateway_name            | string           | nome do gateway de pagamento ('cielo-ws15', 'cielo-api30', 'pjbank')                                                                                                                   |
 | available_charge_types  | array of strings | tipos de cobrança disponíveis. No caso de Configuração de Cobrança por Gateway de Pagamento, as opções possíveis são "billet" e "credit_card". Este campo será gerenciado pelo Cobrato |
-| timezone                | array of strings | fuso horário utilizado pelo gateway. Utilize essa informação para converter e apresentar atributos do tipo "datetime" das cobranças dessa configuração de forma adequada               |
+| timezone                | string           | fuso horário utilizado pelo gateway. Utilize essa informação para converter e apresentar atributos do tipo "datetime" das cobranças dessa configuração de forma adequada               |
 | _links                  | array of object  | links da configuração de cobrança e de sua conta bancária                                                                                                                              |
 
 **Parâmetros específicos para gateway Cielo**
