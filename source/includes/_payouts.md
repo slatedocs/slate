@@ -17,7 +17,7 @@ Just follow these three simple steps.
 
 * Make a transfer — check [our video guide](https://transferwise.com/help/article/1779442/creating-a-transfer/video-guide-make-a-transfer) for a step-by-step guide.
 
-* Verify that our coverage includes your currency route(s).
+* Verify that our coverage includes your currency route(s). Check [Supported Currencies](https://transferwise.com/help/article/1569835/basic-information/supported-currencies).
 
 
 ### 3. Choose the best tool for you
@@ -39,11 +39,14 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/profiles \
 ### Authentication
 Signup for developer account to get API token for sandbox. [https://sandbox.transferwise.tech/register](https://sandbox.transferwise.tech/register)
 
+NB! Two factor authentication (2FA) code for sandbox login is 111111 for everyone.
+
 Your developer account will have some test money so you can start making payments in same way as in LIVE environment.  You will find your API tokens in the Settings page. 
 
 Add your API token as header parameter to every request like this:
 
 *Authorization: Bearer xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx*
+
 
 ### TEST and LIVE environments
 
@@ -102,6 +105,9 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/profiles \
 
 You only need to call this endpoint once to obtain your user profile id.
 Your personal and business profiles have different IDs.  Profile id values are required when making payouts. 
+
+It is recommended to always provide profileId when you are creating new resources later (Create Quote, Create Recipient Account, Create Transfer). 
+If you omit profileId then resource will by default belong to your personal profile and this might not be your intention as you most probably want to execute transfers under your business profile.
 
 ### Request
 
@@ -305,7 +311,7 @@ Recipient is a person or institution  who is the ultimate beneficiary of your pa
 Recipient bank account details are different for different currencies. For example you only need to know IBAN number to send payments to most European and Nordic countries. 
 But in order to send money to Canada you would need to know four fields: Institution No, Transit no, Account No & Account Type.
 
-GBP example is provided here. You can find other currency examples in Recipient API section below.  
+GBP example is provided here. You can find other currency examples in [Recipient Accounts](#recipient-accounts) section below.  
 
 
 ### Request
@@ -500,6 +506,11 @@ Step 3: Create a transfer
 This API call is the final step for executing payouts. TransferWise will now debit funds from your borderless balance and start processing your transfer. 
 If your borderless balance is short of funds then this call will fail with "insufficient funds" error.
 
+Initial developer account has by default plentiful funds available for EUR, USD, GBP and AUD.  
+You can add new currencies to your account via user interface: [https://sandbox.transferwise.tech](https://sandbox.transferwise.tech)
+
+And then you can topup your new currencies by converting funds from other currencies.
+
 ### Request
 
 **`POST https://api.sandbox.transferwise.tech/v1/transfers/{transferId}/payments`**
@@ -633,6 +644,19 @@ Payment systems in different countries operate in different speeds and frequency
 * **funds_refunded** — Transfer has been refunded. Final state of transfer.
 
 * **bounced_back** — Transfer has bounced back but has not been cancelled nor refunded yet.
+
+Transfer statuses in API have different names than what you will see in our website. This is because we have transformed our API transfer statuses to more human readable texts in our website. 
+For example "Completed" in our website corresponds to "outgoing_payment_sent" in API.
+
+
+<br/><br/>
+**Sandbox limitations**
+
+We don't send out email notifications about payment status changes in sandbox.
+
+We don't process payments in sandbox which means that created payments remain in their first state. You can use [Simulation](#simulation) endpoints to change transfer statuses in sandbox.
+
+
 
 
 ## Check account balance

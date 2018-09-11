@@ -62,7 +62,7 @@ target                | Target(receive) currency code                          |
 rateType              | Always use constant 'FIXED'                   | Text
 targetAmount          | Amount in target currency                     | Decimal
 sourceAmount          | Amount in source currency. <br/>Either sourceAmount or targetAmount is required, never both.   | Decimal
-type                  | 'BALANCE_PAYOUT' for payments funded from borderless account <br/> 'REGULAR' for other payments <br/> 'BALANCE_CONVERSION' for conversion between balances   | Text
+type                  | 'BALANCE_PAYOUT' for payments funded from borderless account  <br/> 'BALANCE_CONVERSION' for conversion between balances  <br/> 'REGULAR' for other payments | Text
 
 
 ### Response

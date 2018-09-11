@@ -229,7 +229,7 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/accounts?profile=<profileId
 ]
 
 ```
-Fetch list of your recipient accounts. Filter by currency and/or by user profile Id.
+Fetch list of your recipient accounts. Filter by currency and/or user profile Id.
 This list does not currently support pagination.
 Therefore if you have very many recipient accounts defined in your business profile then please filter by currency to ensure a reasonable response time.
 
@@ -243,6 +243,26 @@ Field                             | Description                                 
 ---------                         | -------                                       | -----------
 profileId                         | Personal or business profile id               | Integer
 currency                          | Currency code                                 | Text
+
+## Delete
+
+> Example Request:
+
+```shell
+
+curl -X DELETE https://api.sandbox.transferwise.tech/v1/accounts/{accountId} \
+     -H "Authorization: Bearer <your api token>"
+```
+
+
+Deletes a recipient by changing its status to inactive. Only active recipients can be deleted and a recipient cannot be reactivated, however you can create a new recipient with the same details instead.
+
+Response is empty if delete succeeds.
+
+Requesting to delete recipient that is already inactive will return an http status 403 (forbidden).
+
+### Request
+**`DELETE https://api.sandbox.transferwise.tech/v1/accounts/{accountId}`**
 
 
 ## Requirements
@@ -593,7 +613,7 @@ or
 
 
 There are several validation URLs that make creating correct recipient accounts easier. 
-These URLs are also included in fields provided by [Recipients.Requirements](#recipients-requirements) endpoint.
+These URLs are also included in fields provided by [Recipient Accounts.Requirements](#recipient-accounts-requirements) endpoint.
 
 **GBP**
 
@@ -750,19 +770,20 @@ Required details: IBAN
 > Example Request (ARS):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "ARS",
-    "type": "argentina",
-    "legalType": "PRIVATE",
-    "details": {
-	   "taxId": "20-34149938-1",
-	   "accountNumber": "0110482420048200036238"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "ARS",
+          "type": "argentina",
+          "legalType": "PRIVATE",
+          "details": {
+           "taxId": "20-34149938-1",
+           "accountNumber": "0110482420048200036238"
+         }
+      }'
 ```
 
 Send payments to Argentina. 
@@ -778,19 +799,20 @@ Required details: taxId, accountNumber
 > Example Request (AUD):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "AUD",
-    "type": "australian",
-    "legalType": "PRIVATE",
-    "details": {
-	   "bsbCode": "023604",
-	   "accountNumber": "123456789"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "AUD",
+          "type": "australian",
+          "legalType": "PRIVATE",
+          "details": {
+           "bsbCode": "023604",
+           "accountNumber": "123456789"
+          }
+        }'
 ```
 
 Send payments to Australia. 
@@ -806,20 +828,21 @@ Required details: bsbCode, accountNumber
 > Example Request (BDT):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "BDT",
-    "type": "bangladesh",
-    "legalType": "PRIVATE",
-    "details": {
-	   "bankCode": "015",
-	   "branchCode": "015270362",
-	   "accountNumber": "5060011118"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "BDT",
+          "type": "bangladesh",
+          "legalType": "PRIVATE",
+          "details": {
+           "bankCode": "015",
+           "branchCode": "015270362",
+           "accountNumber": "5060011118"
+           }
+        }'
 ```
 
 <aside class="warning">
@@ -841,18 +864,19 @@ You can get list of bank and branch codes by using /v1/quotes/{quoteId}/account-
 > Example Request (BGN):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "BGN",
-    "type": "iban",
-    "legalType": "PRIVATE",
-    "details": {
-	   "IBAN": "BG89370400440532013000"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "BGN",
+          "type": "iban",
+          "legalType": "PRIVATE",
+          "details": {
+           "IBAN": "BG89370400440532013000"
+           }
+        }'
 ```
 
 Send payments to Bulgaria. 
@@ -868,23 +892,24 @@ Required details: IBAN
 > Example Request (BRL):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "BRL",
-    "type": "brazil",
-    "legalType": "PRIVATE",
-    "details": {
-	   "bankCode": "218",
-	   "branchCode": "1234",
-	   "accountNumber": "12345678-9",
-	   "accountType": "CHECKING",
-	   "cpf": "123.456.789-12",
-	   "phoneNumber": "+55 21 5555 5555"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "BRL",
+          "type": "brazil",
+          "legalType": "PRIVATE",
+          "details": {
+           "bankCode": "218",
+           "branchCode": "1234",
+           "accountNumber": "12345678-9",
+           "accountType": "CHECKING",
+           "cpf": "123.456.789-12",
+           "phoneNumber": "+55 21 5555 5555"
+           }
+        }'
 ```
 
 Send payments to Brazil. 
@@ -903,22 +928,22 @@ You can get list of bank and branch codes by using /v1/quotes/{quoteId}/account-
 > Example Request (CAD):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "CAD",
-    "type": "canadian",
-    "legalType": "PRIVATE",
-    "details": {
-	   "institutionNumber": "006",
-	   "transitNumber": "04841",
-	   "accountNumber": "1234567",
-	   "accountType": "Checking",
-	   
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "CAD",
+          "type": "canadian",
+          "legalType": "PRIVATE",
+          "details": {
+           "institutionNumber": "006",
+           "transitNumber": "04841",
+           "accountNumber": "1234567",
+           "accountType": "Checking",
      }
-  }
+  }'
 ```
 
 Send payments to Canada. 
@@ -936,18 +961,19 @@ You can get list of bank and branch codes by using /v1/quotes/{quoteId}/account-
 > Example Request (CHF):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "CHF",
-    "type": "iban",
-    "legalType": "PRIVATE",
-    "details": {
-	   "IBAN": "CH89370400440532013000"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "CHF",
+          "type": "iban",
+          "legalType": "PRIVATE",
+          "details": {
+           "IBAN": "CH89370400440532013000"
+           }
+        }'
 ```
 
 Send payments to Switzerland. 
@@ -964,22 +990,23 @@ Required details: IBAN
 > Example Request (CLP):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "CLP",
-    "type": "chile",
-    "legalType": "PRIVATE",
-    "details": {
-	   "bankCode": "504",
-	   "accountNumber": "12345678901234567890",
-	   "rut": "760864285",
-	   "accountType": "CHECKING",
-	   "phoneNumber": "+56 33 555 5555"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "CLP",
+          "type": "chile",
+          "legalType": "PRIVATE",
+          "details": {
+           "bankCode": "504",
+           "accountNumber": "12345678901234567890",
+           "rut": "760864285",
+           "accountType": "CHECKING",
+           "phoneNumber": "+56 33 555 5555"
+           }
+        }'
 ```
 
 Send payments to Chile. 
@@ -996,18 +1023,19 @@ Required details: bankCode, accountNumber, rut (Rol Único Tributario), accountT
 > Example Request (CNY):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "CNY",
-    "type": "chinese_card",
-    "legalType": "PRIVATE",
-    "details": {
-	   "cardNumber": "6240008631401148"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "CNY",
+          "type": "chinese_card",
+          "legalType": "PRIVATE",
+          "details": {
+           "cardNumber": "6240008631401148"
+           }
+        }'
 ```
 
 Send payments to China Unionpay cardholder. 
@@ -1023,37 +1051,39 @@ Required details: cardNumber
 > Example Request (CZK Local):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "CZK",
-    "type": "czech",
-    "legalType": "PRIVATE",
-    "details": {
-	   "prefix": "000000",
-	   "accountNumber": "5060011118",
-	   "bankCode": "5500"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "CZK",
+          "type": "czech",
+          "legalType": "PRIVATE",
+          "details": {
+           "prefix": "000000",
+           "accountNumber": "5060011118",
+           "bankCode": "5500"
+           }
+        }'
 ```
 
 > Example Request (CZK IBAN):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "CZK",
-    "type": "iban",
-    "legalType": "PRIVATE",
-    "details": {
-	   "IBAN": "CZ89370400440532013000"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "CZK",
+          "type": "iban",
+          "legalType": "PRIVATE",
+          "details": {
+           "IBAN": "CZ89370400440532013000"
+           }
+        }'
 ```
 
 
@@ -1087,18 +1117,19 @@ Required details: IBAN
 > Example Request (DKK):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "DKK",
-    "type": "iban",
-    "legalType": "PRIVATE",
-    "details": {
-	   "IBAN": "DK89370400440532013000"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "DKK",
+          "type": "iban",
+          "legalType": "PRIVATE",
+          "details": {
+           "IBAN": "DK89370400440532013000"
+           }
+        }'
 ```
 
 Send payments to Denmark. 
@@ -1117,19 +1148,20 @@ Required details: IBAN
 > Example Request (EGP):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "EGP",
-    "type": "egypt_local",
-    "legalType": "PRIVATE",
-    "details": {
-	   "bankCode": "ECBAEGCA",
-	   "accountNumber": "123456789"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "EGP",
+          "type": "egypt_local",
+          "legalType": "PRIVATE",
+          "details": {
+           "bankCode": "ECBAEGCA",
+           "accountNumber": "123456789"
+           }
+        }'
 ```
 
 Send payments to Egypt. 
@@ -1148,18 +1180,19 @@ You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirement
 > Example Request (EUR):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "EUR",
-    "type": "iban",
-    "legalType": "PRIVATE",
-    "details": {
-	   "IBAN": "DE89370400440532013000"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "EUR",
+          "type": "iban",
+          "legalType": "PRIVATE",
+          "details": {
+           "IBAN": "DE89370400440532013000"
+           }
+        }'
 ```
 
 Send payments to Eurozone countries: Austria, Belgium, Cyprus, Estonia, Finland, France, Germany, Greece, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Portugal, Slovakia, Slovenia, Spain.
@@ -1176,39 +1209,39 @@ Required details: IBAN
 > Example Request (GBP Sort Code):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "GBP",
-    "type": "sort_code",
-    "legalType": "PRIVATE",
-    "details": {
-	   "sortCode": "40-30-20",
-	   "accountNumber": "12345678"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "GBP",
+          "type": "sort_code",
+          "legalType": "PRIVATE",
+          "details": {
+           "sortCode": "40-30-20",
+           "accountNumber": "12345678"
+           }
+        }'
 ```
 
 > Example Request (GBP IBAN):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "GBP",
-    "type": "iban",
-    "legalType": "PRIVATE",
-    "details": {
-	   "IBAN": "GB89370400440532013000"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "GBP",
+          "type": "iban",
+          "legalType": "PRIVATE",
+          "details": {
+           "IBAN": "GB89370400440532013000"
+           }
+        }'
 ```
-
-
 
 
 Send payments to United Kingdom. 
@@ -1239,18 +1272,19 @@ Required details: IBAN
 > Example Request (GEL):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "GEL",
-    "type": "iban",
-    "legalType": "PRIVATE",
-    "details": {
-	   "IBAN": "GE89370400440532013000"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "GEL",
+          "type": "iban",
+          "legalType": "PRIVATE",
+          "details": {
+           "IBAN": "GE89370400440532013000"
+           }
+        }'
 ```
 
 Send payments to Georgia.
@@ -1267,19 +1301,20 @@ Required details: IBAN
 > Example Request (GHS):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "GHS",
-    "type": "ghana",
-    "legalType": "PRIVATE",
-    "details": {
-	   "bankCode": "030100",
-	   "accountNumber": "0011XXXXXXXXXX"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "GHS",
+          "type": "ghana",
+          "legalType": "PRIVATE",
+          "details": {
+           "bankCode": "030100",
+           "accountNumber": "0011XXXXXXXXXX"
+           }
+        }'
 ```
 
 Send payments to Ghana.
@@ -1299,19 +1334,19 @@ You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirement
 > Example Request (HKD):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "HKD",
-    "type": "hongkong",
-    "legalType": "PRIVATE",
-    "details": {
-	   "bankCode": "307",
-	   "accountNumber": "005-231289-112"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "accountHolderName": "<recipient name>",
+          "currency": "HKD",
+          "type": "hongkong",
+          "legalType": "PRIVATE",
+          "details": {
+           "bankCode": "307",
+           "accountNumber": "005-231289-112"
+           }
+        }'
 ```
 
 Send payments to Hong Kong.
@@ -1331,18 +1366,19 @@ You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirement
 > Example Request:
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "HRK",
-    "type": "iban",
-    "legalType": "PRIVATE",
-    "details": {
-	   "IBAN": "HR89370400440532013000"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "HRK",
+          "type": "iban",
+          "legalType": "PRIVATE",
+          "details": {
+           "IBAN": "HR89370400440532013000"
+           }
+        }'
 ```
 
 Send payments to Croatia.
@@ -1359,35 +1395,37 @@ Required details: IBAN
 > Example Request (HUF Local):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "HUF",
-    "type": "hungarian",
-    "legalType": "PRIVATE",
-    "details": {
-	   "accountNumber": "12000000-12345678-00000000"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "HUF",
+          "type": "hungarian",
+          "legalType": "PRIVATE",
+          "details": {
+           "accountNumber": "12000000-12345678-00000000"
+           }
+        }'
 ```
 
 > Example Request (HUF IBAN):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "HUF",
-    "type": "iban",
-    "legalType": "PRIVATE",
-    "details": {
-	   "IBAN": "HU89370400440532013000"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "HUF",
+          "type": "iban",
+          "legalType": "PRIVATE",
+          "details": {
+           "IBAN": "HU89370400440532013000"
+           }
+        }'
 ```
 
 
@@ -1421,19 +1459,20 @@ Required details: IBAN
 > Example Request (IDR):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "IDR",
-    "type": "indonesian",
-    "legalType": "PRIVATE",
-    "details": {
-	   "bankCode": "610306",
-	   "accountNumber": "6789112345678"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "IDR",
+          "type": "indonesian",
+          "legalType": "PRIVATE",
+          "details": {
+           "bankCode": "610306",
+           "accountNumber": "6789112345678"
+           }
+        }'
 ```
 
 
@@ -1453,37 +1492,39 @@ You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirement
 > Example Request (ILS IBAN):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "ILS",
-    "type": "israeli_local",
-    "legalType": "PRIVATE",
-    "details": {
-	   "IBAN": "IL620108000000099999999"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+        "profile": <your profile id>,
+        "accountHolderName": "<recipient name>",
+        "currency": "ILS",
+        "type": "israeli_local",
+        "legalType": "PRIVATE",
+        "details": {
+         "IBAN": "IL620108000000099999999"
+         }
+      }'
 ```
 
 > Example Request (ILS Local Bank Code):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "ILS",
-    "type": "israeli_bank_code",
-    "legalType": "PRIVATE",
-    "details": {
-	   "bankCode": "054",
-	   "branchCode": "001",
-	   "accountNumber": "123456789"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "ILS",
+          "type": "israeli_bank_code",
+          "legalType": "PRIVATE",
+          "details": {
+           "bankCode": "054",
+           "branchCode": "001",
+           "accountNumber": "123456789"
+           }
+        }'
 ```
 
 
@@ -1520,20 +1561,20 @@ You can get list of bank and branch codes by using /v1/quotes/{quoteId}/account-
 > Example Request (INR):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "INR",
-    "type": "indian",
-    "legalType": "PRIVATE",
-    "details": {
-	   "ifscCode": "YESB0236041",
-	   "accountNumber": "678911234567891",
-	   
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "INR",
+          "type": "indian",
+          "legalType": "PRIVATE",
+          "details": {
+           "ifscCode": "YESB0236041",
+           "accountNumber": "678911234567891",
+           }
+        }'
 ```
 
 
@@ -1551,21 +1592,22 @@ Required details: ifscCode, accountNumber
 > Example Request (JPY):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "JPY",
-    "type": "japanese",
-    "legalType": "PRIVATE",
-    "details": {
-	   "bankCode": "6470",
-	   "branchCode": "100",
-	   "accountType": "CURRENT",
-	   "accountNumber": "1234567"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "JPY",
+          "type": "japanese",
+          "legalType": "PRIVATE",
+          "details": {
+           "bankCode": "6470",
+           "branchCode": "100",
+           "accountType": "CURRENT",
+           "accountNumber": "1234567"
+           }
+        }'
 ```
 
 Send payments to Japan.
@@ -1584,36 +1626,38 @@ You can get list of bank and branch codes by using /v1/quotes/{quoteId}/account-
 > Example Request (KES Bank Account):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "KES",
-    "type": "kenya_local",
-    "legalType": "PRIVATE",
-    "details": {
-	   "bankCode": "35",
-	   "accountNumber": "0023183991919"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "KES",
+          "type": "kenya_local",
+          "legalType": "PRIVATE",
+          "details": {
+           "bankCode": "35",
+           "accountNumber": "0023183991919"
+           }
+        }'
 ```
 
 > Example Request (KES Mobile MPESA):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "KES",
-    "type": "kenya_mobile",
-    "legalType": "PRIVATE",
-    "details": {
-	   "accountNumber": "2547XXXXXXXX"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "KES",
+          "type": "kenya_mobile",
+          "legalType": "PRIVATE",
+          "details": {
+           "accountNumber": "2547XXXXXXXX"
+           }
+        }'
 ```
 
 
@@ -1649,20 +1693,21 @@ Required details: accountNumber - mobile number
 > Example Request (LKR):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "LKR",
-    "type": "srilanka",
-    "legalType": "PRIVATE",
-    "details": {
-	   "bankCode": "7214",
-	   "branchCode": "100",
-	   "accountNumber": "5060011118"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "LKR",
+          "type": "srilanka",
+          "legalType": "PRIVATE",
+          "details": {
+           "bankCode": "7214",
+           "branchCode": "100",
+           "accountNumber": "5060011118"
+           }
+        }'
 ```
 
 Send payments to Sri Lanka. 
@@ -1680,19 +1725,20 @@ You can get list of bank and branch codes by using /v1/quotes/{quoteId}/account-
 > Example Request (MAD):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "MAD",
-    "type": "morocco",
-    "legalType": "PRIVATE",
-    "details": {
-	   "bankCode": "BCMAMAMC",
-	   "accountNumber": "123456789012345678901234"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "MAD",
+          "type": "morocco",
+          "legalType": "PRIVATE",
+          "details": {
+           "bankCode": "BCMAMAMC",
+           "accountNumber": "123456789012345678901234"
+           }
+        }'
 ```
 
 Send payments to Morocco. 
@@ -1712,18 +1758,19 @@ You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirement
 > Example Request (MXN):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "MXN",
-    "type": "mexican",
-    "legalType": "PRIVATE",
-    "details": {
-	   "clabe": "032180000118359719"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "MXN",
+          "type": "mexican",
+          "legalType": "PRIVATE",
+          "details": {
+           "clabe": "032180000118359719"
+           }
+        }'
 ```
 
 Send payments to Mexico. 
@@ -1742,19 +1789,20 @@ Required details: clabe
 > Example Request (MYR):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "MYR",
-    "type": "malaysian",
-    "legalType": "PRIVATE",
-    "details": {
-	   "swiftCode": "ABNAMYKL",
-	   "accountNumber": "159012938613"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "MYR",
+          "type": "malaysian",
+          "legalType": "PRIVATE",
+          "details": {
+           "swiftCode": "ABNAMYKL",
+           "accountNumber": "159012938613"
+           }
+        }'
 ```
 
 Send payments to Malaysia. 
@@ -1775,19 +1823,20 @@ You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirement
 > Example Request (NGN):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "NGN",
-    "type": "nigeria",
-    "legalType": "PRIVATE",
-    "details": {
-	   "bankCode": "044",
-	   "accountNumber": "0584412903"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "NGN",
+          "type": "nigeria",
+          "legalType": "PRIVATE",
+          "details": {
+           "bankCode": "044",
+           "accountNumber": "0584412903"
+           }
+        }'
 ```
 
 Send payments to Nigeria. 
@@ -1807,18 +1856,19 @@ You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirement
 > Example Request (NOK):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "NOK",
-    "type": "iban",
-    "legalType": "PRIVATE",
-    "details": {
-	   "IBAN": "DE89370400440532013000"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "NOK",
+          "type": "iban",
+          "legalType": "PRIVATE",
+          "details": {
+           "IBAN": "DE89370400440532013000"
+           }
+        }'
 ```
 
 Send payments to Norway. 
@@ -1837,19 +1887,20 @@ Required details: IBAN
 > Example Request (NPR):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "NPR",
-    "type": "nepal",
-    "legalType": "PRIVATE",
-    "details": {
-	   "bankCode": "977056",
-	   "accountNumber": "1234567890"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "NPR",
+          "type": "nepal",
+          "legalType": "PRIVATE",
+          "details": {
+           "bankCode": "977056",
+           "accountNumber": "1234567890"
+           }
+        }'
 ```
 
 Send payments to Nepal. 
@@ -1868,18 +1919,19 @@ You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirement
 > Example Request (NZD):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "NZD",
-    "type": "newzealand",
-    "legalType": "PRIVATE",
-    "details": {
-	   "accountNumber": "03-1587-0050000-00"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "NZD",
+          "type": "newzealand",
+          "legalType": "PRIVATE",
+          "details": {
+           "accountNumber": "03-1587-0050000-00"
+           }
+        }'
 ```
 
 Send payments to New Zealand. 
@@ -1898,23 +1950,24 @@ Required details: accountNumber
 > Example Request (PEN):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "PEN",
-    "type": "peru",
-    "legalType": "PRIVATE",
-    "details": {
-	   "bankCode": "BCON",
-	   "accountNumber": "12345678901234567890",
-	   "accountType": "CHECKING",
-	   "idDocumentType": "DNI",
-	   "idDocumentNumber": "09740475",
-	   "phoneNumber": "+51 987654321"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "PEN",
+          "type": "peru",
+          "legalType": "PRIVATE",
+          "details": {
+           "bankCode": "BCON",
+           "accountNumber": "12345678901234567890",
+           "accountType": "CHECKING",
+           "idDocumentType": "DNI",
+           "idDocumentNumber": "09740475",
+           "phoneNumber": "+51 987654321"
+           }
+        }'
 ```
 
 Send payments to Peru. 
@@ -1937,25 +1990,26 @@ You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirement
 > Example Request (PHP):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "PHP",
-    "type": "philippines",
-    "legalType": "PRIVATE",
-    "details": {
-	   "bankCode": "AMA",
-	   "accountNumber": "0044XXXXXXXX",
-	   "address" : {
-	      "country": "GB",
-	      "city": "London",
-	      "postCode": "10025",
-	      "firstLine": "50 Branson Ave"
-       }
-    }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "PHP",
+          "type": "philippines",
+          "legalType": "PRIVATE",
+          "details": {
+           "bankCode": "AMA",
+           "accountNumber": "0044XXXXXXXX",
+           "address" : {
+              "country": "GB",
+              "city": "London",
+              "postCode": "10025",
+              "firstLine": "50 Branson Ave"
+             }
+          }
+        }'
 ```
 
 
@@ -1978,18 +2032,19 @@ You can get list of bank and country codes by using /v1/quotes/{quoteId}/account
 > Example Request (PKR):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "PKR",
-    "type": "iban",
-    "legalType": "PRIVATE",
-    "details": {
-	   "IBAN": "PK89370400440532013000"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "PKR",
+          "type": "iban",
+          "legalType": "PRIVATE",
+          "details": {
+           "IBAN": "PK89370400440532013000"
+           }
+        }'
 ```
 
 
@@ -2009,35 +2064,37 @@ Required details: IBAN
 > Example Request (PLN IBAN):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "PLN",
-    "type": "iban",
-    "legalType": "PRIVATE",
-    "details": {
-	   "IBAN": "PL89370400440532013000"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "PLN",
+          "type": "iban",
+          "legalType": "PRIVATE",
+          "details": {
+           "IBAN": "PL89370400440532013000"
+           }
+        }'
 ```
 
 > Example Request (PLN Local):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "PLN",
-    "type": "polish",
-    "legalType": "PRIVATE",
-    "details": {
-	   "accountNumber": "109010140000071219812874"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "PLN",
+          "type": "polish",
+          "legalType": "PRIVATE",
+          "details": {
+           "accountNumber": "109010140000071219812874"
+           }
+        }'
 ```
 
 Send payments to Poland. 
@@ -2069,18 +2126,19 @@ Required details: accountNumber
 > Example Request (RON):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "RON",
-    "type": "iban",
-    "legalType": "PRIVATE",
-    "details": {
-	   "IBAN": "RO89370400440532013000"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "RON",
+          "type": "iban",
+          "legalType": "PRIVATE",
+          "details": {
+           "IBAN": "RO89370400440532013000"
+           }
+        }'
 ```
 
 Send payments to Romania. 
@@ -2101,26 +2159,27 @@ Required details: IBAN
 > Example Request (RUB):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "RUB",
-    "type": "russiarapida",
-    "legalType": "PRIVATE",
-    "details": {
-     "bankCode": "041234567",
-	   "accountNumber": "40820810999999999999",
-	   "russiaRegion": "ALTAIKRAI",
-	   "address" : {
-	      "country": "GB",
-	      "city": "London",
-	      "postCode": "10025",
-	      "firstLine": "50 Branson Ave"
-       }
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "RUB",
+          "type": "russiarapida",
+          "legalType": "PRIVATE",
+          "details": {
+           "bankCode": "041234567",
+           "accountNumber": "40820810999999999999",
+           "russiaRegion": "ALTAIKRAI",
+           "address" : {
+              "country": "GB",
+              "city": "London",
+              "postCode": "10025",
+              "firstLine": "50 Branson Ave"
+             }
+           }
+        }'
 ```
 
 
@@ -2141,53 +2200,56 @@ You can get list of bank, region and country codes by using /v1/quotes/{quoteId}
 > Example Request (SEK IBAN):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "SEK",
-    "type": "iban",
-    "legalType": "PRIVATE",
-    "details": {
-	   "IBAN": "SE89370400440532013000"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "SEK",
+          "type": "iban",
+          "legalType": "PRIVATE",
+          "details": {
+           "IBAN": "SE89370400440532013000"
+           }
+        }'
 ```
 
 > Example Request (SEK Local):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "SEK",
-    "type": "sweden_local",
-    "legalType": "PRIVATE",
-    "details": {
-	   "clearingNumber": "1234",
-	   "accountNumber": "1234567"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "SEK",
+          "type": "sweden_local",
+          "legalType": "PRIVATE",
+          "details": {
+           "clearingNumber": "1234",
+           "accountNumber": "1234567"
+           }
+        }'
 ```
 
 > Example Request (SEK BankGiro):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "SEK",
-    "type": "bankgiro",
-    "legalType": "PRIVATE",
-    "details": {
-	   "bankgiroNumber": "1234-5678"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "SEK",
+          "type": "bankgiro",
+          "legalType": "PRIVATE",
+          "details": {
+           "bankgiroNumber": "1234-5678"
+           }
+        }'
 ```
 
 
@@ -2233,19 +2295,20 @@ Required details: bankgiroNumber
 > Example Request (SGD):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "SGD",
-    "type": "singapore",
-    "legalType": "PRIVATE",
-    "details": {
-	   "bankCode": "7418",
-	   "accountNumber": "1238827822"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "SGD",
+          "type": "singapore",
+          "legalType": "PRIVATE",
+          "details": {
+           "bankCode": "7418",
+           "accountNumber": "1238827822"
+           }
+        }'
 ```
 
 
@@ -2267,25 +2330,26 @@ You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirement
 > Example Request (THB):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "THB",
-    "type": "thailand",
-    "legalType": "PRIVATE",
-    "details": {
-	   "bankCode": "002",
-	   "accountNumber": "9517384260"
-	   "address" : {
-	      "country": "GB",
-	      "city": "London",
-	      "postCode": "10025",
-	      "firstLine": "50 Branson Ave"
-       }
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "THB",
+          "type": "thailand",
+          "legalType": "PRIVATE",
+          "details": {
+           "bankCode": "002",
+           "accountNumber": "9517384260"
+           "address" : {
+              "country": "GB",
+              "city": "London",
+              "postCode": "10025",
+              "firstLine": "50 Branson Ave"
+             }
+           }
+        }'
 ```
 
 Send payments to Thailand. 
@@ -2306,18 +2370,19 @@ You can get list of bank and country codes by using /v1/quotes/{quoteId}/account
 > Example Request (TRY):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "TRY",
-    "type": "turkish_earthport",
-    "legalType": "PRIVATE",
-    "details": {
-	   "IBAN": "TR330006100519786457841326"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "TRY",
+          "type": "turkish_earthport",
+          "legalType": "PRIVATE",
+          "details": {
+           "IBAN": "TR330006100519786457841326"
+           }
+        }'
 ```
 
 Send payments to Turkey. 
@@ -2334,19 +2399,20 @@ Required details: IBAN
 > Example Request (UAH):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "UAH",
-    "type": "privatbank",
-    "legalType": "PRIVATE",
-    "details": {
-	   "phoneNumber": "777210012",
-	   "accountNumber": "2662"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "UAH",
+          "type": "privatbank",
+          "legalType": "PRIVATE",
+          "details": {
+           "phoneNumber": "777210012",
+           "accountNumber": "2662"
+           }
+        }'
 ```
 
 
@@ -2371,26 +2437,27 @@ Required details:
 > Example Request (USD):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "USD",
-    "type": "aba",
-    "legalType": "PRIVATE",
-    "details": {
-	   "abartn": "111000025",
-	   "accountNumber": "12345678",
-	   "accountType": "CHECKING",
-	   "address" : {
-	      "country": "GB",
-	      "city": "London",
-	      "postCode": "10025",
-	      "firstLine": "50 Branson Ave"
-       }
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "USD",
+          "type": "aba",
+          "legalType": "PRIVATE",
+          "details": {
+           "abartn": "111000025",
+           "accountNumber": "12345678",
+           "accountType": "CHECKING",
+           "address" : {
+              "country": "GB",
+              "city": "London",
+              "postCode": "10025",
+              "firstLine": "50 Branson Ave"
+             }
+           }
+        }'
 ```
 
 
@@ -2416,20 +2483,21 @@ Required details:
 > Example Request (VND):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "VND",
-    "type": "vietname_earthport",
-    "legalType": "PRIVATE",
-    "details": {
-	   "swiftCode": "ABBKVNVX",
-	   "branchCode": "001",
-	   "accountNumber": "1234567890"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "VND",
+          "type": "vietname_earthport",
+          "legalType": "PRIVATE",
+          "details": {
+           "swiftCode": "ABBKVNVX",
+           "branchCode": "001",
+           "accountNumber": "1234567890"
+           }
+        }'
 ```
 
 Send payments to Vietnam. 
@@ -2452,19 +2520,20 @@ You can get list of bank  and branc codes by using /v1/quotes/{quoteId}/account-
 > Example Request (ZAR):
 
 ```shell
-curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts"
-     -H "Authorization: Bearer <your api token>"
-{
-    "profile": <your profile id>,
-    "accountHolderName": "<recipient name>",
-    "currency": "ZAR",
-    "type": "southafrica",
-    "legalType": "PRIVATE",
-    "details": {
-	   "swiftCode": "ALBRZAJJ",
-	   "accountNumber": "0000000052312891"
-     }
-  }
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "ZAR",
+          "type": "southafrica",
+          "legalType": "PRIVATE",
+          "details": {
+           "swiftCode": "ALBRZAJJ",
+           "accountNumber": "0000000052312891"
+           }
+        }'
 ```
 
 
