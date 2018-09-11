@@ -415,17 +415,18 @@ offset                    | Starting record number | Integer
 > Example Request:
 
 ```shell
-
 curl -X POST https://api.sandbox.transferwise.tech/v1/transfer-requirements \
      -H "Authorization: Bearer <your api token>" \
      -H "Content-Type: application/json" \
      -d '{ 
-          "targetAccount": <recipient account id>,   
-          "quote": <quote id>,
-          "customerTransactionId": "<the UUID you generated for the transfer attempt>",
-          "details" : {
-              "reference" : "to my friend"
-            } 
+            "targetAccount": <recipient account id>,
+            "quote": <quote id>,
+            "details": {
+              "reference": "good times",
+              "sourceOfFunds": "verification.source.of.funds.other",
+              "sourceOfFundsOther": "Trust funds"
+            },
+            "customerTransactionId": "6D9188CF-FA59-44C3-87A2-4506CE9C1EA3"
          }'
 
 ```
@@ -483,22 +484,6 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/transfer-requirements \
                 "name": "Mortgage payment"
               },
               {
-                "key": "verification.transfers.purpose.invest.funds",
-                "name": "Investment: Funds"
-              },
-              {
-                "key": "verification.transfers.purpose.invest.stocks",
-                "name": "Investment: Stocks and bonds"
-              },
-              {
-                "key": "verification.transfers.purpose.invest.savings",
-                "name": "Investment: Savings"
-              },
-              {
-                "key": "verification.transfers.purpose.invest.options",
-                "name": "Options, futures or other investment"
-              },
-              {
                 "key": "verification.transfers.purpose.pay.tuition",
                 "name": "Tuition fees or studying expenses"
               },
@@ -542,18 +527,6 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/transfer-requirements \
                 "name": "Investments (stocks, properties, etc.)"
               },
               {
-                "key": "verification.source.of.funds.savings",
-                "name": "Savings"
-              },
-              {
-                "key": "verification.source.of.funds.property.sale",
-                "name": "Funds from a property sale"
-              },
-              {
-                "key": "verification.source.of.funds.company.sale",
-                "name": "Funds from a company sale"
-              },
-              {
                 "key": "verification.source.of.funds.inheritance",
                 "name": "Inheritance"
               },
@@ -566,19 +539,6 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/transfer-requirements \
                 "name": "Other"
               }
             ]
-          },
-          {
-            "key": "sourceOfFundsOther",
-            "type": "text",
-            "refreshRequirementsOnChange": false,
-            "required": true,
-            "displayFormat": null,
-            "example": null,
-            "minLength": 1,
-            "maxLength": 255,
-            "validationRegexp": null,
-            "validationAsync": null,
-            "valuesAllowed": null
           }
         ]
       }
@@ -588,116 +548,66 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/transfer-requirements \
 ```
 
 
-Almost every country has their own specific originality when it comes to the nitty gritty details of domestic payment systems and money transfer regulations. Maximum allowed length of reference text is a good example. The US payment system, ACH, supports 10 characters only, but transfers within Mexico allow up to 100 characters.
+Almost every country has their own specific originality when it comes to the nitty gritty details of domestic payment systems and money transfer regulations. 
+Maximum allowed length of reference text is a good example. The US payment system, ACH, supports 10 characters only, but transfers within Mexico allow up to 100 characters and so on.
 
 Same is true for requirements arising from Anti-Money Laundering regulations adopted in different countries. Transfers from and to USD almost always require more details about source of funds and transfer purpose, compared to transfers to EUR or GBP.
 
-Endpoint /transfer-requirements exposes all these specific requirements based on created quote and target recipient account.
+Endpoint /transfer-requirements exposes all these specific requirements based on specific quote and target recipient account.
 
-To make sure that processing your transfers does not get delayed because of missing details, we highly recommend to verify the transfer requirements before before submitting any transfer.
+To make sure that processing of your transfers does not get delayed because of missing details, we highly recommend to verify the transfer requirements before before submitting any transfer.
 
 
 ### Request
 **` POST https://api.sandbox.transferwise.tech/v1/transfer-requirements`**<br/>
 
 
-1. Prepare request body to create transfer object first. 
-Now post this request body to transfer-requirements endpoint to figure out if there are any other mandatory fields required.
+1.Prepare request body to create transfer object first. 
+Now post this request body to transfer-requirements endpoint to figure out if there are any other required fields.
 
 
-2.Call GET /v1/quotes/{quoteId}/account-requirements to get list of fields you need to fill with values in "details" section for creating a valid recipient account. 
+2.Analyze the returned list of fields. Our example includes reference, sourceOfFunds and transferPurpose fields.  Field 'reference' is optional. Fields 'sourceOfFunds' and 'transferPurpose' are required and both have 
+refreshRequirementsOnChange=true which indicates that there could be additional fields required depending on the selected value.
 
-In order to create "aba" recipient type you need these top level fields:<br/>
-<ul>
- <li>legalType (PRIVATE / BUSINESS)</li>
- <li>abartn (ABA routing number)</li>
- <li>accountType  (CHECKING / SAVINGS)</li>
- <li>address.country</li>
- <li>address.city</li>
- <li>address.postalCode</li>
- <li>address.firstLine</li>
-</ul>
+In our example you will have to POST request to/v1/transfer-requirements` second time as well with values set for 'transferPurpose' and 'sourceOfFunds'.
+So in case you set sourceOfFunds = 'verification.source.of.funds.other'  then another text field called "sourceOfFundsOther" is also required where you need to specify the details in free format.
 
-Analyze the list of fields. Because refreshRequirementsOnChange=true for field 'address.country' then this indicates that there are additional fields required depending on the selected value.
+3.Once you get to the point where you have provided values for all fields which have refreshRequirementsOnChange=true then you have complete set of fields to compose a valid request to create a transfer object. 
+For example this is a valid request to create a transfer.
+<br/> POST /v1/transfers:<br/>
 
-3.Construct a recipient object with top level fields and call POST /v1/quotes/{quoteId}/account-requirements with these value to expose sub fields.  <br/>
-For example posting US as country will also add "state" to list of fields.<br/>
-                    {
-                        "type": "aba",
-                        "details": {
-                        	"legalType": "PRIVATE",
-                        	"abartn": "111000025",
-                        	"accountNumber": "12345678",
-                        	"accountType": "CHECKING",
-                        	"address": {
-                        		"country": "US"
-                        	}
-                        }
-                    }
-
-But posting GB as country will not add new fields anything.
-
-                    {
-                        "type": "aba",
-                        "details": {
-                        	"legalType": "PRIVATE",
-                        	"abartn": "111000025",
-                        	"accountNumber": "12345678",
-                        	"accountType": "CHECKING",
-                        	"address": {
-                        		"country": "US"
-                        	}
-                        }
-                    }
-
-
-4.So once you get to the point where you have provided values for all fields which have refreshRequirementsOnChange=true then you have complete set of fields to compose a valid request to create an recipient object. 
-For example this is a valid request to create a recipient with address in US Arizona:
-<br/> POST /v1/accounts:<br/>
 {
-    "profile": your-profile-id,
-    "accountHolderName": "John Smith",
-    "currency": "USD",
-    "type": "aba",
+    "targetAccount": <recipient account id>,
+    "quote": <quote id>,
     "details": {
-    	"legalType": "PRIVATE",
-    	"abartn": "111000025",
-    	"accountNumber": "12345678",
-    	"accountType": "CHECKING",
-    	"address": {
-    		"country": "US",
-    		"state": "AZ"
-       	"city": "New York",
-    		"postCode": "10025",
-    		"firstLine": "45 Sunflower Ave"
-    	}
-    }
+      "reference": "good times",
+      "sourceOfFunds": "verification.source.of.funds.other",
+      "sourceOfFundsOther": "Trust funds"
+    },
+    "customerTransactionId": "6D9188CF-FA59-44C3-87A2-4506CE9C1EA3"
 }
 
 
 ### Response
-Field                                       | Description                                        | Format
----------                                   | -------                                            | -----------
-type                                        | "address"                                          | Text
-fields[n].name                              | Field description                                  | Text
-fields[n].group[n].key                      | Key is name of the field you should include in the JSON                                     | Text
-fields[n].group[n].type                     | Display type of field (e.g. text, select, etc)                                  | Text
-fields[n].group[n].refreshRequirementsOnChange |  Tells you whether you should call POST account-requirements once the field value is set to discover required lower level fields.  | Boolean
-fields[n].group[n].required                 | Indicates if the field is mandatory or not                                 | Boolean
-fields[n].group[n].displayFormat            | Display format pattern.                                | Text
-fields[n].group[n].example                  | Example value.                                | Text
-fields[n].group[n].minLength                | Min valid length of field value.                                   | Integer
-fields[n].group[n].maxLength                | Max valid length of field value.                             | Integer
-fields[n].group[n].validationRegexp         | Regexp validation pattern.                                     | Text
+Field                                       | Description                                               | Format
+---------                                   | -------                                                   | -----------
+type                                        | "transfer"                                                | Text
+fields[n].name                              | Field description                                         | Text
+fields[n].group[n].key                      | Key is name of the field you should include in the JSON   | Text
+fields[n].group[n].type                     | Display type of field (e.g. text, select, etc)            | Text
+fields[n].group[n].refreshRequirementsOnChange |  Tells you whether you should call POST transfer-requirements once the field value is set to discover required lower level fields.  | Boolean
+fields[n].group[n].required                 | Indicates if the field is mandatory or not                | Boolean
+fields[n].group[n].displayFormat            | Display format pattern.                                   | Text
+fields[n].group[n].example                  | Example value.                                            | Text
+fields[n].group[n].minLength                | Min valid length of field value.                          | Integer
+fields[n].group[n].maxLength                | Max valid length of field value.                          | Integer
+fields[n].group[n].validationRegexp         | Regexp validation pattern.                                | Text
 fields[n].group[n].validationAsync          | Validator URL and parameter name you should use when submitting the value for validation | Text
-fields[n].group[n].valuesAllowed[n].key     | List of allowed values. Value key                           | Text
-fields[n].group[n].valuesAllowed[n].name    | List of allowed values. Value name.                          | Text
+fields[n].group[n].valuesAllowed[n].key     | List of allowed values. Value key                         | Text
+fields[n].group[n].valuesAllowed[n].name    | List of allowed values. Value name.                       | Text
 
-
-
-
-
-
-
-
-
+<br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/>
