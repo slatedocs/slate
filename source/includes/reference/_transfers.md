@@ -14,7 +14,9 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/transfers \
           "quote": <quote id>,
           "customerTransactionId": "<the UUID you generated for the transfer attempt>",
           "details" : {
-              "reference" : "to my friend"
+              "reference" : "to my friend",
+              "transferPurpose": "verification.transfers.purpose.pay.bills",
+              "sourceOfFunds": "verification.source.of.funds.other"
             } 
          }'
 
@@ -62,6 +64,15 @@ targetAccount                  | Recipient account id. You can create multiple t
 quote                          | Quote id. You can only create one transfer per one quote. <br/>You cannot use same quote ID to create multiple transfers. | Integer
 customerTransactionId     | This is required to perform idempotency check to avoid duplicate transfers in case of network failures or timeouts.                          | UUID
 details.reference (optional)    | Recipient will see this reference text in their bank statement. Maximum allowed characters depends on the currency route. [Business Payments Tips](https://transferwise.com/help/article/2348295/business/business-payment-tips) article has a full list. | Text
+details.transferPurpose (conditionally required)| For example when target currency is THB. See more about conditions at [Transfers.Requirements](#transfers-requirements)  | Text
+details.sourceOfFunds (conditionally required) | For example when target currency is USD and transfer amount exceeds 10k. See more about conditions at [Transfers.Requirements](#transfers-requirements) | Text
+
+There are two options to deal with conditionally required fields: <br/>
+<ul>
+ <li>Always provide values for these fields</li>
+ <li>Always call transfers-requirements endpoint and submit values only if indicated so.</li>
+</ul>
+
 
 
 ### Response

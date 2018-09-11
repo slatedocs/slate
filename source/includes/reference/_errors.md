@@ -6,6 +6,7 @@ We use common HTTP status codes included in the response header to indicate succ
 **Code** | **Description** 
 ------------ | ------------- 
 200 | OK. Successful request.
+201 | OK. Resource created.
 400 | Bad request. Request message data did not pass validation.  
 401 | Unauthorised. Not authorised to access requested data.  
 403 | Forbidden. Access to requested data is forbidden. 
