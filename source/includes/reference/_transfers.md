@@ -323,7 +323,6 @@ estimatedDeliveryDate     | Estimated time when funds will arrive to recipient's
 
 
 
-
 ## List
 
 > Example Request:
@@ -335,8 +334,8 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/transfers?offset=0&limit=10
 ```
 
 > Example Response:
-```json
 
+```json
 [
   {
     "id": 15574445,
@@ -383,17 +382,17 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/transfers?offset=0&limit=10
     "customerTransactionId": "785C67AD-7E29-4DBC-9D4A-4C45D4D5333A"
   }
 ]
-
 ```
 
 Get the list of transfers for given user's profile (defaults to user's personal profile). 
 
 You can add query parameters to specify user's profile (personal or business), time period and/or payment status. 
 
-For example you can query:
-* all failed payments created since last week
-* all completed payments created since yesterday
-
+For example you can query:<br/>
+<ul>
+  <li> all failed payments created since last week</li>
+  <li> all completed payments created since yesterday</li>
+</ul>
 
 
 ### Request
@@ -402,39 +401,303 @@ For example you can query:
 
 Field                     | Description             | Format
 ---------                 | -------                 | -----------
-profile                   |        | Integer
-status                    |        | Integer
-createdDateStart          |        | Integer
-createdDateEnd            |        | Integer
-limit                     | Maximum !!!! todo       | Integer
-offset                    | Offset       | Integer
+profile                   | User profile id. If parameter is omitted, defaults to user's personal profile | Integer
+status                    | Status code or codes list (as comma separated value list) to filter returned transfers with. See [Track transfer status](#borderless-payouts-guide-track-transfer-status) for complete list of statuses. | Text
+createdDateStart          | Starting date to filter transfers, inclusive of the provided date.   | yyyy-MM-dd
+createdDateEnd            | Ending date to filter transfers, inclusive of the provided date.     | yyyy-MM-dd
+limit                     | Maximum number of records to be returned in response   | Integer
+offset                    | Starting record number | Integer
 
 
 
+## Requirements
+
+> Example Request:
+
+```shell
+
+curl -X POST https://api.sandbox.transferwise.tech/v1/transfer-requirements \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "targetAccount": <recipient account id>,   
+          "quote": <quote id>,
+          "customerTransactionId": "<the UUID you generated for the transfer attempt>",
+          "details" : {
+              "reference" : "to my friend"
+            } 
+         }'
+
+```
+
+> Example Response:
+
+```json
+[
+  {
+    "type": "transfer",
+    "fields": [
+      {
+        "name": "Transfer reference",
+        "group": [
+          {
+            "key": "reference",
+            "type": "text",
+            "refreshRequirementsOnChange": false,
+            "required": false,
+            "displayFormat": null,
+            "example": null,
+            "minLength": null,
+            "maxLength": 10,
+            "validationRegexp": null,
+            "validationAsync": null,
+            "valuesAllowed": null
+          }
+        ]
+      },
+      {
+        "name": "Transfer purpose",
+        "group": [
+          {
+            "key": "transferPurpose",
+            "type": "select",
+            "refreshRequirementsOnChange": true,
+            "required": true,
+            "displayFormat": null,
+            "example": null,
+            "minLength": null,
+            "maxLength": null,
+            "validationRegexp": null,
+            "validationAsync": null,
+            "valuesAllowed": [
+              {
+                "key": "verification.transfers.purpose.purchase.property",
+                "name": "Buying property abroad"
+              },
+              {
+                "key": "verification.transfers.purpose.pay.bills",
+                "name": "Rent or other property expenses"
+              },
+              {
+                "key": "verification.transfers.purpose.mortgage",
+                "name": "Mortgage payment"
+              },
+              {
+                "key": "verification.transfers.purpose.invest.funds",
+                "name": "Investment: Funds"
+              },
+              {
+                "key": "verification.transfers.purpose.invest.stocks",
+                "name": "Investment: Stocks and bonds"
+              },
+              {
+                "key": "verification.transfers.purpose.invest.savings",
+                "name": "Investment: Savings"
+              },
+              {
+                "key": "verification.transfers.purpose.invest.options",
+                "name": "Options, futures or other investment"
+              },
+              {
+                "key": "verification.transfers.purpose.pay.tuition",
+                "name": "Tuition fees or studying expenses"
+              },
+              {
+                "key": "verification.transfers.purpose.send.to.family",
+                "name": "Sending money home to family"
+              },
+              {
+                "key": "verification.transfers.purpose.living.expenses",
+                "name": "General monthly living expenses"
+              },
+              {
+                "key": "verification.transfers.purpose.other",
+                "name": "Other"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Source of funds",
+        "group": [
+          {
+            "key": "sourceOfFunds",
+            "type": "select",
+            "refreshRequirementsOnChange": true,
+            "required": true,
+            "displayFormat": null,
+            "example": null,
+            "minLength": null,
+            "maxLength": null,
+            "validationRegexp": null,
+            "validationAsync": null,
+            "valuesAllowed": [
+              {
+                "key": "verification.source.of.funds.salary",
+                "name": "Salary"
+              },
+              {
+                "key": "verification.source.of.funds.investment",
+                "name": "Investments (stocks, properties, etc.)"
+              },
+              {
+                "key": "verification.source.of.funds.savings",
+                "name": "Savings"
+              },
+              {
+                "key": "verification.source.of.funds.property.sale",
+                "name": "Funds from a property sale"
+              },
+              {
+                "key": "verification.source.of.funds.company.sale",
+                "name": "Funds from a company sale"
+              },
+              {
+                "key": "verification.source.of.funds.inheritance",
+                "name": "Inheritance"
+              },
+              {
+                "key": "verification.source.of.funds.loan",
+                "name": "Loan"
+              },
+              {
+                "key": "verification.source.of.funds.other",
+                "name": "Other"
+              }
+            ]
+          },
+          {
+            "key": "sourceOfFundsOther",
+            "type": "text",
+            "refreshRequirementsOnChange": false,
+            "required": true,
+            "displayFormat": null,
+            "example": null,
+            "minLength": 1,
+            "maxLength": 255,
+            "validationRegexp": null,
+            "validationAsync": null,
+            "valuesAllowed": null
+          }
+        ]
+      }
+    ]
+  }
+]
+```
 
 
-#borderless-payouts-guide-track-transfer-status
+Almost every country has their own specific originality when it comes to the nitty gritty details of domestic payment systems and money transfer regulations. Maximum allowed length of reference text is a good example. The US payment system, ACH, supports 10 characters only, but transfers within Mexico allow up to 100 characters.
+
+Same is true for requirements arising from Anti-Money Laundering regulations adopted in different countries. Transfers from and to USD almost always require more details about source of funds and transfer purpose, compared to transfers to EUR or GBP.
+
+Endpoint /transfer-requirements exposes all these specific requirements based on created quote and target recipient account.
+
+To make sure that processing your transfers does not get delayed because of missing details, we highly recommend to verify the transfer requirements before before submitting any transfer.
+
+
+### Request
+**` POST https://api.sandbox.transferwise.tech/v1/transfer-requirements`**<br/>
+
+
+1. Prepare request body to create transfer object first. 
+Now post this request body to transfer-requirements endpoint to figure out if there are any other mandatory fields required.
+
+
+2.Call GET /v1/quotes/{quoteId}/account-requirements to get list of fields you need to fill with values in "details" section for creating a valid recipient account. 
+
+In order to create "aba" recipient type you need these top level fields:<br/>
+<ul>
+ <li>legalType (PRIVATE / BUSINESS)</li>
+ <li>abartn (ABA routing number)</li>
+ <li>accountType  (CHECKING / SAVINGS)</li>
+ <li>address.country</li>
+ <li>address.city</li>
+ <li>address.postalCode</li>
+ <li>address.firstLine</li>
+</ul>
+
+Analyze the list of fields. Because refreshRequirementsOnChange=true for field 'address.country' then this indicates that there are additional fields required depending on the selected value.
+
+3.Construct a recipient object with top level fields and call POST /v1/quotes/{quoteId}/account-requirements with these value to expose sub fields.  <br/>
+For example posting US as country will also add "state" to list of fields.<br/>
+                    {
+                        "type": "aba",
+                        "details": {
+                        	"legalType": "PRIVATE",
+                        	"abartn": "111000025",
+                        	"accountNumber": "12345678",
+                        	"accountType": "CHECKING",
+                        	"address": {
+                        		"country": "US"
+                        	}
+                        }
+                    }
+
+But posting GB as country will not add new fields anything.
+
+                    {
+                        "type": "aba",
+                        "details": {
+                        	"legalType": "PRIVATE",
+                        	"abartn": "111000025",
+                        	"accountNumber": "12345678",
+                        	"accountType": "CHECKING",
+                        	"address": {
+                        		"country": "US"
+                        	}
+                        }
+                    }
+
+
+4.So once you get to the point where you have provided values for all fields which have refreshRequirementsOnChange=true then you have complete set of fields to compose a valid request to create an recipient object. 
+For example this is a valid request to create a recipient with address in US Arizona:
+<br/> POST /v1/accounts:<br/>
+{
+    "profile": your-profile-id,
+    "accountHolderName": "John Smith",
+    "currency": "USD",
+    "type": "aba",
+    "details": {
+    	"legalType": "PRIVATE",
+    	"abartn": "111000025",
+    	"accountNumber": "12345678",
+    	"accountType": "CHECKING",
+    	"address": {
+    		"country": "US",
+    		"state": "AZ"
+       	"city": "New York",
+    		"postCode": "10025",
+    		"firstLine": "45 Sunflower Ave"
+    	}
+    }
+}
+
 
 ### Response
-
-You need to save transfer id for tracking its status later.
-
-Field                     | Description             | Format
----------                 | -------                 | -----------
-estimatedDeliveryDate     | Estimated time when funds will arrive to recipient's bank account  | Timestamp
-
-
-
-
-
-
-
-
-
-
-
-
+Field                                       | Description                                        | Format
+---------                                   | -------                                            | -----------
+type                                        | "address"                                          | Text
+fields[n].name                              | Field description                                  | Text
+fields[n].group[n].key                      | Key is name of the field you should include in the JSON                                     | Text
+fields[n].group[n].type                     | Display type of field (e.g. text, select, etc)                                  | Text
+fields[n].group[n].refreshRequirementsOnChange |  Tells you whether you should call POST account-requirements once the field value is set to discover required lower level fields.  | Boolean
+fields[n].group[n].required                 | Indicates if the field is mandatory or not                                 | Boolean
+fields[n].group[n].displayFormat            | Display format pattern.                                | Text
+fields[n].group[n].example                  | Example value.                                | Text
+fields[n].group[n].minLength                | Min valid length of field value.                                   | Integer
+fields[n].group[n].maxLength                | Max valid length of field value.                             | Integer
+fields[n].group[n].validationRegexp         | Regexp validation pattern.                                     | Text
+fields[n].group[n].validationAsync          | Validator URL and parameter name you should use when submitting the value for validation | Text
+fields[n].group[n].valuesAllowed[n].key     | List of allowed values. Value key                           | Text
+fields[n].group[n].valuesAllowed[n].name    | List of allowed values. Value name.                          | Text
 
 
-## Requirements - todo
+
+
+
+
+
+
 
