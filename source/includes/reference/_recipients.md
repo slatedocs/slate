@@ -88,7 +88,7 @@ currency              | 3 character currency code                     | Text
 type                  | Recipient type                                | Text
 profile               | Personal or business profile id               | Integer
 accountHolderName     | Recipient full name                           | Text
-details               | Currency specific group, see Recipients API   | 
+details               | Currency specific fields                      | Group
 details.legalType     | Recipient legal type: PRIVATE or BUSINESS     | Text
 details.sortCode      | Recipient bank sort code (GBP example)        | Text
 details.accountNumber | Recipient bank account no (GBP example)       | Text
@@ -106,7 +106,7 @@ acccountHolderName    | Recipient full name                           | Text
 currency              | 2 character country code                      | Text
 country               | 3 character currency code                     | Text
 type                  | Recipient type                                | Text
-details               | Currency specific group, see Recipients API   | 
+details               | Currency specific fields                      | Group
 details.legalType     | Recipient legal type                          | Text
 details.sortCode      | Recipient bank sort code (GBP example)        | Text
 details.accountNumber | Recipient bank account no (GBP example)       | Text

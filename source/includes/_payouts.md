@@ -325,7 +325,7 @@ type                  | Recipient type                                | Text
 profile               | Personal or business profile id               | Integer
 accountHolderName     | Recipient full name                           | Text
 legalType             | Recipient legal type: PRIVATE or BUSINESS     | Text
-details               | Currency specific group, see Recipients API   | 
+details               | Currency specific fields   | Group
 details.sortCode      | Recipient bank sort code (GBP example)        | Text
 details.accountNumber | Recipient bank account no (GBP example)       | Text
 
@@ -342,7 +342,7 @@ acccountHolderName    | Recipient full name                           | Text
 currency              | 2 character country code                      | Text
 country               | 3 character currency code                     | Text
 type                  | Recipient type                                | Text
-details               | Currency specific group, see Recipients API   | 
+details               | Currency specific fields   | Group 
 details.sortCode      | Recipient bank sort code (GBP example)        | Text
 details.accountNumber | Recipient bank account no (GBP example)       | Text
 
@@ -355,7 +355,7 @@ TransferWise will then email your recipient with a link to collect their bank ac
 Once recipient provides bank account details to us we are able to complete your transfer.
 
 So all you need to know is recipient name and email to send payment.
-See below under Recipient API how to create email recipients.
+See below under [Recipient Accounts.Create Email Recpients](#recipient-accounts-create-email-recipient) for more details.
 
 
 ## Create transfer

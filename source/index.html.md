@@ -11,6 +11,7 @@ includes:
   - payouts
   - banks
   - affiliates
+  - contact-us
   - full-reference-separator
   - reference/addresses
   - reference/borderless
@@ -22,5 +23,6 @@ includes:
   - reference/transfers
   - reference/users
   - reference/profiles
+  - reference/errors
 
 ---

@@ -60,6 +60,6 @@ Changes transfer status from outgoing_payment_sent to bounced_back.<br/>
 Changes transfer status from bounced_back to funds_refunded.
 
 ### Response
-Transfer entity with changed status. See more at [Transfers.Get By Id](#transfers-get-by-id)
+Transfer entity with changed status. 
 
 
