@@ -34,7 +34,7 @@ This product enables you to automate your own borderless account.
 
 ## Banks
 Bank Product enables banks to build TransferWise payments seamlessly into their own desktop and mobile apps. 
-Banks can enhance their own native user experience and only use TransferWise payments API in the background.
+Banks can build their own native user experience and use TransferWise API only in the background.
 
 **Why should my bank do it?**
 
