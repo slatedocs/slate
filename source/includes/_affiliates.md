@@ -1,107 +1,128 @@
 # Affiliates Integration Guide
 
-Rates API and Quote APIs are designed for our affiliates to retrieve the latest information about TransferWise's supported currencies and pricing. 
-You can use this information to build your own valuable content to your customers. 
+## API access
 
+Once you become our affiliate we will send you TransferWise API access credentials: api_client_id & api_client_secret. 
+You can then use these as username & password with **Basic Authentication** method.
 
+There are two endpoints [Exchange Rates.List](#exchange-rates-list) and [Get Temporary Quote](#quotes-get-temporary-quote) which you can call with this authentication method.
 
+## Get current exchange rates
 
+> Example Request (Basic authentication):
 
+```shell
+curl -X GET "https://api.sandbox.transferwise.tech/v1/rates?source=EUR&target=USD" \
+     --user <your api client_id>:<your api client_secret> 
+```
 
-### Rates API 
-**Get the real-time mid-market exchange rate**<br/>
+> Example Response:
 
-TransferWise uses the mid-market exchange rate for cross-border money transfers. You can check real-time exchange rate value for any supported currency route by making a simple call to our API. 
+```json
+[
+    {
+        "rate": 1.166,
+        "source": "EUR",
+        "target": "USD",
+        "time": "2018-08-31T10:43:31+0000"
+    }
+]
+```
 
 **`GET https://api.sandbox.transferwise.tech/v1/rates?source=EUR&target=USD`**
 
-<br/>
+TransferWise updates exchange rates in nearly real-time — at least once per minute. 
+This allows you to track and see the current mid-market exchange rate for any currency route. 
 
-**Get mid-market exhange rate history**<br/>
-We expose 30 days exchange rate history via our API. This helps you to build a simple analysis page to show trends and even implement a simple alert system for your users.
+See more at [Exchange Rates.List](#exchange-rates-list) 
+
+
+## Get exchange rate history
+
+> Example Request (Basic authentication):
+
+```shell
+curl -X GET "https://api.sandbox.transferwise.tech/v1/rates?source=EUR&target=USD&from=2018-08-15T00:00:00&to=2018-08-30T23:59:59&group=day" \
+     --user <your api client_id>:<your api client_secret> 
+```
+
+> Example Response:
+
+```json
+[
+    {
+        "rate": 1.166,
+        "source": "EUR",
+        "target": "USD",
+        "time": "2018-08-15T00:00:00+0000"
+    },
+    {
+        "rate": 1.168,
+        "source": "EUR",
+        "target": "USD",
+        "time": "2018-06-30T00:00:00+0000"
+    }
+    ...
+]
+```
 
 **`GET https://api.sandbox.transferwise.tech/v1/rates?source=EUR&target=USD&from=2018-08-15T00:00:00&to=2018-08-30T23:59:59&group=day`**
 
-See more technical info about [Exchange Rates.List](#exchange-rates-list) endpoint.
+We expose up to 30 days exchange rate history via our API. This helps you to build an analysis page to show trends and implement an alerting system for your users.
+
+See more at [Exchange Rates.List](#exchange-rates-list) 
 
 
 
+## Get pricing and speed
 
-### Quote API
+> Example Request (Basic authentication):
 
-**Is my currency route supported?**
-Today we support money transfers in 774 currency routes and we are constantly adding more.  This includes 18 source currencies and 43 target currencies. Our API helps you to discover which routes are currently supported. 
+```shell
 
-**How much does my transfer cost?**
-Send a currency route and transfer amount to the Quote API and you will receive a response with the exact price for this transfer.
+curl -X GET https://api.sandbox.transferwise.tech/v1/quotes?source=EUR&target=GBP&rateType=FIXED&targetAmount=600 \
+     --user <your api client_id>:<your api client_secret> 
+```
+
+> Example Response:
+
+```json
+{
+    "source": "EUR",
+    "target": "GBP",
+    "sourceAmount": 663.84,
+    "targetAmount": 600.00,
+    "type": "REGULAR",
+    "rate": 0.9073,
+    "createdTime": "2018-08-27T14:35:44.553Z",
+    "createdByUserId": 0,
+    "rateType": "FIXED",
+    "deliveryEstimate": "2018-08-27T14:35:44.496Z",
+    "fee": 2.34,
+    "allowedProfileTypes": [
+        "PERSONAL",
+        "BUSINESS"
+    ],
+    "guaranteedTargetAmount": false,
+    "ofSourceAmount": true
+}
+```
+
+**`GET https://api.sandbox.transferwise.tech/v1/quotes?source=EUR&target=GBP&rateType=FIXED&targetAmount=600`**
+
+**Is currency route supported?**
+
+If we don't support a route then this endpoint will response with an error code "error.route.not.supported".
+
+**How much does a transfer cost?**
+
+TansferWise fee is included in the response. 
 
 **How long does my transfer take?**
-The Quote API also responds with an “estimated delivery time”. This can vary across different currency routes, for example transfers often only take a few hours from EUR to GBP, while sending money from USD can take 1-2 business days. Our API allows you to find out the estimated delivery time for each currency route.
 
+Estimated delivery time is included in the response. 
+This can vary quite a lot for different currency routes. For example transfers often only take a few hours from EUR to GBP, while sending money from USD can take 1-2 business days. 
+This endpoint allows you to find out the estimated delivery time for each currency route.
 
-### How to join the TransferWise affiliate program? 
-[Apply here](https://transferwise.com/partnerwise).
-  
+See more at [Get Temporary Quote](#quotes-get-temporary-quote) 
 
-
-
-
-TransferWise updates exchange rates in nearly real-time — at least once per minute. This allows you  to track and see the current mid-market exchange rate for any currency route, both at present or in the past. 
-
-***
-
-### Get current exchange rate
-
-You are able to track and see the current mid-market exchange rate for any currency route. This includes both currency pairs supported by TransferWise and those which are not. For example, you can query rates for USD-EUR and ARS-CRC, despite only one route (USD-EUR) being suppored by us.
-
-**Parameters:** 
-
-* source (send) currency
-* target (receive) currency
-
-
-**Response:** 
-
-* mid-market exchange rate
-* timestamp
-
-
-***
-
-### Get exchange rate for specific time/date
-
-
-Get the historical mid-market exchange rate for a currency route at a specified time. 
-
-**Parameters:** 
-
-* source (send) currency
-* target (receive) currency
-* timestamp
-
-
-**Response:** 
-
-* mid-market exchange rate
-* timestamp
-
-***
-
-
-### Get exchange rate history for a period of time
-
-You can get the mid-market exchange rate for one currency route over a given time period. The default shows the daily interval — one exchange rate per day at midnight.
-
-There are also options to specify other time intervals, such as every hour, day or certain amount of minutes. For example, if an interval is set to 1 hour then you will see exchange rates for each full hour within the given time period.
-
-**Parameters:** 
-* source (send) currency
-* target (receive) currency
-* period start time
-* period end time
-* interval (day, hour, minute)
-
-**Response:** 
-* List of:
-  * mid-market exchange rate
-  * timestamp
