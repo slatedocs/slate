@@ -8,7 +8,7 @@ Send email to api@transferwise.com
 We have a dedicated team to talk to you. [https://transferwise.com/contact-sales](https://transferwise.com/contact-sales)
 
 
-**Have a question how TransferWise works?**<br/>
+**Have a question about how TransferWise works?**<br/>
 Search Transferwise Help Centre. [https://transferwise.com/help](https://transferwise.com/help)
 
 

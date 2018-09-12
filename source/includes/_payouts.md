@@ -3,9 +3,6 @@ Welcome to TransferWise Payouts API documentation.
 Before you jump into coding please take few moments to go through these 3 topics at first.
 
 
-
-
-
 ## Getting started
 ### 1. Learn about TransferWise borderless account. 
 Borderless account features and pricing are best explained below.
