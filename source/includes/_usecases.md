@@ -17,9 +17,10 @@ Open multi-currency Borderless Account and automate your cross-border and domest
     </ul>  
   </li>
   <li>Low and transparent fees</li>
-<ul>
+</ul>
 
-Get started with technical integration by following [Borderless Payouts Guide](#borderless-payouts-guide).
+Get started with technical integration with [Borderless Payouts Guide](#borderless-payouts-guide).
+
 
 
 ## Cross-Border Payments for Banks
