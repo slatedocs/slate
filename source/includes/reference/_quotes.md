@@ -170,7 +170,7 @@ details.payInReference   | Reference text to be used when sending your bank tran
 
 ## Get Temporary Quote
 
-> Example Request:
+> Example Request (Bearer token):
 
 ```shell
 
@@ -178,6 +178,16 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/quotes?source=EUR&target=GB
      -H "Authorization: Bearer <your api token>" 
 
 ```
+> Example Request (Basic authentication):
+
+```shell
+
+curl -X GET https://api.sandbox.transferwise.tech/v1/quotes?source=EUR&target=GBP&rateType=FIXED&targetAmount=600 \
+     --user <your api client_id>:<your api client_secret> 
+```
+
+
+
 
 > Example Response:
 
@@ -213,6 +223,8 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/quotes?source=EUR&target=GB
 
 
 ### Request
+
+Note that this endpoint supports two types of authentication: Bearer token and Basic authentication (client_id/client_secret).
 
 **`GET https://api.sandbox.transferwise.tech/v1/quotes`**
 

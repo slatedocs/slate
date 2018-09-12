@@ -1,10 +1,17 @@
 # Exchange Rates
 ## List
-> Example Request:
+> Example Request (Bearer token):
 
 ```shell
 curl -X GET "https://api.sandbox.transferwise.tech/v1/rates?source=EUR&target=USD" \
      -H "Authorization: <your api token>"
+```
+
+> Example Request (Basic authentication):
+
+```shell
+curl -X GET "https://api.sandbox.transferwise.tech/v1/rates?source=EUR&target=USD" \
+     --user <your api client_id>:<your api client_secret> 
 ```
 
 > Example Response:
@@ -44,7 +51,11 @@ Fetch exchange rate history over period of time with hourly interval.<br/>
 Fetch exchange rate history over period of time with 10 minute interval.<br/>
 
 
+
+
 ### Request
+
+Note that this endpoint supports two types of authentication: Bearer token and Basic authentication (client_id/client_secret).
 
 Field                 | Description                                                        | Format
 ---------             | -------                                                            | -----------
