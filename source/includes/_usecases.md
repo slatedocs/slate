@@ -1,6 +1,11 @@
 # TransferWise API
 Welcome to TransferWise API documentation. Explore and choose the right product for your requirements. 
-                                           
+
+* [Borderless Payouts](#transferwise-api-borderless-payouts)                                           
+* [Banks](#transferwise-api-banks)                                           
+* [Affiliates](#transferwise-api-affiliates)                                           
+* [Connected Applications](#transferwise-api-connected-applications)                                           
+* [Third-Party Payouts](#transferwise-api-third-party-payouts)                                           
 
 ## Borderless Payouts
 Open multi-currency Borderless Account and automate your cross-border and domestic payouts with single API integration.   
@@ -28,10 +33,40 @@ This product enables you to automate your own borderless account.
 
 
 ## Banks
+Bank Product enables banks to build TransferWise payments seamlessly into their own desktop and mobile apps. 
+Banks can enhance their own native user experience and only use TransferWise payments API in the background.
 
-TODO ...
+**Why should my bank do it?**
 
-Get started with technical integration by following [Bank Integration Guide](#bank-integrations-guide).
+* Provide your customers faster and cheaper cross-border payments compared to traditional SWIFT alternatives.
+* Offer fair and transparent pricing at the mid-market exchange rate.
+* Reduce your operational costs of cross-border payments.
+* Stop losing out on cross-border revenues because your customers are finding better alternatives.
+
+**How does it work?**
+<ul>
+  <li>Transparent and fair pricing. Customers will get the same price no matter if they make transfers via your bank integration or directly via TransferWise.</li> 
+  <li>Revenue sharing. We will setup revenue sharing to make each partnership a win-win deal.</li>
+  <li>Custom solution. We will work together to find a solution that works for your bank. There is no one size fits all approach. Topics we need to work out together include are:
+    <ul>
+      <li>How do we set up flow of funds? </li>
+      <li>How do we handle customer support?</li>
+      <li>How do we harmonize customer onboarding and AML processes? </li>
+    </ul>  
+  </li>
+</ul>
+
+**N26 case study**
+
+This is how German bank N26 has integrated TransferWise cross-border payment services into their mobile app. 
+Try it out yourself:  [n26.com/transferwise](https://n26.com/en-eu/transferwise)
+
+![alt text](https://image.ibb.co/m8kXTv/tw_n26_example.png "N26 User Experience")
+
+
+Please contact murali.akella@transferwise.com to get started.
+
+Also take a look at our technical integration here - [Bank Integration Guide](#bank-integrations-guide).
 
 
 
@@ -50,19 +85,24 @@ TransferWise API enables you to:
 
 [Affiliates Integration Guide](#affiliates-integration-guide) helps you get started with technical integration.
   
+
+
+  
 ## Connected Applications
 Connected Applications means the possibility to embed TransferWise product into your own application 
 so that your customers will enjoy the benefits of transparent and low cost international transfers. 
 
 Unfortunately today we have a capacity to support only few such integrations. We are working on making this feature available for everyone.  
 
-Please contact us via api@transferwise.com for further clarification.  
+Please contact api@transferwise.com for further clarification.  
+
+
 
 
 ## Third-Party Payouts
 Third-Party Payouts is a product for marketplaces and financial institutions (banks and payment service providers).
 It is different from Borderless Payouts since it does not require our customer to also be the originator of payments. 
-So TransferWise will act as third party to the payment originator who is using some  
+So TransferWise will act as third party to the person who initiated the payment.  
 
 We are working on making this feature available soon. Please contact stuart.gregory@transferwise.com for more info.  
 
