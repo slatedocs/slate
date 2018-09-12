@@ -1,4 +1,4 @@
-# API Documentation
+# Organization API Documentation
 
 ## Accounts
 
