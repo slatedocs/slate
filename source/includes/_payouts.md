@@ -989,7 +989,7 @@ query.intervalEnd                | Query parameter repeated                 | Zu
 query.currency                | Query parameter repeated          | Text
 query.accountId                | Query parameter repeated         | Integer
 
-## Going Live checklist
+## Going live checklist
 
 
 
