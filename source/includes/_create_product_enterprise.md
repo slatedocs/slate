@@ -10,6 +10,7 @@
                            "serial_number": "BC4pDRSReEFnMHzHARHI7Gr9",
                         },
                        "solar_panel_wattage": 100,
+                       "product": {"assembler": "Assembly House 1"}
                       })
     headers = {"Content-Type": "application/json", "Authorization": "Token token=" + A_VALID_TOKEN}
 
@@ -27,7 +28,8 @@
                               "imsi": "213514135171353",
                               "product_imei": "010101234560005",
                               "product_type_id": 4,
-                              "serial_number": "HB000501-084032-G"},
+                              "serial_number": "HB000501-084032-G",
+                              "assembler": "Assembly House 1"},
                   "sim": {"imsi": "213514135171353",
                           "part_id": 1651799,
                           "part_type_id": 43}},

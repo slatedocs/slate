@@ -4,7 +4,7 @@
 
 ```python
     url = "https://smartapi.bboxx.co.uk/v1/products/create_product/hub2"
-    data = json.dumps({"pcb_imei": "010101234560005"})
+    data = json.dumps({"pcb_imei": "010101234560005", "product": {"assembler": "Assembly House 1"}})
     headers = {"Content-Type": "application/json", "Authorization": "Token token=" + A_VALID_TOKEN}
 
     r = requests.post(url=url, data=data, headers=headers)
@@ -18,7 +18,8 @@
                               "imsi": "213514135171353",
                               "product_imei": "010101234560005",
                               "product_type_id": 7,
-                              "serial_number": "HB000501-084032-G"},
+                              "serial_number": "HB000501-084032-G",
+                              "assembler": "Assembly House 1"},
                   "sim": {"imsi": "213514135171353",
                           "part_id": 1651799,
                           "part_type_id": 43}},

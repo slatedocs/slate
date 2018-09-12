@@ -6,7 +6,8 @@
     url = "https://smartapi.bboxx.co.uk/v1/parts/create_tiger_pcb"
     data = json.dumps({"imsi": "213514135171353",
                        "imei": "010101234560005",
-                       "device_key": "4ab1ab3ab1ab7ab9ab1ab4ab"})
+                       "device_key": "4ab1ab3ab1ab7ab9ab1ab4ab",
+                       "manufacturer": "A Factory"})
     headers = {"Content-Type": "application/json", "Authorization": "Token token=" + A_VALID_TOKEN}
 
     r = requests.post(url=url, data=data, headers=headers)
@@ -19,7 +20,8 @@
                                          "imei": "010101234560005",
                                          "imsi": "213514135171353",
                                          "serial_number": "HB000501-084032-G"},
-                          "serial_number": "010101234560005"},
+                          "serial_number": "010101234560005",
+                          "manufacturer": "A Factory"},
                   "sim": {"part_type_id": 43,
                           "serial_number": "213514135171353"}},
      }

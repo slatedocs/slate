@@ -6,7 +6,8 @@
     url = "https://smartapi.bboxx.co.uk/v1/products/create_hub2"
     data = json.dumps({"imsi": "213514135171353",
                        "imei": "010101234560005",
-                       "device_key": "4ab1ab3ab1ab7ab9ab1ab4ab"})
+                       "device_key": "4ab1ab3ab1ab7ab9ab1ab4ab",
+                       "product": {"assembler": "Assembly House 1"}})
     headers = {"Content-Type": "application/json", "Authorization": "Token token=" + A_VALID_TOKEN}
 
     r = requests.post(url=url, data=data, headers=headers)
@@ -21,7 +22,8 @@
                              "imsi": "213514135171353",
                              "product_imei": "010101234560005",
                              "product_type_id": 7,
-                             "serial_number": "HB000501-084031-B"},
+                             "serial_number": "HB000501-084031-B",
+                             "assembler": "Assembly House 1"},
                  "sim": {"imsi": "213514135171353",
                          "part_id": 1651797,
                          "part_type_id": 43}},
