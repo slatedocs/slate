@@ -56,10 +56,16 @@ Banks can enhance their own native user experience and only use TransferWise pay
   </li>
 </ul>
 
-**N26 case study**
 
-This is how German bank N26 has integrated TransferWise cross-border payment services into their mobile app. 
-Try it out yourself:  [n26.com/transferwise](https://n26.com/en-eu/transferwise)
+**Case Studies**
+
+* [Monzo & TransferWise](https://monzo.com/blog/2018/06/25/monzo-international-transfers) in United Kingdom 
+* [N26 & TransferWise](https://www.lhv.ee/en/transferwise) in Germany
+* [LHV & TransferWise](https://n26.com/en-eu/transferwise) in Estonia
+* [BPCE & TransferWise](https://www.bankingtech.com/2018/06/bpce-natixis-and-transferwise-team-for-affordable-cross-border-remittances) in France
+
+<br/>
+**N26 native user experience using TransferWise API**
 
 ![alt text](https://image.ibb.co/m8kXTv/tw_n26_example.png "N26 User Experience")
 
@@ -92,9 +98,9 @@ TransferWise API enables you to:
 Connected Applications means the possibility to embed TransferWise product into your own application 
 so that your customers will enjoy the benefits of transparent and low cost international transfers. 
 
-Unfortunately today we have a capacity to support only few such integrations. We are working on making this feature available for everyone.  
+Unfortunately today we have capacity to support only few such integrations. We are working on making this feature available for everyone.  
 
-Please contact api@transferwise.com for further clarification.  
+Please contact api@transferwise.com for more info.  
 
 
 
