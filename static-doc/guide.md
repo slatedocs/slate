@@ -7,7 +7,6 @@ language_tabs:
 toc_footers:
   - <a href='https://github.com/mjmlio/mjml'>Fork me on Github</a>
   - <a href='https://github.com/mjmlio/mjml/issues'>Submit an Issue</a>
-  - MJML v4.0.2
 
 search: true
 ---
