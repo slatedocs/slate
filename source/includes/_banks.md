@@ -29,14 +29,26 @@ So this guide is more like a list of building blocks rather than a strict step-b
 We have a dedicated team focusing on bank partnerships who will be helping you to figure it out. 
 
 
-## User on-boarding flow
+### User on-boarding flow
 User on-boarding flow consists of these building blocks.  
-You need to go through this flow only once per each customer before they are setting up their first payment.
+You need to go through this flow only once per each customer before they can set up their first transfer.
 
 * [Get user authorization](#bank-integrations-guide-get-user-authorization)
+* [Signup new users via API](#bank-integrations-guide-signup-new-users-via-api) - this is optional alternative for user authorization of new users.
 * [Get user tokens](#bank-integrations-guide-get-user-tokens)
 * [Create personal user profile](#bank-integrations-guide-create-personal-user-profile)
 * [Create business user profile](#bank-integrations-guide-create-business-user-profile)
+
+
+### Transfer flow 
+To create transfers on behalf of users you need these building blocks:
+
+* [Refresh user access token](#bank-integrations-guide-refresh-user-access-token)
+* [Create quote](#bank-integrations-guide-create-quote)
+* [Create recipient account](#bank-integrations-guide-create-recipient-account)
+* [Create transfer](#bank-integrations-guide-create-transfer)
+* [Fund transfer](#bank-integrations-guide-fund-customer-transfer)
+
 
 
 ## Get user authorization
@@ -86,6 +98,18 @@ https://www.yourbank.com/?code=[CODE]
 Once user gives your banking app authorization then user is redirected back to your *redirect_uri* with a generated code query string value. 
 Your website or service can then use this code to obtain access token to act on behalf of the user account.
 
+## Signup new users via API
+
+We encourage bank integrations to use sign-up functionality included in [Get user authorization](#bank-integrations-guide-get-user-authorization) flow. 
+
+But there is also an alternative way to create new users to TransferWise platform by using [Signup with registration code](#users-sign-up-with-registration-code) feature.
+
+This functionality enables you to create new users directly via back-end API call, without the need to redirect new users to Transferwise authorization page. This way new users can complete everything without ever leaving your banking app.
+Existing Transferwise users still need to be redirected to authorization page flow.
+
+Note that these new users have to accept TransferWise Terms and Conditions as part of their signup process nevertheless.  See endpoint [Terms and conditions](#terms-and-conditions-get-terms-and-conditions).
+
+
 ## Get user tokens
 
 > Example Request:
@@ -128,7 +152,7 @@ Field                 | Description                                   | Format
 ---------             | -------                                       | -----------
 grant_type            | "authorization_code"                          | Text
 client_id             | your api_client_id                            | Text
-code                  | Code  provided to you upon redirect back from authorization flow. See previous step [Get user authorization](#bank-integrations-guide-get-user-authorization).  | Text
+code                  | Code  provided to you upon redirect back from authorization flow. See step [Get user authorization](#bank-integrations-guide-get-user-authorization).  | Text
 redirect_uri          | Redirect page associated with your api client credentials   | Text
 
 
@@ -181,7 +205,7 @@ Use Basic Authentication with your api-client-id/api-client-secret as username/p
 Field                 | Description                                   | Format
 ---------             | -------                                       | -----------
 grant_type            | "refresh_token"                               | Text
-refresh_token         | User's refresh_token obtains in previous [Get user tokens](#bank-integrations-guide-get-user-tokens) step. | uuid
+refresh_token         | User's refresh_token obtains in [Get user tokens](#bank-integrations-guide-get-user-tokens) step. | uuid
 
 
 ### Response
@@ -195,16 +219,6 @@ expires_in            | Expiry time in seconds                        | Integer
 scope                 | "transfers"                                   | Text
 
 
-## Signup new users via API
-
-We encourage bank integrations to use sign-up functionality included in [Get user authorization](#bank-integrations-guide-get-user-authorization) flow. 
-
-But there is also an alternative way to create new users to TransferWise platform by using [Signup with registration code](#users-sign-up-with-registration-code) feature.
-
-This functionality enables you to create new users directly via back-end API call, without the need to redirect new users to Transferwise authorization page. This way new users can complete everything without ever leaving your banking app.
-Existing Transferwise users still need to be redirected to authorization page flow.
-
-Note that these new users have to accept TransferWise Terms and Conditions as part of their signup process nevertheless.  See endpoint [Terms and conditions](#terms-and-conditions-get-terms-and-conditions).
 
 
 ## Create personal user profile
@@ -319,18 +333,6 @@ Step 3.2. Add address to business user profile
 
 Once basic business profile information has been saved, you also need to add address information to business user profile. 
 This can be done exactly the same way as we did for personal profile. Please see description under Step 2.2 above.
-
-
-
-## User payment flow
-
-To setup user payment flow you need these building blocks:
-
-* [Refresh user access token](#bank-integrations-guide-refresh-user-access-token)
-* [Create quote](#bank-integrations-guide-create-quote)
-* [Create recipient account](#bank-integrations-guide-create-recipient-account)
-* [Create transfer](#bank-integrations-guide-create-transfer)
-* [Fund transfer](#bank-integrations-guide-fund-customer-transfer)
 
 
 
