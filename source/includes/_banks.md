@@ -348,17 +348,34 @@ Once basic business profile information has been saved, you also need to add add
 This can be done exactly the same way as we did for personal profile. Please see description under Step 2.2 above.
 
 
+
+
 ## Create quote
 
+STEP 1-2-3 , use  3rd level heading ?!
+
+
+
+blaah !!!
+
+
+Difference REGULAR !!!!
 	- Create quote   (type REGULAR, should be included in create quote endpoint !!)
 
 
 
 ## Create recipient account
 
+blaah !!!
+
+Please look at [Create recipient account](#recipient-accounts-create) under Full API Reference.
 
 
 ## Create transfer
+
+blaah !!!
+
+Please look at [Create transfer](#transfers-create) under Full API Reference.
 
 
 
@@ -366,7 +383,7 @@ This can be done exactly the same way as we did for personal profile. Please see
 
 
  
-## Debit customer account
+## Fund customer transfer 
  external process, not API
  
  GBP - FPS
@@ -375,9 +392,14 @@ This can be done exactly the same way as we did for personal profile. Please see
  
 ## Get transfer delivery time
 
+Please look at [Get transfer delivery time](#borderless-payouts-guide-get-transfer-delivery-time) under Borderless Payouts Guide.
 
 
 ## Track transfer status
+
+Please look at [Track transfer status](#borderless-payouts-guide-track-transfer-status) under Borderless Payouts Guide.
+
+
 
 
 ## Going live checklist

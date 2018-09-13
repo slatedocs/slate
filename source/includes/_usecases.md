@@ -57,7 +57,7 @@ Banks can build their own native user experience and use TransferWise API only i
 </ul>
 
 
-**Case Studies**
+**References**
 
 * [Monzo & TransferWise](https://monzo.com/blog/2018/06/25/monzo-international-transfers) in United Kingdom 
 * [N26 & TransferWise](https://www.lhv.ee/en/transferwise) in Germany
