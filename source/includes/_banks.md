@@ -29,6 +29,15 @@ So this guide is more like a list of building blocks rather than a strict step-b
 We have a dedicated team focusing on bank partnerships who will be helping you to figure it out. 
 
 
+## User on-boarding flow
+User on-boarding flow consists of these building blocks.  
+You need to go through this flow only once per each customer before they are setting up their first payment.
+
+* [Get user authorization](#bank-integrations-guide-get-user-authorization)
+* [Get user tokens](#bank-integrations-guide-get-user-tokens)
+* [Create personal user profile](#bank-integrations-guide-create-personal-user-profile)
+* [Create business user profile](#bank-integrations-guide-create-business-user-profile)
+
 
 ## Get user authorization
 
@@ -134,7 +143,7 @@ expires_in            | Expiry time in seconds                        | Integer
 scope                 | "transfers"                                   | Text
 
 
-## Refresh user token 
+## Refresh user access token
 
 > Example Request:
 
@@ -197,8 +206,6 @@ Existing Transferwise users still need to be redirected to authorization page fl
 
 Note that these new users have to accept TransferWise Terms and Conditions as part of their signup process nevertheless.  See endpoint [Terms and conditions](#terms-and-conditions-get-terms-and-conditions).
 
-
-    
 
 ## Create personal user profile
 
@@ -266,7 +273,7 @@ There is a guide #docTextSection:MEDFDFDMQrmJjtnHS that explains which data fiel
 You should get back a successful (200) response with a personal profile address id along with other address keys that have been successfully saved.
 
 
-## Create identification document
+3. Create identification document
 
 Only for personal profiles.  which you created 
 
@@ -274,7 +281,7 @@ Only for personal profiles.  which you created
 
 ## Create business user profile
 
-Prerequisite is that personal user profile has been created. To onboard businesses, also business user profile has to be created.
+Prerequisite is that personal user profile has been created. To on-board businesses, also business user profile has to be created.
 
 Similar two steps apply:
 
@@ -315,62 +322,68 @@ This can be done exactly the same way as we did for personal profile. Please see
 
 
 
+## User payment flow
+
+To setup user payment flow you need these building blocks:
+
+* [Refresh user access token](#bank-integrations-guide-refresh-user-access-token)
+* [Create quote](#bank-integrations-guide-create-quote)
+* [Create recipient account](#bank-integrations-guide-create-recipient-account)
+* [Create transfer](#bank-integrations-guide-create-transfer)
+* [Fund transfer](#bank-integrations-guide-fund-customer-transfer)
+
+
 
 ## Create quote
+Please look at [Create quote](#quotes-create) under Full API Reference.
 
-STEP 1-2-3 , use  3rd level heading ?!
-
-
-
-blaah !!!
-
-
-Difference REGULAR !!!!
-	- Create quote   (type REGULAR, should be included in create quote endpoint !!)
+You need to set quote type as "REGULAR".
 
 
 
 ## Create recipient account
-
-blaah !!!
-
 Please look at [Create recipient account](#recipient-accounts-create) under Full API Reference.
 
 
 ## Create transfer
-
-blaah !!!
-
 Please look at [Create transfer](#transfers-create) under Full API Reference.
-
-
-
-## Get pay-in methods
-
 
  
 ## Fund customer transfer 
- external process, not API
- 
- GBP - FPS
- EUR - Sepa 
+Once you have successfully created transfer order via Transferwise API 
+you can now debit the exact source amount from your customer's bank account 
+and send funds to TransferWise local bank account via domestic payment.
+
+In order for us to link this incoming domestic payment with corresponding transfer order, we need you to use specific text in the "payment reference" field.
+Calling endpoint [Get pay-in methods](#quotes-get-pay-in-methods) with quoteId returns you the correct reference text. 
  
  
 ## Get transfer delivery time
-
 Please look at [Get transfer delivery time](#borderless-payouts-guide-get-transfer-delivery-time) under Borderless Payouts Guide.
 
 
 ## Track transfer status
-
 Please look at [Track transfer status](#borderless-payouts-guide-track-transfer-status) under Borderless Payouts Guide.
 
 
-
-
 ## Going live checklist
+### 1. Make your integration bulletproof
+  * Implement basic retry mechanism to handle potential failures or network interruptions 
+  * Implement duplicate prevention mechanism to avoid duplicate payments. Verify that UUID is uniquely generated for each individual payment and its value is kept same in case of retrying.
+  * Implement basic logging to help out in debugging and problem solving, if needed.
+  * Check that you can handle all possible transfer states during polling of transfer info.
+  * Required data fields for user profile addresses, recipients and transfers vary for different currencies. Please explore [Recipient Accounts.Requirements](#recipient-accounts-requirements), [Transfers.Requirements](#transfer-requirements) and [Addresses.Requirements](##addresses-requirements).
 
-
+### 2. Setup security for LIVE environment
+  * We have received and successfully decrypted Live API credentials.
+  * Ensure access tokens and refresh tokens are stored securely and only exposed to authorized persons. 
+  * Make sure your server has TLS version 1.2 or higher.
+  * Implement a mechanism to obtain new access token upon expiration.
+  
+### 3. Do penny testing in LIVE
+  * Launch LIVE integration to limit set of your customers and test all currency routes end-to-end. 
+  * Test successful flow and bounce back flow. 
+  * All set. Switch it on.
 
 
 

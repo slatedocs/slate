@@ -62,7 +62,7 @@ target                | Target(receive) currency code                          |
 rateType              | Always use constant 'FIXED'                   | Text
 targetAmount          | Amount in target currency                     | Decimal
 sourceAmount          | Amount in source currency. <br/>Either sourceAmount or targetAmount is required, never both.   | Decimal
-type                  | 'BALANCE_PAYOUT' for payments funded from borderless account  <br/> 'BALANCE_CONVERSION' for conversion between balances  <br/> 'REGULAR' for other payments | Text
+type                  | 'BALANCE_PAYOUT' for payments funded from borderless account  <br/> 'BALANCE_CONVERSION' for conversion between balances  <br/> 'REGULAR' for payments funded via bank transfers | Text
 
 
 ### Response
@@ -153,8 +153,8 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/quotes/{quoteId}/pay-in-met
 ]
 ```
 
-Get payment reference text that you should use when sending your funds via bank transfer to TransferWise, also know as the "P-ref" Number of the user's account.
-This endpoint will in future also include TransferWise bank account details where to send funds to.
+Get text that you should use in the "payment reference" field when sending funds via local bank transfer to TransferWise to fund your payment request.
+Reference text includes "P-REF" number of user which we need in order to automatically link funds.
 
 ### Request
 **`GET https://api.sandbox.transferwise.tech/v1/quotes/{quoteId}/pay-in-methods`**
