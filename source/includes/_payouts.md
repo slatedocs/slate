@@ -57,7 +57,6 @@ Add your API token as header parameter to every request like this:
 
 ## Get your profile id
 
-
 > Example Request:
 
 ```shell
@@ -100,7 +99,6 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/profiles \
     }
   }
 ]
-
 
 ```
 

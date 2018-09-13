@@ -55,9 +55,9 @@ The redirect URI should be the address you want the user to be returned to after
 In live environment standard api.transferwise.com url works for authorization page as well as API calls.*
 
 
-### User signs-up or logs in and authorizes your banking app to access their account
+### User signs-up or logs in and authorizes your banking app to access their Transferwise account
 
-Transferwise provides options for existing customers to login and new customers to sign-up.
+Transferwise provides options for existing customers to login and new customers to sign-up first.
 
 Initial sign-up is is just limited to creating a user entity and does not include going through KYC. New customers have 3 options to signup:
 
@@ -77,29 +77,23 @@ https://www.yourbank.com/?code=[CODE]
 Once user gives your banking app authorization then user is redirected back to your *redirect_uri* with a generated code query string value. 
 Your website or service can then use this code to obtain access token to act on behalf of the user account.
 
-## Get user token
+## Get user tokens
 
-  3.4. Get user token so you can act on behalf of users
-  
-  so you can act on behalf of the user.
-  Now you can exchange the authorization code for access and refresh tokens. To do that, you can use this curl request:
-  Request
-      curl \
-      -u '[your client_id]:[your client secret]' \
-      -d 'grant_type=authorization_code' \
-      -d 'client_id=[your client id]' \
-      -d 'code=[CODE]' \
-      -d 'redirect_uri=https://example.com' \
-      'https://api.transferwise.com/oauth/token' 
+> Example Request:
 
-  Changes you need to make to that request are:
-  
-  replace [your client id] with your client_id
-  replace [your client secret] with your client_secret
-  replace [CODE] with authorization code you have received in Step 3
-  replace https://example.com with the URI you specified in Step 1
-  
-  Response
+```shell
+curl \
+-u '[your-api-client-id]:[your-api-client-secret]' \
+-d 'grant_type=authorization_code' \
+-d 'client_id=[your-api-client-id]' \
+-d 'code=[CODE]' \
+-d 'redirect_uri=https://www.yourbank.com' \
+'https://api.sandbox.transferwise.tech/oauth/token' 
+```
+
+> Example Response:
+
+```json
   {
     "access_token":"ba8k9935-62f2-475a-60d8-6g45377b4062",
     "token_type":"bearer",
@@ -107,36 +101,54 @@ Your website or service can then use this code to obtain access token to act on 
     "expires_in": 43199,
     "scope":"transfers"
   }
+```
 
-  All set!
-  Your token is now ready to use.
-   Add your token in the request header for the endpoints that require it. 
-   It should be in the format "Authorization": "Bearer <token>".
-  It is valid for 12 hours. You should store refresh token. 
+As next step you need to obtain user tokens so you can call API endpoints on behalf of user who gave this authorized your banking app.
+You need the *code* provided to you during authorization flow to get user's access_token and refresh_token.
+For calling API endpoints you need to provide access_token in request header in the format "Authorization: Bearer access_token".
+Access tokens are however valid only for 12 hours, so upon expiry you need to use refresh_token to generate new access_token.
+This means you have to securely store user's refresh_token. 
+
+### Request
+
+**`POST https://api.sandbox.transferwise.tech/v1/oauth/token`**
+
+Use Basic Authentication with your api-client-id/api-client-secret as username/pwd.
+
+Field                 | Description                                   | Format
+---------             | -------                                       | -----------
+grant_type            | "authorization_code"                          | Text
+client_id             | your api_client_id                            | Text
+code                  | Code  provided to you upon redirect back from authorization flow. See previous step [Get user authorization](#bank-integrations-guide-get-user-authorization).  | Text
+redirect_uri          | Redirect page associated with your api client credentials   | Text
+
+
+### Response
+
+Field                 | Description                                   | Format
+---------             | -------                                       | -----------
+access_token          | Access token to be used when calling API endpoints on behalf of user. Valid for 12 hours. | uuid
+token_type            | "bearer"                                      | Text
+refresh_token         | Refresh token which you need to use in order to request new access_token. The lifetime of refresh tokens is 10 years. | uuid
+expires_in            | Expiry time in seconds                        | Integer
+scope                 | "transfers"                                   | Text
 
 
 ## Refresh user token 
 
+> Example Request:
 
- 3.5. Swapping a token because it is 12 hours only !!
-  In order to maintain an uninterrupted connection, you can request a new access token whenever it is close to expiring. 
-  You can do this by providing the refresh token:
-
-    Obtains new access token based on refresh token.
-    
-  
-  request 
+```shell
       curl \
-      'https://api.transferwise.com/oauth/token' \
-      -u 'client_id:client_secret' \
+      'https://api.sandbox.transferwise.tech/oauth/token' \
+      -u '[your-api-client-id]:[your-api-client-secret]' \
       -d 'grant_type=refresh_token' \
-      -d 'refresh_token=[your refresh token]'
-  
-  
-  ...and get the access token in response:
-  
-    
-  response
+      -d 'refresh_token=[user's refresh token]'
+```
+
+> Example Response:
+
+```json
   {
     "access_token":"be69d566-971e-4e15-9648-85a486195863",
     "token_type":"bearer",
@@ -144,10 +156,34 @@ Your website or service can then use this code to obtain access token to act on 
     "expires_in":43199,
     "scope":"transfers"
   }
-  
-  Keep in mind that access token will expire in 12 hours after issuing. The lifetime of refresh token is limited to 20 years.
-  
-  
+```
+
+Access tokens are valid for 12 hours, so upon expiry you need to use refresh_token to generate new access_token. 
+
+In order to maintain an uninterrupted connection, you can request a new access token whenever it is close to expiring.
+There is no need to wait for the actual expiration to happen first. 
+
+### Request
+
+**`POST https://api.sandbox.transferwise.tech/v1/oauth/token`**
+
+Use Basic Authentication with your api-client-id/api-client-secret as username/pwd.
+
+Field                 | Description                                   | Format
+---------             | -------                                       | -----------
+grant_type            | "refresh_token"                               | Text
+refresh_token         | User's refresh_token obtains in previous [Get user tokens](#bank-integrations-guide-get-user-tokens) step. | uuid
+
+
+### Response
+
+Field                 | Description                                   | Format
+---------             | -------                                       | -----------
+access_token          | Access token to be used when calling API endpoints on behalf of user. Valid for 12 hours. | uuid
+token_type            | "bearer"                                      | Text
+refresh_token         | Refresh token which you need to use in order to request new access_token once the existing one expires | uuid
+expires_in            | Expiry time in seconds                        | Integer
+scope                 | "transfers"                                   | Text
 
 
 ## Signup new users via API
