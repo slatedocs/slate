@@ -28,11 +28,118 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/user/signup/registration_c
 }
 ```
 
-Please read how to create new users at [Bank Integrations Guide](#bank-integrations-guide).<br/>
-This endpoint allows to onboard new users to TransferWise using email and registration code. 
-TransferWise uses email address as customer unique identifier. 
+This endpoint is related to [Bank Integrations](#bank-integrations-guide) product.<br/>
+It  allows to onboard new users to TransferWise using email and registration code. 
+
+TransferWise uses email address as unique identifier for users. 
 When you are submitting an email which already exists among TransferWise customers you will get a warning that
 "You’re already a member. Please login".
+
+TODO --  copy all this text here!!!
+
+
+Add this logic to #users-sign-up-with-registration-code
+
+
+
+  Step 1: Get client credentials OAuth token
+
+      Request POST /oauth/token
+      HTTP Basic using client ID for username and client secret as a password.
+      Body - Form
+      grant_type=client_credentials
+
+      response
+      {
+        "access_token": "01234567-89ab-cdef-0123-456789abcdef",
+        "token_type": "bearer",
+        "expires_in": 43199,
+        "scope": "transfers"
+      }
+      
+  Step 2: Create user
+  
+      Request POST /v1/user/signup/registration_code
+      Bearer ${clientCredentialsToken} header
+      {
+      "email": "${email}",
+      "registrationCode": "${registration code}"
+      }
+
+      ${email} — new user's email address
+      ${registration code} — random value that is unique to this user, at least 32 characters long
+  
+      NB: Please apply the same security standards to handling registration code as if it was a password.
+      
+
+      Response — Success (201)
+      {
+        "id": 12345,
+        "name": null,
+        "email": "new.user@domain.com",
+        "active": true,
+        "details": null
+      }
+      
+        
+
+      Response — Failure (409): User already exists
+      {
+        "errors": [
+          {
+            "code": "NOT_UNIQUE",
+            "message": "You’re already a member. Please login",
+            "path": "email",
+            "arguments": [
+              "email",
+              "class com.transferwise.fx.api.ApiRegisterCommand",
+              "existing.user@domain.com"
+            ]
+          }
+        ]
+      }
+      
+      If user already exists then authorization_code  should be used instead.
+      
+
+  Step 3: Get user token
+  POST /oauth/token
+  
+  Authentication
+  HTTP Basic using client ID for username and client secret as a password.
+  Body — Form
+  
+   grant_type=registration_code
+    client_id=${client id}
+    email=${email}
+    registration_code=${registration code from step 2}
+
+    Step 3 can be repeated as long as user does reclaim their TransferWise account.
+    
+    Response — Success (200)
+    {
+      "access_token": "01234567-89ab-cdef-0123-456789abcdef",
+      "token_type": "bearer",
+      "refresh_token": "01234567-89ab-cdef-0123-456789abcdef",
+      "expires_in": 43199,
+      "scope": "transfers"
+    }
+
+    Response — Failure (401): User reclaimed the account or invalid registration code used
+    {
+      "error": "invalid_grant",
+      "error_description": "Invalid user credentials."
+    }
+
+
+  If user has reclaimed the account, then authorization_code  should be used instead.
+  
+  refresh token works same way as for the other flow.
+
+
+
+
+TODO ---
 <br/>
 If email is new (does not have active user) then new user will be created.
 
