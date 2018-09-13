@@ -7,14 +7,22 @@ $ curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST 
      "subscriber_wallet": {
         "provider": "simpl",
         "metadata": {
-            "token": "8ashfsdfvyhurn8g9w85gjf"     
-        }        
+            "token": "8ashfsdfvyhurn8g9w85gjf"
+        }
     }
  }'
 ```
 ```shell--response
+{
+  "subscriber_wallet": {
+    "provider": "simpl",
+    "metadata": {
+      "token": "thenashfsdfvyurn8g9w85gjf"
+      }
+    }
+  }
 ```
-This request allows to POST a user's wallet token from any wallet provider. 
+This request allows to POST a user's wallet token from any wallet provider.
 Examples of Providers: [Simpl](https://getsimpl.com), [PayTm](https://paytm.com)
 
 Allowed values for `subscriber_wallet.provider` are `simpl`,`paytm`.
@@ -35,20 +43,7 @@ $ curl -H "X-SUBAUTH: <auth-token>" http://www.accesstype.com/api/v1/subscribers
 ```
 ```shell--response
 {
-    "subscriber_wallets": [
-        {
-            "provider": "simpl",
-            "metadata": {
-                "token": "hbsi87y8wrho3q8wfbyu"
-            }
-        },
-        {
-            "provider": "paytm",
-            "metadata": {
-                "token": "8089dsfvwj5tp870q938nff"
-            }
-        }
-    ]
+  "subscriber_wallets": ["paytm", "simpl"]
 }
 ```
 This API call returns all the wallet tokens of a subscriber.

@@ -400,5 +400,110 @@ One can use the optional `metadata` field to set it different from that of the e
 
 This API is safe to call from the front end JS, where it will read session-cookie to determine the current user. Backend callers can use X-QT-AUTH for the same purpose.
 
+## POST Create Wallet
+
+```shell--request
+curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" -X POST http://sketches.quintype.com/api/v1/members/me/subscriber-wallets -d '{
+  "subscriber_wallet": {
+        "provider": "simpl",
+        "metadata": {
+            "token": "thenashfsdfvyurn8g9w85gjf"
+        }
+    }
+}'
+
+```
+```shell--response
+ {
+  "subscriber_wallet": {
+    "provider": "simpl",
+    "metadata": {
+      "token": "thenashfsdfvyurn8g9w85gjf"
+      }
+    }
+  }
+```
+
+This API can be used to add/update wallets for a user.
+
+This API is safe to call from the front end JS, where it will read session-cookie to determine the current user. Backend callers can use X-QT-AUTH for the same purpose.
+
+## GET List Wallets
+
+```shell--request
+curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" http://sketches.quintype.com/api/v1/members/me/subscriber-wallets
+
+```
+
+```shell--response
+{
+  "subscriber_wallets": ["paytm"]
+}
+
+```
+
+This API can be used to get wallets for a user.
+
+This API is safe to call from the front end JS, where it will read session-cookie to determine the current user. Backend callers can use X-QT-AUTH for the same purpose.
+
+
+## Get prices of Assets
+
+```shell--request
+curl -X GET 'http://sketches.quintype.com/api/v1/asset/<asset-type>/pricing-plans.json?id=123456'
+```
+
+```shell--response
+{
+    "pricing_plans": [
+        {
+            "id": 1071,
+            "price_cents": 1400,
+            "price_currency": "INR",
+            "duration_length": 1,
+            "duration_unit": "lifetime"
+        },
+        {
+            "id": 1959,
+            "price_cents": 1000,
+            "price_currency": "INR",
+            "duration_length": 1,
+            "duration_unit": "months"
+        }
+    ]
+}
+```
+This API returns the prices of a story or a collection when sold individually.
+
+
+|Parameter|Type|Occurrence|Description|
+|---  |---  |---  |---  |
+|`/<asset-type>/`|string|1|The type of asset that is being purchased. Valid Values for Quintype CMS `story`,`collection`|
+|`id`|string|1|The identifier of the story or collection that is being purchased.|
+|`collection_id[]`|string|0 or many|The identifier of the collection that the story belongs to. Used when the value of `/<asset-type>/` is `story`.|
+
+
+## GET Access details
+
+```shell--request
+ curl -H "X-QT-AUTH: <your-auth-token>" -X GET 'http://sketches.quintype.com/api/v1/stories/<story-id>/access-data'
+```
+
+```shell--response
+ {
+    "access-data": {
+        "name": "subtype"
+    }
+ }
+```
+
+This API can be used to get access details of any story for a user.
+
+It returns 403 if the story is not accessible to user, else 200.
+
+This API is safe to call from the front end JS, where it will read session-cookie to determine the current user. Backend callers can use X-QT-AUTH for the same purpose.
+
+
+
 
 
