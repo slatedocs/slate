@@ -34,7 +34,7 @@ User on-boarding flow consists of these building blocks.
 You need to go through this flow only once per each customer before they can set up their first transfer.
 
 * [Get user authorization](#bank-integrations-guide-get-user-authorization)
-* [Signup new users via API](#bank-integrations-guide-signup-new-users-via-api) - this is optional alternative for user authorization of new users.
+* [Signup new users via API](#bank-integrations-guide-signup-new-users-via-api) - this is optional alternative to getting user authorization for new users.
 * [Get user tokens](#bank-integrations-guide-get-user-tokens)
 * [Create personal user profile](#bank-integrations-guide-create-personal-user-profile)
 * [Create business user profile](#bank-integrations-guide-create-business-user-profile)
@@ -205,7 +205,7 @@ Use Basic Authentication with your api-client-id/api-client-secret as username/p
 Field                 | Description                                   | Format
 ---------             | -------                                       | -----------
 grant_type            | "refresh_token"                               | Text
-refresh_token         | User's refresh_token obtains in [Get user tokens](#bank-integrations-guide-get-user-tokens) step. | uuid
+refresh_token         | User's refresh_token obtained in [Get user tokens](#bank-integrations-guide-get-user-tokens) step. | uuid
 
 
 ### Response
@@ -298,6 +298,8 @@ Only for personal profiles.  which you created
 Prerequisite is that personal user profile has been created. To on-board businesses, also business user profile has to be created.
 
 Similar two steps apply:
+
+[Create business user profile](#user-profiles-create-business)
 
 Create business user profile — basic info
 Add address to business user profile
