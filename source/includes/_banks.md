@@ -192,17 +192,18 @@ We encourage bank integrations to use sign-up functionality included in [Get use
 
 But there is also an alternative way to create new users to TransferWise platform by using [Signup with registration code](#users-sign-up-with-registration-code) feature.
 
-This functionality enables you to create new users directly via back-end API call, without the need to redirect new users to Transferwise authorization page. Existing users still need to go through authorization page flow.
+This functionality enables you to create new users directly via back-end API call, without the need to redirect new users to Transferwise authorization page. This way new users can complete everything without ever leaving your banking app.
+Existing Transferwise users still need to be redirected to authorization page flow.
 
 Note that these new users have to accept TransferWise Terms and Conditions as part of their signup process nevertheless.  See endpoint [Terms and conditions](#terms-and-conditions-get-terms-and-conditions).
 
 
-## Get user profiles
     
 
-
-
 ## Create personal user profile
+
+
+Use  Get user profiles first !!!
 
 For existing users - > get profiles first !?
 The guide assumes you have already created user — see .
