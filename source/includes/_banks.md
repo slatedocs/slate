@@ -1,24 +1,56 @@
 # Bank Integrations Guide
 ## API access
 
+TransferWise uses standard OAuth 2.0 protocol for authentication and authorization. 
 
-  - OAuth 2.0 protocol for authentication and authorization.
-  - we need from you redirect URL  (for existing users)
-  
-  - we will give you client_id & client_secret
-  - these give you access to API calls
+Once we start our partnership  we will send you API access credentials for sandbox environment: api_client_id & api_client_secret.
+You need these in order to request user authorizations so you can make payments on behalf of them.
+We also need *redirect_url* from your technical team so that we can make the integration more secure. 
+
+[OAuth 2.0: The Complete Guide](https://auth0.com/blog/oauth2-the-complete-guide/) is great guide to refresh your knowledge about the protocol itself.
+
+
+### TEST and LIVE environments
+
+* Sandbox API is located at https://api.sandbox.transferwise.tech
+* LIVE API is located at https://api.transferwise.com
 
 
 ## User experience
 
-It can be different . These are building blocks..
+You will be building user experience directly into your mobile and desktop applications and will be using TransferWise API only in the background. 
+There are different ways to build the frontend experience, especially when it comes to the sequence of steps in the payment flow.
 
-Temporary quote for example...
+For example you can put sign up/login step as a first step and then show currency calculator and then collect recipient details.
+Or you can start from calculator, then collect recipient details and as a last step ask user to login / signup.  
 
+So this guide is more like a list of building blocks rather than a strict step-by-step guide.
+
+We have a dedicated team focusing on bank partnerships who will be helping you to figure it out. 
 
 
 
 ## Get user authorization
+
+> Your app redirects user to Transferwise authorization webpage
+```shell
+https://api.sandbox.transferwise.tech/oauth/authorize?response_type=code&client_id=<your api client id>&redirect_uri=https://www.yourbank.com
+  ```
+
+> Transferwise authorization page redirects user back to your redirect page.
+```shell
+https://www.yourbank.com/?code=[CODE]
+```
+
+### Your app redirects user to Transferwise authorization webpage
+
+Transferwise authorization page allows customers to login (existing user) or sign-up (new users) for TransferWise. 
+
+
+
+https://api.sandbox.transferwise.tech/oauth/authorize?response_type=code&client_id=<your api client id>&redirect_uri=https://www.yourbank.com
+
+
 
   OAuth flow - Sign up new user and obtain their authorization to access their account
 
@@ -57,7 +89,7 @@ Temporary quote for example...
   
   3.3. Get authorization code from redirected URL parameter
   After a login/sign up, an authorization code is generated and appended to the redirected URI, e.g.
-  https://www.example.com/?code=[CODE]
+  https://www.yourbank.com/?code=[CODE]
 
 
 ## Get user token

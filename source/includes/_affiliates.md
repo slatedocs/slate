@@ -7,6 +7,12 @@ You can then use these as username & password with **Basic Authentication** meth
 
 There are two endpoints [Exchange Rates.List](#exchange-rates-list) and [Get Temporary Quote](#quotes-get-temporary-quote) which you can call with this authentication method.
 
+### TEST and LIVE environments
+
+* Sandbox API is located at https://api.sandbox.transferwise.tech
+* LIVE API is located at https://api.transferwise.com
+
+
 ## Get current exchange rates
 
 > Example Request (Basic authentication):
