@@ -100,7 +100,7 @@ downloading their account statements to your accounting software.
 
 Unfortunately today we have capacity to support only few such integrations. We are working on making this feature available for everyone.  
 
-Please contact api@transferwise.com for more info.  
+Please contact bizdev@transferwise.com for more info.  
 
 
 
