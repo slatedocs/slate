@@ -12,13 +12,16 @@ Borderless account features and pricing are best explained below.
 
 ### 2. Signup for TransferWise borderless account
 Get hands-on experience as it will help you understand how our payment flow works. 
-Just follow these three simple steps. 
+Just follow these four steps. 
 
-* Sign up for TransferWise borderless account. [https://transferwise.com/gb/borderless](https://transferwise.com/gb/borderless)
+* Sign up for TransferWise borderless account. [https://transferwise.com/gb/borderless](https://transferwise.com/gb/borderless). 
+By going through TransferWise verification process before you start technical integration will give you confidence that you are in full compliance with our [Terms and Conditions](https://transferwise.com/terms-and-conditions).
 
 * Make a transfer — check [our video guide](https://transferwise.com/help/article/1779442/creating-a-transfer/video-guide-make-a-transfer) for a step-by-step guide.
 
 * Verify that our coverage includes your currency route(s). Check [Supported Currencies](https://transferwise.com/help/article/1569835/basic-information/supported-currencies).
+
+* Read through our [Acceptable Use Policy](https://transferwise.com/acceptable-use-policy-eea) to avoid unpleasant surprises later.
 
 
 ### 3. Choose the best tool for you
@@ -40,7 +43,7 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/profiles \
 ### Authentication
 Signup for developer account to get API token for sandbox. [https://sandbox.transferwise.tech/register](https://sandbox.transferwise.tech/register)
 
-NB! Two factor authentication (2FA) code for sandbox login is 111111 for everyone.
+NB! Two factor authentication (2FA) code for sandbox login is 111111.
 
 Your developer account will have some test money so you can start making payments in same way as in LIVE environment.  You will find your API tokens in the Settings page. 
 

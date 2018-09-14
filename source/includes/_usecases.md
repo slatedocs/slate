@@ -9,8 +9,7 @@ Welcome to TransferWise API documentation. Explore and choose the right product 
 
 ## Borderless Payouts
 Open multi-currency Borderless Account and automate your cross-border and domestic payouts with single API integration.   
-This product enables you to automate your own borderless account. 
-
+This product enables you to automate **your own** borderless account for making payouts and reconciliation. 
 
 <ul>
   <li>Payouts to bank accounts</li>
@@ -96,7 +95,8 @@ TransferWise API enables you to:
   
 ## Connected Applications
 Connected Applications means the possibility to embed TransferWise product into your own application 
-so that your customers will enjoy the benefits of transparent and low cost international transfers. 
+so that your customers will enjoy the benefits of transparent and low cost international transfers or for example automatically 
+downloading their account statements to your accounting software.
 
 Unfortunately today we have capacity to support only few such integrations. We are working on making this feature available for everyone.  
 
