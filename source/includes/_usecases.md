@@ -1,4 +1,17 @@
 # TransferWise API
+> Base URL Sandbox
+
+```shell
+https://api.sandbox.transferwise.tech
+```
+
+
+> Base URL LIVE
+
+```shell
+https://api.transferwise.com
+```
+
 Welcome to TransferWise API documentation. Explore and choose the right product for your requirements. 
 
 * [Borderless Payouts](#transferwise-api-borderless-payouts)                                           
@@ -6,6 +19,8 @@ Welcome to TransferWise API documentation. Explore and choose the right product 
 * [Affiliates](#transferwise-api-affiliates)                                           
 * [Connected Applications](#transferwise-api-connected-applications)                                           
 * [Third-Party Payouts](#transferwise-api-third-party-payouts)                                           
+
+
 
 ## Borderless Payouts
 Open multi-currency Borderless Account and automate your cross-border and domestic payouts with single API integration.   
