@@ -14,14 +14,14 @@ Borderless account features and pricing are best explained below.
 Get hands-on experience as it will help you understand how our payment flow works. 
 Just follow these four steps. 
 
-* Sign up for TransferWise borderless account. [https://transferwise.com/gb/borderless](https://transferwise.com/gb/borderless). 
+* Sign up for TransferWise borderless account here [https://transferwise.com/gb/borderless](https://transferwise.com/gb/borderless). 
 By going through TransferWise verification process before you start technical integration will give you confidence that you are in full compliance with our [Terms and Conditions](https://transferwise.com/terms-and-conditions).
 
-* Make a transfer — check [our video guide](https://transferwise.com/help/article/1779442/creating-a-transfer/video-guide-make-a-transfer) for a step-by-step guide.
+* Make a transfer — check [our video guide](https://transferwise.com/help/article/1779442/creating-a-transfer/video-guide-make-a-transfer) for a step-by-step instructions.
 
 * Verify that our coverage includes your currency route(s). Check [Supported Currencies](https://transferwise.com/help/article/1569835/basic-information/supported-currencies).
 
-* Read through our [Acceptable Use Policy](https://transferwise.com/acceptable-use-policy-eea) to avoid unpleasant surprises later.
+* Read through our [Acceptable Use Policy](https://transferwise.com/acceptable-use-policy-eea) to avoid unpleasant surprises too late.
 
 
 ### 3. Choose the best tool for you
