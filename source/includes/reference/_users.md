@@ -67,38 +67,54 @@ details.address.occupation  | User occupation. Required for US, CA, JP         |
 
 ## Sign Up with Registration Code
 
-
-
-
-
-
-> Example Request:
+> Example Request: Get Client Credentials Token
 
 ```shell
-
-curl -X POST https://api.sandbox.transferwise.tech/v1/user/signup/registration_code \
-     -H "Authorization: Bearer <your api token>" \
-     -H "Content-Type: application/json" \
-     -d '{ 
-          "email": "joe@gmail.com",
-          "registrationCode": "a94a8fe5ccb19ba61c4c0873d391e987982fbbd3a94a8fe5ccb19ba61c4c0873d391e987982fbbd3"
-        }'
+curl \
+-u '[your-api-client-id]:[your-api-client-secret]' \
+-d 'grant_type=client_credentials' \
+'https://api.sandbox.transferwise.tech/oauth/token' 
 ```
 
-> Example Response:
+> Example Response: Get Client Credentials Token
 
 ```json
-{
-  "id": <user id>,
-  "name": null,
-  "email": "jose@gmail.com",
-  "active": true,
-  "details": null
-}
+  {
+    "access_token":"ba8k1234-00f2-475a-60d8-6g45377b4062",
+    "token_type":"bearer",
+    "expires_in": 43199,
+    "scope":"transfers"
+  }
 ```
 
+> Example Request: Create User
+
+```shell
+curl \
+-u '[your-api-client-id]:[your-api-client-secret]' \
+-d 'grant_type=client_credentials' \
+'https://api.sandbox.transferwise.tech/oauth/token' 
+```
+
+> Example Response: Create User
+
+```json
+  {
+    "access_token":"ba8k1234-00f2-475a-60d8-6g45377b4062",
+    "token_type":"bearer",
+    "expires_in": 43199,
+    "scope":"transfers"
+  }
+```
+
+
+
+
+
+
+
 This endpoint is related to [Bank Integrations](#bank-integrations-guide) product.<br/>
-It  allows to onboard new users to TransferWise using email and registration code. 
+It allows to onboard new users to TransferWise using email and registration code. 
 
 TransferWise uses email address as unique identifier for users. 
 When you are submitting an email which already exists among TransferWise customers you will get a warning that
@@ -106,25 +122,6 @@ When you are submitting an email which already exists among TransferWise custome
 
 TODO --  copy all this text here!!!
 
-
-Add this logic to #users-sign-up-with-registration-code
-
-
-
-  Step 1: Get client credentials OAuth token
-
-      Request POST /oauth/token
-      HTTP Basic using client ID for username and client secret as a password.
-      Body - Form
-      grant_type=client_credentials
-
-      response
-      {
-        "access_token": "01234567-89ab-cdef-0123-456789abcdef",
-        "token_type": "bearer",
-        "expires_in": 43199,
-        "scope": "transfers"
-      }
       
   Step 2: Create user
   
