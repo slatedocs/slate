@@ -101,7 +101,7 @@ Sends a broadcast message. Only site admins can send messages to everyone. Manag
 
 Filters further resrict which accounts to send the message to. Defaults are no additional restrictions.
 
-* **tier** - an exact team tier (must match the account's tier for one or more of the specified workgroups)
+* **tier** - an exact team tier (must match the account's tier for one or more of the specified workgroups) (numeric value)
 * **profile_type** - the profile of the accounts to send to
 * **org_hold** - boolean whether to send users on admin hold (default `false`)
 * **org_pending** - an onboarding status (unused if **org_hold** is `true`)
@@ -114,7 +114,11 @@ Filters further resrict which accounts to send the message to. Defaults are no a
     * **range** - distance in miles from the ZIP code (default: `0`)
 * **restrict_delivery** - object describing who to further restrict delivery to. It has a **type**, and then other restrictions, including date ranges for the type, etc.
     * *Example*: if `without_assignment` is selected, with a **start_date** of `2018-08-01`, **end_date** of `2018-08-07`, and **venue** of `1001`, then only accounts who were not assigned a shift for that venue, between those dates, will be sent the message.
-    * *NOTE*: options relating to shifts specifically only apply to a **type** of `with_assignment` and `without_assignment`, and no options apply to a **type** of everyone`
+    * *NOTES*
+        * options relating to shifts specifically only apply to a **type** of `with_assignment`, `without_assignment`, and `without_acknowledgment`
+        * `signed_on` and `not_signed_on` only apply to org messages, not workgroup messages
+        * no options apply to a **type** of `everyone`
+        * **start_date** and **end_date** must both be set for **start_date**, **end_date**, **dates**, or **start_time** to be used
     * **type** - string of one of the following values
         * `everyone` - all matching accounts (default)
         * `with_assignment` - if the account was assigned a shift
@@ -124,10 +128,8 @@ Filters further resrict which accounts to send the message to. Defaults are no a
         * `without_acknowledgment` - if the account did not acknowledge a shift
     * **start_date** - a date *at or after* to restrict the type (signed on, didn't sign on, had assignment, didn't have assignment, or didn't acknolwedge, *at or after* this datetime)
     * **end_date** - a date *at or before* to restrict the type
-        * *NOTE*: **start_date** and **end_date** must both be set, or neither
-    * **dates** - array of arbitrary individual dates for restricting (instead of, or in addition to, **start_date** and **end_date**)
-        * *NOTE*: **start_date** and **end_date** must both be set for **dates** to be used
-    * **start_time** - the time the shift started
+    * **dates** - array of additional arbitrary dates for restricting
+    * **start_time** - the time the shift started (in `HH:MM:SS` format)
     * **venue** - the venue ID for the shift
     * **client** - the client ID for the shift
     * **department** - the department ID for the shift
