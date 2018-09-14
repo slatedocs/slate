@@ -70,7 +70,7 @@ Banks can build their own native user experience and use TransferWise API only i
 ![alt text](https://image.ibb.co/m8kXTv/tw_n26_example.png "N26 User Experience")
 
 
-Please contact murali.akella@transferwise.com to get started.
+Please contact bizdev@transferwise.com to get started.
 
 Also take a look at our technical integration here - [Bank Integration Guide](#bank-integrations-guide).
 
@@ -110,6 +110,6 @@ Third-Party Payouts is a product for marketplaces and financial institutions (ba
 It is different from Borderless Payouts since it does not require our customer to also be the originator of payments. 
 So TransferWise will act as third party to the person who initiated the payment.  
 
-We are working on making this feature available soon. Please contact stuart.gregory@transferwise.com for more info.  
+We are working on making this feature available soon. Please contact bizdev@transferwise.com for more info.  
 
 
