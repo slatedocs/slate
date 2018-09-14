@@ -47,7 +47,7 @@ To create transfers on behalf of users you need these building blocks:
 * [Create quote](#bank-integrations-guide-create-quote)
 * [Create recipient account](#bank-integrations-guide-create-recipient-account)
 * [Create transfer](#bank-integrations-guide-create-transfer)
-* [Fund transfer](#bank-integrations-guide-fund-customer-transfer)
+* [Fund transfer](#bank-integrations-guide-fund-transfer)
 
 
 
@@ -138,7 +138,7 @@ curl \
 
 As next step you need to obtain user tokens so you can call API endpoints on behalf of user who gave this authorized your banking app.
 You need the *code* provided to you during authorization flow to get user's access_token and refresh_token.
-For calling API endpoints you need to provide access_token in request header in the format "Authorization: Bearer access_token".
+For calling API endpoints you need to provide user's access_token in request header in the format "Authorization: Bearer access_token".
 Access tokens are however valid only for 12 hours, so upon expiry you need to use refresh_token to generate new access_token.
 This means you have to securely store user's refresh_token. 
 
@@ -223,118 +223,33 @@ scope                 | "transfers"                                   | Text
 
 ## Create personal user profile
 
+If you are using Transferwise authorization flow for new users then you don't know if user just signed up or it is an existing user with full data. 
 
-Use  Get user profiles first !!!
+[User Profiles.List](#user-profiles-list) endpoint which gives you data of both personal and business profiles so 
+you can figure out if user already has profile created or not. If user already has personal profile data then you can skip this step.
 
-For existing users - > get profiles first !?
-The guide assumes you have already created user — see .
-
-Using obtained user token.
-
-Personal user profile should be created before creating a transfer.
-
-If you will make business transfers, then personal profile is required to be filled in first as well, and business profile should be created afterwards.
-
-There are two steps to create a personal profile:
-- Create personal user profile - basic info.
-- Add address to personal user profile.
+If you are using Signup new users via API feature then you absolutely need to create personal profile for the user.
 
 
-Step 1. Create private customer  — basic info
+There are three steps to create new personal user profile:
 
-POST /v1/profiles
+1) [Create personal user profile - general data](#user-profiles-create-personal). This includes customer name, date of birth and phone number. 
 
+2) [Create personal user profile - address data](#addresses-create). Once general profile information has been saved, you also need to add address information to personal user profile.
 
-{
-    "type": "personal",
-    "details" : {
-        "firstName": "John",
-        "lastName": "Snow",
-        "dateOfBirth": "1980-07-20",
-        "phoneNumber": "+380964441122"
-    }
-}
-
-
-
-Response
-You should receive back a successful (200) response with a personal profile id along with other profile keys that have been successfully saved.
-
-
-Step 2. Add address to personal user profile
-
-Once basic profile information has been saved, you also need to add address information to personal user profile.
-When saving address, you need to specify which profile you want to save address to. 
-In profile key, provide a profile id of a personal profile that was returned in previous step response.
-
-Request
-POST /v1/addresses
-
-
-{
-    "profile" : 12345
-    "details": {
-        "country": "US",
-        "state" : "NY",
-        "city": "New York",
-        "postCode": "10112",
-        "firstLine": "Park Ave 4021"
-    }
-}
-
-There is a guide #docTextSection:MEDFDFDMQrmJjtnHS that explains which data fields and validations are in place for addresses in different countries.
-
-You should get back a successful (200) response with a personal profile address id along with other address keys that have been successfully saved.
-
-
-3. Create identification document
-
-Only for personal profiles.  which you created 
+3) [Create identification document](#user-profiles-create-identification-document). Adding identification document (Passport, Drivers License etc ) metadata to user profile.
 
 
 
 ## Create business user profile
 
-Prerequisite is that personal user profile has been created. To on-board businesses, also business user profile has to be created.
+Personal profile has to be created upfront, it is not allowed to create business user profile without personal profile being created first.
 
-Similar two steps apply:
+Creating business profile is similar to how you created personal profile. There are two steps:
 
-[Create business user profile](#user-profiles-create-business)
+1) [Create business user profile - general data](#user-profiles-create-business)
 
-Create business user profile — basic info
-Add address to business user profile
-
-
-Step 3.1. Create business user profile — basic info
-
-Request
-
-POST /v1/profiles
-
-{
-    "type": "business",
-    "details" : {
-        "name": "The Business",
-        "registrationNumber" : "12345",
-        "descriptionOfBusiness" : "education_and_learning",
-        "type" : "limited",
-        "webpage": "http://business.com",
-        "acn": "australian-specific. only include if australian business",
-        "abn": "australian-specific. only include if australian business",
-        "arbn": "australian-specific. only include if australian business"
-    }
-}
-
-
-
-Response
-
-You should receive back a successful (200) response with a business profile id along with other profile keys that have been successfully saved.
-
-Step 3.2. Add address to business user profile
-
-Once basic business profile information has been saved, you also need to add address information to business user profile. 
-This can be done exactly the same way as we did for personal profile. Please see description under Step 2.2 above.
+2) [Create business user profile - address data](#addresses-create) 
 
 
 
@@ -342,7 +257,6 @@ This can be done exactly the same way as we did for personal profile. Please see
 Please look at [Create quote](#quotes-create) under Full API Reference.
 
 You need to set quote type as "REGULAR".
-
 
 
 ## Create recipient account
@@ -353,7 +267,7 @@ Please look at [Create recipient account](#recipient-accounts-create) under Full
 Please look at [Create transfer](#transfers-create) under Full API Reference.
 
  
-## Fund customer transfer 
+## Fund transfer 
 Once you have successfully created transfer order via Transferwise API 
 you can now debit the exact source amount from your customer's bank account 
 and send funds to TransferWise local bank account via domestic payment.

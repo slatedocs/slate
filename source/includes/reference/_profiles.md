@@ -53,7 +53,7 @@ type                    | "personal"                    | Text
 details.firstName       | First name                    | Text
 details.lastName        | Last name                     | Text
 details.dateOfBirth     | Date of birth                 | YYYY-MM-DD
-details.phoneNumber     | Phone number                  | Text
+details.phoneNumber <br/> (optional)     | Phone number                  | Text
 
 
 ### Response
@@ -325,7 +325,7 @@ Returns empty result if successful.
 
 ### Request (Business)
 
-**`POST https://api.sandbox.transferwise.tech/v1/profiles`**
+**`POST https://api.sandbox.transferwise.tech/v1/profiles/{profileId}/verification-documents`**
 
 Field                    | Description                                 | Format
 ---------                | -------                                     |-----------
