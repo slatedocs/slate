@@ -10,10 +10,10 @@ set :markdown,
     no_intra_emphasis: true
 
 # Assets
-set :css_dir, 'stylesheets'
-set :js_dir, 'javascripts'
-set :images_dir, 'images'
-set :fonts_dir, 'fonts'
+set :css_dir, 'assets/api-v2/stylesheets'
+set :js_dir, 'assets/api-v2/javascripts'
+set :images_dir, 'assets/api-v2/images'
+set :fonts_dir, 'assets/api-v2/fonts'
 
 
 # Activate the syntax highlighter
@@ -26,7 +26,7 @@ activate :autoprefixer do |config|
 end
 
 # Github pages require relative links
-activate :relative_assets
+# activate :relative_assets
 set :relative_links, true
 
 # Build Configuration

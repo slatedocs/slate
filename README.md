@@ -70,7 +70,7 @@ Now that Slate is all set up on your machine, you'll probably want to learn more
 
 If you'd prefer to use Docker, instructions are available [in the wiki](https://github.com/lord/slate/wiki/Docker).
 
-Deployment
+Deployment -- old
 ---------------------------------
 
 ```shell
@@ -85,4 +85,21 @@ bundle exec middleman deploy
 
 #or:
 bundle exec middleman deploy --build-before
+```
+
+
+Deployment -- new, with Jekyll website:
+---------------------------------------
+
+```shell
+#from clean
+bundle exec middleman build --clean
+
+# deploy => this is not final yet. some errors with javascripts
+cp build/index.html ../website-jekyll/pages/api-v2.html
+
+# cp build/stylesheets/* ../website-jekyll/assets/api-v2/stylesheets
+# cp build/images/* ../website-jekyll/assets/api-v2/images
+# cp build/fonts/* ../website-jekyll/assets/api-v2/fonts
+# cp build/javascripts/* ../website-jekyll/assets/api-v2/javascripts
 ```
