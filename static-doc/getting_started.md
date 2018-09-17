@@ -39,6 +39,7 @@ The default behavior of the MJML translation engine is to divide the section spa
 </aside>
 
 Let's take the following layout to illustrate this:
+
 ```html
 <mjml>
   <mj-body>
@@ -60,6 +61,7 @@ Since the first section defines only 2 columns, the engine will translate that i
 You can also manually set the size of your columns, in pixels or percentage, by using the `width` attribute on `mj-column`.
 
 Let's take the following layout to illustrate this:
+
 ```html
 <mjml>
   <mj-body>
