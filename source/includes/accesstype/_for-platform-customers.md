@@ -2,67 +2,123 @@
 
 The customers of Quintype platform can use below APIs for subscriptions in Accesstype.
 
-## POST Preview subscription
+
+## POST Preview a subscription for logged in user
 
 ```shell--request
-curl -H "content-type: application/json" https://sketches.quintype.com/api/v1/subscription/preview -d '{
-    "member": {
-      "email": "example@gmail.com"
+curl -H "content-type: application/json" https://sketches.quintype.com/api/v1/api/v1/members/me/subscriptions/preview -d '{
+  "subscription": {
+    "subscription_plan_id": "11",
+    "coupon_code": "NEWYEAR",
+    "payment": {
+        "payment_type": "razorpay"
     },
-    "subscription": {
-        "accesstype-plan-id": 7,
-        "coupon-code": "",
-        "metadata": {
-          "city": "Bangalore",
-          "state": "Karnataka",
-          "house": "Old Airport Road, Murugeshpallya, Bangalore",
-          "street": "Old Airport Road, Murugeshpallya, Bangalore",
-          "landmark": "Karnataka",
-          "pincode": "560017",
-          "mobile": "8129612361"
-         }
-    }}
+    "metadata":  {
+        "full-name": "hello",
+        "email": "hello@quintype.com"
+    },
+    "start_timestamp": "2017-09-21 00:00:00"
+  },
+  "name": "Ben"
+}
 '
 ```
 ```shell--response
+  {
+    "subscription": {
+        "id": null,
+        "subscriber_id": 8302,
+        "subscription_plan_id": 11,
+        "created_at": null,
+        "updated_at": null,
+        "assets": [],
+        "start_timestamp": "2218-09-29T19:54:02.833Z",
+        "end_timestamp": "2318-09-29T19:54:02.833Z",
+        "deleted_at": null,
+        "payment_id": null,
+        "metadata": {
+          "full-name": "hello",
+          "email": "hello@quintype.com"
+        },
+        "external_id": null,
+        "trial_period_length": null,
+        "trial_period_unit": null,
+        "code": null,
+        "discount_detail": {},
+        "coupon_code_id": null,
+        "campaign_id": null,
+        "plan_amount_cents": 50000,
+        "plan_amount_currency": "INR",
+        "duration_unit": "lifetime",
+        "duration_length": 1,
+        "plan_name": "life time ",
+        "plan_description": "life time ",
+        "group_name": "prod test 30 aug",
+        "group_description": "prod test 30 aug",
+        "subscription_type": "standard",
+        "plan_occurrence": "One Time",
+        "subscription_attempt_id": null,
+        "renewal_reminder_sent_date": null,
+        "dynamic_assets": {},
+        "subscription_group_id": 2313,
+        "preferred_identity": {
+            "provider": "email",
+            "value": "biswajit+29@quintype.com"
+        },
+        "active": false,
+        "payment_amount": "0.00",
+        "payment_amount_cents": 0,
+        "payment_amount_currency": "USD",
+        "payment_type": "manual",
+        "payment_token": null,
+        "renewable": false,
+        "status": "pending",
+        "expired": false,
+        "coupon_code": "NEWYEAR,
+        "campaign_name": null,
+        "campaign_subscription": false,
+        "recurring": false,
+        "cancelled_at": null,
+        "next_payment_due_date": null,
+        "cancelled": false,
+        "in_grace_period": false
+    },
+    "attempt_token": "SSLvhLBEWiMxcEiMKgHxATpJ",
+    "external_reference_id": null
+}
 ```
 
 It returns a preview for a Subscription, without creating a new subscription.
 For a successful subscription, it also return an `attempt_token`.
 
-An `attempt_token` is the identifier of a subscription attempt. It should be sent back with [register & subscribe](#post-register-and-subscribe-a-user) api or [subscribe without login](#post-subscribe-without-login) api to mark an attempt as success.
+An `attempt_token` is the identifier of a subscription attempt. It should be sent back with [create-subscription](#post-create-subscription-for-logged-in-user) api.
 
 We highly recommend use of this API before accepting payment form a user.
 
 
-## POST Subscribe to a plan
+
+## POST Create Subscription for logged in user
 
 ```shell--request
-curl -H "X-QT-AUTH: <x-qt-auth>" -H "Content-Type: application/json" https://sketches.quintype.com/api/v1/subscribe -d '{
-   "options": {
-        "gateway-name": "razorpay"
-    },
+curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST http://sketches.quintype.com/api/v1/members/me/subscriptions -d '{
+  "subscription": {
+    "subscription_plan_id": "11",
+    "coupon_code": "NEWYEAR",
     "payment": {
-        "attributes": {
-            "currency": "INR",
-            "amount": 100,
-            "gateway-payment-id": "pay_123trt465"
-          }
+        "payment_type": "razorpay",
+        "payment_token": "pay_test_8tNiqdiajurOkj",
+        "amount_cents": "99900",
+        "amount_currency": "INR"
     },
-    "subscription": {
-        "accesstype-plan-id": 20,
-        "metadata": {
-          "city": "Bangalore",
-          "state": "Karnataka",
-          "house": "Old Airport Road, Murugeshpallya, Bangalore",
-          "street": "Old Airport Road, Murugeshpallya, Bangalore",
-          "landmark": "Karnataka",
-          "pincode": "560017",
-          "mobile": "9879310927"
-         }
-    }
-  }
-'
+    "metadata":  {
+        "full-name": "hello",
+        "email": "hello@quintype.com"
+    },
+    "start_timestamp": "2017-09-21 00:00:00"
+  },
+  "attempt_token": "fo4bMWjP6N5vtVySNtiAUNBQ",
+  "name": "Ben"
+}'
 ```
 ```shell--response
 {
@@ -93,7 +149,7 @@ curl -H "X-QT-AUTH: <x-qt-auth>" -H "Content-Type: application/json" https://ske
         "renewable": false,
         "subscription_attempt_id": 3121,
         "subscription_group_id": 24,
-        "coupon_code": null,
+        "coupon_code": "NEWYEAR",
         "recurring": false,
         "payment_type": "manual",
         "cancelled": false,
@@ -119,7 +175,7 @@ curl -H "X-QT-AUTH: <x-qt-auth>" -H "Content-Type: application/json" https://ske
         "expired": false,
         "payment_id": 12132,
         "plan_name": "digital-3",
-        "subscription_plan_id": 20,
+        "subscription_plan_id": 11,
         "duration_unit": "months",
         "trial_period_unit": null,
         "subscription_type": "standard",
@@ -128,15 +184,8 @@ curl -H "X-QT-AUTH: <x-qt-auth>" -H "Content-Type: application/json" https://ske
         "cancelled_at": null,
         "payment-id": 12132,
         "metadata": {
-            "email": "ace333@quintype.com",
-            "city": "Bangalore",
-            "state": "Karnataka",
-            "street": "Old Airport Road, Murugeshpallya, Bangalore",
-            "landmark": "Karnataka",
-            "full-name": "ace333",
-            "pincode": "560017",
-            "house": "Old Airport Road, Murugeshpallya, Bangalore",
-            "mobile": "9879310927"
+          "full-name": "hello",
+          "email": "hello@quintype.com"
         },
         "renewal_reminder_sent_date": null,
         "created_at": "2018-09-05T11:58:19.906Z",
@@ -146,121 +195,17 @@ curl -H "X-QT-AUTH: <x-qt-auth>" -H "Content-Type: application/json" https://ske
 }
 ```
 
-This request creates a Subscription for registered subscriber.
+This API can be used to create a subscription.
 
-|Parameter|Type|Mandatory|Description|
-|-|-|-|-|
-|options.gateway-name|String|Yes|The name of the payment gateway used for creating the subscription. Valid values are `sponsored` - where no payment gateway is involved, `razorpay` - for one-time Razorpay payments, `razorpay_recurring` - for recurring razorpay payments, `simpl` - for simpl payment gateway, `androidpay`- Google Pay one-time payments,  `androidpay_recurring` - for Google Pay recurring payments.|
-|payment.attributes.currency|String|No|Valid values are `INR` and `USD`|
-|payment.attributes.amount|Integer|No|The amount in cents when the currency is USD and paise when the currency is INR|
-|payment.attributes.gateway-payment-id|String|Conditional|Required only when the gateway-name is  not `sponsored`. The payment token returned by the payment gateway once the payment was authorized by the subscriber. |
-|subscription.accesstype-plan-id|Integer|Yes|The identifier for the plan to which the subscription is made.|
-|subscription.metadata|Object|No|The metadata elements of the subscription plan, and their values.|
+Here `attempt_token` is the token received from [preview](#post-preview-a-subscription-for-logged-in-user).
 
-## POST Register And Subscribe a user
-
-```shell--request
-curl -H "X-QT-AUTH: sample-auth" -H "Content-Type: application/json" http://sketches.quintype.com/api/v1/register-and-subscribe -d '{
-   "member": {
-        "email": "ace33@quintype.com",
-        "username": "ace 33",
-        "password": "password",
-        "name": "ace 33",
-        "dont-login": false
-    },
-    "options": {
-        "gateway-name": "razorpay"
-    },
-    "payment": {
-        "attributes": {
-            "currency": "INR",
-            "amount": 100,
-            "payment-type": "Razorpay",
-            "gateway-payment-id": "pay_123trt465",
-            "attributes": ""
-        }
-    },
-    "subscription": {
-        "accesstype-plan-id": 4,
-        "metadata": {
-          "city": "Bangalore",
-          "state": "Karnataka",
-          "house": "Old Airport Road, Murugeshpallya, Bangalore",
-          "street": "Old Airport Road, Murugeshpallya, Bangalore",
-          "landmark": "Karnataka",
-          "pincode": "560017",
-          "mobile": "8129612361"
-         }
-
-    },
-    "attempt-token": "attempt-token"}
-'
-
-```
-```shell--response
-```
-
-Registers a member and creates subscription in Accesstype. It returns X-QT-AUTH in response headers.
-
-`gateway-name` can be any valid payment-type supported by Accesstype.
-
-`accesstype-plan-id` is the Id of plan in Accesstype.
-
-`attempt-token` can be fetched using [preview](#post-preview-subscription) api. This is an optional parameter but we advice you to use it for better tracking of transactions.
-
-
-
-## POST Subscribe Without Login
-
-```shell--request
-curl -H "Content-Type: application/json" http://sketches.quintype.com/api/v1/subscribe-without-login?email=example@gmail.com -d '{
-    "options": {
-        "gateway-name": "razorpay"
-    },
-    "payment": {
-        "attributes": {
-            "currency": "INR",
-            "amount": 100,
-            "payment-type": "Razorpay",
-            "gateway-payment-id": "pay_123trt465",
-            "attributes": ""
-        }
-    },
-    "subscription": {
-        "accesstype-plan-id": 4,
-        "currency": "INR",
-        "amount": 100,
-        "metadata": {
-          "city": "Bangalore",
-          "state": "Karnataka",
-          "house": "Old Airport Road, Murugeshpallya, Bangalore",
-          "street": "Old Airport Road, Murugeshpallya, Bangalore",
-          "landmark": "Karnataka",
-          "pincode": "560017",
-          "mobile": "8129612361"
-         }
-
-    },
-    "attempt-token": "attempt-token"}
-'
-
-```
-```shell--response
-```
-
-It create subscription for a already registered user.
-`gateway-name` can be any valid payment-type suppored by Accesstype.
-
-`accesstype-plan-id` is the Id of plan in Accesstype
-
-`attempt-token` can be fetched using [preview](#post-preview-subscription) api. This is an optional parameter but we advice you to use it for better tracking of transactions.
+This API is safe to call from the front end JS, where it will read session-cookie to determine the current user. Backend callers can use X-QT-AUTH for the same purpose.
 
 
 ## LIST All subscriptions of a user
 
 ```shell--request
 curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" http://sketches.quintype.com/api/v1/members/me/subscriptions
-
 
 ```
 
@@ -377,7 +322,7 @@ It bulk updates **all** subscriptions for user.
 
 This API is safe to call from the front end JS, where it will read session-cookie to determine the current user. Backend callers can use X-QT-AUTH for the same purpose.
 
-## POST Renew a subscription
+## POST Renew a subscription for logged in user
 
 ```shell--request
 curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" -X POST http://sketches.quintype.com/api/v1/members/me/subscriptions/<id>/renewals -d '{
@@ -399,6 +344,263 @@ This API can be used to renew any renewable subscription.
 One can use the optional `metadata` field to set it different from that of the existing subsription. If not passed, it is set to be same as existing subscription.
 
 This API is safe to call from the front end JS, where it will read session-cookie to determine the current user. Backend callers can use X-QT-AUTH for the same purpose.
+
+## POST Preview subscription
+
+```shell--request
+curl -H "content-type: application/json" https://sketches.quintype.com/api/v1/subscription/preview -d '{
+    "member": {
+      "email": "example@gmail.com"
+    },
+    "subscription": {
+        "accesstype-plan-id": 7,
+        "coupon-code": "",
+        "metadata": {
+          "city": "Bangalore",
+          "state": "Karnataka",
+          "house": "Old Airport Road, Murugeshpallya, Bangalore",
+          "street": "Old Airport Road, Murugeshpallya, Bangalore",
+          "landmark": "Karnataka",
+          "pincode": "560017",
+          "mobile": "8129612361"
+         }
+    }
+}
+'
+```
+```shell--response
+```
+This API can be used to preview a subscription when user is not logged in.
+
+It returns a preview for a Subscription, without creating a new subscription.
+For a successful subscription, it also return an `attempt_token`.
+
+An `attempt_token` is the identifier of a subscription attempt. It should be sent back with [register & subscribe](#post-register-and-subscribe-a-user) api or [subscribe without login](#post-subscribe-without-login) api to mark an attempt as success.
+
+We highly recommend use of this API before accepting payment form a user.
+
+
+## POST Register And Subscribe a user
+
+```shell--request
+curl -H "X-QT-AUTH: sample-auth" -H "Content-Type: application/json" http://sketches.quintype.com/api/v1/register-and-subscribe -d '{
+   "member": {
+        "email": "ace33@quintype.com",
+        "username": "ace 33",
+        "password": "password",
+        "name": "ace 33",
+        "dont-login": false
+    },
+    "options": {
+        "gateway-name": "razorpay"
+    },
+    "payment": {
+        "attributes": {
+            "currency": "INR",
+            "amount": 100,
+            "payment-type": "Razorpay",
+            "gateway-payment-id": "pay_123trt465",
+            "attributes": ""
+        }
+    },
+    "subscription": {
+        "accesstype-plan-id": 4,
+        "metadata": {
+          "city": "Bangalore",
+          "state": "Karnataka",
+          "house": "Old Airport Road, Murugeshpallya, Bangalore",
+          "street": "Old Airport Road, Murugeshpallya, Bangalore",
+          "landmark": "Karnataka",
+          "pincode": "560017",
+          "mobile": "8129612361"
+         }
+
+    },
+    "attempt-token": "attempt-token"}
+'
+
+```
+```shell--response
+```
+
+Registers a member and creates subscription in Accesstype. It returns X-QT-AUTH in response headers.
+
+`gateway-name` can be any valid payment-type supported by Accesstype.
+
+`accesstype-plan-id` is the Id of plan in Accesstype.
+
+`attempt-token` can be fetched using [preview](#post-preview-subscription) api. This is an optional parameter but we advice you to use it for better tracking of transactions.
+
+
+
+## POST Subscribe Without Login
+
+```shell--request
+curl -H "Content-Type: application/json" http://sketches.quintype.com/api/v1/subscribe-without-login?email=example@gmail.com -d '{
+    "options": {
+        "gateway-name": "razorpay"
+    },
+    "payment": {
+        "attributes": {
+            "currency": "INR",
+            "amount": 100,
+            "payment-type": "Razorpay",
+            "gateway-payment-id": "pay_123trt465",
+            "attributes": ""
+        }
+    },
+    "subscription": {
+        "accesstype-plan-id": 4,
+        "currency": "INR",
+        "amount": 100,
+        "metadata": {
+          "city": "Bangalore",
+          "state": "Karnataka",
+          "house": "Old Airport Road, Murugeshpallya, Bangalore",
+          "street": "Old Airport Road, Murugeshpallya, Bangalore",
+          "landmark": "Karnataka",
+          "pincode": "560017",
+          "mobile": "8129612361"
+         }
+
+    },
+    "attempt-token": "attempt-token"}
+'
+
+```
+```shell--response
+```
+
+It create subscription for a already registered user.
+`gateway-name` can be any valid payment-type suppored by Accesstype.
+
+`accesstype-plan-id` is the Id of plan in Accesstype
+
+`attempt-token` can be fetched using [preview](#post-preview-subscription) api. This is an optional parameter but we advice you to use it for better tracking of transactions.
+
+## POST Subscribe to a plan [Deprecated]
+
+```shell--request
+curl -H "X-QT-AUTH: <x-qt-auth>" -H "Content-Type: application/json" https://sketches.quintype.com/api/v1/subscribe -d '{
+   "options": {
+        "gateway-name": "razorpay"
+    },
+    "payment": {
+        "attributes": {
+            "currency": "INR",
+            "amount": 100,
+            "gateway-payment-id": "pay_123trt465"
+          }
+    },
+    "subscription": {
+        "accesstype-plan-id": 20,
+        "metadata": {
+          "city": "Bangalore",
+          "state": "Karnataka",
+          "house": "Old Airport Road, Murugeshpallya, Bangalore",
+          "street": "Old Airport Road, Murugeshpallya, Bangalore",
+          "landmark": "Karnataka",
+          "pincode": "560017",
+          "mobile": "9879310927"
+         }
+    }
+  }
+'
+```
+```shell--response
+{
+    "subscription": {
+        "next_payment_due_date": null,
+        "subscription-display": "digital-3",
+        "deleted_at": null,
+        "campaign_name": null,
+        "payment_amount_currency": "INR",
+        "campaign_subscription": false,
+        "campaign_id": null,
+        "start_timestamp": "2019-06-05T10:16:58.901Z",
+        "assets": [
+            {
+                "title": "public",
+                "metadata": {},
+                "type": "site"
+            }
+        ],
+        "end_timestamp": "2019-09-05T10:16:58.901Z",
+        "payment_amount": "299.00",
+        "subscriber-id": 8478,
+        "discount_detail": {},
+        "duration_length": 3,
+        "dynamic_assets": {},
+        "trial_period_length": null,
+        "group_description": "Digital",
+        "renewable": false,
+        "subscription_attempt_id": 3121,
+        "subscription_group_id": 24,
+        "coupon_code": null,
+        "recurring": false,
+        "payment_type": "manual",
+        "cancelled": false,
+        "payment_token": null,
+        "updated_at": "2018-09-05T11:58:19.988Z",
+        "coupon_code_id": null,
+        "subscription-status": "inactive",
+        "subscribed-till": "2019-09-05",
+        "plan_amount_cents": 29900,
+        "status": "pending",
+        "group_name": "digital",
+        "external_id": null,
+        "active": false,
+        "id": 12158,
+        "plan_occurrence": "One Time",
+        "in_grace_period": false,
+        "code": null,
+        "preferred_identity": {
+            "provider": "email",
+            "value": "ace333@quintype.com"
+        },
+        "plan_amount_currency": "INR",
+        "expired": false,
+        "payment_id": 12132,
+        "plan_name": "digital-3",
+        "subscription_plan_id": 20,
+        "duration_unit": "months",
+        "trial_period_unit": null,
+        "subscription_type": "standard",
+        "subscription-plan": null,
+        "plan_description": null,
+        "cancelled_at": null,
+        "payment-id": 12132,
+        "metadata": {
+            "email": "ace333@quintype.com",
+            "city": "Bangalore",
+            "state": "Karnataka",
+            "street": "Old Airport Road, Murugeshpallya, Bangalore",
+            "landmark": "Karnataka",
+            "full-name": "ace333",
+            "pincode": "560017",
+            "house": "Old Airport Road, Murugeshpallya, Bangalore",
+            "mobile": "9879310927"
+        },
+        "renewal_reminder_sent_date": null,
+        "created_at": "2018-09-05T11:58:19.906Z",
+        "subscriber_id": 8478,
+        "payment_amount_cents": 29900
+    }
+}
+```
+This API is **deprecated** in favour of [create-subscription](#post-create-subscription-for-logged-in-user) API.
+
+This request creates a Subscription for registered subscriber.
+
+|Parameter|Type|Mandatory|Description|
+|-|-|-|-|
+|options.gateway-name|String|Yes|The name of the payment gateway used for creating the subscription. Valid values are `sponsored` - where no payment gateway is involved, `razorpay` - for one-time Razorpay payments, `razorpay_recurring` - for recurring razorpay payments, `simpl` - for simpl payment gateway, `androidpay`- Google Pay one-time payments,  `androidpay_recurring` - for Google Pay recurring payments.|
+|payment.attributes.currency|String|No|Valid values are `INR` and `USD`|
+|payment.attributes.amount|Integer|No|The amount in cents when the currency is USD and paise when the currency is INR|
+|payment.attributes.gateway-payment-id|String|Conditional|Required only when the gateway-name is  not `sponsored`. The payment token returned by the payment gateway once the payment was authorized by the subscriber. |
+|subscription.accesstype-plan-id|Integer|Yes|The identifier for the plan to which the subscription is made.|
+|subscription.metadata|Object|No|The metadata elements of the subscription plan, and their values.|
+
 
 ## POST Create Wallet
 
@@ -450,7 +652,7 @@ This API is safe to call from the front end JS, where it will read session-cooki
 ## Get prices of Assets
 
 ```shell--request
-curl -X GET 'http://sketches.quintype.com/api/v1/asset/<asset-type>/pricing-plans.json?id=123456'
+curl -X GET 'http://sketches.quintype.com/api/v1/asset/<asset-type>/pricing-plans?id=123456'
 ```
 
 ```shell--response
