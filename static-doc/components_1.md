@@ -26,3 +26,17 @@ For instance, the `mj-button` components is, on the inside, a complex HTML layou
 	</tbody>
 </table>
 ```
+
+## mjml
+
+A MJML document starts with a `<mjml>` tag, it can contain only `mj-head` and `mj-body` tags. Both have the same purpose of `head` and `body` in a HTML document.
+
+attribute | unit | description | default value
+----------|------|-------------|---------------
+owa | string | if set to "desktop", will force desktop display on outlook. Otherwise outlook will display mobile version since it ignores media queries | none
+lang | string | used as <html lang=""> attribute | none
+
+
+## mj-head
+
+mj-head contains head components, related to the document such as style and meta elements (see head components below).
