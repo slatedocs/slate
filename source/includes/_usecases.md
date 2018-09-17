@@ -19,27 +19,19 @@ Welcome to TransferWise API documentation. Explore and choose the right product 
 * [Affiliates](#transferwise-api-affiliates)                                           
 * [Connected Applications](#transferwise-api-connected-applications)                                           
 * [Third-Party Payouts](#transferwise-api-third-party-payouts)                                           
+* [Receive Money](#transferwise-api-receive-money)
 
 
-
-## Borderless Payouts
-Open multi-currency Borderless Account and automate your cross-border and domestic payouts with single API integration.   
-This product enables you to automate **your own** borderless account for making payouts and reconciliation. 
+## Borderless Payouts & Account Automation
+This product enables you to automate your own borderless account for making payouts, managing your money and reconciliation.
 
 <ul>
-  <li>Payouts to bank accounts</li>
-  <li>Payouts to email recipients</li>
-  <li>Currency exchange with mid-market exchange rate</li>
-  <li>Local bank account details for revenue collection in four currencies:
-    <ul>
-      <li>EUR (iban)</li>
-      <li>GBP (sort code | account number)</li>
-      <li>USD (account number | wire routing number | ACH routing number)</li>
-      <li>AUD (bsb code | account number)</li>
-    </ul>  
-  </li>
-  <li>Low and transparent fees</li>
-  <li>Reconciliation with your accounting software</li>
+  <li>Power your cross-border and domestic payouts with a single API integration.</li>
+  <li>Payout directly to bank accounts or to email recipients.</li>
+  <li>Monitor revenue received to your local bank details (AUD, EUR, GBP, USD).</li> 
+  <li>Get statements for balance reconciliation and accounting purposes.</li>
+  <li>Fully automate transfer creation and track statuses.</li>
+  <li>All with the mid-market exchange and our low cost transparent fees.</li>
 </ul>
 
 [Borderless Payouts Guide](#borderless-payouts-guide) helps you get started with technical integration.
@@ -47,8 +39,8 @@ This product enables you to automate **your own** borderless account for making 
 
 
 ## Banks
-Bank Product enables banks to build TransferWise payments seamlessly into their own desktop and mobile apps. 
-Banks can build their own native user experience and use TransferWise API only in the background.
+Our Bank Product enables banks to build TransferWise payments seamlessly into their own desktop and mobile apps. 
+Banks can build their own native user experience directly on our API, co-branded with TransferWise.
 
 **Why should my bank do it?**
 
@@ -109,13 +101,8 @@ TransferWise API enables you to:
 
   
 ## Connected Applications
-Connected Applications means the possibility to embed TransferWise product into your own application 
-so that your customers will enjoy the benefits of transparent and low cost international transfers or for example automatically 
-downloading their account statements to your accounting software.
-
-Unfortunately today we have capacity to support only few such integrations. We are working on making this feature available for everyone.  
-
-Please contact bizdev@transferwise.com for more info.  
+Connected Applications gives you the ability to let users connect their TransferWise accounts to your product. Whether it’s automated reconciliation for customers in accounting software, pushing customer’s payroll runs straight into TransferWise or building on our borderless account functionality.
+Unfortunately this functionality isn’t generally available yet but we are working to open it to everyone. To discuss your use case please contact contact bizdev@transferwise.com for more info.
 
 
 
@@ -123,8 +110,16 @@ Please contact bizdev@transferwise.com for more info.
 ## Third-Party Payouts
 Third-Party Payouts is a product for marketplaces and financial institutions (banks and payment service providers).
 It is different from Borderless Payouts since it does not require our customer to also be the originator of payments. 
-So TransferWise will act as third party to the person who initiated the payment.  
+So TransferWise will act as a third-party to the person who initiated the payment.  
 
 We are working on making this feature available soon. Please contact bizdev@transferwise.com for more info.  
+
+
+
+## Receive Money
+You can receive money to the local bank details that come with your Borderless Account (AUD, EUR, GBP and USD) and reconcile these incoming payments via the API. 
+ 
+We do not currently offer the option to build TransferWise into your checkout flow as a payment option to receive money as a merchant or any other request or receive money flows. Note though that TransferWise can be added as a payout option on your site for beneficiaries to choose to receive their payout through (to email or straight to bank account).
+
 
 

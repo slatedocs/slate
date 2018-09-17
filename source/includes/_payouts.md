@@ -10,18 +10,19 @@ Borderless account features and pricing are best explained below.
 [https://transferwise.com/gb/borderless/pricing](https://transferwise.com/gb/borderless/pricing)
 
 
-### 2. Signup for TransferWise borderless account
+### 2. Signup for TransferWise borderless account and complete verification
 Get hands-on experience as it will help you understand how our payment flow works. 
 Just follow these four steps. 
 
 * Sign up for TransferWise borderless account here [https://transferwise.com/gb/borderless](https://transferwise.com/gb/borderless). 
-By going through TransferWise verification process before you start technical integration will give you confidence that you are in full compliance with our [Terms and Conditions](https://transferwise.com/terms-and-conditions).
+
+* Complete verification before you start technical integration and ensure that you’re compliant with our [Terms and Conditions](https://transferwise.com/terms-and-conditions) and [Acceptable Use Policy](https://transferwise.com/acceptable-use-policy-eea).
 
 * Make a transfer — check [our video guide](https://transferwise.com/help/article/1779442/creating-a-transfer/video-guide-make-a-transfer) for a step-by-step instructions.
 
 * Verify that our coverage includes your currency route(s). Check [Supported Currencies](https://transferwise.com/help/article/1569835/basic-information/supported-currencies).
 
-* Read through our [Acceptable Use Policy](https://transferwise.com/acceptable-use-policy-eea) to avoid unpleasant surprises too late.
+* Please note that our Fixed Rate functionality is intended to provide time for customers to send funds to TransferWise, while holding the rate for them. TransferWise is not a trading platform and the Fixed Rate functionality is automatically disabled if abusive behaviour (such as multiple transfer creation and selective completion) is detected.
 
 
 ### 3. Choose the best tool for you
