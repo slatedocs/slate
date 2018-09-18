@@ -697,3 +697,17 @@ input.search:-moz-placeholder { /* Firefox 18- */
 .lang-selector {
   display: none !important; /* hide lang selectors for now (since we have documented only curl anyway) */
 }
+
+.error-page {
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+}
+
+.error-page--title {
+  margin: 2em !important;
+}
+
+.error-page--content {
+  padding: 10px;
+}
