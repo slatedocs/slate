@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <base href="/">
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title><%= current_page.data.title || "API Documentation" %></title>
+    <%= favicon_tag 'images/favicon.ico' %>
+    <%= stylesheet_link_tag :screen, media: :screen %>
+    <%= stylesheet_link_tag :print, media: :print %>
+  </head>
+
+  <body class="<%= page_classes %>">
+    <div class="error-page">
+      <div class="content">
+        <h1 class="error-page--title">We are sorry. This page has been moved.</h1>
+        <div class="error-page--content">
+          <strong>
+            We have redesigned and restructured our API Docs,
+            so old links are not working any more.
+          </strong>
+        </div>
+        <div class="error-page--content">
+          Please start with
+          <a href="https://api-docs.transferwise.com/">API Documentation home page</a>,
+          taking you there in <span id="seconds">3</span>s.
+        </div>
+        <script>
+          var seconds = 3;
+          var el = document.querySelector('#seconds');
+          setTimeout(tick, 1000);
+          function tick() {
+            seconds--;
+            el.innerHTML = seconds;
+            if (seconds <= 0) {
+              window.location.replace('/');
+            } else {
+              setTimeout(tick, 1000);
+            }
+          }
+        </script>
+      </div>
+    </div>
+  </body>
+</html>
