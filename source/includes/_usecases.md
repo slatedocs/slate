@@ -53,7 +53,7 @@ Banks can build their own native user experience directly on our API, co-branded
 <ul>
   <li>Transparent and fair pricing. Customers will get the same price no matter if they make transfers via your bank integration or directly via TransferWise.</li> 
   <li>Revenue sharing. We will setup revenue sharing to make each partnership a win-win deal.</li>
-  <li>Custom solution. We will work together to find a solution that works for your bank. There is no one size fits all approach. Topics we need to work out together include are:
+  <li>Custom solution. We will work together to find a solution that works for your bank. There is no one size fits all approach. Topics we need to work out together are:
     <ul>
       <li>How do we set up flow of funds? </li>
       <li>How do we handle customer support?</li>
