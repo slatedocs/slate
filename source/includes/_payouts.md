@@ -27,7 +27,7 @@ Just follow these four steps.
 
 ### 3. Choose the best tool for you
 
-There are two ways you can make large number of payouts:
+There are two ways you can make a large number of payouts:
 
 * *Batch payments.* Prepare CSV file and upload this using our Batch Payments tool: [https://transferwise.com/batch](https://transferwise.com/batch)
 
