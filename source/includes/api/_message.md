@@ -15,7 +15,7 @@
   "cc" : true,
   "sms" : true,
   "workgroups" : ["1", "2"],
-  "venue" : "3",
+  "location" : "3",
   "client" : "4",
   "department" : "5",
   "role" : "6",
@@ -36,13 +36,11 @@
     "end_date" : "2018-08-01T00:00:00",
     "dates" : ["2018-08-02","2018-08-03"]
   },
-  "include" : {
-    "link_account" : true,
-    "link_referrals" : true,
-    "link_schedule" : true,
-    "login_info" : true,
-    "personalize" : true
-  },
+  "link_account" : true,
+  "link_referrals" : true,
+  "link_schedule" : true,
+  "login_info" : true,
+  "personalize" : true,
   "zip" : {
     "zip_code" : "98101",
     "range" : "50"
@@ -107,12 +105,11 @@ Sends a broadcast message. Only site admins can send messages to everyone. Manag
     * **name** - name of the sender (default: none)
 * **cc** - boolean to send copy back to sending account (default: `false`)
 * **sms** - boolean to also send message via SMS (default: `false`)
-* **include** - object of optional items, with boolean values, to include in the message (default `false` for each one)
-    * **link_account**
-    * **link_referrals**
-    * **link_schedule**
-    * **login_info**
-    * **personalize**
+* **link_account** - boolean to include the account link in the message (default `false`)
+* **link_referrals** - boolean to include the referral link in the message (default `false`)
+* **link_schedule** - boolean to include the schedule link in the message (default `false`)
+* **login_info** - boolean to include the login info in the message (default `false`)
+* **personalize** - boolean to personalize the message (default `false`)
 
 
 ##### Optional Filters
@@ -131,7 +128,7 @@ Filters further resrict which accounts to send the message to. Defaults are no a
     * **zip_code** - ZIP code to restrict to
     * **range** - distance in miles from the ZIP code (default: `0`)
 * **restrict_delivery** - object describing who to further restrict delivery to. It has a **type**, and then other restrictions, including date ranges for the type, etc.
-    * *Example*: if `without_assignment` is selected, with a **start_date** of `2018-08-01`, **end_date** of `2018-08-07`, and **venue** of `1001`, then only accounts who were not assigned a shift for that venue, between those dates, will be sent the message.
+    * *Example*: if `without_assignment` is selected, with a **start_date** of `2018-08-01`, **end_date** of `2018-08-07`, and **location** of `1001`, then only accounts who were not assigned a shift for that location, between those dates, will be sent the message.
     * *NOTES*
         * options relating to shifts specifically only apply to a **type** of `with_assignment`, `without_assignment`, and `without_acknowledgment`
         * `signed_on` and `not_signed_on` only apply to org messages, not workgroup messages
@@ -148,7 +145,7 @@ Filters further resrict which accounts to send the message to. Defaults are no a
     * **end_date** - a date *at or before* to restrict the type
     * **dates** - array of additional arbitrary dates for restricting
     * **start_time** - the time the shift started (in `HH:MM:SS` format)
-    * **venue** - the venue ID for the shift
+    * **location** - the location ID for the shift
     * **client** - the client ID for the shift
     * **department** - the department ID for the shift
     * **role** - the role ID for the shift
