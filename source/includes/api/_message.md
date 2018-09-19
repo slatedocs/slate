@@ -59,11 +59,30 @@
   "id" : "1",
   "jsonrpc" : "2.0",
   "result": {
-    "sent": ["1@servola.org","2@servola.org"],
+    "sent": [
+      {
+        "account": "My User",
+        "email": "my.user@example.com",
+        "id": "8"
+      },
+      {
+        "account": "Your User",
+        "email": "your.user@example.com",
+        "id": "92"
+      }
+    ],
+    "sent_count": 2,
     "warning": [
       {
-        "message": "accounts have bad addresses",
-        "emails" : ["3@servola.org"]
+        "message": "Message could not be sent to addresses marked as undeliverable",
+        "unsent": [
+          {
+            "account": "Some User",
+            "email": "some.user@example.com",
+            "id": "234"
+          }
+        ],
+        "unsent_count": 1
       }
     ]
   },
@@ -82,6 +101,8 @@ Sends a broadcast message. Only site admins can send messages to everyone. Manag
 
 #### Optional Parameters
 
+* **return_sent_accounts** - the number of accounts to return a success for in `result.sent`; if this limit is exceeded, no results are returned (default `0`, no results)
+* **return_unsent_accounts** - the number of accounts to return warnings for in `result.warning.emails`; if this limit is exceeded, no warnings are returned (default `0`, no results)
 * **message_plain** - plain text message sent as plain text email or as SMS
 * **message_html** - HTML message sent as HTML email
 * **sender** - object describing the sender of the message
