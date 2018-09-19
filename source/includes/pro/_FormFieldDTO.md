@@ -91,5 +91,6 @@ HIDDEN | string | скрытое поле для технического при
 NUMERIC | int | чесло без дроби (например 13945824)
 DECIMAL | string | число с любой дробной частью (например 1382432.93342)
 DYNAMIC | string | поле при вводе 2х символов делает запрос [getDynamicFieldValues](#getdynamicfieldvalues) и в случае признака необходимости обновления текущей формы делает запрос [getCurrentForm](#getcurrentform)
+QRCODE_GENERATOR | string | поле сенерирует QR-коде из значения value
 
 <aside class="warning">PHOTO_CHECK - эксперементальный ключ для фотографирования дорожных чеков</aside>
