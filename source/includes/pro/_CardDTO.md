@@ -27,11 +27,11 @@ fxRunningBalance | int | 0..1 | сумма на карте умноженное 
 cardHolder | string | 0..1 | имя держателя карты (как на карте)
 logoResource | [LogoResource](#logoresource) | 0..1 | url для доступа к логотипу
 blockAllowed | bool | 0..1 | признак разрешена ли блокировка карты из приложения
+blocked | bool | 0..1 | признак состояния блокировки карты
 cardType | string | 1..1 | тип карты или название (например Visa Gold, MasterCard)
-blocked | bool | 0..1 | признак блокировки карты
 cardOwner | string | 0..1 | владелец карты
 cardStatus | string | 0..1 | статус карты
 bonusPointsAmount | [AmountDTO](#amountdto) | 0..1 | сумма бонусов
 --- |||
 feeds | [FeedDTO](#feeddto) | 0..1 | элементы ленты событий, например графика платежей по кредиту или затраченные поездки на общественном транспорте
-tags | [MarkerDTO](#markerdto) | 0..1 | дополнительные поля
+tags | [MarkerDTO](#markerdto) | 0..1 | дополнительные обьекты действий

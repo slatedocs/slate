@@ -60,6 +60,6 @@ value | string | 1..1 | значение
 
 key | type | comment
 --- | ---- | ---:
-METRO | string | ближайшая станция метро
-DESCRIPTION | string | описание в виде текстового блока
-PHONE | string | номер телефона точки
+metro | string | ближайшая станция метро
+description | string | описание в виде текстового блока
+phone | string | номер телефона точки

@@ -6,7 +6,7 @@ id | string | 1..1 | идентификатор продукта
 accountNumber | string | 1..1 | номер продукта в банке
 currency | string | 1..1 | текстовый код валюты по [ISO 4217](https://ru.wikipedia.org/wiki/ISO_4217)
 productName | string | 1..1 | название продукта
-fxCreditRate | int | 1..1 | средства на продукте
+fxRemainderAmount | int | 1..1 | средства на продукте
 --- |||
 feeds | [FeedDTO](#feeddto) | 0..1 | элементы ленты событий, например графика платежей по кредиту или затраченные поездки на общественном транспорте
 tags | [MarkerDTO](#markerdto) | 0..1 | дополнительные поля
