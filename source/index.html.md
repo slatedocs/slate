@@ -123,6 +123,10 @@ A successful request will generate a lightning invoice that will look simiar to 
 
 <span style="color:red"> *lnbcrt10n1pd5v2mwpp5ulxpj8ht4gvtqnyl8zuykfk4wcv6sz455ce5dy0e0lqt2wvhthpsdqqxqrrssn39f5saxgtqmzs...* </span>
 
+<h1 id="Cryptocurrency Exchange Data">Cryptocurrency Exchange Data</h1>
+*Coming Soon* - We are working to bring developers a consolidated data feed for cryptocurrency exchanges.  
+
+Join our <a href="https://join.slack.com/t/suredbits/shared_invite/enQtNDEyMjY3MTg1MTg3LTYyYjkwOGUzMDQ4NDAwZjE1M2I3MmQyNWNlZjNlYjg4OGRjYTRjNWUwNjRjNjg4Y2NjZjAxYjU1N2JjMTU1YWM">Suredbits Slack</a> or follow us on twitter <a href="https://twitter.com/SuredBits">@Suredbits</a> for updates.  
 
 <h1 id="NFLData"> NFL Data</h1>
 
