@@ -6,8 +6,7 @@
 
 ```JSON
 {
-  "message_plain" : "everyone get out of the building now",
-  "message_html" : "<b>everyone get out of the building now</b>",
+  "message" : "everyone get out of the building now",
   "subject" : "read this when you have time",
   "sender" : {
     "name" : "Your Boss",
@@ -47,8 +46,7 @@
   "zip" : {
     "zip_code" : "98101",
     "range" : "50"
-  },
-  "extended_filter" : { "favorite_ice_cream" : "Hot Pudge" }
+  }
 }
 ```
 
@@ -103,8 +101,7 @@ Sends a broadcast message. Only site admins can send messages to everyone. Manag
 
 * **return_sent_accounts** - the number of accounts to return a success for in `result.sent`; if this limit is exceeded, no results are returned (default `0`, no results)
 * **return_unsent_accounts** - the number of accounts to return warnings for in `result.warning.emails`; if this limit is exceeded, no warnings are returned (default `0`, no results)
-* **message_plain** - plain text message sent as plain text email or as SMS
-* **message_html** - HTML message sent as HTML email
+* **message** - plain text message
 * **sender** - object describing the sender of the message
     * **email** - email address of the sender (default: email address of the sending account)
     * **name** - name of the sender (default: none)
@@ -156,7 +153,6 @@ Filters further resrict which accounts to send the message to. Defaults are no a
     * **department** - the department ID for the shift
     * **role** - the role ID for the shift
     * **reference_id** - the reference ID for the shift
-* **extended_filter** - object (TBD)
 
 
 #### Response
