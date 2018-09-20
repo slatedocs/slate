@@ -508,6 +508,191 @@ Response: On success, empty results will be returned.
 
 ### workgroup.get
 
+> Request example:
+
+```JSON
+{
+   "id" : "226093",
+   "extended" : true,
+   "include_permissions" : true
+}
+```
+
+> Response example:
+
+```JSON
+{
+  "permissions": {
+    "add_member_message": {
+      "auth_write": true
+    },
+    "agent_private_only": {
+      "auth_write": true
+    },
+    "allow_readonly": {
+      "auth_write": true
+    },
+    "allow_shared": {
+      "auth_write": true
+    },
+    "allow_shared_groups": {
+      "auth_write": true
+    },
+    "allowed_conflict_mins": {
+      "auth_write": true
+    },
+    "auto_shift_acknowledge": {
+      "auth_write": true
+    },
+    "cancel_period": {
+      "auth_write": true
+    },
+    "coordinator_assign": {
+      "auth_write": true
+    },
+    "def_paytype": {
+      "auth_write": true
+    },
+    "def_time_block": {
+      "auth_write": true
+    },
+    "member_add_shift": {
+      "auth_write": true
+    },
+    "no_pickups_message": {
+      "auth_write": true
+    },
+    "no_trade": {
+      "auth_write": true
+    },
+    "reminder_confirmation_custom_message": {
+      "auth_write": true
+    },
+    "restrict_add_members": {
+      "auth_write": true
+    },
+    "restrict_set_member_levels": {
+      "auth_write": true
+    },
+    "restricted_roles": {
+      "auth_write": true
+    },
+    "self_remove": {
+      "auth_write": true
+    },
+    "show_confirmed": {
+      "auth_write": true
+    },
+    "show_open": {
+      "auth_write": true
+    },
+    "standby_min_score": {
+      "auth_write": true
+    },
+    "standby_no_score": {
+      "auth_write": true
+    },
+    "standby_notification_message": {
+      "auth_write": true
+    },
+    "standby_notifications": {
+      "auth_write": true
+    },
+    "standby_range": {
+      "auth_write": true
+    },
+    "standby_use_range": {
+      "auth_write": true
+    },
+    "standby_use_score": {
+      "auth_write": true
+    },
+    "use_app_20": {
+      "auth_write": true
+    },
+    "use_app_29": {
+      "auth_write": true
+    }
+  },
+  "referenced_objects": {
+    "account": [
+      {
+        "first_name": "John",
+        "id": "1",
+        "last_name": "Smith",
+        "screen_name": "John Smith"
+      }
+    ]
+  },
+  "workgroup": {
+    "add_member_message": null,
+    "address": "",
+    "agent_private_only": "0",
+    "allow_readonly": "3",
+    "allow_shared": true,
+    "allow_shared_groups": {},
+    "allowed_conflict_mins": "360",
+    "auto_add": true,
+    "auto_shift_acknowledge": false,
+    "cancel_period": "-1",
+    "city": "",
+    "code": "The Nacho Team",
+    "contact_account": "1",
+    "coordinator_assign": false,
+    "country": "United States",
+    "def_pay_rate": "0.00",
+    "def_paytype": null,
+    "def_time_block": null,
+    "description": "Team Nacho has no location.",
+    "fax": "",
+    "flat_rate": null,
+    "id": "928136",
+    "level": 4,
+    "location": "0",
+    "member_add_shift": true,
+    "mobile_phone": null,
+    "name": "Team Nacho",
+    "no_pickups_message": null,
+    "no_trade": "0",
+    "office_phone": "n/a",
+    "org_default": false,
+    "other_phone": null,
+    "pager": null,
+    "public_code": null,
+    "public_email": "john.smith@servola.org",
+    "public_info": "This group is for members only.\r\n\r\nAdd this group or inquire about membership",
+    "public_phone": "n/a",
+    "reminder_confirmation_custom_message": null,
+    "restrict_add_members": "0",
+    "restrict_set_member_levels": "0",
+    "restricted_roles": "0",
+    "self_remove": false,
+    "show_confirmed": false,
+    "show_open": false,
+    "standby_min_score": null,
+    "standby_no_score": null,
+    "standby_notification_message": null,
+    "standby_notifications": null,
+    "standby_range": null,
+    "standby_use_range": null,
+    "standby_use_score": null,
+    "state": "Washington",
+    "team_category_1": null,
+    "team_category_2": null,
+    "team_category_3": null,
+    "team_category_4": null,
+    "team_category_5": null,
+    "timezone": "Pacific Time (US/Can) (GMT-08:00)",
+    "url": "https://www.shiftboard.com/johnsmithtest",
+    "use_app_20": null,
+    "use_app_29": null,
+    "view_public": true,
+    "view_public_non_org": true,
+    "zip": ""
+  }
+}
+```
+
 <span class="tryit" id="workgroup-get-tryit"></span>
 Returns information about a workgroup.
 
@@ -520,6 +705,10 @@ Required. id of the workgroup for which to return information.
 ####extended
 
 Boolean; if specified and false, the results returned will be a basic set of attributes; otherwise an extended set of attributes will be returned for each shift.
+
+####include_permissions
+
+Boolean, defaults to false. Indicates that, in addition to the workgroup attribute, the results should include a permissions attribute giving information about write permission for individual fields returned in workgroup attribute. The fields that are listed in permissions section are those workgroup fields that can be configured.
 
 ####referenced_objects
 
