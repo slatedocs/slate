@@ -778,8 +778,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "ARS",
           "type": "argentina",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "taxId": "20-34149938-1",
            "accountNumber": "0110482420048200036238"
          }
@@ -807,8 +807,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "AUD",
           "type": "australian",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "bsbCode": "023604",
            "accountNumber": "123456789"
           }
@@ -836,8 +836,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "BDT",
           "type": "bangladesh",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "bankCode": "015",
            "branchCode": "015270362",
            "accountNumber": "5060011118"
@@ -872,8 +872,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "BGN",
           "type": "iban",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "IBAN": "BG89370400440532013000"
            }
         }'
@@ -900,8 +900,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "BRL",
           "type": "brazil",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "bankCode": "218",
            "branchCode": "1234",
            "accountNumber": "12345678-9",
@@ -936,8 +936,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "CAD",
           "type": "canadian",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "institutionNumber": "006",
            "transitNumber": "04841",
            "accountNumber": "1234567",
@@ -969,8 +969,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "CHF",
           "type": "iban",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "IBAN": "CH89370400440532013000"
            }
         }'
@@ -998,8 +998,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "CLP",
           "type": "chile",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "bankCode": "504",
            "accountNumber": "12345678901234567890",
            "rut": "760864285",
@@ -1031,8 +1031,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "CNY",
           "type": "chinese_card",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "cardNumber": "6240008631401148"
            }
         }'
@@ -1059,8 +1059,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "CZK",
           "type": "czech",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "prefix": "000000",
            "accountNumber": "5060011118",
            "bankCode": "5500"
@@ -1079,8 +1079,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "CZK",
           "type": "iban",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "IBAN": "CZ89370400440532013000"
            }
         }'
@@ -1125,8 +1125,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "DKK",
           "type": "iban",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "IBAN": "DK89370400440532013000"
            }
         }'
@@ -1156,8 +1156,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "EGP",
           "type": "egypt_local",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "bankCode": "ECBAEGCA",
            "accountNumber": "123456789"
            }
@@ -1188,8 +1188,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "EUR",
           "type": "iban",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "IBAN": "DE89370400440532013000"
            }
         }'
@@ -1217,8 +1217,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "GBP",
           "type": "sort_code",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "sortCode": "40-30-20",
            "accountNumber": "12345678"
            }
@@ -1236,9 +1236,9 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "GBP",
           "type": "iban",
-          "legalType": "PRIVATE",
           "details": {
-           "IBAN": "GB89370400440532013000"
+            "legalType": "PRIVATE",
+            "IBAN": "GB89370400440532013000"
            }
         }'
 ```
@@ -1280,8 +1280,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "GEL",
           "type": "iban",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "IBAN": "GE89370400440532013000"
            }
         }'
@@ -1309,8 +1309,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "GHS",
           "type": "ghana",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "bankCode": "030100",
            "accountNumber": "0011XXXXXXXXXX"
            }
@@ -1341,8 +1341,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "HKD",
           "type": "hongkong",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "bankCode": "307",
            "accountNumber": "005-231289-112"
            }
@@ -1374,8 +1374,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "HRK",
           "type": "iban",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "IBAN": "HR89370400440532013000"
            }
         }'
@@ -1403,8 +1403,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "HUF",
           "type": "hungarian",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "accountNumber": "12000000-12345678-00000000"
            }
         }'
@@ -1421,8 +1421,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "HUF",
           "type": "iban",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "IBAN": "HU89370400440532013000"
            }
         }'
@@ -1467,8 +1467,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "IDR",
           "type": "indonesian",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "bankCode": "610306",
            "accountNumber": "6789112345678"
            }
@@ -1500,8 +1500,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
         "accountHolderName": "<recipient name>",
         "currency": "ILS",
         "type": "israeli_local",
-        "legalType": "PRIVATE",
         "details": {
+         "legalType": "PRIVATE",
          "IBAN": "IL620108000000099999999"
          }
       }'
@@ -1518,8 +1518,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "ILS",
           "type": "israeli_bank_code",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "bankCode": "054",
            "branchCode": "001",
            "accountNumber": "123456789"
@@ -1569,8 +1569,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "INR",
           "type": "indian",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "ifscCode": "YESB0236041",
            "accountNumber": "678911234567891",
            }
@@ -1600,8 +1600,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "JPY",
           "type": "japanese",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "bankCode": "6470",
            "branchCode": "100",
            "accountType": "CURRENT",
@@ -1634,8 +1634,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "KES",
           "type": "kenya_local",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "bankCode": "35",
            "accountNumber": "0023183991919"
            }
@@ -1653,8 +1653,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "KES",
           "type": "kenya_mobile",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "accountNumber": "2547XXXXXXXX"
            }
         }'
@@ -1701,8 +1701,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "LKR",
           "type": "srilanka",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "bankCode": "7214",
            "branchCode": "100",
            "accountNumber": "5060011118"
@@ -1733,8 +1733,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "MAD",
           "type": "morocco",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "bankCode": "BCMAMAMC",
            "accountNumber": "123456789012345678901234"
            }
@@ -1766,8 +1766,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "MXN",
           "type": "mexican",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "clabe": "032180000118359719"
            }
         }'
@@ -1797,8 +1797,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "MYR",
           "type": "malaysian",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "swiftCode": "ABNAMYKL",
            "accountNumber": "159012938613"
            }
@@ -1831,8 +1831,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "NGN",
           "type": "nigeria",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "bankCode": "044",
            "accountNumber": "0584412903"
            }
@@ -1864,8 +1864,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "NOK",
           "type": "iban",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "IBAN": "DE89370400440532013000"
            }
         }'
@@ -1927,8 +1927,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "NZD",
           "type": "newzealand",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "accountNumber": "03-1587-0050000-00"
            }
         }'
@@ -1958,8 +1958,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "PEN",
           "type": "peru",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "bankCode": "BCON",
            "accountNumber": "12345678901234567890",
            "accountType": "CHECKING",
@@ -1998,8 +1998,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "PHP",
           "type": "philippines",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "bankCode": "AMA",
            "accountNumber": "0044XXXXXXXX",
            "address" : {
@@ -2040,8 +2040,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "PKR",
           "type": "iban",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "IBAN": "PK89370400440532013000"
            }
         }'
@@ -2072,8 +2072,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "PLN",
           "type": "iban",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "IBAN": "PL89370400440532013000"
            }
         }'
@@ -2090,8 +2090,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "PLN",
           "type": "polish",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "accountNumber": "109010140000071219812874"
            }
         }'
@@ -2134,8 +2134,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "RON",
           "type": "iban",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "IBAN": "RO89370400440532013000"
            }
         }'
@@ -2167,8 +2167,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "RUB",
           "type": "russiarapida",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "bankCode": "041234567",
            "accountNumber": "40820810999999999999",
            "russiaRegion": "ALTAIKRAI",
@@ -2208,8 +2208,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "SEK",
           "type": "iban",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "IBAN": "SE89370400440532013000"
            }
         }'
@@ -2226,8 +2226,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "SEK",
           "type": "sweden_local",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "clearingNumber": "1234",
            "accountNumber": "1234567"
            }
@@ -2245,8 +2245,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "SEK",
           "type": "bankgiro",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "bankgiroNumber": "1234-5678"
            }
         }'
@@ -2303,8 +2303,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "SGD",
           "type": "singapore",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "bankCode": "7418",
            "accountNumber": "1238827822"
            }
@@ -2338,8 +2338,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "THB",
           "type": "thailand",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "bankCode": "002",
            "accountNumber": "9517384260"
            "address" : {
@@ -2378,8 +2378,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "TRY",
           "type": "turkish_earthport",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "IBAN": "TR330006100519786457841326"
            }
         }'
@@ -2407,8 +2407,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "UAH",
           "type": "privatbank",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "phoneNumber": "777210012",
            "accountNumber": "2662"
            }
@@ -2445,8 +2445,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "USD",
           "type": "aba",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "abartn": "111000025",
            "accountNumber": "12345678",
            "accountType": "CHECKING",
@@ -2491,8 +2491,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "VND",
           "type": "vietname_earthport",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "swiftCode": "ABBKVNVX",
            "branchCode": "001",
            "accountNumber": "1234567890"
@@ -2528,8 +2528,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "accountHolderName": "<recipient name>",
           "currency": "ZAR",
           "type": "southafrica",
-          "legalType": "PRIVATE",
           "details": {
+           "legalType": "PRIVATE",
            "swiftCode": "ALBRZAJJ",
            "accountNumber": "0000000052312891"
            }

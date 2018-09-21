@@ -66,8 +66,8 @@ Banks can build their own native user experience directly on our API, co-branded
 **References**
 
 * [Monzo & TransferWise](https://monzo.com/blog/2018/06/25/monzo-international-transfers) in United Kingdom 
-* [N26 & TransferWise](https://www.lhv.ee/en/transferwise) in Germany
-* [LHV & TransferWise](https://n26.com/en-eu/transferwise) in Estonia
+* [N26 & TransferWise](https://n26.com/en-eu/transferwise) in Germany
+* [LHV & TransferWise](https://www.lhv.ee/en/transferwise) in Estonia
 * [BPCE & TransferWise](https://www.bankingtech.com/2018/06/bpce-natixis-and-transferwise-team-for-affordable-cross-border-remittances) in France
 
 <br/>
