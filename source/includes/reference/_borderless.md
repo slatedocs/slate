@@ -442,7 +442,7 @@ Note that this call needs an extra field in header called "X-idempotence-uuid".
 Field                             | Description                                   | Format
 ---------                         | -------                                       | -----------
 borderlessAccountId               | Your borderlessAccountId is included in [Get Account Balance](#borderless-accounts-get-account-balance) response as field "id".                        | Integer
-X-idempotence-uuid                | Unique identifier assinged by you. Used for idempotency check purposes. Should your call fail for technical reasons then you should can use same value again for making retry call. | UUID
+X-idempotence-uuid                | Unique identifier assinged by you. Used for idempotency check purposes. Should your call fail for technical reasons then you can use the same value again for making retry call. | UUID
 
 
 
@@ -500,7 +500,7 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/borderless-accounts/balance
 ]
 ```
 
-Get list of currencies what your can hold in your borderless account. Also shows which currencies have the option to get bank account details.
+Get list of currencies that your can hold in your borderless account. Also shows which currencies have the option to get bank account details.
 
 ### Request
 
