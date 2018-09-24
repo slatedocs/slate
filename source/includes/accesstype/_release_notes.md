@@ -2,6 +2,30 @@
 
 This section contains important Accestype release notes. For any queries, please write to us at [support@quintype.com](mailto:support@quintype.com).
 
+## 24 Sep 2018 Release Notes - Accesstype
+
+### New Features:
+1. **Accesstype Javascript** - Publishers on the [Quintype](https://www.quintype.com) platform can now easily integrate with Payment Gateways/Wallets as well as set up conversations with Accesstype servers, all in one place using methods in accesstype.js 
+	1. **Pay Per Asset(PPA)** APIs to get the price of a story, view available payment options for the user, purchase stories can be called using methods available in Accesstype.js
+	2. Accept payments from [**Simpl**](https://getsimpl.com) payment gateway using accesstype.js for both traditional plans as well as for individual stories(PPA)
+	3. Accept payments from [**Razorpay**](https://razorpay.com) payment gateway using accesstype.js for both traditional plans as well as for individual stories(PPA)
+**Documentation links:** 
+[Accesstype.js link 1](https://github.com/quintype/subtype/blob/master/frontend/README.md)
+[Accesstype.js link 2](https://github.com/quintype/subtype/blob/master/frontend/API.md)
+**Note:** To integrate accesstype.js with your website, please get in touch with your account managers or contact us at [support@quintype.com](mailto:support@quintype.com)
+
+2. **Pay Per Asset(PPA)** - Publishers on the [Quintype](https://www.quintype.com) platform can now sell each story(a.k.a asset) individually. Set up pricing for stories and view all purcchases of individual stories using the Accesstype application. 
+![PPA Set Price](../../images/AccesstypePPASetPrice.png "PPA Set Price")
+![PPA Purchases](../../images/AccesstypePPAPurchases.png "PPA Purchases")
+3. **New Payment Gateway - Simpl** - Publishers can activate and use the [Simpl](https://getsimpl.com) payment gateway options for frictionless payments. Also available in the Accesstype.js
+![Simpl PG](../../images/AccesstypePGs.png "Simpl PG")
+4. **Menu restructure** - The Accesstype menu is now restructured for easy navigation and segregation of subscription/purchase information.
+
+![Accesstype Menu](../../images/AccesstypeMenu.png "Accesstype Menu")
+
+5. Encryption of Wallet token.
+
+
 ## 6 Aug 2018 Release Notes - Accesstype
 
 ### Enhancements and bug fixes:
