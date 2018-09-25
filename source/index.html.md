@@ -659,6 +659,12 @@ Somente busca por alunos que tenham pré-matrícula na faculdade pertencente ao 
 curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/admissions
 ```
 
+> Requisição usando filtro de status
+
+```bash
+curl --header "Authorization: Token ########" --header "Content-Type: application/json" https://queroalunos.com/api/v1/admissions?status=pending_docs
+```
+
 > Resposta
 
 ```json
@@ -742,6 +748,9 @@ Retorna todas as admissões da faculdade.
 
 Admissões são retornadas em páginas de até 25 elementos, ordenadas pela última atualização realizada. Se houver mais resultados, `has_more` retorna `true` indicando que é possível usar o parâmetro `ending_before` para consultar objetos antecessores à lista atual. Para mais informações, consulte a seção de [paginação](#paginacao).
 
+Também é possível utilizar um parâmetro extra de `status` na URL para filtrar as admissões em um determinado status.
+
+
 ### Parâmetros
 
 | Nome | Tipo | Descrição |
@@ -750,6 +759,7 @@ Admissões são retornadas em páginas de até 25 elementos, ordenadas pela últ
 | ending_before | cursor | Cursor para uso em paginação. Retorna elementos listados antes do dado cujo id foi indicado |
 | start_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados a partir da data indicada no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 | end_date | string | Data para filtrar a listagem de elementos. Lista apenas elementos criados até a data indicada no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| status | string | Aplica filtro de status para admissões (opcional) |
 
 ### Informações de resultado
 
