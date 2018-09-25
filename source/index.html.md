@@ -517,7 +517,8 @@ Somente busca por alunos que tenham pré-matrícula na faculdade pertencente ao 
 | failed | Reprovado no exame vestibular |
 | approved | Aprovado no exame vestibular |
 | pending_docs | Documentação Pendente |
-| submitted_docs | Documentação Enviada |
+| partially_submitted_docs | Documentação de Bolso enviada |
+| submitted_docs | Documentação Completamente Enviada |
 | rejected_docs | Documentação Rejeitada |
 | enrolled | Matriculado |
 | dropped_out | Desistente |
@@ -640,7 +641,8 @@ Somente busca por alunos que tenham pré-matrícula na faculdade pertencente ao 
 | failed | Reprovado no exame vestibular |
 | approved | Aprovado no exame vestibular |
 | pending_docs | Documentação Pendente |
-| submitted_docs | Documentação Enviada |
+| partially_submitted_docs | Documentação de Bolso enviada |
+| submitted_docs | Documentação Completamente Enviada |
 | rejected_docs | Documentação Rejeitada |
 | enrolled | Matriculado |
 | dropped_out | Desistente |
@@ -794,7 +796,8 @@ Admissões são retornadas em páginas de até 25 elementos, ordenadas pela últ
 | failed | Reprovado no exame vestibular |
 | approved | Aprovado no exame vestibular |
 | pending_docs | Documentação Pendente |
-| submitted_docs | Documentação Enviada |
+| partially_submitted_docs | Documentação de Bolso enviada |
+| submitted_docs | Documentação Completamente Enviada |
 | rejected_docs | Documentação Rejeitada |
 | enrolled | Matriculado |
 | dropped_out | Desistente |
@@ -951,7 +954,8 @@ Retorna uma admissão específica da faculdade.
 | failed | Reprovado no exame vestibular |
 | approved | Aprovado no exame vestibular |
 | pending_docs | Documentação Pendente |
-| submitted_docs | Documentação Enviada |
+| partially_submitted_docs | Documentação de Bolso enviada |
+| submitted_docs | Documentação Completamente Enviada |
 | rejected_docs | Documentação Rejeitada |
 | enrolled | Matriculado |
 | dropped_out | Desistente |
@@ -1087,7 +1091,8 @@ Realiza atualização de um processo de admissão específico de um aluno. Para 
 | failed | Reprovado no exame vestibular |
 | approved | Aprovado no exame vestibular |
 | pending_docs | Documentação Pendente |
-| submitted_docs | Documentação Enviada |
+| partially_submitted_docs | Documentação de Bolso enviada |
+| submitted_docs | Documentação Completamente Enviada |
 | rejected_docs | Documentação Rejeitada |
 | enrolled | Matriculado |
 
@@ -1134,7 +1139,8 @@ Realiza atualização de um processo de admissão específico de um aluno. Para 
 | failed | Reprovado no exame vestibular |
 | approved | Aprovado no exame vestibular |
 | pending_docs | Documentação Pendente |
-| submitted_docs | Documentação Enviada |
+| partially_submitted_docs | Documentação de Bolso enviada |
+| submitted_docs | Documentação Completamente Enviada |
 | rejected_docs | Documentação Rejeitada |
 | enrolled | Matriculado |
 | dropped_out | Desistente |
@@ -1386,7 +1392,8 @@ Esta notificação informa o início de um processo de admissão.
 | failed | Reprovado no exame vestibular |
 | approved | Aprovado no exame vestibular |
 | pending_docs | Documentação Pendente |
-| submitted_docs | Documentação Enviada |
+| partially_submitted_docs | Documentação de Bolso enviada |
+| submitted_docs | Documentação Completamente Enviada |
 | rejected_docs | Documentação Rejeitada |
 | enrolled | Matriculado |
 | dropped_out | Desistente |
@@ -1453,7 +1460,7 @@ Esta notificação informa a atualização de um processo de admissão.
 | ---- | ---- | --------- |
 | created | string | Data que foi criado o evento no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 | api_version | string | Informação da versão atual da API |
-| event_type | string | Tipo de evento, no caso `admission.created` |
+| event_type | string | Tipo de evento, no caso `admission.updated` |
 | data | object | Objeto com informações de acordo com o tipo de evento |
 | admission | object | Objeto com dados do processo de admissão do aluno |
 | [admission] id | number | Id do processo de admissão |
@@ -1474,7 +1481,8 @@ Esta notificação informa a atualização de um processo de admissão.
 | failed | Reprovado no exame vestibular |
 | approved | Aprovado no exame vestibular |
 | pending_docs | Documentação Pendente |
-| submitted_docs | Documentação Enviada |
+| partially_submitted_docs | Documentação de Bolso enviada |
+| submitted_docs | Documentação Completamente Enviada |
 | rejected_docs | Documentação Rejeitada |
 | enrolled | Matriculado |
 | dropped_out | Desistente |
