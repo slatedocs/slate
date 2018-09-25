@@ -5,7 +5,7 @@
 ```ruby
 require 'rest-client'
 
-RestClient.post(
+RestClient.get(
   'https://app.procurementexpress.com/api/v1/bulk_datas',
   {
     created_at: "2018-8-10T09:17:58.097-05:00"
@@ -19,7 +19,7 @@ RestClient.post(
 
 ```shell
 curl https://app.procurementexpress.com/api/v1/bulk_datas
-  -X POST
+  -X GET
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
   -H "app_company_id: 1"
@@ -42,7 +42,7 @@ List all `departments`, `budgets`, `tax_rates`, `suppliers`, `products`, etc fro
 
 ### HTTP Request
 
-`POST https://app.procurementexpress.com/api/v1/bulk_datas`
+`GET https://app.procurementexpress.com/api/v1/bulk_datas`
 
 ### Query Parameters
 
