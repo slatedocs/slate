@@ -12,7 +12,6 @@ test/tmp
 test/version_tmp
 tmp
 *.DS_STORE
-build/
 .cache
 .vagrant
 .sass-cache
@@ -22,3 +21,18 @@ build/
 _yardoc
 doc/
 .idea/
+
+
+# exclude unencrypted environment files
+.env*
+!.env.*.encrypted
+
+# exclude codeship keys
+*.aes
+
+# node
+node_modules
+
+# need to keep a file in dist for deployment to work
+build/*
+!build/README.md
