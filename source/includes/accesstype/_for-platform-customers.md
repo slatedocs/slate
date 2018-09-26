@@ -6,7 +6,7 @@ The customers of Quintype platform can use below APIs for subscriptions in Acces
 ## POST Preview a subscription for logged in user
 
 ```shell--request
-curl -H "content-type: application/json" https://sketches.quintype.com/api/v1/api/v1/members/me/subscriptions/preview -d '{
+curl -H "X-QT-AUTH: <your-auth-token>" -H "content-type: application/json" https://sketches.quintype.com/api/v1/api/v1/members/me/subscriptions/preview -d '{
   "subscription": {
     "subscription_plan_id": "11",
     "coupon_code": "NEWYEAR",
@@ -100,7 +100,7 @@ We highly recommend use of this API before accepting payment form a user.
 ## POST Create Subscription for logged in user
 
 ```shell--request
-curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST http://sketches.quintype.com/api/v1/members/me/subscriptions -d '{
+curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" -X POST http://sketches.quintype.com/api/v1/members/me/subscriptions -d '{
   "subscription": {
     "subscription_plan_id": "11",
     "coupon_code": "NEWYEAR",
