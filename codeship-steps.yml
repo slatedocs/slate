@@ -10,11 +10,10 @@
 
 # production
 # ----------
-# runs when pushing a version tag and requires manual approval before deploying to production
-- type: manual
+# deploy to production when merging to master
+- type: serial
   name: prod
-  # matches v<major>.<minor>.<patch>[-<meta>] version format
-  tag: ^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(\-[0-9A-Za-z]*)?$
+  tag: master
   steps:
     - name: release-prod
       type: serial

@@ -65,4 +65,4 @@ fixes #12
 
 # Publishing #
 
-Once merged to `master` we can publish a new release by running `release`. Releases can only be approved by repository owners.
+Publishing happens automatically when changes are merged to master.

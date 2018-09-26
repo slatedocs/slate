@@ -12,13 +12,6 @@
   "devDependencies": {
     "@commitlint/cli": "7.1.2",
     "@commitlint/config-conventional": "7.1.2",
-    "husky": "1.0.0",
-    "standard-version": "4.4.0"
-  },
-  "scripts": {
-    "release": "standard-version"
-  },
-  "release": {
-    "analyzeCommits": "conventional"
+    "husky": "1.0.0"
   }
 }
