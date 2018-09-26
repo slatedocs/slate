@@ -1,0 +1,27 @@
+# default
+# -------
+# always ensure the build is successful
+- name: default
+  type: serial
+  steps:
+    - name: build
+      service: build-test
+      command: bundle exec middleman build
+
+# production
+# ----------
+# runs when pushing a version tag and requires manual approval before deploying to production
+- type: manual
+  name: prod
+  # matches v<major>.<minor>.<patch>[-<meta>] version format
+  tag: ^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(\-[0-9A-Za-z]*)?$
+  steps:
+    - name: release-prod
+      type: serial
+      steps:
+        - name: build-prod
+          service: build-prod
+          command: bundle exec middleman build
+        - name: deploy-prod
+          service: aws-prod
+          command: /deploy/scripts/deploy.sh -b /deploy/build

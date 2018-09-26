@@ -1,0 +1,21 @@
+app:
+  build: .
+
+build-test:
+  build: .
+  dockerfile: Dockerfile.build
+  encrypted_env_file: .env.prod.encrypted
+
+build-prod:
+  build: .
+  dockerfile: Dockerfile.build
+  encrypted_env_file: .env.prod.encrypted
+  volumes:
+    # have to mount the dist directory and not the root so as to avoid conflicts with node_modules
+    - ./build:/usr/src/app/build
+
+aws-prod:
+  image: codeship/aws-deployment
+  encrypted_env_file: .env.prod.encrypted
+  volumes:
+    - .:/deploy
