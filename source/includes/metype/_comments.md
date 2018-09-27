@@ -55,6 +55,7 @@ The color and font are configurable according to your liking -->
      data-metype-primary-color='#0987d5' <!-- Majority color of the widget can be customised -->
      data-metype-bg-color='#ffffff' <!-- Background color of the widget can be customised -->
      data-metype-font-color='#4a4a4a'> <!-- Font color of the widget can be customised -->
+     data-metype-comment-widget-id="comment-widget-x1" <!-- Unique Id if you want to embed multiple comment widgets in the same page -->
 </div>
 <script type='text/javascript'>
   var metypeContainer = document.getElementById("metype-container"),
