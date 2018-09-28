@@ -236,7 +236,85 @@ acknowledge decline reason identifier, if the acknowledgement is to decline.
 
 Response: On success, a `message` attribute will provide a brief notification message.
 
+### shift.assign
+
+This method is used by workgroup managers and site admins to assign a
+shift. By default, all conflict checking that is enabled for the site
+will be applied (can be overridden with the `assignability_checks`
+attribute); the publication state of the shift does not change (can be
+set to published by sending: `"publish": true`); and the shift is only
+acknowledged if auto-ack is on for this workgroup (can force
+acknowledgement by sending: `"acknowledge": true`).
+
+> Request example:
+
+```JSON
+{
+  "id" : 2753501,
+  "covering_member" : 47,
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.280633",
+   "jsonrpc" : "2.0",
+   "id" : "3",
+   "result" : {
+      "message" : "You have assigned this position:\n\nWednesday, May 20, 2015, 9:55am to 11:55am\nAssignee: John Doe\nFront Desk"
+   }
+}
+```
+
+<span class="tryit" id="shift-assign-tryit"></span>
+Assign a shift.  Also mark acknowledged
+
+#### Required parameter
+
+####id
+
+ID of the shift to be assigned.
+
+####covering_member or external_covering_member
+
+ID of member to whom the shift is to be assigned.
+
+#### Optional parameters
+
+`publish` - set to `true` to publish the shift
+
+`acknowledge` - set to `true` to acknowledge shift
+
+`assignability_checks` - set to `false` to disable processing of Assignability parameters
+
+#### Assignability parameters
+
+To use assignability checks, the `assignability_checks` parameter must be `true` or not specified; additionally, the following options may be available, based on enabled features:
+
+`conflicts_ok` - boolean
+
+`daily_overtime_ok` - boolean
+
+`weekly_overtime_ok` - boolean
+
+`timeoff_ok` - boolean
+
+`consecutive_days` - boolean
+
+`short_turnaround` - boolean
+
+`ignore_attestation_types` - boolean
+
+`attestation_type` - array of attestationTypeId
+
 ### shift.confirm
+
+This method is used by anyone to pick up a shift for themselves. By
+default, all conflict checking that is enabled for the site and is
+applicable to pick-up shifts is applied (this cannot be changed), the
+shift will be acknowledged (this cannot be changed).
 
 > Request example:
 
@@ -1673,6 +1751,15 @@ Required parameter: `id`.
 Response: On success, empty results will be returned. Note that if the shift had a quantity, the particular shift that was unconfirmed may have been merged with other unconfirmed shifts and deleted.
 
 ### shift.update
+
+This method is for changing details about a shift. You can through
+this method assign a shift via the `assignability_checks` parameter,
+by default doing so will do no conflict checking of that assignment;
+if you want conflict checking you must explicitly enable it via the
+`assignability_checks` and `conflicts_ok` parameters. Furthermore, by
+default the assignment will not be acknowledged nor published, see the
+`acknowledge` and `publish` parameters for details on changing that
+behavior.
 
 > Request example:
 
