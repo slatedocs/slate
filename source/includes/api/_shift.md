@@ -428,7 +428,7 @@ To use assignability checks, the `assignability_checks` parameter must be `true`
 
 #### Response
 
-On success, an `id` attribute will provide the identifier for the new shift. When creating a series of repeating shifts, the `id` returned will be the first shift in the series.
+On success, an `id` attribute will provide the identifier for the new shift. When creating a series of repeating shifts, the `id` returned will be an array of identifiers, one id for each of the shifts created in the series.
 
 ### shift.delete
 
