@@ -29,16 +29,29 @@ curl https://app.procurementexpress.com/api/v1/bulk_datas
 > The above command returns JSON structured like this:
 
 ```json
-{
-  "departments": [],
-  "budgets": [],
-  "tax_rates": [],
-  "suppliers": [],
-  "products": []
-}
+[
+  {
+    "id": 6008,
+    "name": "android test",
+    "employees_count": 5,
+    "default_tax_rate": 45.3266,
+    "prepaid_subscription": false,
+    "multicompany_pack": false,
+    "company_setting": {},
+    "supported_currencies": [],
+    "custom_fields": [],
+    "supported_currencies": [],
+    "departments": [],
+    "budgets": [],
+    "tax_rates": [],
+    "suppliers": [],
+    "products": [],
+    "synced_at": "2018-10-02T03:07:36.465-05:00"
+  }
+]
 ```
 
-List all `departments`, `budgets`, `tax_rates`, `suppliers`, `products`, etc from same api endpoint. If you pass `created_at` query params, then it will filter all data after that given created at for given company. If `created_at` is missing then it will return all data for given company.
+List of current users companies along with `company_setting`, `custom_fields`, `supported_currencies`, `departments`, `budgets`, `tax_rates`, `suppliers`, `products`, etc from same api endpoint. You will also get `synced_at` which will always return last synced at date time. You can pass `synced_at` as `created_at` query params, then it will filter all data after that given created at for given company. If `created_at` is missing then it will return all data for given company.
 
 ### HTTP Request
 
