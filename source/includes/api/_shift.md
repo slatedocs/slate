@@ -352,6 +352,14 @@ Confirms a shift.
 
 To use assignability checks, the `assignability_checks` parameter must be `true`; then, the following options may be available, based on enabled features:
 
+`is_available` - boolean
+
+`by_seniority` - boolean
+
+`seniority_required` - boolean
+
+`single_shift_per_day` - boolean
+
 `conflicts_ok` - boolean
 
 `daily_overtime_ok` - boolean
@@ -486,6 +494,14 @@ Array. Additional shift dates to be created alongside the specified repeating se
 #### Assignability parameters
 
 To use assignability checks, the `assignability_checks` parameter must be `true`; then, the following options may be available, based on enabled features:
+
+`is_available` - boolean
+
+`by_seniority` - boolean
+
+`seniority_required` - boolean
+
+`single_shift_per_day` - boolean
 
 `conflicts_ok` - boolean
 
@@ -1806,6 +1822,14 @@ The `count` of a shift is the number of positions available for that specific sh
 #### Assignability parameters
 
 To use assignability checks, the `assignability_checks` parameter must be `true`; then, the following options may be available, based on enabled features:
+
+`is_available` - boolean
+
+`by_seniority` - boolean
+
+`seniority_required` - boolean
+
+`single_shift_per_day` - boolean
 
 `conflicts_ok` - boolean
 
