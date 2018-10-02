@@ -479,13 +479,13 @@ Required. id of the shift for which to remove a sign up.
 
 ####member
 
-id of the account to remove from the sign up list (defaults to the current user). May be a single id or an array of ids.
+Required. id of the account to remove from the sign up list (defaults to the current user). May be a single id or an array of ids.
 
 **NOTE:** If you are calling this method with the member parameter, external_member will be ignored (if included).
 
 ####external_member
 
-external id of the account to remove from the sign up list (defaults to the current user)
+Required. external id of the account to remove from the sign up list (defaults to the current user)
 
 **NOTE:** If you are calling this method with the external_member parameter, member will be ignored (if included).
 
