@@ -157,6 +157,7 @@ boleto_tipo | 5 | string | sim | Informar 'xml'.
 Campo | Tamanho | Tipo | Obrigatório | Descrição
 --------- | ----- | ----- | ----------- | ---------
 valor | 12 | decimal | sim | Valor total da compra. Deve-se usar pontos como separador de casas decimais, ex: 100.00
+captura | 1 | string | não | Define se irá autorizar ou capturar a transação. Se não informado irá utilizar a configuração padrão definida no Painel iPag. <br>Padrão = 'P'<br> Somente Autorizar = 'A' <br> Captura Automática = 'C'
 parcelas | 3 | number | não (se cartão, sim) | Número de Parcelas, minimo: 1, máximo: 12
 ip | 60 | string | não (porém recomendado) | IP do comprador, permitido IPV4 e IPV6
 frete_valor | 12 | decimal | não | Valor do frete cobrado, apenas informativo, não será somado ao valor da transação
@@ -276,6 +277,71 @@ Campo | Tamanho | Tipo | Obrigatório | Descrição
 vencto | 10 | date | sim | Data de vencimento (DD/MM/YYYY). Se não for informado, o vencimento será a data de hoje + o prazo informado nas configurações do iPag.
 instrucoes[] | 80 | string | não | Para alterar as linhas de instruções dos Boletos emitidos pelo iPag/Zoop envie o campo instrucoes[1], instrucoes[2] e instrucoes[3] se necessário.
 demonstrativos[] | 80 | string | não | Para alterar as linhas de demonstrativo dos Boletos emitidos pelo iPag/Zoop envie o campo demonstrativos[1], demonstrativos[2] se necessário.
+
+## Campos adicionais para Split com Boletos (iPag/Zoop Marketplace Apenas)
+
+Para que seja possível fazer split com boletos é necessário enviar a regra de split juntamente com os campos no request da transação.
+
+> Exemplo:
+
+```php
+<?php
+// VIA IPAG-SDK-PHP
+$splitRule = new SplitRule();
+$splitRule->setSellerId('c66fabf44786459e81e3c65e339a4fc9')
+  ->setPercentage(95)
+  ->setLiable(1);
+// ->setAmount(9.90)
+
+$ipag->payment()->addSplitRule($splitRule);
+/*
+  Você pode adicionar quantas regras forem necessárias e permitidas.
+*/
+```
+
+```shell
+curl -X POST \
+  https://sandbox.ipag.com.br/service/payment \
+  -H 'Authorization: Basic am9uYXRoYW46REM4QS00QzE2OUM7DSsdDEQTZBRUY2OC0wRkQ2RDMyOC0wRjAz' \
+  -F pedido=201803061703 \
+  -F operacao=Pagamento \
+  -F valor=2.00 \
+  -F metodo=boletozoop \
+  -F url_retorno=https://empresa.com/retorno \
+  -F email=jose@teste.com.br \
+  -F fone=11111111111 \
+  -F 'nome=Jose Francisco da Silva' \
+  -F 'endereco=Rua 1' \
+  -F numero_endereco=111 \
+  -F bairro=Bairro1 \
+  -F 'cidade=Cidade 1' \
+  -F estado=SP \
+  -F pais=Brasil \
+  -F cep=14400330 \
+  -F retorno_tipo=xml \
+  -F documento=79999338801 \
+  -F 'split[1][seller_id]=c66fabf44786459e81e3c65e339a4fc9' \
+  -F 'split[1][percentage]=42' \
+  -F 'split[1][liable]=1' \
+  -F 'split[2][seller_id]=d56fabf44786459e81e3c65e339a4fc9' \
+  -F 'split[2][percentage]=50' \
+  -F 'split[2][liable]=1' \
+```
+
+Campo | Tamanho | Tipo | Obrigatório | Descrição
+--------- | ----- | ----- | ----------- | ---------
+split[] | - | container | não | Container (Array)
+split[1][seller_id] | 50 | string | sim | SellerId ou Login do vedendor. Esta informação é passada ao criar um vededor.
+split[1][percentage] | 2 | integer | sim/não | Valor em Porcentagem que será repassado ao vendedor não pode ser maior que o valor total somado a taxa que será cobrada. Não obrigatório se enviado 'amount';
+split[1][amount] | 5 | double | sim/não | Valor absoluto em reais que será repassado ao vendedor não pode ser maior que o valor total somado a taxa que será cobrada. Não obrigatório caso enviado 'percentage'
+split[1][liable] | 1 | integer | não | Define se o recebedor arca com prejuízo em caso de chargeback ou não. 1 arca; 0 não arca.
+
+
+Para adicionar mais de uma regra incremente o valor: split[1], split[2], etc...
+
+<aside class="warning">
+<b>Caso seja informado um valor maior que o da venda nos campos 'percentage' ou 'amount', será recusado o pagamento.</b>
+</aside>
 
 ## Campos adicionais para 1-click buy
 

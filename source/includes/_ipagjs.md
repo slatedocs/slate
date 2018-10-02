@@ -28,7 +28,11 @@ try {
     $opts = array(
         'http' => array(
             'method' => "GET",
-            'header' => "Authorization: Basic ".base64_encode("$username:$password"),
+            'user_agent' => 'Meu site.com/Loja Vritual',
+            'header' => [
+                "Authorization: Basic ".base64_encode("$username:$password"),
+                'Accept: application/json',
+            ],
         ),
     );
 
