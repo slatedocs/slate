@@ -900,6 +900,10 @@ An object specifying selection criteria for this request
 
 The member for which to select workgroups; defaults to the current user.
 
+####level
+
+The membership level for which to select workgroups. This will filter results to return only those workgroups in which the member matches the specified level of membership.
+
 #####external_member
 
 The member for which to select workgroups, identified by their `external_id`; defaults to the current user.
