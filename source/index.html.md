@@ -3,9 +3,6 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
-  - python
-  - javascript
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -19,80 +16,39 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the eRS Cloud API! You can use our API to access eRS Cloud API endpoints, which can get information on various resources, projects and bookings in our database.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+We have language bindings in Shell! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 # Authentication
 
 > To authorize, use this code:
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+curl "https://www.eresourcescheduler.cloud/rest/v1/resources"
+  -H "Authorization: Bearer <provided_authentication_token>"
 ```
 
-```javascript
-const kittn = require('kittn');
+> Make sure to replace `provided_authentication_token` with your API key.
 
-let api = kittn.authorize('meowmeowmeow');
-```
+eRS Cloud uses API keys to allow access to the API. You can register a new eRS Cloud API key at [Authentication Tokens](https://www.eresourcescheduler.cloud/#/profile).
 
-> Make sure to replace `meowmeowmeow` with your API key.
+eRS Cloud expects an API key to be included in all API requests to the server in a header that looks like the following:
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+`Authorization: Bearer B8x5Vj1O65r6wnoV`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>B8x5Vj1O65r6wnoV</code> with your personal API key.
 </aside>
 
-# Kittens
+# Resources Types
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+## Get All Resource Types
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+curl "https://app.eresourcescheduler.cloud/rest/v1/resourcetype"
+  -H "Authorization: Bearer B8x5Vj1O65r6wnoV"
 ```
 
 > The above command returns JSON structured like this:
@@ -101,37 +57,92 @@ let kittens = api.kittens.get();
 [
   {
     "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+    "name": "Employee",
+    "isHuman": true,
+    "fields": [
+      {
+        "name": "First Name",
+        "type": "TEXT",
+        "code": "first_name"
+      }, {
+        "name": "Last Name",
+        "type": "TEXT",
+        "code": "last_name",
+      }, {
+        "name": "Team",
+        "type": "DDSS",
+        "code": "team",
+        "options": [{
+          "id": 1,
+          "name": "Developer"
+        }, {
+          "id": 2,
+          "name": "Tester"
+        }]
+      }
+    ]
   }
 ]
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves all Resource Types.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET https://app.eresourcescheduler.cloud/rest/v1/resourcetype`
 
-### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+## Get a Specific Resource Type
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+```shell
+curl "https://app.eresourcescheduler.cloud/rest/v1/resourcetype/1"
+  -H "Authorization: Bearer B8x5Vj1O65r6wnoV"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 1,
+  "name": "Employee",
+  "isHuman": true,
+  "fields": [
+    {
+      "name": "First Name",
+      "type": "TEXT",
+      "code": "first_name"
+    }, {
+      "name": "Last Name",
+      "type": "TEXT",
+      "code": "last_name",
+    }, {
+      "name": "Team",
+      "type": "DDSS",
+      "code": "team",
+      "options": [{
+        "id": 1,
+        "name": "Developer"
+      }, {
+        "id": 2,
+        "name": "Tester"
+      }]
+    }
+  ]
+}
+```
+
+This endpoint retrieves a resource type.
+
+### HTTP Request
+
+`GET https://app.eresourcescheduler.cloud/rest/v1/resourcetype/<ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the resource type to retrieve
+
 
 ## Get a Specific Kitten
 
