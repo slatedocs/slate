@@ -60,8 +60,7 @@ html, body {
   width: $nav-width;
   background-color: $nav-bg;
   font-size: 13px;
-  font-weight: bold;
-
+  border-right: solid 1px #ecf0f3;
   // language selector for mobile devices
   .lang-selector {
     display: none;
@@ -74,8 +73,10 @@ html, body {
   // This is the logo at the top of the ToC
   .logo {
     display: block;
-    max-width: 100%;
+    max-width: 60%;
+    margin-left: 10px;
     margin-bottom: $logo-margin;
+    margin-top: $logo-margin;
   }
 
   &>.search {
@@ -346,14 +347,15 @@ html, body {
 
   h1 {
     @extend %header-font;
-    font-size: 25px;
+    font-size: 30px;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    background-color: #fdfdfd;
+    border-top: 1px solid #ecf0f3;
+    border-bottom: 1px solid #ecf0f3;
+    background-color: #ffffff;
+    font-weight: bold;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -363,7 +365,8 @@ html, body {
 
   h2 {
     @extend %header-font;
-    font-size: 19px;
+    font-size: 22px;
+    font-weight: 500;
     margin-top: 4em;
     margin-bottom: 0;
     border-top: 1px solid #ccc;
@@ -412,6 +415,8 @@ html, body {
       padding: 5px 10px;
       border-bottom: 1px solid #ccc;
       vertical-align: bottom;
+      background: #78909c;
+      color: #fff;
     }
 
     td {
@@ -423,11 +428,11 @@ html, body {
     }
 
     tr:nth-child(odd)>td {
-      background-color: lighten($main-bg,4.2%);
+      background-color: lighten($content-table-bg,4.2%);
     }
 
     tr:nth-child(even)>td {
-      background-color: lighten($main-bg,2.4%);
+      background-color: lighten($content-table-bg,1.4%);
     }
   }
 

@@ -1,373 +1,85 @@
 ---
-title: API Cubobit
+title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - javascript
+  - json
 
 toc_footers:
+  - <a href='https://cubobit.com/signup'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
-includes:
-  - errors
+includes: # api - group - category - call
+  - background/api_bkg_background
+
+  - users/api_users_divider
+  - users/api_users_auth_authenticateuser
+  - users/api_users_user_canceluserreport
+  - users/api_users_user_getuseraccountinfos
+  - users/api_users_user_getuseraccounts
+  - users/api_users_user_getuseraffiliatecount
+  - users/api_users_user_getuseraffiliatetag
+  - users/api_users_user_getuserreporttickets
+  - users/api_users_user_subscribeaccountevents
+  - users/api_users_auth_logout
+
+  - accounts/api_accts_divider
+  - accounts/api_accts_user_generatetradeactivityreport
+  - accounts/api_accts_user_generatetransactionactivityreport
+  - accounts/api_accts_user_generatetreasuryactivityreport
+  - accounts/api_accts_user_getaccountinfo
+  - accounts/api_accts_user_getaccountpositions
+  - accounts/api_accts_user_scheduletradeactivityreport
+  - accounts/api_accts_user_scheduletransactionactivityreport
+  - accounts/api_accts_user_scheduletreasuryactivityreport
+
+  - trades/api_trades_divider
+  - trades/api_trades_user_getaccounttrades
+  - trades/api_trades_user_getaccounttransactions
+  - trades/api_trades_user_getopentradereports
+  - trades/api_trades_user_gettickerhistory
+  - trades/api_trades_user_gettradeshistory
+
+  - markets/api_markets_divider
+  - markets/api_users_user_getl2snapshot
+  - markets/api_users_user_getlevel1
+  - markets/api_users_user_subscribelevel1
+  - markets/api_users_user_subscribelevel2
+  - markets/api_users_user_subscribeticker
+  - markets/api_users_user_subscribetrades
+  - markets/api_users_user_unsubscribelevel1
+  - markets/api_users_user_unsubscribelevel2
+  - markets/api_users_user_unsubscribeticker
+  - markets/api_users_user_unsubscribetrades
+
+
+  - oms_orders/api_omsord_divider
+  - oms_orders/api_omsord_user_cancelallorders
+  - oms_orders/api_omsord_user_cancelorder
+  - oms_orders/api_omsord_user_cancelquote
+  - oms_orders/api_omsord_user_cancelreplaceorder
+  - oms_orders/api_omsord_user_createquote
+  - oms_orders/api_omsord_user_getopenorders
+  - oms_orders/api_omsord_user_getorderfee
+  - oms_orders/api_omsord_user_getorderhistory
+  - oms_orders/api_omsord_user_getorderhistorybyorderid
+  - oms_orders/api_omsord_user_getordershistory
+  - oms_orders/api_omsord_user_modifyorder
+  - oms_orders/api_omsord_user_sendorder
+
+  - products/api_products_divider
+  - products/api_prods_user_getproduct
+  - products/api_prods_user_getproducts
+
+  - instrs/api_instrs_divider
+  - instrs/api_instrs_user_getinstrument
+  - instrs/api_instrs_user_getinstruments
+
+  - packages/api_packages_divider
+  - packages/api_packages_node
 
 search: true
 ---
 
 # Introduction
 
-The cuboboit Exchange (cubobit) is a high-performance exchange technology built for blockchain. All exchanges built on cubobit support the cubobit API, which is based on RPC over WebSockets. 
-
-## Message Frame
-
-> When sending a request in the frame to the software using JavaScript, a call looks like:
-
-```javascript
-var frame = {
-  "m":0,
-  "i":0,
-  "n":"endpoint",
-  "o":""
-};
-var requestPayload = {
-  "Parameter1":"Value",
-  "Parameter2":0
-};
-frame.o = json.Stringify(requestPayload);
-// Stringify escapes the payload’s quotation marks automatically.
-WS.Send(json.Stringify(frame)); // WS.Send escapes the frame.
-```
-
-> When receiving a frame from the software, use the frame to determine the context, and then unwrap the content:
-
-```javascript
-if (frame.m == 1) { // Message of type reply 
-  // This is a Reply
-  if (frame.n == “WebAuthenticateUser”) {
-    var LoginReply = json.Parse(frame.o);
-    if (LoginReply.Authenticated)
-    {
-      var user = LoginReply.User;
-    }
-  }
-}
-```
-
-Wrap all calls to cubobit in a JSON-formated frame object. Responses from the software are similarly wrapped.
-
-`{
-  "m":0,
-  "i":0,
-  "n":"endpoint",
-  "o":"payload"
-}`
-
-Where:
-
-Key | Description | Value
---- | ----------- | -----
-_m_ | message type | **integer.** The type of message <br><br>0 request<br>1 reply<br>2 subscribe to event<br>3 event<br>4 unsubscribe from event<br>5 error 
-_i_ | sequence number | **long integer.** The sequence number identies an individual request, or request- and-response pair, to your application.<br><br>A non-zero sequence number is required, but the numbering scheme you useis up to you. No arbitrary sequence numbering scheme is enforced by cuboboit.<br><br>**Best practices**: A client-generated API call (of message types 0, 2, and 4) should:<br><br>Carry an even sequence number.<br>Begin at the start of each user session.<br>Be unique within each user session.<br>Begin with 2 (2, 4, 6, 8).<br><br>Message types 1 (reply), 3 (event), and 5 (error) are generated by the server. These messages echo the sequence number of the message to which they respond. See Example, below...
-_n_ | function name | **string.** The function name is the name of the function that you are calling or that the server responds to. The server echoes your call. See Example, below.
-_o_ | payload | **string.** Payload is a JSON-formatted string containing the data being sent with the message. Payload may consist of request parameters (string-value pairs) or response parameters.
-
-<aside><strong>Note:</strong> You can send the string-value pairs inside the payload in any order; the server controls the order of the response.</aside>
-
-
-# Authentication
-
-## AuthenticateUser
-
-`{"APIKey":"9a515521c9791cd9aa8728920c3e0b13","Signature":"ca8ec71060567a2eea229e11d3da17f72ae0cbe89f236c664fde71d08ba737a4","UserId":"106","Nonce":"147509354"}`
-
-
-```javascript
-AuthenticateUser
-{
-  "APIKey": "30adf9fa1b0c3304ae9a696c21e094d6",
-  "Signature": "cb790a0862306960af21b44df109b3f7f01e2149c2e1c0f4e2ec6d90e6998fa2",
-  "UserId": "23",
-  "Nonce": "2531314032"
-}
-```
-
-# Account and User Information
-
-## GetAccountInfo
-
-Returns detailed information about one specific account belonging to the authenticated user and
-existing on a specific Order Management System.
-
-`{"AccountId":0,"OMSId":0}`
-
-## GetUserAccounts
-Returns a list of account IDs for a given user. More than one user may be associated with a given
-account. For more information about accounts and users, see “Permissions” on page 4.
-
-`{"OMSId":1}`
-
-## GetUserConfig
-
-GetUserConfig returns the list of key/value pairs set by the SetUserConfig call and associated with
-a user record. A trading venue can use Config strings to store custom information or compliance
-information with a user record.
-
-`{"UserId":1,"UserName":"jsmith"}`
-
-<aside><strong>Note:</strong> In RegisterNewUser (and only in RegisterNewUser), the key identifier of the config string is called name.</aside>
-
-## GetUserInfo
-Retrieves basic information about a user from the Order Management System. A user may only see
-information about himself; an administrator (or superuser) may see, enter, or change information
-about other users. See “Permissions” on page 4.
-
-`{"OMSId":1,"UserId":1}`
-
-## GetUserPermissions
-Retrieves an array of permissions for the logged-in user. Permissions can be set only by an
-administrator or superuser.
-An administrator or superuser can set permissions for each user on an API-call by API-call
-basis, to allow for highly granular control. Common permission sets include Trading, Deposit,
-and Withdrawal (which allow trading, deposit of funds, and account withdrawals, respectively);
-or AdminUI, UserOperator, and AccountOperator (which allow control of the Order Management
-System, set of users, or an account). See “Permissions” on page 4 for more information, but a
-complete discussion of permissions and their scope is beyond this API guide.
-
-`{"UserId":1}`
-
-## SetUserConfig
-SetUserConfig adds an array of one or more arbitrary key/value pairs to a user record. A trading
-venue can use Config strings to store custom information or compliance information with a user’s
-record.
-
-`{"UserId":1,"UserName":"jsmith","Config":[{"Key":"Street Name","Value":"Hillside Road"},{"Key":"Suite Number","Value":158}]}`
-
-## SetUserInfo
-Enters basic information about a user into the Order Management System. A user may only
-enter or change information about himself; an administrator (or superuser) may enter or change
-information about other users. See “Permissions” on page 4.
-
-`{"UserId":1,"UserName":"John Smith","Password":"password","Email":"email@company.com","EmailVerified":true,"AccountId":1,"Use2FA":false}`
-
-# Balances
-
-## GetAccountPositions
-Retrieves a list of positions (balances) for a specific user account running under a specific Order
-Management System. The trading day runs from UTC Midnight to UTC Midnight. See “The
-Trading Day” on page 9 for more information.
-
-`{"OMSId":1,"AccountId":1}`
-
-
-# Instruments and Products
-
-## GetInstruments
-Retrieves an array of instrument objects describing all instruments available on a trading venue to
-the user. An instrument is a pair of exchanged products (or fractions of them) such as US dollars
-and ounces of gold. See “Products and Instruments” on page 4 for more information about how
-products and instruments differ.
-
-`{"OMSId":1,"InstrumentId":1}`
-
-## GetProducts
-Returns an array of products available on the trading venue. A product is an asset that is tradable
-or paid out. For more information about the difference between products and instruments, see
-“Products and Instruments”
-
-`{"OMSId":1}`
-
-# Orders and Trade History
-
-## CancelAllOrders
-Cancels all open matching orders for the specified instrument, account, user (subject to permission
-level) or a combination of them on a specific Order Management System. User and account
-permissions govern cancellation actions. See “Permissions” on page 4. For more information on
-quotes and orders, see the explanation of “Quotes and Orders”
-
-`[{"AccountId":0,"OMSId":0},{"UserId":0,"OMSId":0},{"AccountId":0,"UserId":0,"OMSId":0},{"AccountId":0,"OMSId":0,"InstrumentId":0},{"UserId":0,"OMSId":0,"InstrumentId":0},{"AccountId":0,"UserId":0,"OMSId":0,"InstrumentId":0}]`
-
-<aside><strong>Note:</strong> Multiple users may have access to the same account.</aside>
-
-## CancelOrder
-Cancels an open order that has been placed but has not yet been executed. Only a trading venue
-operator can cancel orders for another user or account. See the explanation of ““Quotes and
-Orders”
-
-`[{"OMSId":0,"OrderId":0},{"OMSId":0,"AccountId":0,"ClientOrderId":0}]`
-
-## GetAccountTrades
-Requests the details on up to 200 past trade executions for a single specific user account and its
-Order Management System, starting at index i, where i is an integer identifying a specific execution
-in reverse order; that is, the most recent execution has an index of 0, and increments by one as trade
-executions recede into the past.
-The operator of the trading venue determines how long to retain an accessible trading history
-before archiving.
-
-`{"AccountId":4,"OMSId":1,"StartIndex":0,"Count":2}`
-
-## GetOpenOrders
-Returns an array of 0 or more orders that have not yet been filled (open orders) for a single account
-for a given user on a specific Order Management System. The call returns an empty array if a user
-has no open orders.
-
-`{"AccountId":4,"OMSId":1}`
-
-## GetOrderFee
-Returns an estimate of the fee for a specific order and order type. Fees are set and calculated by the
-operator of the trading venue.
-
-`{"OMSId":1,"AccountId":664,"InstrumentId":1,"Amount":0,"Price":0,"OrderType":{"Options":["Unknown","Market","Limit","StopMarket","TrailingStopMarket","TrailingStopLimit","BlockTrade"]},"MarketTaker":{"Options":["Taker","Maker","Unknown"]}}`
-
-## SendOrder
-Creates an order. Anyone submitting an order should also subscribe to the various market data and
-event feeds, or call GetOpenOrders or GetOrderStatus to monitor the status of the order. If the
-order is not in a state to be executed, GetOpenOrders will not return it.
-
-`{}`
-
-## SubmitBlockTrade
-
-`{}`
-
-# Reports
-
-## CancelUserReport
-You can generate or schedule a variety of reports through this API on demand. This call cancels a
-scheduled report by its report ID.
-
-`{"result":true,"errormsg":"","errorcode":0,"detail":""}`
-
-## GenerateTradeActivityReport
-Creates an immediate report on historical trade activity on a specific Order Management System for
-a list of accounts during a specified time interval.
-The accounts listed in the request must all be associated with the logged-in user on the
-specified OMS (the logged-in user may not be the only user of each account).
-The Trade Activity Report is delivered as a comma-separated (CSV) file. For specific CSV
-formatting information, see the cubobit Extract CSV Data Dictionary, available from cubobit.
-
-`{"accountIdList":[0],"omsId":0,"startTime":"0001-01-01T05:00:00Z","endTime":"0001-01-01T05:00:00Z"}`
-
-## GenerateTransactionActivityReport
-Generates an immediate report on account transaction activity for a list of accounts under a single
-Order Management System during a specified time. A logged-in and authenticated user can only
-generate a transaction activity report for accounts associated with the user. There can be multiple
-users associated with an account however; see “Permissions” on page 4.
-The Transaction Activity Report is delivered as a comma-separated (CSV) file. For specific CSV
-formatting information, see the cubobit Extract CSV Data Dictionary, available from cubobit.
-
-`{"accountIdList":[0],"omsId":0,"startTime":"0001-01-01T05:00:00Z","endTime":"0001-01-01T05:00:00Z"}`
-
-## GenerateTreasuryActivityReport
-Generates an immediate report on all company treasury activities related to the trading venue
-— withdrawals, transfers, and funds movements unrelated to trading — over a specified period.
-A logged-in and authenticated user can only generate a transaction activity report for accounts
-associated with the user. There can be multiple users associated with an account; see “Permissions”
-on page 4.
-The Trade Activity Report is delivered as a comma-separated (CSV) file. For specific CSV
-formatting information, see the cubobit Extract CSV Data Dictionary, available from cubobit.
-
-`{"accountIdList":[0],"omsId":0,"startTime":"0001-01-01T05:00:00Z","endTime":"0001-01-01T05:00:00Z"}`
-
-## GetUserReportTickets
-Returns an array of user report tickets for a specific user ID. A user report ticket identifies a report
-requested or subscribed to by a user. Reports can run once or periodically
-
-`{"UserId":1}`
-
-## ScheduleTradeActivityReport
-Schedules a series of trade activity reports to run for a list of accounts on a single Order
-Management System, starting at a specific date/time, and covering a specific time duration. The
-reports will run periodically until canceled.
-Trade Activity Reports are delivered in comma-separated-value (CSV) format. For specific CSV
-formatting information, see the cubobit Extract CSV Data Dictionary, available from cubobit.
-
-`{"OMSId":1,"frequency":"Daily","beginTime":"0001-01-01T05:00:00Z","accountIdList":[1]}`
-
-## ScheduleTransactionActivityReport
-Schedules a series of transaction activity reports for a list of accounts on a single Order
-Management System, starting at a specific date/time, and covering a specific time interval (90 days,
-for example). The reports will run periodically until canceled.
-Transaction Activity Reports are delivered in comma-separated-value (CSV) format. For
-specific CSV formatting information, see the cubobit Extract CSV Data Dictionary, available from
-cubobit.
-
-`{"OMSId":1,"frequency":"Daily","beginTime":"0001-01-01T05:00:00Z","accountIdList":[1]}`
-
-## ScheduleTreasuryActivityReport
-Schedules a series of treasury activity reports for a list of accounts on a single Order Management
-System, starting at a specific date/time, and covering a specific time interval. The reports will run
-periodically until canceled.
-The Treasury Activity Report itself is delivered as a comma-separated-value (CSV) file. For
-specific CSV formatting information, see the cubobit Extract CSV Data Dictionary, available from
-cubobit.
-
-`{"OMSId":1,"frequency":"Daily","beginTime":"0001-01-01T05:00:00Z","accountIdList":[1]}`
-
-
-# Subscriptions
-
-## SubscribeAccountEvents
-Subscribes the user to notifications about the status of account-level events: orders, trades, position
-updates, deposits, and withdrawals for a specific account on the Order Management System (OMS).
-The subscription reports all events associated with a given account; there is no filter at the call level
-to subscribe to some events and not others.
-Account event information is supplied in comma-separated-value (CSV) format. For specific
-CSV formatting information, see the cubobit Extract CSV Data Dictionary, available from cubobit
-
-`{"AccountId":1,"OMSId":1}`
-
-## SubscribeLevel1
-Retrieves the latest Level 1 Ticker information and then subscribes the user to ongoing Level
-1 market data event updates for one specific instrument. For more information about Level 1
-and Level 2, see “Level 1 and Level 2 Market Information” on page 3. The SubscribeLevel1
-call responds with the Level 1 response shown below. The OMS then periodically sends
-Leve1UpdateEvent information when best bid/best offer issues in the same format as this response,
-until you send the UnsubscribeLevel1 call.
-
-`[{"OMSId":"1","InstrumentId":"1"},{"OMSId":"1","Symbol":"BTCUSD"}]`
-
-## SubscribeLevel2
-Retrieves the latest Level 2 Ticker information and then subscribes the user to Level 2 market data
-event updates for one specific instrument. Level 2 allows the user to specify the level of market
-depth information on either side of the bid and ask. For more information about Level 1 and Level
-2, see “Level 1 and Level 2 Market Information” on page 3. The SubscribeLevel2 call responds
-with the Level 2 response shown below. The OMS then periodically sends Level2UpdateEvent
-information in the same format as this response until you send the UnsubscribeLevel2 call.
-
-`[{"OMSId":"1","InstrumentId":"1","Depth":"10"},{"OMSId":"1","Symbol":"BTCUSD","Depth":"10"}]`
-
-<aside><strong>Note:</strong> Depth in this call is “depth of market,” the number of buyers and sellers at greater or lesser prices in the order book for the instrument..</aside>
-
-## SubscribeTicker
-Subscribes a user to a Ticker Market Data Feed for a specific instrument and interval.
-SubscribeTicker sends a response object as described below, and then periodically returns a
-TickerDataUpdateEvent that matches the content of the response object.
-
-`{"OMSId":1,"InstrumentId":1,"Interval":60,"IncludeLastCount":100}`
-
-## SubscribeTrades
-Subscribes an authenticated user to the Trades Market Data Feed for a specific instrument. Each
-trade has two sides: Buy and Sell.
-SubscribeTrades returns the response documented here for your immediate information, then
-periodically sends the OrderTradeEvent documented in SubscribeAccountEvents.
-
-`{"OMSId":1,"InstrumentId":1,"IncludeLastCount":40}`
-
-## UnSubscribeLevel1
-Unsubscribes the user from a Level 1 Market Data Feed subscription.
-
-`{"OMSId":1,"InstrumentId":1}`
-
-## UnsubscribeLevel2
-Unsubscribes the user from a Level 2 Market Data Feed subscription..
-
-`{"OMSId":1,"InstrumentId":1}`
-
-## UnSubscribeTicker
-Unsubscribes a user from a Ticker Market Data Feed
-
-`{"OMSId":1,"InstrumentId":1}`
-
-## UnSubscribeTrades
-Unsubscribes a user from the Trades Market Data Feed.
-
-`{"OMSId":1,"InstrumentId":1}`
+The cubobit Exchange (cubobit) is a high-performance exchange technology built for blockchain, which is based on RPC over WebSockets. 
