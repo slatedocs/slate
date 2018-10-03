@@ -69,6 +69,14 @@ curl "https://app.eresourcescheduler.cloud/rest/v1/resourcetype"
         "type": "TEXT",
         "code": "last_name",
       }, {
+        "name":"Start Date",
+        "type":"Date",
+        "code":"start_date"
+      }, {
+        "name":"Working Calendar",
+        "type":"CALSS",
+        "code":"calendar"
+      }, {
         "name": "Team",
         "type": "DDSS",
         "code": "team",
@@ -79,6 +87,30 @@ curl "https://app.eresourcescheduler.cloud/rest/v1/resourcetype"
           "id": 2,
           "name": "Tester"
         }]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Contractor",
+    "isHuman": true,
+    "fields": [
+      {
+        "name": "First Name",
+        "type": "TEXT",
+        "code": "first_name"
+      }, {
+        "name": "Last Name",
+        "type": "TEXT",
+        "code": "last_name",
+      }, {
+        "name":"Start Date",
+        "type":"Date",
+        "code":"start_date"
+      }, {
+        "name":"Working Calendar",
+        "type":"CALSS",
+        "code":"calendar"
       }
     ]
   }
@@ -115,6 +147,14 @@ curl "https://app.eresourcescheduler.cloud/rest/v1/resourcetype/1"
       "name": "Last Name",
       "type": "TEXT",
       "code": "last_name",
+    }, {
+      "name":"Start Date",
+      "type":"Date",
+      "code":"start_date"
+    }, {
+      "name":"Working Calendar",
+      "type":"CALSS",
+      "code":"calendar"
     }, {
       "name": "Team",
       "type": "DDSS",
@@ -248,3 +288,103 @@ Parameter | Description
 --------- | -----------
 ID | The ID of the kitten to delete
 
+# Projects Types
+## Get All Projects Types
+
+```shell
+curl "https://app.eresourcescheduler.cloud/rest/v1/projecttype"
+  -H "Authorization: Bearer B8x5Vj1O65r6wnoV"
+```
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Standard",
+    "fields": [
+      {
+        "name": "Project Name",
+        "type": "TEXT",
+        "code": "title"
+      },{
+        "name":"Start Date",
+        "type":"Date",
+        "code":"project_start_date"
+      },{
+        "name":"Color",
+        "type":"COLPICK",
+        "code":"color"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Engineering",
+    "fields": [
+      {
+        "name": "Project Name",
+        "type": "TEXT",
+        "code": "title"
+      },{
+        "name":"Start Date",
+        "type":"Date",
+        "code":"project_start_date"
+      },{
+        "name":"Color",
+        "type":"COLPICK",
+        "code":"color"
+      }
+    ]
+  }
+]
+```
+This endpoint retrieves all Projects Types.
+
+### HTTP Request
+
+`GET https://app.eresourcescheduler.cloud/rest/v1/projecttype`
+
+
+## Get a Specific Project Type
+
+```shell
+curl "https://app.eresourcescheduler.cloud/rest/v1/projecttype/1"
+  -H "Authorization: Bearer B8x5Vj1O65r6wnoV"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 1,
+  "name": "Standard",
+  "fields": [
+    {
+      "name": "Project Name",
+      "type": "TEXT",
+      "code": "title"
+    },{
+      "name":"Start Date",
+      "type":"Date",
+      "code":"project_start_date"
+    },{
+      "name":"Color",
+      "type":"COLPICK",
+      "code":"color"
+    }
+  ]
+}
+```
+
+This endpoint retrieves a project type.
+
+### HTTP Request
+
+`GET https://app.eresourcescheduler.cloud/rest/v1/projecttype/<ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the project type to retrieve
