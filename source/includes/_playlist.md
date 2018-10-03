@@ -120,7 +120,7 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchAllPlaylists", "jsonrpc":
 }
 ```
 
-Returns a user’s playlists (competency, group, favorite, bifrost) in order.
+Returns an user’s playlists (competency, group, favorite, bifrost) in order.
 
 ### HTTP Request
 
@@ -613,7 +613,7 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchGroupPlaylists", "jsonrpc
 }
 ```
 
-Retrieve an user’s list of competency playlists.
+Retrieve an user’s list of group playlists.
 
 ### HTTP Request
 
