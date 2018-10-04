@@ -122,7 +122,7 @@ A successful request will generate a lightning invoice that will look simiar to 
 
 <span style="color:red"> *lnbcrt10n1pd5v2mwpp5ulxpj8ht4gvtqnyl8zuykfk4wcv6sz455ce5dy0e0lqt2wvhthpsdqqxqrrssn39f5saxgtqmzs...* </span>
 
-#Cryptocurrency Exchange API
+#Crypto Exchange API (Coming Soon)
 
 *Coming Soon* - We are working to bring developers a consolidated data feed for cryptocurrency exchanges.  
 
@@ -137,7 +137,7 @@ Coming soon...
 ## Books
 Coming soon...
 
-<h1 id="NFLData"> NFL Data</h1>
+<h1 id="NFLData"> NFL Data API</h1>
 
 ## Info
 
@@ -481,6 +481,27 @@ Field | Example
 <span style="color:red"> <*firstName*>  | </span> <span style="color:red"> *Drew* </span>
 <span style="color:red"> <*lastName*> | </span> <span style="color:red"> *Brees* </span>
 
+#NBA Data API (Coming Soon)
+
+## Info
+
+Coming soon...
+
+## Games
+
+Coming soon...
+
+## Players
+
+Coming soon...
+
+## Team
+
+Coming soon...
+
+## Stats 
+
+Coming soon...
 
 # Contact Us
 Follow us on twitter <a href="https://twitter.com/SuredBits">@Suredbits</a>
