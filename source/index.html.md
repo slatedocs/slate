@@ -183,7 +183,7 @@ Actions are the basis for everything your bot does.
 >CreateMoveAction(Point direction)
 
 ```csharp
-// In this example, you player will move in the X direction
+// In this example, your player will move in the X direction by 10 tiles
 
 	internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
         {			
@@ -194,8 +194,11 @@ Actions are the basis for everything your bot does.
 ```
 
 ```typescript
+
+// In this example, your player will move in the X direction by 10 tiles
+
 public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
-        return AIHelper.createMoveAction(new Point(0, 1));
+        return AIHelper.createMoveAction(new Point(this.playerInfo.Position.x + 10, 0));
     }
 ```
 
@@ -206,8 +209,11 @@ public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
 ```
 
 ```java
-public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
-        return AIHelper.createMoveAction(new Point(0, 1));
+
+// In this example, your player will move to the right
+
+public IAction getAction(Player player, Map map) {
+        return new MoveAction(Point.RIGHT);
     }
 ```
 
@@ -219,7 +225,7 @@ def execute_turn(self, gameMap, visiblePlayers):
 ```
 
 
-This action is the most basic of all. When a move action is attempted, the destination tile must be within reachable distance and it must be empty. If another player is standing on that tile, the action will fail. Players cannot step on walls. A player can walk on lava but will suffer heavy damage. Keep in mind your bot CANNOT move in a diagonal direction. You must first move in X then Y, or Y then X
+This action is the most basic of all. When a move action is attempted, the destination tile must be within reachable distance and it must be empty. If another player is standing on that tile, the action will fail. Players cannot step on walls. A player can walk on lava but will suffer heavy damage. Keep in mind your bot CANNOT move in a diagonal direction. You must first move in X then Y, or Y then X. Your player is position (0,0).
 
 Parameter | Type | Description
 --------- | ------- | -----------
@@ -233,11 +239,11 @@ Keep in mind your bot CANNOT move in a diagonal direction. You must first move i
 >CreateCollectAction(Point position)
 
 ```csharp
-// In this example, you player will move in the X direction
+// In this example, your player will collect minerals at a distance of X+10
 
 	internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
         {			
-            return AIHelper.CreateMoveAction(
+            return AIHelper.CreateCollectAction(
 				new Point(PlayerInfo.Position.X + 10, PlayerInfo.Position.Y)
 				);
         }
@@ -245,7 +251,7 @@ Keep in mind your bot CANNOT move in a diagonal direction. You must first move i
 
 ```typescript
 public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
-        return AIHelper.createMoveAction(new Point(0, 1));
+        return AIHelper.createCollectAction(new Point(this.playerInfo.Position.x + 10, 0));
     }
 ```
 
@@ -256,9 +262,13 @@ public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
 ```
 
 ```java
-public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
-        return AIHelper.createMoveAction(new Point(0, 1));
+
+// In this example, your player will collect minerals to his right
+
+public IAction getAction(Player player, Map map) {
+        return new CollectAction(Point.RIGHT);
     }
+	
 ```
 
 ```python
@@ -279,19 +289,21 @@ position | Point | The position where you want your bot to collect items such as
 >CreateHealAction()
 
 ```csharp
-// In this example, you player will move in the X direction
+
+// In this example, your player will heal given that he has health potions in store
 
 	internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
         {			
-            return AIHelper.CreateMoveAction(
-				new Point(PlayerInfo.Position.X + 10, PlayerInfo.Position.Y)
-				);
+            return AIHelper.CreateHealAction();
         }
 ```
 
 ```typescript
+
+// In this example, your player will heal given that he has health potions in store
+
 public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
-        return AIHelper.createMoveAction(new Point(0, 1));
+        return AIHelper.createHealAction();
     }
 ```
 
@@ -302,9 +314,13 @@ public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
 ```
 
 ```java
-public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
-        return AIHelper.createMoveAction(new Point(0, 1));
+
+// In this example, your player will heal given that he has health potions in store
+
+public IAction getAction(Player player, Map map) {
+        return new HealAction ();
     }
+	
 ```
 
 ```python
@@ -320,19 +336,23 @@ This action heals your player. A healing potion increases your player's health b
 >CreatePurchaseAction(PurchasableItem item)
 
 ```csharp
-// In this example, you player will move in the X direction
+
+// In this example, your player will purchase an item, a shield. 
+// The player needs to be adjacent to a tile shop and have enough currency to buy the item.
 
 	internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
         {			
-            return AIHelper.CreateMoveAction(
-				new Point(PlayerInfo.Position.X + 10, PlayerInfo.Position.Y)
-				);
+            return AIHelper.CreatePurchaseAction(PurchasableItem.Shield);
         }
 ```
 
 ```typescript
+
+// In this example, your player will purchase an item, a shield. 
+// The player needs to be adjacent to a tile shop and have enough currency to buy the item.
+
 public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
-        return AIHelper.createMoveAction(new Point(0, 1));
+        return AIHelper.createPurchaseAction(PurchasableItem.Shield);
     }
 ```
 
@@ -343,8 +363,12 @@ public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
 ```
 
 ```java
-public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
-        return AIHelper.createMoveAction(new Point(0, 1));
+
+// In this example, your player will purchase an item, a shield.
+// The player needs to be adjacent to a tile shop and have enough currency to buy the item.
+
+public IAction getAction(Player player, Map map) {
+        return new PurchaseAction(Item.SHIELD);
     }
 ```
 
@@ -382,22 +406,23 @@ Pickaxe | CollectingSpeed | 2
 HealhPotion | HealthPotion | 5
 
 ##Upgrade
->CreateUpgradeAction()
+>CreateUpgradeAction(UpgradeType type)
 
 ```csharp
-// In this example, you player will move in the X direction
+
+// In this example, your player will upgrade his collecting speed level
 
 	internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
         {			
-            return AIHelper.CreateMoveAction(
-				new Point(PlayerInfo.Position.X + 10, PlayerInfo.Position.Y)
-				);
+            return AIHelper.CreateUpgradeAction(UpgradeType.CollectingSpeed);
         }
 ```
 
 ```typescript
+// In this example, your player will upgrade his collecting speed level
+ 
 public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
-        return AIHelper.createMoveAction(new Point(0, 1));
+        return AIHelper.createUpgradeAction(UpgradeType.CollectingSpeed);
     }
 ```
 
@@ -408,8 +433,11 @@ public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
 ```
 
 ```java
-public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
-        return AIHelper.createMoveAction(new Point(0, 1));
+
+// In this example, your player will upgrade his collecting speed level
+
+public IAction getAction(Player player, Map map) {
+        return new UpgradeAction(Upgrade.CARRYING_CAPACITY);
     }
 ```
 
@@ -418,6 +446,17 @@ def execute_turn(self, gameMap, visiblePlayers):
         create_move_action(direction):
         pass
 ```
+
+Here are all the upgrade types you can buy:
+
+ public enum UpgradeType
+    {
+        CarryingCapacity,
+        AttackPower,
+        Defence,
+        MaximumHealth,
+        CollectingSpeed
+    }
 
 To purchase an upgrade, the player must be in his house. Resources that you are carrying are used first, then the ones stored in your house. If you do not have enough resources, the upgrade will fail. All upgrades have 5 levels that can be purchased.
 
@@ -440,19 +479,21 @@ To purchase an upgrade, the player must be in his house. Resources that you are 
 >CreateAttackAction(Point position)
 
 ```csharp
-// In this example, you player will move in the X direction
+// In this example, your player will attack someone or something at position X+10 from his current position
 
 	internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
         {			
-            return AIHelper.CreateMoveAction(
+            return AIHelper.CreateMeleeAttackAction(
 				new Point(PlayerInfo.Position.X + 10, PlayerInfo.Position.Y)
 				);
         }
 ```
 
 ```typescript
+// In this example, your player will attack someone or something at position X+10 from his current position
+
 public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
-        return AIHelper.createMoveAction(new Point(0, 1));
+        return AIHelper.createAttackAction(new Point(this.playerInfo.Position.x + 10, 0));
     }
 ```
 
@@ -463,8 +504,11 @@ public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
 ```
 
 ```java
-public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
-        return AIHelper.createMoveAction(new Point(0, 1));
+
+// In this example, your player will attack someone or something to his right
+
+public IAction getAction(Player player, Map map) {
+        return new MeleeAttackAction(Point.RIGHT);
     }
 ```
 
@@ -532,31 +576,36 @@ Floor(3 + attacker's power + offensive items - 2 * (defender's defence + defensi
 >CreateStealAction(Point position)
 
 ```csharp
-// In this example, you player will move in the X direction
+// In this example, your player will steal on the adjacent tile at position X+10
 
 	internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
         {			
-            return AIHelper.CreateMoveAction(
+            return AIHelper.CreateStealAction(
 				new Point(PlayerInfo.Position.X + 10, PlayerInfo.Position.Y)
 				);
         }
 ```
 
 ```typescript
+// In this example, your player will steal on the adjacent tile at position X+10
+
 public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
-        return AIHelper.createMoveAction(new Point(0, 1));
+        return AIHelper.createStealAction(new Point(this.playerInfo.Position.x + 10, 0));
     }
 ```
 
 ```go
 public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
-        return AIHelper.createMoveAction(new Point(0, 1));
+        return AIHelper.createStealAction(new Point(0, 1));
     }
 ```
 
 ```java
-public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
-        return AIHelper.createMoveAction(new Point(0, 1));
+
+// In this example, your player will steal on the adjacent tile to his right
+
+public IAction getAction(Player player, Map map) {
+        return new StealAction(Point.RIGHT);
     }
 ```
 
