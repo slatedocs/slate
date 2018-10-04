@@ -182,7 +182,7 @@ Are you more a resource gathering bot? a thief bot? or a combat bot?
 </aside>
 
 ### Phase II - Exploring
-During this phase, players can start breaking the walls (trees) that isolate them from other players. You will be able to find the shop, other players and high density minerals.
+During this phase, players can start breaking the walls (trees) that isolate them from other players. You will be able to find one of the many shops, other players and high density minerals.
 
 Trees have 5HP, which means your bot will destroy them faster if you have more attack power.
 
@@ -249,9 +249,7 @@ public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
 
 ```python
 def execute_turn(self, gameMap, visiblePlayers):
-    create_move_action(direction):
-    pass
-
+    return create_move_action(direction)
 ```
 
 
@@ -298,7 +296,6 @@ public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
 ```python
 def execute_turn(self, gameMap, visiblePlayers):
     return create_move_action(direction):
-
 ```
 
 This action is to collect resources at a particular location. You may for example collect minerals on the ground after another player's death. To collect resources, a player must be adjacent to the resource. The amount of resources collected each turn is determined by a player's collecting speed upgrades, his items and the density of the resource patch. A player cannot carry more than his *Carrying capacity* allows. When his inventory is full, he needs to visit his home to deposit his resources. Resources are automatically deposited when a player steps on his house tile.
@@ -385,8 +382,7 @@ public IAction getAction(Player player, Map map) {
 
 ```python
 def execute_turn(self, gameMap, visiblePlayers):
-    create_move_action(direction):
-    pass
+    return create_purchase_action(Shield)
 ```
 
 You can visit shops in the game. They are located randomly in the map. To buy form a shop you must be on it. You must also have enough minerals, to buy the item. Minerals that you are carrying are used first.
@@ -430,8 +426,8 @@ internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
 
 // In this example, your player will upgrade his collecting speed level
 public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
-        return AIHelper.createUpgradeAction(UpgradeType.CollectingSpeed);
-    }
+    return AIHelper.createUpgradeAction(UpgradeType.CollectingSpeed);
+}
 ```
 
 ```go
@@ -444,14 +440,13 @@ public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
 
 // In this example, your player will upgrade his carrying capacity level
 public IAction getAction(Player player, Map map) {
-        return new UpgradeAction(Upgrade.CARRYING_CAPACITY);
-    }
+    return new UpgradeAction(Upgrade.CARRYING_CAPACITY);
+}
 ```
 
 ```python
 def execute_turn(self, gameMap, visiblePlayers):
-    create_upgrade_action(CarryingCapacity):
-    pass
+    return create_upgrade_action(CarryingCapacity)
 ```
 
 Here are all the upgrades you can buy:
@@ -487,12 +482,12 @@ To purchase an upgrade, the player must be in his house. If you do not have enou
 
 ```csharp
 // In this example, your player will attack someone or something at x+1 where x is his position.
-    internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
-        {			
-            return AIHelper.CreateMeleeAttackAction(
-                new Point(PlayerInfo.Position.X + 1, PlayerInfo.Position.Y)
-                );
-        }
+internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
+{
+    return AIHelper.CreateMeleeAttackAction(
+        new Point(PlayerInfo.Position.X + 1, PlayerInfo.Position.Y)
+    );
+}
 ```
 
 ```typescript
@@ -516,8 +511,7 @@ public IAction getAction(Player player, Map map) {
 
 ```python
 def execute_turn(self, gameMap, visiblePlayers):
-    create_move_action(direction):
-    pass
+    return create_attack_action(Point(self.playerInfo.position.x + 1, 0))
 ```
 
 | Parameter | Type  | Description                                |
@@ -577,19 +571,19 @@ Floor(3 + attacker's power + offensive items - 2 * (defender's defence + defensi
 >CreateStealAction(Point position)
 
 ```csharp
-// In this example, your player will steal on the adjacent tile at position X+10
 
-    internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
-        {			
-            return AIHelper.CreateStealAction(
-                new Point(PlayerInfo.Position.X + 1, PlayerInfo.Position.Y)
-                );
-        }
+// In this example, your player will steal on the adjacent tile at position X+10
+internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
+{
+    return AIHelper.CreateStealAction(
+        new Point(PlayerInfo.Position.X + 1, PlayerInfo.Position.Y)
+    );
+}
 ```
 
 ```typescript
-// In this example, your player will steal on the adjacent tile at position X+10
 
+// In this example, your player will steal on the adjacent tile at position X+10
 public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
     return AIHelper.createStealAction(new Point(this.playerInfo.Position.x + 1, 0));
 }
@@ -602,18 +596,15 @@ public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
 ```
 
 ```java
-
 // In this example, your player will steal on the adjacent tile to his right
-
 public IAction getAction(Player player, Map map) {
-        return new StealAction(Point.RIGHT);
-    }
+    return new StealAction(Point.RIGHT);
+}
 ```
 
 ```python
 def execute_turn(self, gameMap, visiblePlayers):
-    create_move_action(direction):
-    pass
+    return create_steal_action(direction):
 ```
 
 To steal from an other player, you must be on a tile adjacent to their house. Stealing quantity scales with collecting speed.
