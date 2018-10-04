@@ -109,12 +109,6 @@ Here is a link explaining the most pertinent commands : [git documentation] (htt
 In short you will want to read up on the clone, status, add, commit and push commands
 
 # Goal of the Game
-Score as many points as possible. To earn points, you must gather resources and defeat your opponents.
-This game is also meant to be an introduction opportunity into the world of artificial intelligence as a coder. You might want to read up on the subject, especially regarding path finding algorithms.
-
-<aside class="notice">
-You should read this doc carefully to understand the mechanics of this game. There are many ways you can code your bot. Discuss startegy with your team!
-</aside>
 
 
 ```csharp
@@ -137,6 +131,13 @@ You should read this doc carefully to understand the mechanics of this game. The
     print("This will be visible from the dashboard.")
 ```
 
+
+Score as many points as possible. To earn points, you must gather resources and defeat your opponents.
+This game is also meant to be an introduction opportunity into the world of artificial intelligence as a coder. You might want to read up on the subject, especially regarding path finding algorithms.
+
+<aside class="notice">
+You should read this doc carefully to understand the mechanics of this game. There are many ways you can code your bot. Discuss startegy with your team!
+</aside>
 
 # Resources
 ## Minerals
