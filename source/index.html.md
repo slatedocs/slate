@@ -25,7 +25,7 @@ In short wheter you have a Windows, Mac or Linux based machine, you will be fine
 You can use any IDE/Text editor you wish to write your bot. Depending on what language you wish to code in you might need to download some stuff. Make sure you have downloaded everything you need before the day of the event (save all your time to code!)
 
 * Using C# ?
-    Have .NET CORE ^2.0 downloaded before the day of the event. 
+    Have .NET CORE ^2.1 downloaded before the day of the event. 
     Choose a download with SDK : [.NetCore] (https://www.microsoft.com/net/download)
     
 * Using python ?
@@ -45,7 +45,7 @@ You can use any IDE/Text editor you wish to write your bot. Depending on what la
 If you wish to experiment with a local server you can run a local copy of the game on your machine.
 You will need :
 
-* .NetCore 2.0
+* .NetCore 2.1
 * NodeJs
 * Visual Studio 2017 with latest C# version (7.3)
 
@@ -72,7 +72,27 @@ You have many useful sections in your [dashboard] (dashboard.polyhx.io). Here ar
 
 To see the logs, you must click on a step. This step should expand and you should see logs in a short amount of time.
 We will automatically make a push in your repository as we launch the game. If you do not see any "Build" then "Deployment" then "Run" section as the game starts, you may have a problem.
-    
+
+```csharp
+    Console.WriteLine("This will be visible from the dashboard.");
+```
+
+```typescript
+    console.log("This will be visible from the dashboard.");
+```
+
+```go
+    fmt.println("This will be visible from the dashboard.")
+```
+
+```java
+    System.Out.println("This will be visible from the dashboard.");
+```
+
+```python
+    print("This will be visible from the dashboard.")
+```
+
 <aside class="notice">
     Here is a tip!
     If you write to standard output in your code, they will be displayed in the Run section of Team Deployment. This could help you in figuring out if an action you requested actually occured.
@@ -100,37 +120,15 @@ You must write your code in the Bot class of your project seed. The functions yo
 * [Python resources] (https://sites.google.com/site/pydatalog/home)
 
 ### Note on GitHub
-If you are not familiar with the common github commands, start reading up! 
+If you are not familiar with the common git commands, start reading up! 
 
 Here is a link explaining how to install git : [install git] (https://git-scm.com/book/en/v2/Getting-Started-The-Command-Line)
 
 Here is a link explaining the most pertinent commands : [git documentation] (https://git-scm.com/book/en/v2/Getting-Started-Summary)
 
-In short you will want to read up on the clone, status, add, commit and push commands
+In short you will want to read up on the clone, status, add, commit, checkout and push commands
 
 # Goal of the Game
-
-
-```csharp
-    Console.WriteLine("This will be visible from the dashboard.");
-```
-
-```typescript
-    console.log("This will be visible from the dashboard.");
-```
-
-```go
-    fmt.println("This will be visible from the dashboard.")
-```
-
-```java
-    System.Out.println("This will be visible from the dashboard.");
-```
-
-```python
-    print("This will be visible from the dashboard.")
-```
-
 
 Score as many points as possible. To earn points, you must gather resources and defeat your opponents.
 This game is also meant to be an introduction opportunity into the world of artificial intelligence as a coder. You might want to read up on the subject, especially regarding path finding algorithms.
@@ -232,9 +230,6 @@ internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
 ```
 
 ```typescript
-
-// In this example, your player will move in the X direction by 10 tiles
-
 public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
     return AIHelper.createMoveAction(new Point(0, 1));
 }
@@ -260,14 +255,14 @@ def execute_turn(self, gameMap, visiblePlayers):
 ```
 
 
-This action is the most basic of all. When a move action is attempted, the destination tile must be within reachable distance and it must be empty. If another player is standing on that tile, the action will fail. Players cannot step on walls. A player can walk on lava but will suffer heavy damage. Keep in mind your bot CANNOT move in a diagonal direction. You must first move in X then Y, or Y then X. Your player is position (0,0).
+This action is the most basic of all. When a move action is attempted, the destination tile must be adjacent and empty. If another player is standing on that tile, the action will fail. Players cannot step on walls. A player can walk on lava but will suffer heavy damage. You can only move a single tile per turn.
 
-Parameter | Type | Description
---------- | ------- | -----------
-direction | Point | The position where you want your bot to move
+| Parameter | Type  | Description                                  |
+| --------- | ----- | -------------------------------------------- |
+| direction | Point | The position where you want your bot to move |
 
 <aside class="warning">
-Keep in mind your bot CANNOT move in a diagonal direction. You must first move in X then Y, or Y then X
+Keep in mind your bot CANNOT move in a diagonal direction. You must first move in X then Y, or Y then X.
 </aside>
 
 ## Collect
@@ -302,17 +297,16 @@ public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
 
 ```python
 def execute_turn(self, gameMap, visiblePlayers):
-    create_move_action(direction):
-    pass
+    return create_move_action(direction):
 
 ```
 
 This action is to collect resources at a particular location. You may for example collect minerals on the ground after another player's death. To collect resources, a player must be adjacent to the resource. The amount of resources collected each turn is determined by a player's collecting speed upgrades, his items and the density of the resource patch. A player cannot carry more than his *Carrying capacity* allows. When his inventory is full, he needs to visit his home to deposit his resources. Resources are automatically deposited when a player steps on his house tile.
 
 
-Parameter | Type    | Description
---------- | ------- | -----------
-direction | Point   | The direction in which you want your bot to collect minerals.
+| Parameter | Type  | Description                                                   |
+| --------- | ----- | ------------------------------------------------------------- |
+| direction | Point | The direction in which you want your bot to collect minerals. |
 
 ## Heal
 >CreateHealAction()
@@ -320,16 +314,11 @@ direction | Point   | The direction in which you want your bot to collect minera
 ```csharp
 internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
 {
-    return AIHelper.CreateMoveAction(
-        new Point(PlayerInfo.Position.X + 10, PlayerInfo.Position.Y)
-    );
+    return AIHelper.CreateHealAction();
 }
 ```
 
 ```typescript
-
-// In this example, your player will heal given that he has health potions in store
-
 public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
     return AIHelper.createHealAction();
 }
@@ -342,9 +331,6 @@ public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
 ```
 
 ```java
-
-// In this example, your player will heal given that he has health potions in store
-
 public IAction getAction(Player player, Map map) {
     return new HealAction ();
 }
@@ -353,9 +339,7 @@ public IAction getAction(Player player, Map map) {
 
 ```python
 def execute_turn(self, gameMap, visiblePlayers):
-    create_move_action(direction):
-    pass
-
+    return create_heal_action()
 ```
 
 This action heals your player. A healing potion increases your player's health by 5HP per potion. You must have at least one HealhPotion for this action to execute.
@@ -368,10 +352,10 @@ This action heals your player. A healing potion increases your player's health b
 // In this example, your player will purchase an item, a shield. 
 // The player needs to be adjacent to a tile shop and have enough currency to buy the item.
 
-    internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
-        {			
-            return AIHelper.CreatePurchaseAction(PurchasableItem.Shield);
-        }
+internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
+{
+    return AIHelper.CreatePurchaseAction(PurchasableItem.Shield);
+}
 ```
 
 ```typescript
@@ -394,10 +378,9 @@ public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
 
 // In this example, your player will purchase an item, a shield.
 // The player needs to be adjacent to a tile shop and have enough currency to buy the item.
-
 public IAction getAction(Player player, Map map) {
-        return new PurchaseAction(Item.SHIELD);
-    }
+    return new PurchaseAction(Item.SHIELD);
+}
 ```
 
 ```python
@@ -418,36 +401,34 @@ public enum PurchasableItem
     HealthPotion,
 }
     
-Parameter | Type            | Description
---------- | --------------- | -----------
-item      | PurchasableItem | The item you wish to purchase at the shop.
+| Parameter | Type            | Description                                |
+| --------- | --------------- | ------------------------------------------ |
+| item      | PurchasableItem | The item you wish to purchase at the shop. |
 
 Here are the advantage of all items:
 
-Item        | Type              | Bonus Value
------------ | ----------------- | -----------
-Sword       | Attack            | 2
-Shield      | Defence           | 2
-Backpack    | CarryingCapacity  | 2
-Pickaxe     | CollectingSpeed   | 2
-HealhPotion | HealthPotion      | 5
+| Item        | Type             | Bonus Value |
+| ----------- | ---------------- | ----------- |
+| Sword       | Attack           | 2           |
+| Shield      | Defence          | 2           |
+| Backpack    | CarryingCapacity | 2           |
+| Pickaxe     | CollectingSpeed  | 2           |
+| HealhPotion | HealthPotion     | 5           |
 
-##Upgrade
+## Upgrade
 >CreateUpgradeAction(UpgradeType type)
 
 ```csharp
 
 // In this example, your player will upgrade his collecting speed level
-
-    internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
-        {			
-            return AIHelper.CreateUpgradeAction(UpgradeType.CollectingSpeed);
-        }
+internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
+    return AIHelper.CreateUpgradeAction(UpgradeType.CollectingSpeed);
+}
 ```
 
 ```typescript
+
 // In this example, your player will upgrade his collecting speed level
- 
 public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
         return AIHelper.createUpgradeAction(UpgradeType.CollectingSpeed);
     }
@@ -461,8 +442,7 @@ public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
 
 ```java
 
-// In this example, your player will upgrade his collecting speed level
-
+// In this example, your player will upgrade his carrying capacity level
 public IAction getAction(Player player, Map map) {
         return new UpgradeAction(Upgrade.CARRYING_CAPACITY);
     }
@@ -470,25 +450,25 @@ public IAction getAction(Player player, Map map) {
 
 ```python
 def execute_turn(self, gameMap, visiblePlayers):
-    create_move_action(direction):
+    create_upgrade_action(CarryingCapacity):
     pass
 ```
 
-Here are all the upgrade types you can buy:
+Here are all the upgrades you can buy:
 
  public enum UpgradeType
-    {
-        CarryingCapacity,
-        AttackPower,
-        Defence,
-        MaximumHealth,
-        CollectingSpeed
-    }
+{
+    CarryingCapacity,
+    AttackPower,
+    Defence,
+    MaximumHealth,
+    CollectingSpeed
+}
 
-To purchase an upgrade, the player must be in his house. Resources that you are carrying are used first, then the ones stored in your house. If you do not have enough resources, the upgrade will fail. All upgrades have 5 levels that can be purchased.
+To purchase an upgrade, the player must be in his house. If you do not have enough resources, the upgrade will fail. All upgrades have 5 levels that can be purchased.
 
-| Level | Health  | Attack 	| Defence 	| Collecting speed 	| Carrying capacity 	|
-|-------|-------- |--------	|---------- |------------------	|-------------------	|
+| Level | Health | Attack | Defence | Collecting speed | Carrying capacity |
+| ----- | ------ | ------ ||---------- |------------------	|-------------------	|
 | L0    | 5       | 1      	| 1       	| 1                	| 1000              	|
 | L1    | 8       | 3      	| 3       	| 1.25             	| 1500              	|
 | L2    | 10      | 5      	| 5       	| 1.5              	| 2500              	|
@@ -497,17 +477,16 @@ To purchase an upgrade, the player must be in his house. Resources that you are 
 | L5    | 30      | 11     	| 11      	| 3.5              	| 25000              	|
 
 ### Upgrade prices
-|           | Level 0   | Level 1   | Level 2    | Level 3 | Level 4 | Level 5 |
-|---------- |---------- | --------- | ---------- | ------- | ------- | ------- |
-| Price     | 0         | 15000     | 50000      | 100000  | 250000  | 500000  |
+|       | Level 0 | Level 1 | Level 2 | Level 3 | Level 4 | Level 5 |
+| ----- | ------- | ------- | ------- | ------- | ------- | ------- |
+| Price | 0       | 15000   | 50000   | 100000  | 250000  | 500000  |
 
 
 ## Attack
 >CreateAttackAction(Point position)
 
 ```csharp
-// In this example, your player will attack someone or something at position X+10 from his current position
-
+// In this example, your player will attack someone or something at x+1 where x is his position.
     internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
         {			
             return AIHelper.CreateMeleeAttackAction(
@@ -517,16 +496,10 @@ To purchase an upgrade, the player must be in his house. Resources that you are 
 ```
 
 ```typescript
-// In this example, your player will attack someone or something at position X+10 from his current position
-
+// In this example, your player will attack someone or something at x+1 where x is his position.
 public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
-<<<<<<< HEAD
-        return AIHelper.createAttackAction(new Point(this.playerInfo.Position.x + 10, 0));
-    }
-=======
-    return AIHelper.createMoveAction(new Point(0, 1));
+    return AIHelper.createAttackAction(new Point(this.playerInfo.Position.x + 1, 0));
 }
->>>>>>> f7febced40a3de66b296fdda84c524ec2275b9b4
 ```
 
 ```go
@@ -536,12 +509,9 @@ public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
 ```
 
 ```java
-
-// In this example, your player will attack someone or something to his right
-
 public IAction getAction(Player player, Map map) {
-        return new MeleeAttackAction(Point.RIGHT);
-    }
+    return new MeleeAttackAction(Point.RIGHT);
+}
 ```
 
 ```python
@@ -550,9 +520,9 @@ def execute_turn(self, gameMap, visiblePlayers):
     pass
 ```
 
-Parameter   | Type  | Description
------------ | ----- | -----------
-position    | Point | The direction in which you want to attack.
+| Parameter | Type  | Description                                |
+| --------- | ----- | ------------------------------------------ |
+| position  | Point | The direction in which you want to attack. |
 
 To be able to attack a target, it must be within striking distance. If the target dies, the player responsible for the last hit is awarded the kill.
 
@@ -569,7 +539,7 @@ Damage is calculated with this formula:
 Floor(3 + attacker's power + offensive items - 2 * (defender's defence + defensive items)^0.6 )
 
 | Attack | Defence | Damage | Damage with sword | Damage with shield | Damage with sword & shield |
-|--------|---------|--------|-------------------|--------------------|----------------------------|
+| ------ | ------- | ------ | ----------------- | ------------------ | -------------------------- |
 | 1      | 1       | 2      | 4                 | 0                  | 2                          |
 | 1      | 3       | 0      | 2                 | 0                  | 0                          |
 | 1      | 5       | 0      | 0                 | 0                  | 0                          |
@@ -648,6 +618,6 @@ def execute_turn(self, gameMap, visiblePlayers):
 
 To steal from an other player, you must be on a tile adjacent to their house. Stealing quantity scales with collecting speed.
 
-Parameter   | Type  | Description
------------ | ----- | -----------
-position    | Point | The position where you want to steal from another player
+| Parameter | Type  | Description                                              |
+| --------- | ----- | -------------------------------------------------------- |
+| position  | Point | The position where you want to steal from another player |
