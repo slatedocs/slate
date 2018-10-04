@@ -20,7 +20,7 @@ search: true
 Welcome to the LHGames API resource page! You can use this document to understand the different functions in the AIHelper class provided in your seed project. We have 3 different languages you can use to code your bot ; all of them are present in this documentation.
 We have language bindings in CSharp, Python, and TypeScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
-#Requiered specs
+# Requiered specs
 The game server we build runs on .NET CORE 2.0 which multi-plateform
 In short wheter you have a Windows, Mac or Linux based machine, you will be fine.
 You can use any IDE/Text editor you wish to write your bot. Depending on what language you wish to code in you might need to download some stuff. Make sure you have downloaded everything you need before the day of the event (save all your time to code!)
@@ -41,10 +41,26 @@ You can use any IDE/Text editor you wish to write your bot. Depending on what la
 * Using the Go language ?
 	Have GoLang downloaded [Go] (https://golang.org/dl/)
 
-What we recommand:
-If you want to test your bot localy, you should have
+# Testing Locally
+If you wish to experiment with a local server you can recretate the game on your machine.
+You will need :
+
 * .NetCore 2.0
 * NodeJs
+* Visual Studio 2017 with latest C# version (7.3)
+
+Here are the steps :
+
+1. Open a terminal in the forlder GameServer
+2. Enter the command : dotnet WebSocketApi.dll
+3. Run your bot project (seed project) per the instructions provided in the READMe of your project
+
+Once you have started the project and have your bot running you can use these URLs to active certain events in the game:
+
+* Walls are breakable: http://localhost:4000/api/game/wallsAreBreakable
+* Make obstacles appear at random: http://localhost:4000/api/game/toggleWalls
+* Activate lava : http://localhost:4000/api/game/activateLava
+* Make goblins appear at random: http://localhost:4000/api/game/toggleGoblins
 
 # Your Dashboard
 
@@ -63,12 +79,25 @@ We will automatically make a push in your repository as we launch the game. If y
 </aside>
 
 # What not to do
-Do NOT change any Jenkins or Docker files. If you are experiencing a problem with your repository, your code or if you have any concerns, please ask somone from the organizing team (Pink T-Shirts!) to help you. Don't start changing any configurations, you will only make your lifes and our lifes harder.
+Do NOT change any Jenkins or Docker files. If you are experiencing a problem with your repository, your code or if you have any concerns, please ask someone from the organizing team (Pink T-Shirts!) to help you. Don't start changing any configurations, you will only make your lifes and our lifes harder.
 
 #Your code
 Let's get started!
 
 You must write your code in the Bot class of your project seed. The functions you can call are all located in the AIHelper class and are explained in the Action section of this documentation.
+
+### Useful links
+
+* [The bible of AI] (http://aima.cs.berkeley.edu/)
+* [Notes on AI from Francis Tseng] (https://frnsys.com/ai_notes/)
+* [Videos from Michel Gagnon, teacher at Polytechnique] (https://www.youtube.com/channel/UC2V7ubG5XJZAPiP_bpLby6A/videos)
+* [Search Algorithms on Tutorial Points] (https://www.tutorialspoint.com/artificial_intelligence/artificial_intelligence_popular_search_algorithms.htm)
+* [PDDL] (http://users.cecs.anu.edu.au/~patrik/pddlman/writing.html)
+* [FF] (https://fai.cs.uni-saarland.de/hoffmann/ff.html)
+* [SHOP] (http://www.cs.umd.edu/projects/shop/index.html)
+* [Reinforcement Learning, Beginner's guide] (https://www.analyticsvidhya.com/blog/2017/01/introduction-to-reinforcement-learning-implementation/)
+* [Reinforcement Learning] (https://web.stanford.edu/class/psych209/Readings/SuttonBartoIPRLBook2ndEd.pdf)
+* [Python resources] (https://sites.google.com/site/pydatalog/home)
 
 ### Note on GitHub
 If you are not familiar with the common github commands, start reading up! 
