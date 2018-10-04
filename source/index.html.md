@@ -122,19 +122,122 @@ A successful request will generate a lightning invoice that will look simiar to 
 
 <span style="color:red"> *lnbcrt10n1pd5v2mwpp5ulxpj8ht4gvtqnyl8zuykfk4wcv6sz455ce5dy0e0lqt2wvhthpsdqqxqrrssn39f5saxgtqmzs...* </span>
 
-#Cryptocurrency Exchange API
+#Crypto Exchange API (Coming Soon)
 
-*Coming Soon* - We are working to bring developers a consolidated data feed for cryptocurrency exchanges.  
+## Info
 
-Join our <a href="https://join.slack.com/t/suredbits/shared_invite/enQtNDEyMjY3MTg1MTg3LTYyYjkwOGUzMDQ4NDAwZjE1M2I3MmQyNWNlZjNlYjg4OGRjYTRjNWUwNjRjNjg4Y2NjZjAxYjU1N2JjMTU1YWM">Suredbits Slack</a> or follow us on twitter <a href="https://twitter.com/SuredBits">@Suredbits</a> for updates.  
+**Subscribe**
+
+To subscribe to a data stream, use the following command format:
+
+Field | Type | Example
+------ | ------ | -------
+<span style="color:red"> <*event*> </span> | string | <span style="color:red"> "subscribe" </span>
+<span style="color:red"> <*channel*> </span> | string | <span style="color:red">  "tickers" </span>
+<span style="color:red"> <*symbol*>  </span> | string | <span style="color:red"> "ETHBTC" </span>
+<span style="color:red"> <*exchange*> </span> | string | <span style="color:red"> "bitfinex" </span>
+<span style="color:red"> <*duration*> </span> | integer (milliseconds) | <span style="color:red"> "15000" </span>
+<span style="color:red"> <*refundInvoice*> </span> | string | <span style="color:red"> lnbcrt10n1pd5v2mwpp5ulxpj8ht... </span>
+<span style="color:red"> <*uuid*>  </span> | string | <span style="color:red"> 123e4567-e89b-12d3-a456-426655440000 </span>
+
+**Payment** 
+
+<span style="color:red"> NOTICE: </span> Our pricing model is still evolving and will change as we move forward. For now, for each second of streaming data, you will be charged 1 Satoshi.
+
+e.g.
+
+1 second = 1 Satoshi
+
+10 seconds = 10 Satoshis
+
+100 seconds = 100 Satoshis
+
+
+We will post notification of any future changes in our pricing model here and via our twitter @Suredbits.
+
+**Refill**
+
+You may refill your subscrption at any time with the following command format: 
+
+Field | Type | Example
+------| ------ | --------
+<span style="color:red"> <*uuid*> </span> | string | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span>
+<span style="color:red"> <*addedDuration*> </span> | integer (milliseconds) | <span style="color:red"> "1000" </span>
+<span style="color:red"> <*event*> </span> | string | <span style="color:red"> "refill" </span>
+
+
+
+**Unsubscribe**
+
+You may unsubscribe from a channel using the following command:
+
+Field | Type | Example
+------| ------ | --------
+<span style="color:red"> <*uuid*> </span> | string | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span> 
+<span style="color:red"> <*event*> </span> | string | <span style="color:red"> "unsubscribe" </span>
+
+
+**Maintenance**
+
+In the event of maintenance or service interruption, we will refund any remaining portion of your subscription. 
+
 
 ## Tickers
-Coming soon...
+
+Field | Type | Exchanges Supported
+------ | ------ | --------
+eventTime | Long | 
+symbol | String |
+priceChange | BigDecimal |
+priceChangePerc |  BigDecimal |
+weightedAvePrice |  BigDecimal |
+prevClose | BigDecimal |
+close | BigDecimal |
+closeQuantity |  BigDecimal |
+bid| BigDecimal |           
+bidSize| BigDecimal |           
+ask| BigDecimal |            
+askSize| BigDecimal |          
+open | BigDecimal |
+high | BigDecimal |
+low | BigDecimal |
+volume | BigDecimal |
+quoteVolume | BigDecimal|
+statOpenTime | Long |
+statCloseTime | Long |
+firstTradeId | Long |
+totalTrades | Long |
+eventTime|  Long |                   
+bid | BigDecimal |
+bidSize | BigDecimal |
+ask | BigDecimal |
+askSize | BigDecimal |
+priceChange | BigDecimal |            
+priceChangePerc |  BigDecimal |        
+close | BigDecimal |             
+volume | BigDecimal |
+high | BigDecimal |
+low |  BigDecimal |
 
 ## Trades
-Coming soon...
 
-## Books
+eventType: String,
+    eventTime: Long,
+    symbol: String,
+    tradeId: Long,
+    price: BigDecimal,
+    quantity: BigDecimal,
+    buyerId: Long,
+    sellerId: Long,
+    tradeTime: Long,
+    marketMaker: Boolean
+
+    id: Long,                  tradeId
+    timestamp: Long,           eventTime
+    amount: BigDecimal,        quantity
+    price: BigDecimal
+
+## Order Books
 Coming soon...
 
 <h1 id="NFLData"> NFL Data</h1>
@@ -481,6 +584,17 @@ Field | Example
 <span style="color:red"> <*firstName*>  | </span> <span style="color:red"> *Drew* </span>
 <span style="color:red"> <*lastName*> | </span> <span style="color:red"> *Brees* </span>
 
+# NBA (Coming Soon)
+
+## Info
+
+## Games
+
+## Players
+
+## Teams
+
+## Stats 
 
 # Contact Us
 Follow us on twitter <a href="https://twitter.com/SuredBits">@Suredbits</a>
