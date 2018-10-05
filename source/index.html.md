@@ -74,7 +74,7 @@ We will automatically make a push in your repository as we launch the game. If y
 ```
 
 ```java
-    System.Out.println("This will be visible from the dashboard.");
+    System.out.println("This will be visible from the dashboard.");
 ```
 
 ```python
@@ -161,14 +161,18 @@ To regain health, you can buy potions from the stores. You can carry up to 10 he
 
 ## Items
 
-| Item | Type  | Description                                  |
-| --------- | ----- | -------------------------------------------- |
-| Sword | Attack Power | This item will give you more Attack power, which means more damage output. |
-| Shield | Defence | This item will give you more Defence, which means you take less damage when someone attacks you. |
-| Backpack | Carrying capacity | This item increases you capacity to carry minerals. |
-| Pickaxe | Collecting speed | This item makes you collect minerals faster. |
-| Health Potion | Health | They regenerate 5HP when they are used, they cost 5 000 minerals. |
+| Item          | Type                  | Description                                  |
+| ------------- | --------------------- | -------------------------------------------- |
+| Sword         | Attack Power          | This item will give you more Attack power, which means more damage output. |
+| Shield        | Defence               | This item will give you more Defence, which means you take less damage when someone attacks you. |
+| Backpack      | Carrying capacity     | This item increases you capacity to carry minerals. |
+| Pickaxe       | Collecting speed      | This item makes you collect minerals faster. |
+| Health Potion | Health                | They regenerate 5HP when they are used, they cost 2000 minerals. |
 
+
+
+
+All the items are the same price (except the health potion of course) at 30000 minerals. These items give a big increase in that state for a lower price than what the upgrades cost. However, you will need to find your way to one of the shops to buy them.
 # Combat
 Players can execute melee attacks (close physical encounter). An attack deals damage based on the characters's attack, his items and the other character's defence and his items. Killing an enemy grants a number of points that depends on each's player position on the leaderboard. 
 
@@ -227,14 +231,14 @@ Actions are the basis for everything your bot does.
 internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
 {
     return AIHelper.CreateMoveAction(
-        new Point(PlayerInfo.Position.X + 1, PlayerInfo.Position.Y)
+        new Point(1, 0)
     );
 }
 ```
 
 ```typescript
 public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
-    return AIHelper.createMoveAction(new Point(0, 1));
+    return AIHelper.createMoveAction(new Point(1, 0));
 }
 ```
 
@@ -254,12 +258,12 @@ This action is the most basic of all. When a move action is attempted, the desti
 
 In such, to go :
 
-| Direction | Point |
-| --------- | ----- |
-| Up | (0, -1) |
-| Down | (0, 1) |
-| Left | (-1, 0) |
-| Right | (1, 0) |
+| Direction | Point     |
+| --------- | --------- |
+| Up        | (0, -1)   |
+| Down      | (0, 1)    |
+| Left      | (-1, 0)   |
+| Right     | (1, 0)    |
 
 | Parameter | Type  | Description                                  |
 | --------- | ----- | -------------------------------------------- |
@@ -276,14 +280,14 @@ Keep in mind your bot ** CANNOT ** move in a diagonal direction. You must first 
 internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
 {
     return AIHelper.CreateCollectAction(
-        new Point(PlayerInfo.Position.X + 1, PlayerInfo.Position.Y)
+        new Point(1, 0)
     );
 }
 ```
 
 ```typescript
 public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
-    return AIHelper.createCollectAction(new Point(0, 1));
+    return AIHelper.createCollectAction(new Point(1, 0));
 }
 ```
 
@@ -399,8 +403,8 @@ public enum PurchasableItem
 | ----------- | ---------------- | ----------- |
 | Sword       | Attack           | 2           |
 | Shield      | Defence          | 2           |
-| Backpack    | CarryingCapacity | 2           |
-| Pickaxe     | CollectingSpeed  | 2           |
+| Backpack    | CarryingCapacity | 2000        |
+| Pickaxe     | CollectingSpeed  | 0.75        |
 | HealhPotion | HealthPotion     | 5           |
 
 ## Upgrade
@@ -442,19 +446,19 @@ def execute_turn(self, gameMap, visiblePlayers):
 
 To purchase an upgrade, the player must be in his house. Resources that you are carrying are used first, then the ones stored in your house. If you do not have enough resources, the upgrade will fail. All upgrades have 5 levels that can be purchased.
 
-| Level | Health  | Attack 	| Defence 	| Collecting speed 	| Carrying capacity 	|
-|-------|-------- |--------	|---------- |------------------	|-------------------	|
-| L0    | 5       | 1      	| 1       	| 1                	| 1000              	|
-| L1    | 8       | 3      	| 3       	| 1.25             	| 1500              	|
-| L2    | 10      | 5      	| 5       	| 1.5              	| 2500              	|
-| L3    | 15      | 7      	| 7       	| 2                	| 5000              	|
-| L4    | 20      | 9     	| 9      	| 2.5              	| 10000              	|
-| L5    | 30      | 11     	| 11      	| 3.5              	| 25000              	|
+| Level | Health  | Attack 	| Defence   | Collecting speed  | Carrying capacity     |
+|-------|-------- |-------- |---------- |------------------	|-------------------	|
+| L0    | 10      | 1      	| 1         | 1                 | 1000                  |
+| L1    | 13      | 3       | 3         | 1.25              | 1250                  |
+| L2    | 15      | 5       | 5         | 1.5               | 1500                  |
+| L3    | 20      | 7       | 7         | 2                 | 2000                  |
+| L4    | 25      | 9       | 9         | 2.5               | 3000                  |
+| L5    | 35      | 11      | 11        | 3.5               | 5000                  |
 
 ### Upgrade prices
 |           | Level 0   | Level 1   | Level 2    | Level 3 | Level 4 | Level 5 |
 |---------- |---------- | --------- | ---------- | ------- | ------- | ------- |
-| Price     | 0         | 15000     | 50000      | 100000  | 250000  | 500000  |
+| Price     | 0         | 10000     | 15000      | 25000   | 50000   | 100000  |
 
 ### Upgrade types
 
@@ -469,7 +473,7 @@ public enum UpgradeType { CarryingCapacity, AttackPower, Defence, MaximumHealth,
 internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
 {
     return AIHelper.CreateMeleeAttackAction(
-        new Point(PlayerInfo.Position.X + 1, PlayerInfo.Position.Y)
+        new Point(1, 0)
     );
 }
 ```
@@ -478,7 +482,7 @@ internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
 // In this example, your player will attack someone or something at x+1 where x is his position.
 
 public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
-    return AIHelper.createAttackAction(new Point(this.playerInfo.Position.x + 1, 0));
+    return AIHelper.createAttackAction(new Point(1, 0));
 }
 ```
 
@@ -495,7 +499,7 @@ public IAction getAction(Player player, Map map) {
 # In this example, your player will attack someone or something at x+1 where x is his position.
 
 def execute_turn(self, gameMap, visiblePlayers):
-    return create_attack_action(Point(self.playerInfo.position.x + 1, 0))
+    return create_attack_action(Point(1, 0))
 ```
 
 | Parameter | Type  | Description                                |
@@ -504,7 +508,9 @@ def execute_turn(self, gameMap, visiblePlayers):
 
 To be able to attack a target, it must be within striking distance. If the target dies, the player responsible for the last hit is awarded the kill.
 
-Players can execute melee attacks. An attack deals damage based on the characters's attack, his items and the other character's defence and his items. Killing an enemy grants a number of points that depends on each's player position on the leaderboard. Killing a player that is better than you will give 1000 points per leaderboard position, with a minimum of 5000 points. Killing someone below you will give 5000 points - 250 points per position below you. With a difference of more than 20 positions, the player gets 1000 points.
+Players can execute melee attacks. An attack deals damage based on the characters's attack, his items and the other character's defence and his items. Killing an enemy grants a number of points that depends on each's player position on the leaderboard. Killing a player that is better than you will give 1000 points per leaderboard position, with a minimum of 10000 points. Killing someone below you will give 10000 points - 500 points per position below you. The minimum amount of points you will receive for a kill is 2000.
+
+If you kill the same player multiple times in a row, the number of points you receive will be divided by the number of times you killed him.
 
 For example:
 
@@ -560,7 +566,7 @@ Floor(3 + attacker's power + offensive items - 2 * (defender's defence + defensi
 internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
 {
     return AIHelper.CreateStealAction(
-        new Point(PlayerInfo.Position.X + 1, PlayerInfo.Position.Y)
+        new Point(1, 0)
     );
 }
 ```
@@ -569,7 +575,7 @@ internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
 // In this example, your player will steal on the adjacent tile at position X+1
 
 public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
-    return AIHelper.createStealAction(new Point(this.playerInfo.Position.x + 1, 0));
+    return AIHelper.createStealAction(new Point(1, 0));
 }
 ```
 
