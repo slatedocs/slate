@@ -299,7 +299,9 @@ def execute_turn(self, gameMap, visiblePlayers):
     return create_collect_action(Point(1, 0))
 ```
 
-This action is to collect resources at a particular location. You may for example collect minerals on the ground after another player's death. To collect resources, a player must be adjacent to the resource. The amount of resources collected each turn is determined by a player's collecting speed upgrades, his items and the density of the resource patch. A player cannot carry more than his *Carrying capacity* allows. When his inventory is full, he needs to visit his home to deposit his resources. Resources are automatically deposited when a player steps on his house tile.
+This action is to collect resources at a particular location. You may for example collect minerals on the ground after another player's death. To collect resources, a player must be adjacent to the resource. 
+
+For every action, you collect 100 resources. This amount improves when a player upgrades his collecting speed, his items and if a resource patch has a higher density. A player cannot carry more than his *Carrying capacity* allows. When his inventory is full, he needs to visit his home to deposit his resources. Resources are automatically deposited when a player steps on his house tile.
 
 
 | Parameter | Type  | Description                                                   |
@@ -591,7 +593,9 @@ def execute_turn(self, gameMap, visiblePlayers):
     return create_steal_action(Point(0,1)):
 ```
 
-To steal from another player, you must be on a tile adjacent to their house. Stealing quantity scales with collecting speed.
+To steal from another player, you must be on a tile adjacent to their house. 
+
+Stealing quantity scales with collecting speed, the base amount is 250 per action (which makes it a lot faster than collecting from resource tiles)
 
 | Parameter | Type  | Description                                              |
 | --------- | ----- | -------------------------------------------------------- |
