@@ -54,7 +54,7 @@ Once you have started the project and have your bot running you can use these UR
 
 # Your Dashboard
 
-You have many useful sections in your [dashboard] (dashboard.polyhx.io). Here are the three most important sections:
+You have many useful sections in your [dashboard] (https://dashboard.polyhx.io/). Here are the three most important sections:
 
 * **Profile - GitHub entry** : Please enter a valid GitHub account in this field. When the game starts, you will receive an invitation to a repository we will have created for you. The invitation will be sent to your email (the one associated with your GitHub account). In this repository you will have your seed project for the language you choose.
 
