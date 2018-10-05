@@ -5,7 +5,6 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - csharp : C#
   - python : Python
   - typescript : Typescript
-  - java : Java
 
 toc_footers:
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
@@ -15,7 +14,7 @@ search: true
 
 # Introduction
 Welcome to the LHGames API resource page! You can use this document to understand the different functions in the AIHelper class provided in your seed project. We have 5 different languages you can use to code your bot ; all of them are present in this documentation.
-We have language bindings in CSharp, Python, TypeScript, Go and Java! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+We have language bindings in CSharp, Python and TypeScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 # Required specs
 The game server runs on .NET CORE 2.1 which is multi-platform. In short whether you have a Windows, Mac or Linux based machine, you will be fine.
@@ -37,10 +36,6 @@ You can use any IDE/Text editor you wish to write your bot. Depending on what la
 
     Have NodeJs 8.12.0 [NodeJs] (https://nodejs.org/dist/v8.12.0/node-v8.12.0-x64.msi)
     
-* Using Java ?
-
-    Have Java 1.8.0 downloaded [Java] (https://www.java.com/fr/download/manual.jsp#win)
-
 # Testing Locally
 If you wish to experiment with a local server you can run a local copy of the game on your machine.
 We will provide instructions on that later on.
@@ -71,10 +66,6 @@ We will automatically make a push in your repository as we launch the game. If y
 
 ```typescript
     console.log("This will be visible from the dashboard.");
-```
-
-```java
-    System.out.println("This will be visible from the dashboard.");
 ```
 
 ```python
@@ -240,12 +231,6 @@ public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
 }
 ```
 
-```java
-public IAction getAction(Player player, Map map) {
-        return new MoveAction(Point.RIGHT);
-}
-```
-
 ```python
 def execute_turn(self, gameMap, visiblePlayers):
     return create_move_action(Point(1, 0))
@@ -288,12 +273,6 @@ public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
 }
 ```
 
-```java
-public IAction getAction(Player player, Map map) {
-        return new CollectAction(Point.RIGHT);
-}
-```
-
 ```python
 def execute_turn(self, gameMap, visiblePlayers):
     return create_collect_action(Point(1, 0))
@@ -322,12 +301,6 @@ internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
 public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
     return AIHelper.createHealAction();
 }
-```
-
-```java
-public IAction getAction(Player player, Map map) {
-        return new HealAction();
-}    
 ```
 
 ```python
@@ -359,15 +332,6 @@ internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
 public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
         return AIHelper.createPurchaseAction(PurchasableItem.Shield);
     }
-```
-
-```java
-
-// In this example, your player will purchase an item, a shield.
-// The player needs to be adjacent to a tile shop and have enough currency to buy the item.
-public IAction getAction(Player player, Map map) {
-    return new PurchaseAction(Item.SHIELD);
-}
 ```
 
 ```python
@@ -427,15 +391,6 @@ public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
 }
 ```
 
-```java
-
-// In this example, your player will upgrade his carrying capacity level
-
-public IAction getAction(Player player, Map map) {
-    return new UpgradeAction(Upgrade.CARRYING_CAPACITY);
-}
-```
-
 ```python
 # In this example, your player will upgrade his collecting speed level
 
@@ -482,15 +437,6 @@ internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
 
 public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
     return AIHelper.createAttackAction(new Point(1, 0));
-}
-```
-
-
-```java
-// In this example, your player will attack someone or something at x+1 where x is his position.
-
-public IAction getAction(Player player, Map map) {
-    return new MeleeAttackAction(Point.RIGHT);
 }
 ```
 
@@ -575,14 +521,6 @@ internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
 
 public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
     return AIHelper.createStealAction(new Point(1, 0));
-}
-```
-
-```java
-// In this example, your player will steal on the adjacent tile to his right
-
-public IAction getAction(Player player, Map map) {
-    return new StealAction(Point.RIGHT);
 }
 ```
 
