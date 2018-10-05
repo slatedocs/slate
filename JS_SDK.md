@@ -1,12 +1,6 @@
 ### JS SDK 
 
-Add the line in your head tag. 
-
-```html
-<script type="text/javascript" src="https://s3.ap-south-1.amazonaws.com/anarock.misc/form.js" async defer></script></head>
-```
-
-and initialize it in body 
+initialize in body as below
 
 ```html
 <script>
@@ -20,6 +14,7 @@ and initialize it in body
       options: {} // options as described below
     }
  </script>
+<script type="text/javascript" src="https://s3.ap-south-1.amazonaws.com/anarock.misc/form.js" async defer></script></head>
 ```
 
 e.g.
@@ -29,7 +24,7 @@ e.g.
 <!DOCTYPE html>
   <html lang="en-us">
   <head>
-  <script type="text/javascript" src="https://s3.ap-south-1.amazonaws.com/anarock.misc/form.js"></script></head>
+  </head>
 <body>
   <div id="anarock-form"></div>
   <script>
@@ -43,6 +38,7 @@ e.g.
       options: {} // options as described below
     }
   </script>
+  <script type="text/javascript" src="https://s3.ap-south-1.amazonaws.com/anarock.misc/form.js" async defer></script>
   </body>
 </html>
 ```
