@@ -1525,7 +1525,8 @@ Esta notificação informa a atualização de um processo de admissão.
         "theme_score": 200,
         "cohesion_score": 200,
         "proposal_score": 200,
-        "total_score": 200
+        "total_score": 200,
+        "essay_body": "lorem ipsum dolor sit amet"
       },
       "admission": {
         "id": 456,
@@ -1563,13 +1564,14 @@ Esta notificação informa a realização do vestibular (via Exame Quero Bolsa o
 | [application][enem] linguagens | string | Nota em `Linguagens` |
 | [application][enem] matematica | string | Nota em `Matemática` |
 | [application][enem] redacao | string | Nota em `Redação` |
-| [application] exam | object | Objeto com as notas do exame de cada competência |
+| [application] exam | object | Objeto com as notas do exame de cada competência e a redação |
 | [application][exam] standards_score | number | Nota em `Norma culta` |
 | [application][exam] argument_score | number | Nota em `Adequação ao tema` |
 | [application][exam] theme_score | number | Nota em `Argumentação` |
 | [application][exam] cohesion_score | number | Nota em `Coesão textual` |
 | [application][exam] proposal_score | number | Nota em `Proposta de intervenção` |
 | [application][exam] total_score | number | Soma das notas (nota final) |
+| [application][exam] essay_body | string | Conteúdo da redação |
 
 ## Notificar nova submissão de documento de admissão
 
