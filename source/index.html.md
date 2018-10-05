@@ -459,7 +459,7 @@ Killing an enemy grants a number of points that depends on each's player positio
 
 If you kill someone within 3 ranks of you, you will get 5000 points.
 
-If you kill the same player multiple times in a row, the number of points you receive will be divided by the number of times you killed him. Moreover, when you respawn, you cannot suffer any damage for 5 turns, so don't try to spawn kill other players!
+If you kill the same player multiple times in a row, the number of points you receive will be divided by the number of times you killed him. To reset this counter, you need to die or a different player. When you respawn, you cannot suffer any damage for 5 turns, so don't try to spawn kill other players!
 
 For example:
 
