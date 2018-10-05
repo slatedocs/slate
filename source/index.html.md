@@ -5,7 +5,6 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - csharp : C#
   - python : Python
   - typescript : Typescript
-  - go : Go
   - java : Java
 
 toc_footers:
@@ -88,10 +87,6 @@ We will automatically make a push in your repository as we launch the game. If y
     console.log("This will be visible from the dashboard.");
 ```
 
-```go
-    fmt.println("This will be visible from the dashboard.")
-```
-
 ```java
     System.Out.println("This will be visible from the dashboard.");
 ```
@@ -114,10 +109,17 @@ If you try to sabotage another team, you will be kicked out of the event. We und
 If you are cought trying to sabotage another team you will be automatically disqualified from the competition and any other event organized by PolyHx for the following year.
 Let's have fun but not at the expense of others.
 
+<aside class="warning">
+
+**FULL DISCLAIMER**
+
+If you try to sabotage another team, you will be kicked out of the event.
+</aside>
+
 # Your code
 Let's get started!
 
-You must write your code in the Bot class of your project seed. The functions you can call are all located in the AIHelper class and are explained in the Action section of this documentation.
+You must write your code in the ** Bot ** class of your project seed. The functions you can call are all located in the AIHelper class and are explained in the Action section of this documentation.
 
 ### Useful links
 
@@ -250,21 +252,15 @@ public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
 }
 ```
 
-```go
-public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
-    return AIHelper.createMoveAction(new Point(0, 1));
-}
-```
-
 ```java
-public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
-    return AIHelper.createMoveAction(new Point(0, 1));
+public IAction getAction(Player player, Map map) {
+        return new MoveAction(Point.RIGHT);
 }
 ```
 
 ```python
 def execute_turn(self, gameMap, visiblePlayers):
-    return create_move_action(direction)
+    return create_move_action(Point(1, 0))
 ```
 
 
@@ -284,7 +280,7 @@ Keep in mind your bot ** CANNOT ** move in a diagonal direction. You must first 
 ```csharp
 internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
 {
-    return AIHelper.CreateMoveAction(
+    return AIHelper.CreateCollectAction(
         new Point(PlayerInfo.Position.X + 1, PlayerInfo.Position.Y)
     );
 }
@@ -292,25 +288,19 @@ internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
 
 ```typescript
 public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
-    return AIHelper.createMoveAction(new Point(0, 1));
-}
-```
-
-```go
-public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
-    return AIHelper.createMoveAction(new Point(0, 1));
+    return AIHelper.createCollectAction(new Point(0, 1));
 }
 ```
 
 ```java
-public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
-    return AIHelper.createMoveAction(new Point(0, 1));
+public IAction getAction(Player player, Map map) {
+        return new CollectAction(Point.RIGHT);
 }
 ```
 
 ```python
 def execute_turn(self, gameMap, visiblePlayers):
-    return create_move_action(direction):
+    return create_collect_action(Point(1, 0))
 ```
 
 This action is to collect resources at a particular location. You may for example collect minerals on the ground after another player's death. To collect resources, a player must be adjacent to the resource. The amount of resources collected each turn is determined by a player's collecting speed upgrades, his items and the density of the resource patch. A player cannot carry more than his *Carrying capacity* allows. When his inventory is full, he needs to visit his home to deposit his resources. Resources are automatically deposited when a player steps on his house tile.
@@ -336,17 +326,10 @@ public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
 }
 ```
 
-```go
-public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
-    return AIHelper.createMoveAction(new Point(0, 1));
-}
-```
-
 ```java
 public IAction getAction(Player player, Map map) {
-    return new HealAction ();
-}
-    
+        return new HealAction();
+}    
 ```
 
 ```python
@@ -380,12 +363,6 @@ public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
     }
 ```
 
-```go
-public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
-    return AIHelper.createMoveAction(new Point(0, 1));
-}
-```
-
 ```java
 
 // In this example, your player will purchase an item, a shield.
@@ -396,8 +373,12 @@ public IAction getAction(Player player, Map map) {
 ```
 
 ```python
+""" 
+In this example, your player will purchase an item, a shield.
+The player needs to be adjacent to a tile shop and have enough currency to buy the item.
+"""
 def execute_turn(self, gameMap, visiblePlayers):
-    return create_purchase_action(Shield)
+    return create_purchase_action(PurchasableItem.Shield)
 ```
 
 You can visit shops in the game. They are located randomly in the map. To buy from a shop you must be adjacent to it. You must also have enough minerals to buy the item. Minerals that you are carrying are used first, then the ones in your house are collected.
@@ -431,9 +412,10 @@ Here is the advantage for all items:
 >CreateUpgradeAction(UpgradeType type)
 
 ```csharp
-
 // In this example, your player will upgrade his collecting speed level
+
 internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
+{
     return AIHelper.CreateUpgradeAction(UpgradeType.CollectingSpeed);
 }
 ```
@@ -441,28 +423,26 @@ internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
 ```typescript
 
 // In this example, your player will upgrade his collecting speed level
+
 public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
     return AIHelper.createUpgradeAction(UpgradeType.CollectingSpeed);
-}
-```
-
-```go
-public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
-    return AIHelper.createMoveAction(new Point(0, 1));
 }
 ```
 
 ```java
 
 // In this example, your player will upgrade his carrying capacity level
+
 public IAction getAction(Player player, Map map) {
     return new UpgradeAction(Upgrade.CARRYING_CAPACITY);
 }
 ```
 
 ```python
+# In this example, your player will upgrade his collecting speed level
+
 def execute_turn(self, gameMap, visiblePlayers):
-    return create_upgrade_action(CarryingCapacity)
+    return create_upgrade_action(UpgradeType.CarryingCapacity)
 ```
 
 Here are all the upgrades you can buy:
@@ -498,6 +478,7 @@ To purchase an upgrade, the player must be on his house. If you do not have enou
 
 ```csharp
 // In this example, your player will attack someone or something at x+1 where x is his position.
+
 internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
 {
     return AIHelper.CreateMeleeAttackAction(
@@ -508,24 +489,24 @@ internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
 
 ```typescript
 // In this example, your player will attack someone or something at x+1 where x is his position.
+
 public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
     return AIHelper.createAttackAction(new Point(this.playerInfo.Position.x + 1, 0));
 }
 ```
 
-```go
-public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
-    return AIHelper.createMoveAction(new Point(0, 1));
-}
-```
 
 ```java
+// In this example, your player will attack someone or something at x+1 where x is his position.
+
 public IAction getAction(Player player, Map map) {
     return new MeleeAttackAction(Point.RIGHT);
 }
 ```
 
 ```python
+# In this example, your player will attack someone or something at x+1 where x is his position.
+
 def execute_turn(self, gameMap, visiblePlayers):
     return create_attack_action(Point(self.playerInfo.position.x + 1, 0))
 ```
@@ -587,8 +568,8 @@ Floor(3 + attacker's power + offensive items - 2 * (defender's defence + defensi
 >CreateStealAction(Point position)
 
 ```csharp
+// In this example, your player will steal on the adjacent tile at position X+1
 
-// In this example, your player will steal on the adjacent tile at position X+10
 internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
 {
     return AIHelper.CreateStealAction(
@@ -598,29 +579,26 @@ internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
 ```
 
 ```typescript
+// In this example, your player will steal on the adjacent tile at position X+1
 
-// In this example, your player will steal on the adjacent tile at position X+10
 public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
     return AIHelper.createStealAction(new Point(this.playerInfo.Position.x + 1, 0));
 }
 ```
 
-```go
-public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
-    return AIHelper.createStealAction(new Point(0, 1));
-}
-```
-
 ```java
 // In this example, your player will steal on the adjacent tile to his right
+
 public IAction getAction(Player player, Map map) {
     return new StealAction(Point.RIGHT);
 }
 ```
 
 ```python
+# In this example, your player will steal from the adjacent tile
+
 def execute_turn(self, gameMap, visiblePlayers):
-    return create_steal_action(direction):
+    return create_steal_action(Point(0,1)):
 ```
 
 To steal from another player, you must be on a tile adjacent to their house. Stealing quantity scales with collecting speed.
