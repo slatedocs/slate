@@ -9,36 +9,41 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - java : Java
 
 toc_footers:
-  - <a href='#'>View project seeds here</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 search: true
 ---
 
 # Introduction
-Welcome to the LHGames API resource page! You can use this document to understand the different functions in the AIHelper class provided in your seed project. We have 3 different languages you can use to code your bot ; all of them are present in this documentation.
-We have language bindings in CSharp, Python, and TypeScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+Welcome to the LHGames API resource page! You can use this document to understand the different functions in the AIHelper class provided in your seed project. We have 5 different languages you can use to code your bot ; all of them are present in this documentation.
+We have language bindings in CSharp, Python, TypeScript, Go and Java! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 # Required specs
-The game server runs on .NET CORE 2.1 which is multi-platform
-In short wheter you have a Windows, Mac or Linux based machine, you will be fine.
+The game server runs on .NET CORE 2.1 which is multi-platform. In short whether you have a Windows, Mac or Linux based machine, you will be fine.
+
 You can use any IDE/Text editor you wish to write your bot. Depending on what language you wish to code in you might need to download some stuff. Make sure you have downloaded everything you need before the day of the event (save all your time to code!)
 
 * Using C# ?
+
     Have .NET CORE ^2.1 downloaded before the day of the event. 
     Choose a download with SDK : [.NetCore] (https://www.microsoft.com/net/download)
     
 * Using python ?
+
     Have Python 3.6 downloaded [Python] (https://www.python.org/downloads/)
     
 * Using TypeScript ?
+
     Have TypeScript ^2.4.2 downloaded [TypeScript] (https://www.typescriptlang.org/index.html#download-links)
+
     Have NodeJs 8.12.0 [NodeJs] (https://nodejs.org/dist/v8.12.0/node-v8.12.0-x64.msi)
     
 * Using Java ?
+
     Have Java 1.8.0 downloaded [Java] (https://www.java.com/fr/download/manual.jsp#win)
     
 * Using the Go language ?
+
     Have GoLang downloaded [Go] (https://golang.org/dl/)
 
 # Testing Locally
@@ -67,7 +72,9 @@ Once you have started the project and have your bot running you can use these UR
 You have many useful sections in your [dashboard] (dashboard.polyhx.io). Here are the three most important sections:
 
 * **Profile - GitHub entry** : Please enter a valid GitHub account in this field. When the game starts, you will receive an invitation to a repository we will have created for you. The invitation will be sent to your email (the one associated with your GitHub account). In this repository you will have your seed project for the language you choose.
+
 * **Team Setup** : Here is where you select the language in which you want to code for the day.
+
 * **Team Deployment** : In this page you can view logs regarding the Build, Deployment and Run of your team. Therefore, if you think you have a problem with your code, build deployment and such, please look at this section before asking an organizer.
 
 To see the logs, you must click on a step. This step should expand and you should see logs in a short amount of time.
@@ -99,7 +106,13 @@ We will automatically make a push in your repository as we launch the game. If y
 </aside>
 
 # What not to do
-Do NOT change any Jenkins or Docker files. If you are experiencing a problem with your repository, your code or if you have any concerns, please ask someone from the organizing team (Pink T-Shirts!) to help you. Don't start changing any configurations, you will only make your lifes and our lifes harder.
+Do NOT change any Jenkins, Docker files or any other file with the comment "Do not touch this file". If you are experiencing a problem with your repository, your code or if you have any concerns, please ask someone from the organizing team (Pink T-Shirts!) to help you. Don't start changing any configurations, you will only make your lifes and our lifes harder.
+
+**FULL DISCLAIMER**
+
+If you try to sabotage another team, you will be kicked out of the event. We understand that some of you want to test your hackerman skills, just don't -
+If you are cought trying to sabotage another team you will be automatically disqualified from the competition and any other event organized by PolyHx for the following year.
+Let's have fun but not at the expense of others.
 
 # Your code
 Let's get started!
@@ -145,7 +158,7 @@ To steal minerals, you need to be adjacent to another player's house.
 
 When you kill a player, you are awarded the resources they were carrying. If you do not have enough room to carry them, they will drop on the ground, where everyone can collect them.
 
-A player can only carry a certain amount of minerals before they need to be deposited into their house. This capacity can be increased by purchasing the *Carrying Capacity* upgrade and the Backpakc item.
+A player can only carry a certain amount of minerals before they need to be deposited into their house. This capacity can be increased by purchasing the *Carrying Capacity* upgrade and the *Backpack* item.
 
 <aside class="warning">
 Keep in mind that when we say "adjacent to a tile" we mean that your player must be at X+/- one or Y+/- one. In other terms, standing on a tile diagonal to the target tile will NOT work.
@@ -172,6 +185,8 @@ To regain health, you can buy potions from the stores. You can carry up to 10 he
 Players can execute melee attacks (close physical encounter). An attack deals damage based on the characters's attack, his items and the other character's defence and his items. Killing an enemy grants a number of points that depends on each's player position on the leaderboard. 
 
 # Game Phases
+There are four phases in the game, everyone starts at phase I. We will announced during the day when we move from phase to phase.
+
 ### Phase I - Your Kingdom
 Players spawn in their own "Kingdom" which is isolated from everyone else in the game. This allows players to develop resource gathering and pathfinding. Players should also plan for future phases of the game by determining their strategy and adapting their upgrades accordingly. 
 
@@ -211,7 +226,7 @@ Watch your back in this phase!
 The floor is lava, the map will slowly become more and more dangerous. A player may step on lava but will suffer heavy damage, which will cause instant death.
 
 # Actions
-Use actions to make you bot move, gather ressources, attack, steal, purchase, heal and upgrade.
+Use actions to make your bot move, gather ressources, attack, steal, purchase, heal and upgrade.
 
 <aside class="notice">
 Actions are the basis for everything your bot does.
@@ -253,14 +268,14 @@ def execute_turn(self, gameMap, visiblePlayers):
 ```
 
 
-This action is the most basic of all. When a move action is attempted, the destination tile must be adjacent and empty. If another player is standing on that tile, the action will fail. Players cannot step on walls. A player can walk on lava but will suffer heavy damage. You can only move a single tile per turn.
+This action is the most basic of all. When a move action is attempted, the destination tile must be adjacent and empty. If another player is standing on that tile, the action will fail. Players cannot step on walls. A player can walk on lava but will suffer heavy damage. You can only move a single tile per turn (X+/-, Y+/-).
 
 | Parameter | Type  | Description                                  |
 | --------- | ----- | -------------------------------------------- |
 | direction | Point | The position where you want your bot to move |
 
 <aside class="warning">
-Keep in mind your bot CANNOT move in a diagonal direction. You must first move in X then Y, or Y then X.
+Keep in mind your bot ** CANNOT ** move in a diagonal direction. You must first move in X then Y, or Y then X.
 </aside>
 
 ## Collect
@@ -385,7 +400,8 @@ def execute_turn(self, gameMap, visiblePlayers):
     return create_purchase_action(Shield)
 ```
 
-You can visit shops in the game. They are located randomly in the map. To buy form a shop you must be on it. You must also have enough minerals, to buy the item. Minerals that you are carrying are used first.
+You can visit shops in the game. They are located randomly in the map. To buy from a shop you must be adjacent to it. You must also have enough minerals to buy the item. Minerals that you are carrying are used first, then the ones in your house are collected.
+
 Here are all the purchasable items in the shops:
 
 public enum PurchasableItem
@@ -401,7 +417,7 @@ public enum PurchasableItem
 | --------- | --------------- | ------------------------------------------ |
 | item      | PurchasableItem | The item you wish to purchase at the shop. |
 
-Here are the advantage of all items:
+Here is the advantage for all items:
 
 | Item        | Type             | Bonus Value |
 | ----------- | ---------------- | ----------- |
@@ -460,7 +476,7 @@ Here are all the upgrades you can buy:
     CollectingSpeed
 }
 
-To purchase an upgrade, the player must be in his house. If you do not have enough resources, the upgrade will fail. All upgrades have 5 levels that can be purchased.
+To purchase an upgrade, the player must be on his house. If you do not have enough resources, the upgrade will fail. All upgrades have 5 levels that can be purchased.
 
 | Level | Health | Attack | Defence | Collecting speed | Carrying capacity |
 | ----- | ------ | ------ ||---------- |------------------	|-------------------	|
@@ -607,7 +623,7 @@ def execute_turn(self, gameMap, visiblePlayers):
     return create_steal_action(direction):
 ```
 
-To steal from an other player, you must be on a tile adjacent to their house. Stealing quantity scales with collecting speed.
+To steal from another player, you must be on a tile adjacent to their house. Stealing quantity scales with collecting speed.
 
 | Parameter | Type  | Description                                              |
 | --------- | ----- | -------------------------------------------------------- |
