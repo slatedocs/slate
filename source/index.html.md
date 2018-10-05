@@ -1,6 +1,5 @@
 ---
 title: API Reference
-
 language_tabs: # must be one of https://git.io/vQNgJ
   - json
 
@@ -82,4 +81,4 @@ search: true
 
 # Introduction
 
-The cubobit Exchange (cubobit) is a high-performance exchange technology built for blockchain, which is based on RPC over WebSockets. 
+The cubobit Exchange (cubobit) is a high-performance exchange technology built for blockchain, which is based on RPC over WebSockets.
