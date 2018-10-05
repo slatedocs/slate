@@ -40,24 +40,10 @@ You can use any IDE/Text editor you wish to write your bot. Depending on what la
 * Using Java ?
 
     Have Java 1.8.0 downloaded [Java] (https://www.java.com/fr/download/manual.jsp#win)
-    
-* Using the Go language ?
-
-    Have GoLang downloaded [Go] (https://golang.org/dl/)
 
 # Testing Locally
 If you wish to experiment with a local server you can run a local copy of the game on your machine.
-You will need :
-
-* .NetCore 2.1
-* NodeJs
-* Visual Studio 2017 with latest C# version (7.3)
-
-Here are the steps :
-
-1. Open a terminal in the folder GameServer
-2. Enter the command : dotnet WebSocketApi.dll
-3. Run your bot project (seed project) per the instructions provided in the README of your project
+We will provide instructions on that later on.
 
 Once you have started the project and have your bot running you can use these URLs to active certain events in the game:
 
@@ -110,16 +96,14 @@ If you are cought trying to sabotage another team you will be automatically disq
 Let's have fun but not at the expense of others.
 
 <aside class="warning">
-
-**FULL DISCLAIMER**
-
+**FULL DISCLAIMER** -- 
 If you try to sabotage another team, you will be kicked out of the event.
 </aside>
 
 # Your code
 Let's get started!
 
-You must write your code in the ** Bot ** class of your project seed. The functions you can call are all located in the AIHelper class and are explained in the Action section of this documentation.
+You must write your code in the **Bot** class of your project seed. The functions you can call are all located in the AIHelper class and are explained in the Action section of this documentation.
 
 ### Useful links
 
@@ -142,6 +126,10 @@ Here is a link explaining how to install git : [install git] (https://git-scm.co
 Here is a link explaining the most pertinent commands : [git documentation] (https://git-scm.com/book/en/v2/Getting-Started-Summary)
 
 In short you will want to read up on the clone, status, add, commit, checkout and push commands
+
+### Simple chain of events rundown
+To put it shortly, here is the chain of events you need to do to have your bot up and running on our server.
+First, make sure you clone the repository we invited you to. In this repository, code your bot in the **Bot** class. When you are ready to see what it looks like, make a push on the master branch. We will build, deploy and run the code you pushed. You can see all those steps and their logs on your dashboard, in the team deployment section. If your build failed you should push some new code as soon a possible because your bot will be idle during this time. On the other hand, if all goes well, you should see your bot interact in the manner you coded. We will provide the link to the front end part of the game at a later time, but rest assured, you will be able to see your player move around, gather resources, etc.
 
 # Goal of the Game
 
@@ -173,15 +161,13 @@ To regain health, you can buy potions from the stores. You can carry up to 10 he
 
 ## Items
 
-* **Sword** (Attack Power) : This item will give you more Attack power, which means more damage output.
-
-* **Shield** (Defence) : This item will give you more Defence, which means you take less damage when someone attacks you.
-
-* **Backpack** (Carrying capacity) : This item increases you capacity to carry minerals.
-
-* **Pickaxe** (Collecting speed) : This item makes you collect minerals faster.
-
-* **Health potions** : They regenerate 5HP when they are used, they cost 5 000 minerals.
+| Item | Type  | Description                                  |
+| --------- | ----- | -------------------------------------------- |
+| Sword | Attack Power | This item will give you more Attack power, which means more damage output. |
+| Shield | Defence | This item will give you more Defence, which means you take less damage when someone attacks you. |
+| Backpack | Carrying capacity | This item increases you capacity to carry minerals. |
+| Pickaxe | Collecting speed | This item makes you collect minerals faster. |
+| Health Potion | Health | They regenerate 5HP when they are used, they cost 5 000 minerals. |
 
 # Combat
 Players can execute melee attacks (close physical encounter). An attack deals damage based on the characters's attack, his items and the other character's defence and his items. Killing an enemy grants a number of points that depends on each's player position on the leaderboard. 
@@ -264,7 +250,16 @@ def execute_turn(self, gameMap, visiblePlayers):
 ```
 
 
-This action is the most basic of all. When a move action is attempted, the destination tile must be adjacent and empty. If another player is standing on that tile, the action will fail. Players cannot step on walls. A player can walk on lava but will suffer heavy damage. You can only move a single tile per turn (X+/-, Y+/-).
+This action is the most basic of all. When a move action is attempted, the destination tile must be adjacent and empty. If another player is standing on that tile, the action will fail. Players cannot step on walls. A player can walk on lava but will suffer heavy damage. You can only move a single tile per turn (X+/-, Y+/-). The origin of the map (0,0) is located in the **top left corner**.
+
+In such, to go :
+
+| Direction | Point |
+| --------- | ----- |
+| Up | (0, -1) |
+| Down | (0, 1) |
+| Left | (-1, 0) |
+| Right | (1, 0) |
 
 | Parameter | Type  | Description                                  |
 | --------- | ----- | -------------------------------------------- |
@@ -308,7 +303,7 @@ This action is to collect resources at a particular location. You may for exampl
 
 | Parameter | Type  | Description                                                   |
 | --------- | ----- | ------------------------------------------------------------- |
-| direction | Point | The direction in which you want your bot to collect minerals. |
+| direction | Point | The direction in which you want your bot to collect minerals, (X+/- or Y+/-)|
 
 ## Heal
 >CreateHealAction()
@@ -383,7 +378,7 @@ def execute_turn(self, gameMap, visiblePlayers):
 
 You can visit shops in the game. They are located randomly in the map. To buy from a shop you must be adjacent to it. You must also have enough minerals to buy the item. Minerals that you are carrying are used first, then the ones in your house are collected.
 
-Here are all the purchasable items in the shops:
+### PurchasableItems
 
 public enum PurchasableItem
 {
@@ -391,14 +386,14 @@ public enum PurchasableItem
     Shield,
     Backpack,
     Pickaxe,
-    HealthPotion,
+    HealthPotion
 }
     
 | Parameter | Type            | Description                                |
 | --------- | --------------- | ------------------------------------------ |
 | item      | PurchasableItem | The item you wish to purchase at the shop. |
 
-Here is the advantage for all items:
+### Items stats
 
 | Item        | Type             | Bonus Value |
 | ----------- | ---------------- | ----------- |
@@ -445,21 +440,10 @@ def execute_turn(self, gameMap, visiblePlayers):
     return create_upgrade_action(UpgradeType.CarryingCapacity)
 ```
 
-Here are all the upgrades you can buy:
+To purchase an upgrade, the player must be in his house. Resources that you are carrying are used first, then the ones stored in your house. If you do not have enough resources, the upgrade will fail. All upgrades have 5 levels that can be purchased.
 
- public enum UpgradeType
-{
-    CarryingCapacity,
-    AttackPower,
-    Defence,
-    MaximumHealth,
-    CollectingSpeed
-}
-
-To purchase an upgrade, the player must be on his house. If you do not have enough resources, the upgrade will fail. All upgrades have 5 levels that can be purchased.
-
-| Level | Health | Attack | Defence | Collecting speed | Carrying capacity |
-| ----- | ------ | ------ ||---------- |------------------	|-------------------	|
+| Level | Health  | Attack 	| Defence 	| Collecting speed 	| Carrying capacity 	|
+|-------|-------- |--------	|---------- |------------------	|-------------------	|
 | L0    | 5       | 1      	| 1       	| 1                	| 1000              	|
 | L1    | 8       | 3      	| 3       	| 1.25             	| 1500              	|
 | L2    | 10      | 5      	| 5       	| 1.5              	| 2500              	|
@@ -468,10 +452,13 @@ To purchase an upgrade, the player must be on his house. If you do not have enou
 | L5    | 30      | 11     	| 11      	| 3.5              	| 25000              	|
 
 ### Upgrade prices
-|       | Level 0 | Level 1 | Level 2 | Level 3 | Level 4 | Level 5 |
-| ----- | ------- | ------- | ------- | ------- | ------- | ------- |
-| Price | 0       | 15000   | 50000   | 100000  | 250000  | 500000  |
+|           | Level 0   | Level 1   | Level 2    | Level 3 | Level 4 | Level 5 |
+|---------- |---------- | --------- | ---------- | ------- | ------- | ------- |
+| Price     | 0         | 15000     | 50000      | 100000  | 250000  | 500000  |
 
+### Upgrade types
+
+public enum UpgradeType { CarryingCapacity, AttackPower, Defence, MaximumHealth, CollectingSpeed }
 
 ## Attack
 >CreateAttackAction(Point position)
