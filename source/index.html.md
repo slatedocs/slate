@@ -170,11 +170,9 @@ To regain health, you can buy potions from the stores. You can carry up to 10 he
 | Health Potion | Health                | They regenerate 5HP when they are used, they cost 2000 minerals. |
 
 
-
-
 All the items are the same price (except the health potion of course) at 30000 minerals. These items give a big increase in that state for a lower price than what the upgrades cost. However, you will need to find your way to one of the shops to buy them.
 # Combat
-Players can execute melee attacks (close physical encounter). An attack deals damage based on the characters's attack, his items and the other character's defence and his items. Killing an enemy grants a number of points that depends on each's player position on the leaderboard. 
+Players can execute melee attacks (close physical encounter). An attack deals damage based on the characters's attack, his items and the other character's defence and his items. Killing an enemy grants a number of points that depends on each's player position on the leaderboard (between 2000 and 10000) and the number of times the enemy was killed in a row. 
 
 # Game Phases
 There are four phases in the game, everyone starts at phase I. We will announced during the day when we move from phase to phase.
@@ -218,7 +216,7 @@ Watch your back in this phase!
 The floor is lava, the map will slowly become more and more dangerous. A player may step on lava but will suffer heavy damage, which will cause instant death.
 
 # Actions
-Use actions to make your bot move, gather ressources, attack, steal, purchase, heal and upgrade.
+Use actions to make your bot move, gather ressources, attack, steal, purchase, heal and upgrade. All the actions are directional. As such, you don't provide a position (player.x + 1, player.y) but a direction (1,0).
 
 <aside class="notice">
 Actions are the basis for everything your bot does.
@@ -252,7 +250,6 @@ public IAction getAction(Player player, Map map) {
 def execute_turn(self, gameMap, visiblePlayers):
     return create_move_action(Point(1, 0))
 ```
-
 
 This action is the most basic of all. When a move action is attempted, the destination tile must be adjacent and empty. If another player is standing on that tile, the action will fail. Players cannot step on walls. A player can walk on lava but will suffer heavy damage. You can only move a single tile per turn (X+/-, Y+/-). The origin of the map (0,0) is located in the **top left corner**.
 
