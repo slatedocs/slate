@@ -3,7 +3,7 @@
 Add the line in your head tag. 
 
 ```html
-<script type="text/javascript" src="https://s3.ap-south-1.amazonaws.com/anarock.misc/form.js"></script></head>
+<script type="text/javascript" src="https://s3.ap-south-1.amazonaws.com/anarock.misc/form.js" async defer></script></head>
 ```
 
 and initialize it in body 
@@ -11,7 +11,14 @@ and initialize it in body
 ```html
 <script>
     var form_container = document.getElementById('anarock-form')
-    window.createForm(form_container, "API_KEY", "CHANNEL_NAME", "CAMPAIGN_ID", 'production', {})
+    window.anarockFormObject = {
+      container: form_container,
+      key: "API_KEY",
+      channel_name: "CHANNEL_NAME",
+      campaign_id: "CAMPAIGN_ID",
+      env: "production",
+      options: {} // options as described below
+    }
  </script>
 ```
 
@@ -27,7 +34,14 @@ e.g.
   <div id="anarock-form"></div>
   <script>
     var form_container = document.getElementById('anarock-form')
-    window.createForm(form_container, API_KEY, CHANNEL_NAME, CAMPAIGN_ID, ENVIRONMENT, options)
+    window.anarockFormObject = {
+      container: form_container,
+      key: "API_KEY",
+      channel_name: "CHANNEL_NAME",
+      campaign_id: "CAMPAIGN_ID",
+      env: ENVIRONMENT,
+      options: {} // options as described below
+    }
   </script>
   </body>
 </html>
@@ -95,7 +109,14 @@ You can pass `dnc_checked` as `true` in the options to set the checkbox by defau
 ```html
 <script>
     var form_container = document.getElementById('anarock-form')
-    window.createForm(form_container, API_KEY, CHANNEL_NAME, CAMPAIGN_ID, 'production', { dnc_checked: true })
+    window.anarockFormObject = {
+      container: form_container,
+      key: "API_KEY",
+      channel_name: "CHANNEL_NAME",
+      campaign_id: "CAMPAIGN_ID",
+      env: ENVIRONMENT,
+      options:  { dnc_checked: true } // options as described below
+    }
  </script>
 ```
 
@@ -136,6 +157,4 @@ below are the classes used. You can override them in your code.
   .ap-agree-box
   .am-button primary
 ```
-
-
 
