@@ -453,17 +453,28 @@ def execute_turn(self, gameMap, visiblePlayers):
 
 To be able to attack a target, it must be within striking distance. If the target dies, the player responsible for the last hit is awarded the kill.
 
-Players can execute melee attacks. An attack deals damage based on the characters's attack, his items and the other character's defence and his items. Killing an enemy grants a number of points that depends on each's player position on the leaderboard. Killing a player that is better than you will give 1000 points per leaderboard position, with a minimum of 10000 points. Killing someone below you will give 10000 points - 500 points per position below you. The minimum amount of points you will receive for a kill is 2000.
+Players can execute melee attacks. An attack deals damage based on the characters's attack, his items and the other character's defence and his items.
 
-If you kill the same player multiple times in a row, the number of points you receive will be divided by the number of times you killed him.
+Killing an enemy grants a number of points that depends on each's player position on the leaderboard. Killing a player that is better than you will give 1000 points per leaderboard position. Killing someone below you will give 5000 points - 250 points per position below you. The minimum amount of points you will receive for a kill is 2000.
+
+If you kill someone within 3 ranks of you, you will get 5000 points.
+
+If you kill the same player multiple times in a row, the number of points you receive will be divided by the number of times you killed him. Moreover, when you respawn, you cannot suffer any damage for 5 turns, so don't try to spawn kill other players!
 
 For example:
 
-1st player kills the last player: 1000 points.
-4th best player kills the 10th best player, he gets 4700 points.
-10th best player kills the 4th best player, he gets 6000 points.
+1st player kills the last player: 2000 points.
+5th best player kills the 10th best player, he gets 3750 points.
+10th best player kills the 5th best player, he gets 5000 points.
 25th player kills the 1st player, he gets 24 000 points!
+3rd player kills 5th player, he gets 5000 points!
+5th player kills 3rd player, he gets 5000 points!
+
 Damage is calculated with this formula:
+
+Let's say the first player kills the last player 3 times in a row, he will get 2000 points on the first kill, 1000 points on the second kill and 667 points on the third kill.
+
+Killing goblins will always give you 2000 points.
 
 Floor(3 + attacker's power + offensive items - 2 * (defender's defence + defensive items)^0.6 )
 
