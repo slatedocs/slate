@@ -14,7 +14,7 @@ search: true
 ---
 
 # Introduction
-Welcome to the LHGames API resource page! You can use this document to understand the different functions in the AIHelper class provided in your seed project. We have 5 different languages you can use to code your bot ; all of them are present in this documentation.
+Welcome to the LHGames API resource page! You can use this document to understand the different functions in the AIHelper class provided in your seed project. We have 4 different languages you can use to code your bot ; all of them are present in this documentation.
 We have language bindings in CSharp, Python, TypeScript and Java! You can view code samples in the dark area to the right and you can switch between programming languages by changing tab.
 
 # Required specs
