@@ -15,12 +15,12 @@ search: true
 
 # Introduction
 Welcome to the LHGames API resource page! You can use this document to understand the different functions in the AIHelper class provided in your seed project. We have 5 different languages you can use to code your bot ; all of them are present in this documentation.
-We have language bindings in CSharp, Python, TypeScript and Java! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+We have language bindings in CSharp, Python, TypeScript and Java! You can view code samples in the dark area to the right and you can switch between programming languages by changing tab.
 
 # Required specs
 The game server runs on .NET CORE 2.1 which is multi-platform. In short whether you have a Windows, Mac or Linux based machine, you will be fine.
 
-You can use any IDE/Text editor you wish to write your bot. Depending on what language you wish to code in you might need to download some stuff. Make sure you have downloaded everything you need before the day of the event (save all your time to code!)
+You can use any IDE/Text editor you wish to write your bot in. Depending on what language you decide to code in you might need to download some stuff. Make sure you downloaded everything necessary before the day of the event (save all your time to code!)
 
 * Using C# ?
 
@@ -70,18 +70,18 @@ If you wish to experiment with a local server you can run a local copy of the ga
 
 7. Run your bot
 
-    7.1 For those who chose to code in C# and with VisualStudio2017, you can click the play button. Make sure     it is set to LHGames and not IIS Express. Also if yu want to reduce the number of comments in the         console, you can comment lines 39 and 40 of the Startup.cs file.
+    7.1 For those who chose to code in C# and with VisualStudio2017, you can click the play button. Make sure     it is set to LHGames and not IIS Express. Also if you want to reduce the number of logs in the         console, you can comment lines 39 and 40 of the Startup.cs file.
 		
 
-	7.2. If you are using any othe language or IDE, you can open a second terminal in the LHGames folder of your seed project and run the command "dotnet run".
+	7.2. If you are using any other language or IDE, you can open a second terminal in the LHGames folder of your seed project and follow the intructions inside your readme
 
 8. View the UI on localhost:4200
-9. Monitor your server logs in the console
-10. You will have other fake players running around to test actions on
-11. See "Activate Events" section to see how you can change phases thus activate differents events in the game 
+9. Monitor your server logs in the first console
+10. You will have other fake players running around to test actions on, your player name is "Player 1"
+11. See "Activate Events" section to see how you can change phases thus activate different events in the game 
 
 ### Activate Events
-Once you have started the project and have your bot running you can use these URLs to active certain events in the game. Simply paste them in your browser and press enter. A confirmation message should appear the page.
+Once you have started the project and have your bot running you can use these URLs to active certain events in the game. Simply paste them in your browser and press enter. A confirmation message should appear.
 
 | Event                            | URL                                                |
 | ---------------------------------| ---------------------------------------------------|
@@ -96,11 +96,11 @@ Once you have started the project and have your bot running you can use these UR
 
 You have many useful sections in your [dashboard] (https://dashboard.polyhx.io/). Here are the three most important sections:
 
-* **Profile - GitHub entry** : Please enter a valid GitHub account in this field. When the game starts, you will receive an invitation to a repository we will have created for you. The invitation will be sent to your email (the one associated with your GitHub account). In this repository you will have your seed project for the language you choose.
+* **Profile - GitHub entry** : Please enter a valid GitHub account in this field. When the game starts, you will receive an invitation to an already created repository. This invite will be sent to your email (the one associated with your GitHub account). In this repository you will have your chosen language seed project.
 
 * **Team Setup** : Here is where you select the language in which you want to code for the day.
 
-* **Team Deployment** : In this page you can view logs regarding the Build, Deployment and Run of your team. Therefore, if you think you have a problem with your code, build deployment and such, please look at this section before asking an organizer.
+* **Team Deployment** : In this page you can view logs regarding the Build, Deployment and Run of your team. Therefore, if you think you have a problem with your code, build, deployment and such, please look at this section before asking an organizer.
 
 To see the logs, you must click on a step. This step should expand and you should see logs in a short amount of time.
 We will automatically make a push in your repository as we launch the game. If you do not see any "Build" then "Deployment" then "Run" section as the game starts, you may have a problem.
@@ -123,7 +123,7 @@ We will automatically make a push in your repository as we launch the game. If y
 
 <aside class="notice">
     Here is a tip!
-    If you write to standard output in your code, they will be displayed in the Run section of Team Deployment. This could help you in figuring out if an action you requested actually occured.
+    If you write to standard output in your code, this will be displayed in the Run section of Team Deployment. This could help you in figuring out if an action you requested actually occured.
 </aside>
 
 # What not to do
@@ -132,7 +132,7 @@ Do NOT change any Jenkins, Docker files or any other file with the comment "Do n
 **FULL DISCLAIMER**
 
 If you try to sabotage another team, you will be kicked out of the event. We understand that some of you want to test your hackerman skills, just don't -
-If you are cought trying to sabotage another team you will be automatically disqualified from the competition and any other event organized by PolyHx for the following year.
+If you are caught trying to sabotage another team you will be automatically disqualified from the competition and any other event organized by PolyHx for the following year.
 Let's have fun but not at the expense of others.
 
 <aside class="warning">
@@ -169,7 +169,7 @@ In short you will want to read up on the clone, status, add, commit, checkout an
 
 ### Simple chain of events rundown
 To put it shortly, here is the chain of events you need to do to have your bot up and running on our server.
-First, make sure you clone the repository we invited you to. In this repository, code your bot in the **Bot** class. When you are ready to see what it looks like, make a push on the master branch. We will build, deploy and run the code you pushed. You can see all those steps and their logs on your dashboard, in the team deployment section. If your build failed you should push some new code as soon a possible because your bot will be idle during this time. On the other hand, if all goes well, you should see your bot interact in the manner you coded. We will provide the link to the front end part of the game at a later time, but rest assured, you will be able to see your player move around, gather resources, etc.
+First, make sure you clone the repository we invited you to. In this repository, code your bot in the **Bot** class. When you are ready to see what it looks like, make a push on the master branch. We will build, deploy and run the code you pushed. You can see all those steps and their logs on your dashboard, in the team deployment section. If your build failed you should push some new code as soon a possible because your bot will be idle during this time. On the other hand, if all goes well, you should see your bot interact in the manner you coded. We will provide the link to the front end part of the game at a later time, but stay assured, you will be able to see your player move around, gather resources, etc.
 
 # Goal of the Game
 
@@ -212,10 +212,10 @@ To regain health, you can buy potions from the stores. You can carry up to 10 he
 
 All the items are the same price (except the health potion of course) at 30000 minerals. These items give a big increase in that state for a lower price than what the upgrades cost. However, you will need to find your way to one of the shops to buy them.
 # Combat
-Players can execute melee attacks (close physical encounter). An attack deals damage based on the characters's attack, his items and the other character's defence and his items. Killing an enemy grants a number of points that depends on each's player position on the leaderboard (between 2000 and 10000) and the number of times the enemy was killed in a row. 
+Players can execute melee attacks (close physical encounter). An attack deals damage based on the fighter's attack and the other fighter's defence and their respective items. Killing an enemy grants a number of points that depends on each's player position on the leaderboard (between 2000 and 10000) and the number of times the enemy was killed in a row. 
 
 # Game Phases
-There are four phases in the game, everyone starts at phase I. We will announced during the day when we move from phase to phase.
+There are four phases in the game, everyone starts at phase I. We will be announcing during the day when we switch phases.
 
 ### Phase I - Your Kingdom
 Players spawn in their own "Kingdom" which is isolated from everyone else in the game. This allows players to develop resource gathering and pathfinding. Players should also plan for future phases of the game by determining their strategy and adapting their upgrades accordingly. 
@@ -552,7 +552,7 @@ Killing an enemy grants a number of points that depends on each's player positio
 
 If you kill someone within 3 ranks of you, you will get 5000 points.
 
-If you kill the same player multiple times in a row, the number of points you receive will be divided by the number of times you killed him. To reset this counter, you need to die or a different player. When you respawn, you cannot suffer any damage for 5 turns, so don't try to spawn kill other players!
+If you kill the same player multiple times in a row, the number of points you receive will be divided by the number of times you killed him. To reset this counter, you need to die or kill a different player. When you respawn, you cannot suffer any damage for 5 turns, so don't try to spawn kill other players!
 
 For example:
 
@@ -692,8 +692,6 @@ write("a_key", "some_data")
  // When calling load() or save() it will only provide the data you specified
 ```
 
-You have the ability to save information in the local storage of your browser. If you don't know what that is,you can read up on it [here] (https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage).
+You have the ability to save information in the local storage of your browser. If you don't know what that is, you can read up on it [here] (https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage).
 
-This could be useful if you want to record a state/data and retrieve it later.
-
- 
+This could be useful if you want to record a state/data and retrieve it later. Remember that everything stored in RAM will be overwritten after you push a new version of your bot.
