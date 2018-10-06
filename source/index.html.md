@@ -1,10 +1,11 @@
 ---
 title: API Reference
 
-language_tabs: # must be one of https://git.io/vQNgJ
+language_tabs: 
   - csharp : C#
   - python : Python
   - typescript : Typescript
+  - java : Java
 
 toc_footers:
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
@@ -14,7 +15,7 @@ search: true
 
 # Introduction
 Welcome to the LHGames API resource page! You can use this document to understand the different functions in the AIHelper class provided in your seed project. We have 5 different languages you can use to code your bot ; all of them are present in this documentation.
-We have language bindings in CSharp, Python and TypeScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+We have language bindings in CSharp, Python, TypeScript and Java! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 # Required specs
 The game server runs on .NET CORE 2.1 which is multi-platform. In short whether you have a Windows, Mac or Linux based machine, you will be fine.
@@ -35,6 +36,10 @@ You can use any IDE/Text editor you wish to write your bot. Depending on what la
     Have TypeScript ^2.4.2 downloaded [TypeScript] (https://www.typescriptlang.org/index.html#download-links)
 
     Have NodeJs 8.12.0 [NodeJs] (https://nodejs.org/dist/v8.12.0/node-v8.12.0-x64.msi)
+
+* Using Java ?
+
+    Have Java 1.8.0 downloaded [Java] (https://www.java.com/fr/download/manual.jsp#win)
     
 # Testing Locally
 If you wish to experiment with a local server you can run a local copy of the game on your machine.
@@ -71,6 +76,10 @@ We will automatically make a push in your repository as we launch the game. If y
 ```python
     print("This will be visible from the dashboard.")
 ```
+
+ ```java
+     System.out.println("This will be visible from the dashboard.");
+ ```
 
 <aside class="notice">
     Here is a tip!
@@ -148,7 +157,7 @@ Keep in mind that when we say "adjacent to a tile" we mean that your player must
 ## Health
 If your health falls to 0 or below, you die. When you die, the minerals you were carrying are awarded to the player who killed you, or dropped if the killer doesn't have enough room to carry them.
 
-To regain health, you can buy potions from the stores. You can carry up to 10 health potions. Each potion you drink regenerates 5HP. When you die you will automatically respawn in your house.
+To regain health, you can buy potions from the stores. You can carry up to 10 health potions. Each potion you drink regenerates 5HP. When you die you will automatically respawn in your house. Your player starts with a maximum of 10HP.
 
 ## Items
 
@@ -236,6 +245,12 @@ def execute_turn(self, gameMap, visiblePlayers):
     return create_move_action(Point(1, 0))
 ```
 
+ ```java
+ public IAction getAction(Player player, Map map) {
+         return createMoveAction(Point.RIGHT);
+ }
+ ```
+
 This action is the most basic of all. When a move action is attempted, the destination tile must be adjacent and empty. If another player is standing on that tile, the action will fail. Players cannot step on walls. A player can walk on lava but will suffer heavy damage. You can only move a single tile per turn (X+/-, Y+/-). The origin of the map (0,0) is located in the **top left corner**.
 
 In such, to go :
@@ -278,6 +293,12 @@ def execute_turn(self, gameMap, visiblePlayers):
     return create_collect_action(Point(1, 0))
 ```
 
+ ```java
+ public IAction getAction(Player player, Map map) {
+         return createCollectAction(new Point(0, 1));
+ }
+ ```
+
 This action is to collect resources at a particular location. You may for example collect minerals on the ground after another player's death. To collect resources, a player must be adjacent to the resource. The amount of resources collected each turn is determined by a player's collecting speed upgrades, his items and the density of the resource patch. A player cannot carry more than his *Carrying capacity* allows. When his inventory is full, he needs to visit his home to deposit his resources. Resources are automatically deposited when a player steps on his house tile.
 
 
@@ -305,6 +326,12 @@ public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
 def execute_turn(self, gameMap, visiblePlayers):
     return create_heal_action()
 ```
+
+ ```java
+ public IAction getAction(Player player, Map map) {
+         return createHealAction();
+ }    
+ ```
 
 This action heals your player. A healing potion increases your player's health by 5HP per potion. You must have at least one HealhPotion for this action to execute.
 
@@ -340,6 +367,15 @@ The player needs to be adjacent to a tile shop and have enough currency to buy t
 def execute_turn(self, gameMap, visiblePlayers):
     return create_purchase_action(PurchasableItem.Shield)
 ```
+
+ ```java
+ 
+ // In this example, your player will purchase an item, a shield.
+ // The player needs to be adjacent to a tile shop and have enough currency to buy the item.
+ public IAction getAction(Player player, Map map) {
+     return createPurchaseAction(Item.SHIELD);
+ }
+ ```
 
 You can visit shops in the game. They are located randomly in the map. To buy from a shop you must be adjacent to it. You must also have enough minerals to buy the item. Minerals that you are carrying are used first, then the ones in your house are collected.
 
@@ -396,6 +432,15 @@ def execute_turn(self, gameMap, visiblePlayers):
     return create_upgrade_action(UpgradeType.CarryingCapacity)
 ```
 
+ ```java
+ 
+ // In this example, your player will upgrade his carrying capacity level
+ 
+ public IAction getAction(Player player, Map map) {
+     return createUpgradeAction(Upgrade.CARRYING_CAPACITY);
+ }
+ ```
+
 To purchase an upgrade, the player must be in his house. Resources that you are carrying are used first, then the ones stored in your house. If you do not have enough resources, the upgrade will fail. All upgrades have 5 levels that can be purchased.
 
 | Level | Health  | Attack 	| Defence   | Collecting speed  | Carrying capacity     |
@@ -444,6 +489,14 @@ public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
 def execute_turn(self, gameMap, visiblePlayers):
     return create_attack_action(Point(1, 0))
 ```
+
+ ```java
+ // In this example, your player will attack someone or something at x+1 where x is his position.
+ 
+ public IAction getAction(Player player, Map map) {
+     return createMeleeAttackAction(Point.RIGHT);
+ }
+ ```
 
 | Parameter | Type  | Description                                |
 | --------- | ----- | ------------------------------------------ |
@@ -528,6 +581,14 @@ public executeTurn(map: Map, visiblePlayers: IPlayer[]): string {
 def execute_turn(self, gameMap, visiblePlayers):
     return create_steal_action(Point(0,1)):
 ```
+ 
+ ```java
+ // In this example, your player will steal on the adjacent tile to his right
+ 
+ public IAction getAction(Player player, Map map) {
+     return createStealAction(Point.RIGHT);
+ }
+ ```
 
 To steal from another player, you must be on a tile adjacent to their house. Stealing quantity scales with collecting speed.
 
