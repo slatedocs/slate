@@ -43,14 +43,54 @@ You can use any IDE/Text editor you wish to write your bot. Depending on what la
     
 # Testing Locally
 If you wish to experiment with a local server you can run a local copy of the game on your machine.
-We will provide instructions on that later on.
 
-Once you have started the project and have your bot running you can use these URLs to active certain events in the game:
+* You have **Linux AND Docker** ? 
 
-* Walls are breakable: http://localhost:4000/api/game/wallsAreBreakable
-* Make obstacles appear at random: http://localhost:4000/api/game/toggleWalls
-* Activate lava : http://localhost:4000/api/game/activateLava
-* Make goblins appear at random: http://localhost:4000/api/game/toggleGoblins
+0. Have Docker and Docker-Compose on your machine
+1. Go in your seed project, at the same level as the docker and docker compose file
+2. Run the command : docker-compose up
+3. View the UI on localhost:4200
+4. Monitor your server logs in the console in which you ran the docker-compose up command
+5. You will have other fake players running around to test actions on
+6. See "Activate Events" section to see how you can change phases thus activate differents events in the game 
+
+* You **don't have Linux** and/or Docker ?
+
+1. Download and install .NetCore 2.0 or latest version [here] (https://www.microsoft.com/net/download)
+2. Download and install the latest version of NodeJs [here] (https://nodejs.org/dist/v8.12.0/node-v8.12.0-x64.msi)
+3. Open a terminal in the LHGames-UI folder
+4. Run the command "npm install"
+5. Run the command "npm install -g @angular/cli"
+6. Return in the folder one level up (cd..) and run the command
+
+	6.1 if you have WINDOWS: runServer.bat
+
+	6.2 if you have LINUX: runGameServerLinux.sh
+
+
+7. Run your bot
+
+    7.1 For those who chose to code in C# and with VisualStudio2017, you can click the play button. Make sure     it is set to LHGames and not IIS Express. Also if yu want to reduce the number of comments in the         console, you can comment lines 39 and 40 of the Startup.cs file.
+		
+
+	7.2. If you are using any othe language or IDE, you can open a second terminal in the LHGames folder of your seed project and run the command "dotnet run".
+
+8. View the UI on localhost:4200
+9. Monitor your server logs in the console
+10. You will have other fake players running around to test actions on
+11. See "Activate Events" section to see how you can change phases thus activate differents events in the game 
+
+### Activate Events
+Once you have started the project and have your bot running you can use these URLs to active certain events in the game. Simply paste them in your browser and press enter. A confirmation message should appear the page.
+
+| Event                            | URL                                                |
+| ---------------------------------| ---------------------------------------------------|
+| Walls are breakable              | http://localhost:4000/api/game/wallsAreBreakable   |
+| Make obstacles appear at random  | http://localhost:4000/api/game/toggleWalls         |
+| Activate lava                    | http://localhost:4000/api/game/activateLava        |
+| Make goblins appear at random    | http://localhost:4000/api/game/toggleGoblins       |
+| Pause game                       | http://localhost:4000/api/game/togglePause         |
+ 
 
 # Your Dashboard
 
@@ -103,7 +143,7 @@ If you try to sabotage another team, you will be kicked out of the event.
 # Your code
 Let's get started!
 
-You must write your code in the **Bot** class of your project seed. The functions you can call are all located in the AIHelper class and are explained in the Action section of this documentation.
+You must write your code in the **Bot** class of your project seed. The functions you can call are all located in Helper classes and are explained in the Action section of this documentation.
 
 ### Useful links
 
@@ -299,7 +339,9 @@ def execute_turn(self, gameMap, visiblePlayers):
  }
  ```
 
-This action is to collect resources at a particular location. You may for example collect minerals on the ground after another player's death. To collect resources, a player must be adjacent to the resource. The amount of resources collected each turn is determined by a player's collecting speed upgrades, his items and the density of the resource patch. A player cannot carry more than his *Carrying capacity* allows. When his inventory is full, he needs to visit his home to deposit his resources. Resources are automatically deposited when a player steps on his house tile.
+This action is to collect resources at a particular location. You may for example collect minerals on the ground after another player's death. To collect resources, a player must be adjacent to the resource. 
+
+For every action, you collect 100 resources. This amount improves when a player upgrades his collecting speed, his items and if a resource patch has a higher density. A player cannot carry more than his *Carrying capacity* allows. When his inventory is full, he needs to visit his home to deposit his resources. Resources are automatically deposited when a player steps on his house tile.
 
 
 | Parameter | Type  | Description                                                   |
@@ -504,17 +546,28 @@ def execute_turn(self, gameMap, visiblePlayers):
 
 To be able to attack a target, it must be within striking distance. If the target dies, the player responsible for the last hit is awarded the kill.
 
-Players can execute melee attacks. An attack deals damage based on the characters's attack, his items and the other character's defence and his items. Killing an enemy grants a number of points that depends on each's player position on the leaderboard. Killing a player that is better than you will give 1000 points per leaderboard position, with a minimum of 10000 points. Killing someone below you will give 10000 points - 500 points per position below you. The minimum amount of points you will receive for a kill is 2000.
+Players can execute melee attacks. An attack deals damage based on the characters's attack, his items and the other character's defence and his items.
 
-If you kill the same player multiple times in a row, the number of points you receive will be divided by the number of times you killed him.
+Killing an enemy grants a number of points that depends on each's player position on the leaderboard. Killing a player that is better than you will give 1000 points per leaderboard position. Killing someone below you will give 5000 points - 250 points per position below you. The minimum amount of points you will receive for a kill is 2000.
+
+If you kill someone within 3 ranks of you, you will get 5000 points.
+
+If you kill the same player multiple times in a row, the number of points you receive will be divided by the number of times you killed him. To reset this counter, you need to die or a different player. When you respawn, you cannot suffer any damage for 5 turns, so don't try to spawn kill other players!
 
 For example:
 
-1st player kills the last player: 1000 points.
-4th best player kills the 10th best player, he gets 4700 points.
-10th best player kills the 4th best player, he gets 6000 points.
+1st player kills the last player: 2000 points.
+5th best player kills the 10th best player, he gets 3750 points.
+10th best player kills the 5th best player, he gets 5000 points.
 25th player kills the 1st player, he gets 24 000 points!
+3rd player kills 5th player, he gets 5000 points!
+5th player kills 3rd player, he gets 5000 points!
+
 Damage is calculated with this formula:
+
+Let's say the first player kills the last player 3 times in a row, he will get 2000 points on the first kill, 1000 points on the second kill and 667 points on the third kill.
+
+Killing goblins will always give you 2000 points.
 
 Floor(3 + attacker's power + offensive items - 2 * (defender's defence + defensive items)^0.6 )
 
@@ -590,8 +643,57 @@ def execute_turn(self, gameMap, visiblePlayers):
  }
  ```
 
-To steal from another player, you must be on a tile adjacent to their house. Stealing quantity scales with collecting speed.
+To steal from another player, you must be on a tile adjacent to their house. 
+
+Stealing quantity scales with collecting speed, the base amount is 250 per action (which makes it a lot faster than collecting from resource tiles)
 
 | Parameter | Type  | Description                                              |
 | --------- | ----- | -------------------------------------------------------- |
 | position  | Point | The position where you want to steal from another player |
+
+## Storage
+>Store(key, data)
+
+```csharp
+//To Read from storage
+var data = StorageHelper.Read<TestClass>("Test");
+            Console.WriteLine(data?.Test);
+
+//To Write in storage
+StorageHelper.Write<TestClass>("aKey", new TestClass());
+```
+
+```typescript
+//To Read from storage
+let data = StorageHelper.read("aKey");
+console.log(data);
+
+//To Write in storage
+StorageHelper.write("aKey", "someData");
+```
+
+```python
+#To Read from storage
+data = read("key")
+
+#To Write in storage
+write("a_key", "some_data")
+```
+
+```java
+// You must enter all the fields you wish to save in the BotData.java file
+ 
+ //To Read from storage
+ load()
+
+//To Write in storage
+ save()
+
+ // When calling load() or save() it will only provide the data you specified
+```
+
+You have the ability to save information in the local storage of your browser. If you don't know what that is,you can read up on it [here] (https://developer.mozilla.org/fr/docs/Web/API/Window/localStorage).
+
+This could be useful if you want to record a state/data and retrieve it later.
+
+ 
