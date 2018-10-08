@@ -287,6 +287,8 @@ ID of member to whom the shift is to be assigned.
 
 `acknowledge` - set to `true` to acknowledge shift
 
+`no_notify` - set to `true` to disable notification
+
 `assignability_checks` - set to `false` to disable processing of Assignability parameters
 
 #### Assignability parameters
