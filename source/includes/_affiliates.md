@@ -2,7 +2,7 @@
 
 ## API access
 
-Once you become our affiliate we will send you TransferWise API access credentials: api_client_id & api_client_secret. 
+Once you become our affiliate we will send you TransferWise API access credentials: api_client_id & api_client_secret.
 You can then use these as username & password with **Basic Authentication** method.
 
 There are two endpoints [Exchange Rates.List](#exchange-rates-list) and [Get Temporary Quote](#quotes-get-temporary-quote) which you can call with this authentication method.
@@ -19,7 +19,7 @@ There are two endpoints [Exchange Rates.List](#exchange-rates-list) and [Get Tem
 
 ```shell
 curl -X GET "https://api.sandbox.transferwise.tech/v1/rates?source=EUR&target=USD" \
-     --user <your api client_id>:<your api client_secret> 
+     --user <your api client_id>:<your api client_secret>
 ```
 
 > Example Response:
@@ -37,10 +37,10 @@ curl -X GET "https://api.sandbox.transferwise.tech/v1/rates?source=EUR&target=US
 
 **`GET https://api.sandbox.transferwise.tech/v1/rates?source=EUR&target=USD`**
 
-TransferWise updates exchange rates in nearly real-time — at least once per minute. 
-This allows you to track and see the current mid-market exchange rate for any currency route. 
+TransferWise updates exchange rates in nearly real-time — at least once per minute.
+This allows you to track and see the current mid-market exchange rate for any currency route.
 
-See more at [Exchange Rates.List](#exchange-rates-list) 
+See more at [Exchange Rates.List](#exchange-rates-list)
 
 
 ## Get exchange rate history
@@ -49,7 +49,7 @@ See more at [Exchange Rates.List](#exchange-rates-list)
 
 ```shell
 curl -X GET "https://api.sandbox.transferwise.tech/v1/rates?source=EUR&target=USD&from=2018-08-15T00:00:00&to=2018-08-30T23:59:59&group=day" \
-     --user <your api client_id>:<your api client_secret> 
+     --user <your api client_id>:<your api client_secret>
 ```
 
 > Example Response:
@@ -76,7 +76,7 @@ curl -X GET "https://api.sandbox.transferwise.tech/v1/rates?source=EUR&target=US
 
 We expose up to 30 days exchange rate history via our API. This helps you to build an analysis page to show trends and implement an alerting system for your users.
 
-See more at [Exchange Rates.List](#exchange-rates-list) 
+See more at [Exchange Rates.List](#exchange-rates-list)
 
 
 
@@ -87,7 +87,7 @@ See more at [Exchange Rates.List](#exchange-rates-list)
 ```shell
 
 curl -X GET https://api.sandbox.transferwise.tech/v1/quotes?source=EUR&target=GBP&rateType=FIXED&targetAmount=600 \
-     --user <your api client_id>:<your api client_secret> 
+     --user <your api client_id>:<your api client_secret>
 ```
 
 > Example Response:
@@ -122,13 +122,13 @@ If we don't support a route then this endpoint will response with an error code 
 
 **How much does a transfer cost?**
 
-TansferWise fee is included in the response. 
+TransferWise fee is included in the response.
 
 **How long does my transfer take?**
 
-Estimated delivery time is included in the response. 
-This can vary quite a lot for different currency routes. For example transfers often only take a few hours from EUR to GBP, while sending money from USD can take 1-2 business days. 
+Estimated delivery time is included in the response.
+This can vary quite a lot for different currency routes. For example transfers often only take a few hours from EUR to GBP, while sending money from USD can take 1-2 business days.
 This endpoint allows you to find out the estimated delivery time for each currency route.
 
-See more at [Get Temporary Quote](#quotes-get-temporary-quote) 
+See more at [Get Temporary Quote](#quotes-get-temporary-quote)
 

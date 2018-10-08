@@ -1,24 +1,25 @@
-# Borderless Payouts Guide
-Welcome to TransferWise Payouts API documentation. 
-Before you jump into coding please take few moments to go through these 3 topics at first.
+# TransferWise Payouts Guide
+Welcome to the TransferWise Payouts API documentation.
+Before you start coding please take few moments to review the following topics
 
 
 ## Getting started
-### 1. Learn about TransferWise borderless account. 
-Borderless account features and pricing are best explained below.
+### 1. Learn about TransferWise.
+TransferWise and its borderless account features and pricing are best explained below.
 
 [https://transferwise.com/gb/borderless/pricing](https://transferwise.com/gb/borderless/pricing)
 
 
-### 2. Signup for TransferWise borderless account and complete verification
-Get hands-on experience as it will help you understand how our payment flow works. 
-Just follow these four steps. 
+### 2. Sign up for your TransferWise borderless account and complete verification
+Using the product before integrating with our API will help you understand how our payment flow works.
+Just follow these four steps.
 
-* Sign up for TransferWise borderless account here [https://transferwise.com/gb/borderless](https://transferwise.com/gb/borderless). 
+* Sign up for your TransferWise borderless account [https://transferwise.com/gb/borderless](https://transferwise.com/gb/borderless).
 
-* Complete verification before you start technical integration and ensure that you’re compliant with our [Terms and Conditions](https://transferwise.com/terms-and-conditions) and [Acceptable Use Policy](https://transferwise.com/acceptable-use-policy-eea).
+* Complete verification – you need to do this before you start your technical integration. Also ensure you’re compliant with our [Terms and Conditions](https://transferwise.com/terms-and-conditions) and [Acceptable Use Policy](https://transferwise.com/acceptable-use-policy-eea).
 
-* Make a transfer — check [our video guide](https://transferwise.com/help/article/1779442/creating-a-transfer/video-guide-make-a-transfer) for a step-by-step instructions.
+
+* Make a transfer – check [our video guide](https://transferwise.com/help/article/1779442/creating-a-transfer/video-guide-make-a-transfer) for step-by-step instructions.
 
 * Verify that our coverage includes your currency route(s). Check [Supported Currencies](https://transferwise.com/help/article/1569835/basic-information/supported-currencies).
 
@@ -27,11 +28,14 @@ Just follow these four steps.
 
 ### 3. Choose the best tool for you
 
-There are two ways you can make a large number of payouts:
+You don’t necessarily need to integrate with the API to make a large number of payouts. We have two ways you can do it:
 
-* *Batch payments.* Prepare CSV file and upload this using our Batch Payments tool: [https://transferwise.com/batch](https://transferwise.com/batch)
+* *Batch payments.* Create and send up to 1,000 transfers with just one payment using our r Batch Payments tool.[https://transferwise.com/batch](https://transferwise.com/batch). All you need to do is fill a .CSV file with all the transfer details, upload it to TransferWise, and pay for the batch. No development effort needed.
 
-* *API integration.* Automate your payment process fully by sending payment orders via TransferWise API. 
+* *API integration.* Completely automate your payment process by sending payment orders via the TransferWise API.
+
+
+
 
 
 
@@ -42,11 +46,11 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/profiles \
 ```
 
 ### Authentication
-Signup for developer account to get API token for sandbox. [https://sandbox.transferwise.tech/register](https://sandbox.transferwise.tech/register)
+Sign up for a developer account and get your personal API token for our sandbox. [https://sandbox.transferwise.tech/register](https://sandbox.transferwise.tech/register)
 
 NB! Two factor authentication (2FA) code for sandbox login is 111111.
 
-Your developer account will have some test money so you can start making payments in same way as in LIVE environment.  You will find your API tokens in the Settings page. 
+Your developer account will have some test money that you can use to start making payments in same way as you would in a live environment. You get your API token in the Settings tab of your account page.
 
 Add your API token as header parameter to every request like this:
 
@@ -55,8 +59,8 @@ Add your API token as header parameter to every request like this:
 
 ### TEST and LIVE environments
 
-* Sandbox API is located at https://api.sandbox.transferwise.tech
-* LIVE API is located at https://api.transferwise.com
+* You can access the Sandbox API at https://api.sandbox.transferwise.tech
+* The LIVE API is located at https://api.transferwise.com
 
 
 ## Get your profile id
@@ -107,10 +111,11 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/profiles \
 ```
 
 You only need to call this endpoint once to obtain your user profile id.
-Your personal and business profiles have different IDs.  Profile id values are required when making payouts. 
+Your personal and business profiles have different IDs. Profile id values are required when making payouts.
 
-It is recommended to always provide profileId when you are creating new resources later (Create Quote, Create Recipient Account, Create Transfer). 
-If you omit profileId then resource will by default belong to your personal profile and this might not be your intention as you most probably want to execute transfers under your business profile.
+
+It’s recommended to always provide profileId when you’re creating new resources later (Create Quote, Create Recipient Account, Create Transfer).
+If you omit profileId then resource will by default belong to your personal profile. This might not be your intention, as you most probably want to execute transfers under your business profile.
 
 ### Request
 
@@ -165,7 +170,7 @@ details.webpage                 |  Webpage URL                                  
 curl -X POST https://api.sandbox.transferwise.tech/v1/quotes \
      -H "Authorization: Bearer <your api token>" \
      -H "Content-Type: application/json" \
-     -d '{ 
+     -d '{
           "profile": <your profile id>,
           "source": "EUR",
           "target": "GBP",
@@ -203,7 +208,7 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/quotes \
 
 ```
 
-There are four steps to execute payouts: 
+There are four steps to execute payouts:
 
 **Step 1: Create a quote**
 
@@ -214,7 +219,7 @@ Step 3: Create a transfer
 Step 4: Fund a transfer
 
 <br/>
-Quote fetches current mid-market exchange rate that will be used for your transfer. Quote also calculates our fee and estimated delivery time. 
+Quote fetches current mid-market exchange rate that will be used for your transfer. Quote also calculates our fee and estimated delivery time.
 
 
 ### Request
@@ -251,7 +256,7 @@ profile               | Personal or business profile id               | Integer
 rateType              | Always 'FIXED'                                | Text
 deliveryEstimate      | Estimated timestamp when recipient would receive funds, assuming transfer will be created now. | Timestamp
 fee                   | TransferWise fee in source currency for this payment (deducted from source amount).                   | Decimal
-allowedProfileTypes   | PERSONAL, BUSINESS or both. Specifies which legal entities can use this quote. There are few currency routes are where we dont support business customers yet. | Text
+allowedProfileTypes   | PERSONAL, BUSINESS or both. Specifies which legal entities can use this quote. There are a few currency routes that we don’t support for business customers yet. | Text
 guaranteedTargetAmount| Not relevant for fixed rate quotes. Please ignore. | Boolean
 ofSourceAmount        | Not relevant for fixed rate quotes. Please ignore. | Boolean
 
@@ -266,16 +271,16 @@ ofSourceAmount        | Not relevant for fixed rate quotes. Please ignore. | Boo
 curl -X POST https://api.sandbox.transferwise.tech/v1/accounts \
      -H "Authorization: Bearer <your api token>" \
      -H "Content-Type: application/json" \
-     -d '{ 
-          "currency": "GBP", 
-          "type": "sort_code", 
-          "profile": <your profile id>, 
+     -d '{
+          "currency": "GBP",
+          "type": "sort_code",
+          "profile": <your profile id>,
           "accountHolderName": "Ann Johnson",
           "legalType": "PRIVATE",
-           "details": { 
-              "sortCode": "231470", 
-              "accountNumber": "28821822" 
-           } 
+           "details": {
+              "sortCode": "231470",
+              "accountNumber": "28821822"
+           }
          }'
 
 ```
@@ -285,10 +290,10 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/accounts \
 ```json
 {
     "id": 31273058,
-    "profile": <your profile id>, 
+    "profile": <your profile id>,
     "accountHolderName": "Ann Johnson",
-    "type": "sort_code", 
-    "country": "GB", 
+    "type": "sort_code",
+    "country": "GB",
     "currency": "GBP",
     "details": {
         "accountNumber": "28821822",
@@ -298,7 +303,7 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/accounts \
 
 ```
 
-There are four steps to execute payouts: 
+There are four steps to execute payouts:
 
 Step 1: Create a quote
 
@@ -309,12 +314,12 @@ Step 3: Create a transfer
 Step 4: Fund a transfer
 
 <br/>
-Recipient is a person or institution  who is the ultimate beneficiary of your payment. 
+Recipient is a person or institution who is the ultimate beneficiary of your payment.
 
-Recipient bank account details are different for different currencies. For example you only need to know IBAN number to send payments to most European and Nordic countries. 
-But in order to send money to Canada you would need to know four fields: Institution No, Transit no, Account No & Account Type.
+Recipient bank account details are different for different currencies. For example, you only need to know the IBAN number to send payments to most European and Nordic countries.
+But in order to send money to Canada, you’d need to fill out four fields: You recipient’s institution number, transit number, account number, and account type.
 
-GBP example is provided here. You can find other currency examples in [Recipient Accounts](#recipient-accounts) section below.  
+A UK GBP example is provided here. You can find other currency examples in [Recipient Accounts](#recipient-accounts) section below.
 
 
 ### Request
@@ -345,20 +350,20 @@ acccountHolderName    | Recipient full name                           | Text
 currency              | 2 character country code                      | Text
 country               | 3 character currency code                     | Text
 type                  | Recipient type                                | Text
-details               | Currency specific fields   | Group 
+details               | Currency specific fields   | Group
 details.sortCode      | Recipient bank sort code (GBP example)        | Text
 details.accountNumber | Recipient bank account no (GBP example)       | Text
 
 
 ### Send money to email recipient
 
-If you don't know recipient bank account details you can set up **email recipient** so that TransferWise can collect bank details directly from the recipient. 
+If you don't know your recipient’s bank account details, you can still send money using their email address. You need to set up **email recipient** and then  TransferWise  will collect bank details directly from your recipient.
 
-TransferWise will then email your recipient with a link to collect their bank account details. 
-Once recipient provides bank account details to us we are able to complete your transfer.
+When you set up the transfer, we’ll email your recipient a secure link to collect their bank account details.
+Once your recipient provides their bank account details to us, we’re able to complete your transfer.
 
-So all you need to know is recipient name and email to send payment.
-See below under [Recipient Accounts.Create Email Recpients](#recipient-accounts-create-email-recipient) for more details.
+
+See below under [Recipient Accounts.Create Email Recipients](#recipient-accounts-create-email-recipient) for more details.
 
 
 ## Create transfer
@@ -370,15 +375,15 @@ See below under [Recipient Accounts.Create Email Recpients](#recipient-accounts-
 curl -X POST https://api.sandbox.transferwise.tech/v1/transfers \
      -H "Authorization: Bearer <your api token>" \
      -H "Content-Type: application/json" \
-     -d '{ 
-          "targetAccount": <recipient account id>,   
+     -d '{
+          "targetAccount": <recipient account id>,
           "quote": <quote id>,
           "customerTransactionId": "<the UUID you generated for the transfer attempt>",
           "details" : {
               "reference" : "to my friend",
               "transferPurpose": "verification.transfers.purpose.pay.bills",
               "sourceOfFunds": "verification.source.of.funds.other"
-            } 
+            }
          }'
 
 ```
@@ -411,7 +416,7 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/transfers \
 
 ```
 
-There are four steps to execute payouts: 
+There are four steps to execute payouts:
 
 Step 1: Create a quote
 
@@ -422,8 +427,7 @@ Step 2: Create a recipient account
 Step 4: Fund a transfer
 
 <br/>
-Transfer is a payout order to recipient account based on a quote. Once created then a transfer needs to be funded during next 5 working days. 
-In case not it will get automatically cancelled.  
+A transfer is a payout order you make to a recipient account based on a quote. Once created, a transfer will need to be funded within the next 5 working days, or it’ll automatically get cancelled.
 
 
 ### Request
@@ -435,20 +439,20 @@ Field                          | Description                                   |
 targetAccount                  | Recipient account id. You can create multiple transfers to same recipient account.   | Integer
 quote                          | Quote id. You can only create one transfer per one quote. <br/>You cannot use same quote ID to create multiple transfers. | Integer
 customerTransactionId     | This is required to perform idempotency check to avoid duplicate transfers in case of network failures or timeouts.                          | UUID
-details.reference (optional)    | Recipient will see this reference text in their bank statement. Maximum allowed characters depends on the currency route. [Business Payments Tips](https://transferwise.com/help/article/2348295/business/business-payment-tips) article has a full list. | Text
+details.reference (optional)    | Recipient will see this reference text in their bank statement. Maximum allowed characters depends on the currency route. Read the [Business Payments Tips](https://transferwise.com/help/article/2348295/business/business-payment-tips) article for more information. | Text
 details.transferPurpose (conditionally required)| For example when target currency is THB. See more about conditions at [Transfers.Requirements](#transfers-requirements)  | Text
 details.sourceOfFunds (conditionally required) | For example when target currency is USD and transfer amount exceeds 10k. See more about conditions at [Transfers.Requirements](#transfers-requirements) | Text
 
 There are two options to deal with conditionally required fields: <br/>
 <ul>
  <li>Always provide values for these fields</li>
- <li>Always call transfers-requirements endpoint and submit values only if indicated so.</li>
+ <li>Always call transfers-requirements endpoint and submit values only if indicated so</li>
 </ul>
 
 
 ### Response
 
-You need to save transfer id for tracking its status later.
+You need to save the transfer id for tracking its status later.
 
 Field                     | Description                                   | Format
 ---------                 | -------                                       | -----------
@@ -460,22 +464,22 @@ quote                     | Quote id                                      | Inte
 status                    | Transfer current status | Text
 reference                 | Deprecated, use details.reference instead     | Text
 rate                      | Exchange rate value                           | Decimal
-created                   | Timestamp when transfer was created | Timestamp 
-business                  | Your business profile id                     | 
+created                   | Timestamp when transfer was created | Timestamp
+business                  | Your business profile id                     |
 transferRequest           | Not used   | Integer
 details.reference         | Payment reference text        | Text
-hasActiveIssues           | Are there any pending issues which stop executing the transfer?  | Boolean 
+hasActiveIssues           | Are there any pending issues which stop executing the transfer?  | Boolean
 sourceCurrency            | Source currency code   | Text
 sourceValue               | Transfer amount in source currency   |  Decimal
 targetCurrency            | Target currency code  | Text
 targetValue               | Transfer amount in target currency   | Decimal
-customerTransactionId     | UUID format unique identifier assinged by customer. Used for idempotency check purposes.  | UUID 
+customerTransactionId     | UUID format unique identifier assigned by customer. Used for idempotency check purposes.  | UUID
 
 
 ### Avoiding duplicate transfers
-We use **customerTransactionId** field to avoid duplicate transfer requests. 
-When your first call fails (error or timeout) then you should use the same value in **customerTransactionId** field that you used in the original call when you are submitting a retry message. 
-This way we can treat subsequent retry messages as **repeat messages** and will not create duplicate transfers to your account. 
+We use **customerTransactionId** field to avoid duplicate transfer requests.
+When your first call fails (error or timeout) then you should use the same value in **customerTransactionId** field that you used in the original call when you are submitting a retry message.
+This way we can treat subsequent retry messages as **repeat messages** and will not create duplicate transfers to your account.
 
 
 
@@ -488,8 +492,8 @@ This way we can treat subsequent retry messages as **repeat messages** and will 
 curl -X POST https://api.sandbox.transferwise.tech/v1/transfers/{transferId}/payments \
      -H "Authorization: Bearer <your api token>" \
      -H "Content-Type: application/json" \
-     -d '{ 
-          "type": "BALANCE"   
+     -d '{
+          "type": "BALANCE"
          }'
 
 ```
@@ -505,7 +509,7 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/transfers/{transferId}/pay
 
 ```
 
-There are four steps to execute payouts: 
+There are four steps to execute payouts:
 
 Step 1: Create a quote
 
@@ -516,19 +520,20 @@ Step 3: Create a transfer
 **Step 4: Fund a transfer**
 
 <br/>
-This API call is the final step for executing payouts. TransferWise will now debit funds from your borderless balance and start processing your transfer. 
+This API call is the final step for executing payouts. TransferWise will now debit funds from your borderless account balance and start processing your transfer.
 If your borderless balance is short of funds then this call will fail with "insufficient funds" error.
 
-Initial developer account has by default plentiful funds available for EUR, USD, GBP and AUD.  
-You can add new currencies to your account via user interface: [https://sandbox.transferwise.tech](https://sandbox.transferwise.tech)
+Initial developer account has by default plentiful funds available for EUR, USD, GBP, and AUD.
+You can add new currencies to your account via the user interface: [https://sandbox.transferwise.tech](https://sandbox.transferwise.tech)
 
-And then you can topup your new currencies by converting funds from other currencies.
+
+You can then top up your new currencies by converting funds from other currencies.
 
 ### Request
 
 **`POST https://api.sandbox.transferwise.tech/v1/transfers/{transferId}/payments`**
 
-Use transfer id that you obtained in previous step. 
+Use transfer id that you obtained in previous step.
 
 Field                          | Description                                   | Format
 ---------                      | -------                                       | -----------
@@ -548,14 +553,14 @@ errorCode             | Failure reason. For example "balance.payment-option-unav
 
 
 
-## Get transfer delivery time 
+## Get transfer delivery time
 
 > Example Request:
 
 ```shell
 
 curl -X GET https://api.sandbox.transferwise.tech/v1/delivery-estimates/{transferId} \
-     -H "Authorization: Bearer <your api token>" 
+     -H "Authorization: Bearer <your api token>"
 ```
 
 > Example Response:
@@ -567,9 +572,9 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/delivery-estimates/{transfe
 
 ```
 
-Get the live delivery estimate for a transfer by the transfer ID. 
-The delivery estimate is the time at which we currently expect the transfer to arrive in the benificiary's bank account. 
-This is not a guaranteed time but we are working hard to make these estimates as accurate as possible.
+Get the live delivery estimate for a transfer by the transfer ID.
+The delivery estimate is the time at which we currently expect the transfer to arrive in the beneficiary's bank account.
+This is not a guaranteed time, but we’re working hard to make these estimates as accurate as possible.
 
 
 ### Request
@@ -579,7 +584,7 @@ This is not a guaranteed time but we are working hard to make these estimates as
 
 ### Response
 
-You need to save transfer id for tracking its status later.
+You need to save the transfer id to track its status later.
 
 Field                     | Description             | Format
 ---------                 | -------                 | -----------
@@ -592,7 +597,7 @@ estimatedDeliveryDate     | Estimated time when funds will arrive to recipient's
 ```shell
 
 curl -X GET https://api.sandbox.transferwise.tech/v1/transfers/{transferId} \
-     -H "Authorization: Bearer <your api token>" 
+     -H "Authorization: Bearer <your api token>"
 ```
 
 > Example Response:
@@ -626,40 +631,40 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/transfers/{transferId} \
 
 
 
-You can check transfer latest status by polling this endpoint. We are building webhook notification support to notify about status changes, but unfortunately this is not available yet. Normal state flow of transfers: 
+You can check your latest transfer status by polling this endpoint. We’re building webhook notification support us notifying about status changes, but unfortunately this isn’t available yet. Normal state flow of transfers:
 
 **Incoming Payment Waiting ⇒ Processing ⇒ Funds Converted ⇒ Outgoing Payment Sent**
 
-Outgoing Payment Sent is the final state of normal flow. Should the payment fail then the problematic flow continues. For example, if recipient bank account does not exist and payment is returned. Problematic state flow of transfers: 
+Outgoing Payment Sent is the final state of the normal flow. If the payment fails, the problematic flow will continue. An example would be if the recipient bank account doesn’t exist or is entered wrong and the payment is returned. Problematic state flow of transfers:
 
 **Outgoing Payment Sent ⇒ Bounced Back ⇒ Funds Refunded**
 
-Most bounce backs occur within 2-3 business days. However, to be on safe side, we advise to check transfer status for potential bounce backs for 2 weeks.
+Most bounce backs occur within 2-3 business days. However, to be on the safe side, we advise you to check the transfer status for potential bounce backs for 2 weeks.
 
 
 <br/>
 
-Full list of transfer statuses in the order of their occurence is given below:
+See below for the full list of transfer statuses and what they mean in the order of occurrence:
 
-* **incoming_payment_waiting** — You have submitted transfer and transfer is waiting for funding.
+* **incoming_payment_waiting** –You have submitted a transfer and it’s waiting for funding.
 
-* **waiting_recipient_input_to_proceed** — This status is only used for “send money to email” transfers, when we are waiting for your recipient to fill in their bank details so we can continue processing your transfer.
+* **waiting_recipient_input_to_proceed** – This status is only used for “send money to email” transfers. It means we’re waiting for your recipient to fill in their bank details so we can continue processing your transfer.
 
-* **processing** — Your funds have been received and your transfer is being processed by TransferWise. Processing is a generic term that includes our behind-the-scene activities like AML, compliance and fraud checks.
+* **processing** – We have receive your funds and are processing the transfer. Processing is a generic term and means we’re doing behind-the-scene activities before the money gets to your recipient, like AML, compliance, and fraud checks.
 
-* **funds_converted** — All compliance checks have been completed with your transfer and funds have been converted from source currency to target currency.
+* **funds_converted** – All compliance checks have been completed with your transfer and funds have been converted from source (your) currency to target (your recipient’s) currency.
 
-* **outgoing_payment_sent** — TransferWise has paid out funds to your recipient. This is final state of transfer, assuming funds are not returned. When a transfer has this state it does not immediately mean your recipient already has funds available in their bank account. 
-Payment systems in different countries operate in different speeds and frequency. For example, in UK the payment will reach your recipient bank account within few minutes after we have sent the outgoing payment. However, in Eurozone and US, it usually takes one day until funds are available.
+* **outgoing_payment_sent** – This means TransferWise has paid out funds to your recipient. This is the final state of the transfer, assuming funds will not be returned. When a transfer has this state it doesn’t mean the money has arrived in your recipient’s bank account.
+Note: Payment systems in different countries operate in different speeds and frequency. For example, in the UK, the payment will reach your recipient bank account within few minutes after we have sent the outgoing payment. However, in Eurozone and US, it usually takes a day until funds are available.
 
-* **cancelled** — This status is used when transfer you created was not funded and therefore never processed. Final state of transfer.
+* **cancelled** – This status is used when the transfer you created was not funded and therefore never processed. This is a final state of the transfer.
 
-* **funds_refunded** — Transfer has been refunded. Final state of transfer.
+* **funds_refunded** – Transfer has been refunded. This is a final final state of the transfer.
 
-* **bounced_back** — Transfer has bounced back but has not been cancelled nor refunded yet.
+* **bounced_back** –Transfer has bounced back but has not been cancelled nor refunded yet.
 
-Transfer statuses in API have different names than what you will see in our website. This is because we have transformed our API transfer statuses to more human readable texts in our website. 
-For example "Completed" in our website corresponds to "outgoing_payment_sent" in API.
+Keep in mind the transfer statuses in our API have different names than what you\ll see on our website or app. That’s because we use more  consumer friendly language in the front end of our products.
+For example "Completed" on our website means "outgoing_payment_sent" in the API.
 
 
 <br/><br/>
@@ -667,7 +672,7 @@ For example "Completed" in our website corresponds to "outgoing_payment_sent" in
 
 We don't send out email notifications about payment status changes in sandbox.
 
-We don't process payments in sandbox which means that created payments remain in their first state. You can use [Simulation](#simulation) endpoints to change transfer statuses in sandbox.
+We don't process payments in sandbox, which means that created payments remain in their first state. You can use [Simulation](#simulation) endpoints to change transfer statuses in sandbox.
 
 
 
@@ -679,7 +684,7 @@ We don't process payments in sandbox which means that created payments remain in
 ```shell
 
 curl -X GET https://api.sandbox.transferwise.tech/v1/borderless-accounts?profileId={profileId} \
-     -H "Authorization: Bearer <your api token>" 
+     -H "Authorization: Bearer <your api token>"
 ```
 
 > Example Response:
@@ -734,7 +739,7 @@ Get available balances for all activated currencies in your borderless account.
 
 **`GET https://api.sandbox.transferwise.tech/v1/borderless-accounts?profileId={profileId}`**
 
-Use profile id obtained earlier to make this call. 
+Use profile id obtained earlier to make this call.
 
 
 
@@ -744,9 +749,9 @@ Field                             | Description                                 
 ---------                         | -------                                       | -----------
 id                                | borderlessAccountId                         | Integer
 profileId                         | Personal or business profile id               | Integer
-recipientId                       | Recipient id you can use for borderless topup payment order  | Integer
+recipientId                       | Recipient id you can use for borderless top up payment order  | Integer
 creationTime                      | Date when balance account was opened                     | Timestamp
-modificationTime                  | Date when balance account setup was modified.            | Timestamp
+modificationTime                  | Date when balance account setup was modified            | Timestamp
 active                            | Is borderless account active or inactive       | Boolean
 eligible                          | Ignore                                         | Boolean
 balances[n].balanceType              | AVAILABLE                                     | Text
@@ -766,7 +771,7 @@ balances[n].bankDetails              | Your borderless account bank details     
 
 curl -X GET https://api.sandbox.transferwise.tech/v1/borderless-accounts/{borderlessAccountId}/statement.json?
 currency=EUR&intervalStart=2018-03-01T00:00:00.000Z&intervalEnd=2018-03-15T23:59:59.999Z \
-     -H "Authorization: Bearer <your api token>" 
+     -H "Authorization: Bearer <your api token>"
 ```
 
 > Example Response:
@@ -911,7 +916,7 @@ currency=EUR&intervalStart=2018-03-01T00:00:00.000Z&intervalEnd=2018-03-15T23:59
 }
 ```
 
-Get borderless account statement for one currency and for specified time range. 
+Get borderless account statement for one currency and for specified time range.
 The period between intervalStart and intervalEnd cannot exceed 3 months.
 
 ### Request
@@ -926,8 +931,8 @@ Field                             | Description                                 
 ---------                         | -------                                       | -----------
 borderlessAccountId                   | Your borderlessAccountId is included in "Check account balance" response as field "id".                        | Integer
 currency                              | Currency code              | Text
-intervalStart                         | Statement start time in UTC time             | Zulu time. Don't forget the 'Z' at the end. 
-intervalEnd                           | Statement start time in UTC time             | Zulu time. Don't forget the 'Z' at the end. 
+intervalStart                         | Statement start time in UTC time             | Zulu time. Don't forget the 'Z' at the end.
+intervalEnd                           | Statement start time in UTC time             | Zulu time. Don't forget the 'Z' at the end.
 
 Note that you can also download statements in PDF and CSV formats if you replace statement.json with statement.csv or statement.pdf respectively in the above URL.
 
@@ -938,7 +943,7 @@ Field                             | Description                                 
 accountHolder.type                      | Account holder type: PERSONAL or BUSINESS                        | Text
 accountHolder.address.addressFirstLine  | Account holder address street          | Text
 accountHolder.address.city              | Account holder address city          | Text
-accountHolder.address.postCode          | Account holder address zipc ode | Text
+accountHolder.address.postCode          | Account holder address zip code | Text
 accountHolder.address.stateCode         | Account holder address state | Text
 accountHolder.address.countryName       | Account holder address country | Text
 accountHolder.firstName                 | Account holder first name | Text
@@ -973,7 +978,7 @@ transactions[n].details.paymentReference                 | Deposit payment refer
 transactions[n].details.category             |  Card transaction category                 | Text
 transactions[n].details.merchant.name             |  Card transaction merchant name                 | Text
 transactions[n].details.merchant.firstLine             |  Merchant address street          | Text
-transactions[n].details.merchant.postCode             |  Merchant address zipcode                 | Text
+transactions[n].details.merchant.postCode             |  Merchant address zip code                 | Text
 transactions[n].details.merchant.city             | Merchant address city                 | Text
 transactions[n].details.merchant.state             | Merchant address state              | Text
 transactions[n].details.merchant.country            | Merchant address country                 | Text
@@ -994,8 +999,8 @@ query.accountId                | Query parameter repeated         | Integer
 ## Going live checklist
 
 ### 1. Make your integration bulletproof
-  * Implement basic retry mechanism to handle potential failures or network interruptions 
-  * Implement duplicate prevention mechanism to avoid duplicate payments. Verify that UUID is uniquely generated for each individual payment and its value is kept same in case of retrying.
+  * Implement basic retry mechanism to handle potential failures or network interruptions
+  * Implement duplicate prevention mechanism to avoid duplicate payments. Verify that UUID is uniquely generated for each individual payment and its value is kept the same in case of retrying.
   * Implement basic logging to help out in debugging and problem solving, if needed.
   * Check that you can handle all possible transfer states during polling of transfer info.
   * Automatically check available balance before submitting requests to fund your transfers. This avoids rejections due to insufficient balance.
@@ -1003,13 +1008,14 @@ query.accountId                | Query parameter repeated         | Integer
 
 
 ### 2. Open LIVE account
-  * Sign up for Transferwise borderless account and go through on-boarding flow including 2FA setup.
+  * Sign up for your TransferWise account and go through onboarding flow including 2FA setup.Make sure your borderless account is activated.
 
-### 3. Setup security for LIVE environment
-  * Obtain your live API token from Settings page. 
-  * Store your live API token securely in your production servers so that only authorized persons have access to it. 
-  
+
+### 3. Set up security for LIVE environment
+  * Get your live API token from Settings page.
+  * Store your live API token securely in your production servers so that only authorized members of your team have access to it.
+
 ### 4. Do penny testing in LIVE
-  * Make a small deposit to your borderless account. 
-  * Make few small value test payments via LIVE API before you start executing large number of transfers.
+  * Make a small deposit to your borderless account.
+  * Make few small value test payments via LIVE API before you start executing larger transfers.
   * All set. Switch it on.
