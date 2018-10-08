@@ -1,4 +1,4 @@
-# Wallets
+# Subscriber Wallets
 
 ##  POST subscriber wallet token
 
@@ -43,8 +43,17 @@ $ curl -H "X-SUBAUTH: <auth-token>" http://www.accesstype.com/api/v1/subscribers
 ```
 ```shell--response
 {
-  "subscriber_wallets": ["paytm", "simpl"]
-}
+  "subscriber_wallets": [{
+    "provider": "paytm_auto_debit",
+    "metadata": {
+      "exprires_at": "1517922233955"
+      }
+    },
+    {
+    "provider": "simpl",
+    "metadata": {}
+    }]
+  }
 ```
 This API call returns all the wallet tokens of a subscriber.
 
