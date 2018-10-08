@@ -186,59 +186,67 @@ In the event of maintenance or service interruption, we will refund any remainin
 
 Field | Type | Exchanges Supported
 ------ | ------ | --------
-eventTime | Long | 
-symbol | String |
-priceChange | BigDecimal |
-priceChangePerc |  BigDecimal |
-weightedAvePrice |  BigDecimal |
-prevClose | BigDecimal |
-close | BigDecimal |
-closeQuantity |  BigDecimal |
-bid| BigDecimal |           
-bidSize| BigDecimal |           
-ask| BigDecimal |            
-askSize| BigDecimal |          
-open | BigDecimal |
-high | BigDecimal |
-low | BigDecimal |
-volume | BigDecimal |
-quoteVolume | BigDecimal|
-statOpenTime | Long |
-statCloseTime | Long |
-firstTradeId | Long |
-totalTrades | Long |
-eventTime|  Long |                   
-bid | BigDecimal |
-bidSize | BigDecimal |
-ask | BigDecimal |
-askSize | BigDecimal |
-priceChange | BigDecimal |            
-priceChangePerc |  BigDecimal |        
-close | BigDecimal |             
-volume | BigDecimal |
-high | BigDecimal |
-low |  BigDecimal |
+<span style="color:red"> *eventTime* </span>| Integer | 
+<span style="color:red"> *symbol* </span> | String |
+<span style="color:red"> *priceChange* </span> | Double |
+<span style="color:red"> *priceChangePerc* </span> |  Double |
+<span style="color:red"> *weightedAvePrice* </span> |  Double |
+<span style="color:red"> *prevClose* </span> | Double |
+<span style="color:red"> *close* </span> | Double |
+<span style="color:red"> *closeQuantity* </span> |  Double |
+<span style="color:red"> *bid* </span> | Double |           
+<span style="color:red"> *bidSize* </span> | Double |           
+<span style="color:red"> *ask* </span> | Double |            
+<span style="color:red"> *askSize* </span> | Double |          
+<span style="color:red"> *open* </span> | Double |
+<span style="color:red"> *high* </span> | Double |
+<span style="color:red"> *low* </span> | Double |
+<span style="color:red"> *volume* </span> | Double |
+<span style="color:red"> *quoteVolume* </span> | Double|
+<span style="color:red"> *statOpenTime* </span> | Integer |
+<span style="color:red"> *statCloseTime* </span> | Integer |
+<span style="color:red"> *firstTradeId* </span> | Integer |
+<span style="color:red"> *totalTrades* </span> | Integer |
+<span style="color:red"> *eventTime* </span> |  Integer |                   
+<span style="color:red"> *bid* </span> | Double |
+<span style="color:red"> *bidSize* </span> | Double |
+<span style="color:red"> *ask* </span> | Double |
+<span style="color:red"> *askSize* </span> | Double |
+<span style="color:red"> *priceChange* |</span>  Double |            
+<span style="color:red"> *priceChangePerc* </span> |  Double |        
+<span style="color:red"> *close* </span> | Double |             
+<span style="color:red"> *volume* </span> | Double |
+<span style="color:red"> *high*  </span> | Double |
+<span style="color:red"> *low* </span> |  Double |
 
 ## Trades
 
-eventType: String,
-    eventTime: Long,
-    symbol: String,
-    tradeId: Long,
-    price: BigDecimal,
-    quantity: BigDecimal,
-    buyerId: Long,
-    sellerId: Long,
-    tradeTime: Long,
-    marketMaker: Boolean
-
-    id: Long,                  tradeId
-    timestamp: Long,           eventTime
-    amount: BigDecimal,        quantity
-    price: BigDecimal
+Field |  Type | Exchanges Supported 
+------ | ------- | -----------
+<span style="color:red"> eventType </span> | String | 
+<span style="color:red"> eventTime </span> | Integer |
+<span style="color:red"> symbol </span> | String |
+<span style="color:red"> tradeId </span> | Integer |
+<span style="color:red"> price </span> | Double |
+<span style="color:red"> quantity </span> | Double |
+<span style="color:red"> buyerId </span> | Integer |
+<span style="color:red"> sellerId </span> | Integer |
+<span style="color:red"> tradeTime </span> | Integer |
+<span style="color:red"> marketMaker </span> |  Boolean | 
+<span style="color:red"> tradeid </span> | Integer | 
+<span style="color:red"> eventTime </span> | Integer |         
+<span style="color:red"> quantity </span> | Double |       
+<span style="color:red"> price </span> | Double |
 
 ## Order Books
-Coming soon...
+
+Field | Type | Exchanges Supported
+------| -------| --------
+<span style="color:red"> eventTime </span> | Integer | 
+<span style="color:red"> symbol </span> |  String | 
+<span style="color:red"> orderId </span> |  Integer | 
+<span style="color:red"> price  </span>| Double |
+<span style="color:red"> quantity </span> | Double | 
 
 <h1 id="NFLData"> NFL Data</h1>
 
@@ -588,13 +596,23 @@ Field | Example
 
 ## Info
 
+Coming soon...
+
 ## Games
+
+Coming soon...
 
 ## Players
 
+Coming soon...
+
 ## Teams
 
+Coming soon...
+
 ## Stats 
+
+Coming soon...
 
 # Contact Us
 Follow us on twitter <a href="https://twitter.com/SuredBits">@Suredbits</a>
