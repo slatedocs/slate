@@ -5,7 +5,7 @@
 
 ```shell
 curl -X GET "https://api.sandbox.transferwise.tech/v1/simulation/transfers/{transferId}/processing" \
-     -H "Authorization: <your api token>"
+     -H "Authorization: Bearer <your api token>"
 ```
 
 > Example Response:

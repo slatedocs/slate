@@ -1905,7 +1905,7 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
 
 Send payments to Nepal. 
 
-Private and business recipients are supported. 
+Private recipients are supported. 
 
 Recipient type = *'nepal'*
 

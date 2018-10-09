@@ -4,7 +4,7 @@
 
 ```shell
 curl -X GET "https://api.sandbox.transferwise.tech/v1/rates?source=EUR&target=USD" \
-     -H "Authorization: <your api token>"
+     -H "Authorization: Bearer <your api token>"
 ```
 
 > Example Request (Basic authentication):
