@@ -485,7 +485,7 @@ Required. id of the account to remove from the sign up list (defaults to the cur
 
 ####external_member
 
-Required. external id of the account to remove from the sign up list (defaults to the current user)
+Required. external id of the account to remove from the sign up list (defaults to the current user). May be a single id or an array of ids.
 
 **NOTE:** If you are calling this method with the external_member parameter, member will be ignored (if included).
 
