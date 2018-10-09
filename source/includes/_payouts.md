@@ -35,10 +35,6 @@ You don’t necessarily need to integrate with the API to make a large number of
 * *API integration.* Completely automate your payment process by sending payment orders via the TransferWise API.
 
 
-
-
-
-
 ## API access
 ```shell
 curl -X GET https://api.sandbox.transferwise.tech/v1/profiles \
@@ -50,11 +46,23 @@ Sign up for a developer account and get your personal API token for our sandbox.
 
 NB! Two factor authentication (2FA) code for sandbox login is 111111.
 
-Your developer account will have some test money that you can use to start making payments in same way as you would in a live environment. You get your API token in the Settings tab of your account page.
+Your developer account will have some test money that you can use to start making payments in same way as you would in a live environment. 
 
 Add your API token as header parameter to every request like this:
 
 *Authorization: Bearer xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx*
+
+### Acquiring your API token
+You get your API token in the Settings tab of your account page.
+
+### Limiting token access by IP
+You can optionally specify a number of IP addresses or IP ranges which calls to the API will be limited to. 
+
+* IP address entries should use IPv4 format e.g. `192.168.100.14`.
+* IP ranges should use [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) e.g. 
+`192.168.100.0/24` which would include `192.168.100.0` up to `192.168.100.255`. 
+ 
+ HTTP status code 401 is returned if the request does not match any of the defined IP addresses or ranges.
 
 
 ### TEST and LIVE environments
