@@ -1,0 +1,26 @@
+# default
+# -------
+# always ensure the build is successful
+- name: default
+  type: serial
+  steps:
+    - name: build
+      service: build-test
+      command: bundle exec middleman build
+
+# production
+# ----------
+# deploy to production when merging to master
+- type: serial
+  name: prod
+  tag: master
+  steps:
+    - name: release-prod
+      type: serial
+      steps:
+        - name: build-prod
+          service: build-prod
+          command: bundle exec middleman build
+        - name: deploy-prod
+          service: aws-prod
+          command: /deploy/scripts/deploy.sh -b /deploy/build

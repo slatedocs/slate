@@ -1,0 +1,17 @@
+{
+  "name": "graasp-developers",
+  "version": "0.1.0",
+  "description": "Resources for developers of the Graasp ecosystem.",
+  "repository": "git@github.com:react-epfl/graasp-developers.git",
+  "author": "React EPFL",
+  "contributors": [
+    "Juan Carlos Farah"
+  ],
+  "license": "Apache 2.0",
+  "private": true,
+  "devDependencies": {
+    "@commitlint/cli": "7.1.2",
+    "@commitlint/config-conventional": "7.1.2",
+    "husky": "1.0.0"
+  }
+}
