@@ -792,7 +792,11 @@ Private and business recipients are supported.
 
 Recipient type = *'argentina'*
 
-Required details: taxId, accountNumber
+Required details: 
+
+taxId - Recipient’s CUIT / CUIL (Single Tax Identification/ Single Labor Identification), 11 characters 
+                                                                                                  
+accountNumber - Recipient’s account CBU,	22 characters (Alias not supported)
 
 ## Create AUD Recipient
 
@@ -821,7 +825,11 @@ Private and business recipients are supported.
 
 Recipient type = *'australia'*
 
-Required details: bsbCode, accountNumber
+Required details: 
+
+bsbCode - 6 digits
+
+accountNumber - 5..9 digits
 
 ## Create BDT Recipient
 
@@ -846,9 +854,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
 ```
 
 <aside class="warning">
-We only support private customers sending payments to private recipients. Businesses customers are not supported yet.
+<b>Only private customers sending payments to private recipients. Businesses customers are not supported yet.</b>
 </aside>
-
 
 Send payments to Bangladesh. 
 
@@ -857,7 +864,6 @@ Recipient type = *'iban'*
 Required details: bankCode, branchCode, accountNumber
 
 You can get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
-
 
 ## Create BGN Recipient
 
@@ -912,9 +918,11 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
         }'
 ```
 
-Send payments to Brazil. 
+<aside class="warning">
+<b>Only private customers sending payments to private recipients. Businesses customers are not supported yet.</b>
+</aside>
 
-Private and business recipients are supported. 
+Send payments to Brazil. 
 
 Recipient type = *'brazil'*
 
@@ -1038,9 +1046,11 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
         }'
 ```
 
-Send payments to China Unionpay cardholder. 
+<aside class="warning">
+<b>Only sending payments to private recipients. It is not allowed to send funds to business recipients.</b>
+</aside>
 
-Private and business recipients are supported. 
+Send payments to China Unionpay cardholder. 
 
 Recipient type = *'chinese_card'*
 
@@ -1578,9 +1588,15 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
 ```
 
 
+<aside class="warning">
+<b>Private recipient: 1 mln GBP per payment (~ 88 mln INR)<br/>
+Business recipient: 1,5 mln INR per day (~ 17 800 GBP)</b>
+</aside>
+
 Send payments to India.
 
 Private and business recipients are supported. 
+
 
 Recipient type = *'indian'*
 
@@ -1664,7 +1680,7 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
 
 Send payments to Kenya. 
 
-Private and business recipients are supported. 
+Private and business recipients are supported. However please note that only individuals can hold MPESA accounts.
 
 <br/>
 
@@ -1710,6 +1726,11 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
         }'
 ```
 
+<aside class="warning">
+<b>Personal to personal: 4,999,999 LKR (~33,000 USD) per transfer <br/>
+Business to personal, personal to business & business to business: 3,000,000 LKR (~20,000 USD) per transfer</b>
+</aside>
+
 Send payments to Sri Lanka. 
 
 Private and business recipients are supported. 
@@ -1743,7 +1764,7 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
 
 Send payments to Morocco. 
 
-Private and business recipients are supported. 
+Private and business recipients are supported. 260,000 MAD per transaction
 
 Recipient type = *'morocco'*
 
@@ -1807,7 +1828,7 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
 
 Send payments to Malaysia. 
 
-Private and business recipients are supported. 
+Private and business recipients are supported. Maximum amount is 10,000,000 MYR	per payment.
 
 Recipient type = *'malaysian'*
 
@@ -1841,7 +1862,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
 
 Send payments to Nigeria. 
 
-Private and business recipients are supported. 
+Private and business recipients are supported. Maximum amount is 2,000,000 NGN per payment.
+
 
 Recipient type = *'nigeria'*
 
@@ -1903,6 +1925,10 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
         }'
 ```
 
+<aside class="warning">
+<b>Only sending payments to private recipients. Businesses recipients are not supported yet.</b>
+</aside>
+
 Send payments to Nepal. 
 
 Private recipients are supported. 
@@ -1936,7 +1962,7 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
 
 Send payments to New Zealand. 
 
-Private and business recipients are supported. 
+1mln NPR per transaction / per month for individual account.
 
 Recipient type = *'newzealand'*
 
@@ -1972,7 +1998,7 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
 
 Send payments to Peru. 
 
-Private and business recipients are supported. 
+Private and business recipients are supported. 1,900 USD per transfer / 9,900 USD per 30 days.
 
 Recipient type = *'peru'*
 
@@ -2015,7 +2041,7 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
 
 Send payments to Philippines. 
 
-Private and business recipients are supported. 
+Private and business recipients are supported. 480,000 PHP per payment.
 
 Recipient type = *'philippines'*
 
@@ -2047,10 +2073,11 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
         }'
 ```
 
+<aside class="warning">
+<b>Only private customers sending payments to private recipients. Business customers and business recipients are not supported yet.</b>
+</aside>
 
-Send payments to Pakistan. 
-
-Private and business recipients are supported. 
+Send payments to Pakistan. Max 1 million PKR per payment.
 
 Recipient type = *'iban'*
 
@@ -2183,9 +2210,11 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
 ```
 
 
-Send payments to Russia. 
+<aside class="warning">
+<b>Only payments to private recipients. Businesses recipients are not supported yet.</b>
+</aside>
 
-Private and business recipients are supported. 
+Send payments to Russia. 
 
 Recipient type = *'russiarapida'*
 
@@ -2352,7 +2381,7 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
         }'
 ```
 
-Send payments to Thailand. 
+Send payments to Thailand. Max 2 mln THB per payment.
 
 Private and business recipients are supported. 
 
@@ -2387,7 +2416,7 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
 
 Send payments to Turkey. 
 
-Private and business recipients are supported. 
+Private and business recipients are supported. 1 000 000 TRY per payment.	
 
 Recipient type = *'turkish_earthport'*
 
@@ -2416,9 +2445,11 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
 ```
 
 
-Send payments to Ukraine. 
+<aside class="warning">
+<b>Only sending payments to private recipients. Businesses recipients are not supported yet.</b>
+</aside>
 
-Private and business recipients are supported. 
+Send payments to Ukraine. Maximum 1,2m UAH per payment.
 
 Recipient type = *'privatbank'*
 
@@ -2463,7 +2494,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
 
 Send payments to USA. 
 
-Private and business recipients are supported. 
+Private and business recipients are supported. Max 1 Million USD per payment.
+
 
 Recipient type = *'aba'*
 
