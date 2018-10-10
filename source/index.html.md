@@ -132,13 +132,13 @@ To subscribe to a data stream, use the following command format:
 
 Field | Type | Example
 ------ | ------ | -------
-<span style="color:red"> <*event*> </span> | string | <span style="color:red"> "subscribe" </span>
-<span style="color:red"> <*channel*> </span> | string | <span style="color:red">  "tickers" </span>
-<span style="color:red"> <*symbol*>  </span> | string | <span style="color:red"> "ETHBTC" </span>
-<span style="color:red"> <*exchange*> </span> | string | <span style="color:red"> "bitfinex" </span>
-<span style="color:red"> <*duration*> </span> | integer (milliseconds) | <span style="color:red"> "15000" </span>
-<span style="color:red"> <*refundInvoice*> </span> | string | <span style="color:red"> lnbcrt10n1pd5v2mwpp5ulxpj8ht... </span>
-<span style="color:red"> <*uuid*>  </span> | string | <span style="color:red"> 123e4567-e89b-12d3-a456-426655440000 </span>
+<span style="color:red"> <*event*> </span> | String | <span style="color:red"> "subscribe" </span>
+<span style="color:red"> <*channel*> </span> | String | <span style="color:red">  "tickers" </span>
+<span style="color:red"> <*symbol*>  </span> | String | <span style="color:red"> "ETHBTC" </span>
+<span style="color:red"> <*exchange*> </span> | String | <span style="color:red"> "bitfinex" </span>
+<span style="color:red"> <*duration*> </span> | Integer (milliseconds) | <span style="color:red"> "15000" </span>
+<span style="color:red"> <*refundInvoice*> </span> | String | <span style="color:red"> lnbcrt10n1pd5v2mwpp5ulxpj8ht... </span>
+<span style="color:red"> <*uuid*>  </span> | String | <span style="color:red"> 123e4567-e89b-12d3-a456-426655440000 </span>
 
 **Payment** 
 
@@ -161,9 +161,9 @@ You may refill your subscrption at any time with the following command format:
 
 Field | Type | Example
 ------| ------ | --------
-<span style="color:red"> <*uuid*> </span> | string | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span>
-<span style="color:red"> <*addedDuration*> </span> | integer (milliseconds) | <span style="color:red"> "1000" </span>
-<span style="color:red"> <*event*> </span> | string | <span style="color:red"> "refill" </span>
+<span style="color:red"> <*uuid*> </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span>
+<span style="color:red"> <*addedDuration*> </span> | Integer (milliseconds) | <span style="color:red"> "1000" </span>
+<span style="color:red"> <*event*> </span> | String | <span style="color:red"> "refill" </span>
 
 
 
@@ -173,8 +173,8 @@ You may unsubscribe from a channel using the following command:
 
 Field | Type | Example
 ------| ------ | --------
-<span style="color:red"> <*uuid*> </span> | string | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span> 
-<span style="color:red"> <*event*> </span> | string | <span style="color:red"> "unsubscribe" </span>
+<span style="color:red"> <*uuid*> </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span> 
+<span style="color:red"> <*event*> </span> | String | <span style="color:red"> "unsubscribe" </span>
 
 
 **Maintenance**
@@ -186,67 +186,67 @@ In the event of maintenance or service interruption, we will refund any remainin
 
 Field | Type | Exchanges Supported
 ------ | ------ | --------
-<span style="color:red"> *eventTime* </span>| Integer | 
-<span style="color:red"> *symbol* </span> | String |
-<span style="color:red"> *priceChange* </span> | Double |
-<span style="color:red"> *priceChangePerc* </span> |  Double |
-<span style="color:red"> *weightedAvePrice* </span> |  Double |
-<span style="color:red"> *prevClose* </span> | Double |
-<span style="color:red"> *close* </span> | Double |
-<span style="color:red"> *closeQuantity* </span> |  Double |
-<span style="color:red"> *bid* </span> | Double |           
-<span style="color:red"> *bidSize* </span> | Double |           
-<span style="color:red"> *ask* </span> | Double |            
-<span style="color:red"> *askSize* </span> | Double |          
-<span style="color:red"> *open* </span> | Double |
-<span style="color:red"> *high* </span> | Double |
-<span style="color:red"> *low* </span> | Double |
-<span style="color:red"> *volume* </span> | Double |
-<span style="color:red"> *quoteVolume* </span> | Double|
-<span style="color:red"> *statOpenTime* </span> | Integer |
-<span style="color:red"> *statCloseTime* </span> | Integer |
-<span style="color:red"> *firstTradeId* </span> | Integer |
-<span style="color:red"> *totalTrades* </span> | Integer |
-<span style="color:red"> *eventTime* </span> |  Integer |                   
-<span style="color:red"> *bid* </span> | Double |
-<span style="color:red"> *bidSize* </span> | Double |
-<span style="color:red"> *ask* </span> | Double |
-<span style="color:red"> *askSize* </span> | Double |
-<span style="color:red"> *priceChange* |</span>  Double |            
-<span style="color:red"> *priceChangePerc* </span> |  Double |        
-<span style="color:red"> *close* </span> | Double |             
-<span style="color:red"> *volume* </span> | Double |
-<span style="color:red"> *high*  </span> | Double |
-<span style="color:red"> *low* </span> |  Double |
+<span style="color:red"> *eventTime* </span>| Integer | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
+<span style="color:red"> *symbol* </span> | String | <span style="color:red"> binance </span>
+<span style="color:red"> *priceChange* </span> | Double | <span style="color:red"> binance </span>
+<span style="color:red"> *priceChangePerc* </span> |  Double | <span style="color:red"> binance </span>
+<span style="color:red"> *weightedAvePrice* </span> |  Double | <span style="color:red"> binance </span>
+<span style="color:red"> *prevClose* </span> | Double | <span style="color:red"> binance </span>
+<span style="color:red"> *close* </span> | Double | <span style="color:red"> binance </span>
+<span style="color:red"> *closeQuantity* </span> |  Double | <span style="color:red"> binance </span>
+<span style="color:red"> *bid* </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>          
+<span style="color:red"> *bidSize* </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>          
+<span style="color:red"> *ask* </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>          
+<span style="color:red"> *askSize* </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>        
+<span style="color:red"> *open* </span> | Double | <span style="color:red"> binance </span>
+<span style="color:red"> *high* </span> | Double | <span style="color:red"> binance </span>
+<span style="color:red"> *low* </span> | Double | <span style="color:red"> binance </span>
+<span style="color:red"> *volume* </span> | Double | <span style="color:red"> binance </span>
+<span style="color:red"> *quoteVolume* </span> | Double| <span style="color:red"> binance </span>
+<span style="color:red"> *statOpenTime* </span> | Integer | <span style="color:red"> binance </span>
+<span style="color:red"> *statCloseTime* </span> | Integer | <span style="color:red"> binance </span>
+<span style="color:red"> *firstTradeId* </span> | Integer | <span style="color:red"> binance </span>
+<span style="color:red"> *totalTrades* </span> | Integer | <span style="color:red"> binance </span>
+<span style="color:red"> *eventTime* </span> |  Integer | <span style="color:red"> binance </span>                   
+<span style="color:red"> *bid* </span> | Double | <span style="color:red"> binance </span>
+<span style="color:red"> *bidSize* </span> | Double | <span style="color:red"> binance </span>
+<span style="color:red"> *ask* </span> | Double | <span style="color:red"> binance </span>
+<span style="color:red"> *askSize* </span> | Double | <span style="color:red"> binance </span>
+<span style="color:red"> *priceChange* |</span>  Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>           
+<span style="color:red"> *priceChangePerc* </span> |  Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>       
+<span style="color:red"> *close* </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>           
+<span style="color:red"> *volume* </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
+<span style="color:red"> *high*  </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
+<span style="color:red"> *low* </span> |  Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
 
 ## Trades
 
 Field |  Type | Exchanges Supported 
 ------ | ------- | -----------
-<span style="color:red"> eventType </span> | String | 
-<span style="color:red"> eventTime </span> | Integer |
-<span style="color:red"> symbol </span> | String |
-<span style="color:red"> tradeId </span> | Integer |
-<span style="color:red"> price </span> | Double |
-<span style="color:red"> quantity </span> | Double |
-<span style="color:red"> buyerId </span> | Integer |
-<span style="color:red"> sellerId </span> | Integer |
-<span style="color:red"> tradeTime </span> | Integer |
-<span style="color:red"> marketMaker </span> |  Boolean | 
-<span style="color:red"> tradeid </span> | Integer | 
-<span style="color:red"> eventTime </span> | Integer |         
-<span style="color:red"> quantity </span> | Double |       
-<span style="color:red"> price </span> | Double |
+<span style="color:red"> eventType </span> | String | <span style="color:red"> binance </span>
+<span style="color:red"> eventTime </span> | Integer | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
+<span style="color:red"> symbol </span> | String | <span style="color:red"> binance </span>
+<span style="color:red"> tradeId </span> | Integer | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
+<span style="color:red"> price </span> | Double | <span style="color:red"> binance </span>
+<span style="color:red"> quantity </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
+<span style="color:red"> buyerId </span> | Integer | <span style="color:red"> binance </span>
+<span style="color:red"> sellerId </span> | Integer | <span style="color:red"> binance </span>
+<span style="color:red"> tradeTime </span> | Integer | <span style="color:red"> binance </span>
+<span style="color:red"> marketMaker </span> |  Boolean | <span style="color:red"> binance </span>
+<span style="color:red"> tradeid </span> | Integer | <span style="color:red"> binance </span>
+<span style="color:red"> eventTime </span> | Integer | <span style="color:red"> binance </span>        
+<span style="color:red"> quantity </span> | Double | <span style="color:red"> binance </span>      
+<span style="color:red"> price </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
 
 ## Order Books
 
 Field | Type | Exchanges Supported
 ------| -------| --------
-<span style="color:red"> eventTime </span> | Integer | 
-<span style="color:red"> symbol </span> |  String | 
-<span style="color:red"> orderId </span> |  Integer | 
-<span style="color:red"> price  </span>| Double |
-<span style="color:red"> quantity </span> | Double | 
+<span style="color:red"> eventTime </span> | Integer | <span style="color:red"> bitfinex </span> 
+<span style="color:red"> symbol </span> |  String | <span style="color:red"> bitfinex </span> 
+<span style="color:red"> orderId </span> |  Integer | <span style="color:red"> bitfinex </span> 
+<span style="color:red"> price  </span>| Double | <span style="color:red"> bitfinex </span> 
+<span style="color:red"> quantity </span> | Double | <span style="color:red"> bitfinex </span> 
 
 <h1 id="NFLData"> NFL Data</h1>
 
