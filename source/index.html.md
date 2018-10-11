@@ -1667,3 +1667,132 @@ Lista eventos enviados
 | ---- | ---- | --------- |
 | has_more | boolean          | indica a existência de outras páginas |
 | items    | array de objetos | lista de notificações: [referência](#definicao-base-do-evento)
+
+# Repasse
+
+## Informar dados de pagamento de um estudante
+
+> Requisição
+
+```bash
+curl -X POST https://queroalunos.com/api/v1/billing/student_payments/11122233345 \
+  --H 'Authorization: Token ########"' \
+  -H 'Content-Type: application/json' \
+  -d '{
+	"cashback": {
+    "due_date": "2018-10-09 01:55:16.667273Z",
+    "paid_at": "2018-10-09 01:55:16.667273Z",
+    "value": 123.3
+  }'
+```
+
+> Resposta
+
+```json
+{
+  "cashback": {
+    "cpf": "11122233345",
+    "due_date": "2018-10-09T01:55:16Z",
+    "paid_at": "2018-10-09T01:55:16Z",
+    "value": 123.3
+  }
+}
+```
+
+> Retorno quando os parâmetros estão vazios
+
+```json
+{
+  "errors": {
+    "cpf": ["não pode ficar em branco"],
+    "due_date": ["não pode ficar em branco"],
+    "paid_at": ["não pode ficar em branco"],
+    "value": ["não pode ficar em branco"]
+  }
+}
+```
+
+Recebe dados de pagamento de um estudante.
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| cashback | object | Objeto com os dados de pagamento |
+| cashback[cpf] | string | CPF do aluno (sem pontos ou traços) |
+| cashback[due_date] | string | Data da criação do exame vestibular no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| cashback[paid_at] | string | Data da criação do exame vestibular no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| cashback[value] | decimal | Valor pago pelo aluno |
+
+
+## Informar dados de pagamento de varios estudantes
+
+> Requisição
+
+```bash
+curl -X POST https://queroalunos.com/api/v1/billing/student_payments/ \
+  --H 'Authorization: Token ########"' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "cashbacks": [
+      {
+        "due_date": "2018-10-09 01:55:16.667273Z",
+        "paid_at": "2018-10-09 01:55:16.667273Z",
+        "value": 222.3,
+        "cpf": "11122233345"
+      },
+      {
+        "due_date": "2018-10-09 01:55:16.667273Z",
+        "paid_at": "2018-10-09 01:55:16.667273Z",
+        "value": 123.3,
+        "cpf": "666777888910"
+      }
+    ]
+  }'
+```
+
+> Resposta
+
+```json
+{
+	"cashbacks": [
+		{
+			"cpf": "11122233345",
+			"due_date": "2018-10-09T01:55:16Z",
+			"paid_at": "2018-10-09T01:55:16Z",
+			"value": 222.3
+		},
+		{
+      "cpf": "666777888910",
+			"due_date": "2018-10-09T01:55:16Z",
+			"paid_at": "2018-10-09T01:55:16Z",
+			"value": 123.3
+		}
+	]
+}
+```
+
+> Retorno quando os parâmetros estão vazios
+
+```json
+{
+  "errors": {
+    "cpf": ["não pode ficar em branco"],
+    "due_date": ["não pode ficar em branco"],
+    "paid_at": ["não pode ficar em branco"],
+    "value": ["não pode ficar em branco"]
+  }
+}
+```
+
+Recebe dados de pagamento de varios estudantes.
+
+### Parâmetros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| cashbacks | array | Lista de objetos com os dados de pagamento |
+| cashbacks[][cpf] | string | CPF do aluno (sem pontos ou traços) |
+| cashbacks[][due_date] | string | Data da criação do exame vestibular no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| cashbacks[][paid_at] | string | Data da criação do exame vestibular no formato UTC [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| cashbacks[][value] | decimal | Valor pago pelo aluno |
