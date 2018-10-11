@@ -35,10 +35,6 @@ You don’t necessarily need to integrate with the API to make a large number of
 * *API integration.* Completely automate your payment process by sending payment orders via the TransferWise API.
 
 
-
-
-
-
 ## API access
 ```shell
 curl -X GET https://api.sandbox.transferwise.tech/v1/profiles \
@@ -50,17 +46,32 @@ Sign up for a developer account and get your personal API token for our sandbox.
 
 NB! Two factor authentication (2FA) code for sandbox login is 111111.
 
-Your developer account will have some test money that you can use to start making payments in same way as you would in a live environment. You get your API token in the Settings tab of your account page.
+Your developer account will have some test money that you can use to start making payments in same way as you would in a live environment. 
 
 Add your API token as header parameter to every request like this:
 
 *Authorization: Bearer xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx*
 
+### Acquiring your API token
+Your API tokens section can be found at the bottom of the Settings page inside your TransferWise account.
+
+### Limiting token access by IP
+Optionally, you can enhance your integration security by restricting the calling IPs addresses.
+
+Each token access can be limited to single IP addresses or entire IP ranges in the API token detailed view.
+
+Please note that the ip whitelisting requires:
+
+* IP addresses should use only IPv4 format e.g. `192.168.100.14`.
+* IP ranges should use [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) e.g. 
+`192.168.100.0/24` which would include `192.168.100.0` up to `192.168.100.255`. 
+
+If a request is being made using an IP address that is not in the whitelisted IP addresses, the server will respond with a [401 Unauthorized HTTP status code](https://tools.ietf.org/html/rfc7235#page-6).
 
 ### TEST and LIVE environments
 
-* You can access the Sandbox API at https://api.sandbox.transferwise.tech
-* The LIVE API is located at https://api.transferwise.com
+* You can access the Sandbox API at [https://api.sandbox.transferwise.tech](https://api.sandbox.transferwise.tech)
+* The LIVE API is located at [https://api.transferwise.com](https://api.transferwise.com)
 
 
 ## Get your profile id
