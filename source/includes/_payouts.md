@@ -53,22 +53,25 @@ Add your API token as header parameter to every request like this:
 *Authorization: Bearer xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx*
 
 ### Acquiring your API token
-You get your API token in the Settings tab of your account page.
+Your API tokens section can be found at the bottom of the Settings page inside your TransferWise account.
 
 ### Limiting token access by IP
-You can optionally specify a number of IP addresses or IP ranges which calls to the API will be limited to. 
+Optionally, you can enhance your integration security by restricting the calling IPs addresses.
 
-* IP address entries should use IPv4 format e.g. `192.168.100.14`.
+Each token access can be limited to single IP addresses or entire IP ranges in the API token detailed view.
+
+Please note that the ip whitelisting requires:
+
+* IP addresses should use only IPv4 format e.g. `192.168.100.14`.
 * IP ranges should use [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) e.g. 
 `192.168.100.0/24` which would include `192.168.100.0` up to `192.168.100.255`. 
- 
- HTTP status code 401 is returned if the request does not match any of the defined IP addresses or ranges.
 
+If a request is being made using an IP address that is not in the whitelisted IP addresses, the server will respond with a [401 Unauthorized HTTP status code](https://tools.ietf.org/html/rfc7235#page-6).
 
 ### TEST and LIVE environments
 
-* You can access the Sandbox API at https://api.sandbox.transferwise.tech
-* The LIVE API is located at https://api.transferwise.com
+* You can access the Sandbox API at [https://api.sandbox.transferwise.tech](https://api.sandbox.transferwise.tech)
+* The LIVE API is located at [https://api.transferwise.com](https://api.transferwise.com)
 
 
 ## Get your profile id
