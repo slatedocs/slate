@@ -14,15 +14,15 @@ https://api.transferwise.com
 
 Welcome to the TransferWise API documentation. You can explore the different ways to use our API and choose the right one for you below. 
 
-* [TransferWise Payouts and Account Automation](#transferwise-api-borderless-payouts)                                           
-* [Banks](#transferwise-api-banks)                                           
-* [Affiliates](#transferwise-api-affiliates)                                           
+* [Business Payouts](#transferwise-api-business-payouts)                                           
+* [Bank Integrations](#transferwise-api-bank-integrations)                                           
+* [Affiliates Tools](#transferwise-api-affiliates-tools)                                           
 * [Connected Applications](#transferwise-api-connected-applications)                                           
 * [Third-Party Payouts](#transferwise-api-third-party-payouts)                                           
 * [Receive Money](#transferwise-api-receive-money)
 
 
-## TransferWise Payouts and Account Automation
+## Business Payouts
 This lets you to automate how you use your TransferWise account. You can automate payments, connect your business tools, and create ways to manage your finances. 
 
 You can:
@@ -35,11 +35,11 @@ You can:
   <li>Always get the mid-market exchange and our low cost transparent fees.</li>
 </ul>
 
-Our [ Payouts Guide](#borderless-payouts-guide) will help you get started with the technical integration.
+Our [Business Payouts Guide](#business-payouts-guide) will help you get started with the technical integration.
 
 
 
-## Banks
+## Bank Integrations
 Our bank integration lets banks build TransferWise payments seamlessly into their own desktop and mobile apps. Banks can also build their own native user experience directly onto our API, co-branded with TransferWise.
 
 **What are the benefits for my bank?**
@@ -81,7 +81,7 @@ Take a look at our technical integration here – [Bank Integration Guide](#bank
 
 
 
-## Affiliates
+## Affiliates Tools
 
 When you [apply to the TransferWise affiliates program](https://transferwise.com/partnerwise) you can get access to our API to help you build your own valuable content for your customers or readers.
 

@@ -1,4 +1,4 @@
-# TransferWise Payouts Guide
+# Business Payouts Guide
 Welcome to the TransferWise Payouts API documentation.
 Before you start coding please take few moments to review the following topics
 
