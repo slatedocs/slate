@@ -42,6 +42,7 @@ curl -X POST H "Content-Type:application/json" -d '{"action": "import"}' https:/
 ```shell    
 {
     "success": true,
+    "pid": "[a-z0-9]{7}-[a-z0-9]{7}-[a-z0-9]{7}-[a-z0-9]{7}-[a-z0-9]{12}"
 }
 ```
 ### HTTP Request
@@ -79,4 +80,4 @@ all | Trigger an import, all exports and channels
 Field | Type | Description
 ------ | -------- | --------------
 success | Boolean | Indicates status of job scheduling on the Jenkins server
-
+pid | string | The Process Identifier (PID) 
