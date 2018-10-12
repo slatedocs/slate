@@ -80,4 +80,4 @@ all | Trigger an import, all exports and channels
 Field | Type | Description
 ------ | -------- | --------------
 success | Boolean | Indicates status of job scheduling on the Jenkins server
-pid | string | The Process Identifier (PID) 
+pid | string | The Process Identifier (PID) (format: `[a-z0-9]{7}-[a-z0-9]{7}-[a-z0-9]{7}-[a-z0-9]{7}-[a-z0-9]{12}`)

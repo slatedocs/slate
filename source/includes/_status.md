@@ -3,14 +3,12 @@ The status endpoint can be used to get a status of a Process Identifier (PID)
  for a specific site. A valid pid must always be given as secondary parameter
  . When calling the [Process](#process) endpoint, it will return a valid pid. If
  an invalid PID will be given, the sites status will always be queued.
-
 <aside class="info">Authentication is not included in the examples, see [Authentication](#authentication).</aside>
 
 ## GET
-Get the status of a site
+Get the status of PID for a site
 
 ```shell
-# Get action of a specific
 curl -i -L -X GET \
  'https://platform-api.productsup.io/platform/v2/sites/<siteId>/status/<pid>' 
 ```
@@ -30,8 +28,8 @@ curl -i -L -X GET \
     ]
 }
 ```
-### HTTP Request
 
+### HTTP Request
 `GET https://platform-api.productsup.io/platform/v2/site/<siteId>/status/<pid>`
 
 #### URL parameters
@@ -50,7 +48,7 @@ links | array | List of links, to resource itself and error resource (if status 
 #### <a name="status-resonse"></a> Status value explanation
 Status value | Description
 ------ | ------
-queued | Site is queued (default, also when invalid pid given)
+queued | Site is queued (default when invalid pid given)
 running | Site is being processed
 success | Site has run, no errors found
 failed | Site has run, but errors were found
