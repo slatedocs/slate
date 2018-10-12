@@ -42,8 +42,7 @@ curl -X POST H "Content-Type:application/json" -d '{"action": "import"}' https:/
 ```shell    
 {
     "success": true,
-    # UUID 32 format
-    "pid": "[a-z0-9]{7}-[a-z0-9]{7}-[a-z0-9]{7}-[a-z0-9]{7}-[a-z0-9]{12}"
+    "pid": "<uuid-32-formatted-string>"
 }
 ```
 ### HTTP Request
