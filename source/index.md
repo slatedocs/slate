@@ -22,6 +22,7 @@ includes:
   - product_write
   - product_read
   - process
+  - status
   - api_errors
 
 search: true
