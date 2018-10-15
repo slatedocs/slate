@@ -153,6 +153,13 @@ TransferWise will then email your recipient with a link to collect their bank ac
 Once recipient provides bank account details securely to Transferwise we are able to complete your transfer.
 
 
+<aside class="warning">
+<b>Please read through the support article referenced below to understand how this works and what are known constraints.</b>
+</aside>
+[https://transferwise.com/help/article/1740912/creating-a-transfer/transfers-to-an-email-address-transferwise-users]
+(https://transferwise.com/help/article/1740912/creating-a-transfer/transfers-to-an-email-address-transferwise-users)
+
+
 ## Get By Id
 > Example Request:
 
