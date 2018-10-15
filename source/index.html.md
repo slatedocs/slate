@@ -326,17 +326,17 @@ There are two required fields to query NFL Games data:
 
 Field | Type | Example
 ------ | ------- | ------
-<span style="color:red"> <*week*> </span> | Integer | <span style="color:red"> </span> <span style="color:red"> *1, 2, 3* </span> etc...
-<span style="color:red"> <*seasonPhase*> </span> | String |  <span style="color:red"> *Preaseason, Regular* </span> , or <span style="color:red"> *Postseason* </span>
+<span style="color:red"> week </span> | Integer | <span style="color:red"> </span> <span style="color:red"> *1, 2, 3* </span> etc...
+<span style="color:red"> seasonPhase </span> | String |  <span style="color:red"> *Preaseason, Regular* </span> , or <span style="color:red"> *Postseason* </span>
 
 
 **Optional fields**
 
 Field | Type | Example
 ------ | ------- | --------
-<span style="color:red"> <*year*> </span> | Integer |  <span style="color:red"> *2009, 2010, 2011,* etc. </span>
-<span style="color:red"> <*teamId*> </span> | String  |  <span style="color:red"> *CHI, MIN, GB, MIA* </span> etc. <a href="#TeamID">See Team ID Table</a>
-<span style="color:red"> <*realtime*> </span> | Boolean | <span style="color:red"> *true* </span>
+<span style="color:red"> year </span> | Integer |  <span style="color:red"> *2009, 2010, 2011,* etc. </span>
+<span style="color:red"> teamId </span> | String  |  <span style="color:red"> *CHI, MIN, GB, MIA* </span> etc. <a href="#TeamID">See Team ID Table</a>
+<span style="color:red"> realtime </span> | Boolean | <span style="color:red"> *true* </span>
 
 
 ## Players
@@ -380,8 +380,8 @@ Required fields to request NFL Player data:
 
 Field | Type | Example
 ------ | ----- | -----
-<span style="color:red"> <*firstName*> </span> | String |  <span style="color:red"> <*Randy*> </span>
-<span style="color:red"> <*lastName*> </span>  | String |  <span style="color:red"> <*Moss*> </span>
+<span style="color:red"> firstName </span> | String |  <span style="color:red"> <*Randy*> </span>
+<span style="color:red"> lastName </span>  | String |  <span style="color:red"> <*Moss*> </span>
 
 
 ## Team
@@ -479,14 +479,14 @@ There are two required Fields to request NFL Team & Roster data:
 
 Field | Type | Example 
 ------ | ----- | ------
-<span style="color:red"> <*teamID*> </span> | String |  <span style="color:red"> *CHI* </span>, <span style="color:red"> *MIN* </span> etc.
-<span style="color:red"> <*retrieve*> </span> | String |  <span style="color:red"> *roster* </span> or <span style="color:red"> *schedule* </span>
+<span style="color:red"> teamID </span> | String |  <span style="color:red"> *CHI* </span>, <span style="color:red"> *MIN* </span> etc.
+<span style="color:red"> retrieve </span> | String |  <span style="color:red"> *roster* </span> or <span style="color:red"> *schedule* </span>
 
 **Optional Field**
 
 Field | Type | Example
 ------| ----- | ------
-<span style="color:red"> <*year*> </span> | Integer | <span style="color:red"> *2018* </span> , <span style="color:red"> *2015* </span> , <span style="color:red"> *2011* </span> , etc. 
+<span style="color:red"> year </span> | Integer | <span style="color:red"> *2018* </span> , <span style="color:red"> *2015* </span> , <span style="color:red"> *2011* </span> , etc. 
 
 <aside class="notice">NOTE: the <span style="color:red"> year </span> field defaults to current year. </aside>
 
@@ -572,25 +572,25 @@ To query by <span style="color:red"> *gameId* </span> and <span style="color:red
 
 Field | Type | Example
 ------ | ----- | -------
-<span style="color:red"> <*channel*> </span> | String| <span style="color:red"> *stats* </span>
-<span style="color:red"> <*statType*> </span> | String | <span style="color:red"> *passing, rushing, receiving, defense* </span>
-<span style="color:red"> <*gameId>*> </span> | String | <span style="color:red"> *2016101604* </span>
-<span style="color:red"> <*playerId*> </span> | String | <span style="color:red"> *00-0027973* </span> 
+<span style="color:red"> channel </span> | String| <span style="color:red"> *stats* </span>
+<span style="color:red"> statType </span> | String | <span style="color:red"> *passing, rushing, receiving, defense* </span>
+<span style="color:red"> gameId </span> | String | <span style="color:red"> *2016101604* </span>
+<span style="color:red"> playerId </span> | String | <span style="color:red"> *00-0027973* </span> 
 
 
 To query by <span style="color:red"> *name* </span> and <span style="color:red"> *week* </span>:
 
 **Required fields**
 
-Field | Example
------- | -------
-<span style="color:red"> <*channel*> </span> | <span style="color:red"> *stats* </span>
-<span style="color:red"> <*statType*> </span> | <span style="color:red"> *passing, rushing, receiving, defense* </span>
-<span style="color:red"> <*year*> </span> | <span style="color:red"> *2016, 2017* </span>
-<span style="color:red"> <*week*> </span> |  <span style="color:red"> *1, 2* </span>... 
-<span style="color:red"> <*seasonPhase*> | </span> <span style="color:red"> *Preseason, Regular, Postseason* </span>
-<span style="color:red"> <*firstName*>  | </span> <span style="color:red"> *Drew* </span>
-<span style="color:red"> <*lastName*> | </span> <span style="color:red"> *Brees* </span>
+Field | Type | Example
+------ | ------- | -----
+<span style="color:red"> channel </span> | String | <span style="color:red"> *stats* </span>
+<span style="color:red"> statType </span> | String | <span style="color:red"> *passing, rushing, receiving, defense* </span>
+<span style="color:red"> year </span> | Integer | <span style="color:red"> *2016, 2017* </span>
+<span style="color:red"> week </span> | Integer  | <span style="color:red"> *1, 2* </span>... 
+<span style="color:red"> seasonPhase | String  | </span> <span style="color:red"> *Preseason, Regular, Postseason* </span>
+<span style="color:red"> firstName  | String | </span> <span style="color:red"> *Drew* </span>
+<span style="color:red"> lastName | String | </span> <span style="color:red"> *Brees* </span>
 
 # NBA (Coming Soon)
 
@@ -600,11 +600,23 @@ Coming soon...
 
 ## Games
 
-Coming soon...
+Field | Type | Example
+------ | ----- | -------
+<span style="color:red"> year </span> |         |
+<span style="color:red"> month </span> |        |
+<span style="color:red"> day </span>    |        | Note: we only support <span style="color:red"> 2016 </span>, <span style="color:red"> 2017 </span> and <span style="color:red"> 2018 </span>
+
+**Optional**
+
+To search for a game by a specific team, add an optional field for <span style="color:red"> teamID </span>
 
 ## Players
 
-Coming soon...
+Field | Type | Example 
+------ | ------ |-------
+<span style="color:red"> firstName </span> |      | 
+<span style="color:red"> lastName </span>  |      |
+
 
 ## Teams
 
@@ -612,7 +624,16 @@ Coming soon...
 
 ## Stats 
 
-Coming soon...
+** Required Fields **
+
+Field | Type | Example 
+------ | ------ | ------
+Year |      | 
+Month |     |
+Day  |       |
+gameID |      | 
+playerID |    | 
+
 
 # Contact Us
 Follow us on twitter <a href="https://twitter.com/SuredBits">@Suredbits</a>
