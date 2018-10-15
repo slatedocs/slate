@@ -1,6 +1,6 @@
 # Changelog
 
-## Version 4.4.1
+### Version 4.4.1
 
 - added "vat_pct" param for scale prices
 
