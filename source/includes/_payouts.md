@@ -5,7 +5,7 @@ Before you start coding please take few moments to review the following topics
 
 ## Getting started
 ### 1. Learn about TransferWise.
-TransferWise and its borderless account features and pricing are best explained below.
+TransferWise and its borderless account pricing and features are best explained below.
 
 [https://transferwise.com/gb/borderless/pricing](https://transferwise.com/gb/borderless/pricing)
 
