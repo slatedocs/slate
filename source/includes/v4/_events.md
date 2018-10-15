@@ -576,6 +576,7 @@ or scale prices with following attributes:
 - group (boolean), whether the price is for the whole group or per participant (per seat)
 - optional (boolean), whether the price is a choice or not
 - price_cents (integer) price in EUR cents
+- vat_pct (float), the pricing tax rate
 
 
 Usually, there will be one default price or at least one scale price.
