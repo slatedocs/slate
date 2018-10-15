@@ -1,16 +1,16 @@
 # Transferwise API documentation
 
-Live version can be found [here](https://api-docs.transferwise.com).
-
-This project was forked from [Slate](https://github.com/lord/slate).
+Live version of the docs is [here](https://api-docs.transferwise.com).
 
 All contributions are welcome and encouraged!
+
+This project is forked from [Slate](https://github.com/lord/slate).
 
 ## How to edit the docs?
 
 1. [Run the project locally](#run-the-project-locally)
 2. Do your changes (most of the text is in `/source/includes` folder). Learn more about [editing Slate markdown](https://github.com/lord/slate/wiki/Markdown-Syntax)
-3. Create pull request. Merge. Checkout and pull `master` branch. *Deploy* (just run `./deploy.sh`)
+3. Create pull request. Merge. Go to `master` branch and pull. **Deploy** (just run `./deploy.sh`)
 
 For more detailed guides etc go to [Slate documentation](https://github.com/lord/slate).
 
