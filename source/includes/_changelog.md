@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 4.4.1
+
+- added "vat_pct" param for scale prices
+
 ### 4.4 - System 2.21.0 Update
 
 - updated documentation for events with seating plans
