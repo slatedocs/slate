@@ -604,7 +604,11 @@ Field | Type | Example
 ------ | ----- | -------
 <span style="color:red"> year </span> |         |
 <span style="color:red"> month </span> |        |
-<span style="color:red"> day </span>    |        | Note: we only support <span style="color:red"> 2016 </span>, <span style="color:red"> 2017 </span> and <span style="color:red"> 2018 </span>
+<span style="color:red"> day </span>    |        |  <span style="color:red"> 2016 </span>, <span style="color:red"> 2017 </span> and <span style="color:red"> 2018 </span>
+
+<aside class="notice">NOTE: We only support from year 2016 to current. </aside>
+
+<a href="#NBATeamID">See Team ID Table</a>
 
 **Optional**
 
@@ -619,8 +623,41 @@ Field | Type | Example
 
 
 ## Teams
+<h3 id="NBATeamID"> Team ID Table</h3>
 
-Coming soon...
+Team ID  | Team 
+----- | -------
+ATL | Atlanta Hawks	
+MIA	| Miami Heat
+BKN	| Brooklyn Nets	
+MIL	| Milwaukee Bucks
+BOS	| Boston Celtics	
+MIN	| Minnesota Timberwolves
+CHA	| Charlotte Hornets	
+NOP	| New Orleans Pelicans
+CHI	| Chicago Bulls	
+NYK	| New York Knicks
+CLE	| Cleveland Cavaliers	
+OKC	| Oklahoma City Thunder
+DAL	| Dallas Mavericks	
+ORL	| Orlando Magic
+DEN	| Denver Broncos	
+PHI	| Philadelphia 76ers
+DET	| Detroit Pistons	
+PHX	| Phoenix Suns
+GSW	| Golden State Warriors	
+POR	| Portland Trail Blazers
+HOU	| Houston Rockets	
+SAC	| Sacramento Kings
+IND	| Indiana Pacers	
+SAS	| San Antonio Spurs
+LAC	| Los Angeles Clippers	
+TOR	| Toronto Raptors
+LAL	| Los Angeles Lakers	
+UTA	| Utah Jazz
+MEM	| Memphis Grizzlies	
+WAS	| Washington Wizards
+
 
 ## Stats 
 
