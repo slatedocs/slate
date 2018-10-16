@@ -30,7 +30,7 @@ curl -i -L -X GET \
 ```
 
 ### HTTP Request
-`GET https://platform-api.productsup.io/platform/v2/site/<siteId>/status/<pid>`
+`GET https://platform-api.productsup.io/platform/v2/sites/<siteId>/status/<pid>`
 
 #### URL parameters
 Field | Type | Description
