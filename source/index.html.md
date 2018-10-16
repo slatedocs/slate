@@ -316,7 +316,7 @@ This provides a check and confirmation on the status of the API.
  }
 ```
 
-**Example Requests**
+**Example Request**
 
 {"channel":"games", "week":1, "seasonPhase" : "Regular", "year" : 2017}
 
@@ -380,8 +380,8 @@ Required fields to request NFL Player data:
 
 Field | Type | Example
 ------ | ----- | -----
-<span style="color:red"> firstName </span> | String |  <span style="color:red"> <*Randy*> </span>
-<span style="color:red"> lastName </span>  | String |  <span style="color:red"> <*Moss*> </span>
+<span style="color:red"> firstName </span> | String |  <span style="color:red"> Randy </span>
+<span style="color:red"> lastName </span>  | String |  <span style="color:red"> Moss </span>
 
 
 ## Team
@@ -462,7 +462,7 @@ Field | Type | Example
 
 This request implements a websocket channel called <span style="color:red"> *team* </span>. It returns the Roster or Schedule for a given NFL Team given a websocket request.
 
-**Example requests**
+**Example Requests**
 
 For Rosters:
 {"channel": "team", "teamId": "MIN", "retrieve": "roster"}
@@ -600,77 +600,118 @@ Coming soon...
 
 ## Games
 
+**Example Request**
+
+{"channel": "games", "year": 2018, "month": 11, "day": 24}
+
+
+**Required Fields**
+
 Field | Type | Example
 ------ | ----- | -------
-<span style="color:red"> year </span> |         |
-<span style="color:red"> month </span> |        |
-<span style="color:red"> day </span>    |        |  <span style="color:red"> 2016 </span>, <span style="color:red"> 2017 </span> and <span style="color:red"> 2018 </span>
+<span style="color:red"> channel </span> | String | <span style="color:red"> games </span>
+<span style="color:red"> year </span> | Integer  | <span style="color:red"> 2016 </span>, <span style="color:red"> 2017 </span> and <span style="color:red"> 2018 </span>
+<span style="color:red"> month </span> | Integer  | <span style="color:red"> 3 </span>, <span style="color:red"> 8 </span>, <span style="color:red"> 12 </span> etc..
+<span style="color:red"> day </span>    | Integer |  Follows typical calendar convention: <span style="color:red"> 2 </span>, <span style="color:red"> 17 </span>, <span style="color:red"> 28 </span>, etc...
 
 <aside class="notice">NOTE: We only support from year 2016 to current. </aside>
 
-<a href="#NBATeamID">See Team ID Table</a>
-
-**Optional**
+**Example Request with teamID**
 
 To search for a game by a specific team, add an optional field for <span style="color:red"> teamID </span>
 
+{"channel": "games", "year": 2016, "month": 12, "day": 20, "teamId": "CHI"}
+
+<a href="#NBATeamID">See Team ID Table</a>
+
+
 ## Players
+
+**Example Requests**
+
+{"channel": "players", "lastName": "Durant", "firstName": "Kevin"}
+
+**Required Fields**
 
 Field | Type | Example 
 ------ | ------ |-------
-<span style="color:red"> firstName </span> |      | 
-<span style="color:red"> lastName </span>  |      |
+<span style="color:red"> channel </span> | String | <span style="color:red"> players </span>
+<span style="color:red"> firstName </span> | String | <span style="color:red"> Kevin </span>
+<span style="color:red"> lastName </span>  | String | <span style="color:red"> Durant </span>
 
 
 ## Teams
+
+**Example Requests**
+
+{"channel": "team", "retrieve": "roster"}
+
+{"channel": "team", "retrieve": "schedule"}
+
+{"channel": "team", "retrieve": "schedule", "season": "2016-2017"}
+
+**Required Fields**
+
+Field | Type |  Example
+----- | ----- | --------
+<span style="color:red"> channel </span> | String |  <span style="color:red"> teams </span>
+<span style="color:red"> teamId </span> | String | <span style="color:red"> CHI </span>, <span style="color:red"> LAC </span>, <span style="color:red"> MIA </span>, etc...
+<span style="color:red"> retrieve </span> | String | <span style="color:red"> roster </span> or <span style="color:red"> schedule </span> 
+
+**Optional Fields**
+
+Field | Type | Example
+------|------|--------
+<span style="color:red"> season </span> | String | <span style="color:red"> 2016-2017" </span>
+
+
 <h3 id="NBATeamID"> Team ID Table</h3>
 
-Team ID  | Team 
------ | -------
-ATL | Atlanta Hawks	
-MIA	| Miami Heat
-BKN	| Brooklyn Nets	
-MIL	| Milwaukee Bucks
-BOS	| Boston Celtics	
-MIN	| Minnesota Timberwolves
-CHA	| Charlotte Hornets	
-NOP	| New Orleans Pelicans
-CHI	| Chicago Bulls	
-NYK	| New York Knicks
-CLE	| Cleveland Cavaliers	
-OKC	| Oklahoma City Thunder
-DAL	| Dallas Mavericks	
-ORL	| Orlando Magic
-DEN	| Denver Broncos	
-PHI	| Philadelphia 76ers
-DET	| Detroit Pistons	
-PHX	| Phoenix Suns
-GSW	| Golden State Warriors	
-POR	| Portland Trail Blazers
-HOU	| Houston Rockets	
-SAC	| Sacramento Kings
-IND	| Indiana Pacers	
-SAS	| San Antonio Spurs
-LAC	| Los Angeles Clippers	
-TOR	| Toronto Raptors
-LAL	| Los Angeles Lakers	
-UTA	| Utah Jazz
-MEM	| Memphis Grizzlies	
-WAS	| Washington Wizards
+Team ID  | Team | Team ID | Team
+----- | ------- | ------- | -------
+ATL | Atlanta Hawks	| PHI | Philadelphia 76ers 
+MIA	| Miami Heat | DET | Detroit Pistons	
+BKN	| Brooklyn Nets | PHX	| Phoenix Suns
+MIL	| Milwaukee Bucks | GSW  | Golden State Warriors
+BOS	| Boston Celtics| POR	    | Portland Trail Blazers
+MIN	| Minnesota Timberwolves | HOU  | Houston Rockets	
+CHA	| Charlotte Hornets	| SAC  | Sacramento Kings
+NOP	| New Orleans Pelicans | IND | Indiana Pacers	
+CHI	| Chicago Bulls	| SAS   | San Antonio Spurs
+NYK	| New York Knicks | LAC  | Los Angeles Clippers
+CLE	| Cleveland Cavaliers | TOR   |	Toronto Raptors
+OKC	| Oklahoma City Thunder | LAL | Los Angeles Lakers
+DAL	| Dallas Mavericks |UTA	  | Utah Jazz
+ORL	| Orlando Magic | MEM   | Memphis Grizzlies	
+DEN	| Denver Broncos | WAS  | Washington Wizards
 
 
 ## Stats 
 
-** Required Fields **
+**Example Requests for Stats by ID**
+
+{"channel": "stats", "gameId": "21600854", "playerId": "201142"}
+
+**Example Requests for Stats by Name**
+
+{"channel": "stats", "lastName": "Durant", "firstName": "Kevin", "year": 2017, "month": 12, "day": 12}
+
+**Required Fields**
 
 Field | Type | Example 
 ------ | ------ | ------
-Year |      | 
-Month |     |
-Day  |       |
-gameID |      | 
-playerID |    | 
+<span style="color:red"> channel </span> | String | <span style="color:red"> stats </span>
+<span style="color:red"> gameId </span> | String  | <span style="color:red"> "21600854" </span>
+<span style="color:red"> playerId </span>  | String | <span style="color:red"> "201142" </span>
 
+Field | Type | Example
+------| -----| ---------
+<span style="color:red"> channel </span> | String | <span style="color:red"> stats </span>
+<span style="color:red"> Year </span> | Integer  | <span style="color:red"> 2016 </span>, <span style="color:red"> 2017 </span> and <span style="color:red"> 2018 </span>
+<span style="color:red"> Month </span>| Integer  | <span style="color:red"> 2 </span>, <span style="color:red"> 6 </span>, <span style="color:red"> 10 </span> etc..
+<span style="color:red"> Day </span> | Integer  | Follows typical calendar convention: <span style="color:red"> 3 </span>, <span style="color:red"> 18 </span>, <span style="color:red"> 25 </span>, etc...
+<span style="color:red"> firstName </span> | String | <span style="color:red">  Kevin </span>
+<span style="color:red"> lastName </span> | String | <span style="color:red"> Durant </span>
 
 # Contact Us
 Follow us on twitter <a href="https://twitter.com/SuredBits">@Suredbits</a>
