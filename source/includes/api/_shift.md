@@ -1296,7 +1296,7 @@ Subject parameter works together with parameter 'match'
 
 ####match
 
-String, defaults to 'any'. Works together with 'subject' parameter. Recogninzes three values: 'any', 'all' and 'exact'. If 'any' is specified, it will match if any word from 'subject' parameter appears in either 'subject' or in 'body' of the shift. If 'all' is specified, it will match if all words from 'subject' parameter appears in either 'subject' or all words appear in 'body' of the shift. If 'exact' is specified, it will match if there is an exact match with 'subject' parameter and 'subject' or exact match with 'body' of the shift.
+String, defaults to 'any'. Works together with 'subject' parameter. Recognizes three values: 'any', 'all' and 'exact'. If 'any' is specified, it will match if any word from 'subject' parameter appears in either 'subject' or in 'details' of the shift. If 'all' is specified, it will match if all words from 'subject' parameter appears in either 'subject' or all words appear in 'details' of the shift. If 'exact' is specified, it will match if there is an exact match with 'subject' parameter and the entirety of the 'subject' field or exact match with the entirety of the 'details' field of the shift.
 
 ####covering_member
 
