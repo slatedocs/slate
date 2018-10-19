@@ -66,9 +66,9 @@ Here is the websocket url for Suredbits: <a href="wss://test.api.suredbits.com/n
     }
  }
 ```
-All request now require you to enter a field called <span style="color:red"> *`uuid`* </span>.  
+<aside class="warning"> All request require a field called <b> uuid </b> </aside>  
 
-A valid <span style="color:red"> *`uuid`* </span> request will show up on the invoice, response, and any error message that are returned.  If no <span style="color:red"> *`uuid`* </span> is specified in a websocket request then this field will be omitted from that request's response.
+A valid <span style="color:red"> `uuid` </span> request will show up on the invoice, response, and any error message that are returned.  If no <span style="color:red"> `uuid` </span> is specified in a websocket request then this field will be omitted from that request's response.
 
 ## Format 
 
@@ -273,7 +273,7 @@ Field | Type | Exchanges Supported
 
 **Example Request**
 
-{"channel": "info"}
+{"channel": "info", "uuid": "[uuid]"}
 
 This provides a check and confirmation on the status of the API. 
 
@@ -322,7 +322,7 @@ This provides a check and confirmation on the status of the API.
 
 **Example Request**
 
-{"channel":"games", "week":1, "seasonPhase" : "Regular", "year" : 2017}
+{"channel":"games", "week":1, "seasonPhase" : "Regular", "year" : 2017, "uuid": "[uuid]"}
 
 There are two required fields to query NFL Games data:
 
@@ -377,7 +377,7 @@ This request implements a websocket channel called <span style="color:red"> *pla
 
 **Example Requests**
 
-{"channel":"players", "lastName" : "Moss", "firstName" : "Randy"}
+{"channel":"players", "lastName" : "Moss", "firstName" : "Randy", "uuid": "[uuid]"}
 
 Required fields to request NFL Player data: 
 
@@ -471,13 +471,13 @@ This request implements a websocket channel called <span style="color:red"> *tea
 **Example Requests**
 
 For Rosters:
-{"channel": "team", "teamId": "MIN", "retrieve": "roster"}
+{"channel": "team", "teamId": "MIN", "retrieve": "roster", "uuid": "[uuid]"}
 
 For Schedules:
-{"channel": "team", "teamId": "CHI", "retrieve": "schedule"}
+{"channel": "team", "teamId": "CHI", "retrieve": "schedule", "uuid": "[uuid]"}
 
 For Rosters in Year:
-{"channel": "team", "teamId": "CHI", "retrieve": "schedule", "year": 2018}
+{"channel": "team", "teamId": "CHI", "retrieve": "schedule", "year": 2018, "uuid": "[uuid]"}
 
 There are two required Fields to request NFL Team & Roster data:
 
@@ -601,17 +601,126 @@ Field | Type | Example
 <span style="color:red"> firstName  | String | </span> <span style="color:red"> *Drew* </span>
 <span style="color:red"> lastName | String | </span> <span style="color:red"> *Brees* </span>
 
-# NBA (Coming Soon)
+# NBA 
 
 ## Info
 
-Coming soon...
-
-## Games
 
 **Example Request**
 
-{"channel": "games", "year": 2018, "month": 11, "day": 24}
+{channel: "info", "uuid": "[uuid]"}
+
+Field | Type | Example
+------ | ----- | -------
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
+
+
+
+## Games
+
+> Example Games data
+
+```json
+{  
+   "uuid":"3f4f2853-e84f-4a29-b807-8a471e59ca44",
+   "data":[  
+      {  
+         "gameId":21800280,
+         "startTime":"2018-11-25T01:00:00.000Z",
+         "homeTeam":{  
+            "teamID":"WAS",
+            "finalScore":0
+         },
+         "awayTeam":{  
+            "teamID":"NOP",
+            "finalScore":0
+         },
+         "finished":false,
+         "seasonPhase":"Regular",
+         "year":"2018-2019"
+      },
+      {  
+         "gameId":21800282,
+         "startTime":"2018-11-25T01:00:00.000Z",
+         "homeTeam":{  
+            "teamID":"OKC",
+            "finalScore":0
+         },
+         "awayTeam":{  
+            "teamID":"DEN",
+            "finalScore":0
+         },
+         "finished":false,
+         "seasonPhase":"Regular",
+         "year":"2018-2019"
+      },
+      {  
+         "gameId":21800285,
+         "startTime":"2018-11-25T01:30:00.000Z",
+         "homeTeam":{  
+            "teamID":"GSW",
+            "finalScore":0
+         },
+         "awayTeam":{  
+            "teamID":"SAC",
+            "finalScore":0
+         },
+         "finished":false,
+         "seasonPhase":"Regular",
+         "year":"2018-2019"
+      },
+      {  
+         "gameId":21800284,
+         "startTime":"2018-11-25T01:30:00.000Z",
+         "homeTeam":{  
+            "teamID":"MIL",
+            "finalScore":0
+         },
+         "awayTeam":{  
+            "teamID":"SAS",
+            "finalScore":0
+         },
+         "finished":false,
+         "seasonPhase":"Regular",
+         "year":"2018-2019"
+      },
+      {  
+         "gameId":21800279,
+         "startTime":"2018-11-25T00:30:00.000Z",
+         "homeTeam":{  
+            "teamID":"CLE",
+            "finalScore":0
+         },
+         "awayTeam":{  
+            "teamID":"HOU",
+            "finalScore":0
+         },
+         "finished":false,
+         "seasonPhase":"Regular",
+         "year":"2018-2019"
+      },
+      {  
+         "gameId":21800281,
+         "startTime":"2018-11-25T01:00:00.000Z",
+         "homeTeam":{  
+            "teamID":"MIN",
+            "finalScore":0
+         },
+         "awayTeam":{  
+            "teamID":"CHI",
+            "finalScore":0
+         },
+         "finished":false,
+         "seasonPhase":"Regular",
+         "year":"2018-2019"
+      }
+   ]
+}
+```
+
+**Example Request**
+
+{"channel": "games", "year": 2018, "month": 11, "day": 24, "uuid": "[uuid]"}
 
 
 **Required Fields**
@@ -630,16 +739,38 @@ Field | Type | Example
 
 To search for a game by a specific team, add an optional field for <span style="color:red"> teamID </span>
 
-{"channel": "games", "year": 2016, "month": 12, "day": 20, "teamId": "CHI"}
+{"channel": "games", "year": 2016, "month": 12, "day": 20, "teamId": "CHI", "uuid": "[uuid]"}
 
 <a href="#NBATeamID">See Team ID Table</a>
 
 
 ## Players
 
+> Example Player data (Kevin Durant)
+
+```json
+{  
+   "uuid":"3f4f2853-e84f-4a29-b807-8a471e59ca44",
+   "data":[  
+      {  
+         "playerId":201142,
+         "firstName":"Kevin",
+         "lastName":"Durant",
+         "fullName":"Kevin Durant",
+         "team":"GSW",
+         "profileUrl":"",
+         "birthDate":"2018-10-19T11:43:30.426Z",
+         "status":"Active",
+         "rookieYear":2007,
+         "lastYear":2018
+      }
+   ]
+}
+```
+
 **Example Requests**
 
-{"channel": "players", "lastName": "Durant", "firstName": "Kevin"}
+{"channel": "players", "lastName": "Durant", "firstName": "Kevin", "uuid": "[uuid]"}
 
 **Required Fields**
 
@@ -653,13 +784,38 @@ Field | Type | Example
 
 ## Teams
 
+> Example of Team Schedule (Chicago Bulls)
+
+```json
+{  
+   "uuid":"3f4f2853-e84f-4a29-b807-8a471e59ca44",
+   "data":[  
+      {  
+         "gameId":21600073,
+         "startTime":"2016-11-05T00:00:00.000Z",
+         "homeTeam":{  
+            "teamID":"CHI",
+            "finalScore":104
+         },
+         "awayTeam":{  
+            "teamID":"NYK",
+            "finalScore":117
+         },
+         "finished":true,
+         "seasonPhase":"Regular",
+         "year":"2016-2017",
+      }
+}
+...
+
+```
 **Example Requests**
 
-{"channel": "team", "retrieve": "roster"}
+{"channel": "team", "retrieve": "roster", "uuid": "[uuid]"}
 
-{"channel": "team", "retrieve": "schedule"}
+{"channel": "team", "retrieve": "schedule", "uuid": "[uuid]"}
 
-{"channel": "team", "retrieve": "schedule", "season": "2016-2017"}
+{"channel": "team", "retrieve": "schedule", "season": "2016-2017", "uuid": "[uuid]"}
 
 **Required Fields**
 
@@ -700,9 +856,40 @@ DEN	| Denver Broncos | WAS  | Washington Wizards
 
 ## Stats 
 
+> Example of Player Stats (Kevin Durant)
+
+```json
+{  
+   "uuid":"3f4f2853-e84f-4a29-b807-8a471e59ca44",
+   "data":[  
+      {  
+         "playerId":201142,
+         "min":0,
+         "fgm":0,
+         "fga":0,
+         "tpm":0,
+         "tpa":0,
+         "ftm":0,
+         "fta":0,
+         "plusminus":0,
+         "off":0,
+         "deff":0,
+         "tot":0,
+         "ast":0,
+         "pf":0,
+         "st":0,
+         "to":0,
+         "bs":0,
+         "pts":0
+      }
+   ]
+}`
+```
+
+
 **Example Requests for Stats by ID**
 
-{"channel": "stats", "gameId": "21600854", "playerId": "201142"}
+{"channel": "stats", "gameId": "21600854", "playerId": "201142", "uuid": "[uuid]"}
 
 
 
@@ -717,7 +904,7 @@ Field | Type | Example
 
 **Example Requests for Stats by Name**
 
-{"channel": "stats", "lastName": "Durant", "firstName": "Kevin", "year": 2017, "month": 12, "day": 12}
+{"channel": "stats", "lastName": "Durant", "firstName": "Kevin", "year": 2017, "month": 12, "day": 12, "uuid": "[uuid]"}
 
 Field | Type | Example
 ------| -----| ---------
