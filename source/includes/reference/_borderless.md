@@ -452,7 +452,7 @@ X-idempotence-uuid                | Unique identifier assinged by you. Used for 
 
 ```shell
 
-curl -X GET https://api.sandbox.transferwise.tech/v1/borderless-accounts/balance-currencies \
+curl -X GET https://api.sandbox.transferwise.tech/v2/borderless-accounts-configuration/profiles/{profileID}/balance-currencies \
      -H "Authorization: Bearer <your api token>" 
 ```
 
@@ -464,16 +464,141 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/borderless-accounts/balance
         "code": "EUR",
         "hasBankDetails": true,
         "payInAllowed": true,
-        "sampleBankDetails": null
+        "sampleBankDetails": {
+            "profileId": <your personal profile id>,
+            "currency": "EUR",
+            "accountHolderName": "Lauri Hein",
+            "bankCode": {
+                "swiftCode": "DEKTDxxxxxx"
+            },
+            "accountNumber": {
+                "iban": "DE52 7001 111x xxxx xxxx xx"
+            },
+            "address": {
+                "default": {
+                    "firstLine": "Handelsbank",
+                    "secondLine": "Elsenheimer Str. 41",
+                    "postCode": "80687",
+                    "city": "München",
+                    "country": "Germany",
+                    "stateCode": null
+                }
+            },
+            "limits": {
+                "daily": {
+                    "currency": "EUR",
+                    "value": null
+                },
+                "yearly": {
+                    "currency": "EUR",
+                    "value": null
+                }
+            },
+            "translations": {
+                "accountLimits.daily": "24 hour receive limit",
+                "bankCode.swiftCode": "Bank code (SWIFT / BIC)",
+                "accountNumber.iban": "IBAN",
+                "address.default": "Address",
+                "accountLimits.yearly": "Annual receive limit",
+                "accountHolderName": "TW Account Holder"
+            },
+            "status": "NOT_OPENED"
+        }
     },
     {
         "code": "GBP",
         "hasBankDetails": true,
         "payInAllowed": true,
-        "sampleBankDetails": null
+        "sampleBankDetails": {
+            "profileId": 5916067,
+            "currency": "GBP",
+            "accountHolderName": "Lauri Hein",
+            "bankCode": {
+                "sortCode": "23-1x-xx"
+            },
+            "accountNumber": {
+                "default": "1000xxxx"
+            },
+            "address": {
+                "default": {
+                    "firstLine": "TransferWise",
+                    "secondLine": "56 Shoreditch High Street",
+                    "postCode": "E1 6JJ",
+                    "city": "London",
+                    "country": "United Kingdom",
+                    "stateCode": null
+                }
+            },
+            "limits": {
+                "daily": {
+                    "currency": "GBP",
+                    "value": null
+                },
+                "yearly": {
+                    "currency": "GBP",
+                    "value": null
+                }
+            },
+            "translations": {
+                "accountLimits.daily": "24 hour receive limit",
+                "accountNumber.default": "Account number",
+                "address.default": "Address",
+                "bankCode.sortCode": "UK Sort Code",
+                "accountLimits.yearly": "Annual receive limit",
+                "accountHolderName": "Account Holder"
+            },
+            "status": "NOT_OPENED"
+        }
     },
     {
         "code": "USD",
+        "hasBankDetails": true,
+        "payInAllowed": true,
+        "sampleBankDetails": {
+            "profileId": 5916067,
+            "currency": "USD",
+            "accountHolderName": "Lauri Hein",
+            "bankCode": {
+                "wireRoutingNumber": "0260xxxxx",
+                "achRoutingNumber": "0260xxxxx"
+            },
+            "accountNumber": {
+                "default": "8xx00xxxxx"
+            },
+            "address": {
+                "default": {
+                    "firstLine": "TransferWise",
+                    "secondLine": "19 W 24th Street",
+                    "postCode": "10010",
+                    "city": "New York",
+                    "country": "United States",
+                    "stateCode": "NY"
+                }
+            },
+            "limits": {
+                "daily": {
+                    "currency": "USD",
+                    "value": 250000
+                },
+                "yearly": {
+                    "currency": "USD",
+                    "value": 1000000
+                }
+            },
+            "translations": {
+                "accountLimits.daily": "24 hour receive limit",
+                "accountNumber.default": "Account number",
+                "address.default": "Address",
+                "bankCode.achRoutingNumber": "ACH Routing Number",
+                "bankCode.wireRoutingNumber": "Wire Routing Number",
+                "accountLimits.yearly": "Annual receive limit",
+                "accountHolderName": "Account Holder"
+            },
+            "status": "NOT_OPENED"
+        }
+    },
+    {
+        "code": "PLN",
         "hasBankDetails": false,
         "payInAllowed": true,
         "sampleBankDetails": null
