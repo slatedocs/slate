@@ -242,7 +242,7 @@ Therefore if you have very many recipient accounts defined in your business prof
 
 
 ### Request
-**`GET https://api.sandbox.transferwise.tech/v1/accounts?profile=<profileId>&currency=<currencyCode>`**
+**`GET https://api.sandbox.transferwise.tech/v1/accounts?s?profile=<profileId>&currency=<currencyCode>`**
 
 Both query parameters are optional.
 
