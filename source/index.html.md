@@ -68,7 +68,7 @@ Here is the websocket url for Suredbits: <a href="wss://test.api.suredbits.com/n
 ```
 All request now require you to enter a field called <span style="color:red"> *`uuid`* </span>.  
 
-A valid <span style="color:red"> *`uuid`* </span> request will show up on the invoice, response, and any error message that are returned.  If no <span style="color:red"> *`uuid`* </span> is specified in a websocket request then this field will be omitted from that request's responses.
+A valid <span style="color:red"> *`uuid`* </span> request will show up on the invoice, response, and any error message that are returned.  If no <span style="color:red"> *`uuid`* </span> is specified in a websocket request then this field will be omitted from that request's response.
 
 ## Format 
 
@@ -132,13 +132,14 @@ To subscribe to a data stream, use the following command format:
 
 Field | Type | Example
 ------ | ------ | -------
-<span style="color:red"> <*event*> </span> | String | <span style="color:red"> "subscribe" </span>
-<span style="color:red"> <*channel*> </span> | String | <span style="color:red">  "tickers" </span>
-<span style="color:red"> <*symbol*>  </span> | String | <span style="color:red"> "ETHBTC" </span>
-<span style="color:red"> <*exchange*> </span> | String | <span style="color:red"> "bitfinex" </span>
-<span style="color:red"> <*duration*> </span> | Integer (milliseconds) | <span style="color:red"> "15000" </span>
-<span style="color:red"> <*refundInvoice*> </span> | String | <span style="color:red"> lnbcrt10n1pd5v2mwpp5ulxpj8ht... </span>
-<span style="color:red"> <*uuid*>  </span> | String | <span style="color:red"> 123e4567-e89b-12d3-a456-426655440000 </span>
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
+<span style="color:red"> event </span> | String | <span style="color:red"> "subscribe" </span>
+<span style="color:red"> channel </span> | String | <span style="color:red">  "tickers" </span>
+<span style="color:red"> symbol  </span> | String | <span style="color:red"> "ETHBTC" </span>
+<span style="color:red"> exchange </span> | String | <span style="color:red"> "bitfinex" </span>
+<span style="color:red"> duration </span> | Integer (milliseconds) | <span style="color:red"> "15000" </span>
+<span style="color:red"> refundInvoice </span> | String | <span style="color:red"> lnbcrt10n1pd5v2mwpp5ulxpj8ht... </span>
+
 
 **Payment** 
 
@@ -161,9 +162,9 @@ You may refill your subscrption at any time with the following command format:
 
 Field | Type | Example
 ------| ------ | --------
-<span style="color:red"> <*uuid*> </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span>
-<span style="color:red"> <*addedDuration*> </span> | Integer (milliseconds) | <span style="color:red"> "1000" </span>
-<span style="color:red"> <*event*> </span> | String | <span style="color:red"> "refill" </span>
+<span style="color:red"> uuid </span> | String | <span style="color:red"> "e.g. 123e4567-e89b-12d3-a456-426655440000" </span>
+<span style="color:red"> addedDuration </span> | Integer (milliseconds) | <span style="color:red"> "1000" </span>
+<span style="color:red"> event </span> | String | <span style="color:red"> "refill" </span>
 
 
 
@@ -173,8 +174,8 @@ You may unsubscribe from a channel using the following command:
 
 Field | Type | Example
 ------| ------ | --------
-<span style="color:red"> <*uuid*> </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span> 
-<span style="color:red"> <*event*> </span> | String | <span style="color:red"> "unsubscribe" </span>
+<span style="color:red"> uuid </span> | String | <span style="color:red"> "e.g. 123e4567-e89b-12d3-a456-426655440000" </span> 
+<span style="color:red"> event </span> | String | <span style="color:red"> "unsubscribe" </span>
 
 
 **Maintenance**
@@ -186,43 +187,45 @@ In the event of maintenance or service interruption, we will refund any remainin
 
 Field | Type | Exchanges Supported
 ------ | ------ | --------
-<span style="color:red"> *eventTime* </span>| Integer | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
-<span style="color:red"> *symbol* </span> | String | <span style="color:red"> binance </span>
-<span style="color:red"> *priceChange* </span> | Double | <span style="color:red"> binance </span>
-<span style="color:red"> *priceChangePerc* </span> |  Double | <span style="color:red"> binance </span>
-<span style="color:red"> *weightedAvePrice* </span> |  Double | <span style="color:red"> binance </span>
-<span style="color:red"> *prevClose* </span> | Double | <span style="color:red"> binance </span>
-<span style="color:red"> *close* </span> | Double | <span style="color:red"> binance </span>
-<span style="color:red"> *closeQuantity* </span> |  Double | <span style="color:red"> binance </span>
-<span style="color:red"> *bid* </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>          
-<span style="color:red"> *bidSize* </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>          
-<span style="color:red"> *ask* </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>          
-<span style="color:red"> *askSize* </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>        
-<span style="color:red"> *open* </span> | Double | <span style="color:red"> binance </span>
-<span style="color:red"> *high* </span> | Double | <span style="color:red"> binance </span>
-<span style="color:red"> *low* </span> | Double | <span style="color:red"> binance </span>
-<span style="color:red"> *volume* </span> | Double | <span style="color:red"> binance </span>
-<span style="color:red"> *quoteVolume* </span> | Double| <span style="color:red"> binance </span>
-<span style="color:red"> *statOpenTime* </span> | Integer | <span style="color:red"> binance </span>
-<span style="color:red"> *statCloseTime* </span> | Integer | <span style="color:red"> binance </span>
-<span style="color:red"> *firstTradeId* </span> | Integer | <span style="color:red"> binance </span>
-<span style="color:red"> *totalTrades* </span> | Integer | <span style="color:red"> binance </span>
-<span style="color:red"> *eventTime* </span> |  Integer | <span style="color:red"> binance </span>                   
-<span style="color:red"> *bid* </span> | Double | <span style="color:red"> binance </span>
-<span style="color:red"> *bidSize* </span> | Double | <span style="color:red"> binance </span>
-<span style="color:red"> *ask* </span> | Double | <span style="color:red"> binance </span>
-<span style="color:red"> *askSize* </span> | Double | <span style="color:red"> binance </span>
-<span style="color:red"> *priceChange* |</span>  Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>           
-<span style="color:red"> *priceChangePerc* </span> |  Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>       
-<span style="color:red"> *close* </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>           
-<span style="color:red"> *volume* </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
-<span style="color:red"> *high*  </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
-<span style="color:red"> *low* </span> |  Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000</span>
+<span style="color:red"> eventTime </span>| Integer | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
+<span style="color:red"> symbol </span> | String | <span style="color:red"> binance </span>
+<span style="color:red"> priceChange </span> | Double | <span style="color:red"> binance </span>
+<span style="color:red"> priceChangePerc </span> |  Double | <span style="color:red"> binance </span>
+<span style="color:red"> weightedAvePrice </span> |  Double | <span style="color:red"> binance </span>
+<span style="color:red"> prevClose </span> | Double | <span style="color:red"> binance </span>
+<span style="color:red"> close </span> | Double | <span style="color:red"> binance </span>
+<span style="color:red"> closeQuantity </span> |  Double | <span style="color:red"> binance </span>
+<span style="color:red"> bid </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>          
+<span style="color:red"> bidSize </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>          
+<span style="color:red"> ask </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>          
+<span style="color:red"> askSize </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>        
+<span style="color:red"> open </span> | Double | <span style="color:red"> binance </span>
+<span style="color:red"> high </span> | Double | <span style="color:red"> binance </span>
+<span style="color:red"> low </span> | Double | <span style="color:red"> binance </span>
+<span style="color:red"> volume </span> | Double | <span style="color:red"> binance </span>
+<span style="color:red"> quoteVolume </span> | Double| <span style="color:red"> binance </span>
+<span style="color:red"> statOpenTime </span> | Integer | <span style="color:red"> binance </span>
+<span style="color:red"> statCloseTime </span> | Integer | <span style="color:red"> binance </span>
+<span style="color:red"> firstTradeId </span> | Integer | <span style="color:red"> binance </span>
+<span style="color:red"> totalTrades </span> | Integer | <span style="color:red"> binance </span>
+<span style="color:red"> eventTime </span> |  Integer | <span style="color:red"> binance </span>                   
+<span style="color:red"> bid </span> | Double | <span style="color:red"> binance </span>
+<span style="color:red"> bidSize </span> | Double | <span style="color:red"> binance </span>
+<span style="color:red"> ask </span> | Double | <span style="color:red"> binance </span>
+<span style="color:red"> askSize </span> | Double | <span style="color:red"> binance </span>
+<span style="color:red"> priceChange |</span>  Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>           
+<span style="color:red"> priceChangePerc </span> |  Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>       
+<span style="color:red"> close </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>           
+<span style="color:red"> volume </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
+<span style="color:red"> high  </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
+<span style="color:red"> low </span> |  Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
 
 ## Trades
 
 Field |  Type | Exchanges Supported 
 ------ | ------- | -----------
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
 <span style="color:red"> eventType </span> | String | <span style="color:red"> binance </span>
 <span style="color:red"> eventTime </span> | Integer | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
 <span style="color:red"> symbol </span> | String | <span style="color:red"> binance </span>
@@ -242,6 +245,7 @@ Field |  Type | Exchanges Supported
 
 Field | Type | Exchanges Supported
 ------| -------| --------
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
 <span style="color:red"> eventTime </span> | Integer | <span style="color:red"> bitfinex </span> 
 <span style="color:red"> symbol </span> |  String | <span style="color:red"> bitfinex </span> 
 <span style="color:red"> orderId </span> |  Integer | <span style="color:red"> bitfinex </span> 
@@ -326,6 +330,7 @@ There are two required fields to query NFL Games data:
 
 Field | Type | Example
 ------ | ------- | ------
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
 <span style="color:red"> week </span> | Integer | <span style="color:red"> </span> <span style="color:red"> *1, 2, 3* </span> etc...
 <span style="color:red"> seasonPhase </span> | String |  <span style="color:red"> *Preaseason, Regular* </span> , or <span style="color:red"> *Postseason* </span>
 
@@ -380,6 +385,7 @@ Required fields to request NFL Player data:
 
 Field | Type | Example
 ------ | ----- | -----
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
 <span style="color:red"> firstName </span> | String |  <span style="color:red"> Randy </span>
 <span style="color:red"> lastName </span>  | String |  <span style="color:red"> Moss </span>
 
@@ -479,6 +485,7 @@ There are two required Fields to request NFL Team & Roster data:
 
 Field | Type | Example 
 ------ | ----- | ------
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
 <span style="color:red"> teamID </span> | String |  <span style="color:red"> *CHI* </span>, <span style="color:red"> *MIN* </span> etc.
 <span style="color:red"> retrieve </span> | String |  <span style="color:red"> *roster* </span> or <span style="color:red"> *schedule* </span>
 
@@ -572,6 +579,7 @@ To query by <span style="color:red"> *gameId* </span> and <span style="color:red
 
 Field | Type | Example
 ------ | ----- | -------
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
 <span style="color:red"> channel </span> | String| <span style="color:red"> *stats* </span>
 <span style="color:red"> statType </span> | String | <span style="color:red"> *passing, rushing, receiving, defense* </span>
 <span style="color:red"> gameId </span> | String | <span style="color:red"> *2016101604* </span>
@@ -584,6 +592,7 @@ To query by <span style="color:red"> *name* </span> and <span style="color:red">
 
 Field | Type | Example
 ------ | ------- | -----
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
 <span style="color:red"> channel </span> | String | <span style="color:red"> *stats* </span>
 <span style="color:red"> statType </span> | String | <span style="color:red"> *passing, rushing, receiving, defense* </span>
 <span style="color:red"> year </span> | Integer | <span style="color:red"> *2016, 2017* </span>
@@ -609,6 +618,7 @@ Coming soon...
 
 Field | Type | Example
 ------ | ----- | -------
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
 <span style="color:red"> channel </span> | String | <span style="color:red"> games </span>
 <span style="color:red"> year </span> | Integer  | <span style="color:red"> 2016 </span>, <span style="color:red"> 2017 </span> and <span style="color:red"> 2018 </span>
 <span style="color:red"> month </span> | Integer  | <span style="color:red"> 3 </span>, <span style="color:red"> 8 </span>, <span style="color:red"> 12 </span> etc..
@@ -635,6 +645,7 @@ To search for a game by a specific team, add an optional field for <span style="
 
 Field | Type | Example 
 ------ | ------ |-------
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
 <span style="color:red"> channel </span> | String | <span style="color:red"> players </span>
 <span style="color:red"> firstName </span> | String | <span style="color:red"> Kevin </span>
 <span style="color:red"> lastName </span>  | String | <span style="color:red"> Durant </span>
@@ -654,6 +665,7 @@ Field | Type | Example
 
 Field | Type |  Example
 ----- | ----- | --------
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
 <span style="color:red"> channel </span> | String |  <span style="color:red"> teams </span>
 <span style="color:red"> teamId </span> | String | <span style="color:red"> CHI </span>, <span style="color:red"> LAC </span>, <span style="color:red"> MIA </span>, etc...
 <span style="color:red"> retrieve </span> | String | <span style="color:red"> roster </span> or <span style="color:red"> schedule </span> 
@@ -692,20 +704,24 @@ DEN	| Denver Broncos | WAS  | Washington Wizards
 
 {"channel": "stats", "gameId": "21600854", "playerId": "201142"}
 
-**Example Requests for Stats by Name**
 
-{"channel": "stats", "lastName": "Durant", "firstName": "Kevin", "year": 2017, "month": 12, "day": 12}
 
 **Required Fields**
 
 Field | Type | Example 
 ------ | ------ | ------
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
 <span style="color:red"> channel </span> | String | <span style="color:red"> stats </span>
 <span style="color:red"> gameId </span> | String  | <span style="color:red"> "21600854" </span>
 <span style="color:red"> playerId </span>  | String | <span style="color:red"> "201142" </span>
 
+**Example Requests for Stats by Name**
+
+{"channel": "stats", "lastName": "Durant", "firstName": "Kevin", "year": 2017, "month": 12, "day": 12}
+
 Field | Type | Example
 ------| -----| ---------
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
 <span style="color:red"> channel </span> | String | <span style="color:red"> stats </span>
 <span style="color:red"> Year </span> | Integer  | <span style="color:red"> 2016 </span>, <span style="color:red"> 2017 </span> and <span style="color:red"> 2018 </span>
 <span style="color:red"> Month </span>| Integer  | <span style="color:red"> 2 </span>, <span style="color:red"> 6 </span>, <span style="color:red"> 10 </span> etc..
