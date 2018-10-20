@@ -331,17 +331,17 @@ There are two required fields to query NFL Games data:
 Field | Type | Example
 ------ | ------- | ------
 <span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
-<span style="color:red"> week </span> | Integer | <span style="color:red"> </span> <span style="color:red"> *1, 2, 3* </span> etc...
-<span style="color:red"> seasonPhase </span> | String |  <span style="color:red"> *Preaseason, Regular* </span> , or <span style="color:red"> *Postseason* </span>
+<span style="color:red"> week </span> | Integer | <span style="color:red"> </span> <span style="color:red"> 1, 2, 3 </span> etc...
+<span style="color:red"> seasonPhase </span> | String |  <span style="color:red"> Preaseason, Regular </span> , or <span style="color:red"> *Postseason* </span>
 
 
 **Optional fields**
 
 Field | Type | Example
 ------ | ------- | --------
-<span style="color:red"> year </span> | Integer |  <span style="color:red"> *2009, 2010, 2011,* etc. </span>
-<span style="color:red"> teamId </span> | String  |  <span style="color:red"> *CHI, MIN, GB, MIA* </span> etc. <a href="#TeamID">See Team ID Table</a>
-<span style="color:red"> realtime </span> | Boolean | <span style="color:red"> *true* </span>
+<span style="color:red"> year </span> | Integer |  <span style="color:red"> 2009, 2010, 2011, etc. </span>
+<span style="color:red"> teamId </span> | String  |  <span style="color:red"> CHI, MIN, GB, MIA </span> etc. <a href="#TeamID">See Team ID Table</a>
+<span style="color:red"> realtime </span> | Boolean | <span style="color:red"> true </span>
 
 
 ## Players
@@ -373,7 +373,7 @@ Field | Type | Example
   }
 ```
 
-This request implements a websocket channel called <span style="color:red"> *players* </span>. It returns a NFL player given a websocket request.
+This request implements a websocket channel called <span style="color:red"> players </span>. It returns a NFL player given a websocket request.
 
 **Example Requests**
 
@@ -486,14 +486,14 @@ There are two required Fields to request NFL Team & Roster data:
 Field | Type | Example 
 ------ | ----- | ------
 <span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
-<span style="color:red"> teamID </span> | String |  <span style="color:red"> *CHI* </span>, <span style="color:red"> *MIN* </span> etc.
-<span style="color:red"> retrieve </span> | String |  <span style="color:red"> *roster* </span> or <span style="color:red"> *schedule* </span>
+<span style="color:red"> teamID </span> | String |  <span style="color:red"> CHI </span>, <span style="color:red"> MIN </span> etc.
+<span style="color:red"> retrieve </span> | String |  <span style="color:red"> roster </span> or <span style="color:red"> schedule </span>
 
 **Optional Field**
 
 Field | Type | Example
 ------| ----- | ------
-<span style="color:red"> year </span> | Integer | <span style="color:red"> *2018* </span> , <span style="color:red"> *2015* </span> , <span style="color:red"> *2011* </span> , etc. 
+<span style="color:red"> year </span> | Integer | <span style="color:red"> 2018 </span> , <span style="color:red"> 2015 </span> , <span style="color:red"> 2011 </span> , etc. 
 
 <aside class="notice">NOTE: the <span style="color:red"> year </span> field defaults to current year. </aside>
 
@@ -550,7 +550,7 @@ KC	| Kansas City Chiefs	| WAS	| Washington Redskins
 
 ```
 
-This request implements a websocket channel called <span style="color:red"> *stats* </span>.  It returns the data for an individual <span style="color:red"> *player* </span> or <span style="color:red"> *game* </span>.
+This request implements a websocket channel called <span style="color:red"> stats </span>.  It returns the data for an individual <span style="color:red"> player </span> or <span style="color:red"> game </span>.
 
 **Example Data Requests**
 
