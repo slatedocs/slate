@@ -51,7 +51,13 @@ under the License.
       </span>
     </a>
     <div class="toc-wrapper">
-      <%= image_tag "logo.png", class: 'logo' %>
+      <% if current_page.data.logo_link %>
+        <a href="<%= current_page.data.logo_link %>">
+          <%= image_tag "logo.png", class: 'logo' %>
+        </a>
+      <% else %>
+        <%= image_tag "logo.png", class: 'logo' %>
+      <% end %>
       <% if language_tabs.any? %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>
