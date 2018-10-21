@@ -51,7 +51,7 @@ under the License.
       </span>
     </a>
     <div class="toc-wrapper">
-      <% if current_page.data.logo.link %>
+      <% if current_page.data.logo.present? %>
         <a href="<%= current_page.data.logo.link %>" target="<%= current_page.data.logo.target %>">
           <%= image_tag "logo.png", class: 'logo' %>
         </a>
