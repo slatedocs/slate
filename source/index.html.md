@@ -13,7 +13,7 @@ search: true
  
 # Lightning API v0 Documentation
 
-## Connect With US
+## Connect With Us
 
 Follow us on twitter <a href="https://twitter.com/SuredBits">@Suredbits</a>
 
@@ -46,9 +46,6 @@ The url is:
 This is our recommended lnd lightning client library: <a href="https://github.com/SuredBits/sb-api-lnd">https://github.com/SuredBits/sb-api-lnd</a>
 
 This is an alternative c-lightning client library: <a href="https://github.com/suredbits/lightning-charge">https://github.com/suredbits/lightning-charge</a>
-
-## Suredbits Websocket Endpoint
-Here is the websocket url for Suredbits: <a href="wss://test.api.suredbits.com/nfl/v0">wss://test.api.suredbits.com/nfl/v0</a>
 
 ## UUID
 > Example Data Returned with valid UUID
@@ -253,6 +250,10 @@ Field | Type | Exchanges Supported
 <span style="color:red"> quantity </span> | Double | <span style="color:red"> bitfinex </span> 
 
 <h1 id="NFLData"> NFL Data</h1>
+
+## NFL Websocket Endpoint
+
+wss://test.api.suredbits.com/nfl/v0
 
 ## Info
 
@@ -603,6 +604,10 @@ Field | Type | Example
 
 # NBA 
 
+## NBA Websocket Endpoint
+
+wss://test.api.suredbits.com/nba/v0
+
 ## Info
 
 
@@ -613,7 +618,6 @@ Field | Type | Example
 Field | Type | Example
 ------ | ----- | -------
 <span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
-
 
 
 ## Games
