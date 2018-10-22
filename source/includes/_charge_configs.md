@@ -235,6 +235,7 @@ Retorna uma lista em JSON contendo todas as Configurações de Cobrança que per
 - `bank_code`: Filtrar pelo código do banco da configuração de cobrança. O valor a ser informado é uma string com o código do banco. Por exemplo "341" para Itaú, "237" para Bradesco e etc.
 - `payee_ids`: Filtra pelos beneficiários informados. O valor informado é uma **lista\*** de ids dos beneficiários.
 - `payee_national_identifiers`: Filtra pelos beneficiários informados. O valor informado é uma **lista\*** de número de documentos dos beneficiários.
+- `active`: Filtra pelo estado da configuração de cobrança. O valor a ser informado é **true** para retornar somente as configurações ativas ou **false** para retornar somente as configurações de cobrança desativadas.
 
 **lista\*** Os valores em "lista" devem ser enviados da seguinte forma: `url?payee_ids[]=15&payee_ids[]=42`.
 
