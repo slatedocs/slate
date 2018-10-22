@@ -16,7 +16,7 @@ Just follow these four steps.
 
 * Sign up for your TransferWise borderless account [https://transferwise.com/gb/borderless](https://transferwise.com/gb/borderless).
 
-* Complete verification – you need to do this before you start your technical integration. Also ensure you’re compliant with our [Terms and Conditions](https://transferwise.com/terms-and-conditions) and [Acceptable Use Policy](https://transferwise.com/acceptable-use-policy-eea).
+* Complete verification – you need to do this before you start your technical integration. Also ensure you’re compliant with our [Terms and Conditions](https://transferwise.com/terms-and-conditions) and [Acceptable Use Policy](https://transferwise.com/acceptable-use-policy-eea). You have to activate Balances first, if you want to use Balance payouts. This can be done from Balances sidebar of your TransferWise account.
 
 
 * Make a transfer – check [our video guide](https://transferwise.com/help/article/1779442/creating-a-transfer/video-guide-make-a-transfer) for step-by-step instructions.
