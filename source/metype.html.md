@@ -18,8 +18,8 @@ includes:
   - metype/sso
   - metype/wordpress_installation
   - metype/blogger_installation
-  - metype/release_notes
   - metype/api_documentation
+  - metype/release_notes
 ---
 # Introduction To Metype
 

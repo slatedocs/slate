@@ -1,5 +1,22 @@
 # Release Notes
 
+## 22 Oct 2018 Release Notes - Metype
+
+1. Toggle to control display of Top Stories on Commenting Widget.
+
+![Config - Top Pages](../../images/Metype_Top_Pages_Config.png "Config - Top Pages")
+
+## 18 Oct 2018 Release Notes - Metype
+
+1. **Top Pages on Commenting and Feed widget:** This section is visible on the Commenting and Feed widgets.
+![Comment Top Pages](../../images/Metype_Comment_Top_Pages.png "Comment Top Pages")
+![Feed Top Pages](../../images/Metype_Feed_Top_Pages.png "Feed Top Pages")
+
+2. **Perspective API for toxicity:** Moderate hate speech and inappropriate comments using the toxicity score. Filter by Toxicity and moderate in bulk with ease.
+Check out our blog for more [here.](https://www.quintype.com/blog/tech/control-the-toxicity-of-comments-with-metype)
+
+3. **Performance Optimizations:** Metype widgets are now optimized to load much quicker on your pages.
+
 ## 22 Aug 2018 Release Notes - Metype
 1. **Enhanced Single Sign-On(SSO)** - Metype's SSO has been enhanced so users can sign-in with any email address and password. 
 The feature includes all login related workflows such as Sign-up, Sign-in and Forgot Password along with verification of email with an OTP.
