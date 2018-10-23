@@ -24,10 +24,6 @@ Metype provides a commenting system for your users to engage with your content.
 
 
 ### Javascript
-* Setup the initialization script in the `<head>` section in case of a website.
-If you have already done this to integrate other widgets please ignore this step.
-Please find the script in the shell on the right in the shell.
-
 ```shell
 <!-- Initialization Script -->
 <script type='text/javascript'>
@@ -41,9 +37,10 @@ Please find the script in the shell on the right in the shell.
 <!-- Javascript to render the widgets -->
 <script src='https://www.metype.com/quintype-metype/assets/metype.js'></script> -->
 ```
+* Setup the initialization script in the `<head>` section in case of a website.
+If you have already done this to integrate other widgets please ignore this step.
+Please find the script on the right in the Scripts tab.
 
-* Setup the embed code for the commenting widget at the position you need to embed.
-Please find the script with detailed comments on the right in the shell.
 
 ```shell
 <!-- Commenting Widget embed code. Html Element with the necessary attributes.
@@ -54,8 +51,8 @@ The color and font are configurable according to your liking -->
      data-metype-host='https://www.metype.com/'
      data-metype-primary-color='#0987d5' <!-- Majority color of the widget can be customised -->
      data-metype-bg-color='#ffffff' <!-- Background color of the widget can be customised -->
-     data-metype-font-color='#4a4a4a'> <!-- Font color of the widget can be customised -->
-     data-metype-comment-widget-id="comment-widget-x1" <!-- Unique Id if you want to embed multiple comment widgets in the same page -->
+     data-metype-font-color='#4a4a4a' <!-- Font color of the widget can be customised -->
+     data-metype-comment-widget-id="comment-widget-x1"> <!-- Unique Id if you want to embed multiple comment widgets in the same page -->
 </div>
 <script type='text/javascript'>
   var metypeContainer = document.getElementById("metype-container"),
@@ -72,6 +69,8 @@ The color and font are configurable according to your liking -->
   });
 </script>
 ```
+* Setup the embed code for the commenting widget at the position you need to embed.
+Please find the script on the right in the Scripts tab.
 
 
 ## Comments Count API
