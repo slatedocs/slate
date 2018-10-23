@@ -37,7 +37,6 @@ curl https://app.procurementexpress.com/api/v1/bulk_datas
   "setup_incomplete": false,
   "employer_id": 6008,
   "authentication_token": "xaser2324dc-derer",
-  "approval_limit": 10000,
   "synced_at": "2018-10-02T03:07:36.465-05:00",
   "companies": [
     {
@@ -48,6 +47,7 @@ curl https://app.procurementexpress.com/api/v1/bulk_datas
       "prepaid_subscription": false,
       "multicompany_pack": false,
       "top_supplier_ids": [1, 2, 3],
+      "roles": ["companyadmin", "approver", "finance", "teammember"],
       "company_setting": {
         "id": 1,
         "show_po_item_number": false,
@@ -117,7 +117,8 @@ curl https://app.procurementexpress.com/api/v1/bulk_datas
           "updated_at": "2017-10-18T16:38:22.428-05:00",
           "supplier_ids": [],
           "budget_ids": [],
-          "top_supplier_ids": [1, 2]
+          "top_supplier_ids": [1, 2],
+          "approver_ids": [1, 2]
         }
       ],
       "budgets": [
