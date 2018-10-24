@@ -115,6 +115,10 @@ Pass `with_interaction_dates=true` as a query parameter to include dates of the 
 recent and upcoming interactions with persons. When this parameter is included, persons
 with no interactions will not be returned in the response.
 
+You can filter by interaction dates by providing additional query parameters like
+`min_last_email_date` or `max_next_event_date`. The value of these query parameters should
+be ISO 8601 formatted date strings.
+
 > Example Request
 
 ```shell
@@ -163,14 +167,13 @@ curl "https://api.affinity.co/persons?term=doe" -u :<API-KEY>
 curl "https://api.affinity.co/persons?term=doe&page_token=eyJwYXJhbXMiOnsidGVybSI6IiJ9LCJwYWdlX3NpemUiOjUsIm9mZnNldCI6MTB9" -u :<API-KEY>
 ```
 
-
-
 ### Query Parameters
 
 Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------
 term | string | true | A string used to search all the persons in your team's address book. This could be an email address, a first name or a last name.
 with_interaction_dates | boolean | false | When true, interaction dates will be present on the returned resources. Only persons that have interactions will be returned.
+`{min,max}_<interaction>_date` | string | false | Only returns persons with the given interaction type above or below the given value. `interaction` can be one of `first_email`, `last_email`, `last_interaction`, `last_event`, or `next_event`.
 page_size | number | false | How many results to return per page. (Default is the maximum value of 500.)
 page_token | string | false | The `next_page_token` from the previous response required to retrieve the next page of results.
 
