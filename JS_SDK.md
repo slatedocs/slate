@@ -27,9 +27,18 @@ e.g.
   </head>
 <body>
   <div id="anarock-form"></div>
+  <div id="anarock-form1"></div>
   <script>
     var form_container = document.getElementById('anarock-form')
     window.anarockForms = [{
+      container: form_container,
+      key: "API_KEY",
+      channel_name: "CHANNEL_NAME",
+      campaign_id: "CAMPAIGN_ID",
+      env: "ENVIRONMENT",
+      options: {} // options as described below
+    },
+    {
       container: form_container,
       key: "API_KEY",
       channel_name: "CHANNEL_NAME",
