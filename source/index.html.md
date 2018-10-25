@@ -1089,6 +1089,7 @@ Realiza atualização de um processo de admissão específico de um aluno. Para 
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
+| id | path | Id da admissão |
 | status | form | situação da admissão |
 
 ### Possíveis valores para o parâmetro status
