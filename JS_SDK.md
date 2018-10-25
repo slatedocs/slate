@@ -34,7 +34,7 @@ e.g.
       key: "API_KEY",
       channel_name: "CHANNEL_NAME",
       campaign_id: "CAMPAIGN_ID",
-      env: ENVIRONMENT,
+      env: "ENVIRONMENT",
       options: {} // options as described below
     }]
   </script>
