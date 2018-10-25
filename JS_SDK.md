@@ -30,6 +30,7 @@ e.g.
   <div id="anarock-form1"></div>
   <script>
     var form_container = document.getElementById('anarock-form')
+    var form_container1 = document.getElementById('anarock-form1')
     window.anarockForms = [{
       container: form_container,
       key: "API_KEY",
@@ -39,7 +40,7 @@ e.g.
       options: {} // options as described below
     },
     {
-      container: form_container,
+      container: form_container1,
       key: "API_KEY",
       channel_name: "CHANNEL_NAME",
       campaign_id: "CAMPAIGN_ID",
