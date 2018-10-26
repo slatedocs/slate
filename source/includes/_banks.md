@@ -30,7 +30,7 @@ The user onboarding flow consists of these building blocks.
 You need to go through this flow only once for each customer before they can set up their first transfer.
 
 * [Get user authorization](#bank-integrations-guide-get-user-authorization)
-* [Sign up new users via API](#bank-integrations-guide-signup-new-users-via-api) – this is an optional alternative to getting user authorization for new users.
+* [Sign up new users via API](#bank-integrations-guide-sign-up-new-users-via-api) – this is an optional alternative to getting user authorization for new users.
 * [Get user tokens](#bank-integrations-guide-get-user-tokens)
 * [Create personal user profile](#bank-integrations-guide-create-personal-user-profile)
 * [Create business user profile](#bank-integrations-guide-create-business-user-profile)
@@ -252,10 +252,10 @@ Calling endpoint [Get pay-in methods](#quotes-get-pay-in-methods) with quoteId r
  
  
 ## Get transfer delivery time
-Please look at [Get transfer delivery time](#borderless-payouts-guide-get-transfer-delivery-time) under TransferWise Payouts Guide.
+Please look at [Get transfer delivery time](#transferwise-payouts-guide-get-transfer-delivery-time) under TransferWise Payouts Guide.
 
 ## Track transfer status
-Please look at [Track transfer status](#borderless-payouts-guide-track-transfer-status) under TransferWise Payouts Guide.
+Please look at [Track transfer status](#transferwise-payouts-guide-track-transfer-status) under TransferWise Payouts Guide.
 
 ## Going live checklist
 ### 1. Make your integration bulletproof

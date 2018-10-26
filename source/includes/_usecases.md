@@ -34,7 +34,7 @@ You can:
   <li>Use our platform to create and build your own tool to manage your finances.</li>
 </ul>
 
-Our [Payouts Guide](#borderless-payouts-guide) will help you get started with the technical integration.
+Our [Payouts Guide](#transferwise-payouts-guide) will help you get started with the technical integration.
 
 ## Banks
 Our bank integration lets banks build TransferWise payments seamlessly into their own desktop and mobile apps. Banks can also build their own native user experience directly onto our API, co-branded with TransferWise.
