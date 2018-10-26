@@ -5,7 +5,6 @@
 > Example Request:
 
 ```shell
-
 curl -X POST https://api.sandbox.transferwise.tech/v1/transfers \
      -H "Authorization: Bearer <your api token>" \
      -H "Content-Type: application/json" \
@@ -19,7 +18,6 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/transfers \
               "sourceOfFunds": "verification.source.of.funds.other"
             } 
          }'
-
 ```
 
 > Example Response:
@@ -47,7 +45,6 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/transfers \
     "targetValue": 600,
     "customerTransactionId": "bd244a95-dcf8-4c31-aac8-bf5e2f3e54c0"
 }
-
 ```
 
 Transfer is a payout order to recipient account based on a quote. Once created then a transfer needs to be funded during next 5 working days. 
@@ -112,14 +109,12 @@ This way we can treat subsequent retry messages as **repeat messages** and will 
 > Example Request:
 
 ```shell
-
 curl -X POST https://api.sandbox.transferwise.tech/v1/transfers/{transferId}/payments \
      -H "Authorization: Bearer <your api token>" \
      -H "Content-Type: application/json" \
      -d '{ 
           "type": "BALANCE"   
          }'
-
 ```
 
 > Example Response:
@@ -130,7 +125,6 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/transfers/{transferId}/pay
   "status": "COMPLETED",
   "errorCode": null
 }
-
 ```
 
 This API call is the final step for executing payouts. TransferWise will now debit funds from your borderless balance and start processing your transfer. 
@@ -166,10 +160,8 @@ errorCode             | Failure reason. For example "balance.payment-option-unav
 > Example Request:
 
 ```shell
-
 curl -X PUT https://api.sandbox.transferwise.tech/v1/transfers/{transferId}/cancel \
      -H "Authorization: Bearer <your api token>" 
-
 ```
 
 > Example Response:
@@ -197,7 +189,6 @@ curl -X PUT https://api.sandbox.transferwise.tech/v1/transfers/{transferId}/canc
   "targetValue": 150,
   "customerTransactionId": "54a6bc09-cef9-49a8-9041-f1f0c654cd88"
 }
-
 ```
 
 Only transfers which are not funded can be cancelled. Cancellation is final it can not be undone.  
@@ -214,7 +205,6 @@ Use transfer id that you obtained when creating a transfer.
 > Example Request:
 
 ```shell
-
 curl -X GET https://api.sandbox.transferwise.tech/v1/transfers/{transferId} \
      -H "Authorization: Bearer <your api token>" 
 ```
@@ -261,10 +251,8 @@ Get transfer info by id. Since we don't have push notifications yet, you can pol
 > Example Request:
 
 ```shell
-
 curl -X GET https://api.sandbox.transferwise.tech/v1/transfers/{transferId}/issues \
      -H "Authorization: Bearer <your api token>" 
-
 ```
 
 > Example Response:
@@ -300,7 +288,6 @@ description           | Additional details about issue. For example 'Incorrect r
 > Example Request:
 
 ```shell
-
 curl -X GET https://api.sandbox.transferwise.tech/v1/delivery-estimates/{transferId} \
      -H "Authorization: Bearer <your api token>" 
 ```
@@ -311,7 +298,6 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/delivery-estimates/{transfe
 {
    "estimatedDeliveryDate" : "2018-01-10T12:15:00.000+0000"
 }
-
 ```
 
 Get the live delivery estimate for a transfer by the transfer ID. <br/>
@@ -339,7 +325,6 @@ estimatedDeliveryDate     | Estimated time when funds will arrive to recipient's
 > Example Request:
 
 ```shell
-
 curl -X GET https://api.sandbox.transferwise.tech/v1/transfers?offset=0&limit=100&profile=<your profile id>&status=funds_refunded&createdDateStart=2018-12-15&createdDateEnd=2018-12-30  \
      -H "Authorization: Bearer <your api token>" 
 ```
@@ -439,7 +424,6 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/transfer-requirements \
             },
             "customerTransactionId": "6D9188CF-FA59-44C3-87A2-4506CE9C1EA3"
          }'
-
 ```
 
 > Example Response:

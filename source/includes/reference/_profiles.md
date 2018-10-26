@@ -4,7 +4,6 @@
 > Example Request:
 
 ```shell
-
 curl -X POST https://api.sandbox.transferwise.tech/v1/profiles \
      -H "Authorization: Bearer <your api token>" \
      -H "Content-Type: application/json" \
@@ -17,8 +16,6 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/profiles \
             "phoneNumber": "+3725064992"
            }
         }'
-
-
 ```
 
 > Example Response (Personal):
@@ -76,7 +73,6 @@ details.primaryAddress  | Address object id             | Integer
 > Example Request:
 
 ```shell
-
 curl -X POST https://api.sandbox.transferwise.tech/v1/profiles \
      -H "Authorization: Bearer <your api token>" \
      -H "Content-Type: application/json" \
@@ -160,7 +156,6 @@ details.primaryAddress  | Address object id             | Integer
 > Example Request:
 
 ```shell
-
 curl -X PUT https://api.sandbox.transferwise.tech/v1/profiles \
      -H "Authorization: Bearer <your api token>" \
      -H "Content-Type: application/json" \
@@ -173,8 +168,6 @@ curl -X PUT https://api.sandbox.transferwise.tech/v1/profiles \
             "phoneNumber": "+3725064992"
            }
         }'
-
-
 ```
 
 > Example Response:
@@ -210,7 +203,6 @@ Request and response is same as described in [Create (Personal)](#user-profiles-
 > Example Request:
 
 ```shell
-
 curl -X GET https://api.sandbox.transferwise.tech/v1/profiles/{profileId} \
      -H "Authorization: Bearer <your api token>" 
 ```
@@ -243,7 +235,6 @@ Get profile info by id.
 > Example Request:
 
 ```shell
-
 curl -X GET https://api.sandbox.transferwise.tech/v1/profiles \
      -H "Authorization: Bearer <your api token>" 
 ```
@@ -283,7 +274,6 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/profiles \
     }
     
 ]
-
 ```
 List of all profiles belonging to user.
 
@@ -297,7 +287,6 @@ List of all profiles belonging to user.
 > Example Request:
 
 ```shell
-
 curl -X POST https://api.sandbox.transferwise.tech/v1/profiles/{profileId}/verification-documents \
      -H "Authorization: Bearer <your api token>" \
      -H "Content-Type: application/json" \

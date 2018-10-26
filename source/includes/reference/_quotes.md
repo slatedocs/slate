@@ -4,7 +4,6 @@
 > Example Request:
 
 ```shell
-
 curl -X POST https://api.sandbox.transferwise.tech/v1/quotes \
      -H "Authorization: Bearer <your api token>" \
      -H "Content-Type: application/json" \
@@ -16,7 +15,6 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/quotes \
           "targetAmount": 600,
           "type": "BALANCE_PAYOUT"
         }'
-
 ```
 
 > Example Response:
@@ -93,7 +91,6 @@ ofSourceAmount        | Not relevant for fixed rate quotes. Please ignore. | Boo
 > Example Request:
 
 ```shell
-
 curl -X GET https://api.sandbox.transferwise.tech/v1/quotes/{quoteId} \
      -H "Authorization: Bearer <your api token>" 
 ```
@@ -135,7 +132,6 @@ Get quote info by id.
 > Example Request:
 
 ```shell
-
 curl -X GET https://api.sandbox.transferwise.tech/v1/quotes/{quoteId}/pay-in-methods \
      -H "Authorization: Bearer <your api token>" 
 ```
@@ -173,15 +169,12 @@ details.payInReference   | Reference text to be used when sending your bank tran
 > Example Request (Bearer token):
 
 ```shell
-
 curl -X GET https://api.sandbox.transferwise.tech/v1/quotes?source=EUR&target=GBP&rateType=FIXED&targetAmount=600 \
      -H "Authorization: Bearer <your api token>" 
-
 ```
 > Example Request (Basic authentication):
 
 ```shell
-
 curl -X GET https://api.sandbox.transferwise.tech/v1/quotes?source=EUR&target=GBP&rateType=FIXED&targetAmount=600 \
      --user <your api client_id>:<your api client_secret> 
 ```
