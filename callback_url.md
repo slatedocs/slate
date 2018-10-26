@@ -33,13 +33,13 @@ The post params posted at any update in a particular leads are as follows
             "created_at": 1538569611,
             "note_id": 287551
        }   
-   ]},
+   ],
    "calls": [
       {
          "time": 1538569611,  // epoch format 
          "duration: 30 // in seconds,
       }
-    ]
+    ]}
 ```
 
 ```latest_event_details``` will contain the latest event which has been changed by the agent, it can have following 3 values 
