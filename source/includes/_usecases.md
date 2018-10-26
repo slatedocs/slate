@@ -1,4 +1,4 @@
- # TransferWise API
+# TransferWise API
 > Base URL Sandbox
 
 ```shell
@@ -13,7 +13,7 @@ https://api.transferwise.com
 
 Welcome to the TransferWise API documentation. You can explore the different ways to use our API and choose the right one for you below. 
 
-* [TransferWise Payouts and Account Automation](#transferwise-api-borderless-payouts) 
+* [TransferWise Payouts and Account Automation](#transferwise-api-transferwise-payouts-and-account-automation) 
 * [Banks](#transferwise-api-banks) 
 * [Affiliates](#transferwise-api-affiliates) 
 * [Connected Applications](#transferwise-api-connected-applications) 
