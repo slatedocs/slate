@@ -5,7 +5,6 @@
 > Example Request (Create GBP recipient):
 
 ```shell
-
 curl -X POST https://api.sandbox.transferwise.tech/v1/accounts \
      -H "Authorization: Bearer <your api token>" \
      -H "Content-Type: application/json" \
@@ -117,7 +116,6 @@ details.accountNumber | Recipient bank account no (GBP example)       | Text
 > Example Request (Create email recipient):
 
 ```shell
-
 curl -X POST https://api.sandbox.transferwise.tech/v1/accounts \
      -H "Authorization: Bearer <your api token>" \
      -H "Content-Type: application/json" \
@@ -164,7 +162,6 @@ Once recipient provides bank account details securely to Transferwise we are abl
 > Example Request:
 
 ```shell
-
 curl -X GET https://api.sandbox.transferwise.tech/v1/accounts/{accountId} \
      -H "Authorization: Bearer <your api token>" 
 ```
@@ -198,7 +195,6 @@ Get recipient account info by id.
 > Example Request:
 
 ```shell
-
 curl -X GET https://api.sandbox.transferwise.tech/v1/accounts?profile=<profileId>&currency=GBP \
      -H "Authorization: Bearer <your api token>" 
 ```
@@ -256,7 +252,6 @@ currency                          | Currency code                               
 > Example Request:
 
 ```shell
-
 curl -X DELETE https://api.sandbox.transferwise.tech/v1/accounts/{accountId} \
      -H "Authorization: Bearer <your api token>"
 ```
@@ -276,7 +271,6 @@ Requesting to delete recipient that is already inactive will return an http stat
 > Example Request:
 
 ```shell
-
 curl -X GET https://api.sandbox.transferwise.tech/v1/quotes/{quoteId}/account-requirements \
      -H "Authorization: Bearer <your api token>" 
 ```
@@ -589,7 +583,6 @@ fields[n].group[n].valuesAllowed[n].name    | List of allowed values. Value name
 > Example Request (Validate sort code (GBP):
 
 ```shell
-
 curl -X GET https://api.sandbox.transferwise.tech/v1/validators/sort-code?sortCode=231470
 ```
 

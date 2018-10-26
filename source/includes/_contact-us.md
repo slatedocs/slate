@@ -14,4 +14,3 @@ Search Transferwise Help Centre. [https://transferwise.com/help](https://transfe
 
 **Want more information about your payments?** <br/>
 Lookup TransferWise Support Centre details. [https://transferwise.com/contact](https://transferwise.com/contact)
-

@@ -5,7 +5,6 @@
 > Example Request:
 
 ```shell
-
 curl -X GET https://api.sandbox.transferwise.tech/v1/users/{userId} \
      -H "Authorization: Bearer <your api token>" 
 ```
@@ -102,13 +101,11 @@ curl \
 
 
 
-
 ```
 
 > 2) Example Request: Create User
 
 ```shell
-
 curl -X POST https://api.sandbox.transferwise.tech/v1/user/signup/registration_code \
      -H "Authorization: Bearer <your client credentials token>" \
      -H "Content-Type: application/json" \
@@ -116,7 +113,6 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/user/signup/registration_c
           "email": <user email>,
           "registrationCode": <registration code>
         }'
-
 ```
 
 > 2) Example Response: Create User (Success (200) user created successfully)
@@ -129,7 +125,6 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/user/signup/registration_c
         "active": true,
         "details": null
       }
-
 ```
 
 > 2) Example Response: Create User (Failure (409): User already exists)
@@ -157,14 +152,12 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/user/signup/registration_c
 
 
 
-
 ```
 
 
 > 3) Example Request: Get User Tokens
 
 ```shell
-
 curl \
 -u '[your-api-client-id]:[your-api-client-secret]' \
 -d 'grant_type=registration_code' \

@@ -4,7 +4,6 @@
 > Example Request:
 
 ```shell
-
 curl -X POST https://api.sandbox.transferwise.tech/v1/addresses \
      -H "Authorization: Bearer <your api token>" \
      -H "Content-Type: application/json" \
@@ -17,7 +16,6 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/addresses \
             "city": "Tallinn"
           }
         }'
-
 ```
 
 > Example Response:
@@ -35,7 +33,6 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/addresses \
     "occupation": null
   }
 }
-
 ```
 
 Adds address info to user profile.
@@ -76,7 +73,6 @@ details.occupation    | User occupation. Required for US, CA, JP           | Tex
 > Example Request:
 
 ```shell
-
 curl -X GET https://api.sandbox.transferwise.tech/v1/addresses/{addressId} \
      -H "Authorization: Bearer <your api token>" 
 ```
@@ -96,7 +92,6 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/addresses/{addressId} \
     "occupation": null
   }
 }
-
 ```
 
 Get address info by id.
@@ -109,7 +104,6 @@ Get address info by id.
 > Example Request:
 
 ```shell
-
 curl -X GET https://api.sandbox.transferwise.tech/v1/addresses?profile={profileId} \
      -H "Authorization: Bearer <your api token>" 
 ```
@@ -131,7 +125,6 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/addresses?profile={profileI
         }
     }
 ]
-
 ```
 List of addresses belonging to user profile.
 
@@ -146,7 +139,6 @@ List of addresses belonging to user profile.
 > Example Request:
 
 ```shell
-
 curl -X GET https://api.sandbox.transferwise.tech/v1/address-requirements \
      -H "Authorization: Bearer <your api token>" 
 ```

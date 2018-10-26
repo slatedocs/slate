@@ -5,7 +5,6 @@
 > Example Request:
 
 ```shell
-
 curl -X GET https://api.sandbox.transferwise.tech/v1/borderless-accounts?profileId={profileId} \
      -H "Authorization: Bearer <your api token>" 
 ```
@@ -115,7 +114,6 @@ balances[n].bankDetails.bankAddress.stateCode           | Bank address state cod
 > Example Request:
 
 ```shell
-
 curl -X GET https://api.sandbox.transferwise.tech/v1/borderless-accounts/{borderlessAccountId}/statement.json?
 currency=EUR&intervalStart=2018-03-01T00:00:00.000Z&intervalEnd=2018-03-15T23:59:59.999Z \
      -H "Authorization: Bearer <your api token>" 
@@ -350,7 +348,6 @@ query.accountId                | Query parameter repeated         | Integer
 > Example Request:
 
 ```shell
-
 curl -X POST https://api.sandbox.transferwise.tech/v1/borderless-accounts/{borderlessAccountId}/conversions \
      -H "Authorization: Bearer <your api token>"  \
      -H "Content-Type: application/json" \
@@ -358,7 +355,6 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/borderless-accounts/{borde
      -d '{ 
             "quoteId": <conversion quote id>
          }'
-
 ```
 
 > Example Response:
@@ -451,7 +447,6 @@ X-idempotence-uuid                | Unique identifier assinged by you. Used for 
 > Example Request:
 
 ```shell
-
 curl -X GET https://api.sandbox.transferwise.tech/v1/borderless-accounts/balance-currencies \
      -H "Authorization: Bearer <your api token>" 
 ```
