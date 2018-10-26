@@ -21,11 +21,12 @@ search: true
 
 Welcome to the CheKin API! 
 
-You can use our API to access CheKin API endpoints, which can get information on Bookings, Persons Registered, Housings and more.
+You can use our API to access CheKin API endpoints, which can get or update information on Bookings, Persons Registered, Housings and more.
 
 The CheKin API is organized around REST. Our API has predictable, resource-oriented URLs, and uses HTTP response codes to indicate API errors. We use built-in HTTP features, like HTTP authentication and HTTP verbs, which are understood by off-the-shelf HTTP clients. 
 We support cross-origin resource sharing, allowing you to interact securely with our API from a client-side web application. 
-JSON is returned by all API responses, including errors.
+
+CheKin API accepts data as JSON or also as multipart/form-data. JSON is returned by all API responses, including errors.
 
 The base url for CheKin API endpoints is `https://api.chekin.io/api/v1/`
 
@@ -181,23 +182,34 @@ This endpoint retrieves all the accommodations belonging to a user.
 
 `GET https://api.chekin.io/api/v1/housings/`
 
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
 <aside class="success">
 Remember — you need to send the authentication headers with API Key and User Token!
 </aside>
+
+
+
 
 ## Get a Specific Accomodation
 
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+curl -X GET \
+  https://test.chekin.io/api/v1/housings/<ID> \
+  -H 'Api-Key: yourApiKeyhere' \
+  -H 'Authorization: Token yourUserTokenHere' \
+  -H 'content-type: multipart/form-data; \
+  -F 'tradename=REAL ESTATE MM' \
+  -F rta_number=RTAVTA999999999 \
+  -F 'address= OtherStreet 123' \
+  -F province=8 \
+  -F municipality=bariloche \
+  -F 'legal_holder_name=mariano martinez' \
+  -F legal_holder_nif=21332415169 \
+  -F 'legal_holder_phone=+5492944422011' \
+  -F police_type=NAT \
+  -F police_user=someuser \
+  -F police_password=somepassword \
+  -F image=undefined
 ```
 
 
@@ -213,19 +225,107 @@ curl "http://example.com/api/kittens/2"
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+This endpoint retrieves a specific accommodation.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET https://api.chekin.io/api/v1/housings/<ID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
+ID | The ID of the accommodation to retrieve
+
+
+## Create a new accommodation
+
+
+```shell
+curl -X POST \
+  https://test.chekin.io/api/v1/housings/ \
+  -H 'Api-Key: yourApiKeyhere' \
+  -H 'Authorization: Token yourUserTokenHere' \
+  -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' \
+  -F 'tradename=My House 3' \
+  -F 'rta_number=RTAVTA1Q24324       ' \
+  -F 'address=Some Street 123     ' \
+  -F province=7 \
+  -F 'municipality=my town' \
+  -F 'legal_holder_name=Jhon Doe' \
+  -F legal_holder_nif=321556987 \
+  -F 'legal_holder_phone=+33222555666' \
+  -F police_type=POL \
+  -F police_user=H12345678 \
+  -F police_password=mypassword
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "id": 1073,
+    "tradename": "My House 3",
+    "housing_type": "HOU",
+    "rta_number": "RTAVTA1Q24324",
+    "address": "Some Street 123",
+    "province": 7,
+    "municipality": "my town",
+    "legal_holder_name": "Jhon Doe",
+    "legal_holder_nif": "321556987",
+    "legal_holder_phone": "+33222555666",
+    "police_type": "POL",
+    "police_user": "",
+    "police_password": "",
+    "image": "",
+    "signature_url": "",
+    "is_housing_group": false,
+    "police_hostelry_code": "",
+    "airbnb_calendar": "",
+    "legal_age": 16,
+    "rooms_qty": 1,
+    "max_capacity": 1,
+    "airbnb_ics_url": "",
+    "booking_ics_url": "",
+    "avantio_ics_url": ""
+}
+```
+
+This endpoint allows the creation of a new accommodations belonging to the user.
+
+### HTTP Request
+
+`POST https://api.chekin.io/api/v1/housings/`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | -------- | -----------
+tradename | true | Give a name to the property.
+rta_number | true | Turism identifier provided by spanish government.
+address | true | Full address of the accommodation.
+province | true | ID of the province to which the accommodation belongs. List of provinces can be GET at https://api.chekin.io/api/v1/housings/provinces/
+municipality | true | Municipality to which the accommodation belongs. 
+legal_holder_name | true | Full name of the legal holder of the accommodation. 
+legal_holder_nif | true | NIF number of the legal holder of the accommodation.
+legal_holder_phone | false | The phone number of the legal holder of the accommodation.
+police_type | false | Police type and police credentials are required if you want the guests data to be automatically sent to the police. Police type must take one of the following values: POL (Policía Nacional), NAT (Guardia Civil), ERT (Ertzaintza), MOS (Mossos d'Esquadra)
+police_user | false | The username used to do login in the police website.
+police_password | false | The password used to do login in the police website.
+is_housing_group | false | Used only if police type is POL. Set it to true only if the accommodation is registered at the police as part of a Group.
+police_hostelry_code | false | Used only if is_housing_group is true. Hostelry code given by the police to this accommodation. A list of available codes for this police user can be retrieved doing a GET to https://api.chekin.io/api/v1/housings/police_hostelry_codes 
+legal_age | false | Default is 16 yeard old.
+rooms_qty | false | Required for hotels only.
+max_capacity | false | Required for hostels or camping only.
+airbnb_ics_url | false | If set, CheKin will import new Bookings every 30 minutes from the provided calendar url.
+booking_ics_url | false | If set, CheKin will import new Bookings every 30 minutes from the provided calendar url.
+avantio_ics_url | false | If set, CheKin will import new Bookings every 30 minutes from the provided calendar url.
+
+<aside class="success">
+Remember — you need to send the authentication headers with API Key and User Token!
+</aside>
+
 
 ## Delete a Specific Kitten
 
