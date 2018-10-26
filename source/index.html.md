@@ -4,7 +4,6 @@ title: Newpost API
 language_tabs:
 
 - json: JSON
-- xml: XML
 
 toc_footers:
 - <a href='mailto:henrique@newpost.com'>Desenvolvimento Newpost</a>
@@ -18,20 +17,20 @@ search: true
 
 # Introdução
 
-Bem vindo à documetnação da API do sistema Newpost, este documento possui os métodos e parametros para a criação, consulta e alteração de envios no sistema da Newpost.
+Bem vindo à documentação da API do sistema Newpost, este documento possui os métodos e parametros para a criação, consulta e alteração de envios no sistema da Newpost.
 
-> Versão 0.0.2
+> Versão 0.0.3
 
 # Autenticação
 
-Para a autenticação é fornecida uma chave única por cliente/parceiro que deve ser informada de acordo com a linguagem e o endpoint, esta chave está em um formato MD5:
+Para a autenticação é fornecida uma chave única por cliente/parceiro que deve ser informada de acordo com a linguagem e o endpoint.:
 
 **098f6bcd4621d373cade4e832627b4f5** (exemplo)
 
 #Gerenciamento de envios
 
 ```json
-"https://www.newpost.com/sistema/api/order"
+"https://server.newpost.com/sistema/api/order"
 ```
 
 [https://www.newpost.com/sistema/api/order](https://www.newpost.com/sistema/api/order "Gerenciamento de envios")
@@ -47,24 +46,22 @@ Para a autenticação é fornecida uma chave única por cliente/parceiro que dev
 
 ```json
 
-{
-  "token":"098f6bcd4621d373cade4e832627b4f5",
+  "token":"098f6bcd4621d373cade4e832627b4f5"
   "params":{
-  "action":"create/track/stickers",
-  "description":"order no:12092",
-  "couriercode":"EMS",
-  "size":"P",
-  "trackno":"34234213252151",
-  "target_machine":"5",
-  "parcels":"121212121,31331313,223234523,5131341...",
-  "format":"pdf",
-  "receiver":{
-  "phone":"5511912345678",
-  "email":"contato@newpost.com",
-  "customname":"Newpost api"
-}
-}
-}
+    "action":"create/track/stickers",
+    "description":"12092",
+    "couriercode":"EMS",
+    "size":"P",
+    "trackno":"34234213252151",
+    "target_machine":"5",
+    "parcels":"121212121,31331313,223234523,5131341...",
+    "format":"pdf",
+    "receiver":{
+      "phone":"5511912345678",
+      "email":"contato@newpost.com",
+      "customname":"Newpost api"
+    }
+  }
 
 ```
 
@@ -73,9 +70,9 @@ Os parametros a seguir são utilizados dentro de **params**
 Parametro | Exemplo | Descrição
 --------- | ------- | -----------
 action|create/track/stickers|ação solicitada
-description|ORDER NO: 121039|descrição do número da ordem do cliente separado por dois pontos (:)
-couriercode|EMS|código da empresa de logística contratada
-size|P/M/G|tamanho do pacote
+description|121039|número da ordem do cliente
+couriercode *opcional*|EMS *(default)*|código da empresa de logística contratada
+size|8/10/15/30/45 *cm*|tamanho do pacote
 tmp_id|123456789|id temporário do pacote
 trackno|123456789|id do pacote para rastreio
 target_machine|5|id do terminal que vai receber o pacote
@@ -87,28 +84,25 @@ receiver|JSON|dados do recebedor do pacote
 
 Parametro | Exemplo | Descrição
 --------- | ------- | -----------
-phone|5511987654321|número com código do país e DDD do recebedor
+phone|11987654321|número celular com código DDD do recebedor
 e-mail|developer@newpost.com|e-mail do recebedor
-customname|Desevolvimento Newpost|nome do recebedor como vai aparecer na etiqueta
+customname|Newpost|nome do recebedor como vai aparecer na etiqueta
 
 ## Criar novo envio
 
 ```json
-{
-  "token":"md5",
-  "params":{
-  "action":"create",
-  "description":"order no:12092",
-  "couriercode":"EMS",
-  "size":"P",
-  "target_machine":5,
-  "receiver":{
-  "phone":"5511912345678",
-  "email":"contato@newpost.com",
-  "customname":"Newpost api"
-}
-}
-}
+"params":{
+    "action":"create",
+    "description":"order no:12092",
+    "couriercode":"EMS",
+    "size":"30",
+    "target_machine":5,
+    "receiver":{
+      "phone":"11912345678",
+      "email":"contato@newpost.com",
+      "customname":"Newpost api"
+    }
+  }
 ```
 
 > O comando acima deve retornar algo como:
@@ -124,9 +118,9 @@ Este endpoint deve ser executado uma vez para cada novo envio.
 Parametro | Exemplo | Descrição
 --------- | ------- | -----------
 action|create|ação solicitada
-description|ORDER NO: 121039|descrição do número da ordem do cliente separado por dois pontos (:)
+description|121039|descrição do número da ordem do cliente separado por dois pontos (:)
 couriercode|EMS|código da empresa de logística contratada
-size|P/M/G|tamanho do pacote
+size|8/10/15/30/45|tamanho do pacote
 tmp_id|123456789|id temporário do pacote
 target_machine|5|id do terminal que vai receber o pacote
 receiver|JSON|dados do recebedor do pacote
@@ -135,14 +129,14 @@ receiver|JSON|dados do recebedor do pacote
 
 Parametro | Exemplo | Descrição
 --------- | ------- | -----------
-phone|5511987654321|número com código do país e DDD do recebedor
+phone|11987654321|número com código DDD do recebedor
 e-mail|developer@newpost.com|e-mail do recebedor
 customname|Desevolvimento Newpost|nome do recebedor como vai aparecer na etiqueta
 
 ## Consultar status do envio
 
 ```json
-{
+"params":{
   "action":"track",
   "trackno":"34234213252151"
 }
@@ -194,16 +188,16 @@ Em caso de problemas no envio de requisições para a API, é possível criar um
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <envios>
- <couriercode>EMS</couriercode>
- <description>order no:12092</description>
- <receiver>
-   <customname>Newpost api</customname>
-   <email>contato@newpost.com</email>
-   <phone>5511912345678</phone>
- </receiver>
- <size>P</size>
- <target_machine>5</target_machine>
- <tmp_id>123456789</tmp_id>
+  <couriercode>EMS</couriercode>
+  <description>order no:12092</description>
+  <receiver>
+    <customname>Newpost api</customname>
+    <email>contato@newpost.com</email>
+    <phone>5511912345678</phone>
+  </receiver>
+  <size>P</size>
+  <target_machine>5</target_machine>
+  <tmp_id>123456789</tmp_id>
 </envios>
 ```
 
@@ -247,103 +241,103 @@ customname|Desevolvimento Newpost|nome do recebedor como vai aparecer na etiquet
   "origin_quarter": "Vila Mariana",
   "origin_state_code": "SP",
   "shipment_order_array": [
-  {
-  "order_number": "9613344",
-  "sales_order_number": "9613344",
-  "scheduled": false,
-  "shipment_order_type": "NORMAL",
-  "delivery_method_id": 18,
-  "logistic_provider_id": 9,
-  "end_customer": {
-  "first_name": "PRIMEIRONOME",
-  "last_name": "SOBRENOME",
-  "phone": "1199999999",
-  "is_company": false,
-  "federal_tax_payer_id": "00587460482",
-  "shipping_address": "RUA X",
-  "shipping_number": "50",
-  "shipping_quarter": "PETROPOLIS",
-  "shipping_city": "NATAL",
-  "shipping_zip_code": "59012-310",
-  "shipping_state": "RN",
-  "shipping_state_code": "RN",
-  "shipping_country": "BRASIL"
-},
-"shipment_order_volume_array": [
-{
-  "shipment_order_volume_number": "467778",
-  "weight": 1.646,
-  "volume_type_code": "BOX",
-  "width": 29,
-  "height": 15,
-  "length": 38,
-  "products_nature": "30043290",
-  "products_quantity": 41,
-  "is_icms_exempt": false,
-  "shipment_order_volume_invoice_array": [
-  {
-  "invoice_series": "1",
-  "invoice_number": "12345",
-  "invoice_key": "01234567890123456789012345678901234567891234",
-  "invoice_date": 1498767939000,
-  "invoice_date_iso": "2017-06-29T17:25:39.000-03:00",
-  "invoice_total_value": 1874.33,
-  "invoice_products_value": 1874.33,
-  "already_insured": true
-}
-]
-}
-]
-},
-{
-  "order_number": "9615346",
-  "sales_order_number": "9615346",
-  "scheduled": false,
-  "shipment_order_type": "NORMAL",
-  "delivery_method_id": 18,
-  "logistic_provider_id": 9,
-  "end_customer": {
-  "first_name": "PRIMEIRONOME",
-  "last_name": "SOBRENOME",
-  "phone": "1188888888",
-  "is_company": false,
-  "federal_tax_payer_id": "00867316454",
-  "shipping_address": "RUA Z",
-  "shipping_number": "11",
-  "shipping_quarter": "AFLITOS",
-  "shipping_city": "RECIFE",
-  "shipping_zip_code": "52050-020",
-  "shipping_state": "PE",
-  "shipping_state_code": "PE",
-  "shipping_country": "BRASIL"
-},
-"shipment_order_volume_array": [
-{
-  "shipment_order_volume_number": "467977",
-  "weight": 0.484,
-  "volume_type_code": "BOX",
-  "width": 18,
-  "height": 9,
-  "length": 27,
-  "products_nature": "30049069",
-  "products_quantity": 18,
-  "is_icms_exempt": false,
-  "shipment_order_volume_invoice_array": [
-  {
-  "invoice_series": "1",
-  "invoice_number": "123455",
-  "invoice_key": "01234567890123456789012345678901234567891234",
-  "invoice_date": 1498829169000,
-  "invoice_date_iso": "2017-06-30T10:26:09.000-03:00",
-  "invoice_total_value": 473.04,
-  "invoice_products_value": 473.04,
-  "already_insured": true
-}
-]
-}
-]
-}
-]
+    {
+      "order_number": "9613344",
+      "sales_order_number": "9613344",
+      "scheduled": false,
+      "shipment_order_type": "NORMAL",
+      "delivery_method_id": 18,
+      "logistic_provider_id": 9,
+      "end_customer": {
+        "first_name": "PRIMEIRONOME",
+        "last_name": "SOBRENOME",
+        "phone": "1199999999",
+        "is_company": false,
+        "federal_tax_payer_id": "00587460482",
+        "shipping_address": "RUA X",
+        "shipping_number": "50",
+        "shipping_quarter": "PETROPOLIS",
+        "shipping_city": "NATAL",
+        "shipping_zip_code": "59012-310",
+        "shipping_state": "RN",
+        "shipping_state_code": "RN",
+        "shipping_country": "BRASIL"
+      },
+      "shipment_order_volume_array": [
+        {
+          "shipment_order_volume_number": "467778",
+          "weight": 1.646,
+          "volume_type_code": "BOX",
+          "width": 29,
+          "height": 15,
+          "length": 38,
+          "products_nature": "30043290",
+          "products_quantity": 41,
+          "is_icms_exempt": false,
+          "shipment_order_volume_invoice_array": [
+            {
+              "invoice_series": "1",
+              "invoice_number": "12345",
+              "invoice_key": "01234567890123456789012345678901234567891234",
+              "invoice_date": 1498767939000,
+              "invoice_date_iso": "2017-06-29T17:25:39.000-03:00",
+              "invoice_total_value": 1874.33,
+              "invoice_products_value": 1874.33,
+              "already_insured": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order_number": "9615346",
+      "sales_order_number": "9615346",
+      "scheduled": false,
+      "shipment_order_type": "NORMAL",
+      "delivery_method_id": 18,
+      "logistic_provider_id": 9,
+      "end_customer": {
+        "first_name": "PRIMEIRONOME",
+        "last_name": "SOBRENOME",
+        "phone": "1188888888",
+        "is_company": false,
+        "federal_tax_payer_id": "00867316454",
+        "shipping_address": "RUA Z",
+        "shipping_number": "11",
+        "shipping_quarter": "AFLITOS",
+        "shipping_city": "RECIFE",
+        "shipping_zip_code": "52050-020",
+        "shipping_state": "PE",
+        "shipping_state_code": "PE",
+        "shipping_country": "BRASIL"
+      },
+      "shipment_order_volume_array": [
+        {
+          "shipment_order_volume_number": "467977",
+          "weight": 0.484,
+          "volume_type_code": "BOX",
+          "width": 18,
+          "height": 9,
+          "length": 27,
+          "products_nature": "30049069",
+          "products_quantity": 18,
+          "is_icms_exempt": false,
+          "shipment_order_volume_invoice_array": [
+            {
+              "invoice_series": "1",
+              "invoice_number": "123455",
+              "invoice_key": "01234567890123456789012345678901234567891234",
+              "invoice_date": 1498829169000,
+              "invoice_date_iso": "2017-06-30T10:26:09.000-03:00",
+              "invoice_total_value": 473.04,
+              "invoice_products_value": 473.04,
+              "already_insured": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
 ```
 
