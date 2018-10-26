@@ -17,10 +17,28 @@ includes:
   - kittens/get
   - kittens/show
   - kittens/delete
-  
+
+  - user/overview
+  - user/get
+  - user/put
+
+  - power zone/overview
+  - power zone/get
+  - power zone/put
+
+  - heart rate zone/overview
+  - heart rate zone/get
+  - heart rate zone/put
+
   - workouts/overview
-  - workouts/get
   - workouts/create
+  - workouts/get
+  - workouts/update
+  - workouts/index
+
+  - workout summary/overview
+  - workout summary/get
+  - workout summary/put
 
   - errors
 
@@ -74,4 +92,5 @@ Kittn expects for the API key to be included in all API requests to the server i
 <aside class="notice">
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
+
 
