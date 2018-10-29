@@ -162,6 +162,7 @@ curl \
 -u '[your-api-client-id]:[your-api-client-secret]' \
 -d 'grant_type=registration_code' \
 -d 'email=<user email>' \
+-d 'client_id=[your-api-client-id]' \
 -d 'registration_code=<registration code used to create user>' \
 'https://api.sandbox.transferwise.tech/oauth/token' 
 ```
