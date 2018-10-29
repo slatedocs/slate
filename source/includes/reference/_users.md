@@ -264,6 +264,7 @@ Field                 | Description                                   | Format
 ---------             | -------                                       | -----------
 grant_type            | "registration_code"                           | Text
 email                 | New user's email address                      | Email
+client_id             | Your api_client_id                            | Text
 registration_code     | registrationCode from step 2                | Text
 
 ### Response
