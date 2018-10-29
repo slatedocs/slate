@@ -247,7 +247,7 @@ To edit an existing site, you can use a PUT request as follows:
 Field | Type | Description
 ------ | -------- | --------------
 projectId | integer | Project under which to edit the site.
-siteId | integer | Existing site that will be edited.
+siteId | integer | Existing site that is being edited.
 
 #### HTTP headers
 Name | Value
