@@ -166,7 +166,7 @@ To edit an existing project, you can use a PUT request.
 # result:
 {
     "success": true,
-    "Sites": [{
+    "Projects": [{
         "id": 125,
         "name": "example project",
         "created_at": "2015-07-30 12:54:52",
@@ -201,7 +201,7 @@ name | String | Name of the project
 Field | Type | Description
 ------ | -------- | --------------
 status | boolean | Indicates request status
-Sites | array | Details of the [created project](#project-response-project)
+Projects | array | Details of the [created project](#project-response-project)
 
 #### Project fields
 See [project fields](#project-response-project)

@@ -231,7 +231,6 @@ To edit an existing site, you can use a PUT request as follows:
 	    "created_at": "2015-07-30 12:54:52",
 	    "project_id": "1",
 	    "import_schedule": "TZ=Europe\/Berlin\nH 2,6,19,22 * * 2,4,6\nH * * * *",
-	    "created_at": "2015-07-30 12:54:52",
 	    "links": [...]
     }]
 }
@@ -263,6 +262,16 @@ id | integer | Existing site that will be edited.
 project_id | integer | Project under which to edit the site.
 title | string | Name of the site
 import_schedule | string | A cron entry that sets the scheduling for data import.
+
+Cron entries format consists of a timezone and schedule format (a new line is required between them), all PHP timezones are supported.
+For example:
+```
+TZ=Europe/Berlin
+H 2,6,19,22 * * 2,4,6
+H * * * *
+1 3,8,21 */2 * *
+```
+As stated above, you can pass multiple schedule but each should be in a new line and only one timezone for all of them.
 
 ### Response fields
 See [response fields](#sites-response)
