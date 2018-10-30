@@ -213,6 +213,79 @@ See [site fields](#sites-response-site)
 #### <a name="sites-response-links"></a> Links fields and values
 See [link fields](#sites-response-links)
 
+## Edit
+To edit an existing site, you can use a PUT request as follows:
+
+```shell
+ curl
+    -d '{"id": "1", "project_id": "1", "title":"My test site", "import_schedule": "TZ=Europe/Berlin\nH 2,6,19,22 * * 2,4,6"}'
+    https://platform-api.productsup.io/platform/v2/projects/1/sites/1
+
+
+# result:
+{
+    "success": true,
+    "Sites": [{
+	    "id": "1",
+	    "title": "My test site",
+	    "created_at": "2015-07-30 12:54:52",
+	    "project_id": "1",
+	    "import_schedule": "TZ=Europe\/Berlin\nH 2,6,19,22 * * 2,4,6\nH * * * *",
+	    "links": [...]
+    }]
+}
+```
+
+### HTTP Request
+
+`PUT https://platform-api.productsup.io/platform/v2/sites/<siteId>`
+
+`PUT https://platform-api.productsup.io/platform/v2/projects/<projectId>/sites/<siteId>`
+
+#### URL parameters
+Field | Type | Description
+------ | -------- | --------------
+projectId | integer | Project under which to edit the site.
+siteId | integer | Existing site that is being edited.
+
+#### HTTP headers
+Name | Value
+--- | ---
+Content-Type | application/json
+
+The data to be inserted has to be provided as a JSON-Object.
+
+#### Request body fields
+Field | Type | Description
+------ | -------- | --------------
+id | integer | Existing site that will be edited.
+project_id | integer | Project under which to edit the site.
+title | string | Name of the site
+import_schedule | string | A cron entry that sets the scheduling for data import.
+
+Cron entries format consists of a timezone and schedule format. All PHP 
+timezones are supported. A newline should be used as separator between the 
+timezone and each schedule.
+For example:
+```
+TZ=Europe/Berlin
+H 2,6,19,22 * * 2,4,6
+H * * * *
+1 3,8,21 */2 * *
+```
+For the minute entry we accept a value _H_ which indicates a random minute will
+be used. This has our preference, since it prevents many jobs starting at the
+exact same time. But it can be overridden if that is required.
+
+### Response fields
+See [response fields](#sites-response)
+
+#### <a name="sites-response-site"></a> Site fields
+See [site fields](#sites-response-site)
+
+#### <a name="sites-response-links"></a> Links fields and values
+See [link fields](#sites-response-links)
+
 ## Delete
 ### HTTP Request
 

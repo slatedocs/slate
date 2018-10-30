@@ -154,6 +154,61 @@ See [project fields](#project-response-project)
 #### Links fields and values
 See [link fields](#project-response-links)
 
+## Edit
+To edit an existing project, you can use a PUT request.
+
+```shell
+ curl 
+    -d '{"name":"example project"}' 
+    https://platform-api.productsup.io/platform/v2/projects/125
+
+
+# result:
+{
+    "success": true,
+    "Projects": [{
+        "id": 125,
+        "name": "example project",
+        "created_at": "2015-07-30 12:54:52",
+        "links": [...]
+    }]
+}
+```
+
+### HTTP Request
+
+`PUT https://platform-api.productsup.io/platform/v2/projects/<projectId>`
+
+#### URL parameters
+Field | Type | Description
+------ | -------- | --------------
+projectId | integer | Existing project that's being edited.
+
+#### HTTP headers
+Name | Value
+--- | ---
+Content-Type | application/json
+
+The data to be inserted has to be provided as a JSON-Object.
+
+### Request body fields
+Field | Type | Description
+------ | -------- | --------------
+id | integer | Id of the existing project.
+name | String | Name of the project
+
+### Response fields
+Field | Type | Description
+------ | -------- | --------------
+status | boolean | Indicates request status
+Projects | array | Details of the [created project](#project-response-project)
+
+#### Project fields
+See [project fields](#project-response-project)
+
+#### Links fields and values
+See [link fields](#project-response-links)
+
 ## Delete
 ### HTTP Request
 
