@@ -48,7 +48,7 @@ links | array | List of links, to resource itself and error resource (if status 
 #### <a name="status-resonse"></a> Status value explanation
 Status value | Description
 ------ | ------
-queued | Site is queued (default when invalid pid given)
+queued | Site is queued (default when PID is valid, but not yet visible)
 running | Site is being processed
 success | Site has run, no errors found
 failed | Site has run, but errors were found
