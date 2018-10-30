@@ -266,13 +266,13 @@ import_schedule | string | A cron entry that sets the scheduling for data import
 Cron entries format consists of a timezone and schedule format. All PHP 
 timezones are supported. A newline should be used as separator between the 
 timezone and each schedule.
-For example:
-```
-TZ=Europe/Berlin
-H 2,6,19,22 * * 2,4,6
-H * * * *
-1 3,8,21 */2 * *
-```
+
+For example:  
+TZ=Europe/Berlin  
+H 2,6,19,22 * * 2,4,6  
+H * * * *  
+1 3,8,21 */2 * *  
+
 For the minute entry we accept a value _H_ which indicates a random minute will
 be used. This has our preference, since it prevents many jobs starting at the
 exact same time. But it can be overridden if that is required.
