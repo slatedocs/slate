@@ -902,7 +902,7 @@ The member for which to select workgroups; defaults to the current user.
 
 ####level
 
-The membership level for which to select workgroups. This will filter results to return only those workgroups in which the member matches the specified level of membership.
+The membership level for which to select workgroups. The filter is a lower limit; any workgroups which the member matches with specified level and above, will be returned.
 
 #####external_member
 
