@@ -17,6 +17,7 @@ RestClient.post(
       company_id: 1,
       currency_id: 1,
       department_id:  1,
+      source: 'mobile_android',
       purchase_order_items_attributes: [
         {
           description: "hello",
@@ -43,6 +44,7 @@ curl 'https://app.procurementexpress.com/api/v1/purchase_orders'
   -H "authentication_token: your token"
   -H "app_company_id: 1"
   -d "commit=Send"
+  -d "purchase_order[source]=mobile_android"
   -d "purchase_order[creator_id]=1"
   -d "purchase_order[status]=draft"
   -d "purchase_order[supplier_name]=John Doe"
@@ -86,8 +88,7 @@ curl 'https://app.procurementexpress.com/api/v1/purchase_orders'
   "share_key": "HEFYPNLBYFMKROPXUTCMPGMQCOGROKOS20170921003738",
   "archived": false,
   "conversion_rate": "0.88159",
-  "keywords":
-    "John Doe James Kennedy  pending 44.56  1100044 - Embajadores de marca Google en Retail Chromecast hello 50.55 50.0",
+  "keywords": "John Doe James Kennedy  pending 44.56  1100044 - Embajadores de marca Google en Retail Chromecast hello 50.55 50.0",
   "self_approved": false,
   "xero_id": null,
   "synced_with_xero": false,
@@ -97,8 +98,7 @@ curl 'https://app.procurementexpress.com/api/v1/purchase_orders'
       "description": "hello",
       "purchase_order_id": 1,
       "budget_id": 1,
-      "budget_summary":
-        "1100044 - Embajadores de marca Google en Retail Chromecast : F 9575 : TELEFONIA Y CELULARES",
+      "budget_summary": "1100044 - Embajadores de marca Google en Retail Chromecast : F 9575 : TELEFONIA Y CELULARES",
       "gross_amount": "50.55",
       "vat": "1.1",
       "net_amount": "50.0",
@@ -129,8 +129,7 @@ curl 'https://app.procurementexpress.com/api/v1/purchase_orders'
       "allow_anyone_to_approve_a_po": false,
       "start_date": null,
       "end_date": null,
-      "summary":
-        "1100044 - Embajadores de marca Google en Retail Chromecast : F 9575 : TELEFONIA Y CELULARES"
+      "summary": "1100044 - Embajadores de marca Google en Retail Chromecast : F 9575 : TELEFONIA Y CELULARES"
     }
   ],
   "purchase_order_comments": [],
@@ -153,64 +152,70 @@ Create a new Purchase Order and return the `Purchase Order` object that is creat
 You need to pass `commit` param which accepts 2 values for now `Draft` and `Send`,
 these values will determine the status of the Purchase Order.
 
+### About source column
+
+Source column is used to determine what is the source of data, and it accept one of these
+four values `website`, `mobile_ios`, `mobile_android`, `mobile_other`. Default value is `website`.
+
 ### HTTP Request
 
 `POST https://app.procurementexpress.com/api/v1/purchase_orders`
 
 ### Query Parameters
 
-| Params                                                                                             | Type    | Options                  | Description                                                |
-| -------------------------------------------------------------------------------------------------- | ------- | ------------------------ | ---------------------------------------------------------- |
-| authentication_token                                                                               | header  |                          | Authentication Token                                       |
-| app_company_id                                                                                     | header  |                          | Company ID                                                 |
-| commit                                                                                             | string  | `Send` <br /> `Draft`    | Possible values are `Send` and `Draft`                     |
-| purchase_order[supplier_name]                                                                      | string  |                          | Supplier Name                                              |
-| purchase_order[new_supplier_name]                                                                  | string  |                          | New Supplier Name                                          |
-| purchase_order[department_id]                                                                      | integer |                          | Department ID                                              |
-| purchase_order[creator_id]                                                                         | integer |                          | Creator ID                                                 |
-| purchase_order[supplier_id]                                                                        | integer |                          | Supplier ID                                                |
-| purchase_order[currency_id]                                                                        | integer |                          | Currency ID                                                |
-| purchase_order[notes]                                                                              | string  |                          | Notes for this PO                                          |
-| purchase_order[status]                                                                             | boolean | `Pending` <br /> `Draft` | Status                                                     |
-| purchase_order[company_id]                                                                         | integer |                          | Company ID                                                 |
-| purchase_order[approver_list]                                                                      | Array[] |                          | Approver list IDs                                          |
-| purchase_order[purchase_order_items_attributes][][id]                                              | integer |                          | Purchase order item id                                     |
-| purchase_order[purchase_order_items_attributes][][sequence_no]                                     | integer |                          | Sequence number                                            |
-| purchase_order[purchase_order_items_attributes][][description]                                     | string  |                          | Description                                                |
-| purchase_order[purchase_order_items_attributes][][quantity]                                        | decimal |                          | Item quantity                                              |
-| purchase_order[purchase_order_items_attributes][][net_amount]                                      | decimal |                          | Net amount                                                 |
-| purchase_order[purchase_order_items_attributes][][unit_price]                                      | decimal |                          | Unit price                                                 |
-| purchase_order[purchase_order_items_attributes][][budget_id]                                       | integer |                          | Budget ID                                                  |
-| purchase_order[purchase_order_items_attributes][][vat]                                             | decimal |                          | VAT                                                        |
-| purchase_order[purchase_order_items_attributes][][item_number]                                     | string  |                          | Item Number                                                |
-| purchase_order[purchase_order_items_attributes][][purchase_order_id]                               | integer |                          | Purchase Order ID                                          |
-| purchase_order[purchase_order_items_attributes][][_destroy]                                        | boolean | `true` <br/> `false`     | set `true` if you want to delete specific row of item      |
-| purchase_order[purchase_order_items_attributes][custom_field_values_attributes][][id]              | integer |                          | `CustomFieldValue` ID                                      |
-| purchase_order[purchase_order_items_attributes][custom_field_values_attributes][][value]           | string  |                          | Value for CustomFieldValue                                 |
-| purchase_order[purchase_order_items_attributes][custom_field_values_attributes][][custom_field_id] | integer |                          | CustomField ID                                             |
-| purchase_order[custom_field_values_attributes][][id]                                               | integer |                          | CustomFieldValue ID                                        |
-| purchase_order[custom_field_values_attributes][][value]                                            | string  |                          | Value for CustomFieldValue                                 |
-| purchase_order[custom_field_values_attributes][][custom_field_id]                                  | integer |                          | CustomField ID                                             |
-| purchase_order[purchase_order_comments_attributes][][id]                                           | integer |                          | PurchaseOrderComment ID                                    |
-| purchase_order[purchase_order_comments_attributes][][creator_id]                                   | integer |                          | Creator ID                                                 |
-| purchase_order[purchase_order_comments_attributes][][comment]                                      | integer |                          | Comment                                                    |
-| purchase_order[purchase_order_comments_attributes][][purchase_order_id]                            | integer |                          | Purchase Order ID                                          |
-| purchase_order[purchase_order_comments_attributes][uploads_attributes][][id]                       | integer |                          | Upload ID                                                  |
-| purchase_order[purchase_order_comments_attributes][uploads_attributes][][file]                     | integer |                          | file field used to upload file e.g: Images, Documents, etc |
-| purchase_order[purchase_order_comments_attributes][uploads_attributes][][creator_id]               | integer |                          | Creator ID                                                 |
-| purchase_order[purchase_order_comments_attributes][uploads_attributes][][_destroy]                 | boolean | `true` <br/> `false`     | Set `true` if you want to delete specific row of upload    |
-| purchase_order[uploads_attributes][][id]                                                           | integer |                          | Upload ID                                                  |
-| purchase_order[uploads_attributes][][file]                                                         | integer |                          | file field used to upload file e.g: Images, Documents, etc |
-| purchase_order[uploads_attributes][][creator_id]                                                   | integer |                          | Creator ID                                                 |
-| purchase_order[uploads_attributes][][_destroy]                                                     | boolean | `true` <br/> `false`     | Set `true` if you want to delete specific row of upload    |
-| purchase_order[requests_attributes][][id]                                                          | integer |                          | Request ID                                                 |
-| purchase_order[requests_attributes][][approver_id]                                                 | integer |                          | Approver ID                                                |
-| purchase_order[requests_attributes][][_destroy]                                                    | boolean | `true` <br/> `false`     | Set `true` if you want to delete specific row of request   |
-| purchase_order[allocations_attributes][][id]                                                       | integer |                          | Allocation ID                                              |
-| purchase_order[allocations_attributes][][allocation_target_id]                                     | integer |                          | Allocation Target ID                                       |
-| purchase_order[allocations_attributes][][group_id]                                                 | integer |                          | Group ID                                                   |
-| purchase_order[allocations_attributes][][maybe_value]                                              | integer |                          | Value                                                      |
-| purchase_order[allocations_attributes][][_destroy]                                                 | destroy | `true` <br/> `false`     | set `true` if you want to delete specifi row of allocation |
+| Params                                                                                             | Type    | Options                                                            | Description                                                |
+| -------------------------------------------------------------------------------------------------- | ------- | ------------------------------------------------------------------ | ---------------------------------------------------------- |
+| authentication_token                                                                               | header  |                                                                    | Authentication Token                                       |
+| app_company_id                                                                                     | header  |                                                                    | Company ID                                                 |
+| commit                                                                                             | string  | `Send` <br /> `Draft`                                              | Possible values are `Send` and `Draft`                     |
+| purchase_order[source]                                                                             | string  | one of `website`, `mobile_android`, `mobile_ios` or `mobile_other` |
+| purchase_order[supplier_name]                                                                      | string  |                                                                    | Supplier Name                                              |
+| purchase_order[new_supplier_name]                                                                  | string  |                                                                    | New Supplier Name                                          |
+| purchase_order[department_id]                                                                      | integer |                                                                    | Department ID                                              |
+| purchase_order[creator_id]                                                                         | integer |                                                                    | Creator ID                                                 |
+| purchase_order[supplier_id]                                                                        | integer |                                                                    | Supplier ID                                                |
+| purchase_order[currency_id]                                                                        | integer |                                                                    | Currency ID                                                |
+| purchase_order[notes]                                                                              | string  |                                                                    | Notes for this PO                                          |
+| purchase_order[status]                                                                             | boolean | `Pending` <br /> `Draft`                                           | Status                                                     |
+| purchase_order[company_id]                                                                         | integer |                                                                    | Company ID                                                 |
+| purchase_order[approver_list]                                                                      | Array[] |                                                                    | Approver list IDs                                          |
+| purchase_order[purchase_order_items_attributes][][id]                                              | integer |                                                                    | Purchase order item id                                     |
+| purchase_order[purchase_order_items_attributes][][sequence_no]                                     | integer |                                                                    | Sequence number                                            |
+| purchase_order[purchase_order_items_attributes][][description]                                     | string  |                                                                    | Description                                                |
+| purchase_order[purchase_order_items_attributes][][quantity]                                        | decimal |                                                                    | Item quantity                                              |
+| purchase_order[purchase_order_items_attributes][][net_amount]                                      | decimal |                                                                    | Net amount                                                 |
+| purchase_order[purchase_order_items_attributes][][unit_price]                                      | decimal |                                                                    | Unit price                                                 |
+| purchase_order[purchase_order_items_attributes][][budget_id]                                       | integer |                                                                    | Budget ID                                                  |
+| purchase_order[purchase_order_items_attributes][][vat]                                             | decimal |                                                                    | VAT                                                        |
+| purchase_order[purchase_order_items_attributes][][item_number]                                     | string  |                                                                    | Item Number                                                |
+| purchase_order[purchase_order_items_attributes][][purchase_order_id]                               | integer |                                                                    | Purchase Order ID                                          |
+| purchase_order[purchase_order_items_attributes][][_destroy]                                        | boolean | `true` <br/> `false`                                               | set `true` if you want to delete specific row of item      |
+| purchase_order[purchase_order_items_attributes][custom_field_values_attributes][][id]              | integer |                                                                    | `CustomFieldValue` ID                                      |
+| purchase_order[purchase_order_items_attributes][custom_field_values_attributes][][value]           | string  |                                                                    | Value for CustomFieldValue                                 |
+| purchase_order[purchase_order_items_attributes][custom_field_values_attributes][][custom_field_id] | integer |                                                                    | CustomField ID                                             |
+| purchase_order[custom_field_values_attributes][][id]                                               | integer |                                                                    | CustomFieldValue ID                                        |
+| purchase_order[custom_field_values_attributes][][value]                                            | string  |                                                                    | Value for CustomFieldValue                                 |
+| purchase_order[custom_field_values_attributes][][custom_field_id]                                  | integer |                                                                    | CustomField ID                                             |
+| purchase_order[purchase_order_comments_attributes][][id]                                           | integer |                                                                    | PurchaseOrderComment ID                                    |
+| purchase_order[purchase_order_comments_attributes][][creator_id]                                   | integer |                                                                    | Creator ID                                                 |
+| purchase_order[purchase_order_comments_attributes][][comment]                                      | integer |                                                                    | Comment                                                    |
+| purchase_order[purchase_order_comments_attributes][][purchase_order_id]                            | integer |                                                                    | Purchase Order ID                                          |
+| purchase_order[purchase_order_comments_attributes][uploads_attributes][][id]                       | integer |                                                                    | Upload ID                                                  |
+| purchase_order[purchase_order_comments_attributes][uploads_attributes][][file]                     | integer |                                                                    | file field used to upload file e.g: Images, Documents, etc |
+| purchase_order[purchase_order_comments_attributes][uploads_attributes][][creator_id]               | integer |                                                                    | Creator ID                                                 |
+| purchase_order[purchase_order_comments_attributes][uploads_attributes][][_destroy]                 | boolean | `true` <br/> `false`                                               | Set `true` if you want to delete specific row of upload    |
+| purchase_order[uploads_attributes][][id]                                                           | integer |                                                                    | Upload ID                                                  |
+| purchase_order[uploads_attributes][][file]                                                         | integer |                                                                    | file field used to upload file e.g: Images, Documents, etc |
+| purchase_order[uploads_attributes][][creator_id]                                                   | integer |                                                                    | Creator ID                                                 |
+| purchase_order[uploads_attributes][][_destroy]                                                     | boolean | `true` <br/> `false`                                               | Set `true` if you want to delete specific row of upload    |
+| purchase_order[requests_attributes][][id]                                                          | integer |                                                                    | Request ID                                                 |
+| purchase_order[requests_attributes][][approver_id]                                                 | integer |                                                                    | Approver ID                                                |
+| purchase_order[requests_attributes][][_destroy]                                                    | boolean | `true` <br/> `false`                                               | Set `true` if you want to delete specific row of request   |
+| purchase_order[allocations_attributes][][id]                                                       | integer |                                                                    | Allocation ID                                              |
+| purchase_order[allocations_attributes][][allocation_target_id]                                     | integer |                                                                    | Allocation Target ID                                       |
+| purchase_order[allocations_attributes][][group_id]                                                 | integer |                                                                    | Group ID                                                   |
+| purchase_order[allocations_attributes][][maybe_value]                                              | integer |                                                                    | Value                                                      |
+| purchase_order[allocations_attributes][][_destroy]                                                 | destroy | `true` <br/> `false`                                               | set `true` if you want to delete specifi row of allocation |
 
 ## Get all Purchase Orders
 
@@ -245,8 +250,7 @@ curl 'https://app.procurementexpress.com/api/v1/purchase_orders'
       "amount": "50.55",
       "status": "pending",
       "supplier_name": "John Doe",
-      "keywords":
-        "John doe James Kennedy  pending 44.56  1100044 - Embajadores de marca Google en Retail Chromecast hello 50.55 50.0",
+      "keywords": "John doe James Kennedy  pending 44.56  1100044 - Embajadores de marca Google en Retail Chromecast hello 50.55 50.0",
       "created_at": 1505972258000,
       "currency_id": 1,
       "currency_symbol": "$",
@@ -260,8 +264,7 @@ curl 'https://app.procurementexpress.com/api/v1/purchase_orders'
       "amount": "50.55",
       "status": "pending",
       "supplier_name": "John Doe",
-      "keywords":
-        "John Doe James Kennedy  pending 44.56  1100044 - Embajadores de marca Google en Retail Chromecast hello 50.55 50.0",
+      "keywords": "John Doe James Kennedy  pending 44.56  1100044 - Embajadores de marca Google en Retail Chromecast hello 50.55 50.0",
       "created_at": 1505972227000,
       "currency_id": 1,
       "currency_symbol": "$",
@@ -574,8 +577,7 @@ curl 'https://app.procurementexpress.com/api/v1/purchase_orders/pending_requests
       "amount": "50.55",
       "status": "pending",
       "supplier_name": "John Doe",
-      "keywords":
-        "John doe James Kennedy  pending 44.56  1100044 - Embajadores de marca Google en Retail Chromecast hello 50.55 50.0",
+      "keywords": "John doe James Kennedy  pending 44.56  1100044 - Embajadores de marca Google en Retail Chromecast hello 50.55 50.0",
       "created_at": 1505972258000,
       "currency_id": 1,
       "currency_symbol": "$",
@@ -589,8 +591,7 @@ curl 'https://app.procurementexpress.com/api/v1/purchase_orders/pending_requests
       "amount": "50.55",
       "status": "pending",
       "supplier_name": "John Doe",
-      "keywords":
-        "John Doe James Kennedy  pending 44.56  1100044 - Embajadores de marca Google en Retail Chromecast hello 50.55 50.0",
+      "keywords": "John Doe James Kennedy  pending 44.56  1100044 - Embajadores de marca Google en Retail Chromecast hello 50.55 50.0",
       "created_at": 1505972227000,
       "currency_id": 1,
       "currency_symbol": "$",

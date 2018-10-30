@@ -12,7 +12,8 @@ RestClient.post(
       description: '1 IPad Charging Station',
       sku: 'SKU-001',
       unit_price: 44.23,
-      supplier_id: 1
+      supplier_id: 1,
+      source: 'mobile_android'
     }
   },
   headers = {
@@ -32,6 +33,7 @@ curl 'https://app.procurementexpress.com/api/v1/products'
   -d "product[sku]=SKU-001"
   -d "product[unit_price]=44.23"
   -d "product[supplier_id]=1"
+  -d "product[source]=mobile_android"
 ```
 
 > The above command returns JSON structured like this:
@@ -50,21 +52,26 @@ curl 'https://app.procurementexpress.com/api/v1/products'
 
 Create a new products and returns the `Product` object that is created.
 
+### About source column
+
+Source column is used to determine what is the source of data, and it accept one of these
+four values `website`, `mobile_ios`, `mobile_android`, `mobile_other`. Default value is `website`.
+
 ### HTTP Request
 
 `POST https://app.procurementexpress.com/api/v1/products`
 
 ### Query Parameters
 
-| Params               | Type     | Description                      |
-| -------              | -------- | ------------                     |
-| authentication_token | header   | Authentication token             |
-| app_company_id       | header   | Company ID                       |
-| product[description] | string   | `Required` Product Description   |
-| product[sku]         | string   | Product Stock Keeping Unit (sku) |
-| product[unit_price]  | decimal  | Product Unit Price               |
-| product[supplier_id] | integer  | Supplier ID                      |
-
+| Params               | Type    | Description                                                        |
+| -------------------- | ------- | ------------------------------------------------------------------ |
+| authentication_token | header  | Authentication token                                               |
+| app_company_id       | header  | Company ID                                                         |
+| product[description] | string  | `Required` Product Description                                     |
+| product[sku]         | string  | Product Stock Keeping Unit (sku)                                   |
+| product[unit_price]  | decimal | Product Unit Price                                                 |
+| product[supplier_id] | integer | Supplier ID                                                        |
+| product[source]      | string  | one of `website`, `mobile_android`, `mobile_ios` or `mobile_other` |
 
 ## Get all Products
 
@@ -132,13 +139,11 @@ If you want to filter archived products you can pass `archived` params like:
 ### Query Parameters
 
 | Params               | Type    | Description              |
-| -------              | ------  | -----------              |
+| -------------------- | ------- | ------------------------ |
 | authentication_token | header  | Authentication token     |
 | app_company_id       | header  | Company ID               |
 | supplier_id          | integer | filter by supplier       |
 | archived             | boolean | filter archived products |
-
-
 
 ## Get Product details
 
@@ -186,12 +191,10 @@ product id, that was returned upon product creation.
 ### URL Parameters
 
 | Params               | Type    | Description          |
-| ------               | -----   | -----------          |
+| -------------------- | ------- | -------------------- |
 | authentication_token | header  | Authentication token |
 | app_company_id       | header  | Company ID           |
 | ID                   | integer | Product ID           |
-
-
 
 ## Update Product
 
@@ -245,7 +248,7 @@ Any parameters not provided will be left unchanged.
 ### Query Parameters
 
 | Params               | Type    | Description                      |
-| ------               | -----   | -------------                    |
+| -------------------- | ------- | -------------------------------- |
 | authentication_token | header  | Authentication token             |
 | app_company_id       | header  | Company ID                       |
 | ID                   | integer | Product ID                       |
@@ -253,4 +256,3 @@ Any parameters not provided will be left unchanged.
 | product[sku]         | string  | Product Stock Keeping Unit (sku) |
 | product[unit_price]  | decimal | Product Unit Price               |
 | product[supplier_id] | integer | Supplier ID                      |
-

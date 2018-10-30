@@ -14,6 +14,7 @@ curl 'https://app.procurementexpress.com/api/v1/register'
   -d "name=Api user"
   -d "phone_number=98xxxxxxxx"
   -d "terms_of_service=true"
+  -d "source=mobile_android"
 
 # Example With Tracking Info
 
@@ -48,7 +49,8 @@ RestClient.post(
     password_confirmation: 'pass1234',
     name: 'Api user',
     phone_number: '98xxxxxx',
-    terms_of_service: true
+    terms_of_service: true,
+    source: 'mobile_android'
   }
 )
 
@@ -106,6 +108,11 @@ with `authentication_token`.
 
 `terms_of_service` is a required field.
 
+### About source column
+
+Source column is used to determine what is the source of data, and it accept one of these
+four values `website`, `mobile_ios`, `mobile_android`, `mobile_other`. Default value is `website`.
+
 ### HTTP Request
 
 `POST https://app.procurementexpress.com/api/v1/register`
@@ -133,21 +140,22 @@ You can track each registration with [segment.io](https://segment.com) by passin
 
 ### Query Parameters
 
-| Param                                  | Type    | Description                                              |
-| -------------------------------------- | ------  | -------------------------------------------------------- |
-| email                                  | string  | Your registered email address                            |
-| password                               | string  | strong password                                          |
-| password_confirmation                  | string  | password confirmation                                    |
-| name                                   | string  | Your First Name and Last Name                            |
-| phone_number                           | string  | Phone number                                             |
-| terms_of_serivce                       | boolean | You must accept terms of service                         |
-| tracking_info[properties][uuid]        | header  | Pass uuid to track                                       |
-| tracking_info[properties][is_web-view] | header  | `true` if user is using web browsers otherwise `false`   |
-| tracking_info[properties][is_ipad]     | header  | `true` if user is using IPad otherwise `false`           |
-| tracking_info[properties][is_ios]      | header  | `true` if user is using IOS device otherwise `false`     |
-| tracking_info[properties][is_android]  | header  | `true` if user is using android device otherwise `false` |
-| tracking_info[properties][platform]    | header  | device platform                                          |
-| tracking_info[properties][version]     | header  | device version                                           |
+| Param                                  | Type    | Description                                                        |
+| -------------------------------------- | ------- | ------------------------------------------------------------------ |
+| email                                  | string  | Your registered email address                                      |
+| password                               | string  | strong password                                                    |
+| password_confirmation                  | string  | password confirmation                                              |
+| name                                   | string  | Your First Name and Last Name                                      |
+| phone_number                           | string  | Phone number                                                       |
+| terms_of_serivce                       | boolean | You must accept terms of service                                   |
+| source                                 | string  | one of `website`, `mobile_android`, `mobile_ios` or `mobile_other` |
+| tracking_info[properties][uuid]        | header  | Pass uuid to track                                                 |
+| tracking_info[properties][is_web-view] | header  | `true` if user is using web browsers otherwise `false`             |
+| tracking_info[properties][is_ipad]     | header  | `true` if user is using IPad otherwise `false`                     |
+| tracking_info[properties][is_ios]      | header  | `true` if user is using IOS device otherwise `false`               |
+| tracking_info[properties][is_android]  | header  | `true` if user is using android device otherwise `false`           |
+| tracking_info[properties][platform]    | header  | device platform                                                    |
+| tracking_info[properties][version]     | header  | device version                                                     |
 
 ## Login
 
@@ -719,7 +727,6 @@ authentication_token you need to login again.
 | -------------------- | ------ | -------------------- |
 | authentication_token | header | Authentication token |
 
-
 ## List domain matching companies
 
 ```ruby
@@ -781,7 +788,6 @@ account. We ignore `gmail`, `hotmail`, `icloud`, `yahoo` domain though.
 | -------------------- | ------ | -------------------- |
 | authentication_token | header | Authentication token |
 
-
 ## Join existing companies
 
 ```ruby
@@ -814,12 +820,11 @@ Action to actually `join` existing company. To join the company, you need to pas
 
 ### HTTP Request
 
-`POST
-https://app.procurementexpress.com/api/v1/users/join_existing_company?company_id=:id`
+`POST https://app.procurementexpress.com/api/v1/users/join_existing_company?company_id=:id`
 
 ### Query Parameters
 
 | Param                | Type    | Description                                 |
-| -------------------- | ------  | --------------------                        |
+| -------------------- | ------- | ------------------------------------------- |
 | authentication_token | header  | Authentication token                        |
 | company_id           | integer | Company id you want to send join request to |

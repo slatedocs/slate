@@ -12,7 +12,8 @@ RestClient.post(
       name: 'iCare Center',
       email: 'icare@example.com',
       address: '234 Saint St.',
-      notes: 'purchase iPhone 7'
+      notes: 'purchase iPhone 7',
+      source: 'mobile_android'
     }
   }
   headers = {
@@ -32,11 +33,12 @@ curl 'https://app.procurementexpress.com/api/v1/suppliers'
   -d "supplier[email]=icare@example.com"
   -d "supplier[address]=234 Saint St."
   -d "supplier[notes]=purchase iPhone 7"
+  -d "supplier[source]=mobile_android"
 ```
 
 > The above command returns JSON structured like this:
 
- ```json
+```json
 {
   "id": 1,
   "name": "iCare Center",
@@ -54,27 +56,32 @@ curl 'https://app.procurementexpress.com/api/v1/suppliers'
 
 Create a new suppliers and returns the `Supplier` object that is created.
 
+### About source column
+
+Source column is used to determine what is the source of data, and it accept one of these
+four values `website`, `mobile_ios`, `mobile_android`, `mobile_other`. Default value is `website`.
+
 ### HTTP Request
 
 `POST https://app.procurementexpress.com/api/v1/suppliers`
 
 ### Query Parameters
 
-
-| Params                    | Type    | description                                     |
-| --------                  | ------- | ----------                                      |
-| authentication_token      | header  | Authentication token                            |
-| app_company_id            | header  | Company ID                                      |
-| supplier[name]            | string  | Supplier name must present and should be unique |
-| supplier[email]           | string  | Email address                                   |
-| supplier[address]         | string  | Supplier address                                |
-| supplier[notes]           | string  | Notes                                           |
-| supplier[payment_details] | string  | Payment Details                                 |
-| supplier[phone_number]    | string  | Phone Number                                    |
-| supplier[archived]        | boolean | Archived?                                       |
-| supplier[tax_number]      | string  | TAX Number                                      |
-| supplier[contact_person]  | string  | Contact Person                                  |
-| department_ids            | array[] | List of Department IDs                          |
+| Params                    | Type    | description                                                        |
+| ------------------------- | ------- | ------------------------------------------------------------------ |
+| authentication_token      | header  | Authentication token                                               |
+| app_company_id            | header  | Company ID                                                         |
+| supplier[source]          | string  | one of `website`, `mobile_android`, `mobile_ios` or `mobile_other` |
+| supplier[name]            | string  | Supplier name must present and should be unique                    |
+| supplier[email]           | string  | Email address                                                      |
+| supplier[address]         | string  | Supplier address                                                   |
+| supplier[notes]           | string  | Notes                                                              |
+| supplier[payment_details] | string  | Payment Details                                                    |
+| supplier[phone_number]    | string  | Phone Number                                                       |
+| supplier[archived]        | boolean | Archived?                                                          |
+| supplier[tax_number]      | string  | TAX Number                                                         |
+| supplier[contact_person]  | string  | Contact Person                                                     |
+| department_ids            | array[] | List of Department IDs                                             |
 
 ## Get all Suppliers
 
@@ -117,7 +124,6 @@ curl 'https://app.procurementexpress.com/api/v1/suppliers'
   }
 ]
 ```
-
 
 > Output when pagination is enabled
 
@@ -178,14 +184,14 @@ You can pass `archived` params with `true` or `false` to filter Archived supplie
 
 ### Query Parameters
 
-| Params               | Type     | Description                                    |
-| --------             | -------- | ----------                                     |
-| authentication_token | header   | Authentication token                           |
-| app_company_id       | header   | Company ID                                     |
-| page                 | integer  | Page number to paginate                        |
-| department_id        | integer  | filter suppliers by department                 |
-| archived             | boolean  | `true` or `false` to filter archived suppliers |
-| top                  | integer  | limit n record                                 |
+| Params               | Type    | Description                                    |
+| -------------------- | ------- | ---------------------------------------------- |
+| authentication_token | header  | Authentication token                           |
+| app_company_id       | header  | Company ID                                     |
+| page                 | integer | Page number to paginate                        |
+| department_id        | integer | filter suppliers by department                 |
+| archived             | boolean | `true` or `false` to filter archived suppliers |
+| top                  | integer | limit n record                                 |
 
 ## Get Supplier details
 
@@ -224,7 +230,7 @@ curl 'https://app.procurementexpress.com/api/v1/suppliers/1'
   "archived": false,
   "contact_person": null,
   "tax_number": null
-  }
+}
 ```
 
 Retrieves the details of an existing suppliers. You need to supply the unique
@@ -237,13 +243,10 @@ supplier id, that was returned upon supplier creation.
 ### URL Parameters
 
 | Params               | Type    | Description          |
-| ------               | ------  | ---------            |
+| -------------------- | ------- | -------------------- |
 | authentication_token | header  | Authentication token |
 | app_company_id       | header  | Company ID           |
 | ID                   | integer | Supplier ID          |
-
-
-
 
 ## Update Supplier
 
@@ -298,11 +301,10 @@ Any parameters not provided will be left unchanged.
 
 `PUT https://app.procurementexpress.com/api/v1/suppliers/:id`
 
-
 ### Query Parameters
 
 | Params                    | Type    | Description                                     |
-| --------                  | ------  | ----------                                      |
+| ------------------------- | ------- | ----------------------------------------------- |
 | authentication_token      | header  | Authentication token                            |
 | app_company_id            | header  | Company ID                                      |
 | supplier[name]            | string  | Supplier name must present and should be unique |
@@ -315,4 +317,3 @@ Any parameters not provided will be left unchanged.
 | supplier[tax_number]      | string  | TAX Number                                      |
 | supplier[contact_person]  | string  | Contact Person                                  |
 | department_ids            | array[] | List of Department IDs                          |
-
