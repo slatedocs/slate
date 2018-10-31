@@ -37,7 +37,7 @@ The post params posted at any update in a particular leads are as follows
       {
         "updated_at": 1540968046,
         "to": "+919819619866",
-        "start_time": 1540967957, // call start time
+        "start_time": 1540967957, //call_start_time
         "stage": "connected",
         "sid": "asdfa1323fas",
         "second_leg_status": "completed",
@@ -46,7 +46,7 @@ The post params posted at any update in a particular leads are as follows
         "from": "+919833591953",
         "first_leg_status": "completed",
         "end_time": 1540967957,
-        "duration_in_sec": 26, // duration of the call
+        "duration_in_sec": 26, //duration_of_the_call
       } 
     ] 
 }
