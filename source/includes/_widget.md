@@ -21,7 +21,7 @@
     // Pass configurations to magpie-widget
     Magpie.widget.config({
       theme: {...},
-      selector: 'app-magpie-widget',
+      selector: '#app-magpie-widget',
       jwt: {
         token: '...',
         apiKey: '...',
