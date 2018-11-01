@@ -197,6 +197,9 @@ the server will respond with a [401 Unauthorized HTTP status code](https://tools
 * You can access the Sandbox API at [https://api.sandbox.transferwise.tech](https://api.sandbox.transferwise.tech)
 * The LIVE API is located at [https://api.transferwise.com](https://api.transferwise.com)
 
+**Please note** Sandbox environment is limited. We do not send any emails from it as well as transfer processing is not simulated. 
+Please consider [Simulation endpoints](https://api-docs.transferwise.com/#simulation) to change transfer state after funding. 
+
 ## Get your profile id
 
 > Example Request:
