@@ -287,13 +287,13 @@ Para que seja possível fazer split com boletos é necessário enviar a regra de
 ```php
 <?php
 // VIA IPAG-SDK-PHP
-$splitRule = new SplitRule();
-$splitRule->setSellerId('c66fabf44786459e81e3c65e339a4fc9')
+$payment->addSplitRule(
+  $ipag->splitRule()
+  ->setSellerId('c66fabf44786459e81e3c65e339a4fc9')
   ->setPercentage(95)
-  ->setLiable(1);
-// ->setAmount(9.90)
-
-$ipag->payment()->addSplitRule($splitRule);
+  ->setLiable(1)
+  // ->setAmount(9.90)
+);
 /*
   Você pode adicionar quantas regras forem necessárias e permitidas.
 */
