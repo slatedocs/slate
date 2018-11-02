@@ -620,9 +620,160 @@ Note: the quantity or sum of quantities represents the number of participants (p
 
 
 
+# Combined Tickets
+
+In special cases a museum may offer a combined ticket that includes multiple sub tickets. The sub tickets may have individual separate time slots.
+
+A public example are the Pergamon + Panorama Tickets by the Staatliche Museen zu Berlin.
 
 
+## Example Pergamon + Panorama SMB
+
+The following example uses the public API of smb to show a step by step guide on how to order combined tickets. The following data was taken from the live instance on 1. Nov 2018. The data may look different at a later date.
+
+### 1. Query ticket list as usual
+
+GET https://smb.gomus.de/api/v4/tickets?valid_at=2018-11-20
+
+One of the available tickets is:
+
+```json
+{id: 514, title: "Pergamonmuseum + Das Panorama | regulär", ticket_type: "time_slot", bookable: true, ...}
+```
+
+### 2. Reading details of main ticket
+
+GET https://smb.gomus.de/api/v4/tickets/514
+
+```json
+{
+    ...
+    price_cents: 1900,
+    quota_ids: [98],
+    sub_ticket_ids: [515, 516],
+    ...
+}
+```
+
+In the ticket details we can see that this tickets has two sub tickets. 
+The sub tickets will refer to the individual entry locations and will later have two individual time slots.
+
+The main ticket itself contains the price, 19 € in our example.
+
+Also take note that the main ticket also has a quota, in order to buy the ticket, all ticket quotas need be available, main and sub tickets.
+
+### 3. Reading details of sub tickets 
+
+GET https://smb.gomus.de/api/v4/tickets/515
+GET https://smb.gomus.de/api/v4/tickets/516
+
+```json
+{id: 515, title: "Subticket Pergamonmuseum", is_sub_ticket: true, price_cents: 0, quota_ids: [37], ticket_type: "time_slot", ...}
+```
+```json
+{id: 516, title: "Subticket Das Panorama", is_sub_ticket: true, price_cents: 0, quota_ids: [99], ticket_type: "time_slot", ...}
+```
+
+Both sub tickets have no price. The price is handled in the main ticket.
+
+But both tickets reference a quota. Both quotas need be available.
+
+### 4. Reading capacities
+
+GET https://smb.gomus.de/api/v4/tickets/515/capacity?date=2018-11-20
+GET https://smb.gomus.de/api/v4/tickets/516/capacity?date=2018-11-20
+
+We assume that you already checked the availability of the main ticket and will only look at the sub tickets in the following explanation.
+
+```json
+{
+    2018-11-20T10:00:00+01:00: 46,
+    2018-11-20T10:30:00+01:00: 46,
+    2018-11-20T11:00:00+01:00: 32,
+    2018-11-20T11:30:00+01:00: 37,
+    2018-11-20T12:00:00+01:00: 37,
+    2018-11-20T12:30:00+01:00: 33,
+    2018-11-20T13:00:00+01:00: 37,
+    2018-11-20T13:30:00+01:00: 35,
+    2018-11-20T14:00:00+01:00: 34,
+    2018-11-20T14:30:00+01:00: 37,
+    2018-11-20T15:00:00+01:00: 35,
+    2018-11-20T15:30:00+01:00: 37,
+    2018-11-20T16:00:00+01:00: 37,
+    2018-11-20T16:30:00+01:00: 37,
+    2018-11-20T17:00:00+01:00: 37
+}
+```
+
+You will need to select one time slot for the first ticket and another time slot for the second ticket.
+
+For example we could select:
+
+- Ticket 515: 2018-11-20T12:30:00+01:00
+- Ticket 516: 2018-11-20T14:00:00+01:00
+
+***Attention: In SMB the time slot have to be 90 minutes apart.***
+
+You are free to decide which ticket should get the first time slot. It might be good to let the customer decide where he wants go first.
+
+In our example the customer will go first to "Pergamonmuseum" and then to "Das Panorama".
 
 
+### 5. Creating the order
+
+See the sections above for reference on how to create an order.
+
+Here we will detail how the ticket attributes are structured inside an order request when buying an combined ticket.
+
+```json
+{
+    "type": "Ticket",
+    "attributes": {
+        "id": 514,
+        "quantity": 1,
+        "time": "2018-11-20T12:30:00+01:00",
+        "sub_ticket_times": {
+          "515": "2018-11-20T12:30:00+01:00",
+          "516": "2018-11-20T14:00:00+01:00"
+        }
+    }
+}
+```
+
+Take note that we
+
+1. send an attributes hash that references the main ticket.
+1. we need to set a time for the main ticket. It is best practice to set this to the earliest time slot that we also use in sub tickets.
+1. we set the times for the sub tickets in the field `sub_ticket_times`. These are the entry times that we selected in step 4.
+
+You can also set `reservations` or `attendees` fields in the attributes hash as normal. We omitted them here for brevity.
 
 
+### 6. Handling of barcodes in order result
+
+After you have created the order you will get back a normal order response as was detailed in the sections above.
+
+Of special notice are two things, first you will get a single barcode for the main ticket. This ticket barcode can be used in all entry locations.
+
+```
+        "barcodes": [
+            {
+                "id": 97633,
+                "barcode": "4034210297633-5",
+                "method": "ean"
+            }
+        ],
+```       
+
+And second, it is best practice to print the individual sub ticket times on the ticket PDF that customers will receive.
+
+The sub ticket times will be checked on entry and customer confusion may result if these are not clearly communicated.
+
+
+## Looking at an online example of combined tickets
+
+You can look at the official online shop implementation of Staatliche Museen zu Berlin in order to better understand how to structure queries and how to implement an UI for time slot selection in combined tickets.
+
+Make sure to select 2018-11-20 or a later date when looking for combined Pergamon + Panorama tickets.
+
+https://shop.smb.museum/#/tickets/list?date=2018-11-20        
