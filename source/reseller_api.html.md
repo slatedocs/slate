@@ -627,6 +627,12 @@ In special cases a museum may offer a combined ticket that includes multiple sub
 A public example are the Pergamon + Panorama Tickets by the Staatliche Museen zu Berlin.
 
 
+## Important restrictions
+
+- combined tickets cannot be reserved
+- sub tickets cannot be bought directly, only main ticket can be bought
+
+
 ## Example Pergamon + Panorama SMB
 
 The following example uses the public API of smb to show a step by step guide on how to order combined tickets. The following data was taken from the live instance on 1. Nov 2018. The data may look different at a later date.
@@ -746,7 +752,7 @@ Take note that we
 1. we need to set a time for the main ticket. It is best practice to set this to the earliest time slot that we also use in sub tickets.
 1. we set the times for the sub tickets in the field `sub_ticket_times`. These are the entry times that we selected in step 4.
 
-You can also set `reservations` or `attendees` fields in the attributes hash as normal. We omitted them here for brevity.
+You can also set the `attendees` fields in the attributes hash as normal. We omitted them here for brevity. Please not that reservations are not possible currently.
 
 
 ### 6. Handling of barcodes in order result
