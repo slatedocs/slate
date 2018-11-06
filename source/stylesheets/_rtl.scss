@@ -75,6 +75,7 @@ $default: auto;
     table {
         th,
         td {
+            direction: rtl;
             text-align: right;
         }
     }

@@ -1,7 +1,7 @@
 ---
 title: راهنمای API پرداخت
 
-language_tabs: # must be one of https://git.io/vQNgJ
+language_tabs:
   - shell: cURL
   - php: PHP
   - javascript: Node
@@ -19,6 +19,7 @@ includes:
   - payment_callback
   - payment_inquiry
   - status
+  - error
 
 search: false
 ---
