@@ -644,7 +644,7 @@ GET https://smb.gomus.de/api/v4/tickets?valid_at=2018-11-20
 One of the available tickets is:
 
 ```json
-{id: 514, title: "Pergamonmuseum + Das Panorama | regulär", ticket_type: "time_slot", bookable: true, ...}
+{"id": 514, "title": "Pergamonmuseum + Das Panorama | regulär", "ticket_type": "time_slot", "bookable": true, ...}
 ```
 
 ### 2. Reading details of main ticket
@@ -654,9 +654,9 @@ GET https://smb.gomus.de/api/v4/tickets/514
 ```json
 {
     ...
-    price_cents: 1900,
-    quota_ids: [98],
-    sub_ticket_ids: [515, 516],
+    "price_cents": 1900,
+    "quota_ids": [98],
+    "sub_ticket_ids": [515, 516],
     ...
 }
 ```
@@ -674,10 +674,10 @@ GET https://smb.gomus.de/api/v4/tickets/515
 GET https://smb.gomus.de/api/v4/tickets/516
 
 ```json
-{id: 515, title: "Subticket Pergamonmuseum", is_sub_ticket: true, price_cents: 0, quota_ids: [37], ticket_type: "time_slot", ...}
+{"id": 515, "title": "Subticket Pergamonmuseum", "is_sub_ticket": true, "price_cents": 0, "quota_ids": [37], "ticket_type": "time_slot", ...}
 ```
 ```json
-{id: 516, title: "Subticket Das Panorama", is_sub_ticket: true, price_cents: 0, quota_ids: [99], ticket_type: "time_slot", ...}
+{"id": 516, "title": "Subticket Das Panorama", "is_sub_ticket": true, "price_cents": 0, "quota_ids": [99], "ticket_type": "time_slot", ...}
 ```
 
 Both sub tickets have no price. The price is handled in the main ticket.
@@ -693,21 +693,21 @@ We assume that you already checked the availability of the main ticket and will 
 
 ```json
 {
-    2018-11-20T10:00:00+01:00: 46,
-    2018-11-20T10:30:00+01:00: 46,
-    2018-11-20T11:00:00+01:00: 32,
-    2018-11-20T11:30:00+01:00: 37,
-    2018-11-20T12:00:00+01:00: 37,
-    2018-11-20T12:30:00+01:00: 33,
-    2018-11-20T13:00:00+01:00: 37,
-    2018-11-20T13:30:00+01:00: 35,
-    2018-11-20T14:00:00+01:00: 34,
-    2018-11-20T14:30:00+01:00: 37,
-    2018-11-20T15:00:00+01:00: 35,
-    2018-11-20T15:30:00+01:00: 37,
-    2018-11-20T16:00:00+01:00: 37,
-    2018-11-20T16:30:00+01:00: 37,
-    2018-11-20T17:00:00+01:00: 37
+    "2018-11-20T10:00:00+01:00": 46,
+    "2018-11-20T10:30:00+01:00": 46,
+    "2018-11-20T11:00:00+01:00": 32,
+    "2018-11-20T11:30:00+01:00": 37,
+    "2018-11-20T12:00:00+01:00": 37,
+    "2018-11-20T12:30:00+01:00": 33,
+    "2018-11-20T13:00:00+01:00": 37,
+    "2018-11-20T13:30:00+01:00": 35,
+    "2018-11-20T14:00:00+01:00": 34,
+    "2018-11-20T14:30:00+01:00": 37,
+    "2018-11-20T15:00:00+01:00": 35,
+    "2018-11-20T15:30:00+01:00": 37,
+    "2018-11-20T16:00:00+01:00": 37,
+    "2018-11-20T16:30:00+01:00": 37,
+    "2018-11-20T17:00:00+01:00": 37
 }
 ```
 
