@@ -564,7 +564,7 @@ status                    | Transfer current status | Text
 reference                 | Deprecated, use details.reference instead     | Text
 rate                      | Exchange rate value                           | Decimal
 created                   | Timestamp when transfer was created | Timestamp 
-business                  | Your business profile id                     | 
+business                  | Your business profile id                     | Integer
 transferRequest           | Not used   | Integer
 details.reference         | Payment reference text        | Text
 hasActiveIssues           | Are there any pending issues which stop executing the transfer?  | Boolean 
