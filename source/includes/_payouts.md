@@ -19,6 +19,7 @@ Just follow these four steps.
 * Activate currencies and make a transfer – check [our video guide](https://transferwise.com/help/article/1779442/creating-a-transfer/video-guide-make-a-transfer) for step-by-step instructions.
 
 * Verify that our coverage includes your currency route(s). Check [Supported Currencies](https://transferwise.com/help/article/1569835/basic-information/supported-currencies).
+Please note that there are few restrictions for businesses, please review [Restricted Business Routes](https://transferwise.com/help/article/2319498/business/restricted-business-routes)
 
 * Please note that our Fixed Rate functionality is intended to provide time for customers to send funds to TransferWise, while holding the rate for them. TransferWise is not a trading platform and the Fixed Rate functionality is automatically disabled if abusive behaviour (such as multiple transfer creation and selective completion) is detected.
 
