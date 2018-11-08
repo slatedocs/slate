@@ -32,9 +32,13 @@ Updates the user’s profile data. Acts as a create in case there is no data ass
 
 Parameter | Type | Description
 --------- | ------- | -----------
-function | integer | the user’s function input identifier
-sector | integer | the user’s sector input identifier
-seniority | integer | the user’s seniority input identifier
+function (optional) | integer | the user’s function input identifier
+sector (optional) | integer | the user’s sector input identifier
+seniority (optional) | integer | the user’s seniority input identifier
+
+<aside class="notice">
+Although all parameters are optional, it's necessary for at least one to be set for a successful call
+</aside>
 
 <aside class="success">
 Returns — Profile Model — the user’s updated profile data
@@ -50,6 +54,7 @@ Error Code | Meaning
 -32610 | Unsupported function input
 -32609 | Unsupported seniority input
 -32608 | Unsupported sector input
+-32016 | Profile input is empty
 
 ## Get
 
