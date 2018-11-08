@@ -14,42 +14,34 @@ curl "https://demo.gomus.de/api/v4/tickets"
 
 ```json
 {
-    "tickets": [
-        {
-        "id": 247,
-        "title": "El Siglo de Oro mit Gemäldegalerie regulär",
-        "ticket_type": "time_slot",
-        "bookable": true,
-        "museum_ids": [
-            20
-        ],
-        "exhibition_ids": [
-            2057,
-            33
-        ],
-        "price_cents": 1400,
-        "discount": 0,
-        "vat_pct": 0,
-        "tax_included": true,
-        "entry_duration": 30,
-        "min_persons": 0,
-        "max_persons": 100,
-        "quota_ids": [
-            19
-        ],
-        "first_entry": 660,
-        "last_entry": 990,
-        "personalizeable": false,
-        "attendees": "required",
-        "identification": false
-        }
-    ],
-    "meta": {
-        "total_count": 1,
-        "page": 1,
-        "per_page": 25
+  "tickets": [
+    {
+      "id": 247,
+      "title": "El Siglo de Oro mit Gemäldegalerie regulär",
+      "ticket_type": "time_slot",
+      "bookable": true,
+      "museum_ids": [20],
+      "exhibition_ids": [2057, 33],
+      "price_cents": 1400,
+      "discount": 0,
+      "vat_pct": 0,
+      "tax_included": true,
+      "entry_duration": 30,
+      "min_persons": 0,
+      "max_persons": 100,
+      "quota_ids": [19],
+      "first_entry": 660,
+      "last_entry": 990,
+      "personalizeable": false,
+      "attendees": "required",
+      "identification": false
     }
-
+  ],
+  "meta": {
+    "total_count": 1,
+    "page": 1,
+    "per_page": 25
+  }
 }
 ```
 
@@ -63,7 +55,7 @@ curl "https://demo.gomus.de/api/v4/tickets"
 - by_bookable (Boolean, true|false, default: all), filter by general bookability for current account (or public)
 - by_ticket_type, (String) (annual, time_slot, normal, default: all but annual)
 - by_ticket_types, (Array of annual, time_slot, normal, default: all but annual)
-  
+
 ### Available parameters:
 
 - valid_at (`YYYY-MM-DD`), defaults to today
@@ -107,53 +99,47 @@ curl "https://demo.gomus.de/api/v4/tickets/1"
 
 ```json
 {
-    "ticket": {
-        "id": 247,
-        "title": "El Siglo de Oro mit Gemäldegalerie regulär",
-        "sub_title": null,
-        "description": "...",
-        "ticket_type": "time_slot",
-        "bookable": true,
-        "museum_ids": [
-            20
-        ],
-        "exhibition_ids": [
-            2057,
-            33
-        ],
-        "quota_ids": [
-            19
-        ],
-        "price_cents": 1400,
-        "vat_pct": 0,
-        "discount": 0,
-        "tax_included": true,
-        "first_entry": 660,
-        "last_entry": 990,
-        "entry_duration": 30,
-        "min_persons": 0,
-        "max_persons": 100,
-        "after_sale_information": null,
-        "content": {
-            "shop_title": "Best ticket in the world",
-            "shop_sub_title": "",
-            "shop_description": ""
-        },
-        "personalizeable": false,
-        "attendees": "required",
-        "identification": false,
-        "location": {
-            "name": "Gemäldegalerie",
-            "city": "Berlin",
-            "country": "Deutschland",
-            "street": "Matthäikirchplatz",
-            "zip": "10785",
-            "latitude": 52.5082,
-            "longitude": 13.3673
-        }
+  "ticket": {
+    "id": 247,
+    "title": "El Siglo de Oro mit Gemäldegalerie regulär",
+    "sub_title": null,
+    "description": "...",
+    "ticket_type": "time_slot",
+    "bookable": true,
+    "museum_ids": [20],
+    "exhibition_ids": [2057, 33],
+    "quota_ids": [19],
+    "price_cents": 1400,
+    "vat_pct": 0,
+    "discount": 0,
+    "tax_included": true,
+    "first_entry": 660,
+    "last_entry": 990,
+    "entry_duration": 30,
+    "min_persons": 0,
+    "max_persons": 100,
+    "after_sale_information": null,
+    "content": {
+      "shop_title": "Best ticket in the world",
+      "shop_sub_title": "",
+      "shop_description": ""
+    },
+    "personalizeable": false,
+    "attendees": "required",
+    "identification": false,
+    "location": {
+      "name": "Gemäldegalerie",
+      "city": "Berlin",
+      "country": "Deutschland",
+      "street": "Matthäikirchplatz",
+      "zip": "10785",
+      "latitude": 52.5082,
+      "longitude": 13.3673
     }
+  }
 }
 ```
+
 ### Available parameters:
 
 - valid_at (`YYYY-MM-DD`), defaults to today
@@ -166,6 +152,7 @@ The json response contains a ticket block with information for that the informat
 - location, contains information about the location of the museum that the ticket belongs to.
 - content contains dynamic multi locale information
 
+**_NOTE: for information on combined/sub-tickets, please see the [Pergamon + Panorama example](/reseller_api.html#example-pergamon-panorama-smb)_**
 
 ## Capacities of a ticket
 
@@ -181,21 +168,20 @@ curl "https://demo.gomus.de/api/v4/tickets/1/capacity"
 
 ```json
 {
-    "data": {
-        "2016-07-06T11:00:00+02:00": 15,
-        "2016-07-06T11:30:00+02:00": 21,
-        "2016-07-06T12:00:00+02:00": 16,
-        "2016-07-06T12:30:00+02:00": 21,
-        "2016-07-06T13:00:00+02:00": 21,
-        "2016-07-06T13:30:00+02:00": 21,
-        "2016-07-06T14:00:00+02:00": 20,
-        "2016-07-06T14:30:00+02:00": 21,
-        "2016-07-06T15:00:00+02:00": 21,
-        "2016-07-06T15:30:00+02:00": 21,
-        "2016-07-06T16:00:00+02:00": 21
-    }
+  "data": {
+    "2016-07-06T11:00:00+02:00": 15,
+    "2016-07-06T11:30:00+02:00": 21,
+    "2016-07-06T12:00:00+02:00": 16,
+    "2016-07-06T12:30:00+02:00": 21,
+    "2016-07-06T13:00:00+02:00": 21,
+    "2016-07-06T13:30:00+02:00": 21,
+    "2016-07-06T14:00:00+02:00": 20,
+    "2016-07-06T14:30:00+02:00": 21,
+    "2016-07-06T15:00:00+02:00": 21,
+    "2016-07-06T15:30:00+02:00": 21,
+    "2016-07-06T16:00:00+02:00": 21
+  }
 }
-
 ```
 
 Using the json response on the right as an example, between 11.00 and 11.30 on the 6th July 2016,
@@ -217,7 +203,6 @@ The capacity check takes all quotas that the ticket belongs to into account. Zer
 
 Provide an array of reservation tokens to be considered in calculation
 
-
 ## Calendar - for tickets
 
 The ticket calender contains information about the generic bookablility of tickets - a very fast and easy way to detect if there is anything bookable in a larger timeframe.
@@ -232,45 +217,36 @@ curl "https://demo.gomus.de/api/v4/tickets/calendar"
 
 ```json
 {
-    "data": {
-        "2016-05-27": false,
-        "2016-05-28": false,
-        "2016-05-29": false,
-        "2016-05-30": true,
-        "2016-05-31": true
-    }
+  "data": {
+    "2016-05-27": false,
+    "2016-05-28": false,
+    "2016-05-29": false,
+    "2016-05-30": true,
+    "2016-05-31": true
+  }
 }
-
 ```
 
 > Example output with `depth=all`:
 
 ```json
 {
-    "data": {
-        "2016-07-06": [
+  "data": {
+    "2016-07-06": [
+      {
+        "quota": {
+          "id": 3,
+          "tickets": [261, 262, 263, 264, 265, 266],
+          "capacities": [
             {
-                "quota": {
-                    "id": 3,
-                    "tickets": [
-                        261,
-                        262,
-                        263,
-                        264,
-                        265,
-                        266
-                    ],
-                    "capacities": [
-                        {
-                        "2016-07-06 11:00:00 +0200": 100
-                        }
-                    ]
-                }
+              "2016-07-06 11:00:00 +0200": 100
             }
-        ]
-    }
+          ]
+        }
+      }
+    ]
+  }
 }
-
 ```
 
 ### Available filters:
@@ -281,8 +257,7 @@ curl "https://demo.gomus.de/api/v4/tickets/calendar"
 - by_bookable (Boolean, true|false, default: all), filter by general bookability for current account (or public)
 - by_ticket_type, (String) (annual, time_slot, normal, default: all but annual)
 - by_ticket_types, (Array of annual, time_slot, normal, default: all but annual)
-  
-  
+
 ### Available parameters:
 
 - start_at (`YYYY-MM-DD`), defaults to today
@@ -313,36 +288,31 @@ curl "https://demo.gomus.de/api/v4/tickets/capacities"
 
 > The above command returns JSON structured like this:
 
-
 ```json
 {
-    "data": {
-        "19": {
-            "tickets": [
-                247,
-                248
-            ],
-            "capacities": {
-                "2016-07-06T16:15:00+02:00": 30,
-                "2016-07-06T16:20:00+02:00": 30,
-                "2016-07-06T16:25:00+02:00": 30,
-                "2016-07-06T16:30:00+02:00": 0
-            }
-        },
-        "20": {
-            "tickets": [
-                248
-            ],
-            "capacities": {
-                "2016-07-06T16:15:00+02:00": 15,
-                "2016-07-06T16:20:00+02:00": 15,
-                "2016-07-06T16:25:00+02:00": 15,
-                "2016-07-06T16:30:00+02:00": 0
-            }
-        }
+  "data": {
+    "19": {
+      "tickets": [247, 248],
+      "capacities": {
+        "2016-07-06T16:15:00+02:00": 30,
+        "2016-07-06T16:20:00+02:00": 30,
+        "2016-07-06T16:25:00+02:00": 30,
+        "2016-07-06T16:30:00+02:00": 0
+      }
+    },
+    "20": {
+      "tickets": [248],
+      "capacities": {
+        "2016-07-06T16:15:00+02:00": 15,
+        "2016-07-06T16:20:00+02:00": 15,
+        "2016-07-06T16:25:00+02:00": 15,
+        "2016-07-06T16:30:00+02:00": 0
+      }
     }
+  }
 }
 ```
+
 Tickets are assigned to (one or multiple) quotas and reduce each others capacity when ordered. As a result,
 capacity calculation becomes a little more complicated.
 
@@ -355,7 +325,7 @@ if 2 of one ticket is selected only 8 are available for the other.
 
 Note that for a set of tickets with each different entry durations the greatest common divisor of all entry
 durations is used as step size for the capacity time slots. If this is the case, you need to ensure you set
-the time for the ticket to a valid value (first_entry + n * entry_duration). For day tickets you need to set
+the time for the ticket to a valid value (first_entry + n \* entry_duration). For day tickets you need to set
 first_entry as time of booking.
 
 ### Distinguishing unavailable and sold out tickets.
@@ -364,26 +334,23 @@ An array of total capacities is returned that reflect the total configured capac
 
 ```json
 {
-    "data": {
-        "19": {
-            "tickets": [
-                247,
-                248
-            ],
-            "capacities": {
-                "2016-07-06T16:15:00+02:00": 0,
-                "2016-07-06T16:20:00+02:00": 0,
-                "2016-07-06T16:25:00+02:00": 0,
-                "2016-07-06T16:30:00+02:00": 0
-            },
-            "total_capacities": {
-                "2016-07-06T16:15:00+02:00": 30,
-                "2016-07-06T16:20:00+02:00": 30,
-                "2016-07-06T16:25:00+02:00": 30,
-                "2016-07-06T16:30:00+02:00": 30
-            }
-        },
+  "data": {
+    "19": {
+      "tickets": [247, 248],
+      "capacities": {
+        "2016-07-06T16:15:00+02:00": 0,
+        "2016-07-06T16:20:00+02:00": 0,
+        "2016-07-06T16:25:00+02:00": 0,
+        "2016-07-06T16:30:00+02:00": 0
+      },
+      "total_capacities": {
+        "2016-07-06T16:15:00+02:00": 30,
+        "2016-07-06T16:20:00+02:00": 30,
+        "2016-07-06T16:25:00+02:00": 30,
+        "2016-07-06T16:30:00+02:00": 30
+      }
     }
+  }
 }
 ```
 
