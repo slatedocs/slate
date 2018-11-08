@@ -130,6 +130,25 @@ A successful request will generate a lightning invoice that will look simiar to 
 
 **Subscribe**
 
+Example Request: 
+
+{  
+   "event":"subscribe",
+   
+   "channel":"trades",
+   
+   "symbol":"BTCUSDT",
+   
+   "exchange":"binance",
+   
+   "duration":120000,
+   
+   "refundInvoice":"lnbcrt1pdace6qpp5my6nc58d50r5gk38ynyz55f72sk6r7vmg7nu5wkgpuncv6kemu0qdq22fjkvatwvsxqrrssr922knv2hhpdf7ahxdwlpt5prlwld64ytxtz678ke44qh802tdwhda7u77vfv46efdax5yl0jwsg2nxjc4jp0w89cry48zvxzmffn2gqzvn63l",
+   
+   "uuid":"8dda8625-2946-4500-8dd5-13c78d2f42b8"
+}
+
+
 To subscribe to a data stream, use the following command format:
 
 Field | Type | Example
@@ -224,6 +243,54 @@ Field | Type | Exchanges Supported
 <span style="color:red"> low </span> |  Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
 
 ## Trades
+> Example of Trades Data
+
+```json
+{  
+   "uuid":"8dda8625-2946-4500-8dd5-13c78d2f42b8",
+   "exchange":"binance",
+   "symbol":"BTCUSDT",
+   "duration":10000,
+   "event":"subscribed"
+}{  
+   "uuid":"8dda8625-2946-4500-8dd5-13c78d2f42b8",
+   "data":{  
+      "eventTime":1541715784094,
+      "symbol":"BTCUSDT",
+      "tradeId":77827378,
+      "price":6502.99,
+      "quantity":0.030665,
+      "buyerId":183136564,
+      "sellerId":183136526,
+      "tradeTime":1541715784094,
+      "marketMaker":false
+   }
+}{  
+   "uuid":"8dda8625-2946-4500-8dd5-13c78d2f42b8",
+   "data":{  
+      "eventTime":1541715784161,
+      "symbol":"BTCUSDT",
+      "tradeId":77827379,
+      "price":6501.35,
+      "quantity":0.088033,
+      "buyerId":183136558,
+      "sellerId":183136565,
+      "tradeTime":1541715784156,
+      "marketMaker":true
+   }
+}
+```
+
+Example Request: 
+
+{  "event":"subscribe",
+   "channel":"trades",
+   "symbol":"BTCUSDT",
+   "exchange":"binance",
+   "duration":120000,
+   "refundInvoice":"lnbcrt1pdace6qpp5my6nc58d50r5gk38ynyz55f72sk6r7vmg7nu5wkgpuncv6kemu0qdq22fjkvatwvsxqrrssr922knv2hhpdf7ahxdwlpt5prlwld64ytxtz678ke44qh802tdwhda7u77vfv46efdax5yl0jwsg2nxjc4jp0w89cry48zvxzmffn2gqzvn63l",
+   "uuid":"[uuid]"}
+
 
 Field |  Type | Exchanges Supported 
 ------ | ------- | -----------
@@ -244,6 +311,39 @@ Field |  Type | Exchanges Supported
 <span style="color:red"> price </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
 
 ## Order Books
+> Example of Order Books Data
+
+```json
+{  
+      "uuid":"8dda8625-2946-4500-8dd5-13c78d2f42b8",
+      "exchange":"bitfinex",
+      "symbol":"BTCUSD",
+      "duration":15000,
+      "event":"subscribed"
+   }{  
+      "uuid":"8dda8625-2946-4500-8dd5-13c78d2f42b8",
+      "data":{  
+         "eventTime":1541715102336,
+         "orderId":18836717052,
+         "price":6504.4,
+         "quantity":0.16911629
+      }
+   }{  
+      "uuid":"8dda8625-2946-4500-8dd5-13c78d2f42b8",
+      "data":{  
+         "eventTime":1541715102336,
+         "orderId":18836717013,
+         "price":6502.9,
+         "quantity":0.1691553
+      }
+   }
+   ```
+
+Example Request:
+
+{"event":"subscribe", "channel":"books", "symbol":"BTCUSD", "exchange":"bitfinex", "duration":15000,
+   "refundInvoice":"lnbcrt1pdace6qpp5my6nc58d50r5gk38ynyz55f72sk6r7vmg7nu5wkgpuncv6kemu0qdq22fjkvatwvsxqrrssr922knv2hhpdf7ahxdwlpt5prlwld64ytxtz678ke44qh802tdwhda7u77vfv46efdax5yl0jwsg2nxjc4jp0w89cry48zvxzmffn2gqzvn63l",
+   "uuid":"[uuid]"}
 
 Field | Type | Exchanges Supported
 ------| -------| --------
