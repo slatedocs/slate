@@ -13,6 +13,7 @@ includes:
   - user_token
   - accommodations
   - reservations
+  - checkins
   - errors
 
 search: true
