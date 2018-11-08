@@ -613,17 +613,19 @@ The following example uses the public API of smb to show a step by step guide on
 
 ### 1. Query ticket list as usual
 
-`GET https://smb.gomus.de/api/v4/tickets?valid_at=2018-11-20`
-
-One of the available tickets is:
+> One of the available tickets will be the following:
 
 ```json
 {"id": 514, "title": "Pergamonmuseum + Das Panorama | regulär", "ticket_type": "time_slot", "bookable": true, ...}
 ```
 
+`GET https://smb.gomus.de/api/v4/tickets?valid_at=2018-11-20`
+
+Get a list of tickets. One of the tickets will be `Pergamonmuseum + Das Panorama | regulär`.
+
 ### 2. Reading details of main ticket
 
-`GET https://smb.gomus.de/api/v4/tickets/514`
+> Ticket detail response of a ticket with sub tickets:
 
 ```json
 {
@@ -635,6 +637,8 @@ One of the available tickets is:
 }
 ```
 
+`GET https://smb.gomus.de/api/v4/tickets/514`
+
 In the ticket details we can see that this ticket has an extra key `sub_ticket_ids` compared to the [standard](/public_api.html#details-of-single-ticket) ticket keys.
 This field contains 2 ID's of two sub tickets.
 The sub tickets will refer to the individual entry locations and will later have two individual time slots.
@@ -645,16 +649,16 @@ Also take note that the main ticket also has a quota, in order to buy the ticket
 
 ### 3. Reading details of sub tickets
 
-`GET https://smb.gomus.de/api/v4/tickets/515`
-`GET https://smb.gomus.de/api/v4/tickets/516`
+> The ticket detail response of the sub tickets:
 
 ```json
 {"id": 515, "title": "Subticket Pergamonmuseum", "is_sub_ticket": true, "price_cents": 0, "quota_ids": [37], "ticket_type": "time_slot", ...}
-```
 
-```json
 {"id": 516, "title": "Subticket Das Panorama", "is_sub_ticket": true, "price_cents": 0, "quota_ids": [99], "ticket_type": "time_slot", ...}
 ```
+
+`GET https://smb.gomus.de/api/v4/tickets/515`
+`GET https://smb.gomus.de/api/v4/tickets/516`
 
 Both sub tickets have no price. The price is handled in the main ticket.
 
@@ -662,10 +666,7 @@ But both tickets reference a quota. Both quotas need to be available.
 
 ### 4. Reading capacities
 
-`GET https://smb.gomus.de/api/v4/tickets/515/capacity?date=2018-11-20`
-`GET https://smb.gomus.de/api/v4/tickets/516/capacity?date=2018-11-20`
-
-We assume that you already checked the availability of the main ticket and will only look at the sub tickets in the following explanation.
+> An example of a capacity response:
 
 ```json
 {
@@ -687,6 +688,11 @@ We assume that you already checked the availability of the main ticket and will 
 }
 ```
 
+`GET https://smb.gomus.de/api/v4/tickets/515/capacity?date=2018-11-20`
+`GET https://smb.gomus.de/api/v4/tickets/516/capacity?date=2018-11-20`
+
+We assume that you already checked the availability of the main ticket and will only look at the sub tickets in the following explanation.
+
 You will need to select one time slot for the first ticket and another time slot for the second ticket.
 
 For example we could select:
@@ -702,9 +708,7 @@ In our example the customer will go to "Pergamonmuseum" first and then to "Das P
 
 ### 5. Creating the order
 
-See the sections above for reference on how to create an order.
-
-Here we will detail how the ticket attributes are structured inside an order request when buying an combined ticket.
+> Example ticket order item with sub tickets:
 
 ```json
 {
@@ -721,6 +725,12 @@ Here we will detail how the ticket attributes are structured inside an order req
 }
 ```
 
+See the sections above for reference on how to create an order.
+
+Here we will detail how the ticket attributes are structured inside an order request when buying a combined ticket.
+
+The ticket item is exactly the same as a [normal ticket item](#items), with the addition of the `sub_ticket_times` hash.
+
 Take note that we
 
 1. send an attributes hash that references the main ticket.
@@ -731,9 +741,7 @@ You can also set the `attendees` fields in the attributes hash as normal. We omi
 
 ### 6. Handling of barcodes in the order result
 
-After you have created the order you will get back a normal order response as was detailed in the sections above.
-
-Of special notice are two things, first you will get a single barcode for the main ticket. This ticket barcode can be used in all entry locations.
+> Example of a barcode returned from the order detail response:
 
 ```json
 "barcodes": [
@@ -744,6 +752,10 @@ Of special notice are two things, first you will get a single barcode for the ma
     }
 ],
 ```
+
+After you have created the order you will get back a normal order response as was detailed in the sections above.
+
+Of special notice are two things, first you will get a single barcode for the main ticket. This ticket barcode can be used in all entry locations.
 
 And second, it is best practice to print the individual sub ticket times on the ticket PDF that customers will receive.
 
