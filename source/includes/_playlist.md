@@ -22,8 +22,9 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchAllPlaylists", "jsonrpc":
 			"name": "Using Financials"
 		}],
 		"laList": {
-			"18": {
-				"id": "2096012a912d5d8d7a9501dbf706c8df6df03803",
+			"0": {
+				"id": 958
+				"hashID": "2096012a912d5d8d7a9501dbf706c8df6df03803",
 				"title": "A rare interview with the mathematician who cracked Wall Street",
 				"description": "",
 				"mainImage": "",
@@ -49,8 +50,9 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchAllPlaylists", "jsonrpc":
 					"name": "Using Financials"
 				}]
 			},
-			"187": {
-				"id": "1a44a5d5eaf7dc5d504984c12910c6f6b5de87f6",
+			"1": {
+				"id": 419,
+				"hashID": "9173522e110a0345256a504274efe7ec43ca7e40",
 				"title": "The surprisingly logical minds of babies",
 				"description": "",
 				"mainImage": "",
@@ -86,8 +88,9 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchAllPlaylists", "jsonrpc":
 			"name": "Personal Development"
 		}],
 		"laList": {
-			"107": {
-				"id": "1c0e4d49de0e9285a246fc501501caa284e00951",
+			"0": {
+				"id": 8995,
+				"hashID": "c872a5d2f4cabfa88149b03137896bb53279712e",
 				"title": "How to Run a Brainstorming Session",
 				"description": "",
 				"mainImage": "",
@@ -171,8 +174,9 @@ curl --data-binary '{"id":"5","method":"playlist.FetchFavouritePlaylist","jsonrp
 			"name": "Productivity"
 		}],
 		"laList": {
-			"10": {
-				"id": "f6e5fa16cf5cde2885064ca4d29d9d801c28ae18",
+			"0": {
+				"id": 319,
+				"hashID": "48abb63828ef165a3c95913c3e106e78a1aa6b97",
 				"title": "To-Do Lists Don't Work",
 				"description": "\u003cp\u003eMarkovitz uses research to explain why to-do lists don’t work and presents a case for using our calendars - the best measure of our capacity - as a means for project management and becoming more productive. He proposes “living in your calendar” as a solution.\u003c/p\u003e\n",
 				"mainImage": "",
@@ -255,8 +259,9 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchCompetencyPlaylists", "js
 			"name": "Using Financials"
 		}],
 		"laList": {
-			"18": {
-				"id": "2096012a912d5d8d7a9501dbf706c8df6df03803",
+			"0": {
+				"id": 675,
+				"hashID": "14b5221d04bb0041bcc8b11f8d668bb323bb6c6c",
 				"title": "A rare interview with the mathematician who cracked Wall Street",
 				"description": "",
 				"mainImage": "",
@@ -282,8 +287,9 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchCompetencyPlaylists", "js
 					"name": "Using Financials"
 				}]
 			},
-			"187": {
-				"id": "1a44a5d5eaf7dc5d504984c12910c6f6b5de87f6",
+			"1": {
+				"id": 1809,
+				"hashID": "9bd340ccc5a43eb9d583efe4e094d2851c402c3e",
 				"title": "The surprisingly logical minds of babies",
 				"description": "",
 				"mainImage": "",
@@ -319,8 +325,9 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchCompetencyPlaylists", "js
 			"name": "Personal Development"
 		}],
 		"laList": {
-			"107": {
-				"id": "1c0e4d49de0e9285a246fc501501caa284e00951",
+			"0": {
+				"id": 1907,
+				"hashID": "0134e6775690dd572da42e0981874a8f24a6d292",
 				"title": "How to Run a Brainstorming Session",
 				"description": "",
 				"mainImage": "",
@@ -401,8 +408,9 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchCompetencyPlaylists", "pa
 			"name": "Planning \u0026 Organizing"
 		}],
 		"laList": {
-			"1": {
-				"id": "7c034040a580506bf7b4776d26c2ad44d79e888a",
+			"0": {
+				"id": 649,
+				"hashID": "5d1bf4482e667ffd8fc1fb60287b75f4a06655e6",
 				"title": "Multi-tasking: you're making yourself slower and dumber",
 				"description": "\u003cp\u003eDoing two things at once is actually a very bad idea. Your productivity drops by 40%. By focussing on a single task and clustering various smaller ones you become less distracted, less stressed and more productive.\u003c/p\u003e\n",
 				"mainImage": "",
@@ -431,8 +439,9 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchCompetencyPlaylists", "pa
 					"name": "Productivity"
 				}]
 			},
-			"10": {
-				"id": "f6e5fa16cf5cde2885064ca4d29d9d801c28ae18",
+			"1": {
+				"id": 1140,
+				"hashID": "65e6cfe5ae4c21a885e033ae4c9484945aec72cf",
 				"title": "To-Do Lists Don't Work",
 				"description": "\u003cp\u003eMarkovitz uses research to explain why to-do lists don’t work and presents a case for using our calendars - the best measure of our capacity - as a means for project management and becoming more productive. He proposes “living in your calendar” as a solution.\u003c/p\u003e\n",
 				"mainImage": "",
@@ -515,8 +524,9 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchGroupPlaylists", "jsonrpc
 			"name": "Using Financials"
 		}],
 		"laList": {
-			"18": {
-				"id": "2096012a912d5d8d7a9501dbf706c8df6df03803",
+			"0": {
+				"id": 650,
+				"hashID": "625d63c4b26f65be6d78fe6f7d0301758d916fa5",
 				"title": "A rare interview with the mathematician who cracked Wall Street",
 				"description": "",
 				"mainImage": "",
@@ -542,8 +552,9 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchGroupPlaylists", "jsonrpc
 					"name": "Using Financials"
 				}]
 			},
-			"187": {
-				"id": "1a44a5d5eaf7dc5d504984c12910c6f6b5de87f6",
+			"1": {
+				"id": 1146,
+				"hashID": "a0a7376fe143806ec851c9221e5b7da5cec0f5b7",
 				"title": "The surprisingly logical minds of babies",
 				"description": "",
 				"mainImage": "",
@@ -579,8 +590,9 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchGroupPlaylists", "jsonrpc
 			"name": "Personal Development"
 		}],
 		"laList": {
-			"107": {
-				"id": "1c0e4d49de0e9285a246fc501501caa284e00951",
+			"0": {
+				"id": 626,
+				"hashID": "b7b94f753b3dc905ae0d57acc24624d06b1be883",
 				"title": "How to Run a Brainstorming Session",
 				"description": "",
 				"mainImage": "",
@@ -661,8 +673,9 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchBifrostPlaylists", "jsonr
 			"name": "Using Financials"
 		}],
 		"laList": {
-			"18": {
-				"id": "2096012a912d5d8d7a9501dbf706c8df6df03803",
+			"0": {
+				"id": 159,
+				"hashID": "5651fa735f3a7147b3fa034a5d34d7c4babfc8fe",
 				"title": "A rare interview with the mathematician who cracked Wall Street",
 				"description": "",
 				"mainImage": "",
@@ -688,8 +701,9 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchBifrostPlaylists", "jsonr
 					"name": "Using Financials"
 				}]
 			},
-			"187": {
-				"id": "1a44a5d5eaf7dc5d504984c12910c6f6b5de87f6",
+			"1": {
+				"id": 885,
+				"hashID": "fdad1c42f572206d46c3ff3911435834c9a0b848",
 				"title": "The surprisingly logical minds of babies",
 				"description": "",
 				"mainImage": "",
@@ -725,8 +739,9 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchBifrostPlaylists", "jsonr
 			"name": "Personal Development"
 		}],
 		"laList": {
-			"107": {
-				"id": "1c0e4d49de0e9285a246fc501501caa284e00951",
+			"0": {
+				"id": 8928,
+				"hashID": "6aa268246e373578b578f0e10bd24cdcd9d8c4b5",
 				"title": "How to Run a Brainstorming Session",
 				"description": "",
 				"mainImage": "",
@@ -807,8 +822,9 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchPlaylistsByTypes", "param
 			"name": "Using Financials"
 		}],
 		"laList": {
-			"18": {
-				"id": "2096012a912d5d8d7a9501dbf706c8df6df03803",
+			"0": {
+				"id": 8929,
+				"hashID": "094bb658b5dfb922e1d495574652b75a3d7d77e3",
 				"title": "A rare interview with the mathematician who cracked Wall Street",
 				"description": "",
 				"mainImage": "",
@@ -834,8 +850,9 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchPlaylistsByTypes", "param
 					"name": "Using Financials"
 				}]
 			},
-			"187": {
-				"id": "1a44a5d5eaf7dc5d504984c12910c6f6b5de87f6",
+			"1": {
+				"id": 8993,
+				"hashID": "26c84a23c24d080e091d3057c5cd6055b7547044",
 				"title": "The surprisingly logical minds of babies",
 				"description": "",
 				"mainImage": "",
@@ -871,8 +888,9 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchPlaylistsByTypes", "param
 			"name": "Personal Development"
 		}],
 		"laList": {
-			"107": {
-				"id": "1c0e4d49de0e9285a246fc501501caa284e00951",
+			"0": {
+				"id": 2782,
+				"hashID": "7d2f4b827c1404f2e456e4d3279da66f186bc1df",
 				"title": "How to Run a Brainstorming Session",
 				"description": "",
 				"mainImage": "",
