@@ -104,6 +104,7 @@ Suredbits APIs are available via websockets with the following format:
 
 <aside class="note">NOTE: All API requests must include the  "channel" field.  However, "channel" does not have to be the first field in the request. </aside>
 
+<aside class="note">NOTE: All times are in Universal Time Coordinated or "UTC".  So be sure to do time zone conversions. </aside>
 
 1. Send a request over the websocket (see <a href="#NFLData">NFL Data</a>). 
 
@@ -120,6 +121,10 @@ A successful request will generate a lightning invoice that will look simiar to 
 <span style="color:red"> *lnbcrt10n1pd5v2mwpp5ulxpj8ht4gvtqnyl8zuykfk4wcv6sz455ce5dy0e0lqt2wvhthpsdqqxqrrssn39f5saxgtqmzs...* </span>
 
 #Crypto Exchange API (Coming Soon)
+
+## Crypto Exchange Websocket Endpoint 
+
+**wss://test.api.suredbits.com/exchange/v0**
 
 ## Info
 
@@ -253,7 +258,7 @@ Field | Type | Exchanges Supported
 
 ## NFL Websocket Endpoint
 
-wss://test.api.suredbits.com/nfl/v0
+**wss://test.api.suredbits.com/nfl/v0**
 
 ## Info
 
@@ -606,7 +611,7 @@ Field | Type | Example
 
 ## NBA Websocket Endpoint
 
-wss://test.api.suredbits.com/nba/v0
+**wss://test.api.suredbits.com/nba/v0**
 
 ## Info
 
