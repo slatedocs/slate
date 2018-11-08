@@ -20,9 +20,7 @@ Before you can use the go~mus reseller API to create valid orders, you will have
 Remember — a happy api user is an authenticated api user!
 </aside>
 
-
 See [detailed documentation on Public API](/public_api.html) for information on how to request the basic data for events, tours and tickets.
-
 
 # Orders
 
@@ -32,7 +30,6 @@ The server-side will do a final validation and return whether our order was succ
 In a success case a JSON with the valid order will be returned.
 
 Note: the payment handling, including access to third party tools, might differ depending on your API plan.
-
 
 ## List of exisiting orders
 
@@ -118,12 +115,10 @@ curl "https://demo.gomus.de/api/v4/orders/1"
 }
 ```
 
-
 ### Response
 
 - payment_status (integer), if using a payment provider, the status is set by the provider. Usualy not in use for resellers.
 - billing_address_id (integer), reference to an address dataset. Not in use right now, but in future versions of th API resellers might be able to use several adresses for one account.
-
 
 ## Find single order by barcode
 
@@ -139,9 +134,6 @@ curl "https://demo.gomus.de/api/v4/orders/barcode/704323341"
 ### Barcodes
 
 The barcode may belong to any item that is contained in the order.
-
-
-
 
 ## Documents
 
@@ -184,7 +176,6 @@ Due to the token confirmation, authentication via header request is not needed f
 
 `GET https://demo.gomus.de/api/v4/orders/:order_id/invoice.pdf?token=:token`
 
-
 # Order Items
 
 In both list and detailed view the response contains an array of `items`. Each item can be one of Ticket, Event or Tour with a slightly different structure.
@@ -205,39 +196,38 @@ and the specific attributes block, which is different for every type.
 
 ```json
 {
-    "id": 52397,
-    "type": "Ticket",
-    "price_cents": 1400,
-    "vat_pct": "0.0",
-    "tax_included": true,
-    "attributes": {
-        "id": 42102,
-        "title": "El Siglo de Oro mit Gemäldegalerie regulär",
-        "ticket_id": 247,
-        "quantity": 1,
-        "ticket_type": "time_slot",
-        "start_time": "2016-09-14T15:00:00+02:00",
-        "location": {
-            "name": "Gemäldegalerie",
-            "city": "Berlin",
-            "country": "Deutschland",
-            "street": "Matthäikirchplatz",
-            "zip": "10785",
-            "latitude": 52.5082,
-            "longitude": 13.3673
-        },
-        "barcodes": [
-            {
-                "id": 97633,
-                "barcode": "4034210297633-5",
-                "method": "ean"
-            }
-        ],
-        "after_sale_information": null
-    }
+  "id": 52397,
+  "type": "Ticket",
+  "price_cents": 1400,
+  "vat_pct": "0.0",
+  "tax_included": true,
+  "attributes": {
+    "id": 42102,
+    "title": "El Siglo de Oro mit Gemäldegalerie regulär",
+    "ticket_id": 247,
+    "quantity": 1,
+    "ticket_type": "time_slot",
+    "start_time": "2016-09-14T15:00:00+02:00",
+    "location": {
+      "name": "Gemäldegalerie",
+      "city": "Berlin",
+      "country": "Deutschland",
+      "street": "Matthäikirchplatz",
+      "zip": "10785",
+      "latitude": 52.5082,
+      "longitude": 13.3673
+    },
+    "barcodes": [
+      {
+        "id": 97633,
+        "barcode": "4034210297633-5",
+        "method": "ean"
+      }
+    ],
+    "after_sale_information": null
+  }
 }
 ```
-
 
 ### Attributes
 
@@ -263,7 +253,6 @@ Each ticket sale will a have one barcode per quantity. Each barcode can be valid
 
 The barcodes are supposed to be printed on paper. One barcode per sheet.
 
-
 #### Note for tickets to attractions of the "Staatlichen Museen zu Berlin":
 
 The barcodes need to be encoded as [CODE 39](https://en.wikipedia.org/wiki/Code_39), so that they can be scanned.
@@ -275,31 +264,30 @@ Please pay special attention to the required quiet zone and minimal size require
 
 ```json
 {
-    "id": 52399,
-    "type": "Event",
-    "price_cents": 2000,
-    "vat_pct": "0.0",
-    "tax_included": true,
-    "attributes": {
-        "id": 6127,
-        "date_id": 22977,
-        "event_id": 101174,
-        "start_time": "2016-07-09T14:30:00+02:00",
-        "title": "El Siglo de Oro",
-        "quantity": 5,
-        "location": {
-            "name": "Gemäldegalerie",
-            "city": "Berlin",
-            "country": "Deutschland",
-            "street": "Matthäikirchplatz",
-            "zip": "10785",
-            "latitude": 52.5082,
-            "longitude": 13.3673
-        }
+  "id": 52399,
+  "type": "Event",
+  "price_cents": 2000,
+  "vat_pct": "0.0",
+  "tax_included": true,
+  "attributes": {
+    "id": 6127,
+    "date_id": 22977,
+    "event_id": 101174,
+    "start_time": "2016-07-09T14:30:00+02:00",
+    "title": "El Siglo de Oro",
+    "quantity": 5,
+    "location": {
+      "name": "Gemäldegalerie",
+      "city": "Berlin",
+      "country": "Deutschland",
+      "street": "Matthäikirchplatz",
+      "zip": "10785",
+      "latitude": 52.5082,
+      "longitude": 13.3673
     }
+  }
 }
 ```
-
 
 ### Attributes
 
@@ -324,41 +312,40 @@ The location is provided as street adress and geo-coordinates. Mind that most mu
 
 ```json
 {
-    "id": 56398,
-    "type": "Tour",
-    "price_cents": 9000,
-    "vat_pct": "0.0",
-    "tax_included": true,
-    "attributes": {
-        "id": 27079,
-        "title": "El Siglo de Oro | Gruppenführung",
-        "tour_id": 101173,
-        "start_time": "2016-07-24T12:00:00+02:00",
-        "participants": 12,
-        "language": "Deutsch",
-        "age_group": "Erwachsene",
-        "prices": [
-            {
-                "title": "Entgelt",
-                "description": "Gruppenpreis",
-                "total_price_cents": 9000,
-                "quantity": 1,
-                "price_cents": 9000
-            }
-        ],
-         "location": {
-             "name": "Gemäldegalerie",
-             "city": "Berlin",
-             "country": "Deutschland",
-             "street": "Matthäikirchplatz",
-             "zip": "10785",
-             "latitude": 52.5082,
-             "longitude": 13.3673
-         }
+  "id": 56398,
+  "type": "Tour",
+  "price_cents": 9000,
+  "vat_pct": "0.0",
+  "tax_included": true,
+  "attributes": {
+    "id": 27079,
+    "title": "El Siglo de Oro | Gruppenführung",
+    "tour_id": 101173,
+    "start_time": "2016-07-24T12:00:00+02:00",
+    "participants": 12,
+    "language": "Deutsch",
+    "age_group": "Erwachsene",
+    "prices": [
+      {
+        "title": "Entgelt",
+        "description": "Gruppenpreis",
+        "total_price_cents": 9000,
+        "quantity": 1,
+        "price_cents": 9000
+      }
+    ],
+    "location": {
+      "name": "Gemäldegalerie",
+      "city": "Berlin",
+      "country": "Deutschland",
+      "street": "Matthäikirchplatz",
+      "zip": "10785",
+      "latitude": 52.5082,
+      "longitude": 13.3673
     }
+  }
 }
 ```
-
 
 ### Attributes
 
@@ -370,7 +357,7 @@ Each event type item contains attributes like
 - start_time (iso8601), the timestamp for the tour
 - participants (integer)
 - language (string)
-- age group_(string)
+- age group\_(string)
 
 plus attribute blocks for the location and prices
 
@@ -446,33 +433,29 @@ An item has two major attributes:
 
 ### Ticket
 
-
 > a single item holding a ticket sale is structured like this:
-
 
 ```json
 {
-    "type": "Ticket",
-    "attributes": {
-        "id": 247,
-        "quantity": 1,
-        "time": "2016-07-07T13:00:00+02:00",
-        "reservations": ["8CE0mEgjyAvQB1IbPJ4iyg"],
-        "attendees":[
-          {
-            "name":"Capt'n",
-            "surname":"Hook"
-          },
-          {
-            "name":"Peter",
-            "surname":"Pan"
-          }
-        ]
-        
-    }
+  "type": "Ticket",
+  "attributes": {
+    "id": 247,
+    "quantity": 1,
+    "time": "2016-07-07T13:00:00+02:00",
+    "reservations": ["8CE0mEgjyAvQB1IbPJ4iyg"],
+    "attendees": [
+      {
+        "name": "Capt'n",
+        "surname": "Hook"
+      },
+      {
+        "name": "Peter",
+        "surname": "Pan"
+      }
+    ]
+  }
 }
 ```
-
 
 A ticket item has a fairly simple structure:
 
@@ -480,21 +463,20 @@ A ticket item has a fairly simple structure:
 - quantity (integer), a count > 0
 - time (iso8601), the entry timestamp
 - reservations (array of tokens), if any (see Tickets -> Reservations for more info)
-- attendees (array of objects), needs to be set on purchase when ticket's attendees are required. Attendees require a name and surname. Number of attendees needs to match the ticket sales quantity. 
-
+- attendees (array of objects), needs to be set on purchase when ticket's attendees are required. Attendees require a name and surname. Number of attendees needs to match the ticket sales quantity.
+- sub_ticket_times (hash of sub ticket times), only needed if the ticket has sub tickets. See the [Pergamon + Panorama example](#example-pergamon-panorama-smb) for more information.
 
 ### Event
 
 > a single item holding an event booking is structured like this:
 
-
 ```json
 {
-    "type": "Event",
-    "attributes": {
-        "id": 28227,
-        "quantity": 5
-    }
+  "type": "Event",
+  "attributes": {
+    "id": 28227,
+    "quantity": 5
+  }
 }
 ```
 
@@ -502,14 +484,14 @@ A ticket item has a fairly simple structure:
 
 ```json
 {
-    "type": "Event",
-    "attributes": {
-        "id": 28227,
-        "quantities": {
-            "1": 2,
-            "4": 3
-        }
+  "type": "Event",
+  "attributes": {
+    "id": 28227,
+    "quantities": {
+      "1": 2,
+      "4": 3
     }
+  }
 }
 ```
 
@@ -517,22 +499,20 @@ A ticket item has a fairly simple structure:
 
 ```json
 {
-    "type": "Event",
-    "attributes": {
-        "id": 28227,
-        "seats": [
-          {
-            "seat_id": 22,
-            "scale_price_id": 33
-            
-          },
-          {
-            "seat_id": 23,
-            "scale_price_id": 33
-          }
-        
-        ]
-    }
+  "type": "Event",
+  "attributes": {
+    "id": 28227,
+    "seats": [
+      {
+        "seat_id": 22,
+        "scale_price_id": 33
+      },
+      {
+        "seat_id": 23,
+        "scale_price_id": 33
+      }
+    ]
+  }
 }
 ```
 
@@ -553,26 +533,24 @@ If the event contains seatings, the strucuture has to contain info about the spe
 - seat_id (integer), id of the specific seat
 - scale_price_id (integer), id of the scale price
 
-
 ### Tour
 
 > a single item holding a tour booking is structured like this:
 
-
 ```json
 {
-    "type": "Tour",
-    "attributes": {
-        "id": 28227,
-        "start_time": "2016-07-07T13:00:00+02:00",
-        "language_id": 1,
-        "age_group_id": 3,
-        "quantity": 5,
-        "surcharges": {
-            "1": 2,
-            "4": 3
-        }
+  "type": "Tour",
+  "attributes": {
+    "id": 28227,
+    "start_time": "2016-07-07T13:00:00+02:00",
+    "language_id": 1,
+    "age_group_id": 3,
+    "quantity": 5,
+    "surcharges": {
+      "1": 2,
+      "4": 3
     }
+  }
 }
 ```
 
@@ -580,21 +558,21 @@ If the event contains seatings, the strucuture has to contain info about the spe
 
 ```json
 {
-    "type": "Tour",
-    "attributes": {
-        "id": 28227,
-        "start_time": "2016-07-07T13:00:00+02:00",
-        "language_id": 1,
-        "age_group_id": 3,
-        "quantities": {
-            "1": 2,
-            "4": 3
-        },
-        "surcharges": {
-            "1": 2,
-            "4": 3
-        }
+  "type": "Tour",
+  "attributes": {
+    "id": 28227,
+    "start_time": "2016-07-07T13:00:00+02:00",
+    "language_id": 1,
+    "age_group_id": 3,
+    "quantities": {
+      "1": 2,
+      "4": 3
+    },
+    "surcharges": {
+      "1": 2,
+      "4": 3
     }
+  }
 }
 ```
 
@@ -618,20 +596,16 @@ Surcharge configuration must be provided if tour is configured with surcharges (
 
 Note: the quantity or sum of quantities represents the number of participants (people in group)
 
-
-
 # Combined Tickets
 
 In special cases a museum may offer a combined ticket that includes multiple sub tickets. The sub tickets may have individual separate time slots.
 
 A public example are the Pergamon + Panorama Tickets by the Staatliche Museen zu Berlin (SMB).
 
-
 ## Important restrictions
 
 - combined tickets cannot be reserved
 - sub tickets cannot be bought directly, only main ticket can be bought
-
 
 ## Example Pergamon + Panorama SMB
 
@@ -661,7 +635,7 @@ One of the available tickets is:
 }
 ```
 
-In the ticket details we can see that this ticket has an extra key `sub_ticket_ids` compared to the [standard](https://giantmonkey.github.io/gomus-api-doc/public_api.html#details-of-single-ticket) ticket keys.
+In the ticket details we can see that this ticket has an extra key `sub_ticket_ids` compared to the [standard](/public_api.html#details-of-single-ticket) ticket keys.
 This field contains 2 ID's of two sub tickets.
 The sub tickets will refer to the individual entry locations and will later have two individual time slots.
 
@@ -677,6 +651,7 @@ Also take note that the main ticket also has a quota, in order to buy the ticket
 ```json
 {"id": 515, "title": "Subticket Pergamonmuseum", "is_sub_ticket": true, "price_cents": 0, "quota_ids": [37], "ticket_type": "time_slot", ...}
 ```
+
 ```json
 {"id": 516, "title": "Subticket Das Panorama", "is_sub_ticket": true, "price_cents": 0, "quota_ids": [99], "ticket_type": "time_slot", ...}
 ```
@@ -694,21 +669,21 @@ We assume that you already checked the availability of the main ticket and will 
 
 ```json
 {
-    "2018-11-20T10:00:00+01:00": 46,
-    "2018-11-20T10:30:00+01:00": 46,
-    "2018-11-20T11:00:00+01:00": 32,
-    "2018-11-20T11:30:00+01:00": 37,
-    "2018-11-20T12:00:00+01:00": 37,
-    "2018-11-20T12:30:00+01:00": 33,
-    "2018-11-20T13:00:00+01:00": 37,
-    "2018-11-20T13:30:00+01:00": 35,
-    "2018-11-20T14:00:00+01:00": 34,
-    "2018-11-20T14:30:00+01:00": 37,
-    "2018-11-20T15:00:00+01:00": 35,
-    "2018-11-20T15:30:00+01:00": 37,
-    "2018-11-20T16:00:00+01:00": 37,
-    "2018-11-20T16:30:00+01:00": 37,
-    "2018-11-20T17:00:00+01:00": 37
+  "2018-11-20T10:00:00+01:00": 46,
+  "2018-11-20T10:30:00+01:00": 46,
+  "2018-11-20T11:00:00+01:00": 32,
+  "2018-11-20T11:30:00+01:00": 37,
+  "2018-11-20T12:00:00+01:00": 37,
+  "2018-11-20T12:30:00+01:00": 33,
+  "2018-11-20T13:00:00+01:00": 37,
+  "2018-11-20T13:30:00+01:00": 35,
+  "2018-11-20T14:00:00+01:00": 34,
+  "2018-11-20T14:30:00+01:00": 37,
+  "2018-11-20T15:00:00+01:00": 35,
+  "2018-11-20T15:30:00+01:00": 37,
+  "2018-11-20T16:00:00+01:00": 37,
+  "2018-11-20T16:30:00+01:00": 37,
+  "2018-11-20T17:00:00+01:00": 37
 }
 ```
 
@@ -719,12 +694,11 @@ For example we could select:
 - Ticket 515: 2018-11-20T12:30:00+01:00
 - Ticket 516: 2018-11-20T14:00:00+01:00
 
-***Attention: In SMB the time slots have to be 90 minutes apart.***
+**_Attention: In SMB the time slots have to be 90 minutes apart._**
 
 You are free to decide which ticket should have the first time slot. It might be good to let the customer decide where he wants to go first.
 
 In our example the customer will go to "Pergamonmuseum" first and then to "Das Panorama".
-
 
 ### 5. Creating the order
 
@@ -734,16 +708,16 @@ Here we will detail how the ticket attributes are structured inside an order req
 
 ```json
 {
-    "type": "Ticket",
-    "attributes": {
-        "id": 514,
-        "quantity": 1,
-        "time": "2018-11-20T12:30:00+01:00",
-        "sub_ticket_times": {
-          "515": "2018-11-20T12:30:00+01:00",
-          "516": "2018-11-20T14:00:00+01:00"
-        }
+  "type": "Ticket",
+  "attributes": {
+    "id": 514,
+    "quantity": 1,
+    "time": "2018-11-20T12:30:00+01:00",
+    "sub_ticket_times": {
+      "515": "2018-11-20T12:30:00+01:00",
+      "516": "2018-11-20T14:00:00+01:00"
     }
+  }
 }
 ```
 
@@ -754,7 +728,6 @@ Take note that we
 3. we set the times for the sub tickets in the field `sub_ticket_times`. These are the entry times that we selected in step 4.
 
 You can also set the `attendees` fields in the attributes hash as normal. We omitted them here for brevity. Please not that reservations are not currently possible.
-
 
 ### 6. Handling of barcodes in the order result
 
@@ -776,11 +749,10 @@ And second, it is best practice to print the individual sub ticket times on the 
 
 The sub ticket times will be checked on entry and customer confusion may result if these are not clearly communicated.
 
-
 ## Looking at an online example of combined tickets
 
 You can look at the official online shop implementation of Staatliche Museen zu Berlin in order to better understand how to structure queries and how to implement a UI for time slot selection in combined tickets.
 
 Make sure to select 2018-11-20 or a later date when looking for combined Pergamon + Panorama tickets.
 
-https://shop.smb.museum/#/tickets/list?date=2018-11-20        
+https://shop.smb.museum/#/tickets/list?date=2018-11-20
