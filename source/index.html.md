@@ -205,6 +205,56 @@ In the event of maintenance or service interruption, we will refund any remainin
 
 
 ## Tickers
+> Example of Tickers Data
+
+```json
+{  
+   "uuid":"dc48f38e-7f71-4ea2-8c4c-52c683db93fa",
+   "exchange":"binance",
+   "symbol":"BTCUSDT",
+   "duration":120000,
+   "event":"subscribed"
+}{  
+   "uuid":"dc48f38e-7f71-4ea2-8c4c-52c683db93fa",
+   "data":{  
+      "eventTime":1541716718571,
+      "symbol":"BTCUSDT",
+      "priceChange":-68.06,
+      "priceChangePerc":-1.036,
+      "weightedAvePrice":6524.40647569,
+      "prevClose":6575.83,
+      "close":6503.16,
+      "closeQuantity":0.040421,
+      "bid":6501.05,
+      "bidSize":0.123017,
+      "ask":6503.16,
+      "askSize":0.463804,
+      "open":6571.22,
+      "high":6594,
+      "low":6471.22,
+      "volume":12760.988421,
+      "quoteVolume":83257875.49020969,
+      "statOpenTime":1541630318568,
+      "statCloseTime":1541716718568,
+      "firstTradeId":77686104,
+      "lastTradeId":77828352,
+      "totalTrades":142249
+   }
+}
+```
+
+Example Request:
+
+{  
+   "event":"unsubscribe",
+   "channel":"tickers",
+   "symbol":"BTCUSDT",
+   "exchange":"binance",
+   "duration":120000,
+   "refundInvoice":"lnbcrt1pdace6qpp5my6nc58d50r5gk...",
+   "uuid":"[uuid]"
+}
+
 
 Field | Type | Exchanges Supported
 ------ | ------ | --------
@@ -288,7 +338,7 @@ Example Request:
    "symbol":"BTCUSDT",
    "exchange":"binance",
    "duration":120000,
-   "refundInvoice":"lnbcrt1pdace6qpp5my6nc58d50r5gk38ynyz55f72sk6r7vmg7nu5wkgpuncv6kemu0qdq22fjkvatwvsxqrrssr922knv2hhpdf7ahxdwlpt5prlwld64ytxtz678ke44qh802tdwhda7u77vfv46efdax5yl0jwsg2nxjc4jp0w89cry48zvxzmffn2gqzvn63l",
+   "refundInvoice":"lnbcrt1pdace6qpp5my6nc58d50r5gk38ynyz...",
    "uuid":"[uuid]"}
 
 
@@ -342,7 +392,7 @@ Field |  Type | Exchanges Supported
 Example Request:
 
 {"event":"subscribe", "channel":"books", "symbol":"BTCUSD", "exchange":"bitfinex", "duration":15000,
-   "refundInvoice":"lnbcrt1pdace6qpp5my6nc58d50r5gk38ynyz55f72sk6r7vmg7nu5wkgpuncv6kemu0qdq22fjkvatwvsxqrrssr922knv2hhpdf7ahxdwlpt5prlwld64ytxtz678ke44qh802tdwhda7u77vfv46efdax5yl0jwsg2nxjc4jp0w89cry48zvxzmffn2gqzvn63l",
+   "refundInvoice":"lnbcrt1pdace6qpp5my6nc58d50r5...",
    "uuid":"[uuid]"}
 
 Field | Type | Exchanges Supported
