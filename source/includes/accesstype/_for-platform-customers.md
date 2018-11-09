@@ -11,7 +11,9 @@ curl -H "X-QT-AUTH: <your-auth-token>" -H "content-type: application/json" https
     "subscription_plan_id": "11",
     "coupon_code": "NEWYEAR",
     "payment": {
-        "payment_type": "razorpay"
+        "payment_type": "razorpay",
+        "amount_cents": "99900",
+        "amount_currency": "INR"
     },
     "metadata":  {
         "full-name": "hello",
@@ -645,6 +647,17 @@ curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" http:
 ```
 
 This API can be used to get wallets for a user.
+
+This API is safe to call from the front end JS, where it will read session-cookie to determine the current user. Backend callers can use X-QT-AUTH for the same purpose.
+
+## DELETE Wallets
+
+```shell--request
+curl -H "X-QT-AUTH: <your-auth-token>" -H "Content-Type: application/json" http://sketches.quintype.com/api/v1/members/me/subscriber-wallets -X DELETE
+
+```
+
+This API can be used to delete all wallets of a user.
 
 This API is safe to call from the front end JS, where it will read session-cookie to determine the current user. Backend callers can use X-QT-AUTH for the same purpose.
 

@@ -35,7 +35,7 @@ Allowed values for `subscriber_wallet.provider` are `simpl`,`paytm`.
 
 The request body is returned back in the response.
 
-## LIST wallet tokens of subscriber
+## LIST wallets of subscriber
 
 ```shell--request
 $ curl -H "X-SUBAUTH: <auth-token>" http://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriber_wallets.json
@@ -55,5 +55,14 @@ $ curl -H "X-SUBAUTH: <auth-token>" http://www.accesstype.com/api/v1/subscribers
     }]
   }
 ```
-This API call returns all the wallet tokens of a subscriber.
+This API call returns all the wallets of a subscriber.
+
+## DELETE wallets of subscriber
+
+```shell--request
+$ curl -H "X-SUBAUTH: <auth-token>" http://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriber_wallets.json -X DELETE
+
+```
+
+This API deletes all the wallets of a subscriber.
 

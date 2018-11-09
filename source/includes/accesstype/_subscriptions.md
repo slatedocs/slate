@@ -85,7 +85,9 @@ curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST ht
         "email": "hello@quintype.com"
     },
     "payment": {
-        "payment_type": "razorpay"
+        "payment_type": "razorpay",
+        "amount_cents": "99900",
+        "amount_currency": "INR"
     },
     "start_timestamp": "2018-07-24 00:00:00"
   },
