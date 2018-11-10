@@ -142,7 +142,7 @@ Array of custom_multipick identifiers for the shift
 
 ####acknowledged
 
-Boolean; shift has been acknowledged or declined.
+Boolean; shift has been acknowledged or declined (declined if acknowledge_decline_reason is not null).
 
 ####acknowledged_at
 
@@ -222,7 +222,7 @@ Not all fields will be configured to be used for all organizations or set for al
 ```
 
 <span class="tryit" id="shift-acknowledge-tryit"></span>
-Acknowledges a shift.
+Acknowledge or decline a shift.
 
 Required parameter: `id`.
 
@@ -269,7 +269,7 @@ acknowledgement by sending: `"acknowledge": true`).
 ```
 
 <span class="tryit" id="shift-assign-tryit"></span>
-Assign a shift.  Also mark acknowledged
+Assign a shift.  Can also publish the shift and/or mark the shift as acknowledged.
 
 #### Required parameter
 
@@ -315,7 +315,7 @@ To use assignability checks, the `assignability_checks` parameter must be `true`
 
 This method is used by anyone to pick up a shift for themselves. By
 default, all conflict checking that is enabled for the site and is
-applicable to pick-up shifts is applied (this cannot be changed), the
+applicable to pick-up shifts is applied (this cannot be changed), and the
 shift will be acknowledged (this cannot be changed).
 
 > Request example:
@@ -1775,14 +1775,13 @@ Response: On success, empty results will be returned. Note that if the shift had
 
 ### shift.update
 
-This method is for changing details about a shift. You can through
-this method assign a shift via the `assignability_checks` parameter,
-by default doing so will do no conflict checking of that assignment;
-if you want conflict checking you must explicitly enable it via the
+This method is for changing details about a shift. When
+assigning a shift no conflict checking of that assignment will be done
+unless explicitly enabled via the
 `assignability_checks` and `conflicts_ok` parameters. Furthermore, by
-default the assignment will not be acknowledged nor published, see the
-`acknowledge` and `publish` parameters for details on changing that
-behavior.
+default the assignment will not be acknowledged nor published. To
+acknowledge the assignment see the `shift.acknowledge` or `shift.assign` methods.
+To publish a shift, set the `published` parameter to true.
 
 > Request example:
 
