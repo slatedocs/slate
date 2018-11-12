@@ -72,7 +72,7 @@ Our bank integration lets banks build TransferWise payments seamlessly into thei
 
 ![alt text](https://image.ibb.co/m8kXTv/tw_n26_example.png "N26 User Experience")
 
-Please contact [bizdev@transferwise.com](mailto:bizdev@transferwise.com) to get started.
+Please contact [banks@transferwise.com](mailto:banks@transferwise.com) to get started.
 
 Take a look at our technical integration here – [Bank Integration Guide](#bank-integrations-guide).
 
@@ -92,7 +92,7 @@ The [Affiliates Integration Guide](#affiliates-integration-guide) helps you get 
 ## Connected Applications
 With Connected Applications, you can let your customers connect their TransferWise accounts to your product. Say you’re an accounting software – doing this could let your customers automate reconciliation. If you’re a payroll company, you could push customer payments right into TransferWise. Or you could push TransferWise notifications through your app. Whatever you want to build, you likely could! 
 
-Unfortunately this functionality isn’t available to everyone yet, but we’re working hard to open it to everyone. To discuss your use case please contact (bizdev@transferwise.com)[mailto:bizdev@transferwise.com].
+Unfortunately this functionality isn’t available to everyone yet, but we’re working hard to open it to everyone. To discuss your use case please contact [bizdev@transferwise.com](mailto:bizdev@transferwise.com).
 
 ## Third-Party Payouts
 Third-Party Payouts allows marketplaces and financial institutions (banks and payment service providers) to use TransferWise as a payout option for their customers.
