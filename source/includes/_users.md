@@ -140,22 +140,22 @@ You can track each registration with [segment.io](https://segment.com) by passin
 
 ### Query Parameters
 
-| Param                                  | Type    | Description                                                        |
-| -------------------------------------- | ------- | ------------------------------------------------------------------ |
-| email                                  | string  | Your registered email address                                      |
-| password                               | string  | strong password                                                    |
-| password_confirmation                  | string  | password confirmation                                              |
-| name                                   | string  | Your First Name and Last Name                                      |
-| phone_number                           | string  | Phone number                                                       |
-| terms_of_serivce                       | boolean | You must accept terms of service                                   |
-| source                                 | string  | one of `website`, `mobile_android`, `mobile_ios` or `mobile_other` |
-| tracking_info[properties][uuid]        | header  | Pass uuid to track                                                 |
-| tracking_info[properties][is_web-view] | header  | `true` if user is using web browsers otherwise `false`             |
-| tracking_info[properties][is_ipad]     | header  | `true` if user is using IPad otherwise `false`                     |
-| tracking_info[properties][is_ios]      | header  | `true` if user is using IOS device otherwise `false`               |
-| tracking_info[properties][is_android]  | header  | `true` if user is using android device otherwise `false`           |
-| tracking_info[properties][platform]    | header  | device platform                                                    |
-| tracking_info[properties][version]     | header  | device version                                                     |
+| Param                                  | Type    | required | Description                                                        |
+| -------------------------------------- | ------- | -------- | ------------------------------------------------------------------ |
+| email                                  | string  | required | Your registered email address                                      |
+| password                               | string  | required | strong password                                                    |
+| password_confirmation                  | string  | required | password confirmation                                              |
+| name                                   | string  | required | Your First Name and Last Name                                      |
+| phone_number                           | string  | required | Phone number                                                       |
+| terms_of_serivce                       | boolean | required | You must accept terms of service                                   |
+| source                                 | string  | optional | one of `website`, `mobile_android`, `mobile_ios` or `mobile_other` |
+| tracking_info[properties][uuid]        | header  | optional | Pass uuid to track                                                 |
+| tracking_info[properties][is_web-view] | header  | optional | `true` if user is using web browsers otherwise `false`             |
+| tracking_info[properties][is_ipad]     | header  | optional | `true` if user is using IPad otherwise `false`                     |
+| tracking_info[properties][is_ios]      | header  | optional | `true` if user is using IOS device otherwise `false`               |
+| tracking_info[properties][is_android]  | header  | optional | `true` if user is using android device otherwise `false`           |
+| tracking_info[properties][platform]    | header  | optional | device platform                                                    |
+| tracking_info[properties][version]     | header  | optional | device version                                                     |
 
 ## Login
 

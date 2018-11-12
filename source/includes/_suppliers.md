@@ -67,21 +67,21 @@ four values `website`, `mobile_ios`, `mobile_android`, `mobile_other`. Default v
 
 ### Query Parameters
 
-| Params                    | Type    | description                                                        |
-| ------------------------- | ------- | ------------------------------------------------------------------ |
-| authentication_token      | header  | Authentication token                                               |
-| app_company_id            | header  | Company ID                                                         |
-| supplier[source]          | string  | one of `website`, `mobile_android`, `mobile_ios` or `mobile_other` |
-| supplier[name]            | string  | Supplier name must present and should be unique                    |
-| supplier[email]           | string  | Email address                                                      |
-| supplier[address]         | string  | Supplier address                                                   |
-| supplier[notes]           | string  | Notes                                                              |
-| supplier[payment_details] | string  | Payment Details                                                    |
-| supplier[phone_number]    | string  | Phone Number                                                       |
-| supplier[archived]        | boolean | Archived?                                                          |
-| supplier[tax_number]      | string  | TAX Number                                                         |
-| supplier[contact_person]  | string  | Contact Person                                                     |
-| department_ids            | array[] | List of Department IDs                                             |
+| Params                    | Type    | required | description                                                        |
+| ------------------------- | ------- | -------- | ------------------------------------------------------------------ |
+| authentication_token      | header  | required | Authentication token                                               |
+| app_company_id            | header  | required | Company ID                                                         |
+| supplier[source]          | string  | optional | one of `website`, `mobile_android`, `mobile_ios` or `mobile_other` |
+| supplier[name]            | string  | required | Supplier name must present and should be unique                    |
+| supplier[email]           | string  | optional | Email address                                                      |
+| supplier[address]         | string  | optional | Supplier address                                                   |
+| supplier[notes]           | string  | optional | Notes                                                              |
+| supplier[payment_details] | string  | optional | Payment Details                                                    |
+| supplier[phone_number]    | string  | optional | Phone Number                                                       |
+| supplier[archived]        | boolean | optional | Archived?                                                          |
+| supplier[tax_number]      | string  | optional | TAX Number                                                         |
+| supplier[contact_person]  | string  | optional | Contact Person                                                     |
+| department_ids            | array[] | optional | List of Department IDs                                             |
 
 ## Get all Suppliers
 

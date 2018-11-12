@@ -93,22 +93,22 @@ four values `website`, `mobile_ios`, `mobile_android`, `mobile_other`. Default v
 
 ### Query Parameters
 
-| Param                                | Type    | Description                                                        |
-| ------------------------------------ | ------- | ------------------------------------------------------------------ |
-| authentication_token                 | header  | Authentication token                                               |
-| app_company_id                       | header  | registered company id                                              |
-| budget[source]                       | string  | one of `website`, `mobile_android`, `mobile_ios` or `mobile_other` |
-| budget[amount]                       | double  | Budget Amount                                                      |
-| budget[name]                         | string  | Budget Name                                                        |
-| budget[cost_code]                    | string  | Budget cost code                                                   |
-| budget[cost_type]                    | string  | Budget cost type                                                   |
-| budget[currency_id]                  | integer | Budget currency                                                    |
-| budget[creator_id]                   | integer | Budget creator                                                     |
-| budget[allow_anyone_to_approve_a_po] | boolean | Allow anyone to approve a PO?                                      |
-| budget[start_date]                   | date    | Budget start date                                                  |
-| budget[end_date]                     | date    | Budget end date                                                    |
-| budget[approver_ids]                 | Array   | Array of approver ids                                              |
-| budget[department_ids]               | Array   | Array of department ids                                            |
+| Param                                | Type    | required | Description                                                        |
+| ------------------------------------ | ------- | -------- | ------------------------------------------------------------------ |
+| authentication_token                 | header  | required | Authentication token                                               |
+| app_company_id                       | header  | required | registered company id                                              |
+| budget[amount]                       | double  | required | Budget Amount                                                      |
+| budget[name]                         | string  | required | Budget Name                                                        |
+| budget[cost_code]                    | string  | optional | Budget cost code                                                   |
+| budget[cost_type]                    | string  | optional | Budget cost type                                                   |
+| budget[currency_id]                  | integer | required | Budget currency                                                    |
+| budget[creator_id]                   | integer | required | Budget creator                                                     |
+| budget[allow_anyone_to_approve_a_po] | boolean | optional | Allow anyone to approve a PO?                                      |
+| budget[start_date]                   | date    | optional | Budget start date                                                  |
+| budget[end_date]                     | date    | optional | Budget end date                                                    |
+| budget[approver_ids]                 | Array   | optional | Array of approver ids                                              |
+| budget[department_ids]               | Array   | optional | Array of department ids                                            |
+| budget[source]                       | string  | optional | one of `website`, `mobile_android`, `mobile_ios` or `mobile_other` |
 
 ## GET All Budgets
 

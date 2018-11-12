@@ -63,15 +63,15 @@ four values `website`, `mobile_ios`, `mobile_android`, `mobile_other`. Default v
 
 ### Query Parameters
 
-| Params               | Type    | Description                                                        |
-| -------------------- | ------- | ------------------------------------------------------------------ |
-| authentication_token | header  | Authentication token                                               |
-| app_company_id       | header  | Company ID                                                         |
-| product[description] | string  | `Required` Product Description                                     |
-| product[sku]         | string  | Product Stock Keeping Unit (sku)                                   |
-| product[unit_price]  | decimal | Product Unit Price                                                 |
-| product[supplier_id] | integer | Supplier ID                                                        |
-| product[source]      | string  | one of `website`, `mobile_android`, `mobile_ios` or `mobile_other` |
+| Params               | Type    | required | Description                                                        |
+| -------------------- | ------- | -------- | ------------------------------------------------------------------ |
+| authentication_token | header  | required | Authentication token                                               |
+| app_company_id       | header  | required | Company ID                                                         |
+| product[description] | string  | required | `Required` Product Description                                     |
+| product[sku]         | string  | optional | Product Stock Keeping Unit (sku)                                   |
+| product[unit_price]  | decimal | optional | Product Unit Price                                                 |
+| product[supplier_id] | integer | optional | Supplier ID                                                        |
+| product[source]      | string  | optional | one of `website`, `mobile_android`, `mobile_ios` or `mobile_other` |
 
 ## Get all Products
 
