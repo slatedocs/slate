@@ -49,6 +49,11 @@ If you want to avoid this lag, configure the webhook queue in the configuration 
 
 Mautic will send several events in one webhook if they happen before the queue trigger command runs. Mautic's default order of those events is chronological. But Zapier integration which use webhooks havily requires reverse chronological order. Thereofore the new option to configure the order was added to webhooks as well as to the global configuration. Webhook configuration overwrites the global configuration, but if not set, the global configuration order value is applied.
 
+## Authenticity verification
+
+During webhook creation you can provide a secret key, if no secret key is provided it will be automatically generated. This secret has to be shared with third-party application which will receive webhooks from mautic.
+Indeed, in order to verify authenticity of the data provided in a webhook, Mautic add an header `Webhook-Signature` on every webhook call. A third-party application can compute a base64 encoded HMAC-SHA256 signature with the webhook secret on the (raw) payload body to verify this signature and prove authenticity of the webhook data.
+
 ## Example webhook script
 
 If you need an idea about how to receive Mautic webhook data in your app, this script can be used as a starting point. The script will log the request and return a PHP object of the payload. Place this script on a publicly accessible URL (i.e. `http://yourwebsite.com/webhookTest.php), then fill in the Mautic *Webhook POST Url* to this script.
