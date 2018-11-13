@@ -19,10 +19,10 @@ curl -X GET \
         "id": 4134,
         "created": "2018-11-07T23:09:43.247852Z",
         "booking": 4574,
-        "name": "ERIC FERNANDO",
-        "surname": "SANCHEZ GALVEZ",
+        "name": "JORGE FERNANDO",
+        "surname": "PEREZ BURGOS",
         "doc_type": "D",
-        "doc_number": "48912467T",
+        "doc_number": "1234678S",
         "expedition_date": "2016-02-03",
         "sex": "M",
         "nationality": "ESP",
@@ -37,10 +37,10 @@ curl -X GET \
         "id": 4133,
         "created": "2018-11-07T23:09:16.114004Z",
         "booking": 4574,
-        "name": "CARLOS ALBER",
-        "surname": "LAGARES GALLARDO",
+        "name": "JUAN CARLOS",
+        "surname": "SANCHEZ GALLARDO",
         "doc_type": "D",
-        "doc_number": "75560632C",
+        "doc_number": "77777777C",
         "expedition_date": "2014-03-28",
         "sex": "M",
         "nationality": "ESP",
@@ -283,7 +283,7 @@ Once a day for each Accommodation, CheKin groups the part files by 500 in a sing
 
 ```shell
 curl -X GET \
-  https://api.chekin.io/api/v1/housings/254/books \
+  https://api.chekin.io/api/v1/housings/268/books \
   -H 'Api-Key: yourApiKeyhere' \
   -H 'Authorization: Token yourUserTokenHere' \
   -H 'Content-Type: application/json'
