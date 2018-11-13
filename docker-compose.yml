@@ -1,6 +1,6 @@
 app:
   build: .
   ports:
-    - 80:4567
+    - 443:4567
   volumes:
     - .:/usr/src/app
