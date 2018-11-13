@@ -54,12 +54,12 @@ Mautic will send several events in one webhook if they happen before the queue t
 During webhook creation you can provide a secret key, if no secret key is provided it will be automatically generated. This secret has to be shared with third-party application which will receive webhooks from mautic.
 Indeed, in order to verify authenticity of the data provided in a webhook, Mautic add an header `Webhook-Signature` on every webhook call. A third-party application can compute a base64 encoded HMAC-SHA256 signature with the webhook secret on the (raw) payload body to verify this signature and prove authenticity of the webhook data.
 
-## Example webhook script
+## Examples webhook script
 
-If you need an idea about how to receive Mautic webhook data in your app, this script can be used as a starting point. The script will log the request and return a PHP object of the payload. Place this script on a publicly accessible URL (i.e. `http://yourwebsite.com/webhookTest.php), then fill in the Mautic *Webhook POST Url* to this script.
+If you need an idea about how to receive Mautic webhook data in your app, this script can be used as a starting point. The script will log the request and return the payload. Place this script on a publicly accessible URL (i.e. `http://yourwebsite.com/webhookTest.php), then fill in the Mautic *Webhook POST Url* to this script.
 
  ```php
- <?php
+<?php
 // webhookTest.php
 
 /**
@@ -88,11 +88,72 @@ class webhookTest {
     {
         $rawData = file_get_contents("php://input");
         $this->log($rawData, 'request');
-        return json_decode($rawData);
+        return $rawData;
     }
 }
+
+$secret = 'mySecret';
 $webhook = new webhookTest;
-$requestData = $webhook->getRequest();
+$rawData = $webhook->getRequest();
+
+// optional signature verification
+$headers = getallheaders();
+$receivedSignature = $headers['Webhook-Signature'];
+$computedSignature = base64_encode(hash_hmac('sha256', $rawData, $secret, true));
+
+if ($receivedSignature === $computedSignature) {
+    $webhook->log('Webhook authenticity verification OK', 'request');
+} else {
+    $webhook->log('Webhook not authentic!', 'request');
+}
+
 // @todo Process the $requestData as needed
+$requestData = json_decode($rawData);
+```
+
+Additionally here are another example in NodeJS (with express):
+```javascript
+'use strict';
+
+const express = require('express');
+const crypto = require('crypto');
+const app = express();
+const port = 3000;
+const SECRET = 'mySecret';
+
+// save raw body
+app.use ((req, res, next) => {
+    let data = '';
+    req.setEncoding('utf8');
+
+    req.on('data', chunk => data += chunk);
+    req.on('end', () => {
+        req.body = data;
+        return next();
+    });
+});
+
+app.post('/webhook', (req, res) => {
+
+    // optional signature verification
+    const receivedSignature = req.headers['webhook-signature'];
+    console.log('Received signature (in header):', receivedSignature);
+
+    const computedSignature = crypto.createHmac('sha256', SECRET).update(req.body).digest('base64');
+    console.log('Computed signature (from body):', computedSignature);
+
+    if (receivedSignature === computedSignature) {
+        console.log('Webhook authenticity verification OK');
+    } else {
+        console.log('Webhook not authentic!');
+    }
+
+    // TODO: process body
+    const body = JSON.parse(req.body);
+
+    res.send();
+});
+
+app.listen(port, () => console.log(`App listening on port ${port}!`));
 ```
 If you'd like to extend the webhook functionality with your plugin, read more in [the plugin docs](#extending-webhooks).
