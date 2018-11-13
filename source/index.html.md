@@ -130,8 +130,9 @@ A successful request will generate a lightning invoice that will look simiar to 
 
 **Subscribe**
 
-Example Request: 
+> Example Request: 
 
+```json
 {  
    "event":"subscribe",
    
@@ -143,10 +144,12 @@ Example Request:
    
    "duration":120000,
    
-   "refundInvoice":"lnbcrt1pdace6qpp5my6nc58d50r5gk38ynyz55f72sk6r7vmg7nu5wkgpuncv6kemu0qdq22fjkvatwvsxqrrssr922knv2hhpdf7ahxdwlpt5prlwld64ytxtz678ke44qh802tdwhda7u77vfv46efdax5yl0jwsg2nxjc4jp0w89cry48zvxzmffn2gqzvn63l",
+   "refundInvoice":"lnbcrt1pdace6qpp5my6nc58d50r5gk38ynyz...",
    
    "uuid":"8dda8625-2946-4500-8dd5-13c78d2f42b8"
 }
+```
+
 
 
 To subscribe to a data stream, use the following command format:
@@ -205,7 +208,19 @@ In the event of maintenance or service interruption, we will refund any remainin
 
 
 ## Tickers
-> Example of Tickers Data
+> Example Request
+
+```json
+{  "event":"unsubscribe",
+   "channel":"tickers",
+   "symbol":"BTCUSDT",
+   "exchange":"binance",
+   "duration":120000,
+   "refundInvoice":"lnbcrt1pdace6qpp5my6nc58d50r5gk...",
+    "uuid":"[uuid]"}
+```
+
+> Example Tickers Data
 
 ```json
 {  
@@ -243,17 +258,6 @@ In the event of maintenance or service interruption, we will refund any remainin
 }
 ```
 
-Example Request:
-
-{  
-   "event":"unsubscribe",
-   "channel":"tickers",
-   "symbol":"BTCUSDT",
-   "exchange":"binance",
-   "duration":120000,
-   "refundInvoice":"lnbcrt1pdace6qpp5my6nc58d50r5gk...",
-   "uuid":"[uuid]"
-}
 
 
 Field | Type | Exchanges Supported
@@ -293,7 +297,26 @@ Field | Type | Exchanges Supported
 <span style="color:red"> low </span> |  Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
 
 ## Trades
-> Example of Trades Data
+> Example Request
+
+```json
+
+{  "event":"subscribe",
+
+   "channel":"trades",
+   
+   "symbol":"BTCUSDT",
+   
+   "exchange":"binance",
+   
+   "duration":120000,
+   
+   "refundInvoice":"lnbcrt1pdace6qpp5my6nc58d50r5gk38ynyz...",
+   
+   "uuid":"[uuid]"}
+```
+
+> Example Trades Data
 
 ```json
 {  
@@ -331,16 +354,6 @@ Field | Type | Exchanges Supported
 }
 ```
 
-Example Request: 
-
-{  "event":"subscribe",
-   "channel":"trades",
-   "symbol":"BTCUSDT",
-   "exchange":"binance",
-   "duration":120000,
-   "refundInvoice":"lnbcrt1pdace6qpp5my6nc58d50r5gk38ynyz...",
-   "uuid":"[uuid]"}
-
 
 Field |  Type | Exchanges Supported 
 ------ | ------- | -----------
@@ -361,7 +374,25 @@ Field |  Type | Exchanges Supported
 <span style="color:red"> price </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
 
 ## Order Books
-> Example of Order Books Data
+> Example Request
+
+```json
+{ "event":"subscribe", 
+
+  "channel":"books", 
+  
+  "symbol":"BTCUSD", 
+  
+  "exchange":"bitfinex", 
+  
+  "duration":15000,
+  
+  "refundInvoice":"lnbcrt1pdace6qpp5my6nc58d50r5...",
+  
+   "uuid":"[uuid]"}
+```
+
+> Example Order Books Data
 
 ```json
 {  
@@ -389,11 +420,6 @@ Field |  Type | Exchanges Supported
    }
    ```
 
-Example Request:
-
-{"event":"subscribe", "channel":"books", "symbol":"BTCUSD", "exchange":"bitfinex", "duration":15000,
-   "refundInvoice":"lnbcrt1pdace6qpp5my6nc58d50r5...",
-   "uuid":"[uuid]"}
 
 Field | Type | Exchanges Supported
 ------| -------| --------
