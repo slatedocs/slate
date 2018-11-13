@@ -2,6 +2,7 @@
 
 
 The CheKin API uses the following error codes:
+
 Also, in errors of type 400, extra details will be returned in JSON.
 
 Error Code | Meaning
