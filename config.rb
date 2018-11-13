@@ -44,6 +44,7 @@ configure :build do
   # out the following two lines has been known to help
   activate :minify_css
   activate :minify_javascript
+
   # activate :relative_assets
   # activate :asset_hash
   # activate :gzip
@@ -52,6 +53,7 @@ end
 # Deploy Configuration
 # If you want Middleman to listen on a different port, you can set that below
 set :port, 4567
+set :https, true
 
 helpers do
   require './lib/toc_data.rb'
