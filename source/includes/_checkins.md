@@ -273,13 +273,12 @@ curl -X GET \
 This endpoint returns two short links to retrieve the legal parts file and the contract for one booking.
 
 <aside class="success">
-Remember — you need to send the authentication headers with API Key and User Token!
+Remember — you need to replace ID with the id of a Reservation.
 </aside>
 
 ## Get Guests Books
 
-Once a day for each Accommodation, CheKin generates single pdf file, called "Guests Book", merging All the legal part files and numerating them from 1 to 500.
-This endpoint retrieves a short link to download the Guests Books for an Accommodation.
+Once a day for each Accommodation, CheKin groups the part files by 500 in a single pdf file, called "Guests Book", numerating the parts from 1 to 500.
 
 
 ```shell
