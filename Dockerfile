@@ -1,7 +1,7 @@
 FROM ruby:2.3-alpine
 COPY . /usr/src/app
 VOLUME /usr/src/app
-EXPOSE 4567
+EXPOSE 80
 
 WORKDIR /usr/src/app
 
