@@ -23,6 +23,7 @@ includes:
   - reference/transfers
   - reference/users
   - reference/profiles
+  - reference/language
   - reference/errors
 
 ---
