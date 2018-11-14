@@ -209,8 +209,9 @@ if [[ $1 = --source-only ]]; then
   run_build
 elif [[ $1 = --push-only ]]; then
   main "$@"
-else
+elif [[ $1 = --gen-widdershins ]]; then
   widdershins --search true --language_tabs 'python:Python' 'shell:Shell' 'ruby:Ruby' 'nodejs:Nodejs' --user_templates widdershins_templates/openapi3  --customApiKeyValue '****'  --summary swagger.json -o source/includes/_rest_api.md
+else
   run_build
   main "$@"
 fi
