@@ -1,0 +1,98 @@
+<h1 id="ApiSection" class="section-header">API</h1>
+The REST API has endpoints for account and order management as well as public market data.
+
+REST API ENDPOINT URL
+https://api.delta.exchange
+
+{{ for (var r in data.resources) { }}
+{{ data.resource = data.resources[r]; }}
+
+<h1 id="{{=data.title_prefix+'-'+data.utils.slugify(r)}}">{{= r}}</h1>
+
+{{? data.resource.description }}{{= data.resource.description}}{{?}}
+
+{{? data.resource.externalDocs}}
+<a href="{{=data.resource.externalDocs.url}}">{{=data.resource.externalDocs.description||'External documentation'}}</a>
+{{?}}
+
+{{ for (var m in data.resource.methods) { }}
+{{ data.operationUniqueName = m; }}
+{{ data.method = data.resource.methods[m]; }}
+{{ data.operationUniqueSlug = data.method.slug; }}
+{{ data.operation = data.method.operation; }}
+{{= data.templates.operation(data) }}
+{{ } /* of methods */ }}
+
+{{ } /* of resources */ }}
+
+{{? data.api.components && data.api.components.schemas }}
+# Schemas
+
+{{ for (var s in data.components.schemas) { }}
+{{ var origSchema = data.components.schemas[s]; }}
+{{ var schema = data.api.components.schemas[s]; }}
+
+<h2 id="tocS{{=s.toLowerCase()}}">{{=s}}</h2>
+
+<a id="schema{{=s.toLowerCase()}}"></a>
+
+{{? data.options.yaml }}
+```yaml
+{{=data.utils.yaml.safeDump(data.utils.getSample(schema,data.options,{},data.api))}}
+{{??}}
+```json
+{{=data.utils.safejson(data.utils.getSample(schema,data.options,{},data.api),null,2)}}
+{{?}}
+```
+
+{{ var enums = []; }}
+{{ var blocks = data.utils.schemaToArray(origSchema,-1,{trim:true,join:true},data); }}
+{{ for (var block of blocks) {
+     for (var p of block.rows) {
+       if (p.schema && p.schema.enum) {
+         for (var e of p.schema.enum) {
+           enums.push({name:p.name,value:e});
+         }
+       }
+     }
+   }
+}}
+
+{{~ blocks :block}}
+{{? block.title }}*{{= block.title}}*{{= '\n\n'}}{{?}}
+{{? block.externalDocs}}
+<a href="{{=block.externalDocs.url}}">{{=block.externalDocs.description||'External documentation'}}</a>
+{{?}}
+
+{{? block===blocks[0] }}
+### Properties
+{{?}}
+
+{{? block.rows.length}}|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|{{?}}
+{{~ block.rows :p}}|{{=p.displayName}}|{{=p.safeType}}|{{=p.required}}|{{=p.restrictions||'none'}}|{{=p.description||'none'}}|
+{{~}}
+{{~}}
+{{? (blocks[0].rows.length === 0) && (blocks.length === 1) }}
+*None*
+{{?}}
+
+{{? enums.length > 0 }}
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+{{~ enums :e}}|{{=e.name}}|{{=data.utils.toPrimitive(e.value)}}|
+{{~}}
+
+{{?}}
+
+{{ } /* of schemas */ }}
+
+{{?}}
+
+{{#def.footer}}
+
+{{? data.options.discovery}}
+{{#def.discovery}}
+{{?}}

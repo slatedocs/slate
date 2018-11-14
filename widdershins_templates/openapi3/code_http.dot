@@ -1,0 +1,7 @@
+{{=data.methodUpper}} {{=data.url}}{{=data.requiredQueryString}} HTTP/1.1
+{{? data.host}}Host: {{=data.host}}{{?}}
+{{?data.consumes.length}}Content-Type: {{=data.consumes[0]}}
+{{?}}{{?data.produces.length}}Accept: {{=data.produces[0]}}{{?}}
+{{?data.headerParameters.length}}{{~ data.headerParameters :p:index}}{{=p.name}}: {{=p.exampleValues.object}}
+{{~}}
+{{?}}

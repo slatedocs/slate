@@ -1,0 +1,38 @@
+{{? data.operation.callbacks}}
+
+### Callbacks
+
+<div class="content well">
+
+{{ data.oldOperation = data.operation; }}
+
+{{ for (var c in data.operation.callbacks) { }}
+
+#### {{=c}}
+
+{{ var callback = data.operation.callbacks[c]; }}
+
+{{ for (var e in callback) { }}
+
+**{{=e}}**
+
+{{ var exp = callback[e]; }}
+
+{{ for (var m in exp) { }}
+
+{{ data.operation = exp[m]; }}
+{{ data.method.operation = data.operation; }}
+
+{{= data.templates.operation(data) }}
+
+{{ } /* of methods */ }}
+
+{{ } /* of expressions */ }}
+
+{{ } /* of callbacks */ }}
+
+{{ data.operation = data.oldOperation; }}
+
+</div>
+
+{{?}}

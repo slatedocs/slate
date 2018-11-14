@@ -210,6 +210,7 @@ if [[ $1 = --source-only ]]; then
 elif [[ $1 = --push-only ]]; then
   main "$@"
 else
+  widdershins --search true --language_tabs 'python:Python' 'shell:Shell' 'ruby:Ruby' 'nodejs:Nodejs' --user_templates widdershins_templates/openapi3  --customApiKeyValue '****'  --summary swagger.json -o source/includes/_rest_api.md
   run_build
   main "$@"
 fi

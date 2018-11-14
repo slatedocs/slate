@@ -1,7 +1,7 @@
 @charset "utf-8";
-@import 'normalize';
-@import 'variables';
-@import 'icon-font';
+@import "normalize";
+@import "variables";
+@import "icon-font";
 
 /*
 Copyright 2008-2013 Concur Technologies, Inc.
@@ -27,11 +27,15 @@ body {
   @extend %default-font;
 }
 
-.tocify, .toc-footer, .lang-selector, .search, #nav-button {
+.tocify,
+.toc-footer,
+.lang-selector,
+.search,
+#nav-button {
   display: none;
 }
 
-.tocify-wrapper>img {
+.tocify-wrapper > img {
   margin: 0 auto;
   display: block;
 }
@@ -39,7 +43,8 @@ body {
 .content {
   font-size: 12px;
 
-  pre, code {
+  pre,
+  code {
     @extend %code-font;
     @extend %break-words;
     border: 1px solid $print-color;
@@ -66,7 +71,8 @@ body {
     tr {
       border-bottom: 1px solid $print-color;
     }
-    td,th {
+    td,
+    th {
       padding: 0.7em;
     }
   }
@@ -100,13 +106,15 @@ body {
     padding-top: 0.8em;
   }
 
-  h1+h2, h1+div+h2 {
+  h1 + h2,
+  h1 + div + h2 {
     border-top: none;
     padding-top: 0;
     margin-top: 0;
   }
 
-  h3, h4 {
+  h3,
+  h4 {
     @extend %header-font;
     font-size: 0.8em;
     margin-top: 1.5em;
@@ -114,7 +122,8 @@ body {
     text-transform: uppercase;
   }
 
-  h5, h6 {
+  h5,
+  h6 {
     text-transform: uppercase;
   }
 

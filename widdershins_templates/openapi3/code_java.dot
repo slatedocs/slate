@@ -1,0 +1,13 @@
+URL obj = new URL("{{=data.url}}{{=data.requiredQueryString}}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("{{=data.methodUpper}}");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());

@@ -1,0 +1,1072 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "## REST API for Delta Exchange\nFind out more on [https://delta.exchange](https://delta.exchange)\n",
+    "version" : "1.0.0",
+    "title" : "Delta Exchange Api",
+    "termsOfService" : "https://docs.google.com/document/d/e/2PACX-1vSDARn3b_VlmGZjJjlROm0MFpxX6KoLzVrqPZLSD4rh7sBhpP6kDP8WMSgUlaitwjCBUBd3-fV-MDId/pub",
+    "contact" : {
+      "email" : "support@delta.exchange"
+    }
+  },
+  "host" : "api.delta.exchange",
+  "basePath" : "/",
+  "tags" : [ {
+    "name" : "Products",
+    "description" : "Get Products"
+  }, {
+    "name" : "Orders",
+    "description" : "Placing Orders, Cancelling Orders, Get Open orders, Change Orders Leverage"
+  }, {
+    "name" : "Positions",
+    "description" : "Get Open positions, Change Position Margin, Close Position"
+  }, {
+    "name" : "Trade History",
+    "description" : "Get Orders History, Get Fill History"
+  }, {
+    "name" : "Orderbook",
+    "description" : "L2Orderbook"
+  }, {
+    "name" : "Wallet",
+    "description" : "Get balances, Get transaction history"
+  }, {
+    "name" : "OHLC Candles"
+  } ],
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/products" : {
+      "get" : {
+        "tags" : [ "Products" ],
+        "summary" : "Get live products",
+        "operationId" : "getProducts",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "List of live products",
+            "schema" : {
+              "$ref" : "#/definitions/ArrayOfProducts"
+            }
+          }
+        }
+      }
+    },
+    "/orders" : {
+      "post" : {
+        "tags" : [ "Orders" ],
+        "summary" : "Place Order",
+        "operationId" : "placeOrder",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "security" : [ {
+          "api-key" : [ ],
+          "signature" : [ ],
+          "timestamp" : [ ]
+        } ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "order",
+          "description" : "Order which needs to be created",
+          "required" : true,
+          "schema" : {
+            "type" : "object",
+            "required" : [ "product_id", "size", "side", "order_type" ],
+            "properties" : {
+              "product_id" : {
+                "type" : "integer"
+              },
+              "size" : {
+                "type" : "integer"
+              },
+              "side" : {
+                "type" : "string",
+                "enum" : [ "buy", "sell" ]
+              },
+              "order_type" : {
+                "type" : "string",
+                "enum" : [ "limit_order", "market_order" ]
+              },
+              "limit_price" : {
+                "type" : "string",
+                "description" : "Limit Price for limit order, its a bigdecimal and needs to be passed as a string"
+              },
+              "post_only" : {
+                "type" : "string",
+                "description" : "Flag for placing orders in post only mode",
+                "enum" : [ "true", "false" ]
+              },
+              "stop_order_type" : {
+                "type" : "string",
+                "enum" : [ "stop_loss_order" ]
+              },
+              "stop_price" : {
+                "type" : "string",
+                "description" : "Stop Price for stop orders"
+              },
+              "close_on_trigger" : {
+                "type" : "string",
+                "description" : "Flag for placing orders that should close positions (only for stop orders)",
+                "enum" : [ "true", "false" ]
+              }
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Returns back the order object with assigned id and latest state",
+            "schema" : {
+              "$ref" : "#/definitions/Order"
+            }
+          },
+          "400" : {
+            "description" : "Returns error if order could not be placed",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "error" : {
+                  "type" : "string",
+                  "enum" : [ "InsufficientMargin", "OrderSizeExceededAvailable", "OrderExceedsSizeLimit", "OrderLeverageNotSet", "InvalidProduct", "ImmediateLiquidationOrder", "LowerthanBankruptcy", "SelfMatchingPostOnlyMode", "ImmediateExecutionPostOnlyOrder" ]
+                },
+                "message" : {
+                  "type" : "string",
+                  "description" : "A more verbose error message"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Orders" ],
+        "summary" : "Cancel Order",
+        "operationId" : "cancelOrder",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "security" : [ {
+          "api-key" : [ ],
+          "signature" : [ ],
+          "timestamp" : [ ]
+        } ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "order",
+          "description" : "Order which needs to be cancelled",
+          "required" : true,
+          "schema" : {
+            "type" : "object",
+            "required" : [ "id", "product_id" ],
+            "properties" : {
+              "id" : {
+                "type" : "integer"
+              },
+              "product_id" : {
+                "type" : "integer"
+              }
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Returns back the order object",
+            "schema" : {
+              "$ref" : "#/definitions/Order"
+            }
+          },
+          "400" : {
+            "description" : "Returns error if order could not be cancelled",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "error" : {
+                  "type" : "string",
+                  "enum" : [ "ALREADY_FILLED", "InvalidOrder", "InvalidProduct" ]
+                },
+                "message" : {
+                  "type" : "string",
+                  "description" : "A more verbose error message"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get" : {
+        "tags" : [ "Orders" ],
+        "summary" : "Get Orders",
+        "operationId" : "getOrders",
+        "produces" : [ "application/json" ],
+        "security" : [ {
+          "api-key" : [ ],
+          "signature" : [ ],
+          "timestamp" : [ ]
+        } ],
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "product_id",
+          "description" : "get orders for a particular product id",
+          "type" : "integer"
+        }, {
+          "in" : "query",
+          "name" : "state",
+          "description" : "get orders with a particular state",
+          "type" : "string",
+          "enum" : [ "open", "closed", "cancelled" ]
+        }, {
+          "in" : "query",
+          "name" : "stop_order_type",
+          "description" : "get stop orders with stop_order_type",
+          "type" : "string",
+          "enum" : [ "stop_loss_order" ]
+        }, {
+          "in" : "query",
+          "name" : "page_num",
+          "description" : "page number for pagination",
+          "type" : "integer",
+          "default" : 1
+        }, {
+          "in" : "query",
+          "name" : "page_size",
+          "description" : "page size for pagination",
+          "type" : "integer",
+          "default" : 20
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "List of orders as per the query",
+            "schema" : {
+              "$ref" : "#/definitions/ArrayOfOrders"
+            }
+          }
+        }
+      }
+    },
+    "/orders/leverage" : {
+      "post" : {
+        "tags" : [ "Orders" ],
+        "summary" : "Change leverage for open orders",
+        "operationId" : "changeOrderLeverage",
+        "security" : [ {
+          "api-key" : [ ],
+          "signature" : [ ],
+          "timestamp" : [ ]
+        } ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "Order Leverage for a product",
+          "required" : true,
+          "schema" : {
+            "type" : "object",
+            "required" : [ "product_id", "leverage" ],
+            "properties" : {
+              "product_id" : {
+                "type" : "integer"
+              },
+              "leverage" : {
+                "type" : "string"
+              }
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "returns the OrderLeverage object",
+            "schema" : {
+              "$ref" : "#/definitions/OrderLeverage"
+            }
+          },
+          "400" : {
+            "description" : "Returns error if leverage couldnt be changed",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "error" : {
+                  "type" : "string",
+                  "enum" : [ "InsufficientMargin", "LeverageLimitExceeded" ]
+                },
+                "message" : {
+                  "type" : "string",
+                  "description" : "A more verbose error message"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get" : {
+        "tags" : [ "Orders" ],
+        "summary" : "Get leverage for all open orders",
+        "operationId" : "getOrderLeverage",
+        "security" : [ {
+          "api-key" : [ ],
+          "signature" : [ ],
+          "timestamp" : [ ]
+        } ],
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "product_id",
+          "type" : "integer",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "returns the OrderLeverage object",
+            "schema" : {
+              "$ref" : "#/definitions/OrderLeverage"
+            }
+          }
+        }
+      }
+    },
+    "/orders/history" : {
+      "get" : {
+        "tags" : [ "Trade History" ],
+        "summary" : "Get order history (cancelled and closed)",
+        "operationId" : "getOrderHistory",
+        "produces" : [ "application/json" ],
+        "security" : [ {
+          "api-key" : [ ],
+          "signature" : [ ],
+          "timestamp" : [ ]
+        } ],
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "page_num",
+          "description" : "page number for pagination",
+          "type" : "integer",
+          "default" : 1
+        }, {
+          "in" : "query",
+          "name" : "page_size",
+          "description" : "page size for pagination",
+          "type" : "integer",
+          "default" : 20
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "List of orders",
+            "schema" : {
+              "$ref" : "#/definitions/ArrayOfOrders"
+            }
+          }
+        }
+      }
+    },
+    "/fills" : {
+      "get" : {
+        "tags" : [ "Trade History" ],
+        "summary" : "Get fills",
+        "operationId" : "getFills",
+        "produces" : [ "application/json" ],
+        "security" : [ {
+          "api-key" : [ ],
+          "signature" : [ ],
+          "timestamp" : [ ]
+        } ],
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "page_num",
+          "description" : "page number for pagination",
+          "type" : "integer",
+          "default" : 1
+        }, {
+          "in" : "query",
+          "name" : "page_size",
+          "description" : "page size for pagination",
+          "type" : "integer",
+          "default" : 20
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "List of Fills",
+            "schema" : {
+              "$ref" : "#/definitions/ArrayOfFills"
+            }
+          }
+        }
+      }
+    },
+    "/positions" : {
+      "get" : {
+        "tags" : [ "Positions" ],
+        "operationId" : "getPositions",
+        "summary" : "Get open positions",
+        "produces" : [ "application/json" ],
+        "security" : [ {
+          "api-key" : [ ],
+          "signature" : [ ],
+          "timestamp" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "List of all open positions",
+            "schema" : {
+              "$ref" : "#/definitions/ArrayOfPositions"
+            }
+          }
+        }
+      }
+    },
+    "/positions/change_margin" : {
+      "post" : {
+        "tags" : [ "Positions" ],
+        "operationId" : "changePositionMargin",
+        "summary" : "Add/Remove position margin",
+        "produces" : [ "application/json" ],
+        "security" : [ {
+          "api-key" : [ ],
+          "signature" : [ ],
+          "timestamp" : [ ]
+        } ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "Delta Margin for the position",
+          "required" : true,
+          "schema" : {
+            "type" : "object",
+            "required" : [ "product_id", "delta_margin" ],
+            "properties" : {
+              "product_id" : {
+                "type" : "integer"
+              },
+              "delta_margin" : {
+                "type" : "string",
+                "description" : "Delta in the position margin, positive in case of adding margin & negative in case of removing margin"
+              }
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "returns the position object",
+            "schema" : {
+              "$ref" : "#/definitions/Position"
+            }
+          },
+          "400" : {
+            "description" : "Returns error if position margin could not be changed",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "error" : {
+                  "type" : "string",
+                  "enum" : [ "PositionNotSet", "LeverageLimitExceeded", "InsufficientMargin", "ExistingOrderWithLowerThanBankruptcy" ]
+                },
+                "message" : {
+                  "type" : "string",
+                  "description" : "A more verbose error message"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/positions/close" : {
+      "post" : {
+        "tags" : [ "Positions" ],
+        "operationId" : "closePosition",
+        "summary" : "Close position",
+        "produces" : [ "application/json" ],
+        "security" : [ {
+          "api-key" : [ ],
+          "signature" : [ ],
+          "timestamp" : [ ]
+        } ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "Close position request",
+          "required" : true,
+          "schema" : {
+            "type" : "object",
+            "required" : [ "product_id", "cancel_orders_accepted" ],
+            "properties" : {
+              "product_id" : {
+                "type" : "integer"
+              },
+              "cancel_orders_accepted" : {
+                "type" : "string",
+                "description" : "Flag to choose whether to cancel open orders in case they end up with insufficient margin after closing position",
+                "enum" : [ "true", "false" ]
+              }
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "returns the order that was placed for closing position",
+            "schema" : {
+              "$ref" : "#/definitions/Order"
+            }
+          },
+          "400" : {
+            "description" : "Returns error if position could not be closed",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "error" : {
+                  "type" : "string",
+                  "enum" : [ "PositionNotSet", "InsufficientMargin", "InsufficientCommission", "OrderSizeExceededAvailable", "OrderLeverageNotSet", "InvalidProduct", "LowerthanBankruptcy" ]
+                },
+                "message" : {
+                  "type" : "string",
+                  "description" : "A more verbose error message"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orderbook/{product_id}/l2" : {
+      "get" : {
+        "tags" : [ "Orderbook" ],
+        "operationId" : "getL2Orderbook",
+        "summary" : "Get L2 orderbook",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "product_id",
+          "type" : "integer",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "L2 orderbook for the product",
+            "schema" : {
+              "$ref" : "#/definitions/L2Orderbook"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/balances" : {
+      "get" : {
+        "tags" : [ "Wallet" ],
+        "operationId" : "getWalletBalances",
+        "summary" : "Get Wallet Balances",
+        "produces" : [ "application/json" ],
+        "security" : [ {
+          "api-key" : [ ],
+          "signature" : [ ],
+          "timestamp" : [ ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "List of wallets attached to the user account",
+            "schema" : {
+              "$ref" : "#/definitions/ArrayOfWallets"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/transactions" : {
+      "get" : {
+        "tags" : [ "Wallet" ],
+        "summary" : "Get Wallet transactions",
+        "operationId" : "getWalletTransactions",
+        "produces" : [ "application/json" ],
+        "consumes" : [ "application/json" ],
+        "security" : [ {
+          "api-key" : [ ],
+          "signature" : [ ],
+          "timestamp" : [ ]
+        } ],
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "asset_id",
+          "description" : "asset_id for that particular Wallet",
+          "type" : "integer"
+        }, {
+          "in" : "query",
+          "name" : "page_num",
+          "description" : "page number for pagination",
+          "type" : "integer",
+          "default" : 1
+        }, {
+          "in" : "query",
+          "name" : "page_size",
+          "description" : "page size for pagination",
+          "type" : "integer",
+          "default" : 20
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "list of transactions for that wallet",
+            "schema" : {
+              "$ref" : "#/definitions/ArrayOfTransactions"
+            }
+          }
+        }
+      }
+    },
+    "/chart/history" : {
+      "get" : {
+        "tags" : [ "OHLC Candles" ],
+        "summary" : "Get OHLC candles",
+        "operationId" : "getCandles",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "symbol",
+          "description" : "product symbol",
+          "type" : "string"
+        }, {
+          "in" : "query",
+          "name" : "from",
+          "description" : "start time for the interval ( in seconds )",
+          "type" : "integer"
+        }, {
+          "in" : "query",
+          "name" : "to",
+          "description" : "end time for the interval ( in seconds )",
+          "type" : "integer"
+        }, {
+          "in" : "query",
+          "name" : "resolution",
+          "description" : "resolution for the candles",
+          "type" : "string",
+          "enum" : [ "1", "5", "15", "60", "360", "D" ]
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OHLC candles",
+            "schema" : {
+              "$ref" : "#/definitions/OHLCData"
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "api-key" : {
+      "type" : "apiKey",
+      "name" : "api-key",
+      "in" : "header"
+    },
+    "signature" : {
+      "type" : "apiKey",
+      "name" : "signature",
+      "in" : "header"
+    },
+    "timestamp" : {
+      "type" : "apiKey",
+      "name" : "timestamp",
+      "in" : "header"
+    }
+  },
+  "definitions" : {
+    "Asset" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "symbol" : {
+          "type" : "string"
+        },
+        "precision" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "Product" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "symbol" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "product_type" : {
+          "type" : "string",
+          "enum" : [ "future", "inverse_future" ]
+        },
+        "initial_margin" : {
+          "type" : "string"
+        },
+        "maintenance_margin" : {
+          "type" : "string"
+        },
+        "settlement_time" : {
+          "type" : "string"
+        },
+        "impact_size" : {
+          "type" : "integer"
+        },
+        "pricing_source" : {
+          "type" : "string"
+        },
+        "tick_size" : {
+          "type" : "string"
+        },
+        "trading_status" : {
+          "type" : "string",
+          "enum" : [ "operational", "disrupted_cancel_only", "disrupted_post_only" ]
+        },
+        "position_size_limit" : {
+          "type" : "integer"
+        },
+        "commission_rate" : {
+          "type" : "string"
+        },
+        "maker_commission_rate" : {
+          "type" : "string"
+        },
+        "underlying_asset" : {
+          "$ref" : "#/definitions/Asset"
+        },
+        "quoting_asset" : {
+          "$ref" : "#/definitions/Asset"
+        },
+        "settling_asset" : {
+          "$ref" : "#/definitions/Asset"
+        }
+      }
+    },
+    "ArrayOfProducts" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/Product"
+      }
+    },
+    "Order" : {
+      "type" : "object",
+      "description" : "An Order object",
+      "properties" : {
+        "id" : {
+          "type" : "integer"
+        },
+        "user_id" : {
+          "type" : "integer"
+        },
+        "size" : {
+          "type" : "integer"
+        },
+        "unfilled_size" : {
+          "type" : "integer"
+        },
+        "side" : {
+          "type" : "string",
+          "description" : "side for which to place order",
+          "enum" : [ "buy", "sell" ]
+        },
+        "order_type" : {
+          "type" : "string",
+          "enum" : [ "limit_order", "market_order" ]
+        },
+        "limit_price" : {
+          "type" : "string"
+        },
+        "stop_order_type" : {
+          "type" : "string",
+          "enum" : [ "stop_loss_order" ]
+        },
+        "stop_price" : {
+          "type" : "string"
+        },
+        "close_on_trigger" : {
+          "type" : "string",
+          "enum" : [ "false", "true" ]
+        },
+        "state" : {
+          "type" : "string",
+          "description" : "Order Status",
+          "enum" : [ "open", "pending", "closed", "cancelled" ]
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "product" : {
+          "$ref" : "#/definitions/Product"
+        }
+      }
+    },
+    "ArrayOfOrders" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/Order"
+      }
+    },
+    "Position" : {
+      "type" : "object",
+      "description" : "A position object",
+      "properties" : {
+        "user_id" : {
+          "type" : "integer"
+        },
+        "size" : {
+          "type" : "integer",
+          "description" : "Position size, negative for short and positive for long"
+        },
+        "entry_price" : {
+          "type" : "string"
+        },
+        "margin" : {
+          "type" : "string"
+        },
+        "liquidation_price" : {
+          "type" : "string"
+        },
+        "bankruptcy_price" : {
+          "type" : "string"
+        },
+        "adl_level" : {
+          "type" : "integer"
+        },
+        "product" : {
+          "$ref" : "#/definitions/Product"
+        }
+      }
+    },
+    "ArrayOfPositions" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/Position"
+      }
+    },
+    "Fill" : {
+      "type" : "object",
+      "description" : "A fill object",
+      "properties" : {
+        "id" : {
+          "type" : "integer"
+        },
+        "size" : {
+          "type" : "integer"
+        },
+        "side" : {
+          "type" : "integer",
+          "enum" : [ "buy", "sell" ]
+        },
+        "price" : {
+          "type" : "string",
+          "description" : "Price at which the fill happened, BigDecimal sent as string"
+        },
+        "role" : {
+          "type" : "string",
+          "enum" : [ "taker", "maker" ]
+        },
+        "commission" : {
+          "type" : "string",
+          "description" : "Commission paid on this fill, negative value means commission was earned because of maker role"
+        },
+        "created_at" : {
+          "type" : "string"
+        },
+        "product" : {
+          "$ref" : "#/definitions/Product"
+        }
+      }
+    },
+    "ArrayOfFills" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/Fill"
+      }
+    },
+    "OrderLeverage" : {
+      "type" : "object",
+      "description" : "Order Leverage for a product",
+      "properties" : {
+        "leverage" : {
+          "type" : "string",
+          "description" : "Leverage of all open orders for this product"
+        },
+        "order_margin" : {
+          "type" : "string",
+          "description" : "Margin blocked in open orders for this product"
+        },
+        "product_id" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "L2Orderbook" : {
+      "type" : "object",
+      "description" : "L2 orderbook",
+      "properties" : {
+        "buy_book" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "price" : {
+                "type" : "string"
+              },
+              "size" : {
+                "type" : "integer"
+              }
+            }
+          }
+        },
+        "sell_book" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "price" : {
+                "type" : "string"
+              },
+              "size" : {
+                "type" : "integer"
+              }
+            }
+          }
+        },
+        "recent_trades" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "side" : {
+                "type" : "string",
+                "enum" : [ "buy", "sell" ]
+              },
+              "size" : {
+                "type" : "integer"
+              },
+              "price" : {
+                "type" : "string"
+              },
+              "timestamp" : {
+                "type" : "integer"
+              }
+            }
+          }
+        },
+        "spot_price" : {
+          "type" : "string"
+        },
+        "mark_price" : {
+          "type" : "string"
+        },
+        "product_id" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "Wallet" : {
+      "type" : "object",
+      "properties" : {
+        "balance" : {
+          "type" : "string",
+          "description" : "Total wallet balance"
+        },
+        "order_margin" : {
+          "type" : "string",
+          "description" : "Margin blocked in open orders"
+        },
+        "position_margin" : {
+          "type" : "string",
+          "description" : "Margin blocked in open positions"
+        },
+        "commission" : {
+          "type" : "string",
+          "description" : "Commissions blocked in open orders and open positions"
+        },
+        "available_balance" : {
+          "type" : "string",
+          "description" : "Amount available for withdrawals"
+        },
+        "asset" : {
+          "$ref" : "#/definitions/Asset"
+        }
+      }
+    },
+    "ArrayOfWallets" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/Wallet"
+      }
+    },
+    "Transaction" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer"
+        },
+        "amount" : {
+          "type" : "string",
+          "description" : "amount credited/debited in this transaction (+ for credited, - for debited)"
+        },
+        "balance" : {
+          "type" : "string",
+          "description" : "net wallet balance after this transaction"
+        },
+        "transaction_type" : {
+          "type" : "string",
+          "enum" : [ "pnl", "deposit", "withdrawal", "commission", "conversion", "perpetual_futures_funding", "withdrawal_cancellation", "referral_bonus", "commission_rebate", "promo_credit" ]
+        },
+        "meta_data" : {
+          "type" : "object"
+        },
+        "product" : {
+          "$ref" : "#/definitions/Product"
+        },
+        "created_at" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ArrayOfTransactions" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/Transaction"
+      }
+    },
+    "OHLCData" : {
+      "type" : "object",
+      "properties" : {
+        "t" : {
+          "type" : "array",
+          "description" : "array of timestamps for which candles are returned",
+          "items" : {
+            "type" : "integer"
+          }
+        },
+        "o" : {
+          "type" : "array",
+          "description" : "open prices for candles",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "h" : {
+          "type" : "array",
+          "description" : "high prices for candles",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "l" : {
+          "type" : "array",
+          "description" : "low prices for candles",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "c" : {
+          "type" : "array",
+          "description" : "close prices for candles",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "v" : {
+          "type" : "array",
+          "description" : "volumes for candles",
+          "items" : {
+            "type" : "integer"
+          }
+        }
+      }
+    }
+  }
+}

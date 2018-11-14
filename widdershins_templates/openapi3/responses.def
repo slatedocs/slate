@@ -1,0 +1,83 @@
+{{ data.responses = data.utils.getResponses(data); }}
+{{ data.responseSchemas = false; }}
+{{~ data.responses :response }}
+{{ if (response.content) data.responseSchemas = true; }}
+{{~}}
+
+{{? data.responseSchemas }}
+> Example responses
+
+{{= data.utils.getResponseExamples(data) }}
+{{?}}
+
+<h3 id="{{=data.operationUniqueSlug}}-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+{{~ data.responses :r}}|{{=r.status}}|{{=r.meaning}}|{{=r.description || 'none'}}|{{=r.schema}}|
+{{~}}
+
+{{ data.responseSchemas = false; }}
+{{~ data.responses :response }}
+{{ if (response.content && !response.$ref && !data.utils.isPrimitive(response.type)) data.responseSchemas = true; }}
+{{~}}
+{{? data.responseSchemas }}
+<h3 id="{{=data.operationUniqueSlug}}-responseschema">Response Schema</h3>
+{{~ data.responses :response}}
+{{? response.content && !response.$ref && !data.utils.isPrimitive(response.type)}}
+{{ var responseKey = Object.keys(response.content)[0]; }}
+{{ var responseSchema = response.content[responseKey].schema; }}
+{{ var enums = []; }}
+{{ var blocks = data.utils.schemaToArray(responseSchema,0,{trim:true,join:true},data); }}
+{{ for (var block of blocks) {
+     for (var p of block.rows) {
+       if (p.schema && p.schema.enum) {
+         for (var e of p.schema.enum) {
+           enums.push({name:p.name,value:e});
+         }
+       }
+     }
+   }
+}}
+
+{{? blocks[0].rows.length || blocks[0].title }}
+Status Code **{{=response.status}}**
+
+{{~ blocks :block}}
+{{? block.title }}*{{=block.title}}*
+{{?}}
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+{{~block.rows :p}}|{{=p.displayName}}|{{=p.safeType}}|{{=p.required}}|{{=p.restrictions||'none'}}|{{=p.description||'none'}}|
+{{~}}
+{{~}}
+{{?}}
+
+{{? enums.length > 0 }}
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+{{~ enums :e}}|{{=e.name}}|{{=data.utils.toPrimitive(e.value)}}|
+{{~}}
+
+{{?}}
+
+{{ data.response = response; }}
+{{#def.links}}
+
+{{?}}
+{{~}}
+{{?}}
+
+{{ data.responseHeaders = data.utils.getResponseHeaders(data); }}
+{{? data.responseHeaders.length }}
+
+### Response Headers
+
+|Status|Header|Type|Format|Description|
+|---|---|---|---|---|
+{{~ data.responseHeaders :h}}|{{=h.status}}|{{=h.header}}|{{=h.type}}|{{=h.format||''}}|{{=h.description||'none'}}|
+{{~}}
+
+{{?}}

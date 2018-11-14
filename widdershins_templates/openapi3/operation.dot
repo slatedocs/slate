@@ -1,0 +1,51 @@
+## {{= data.operationUniqueName}}
+
+{{? data.operation.operationId}}
+<a id="opId{{=data.operation.operationId}}"></a>
+{{?}}
+
+{{ data.methodUpper = data.method.verb.toUpperCase(); }}
+{{ data.url = data.utils.slashes(data.baseUrl + data.method.path); }}
+{{ data.parameters = data.operation.parameters; }}
+{{ data.enums = []; }}
+{{ data.utils.fakeProdCons(data); }}
+{{ data.utils.fakeBodyParameter(data); }}
+{{ data.utils.mergePathParameters(data); }}
+{{ data.utils.getParameters(data); }}
+
+{{? data.options.codeSamples || data.operation["x-code-samples"] }}
+> Code samples
+
+{{= data.utils.getCodeSamples(data) }}
+{{?}}
+
+`{{= data.methodUpper}} {{=data.method.path}}`
+
+{{? data.operation.summary && !data.options.tocSummary}}*{{= data.operation.summary }}*{{?}}
+
+{{? data.operation.description}}{{= data.operation.description }}{{?}}
+
+{{? data.operation.requestBody}}
+> Body parameter
+
+{{? data.bodyParameter.exampleValues.description }}
+> {{= data.bodyParameter.exampleValues.description }}
+{{?}}
+
+{{= data.utils.getBodyParameterExamples(data) }}
+{{?}}
+
+{{? data.parameters && data.parameters.length }}
+{{#def.parameters}}
+{{?}}
+
+{{#def.responses}}
+
+{{#def.callbacks}}
+
+{{ data.security = data.operation.security ? data.operation.security : data.api.security; }}
+{{? data.security && data.security.length }}
+{{#def.authentication}}
+{{??}}
+{{#def.authentication_none}}
+{{?}}
