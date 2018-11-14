@@ -13,6 +13,9 @@ The post params posted at any update in a particular leads are as follows
     "lead_id": 925089,
     "lead_status": "Interested",
     "name": "Rahul",
+    "rating: "Hot", // "Hot", "Cold", "Warm"
+    "min_budget": "10000000",
+    "max_budget": "20000000",
     "phone": "+919819619866",
     "placement": "placement",
     "project_name": "Internal Test Project",
