@@ -2,7 +2,8 @@
 title: Shiftboard Web Services API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - json: Example Code
+  - json: JSON
+  - php: Example PHP Code
 
 toc_footers:
   - <a href="https://www.shiftboard.com/privacy/">Privacy Policy</a>

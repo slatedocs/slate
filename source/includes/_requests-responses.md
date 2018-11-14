@@ -206,11 +206,34 @@ request, computed as described below.  May be provided either in
 the GET request query string or in a cookie.
 
 Those components that may contain characters other than alphanumerics,
-'-', '.', '_', or '~' should be URI encoded ([RFC
+'-', '.', '\_', or '~' should be URI encoded ([RFC
 3986](http://www.ietf.org/rfc/rfc3986.txt)), as is normal for an
 HTTP GET request query string.
 
 ### Request Signature
+
+```json
+Given the method name "echo" and the params "{ }", the data
+to be signed is "methodechoparams{ }".  Given a signature key
+"Xuzh+MDxcW9/CLPD1Z2wiSX51LVrQrStEZPQWk0P", the resulting
+base64-encoded HMAC SHA1 signature is "gJ5Oy1E5W4u9XpjWyMoJytlScU8=".
+Given an API access key of "g57a67b3b-34e4-4c07-a8ca-e7ecb77a7f33",
+a complete request would be
+
+"https://api.shiftdata.com/?id=885&jsonrpc=2.0&method=echo&params=eyB9&signature=gJ5Oy1E5W4u9XpjWyMoJytlScU8%3D&access_key_id=57a67b3b-34e4-4c07-a8ca-e7ecb77a7f33"
+```
+
+```php
+$AccessKey = "ACCESS_KEY";
+$Method = "account.list";
+$Params = "{ }";
+$Request = "method" . $Method . "params" . $Params;
+$ShifboardSecretKey = "SECRET_KEY";
+$Params = urlencode(base64_encode($Params));
+$Sig = urlencode(base64_encode(hash_hmac('sha1', $Request, $ShifboardSecretKey, true)));
+
+$URL = "https://api.shiftdata.com/servola/api/api.cgi?&access_key_id=" . $AccessKey . "&jsonrpc=2.0&id=1&method=" . $Method . "&params=" . $Params . "&signature=" . $Sig;
+```
 
 Each request is digitally signed by taking components of the request
 and computing an HMAC SHA1 signature for them using a secret Signature
@@ -225,14 +248,6 @@ The data to be signed for GET requests is composed of four parts concatenated wi
 * The 6 character string `params`
 * The text being passed as params, prior to any base64 or URI encoding
 
-Example: given the method name `echo`, the params "{ }", the data
-to be signed is "methodechoparams{ }".  Given a signature key
-"*Xuzh+MDxcW9/CLPD1Z2wiSX51LVrQrStEZPQWk0P*", the resulting
-base64-encoded HMAC SHA1 signature is "*gJ5Oy1E5W4u9XpjWyMoJytlScU8=*".
-Given an API access key of "*g57a67b3b-34e4-4c07-a8ca-e7ecb77a7f33*",
-a complete request would be
-
-`https://api.shiftdata.com/?id=885&jsonrpc=2.0&method=echo&params=eyB9&signature=gJ5Oy1E5W4u9XpjWyMoJytlScU8%3D&access_key_id=57a67b3b-34e4-4c07-a8ca-e7ecb77a7f33`
 
 For POST requests, the data to be signed is simply the entire contents of the POST request.
 
