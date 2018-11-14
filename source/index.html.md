@@ -25,7 +25,7 @@ includes:
   - send_to_supplier_templates
   - tax_rates
   - uploads
-  - bulk_datas
+  - offline_apis
   - extras
   - webhooks
 
