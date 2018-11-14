@@ -38,7 +38,7 @@ The datetime (in UTC) that this object was created.
 
 ```JSON
 {
-   "workgroup" : "226094",
+   "workgroup" : [ "226094", "12345" ],
    "level" : 4,
    "member" : [
       949,
@@ -77,13 +77,13 @@ A single external account identifier or an array of external identifiers of acco
 
 ####workgroup
 
-A single workgroup identifier or an array of identifiers of workgroups for which to create memberships for each specified account. Currently, only a single workgroup may be specified.
+A single workgroup identifier or an array of identifiers of workgroups for which to create memberships for each specified account.
 
 ####level
 
 User level for which to create memberships.
 
-No more than 10000 memberships may be specified in one request.
+No more than 10,000 memberships may be specified in one request.
 
 If one or more of the specified memberships already exist, the remaining memberships (if any) will be created and no error will be returned. Existing user levels will remain unchanged.
 
