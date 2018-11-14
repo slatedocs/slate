@@ -55,7 +55,7 @@ The post params posted at any update in a particular leads are as follows
 }
 ```
 
-``` rating``` can have values as `Hot`, `Cold', `Warm`
+``` rating``` can have values as `Hot`, `Cold`, `Warm`
 
 ```latest_event_details``` will contain the latest event which has been changed by the agent, it can have following 3 values 
 - ```followup``` (for followups),
