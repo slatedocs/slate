@@ -69,10 +69,10 @@ details.address.occupation  | User occupation. Required for US, CA, JP         |
 > 1) Example Request: Get Client Credentials Token
 
 ```shell
-curl \
--u '[your-api-client-id]:[your-api-client-secret]' \
--d 'grant_type=client_credentials' \
-'https://api.sandbox.transferwise.tech/oauth/token' 
+curl -X "POST" "https://api.sandbox.transferwise.tech/oauth/token" \
+     -H 'Content-Type: application/x-www-form-urlencoded' \
+     -u '[your-api-client-id]:[your-api-client-secret]' \
+     --data-urlencode "grant_type=client_credentials" 
 ```
 
 > 1) Example Response: Get Client Credentials Token
@@ -203,7 +203,7 @@ Obtain access_token based on your API client credentials.
 
 **`POST https://api.sandbox.transferwise.tech/oauth/token`**
 
-Use Basic Authentication with your api-client-id/api-client-secret as username/pwd.
+Use Basic Authentication with your api-client-id/api-client-secret as username/pwd and also use the header `Content-Type: application/x-www-form-urlencoded`.
 
 
 Field                 | Description                                   | Format
