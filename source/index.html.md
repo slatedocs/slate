@@ -48,7 +48,8 @@ This is our recommended lnd lightning client library: <a href="https://github.co
 This is an alternative c-lightning client library: <a href="https://github.com/suredbits/lightning-charge">https://github.com/suredbits/lightning-charge</a>
 
 ## UUID
-> Example Data Returned with valid UUID
+
+> Example Data returned with valid UUID
 
 ```json
 {
@@ -69,7 +70,7 @@ A valid <span style="color:red"> `uuid` </span> request will show up on the invo
 
 ## Format 
 
-> Example Data Returned
+> Example Data returned
 
 ```json 
 {  
@@ -130,22 +131,16 @@ A successful request will generate a lightning invoice that will look simiar to 
 
 **Subscribe**
 
-> Example Request: 
+> Example request Format: 
 
 ```json
 {  
    "event":"subscribe",
-   
    "channel":"trades",
-   
-   "symbol":"BTCUSDT",
-   
+   "symbol":"BTCUSDT",  
    "exchange":"binance",
-   
    "duration":120000,
-   
    "refundInvoice":"lnbcrt1pdace6qpp5my6nc58d50r5gk38ynyz...",
-   
    "uuid":"8dda8625-2946-4500-8dd5-13c78d2f42b8"
 }
 ```
@@ -208,7 +203,8 @@ In the event of maintenance or service interruption, we will refund any remainin
 
 
 ## Tickers
-> Example Request
+
+> Example Request Tickers
 
 ```json
 {  "event":"unsubscribe",
@@ -220,7 +216,7 @@ In the event of maintenance or service interruption, we will refund any remainin
     "uuid":"[uuid]"}
 ```
 
-> Example Tickers Data
+> Example Tickers data
 
 ```json
 {  
@@ -258,6 +254,7 @@ In the event of maintenance or service interruption, we will refund any remainin
 }
 ```
 
+The <span style="color:red"> Tickers </span> channel streams high level updates for given trading pairs.  See the table below for which exchanges return which fields.
 
 
 Field | Type | Exchanges Supported
@@ -297,26 +294,21 @@ Field | Type | Exchanges Supported
 <span style="color:red"> low </span> |  Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
 
 ## Trades
-> Example Request
+
+> Example request Trades
 
 ```json
 
 {  "event":"subscribe",
-
    "channel":"trades",
-   
    "symbol":"BTCUSDT",
-   
    "exchange":"binance",
-   
    "duration":120000,
-   
    "refundInvoice":"lnbcrt1pdace6qpp5my6nc58d50r5gk38ynyz...",
-   
    "uuid":"[uuid]"}
 ```
 
-> Example Trades Data
+> Example Trades data
 
 ```json
 {  
@@ -354,6 +346,7 @@ Field | Type | Exchanges Supported
 }
 ```
 
+The <span style="color:red"> Trades </span> channel streams executed trades for a given trading pair.  See the table below for which exchanges returns which fields. 
 
 Field |  Type | Exchanges Supported 
 ------ | ------- | -----------
@@ -374,25 +367,20 @@ Field |  Type | Exchanges Supported
 <span style="color:red"> price </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
 
 ## Order Books
-> Example Request
+
+> Example Request Order Books
 
 ```json
 { "event":"subscribe", 
-
   "channel":"books", 
-  
   "symbol":"BTCUSD", 
-  
   "exchange":"bitfinex", 
-  
   "duration":15000,
-  
   "refundInvoice":"lnbcrt1pdace6qpp5my6nc58d50r5...",
-  
-   "uuid":"[uuid]"}
+  "uuid":"[uuid]"}
 ```
 
-> Example Order Books Data
+> Example Order Books data
 
 ```json
 {  
@@ -420,6 +408,7 @@ Field |  Type | Exchanges Supported
    }
    ```
 
+The <span style="color:red"> Books </span> channel streams bids and asks for a given trading pair on given exchange.  
 
 Field | Type | Exchanges Supported
 ------| -------| --------
@@ -438,6 +427,19 @@ Field | Type | Exchanges Supported
 
 ## Info
 
+> Example request
+
+```json
+{
+   "channel": "info", 
+    "uuid": "[uuid]"
+}
+```
+
+This provides a check and confirmation on the status of the API. 
+
+> Example data
+
 ```json
 {
   "data":
@@ -453,13 +455,21 @@ Field | Type | Exchanges Supported
  }
 ```
 
-**Example Request**
-
-{"channel": "info", "uuid": "[uuid]"}
-
-This provides a check and confirmation on the status of the API. 
 
 ## Games
+
+> Example request Games
+
+```json
+{
+  "channel":"games", 
+  "week":1, "seasonPhase" : 
+  "Regular", "year" : 2017, 
+  "uuid": "[uuid]"
+}
+```
+
+
 > Example of Games data
 
 ```json
@@ -502,9 +512,7 @@ This provides a check and confirmation on the status of the API.
  }
 ```
 
-**Example Request**
-
-{"channel":"games", "week":1, "seasonPhase" : "Regular", "year" : 2017, "uuid": "[uuid]"}
+The <span style="color:red"> Games </span> channel returns data for specific games. 
 
 There are two required fields to query NFL Games data:
 
@@ -527,6 +535,19 @@ Field | Type | Example
 
 
 ## Players
+
+> Example request Players
+
+```json
+{
+  "channel":"players", 
+  "lastName" : "Moss", 
+  "firstName" : "Randy", 
+  "uuid": "[uuid]"
+}
+
+```
+
 > Example of Players data
 
 ```json 
@@ -555,11 +576,7 @@ Field | Type | Example
   }
 ```
 
-This request implements a websocket channel called <span style="color:red"> players </span>. It returns a NFL player given a websocket request.
-
-**Example Requests**
-
-{"channel":"players", "lastName" : "Moss", "firstName" : "Randy", "uuid": "[uuid]"}
+The <span style="color:red"> Players </span> returns data for particular players by <span style="color:red"> name </span>.  
 
 Required fields to request NFL Player data: 
 
@@ -573,7 +590,31 @@ Field | Type | Example
 
 
 ## Team
->Example of Roster data
+
+> Example request Rosters
+
+```json
+{
+  "channel": "team", 
+  "teamId": "CHI", 
+  "retrieve": "roster", 
+  "uuid": "[uuid]"}
+```
+
+> Example request Rosters in Year
+
+```json
+{
+  "channel": "team", 
+  "teamId": "CHI", 
+  "retrieve": "schedule", 
+  "year": 2018, 
+  "uuid": "[uuid]"
+}
+```
+
+
+> Example of Roster data
 
 ```json
 
@@ -603,6 +644,17 @@ Field | Type | Example
   
   
 ```
+
+> Example request Schedules
+
+```json
+{
+  "channel": "team", 
+  "teamId": "CHI", 
+  "retrieve": "schedule", 
+  "uuid": "[uuid]"}
+```
+
 
 >Example of Schedule data
 
@@ -648,20 +700,10 @@ Field | Type | Example
  }
 ```
 
-This request implements a websocket channel called <span style="color:red"> *team* </span>. It returns the Roster or Schedule for a given NFL Team given a websocket request.
+Thie <span style="color:red"> *Team* </span> channel returns data for <span style="color:red"> roster </span> or <span style="color:red"> schedule </span> for a given NFL Team given a websocket request.
 
-**Example Requests**
 
-For Rosters:
-{"channel": "team", "teamId": "MIN", "retrieve": "roster", "uuid": "[uuid]"}
-
-For Schedules:
-{"channel": "team", "teamId": "CHI", "retrieve": "schedule", "uuid": "[uuid]"}
-
-For Rosters in Year:
-{"channel": "team", "teamId": "CHI", "retrieve": "schedule", "year": 2018, "uuid": "[uuid]"}
-
-There are two required Fields to request NFL Team & Roster data:
+There are two required fields, in addition to [uuid], to request NFL Team & Roster data:
 
 **Required fields**: 
 
@@ -703,6 +745,34 @@ KC	| Kansas City Chiefs	| WAS	| Washington Redskins
 
 ## Stats 
 
+> Example request Stats #1
+
+```json
+{
+  "channel":"stats", 
+  "statType" : "passing", 
+  "gameId" : "2016101604", 
+  "playerId" : "00-0027973",
+  "uuid": "[uuid]"
+ }
+
+```
+> Example request Stats #2
+
+```json
+{
+    "channel":"stats", 
+    "lastName" : "Brees", 
+    "firstName" : "Drew", 
+    "year": 2017, "week" : 1, 
+    "seasonPhase" : "Regular", 
+    "statType" : "passing",
+    "uuid": "[uuid]"
+}
+```
+
+
+
 > Example of Stats data
 
 ```json
@@ -732,31 +802,11 @@ KC	| Kansas City Chiefs	| WAS	| Washington Redskins
 
 ```
 
-This request implements a websocket channel called <span style="color:red"> stats </span>.  It returns the data for an individual <span style="color:red"> player </span> or <span style="color:red"> game </span>.
-
-**Example Data Requests**
-
- Example 1 {
-  "channel":"stats", 
-  "statType" : "passing", 
-  "gameId" : "2016101604", 
-  "playerId" : "00-0027973"
- }
-
-
-  Example 2 {
-    "channel":"stats", 
-    "lastName" : "Brees", 
-    "firstName" : "Drew", 
-    "year": 2017, "week" : 1, 
-    "seasonPhase" : "Regular", 
-    "statType" : "passing"
-   }
-
+The <span style="color:red"> Stats </span> channel returns data for an individual <span style="color:red"> player </span> or <span style="color:red"> game </span>.
 
 To query by <span style="color:red"> *gameId* </span> and <span style="color:red"> *playerId* </span>:
 
-**Required fields**
+**Required field for Stats by Id**
 
 
 Field | Type | Example
@@ -770,7 +820,7 @@ Field | Type | Example
 
 To query by <span style="color:red"> *name* </span> and <span style="color:red"> *week* </span>:
 
-**Required fields**
+**Required fields for Stats by Name and Week**
 
 Field | Type | Example
 ------ | ------- | -----
@@ -791,10 +841,27 @@ Field | Type | Example
 
 ## Info
 
+> Example equest Info
 
-**Example Request**
+```json
+{
+  "channel": "info", 
+  "uuid": "[uuid]"}
+```
 
-{channel: "info", "uuid": "[uuid]"}
+> Example of Info data
+
+```json
+{  
+   "uuid":"123e4567-e89b-12d3-a456-426655440000",
+   "data":{  
+      "seasonYear":"2018-2019",
+      "seasonPhase":"Regular",
+      "version":0,
+      "lastUpdated":"2018-11-15T21:58:50.490Z"
+```
+
+The <span style="color:red"> Info </span> channel returns high level informatoin of the current stauts of the <span style="color:red"> NBA </span> endpoint. 
 
 Field | Type | Example
 ------ | ----- | -------
@@ -802,6 +869,30 @@ Field | Type | Example
 
 
 ## Games
+
+> Example request Games
+
+```json
+{
+  "channel": "games", 
+  "year": 2018, 
+  "month": 11, 
+  "day": 24, 
+  "uuid": "[uuid]"
+}
+```
+
+> Example request Games with TeamId
+
+```json
+{
+  "channel": "games", 
+  "year": 2016, "month": 12, 
+  "day": 20, 
+  "teamId": "CHI", 
+  "uuid": "[uuid]"
+}
+```
 
 > Example Games data
 
@@ -903,10 +994,7 @@ Field | Type | Example
 }
 ```
 
-**Example Request**
-
-{"channel": "games", "year": 2018, "month": 11, "day": 24, "uuid": "[uuid]"}
-
+The <span style="color:red"> Games </span> channel returns statistic about specific games played.  See Example Game Data.
 
 **Required Fields**
 
@@ -924,14 +1012,24 @@ Field | Type | Example
 
 To search for a game by a specific team, add an optional field for <span style="color:red"> teamID </span>
 
-{"channel": "games", "year": 2016, "month": 12, "day": 20, "teamId": "CHI", "uuid": "[uuid]"}
 
 <a href="#NBATeamID">See Team ID Table</a>
 
 
 ## Players
 
-> Example Player data (Kevin Durant)
+> Example request Players
+
+```json
+{
+  "channel": "players", 
+  "lastName": "Durant", 
+  "firstName": "Kevin", 
+  "uuid": "[uuid]"
+}
+```
+
+> Example Players data (Kevin Durant)
 
 ```json
 {  
@@ -953,9 +1051,7 @@ To search for a game by a specific team, add an optional field for <span style="
 }
 ```
 
-**Example Requests**
-
-{"channel": "players", "lastName": "Durant", "firstName": "Kevin", "uuid": "[uuid]"}
+The <span style="color:red"> Players </span> channel returns biographical information about specific players. For individual player statistics, see the <span style="color:red"> Stats </span> channel 
 
 **Required Fields**
 
@@ -968,6 +1064,35 @@ Field | Type | Example
 
 
 ## Teams
+
+> Example request for Roster
+
+```json
+{
+  "channel": "team", 
+  "retrieve": "roster", 
+  "uuid": "[uuid]"
+}
+```
+> Example request for Schedule 
+
+```json
+{
+  "channel": "team", 
+  "retrieve": "schedule", 
+  "uuid": "[uuid]"
+}
+```
+> Example request with Year
+
+```json
+{
+  "channel": "team", 
+  "retrieve": "schedule", 
+  "season": "2016-2017", 
+  "uuid": "[uuid]"
+}
+```
 
 > Example of Team Schedule (Chicago Bulls)
 
@@ -994,13 +1119,7 @@ Field | Type | Example
 ...
 
 ```
-**Example Requests**
-
-{"channel": "team", "retrieve": "roster", "uuid": "[uuid]"}
-
-{"channel": "team", "retrieve": "schedule", "uuid": "[uuid]"}
-
-{"channel": "team", "retrieve": "schedule", "season": "2016-2017", "uuid": "[uuid]"}
+The <span style="color:red"> Teams" </span> channel returns information such as *rosters* or *schedules* for specific teams.  
 
 **Required Fields**
 
@@ -1041,7 +1160,32 @@ DEN	| Denver Broncos | WAS  | Washington Wizards
 
 ## Stats 
 
-> Example of Player Stats (Kevin Durant)
+> Example request Stats by ID
+
+```json
+{
+  "channel": "stats", 
+  "gameId": "21600854", 
+  "playerId": "201142", 
+  "uuid": "[uuid]"
+}
+```
+
+> Example request for Stats by Name
+
+```json
+{
+  "channel": "stats", 
+  "lastName": "Durant", 
+  "firstName": "Kevin", 
+  "year": 2017, 
+  "month": 12, 
+  "day": 12, 
+  "uuid": "[uuid]"
+}
+```
+
+> Example of Player Stats data (Kevin Durant)
 
 ```json
 {  
@@ -1071,14 +1215,9 @@ DEN	| Denver Broncos | WAS  | Washington Wizards
 }`
 ```
 
+The <span style="color:red"> Stats </span> channel returns data for individual players and allows you to query by <span style="color:red"> gameId </span>, <span style="color:red"> playerId </span> or by specific player <span style="color:red"> name </span>.
 
-**Example Requests for Stats by ID**
-
-{"channel": "stats", "gameId": "21600854", "playerId": "201142", "uuid": "[uuid]"}
-
-
-
-**Required Fields**
+**Required Fields for Stats by Id**
 
 Field | Type | Example 
 ------ | ------ | ------
@@ -1087,9 +1226,8 @@ Field | Type | Example
 <span style="color:red"> gameId </span> | String  | <span style="color:red"> "21600854" </span>
 <span style="color:red"> playerId </span>  | String | <span style="color:red"> "201142" </span>
 
-**Example Requests for Stats by Name**
 
-{"channel": "stats", "lastName": "Durant", "firstName": "Kevin", "year": 2017, "month": 12, "day": 12, "uuid": "[uuid]"}
+**Required Field for Stats by Name**
 
 Field | Type | Example
 ------| -----| ---------
