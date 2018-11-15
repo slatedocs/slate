@@ -87,12 +87,12 @@
 ```
 
 <span class="tryit" id="message-broadcast-tryit"></span>
-Sends a broadcast message. Only site admins can send messages to everyone. Managers can send messages to the workgroups they manage.
+Sends a broadcast message. Only site admins can send messages to everyone. Managers can send messages to the workgroups they manage; coordinators can do the same, if the site is set to allow it.
 
 #### Required Parameters
 
 * **subject** - text string of the message subject
-* **level** - array of strings for what level of accounts to send to. For workgroup messages: `member`, `coordinator`, `manager`; for site messages: `member`, `team_mgr`, `site_admin`
+* **level** - array of strings for what level of accounts to send to. For site messages: `member`, `team_mgr`, `site_admin`; For workgroup messages: `member`, `coordinator`, `manager` (ignored for coordinators)
 * **workgroups** - array of workgroup IDs to send to _(required unless site admin)_
 
 #### Optional Parameters
