@@ -329,7 +329,7 @@ Field | Type | Exchanges Supported
    "exchange":"binance",
    "symbol":"BTCUSDT",
    "duration":10000,
-   "event":"subscribed"
+   "event":"payment received"
 }{  
    "uuid":"8dda8625-2946-4500-8dd5-13c78d2f42b8",
    "data":{  
@@ -402,7 +402,7 @@ Field |  Type | Exchanges Supported
       "exchange":"bitfinex",
       "symbol":"BTCUSD",
       "duration":15000,
-      "event":"subscribed"
+      "event":"payment received"
    }{  
       "uuid":"8dda8625-2946-4500-8dd5-13c78d2f42b8",
       "data":{  
