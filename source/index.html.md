@@ -213,7 +213,8 @@ In the event of maintenance or service interruption, we will refund any remainin
    "exchange":"binance",
    "duration":120000,
    "refundInvoice":"lnbcrt1pdace6qpp5my6nc58d50r5gk...",
-    "uuid":"[uuid]"}
+    "uuid":"[uuid]"
+}
 ```
 
 > Example Tickers data
@@ -305,7 +306,8 @@ Field | Type | Exchanges Supported
    "exchange":"binance",
    "duration":120000,
    "refundInvoice":"lnbcrt1pdace6qpp5my6nc58d50r5gk38ynyz...",
-   "uuid":"[uuid]"}
+   "uuid":"[uuid]"
+}
 ```
 
 > Example Trades data
@@ -377,7 +379,8 @@ Field |  Type | Exchanges Supported
   "exchange":"bitfinex", 
   "duration":15000,
   "refundInvoice":"lnbcrt1pdace6qpp5my6nc58d50r5...",
-  "uuid":"[uuid]"}
+  "uuid":"[uuid]"
+}
 ```
 
 > Example Order Books data
@@ -463,8 +466,9 @@ This provides a check and confirmation on the status of the API.
 ```json
 {
   "channel":"games", 
-  "week":1, "seasonPhase" : 
-  "Regular", "year" : 2017, 
+  "week":1, 
+  "seasonPhase" : "Regular", 
+  "year" : 2017, 
   "uuid": "[uuid]"
 }
 ```
@@ -598,7 +602,8 @@ Field | Type | Example
   "channel": "team", 
   "teamId": "CHI", 
   "retrieve": "roster", 
-  "uuid": "[uuid]"}
+  "uuid": "[uuid]"
+}
 ```
 
 > Example request Rosters in Year
@@ -652,7 +657,8 @@ Field | Type | Example
   "channel": "team", 
   "teamId": "CHI", 
   "retrieve": "schedule", 
-  "uuid": "[uuid]"}
+  "uuid": "[uuid]"
+}
 ```
 
 
@@ -846,7 +852,8 @@ Field | Type | Example
 ```json
 {
   "channel": "info", 
-  "uuid": "[uuid]"}
+  "uuid": "[uuid]"
+}
 ```
 
 > Example of Info data
