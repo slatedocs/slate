@@ -1,6 +1,6 @@
 # Product Data
 
-Along with the technical data described in the <a href="#schema">Schema</a> , BBOXX collects telemetry data such as Current, Voltage and Temperature (amongst others) from each unit. This time-series data is held in a separate time-series database.
+Along with the technical data described in the <a href="#schema">Schema</a> , BBOXX collects telemetry data such as Current, Voltage and Temperature (amongst a range of others) from each unit. This time-series data is held in a separate time-series database.
 
 BBOXX uses <a href="https://docs.influxdata.com/influxdb/v1.0/">InfluxDB</a> as it's time-series database.
 
@@ -8,13 +8,65 @@ BBOXX uses <a href="https://docs.influxdata.com/influxdb/v1.0/">InfluxDB</a> as 
 
 InfluxDB uses <a href="https://docs.influxdata.com/influxdb/v1.0/concepts/key_concepts/#measurement">`measurements`</a>, <a href="https://docs.influxdata.com/influxdb/v1.0/concepts/key_concepts/#field-set">`fields`</a> and <a href="https://docs.influxdata.com/influxdb/v1.0/concepts/key_concepts/#tag-set">`tags`</a> to uniquely identify data.
 
+All `measurements` are stored inside `retention policies`. 
 A `measurement` is a logical grouping of streams of incoming data.
 A `field` describes a single stream like `current`, `voltage` or `temperature`.
 The `tags` identify the unit that the data is generated from.
 
+All data recorded from a unit is held in the relevant `field`. 
+Some `measurements`, and some fields with are currently only used by certain products. 
+Also, only certain units are currently using certain `fields` as well (e.g device usage disaggregation)
 
-All data recorded from a unit is held in the relevant `field` in a measurement called `"telemetry"`.
-Each datapoint is then tagged with the <a href="#product">product_imei</a>.
+There are several `rentention policies` and `measurements` inside the Bboxx instance of InfluxDB. Below is an overview of some of the fields inside the core measurements.
+
+The `telemetry` measurement from the `telemetry_rp` retention policy contains the following fields:
+
+field | data-type
+ ----:|:--- | ---
+`ac_current` | float
+`ac_voltage` | float
+`active_power` | float
+`apparent_power` | float
+`charge_current` | float
+`current` | float
+`current_in` | float
+`current_out` | float
+`dc_load_current` | float
+`energy` | float
+`pack_current` | float
+`panel_voltage` | float
+`product_imei` | integer
+`pulse_count` | integer?
+`state_of_charge_percent` | integer
+`state_of_charge_wh` | float
+`temperature` | float
+`usb_current` | float
+`voltage` | float
+`voltage_cell_1` | float
+`voltage_cell_2` | float 
+`voltage_cell_3` | float
+`voltage_cell_4` | float    
+
+The `analysis` measurement from the `analysis_rp` contains the following fields:
+
+field | data-type
+ ----:|:--- | ---
+`discharge_ah` | float
+`discharge_end` | integer
+`discharge_imax` | float
+`discharge_vmax` | float
+`discharge_vmin` | float
+`discharge_wh` | float
+`energy_in` | float
+`energy_out` | float
+`gap_end` | float
+`lvd` | float
+`state_of_charge` | float
+
+All products use the `telemetry` measurement to record data, so we'll be using that in our examples.
+
+Inside `telemetry` datapoint is tagged with the <a href="#product">product_imei</a>. However some measurements
+have different tags. 
 
 ## Example 1
 > InfluxDB schema for a single unit storing I, V, T
@@ -36,7 +88,7 @@ This unit has 3 things being recorded:
 * voltage (V)
 * temperature (T)
 
-The data would therefore be recorded in influx as follows (see right):
+The data would therefore be recorded in Influx as follows (see right):
 
 ## Example 2
 > New schema for the 'telemetry' measurement with a second unit adding data.
@@ -69,6 +121,9 @@ The influx data would therefore be now look like this (see right):
 
 Note that two new `fields` have been added `current_in`, and `current_out` (abbreviated for readability), which are null for unit 4001 but filled for unit 7933. The telemetry measurement can support arbitrary new fields from a unit.
 
+As it currently stands, the 'telemetry' measurement currently has 24 fields in use, although not all units are
+using these measurements. The fields are:
+`time`,  `ac_current`, `ac_voltage`, `active_power`, `apparent_power`, `charge_current`, `current`, `current_in`,      `current_out`, `dc_load_current energy`, `pack_current`, `panel_voltage`, `product_imei`, `pulse_count`, `state_of_charge_percent`, `state_of_charge_wh`, `temperature`, `usb_current voltage`, `voltage_cell_1`, `voltage_cell_2`, `voltage_cell_3`, `voltage_cell_4`
 
 Users can query data relating to each product, specifying fields and tags as desired. See <a href="#reading-data-for-a-product">Reading Data for a Product</a> for more information.
 
@@ -316,6 +371,12 @@ time                 current  product_imei    voltage  temperature
         u'current': [
             [1.234, u'2016-01-01T00:00:00Z'], [2.234, u'2016-01-01T04:00:00Z'], [3.234, u'2016-01-01T08:00:00Z'], [1.234, u'2016-01-01T12:00:00Z'], [2.345, u'2016-01-01T16:00:00Z'], [2.678, u'2016-01-01T20:00:00Z'], [2.91, u'2016-01-02T00:00:00Z'], [2.345, u'2016-01-02T04:00:00Z'], [2.678, u'2016-01-02T08:00:00Z'], [2.91, u'2016-01-02T12:00:00Z'], [2.345, u'2016-01-02T16:00:00Z'], [2.678, u'2016-01-02T20:00:00Z'], [2.91, u'2016-01-03T00:00:00Z']
         ],
+        u'current_in': [
+            [0, u'2016-01-01T00:00:00Z'], [0, u'2016-01-01T04:00:00Z'], [0, u'2016-01-01T08:00:00Z'], [0, u'2016-01-01T12:00:00Z'], [0, u'2016-01-01T16:00:00Z'], [0, u'2016-01-01T20:00:00Z'], [0, u'2016-01-02T00:00:00Z'], [0, u'2016-01-02T04:00:00Z'], [0, u'2016-01-02T08:00:00Z'], [0, u'2016-01-02T12:00:00Z'], [0, u'2016-01-02T16:00:00Z'], [0, u'2016-01-02T20:00:00Z'], [0, u'2016-01-03T00:00:00Z']
+        ],
+        u'current_out': [
+            [1.234, u'2016-01-01T00:00:00Z'], [2.234, u'2016-01-01T04:00:00Z'], [3.234, u'2016-01-01T08:00:00Z'], [1.234, u'2016-01-01T12:00:00Z'], [2.345, u'2016-01-01T16:00:00Z'], [2.678, u'2016-01-01T20:00:00Z'], [2.91, u'2016-01-02T00:00:00Z'], [2.345, u'2016-01-02T04:00:00Z'], [2.678, u'2016-01-02T08:00:00Z'], [2.91, u'2016-01-02T12:00:00Z'], [2.345, u'2016-01-02T16:00:00Z'], [2.678, u'2016-01-02T20:00:00Z'], [2.91, u'2016-01-03T00:00:00Z']
+        ],
         u'voltage': [
             [14.243, u'2016-01-01T00:00:00Z'], [14.723, u'2016-01-01T04:00:00Z'], [14.826, u'2016-01-01T08:00:00Z'], [13.284, u'2016-01-01T12:00:00Z'], [12.345, u'2016-01-01T16:00:00Z'], [12.678, u'2016-01-01T20:00:00Z'], [12.91, u'2016-01-02T00:00:00Z'], [12.345, u'2016-01-02T04:00:00Z'], [12.678, u'2016-01-02T08:00:00Z'], [12.91, u'2016-01-02T12:00:00Z'], [12.345, u'2016-01-02T16:00:00Z'], [12.678, u'2016-01-02T20:00:00Z'], [12.91, u'2016-01-03T00:00:00Z']
         ],
@@ -344,6 +405,8 @@ time                 current  product_imei    voltage  temperature
             u'tags': {u'product_imei': u'000000000000000'},
             u'measurement': u'telemetry'}
             u'current': [[2.91, u'2016-01-03T00:00:00Z']],
+            u'current_in': [[2.91, u'2016-01-03T00:00:00Z']],
+            u'current_out': [[2.91, u'2016-01-03T00:00:00Z']],
             u'voltage': [[12.91, u'2016-01-03T00:00:00Z']],
             u'temperature': [[21.91, u'2016-01-03T00:00:00Z']],
         }
@@ -410,6 +473,23 @@ Where `<influx data structure>` is as follows:
 }  
 </code>
 
+**NOTE** if the get request is asking for device disaggregation data, then `<influx data structure>` will look more like this:
+
+{  
+&emsp;&emsp;"measurement": `<measurement name>`,  
+&emsp;&emsp;"tags": {  
+&emsp;&emsp;&emsp;&emsp;`<tagName1>`: `<tagValue1>`,  
+&emsp;&emsp;&emsp;&emsp;`<tagName2>`: `<tagValue2>`, 
+&emsp;&emsp;&emsp;&emsp;`<tagName3>`: `<tagValue3>`,  
+&emsp;&emsp;&emsp;&emsp;etc..  
+&emsp;&emsp;},  
+&emsp;&emsp;`<fieldName1>`: [[`<value>`, `<timestamp>`],[`<value>`, `<timestamp>`],[`<value>`, `<timestamp>`]],  
+&emsp;&emsp;`<fieldName2>`: [[`<value>`, `<timestamp>`],[`<value>`, `<timestamp>`],[`<value>`, `<timestamp>`]],  
+&emsp;&emsp;`<fieldName3>`: [[`<value>`, `<timestamp>`],[`<value>`, `<timestamp>`],[`<value>`, `<timestamp>`]],  
+}  
+</code>
+
+
 
 ### Parameters
 
@@ -421,7 +501,7 @@ name | description | default
  ----:|:--- | ---
 `start` | start-time | 7 days ago
 `end` | end-time | now()
-`fields` | fields to query | ["current", "voltage", "temperature"]
+`fields` | fields to query | ["*"]
 `measurement` | measurement to query | "telemetry"
 `limit` | number of data-points to return | No limit
 `where` | an optional <a href="https://docs.influxdata.com/influxdb/v1.0//query_language/data_exploration/#the-where-clause">`WHERE`-clause</a> | None
@@ -430,19 +510,17 @@ name | description | default
 `ds_function` | The downsampling function to apply with `ds_interval` | `mean()`
 
 
-
-
 ### Full Query Examples
 
 If a user queries `/v1/products/<imei>/data` and includes the following parameters:
 
 * `{start: "2016-01-01"}`
 
-Then they can expect to receive `current`, `voltage`, and `temperature` data for the unit specified from the `telemetry` measurement before 2016-01-01 and `now()`. Since `now()` is the default endtime and I,V,T are the default fields.
+Then they can expect to receive all available data from `telemetry` before 2016-01-01 and `now()`. Since `now()` is the default endtime.
 
 A second query with parameters:
 
-<code>
+<code>  
 {  
 &emsp;&emsp;start: "2016-01-01",  
 &emsp;&emsp;end: "2016-02-01",  
@@ -478,7 +556,7 @@ When choosing a function users only need to name the function - do NOT include b
 
 <a href="https://docs.influxdata.com/influxdb/v1.0/query_language/functions/#integral">You can find a full list of available functions here</a>
 
-The default downsampling functin is `mean`
+The default downsampling function is `mean`
 
 ### Available Time Intervals
 Time intervals are specifed as a string in the format: `"[number][unit]"`.  
@@ -556,6 +634,14 @@ A `GET` request to `/v1/influx/data` allows the user to read more general data f
 
 ## Custom Queries
 
+`#######################################################################################################`
+
+** THIS IS SET TO BE REMOVED IN THE NEAR FUTURE! **
+
+Please use `/v1/products/<imei>/data` or `/v1/influx/data` endpoint to query Influx data, and modifiy any existing calls to `/v1/influx/custom_query`.
+
+`#######################################################################################################`
+
 ```python
     url = "https://smartapi.bboxx.co.uk/v1/influx/custom_query"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
@@ -593,5 +679,3 @@ In addition please note that `limit 1` will return 1 result _**per series**_.
 Therefore `SELECT * FROM telemetry limit 1` will return many thousands of results.   
 
 Finally note that in plain-text influxQL queries quotes are important for naming `measurements`, `tags`, `fields` and timestamps. If unsure please check the influx documentation for details of what values should be quoted and what should, and which types of quotes (single/double) to use. 
-
-
