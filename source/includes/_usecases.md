@@ -49,9 +49,9 @@ Our bank integration lets banks build TransferWise payments seamlessly into thei
 **How does it work?**
 
 <ul>
-  <li>*Transparent and fair pricing.* Your customers will get the same price no matter if they make transfers via your bank integration or directly via TransferWise.</li> 
-  <li>*Same great TransferWise service.* Your customers get access to our 24/7 customer support without leaving your own site or app. </li>
-  <li>*Custom solution.* We’ll work together to find and build a solution that works for your bank. There’s no one-size-fits-all approach. Together we’ll decide:
+  <li><b>Transparent and fair pricing</b> - Your customers will get the same price no matter if they make transfers via your bank integration or directly via TransferWise.</li> 
+  <li><b>Same great TransferWise service</b> - Your customers get access to our 24/7 customer support without leaving your own site or app. </li>
+  <li><b>Custom solution</b> - We’ll work together to find and build a solution that works for your bank. There’s no one-size-fits-all approach. Together we’ll decide:
     <ul>
       <li>How do we set up flow of funds? </li>
       <li>How do we handle customer support?</li>
