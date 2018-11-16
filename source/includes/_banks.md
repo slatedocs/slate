@@ -67,14 +67,14 @@ At a high level there are three steps to gaining access to an existing TransferW
 
   `
   https://api.sandbox.transferwise.tech/oauth/authorize?response_type=code&client_id=<your api client id>&redirect_uri=https://www.yourbank.com
-  ```
+  `
   </li>
   <li>The user logs in to TransferWise</li>
   <li> The user agrees to provide access, the TransferWise authorization page then redirects user back to your preconfigured url, including a code you can use to geneate user tokens.
 
   `
   https://www.yourbank.com/?code=[CODE]
-  ```
+  `
   </li>
 </ol>
 
@@ -228,6 +228,7 @@ scope                 | "transfers"                                   | Text
 ## Token Expiry
 
 It is possible that a user's refresh token will become invalid. This could happen for a number of reasons, for example:
+
 * The user revokes access for your application to their account.
 * The user enables enhanced security on their TransferWise account.
 * TransferWise revoke tokens due to a security breach of your client secret.
@@ -244,13 +245,13 @@ If the user has not reclaimed their account then the original `registrationCode`
 
 If the previosuly stored token fails with an error code 400 and error:
 
-```
+```json
 {
     "error": "invalid_grant",
     "error_description": "Invalid user credentials."
 }
 ```
-In this case you can assume the user has reclaimed the account. and pus them through the [get user authorization for existing accounts](#bank-integrations-guide-get-user-authorization-for-existing-accounts) flow.
+In this case you can assume the user has reclaimed the account and push them through the [get user authorization for existing accounts](#bank-integrations-guide-get-user-authorization-for-existing-accounts) flow.
 
 ## Create personal user profile
 
