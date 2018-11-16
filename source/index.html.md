@@ -145,6 +145,17 @@ A successful request will generate a lightning invoice that will look simiar to 
 }
 ```
 
+> Example Info data 
+
+```json
+{  
+   "uuid":"8dda8625-2946-4500-8dd5-13c78d2f42b8",
+   "exchange":"binance",
+   "symbol":"BTCUSDT",
+   "duration":100000,
+   "event":"payment received"
+}
+```
 
 
 To subscribe to a data stream, use the following command format:
@@ -518,7 +529,7 @@ This provides a check and confirmation on the status of the API.
 
 The <span style="color:red"> Games </span> channel returns data for specific games. 
 
-There are two required fields to query NFL Games data:
+The required fields to query NFL Games data are as follows:
 
 **Required fields**
 
@@ -582,7 +593,7 @@ Field | Type | Example
 
 The <span style="color:red"> Players </span> returns data for particular players by <span style="color:red"> name </span>.  
 
-Required fields to request NFL Player data: 
+The required fields to request NFL Player data are as follows: 
 
 **Required Fields**
 
@@ -709,7 +720,7 @@ Field | Type | Example
 Thie <span style="color:red"> *Team* </span> channel returns data for <span style="color:red"> roster </span> or <span style="color:red"> schedule </span> for a given NFL Team given a websocket request.
 
 
-There are two required fields, in addition to [uuid], to request NFL Team & Roster data:
+The equired fields to request NFL Team & Roster data are as follows:
 
 **Required fields**: 
 
