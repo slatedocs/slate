@@ -473,23 +473,28 @@ Where `<influx data structure>` is as follows:
 }  
 </code>
 
-**NOTE** if the get request is asking for device disaggregation data, then `<influx data structure>` will look more like this:
+**NOTE** if the get request is asking for device disaggregation data, then the json response will look more like this:
 
-{  
-&emsp;&emsp;"measurement": `<measurement name>`,  
-&emsp;&emsp;"tags": {  
-&emsp;&emsp;&emsp;&emsp;`<tagName1>`: `<tagValue1>`,  
-&emsp;&emsp;&emsp;&emsp;`<tagName2>`: `<tagValue2>`, 
-&emsp;&emsp;&emsp;&emsp;`<tagName3>`: `<tagValue3>`,  
-&emsp;&emsp;&emsp;&emsp;etc..  
-&emsp;&emsp;},  
-&emsp;&emsp;`<fieldName1>`: [[`<value>`, `<timestamp>`],[`<value>`, `<timestamp>`],[`<value>`, `<timestamp>`]],  
-&emsp;&emsp;`<fieldName2>`: [[`<value>`, `<timestamp>`],[`<value>`, `<timestamp>`],[`<value>`, `<timestamp>`]],  
-&emsp;&emsp;`<fieldName3>`: [[`<value>`, `<timestamp>`],[`<value>`, `<timestamp>`],[`<value>`, `<timestamp>`]],  
-}  
-</code>
-
-
+<code>
+{
+&emsp;"data": [  
+&emsp;&emsp;{  
+&emsp;&emsp;&emsp;&emsp;`"AC0122"`:` 0`,  
+&emsp;&emsp;&emsp;&emsp;`"AC0122_qty"`:` 0`,  
+&emsp;&emsp;&emsp;&emsp;`"LI0011"`:` 1.3`,  
+&emsp;&emsp;&emsp;&emsp;`"LI0011_qty"`:` 1`,  
+&emsp;&emsp;&emsp;&emsp;`"LI0131"`:` 0`,  
+&emsp;&emsp;&emsp;&emsp;`"LI0131_qty"`: `0`,  
+&emsp;&emsp;&emsp;&emsp;`"product_imei"`: `"866710037088082"`,  
+&emsp;&emsp;&emsp;&emsp;`"time"`:` "2018-10-18T00:00:12.9Z"`,  
+&emsp;&emsp;&emsp;&emsp;`"unexplained"`:` 0.29035031155349844`,  
+&emsp;&emsp;&emsp;&emsp;`"unexplained_qty"`:` 1`  
+&emsp;&emsp;}  
+&emsp;],  
+&emsp;"message": "data retrieved successfully",  
+&emsp;"status": "success"  
+}
+</code> 
 
 ### Parameters
 
