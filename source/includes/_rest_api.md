@@ -2,7 +2,9 @@
 The REST API has endpoints for account and order management as well as public market data.
 
 REST API ENDPOINT URL
-https://api.delta.exchange
+
+- Production - https://api.delta.exchange
+- Testnet - https://testnet-api.delta.exchange
 
 <h1 id="delta-exchange-api-products">Products</h1>
 
