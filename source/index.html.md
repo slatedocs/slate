@@ -8,7 +8,8 @@ language_tabs:
 toc_footers: []
 includes:
   - authentication
-  - rest_api.md
+  - rate_limits
+  - rest_api
   - errors
   - websocket_api
 search: true
