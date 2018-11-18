@@ -284,7 +284,9 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the API documentation page</p>
+<p>Welcome to the API documentation page.</p>
+
+<p>This API is currently being hosted on <a href="https://research-stream.herokuapp.com/">Heroku</a> and uses MongoDB Atlas to host the databases.</p>
 
 <p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>.</p>
 <h1 id='index-js-and-db-js'>Index.js and db.js</h1><h2 id='api-setup-code'>API setup code</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">)</span>
@@ -517,8 +519,8 @@ in order to connect the ip address of the computer running this code has to be w
 <p>The two signup endpoints are acces via the routes </p>
 
 <ul>
-<li>/user/registerResearcher </li>
-<li>/user/registerParticipant</li>
+<li>https://research-stream.herokuapp.com/user/registerResearcher </li>
+<li>https://research-stream.herokuapp.com/user/registerParticipant</li>
 </ul>
 <h2 id='login-endpoint'>Login endpoint</h2>
 <blockquote>
@@ -560,7 +562,7 @@ The login endpoint saves a user&#39;s unique ID to a session state to that it ca
 <p>Login is accessed via the endpoint</p>
 
 <ul>
-<li>/user/login</li>
+<li>https://research-stream.herokuapp.com/user/login</li>
 </ul>
 <h1 id='studies'>Studies</h1><h2 id='study-routes'>Study Routes</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
 <span class="kr">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">express</span><span class="p">.</span><span class="nx">Router</span><span class="p">();</span>
@@ -638,6 +640,12 @@ The login endpoint saves a user&#39;s unique ID to a session state to that it ca
 <span class="p">};</span>
 </code></pre>
 <p>Creates a study according to the <a href="#study-model">study model</a> and saves it to the studies collection of the database.</p>
+
+<p>This endpoint can be accessed through</p>
+
+<ul>
+<li>https://research-stream.herokuapp.com/study/get</li>
+</ul>
 <h2 id='get-all-studies'>get all studies</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../db'</span><span class="p">);</span>
 
 <span class="nx">exports</span><span class="p">.</span><span class="nx">studyGet</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
@@ -670,7 +678,7 @@ It need to be modefied to return an amount and an endpoint needs to be added to 
 <p>accessible by</p>
 
 <ul>
-<li>/study/get</li>
+<li>https://research-stream.herokuapp.com/study/get</li>
 </ul>
 <h1 id='todo'>TODO</h1>
 <ol>
