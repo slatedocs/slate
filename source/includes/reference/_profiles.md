@@ -38,7 +38,7 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/profiles \
 
 Create personal user profile.
 Same person cannot have multiple active duplicate user profiles.
-Thus creating multiple profiles with the same details will fail.
+Thus creating multiple profiles with the same details will fail. Use the `access token` you received to act on behalf of the user in the `Authorization` header.
 
 ### Request
 
