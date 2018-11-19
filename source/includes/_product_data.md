@@ -36,7 +36,7 @@ field | data-type
 `pack_current` | float
 `panel_voltage` | float
 `product_imei` | integer
-`pulse_count` | integer?
+`pulse_count` | integer
 `state_of_charge_percent` | integer
 `state_of_charge_wh` | float
 `temperature` | float
