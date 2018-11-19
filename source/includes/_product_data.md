@@ -14,8 +14,7 @@ A `field` describes a single stream like `current`, `voltage` or `temperature`.
 The `tags` identify the unit that the data is generated from.
 
 All data recorded from a unit is held in the relevant `field`. 
-Some `measurements`, and some fields with are currently only used by certain products. 
-Also, only certain units are currently using certain `fields` as well (e.g device usage disaggregation)
+Some `measurements`, and some fields are currently only used by certain products. 
 
 There are several `rentention policies` and `measurements` inside the Bboxx instance of InfluxDB. Below is an overview of some of the fields inside the core measurements.
 
@@ -36,7 +35,7 @@ field | data-type
 `pack_current` | float
 `panel_voltage` | float
 `product_imei` | integer
-`pulse_count` | integer?
+`pulse_count` | integer
 `state_of_charge_percent` | integer
 `state_of_charge_wh` | float
 `temperature` | float
@@ -120,10 +119,6 @@ This unit has 5 things being recorded:
 The influx data would therefore be now look like this (see right):
 
 Note that two new `fields` have been added `current_in`, and `current_out` (abbreviated for readability), which are null for unit 4001 but filled for unit 7933. The telemetry measurement can support arbitrary new fields from a unit.
-
-As it currently stands, the 'telemetry' measurement currently has 24 fields in use, although not all units are
-using these measurements. The fields are:
-`time`,  `ac_current`, `ac_voltage`, `active_power`, `apparent_power`, `charge_current`, `current`, `current_in`,      `current_out`, `dc_load_current energy`, `pack_current`, `panel_voltage`, `product_imei`, `pulse_count`, `state_of_charge_percent`, `state_of_charge_wh`, `temperature`, `usb_current voltage`, `voltage_cell_1`, `voltage_cell_2`, `voltage_cell_3`, `voltage_cell_4`
 
 Users can query data relating to each product, specifying fields and tags as desired. See <a href="#reading-data-for-a-product">Reading Data for a Product</a> for more information.
 
@@ -286,7 +281,7 @@ response | `200`
 > More general data can be written like this:
 
 ```python
-    url = "https://smartapi.bboxx.co.uk/v1/influx/data"
+    url = "https://smartapi.bboxx.co.uk/v1/products/<imei>/data"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     data = json.dumps({
@@ -316,15 +311,12 @@ response | `200`
     }
 ```
 
-If a user wishes to store data that doesn't relate to a specific product they can send a `POST` the more general `/v1/influx/data` endpoint with data in the same format as before.
-
 <aside class="notice">Note that this endpoint cannot auto-assign a <a href="#product">product_imei</a> tag so all fields and tags must be explicitly stated in the request.</aside>
-
 
 ### POST
      | value
  ----:|:---
-endpoint | `/v1/influx/data`
+endpoint | `/v1/products/<imei>/data`
 method | `POST`
 url_params | None
 query params |  None
@@ -506,7 +498,7 @@ name | description | default
  ----:|:--- | ---
 `start` | start-time | 7 days ago
 `end` | end-time | now()
-`fields` | fields to query | ["*"]
+`fields` | fields to query | "*" (all fields)
 `measurement` | measurement to query | "telemetry"
 `limit` | number of data-points to return | No limit
 `where` | an optional <a href="https://docs.influxdata.com/influxdb/v1.0//query_language/data_exploration/#the-where-clause">`WHERE`-clause</a> | None
@@ -620,30 +612,13 @@ To compute the hourly maximum of a series:
 </code>
 
 
-## Reading General Data
-
-A `GET` request to `/v1/influx/data` allows the user to read more general data from influx that doesn't relate to a specific product_imei. The parameter syntax and defaults are the same.
-
-
-<aside class="notice">Note! A <a href="#product">product_imei</a> must be explicity stated if required when using this endpoint.</aside>
-
-`Tags` are specified in the `GET` request as a JSON dictionary of key/value pairs. For example:
-
-<code>
-{  
-&emsp;&emsp;start: "2016-01-01",  
-&emsp;&emsp;end: "2016-02-01",  
-&emsp;&emsp;tags: json.dumps({"product_imei": 111010101010101010})  
-}
-</code>
-
 ## Custom Queries
 
 `#######################################################################################################`
 
 ** THIS IS SET TO BE REMOVED IN THE NEAR FUTURE! **
 
-Please use `/v1/products/<imei>/data` or `/v1/influx/data` endpoint to query Influx data, and modifiy any existing calls to `/v1/influx/custom_query`.
+Please use `/v1/products/<imei>/data` to query Influx data, and modifiy any existing calls to `/v1/influx/custom_query`.
 
 `#######################################################################################################`
 
