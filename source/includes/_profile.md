@@ -283,7 +283,6 @@ Error Code | Meaning
 -32014 | Unsupported asset
 -32017 | Invalid completed status
 
-
 ## FetchCompetencies
 
 ```shell
