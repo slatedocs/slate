@@ -58,7 +58,7 @@ defmodule YourApp.Web do
       <span>use ScoutApm.Instrumentation</span>
       ...</pre>
 
-    <p class="smaller">Instrument Ecto queries. In <code>config/config.exs</code>:</p>
+    <p class="smaller">Instrument <strong>Ecto 2</strong>. In <code>config/config.exs</code>:</p>
     <pre class="terminal">
 # config/config.exs
 <span>import_config "scout_apm.exs"</span>
@@ -67,6 +67,21 @@ defmodule YourApp.Web do
   loggers: [{Ecto.LogEntry, :log, []},
             {ScoutApm.Instruments.EctoLogger, :log, []}]</span></pre>
 
+
+    <p class="smaller">Instrument <strong>Ecto 3</strong>. In <code>lib/my_app/repo.ex</code>:</p>
+<pre class="terminal">
+# lib/my_app/repo.ex
+defmodule MyApp.Repo do
+  use Ecto.Repo,
+    otp_app: :my_app,
+    adapter: Ecto.Adapters.Postgres
+<span>
+    def init(_, opts) do
+      :ok = ScoutApm.Instruments.EctoTelemetry.attach(__MODULE__)
+      {:ok, opts}
+    end
+</span>end
+</pre>
 
     <p class="smaller">Instrument Templates. In <code>config/config.exs</code>:
     </p>
