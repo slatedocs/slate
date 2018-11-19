@@ -238,10 +238,10 @@ Error Code | Meaning
 -32600 | The JSON sent is not a valid Request object
 -32014 | Unsupported asset
 
-## SetAssetComplete
+## SetCompleteAsset
 
 ```shell
-curl --data-binary '{"id":"3", "method":"profile.SetAssetComplete", "params":{"id":1, "completedStatus":"useful"}, "jsonrpc":"2.0"}'
+curl --data-binary '{"id":"3", "method":"profile.SetCompleteAsset", "params":{"id":1, "completedStatus":"useful"}, "jsonrpc":"2.0"}'
   -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
   -H 'content-type:application/json;'
 ```
