@@ -267,8 +267,7 @@ Mark an asset as <code>completed</code> for an user.
 Parameter | Type | Description
 --------- | ------- | -----------
 id | integer | the asset to be completed id
-completedStatus | string | a preset status to define how assets was completed
-Completed status must be equal to one of: "already_know", "useful", "not_relevant"
+completedStatus | string | Completed status must be equal to one of: "already_know", "useful", "not_relevant"
 
 <aside class="success">
 Returns — Message - a success message
