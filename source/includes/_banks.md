@@ -108,6 +108,8 @@ Your website or service can then use this code to obtain the access token to act
 
 If you are building your TransferWise integraion as a native mobile phone app then the redirect URL should be able to handle returning the user to the correct place in the app.
 
+At the point you gain access to a user account you should double check it is the one you were expecting to be given access to - sometimes users can get confused and log in to a different account. Together we want to avoid TransferWise accounts being linked to bank accounts of a different person or business, therefore you should check the user's details once the link is created. Currently you should do this sanity check based on the date of birth of the user but are working on a more robust solution. If the DoB exists but doesn't match then you should not allow the link to be made and inform the user we do not think the accounts match and to get in touch with customer service.
+
 ## Sign up new users via API
 
 If the user doesn't already have a TransferWise account then you can create one for them. The [signup with registration code](#users-sign-up-with-registration-code) feature lets you create new users directly via an API call, without the need to redirect new users to the TransferWise authorization page. This way new users can complete everything without ever leaving your banking app, making a very streamlined flow.
@@ -241,14 +243,14 @@ If you were granted access by an existing user then you should send the user thr
 ### 2. Your application created the user
 In the case you created the user using the [sign up new users via API](#bank-integrations-guide-sign-up-new-users-via-api) flow then the mechanism for regenerating tokens is depenedent on whether the user you created has "reclaimed" their TransferWise account and used our website or apps directly.
 
-If the user has not reclaimed their account then the original `registrationCode` you generated should still be able to generate new tokens for the user. Because of this you should store this code when alongside the created user ID in your database.
+If the user has not reclaimed their account then the original `registrationCode` you generated should still be able to generate new tokens for the user. Because of this you should store this code alongside the created user ID in your database at the point of user generation.
 
 If the previosuly stored token fails with an error code 400 and error:
 
 ```json
 {
-    "error": "invalid_grant",
-    "error_description": "Invalid user credentials."
+  "error": "invalid_grant",
+  "error_description": "Invalid user credentials."
 }
 ```
 In this case you can assume the user has reclaimed the account and push them through the [get user authorization for existing accounts](#bank-integrations-guide-get-user-authorization-for-existing-accounts) flow.
@@ -287,8 +289,14 @@ Please look at [Create quote](#quotes-create) under Full API Reference.
 
 You need to set quote type as "REGULAR".
 
-## Create recipient account
-Please look at [Create recipient account](#recipient-accounts-create) under Full API Reference.
+## Create or select recipient account
+Please look at [Create recipient account](#recipient-accounts-create) under Full API Reference for information on the calls to crerate recipients.
+
+It is also reccomended that you use the `GET accounts` endpoint to load the user's previously used reciepients and allow them to select from them in your user interface. This allows them to only have to create a recipinet once and then re-use it in future, plus it allows exising TransferWise users to use their familiar users from our platform.
+
+You should store a cached copy of the recipients that are _used_ or _created_ by users of your app such that you can load that data again quickly to show in your app, for example a transfer tracking screen might show recipient data.
+
+PLease note, when creating a new transfer always reload the full list of reciepients over our API as cannot be certain the recipients you store a copy of have not been deleted in the meantime.
 
 ## Create transfer
 Please look at [Create transfer](#transfers-create) under Full API Reference.
@@ -307,13 +315,50 @@ Please look at [Track transfer status](#transferwise-payouts-guide-track-transfe
 ## Get updated transfer delivery time estimate
 Please look at [Get transfer delivery time](#transferwise-payouts-guide-get-transfer-delivery-time) under TransferWise Payouts Guide.
 
+## Edge case handling
+This section discusses some edge cases that you should test and handle before going live with your integration.
+
+### Email address considerations
+Due to how getting access to user accounts works the TransferWise platform relies on user email addresses matching between the bank and ourselves. At the point the bank attempts to create a user we check and see if an account already exists for that email address, if so we retun a 409 response and the client application forwards the user to login to TransferWise to do the OAuth grant flow.
+
+This works well when the email addresses match in the first place and aren't updated on either side after the link is established. Of course, this is not always going to be the case so we must consider what happens in either eventuality.
+
+### Non-matching email addresses
+
+If a user already has a TransferWise account and you create a user for the same person under a differnt email address they could end up with a duplicate user account under the second email address. Currently we monitor this behaviour for abuse but we are working on a more robust user creation solution to prevent this occuring.
+
+### Email Change
+
+It is possible to change a user’s email address both at TransferWise and potentially also on the bank platform. These flows can cause complications with the integration.
+
+### Email changed at TransferWise
+
+If a user changes their email address all tokens to the user account are revoked. In this case the bank will receive a 400 when attempting to generate an access_token and as such should follow the same process as described in the [token expiry](#bank-integrations-guide-token-expiry) section above and start the sign up flow from the beginning.
+
+In this case, if the user has changed their email address at TransferWise, it is possible the user will end up with a new TransferWise account using their old email address still held by the bank, or they might link their bank account to a different already existing TransferWise account under the old email address.
+
+### Email changed at the bank
+In this case the tokens will remain valid for the TransferWise account, however, depending on how the user originally linked the account, different things can happen when/if that token expires.
+
+If the bank created the account originally they will be unable to generate tokens using the registration_code they have as the endpoint requires the email address which will now no longer match. To mitigate this it is recommended that the bank store the email that was originally used for signup alongside the registration code and use this rather than the most up to date email address they store for the user.
+
+If the token expires for a user not created by the bank and the user has a new email address at the bank then they can be pushed through the signup flow with this new email address and either have a new account created or link an existing against the new email, as described in [token expiry](#bank-integrations-guide-token-expiry).
+
+The result of many of these flows is that the user may end up with more than one TransferWise account, which is undesirable. Currently we monitor this behaviour for abuse but we are working on a more robust user creation scenario to prevent this occuring.
+
+### Email change mitigation 
+The result of these eventualities are that over time a user of the bank could be linked to more than one TransferWise account and so therefore you will need to be defensive when requesting older user data as the request may fail because we forbid one user to access other user's data. We recommend to keep a local copy of your user's transfer data and update it asynchronously such that older transfers remain accessible to the user in the case where it can no longerbe accessed. You should also make sure to handle these failing calls gracefully and continue to process transfers that can be accessed over the API.
+
+In the event a user is not happy at losing access to their older data or having two accounts is confusing then we can manually update the email addresses to match for the two accounts they wahnt.
+
 ## Going live checklist
 ### 1. Make your integration bulletproof
   * Implement basic retry mechanism to handle potential failures or network interruptions 
   * Implement duplicate prevention mechanism to avoid duplicate payments. Verify that UUID is uniquely generated for each individual payment and its value is kept same in case of retrying.
   * Implement basic logging to help out in debugging and problem solving, if needed.
   * Check that you can handle all possible transfer states during polling of transfer info.
-  * Required data fields for user profile addresses, recipients, and transfers vary for different currencies. Please explore [Recipient Accounts.Requirements](#recipient-accounts-requirements), [Transfers.Requirements](#transfer-requirements) and [Addresses.Requirements](##addresses-requirements).
+  * Handle the potential issues described in [edge case handling](#bank-integrations-guide-edge-case-handling).
+  * Required data fields for user profile addresses, recipients, and transfers vary for different currencies. Please explore [Recipient Accounts.Requirements](#recipient-accounts-requirements), [Transfers.Requirements](#transfer-requirements) and [Addresses.Requirements](#addresses-requirements).
 
 ### 2. Set up security for LIVE environment
   * Make sure you have received and successfully decrypted Live API credentials, storing them securely.
@@ -326,3 +371,5 @@ Please look at [Get transfer delivery time](#transferwise-payouts-guide-get-tran
   * We reccomend launching a limited set of currencies intially to limit the scope of potential issues, please seek guidance from the TransferWise team.
   * Test successful flow and bounce back flow (where funds cannot be delivered). 
   * All set. Switch it on.
+
+
