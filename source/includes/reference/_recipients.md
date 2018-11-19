@@ -1588,7 +1588,7 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
           "profile": <your profile id>,
           "accountHolderName": "<recipient name>",
           "currency": "GHS",
-          "type": "ghana",
+          "type": "ghana_local",
           "details": {
            "legalType": "PRIVATE",
            "bankCode": "030100",
@@ -1601,7 +1601,7 @@ Send payments to Ghana.
 
 Private and business recipients are supported. 
 
-Recipient type = *'ghana'*
+Recipient type = *'ghana_local'*
 
 Required details: bankCode, accountNumber
 
