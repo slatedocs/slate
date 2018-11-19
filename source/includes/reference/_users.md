@@ -13,25 +13,25 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/users/{userId} \
 
 ```json
 {
-  "id": 294205,
-  "name": "Oliver Wilson",
-  "email": "oliver@gmail.com",
+  "id": 101,
+  "name": "Example Person",
+  "email": "person@example.com",
   "active": true,
   "details": {
-    "firstName": "Oliver",
-    "lastName": "Wilson",
-    "phoneNumber": "+3725064992",
+    "firstName": "Example",
+    "lastName": "Person",
+    "phoneNumber": "+37111111111",
     "occupation": "",
     "address": {
       "city": "Tallinn",
       "countryCode": "EE",
-      "postCode": "12112",
+      "postCode": "11111",
       "state": "",
-      "firstLine": "Salu tee 134"
+      "firstLine": "Road 123"
     },
-    "dateOfBirth": "1977-07-01",
-    "avatar": "https://lh6.googleusercontent.com/-XzeFZ2PJE1A/AAAAAAAAAAI/AAAAAAAAAAA/RvuvhXFsqs0/photo.jpg",
-    "primaryAddress": 236532
+    "dateOfBirth": "1977-01-01",
+    "avatar": "https://lh6.googleusercontent.com/photo.jpg",
+    "primaryAddress": 111
   }
 }
 ```
@@ -54,15 +54,75 @@ details.phoneNumber     | Phone number                   | Text
 details.dateOfBirth     | Date of birth                  | YYYY-MM-DD
 details.occupation      | Person occupation              | Text
 details.avatar          | Link to person avatar image    | Text
-details.primaryAddress  | Address object id              | Integer
-details.address.country  | Address country code in 2 digits. "US" for example            | Text
+details.primaryAddress  | Address object id to use in addesses endpoints              | Integer
+details.address.countryCode  | Address country code in 2 digits. "US" for example            | Text
 details.address.firstLine  | Address first line          | Text
 details.address.postCode    | Address post code          | Text
 details.address.city        | Address city name          | Text
 details.address.state  | Address state code State code. Required if country is US, CA, AU, BR. | Text
 details.address.occupation  | User occupation. Required for US, CA, JP         | Text
 
+## Get the currently logged in user
 
+> Example Request:
+
+```shell
+curl -X GET https://api.sandbox.transferwise.tech/v1/me \
+     -H "Authorization: Bearer <your api token>" 
+```
+
+> Example Response:
+
+```json
+{
+  "id": 101,
+  "name": "Example Person",
+  "email": "person@example.com",
+  "active": true,
+  "details": {
+    "firstName": "Example",
+    "lastName": "Person",
+    "phoneNumber": "+37111111111",
+    "occupation": "",
+    "address": {
+      "city": "Tallinn",
+      "countryCode": "EE",
+      "postCode": "11111",
+      "state": "",
+      "firstLine": "Road 123"
+    },
+    "dateOfBirth": "1977-01-01",
+    "avatar": "https://lh6.googleusercontent.com/photo.jpg",
+    "primaryAddress": 111
+  }
+}
+```
+Get authenticated user details for the user's token submitted in the `Authorization` header. Response includes also personal user profile info.
+
+### Request
+**`GET https://api.sandbox.transferwise.tech/v1/me`**
+
+
+### Response
+Field                   | Description                    | Format
+---------               | -------                        | -----------
+id                      | userId                         | Integer
+name                    | User full name                 | Text
+email                   | User email                     | Text
+active                  | If user is active or not       | Boolean
+details.firstName       | User first name                | Text
+details.lastName        | User lastname                  | Text
+details.phoneNumber     | Phone number                   | Text
+details.dateOfBirth     | Date of birth                  | YYYY-MM-DD
+details.occupation      | Person occupation              | Text
+details.avatar          | Link to person avatar image    | Text
+details.primaryAddress  | Address object id to use in addesses endpoints              | Integer
+details.address.countryCode  | Address country code in 2 digits. "US" for example            | Text
+details.address.firstLine  | Address first line          | Text
+details.address.postCode    | Address post code          | Text
+details.address.city        | Address city name          | Text
+details.address.state  | Address state code State code. Required if country is US, CA, AU, BR. | Text
+details.address.occupation  | User occupation. Required for US, CA, JP         | Text
 
 ## Sign Up with Registration Code
 
