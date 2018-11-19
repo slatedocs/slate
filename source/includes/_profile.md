@@ -238,6 +238,51 @@ Error Code | Meaning
 -32600 | The JSON sent is not a valid Request object
 -32014 | Unsupported asset
 
+## SetCompleteAsset
+
+```shell
+curl --data-binary '{"id":"3", "method":"profile.SetCompleteAsset", "params":{"id":1, "completedStatus":"useful"}, "jsonrpc":"2.0"}'
+  -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
+  -H 'content-type:application/json;'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "jsonrpc": "2.0",
+	"result": "success",
+	"id": "3"
+}
+```
+
+Mark an asset as <code>completed</code> for an user.
+
+### HTTP Request
+
+`POST https://api.test.filtered.com/v2/jsonrpc/jwt`
+
+### Parameters
+
+Parameter | Type | Description
+--------- | ------- | -----------
+id | integer | the asset to be completed id
+completedStatus | string | Completed status must be equal to one of: "already_know", "useful", "not_relevant"
+
+<aside class="success">
+Returns — Message - a success message
+</aside>
+
+### Errors
+
+Error Code | Meaning
+---------- | -------
+-32603 | Internal Server Error
+-32003 | Mandatory JWT Claim missing
+-32600 | The JSON sent is not a valid Request object
+-32014 | Unsupported asset
+-32017 | Invalid completed status
+
 ## FetchCompetencies
 
 ```shell
