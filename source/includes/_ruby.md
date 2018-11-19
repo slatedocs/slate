@@ -455,6 +455,16 @@ The following configuration settings are available:
       </td>
       <td>No</td>
     </tr>
+    <tr>
+      <th>collect_remote_ip</th>
+      <td>
+        Automatically capture end user IP addresses as part of each trace's context.
+      </td>
+       <td>
+         <code>true</code>
+       </td>
+      <td>No</td>
+    </tr>
   </tbody>
 </table>
 
