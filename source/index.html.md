@@ -218,7 +218,7 @@ In the event of maintenance or service interruption, we will refund any remainin
 > Example Request Tickers
 
 ```json
-{  "event":"unsubscribe",
+{  "event":"subscribe",
    "channel":"tickers",
    "symbol":"BTCUSDT",
    "exchange":"binance",
@@ -315,7 +315,7 @@ Field | Type | Exchanges Supported
    "channel":"trades",
    "symbol":"BTCUSDT",
    "exchange":"binance",
-   "duration":120000,
+   "duration":12000,
    "refundInvoice":"lnbcrt1pdace6qpp5my6nc58d50r5gk38ynyz...",
    "uuid":"[uuid]"
 }
@@ -781,7 +781,8 @@ KC	| Kansas City Chiefs	| WAS	| Washington Redskins
     "channel":"stats", 
     "lastName" : "Brees", 
     "firstName" : "Drew", 
-    "year": 2017, "week" : 1, 
+    "year": 2017, 
+    "week" : 1, 
     "seasonPhase" : "Regular", 
     "statType" : "passing",
     "uuid": "[uuid]"
@@ -850,7 +851,7 @@ Field | Type | Example
 <span style="color:red"> firstName  | String | </span> <span style="color:red"> *Drew* </span>
 <span style="color:red"> lastName | String | </span> <span style="color:red"> *Brees* </span>
 
-# NBA 
+# NBA Data
 
 ## NBA Websocket Endpoint
 
