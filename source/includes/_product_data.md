@@ -1,6 +1,6 @@
 # Product Data
 
-Along with the technical data described in the <a href="#schema">Schema</a> , BBOXX collects telemetry data such as Current, Voltage and Temperature (amongst others) from each unit. This time-series data is held in a separate time-series database.
+Along with the technical data described in the <a href="#schema">Schema</a> , BBOXX collects telemetry data such as Current, Voltage and Temperature (amongst a range of others) from each unit. This time-series data is held in a separate time-series database.
 
 BBOXX uses <a href="https://docs.influxdata.com/influxdb/v1.0/">InfluxDB</a> as it's time-series database.
 
@@ -8,13 +8,64 @@ BBOXX uses <a href="https://docs.influxdata.com/influxdb/v1.0/">InfluxDB</a> as 
 
 InfluxDB uses <a href="https://docs.influxdata.com/influxdb/v1.0/concepts/key_concepts/#measurement">`measurements`</a>, <a href="https://docs.influxdata.com/influxdb/v1.0/concepts/key_concepts/#field-set">`fields`</a> and <a href="https://docs.influxdata.com/influxdb/v1.0/concepts/key_concepts/#tag-set">`tags`</a> to uniquely identify data.
 
+All `measurements` are stored inside `retention policies`. 
 A `measurement` is a logical grouping of streams of incoming data.
 A `field` describes a single stream like `current`, `voltage` or `temperature`.
 The `tags` identify the unit that the data is generated from.
 
+All data recorded from a unit is held in the relevant `field`. 
+Some `measurements`, and some fields are currently only used by certain products. 
 
-All data recorded from a unit is held in the relevant `field` in a measurement called `"telemetry"`.
-Each datapoint is then tagged with the <a href="#product">product_imei</a>.
+There are several `rentention policies` and `measurements` inside the Bboxx instance of InfluxDB. Below is an overview of some of the fields inside the core measurements.
+
+The `telemetry` measurement from the `telemetry_rp` retention policy contains the following fields:
+
+field | data-type
+ ----:|:--- | ---
+`ac_current` | float
+`ac_voltage` | float
+`active_power` | float
+`apparent_power` | float
+`charge_current` | float
+`current` | float
+`current_in` | float
+`current_out` | float
+`dc_load_current` | float
+`energy` | float
+`pack_current` | float
+`panel_voltage` | float
+`product_imei` | integer
+`pulse_count` | integer
+`state_of_charge_percent` | integer
+`state_of_charge_wh` | float
+`temperature` | float
+`usb_current` | float
+`voltage` | float
+`voltage_cell_1` | float
+`voltage_cell_2` | float 
+`voltage_cell_3` | float
+`voltage_cell_4` | float    
+
+The `analysis` measurement from the `analysis_rp` contains the following fields:
+
+field | data-type
+ ----:|:--- | ---
+`discharge_ah` | float
+`discharge_end` | integer
+`discharge_imax` | float
+`discharge_vmax` | float
+`discharge_vmin` | float
+`discharge_wh` | float
+`energy_in` | float
+`energy_out` | float
+`gap_end` | float
+`lvd` | float
+`state_of_charge` | float
+
+All products use the `telemetry` measurement to record data, so we'll be using that in our examples.
+
+Inside `telemetry` datapoint is tagged with the <a href="#product">product_imei</a>. However some measurements
+have different tags. 
 
 ## Example 1
 > InfluxDB schema for a single unit storing I, V, T
@@ -36,7 +87,7 @@ This unit has 3 things being recorded:
 * voltage (V)
 * temperature (T)
 
-The data would therefore be recorded in influx as follows (see right):
+The data would therefore be recorded in Influx as follows (see right):
 
 ## Example 2
 > New schema for the 'telemetry' measurement with a second unit adding data.
@@ -68,7 +119,6 @@ This unit has 5 things being recorded:
 The influx data would therefore be now look like this (see right):
 
 Note that two new `fields` have been added `current_in`, and `current_out` (abbreviated for readability), which are null for unit 4001 but filled for unit 7933. The telemetry measurement can support arbitrary new fields from a unit.
-
 
 Users can query data relating to each product, specifying fields and tags as desired. See <a href="#reading-data-for-a-product">Reading Data for a Product</a> for more information.
 
@@ -231,7 +281,7 @@ response | `200`
 > More general data can be written like this:
 
 ```python
-    url = "https://smartapi.bboxx.co.uk/v1/influx/data"
+    url = "https://smartapi.bboxx.co.uk/v1/products/<imei>/data"
     headers = {'Content-Type': 'application/json', 'Authorization': 'Token token=' + A_VALID_TOKEN}
 
     data = json.dumps({
@@ -261,15 +311,12 @@ response | `200`
     }
 ```
 
-If a user wishes to store data that doesn't relate to a specific product they can send a `POST` the more general `/v1/influx/data` endpoint with data in the same format as before.
-
 <aside class="notice">Note that this endpoint cannot auto-assign a <a href="#product">product_imei</a> tag so all fields and tags must be explicitly stated in the request.</aside>
-
 
 ### POST
      | value
  ----:|:---
-endpoint | `/v1/influx/data`
+endpoint | `/v1/products/<imei>/data`
 method | `POST`
 url_params | None
 query params |  None
@@ -316,6 +363,12 @@ time                 current  product_imei    voltage  temperature
         u'current': [
             [1.234, u'2016-01-01T00:00:00Z'], [2.234, u'2016-01-01T04:00:00Z'], [3.234, u'2016-01-01T08:00:00Z'], [1.234, u'2016-01-01T12:00:00Z'], [2.345, u'2016-01-01T16:00:00Z'], [2.678, u'2016-01-01T20:00:00Z'], [2.91, u'2016-01-02T00:00:00Z'], [2.345, u'2016-01-02T04:00:00Z'], [2.678, u'2016-01-02T08:00:00Z'], [2.91, u'2016-01-02T12:00:00Z'], [2.345, u'2016-01-02T16:00:00Z'], [2.678, u'2016-01-02T20:00:00Z'], [2.91, u'2016-01-03T00:00:00Z']
         ],
+        u'current_in': [
+            [0, u'2016-01-01T00:00:00Z'], [0, u'2016-01-01T04:00:00Z'], [0, u'2016-01-01T08:00:00Z'], [0, u'2016-01-01T12:00:00Z'], [0, u'2016-01-01T16:00:00Z'], [0, u'2016-01-01T20:00:00Z'], [0, u'2016-01-02T00:00:00Z'], [0, u'2016-01-02T04:00:00Z'], [0, u'2016-01-02T08:00:00Z'], [0, u'2016-01-02T12:00:00Z'], [0, u'2016-01-02T16:00:00Z'], [0, u'2016-01-02T20:00:00Z'], [0, u'2016-01-03T00:00:00Z']
+        ],
+        u'current_out': [
+            [1.234, u'2016-01-01T00:00:00Z'], [2.234, u'2016-01-01T04:00:00Z'], [3.234, u'2016-01-01T08:00:00Z'], [1.234, u'2016-01-01T12:00:00Z'], [2.345, u'2016-01-01T16:00:00Z'], [2.678, u'2016-01-01T20:00:00Z'], [2.91, u'2016-01-02T00:00:00Z'], [2.345, u'2016-01-02T04:00:00Z'], [2.678, u'2016-01-02T08:00:00Z'], [2.91, u'2016-01-02T12:00:00Z'], [2.345, u'2016-01-02T16:00:00Z'], [2.678, u'2016-01-02T20:00:00Z'], [2.91, u'2016-01-03T00:00:00Z']
+        ],
         u'voltage': [
             [14.243, u'2016-01-01T00:00:00Z'], [14.723, u'2016-01-01T04:00:00Z'], [14.826, u'2016-01-01T08:00:00Z'], [13.284, u'2016-01-01T12:00:00Z'], [12.345, u'2016-01-01T16:00:00Z'], [12.678, u'2016-01-01T20:00:00Z'], [12.91, u'2016-01-02T00:00:00Z'], [12.345, u'2016-01-02T04:00:00Z'], [12.678, u'2016-01-02T08:00:00Z'], [12.91, u'2016-01-02T12:00:00Z'], [12.345, u'2016-01-02T16:00:00Z'], [12.678, u'2016-01-02T20:00:00Z'], [12.91, u'2016-01-03T00:00:00Z']
         ],
@@ -344,6 +397,8 @@ time                 current  product_imei    voltage  temperature
             u'tags': {u'product_imei': u'000000000000000'},
             u'measurement': u'telemetry'}
             u'current': [[2.91, u'2016-01-03T00:00:00Z']],
+            u'current_in': [[2.91, u'2016-01-03T00:00:00Z']],
+            u'current_out': [[2.91, u'2016-01-03T00:00:00Z']],
             u'voltage': [[12.91, u'2016-01-03T00:00:00Z']],
             u'temperature': [[21.91, u'2016-01-03T00:00:00Z']],
         }
@@ -410,6 +465,28 @@ Where `<influx data structure>` is as follows:
 }  
 </code>
 
+**NOTE** if the get request is asking for device disaggregation data, then the json response will look more like this:
+
+<code>
+{
+&emsp;"data": [  
+&emsp;&emsp;{  
+&emsp;&emsp;&emsp;&emsp;`"AC0122"`:` 0`,  
+&emsp;&emsp;&emsp;&emsp;`"AC0122_qty"`:` 0`,  
+&emsp;&emsp;&emsp;&emsp;`"LI0011"`:` 1.3`,  
+&emsp;&emsp;&emsp;&emsp;`"LI0011_qty"`:` 1`,  
+&emsp;&emsp;&emsp;&emsp;`"LI0131"`:` 0`,  
+&emsp;&emsp;&emsp;&emsp;`"LI0131_qty"`: `0`,  
+&emsp;&emsp;&emsp;&emsp;`"product_imei"`: `"866710037088082"`,  
+&emsp;&emsp;&emsp;&emsp;`"time"`:` "2018-10-18T00:00:12.9Z"`,  
+&emsp;&emsp;&emsp;&emsp;`"unexplained"`:` 0.29035031155349844`,  
+&emsp;&emsp;&emsp;&emsp;`"unexplained_qty"`:` 1`  
+&emsp;&emsp;}  
+&emsp;],  
+&emsp;"message": "data retrieved successfully",  
+&emsp;"status": "success"  
+}
+</code> 
 
 ### Parameters
 
@@ -421,7 +498,7 @@ name | description | default
  ----:|:--- | ---
 `start` | start-time | 7 days ago
 `end` | end-time | now()
-`fields` | fields to query | ["current", "voltage", "temperature"]
+`fields` | fields to query | "*" (all fields)
 `measurement` | measurement to query | "telemetry"
 `limit` | number of data-points to return | No limit
 `where` | an optional <a href="https://docs.influxdata.com/influxdb/v1.0//query_language/data_exploration/#the-where-clause">`WHERE`-clause</a> | None
@@ -430,19 +507,17 @@ name | description | default
 `ds_function` | The downsampling function to apply with `ds_interval` | `mean()`
 
 
-
-
 ### Full Query Examples
 
 If a user queries `/v1/products/<imei>/data` and includes the following parameters:
 
 * `{start: "2016-01-01"}`
 
-Then they can expect to receive `current`, `voltage`, and `temperature` data for the unit specified from the `telemetry` measurement before 2016-01-01 and `now()`. Since `now()` is the default endtime and I,V,T are the default fields.
+Then they can expect to receive all available data from `telemetry` before 2016-01-01 and `now()`. Since `now()` is the default endtime.
 
 A second query with parameters:
 
-<code>
+<code>  
 {  
 &emsp;&emsp;start: "2016-01-01",  
 &emsp;&emsp;end: "2016-02-01",  
@@ -478,7 +553,7 @@ When choosing a function users only need to name the function - do NOT include b
 
 <a href="https://docs.influxdata.com/influxdb/v1.0/query_language/functions/#integral">You can find a full list of available functions here</a>
 
-The default downsampling functin is `mean`
+The default downsampling function is `mean`
 
 ### Available Time Intervals
 Time intervals are specifed as a string in the format: `"[number][unit]"`.  
@@ -537,24 +612,15 @@ To compute the hourly maximum of a series:
 </code>
 
 
-## Reading General Data
-
-A `GET` request to `/v1/influx/data` allows the user to read more general data from influx that doesn't relate to a specific product_imei. The parameter syntax and defaults are the same.
-
-
-<aside class="notice">Note! A <a href="#product">product_imei</a> must be explicity stated if required when using this endpoint.</aside>
-
-`Tags` are specified in the `GET` request as a JSON dictionary of key/value pairs. For example:
-
-<code>
-{  
-&emsp;&emsp;start: "2016-01-01",  
-&emsp;&emsp;end: "2016-02-01",  
-&emsp;&emsp;tags: json.dumps({"product_imei": 111010101010101010})  
-}
-</code>
-
 ## Custom Queries
+
+`#######################################################################################################`
+
+** THIS IS SET TO BE REMOVED IN THE NEAR FUTURE! **
+
+Please use `/v1/products/<imei>/data` to query Influx data, and modifiy any existing calls to `/v1/influx/custom_query`.
+
+`#######################################################################################################`
 
 ```python
     url = "https://smartapi.bboxx.co.uk/v1/influx/custom_query"
@@ -593,5 +659,3 @@ In addition please note that `limit 1` will return 1 result _**per series**_.
 Therefore `SELECT * FROM telemetry limit 1` will return many thousands of results.   
 
 Finally note that in plain-text influxQL queries quotes are important for naming `measurements`, `tags`, `fields` and timestamps. If unsure please check the influx documentation for details of what values should be quoted and what should, and which types of quotes (single/double) to use. 
-
-
