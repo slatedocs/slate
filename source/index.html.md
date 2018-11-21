@@ -13,11 +13,6 @@ toc_footers:
 
 includes:
 
-  - kittens/overview
-  - kittens/get
-  - kittens/show
-  - kittens/delete
-
   - user/overview
   - user/get
   - user/put
@@ -35,6 +30,7 @@ includes:
   - workouts/get
   - workouts/update
   - workouts/index
+  - workouts/delete
 
   - workout summary/overview
   - workout summary/get
@@ -47,50 +43,31 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Wahoo Fitness API! You can use our API to access Wahoo Fitness API endpoints, which can get information on your  user profile and workout history stored in our database.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+We have language bindings in Shell! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 # Authentication
 
 > To authorize, use this code:
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
 
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+  -H "Authorization: Bearer <Token>"
 ```
 
-```javascript
-const kittn = require('kittn');
+> Make sure to replace `<Token>` with your API key.
 
-let api = kittn.authorize('meowmeowmeow');
-```
+Wahoo Fitness uses API keys to allow access to the API. You can register a new Wahoo Fitness API key at our [developer portal](http://developers.wahooligan.com).
 
-> Make sure to replace `meowmeowmeow` with your API key.
+Wahoo Fitness endpoints expect the API key to be included in all API requests to the server in a header that looks like the following:
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+`Authorization: Bearer <Token>`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code><Token></code> with your personal API key.
 </aside>
 
 
