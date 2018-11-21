@@ -92,7 +92,6 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/accounts \
     "user": <your user ID>,
     "active": true
 }
-
 ```
 
 Recipient is a person or institution  who is the ultimate beneficiary of your payment. 
@@ -127,9 +126,8 @@ There are many different variations of bank account details needed depending on 
 <li>Zip code</li>
 </ul>
 
-GBP example is provided here. You can find other currency examples below.<br/>
-Please also look at [Recipients.Requirements](#recipient-accounts-requirements) to figure out which fields are required to create recipients in specific countries.
-
+A GBP example is provided here. You can find other currency examples below.<br/>
+As you can see many of the fields are `null`, in order to know which fields are required for which currency we expose the [Recipients.Requirements](#recipient-accounts-requirements) endpoint.
 
 ### Request
 
@@ -141,7 +139,7 @@ currency              | 3 character currency code                     | Text
 type                  | Recipient type                                | Text
 profile               | Personal or business profile id               | Integer
 accountHolderName     | Recipient full name                           | Text
-details               | Currency specific fields                      | Group
+details               | Currency specific fields                      | Object
 details.legalType     | Recipient legal type: PRIVATE or BUSINESS     | Text
 details.sortCode      | Recipient bank sort code (GBP example)        | Text
 details.accountNumber | Recipient bank account no (GBP example)       | Text
@@ -159,7 +157,7 @@ acccountHolderName    | Recipient full name                           | Text
 currency              | 2 character country code                      | Text
 country               | 3 character currency code                     | Text
 type                  | Recipient type                                | Text
-details               | Currency specific fields                      | Group
+details               | Currency specific fields                      | Object
 details.legalType     | Recipient legal type                          | Text
 details.sortCode      | Recipient bank sort code (GBP example)        | Text
 details.accountNumber | Recipient bank account no (GBP example)       | Text
@@ -258,8 +256,8 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/accounts \
 ```
 If you don't know recipient bank account details you can set up **email recipient** so that TransferWise will collect bank details directly from the recipient. 
 
-TransferWise will then email your recipient with a link to collect their bank account details. 
-Once recipient provides bank account details securely to Transferwise we are able to complete your transfer.
+TransferWise will email your recipient with a link to collect their bank account details. 
+Once your recipient provides bank account details securely to Transferwise we are able to complete your transfer.
 
 
 <aside class="warning">
@@ -502,9 +500,8 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/accounts?profile=<profileId
 ]
 
 ```
-Fetch list of your recipient accounts. Filter by currency and/or user profile Id.
-This list does not currently support pagination.
-Therefore if you have very many recipient accounts defined in your business profile then please filter by currency to ensure a reasonable response time.
+Fetch a list of your recipient accounts. Use the `currency` and `profile` parameters to filter by currency and/or user profile Id.
+This list does not currently support pagination, therefore if you have many recipient accounts defined in your business profile then please filter by currency to ensure a reasonable response time.
 
 
 ### Request
@@ -753,10 +750,10 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/quotes/{quoteId}/account-re
 **` POST https://api.sandbox.transferwise.tech/v1/quotes/{quoteId}/account-requirements`**<br/>
 
 GET and POST account-requirements endpoints help you to figure out which fields are required to create a valid recipient for different currencies.
-You could even build a dynamic user interface on top of these endpoints. 
+You can use this to build a dynamic user interface on top of these endpoints. 
 This is a step-by-step guide on how these endpoints work.
 
-1.Create quote first to specify currencies and transfer amounts. See [Create.Quote](#quotes-create).
+1.First create a quote to specify currencies and transfer amounts. See [Create.Quote](#quotes-create).
 
 2.Call GET /v1/quotes/{quoteId}/account-requirements to get list of fields you need to fill with values in "details" section for creating a valid recipient account. 
 
@@ -771,42 +768,49 @@ In order to create "aba" recipient type you need these top level fields:<br/>
  <li>address.firstLine</li>
 </ul>
 
-Analyze the list of fields. Because refreshRequirementsOnChange=true for field 'address.country' then this indicates that there are additional fields required depending on the selected value.
+Some fields require multiple levels of fields in the details request, for example Country followed by State. This should be handled by the client base don the `refreshRequirementsOnChange` field. In the example above 'address.country' has this field set to true, indicating that there are additional fields required depending on the selected value. To manage this you should create a request with all of the initially requested data and call the `POST account-requirements` endpoint. You will be returned a response similar the previosuly returned data from `GET account-requirements` but with additional fields.
 
-3.Construct a recipient object with top level fields and call POST /v1/quotes/{quoteId}/account-requirements with these value to expose sub fields.  <br/>
+3.For example, construct a recipient object with top level fields and call POST /v1/quotes/{quoteId}/account-requirements with these value to expose sub fields.  <br/>
 For example posting US as country will also add "state" to list of fields.<br/>
-                    {
-                        "type": "aba",
-                        "details": {
-                        	"legalType": "PRIVATE",
-                        	"abartn": "111000025",
-                        	"accountNumber": "12345678",
-                        	"accountType": "CHECKING",
-                        	"address": {
-                        		"country": "US"
-                        	}
-                        }
-                    }
 
-But posting GB as country will not add new fields anything.
+```
+{
+    "type": "aba",
+    "details": {
+      "legalType": "PRIVATE",
+      "abartn": "111000025",
+      "accountNumber": "12345678",
+      "accountType": "CHECKING",
+      "address": {
+        "country": "US"
+      }
+    }
+}
+```
+However, posting GB as country will not add any new fields as GB addresses do not have this extra requirement.
 
-                    {
-                        "type": "aba",
-                        "details": {
-                        	"legalType": "PRIVATE",
-                        	"abartn": "111000025",
-                        	"accountNumber": "12345678",
-                        	"accountType": "CHECKING",
-                        	"address": {
-                        		"country": "US"
-                        	}
-                        }
-                    }
+```
+{
+    "type": "aba",
+    "details": {
+      "legalType": "PRIVATE",
+      "abartn": "111000025",
+      "accountNumber": "12345678",
+      "accountType": "CHECKING",
+      "address": {
+        "country": "US"
+      }
+    }
+}
+```
 
+It is possible that any new fields retuened may _also_ have `refreshRequirementsOnChange` field set to true. Thereofe you must keep iterating on the partially created details object until `POST account-requirements` returns you no new fields that it previously didn't include in the response, you can do this by checking the size of the array returned.
 
-4.So once you get to the point where you have provided values for all fields which have refreshRequirementsOnChange=true then you have complete set of fields to compose a valid request to create an recipient object. 
+4.Once you have built your full reciepient details object you can use it to create a reciepient.
+
 For example this is a valid request to create a recipient with address in US Arizona:
-<br/> POST /v1/accounts:<br/>
+<br/> `POST /v1/accounts`:<br/>
+```
 {
     "profile": your-profile-id,
     "accountHolderName": "John Smith",
@@ -826,6 +830,7 @@ For example this is a valid request to create a recipient with address in US Ari
     	}
     }
 }
+```
 
 
 ### Response
