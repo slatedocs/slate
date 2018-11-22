@@ -136,6 +136,45 @@ also, to do redirections to your own thankyou page. You can use the
 ```js
 window.onLeadSuccess = function(leadId, data_submitted_in_anarock_database) { window.location.href = '/thankyou'; }
 window.onLeadFailure = function(leadId, data_submitted_in_anarock_database) { window.location.href = '/thankyou'; }
+
+// to pass data to your thankyou page
+
+// Thank you page GET request redirection
+window.onLeadSuccess = function(leadId, data_submitted_in_anarock_database) { 
+  var name = data_submitted_in_anarock_database.name
+  var phone = data_submitted_in_anarock_database.phone
+  var email = data_submitted_in_anarock_database.email
+  var country_code = data_submitted_in_anarock_database.country_code
+  window.location.href = '/thankyou?'+'name='+name+'&'+'phone='+phone+'&'+'email='+email+'&'+'country_code='+country_code+'&'+'leadId='+leadId
+}
+window.onLeadFailure = function(leadId, data_submitted_in_anarock_database) { 
+  var name = data_submitted_in_anarock_database.name
+  var phone = data_submitted_in_anarock_database.phone
+  var email = data_submitted_in_anarock_database.email
+  var country_code = data_submitted_in_anarock_database.country_code
+  window.location.href = '/thankyou?'+'name='+name+'&'+'phone='+phone+'&'+'email='+email+'&'+'country_code='+country_code
+  window.location.href = '/thankyou';
+}
+
+window.onLeadSuccess = function(leadId, data_submitted_in_anarock_database) {
+// Thank you page POST request redirection
+  var request = new XMLHttpRequest();
+  request.open('post', '/thankyou.php', true);
+  request.setRequestHeader("Content-type", "application/json");
+  request.onload = function(){}
+  request.onerror = function(){}
+  request.send(JSON.stringify(data_submitted_in_anarock_database));
+}
+
+window.onLeadFailure = function(leadId, data_submitted_in_anarock_database) {
+// Thank you page POST request redirection
+  var request = new XMLHttpRequest();
+  request.open('post', '/thankyou.php', true);
+  request.setRequestHeader("Content-type", "application/json");
+  request.onload = function(){}
+  request.onerror = function(){}
+  request.send(JSON.stringify(data_submitted_in_anarock_database));
+}
 ```
 
 ### Saving Lead to Your Own Database
