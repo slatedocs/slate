@@ -54,7 +54,7 @@ To create transfers on behalf of users you need these building blocks:
 * [Fund transfer](#bank-integrations-guide-fund-transfer)
 
 ### Transfer update polling
-To keep your users informed of the stateus and edtimated time of arrival of their transfer:
+To keep your users informed of the status and estimated time of arrival of their transfer:
 
 * [Transfer status](#bank-integrations-guide-track-transfer-status)
 * [Delivery estimate](#bank-integrations-guide-get-updated-transfer-delivery-time-estimate)
