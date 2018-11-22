@@ -156,8 +156,8 @@ window.onLeadFailure = function(leadId, data_submitted_in_anarock_database) {
   window.location.href = '/thankyou';
 }
 
-window.onLeadSuccess = function(leadId, data_submitted_in_anarock_database) {
 // Thank you page POST request redirection
+window.onLeadSuccess = function(leadId, data_submitted_in_anarock_database) {
   var request = new XMLHttpRequest();
   request.open('post', '/thankyou.php', true);
   request.setRequestHeader("Content-type", "application/json");
@@ -166,8 +166,8 @@ window.onLeadSuccess = function(leadId, data_submitted_in_anarock_database) {
   request.send(JSON.stringify(data_submitted_in_anarock_database));
 }
 
-window.onLeadFailure = function(leadId, data_submitted_in_anarock_database) {
 // Thank you page POST request redirection
+window.onLeadFailure = function(leadId, data_submitted_in_anarock_database) {
   var request = new XMLHttpRequest();
   request.open('post', '/thankyou.php', true);
   request.setRequestHeader("Content-type", "application/json");
