@@ -27,7 +27,7 @@ Please note that there are few restrictions for businesses, please review [Restr
 
 You don’t necessarily need to integrate with the API to make a large number of payouts. We have two ways you can do it: 
 
-* *Batch payments.* Create and send up to 1,000 transfers with just one payment using our [Batch Payments tool](https://transferwise.com/batch](https://transferwise.com/batch). All you need to do is fill a CSV file with all the transfer details, upload it to TransferWise, and pay for the batch. No development effort needed. 
+* *Batch payments.* Create and send up to 1,000 transfers with just one payment using our [Batch Payments tool](https://transferwise.com/batch). All you need to do is fill a CSV file with all the transfer details, upload it to TransferWise, and pay for the batch. No development effort needed. 
 
 * *API integration.* Completely automate your payment process by sending payment orders via the TransferWise API.  
 
