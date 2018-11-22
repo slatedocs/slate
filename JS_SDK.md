@@ -153,7 +153,6 @@ window.onLeadFailure = function(leadId, data_submitted_in_anarock_database) {
   var email = data_submitted_in_anarock_database.email
   var country_code = data_submitted_in_anarock_database.country_code
   window.location.href = '/thankyou?'+'name='+name+'&'+'phone='+phone+'&'+'email='+email+'&'+'country_code='+country_code
-  window.location.href = '/thankyou';
 }
 
 // Thank you page POST request redirection
