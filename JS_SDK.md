@@ -135,7 +135,7 @@ also, to do redirections to your own thankyou page. You can use the
 
 ```js
 window.onLeadSuccess = function(leadId, data_submitted_in_anarock_database) { window.location.href = '/thankyou'; }
-window.onLeadFailure = function(null, data_submitted_in_anarock_database) { window.location.href = '/thankyou'; }
+window.onLeadFailure = function(leadId, data_submitted_in_anarock_database) { window.location.href = '/thankyou'; }
 ```
 
 ### Saving Lead to Your Own Database
