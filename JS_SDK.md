@@ -185,6 +185,12 @@ You can use the function as below
 ```js
 window.onLeadSuccess = function (leadId, data_submitted_in_anarock_database) {
      // Make the API request to your server with leadId and data stored.
+  var request = new XMLHttpRequest();
+  request.open('post', '/server_url', true);
+  request.setRequestHeader("Content-type", "application/json");
+  request.onload = function(){}
+  request.onerror = function(){}
+  request.send(JSON.stringify(data_submitted_in_anarock_database));
 }
 ```
 
