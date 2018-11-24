@@ -23,6 +23,7 @@ Options:
 run_build() {
   bundle exec middleman build --clean
   cp CNAME build/
+  cp swagger.json build/
 }
 
 parse_args() {
