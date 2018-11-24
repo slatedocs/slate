@@ -4,7 +4,6 @@ language_tabs:
   - python: Python
   - shell: Shell
   - ruby: Ruby
-  - javascript: NodeJs
 toc_footers: []
 includes:
   - authentication

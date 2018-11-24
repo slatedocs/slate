@@ -13,7 +13,7 @@
   "basePath" : "/",
   "tags" : [ {
     "name" : "Products",
-    "description" : "Get Products"
+    "description" : "Get Product List, 24hr Ticker"
   }, {
     "name" : "Orders",
     "description" : "Placing Orders, Cancelling Orders, Get Open orders, Change Orders Leverage"
@@ -45,6 +45,22 @@
             "description" : "List of live products",
             "schema" : {
               "$ref" : "#/definitions/ArrayOfProducts"
+            }
+          }
+        }
+      }
+    },
+    "/products/ticker/24hr" : {
+      "get" : {
+        "tags" : [ "Products" ],
+        "summary" : "Get 24hr ticker",
+        "operationId" : "get24hrTicker",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "Ticker Date",
+            "schema" : {
+              "$ref" : "#/definitions/24hrTicker"
             }
           }
         }
@@ -1019,6 +1035,32 @@
       "type" : "array",
       "items" : {
         "$ref" : "#/definitions/Transaction"
+      }
+    },
+    "24hrTicker" : {
+      "type" : "object",
+      "properties" : {
+        "symbol" : {
+          "type" : "string"
+        },
+        "timestamp" : {
+          "type" : "integer"
+        },
+        "open" : {
+          "type" : "number"
+        },
+        "high" : {
+          "type" : "number"
+        },
+        "low" : {
+          "type" : "number"
+        },
+        "close" : {
+          "type" : "number"
+        },
+        "volume" : {
+          "type" : "integer"
+        }
       }
     },
     "OHLCData" : {
