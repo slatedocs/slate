@@ -250,6 +250,9 @@
                   <li>
                     <a href="#login-endpoint" class="toc-h2 toc-link" data-title="Login endpoint">Login endpoint</a>
                   </li>
+                  <li>
+                    <a href="#user-update-endpoint" class="toc-h2 toc-link" data-title="User Update Endpoint">User Update Endpoint</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -266,6 +269,9 @@
                   </li>
                   <li>
                     <a href="#get-all-studies" class="toc-h2 toc-link" data-title="get all studies">get all studies</a>
+                  </li>
+                  <li>
+                    <a href="#get-some-studies" class="toc-h2 toc-link" data-title="get some studies">get some studies</a>
                   </li>
               </ul>
           </li>
@@ -340,7 +346,7 @@
 <p>The connect function is written in a different document so other endpoints also have access to the open database connection</p>
 
 <p>The app is initiated at the end of this function.</p>
-<h2 id='connecting-to-mongodb-atlas'>Connecting to Mongodb Atlas</h2><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">MongoClient</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'mongodb'</span><span class="p">).</span><span class="nx">MongoClient</span>
+<h2 id='connecting-to-mongodb-atlas'>Connecting to Mongodb Atlas</h2><pre class="highlight javascript tab-javascript"><code><span class="nx">mongoose</span>
 
 <span class="kd">let</span> <span class="nx">_db</span>
 
@@ -351,7 +357,7 @@
 
 <span class="kd">function</span> <span class="nx">connect</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">_db</span><span class="p">)</span> <span class="k">return</span>
-  <span class="nx">MongoClient</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s2">"mongodb+srv://15lc50:W!ldcats@cluster0-mfedp.mongodb.net/test?retryWrites=true"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">client</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">mongoose</span><span class="p">.</span><span class="nx">connect</span><span class="p">(</span><span class="s2">"mongodb+srv://15lc50:W!ldcats@cluster0-mfedp.mongodb.net/test?retryWrites=true"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">client</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">){</span>
         <span class="k">return</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
     <span class="p">}</span> 
@@ -369,7 +375,7 @@
 <span class="p">}</span>
 </code></pre>
 <p>The connect function uses a url aquired from the mongodb Atlas page to connect to the database
-in order to connect the ip address of the computer running this code has to be whitelisted in mongoDB Atlas</p>
+in order to connect the ip address of the computer running this code has to be whitelisted in mongoDB Atlas. It connects useing the mongoose connect function so that mongoose schemas can be used when saveing users and studies.</p>
 
 <p>The get function returns the database connection object for use in other functions</p>
 <h1 id='users'>Users</h1><h2 id='user-routes'>User Routes</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
@@ -382,9 +388,12 @@ in order to connect the ip address of the computer running this code has to be w
 <span class="nx">router</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/registerParticipant'</span><span class="p">,</span> <span class="nx">userController</span><span class="p">.</span><span class="nx">participantCreate</span><span class="p">);</span>
 <span class="nx">router</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/registerResearcher'</span><span class="p">,</span> <span class="nx">userController</span><span class="p">.</span><span class="nx">researcherCreate</span><span class="p">);</span>
 <span class="nx">router</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/login'</span><span class="p">,</span> <span class="nx">userController</span><span class="p">.</span><span class="nx">userLogin</span><span class="p">);</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/update'</span><span class="p">,</span> <span class="nx">userController</span><span class="p">.</span><span class="nx">userUpdate</span><span class="p">);</span>
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">router</span><span class="p">;</span>
 </code></pre>
-<p>User routes, connect user routes to apporpriate user controller</p>
+<p>User routes, connect user routes to apporpriate user controller.</p>
+
+<p>The User Routes incluse 2 routes to register participants and researchers, one endpoint for logging users in and one for updateing user information.</p>
 <h2 id='researcher-model'>Researcher Model</h2>
 <blockquote>
 <p>This endpoint is used to verify the inputs when createing a researcher object to save to the database</p>
@@ -404,15 +413,41 @@ in order to connect the ip address of the computer running this code has to be w
     <span class="na">usertype</span><span class="p">:</span> <span class="p">{</span><span class="na">type</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span> <span class="na">required</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span> <span class="na">match</span><span class="p">:</span><span class="sr">/researcher/</span><span class="p">}</span>
 <span class="p">});</span> <span class="c1">//add better error messages</span>
 
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">'Researcher'</span><span class="p">,</span> <span class="nx">ResearcherSchema</span><span class="p">);</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">'Researcher'</span><span class="p">,</span> <span class="nx">ResearcherSchema</span><span class="p">,</span> <span class="s2">"User"</span><span class="p">);</span>
 </code></pre>
 <blockquote>
 <p>There are separate user models for researchers and participants</p>
 </blockquote>
 
-<p>The use of mongoose shemas allows for thorough verification of inputs before they are saved to the database, all the inputs to the schema are currently required</p>
+<p>The use of mongoose shemas allows for thorough verification of inputs before they are saved to the database.</p>
+
+<table><thead>
+<tr>
+<th>Validation parameters</th>
+<th>effect</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>The type of item, all items in this schema are strings</td>
+</tr>
+<tr>
+<td>required</td>
+<td>This input is required, all items in this schema are required</td>
+</tr>
+<tr>
+<td>maxlength</td>
+<td>The max length of a string</td>
+</tr>
+<tr>
+<td>match</td>
+<td>item must max the regex statement</td>
+</tr>
+</tbody></table>
 
 <p>For more information about mongoose schemas <a href="https://mongoosejs.com/docs/schematypes.html">go here</a>.</p>
+
+<p>Items created useing this model are saved to the User collection in the database</p>
 <h2 id='participant-model'>Participant Model</h2>
 <blockquote>
 <p>This endpoint is used to verify the inputs when createing a researcher object to save to the database</p>
@@ -431,7 +466,7 @@ in order to connect the ip address of the computer running this code has to be w
     <span class="na">studies</span><span class="p">:</span> <span class="p">{</span><span class="na">type</span><span class="p">:</span> <span class="nb">Array</span><span class="p">}</span>
 <span class="p">});</span>
 
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">'Researcher'</span><span class="p">,</span> <span class="nx">ResearcherSchema</span><span class="p">);</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">'Researcher'</span><span class="p">,</span> <span class="nx">ResearcherSchema</span><span class="p">,</span> <span class="s2">"User"</span><span class="p">);</span>
 </code></pre>
 <blockquote>
 <p>There are separate user models for researchers and participants</p>
@@ -441,7 +476,33 @@ in order to connect the ip address of the computer running this code has to be w
 
 <p>&#39;Studies&#39; array will be filled with study objects with specific times the user has signed up for, the calander endpoint is not implemented yet.</p>
 
-<p>The use of mongoose shemas allows for thorough verification of inputs before they are saved to the database, all the inputs to the schema are currently required</p>
+<p>The use of mongoose shemas allows for thorough verification of inputs before they are saved to the database.</p>
+
+<table><thead>
+<tr>
+<th>Validation parameters</th>
+<th>effect</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>The type of item, the three kinds of items in this schema are strings, numbers, and arrays</td>
+</tr>
+<tr>
+<td>required</td>
+<td>This input is required, all items in this schema are required</td>
+</tr>
+<tr>
+<td>maxlength</td>
+<td>The max length of a string</td>
+</tr>
+<tr>
+<td>match</td>
+<td>item must max the regex statement</td>
+</tr>
+</tbody></table>
+
+<p>participant model is always saved to the User collection</p>
 
 <p>For more information about mongoose schemas <a href="https://mongoosejs.com/docs/schematypes.html">go here</a>.</p>
 <h2 id='signup-enpoints'>Signup enpoints</h2>
@@ -453,11 +514,12 @@ in order to connect the ip address of the computer running this code has to be w
 <span class="kr">const</span> <span class="nx">bcrypt</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'bcrypt'</span><span class="p">);</span>
 
 <span class="c1">//register user endpoint</span>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">participantCreate</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+<span class="c1">//register user endpoint</span>
+<span class="kd">function</span> <span class="nx">participantCreate</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">pass</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">password</span>
     <span class="nx">bcrypt</span><span class="p">.</span><span class="nx">hash</span><span class="p">(</span><span class="nx">pass</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">hash</span><span class="p">){</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">return</span> <span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
         <span class="p">}</span>
     <span class="kd">let</span> <span class="nx">participant</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Participant</span><span class="p">(</span>
         <span class="p">{</span>
@@ -465,26 +527,27 @@ in order to connect the ip address of the computer running this code has to be w
             <span class="na">age</span><span class="p">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">age</span><span class="p">,</span>
             <span class="na">city</span><span class="p">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">city</span><span class="p">,</span>
             <span class="na">phonenum</span><span class="p">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">phonenum</span><span class="p">,</span>
-            <span class="na">email</span><span class="p">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">email</span><span class="p">,</span> 
+            <span class="na">email</span><span class="p">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">email</span><span class="p">,</span>  <span class="c1">//make e mails and phone numbers unique</span>
             <span class="na">password</span><span class="p">:</span> <span class="nx">hash</span><span class="p">,</span>
-        <span class="p">},</span>
+        <span class="p">},</span><span class="c1">//dont know what the contraints are for the parameters, will add later</span>
         <span class="c1">//user input not sanatised?</span>
     <span class="p">)</span>
         <span class="nx">participant</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
             <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
-                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
             <span class="p">}</span> <span class="k">else</span><span class="p">{</span>
-                <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">"participant created successfully"</span><span class="p">)</span>
+                <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">participant</span><span class="p">)</span>
             <span class="p">}</span>
         <span class="p">})</span>
 <span class="p">});</span>
 <span class="p">};</span>
+
 <span class="c1">//register researcher endpoint</span>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">researcherCreate</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">function</span> <span class="nx">researcherCreate</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">pass</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">password</span>
     <span class="nx">bcrypt</span><span class="p">.</span><span class="nx">hash</span><span class="p">(</span><span class="nx">pass</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">hash</span><span class="p">){</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">return</span> <span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="mi">500</span><span class="p">);</span>
         <span class="p">}</span>
         <span class="kd">let</span> <span class="nx">researcher</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Researcher</span><span class="p">(</span>
             <span class="p">{</span>
@@ -492,6 +555,7 @@ in order to connect the ip address of the computer running this code has to be w
                 <span class="na">institution</span><span class="p">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">institution</span><span class="p">,</span>
                 <span class="na">department</span><span class="p">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">department</span><span class="p">,</span>
                 <span class="na">address</span><span class="p">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">address</span><span class="p">,</span>
+                <span class="na">country</span><span class="p">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">country</span><span class="p">,</span>
                 <span class="na">phonenum</span><span class="p">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">phonenum</span><span class="p">,</span>
                 <span class="na">email</span><span class="p">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">email</span><span class="p">,</span> <span class="c1">//make emails and phone numbers unique</span>
                 <span class="na">password</span><span class="p">:</span> <span class="nx">hash</span><span class="p">,</span>
@@ -501,17 +565,16 @@ in order to connect the ip address of the computer running this code has to be w
         <span class="p">)</span>
         <span class="nx">researcher</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
             <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
-                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-                <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">"error creating researcher"</span><span class="p">);</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
             <span class="p">}</span> <span class="k">else</span><span class="p">{</span>
-                <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">"researcher created successfully"</span><span class="p">);</span>
+                <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">researcher</span><span class="p">)</span>
             <span class="p">}</span>
         <span class="p">})</span>
     <span class="p">});</span>
 <span class="p">}</span>
 </code></pre>
 <blockquote>
-<p>Signup endpoints are different for participants and researcher (could be combined into one)</p>
+<p>Signup endpoints are different for participants and researcher</p>
 </blockquote>
 
 <p>The sighup endpoint creates a user ojebct useing the schmeas listed above, hashes the password the user typed in, and saves the user data to the database.</p>
@@ -526,34 +589,27 @@ in order to connect the ip address of the computer running this code has to be w
 <blockquote>
 <p>requires db to access database and bcrypt the compare hashed and unhashed passwords</p>
 </blockquote>
-<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"../db"</span><span class="p">);</span>
-<span class="kr">const</span> <span class="nx">bcrypt</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'bcrypt'</span><span class="p">);</span>
-
-<span class="nx">exports</span><span class="p">.</span><span class="nx">userLogin</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
+<pre class="highlight javascript tab-javascript"><code><span class="kd">function</span> <span class="nx">userLogin</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">){</span>
     <span class="kd">var</span> <span class="nx">email</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">email</span><span class="p">;</span>
     <span class="kd">var</span> <span class="nx">password</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">password</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="nx">connection</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
-    <span class="nx">connection</span><span class="p">.</span><span class="nx">db</span><span class="p">(</span><span class="s2">"ResearchDB"</span><span class="p">).</span><span class="nx">collection</span><span class="p">(</span><span class="s2">"Users"</span><span class="p">).</span><span class="nx">findOne</span><span class="p">({</span> <span class="na">email</span><span class="p">:</span> <span class="nx">email</span> <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">userId</span><span class="p">){</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"user is already logged in"</span><span class="p">);</span>
+    <span class="nx">db</span><span class="p">.</span><span class="nx">get</span><span class="p">().</span><span class="nx">collection</span><span class="p">(</span><span class="s2">"User"</span><span class="p">).</span><span class="nx">findOne</span><span class="p">({</span> <span class="na">email</span><span class="p">:</span> <span class="nx">email</span> <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">return</span> <span class="nx">error</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">userId</span><span class="p">){</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"User is already logged in"</span><span class="p">);</span>
         <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kd">var</span> <span class="nx">err</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'User not found.'</span><span class="p">);</span>
-            <span class="nx">err</span><span class="p">.</span><span class="nx">status</span> <span class="o">=</span> <span class="mi">401</span><span class="p">;</span>
-            <span class="k">return</span> <span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+            <span class="k">return</span> <span class="p">(</span><span class="s2">"Username or password is incorrect"</span><span class="p">,</span><span class="mi">406</span><span class="p">);</span>
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
         <span class="nx">bcrypt</span><span class="p">.</span><span class="nx">compare</span><span class="p">(</span><span class="nx">password</span><span class="p">,</span> <span class="nx">user</span><span class="p">.</span><span class="nx">password</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">if</span> <span class="p">(</span><span class="nx">result</span> <span class="o">===</span> <span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
-                <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">"passwords match"</span><span class="p">);</span>
+                <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">"Logged in"</span><span class="p">);</span>
             <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-                <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">"passwords dont match"</span><span class="p">);</span>
+                <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">"Username or password is incorrect"</span><span class="p">,</span><span class="mi">406</span><span class="p">);</span>
             <span class="p">};</span>
             <span class="p">});</span>
             <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">userId</span> <span class="o">=</span> <span class="nx">user</span><span class="p">.</span><span class="nx">_id</span>
-            <span class="c1">//TODO save user information to session</span>
         <span class="p">}</span>
-          <span class="p">});</span>
+        <span class="p">});</span>
+
 <span class="p">}</span>
 </code></pre>
 <p>The User is identified by a unique email and password
@@ -564,18 +620,30 @@ The login endpoint saves a user&#39;s unique ID to a session state to that it ca
 <ul>
 <li>https://research-stream.herokuapp.com/user/login</li>
 </ul>
+<h2 id='user-update-endpoint'>User Update Endpoint</h2><pre class="highlight javascript tab-javascript"><code><span class="kd">function</span> <span class="nx">userUpdate</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="nx">res</span><span class="p">){</span>
+    <span class="nx">user</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">get</span><span class="p">().</span><span class="nx">collection</span><span class="p">(</span><span class="s2">"User"</span><span class="p">).</span><span class="nx">findOne</span><span class="p">({</span><span class="na">_id</span> <span class="p">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">userId</span><span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">return</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">isEmpy</span><span class="p">(</span><span class="nx">user</span><span class="p">)){</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">"This user no longer exists"</span><span class="p">,</span><span class="mi">406</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="p">});</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">usertype</span> <span class="o">=</span> <span class="s2">"researcher"</span><span class="p">){</span>
+        <span class="nx">researcherCreate</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span><span class="p">{</span>
+        <span class="nx">participantCreate</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="nx">res</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre>
+<p>This enpoint updates user information. It does this by calling the create user endpoint which validates input and, if an object with the same id already exists, performes and update action instead of a create action (mongoose takes care of this useing the user.save())</p>
 <h1 id='studies'>Studies</h1><h2 id='study-routes'>Study Routes</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express'</span><span class="p">);</span>
 <span class="kr">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">express</span><span class="p">.</span><span class="nx">Router</span><span class="p">();</span>
-<span class="kd">var</span> <span class="nx">session</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'express-session'</span><span class="p">);</span>
 
 <span class="kd">function</span> <span class="nx">requiresLogin</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">session</span> <span class="o">&amp;&amp;</span> <span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">userId</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">return</span> <span class="nx">next</span><span class="p">();</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">session</span><span class="p">.</span><span class="nx">userId</span><span class="p">);</span>
-        <span class="kd">var</span> <span class="nx">err</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'You must be logged in to view this page.'</span><span class="p">);</span>
-        <span class="nx">err</span><span class="p">.</span><span class="nx">status</span> <span class="o">=</span> <span class="mi">401</span><span class="p">;</span>
-        <span class="k">return</span> <span class="nx">next</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+        <span class="k">return</span> <span class="p">(</span><span class="s1">'You must be logged in to view this page.'</span><span class="p">,</span> <span class="mi">401</span><span class="p">);</span>
     <span class="p">}</span>
   <span class="p">}</span>
 
@@ -584,7 +652,11 @@ The login endpoint saves a user&#39;s unique ID to a session state to that it ca
 
 <span class="c1">// post endpoint to add study to database</span>
 <span class="nx">router</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'/create'</span><span class="p">,</span> <span class="nx">requiresLogin</span><span class="p">,</span> <span class="nx">studyController</span><span class="p">.</span><span class="nx">studyCreate</span><span class="p">);</span>
-<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/get'</span><span class="p">,</span> <span class="nx">requiresLogin</span><span class="p">,</span> <span class="nx">studyController</span><span class="p">.</span><span class="nx">studyGet</span><span class="p">)</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/get'</span><span class="p">,</span> <span class="nx">requiresLogin</span><span class="p">,</span> <span class="nx">studyController</span><span class="p">.</span><span class="nx">studyGet</span><span class="p">);</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/:name'</span><span class="p">,</span> <span class="nx">requiresLogin</span><span class="p">,</span> <span class="nx">studyController</span><span class="p">.</span><span class="nx">getName</span><span class="p">);</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/:location'</span><span class="p">,</span> <span class="nx">requiresLogin</span><span class="p">,</span> <span class="nx">studyController</span><span class="p">.</span><span class="nx">getLocation</span><span class="p">);</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/:lab'</span><span class="p">,</span> <span class="nx">requiresLogin</span><span class="p">,</span> <span class="nx">studyController</span><span class="p">.</span><span class="nx">getLab</span><span class="p">);</span>
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'/:researcher'</span><span class="p">,</span> <span class="nx">requiresLogin</span><span class="p">,</span> <span class="nx">studyController</span><span class="p">.</span><span class="nx">getResearcher</span><span class="p">);</span>
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">router</span><span class="p">;</span>
 </code></pre>
 <p>Connect Study routes to apporpriate study controller</p>
@@ -606,9 +678,33 @@ The login endpoint saves a user&#39;s unique ID to a session state to that it ca
     <span class="na">researcher</span><span class="p">:</span> <span class="p">{</span><span class="na">type</span><span class="p">:</span><span class="nb">String</span><span class="p">,</span> <span class="na">required</span><span class="p">:</span> <span class="kc">true</span><span class="p">}</span>
 <span class="p">});</span>
 
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">'Study'</span><span class="p">,</span> <span class="nx">StudySchema</span><span class="p">);</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">'Study'</span><span class="p">,</span> <span class="nx">StudySchema</span><span class="p">,</span> <span class="s2">"Study"</span><span class="p">);</span>
 </code></pre>
 <p>Model for studies, based on provided schema</p>
+
+<table><thead>
+<tr>
+<th>Validation parameters</th>
+<th>effect</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>The type of item, the three kinds of items in this schema are strings and numbers</td>
+</tr>
+<tr>
+<td>required</td>
+<td>This input is required, all items in this schema are required</td>
+</tr>
+<tr>
+<td>maxlength</td>
+<td>The max length of a string</td>
+</tr>
+<tr>
+<td>match</td>
+<td>item must max the regex statement</td>
+</tr>
+</tbody></table>
 
 <p>For more information about mongoose schemas <a href="https://mongoosejs.com/docs/schematypes.html">go here</a>.</p>
 <h2 id='create-studies'>Create studies</h2><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">Study</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../models/study.model'</span><span class="p">);</span>
@@ -631,10 +727,9 @@ The login endpoint saves a user&#39;s unique ID to a session state to that it ca
     <span class="p">)</span>
         <span class="nx">study</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
             <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
-                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-                <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">"error Saveing study to DB"</span><span class="p">);</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
             <span class="p">}</span> <span class="k">else</span><span class="p">{</span>
-                <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">"study created successfully"</span><span class="p">);</span>
+                <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">"researcher created successfully"</span><span class="p">)</span>
             <span class="p">}</span>
         <span class="p">})</span>
 <span class="p">};</span>
@@ -653,7 +748,6 @@ The login endpoint saves a user&#39;s unique ID to a session state to that it ca
         <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
         <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
     <span class="p">});</span>
-    <span class="c1">//returns all studies, queries needed for returning only studies with certain attributes</span>
 <span class="p">};</span>
 </code></pre>
 <blockquote>
@@ -673,13 +767,60 @@ The login endpoint saves a user&#39;s unique ID to a session state to that it ca
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint return a list of all studies.
-It need to be modefied to return an amount and an endpoint needs to be added to get studies matching certain criteria</p>
+The endpoints for returning only some studies depending on certain attributes</p>
 
 <p>accessible by</p>
 
 <ul>
 <li>https://research-stream.herokuapp.com/study/get</li>
 </ul>
+<h2 id='get-some-studies'>get some studies</h2><pre class="highlight javascript tab-javascript"><code>
+<span class="c1">//name</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">getName</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">db</span><span class="p">.</span><span class="nx">get</span><span class="p">().</span><span class="nx">collection</span><span class="p">(</span><span class="s2">"Study"</span><span class="p">).</span><span class="nx">find</span><span class="p">({</span><span class="na">name</span><span class="p">:</span><span class="nx">req</span><span class="p">.</span><span class="nx">param</span><span class="p">.</span><span class="nx">id</span><span class="p">}).</span><span class="nx">toArray</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="mi">500</span><span class="p">);</span>
+        <span class="k">else</span><span class="p">{</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">length</span> <span class="o">+</span> <span class="s2">" studies have this name\n"</span> <span class="o">+</span> <span class="nx">result</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+    <span class="c1">//lists the number of studies with the specified name and returns studies with a specific name</span>
+<span class="p">};</span>
+
+<span class="c1">//location</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">getLocation</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">db</span><span class="p">.</span><span class="nx">get</span><span class="p">().</span><span class="nx">collection</span><span class="p">(</span><span class="s2">"Study"</span><span class="p">).</span><span class="nx">collection</span><span class="p">(</span><span class="s1">'Studies'</span><span class="p">).</span><span class="nx">find</span><span class="p">({</span><span class="na">location</span><span class="p">:</span><span class="nx">req</span><span class="p">.</span><span class="nx">param</span><span class="p">.</span><span class="nx">location</span><span class="p">}).</span><span class="nx">toArray</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="mi">500</span><span class="p">);</span>
+        <span class="k">else</span><span class="p">{</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">length</span> <span class="o">+</span> <span class="s2">" studies in this location\n"</span> <span class="o">+</span> <span class="nx">result</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+    <span class="c1">//lists the number of studies with the specified locaation and returns list of studies with this name</span>
+<span class="p">};</span>
+
+<span class="c1">//lab</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">getLab</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">db</span><span class="p">.</span><span class="nx">get</span><span class="p">().</span><span class="nx">collection</span><span class="p">(</span><span class="s2">"Study"</span><span class="p">).</span><span class="nx">db</span><span class="p">(</span><span class="s2">"ResearchDB"</span><span class="p">).</span><span class="nx">collection</span><span class="p">(</span><span class="s1">'Studies'</span><span class="p">).</span><span class="nx">find</span><span class="p">({</span><span class="na">lab</span><span class="p">:</span><span class="nx">req</span><span class="p">.</span><span class="nx">param</span><span class="p">.</span><span class="nx">lab</span><span class="p">}).</span><span class="nx">toArray</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="mi">500</span><span class="p">);</span>
+        <span class="k">else</span><span class="p">{</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">length</span> <span class="o">+</span> <span class="s2">" studies executed in this lab\n"</span> <span class="o">+</span> <span class="nx">result</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+    <span class="c1">//lists the number of studies with the specified location and returns list of studies with this name</span>
+<span class="p">};</span>
+
+<span class="c1">//researcher</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">getResearcher</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">db</span><span class="p">.</span><span class="nx">get</span><span class="p">().</span><span class="nx">collection</span><span class="p">(</span><span class="s2">"Study"</span><span class="p">).</span><span class="nx">db</span><span class="p">(</span><span class="s2">"ResearchDB"</span><span class="p">).</span><span class="nx">collection</span><span class="p">(</span><span class="s1">'Studies'</span><span class="p">).</span><span class="nx">find</span><span class="p">({</span><span class="na">researcher</span><span class="p">:</span><span class="nx">req</span><span class="p">.</span><span class="nx">param</span><span class="p">.</span><span class="nx">researcher</span><span class="p">}).</span><span class="nx">toArray</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="mi">500</span><span class="p">);</span>
+        <span class="k">else</span><span class="p">{</span>
+            <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">length</span> <span class="o">+</span> <span class="s2">" studies conducted by "</span> <span class="o">+</span> <span class="nx">researcher</span> <span class="o">+</span> <span class="s2">"\n"</span> <span class="o">+</span> <span class="nx">result</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+    <span class="c1">//lists the number of studies with the specified locaation and returns list of studies with this name</span>
+<span class="p">};</span>
+</code></pre>
+<p>These endpoints return studies by name, location, lab, and researcher.
+These studies are returned in a json containging an array of studies in the same format at the endpoint above and returns all studies.</p>
 <h1 id='todo'>TODO</h1>
 <ol>
 <li>Messageing endpoint documentation</li>
@@ -718,7 +859,7 @@ useful error messages are not fully implemented, most errors do not currently re
 </tr>
 <tr>
 <td>406</td>
-<td>Not Acceptable</td>
+<td>Invalid Input</td>
 </tr>
 <tr>
 <td>500</td>
