@@ -56,6 +56,12 @@
         "summary" : "Get 24hr ticker",
         "operationId" : "get24hrTicker",
         "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "symbol",
+          "description" : "product symbol",
+          "type" : "string"
+        } ],
         "responses" : {
           "200" : {
             "description" : "Ticker Date",

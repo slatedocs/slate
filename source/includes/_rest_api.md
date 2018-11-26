@@ -150,6 +150,12 @@ p JSON.parse(result)
 
 `GET /products/ticker/24hr`
 
+<h3 id="get-24hr-ticker-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|symbol|query|string|false|product symbol|
+
 > Example responses
 
 > 200 Response
