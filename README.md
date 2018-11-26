@@ -76,7 +76,7 @@ Companies Using Slate
 * [Best Buy](https://bestbuyapis.github.io/api-documentation/)
 * [Travis-CI](https://docs.travis-ci.com/api/)
 * [Greenhouse](https://developers.greenhouse.io/harvest.html)
-* [Woocommerce](http://woocommerce.github.io/woocommerce-rest-api-docs/)
+* [WooCommerce](http://woocommerce.github.io/woocommerce-rest-api-docs/)
 * [Dwolla](https://docs.dwolla.com/)
 * [Clearbit](https://clearbit.com/docs)
 * [Coinbase](https://developers.coinbase.com/api)
