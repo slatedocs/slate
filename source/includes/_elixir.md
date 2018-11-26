@@ -297,6 +297,20 @@ The following configuration settings are available:
         No
       </td>
     </tr>
+    <tr>
+      <th>
+        ignore
+      </th>
+      <td>
+        An array of URL prefixes to ignore in the Scout Plug instrumentation.
+      </td>
+      <td>
+        <code>[]</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
   </tbody>
 </table>
 
@@ -349,7 +363,7 @@ We've collected best practices for instrumenting common transactions and timing 
 
 * Transactions
   * [Phoenix Channels](#phoenix-channels)
-  * [Plug Chunked](#plug-chunked-response-http-streaming)
+  * [Plug Chunked Response](#plug-chunked-response-http-streaming)
   * [GenServer calls](#genserver-calls)
   * [Task.start](#task-start)
   * [Task.Supervisor.start_child](#task-supervisor-start_child)
@@ -422,7 +436,8 @@ def chunked(conn, _params) do
 end
 ```
 
-Then have the default instrumentation ignore the endpoint (since it is manually instrumented now):
+Then have the default instrumentation ignore the endpoint's URL prefix (since it is manually instrumented now).
+See the [ignore configuration](#ignore-1) for more details.
 
 ```
 config :scout_apm,
