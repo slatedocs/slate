@@ -60,7 +60,8 @@
           "in" : "query",
           "name" : "symbol",
           "description" : "product symbol",
-          "type" : "string"
+          "type" : "string",
+          "required" : true
         } ],
         "responses" : {
           "200" : {

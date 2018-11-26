@@ -118,7 +118,7 @@ headers = {
 }
 
 r = requests.get('https://api.delta.exchange/products/ticker/24hr', params={
-
+  'symbol': 'string'
 }, headers = headers)
 
 print r.json()
@@ -127,7 +127,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET https://api.delta.exchange/products/ticker/24hr \
+curl -X GET https://api.delta.exchange/products/ticker/24hr?symbol=string \
   -H 'Accept: application/json'
 
 ```
@@ -142,7 +142,8 @@ headers = {
 
 result = RestClient.get 'https://api.delta.exchange/products/ticker/24hr',
   params: {
-  }, headers: headers
+  'symbol' => 'string'
+}, headers: headers
 
 p JSON.parse(result)
 
@@ -154,7 +155,7 @@ p JSON.parse(result)
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
-|symbol|query|string|false|product symbol|
+|symbol|query|string|true|product symbol|
 
 > Example responses
 
