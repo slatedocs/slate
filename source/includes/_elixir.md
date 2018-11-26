@@ -297,6 +297,20 @@ The following configuration settings are available:
         No
       </td>
     </tr>
+    <tr>
+      <th>
+        ignore
+      </th>
+      <td>
+        An array of URL prefixes to ignore in the Scout Plug instrumentation.
+      </td>
+      <td>
+        <code>[]</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
   </tbody>
 </table>
 
@@ -349,6 +363,7 @@ We've collected best practices for instrumenting common transactions and timing 
 
 * Transactions
   * [Phoenix Channels](#phoenix-channels)
+  * [Plug Chunked Response](#plug-chunked-response-http-streaming)
   * [GenServer calls](#genserver-calls)
   * [Task.start](#task-start)
   * [Task.Supervisor.start_child](#task-supervisor-start_child)
@@ -382,6 +397,55 @@ defmodule FirestormWeb.Web.PostsChannel do
     push socket, "update", FetchView.render("index.json", msg)
   end
 ```
+
+### Plug Chunked Response (HTTP Streaming)
+
+In a Plug application, a chunked response needs to be instrumented directly, rather than relying on
+the default Scout instrumentation Plug. The key part is to `start_layer` beforehand, and then call
+`before_send` after the chunked response is complete.
+
+```
+def chunked(conn, _params) do
+  # The "Controller" argument is required, and should not be changed. The second argument is the
+  # name this endpoint will appear as in the Scout UI. The `action_name` function determines this
+  # automatically.
+  ScoutApm.TrackedRequest.start_layer("Controller", ScoutApm.Plugs.ControllerTimer.action_name(conn))
+
+  conn =
+    conn
+    |> put_resp_content_type("text/plain")
+    |> send_chunked(200)
+
+  {:ok, conn} =
+    Repo.transaction(fn ->
+      Example.build_chunked_query(...)
+      |> Enum.reduce_while(conn, fn data, conn ->
+        case chunk(conn, data) do
+          {:ok, conn} ->
+            {:cont, conn}
+
+          {:error, :closed} ->
+            {:halt, conn}
+        end
+      end)
+    end)
+
+  ScoutApm.Plugs.ControllerTimer.before_send(conn)
+
+  conn
+end
+```
+
+Then have the default instrumentation ignore the endpoint's URL prefix (since it is manually instrumented now).
+See the [ignore configuration](#ignore-1) for more details.
+
+```
+config :scout_apm,
+  name: "My Scout App Name",
+  key: "My Scout Key",
+  ignore: ["/chunked"]
+```
+
 
 ### GenServer calls
 
@@ -486,6 +550,7 @@ Download <a href="https://gist.github.com/itsderek23/051327a152bc4d95451fd76808b
 You can extend Scout to record additional types of transactions (background jobs, for example) and time the execution of code that fall outside our auto instrumentation.
 
 For full details on instrumentation functions, see our <a href="https://hexdocs.pm/scout_apm/ScoutApm.Tracing.html" target="_blank">ScoutApm.Tracing Hex docs</a>.
+
 
 ### Transactions & Timing
 
