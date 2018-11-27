@@ -3,7 +3,7 @@
 ## Update
 
 ```shell
-curl --data-binary '{"id":"5", "method":"goal.Update", "params":{"id":"1", "importance":0.1, "confidence":0.7}, "jsonrpc":"2.0"}'
+curl --data-binary '{"id":"5", "method":"goal.Update", "params":{"id":1, "importance":0.1, "confidence":0.7}, "jsonrpc":"2.0"}'
   -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
   -H 'content-type:application/json;'
 ```
@@ -14,7 +14,7 @@ curl --data-binary '{"id":"5", "method":"goal.Update", "params":{"id":"1", "impo
 {
     "jsonrpc": "2.0",
 	"result": {
-		"id": "1",
+		"id": 1,
 		"importance": 0.1,
 		"confidence": 0.7
 	},
@@ -33,8 +33,8 @@ Update a user’s goal inputs for a given competency.
 Parameter | Type | Description
 --------- | ------- | -----------
 id | integer | the competency’s identifier
-importance (optional) | integer | the importance value (must be between 0.1 and 0.9)
-confidence (optional) | integer | the confidence value (must be between 0.1 and 0.9)
+importance (optional) | float | the importance value (must be between 0.1 and 0.9)
+confidence (optional) | float | the confidence value (must be between 0.1 and 0.9)
 
 <aside class="success">
 Goal Model - an user’s inputs on an organisation goal
