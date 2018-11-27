@@ -54,23 +54,12 @@ curl --data-binary '{"id":"2","method":"chat.Complete", "params":{"chatCompleted
 ```json
 {
   "jsonrpc": "2.0",
-  "result": {
-  		"updated": false,
-  		"role": false,
-  		"goal": false,
-  		"useOfTime": false,
-  		"quiz": false,
-  		"kirk": false,
-  		"chatCompleted": true,
-  		"chatCategory": "",
-  		"chatSection": "",
-  		"chatPart": ""
-  },
+  "result": "success",
   "id": "2"
 }
 ```
 
-Mark a chat as completed for an user.
+Mark a chat as complete for an user.
 
 ### HTTP Request
 
