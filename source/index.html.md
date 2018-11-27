@@ -115,11 +115,18 @@ Suredbits APIs are available via websockets with the following format:
 
 4. Receive data :)
 
-### Sample Lightning Invoice
+**Ping/Pong**
 
-A successful request will generate a lightning invoice that will look simiar to the example below:
+To confirm your connection, send a <span style="color:red"> ping </span> request. Add an optional <span style="color:red"> uuid </span> if you want to track across specific channels. 
 
-<span style="color:red"> *lnbcrt10n1pd5v2mwpp5ulxpj8ht4gvtqnyl8zuykfk4wcv6sz455ce5dy0e0lqt2wvhthpsdqqxqrrssn39f5saxgtqmzs...* </span>
+<aside class="success"> {"event": "ping"} should return {"event":"pong"} </aside>
+
+
+**Sample Lightning Invoice**
+
+A successful request will generate a lightning invoice that will look similar to the example below:
+
+<span style="color:red"> *lnbcrt10n1pd5v2mwpp5ulxpj8ht4gvtqnyl8zuykfk4wcv6sz455ce5dy0e0lqt...* </span>
 
 #Crypto Exchange API (Coming Soon)
 
@@ -196,6 +203,9 @@ Field | Type | Example
 <span style="color:red"> addedDuration </span> | Integer (milliseconds) | <span style="color:red"> "1000" </span>
 <span style="color:red"> event </span> | String | <span style="color:red"> "refill" </span>
 
+**Snapshots**
+
+Upon receipt of a valid invoice, you will receive a list of data of the channel.  
 
 
 **Unsubscribe**
