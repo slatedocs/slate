@@ -2002,7 +2002,7 @@ Response: On success, an object will be returned containing all shift custom tex
 
 ### shift.bulkUpdate
 
-This method is for changing the same details about multiple shifts. This method processes bulk updates asynchronously, meaning the caller will be returned a success message immediately (assuming valid parameters were sent), and the processing of these shift updates will happen in the background. Once all updates have been completed, a report will be emailed to the caller. This report will detail the number of successes, failures, and provide details about why a failure occurred.
+This method is for modifying the same details on multiple shifts. This method processes bulk updates asynchronously, meaning the caller will be returned a success message immediately (assuming valid parameters were sent), and the processing of these shift update operations will happen out-of-band. Once all updates have been completed, a report will be emailed to the API caller. This report will detail the number of successes, failures, and provide details about why a failure occurred.
 
 > Request example:
 
@@ -2046,3 +2046,51 @@ Updates multiple shift objects in a single call.
 
 Most other shift object attributes may be specified. Please see the shift.update documentation for more information.
 
+### shift.bulkDelete
+
+Delete multiple shifts with a single call. This method processes bulk deletes asynchronously, meaning the caller will be returned a success message immediately (assuming valid parameters were sent), and the processing of these shift delete operations will happen out-of-band. Once all shift deletions have completed, a report will be emailed to the API caller. This report will detail the number of successes, failures, and provide details about why a failure occurred.
+
+> Request example:
+
+```JSON
+{
+   "shifts" : [2753501, 2753502],
+}
+```
+
+> Response example:
+
+```JSON
+{
+   "seconds" : "0.178901",
+   "jsonrpc" : "2.0",
+   "id" : "43",
+   "result" : {
+        "message": "Bulk delete has been started. You will receive an email with results."
+    }
+}
+```
+
+<span class="tryit" id="shift-bulkupdate-tryit"></span>
+Updates multiple shift objects in a single call.
+
+#### Required parameter
+
+`shifts` - Array of shift identifiers.
+
+#### Optional Parameters
+
+Most other shift object attributes may be specified. Please see the shift.update documentation for more information.
+
+<span class="tryit" id="shift-delete-tryit"></span>
+Deletes a shift record.
+
+Required parameter: `id`.
+
+Optional Parameters:
+
+notify_on_delete
+Boolean; notify covering member upon deletion of the shift.
+
+notify_message
+Custom text to be included when notifying shift owner upon deletion of shift.
