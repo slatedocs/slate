@@ -40,3 +40,45 @@ Returns — Script Model - the organisation’s afferent chat script
 -32003 | Mandatory JWT Claim missing
 -32600 | The JSON sent is not a valid Request object
 -32607 | Organisation is missing chat script
+
+## Complete
+
+```shell
+curl --data-binary '{"id":"2","method":"chat.Complete", "params":{"chatCompleted":true}, "jsonrpc": "2.0"}'
+  -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
+  -H 'content-type:application/json;'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "result": "success",
+  "id": "2"
+}
+```
+
+Mark a chat as complete for an user.
+
+### HTTP Request
+
+`POST https://api.test.filtered.com/v2/jsonrpc/jwt`
+
+### Parameters
+
+Parameter | Type | Description
+--------- | ------- | -----------
+chatCompleted | boolean | the true/false status
+
+<aside class="success">
+Returns — an user’s chat progress
+</aside>
+
+### Errors
+
+ Error Code | Meaning
+---------- | -------
+-32603 | Internal Server Error
+-32003 | Mandatory JWT Claim missing
+-32600 | The JSON sent is not a valid Request object
