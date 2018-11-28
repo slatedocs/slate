@@ -205,7 +205,26 @@ Field | Type | Example
 
 **Snapshots**
 
-Upon receipt of a valid invoice, you will receive a list of data of the channel.  
+> Example of Snapshot from Trades Channel
+
+```json
+{  
+   "uuid":"f8363f36-65dd-4a07-a3e0-75f38b816df7",
+   "snapshot":[  
+      {  
+         "eventTime":1543347647113,
+         "symbol":"BTCUSDT",
+         "tradeId":82634229,
+         "price":3809.1,
+         "quantity":0.293552,
+         "buyerId":195007870,
+         "sellerId":195007859,
+         "tradeTime":1543347647109,
+         "marketMaker":false
+      },
+```
+
+Upon subscribing to a channel an initial snapshot is sent.  The snapshot provides a view of the current state of that market. 
 
 
 **Unsubscribe**
