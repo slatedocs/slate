@@ -82,3 +82,43 @@ Returns — an user’s chat progress
 -32603 | Internal Server Error
 -32003 | Mandatory JWT Claim missing
 -32600 | The JSON sent is not a valid Request object
+
+## IsComplete
+
+```shell
+curl --data-binary '{"id":"2","method":"chat.IsComplete", "jsonrpc": "2.0"}'
+  -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
+  -H 'content-type:application/json;'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "result": true,
+  "id": "2"
+}
+```
+
+Get value of <code>chatCompleted</code>  property
+
+### HTTP Request
+
+`POST https://api.test.filtered.com/v2/jsonrpc/jwt`
+
+### Parameters
+
+<aside class="notice"><code>No parameters</code></aside>
+
+<aside class="success">
+Returns — method returns true or false
+</aside>
+
+### Errors
+
+ Error Code | Meaning
+---------- | -------
+-32603 | Internal Server Error
+-32003 | Mandatory JWT Claim missing
+-32600 | The JSON sent is not a valid Request object
