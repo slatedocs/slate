@@ -11,7 +11,7 @@ toc_footers:
 search: true
 ---
  
-# Lightning API v0 Documentation
+# Lightning API v0 Documentation (BETA)
 
 ## Connect With Us
 
@@ -20,7 +20,7 @@ Follow us on twitter <a href="https://twitter.com/SuredBits">@Suredbits</a>
 We invite you to join our Slack channel <a href="https://join.slack.com/t/suredbits/shared_invite/enQtNDEyMjY3MTg1MTg3LTYyYjkwOGUzMDQ4NDAwZjE1M2I3MmQyNWNlZjNlYjg4OGRjYTRjNWUwNjRjNjg4Y2NjZjAxYjU1N2JjMTU1YWM">Suredbits Slack</a>
 
 ## Background Resources
-Thank you and welcome to SuredBits' Lightning App API documentation. This API allows you to query our NFL data, including teams, players, games, scores, and statistics.
+Thank you and welcome to SuredBits' Lightning App API documentation. This API allows you to query our NFL, NBA and Crypto Exchange data. Our NFL and NBA APIs offer multiple channels including teams, players, games, scores, and statistics.  Our Crypto Exchange API allows you to stream data on Trades, Tickers and Order Books. 
 
 We are currently focused primarily on developers already familiar with Bitcoin and know Lightning or are interested in building apps using the Lightning protocol. However, if you are just starting out in cryptocurrency development, we have included some helpful links below.
 
@@ -99,7 +99,7 @@ A valid <span style="color:red"> `uuid` </span> request will show up on the invo
 
 Suredbits APIs are available via websockets with the following format:
 
-**Example requests**
+**Basic example requests**
 
 {"channel":"players", "lastName" : "Moss", "firstName" : "Randy"}
 
@@ -128,13 +128,25 @@ A successful request will generate a lightning invoice that will look similar to
 
 <span style="color:red"> *lnbcrt10n1pd5v2mwpp5ulxpj8ht4gvtqnyl8zuykfk4wcv6sz455ce5dy0e0lqt...* </span>
 
-#Crypto Exchange API (Coming Soon)
+#Crypto Exchange API 
 
 ## Crypto Exchange Websocket Endpoint 
 
 **wss://test.api.suredbits.com/exchange/v0**
 
 ## Info
+
+**Trading Pairs Supported**
+
+Symbol | Binance | Bitfinex
+------- | ------ | ---------
+BTCUSDT |    X     | 
+ETHBTC  |    X     |    X
+ETHUSDT |    X     | 
+BTCUSD  |          |    X 
+ETHUSD  |          |    X
+
+
 
 **Subscribe**
 
@@ -180,9 +192,7 @@ Field | Type | Example
 
 **Payment** 
 
-<span style="color:red"> NOTICE: </span> Our pricing model is still evolving and will change as we move forward. For now, for each second of streaming data, you will be charged 1 Satoshi.
-
-e.g.
+<aside class="warning"> Our pricing model is still evolving and could change as our API service grows and matures. For now, for each second of streaming data, you will be charged 1 Satoshi. </aside>
 
 1 second = 1 Satoshi
 
@@ -224,7 +234,7 @@ Field | Type | Example
       },
 ```
 
-Upon subscribing to a channel an initial snapshot is sent.  The snapshot provides a view of the current state of that market. 
+Upon subscribing to a channel an initial snapshot is sent.  The snapshot provides a view of the current state of the market. 
 
 
 **Unsubscribe**
@@ -451,7 +461,7 @@ Field |  Type | Exchanges Supported
    }
    ```
 
-The <span style="color:red"> Books </span> channel streams bids and asks for a given trading pair on given exchange.  
+The <span style="color:red"> Books </span> channel streams bids and asks for a given trading pair on given exchange.  Currently, only the Bitfinex exchange is supported for this feature.  
 
 Field | Type | Exchanges Supported
 ------| -------| --------
@@ -592,7 +602,7 @@ Field | Type | Example
 
 ```
 
-> Example of Players data
+> Example Players data
 
 ```json 
 
@@ -620,7 +630,7 @@ Field | Type | Example
   }
 ```
 
-The <span style="color:red"> Players </span> returns data for particular players by <span style="color:red"> name </span>.  
+The <span style="color:red"> Players </span> channel returns data for particular players by <span style="color:red"> name </span>.  
 
 The required fields to request NFL Player data are as follows: 
 
@@ -746,10 +756,10 @@ Field | Type | Example
  }
 ```
 
-Thie <span style="color:red"> *Team* </span> channel returns data for <span style="color:red"> roster </span> or <span style="color:red"> schedule </span> for a given NFL Team given a websocket request.
+The <span style="color:red"> Team </span> channel returns data for <span style="color:red"> roster </span> or <span style="color:red"> schedule </span> for a given NFL team.
 
 
-The equired fields to request NFL Team & Roster data are as follows:
+The required fields to request NFL Team & Roster data are as follows:
 
 **Required fields**: 
 
@@ -888,7 +898,7 @@ Field | Type | Example
 
 ## Info
 
-> Example equest Info
+> Example request Info
 
 ```json
 {
@@ -909,7 +919,7 @@ Field | Type | Example
       "lastUpdated":"2018-11-15T21:58:50.490Z"
 ```
 
-The <span style="color:red"> Info </span> channel returns high level informatoin of the current stauts of the <span style="color:red"> NBA </span> endpoint. 
+The <span style="color:red"> Info </span> channel returns high level information of the current status of the <span style="color:red"> NBA </span> endpoint. 
 
 Field | Type | Example
 ------ | ----- | -------
@@ -1042,7 +1052,7 @@ Field | Type | Example
 }
 ```
 
-The <span style="color:red"> Games </span> channel returns statistic about specific games played.  See Example Game Data.
+The <span style="color:red"> Games </span> channel returns statistics about specific games played.  
 
 **Required Fields**
 
@@ -1142,7 +1152,7 @@ Field | Type | Example
 }
 ```
 
-> Example of Team Schedule (Chicago Bulls)
+> Example of team Schedule (Chicago Bulls)
 
 ```json
 {  
@@ -1167,7 +1177,7 @@ Field | Type | Example
 ...
 
 ```
-The <span style="color:red"> Teams" </span> channel returns information such as *rosters* or *schedules* for specific teams.  
+The <span style="color:red"> Teams </span> channel returns information such as <span style="color:red"> rosters </span> or <span style="color:red"> schedules </span> for specific teams.  
 
 **Required Fields**
 
@@ -1182,7 +1192,7 @@ Field | Type |  Example
 
 Field | Type | Example
 ------|------|--------
-<span style="color:red"> season </span> | String | <span style="color:red"> 2016-2017" </span>
+<span style="color:red"> season </span> | String | <span style="color:red"> 2016-2017 </span>
 
 
 <h3 id="NBATeamID"> Team ID Table</h3>
@@ -1233,7 +1243,7 @@ DEN	| Denver Broncos | WAS  | Washington Wizards
 }
 ```
 
-> Example of Player Stats data (Kevin Durant)
+> Example of player Stats data (Kevin Durant)
 
 ```json
 {  
