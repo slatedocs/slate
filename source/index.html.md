@@ -11,7 +11,7 @@ toc_footers:
 search: true
 ---
  
-# Lightning API v0 Documentation (BETA)
+# Lightning API v0 Beta Documentation
 
 ## Connect With Us
 
