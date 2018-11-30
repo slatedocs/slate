@@ -232,6 +232,9 @@ Field | Type | Example
          "tradeTime":1543347647109,
          "marketMaker":false
       },
+      ...
+    ]
+}
 ```
 
 Upon subscribing to a channel an initial snapshot is sent.  The snapshot provides a view of the current state of the market. 
@@ -917,6 +920,9 @@ Field | Type | Example
       "seasonPhase":"Regular",
       "version":0,
       "lastUpdated":"2018-11-15T21:58:50.490Z"
+      
+    }
+}
 ```
 
 The <span style="color:red"> Info </span> channel returns high level information of the current status of the <span style="color:red"> NBA </span> endpoint. 
