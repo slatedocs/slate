@@ -66,7 +66,7 @@ This is an alternative c-lightning client library: <a href="https://github.com/s
 ```
 <aside class="warning"> All request require a field called <b> uuid </b> </aside>  
 
-A valid <span style="color:red"> `uuid` </span> request will show up on the invoice, response, and any error message that are returned.  If no <span style="color:red"> `uuid` </span> is specified in a websocket request then this field will be omitted from that request's response.
+A valid <span style="color:red"> `uuid` </span> is required for all requests and will appear on all invoices, data responses, and errors related to that request.  If no <span style="color:red"> `uuid` </span> is specified in a request, then there will be an error message returned.
 
 ## Format 
 
@@ -99,9 +99,16 @@ A valid <span style="color:red"> `uuid` </span> request will show up on the invo
 
 Suredbits APIs are available via websockets with the following format:
 
-**Basic example requests**
+**Basic example request**
 
-{"channel":"players", "lastName" : "Moss", "firstName" : "Randy"}
+```json
+{  
+   "channel":"players",
+   "lastName":"Moss",
+   "firstName":"Randy",
+   "uuid":"[uuid]"
+}
+```
 
 <aside class="note">NOTE: All API requests must include the  "channel" field.  However, "channel" does not have to be the first field in the request. </aside>
 
