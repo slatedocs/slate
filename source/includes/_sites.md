@@ -130,7 +130,7 @@ To create a new site, you can use a POST request (or the insert method).
 
 ```shell
  curl
-    -d '{"title":"example site","reference":"myReferenceKey:myReference1234"}'
+    -d '{"title":"example site","reference":"myReferenceKey:myReference1234", "id_column": "uniqueIdentifier"}'
     https://platform-api.productsup.io/platform/v2/projects/321/sites
 
 
@@ -155,6 +155,7 @@ $project->id = 321;
 $SitesService->setProject($project);
 $siteObject = new \Productsup\Platform\Site();
 $siteObject->title = 'new example site';
+$siteObject->id_column = 'uniqueIndetifier';
 /* optional
 $reference = new \Productsup\Platform\Site\Reference();
 $reference->setKey('myReferenceKey');
@@ -201,6 +202,7 @@ Field | Type | Description
 title | string | Name of the site
 reference | string | Textual site reference, consisting of tagName and tagValue
 project_id | integer | Project under which to add the site. Required unless provided in URL.
+id_column | string | ID column which is being used as an identifier when importing data to the platform.
 
 `ID` and `created_at` have to be empty, otherwise the values get overwritten, or the request may result in an error.
 
