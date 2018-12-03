@@ -248,7 +248,7 @@ RestClient.post(
     purchase_order: {
      data: [{
         creator_id: 1,
-        status: "draft",
+        commit: "send",
         supplier_name: "John Doe",
         notes: "Notes",
         company_id: 1,
@@ -284,7 +284,7 @@ curl 'https://app.procurementexpress.com/api/v1/purchase_orders/bulk_save'
   -H "app_company_id: 1"
   -d "purchase_order[data][][source]=mobile_android"
   -d "purchase_order[data][][creator_id]=1"
-  -d "purchase_order[data][][status]=draft"
+  -d "purchase_order[data][][commit]=send"
   -d "purchase_order[data][][supplier_name]=John Doe"
   -d "purchase_order[data][][notes]=Notes"
   -d "purchase_order[data][][company_id]=1"
@@ -309,6 +309,10 @@ curl 'https://app.procurementexpress.com/api/v1/purchase_orders/bulk_save'
 ```
 
 In this api endpoint, you can pass multiple new purchase orders request at once, and it will try to create them all in our database. You should pass `_id` unique id for each purchase order, so that final response will return success or failed purchase orders with `_id` that you sent and the `id` that was created in server. If there are failed purchase orders, then it will also return `errors` for each failed purchase orders with validation message.
+
+### About commit params
+
+`commit` params will accept 2 values `send` and `draft`, default is `draft`. If you pass `send` as a value, it will create purchase order as pending, and send it for approval, otherwise it will be in draft state.
 
 ### About source column
 
