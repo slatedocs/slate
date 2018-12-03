@@ -47,6 +47,8 @@ This is our recommended lnd lightning client library: <a href="https://github.co
 
 This is an alternative c-lightning client library: <a href="https://github.com/suredbits/lightning-charge">https://github.com/suredbits/lightning-charge</a>
 
+<aside class="success"> Note: all API services are currently on testnet.  Testnet is used for testing purposes and is not real bitcoin. </aside>
+
 ## UUID
 
 > Example Data returned with valid UUID
@@ -69,6 +71,18 @@ This is an alternative c-lightning client library: <a href="https://github.com/s
 A valid <span style="color:red"> `uuid` </span> is required for all requests and will appear on all invoices, data responses, and errors related to that request.  If no <span style="color:red"> `uuid` </span> is specified in a request, then there will be an error message returned.
 
 ## Format 
+
+> Basic example request
+
+```json
+{  
+   "channel":"players",
+   "lastName":"Moss",
+   "firstName":"Randy",
+   "uuid":"[uuid]"
+}
+```
+
 
 > Example Data returned
 
@@ -99,16 +113,6 @@ A valid <span style="color:red"> `uuid` </span> is required for all requests and
 
 Suredbits APIs are available via websockets with the following format:
 
-**Basic example request**
-
-```json
-{  
-   "channel":"players",
-   "lastName":"Moss",
-   "firstName":"Randy",
-   "uuid":"[uuid]"
-}
-```
 
 <aside class="note">NOTE: All API requests must include the  "channel" field.  However, "channel" does not have to be the first field in the request. </aside>
 
@@ -124,7 +128,7 @@ Suredbits APIs are available via websockets with the following format:
 
 **Ping/Pong**
 
-To confirm your connection, send a <span style="color:red"> ping </span> request. Add an optional <span style="color:red"> uuid </span> if you want to track across specific channels. 
+To confirm your connection, send a <span style="color:red"> ping </span> request. Ping has an optional uuid field for correlating multiple pongs to multiple pings. 
 
 <aside class="success"> {"event": "ping"} should return {"event":"pong"} </aside>
 
@@ -141,7 +145,7 @@ A successful request will generate a lightning invoice that will look similar to
 
 **wss://test.api.suredbits.com/exchange/v0**
 
-## Info
+## Overview
 
 **Trading Pairs Supported**
 
@@ -171,7 +175,7 @@ ETHUSD  |          |    X
 }
 ```
 
-> Example Info data 
+> Example Subscription confirmation 
 
 ```json
 {  
@@ -210,16 +214,6 @@ Field | Type | Example
 
 We will post notification of any future changes in our pricing model here and via our twitter @Suredbits.
 
-**Refill**
-
-You may refill your subscrption at any time with the following command format: 
-
-Field | Type | Example
-------| ------ | --------
-<span style="color:red"> uuid </span> | String | <span style="color:red"> "e.g. 123e4567-e89b-12d3-a456-426655440000" </span>
-<span style="color:red"> addedDuration </span> | Integer (milliseconds) | <span style="color:red"> "1000" </span>
-<span style="color:red"> event </span> | String | <span style="color:red"> "refill" </span>
-
 **Snapshots**
 
 > Example of Snapshot from Trades Channel
@@ -244,9 +238,19 @@ Field | Type | Example
 }
 ```
 
-Upon subscribing to a channel an initial snapshot is sent.  The snapshot provides a view of the current state of the market. 
+Upon subscribing to a channel an initial snapshot is sent.  The snapshot provides a view of the current state of the market.
 
+**Refill**
 
+You may refill your subscrption at any time with the following command format: 
+
+Field | Type | Example
+------| ------ | --------
+<span style="color:red"> uuid </span> | String | <span style="color:red"> "e.g. 123e4567-e89b-12d3-a456-426655440000" </span>
+<span style="color:red"> addedDuration </span> | Integer (milliseconds) | <span style="color:red"> "1000" </span>
+<span style="color:red"> event </span> | String | <span style="color:red"> "refill" </span>
+
+ 
 **Unsubscribe**
 
 You may unsubscribe from a channel using the following command:
@@ -256,6 +260,7 @@ Field | Type | Example
 <span style="color:red"> uuid </span> | String | <span style="color:red"> "e.g. 123e4567-e89b-12d3-a456-426655440000" </span> 
 <span style="color:red"> event </span> | String | <span style="color:red"> "unsubscribe" </span>
 
+<aside class="note"> Note: If you unsubscribe from a channel, any time remaining from your original subscription will be refunded. </aside>
 
 **Maintenance**
 
@@ -280,13 +285,47 @@ In the event of maintenance or service interruption, we will refund any remainin
 > Example Tickers data
 
 ```json
+
 {  
    "uuid":"dc48f38e-7f71-4ea2-8c4c-52c683db93fa",
    "exchange":"binance",
    "symbol":"BTCUSDT",
    "duration":120000,
-   "event":"subscribed"
-}{  
+   "event":"payment received"
+}
+
+{  
+   "uuid":"eeda8e75-515c-47d5-9ca6-21a71964c739",
+   "snapshot":[  
+      {  
+         "eventTime":1543849532563,
+         "symbol":"BTCUSDT",
+         "priceChange":-253.84,
+         "priceChangePerc":-6.08,
+         "weightedAvePrice":4079.82822535,
+         "prevClose":4174.49,
+         "close":3921.26,
+         "closeQuantity":1.144132,
+         "bid":3920.31,
+         "bidSize":0.052611,
+         "ask":3922.57,
+         "askSize":1.207388,
+         "open":4175.1,
+         "high":4268,
+         "low":3896.03,
+         "volume":42258.714174,
+         "quoteVolume":172408294.85387801,
+         "statOpenTime":1543763132561,
+         "statCloseTime":1543849532561,
+         "firstTradeId":83998182,
+         "lastTradeId":84182065,
+         "totalTrades":183884
+      }
+   ]
+}
+
+
+{  
    "uuid":"dc48f38e-7f71-4ea2-8c4c-52c683db93fa",
    "data":{  
       "eventTime":1541716718571,
@@ -318,7 +357,7 @@ In the event of maintenance or service interruption, we will refund any remainin
 The <span style="color:red"> Tickers </span> channel streams high level updates for given trading pairs.  See the table below for which exchanges return which fields.
 
 
-Field | Type | Exchanges Supported
+Field | Type | Exchanges Supporting
 ------ | ------ | --------
 <span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000</span>
 <span style="color:red"> eventTime </span>| Integer | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
@@ -373,13 +412,34 @@ Field | Type | Exchanges Supported
 > Example Trades data
 
 ```json
+
 {  
    "uuid":"8dda8625-2946-4500-8dd5-13c78d2f42b8",
    "exchange":"binance",
    "symbol":"BTCUSDT",
    "duration":10000,
    "event":"payment received"
-}{  
+}
+
+{  
+   "uuid":"a4b4397b-7837-48ba-ba67-ac1ea4850aa5",
+   "snapshot":[  
+      {  
+         "eventTime":1543839862868,
+         "symbol":"BTCUSDT",
+         "tradeId":84153760,
+         "price":4038.81,
+         "quantity":0.115984,
+         "buyerId":199276007,
+         "sellerId":199274414,
+         "tradeTime":1543839862861,
+         "marketMaker":false
+      },
+      ...
+    ]
+}
+
+{  
    "uuid":"8dda8625-2946-4500-8dd5-13c78d2f42b8",
    "data":{  
       "eventTime":1541715784094,
@@ -410,7 +470,7 @@ Field | Type | Exchanges Supported
 
 The <span style="color:red"> Trades </span> channel streams executed trades for a given trading pair.  See the table below for which exchanges returns which fields. 
 
-Field |  Type | Exchanges Supported 
+Field |  Type | Exchanges Supporting 
 ------ | ------- | -----------
 <span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
 <span style="color:red"> eventType </span> | String | <span style="color:red"> binance </span>
@@ -423,7 +483,6 @@ Field |  Type | Exchanges Supported
 <span style="color:red"> sellerId </span> | Integer | <span style="color:red"> binance </span>
 <span style="color:red"> tradeTime </span> | Integer | <span style="color:red"> binance </span>
 <span style="color:red"> marketMaker </span> |  Boolean | <span style="color:red"> binance </span>
-<span style="color:red"> tradeid </span> | Integer | <span style="color:red"> binance </span>
 <span style="color:red"> eventTime </span> | Integer | <span style="color:red"> binance </span>        
 <span style="color:red"> quantity </span> | Double | <span style="color:red"> binance </span>      
 <span style="color:red"> price </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
@@ -446,6 +505,20 @@ Field |  Type | Exchanges Supported
 > Example Order Books data
 
 ```json
+
+{  
+   "uuid":"fe71a195-1b33-494c-849b-2f3aeda144a1",
+   "snapshot":[  
+      {  
+         "eventTime":1543850299172,
+         "orderId":19811509228,
+         "price":3894.7,
+         "quantity":0.25
+      },
+      ...
+   ]
+}
+
 {  
       "uuid":"8dda8625-2946-4500-8dd5-13c78d2f42b8",
       "exchange":"bitfinex",
@@ -473,7 +546,7 @@ Field |  Type | Exchanges Supported
 
 The <span style="color:red"> Books </span> channel streams bids and asks for a given trading pair on given exchange.  Currently, only the Bitfinex exchange is supported for this feature.  
 
-Field | Type | Exchanges Supported
+Field | Type | Exchanges Supporting
 ------| -------| --------
 <span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
 <span style="color:red"> eventTime </span> | Integer | <span style="color:red"> bitfinex </span> 
