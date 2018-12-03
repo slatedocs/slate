@@ -6,10 +6,12 @@ www.websequencediagrams.com
 participant Bank as B
 participant Pigeon as P
 participant "iDa Pro" as Pro
+participant Cloud Messaging Service as CM
 participant Mobile as M
 
 B->P: pushSend(). В данном сообщении передается \nвся информация о содержимом Push-уведомления
-P->M: Отправка push-уведомления
+P->CM: Отправка push-уведомления
+CM->M: Отправка push-уведомления
 M->M: Пользователь открывает push-уведомление
 
 M->Pro: pushIsOpened()
@@ -27,14 +29,13 @@ else В push есть запрос pushGetDetails()
     deactivate Pro
     M->-M: Показ содержимого push-уведомления\nв мобильном приложении
 end
-
 ```
 
 В данном разделе описаны запросы от банковского проксирующего сервера к сервера iDa PiGeon
 
 **Пример реализации отправки**
 
-![image](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=cGFydGljaXBhbnQgQmFuayBhcyBCCgAKDFBpZ2VvbiBhcyBQAAsNImlEYSBQcm8iABYFcm8AKA1Nb2JpbGUgYXMgTQoKQi0-UDogcHVzaFNlbmQoKS4g0JIg0LTQsNC90L3QvtC8INGB0L7QvtCx0YnQtdC90LjQuCDQv9C10YDQtQAjBbXRgtGB0Y8gXG7QsgAEBdC40L3RhNC-0YDQvNCw0YbQuNGPINC-AEMGtAA1BbbQuNC8AFkFUHVzaC3Rg9CyAEkFvtC80LsAYQbRjwpQLT5NOiDQntGC0L_RgNCw0LLQutCwAIEoBQAbGE0ALQaf0L7Qu9GM0LfQvtCy0LDRgtC10LvRjCDQvtGC0LrRgNGL0LIAgTUGADQa0LUKCk0tPlBybwCCGgZJc09wZW5lZCgpCiAgICBQcm8AgjIJAAsQLT5CACMRCmFsdCDQkgCCZgUg0L0AdwXQt9CwAIFWBb7RgQCBUgdHZXREZXRhaWxzAGEHAIFHC7rQsNC3AIIzFLPQvgCBehxcbtCyIACCawWx0LgAghMFAINUBgCCUQW40LvQvtC2AINSCrJcbgCBEway0LjRgQCDIwbRgdGC0LgAgjoFINGC0LjQv9CwIACDHxdlbHNlAIFfCrXRgdGC0YwAgV4NAIFQGSsAgmQJAIF2EWFjdGl2YXRlIE0AgnIMAIIdFVAtAIMvB9CU0LXRgtCw0LvQuACFXgUAgzAJAIRTBgAKFWRlAGIJUHJvAIJ7CC0AghhsCmVuZA&s=default "Схема отправки push-уведомления")
+![image](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=cGFydGljaXBhbnQgQmFuayBhcyBCCgAKDFBpZ2VvbiBhcyBQAAsNImlEYSBQcm8iABYFcm8AKA1DbG91ZCBNZXNzYWdpbmcgU2VydmljZSBhcyBDTQBSDU1vYmlsABQFTQoKQi0-UDogcHVzaFNlbmQoKS4g0JIg0LTQsNC90L3QvtC8INGB0L7QvtCx0YnQtdC90LjQuCDQv9C10YDQtQAjBbXRgtGB0Y8gXG7QsgAEBdC40L3RhNC-0YDQvNCw0YbQuNGPINC-AEMGtAA1BbbQuNC8AFkFUHVzaC3Rg9CyAEkFvtC80LsAYQbRjwpQLT5DTTog0J7RgtC_0YDQsNCy0LrQsACBKQUAHBhDTS0-AAQwACwHn9C-0LvRjNC30L7QstCw0YLQtdC70Ywg0L7RgtC60YDRi9CyAIFqBgBoGtC1CgpNLT5Qcm8Agk8GSXNPcGVuZWQoKQogICAgUHJvAIJnCQALEC0-QgAjEQphbHQg0JIAgxsFINC9AHcF0LfQsACCCgW-0YEAggYHR2V0RGV0YWlscwBhBwCBRwu60LDQtwCCaBSz0L4Agi4cXG7QsiAAgyAFsdC4AIITBQCECQYAgwUFuNC70L7QtgCEBwqyXG4AgRMGstC40YEAg1gG0YHRgtC4AII6BSDRgtC40L_QsCAAg1QXZWxzZQCBXwq10YHRgtGMAIFeDQCBUBkrAIJkCQCBdhFhY3RpdmF0ZSBNAIJyDACCHRVQLQCDLwfQlNC10YLQsNC70LgAhhMFAIMwCQCEUwYAChVkZQBiCVBybwCCewgtAIIYbAplbmQ&s=napkin "Схема отправки push-уведомления")
 
 - Банк инициирует отправку сообщения в iDa PiGeon
 - iDa PiGeon отправляет сообщение на мобильные устройства. В случае, если устройство не зарегистрировано, отправляет соответствующее сообщение об ошибке
