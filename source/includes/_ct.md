@@ -20,7 +20,7 @@ $success = $api->post('/v2/ct/add', [
     'website'           => 'le-bernardin.com',
     'business-type'     => 'Restaurant',
     'state-code'        => 'NY',
-    'primary_location' => '10020',
+    'primary-location' => '10020',
 ]);
 print_r($success);
 ```
@@ -38,7 +38,7 @@ curl -X POST \
  -d 'website=le-bernardin.com' \ 
  -d 'business-type=Restaurant' \
  -d 'state-code=NY' \
- -d 'primary_location=10020' \
+ -d 'primary-location=10020' \
  https://tools.brightlocal.com/seo-tools/api/v2/ct/add
 ```
 
@@ -54,7 +54,7 @@ parameters.Add("postcode", "10020");
 parameters.Add("website", "le-bernardin.com");
 parameters.Add("business-type", "Restaurant");
 parameters.Add("state-code", "NY");
-parameters.Add("primary_location", "10020");
+parameters.Add("primary-location", "10020");
 
 var success = request.Post("/v2/ct/add", parameters);
 ```
