@@ -88,9 +88,10 @@ A valid <span style="color:red"> `uuid` </span> is required for all requests and
 
 ```json 
 {  
+  "uuid":"bfbef9da-eb9e-418c-8f6b-963743355ef7",
   "data":
   [
-    {
+    { 
       "playerId":"00-0011754",
       "gsisName":"R.Moss",
       "fullName":"Randy Moss",
@@ -278,7 +279,7 @@ In the event of maintenance or service interruption, we will refund any remainin
    "exchange":"binance",
    "duration":120000,
    "refundInvoice":"lnbcrt1pdace6qpp5my6nc58d50r5gk...",
-    "uuid":"[uuid]"
+    "uuid":"dc48f38e-7f71-4ea2-8c4c-52c683db93fa"
 }
 ```
 
@@ -295,7 +296,7 @@ In the event of maintenance or service interruption, we will refund any remainin
 }
 
 {  
-   "uuid":"eeda8e75-515c-47d5-9ca6-21a71964c739",
+   "uuid":"dc48f38e-7f71-4ea2-8c4c-52c683db93fa",
    "snapshot":[  
       {  
          "eventTime":1543849532563,
@@ -380,18 +381,9 @@ Field | Type | Exchanges Supporting
 <span style="color:red"> statOpenTime </span> | Integer | <span style="color:red"> binance </span>
 <span style="color:red"> statCloseTime </span> | Integer | <span style="color:red"> binance </span>
 <span style="color:red"> firstTradeId </span> | Integer | <span style="color:red"> binance </span>
+<span style="color:red"> lastTradId </span> | Integer | <span style="color:red"> binance </span>
 <span style="color:red"> totalTrades </span> | Integer | <span style="color:red"> binance </span>
-<span style="color:red"> eventTime </span> |  Integer | <span style="color:red"> binance </span>                   
-<span style="color:red"> bid </span> | Double | <span style="color:red"> binance </span>
-<span style="color:red"> bidSize </span> | Double | <span style="color:red"> binance </span>
-<span style="color:red"> ask </span> | Double | <span style="color:red"> binance </span>
-<span style="color:red"> askSize </span> | Double | <span style="color:red"> binance </span>
-<span style="color:red"> priceChange |</span>  Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>           
-<span style="color:red"> priceChangePerc </span> |  Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>       
-<span style="color:red"> close </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>           
-<span style="color:red"> volume </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
-<span style="color:red"> high  </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
-<span style="color:red"> low </span> |  Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
+
 
 ## Trades
 
@@ -405,7 +397,7 @@ Field | Type | Exchanges Supporting
    "exchange":"binance",
    "duration":12000,
    "refundInvoice":"lnbcrt1pdace6qpp5my6nc58d50r5gk38ynyz...",
-   "uuid":"[uuid]"
+   "uuid":"8dda8625-2946-4500-8dd5-13c78d2f42b8"
 }
 ```
 
@@ -422,7 +414,7 @@ Field | Type | Exchanges Supporting
 }
 
 {  
-   "uuid":"a4b4397b-7837-48ba-ba67-ac1ea4850aa5",
+   "uuid":"8dda8625-2946-4500-8dd5-13c78d2f42b8",
    "snapshot":[  
       {  
          "eventTime":1543839862868,
@@ -473,19 +465,16 @@ The <span style="color:red"> Trades </span> channel streams executed trades for 
 Field |  Type | Exchanges Supporting 
 ------ | ------- | -----------
 <span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
-<span style="color:red"> eventType </span> | String | <span style="color:red"> binance </span>
 <span style="color:red"> eventTime </span> | Integer | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
 <span style="color:red"> symbol </span> | String | <span style="color:red"> binance </span>
 <span style="color:red"> tradeId </span> | Integer | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
-<span style="color:red"> price </span> | Double | <span style="color:red"> binance </span>
+<span style="color:red"> price </span> | Double | <span style="color:red"> binance </span> , <span style="color:red"> bitfinex </span>
 <span style="color:red"> quantity </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
 <span style="color:red"> buyerId </span> | Integer | <span style="color:red"> binance </span>
 <span style="color:red"> sellerId </span> | Integer | <span style="color:red"> binance </span>
 <span style="color:red"> tradeTime </span> | Integer | <span style="color:red"> binance </span>
 <span style="color:red"> marketMaker </span> |  Boolean | <span style="color:red"> binance </span>
-<span style="color:red"> eventTime </span> | Integer | <span style="color:red"> binance </span>        
-<span style="color:red"> quantity </span> | Double | <span style="color:red"> binance </span>      
-<span style="color:red"> price </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
+
 
 ## Order Books
 
@@ -498,7 +487,7 @@ Field |  Type | Exchanges Supporting
   "exchange":"bitfinex", 
   "duration":15000,
   "refundInvoice":"lnbcrt1pdace6qpp5my6nc58d50r5...",
-  "uuid":"[uuid]"
+  "uuid":"8dda8625-2946-4500-8dd5-13c78d2f42b8"
 }
 ```
 
@@ -515,7 +504,7 @@ Field |  Type | Exchanges Supporting
 }
 
 {  
-   "uuid":"fe71a195-1b33-494c-849b-2f3aeda144a1",
+   "uuid":"8dda8625-2946-4500-8dd5-13c78d2f42b8",
    "snapshot":[  
       {  
          "eventTime":1543850299172,
@@ -551,8 +540,7 @@ The <span style="color:red"> Books </span> channel streams bids and asks for a g
 Field | Type | Exchanges Supporting
 ------| -------| --------
 <span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
-<span style="color:red"> eventTime </span> | Integer | <span style="color:red"> bitfinex </span> 
-<span style="color:red"> symbol </span> |  String | <span style="color:red"> bitfinex </span> 
+<span style="color:red"> eventTime </span> | Integer | <span style="color:red"> bitfinex </span>  
 <span style="color:red"> orderId </span> |  Integer | <span style="color:red"> bitfinex </span> 
 <span style="color:red"> price  </span>| Double | <span style="color:red"> bitfinex </span> 
 <span style="color:red"> quantity </span> | Double | <span style="color:red"> bitfinex </span> 
@@ -604,7 +592,7 @@ This provides a check and confirmation on the status of the API.
   "week":1, 
   "seasonPhase" : "Regular", 
   "year" : 2017, 
-  "uuid": "[uuid]"
+  "uuid": "8ccbd2d9-65aa-401e-a056-44d543544d47"
 }
 ```
 
@@ -614,6 +602,7 @@ This provides a check and confirmation on the status of the API.
 ```json
 
  {
+   "uuid": "8ccbd2d9-65aa-401e-a056-44d543544d47",
    "data":
     [
       {
@@ -682,7 +671,7 @@ Field | Type | Example
   "channel":"players", 
   "lastName" : "Moss", 
   "firstName" : "Randy", 
-  "uuid": "[uuid]"
+  "uuid": "dfd2a7d4-3a36-4624-96c4-80f0c166d447ok"
 }
 
 ```
@@ -692,6 +681,7 @@ Field | Type | Example
 ```json 
 
 {
+  "uuid":"dfd2a7d4-3a36-4624-96c4-80f0c166d447",
   "data":
     [
       {
@@ -737,7 +727,7 @@ Field | Type | Example
   "channel": "team", 
   "teamId": "CHI", 
   "retrieve": "roster", 
-  "uuid": "[uuid]"
+  "uuid": "db69a9d5-13c3-42a0-958a-623630a0fc81"
 }
 ```
 
@@ -749,7 +739,7 @@ Field | Type | Example
   "teamId": "CHI", 
   "retrieve": "schedule", 
   "year": 2018, 
-  "uuid": "[uuid]"
+  "uuid": "f903da22-907f-4063-a72b-3742528afea4"
 }
 ```
 
@@ -759,6 +749,7 @@ Field | Type | Example
 ```json
 
 {
+  "uuid":"db69a9d5-13c3-42a0-958a-623630a0fc81",
   "data":
     [
       {
@@ -792,7 +783,7 @@ Field | Type | Example
   "channel": "team", 
   "teamId": "CHI", 
   "retrieve": "schedule", 
-  "uuid": "[uuid]"
+  "uuid": "ede60177-f218-40ff-8fde-605f29a8bfce"
 }
 ```
 
@@ -802,6 +793,7 @@ Field | Type | Example
 ```json
 
  {
+   "uuid": "ede60177-f218-40ff-8fde-605f29a8bfce",
    "data":
     [
       {
@@ -894,7 +886,7 @@ KC	| Kansas City Chiefs	| WAS	| Washington Redskins
   "statType" : "passing", 
   "gameId" : "2016101604", 
   "playerId" : "00-0027973",
-  "uuid": "[uuid]"
+  "uuid": "6fbd98b1-2819-4e01-81c9-1442895e2d08"
  }
 
 ```
@@ -909,7 +901,7 @@ KC	| Kansas City Chiefs	| WAS	| Washington Redskins
     "week" : 1, 
     "seasonPhase" : "Regular", 
     "statType" : "passing",
-    "uuid": "[uuid]"
+    "uuid": "4312144f-a0a9-4c23-bfd5-01405813c2c9"
 }
 ```
 
@@ -919,8 +911,8 @@ KC	| Kansas City Chiefs	| WAS	| Washington Redskins
 
 ```json
 
-
 {
+  "uuid:"4312144f-a0a9-4c23-bfd5-01405813c2c9",
   "data":
     [
       {
@@ -988,7 +980,7 @@ Field | Type | Example
 ```json
 {
   "channel": "info", 
-  "uuid": "[uuid]"
+  "uuid": "123e4567-e89b-12d3-a456-426655440000"
 }
 ```
 
@@ -1024,7 +1016,7 @@ Field | Type | Example
   "year": 2018, 
   "month": 11, 
   "day": 24, 
-  "uuid": "[uuid]"
+  "uuid": "9bec1361-05aa-436f-8dd9-d480000c1d27 "
 }
 ```
 
@@ -1036,7 +1028,7 @@ Field | Type | Example
   "year": 2016, "month": 12, 
   "day": 20, 
   "teamId": "CHI", 
-  "uuid": "[uuid]"
+  "uuid": "[3f4f2853-e84f-4a29-b807-8a471e59ca44"
 }
 ```
 
@@ -1171,7 +1163,7 @@ To search for a game by a specific team, add an optional field for <span style="
   "channel": "players", 
   "lastName": "Durant", 
   "firstName": "Kevin", 
-  "uuid": "[uuid]"
+  "uuid": "3f4f2853-e84f-4a29-b807-8a471e59ca44"
 }
 ```
 
@@ -1220,15 +1212,6 @@ Field | Type | Example
   "uuid": "[uuid]"
 }
 ```
-> Example request for Schedule 
-
-```json
-{
-  "channel": "team", 
-  "retrieve": "schedule", 
-  "uuid": "[uuid]"
-}
-```
 > Example request with Year
 
 ```json
@@ -1237,6 +1220,16 @@ Field | Type | Example
   "retrieve": "schedule", 
   "season": "2016-2017", 
   "uuid": "[uuid]"
+}
+```
+> Example request for Schedule 
+
+```json
+{
+  "channel": "team", 
+  "teamId": "CHI",
+  "retrieve": "schedule", 
+  "uuid": "3f4f2853-e84f-4a29-b807-8a471e59ca44"
 }
 ```
 
@@ -1327,7 +1320,7 @@ DEN	| Denver Broncos | WAS  | Washington Wizards
   "year": 2017, 
   "month": 12, 
   "day": 12, 
-  "uuid": "[uuid]"
+  "uuid": "3f4f2853-e84f-4a29-b807-8a471e59ca44"
 }
 ```
 
