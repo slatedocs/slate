@@ -507,6 +507,14 @@ Field |  Type | Exchanges Supporting
 ```json
 
 {  
+      "uuid":"8dda8625-2946-4500-8dd5-13c78d2f42b8",
+      "exchange":"bitfinex",
+      "symbol":"BTCUSD",
+      "duration":15000,
+      "event":"payment received"
+}
+
+{  
    "uuid":"fe71a195-1b33-494c-849b-2f3aeda144a1",
    "snapshot":[  
       {  
@@ -520,12 +528,6 @@ Field |  Type | Exchanges Supporting
 }
 
 {  
-      "uuid":"8dda8625-2946-4500-8dd5-13c78d2f42b8",
-      "exchange":"bitfinex",
-      "symbol":"BTCUSD",
-      "duration":15000,
-      "event":"payment received"
-   }{  
       "uuid":"8dda8625-2946-4500-8dd5-13c78d2f42b8",
       "data":{  
          "eventTime":1541715102336,
