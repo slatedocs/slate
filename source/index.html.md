@@ -487,7 +487,7 @@ Field |  Type | Exchanges Supporting
   "exchange":"bitfinex", 
   "duration":15000,
   "refundInvoice":"lnbcrt1pdace6qpp5my6nc58d50r5...",
-  "uuid":"8dda8625-2946-4500-8dd5-13c78d2f42b8"
+  "uuid":"d7975109-e6d0-47ae-9c26-531d553c420b"
 }
 ```
 
@@ -496,7 +496,7 @@ Field |  Type | Exchanges Supporting
 ```json
 
 {  
-      "uuid":"8dda8625-2946-4500-8dd5-13c78d2f42b8",
+      "uuid":"d7975109-e6d0-47ae-9c26-531d553c420b",
       "exchange":"bitfinex",
       "symbol":"BTCUSD",
       "duration":15000,
@@ -504,7 +504,7 @@ Field |  Type | Exchanges Supporting
 }
 
 {  
-   "uuid":"8dda8625-2946-4500-8dd5-13c78d2f42b8",
+   "uuid":"d7975109-e6d0-47ae-9c26-531d553c420b",
    "snapshot":[  
       {  
          "eventTime":1543850299172,
@@ -517,7 +517,7 @@ Field |  Type | Exchanges Supporting
 }
 
 {  
-      "uuid":"8dda8625-2946-4500-8dd5-13c78d2f42b8",
+      "uuid":"d7975109-e6d0-47ae-9c26-531d553c420b",
       "data":{  
          "eventTime":1541715102336,
          "orderId":18836717052,
@@ -525,7 +525,7 @@ Field |  Type | Exchanges Supporting
          "quantity":0.16911629
       }
    }{  
-      "uuid":"8dda8625-2946-4500-8dd5-13c78d2f42b8",
+      "uuid":"d7975109-e6d0-47ae-9c26-531d553c420b",
       "data":{  
          "eventTime":1541715102336,
          "orderId":18836717013,
@@ -568,6 +568,7 @@ This provides a check and confirmation on the status of the API.
 
 ```json
 {
+  "[uuid]",
   "data":
     [
       {
@@ -722,27 +723,27 @@ Field | Type | Example
 
 > Example request Rosters
 
-```json
-{
-  "channel": "team", 
-  "teamId": "CHI", 
-  "retrieve": "roster", 
-  "uuid": "db69a9d5-13c3-42a0-958a-623630a0fc81"
-}
-```
 
 > Example request Rosters in Year
 
 ```json
 {
   "channel": "team", 
-  "teamId": "CHI", 
+  "teamId": "MIN", 
   "retrieve": "schedule", 
   "year": 2018, 
-  "uuid": "f903da22-907f-4063-a72b-3742528afea4"
+  "uuid": "[uuid]"
 }
 ```
 
+```json
+{
+  "channel": "team", 
+  "teamId": "MIN", 
+  "retrieve": "roster", 
+  "uuid": "db69a9d5-13c3-42a0-958a-623630a0fc81"
+}
+```
 
 > Example of Roster data
 
@@ -886,7 +887,7 @@ KC	| Kansas City Chiefs	| WAS	| Washington Redskins
   "statType" : "passing", 
   "gameId" : "2016101604", 
   "playerId" : "00-0027973",
-  "uuid": "6fbd98b1-2819-4e01-81c9-1442895e2d08"
+  "uuid": "[uuid]"
  }
 
 ```
@@ -1016,7 +1017,7 @@ Field | Type | Example
   "year": 2018, 
   "month": 11, 
   "day": 24, 
-  "uuid": "9bec1361-05aa-436f-8dd9-d480000c1d27 "
+  "uuid": "[uuid]"
 }
 ```
 
