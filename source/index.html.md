@@ -79,7 +79,7 @@ A valid <span style="color:red"> `uuid` </span> is required for all requests and
    "channel":"players",
    "lastName":"Moss",
    "firstName":"Randy",
-   "uuid":"[uuid]"
+   "uuid":"bfbef9da-eb9e-418c-8f6b-963743355ef7"
 }
 ```
 
