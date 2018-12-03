@@ -21,6 +21,7 @@ This document is currently an outline
 * Understand React fundamentals.
 * Understand Promises and async/await
 * Install Visual Studio Code (optional)
+* Install supervisor for dev server
 
 ## Steps
 
