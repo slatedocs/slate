@@ -6,7 +6,7 @@
 
 ```shell
 curl -X POST \
-  https://api.chekin.io/api/v1/police/register/ \
+  https://api.chekin.io/api/v1/tools/police/register/ \
   -H 'Authorization: Token yourUserTokenHere' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -78,7 +78,7 @@ You will need to do a second call later to check the status until it is "COM" (c
 
 ### HTTP Request
 
-`POST https://api.chekin.io/api/v1/police/register/`
+`POST https://api.chekin.io/api/v1/tools/police/register/`
 
 ### Query Parameters
 
@@ -123,12 +123,12 @@ value | Description
 ### Doc types in Italy
 Parameter | Required | Description
 --------- | -------- | -----------
-ToDo: compelte docs | 
+Comming soon. | 
 
 ### Doc types in Portugal
 Parameter | Required | Description
 --------- | -------- | -----------
-Not supported yet. | 
+Comming soon. | 
 
 <aside class="success">
 Remember — you need to send the authentication headers with User Token!
@@ -139,7 +139,7 @@ Remember — you need to send the authentication headers with User Token!
 
 ```shell
 curl -X GET \
-  https://api.chekin.io/api/v1/police/register/1524/ \
+  https://api.chekin.io/api/v1/tools/police/register/1524/ \
   -H 'Authorization: Token yourUserTokenHere' \
   -H 'Content-Type: application/json'
 ```
@@ -185,10 +185,11 @@ The receipts will be deleted in 3 days, unless you have hired the documentation 
 
 ### HTTP Request
 
-`GET https://api.chekin.io/api/v1/police/register/<ID>/`
+`GET https://api.chekin.io/api/v1/tools/police/register/<ID>/`
 
 ### URL Parameters
 
 Parameter | Required | Description
 --------- | -------- | -----------
-ID | true | The ID of the registration, obtained previously during register triggering
+ID | true | The ID of the registration, obtained previously when registration was triggered.
+
