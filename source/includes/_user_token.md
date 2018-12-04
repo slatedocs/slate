@@ -5,30 +5,40 @@
 
 ```shell
 curl -X POST \
-  https://api.chekin.io/api/v1/users/token/create/ \
-  -H 'Api-Key: yourApiKeyhere' \
-  -H 'content-type: multipart/form-data;' \
-  -F email=usersemail@domain.com \
-  -F password=userspassword
+  https://api.chekin.io/api/v1/users/tools/signup/ \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "email": "testing@chekin.io",
+    "password": "mypassword123"
+  }'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
   {
-    "auth_token": "yourUserTokenHere"
+      "id": 1257,
+      "email": "testing@chekin.io",
+      "language": "es",
+      "token": "c7901b5d947541a1c870d472b644cf9ee5945e37"
   }
 ```
 
-> Make sure to replace `yourApiKeyhere` with your API key in headers.
+To start using the API you will need to signup with an email and password to get a user token. 
 
-To act in behalf of a CheKin user through the CheKin API, and access to his data, you will need to generate a user token. 
-To get a token do a `POST` to the tokens endpoint at `https://api.chekin.io/api/v1/users/token/create/` sending user email and password and you will get the token as response. 
+### HTTP Request
+
+`POST https://api.chekin.io/api/v1/users/tools/signup/`
+
+### Query Parameters
+
+Parameter | Required | Description
+--------- | -------- | -----------
+email | true | A valid email.
+password | true | A password for your account.
 
 CheKin expects for the user token to be included in all authenticated API requests to the server in a header that looks like the following:
 
-`Authorization: Token yourUserTokenHere`
+`Authorization: Token c7901b5d947541a1c870d472b644cf9ee5945e37`
 
-<aside class="notice">
-You must replace <code>yourUserTokenHere</code> with your user token.
-</aside>
+
