@@ -85,7 +85,7 @@ You will need to do a second call later to check the status until it is "COM" (c
 Parameter | Required | Description
 --------- | -------- | -----------
 test_mode | false | false by default. If it's set to true, then the data isn't sent to the police, but you will get the same answer as in a successful registration.
-police_type | false | Police type and police credentials are required to send the guests data to the police. Police type must take one of the following values: POL (Policía Nacional), NAT (Guardia Civil), ERT (Ertzaintza), MOS (Mossos d'Esquadra), ISP (Italian State Police).
+police_type | false | Police type and police credentials are required to send the guests data to the police. Police type must take one of the following values: POL (Policía Nacional), NAT (Guardia Civil), ERT (Ertzaintza), MOS (Mossos d'Esquadra).
 police_user | false | The username used to do login in the police website.
 police_password | false | The password used to do login in the police website.
 is_housing_group | false | Used only if police type is POL. Set it to true only if the accommodation is registered at the police as part of a Group.
@@ -114,10 +114,12 @@ receipt_signature | false | The guest signature, base64 encoded, to be used in t
 ### Doc types in Spain
 value | Description
 ----- | -----------
+"D" | Spanish ID card, called DNI.
+"C" | Spanish Driving Licence.
+"N" | Spanish residence permission
+"I" | European ID card.
+"X" | Foreign residence permission
 "P" | Passport.
-"D"| Spanish ID, called DNI.
-"X"| Spanish Residence permission.
-"I"| European ID.
 
 
 ### Doc types in Italy
