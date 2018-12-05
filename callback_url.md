@@ -22,6 +22,7 @@ The post params posted at any update in a particular leads are as follows
     "source": "google",
     "sub_source": "google_search",
     "agent_email": "rahul@anarock.com",
+    "lead_status_reasons": "Low Budget, Finance Issues",
     "latest_event_details": { 
         "event_id": 552654,
         "start_time": 1540968234,
@@ -50,7 +51,29 @@ The post params posted at any update in a particular leads are as follows
         "first_leg_status": "completed",
         "end_time": 1540967957,
         "duration_in_sec": 26, //duration_of_the_call
-      } 
+      },
+      "extra_details": {
+        "duplicate_lead_id"=>906498,
+         "gender"=>"male",
+         "is_nri"=>true,
+         "address"=>"vb",
+         "max_age"=>45,
+         "min_age"=>40,
+         "industry"=>"Government and Public Administration",
+         "ethnicity"=>"Bengali",
+         "occupation"=>"Professional",
+         "designation"=>"G",
+         "company_name"=>"J",
+         "possession_in"=>[1, 2, 3, 4, 5, 6],
+         "referral_data"=>{"name"=>"Vb", "phone"=>"99999999999"},
+         "office_city_id"=>326,
+         "mode_of_payment"=>"Loan",
+         "annual_income_max"=>30000000,
+         "annual_income_min"=>20000000,
+         "purpose_of_purchase"=>"Self Use",
+         "current_apartment_type"=>1,
+         "current_residence_type"=>"Family Owned"
+      }
     ] 
 }
 ```
