@@ -66,7 +66,7 @@ The post params posted at any update in a particular leads are as follows
          "designation": "G",
          "company_name": "J",
          "possession_in": [1, 2, 3, 4, 5, 6],
-         "referral_data": {"name"=>"Vb", "phone"=>"99999999999"},
+         "referral_data": {"name": "Vb", "phone": "99999999999"},
          "office_city_id": 326,
          "mode_of_payment": "Loan",
          "annual_income_max": 30000000,
