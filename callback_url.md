@@ -51,8 +51,9 @@ The post params posted at any update in a particular leads are as follows
         "first_leg_status": "completed",
         "end_time": 1540967957,
         "duration_in_sec": 26, //duration_of_the_call
-      },
-      "extra_details": {
+      }
+    ],
+    "extra_details": {
         "duplicate_lead_id": 906498,
          "gender": "male",
          "is_nri": true,
@@ -74,7 +75,6 @@ The post params posted at any update in a particular leads are as follows
          "current_apartment_type": 1,
          "current_residence_type": "Family Owned"
       }
-    ] 
 }
 ```
 
