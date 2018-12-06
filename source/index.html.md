@@ -45,7 +45,7 @@ To be decided
 # API
 
 ### REST API ENDPOINT URL
-### https://api.falconx.io
+**https://api.falconx.io**
 
 ## Requests
 All requests and responses are application/json content type and follow typical HTTP response status codes for success and failure.
@@ -122,4 +122,84 @@ Remember to first base64-decode the alphanumeric secret string (resulting in 64 
 The **FX-ACCESS-TIMESTAMP** header MUST be number of seconds since Unix Epoch in UTC. Decimal values are allowed.
 
 Your timestamp must be within 30 seconds of the api service time or your request will be considered expired and rejected. We recommend using the [time](#time) endpoint to query for the API server time if you believe there many be time skew between your server and the API servers.
+
+# Orders
+
+## Place a New Order
+
+You can place two types of orders: limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your account funds will be put on hold for the duration of the order. How much and which funds are put on hold depends on the order type and parameters specified. See the Holds details below.
+
+### HTTP REQUEST
+
+### POST /orders
+
+### COMMON PARAMETERS
+
+These parameters are common to all order types. Depending on the order type, additional parameters will be required (see below).
+
+<table>
+  <tr>
+    <th>Param</th>
+	  <th>Description</th>
+  </tr>
+  <tr>
+    <td>type</td>
+    <td>limit or market</td>
+  </tr>
+  <tr>
+    <td>side</td>
+	  <td>buy or sell</td>
+  </tr>
+  <tr>
+    <td>stp</td>
+	  <td>[optional] Self-trade prevention flag</td>
+  </tr>
+</table>
+
+### LIMIT ORDER PARAMETERS
+<table>
+  <tr>
+    <th>Param</th>
+	  <th>Description</th>
+  </tr>
+  <tr>
+    <td>price</td>
+	  <td>Price</td>
+  </tr>
+  <tr>
+    <td>size</td>
+	  <td>Amount to buy or sell</td>
+  </tr>
+</table>
+
+### MARKET ORDER PARAMETERS
+<table>
+  <tr>
+    <th>Param</th>
+	  <th>Description</th>
+  </tr>
+  <tr>
+    <td>size</td>
+    <td>Desired amount</td>
+  </tr>
+  <tr>
+    <td>funds</td>
+	  <td>[optional]* Desired amount of quote currency to use</td>
+  </tr>
+</table>
+
+## Cancel an Order
+Cancel a previously placed order.
+
+If the order had no matches during its lifetime its record may be purged. This means the order details will not be available with **GET /orders/<order-id>**.
+
+### HTTP REQUEST
+### DELETE /orders/<order-id>
+
+## Get an Order
+Get a single order by order id.
+
+### HTTP REQUEST
+### GET /orders/<order-id>
+
 
