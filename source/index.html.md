@@ -203,3 +203,48 @@ Get a single order by order id.
 ### GET /orders/<order-id>
 
 
+# Deposits
+
+## Fetch deposit address.
+
+**GET /deposit_address**
+
+<table>
+  <tr>
+    <th>Param</th>
+	  <th>Description</th>
+  </tr>
+  <tr>
+    <td>symbol</td>
+    <td>The asset to deposit</td>
+  </tr>
+</table>
+
+# Withdraws
+
+## Submit a withdraw request.
+
+**POST /withdraw**
+
+<table>
+  <tr>
+    <th>Param</th>
+	  <th>Description</th>
+  </tr>
+  <tr>
+    <td>symbol</td>
+    <td>The asset to withdraw</td>
+  </tr>
+  <tr>
+    <td>address</td>
+    <td>The address to withdraw to</td>
+  </tr>
+  <tr>
+    <td>tag</td>
+    <td>Address tag for coins like XRP</td>
+  </tr>
+  <tr>
+    <td>amount</td>
+    <td>Amount to withdraw</td>
+  </tr>
+</table>
