@@ -292,11 +292,13 @@ You need to set quote type as "REGULAR".
 ## Create or select recipient account
 Please look at [Create recipient account](#recipient-accounts-create) under Full API Reference for information on the calls to crerate recipients.
 
-It is also reccomended that you use the `GET accounts` endpoint to load the user's previously used reciepients and allow them to select from them in your user interface. This allows them to only have to create a recipinet once and then re-use it in future, plus it allows exising TransferWise users to use their familiar users from our platform.
+It is also reccomended that you use the `GET accounts` endpoint to load the user's previously used reciepients and allow them to select from them in your user interface. This allows them to only have to create a recipient once and then re-use it in future, plus it allows exising TransferWise users to use their familiar users from our platform.
+
+When returning this list please filter out any recipient of type `SwiftCode`, unfortunately API limitations mean these cannot be used in bank integrations.
 
 You should store a cached copy of the recipients that are _used_ or _created_ by users of your app such that you can load that data again quickly to show in your app, for example a transfer tracking screen might show recipient data.
 
-PLease note, when creating a new transfer always reload the full list of reciepients over our API as cannot be certain the recipients you store a copy of have not been deleted in the meantime.
+Please note, when creating a new transfer always reload the full list of reciepients over our API as cannot be certain the recipients you store a copy of have not been deleted in the meantime.
 
 ## Create transfer
 Please look at [Create transfer](#transfers-create) under Full API Reference.
@@ -304,7 +306,7 @@ Please look at [Create transfer](#transfers-create) under Full API Reference.
 ## Fund transfer 
 Once you have successfully created a transfer via the TransferWise API 
 you should debit the exact source amount from your customer's bank account 
-and send the funds to TransferWise’s local bank account via domestic payment. The details of this bank account will be shared with you by the TransferWise team helping your integration.
+and send the funds to TransferWise’s local bank account via domestic payment. You should send the amount provided in the quote object you created in the first step of the process. The details of this bank account will be shared with you by the TransferWise team helping your integration.
 
 In order for us to link this incoming domestic payment with a corresponding transfer order, we need you to use specific text in the "payment reference" field.
 Calling endpoint [Get pay-in methods](#quotes-get-pay-in-methods) with quoteId returns you the correct reference text. e.g. `quote-1456477 P5472304`. We currently drive this behaviour using the second part of this string, starting with _P_, you should use a regular expression to extract this string to send as the reference, e.g. `.*(P\d+)`, taking the second group.
