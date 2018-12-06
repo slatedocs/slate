@@ -24,7 +24,7 @@ lines="221,$(wc -l < build/index.html)p"
 new_index="$(sed -n "$lines" build/index.html)"
 new_index_fixed="$(sed -e 's/@/@@/g' <<< "$new_index")"
 cd "$suredbits_web_dir"
-top="$(sed -n '1,229p' app/views/Slate_API_Docs.scala.html)"
+top="$(sed -n '1,232p' app/views/Slate_API_Docs.scala.html)"
 
 echo "$top" > app/views/Slate_API_Docs.scala.html
 echo "$new_index_fixed" >> app/views/Slate_API_Docs.scala.html
