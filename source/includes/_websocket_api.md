@@ -253,6 +253,25 @@ Private channels require clients to authenticate.
 
 **trading_notifications** channel provides updates of all the private trade notifications.
 
+### orderUpdate
+
+```
+// orderUpdate
+{
+    "type": "orderUpdate",
+    "action": "fill",
+    "product_id": 3,
+    "symbol": "BTCUSD_28Dec",
+    "order_id": 3283999,
+    "side": "buy",
+    "size": 1,
+    "filled_size": 1,
+    "price": "4500.0",
+    "state": "open",
+    "timestamp": 1544091555086559
+}
+```
+
 ### fill
 
 ```
@@ -262,10 +281,11 @@ Private channels require clients to authenticate.
     "product_id": 7,
     "type": "fill",
     "user_id": 1998,
+    "order_id": 3283999,
     "side": "buy",
     "size": 190,
     "price": "0.00145791",
-    "timestamp": 1542108684
+    "timestamp": 1544091555086559
 }
 ```
 
@@ -277,7 +297,7 @@ Private channels require clients to authenticate.
     "symbol": "BNBBTC_30Nov",
     "product_id": 7,
     "type": "adl",
-    "timestamp": 1542108684
+    "timestamp": 1544091555086559
 
 }
 ```
@@ -293,7 +313,7 @@ Private channels require clients to authenticate.
     "user_id": 1998,
     "size": 199,
     "price": "0.00145791",
-    "timestamp": 1542108684
+    "timestamp": 1544091555086559
 }
 ```
 
@@ -311,7 +331,7 @@ Private channels require clients to authenticate.
     "entry_price": "0.00145797",
     "exit_price": "0.00145791",
     "realized_pnl": "0.00102121",
-    "timestamp": 1542108684
+    "timestamp": 1544091555086559
 
 }
 ```
