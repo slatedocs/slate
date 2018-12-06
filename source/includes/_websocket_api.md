@@ -264,7 +264,7 @@ Private channels require clients to authenticate.
     "symbol": "BTCUSD_28Dec",
     "order_id": 3283999,
     "side": "buy",
-    "size": 1,
+    "unfilled_size": 1,
     "filled_size": 1,
     "price": "4500.0",
     "state": "open",
