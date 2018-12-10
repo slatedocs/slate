@@ -22,7 +22,7 @@ curl --data-binary '{"id":"10", "method":"profile.Update", "params":{"function":
 }
 ```
 
-Updates the user’s profile data. Acts as a create in case there is no data associated with the user.
+Updates the user’s profile data. Creates a new user if there is no data associated with the user.
 
 ### HTTP Request
 
@@ -32,9 +32,9 @@ Updates the user’s profile data. Acts as a create in case there is no data ass
 
 Parameter | Type | Description
 --------- | ------- | -----------
-function (optional) | integer | the user’s function input identifier
-sector (optional) | integer | the user’s sector input identifier
-seniority (optional) | integer | the user’s seniority input identifier
+sector (optional) | integer | defines the user's sector of work
+function (optional) | integer | defines the user's role or general area of practice  
+seniority (optional) | integer | defines the user's experience or level of responsibility
 
 <aside class="notice">
 Although all parameters are optional, it's necessary for at least one to be set for a successful call
@@ -172,7 +172,7 @@ curl --data-binary '{"id":"3", "method":"profile.GetInputOptions", "jsonrpc":"2.
 }
 ```
 
-Retrieves available inputs afferent to an organisation.
+Retrieves available inputs available to an organisation.
 
 ### HTTP Request
 
@@ -212,7 +212,7 @@ curl --data-binary '{"id":"3", "method":"profile.SetFavouriteAsset", "params":{"
 }
 ```
 
-Mark an asset as <code>favourite</code> for an user.
+Mark an asset as <code>favourite</code> for a user.
 
 ### HTTP Request
 
@@ -256,7 +256,7 @@ curl --data-binary '{"id":"3", "method":"profile.SetCompleteAsset", "params":{"i
 }
 ```
 
-Mark an asset as <code>completed</code> for an user.
+Mark an asset as <code>completed</code> for a user.
 
 ### HTTP Request
 
@@ -369,7 +369,7 @@ curl --data-binary '{"id":"7","method":"profile.FetchCompetencies","jsonrpc": "2
 }
 ```
 
-Retrieve organisation afferent competencies.
+Retrieve an organisation's available competencies
 
 ### HTTP Request
 

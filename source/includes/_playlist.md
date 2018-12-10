@@ -129,7 +129,7 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchAllPlaylists", "jsonrpc":
 }
 ```
 
-Returns an user’s playlists (competency, group, favorite, bifrost) in order.
+Returns a user’s playlists (competency, group, favorite, bifrost) in order.
 
 ### HTTP Request
 
@@ -143,7 +143,7 @@ limit (optional) | integer | number of playlists (default limit is 10| maximum l
 offset (optional) | integer | starting from
 
 <aside class="success">
-Returns — Matrix of Playlist Models - all playlists belonging to an user’s grouped by types
+Returns — Matrix of Playlist Models - all playlists belonging to a user’s grouped by types
 </aside>
 
 ### Errors
@@ -222,7 +222,7 @@ curl --data-binary '{"id":"5","method":"playlist.FetchFavouritePlaylist","jsonrp
 }
 ```
 
-Retrieve an user’s favourite playlist.
+Retrieve a user’s favourite playlist.
 
 ### HTTP Request
 
@@ -233,7 +233,7 @@ Retrieve an user’s favourite playlist.
 <aside class="notice"><code>No parameters</code></aside>
 
 <aside class="success">
-Returns — Playlist Model - an user’s playlist of  assets marked as favourite
+Returns — Playlist Model - a user’s playlist of  assets marked as favourite
 </aside>
 
 ### Errors
@@ -374,7 +374,7 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchCompetencyPlaylists", "js
 }
 ```
 
-Retrieve an user’s list of competency playlists.
+Retrieve a user’s list of competency playlists.
 
 ### HTTP Request
 
@@ -388,7 +388,7 @@ limit (optional) | integer | number of playlists (default limit is 10| maximum l
 offset (optional) | integer | starting from
 
 <aside class="success">
-Returns - List of Playlist Models - an user’s playlists generated for the organisation’s competencies
+Returns - List of Playlist Models - a user’s playlists generated for the organisation’s competencies
 </aside>
 
 ### Errors
@@ -494,7 +494,7 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchCompetencyPlaylists", "pa
 }
 ```
 
-Returns a specific competency playlist for an user.
+Returns a specific competency playlist for a user.
 
 ### HTTP Request
 
@@ -649,7 +649,7 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchGroupPlaylists", "jsonrpc
 }
 ```
 
-Retrieve an user’s list of group playlists.
+Retrieve a user’s list of group playlists.
 
 ### HTTP Request
 
@@ -663,7 +663,7 @@ limit (optional) | integer | number of playlists (default limit is 10| maximum l
 offset (optional) | integer | starting from
 
 <aside class="success">
-Returns - List of Playlist Models - an user’s group afferent playlists
+Returns - List of Playlist Models - a user’s group afferent playlists
 </aside>
 
 ### Errors
@@ -805,7 +805,7 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchBifrostPlaylists", "jsonr
 }
 ```
 
-Retrieve an user’s list of bifrost playlists.
+Retrieve a user’s list of bifrost playlists.
 
 ### HTTP Request
 
@@ -819,7 +819,7 @@ limit (optional) | integer | number of playlists (default limit is 10| maximum l
 offset (optional) | integer | starting from
 
 <aside class="success">
-Returns - List of Playlist Models - an user’s ML aglorithm generated playlists
+Returns - List of Playlist Models - a user’s ML aglorithm generated playlists
 </aside>
 
 ### Errors
@@ -973,7 +973,7 @@ limit (optional) | integer | number of playlists (default limit is 10| maximum l
 offset (optional) | integer | starting from
 
 <aside class="success">
-Returns - List of Playlist Models - an user’s specific type playlists
+Returns - List of Playlist Models - a user’s specific type playlists
 </aside>
 
 ### Errors

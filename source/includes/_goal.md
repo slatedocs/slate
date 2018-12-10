@@ -37,7 +37,7 @@ importance (optional) | float | the importance value (must be between 0.1 and 0.
 confidence (optional) | float | the confidence value (must be between 0.1 and 0.9)
 
 <aside class="success">
-Goal Model - an user’s inputs on an organisation goal
+Goal Model - a user’s inputs on an organisation goal
 </aside>
 
 ### Errors
@@ -78,7 +78,7 @@ curl --data-binary '{"id":"3", "method":"goal.FetchAll", "jsonrpc":"2.0"}'
 }
 ```
 
-Retrieve an user’s goal inputs.
+Retrieve a user’s goal inputs.
 
 ### HTTP Request
 
@@ -89,7 +89,7 @@ Retrieve an user’s goal inputs.
 <aside class="notice"><code>No parameters</code></aside>
 
 <aside class="success">
-Returns — List of Goal Models - an user’s inputs on organisation goals
+Returns — List of Goal Models - a user’s inputs on organisation goals
 </aside>
 
 ### Errors
@@ -122,7 +122,7 @@ curl --data-binary '{"id":"6", "method":"goal.FetchByCompetencyID", "params":{"i
 }
 ```
 
-Retrieve an user’s goal inputs for a given competency
+Retrieve a user’s goal inputs for a given competency
 
 ### HTTP Request
 
@@ -135,7 +135,7 @@ Parameter | Type | Description
 id | integer | the competency’s identifier
 
 <aside class="success">
-Goal Model - an user’s inputs on an organisation goal
+Goal Model - a user’s inputs on an organisation goal
 </aside>
 
 ### Errors

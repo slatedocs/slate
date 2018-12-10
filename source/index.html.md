@@ -22,7 +22,7 @@ search: true
 
 # Introduction
 
-Welcome to the Magpie API! You can use our API to incorporate user specific learning recommendations in your application, based on various inputs. You will be able to generate algorithmic and machine learning recommendations, retrieve information on your organisation, a user's profile and asset metadata.
+Welcome to the magpie API! You can use our API to incorporate user specific learning recommendations in your application, based on various inputs. You will be able to generate recommendations from content in an instance of magpie, retrieve information on your organisation, a user's profile and asset metadata.
 
 Requests are made in the context of a user taking actions that trigger the API calls and not at an administrator level.
 The API uses the JSON-RPC protocol (jsonrpc2). There is a client-side library available too as a way to speed up and simplify integration.
