@@ -233,7 +233,7 @@
 }
 ```
 
-<b>Triggered when char recommended learning asset is clicked</b>
+<b>Triggered when chat recommended learning asset is clicked</b>
 
 ## open_searchbar
 
@@ -313,16 +313,7 @@
 }
 ```
 
-<b>Triggered when an user clicks through individual tray, either left or right</b>
-
-## view_kirklazarus
-
-```shell
-```
-
-> Structure: N/A
-
-<b>Event is sent when user lands on the initial chat page</b>
+<b>Triggered when a user clicks through individual tray, either left or right</b>
 
 ## view_profile
 
@@ -349,4 +340,4 @@
 
 > Structure: N/A
 
-<b>When an user navigates from dashboard to LA page or straight to La page</b>
+<b>When a user navigates from dashboard to LA page or straight to La page</b>

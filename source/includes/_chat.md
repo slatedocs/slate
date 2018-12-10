@@ -59,7 +59,7 @@ curl --data-binary '{"id":"2","method":"chat.Complete", "params":{"chatCompleted
 }
 ```
 
-Mark a chat as complete for an user.
+Mark a chat as complete for a user.
 
 ### HTTP Request
 
@@ -72,7 +72,7 @@ Parameter | Type | Description
 chatCompleted | boolean | the true/false status
 
 <aside class="success">
-Returns — an user’s chat progress
+Returns — a user’s chat progress
 </aside>
 
 ### Errors

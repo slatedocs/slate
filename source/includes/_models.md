@@ -1,6 +1,6 @@
 # Definitions
 
-The following are the JSON data models referenced through the api documentation.
+The following are the JSON data models referenced through the API documentation.
 
 ## Learning Asset Model
 
@@ -47,7 +47,7 @@ A learning asset is a collection of metadata and user interactions with a learni
 Name | Type | Definition
 --------- | ------- | -------
 id | integer | The asset identifier
-hashID | string | A has of the asset identifier
+hashID | string | A hash of the asset identifier
 title | string | The title of the asset
 description | string | The description body used for the asset
 mainImage | string | A custom image attached to the asset
@@ -62,7 +62,7 @@ isFavourite | boolean | Flag if asset has been bookmarked
 launched | boolean | Flag if asset has been launched
 dismissed | boolean | Flag if asset has been suppressed
 completed | boolean | Flag if asset has been marked as completed
-notes | string | User personal inputs regarding assets
+notes | string | User's personal notes regarding the asset
 restrictedCode | string | Defines any restrictions for an asset through code
 restrictedLabel | string | Human readable restriction for an asset
 provider | object | Vendor/Owner associated to the asset
