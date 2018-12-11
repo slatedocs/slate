@@ -126,6 +126,11 @@ There are many different variations of bank account details needed depending on 
 <li>Zip code</li>
 </ul>
 
+When creating recipient, the following general rules should be applied to "accountHolderName" field:
+1. Full names for personal recipients.  They must include more than one name, and both first and last name must have more than one character.
+2. Business names must be in full, but can be just a single name, and can include single characters.  But must have more than one character in any one word.
+3. Digits are not allowed, except in business names.
+These requirements may vary depending of recipient type.
 A GBP example is provided here. You can find other currency examples below.<br/>
 As you can see many of the fields are `null`, in order to know which fields are required for which currency we expose the [Recipients.Requirements](#recipient-accounts-requirements) endpoint.
 
@@ -2206,7 +2211,8 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
 
 Send payments to Nepal. 
 
-Private recipients are supported. 
+Private recipients are supported.
+1mln NPR per transaction / per month for individual account. 
 
 Recipient type = *'nepal'*
 
@@ -2236,8 +2242,6 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
 ```
 
 Send payments to New Zealand. 
-
-1mln NPR per transaction / per month for individual account.
 
 Recipient type = *'newzealand'*
 
