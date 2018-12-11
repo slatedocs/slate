@@ -1,239 +1,258 @@
----
-title: API Reference
+--- 
 
-language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
+title: SILA API Documentation
 
-toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+language_tabs: 
+   - shell
+   - javascript
 
-includes:
-  - errors
+toc_footers: 
+   - <a href='#'>Sign Up for a Developer Key</a> 
+   - <a href='https://github.com/lavkumarv'>Documentation Powered by lav</a> 
 
-search: true
----
+includes: 
+   - errors 
 
-# Introduction
+search: true 
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+--- 
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+# Introduction 
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+**Version:** 2018-11-27X 
+
+Welcome to the Sila API! This API gives you the ability to manage sila accounts and transactions directly from your applications.
+
+We have language bindings for cURL and Node.js.
 
 # Authentication
 
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+test
+generate signature
 ```
 
 ```javascript
-const kittn = require('kittn');
+// For the purposes of this example, we will let a library do the heavy lifting
+// See https://github.com/pubkey/eth-crypto
+const EthCrypto = require('eth-crypto');
 
-let api = kittn.authorize('meowmeowmeow');
+var request_data = {};
+
+var message = { test: 'message' };
+var private_key = 'PRIVATE_KEY';
+
+// Generate the message hash
+var msg_hash = EthCrypto.hash.keccak256(JSON.stringify(message));
+
+// Create a signature using your private key
+var signature = EthCrypto.sign(private_key, messageHash);
+
+// The EthCrypto library adds a leading '0x' which should be removed from the signature.
+signature = signature.substring(2);
+
+request_data.headers.signature = signature;
+request_data.body = message;
+
+...
+
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+This API is secured by validating a signature of the complete message. For example, to authenticate the following message:
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+Use these examples to generate a signature for the following message: `{ test: 'message' }`
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+<aside class="notice">Replace `'PRIVATE_KEY'` with your private key</aside>
 
-`Authorization: meowmeowmeow`
+# /PROTECTEDAPPROVED
+## ***POST*** 
 
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
+### HTTP Request 
+`***POST*** /protectedapproved` 
 
-# Kittens
+**Responses**
 
-## Get All Kittens
+| Code | Description |
+| ---- | ----------- |
+| 200 | 200 response |
 
-```ruby
-require 'kittn'
+# /GETVENDORDATA
+## ***POST*** 
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
+**Summary:** Creates a vendor-specific entry for specialized purposes, such as a Synapse validation key
 
-```python
-import kittn
+### HTTP Request 
+`***POST*** /getvendordata` 
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | 200 response |
+
+# /ADDIDENTITY
+## ***POST*** 
+
+**Summary:** Add a new national identifier such as Social Security Number
+
+### HTTP Request 
+`***POST*** /addidentity` 
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | 200 response |
+
+# /CHECKTRANSACTION
+## ***POST*** 
+
+**Summary:** Verify a transaction
+
+### HTTP Request 
+`***POST*** /checktransaction` 
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | 200 response |
+
+# /ADDCRYPTO
+## ***POST*** 
+
+**Summary:** Add an ethereum public key to an existing user
+
+### HTTP Request 
+`***POST*** /addcrypto` 
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | 200 response |
+
+# /CREATEENTITY
+## ***POST*** 
+
+**Summary:** Creates a new entity (user, developer, vendor, organization)
+
+### HTTP Request 
+`***POST*** /createentity` 
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | 200 response |
+
+# /CHECKHANDLE
+## ***POST*** 
+
+**Summary:** Check if a specific handle is already taken
+
+### HTTP Request 
+`***POST*** /checkhandle` 
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | 200 response |
+
+# /LINKACCOUNT
+## ***POST*** 
+
+**Summary:** Link Account message from Plaid
+
+### HTTP Request 
+`***POST*** /linkaccount` 
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | 200 response |
+
+# /VERIFYACCOUNT
+## ***POST*** 
+
+**Summary:** Verify a new account by executing two small transactions
+
+### HTTP Request 
+`***POST*** /verifyaccount` 
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | 200 response |
+
+# /issuesila
+
+## ***POST*** 
+
+**Summary:** Issue an amount of sila currency to a user
+
+### HTTP Request 
+`***POST*** /issuesila`
+
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+  Curl example
 ```
 
 ```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
+var message = {
+  "amount": 120, // Amount in sila
+  "account_name": "default", // Linked account name
+  "header": {
+    "reference": "00000000-0000-0000-0000-000000000000",
+    "created": "2017-09-29T21:40:07Z",
+    "handle": "test.silamoney.eth", // User handle
+    "version": "v1_0",
+    "crypto": "ETH",
+    'signature': "SIGNATURE_STRING" // Signature
   },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "message": "issue_msg"
 }
 ```
+**Responses**
 
-This endpoint retrieves a specific kitten.
+| Code | Description |
+| ---- | ----------- |
+| 200 | 200 response |
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
 
-### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+See the [Authentication](#authentication) section for details on generating the SIGNATURE_STRING
 
-### URL Parameters
+# /TRANSFERSILA
+## ***POST*** 
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+**Summary:** Transfer an amount of sila currency from one user to another user
 
-## Delete a Specific Kitten
+### HTTP Request 
+`***POST*** /transfersila` 
 
-```ruby
-require 'kittn'
+**Responses**
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
+| Code | Description |
+| ---- | ----------- |
+| 200 | 200 response |
 
-```python
-import kittn
+# /REDEEMSILA
+## ***POST*** 
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
+**Summary:** Redeem an amount of sila currency for dollars
 
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
+### HTTP Request 
+`***POST*** /redeemsila` 
 
-```javascript
-const kittn = require('kittn');
+**Responses**
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
+| Code | Description |
+| ---- | ----------- |
+| 200 | 200 response |
 
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
+<!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
