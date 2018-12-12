@@ -2,6 +2,8 @@
 
 Welcome to the CheKin Tools API! 
 
+The first you need to use CheKin Tools API is to signup to create an account and get a token.
+
 You can use our API to access the following services:
 
 - Police Registration Service
@@ -21,3 +23,8 @@ We support cross-origin resource sharing, allowing you to interact securely with
 CheKin API accepts data as JSON or also as multipart/form-data. JSON is returned by all API responses, including errors.
 
 The base url for CheKin Tools API endpoints is `https://api.chekin.io/api/v1/`
+
+# Security
+All the API runs over HTTPS, so data transmission in encrypted. Also, the guests data and signature are stored encrypted into our database.
+
+

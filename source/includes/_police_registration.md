@@ -108,8 +108,28 @@ accommodation_province | false | The name of teh province where the accommodatio
 accommodation_city | false | The name of the city where the accommodation is placed, to be used in the receipt if generate_receipt is true.
 receipt_signature | false | The guest signature, base64 encoded, to be used in the receipt if generate_receipt is true.
 
+### Test Mode
+There is a test mode that can be activated setting the attribute test_mode in true. In this mode you can send any police username and any police password, no real login will be attempted and data won't be sen't to the police. 
+
+To make a real registration you will need to get the property owner user and password that they use to login into the police website.  
+
+### Police types
+Police type will set which is the final police organization to which you want to send the data. Remember that there are 4 police forces in Spain:
+
+"POL" -> Data is sent to "Policía Nacional"
+
+"NAT" -> Data is sent to "Guardia Civil"
+
+"ERT" -> Data is sent to "Ertzaintza"
+
+"MOS" -> Data is sent to "Mossos d'Esquadra"
 
 
+
+### Accommodation Group Police Users
+The parameter is housing group is optional and it's only used for the police type POL, "Policía Nacional". 
+In some cases, when the user has a lot of properties, this police gives to the property owners a user of type "Group User". 
+That means that the user has several accommodations inside the same police account. In that case, you will need to send this parameter "is housing group" in true and you will need to provide also an extra "property subcode" in the parameter police_hostelry_code. That subcode, that identifies the property inside the police account, should be asked to the property owner, and it's shown on the police website.
 
 ### Doc types in Spain
 value | Description

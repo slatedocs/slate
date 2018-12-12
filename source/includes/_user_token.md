@@ -1,4 +1,4 @@
-# User Token Authentication
+# Signup & get a Token
 
 > To get a user token, use this code:
 
@@ -24,7 +24,7 @@ curl -X POST \
   }
 ```
 
-To start using the API you will need to signup with an email and password to get a user token. 
+To get your token and start using the API you will need to signup with an email and password. 
 
 ### HTTP Request
 
