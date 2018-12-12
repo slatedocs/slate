@@ -550,5 +550,11 @@ This API is safe to call from the front end JS, where it will read session-cooki
 
 
 
+## GET Invoice details
 
+```shell--request
+ curl -H "X-QT-AUTH: <your-auth-token>" -X GET 'http://sketches.quintype.com/api/v1/members/me/subscriptions/${subscriptionId}/invoices/${invoiceId}/download'
+```
+
+It returns the invoice.pdf in pdf format
 

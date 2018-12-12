@@ -77,27 +77,128 @@ In order to get only active subscriptions, param `active_only=true` can be used.
 
 ```shell--request
 curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST https://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriptions/preview.json -d '{
-  "subscription": {
-    "subscription_plan_id": "11",
-    "coupon_code": "NEWYEAR",
-    "metadata":  {
-        "full-name": "hello",
-        "email": "hello@quintype.com"
+    "subscription": {
+        "alternate_provider": "email",
+        "alternate_identity": "hey@quintype.com",
+        "subscription_type": "standard",
+        "subscription_plan_id": 2118,
+        "coupon_code": "UAT",
+        "payment": {
+            "payment_type": "razorpay",
+            "amount_cents": 14400,
+            "amount_currency": "INR"
+        },
+        "metadata": {
+            "mobile_number": "7639817688"
+        }
     },
-    "payment": {
-        "payment_type": "razorpay",
-        "amount_cents": "99900",
-        "amount_currency": "INR"
-    },
-    "start_timestamp": "2018-07-24 00:00:00"
-  },
-  "alternate_provider": "email",
-  "alternate_identity": "hey@quintype.com",
-  "name": "Ben"
+    "fingerprint": ""
 }'
 ```
 
 ```shell--response
+{
+    "subscription": {
+        "invoices": [],
+        "next_payment_due_date": null,
+        "deleted_at": null,
+        "campaign_name": null,
+        "payment_amount_currency": "INR",
+        "campaign_subscription": false,
+        "campaign_id": null,
+        "start_timestamp": "2021-08-07T11:28:46.271Z",
+        "assets": [
+            {
+                "title": "Site",
+                "metadata": {},
+                "type": "site"
+            },
+            {
+                "title": "Monthly magazines",
+                "metadata": {},
+                "type": "static"
+            },
+            {
+                "title": "All exclusive reportage content",
+                "metadata": {
+                    "access_level": 400
+                },
+                "type": "story"
+            },
+            {
+                "title": "All paid stories",
+                "metadata": {
+                    "access_level": 300
+                },
+                "type": "story"
+            },
+            {
+                "title": "All Story",
+                "metadata": {
+                    "access_level": "999"
+                },
+                "type": "story"
+            }
+        ],
+        "end_timestamp": "2021-11-07T11:28:46.271Z",
+        "payment_amount": "144.00",
+        "discount_detail": {
+            "code": "UAT",
+            "discount_type": "percent",
+            "title": "UAT Trial",
+            "value": 20,
+            "discounted_price_cents": 14400,
+            "price_cents": 18000,
+            "price_currency": "INR"
+        },
+        "duration_length": 3,
+        "dynamic_assets": {},
+        "trial_period_length": null,
+        "group_description": "Silver + Access to Exclusive Reportage + Monthly round-up magazines",
+        "renewable": false,
+        "subscription_attempt_id": null,
+        "subscription_group_id": 2197,
+        "coupon_code": "UAT",
+        "recurring": false,
+        "payment_type": "preview",
+        "cancelled": false,
+        "payment_token": null,
+        "updated_at": null,
+        "coupon_code_id": 82,
+        "plan_amount_cents": 18000,
+        "status": "pending",
+        "group_name": "Unlimited",
+        "external_id": null,
+        "active": false,
+        "id": null,
+        "plan_occurrence": "One Time",
+        "in_grace_period": false,
+        "code": null,
+        "preferred_identity": {
+            "provider": "email",
+            "value": "vamsi@quintype.com"
+        },
+        "plan_amount_currency": "INR",
+        "expired": false,
+        "payment_id": null,
+        "plan_name": "3 months",
+        "subscription_plan_id": 2118,
+        "duration_unit": "months",
+        "trial_period_unit": null,
+        "subscription_type": "standard",
+        "plan_description": "All assets ",
+        "cancelled_at": null,
+        "metadata": {
+            "mobile_number": "7639817688"
+        },
+        "renewal_reminder_sent_date": null,
+        "created_at": null,
+        "subscriber_id": 9311,
+        "payment_amount_cents": 14400
+    },
+    "attempt_token": "WnwxA2AVrE3xqcDUqrSb3sNm",
+    "external_reference_id": null
+}
 ```
 
 It returns a preview for a Subscription, without creating a new subscription.
@@ -113,29 +214,153 @@ One can pass the value for `payment.payment_type` as `razorpay_recurring` when m
 
 ```shell--request
 curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST https://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriptions.json -d '{
-  "subscription": {
-    "subscription_plan_id": "11",
-    "campaign_id": "1",
-    "coupon_code": "NEWYEAR",
-    "payment": {
-        "payment_type": "razorpay",
-        "payment_token": "pay_test_8tNiqdiajurOkj",
-        "amount_cents": "99900",
-        "amount_currency": "INR"
+    "subscription": {
+        "subscription_type": "standard",
+        "subscription_plan_id": 2118,
+        "coupon_code": "UAT",
+        "payment": {
+            "payment_type": "razorpay",
+            "amount_cents": 14400,
+            "amount_currency": "INR",
+            "payment_token": "pay_BWpQWQcLLK3L37"
+        },
+        "metadata": {
+            "mobile_number": "7639817688"
+        }
     },
-    "metadata":  {
-        "full-name": "hello",
-        "email": "hello@quintype.com"
-    },
-    "start_timestamp": "2017-09-21 00:00:00"
-  },
-  "alternate_provider": "email",
-  "alternate_identity": "hey@quintype.com",
-  "attempt_token": "fo4bMWjP6N5vtVySNtiAUNBQ",
-  "name": "Ben"
+    "alternate_provider": "email",
+    "alternate_identity": "hey@quintype.com",
+    "attempt_token": "WnwxA2AVrE3xqcDUqrSb3sNm"
 }'
 ```
 ```shell--response
+{
+    "subscription": {
+        "invoices": [
+            {
+                "amount_after_discount_before_tax": "122.03",
+                "amount_currency": "INR",
+                "id": 990,
+                "invoice_taxes": {
+                    "SGST": {
+                        "percentage": "9.0",
+                        "amount": "10.98",
+                        "currency": "INR"
+                    },
+                    "CGST": {
+                        "percentage": "9.0",
+                        "amount": "10.98",
+                        "currency": "INR"
+                    }
+                },
+                "amount_cents": 14400,
+                "base_price": "152.54",
+                "sequenced_invoice_number": "BQ/1819/SUB/167",
+                "discount_details": {
+                    "code": "UAT",
+                    "discount_percentage": 20,
+                    "discount_amount": "30.51"
+                },
+                "created_at": "2018-12-12T10:25:48.590Z"
+            }
+        ],
+        "next_payment_due_date": null,
+        "deleted_at": null,
+        "campaign_name": null,
+        "payment_amount_currency": "INR",
+        "campaign_subscription": false,
+        "campaign_id": null,
+        "start_timestamp": "2021-08-07T11:28:46.271Z",
+        "assets": [
+            {
+                "title": "Site",
+                "metadata": {},
+                "type": "site"
+            },
+            {
+                "title": "Monthly magazines",
+                "metadata": {},
+                "type": "static"
+            },
+            {
+                "title": "All exclusive reportage content",
+                "metadata": {
+                    "access_level": 400
+                },
+                "type": "story"
+            },
+            {
+                "title": "All paid stories",
+                "metadata": {
+                    "access_level": 300
+                },
+                "type": "story"
+            },
+            {
+                "title": "All Story",
+                "metadata": {
+                    "access_level": "999"
+                },
+                "type": "story"
+            }
+        ],
+        "end_timestamp": "2021-11-07T11:28:46.271Z",
+        "payment_amount": "144.00",
+        "discount_detail": {
+            "code": "UAT",
+            "discount_type": "percent",
+            "title": "UAT Trial",
+            "value": 20,
+            "discounted_price_cents": 14400,
+            "price_cents": 18000,
+            "price_currency": "INR"
+        },
+        "duration_length": 3,
+        "dynamic_assets": {},
+        "trial_period_length": null,
+        "group_description": "Silver + Access to Exclusive Reportage + Monthly round-up magazines",
+        "renewable": false,
+        "subscription_attempt_id": 96595,
+        "subscription_group_id": 2197,
+        "coupon_code": "UAT",
+        "recurring": false,
+        "payment_type": "razorpay",
+        "cancelled": false,
+        "payment_token": "pay_BWpQWQcLLK3L37",
+        "updated_at": "2018-12-12T10:25:48.494Z",
+        "coupon_code_id": 82,
+        "plan_amount_cents": 18000,
+        "status": "pending",
+        "group_name": "Unlimited",
+        "external_id": null,
+        "active": false,
+        "id": 32405,
+        "plan_occurrence": "One Time",
+        "in_grace_period": false,
+        "code": null,
+        "preferred_identity": {
+            "provider": "quintype",
+            "value": "251933"
+        },
+        "plan_amount_currency": "INR",
+        "expired": false,
+        "payment_id": 32379,
+        "plan_name": "3 months",
+        "subscription_plan_id": 2118,
+        "duration_unit": "months",
+        "trial_period_unit": null,
+        "subscription_type": "standard",
+        "plan_description": "All assets ",
+        "cancelled_at": null,
+        "metadata": {
+            "mobile_number": "7639817688"
+        },
+        "renewal_reminder_sent_date": null,
+        "created_at": "2018-12-12T10:25:48.494Z",
+        "subscriber_id": 9311,
+        "payment_amount_cents": 14400
+    }
+}
 ```
 
 This API can be used to create a subscription.
