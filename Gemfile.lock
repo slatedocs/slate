@@ -26,6 +26,7 @@ GEM
     fastimage (2.0.1)
       addressable (~> 2)
     ffi (1.9.17)
+    ffi (1.9.17-x64-mingw32)
     haml (4.0.7)
       tilt
     hamster (3.0.0)
@@ -83,6 +84,8 @@ GEM
     minitest (5.10.1)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
+    nokogiri (1.8.2-x64-mingw32)
+      mini_portile2 (~> 2.3.0)
     padrino-helpers (0.13.3.3)
       i18n (~> 0.6, >= 0.6.7)
       padrino-support (= 0.13.3.3)
@@ -112,6 +115,7 @@ GEM
 
 PLATFORMS
   ruby
+  x64-mingw32
 
 DEPENDENCIES
   middleman (~> 4.2.1)
@@ -126,4 +130,4 @@ RUBY VERSION
    ruby 2.3.3p222
 
 BUNDLED WITH
-   1.15.4
+   1.17.2
