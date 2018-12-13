@@ -3,6 +3,10 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - php
+  - shell
+  - python
+  - javascript
+  - ruby
 
 toc_footers:
   - <a href='https://wordpress.org/plugins/wc-multivendor-marketplace/'>Documentation Powered by WC Lovers</a>
@@ -15,7 +19,7 @@ search: true
 
 # Introduction
 
-WCFM 2.8+ is fully integrated with the WordPress REST API. This allows to manupulate vendor data using requests in JSON format and using WordPress REST API Authentication methods and standard HTTP verbs which are understood by most HTTP clients.
+WCFM Marketplace – REST API plugin fully integrates WordPress REST API with WCFM Marketplace. This allows to manipulate vendor data using requests in JSON format and using WordPress REST API Authentication methods and standard HTTP verbs which are understood by most HTTP clients.
 
 # Authentication
 
@@ -8891,6 +8895,22 @@ var settings = {
 $.ajax(settings).done(function (response) {
   console.log(response);
 });
+```
+
+```ruby
+require 'uri'
+require 'net/http'
+
+url = URI("http://wcfm.test/wp-json/wcfm/v1/products/attributes/1/terms/95")
+
+http = Net::HTTP.new(url.host, url.port)
+
+request = Net::HTTP::Delete.new(url)
+request["Authorization"] = 'Basic authorization_token'
+request["Cache-Control"] = 'no-cache'
+
+response = http.request(request)
+puts response.read_body
 ```
 
 >JSON response example:
