@@ -1332,7 +1332,7 @@ This endpoint helps you to delete a product.
 
 # Orders
 
-The orders API allows you to create, view, update, and delete individual, or a batch, of orders.
+The orders API allows you to view orders or a single order.
 
 ## Order properties
 
