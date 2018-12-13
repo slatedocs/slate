@@ -8893,22 +8893,6 @@ $.ajax(settings).done(function (response) {
 });
 ```
 
-```ruby
-require 'uri'
-require 'net/http'
-
-url = URI("http://wcfm.test/wp-json/wcfm/v1/products/attributes/1/terms/95")
-
-http = Net::HTTP.new(url.host, url.port)
-
-request = Net::HTTP::Delete.new(url)
-request["Authorization"] = 'Basic authorization_token'
-request["Cache-Control"] = 'no-cache'
-
-response = http.request(request)
-puts response.read_body
-```
-
 >JSON response example:
 
 ```json
