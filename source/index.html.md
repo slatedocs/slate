@@ -3,13 +3,9 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - php
-  - shell
-  - python
-  - javascript
-  - ruby
 
 toc_footers:
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+  - <a href='https://wordpress.org/plugins/wc-multivendor-marketplace/'>Documentation Powered by WC Lovers</a>
 
 includes:
   - errors
