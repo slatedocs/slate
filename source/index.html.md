@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: WCFM Marketplace – REST API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - php: PHP
