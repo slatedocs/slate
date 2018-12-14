@@ -45,7 +45,7 @@ To be decided
 # API
 
 ### REST API ENDPOINT URL
-**https://api.falconx.io**
+`https://api.falconx.io`
 
 ## Requests
 All requests and responses are application/json content type and follow typical HTTP response status codes for success and failure.
@@ -91,6 +91,59 @@ Common error codes
 A successful response is indicated by HTTP status code 200 and may contain an optional body. If the response has a body it will be documented under each resource below.
 
 # Authentication
+
+``` python
+# Requires python-requests. Install with pip:
+#
+#   pip install requests
+#
+# or, with easy-install:
+#
+#   easy_install requests
+
+import json, hmac, hashlib, time, requests, base64
+from requests.auth import AuthBase
+
+# Create custom authentication for Exchange
+class FXExchangeAuth(AuthBase):
+    def __init__(self, api_key, secret_key, passphrase):
+        self.api_key = api_key
+        self.secret_key = secret_key
+        self.passphrase = passphrase
+
+    def __call__(self, request):
+        timestamp = str(time.time())
+        message = timestamp + request.method + request.path_url + (request.body or '')
+        hmac_key = base64.b64decode(self.secret_key)
+        signature = hmac.new(hmac_key, message.encode(), hashlib.sha256)
+        signature_b64 = base64.b64encode(signature.digest())
+ 
+        request.headers.update({
+            'FX-ACCESS-SIGN': signature_b64,
+            'FX-ACCESS-TIMESTAMP': timestamp,
+            'FX-ACCESS-KEY': self.api_key,
+            'FX-ACCESS-PASSPHRASE': self.passphrase,
+            'Content-Type': 'application/json'
+        })
+        return request
+
+
+api_url = 'https://api.falconx.io/'
+auth = FXExchangeAuth(API_KEY, API_SECRET, API_PASS)
+
+# Place an order
+order = {
+    'size': 1.0,
+    'price': 1.0,
+    'side': 'buy',
+    'product_id': 'BTC-USD',
+}
+r = requests.post(api_url + 'orders', json=order, auth=auth)
+print r.json()
+# {"id": "0428b97b-bec1-429e-a94c-59992926778d"}
+
+```
+
 ## Generating an API Key
 Before being able to sign any requests, you must create an API key via the FalconX website. Upon creating a key you will have 3 pieces of information which you must remember:
 
@@ -131,7 +184,7 @@ You can place two types of orders: limit and market. Orders can only be placed i
 
 #### HTTP REQUEST
 
-### POST /orders
+`POST /orders`
 
 ### COMMON PARAMETERS
 
@@ -226,10 +279,10 @@ A successful order will be assigned an order id. A successful order is defined a
 ## Cancel an Order
 Cancel a previously placed order.
 
-If the order had no matches during its lifetime its record may be purged. This means the order details will not be available with **GET /orders/&lt;order-id&gt**.
+If the order had no matches during its lifetime its record may be purged. This means the order details will not be available with **GET /orders/&lt;order-id&gt;**.
 
 ### HTTP REQUEST
-### DELETE /orders/&lt;order-id&gt
+`DELETE /orders/&lt;order-id&gt;`
 
 ### CANCEL REJECT
 If the order could not be canceled (already filled or previously canceled, etc), then an error response will indicate the reason in the message field.
@@ -239,7 +292,7 @@ With best effort, cancel all open orders. The response is a list of ids of the c
 
 ### HTTP REQUEST
 
-#### DELETE /orders
+`DELETE /orders`
 
 ### QUERY PARAMETERS
 <table>
@@ -260,7 +313,7 @@ With best effort, cancel all open orders. The response is a list of ids of the c
 List your current open orders. Only open or un-settled orders are returned. As soon as an order is no longer open and settled, it will no longer appear in the default request.
 
 ### HTTP REQUEST
-#### GET /orders
+`GET /orders`
 
 ### QUERY PARAMETERS
 <table>
@@ -296,7 +349,7 @@ For high-volume trading it is strongly recommended that you maintain your own li
 Get a single order by order id.
 
 ### HTTP REQUEST
-#### GET /orders/&lt;order-id&gt**
+`GET /orders/&lt;order-id&gt;`
 
 If the order is canceled the response may have status code 404 if the order had no matches.
 
@@ -305,7 +358,7 @@ If the order is canceled the response may have status code 404 if the order had 
 
 ## Fetch deposit address.
 
-**GET /deposit_address**
+`GET /deposit_address`
 
 <table>
   <tr>
@@ -322,7 +375,7 @@ If the order is canceled the response may have status code 404 if the order had 
 
 ## Submit a withdraw request.
 
-**POST /withdraw**
+`POST /withdraw`
 
 <table>
   <tr>
