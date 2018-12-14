@@ -129,7 +129,7 @@ Your timestamp must be within 30 seconds of the api service time or your request
 
 You can place two types of orders: limit and market. Orders can only be placed if your account has sufficient funds. Once an order is placed, your account funds will be put on hold for the duration of the order. How much and which funds are put on hold depends on the order type and parameters specified. See the Holds details below.
 
-### HTTP REQUEST
+#### HTTP REQUEST
 
 ### POST /orders
 
@@ -149,10 +149,6 @@ These parameters are common to all order types. Depending on the order type, add
   <tr>
     <td>side</td>
 	  <td>buy or sell</td>
-  </tr>
-  <tr>
-    <td>stp</td>
-	  <td>[optional] Self-trade prevention flag</td>
   </tr>
 </table>
 
@@ -188,19 +184,121 @@ These parameters are common to all order types. Depending on the order type, add
   </tr>
 </table>
 
+### PRODUCT ID
+The product_id must match a valid product. The products list is available via the /products endpoint.
+
+### TYPE
+When placing an order, you can specify the order type. The order type you specify will influence which other order parameters are required as well as how your order will be executed by the matching engine. If type is not specified, the order will default to a limit order.
+
+limit orders are both the default and basic order type. A limit order requires specifying a price and size. The size is the number of bitcoin to buy or sell, and the price is the price per bitcoin. The limit order will be filled at the price specified or better. A sell order can be filled at the specified price per bitcoin or a higher price per bitcoin and a buy order can be filled at the specified price or a lower price depending on market conditions. If market conditions cannot fill the limit order immediately, then the limit order will become part of the open order book until filled by another incoming order or canceled by the user.
+
+market orders differ from limit orders in that they provide no pricing guarantees. They however do provide a way to buy or sell specific amounts of bitcoin or fiat without having to specify the price. Market orders execute immediately and no part of the market order will go on the open order book. Market orders are always considered takers and incur taker fees. When placing a market order you can specify funds and/or size. Funds will limit how much of your quote currency account balance is used and size will limit the bitcoin amount transacted.
+
+### PRICE
+The price must be specified in quote_increment product units. The quote increment is the smallest unit of price. For the BTC-USD product, the quote increment is 0.01 or 1 penny. Prices less than 1 penny will not be accepted, and no fractional penny prices will be accepted. Not required for market orders.
+
+### SIZE
+The size must be greater than the base_min_size for the product and no larger than the base_max_size. The size can be in any increment of the base currency (BTC for the BTC-USD product), which includes satoshi units. size indicates the amount of BTC (or base currency) to buy or sell.
+
+### FUNDS
+The funds field is optionally used for market orders. When specified it indicates how much of the product quote currency to buy or sell. For example, a market buy for BTC-USD with funds specified as 150.00 will spend 150 USD to buy BTC (including any fees). If the funds field is not specified for a market buy order, size must be specified and Coinbase Pro will use available funds in your account to buy bitcoin.
+
+A market sell order can also specify the funds. If funds is specified, it will limit the sell to the amount of funds specified. You can use funds with sell orders to limit the amount of quote currency funds received.
+
+
+### HOLDS
+For limit buy orders, we will hold price x size x (1 + fee-percent) USD. For sell orders, we will hold the number of Bitcoin you wish to sell. Actual fees are assessed at time of trade. If you cancel a partially filled or unfilled order, any remaining funds will be released from hold.
+
+For market buy orders where funds is specified, the funds amount will be put on hold. If only size is specified, all of your account balance (in the quote account) will be put on hold for the duration of the market order (usually a trivially short time). For a sell order, the size in BTC will be put on hold. If size is not specified (and only funds is specified), your entire BTC balance will be on hold for the duration of the market order.
+
+
+### ORDER LIFECYCLE
+The HTTP Request will respond when an order is either rejected (insufficient funds, invalid parameters, etc) or received (accepted by the matching engine). A 200 response indicates that the order was received and is active. Active orders may execute immediately (depending on price and market conditions) either partially or fully. A partial execution will put the remaining size of the order in the open state. An order that is filled completely, will go into the done state.
+
+Users listening to streaming market data are encouraged to use the client_oid field to identify their received messages in the feed. The REST response with a server order_id may come after the received message in the public data feed.
+
+### RESPONSE
+A successful order will be assigned an order id. A successful order is defined as one that has been accepted by the matching engine.
+
+
+
+
 ## Cancel an Order
 Cancel a previously placed order.
 
-If the order had no matches during its lifetime its record may be purged. This means the order details will not be available with **GET /orders/<order-id>**.
+If the order had no matches during its lifetime its record may be purged. This means the order details will not be available with **GET /orders/&lt;order-id&gt**.
 
 ### HTTP REQUEST
-### DELETE /orders/<order-id>
+### DELETE /orders/&lt;order-id&gt
+
+### CANCEL REJECT
+If the order could not be canceled (already filled or previously canceled, etc), then an error response will indicate the reason in the message field.
+
+## Cancel all
+With best effort, cancel all open orders. The response is a list of ids of the canceled orders.
+
+### HTTP REQUEST
+
+#### DELETE /orders
+
+### QUERY PARAMETERS
+<table>
+  <tr>
+    <th>Param</th>
+    <th>Default</th>
+	  <th>Description</th>
+  </tr>
+  <tr>
+    <td>product_id</td>
+    <td>[optional]</td>
+    <td>Only cancel orders open for a specific product</td>
+  </tr>
+</table>
+
+## List Orders
+
+List your current open orders. Only open or un-settled orders are returned. As soon as an order is no longer open and settled, it will no longer appear in the default request.
+
+### HTTP REQUEST
+#### GET /orders
+
+### QUERY PARAMETERS
+<table>
+  <tr>
+    <th>Param</th>
+    <th>Default</th>
+	  <th>Description</th>
+  </tr>
+  <tr>
+    <td>status</td>
+    <td>[open, pending, active]</td>
+    <td>Limit list of orders to these statuses. Passing all returns orders of all statuses.</td>
+  </tr>
+  <tr>
+    <td>product_id</td>
+    <td>[optional]</td>
+    <td>Only list orders for a specific product</td>
+  </tr>
+</table>
+
+To specify multiple statuses, use the status query argument multiple times: /orders?status=done&status=pending.
+
+
+### ORDER STATUS AND SETTLEMENT
+Orders which are no longer resting on the order book, will be marked with the done status. There is a small window between an order being done and settled. An order is settled when all of the fills have settled and the remaining holds (if any) have been removed.
+
+### POLLING
+For high-volume trading it is strongly recommended that you maintain your own list of open orders and use one of the streaming market data feeds to keep it updated. You should poll the open orders endpoint once when you start trading to obtain the current state of any open orders.
+
+
 
 ## Get an Order
 Get a single order by order id.
 
 ### HTTP REQUEST
-### GET /orders/<order-id>
+#### GET /orders/&lt;order-id&gt**
+
+If the order is canceled the response may have status code 404 if the order had no matches.
 
 
 # Deposits
