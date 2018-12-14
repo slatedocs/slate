@@ -282,7 +282,7 @@ Cancel a previously placed order.
 If the order had no matches during its lifetime its record may be purged. This means the order details will not be available with **GET /orders/&lt;order-id&gt;**.
 
 ### HTTP REQUEST
-`DELETE /orders/&lt;order-id&gt;`
+`DELETE /orders/<order-id>`
 
 ### CANCEL REJECT
 If the order could not be canceled (already filled or previously canceled, etc), then an error response will indicate the reason in the message field.
@@ -349,7 +349,7 @@ For high-volume trading it is strongly recommended that you maintain your own li
 Get a single order by order id.
 
 ### HTTP REQUEST
-`GET /orders/&lt;order-id&gt;`
+`GET /orders/<order-id>`
 
 If the order is canceled the response may have status code 404 if the order had no matches.
 
