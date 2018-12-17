@@ -535,7 +535,7 @@ Field |  Type | Exchanges Supporting
    }
    ```
 
-The <span style="color:red"> Books </span> channel streams bids and asks for a given trading pair on given exchange.  Currently, only the Bitfinex exchange is supported for this feature.  
+The <span style="color:red"> Books </span> channel streams bids and asks for a given trading pair on given exchange.  Note, Binance is currently not supported in  <span style="color:red"> Books </span> 
 
 Field | Type | Exchanges Supporting
 ------| -------| --------
