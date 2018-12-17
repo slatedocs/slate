@@ -150,13 +150,13 @@ A successful request will generate a lightning invoice that will look similar to
 
 **Trading Pairs Supported**
 
-Symbol | Binance | Bitfinex
-------- | ------ | ---------
-BTCUSDT |    X     | 
-ETHBTC  |    X     |    X
-ETHUSDT |    X     | 
-BTCUSD  |          |    X 
-ETHUSD  |          |    X
+Symbol | Binance | Bitfinex | Coinbase
+------- | ------ | --------- | --------
+BTCUSDT |    X     |         |
+ETHBTC  |    X     |    X    |    X
+ETHUSDT |    X     |         |
+BTCUSD  |          |    X    |    X
+ETHUSD  |          |    X    |    X
 
 
 
@@ -361,27 +361,27 @@ The <span style="color:red"> Tickers </span> channel streams high level updates 
 Field | Type | Exchanges Supporting
 ------ | ------ | --------
 <span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000</span>
-<span style="color:red"> eventTime </span>| Integer | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
-<span style="color:red"> symbol </span> | String | <span style="color:red"> binance </span>
+<span style="color:red"> eventTime </span>| Integer | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span> , <span style="color:red"> coinbase  </span>
+<span style="color:red"> symbol </span> | String | <span style="color:red"> binance </span> , <span style="color:red"> coinbase  </span>
 <span style="color:red"> priceChange </span> | Double | <span style="color:red"> binance </span> , <span style="color:red"> bitfinex </span>
 <span style="color:red"> priceChangePerc </span> |  Double | <span style="color:red"> binance </span> , <span style="color:red"> bitfinex </span>
 <span style="color:red"> weightedAvePrice </span> |  Double | <span style="color:red"> binance </span>
 <span style="color:red"> prevClose </span> | Double | <span style="color:red"> binance </span>
 <span style="color:red"> close </span> | Double | <span style="color:red"> binance </span> , <span style="color:red"> bitfinex </span>
 <span style="color:red"> closeQuantity </span> |  Double | <span style="color:red"> binance </span>
-<span style="color:red"> bid </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>          
+<span style="color:red"> bid </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span> , <span style="color:red"> coinbase  </span>        
 <span style="color:red"> bidSize </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>          
-<span style="color:red"> ask </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>          
+<span style="color:red"> ask </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span> , <span style="color:red"> coinbase  </span>         
 <span style="color:red"> askSize </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>        
-<span style="color:red"> open </span> | Double | <span style="color:red"> binance </span>
-<span style="color:red"> high </span> | Double | <span style="color:red"> binance </span> , <span style="color:red"> bitfinex </span>
-<span style="color:red"> low </span> | Double | <span style="color:red"> binance </span> , <span style="color:red"> bitfinex </span>
-<span style="color:red"> volume </span> | Double | <span style="color:red"> binance </span> , <span style="color:red"> bitfinex </span>
+<span style="color:red"> open </span> | Double | <span style="color:red"> binance </span> , <span style="color:red"> coinbase  </span>
+<span style="color:red"> high </span> | Double | <span style="color:red"> binance </span> , <span style="color:red"> bitfinex </span> , <span style="color:red"> coinbase  </span>
+<span style="color:red"> low </span> | Double | <span style="color:red"> binance </span> , <span style="color:red"> bitfinex </span> , <span style="color:red"> coinbase  </span>
+<span style="color:red"> volume </span> | Double | <span style="color:red"> binance </span> , <span style="color:red"> bitfinex </span> , <span style="color:red"> coinbase  </span>
 <span style="color:red"> quoteVolume </span> | Double| <span style="color:red"> binance </span>
 <span style="color:red"> statOpenTime </span> | Integer | <span style="color:red"> binance </span>
 <span style="color:red"> statCloseTime </span> | Integer | <span style="color:red"> binance </span>
 <span style="color:red"> firstTradeId </span> | Integer | <span style="color:red"> binance </span>
-<span style="color:red"> lastTradId </span> | Integer | <span style="color:red"> binance </span>
+<span style="color:red"> lastTradId </span> | Integer | <span style="color:red"> binance </span> , <span style="color:red"> coinbase  </span>
 <span style="color:red"> totalTrades </span> | Integer | <span style="color:red"> binance </span>
 
 
@@ -466,14 +466,14 @@ Field |  Type | Exchanges Supporting
 ------ | ------- | -----------
 <span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
 <span style="color:red"> eventTime </span> | Integer | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
-<span style="color:red"> symbol </span> | String | <span style="color:red"> binance </span>
-<span style="color:red"> tradeId </span> | Integer | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
-<span style="color:red"> price </span> | Double | <span style="color:red"> binance </span> , <span style="color:red"> bitfinex </span>
-<span style="color:red"> quantity </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
-<span style="color:red"> buyerId </span> | String | <span style="color:red"> binance </span>
-<span style="color:red"> sellerId </span> | String | <span style="color:red"> binance </span>
-<span style="color:red"> tradeTime </span> | Integer | <span style="color:red"> binance </span>
-<span style="color:red"> marketMaker </span> |  Boolean | <span style="color:red"> binance </span>
+<span style="color:red"> symbol </span> | String | <span style="color:red"> binance </span> , <span style="color:red"> coinbase  </span>
+<span style="color:red"> tradeId </span> | Integer | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span> , <span style="color:red"> coinbase  </span>
+<span style="color:red"> price </span> | Double | <span style="color:red"> binance </span> , <span style="color:red"> bitfinex </span> , <span style="color:red"> coinbase  </span>
+<span style="color:red"> quantity </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span> , <span style="color:red"> coinbase  </span>
+<span style="color:red"> buyerId </span> | String | <span style="color:red"> binance </span> , <span style="color:red"> coinbase  </span>
+<span style="color:red"> sellerId </span> | String | <span style="color:red"> binance </span> , <span style="color:red"> coinbase  </span>
+<span style="color:red"> tradeTime </span> | Integer | <span style="color:red"> binance </span> , <span style="color:red"> coinbase  </span>
+<span style="color:red"> marketMaker </span> |  Boolean | <span style="color:red"> binance </span> , <span style="color:red"> coinbase  </span>
 
 
 ## Order Books
@@ -542,8 +542,9 @@ Field | Type | Exchanges Supporting
 <span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
 <span style="color:red"> eventTime </span> | Integer | <span style="color:red"> bitfinex </span>  
 <span style="color:red"> orderId </span> |  Integer | <span style="color:red"> bitfinex </span> 
-<span style="color:red"> price  </span>| Double | <span style="color:red"> bitfinex </span> 
-<span style="color:red"> quantity </span> | Double | <span style="color:red"> bitfinex </span> 
+<span style="color:red"> price  </span>| Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> coinbase  </span>
+<span style="color:red"> quantity </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> coinbase  </span>
+<span style="color:red"> symbol </span> | String |  <span style="color:red"> coinbase </span>
 
 <h1 id="NFLData"> NFL Data</h1>
 
@@ -844,7 +845,7 @@ The required fields to request NFL Team & Roster data are as follows:
 Field | Type | Example 
 ------ | ----- | ------
 <span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
-<span style="color:red"> teamID </span> | String |  <span style="color:red"> CHI </span>, <span style="color:red"> MIN </span> etc.
+<span style="color:red"> teamId </span> | String |  <span style="color:red"> CHI </span>, <span style="color:red"> MIN </span> etc.
 <span style="color:red"> retrieve </span> | String |  <span style="color:red"> roster </span> or <span style="color:red"> schedule </span>
 
 **Optional Field**
@@ -1147,9 +1148,9 @@ Field | Type | Example
 
 <aside class="notice">NOTE: We only support from year 2016 to current. </aside>
 
-**Example Request with teamID**
+**Example Request with teamId**
 
-To search for a game by a specific team, add an optional field for <span style="color:red"> teamID </span>
+To search for a game by a specific team, add an optional field for <span style="color:red"> teamId </span>
 
 
 <a href="#NBATeamID">See Team ID Table</a>
