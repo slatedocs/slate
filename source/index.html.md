@@ -818,3 +818,13 @@ Name | Vn Name | Color code | Description
 `returning` | `Đang hoàn` | `#51ACC7` | Vn Name is `current_status` and Name is `current_status_en` of api [GET /snappy/trackings](#get-trackings)
 `returned` | `Đã hoàn` | `#FF4500` | Vn Name is `current_status` and Name is `current_status_en` of api [GET /snappy/trackings](#get-trackings)
 `canceled` | `Đã hủy` | `#DB3E36` | Vn Name is `current_status` and Name is `current_status_en` of api [GET /snappy/trackings](#get-trackings)
+
+## Tracking Print
+
+This is special part. With this api you must be redirect or open new tab in your browser and apply this link `https://snappy.vn/print/<ids>&business_id=<business_id>&access_token=<access_token>`
+
+Parameter | Required | Type | Description
+--------- | ------- | ------- | ------- | -----------
+ids | true | string | ids of trackings need to print separate by comma `,` eg. S20010048,S20009784,S20010275
+business_id | true | integer | | Id of a business in list businesses. Get in api [GET /user/me](#get-all-businesses)
+access_token | true | string | | Your personal acess_token
