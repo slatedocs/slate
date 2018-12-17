@@ -1,6 +1,6 @@
 # Invoices
 
-## GET invoice for a particular subscription
+## GET invoice details for a subscription
 
 ```shell--request
 $ curl -H "X-SUBAUTH: <auth-token>"
