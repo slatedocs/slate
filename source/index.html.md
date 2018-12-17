@@ -422,8 +422,8 @@ Field | Type | Exchanges Supporting
          "tradeId":84153760,
          "price":4038.81,
          "quantity":0.115984,
-         "buyerId":199276007,
-         "sellerId":199274414,
+         "buyerId":"199276007",
+         "sellerId":"199274414",
          "tradeTime":1543839862861,
          "marketMaker":false
       },
@@ -439,8 +439,8 @@ Field | Type | Exchanges Supporting
       "tradeId":77827378,
       "price":6502.99,
       "quantity":0.030665,
-      "buyerId":183136564,
-      "sellerId":183136526,
+      "buyerId":"183136564",
+      "sellerId":"183136526",
       "tradeTime":1541715784094,
       "marketMaker":false
    }
@@ -452,8 +452,8 @@ Field | Type | Exchanges Supporting
       "tradeId":77827379,
       "price":6501.35,
       "quantity":0.088033,
-      "buyerId":183136558,
-      "sellerId":183136565,
+      "buyerId":"183136558",
+      "sellerId":"183136565",
       "tradeTime":1541715784156,
       "marketMaker":true
    }
@@ -470,8 +470,8 @@ Field |  Type | Exchanges Supporting
 <span style="color:red"> tradeId </span> | Integer | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
 <span style="color:red"> price </span> | Double | <span style="color:red"> binance </span> , <span style="color:red"> bitfinex </span>
 <span style="color:red"> quantity </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
-<span style="color:red"> buyerId </span> | Integer | <span style="color:red"> binance </span>
-<span style="color:red"> sellerId </span> | Integer | <span style="color:red"> binance </span>
+<span style="color:red"> buyerId </span> | String | <span style="color:red"> binance </span>
+<span style="color:red"> sellerId </span> | String | <span style="color:red"> binance </span>
 <span style="color:red"> tradeTime </span> | Integer | <span style="color:red"> binance </span>
 <span style="color:red"> marketMaker </span> |  Boolean | <span style="color:red"> binance </span>
 
