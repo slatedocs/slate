@@ -21,7 +21,6 @@ includes:
   - accesstype/wallets
   - accesstype/coupon_codes
   - accesstype/invoices
-  - accesstype/invoice_template_variables
   - accesstype/for-platform-customers
   - accesstype/faq
   - accesstype/release_notes
