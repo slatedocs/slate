@@ -6,6 +6,9 @@ Endpoint                                    |
 `/v1/quotes`                                |
 `/v1/quotes/<quoteId>/account-requirements` |
 `/v1/accounts`                              |
+`POST /v1/transfers`                        |
+
+_Other `transfers` endpoints will be supported in the near future_
 
 When calling these endpoints if you include an `Accept-Language` header with a supported language code as the value then stings will be returned in the requested language. The languages supported by TransferWise are:
 
