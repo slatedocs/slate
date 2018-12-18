@@ -129,7 +129,7 @@ There are many different variations of bank account details needed depending on 
 When creating recipient, the following general rules should be applied to "accountHolderName" field:
 
 * Full names for personal recipients.  They must include more than one name, and both first and last name must have more than one character.
-* Business names must be in full, but can be just a single name, and can include single characters.  But must have more than one character in any one word.
+* Business names must be in full, but can be just a single name. The full name cannot be just a single character but can be made up of a set of single characters. e.g. "A" is not permitted but "A 1" or "A1" is permitted.
 * Digits are not allowed, except in business names.
 
 These requirements may vary depending of recipient type.
