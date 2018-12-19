@@ -93,15 +93,7 @@ remote_transaction_id | The network transaction id that identifies this collecti
 
 ### ACCEPT response
 
-In order to accept the collection, you must respond with a 200 response, and the following text in the body of the response:
-
-ACCEPT < remote_transaction_id >
-
 > ACCEPT < remote_transaction_id >
-
-E.g. if the remote transaction id was ASCD1234, then you must respond with:
-
-ACCEPT ASCD1234
 
 ```text
 For example:
@@ -109,21 +101,29 @@ For example:
 ACCEPT ASCD1234
 ``` 
 
-### REJECT response
+In order to accept the collection, you must respond with a 200 response, and the following text in the body of the response:
 
-In order to reject the collection, you must respond with a 200 response, and the following text in the body of the response:
-
-REJECT < remote_transaction_id > < optional reason >
-
-> REJECT < remote_transaction_id > < optional reason >
+ACCEPT < remote_transaction_id >
 
 E.g. if the remote transaction id was ASCD1234, then you must respond with:
+
+ACCEPT ASCD1234
+
+### REJECT response
+
+> REJECT < remote_transaction_id > < optional reason >
 
 ``` Text
 For example:
 
 REJECT ASCD1234 Wrong Account Number.
 ```
+
+In order to reject the collection, you must respond with a 200 response, and the following text in the body of the response:
+
+REJECT < remote_transaction_id > < optional reason >
+
+E.g. if the remote transaction id was ASCD1234, then you must respond with:
 
 NOTE: The reject reason is optional. If included, we shall attempt to return it to the network (and the network may send it on to the subscriber)
 
