@@ -72,7 +72,7 @@ curl -X POST \
 
 This endpoint sends the guests data to the police.
 
-We currently support Spain and Portugal polices.
+We currently support Spain and Portugal polices. More countries coming soon!
 
 Optionally, the registration receipt can be generated.
 The police registration runs asynchronously, then on this first call the registration will be triggered and you will get a status "NEW".
