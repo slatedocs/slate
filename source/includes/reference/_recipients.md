@@ -264,7 +264,7 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/accounts \
 If you don't know recipient bank account details you can set up **email recipient** so that TransferWise will collect bank details directly from the recipient. 
 
 TransferWise will email your recipient with a link to collect their bank account details. 
-Once your recipient provides bank account details securely to Transferwise we are able to complete your transfer.
+Once your recipient provides bank account details securely to TransferWise we are able to complete your transfer.
 
 
 <aside class="warning">

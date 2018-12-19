@@ -9,7 +9,7 @@ We have a dedicated team to talk to you. [https://transferwise.com/contact-sales
 
 
 **Have a question about how TransferWise works?**<br/>
-Search Transferwise Help Centre. [https://transferwise.com/help](https://transferwise.com/help)
+Search TransferWise Help Centre. [https://transferwise.com/help](https://transferwise.com/help)
 
 
 **Want more information about your payments?** <br/>
