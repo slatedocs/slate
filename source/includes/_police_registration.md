@@ -113,7 +113,7 @@ accommodation_city | false | The name of the city where the accommodation is pla
 receipt_signature | false | The guest signature, base64 encoded, to be used in the receipt if generate_receipt is true.
 
 ### Test Mode
-There is a test mode that can be activated setting the attribute test_mode in true. In this mode you can send any police username and any police password, no real login will be attempted and data won't be sen't to the police. 
+There is a test mode that can be activated setting the attribute test_mode in true. In this mode you can send any police username and any police password, no real login will be attempted and data won't be sen't to the police. You can use it to test the api or to test your integrations.
 
 To make a real registration you will need to get the property owner user and password that they use to login into the police website.  
 
