@@ -48,6 +48,90 @@ modified | string | The date that the collection was last modified, in the UTC t
 updated_by | string | The ID of the user who last updated the collection
 collection_request | JSON string| *New in V3.* A JSON representation of the collection request that this collection was matched to, if any. Before V3, this was simply the id of the collection request object. In V3. It's an expanded representation of the collection request object.
 
+## Accept or reject Collections
+
+By default, collections are matched to your account and automatically accepted. However, the following networks allow you to decide whether you want to accept or reject a collection.
+
+* Safaricom (MPESA) Kenya
+* MTN Uganda
+* Airtel Tanzania
+* Vodacom Tanzania
+* All Rwanda Networks
+
+### Enabling Collection verification
+
+To enable this functionality, you need to add a verificaiton URL to your collection settings:
+
+1. Log into your Beyonic Account
+2. Click "Company Settings" on the home page
+3. Click "Advanced Settings"
+4. Click "Collection Settings"
+5. Enter a Collection Verification URL.
+6. You can also decide what action we should take if we cannot reach your verification URL for some reason. This is controlled by the "Accept Collections By Default" option. If this option is checked, we'll accept collections when your URL is unreachable. Otherwise, they will be rejected.
+
+### Verification request parameters
+
+```json
+{
+    "remote_transaction_id": "ASD12132",
+    "phonenumber": "+80000000001",
+    "reference": "Payment for A/C 13112313",
+    "amount": "500",
+    "currency_code": "BXC",
+}
+```
+
+Once you have created a URL, we will send a JSON POST to the URL you have provided, whenever a new collection is received. The request body shall include the following parameters as a JSON object:
+
+Field | Description
+----- |----- | ----
+phonenumber | The subscriber's phone number that was used to send collection in international format, e.g. +256782123123
+amount | The amount that was sent, e.g. 500
+currency_code | The 3 letter currency code, e.g. UGX
+reference | The reference or description that the subscriber sent along with the collection. e.g A/C 12312
+remote_transaction_id | The network transaction id that identifies this collection on the mobile network operator's system e.g. ASDASDW12321312
+
+### ACCEPT response
+
+In order to accept the collection, you must respond with a 200 response, and the following text in the body of the response:
+
+ACCEPT < remote_transaction_id >
+
+> ACCEPT < remote_transaction_id >
+
+E.g. if the remote transaction id was ASCD1234, then you must respond with:
+
+ACCEPT ASCD1234
+
+```text
+For example:
+
+ACCEPT ASCD1234
+``` 
+
+### REJECT response
+
+In order to reject the collection, you must respond with a 200 response, and the following text in the body of the response:
+
+REJECT < remote_transaction_id > < optional reason >
+
+> REJECT < remote_transaction_id > < optional reason >
+
+E.g. if the remote transaction id was ASCD1234, then you must respond with:
+
+``` Text
+For example:
+
+REJECT ASCD1234 Wrong Account Number.
+```
+
+NOTE: The reject reason is optional. If included, we shall attempt to return it to the network (and the network may send it on to the subscriber)
+
+### Response timeout
+
+You must respond within 60 seconds, otherwise the verification request will timeout and the default action shall be taken.
+
+
 ## Retrieving a single Collection
 
 > Sample Request:

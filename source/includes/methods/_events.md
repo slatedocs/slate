@@ -7,7 +7,7 @@ Events track certain changes that happen to your Beyonic account. Events are cre
 You can use the events API to retrieve information about recent events. Events are saved for at least 30 days. After that, they may be discarded.
 
 The events api endpoint is:
-    <aside class="notice">https://app.beyonic.com/api/events</aside>
+        <aside class="notice">https://app.beyonic.com/api/events</aside>
 
 You can also set up your account to automatically notify you as event occur. See the [Webhooks API](#webhooks) for more information about setting up automatic notification for events.
 
