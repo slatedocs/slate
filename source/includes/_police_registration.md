@@ -71,6 +71,9 @@ curl -X POST \
 ```
 
 This endpoint sends the guests data to the police.
+
+We currently support Spain and Portugal polices.
+
 Optionally, the registration receipt can be generated.
 The police registration runs asynchronously, then on this first call the registration will be triggered and you will get a status "NEW".
 You will need to do a second call later to check the status until it is "COM" (completion time can be 5-10 seconds).
@@ -85,9 +88,10 @@ You will need to do a second call later to check the status until it is "COM" (c
 Parameter | Required | Description
 --------- | -------- | -----------
 test_mode | false | false by default. If it's set to true, then the data isn't sent to the police, but you will get the same answer as in a successful registration.
-police_type | false | Police type and police credentials are required to send the guests data to the police. Police type must take one of the following values: POL (Policía Nacional), NAT (Guardia Civil), ERT (Ertzaintza), MOS (Mossos d'Esquadra).
+police_type | false | Police type and police credentials are required to send the guests data to the police. Police type depends of the country. See police tables below.
 police_user | false | The username used to do login in the police website.
 police_password | false | The password used to do login in the police website.
+establishment_num | false | Used for Portugal Only. It's an extra numer provided by the police to do login.
 is_housing_group | false | Used only if police type is POL. Set it to true only if the accommodation is registered at the police as part of a Group.
 police_hostelry_code | false | Used only if is_housing_group is true. Hostelry code given by the police to this accommodation. A list of available codes for this police user can be retrieved doing a GET to https://api.chekin.io/api/v1/housings/police_hostelry_codes
 check_in_date | true | The arrival date in format YYYY-MM-DD, i.e. 2018-12-30
@@ -113,7 +117,7 @@ There is a test mode that can be activated setting the attribute test_mode in tr
 
 To make a real registration you will need to get the property owner user and password that they use to login into the police website.  
 
-### Police types
+### Police types in Spain
 Police type will set which is the final police organization to which you want to send the data. Remember that there are 4 police forces in Spain:
 
 "POL" -> Data is sent to "Policía Nacional"
@@ -123,6 +127,11 @@ Police type will set which is the final police organization to which you want to
 "ERT" -> Data is sent to "Ertzaintza"
 
 "MOS" -> Data is sent to "Mossos d'Esquadra"
+
+### Police types in Portugal
+Police type will set which is the final police organization to which you want to send the data. There is a single police organization in Portugal for this matters:
+
+"SEF" -> Data is sent to "Serviço de Estrangeiros e Fronteiras"
 
 
 
@@ -136,21 +145,25 @@ value | Description
 ----- | -----------
 "D" | Spanish ID card, called DNI.
 "C" | Spanish Driving Licence.
-"N" | Spanish residence permission
+"N" | Spanish residence permission.
 "I" | European ID card.
-"X" | Foreign residence permission
+"X" | Foreign residence permission.
 "P" | Passport.
+ 
+
+### Doc types in Portugal
+Parameter | Description
+--------- | -----------
+"B" | Portugal ID, called "BILHETE DE IDENTIDADE".
+"P" | Passport.
+"O" | For any other documents, like Foreign IDs.
 
 
 ### Doc types in Italy
-Parameter | Required | Description
---------- | -------- | -----------
-Comming soon. | 
+Parameter | Description
+--------- | -----------
+Comming soon. |
 
-### Doc types in Portugal
-Parameter | Required | Description
---------- | -------- | -----------
-Comming soon. | 
 
 <aside class="success">
 Remember — you need to send the authentication headers with User Token!
