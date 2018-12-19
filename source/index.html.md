@@ -57,7 +57,7 @@ The idea behind this policy is to help users detect possible issues where the AP
 If you have any reason to believe that you need a higher rate limit, please contact our support.
 
 ## A small note about API V2 vs V1
-As of December 31st, 2017, API V1 is depreciated.
+As of December 31st, 2017, API V1 is deprecated.
 We wrote the API V2 based on our experience from V1, trying to make it simpler and more robust.
 
 We changed many things from V1:
