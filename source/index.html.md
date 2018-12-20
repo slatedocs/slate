@@ -871,7 +871,7 @@ Parameter | Required | Type    | Default | Description
 --------- | ------- | ------- | ------- | -----------
 access_token | true | string | | Your personal acess_token
 business_id | true | integer | | Id of a business in list businesses. Get in api [GET /user/me](#get-all-businesses)
-callback_url | true | string | | The endpoint Snappy will sen POST request
+callback_url | true | string | | The endpoint Snappy will send POST request
 
 ## Get a Specific Webhook
 
