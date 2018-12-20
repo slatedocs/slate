@@ -326,9 +326,9 @@ This endpoint retrieves a specific business.
 Parameter | Required | Type    | Default | Description
 --------- | ------- | ------- | ------- | -----------
 access_token | true | string | | Your personal acess_token
-ID | true | integer | | The ID of the business to retrieve
+ID | true | integer | | Id of a business in list businesses. Get in api [GET /user/me](#get-all-businesses)
 
-## Create business address
+## Create Business Address
 
 ```http
 POST /snappy/businesses/address/create?access_token=<access_token> HTTP/1.1
@@ -828,3 +828,78 @@ Parameter | Required | Type | Description
 ids | true | string | ids of trackings need to print separate by comma `,` eg. S20010048,S20009784,S20010275
 business_id | true | integer | | Id of a business in list businesses. Get in api [GET /user/me](#get-all-businesses)
 access_token | true | string | | Your personal acess_token
+
+# Webhook
+
+When tracking update status to another status, Snappy will send a POST request following the callback url created in api [POST /snappy/trackings/webhook](#create-webhook).
+
+## Create Webhook
+
+```http
+POST /snappy/trackings/webhook?access_token=<access_token> HTTP/1.1
+```
+> Sample params
+
+```json
+{
+    "business_id": 1,
+    "callback_url": "https://postman-echo.com/post"
+}
+```
+
+> Response if success
+
+```json
+{
+    "success": true,
+    "webhook": {
+        "business_id": 1,
+        "callback_url": "https://postman-echo.com/post"
+    }
+}
+```
+
+This endpoint create an unique webhook callback url into your business.
+
+### HTTP Request
+
+`POST /snappy/trackings/webhook`
+
+### URL Parameters
+
+Parameter | Required | Type    | Default | Description
+--------- | ------- | ------- | ------- | -----------
+access_token | true | string | | Your personal acess_token
+business_id | true | integer | | Id of a business in list businesses. Get in api [GET /user/me](#get-all-businesses)
+callback_url | true | string | | The endpoint Snappy will sen POST request
+
+## Get a Specific Webhook
+
+```http
+GET /snappy/trackings/webhook?business_id=<business_id>&access_token=<access_token> HTTP/1.1
+```
+
+> Response
+
+```json
+{
+    "success": true,
+    "webhook": {
+        "business_id": 1,
+        "callback_url": "https://postman-echo.com/post"
+    }
+}
+```
+
+This endpoint retrieves a specific webhook callback url into your specific business.
+
+### HTTP Request
+
+`GET /snappy/trackings/webhook`
+
+### URL Parameters
+
+Parameter | Required | Type    | Default | Description
+--------- | ------- | ------- | ------- | -----------
+access_token | true | string | | Your personal acess_token
+business_id | true | integer | | Id of a business in list businesses. Get in api [GET /user/me](#get-all-businesses)
