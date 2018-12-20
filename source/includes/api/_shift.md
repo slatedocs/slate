@@ -2094,3 +2094,300 @@ Boolean; notify covering member upon deletion of the shift.
 
 notify_message
 Custom text to be included when notifying shift owner upon deletion of shift.
+
+
+    ### shift.staffView
+
+    EXPERIMENTAL API!
+    
+    Get the shifts returned organized by members and organized per day in the week. Each member has summarized how many hours and minutes that is allocated to the member. This time only includes time that will be compensated. The calculation summarizes the time spent between start and end of all the shifts minus time spent for unpaid breaks. Time allocated for paid breaks is included.
+    The API will do a similar summary of shifts that are available. This shifts are returned separate from shifts
+    allocated to members. The available shifts are in the section "open", the staff shifts are in section "staff"
+
+    The API can be called by Members, Coordinators and Managers.
+    If called by a Member, the section "staff" will only contain ONE element, the Member itself.
+    If called by a Coordinator or Manager, the section "staff" contains all Members
+
+    The API uses pagination.
+
+    > Request example:
+
+    ```JSON
+    {
+      "date":"2018-12-15",
+      "include_available":"1",
+      "page":{
+        "batch":100,
+        "start":"1"
+      },
+      "select":{
+        "display_end_date":"2018-12-21",
+        "display_start_date":"2018-12-15",
+        "workgroup_or_covering":true
+        }
+    }
+    ```
+
+    > Response example:
+
+    ```JSON
+    {
+        "count": 3,
+        "page": {
+          "this": {
+            "batch": "100",
+            "start": 1
+          }
+        },
+        "referenced_objects": {
+          "account": [
+            {
+              "email": "2834232@servola.org",
+              "first_name": "Jack",
+              "id": "47",
+              "last_name": "Johnson",
+              "screen_name": "Jack Johnson"
+            },
+            {
+              "email": "2834233@servola.org",
+              "first_name": "Larry",
+              "id": "48",
+              "last_name": "Lewis",
+              "screen_name": "Larry Lewis"
+            },
+            {
+              "email": "2834222@servola.org",
+              "first_name": "Nancy",
+              "id": "40",
+              "last_name": "Hopkins",
+              "screen_name": "Nancy Hopkins"
+            }
+          ],
+          "client": [
+            {
+              "id": "722578",
+              "name": "Swedish Healthcare"
+            }      ],
+          "location": [
+            {
+              "id": "348336",
+              "name": "Swedish Medical Center"
+            }
+          ],
+          "timezone": [
+            {
+              "name": "GMT",
+              "olson_timezone": "Etc/GMT"
+            },
+            {
+              "name": "Pacific Time (US/Can) (GMT-08:00)",
+              "olson_timezone": "America/Los_Angeles"
+            },
+          ],
+          "workgroup": [
+            {
+              "id": "2834161",
+              "name": "CNA"
+            }
+          ]
+        },
+        "result": {
+          "available": {
+            "id": "0",
+            "screen_name": "Open Shifts",
+            "shifts": {
+              "2018-12-15": [],
+              "2018-12-16": [],
+              "2018-12-17": [
+              ],
+              "2018-12-18": [
+
+                {
+                  "acknowledged": false,
+                  "breaks": [],
+                  "client": "722579",
+                  "count": "1",
+                  "covered": false,
+                  "created": "2018-08-03T00:11:30Z",
+                  "details": "",
+                  "display_time": "5pm - 9pm",
+                  "end_date": "2018-12-18T21:00:00",
+                  "has_signed_up": null,
+                  "id": "231003423",
+                  "is_a_trade": false,
+                  "kind": "available",
+                  "linktitle": "",
+                  "linkurl": "",
+                  "location": "348337",
+                  "name": "CMT",
+                  "no_pick_up": false,
+                  "no_trade": false,
+                  "pay_rate": null,
+                  "published": true,
+                  "qty": "1",
+                  "role": null,
+                  "room_floor": "",
+                  "signup_list": false,
+                  "start_date": "2018-12-18T17:00:00",
+                  "status_updated": "2018-08-03T00:11:30Z",
+                  "subject": "Triage Assist",
+                  "timezone": "Pacific Time (US/Can) (GMT-08:00)",
+                  "updated": "2018-08-03T00:11:30Z",
+                  "urgent": false,
+                  "use_time": "3",
+                  "workgroup": "2834160",
+                  "zipcode": "98108"
+                }
+              ],
+              "2018-12-19": [
+                ],
+              "2018-12-20": [
+                ],
+              "2018-12-21": [
+              ]
+            },
+            "totalTimeHours": 4,
+            "totalTimeMinutes": 0
+          },
+          "staff": [
+            {
+              "id": "47",
+              "screen_name": "Jack Johnson",
+              "shifts": {
+                "2018-12-15": [],
+                "2018-12-16": [],
+                "2018-12-17": [],
+                "2018-12-18": [],
+                "2018-12-19": [
+                  {
+                    "acknowledged": false,
+                    "breaks": [],
+                    "client": "722578",
+                    "count": "1",
+                    "covered": true,
+                    "covering_member": "47",
+                    "created": "2018-08-03T00:09:50Z",
+                    "details": "",
+                    "display_time": "3pm - 5pm",
+                    "end_date": "2018-12-19T17:00:00",
+                    "has_signed_up": null,
+                    "id": "231003131",
+                    "is_a_trade": false,
+                    "kind": "confirmed",
+                    "linktitle": "",
+                    "linkurl": "",
+                    "location": "348336",
+                    "name": "CNA",
+                    "no_pick_up": false,
+                    "no_trade": false,
+                    "pay_rate": null,
+                    "published": true,
+                    "qty": "2",
+                    "role": null,
+                    "room_floor": "",
+                    "signup_list": false,
+                    "start_date": "2018-12-19T15:00:00",
+                    "status_updated": "2018-08-03T00:09:50Z",
+                    "subject": "Admissions Assist",
+                    "timezone": "Pacific Time (US/Can) (GMT-08:00)",
+                    "updated": "2018-08-03T00:09:50Z",
+                    "urgent": false,
+                    "use_time": "3",
+                    "workgroup": "2834161",
+                    "zipcode": "98111"
+                  }
+                ],
+                "2018-12-20": [],
+                "2018-12-21": []
+              },
+              "totalTimeHours": 2,
+              "totalTimeMinutes": 0
+            },
+            {
+              "id": "48",
+              "screen_name": "Larry Lewis",
+              "shifts": {
+                "2018-12-15": [],
+                "2018-12-16": [],
+                "2018-12-17": [],
+                "2018-12-18": [],
+                "2018-12-19": [],
+                "2018-12-20": [],
+                "2018-12-21": [
+                  {
+                    "acknowledged": false,
+                    "breaks": [],
+                    "client": "722578",
+                    "count": "1",
+                    "covered": true,
+                    "covering_member": "48",
+                    "created": "2018-08-03T00:09:50Z",
+                    "details": "",
+                    "display_time": "3pm - 5pm",
+                    "end_date": "2018-12-21T17:00:00",
+                    "has_signed_up": null,
+                    "id": "231003134",
+                    "is_a_trade": false,
+                    "kind": "confirmed",
+                    "linktitle": "",
+                    "linkurl": "",
+                    "location": "348336",
+                    "name": "CNA",
+                    "no_pick_up": false,
+                    "no_trade": false,
+                    "pay_rate": null,
+                    "published": true,
+                    "qty": "2",
+                    "role": null,
+                    "room_floor": "",
+                    "signup_list": false,
+                    "start_date": "2018-12-21T15:00:00",
+                    "status_updated": "2018-08-03T00:09:50Z",
+                    "subject": "Admissions Assist",
+                    "timezone": "Pacific Time (US/Can) (GMT-08:00)",
+                    "updated": "2018-08-03T00:09:50Z",
+                    "urgent": false,
+                    "use_time": "3",
+                    "workgroup": "2834161",
+                    "zipcode": "98111"
+                  }
+                ]
+              },
+              "totalTimeHours": 2,
+              "totalTimeMinutes": 0
+            },
+            {
+              "id": "40",
+              "screen_name": "Nancy Hopkins",
+              "shifts": {
+                "2018-12-15": [],
+                "2018-12-16": [],
+                "2018-12-17": [],
+                "2018-12-18": [],
+                "2018-12-19": [],
+                "2018-12-20": [],
+                "2018-12-21": []
+              },
+              "totalTimeHours": 0,
+              "totalTimeMinutes": 0
+            }
+          ]
+        }
+      }
+    ```
+
+    <span class="tryit" id="shift-staffview-tryit"></span>
+
+    #### Required parameter
+
+    `date` - Any day in the week. Currently not used, rely on date in select section. This will be rectified. The API calculates the start and end of the week containing the day. The calculation is based on the configuration of which day is the first day of the week.
+
+    #### Optional Parameters
+
+    `include_available` - If set to true, the result will contain the section "available" with "Available" shifts. If set to true the result will contain available shifts regardless of what the value might be for 'covered' in the 'select' section.
+
+    `select` - The field specifies the search criteria for the query for shifts. A full description of the select can be found for shift.list.
+
+    #### Output Result
+
+    The result contains two sections. One section contains shifts that are availabable, one section contains all the members and their assigned shifts. The members are sorted by screen-name. Each member section contains a section for each day of the period. Each "day" section contains the shifts assigned to the member. The shifts for each day are sorted by start-time of the shift. For each week, for a member, it is listed how many hours and minutes that a allocated and paid for. The calculation of hours per shift is calculated by the difference between endTime and startTime of the shift and by subtracting non-paid break times.
