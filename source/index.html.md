@@ -831,7 +831,7 @@ access_token | true | string | | Your personal acess_token
 
 # Webhook
 
-When tracking update status to another status, Snappy will send a POST request following the callback url created in api [POST /snappy/trackings/webhook](#create-webhook). Max retry of request to callback url is 10 times.
+When tracking update status to another status, Snappy will send a POST request following the callback url created in api [POST /snappy/trackings/webhook](#create-webhook). Max retry of the request with each tracking status to callback url is 10 times. List tracking status [Tracking Status](#tracking-status)
 
 ## Create Webhook
 
