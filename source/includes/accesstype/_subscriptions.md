@@ -14,49 +14,77 @@ $ curl -H "X-SUBAUTH: <auth-token>" https://www.accesstype.com/api/v1/subscriber
 
 ```shell--response
 {
- "subscriptions":[
-  {
-     "id":713,
-     "subscriber_id":453,
-     "subscription_plan_id":16,
-     "created_at":"2017-10-30T10:55:42.201Z",
-     "updated_at":"2017-10-30T10:55:42.201Z",
-     "assets":[
+  "subscriptions": [
+    {
+      "invoices": [
         {
-            "metadata":{},
-            "title":"public",
-            "type":"site"
+          "amount_after_discount_before_tax": "122.03",
+          "amount_currency": "INR",
+          "id": 990,
+          "invoice_taxes": {
+            "SGST": {
+              "percentage": "9.0",
+              "amount": "10.98",
+              "currency": "INR"
+            },
+            "CGST": {
+              "percentage": "9.0",
+              "amount": "10.98",
+              "currency": "INR"
+            }
+          },
+          "amount_cents": 14400,
+          "base_price": "152.54",
+          "sequenced_invoice_number": "BQ/1819/SUB/167",
+          "discount_details": {
+            "code": "UAT",
+            "discount_percentage": 20,
+            "discount_amount": "30.51"
+          },
+          "created_at": "2018-12-12T10:25:48.590Z"
         }
-     ],
-     "start_timestamp":"2017-10-30T10:55:42.176Z",
-     "end_timestamp":"2017-11-13T10:55:42.176Z",
-     "deleted_at":null,
-     "payment_id":668,
-     "metadata":{
-        "Name":"Sample User",
-        "Address":"Sample add",
-        "Phone Number":"1111111111"
-     },
-     "external_id":null,
-     "trial_period_length":null,
-     "trial_period_unit":null,
-     "coupon_code":null,
-     "subscription_group_id":21,
-     "preferred_identity":{
-        "provider":"email",
-        "value":"sample@gmail.com"
-     },
-     "group_name":"Sub Group 1",
-     "plan_name":"Sub Plan 1",
-     "duration_length":2,
-     "duration_unit":"weeks",
-     "subscription_type":"individual",
-     "active":true,
-     "payment_amount":"0.00",
-     "payment_type":"manual",
-     "renewable": true,
-     "coupon_code_id" : 6,
-     "discount_detail": {
+      ],
+      "id": 713,
+      "subscriber_id": 453,
+      "subscription_plan_id": 16,
+      "created_at": "2017-10-30T10:55:42.201Z",
+      "updated_at": "2017-10-30T10:55:42.201Z",
+      "assets": [
+        {
+          "metadata": {},
+          "title": "public",
+          "type": "site"
+        }
+      ],
+      "start_timestamp": "2017-10-30T10:55:42.176Z",
+      "end_timestamp": "2017-11-13T10:55:42.176Z",
+      "deleted_at": null,
+      "payment_id": 668,
+      "metadata": {
+        "Name": "Sample User",
+        "Address": "Sample add",
+        "Phone Number": "1111111111"
+      },
+      "external_id": null,
+      "trial_period_length": null,
+      "trial_period_unit": null,
+      "coupon_code": null,
+      "subscription_group_id": 21,
+      "preferred_identity": {
+        "provider": "email",
+        "value": "sample@gmail.com"
+      },
+      "group_name": "Sub Group 1",
+      "plan_name": "Sub Plan 1",
+      "duration_length": 2,
+      "duration_unit": "weeks",
+      "subscription_type": "individual",
+      "active": true,
+      "payment_amount": "0.00",
+      "payment_type": "manual",
+      "renewable": true,
+      "coupon_code_id": 6,
+      "discount_detail": {
         "code": "TEST20",
         "discount_type": "percent",
         "title": "Test coupon gives 20 percent off",

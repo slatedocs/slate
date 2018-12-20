@@ -3,7 +3,7 @@
 ##  POST subscriber wallet token
 
 ```shell--request
-$ curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST http://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriber_wallets.json -d '{
+$ curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST https://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriber_wallets.json -d '{
      "subscriber_wallet": {
         "provider": "simpl",
         "metadata": {
@@ -38,7 +38,7 @@ The request body is returned back in the response.
 ## LIST wallets of subscriber
 
 ```shell--request
-$ curl -H "X-SUBAUTH: <auth-token>" http://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriber_wallets.json
+$ curl -H "X-SUBAUTH: <auth-token>" https://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriber_wallets.json
 
 ```
 ```shell--response
@@ -60,7 +60,7 @@ This API call returns all the wallets of a subscriber.
 ## DELETE wallets of subscriber
 
 ```shell--request
-$ curl -H "X-SUBAUTH: <auth-token>" http://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriber_wallets.json -X DELETE
+$ curl -H "X-SUBAUTH: <auth-token>" https://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriber_wallets.json -X DELETE
 
 ```
 
