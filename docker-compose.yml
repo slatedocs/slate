@@ -1,0 +1,8 @@
+app:
+  build: .
+  container_name: slate
+  ports:
+    - 4567:4567
+  volumes:
+    - .:/slate
+  command: "/bin/sh -c 'while true; do sleep 60; done'"
