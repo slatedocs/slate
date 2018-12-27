@@ -215,7 +215,6 @@ curl --header "Authorization: Bearer ########" \
 ```json
 {
   "page": 1,
-  "total_pages": 1,
   "items": [
     {
       "id": 1,
