@@ -17,12 +17,12 @@ Todas as respostas da API são feitas em JSON
 
 Endpoint utilizado
 
-`https://queropago.com.br/api/beta`
+`https://queropago.com.br/api/v1`
 
 # Autenticação
 
 ```http
-GET https://queropago.com.br/api/beta/RESOURCE HTTP/1.1
+GET https://queropago.com.br/api/v1/RESOURCE HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer ••••••••••••
 ```
@@ -72,10 +72,10 @@ Em caso de token válido mas sem permissão de acesso ao recurso específico ser
 ```bash
 curl --header "Authorization: Bearer ########" \
      --header "Content-Type: application/json" \
-     https://queropago.com.br/api/beta/enrollments?page=10
+     https://queropago.com.br/api/v1/enrollments?page=10
 ```
 
-A API utiliza paginação limitando em 100 o número máximo de registros por requisição. O parâmetro `page` determina a página que deverá ser retornada. Quando não informado o padrão é 1.
+A API utiliza paginação limitando em 100 o número máximo de registros por requisição. O parâmetro `page` determina a página que deverá ser retornada. Quando não informado o padrão é 0.
 
 ### Parâmetros de paginação
 
@@ -95,16 +95,16 @@ A API utiliza paginação limitando em 100 o número máximo de registros por re
 
 Entidade que representa toda a cobrança de um **Aluno** num **Curso**.
 
-| Campo | Tipo | Descrição |
-| ----- | ---- | --------- |
-| id | bigint | Identificador da matrícula no Quero Pago |
-| external_id | text | Identificador da matrícula na instituição de ensino |
-| discount_percentage | float | Porcentagem de desconto da bolsa adquirida |
-| due_day | int | Dia de vencimento das mensalidades |
-| start_year | int | Ano de início das cobranças |
-| start_month | int | Mês de início das cobranças. Valores de 1 a 12, sendo 1 Janeiro e 12 Dezembro |
-| duration_in_months | int | Número total de mensalidades do curso |
-| created_at | datetime | Momento da criação da matrícula |
+| Campo               | Tipo     | Descrição                                                                                     |
+| -----               | ----     | ---------                                                                                     |
+| id                  | bigint   | Identificador da matrícula no Quero Pago                                                      |
+| external_id         | text     | Identificador da matrícula na instituição de ensino                                           |
+| discount_percentage | float    | Porcentagem de desconto da bolsa adquirida                                                    |
+| due_day             | int      | Dia de vencimento das mensalidades                                                            |
+| start_year          | int      | Ano de início das cobranças                                                                   |
+| start_month         | int      | Mês de início das cobranças. Valores de 1 a 12, sendo 1 Janeiro e 12 Dezembro                 |
+| duration_in_months  | int      | Número total de mensalidades do curso                                                         |
+| created_at          | datetime | Momento da criação da matrícula no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) em UTC |
 
 ## Listagem de Matrículas
 
@@ -113,7 +113,7 @@ Entidade que representa toda a cobrança de um **Aluno** num **Curso**.
 ```bash
 curl --header "Authorization: Bearer ########" \
      --header "Content-Type: application/json" \
-     https://queropago.com.br/api/beta/enrollments
+     https://queropago.com.br/api/v1/enrollments
 ```
 
 > Retorno
@@ -125,6 +125,7 @@ curl --header "Authorization: Bearer ########" \
     {
       "id": 1234567,
       "external_id": "RA984930527",
+      "created_at": "2018-12-27T17:01:18Z",
       "discount_percentage": 0.4,
       "due_day": 15,
       "start_year": 2018,
@@ -148,7 +149,7 @@ curl --header "Authorization: Bearer ########" \
 ```bash
 curl --header "Authorization: Bearer ########" \
      --header "Content-Type: application/json" \
-     https://queropago.com.br/api/beta/enrollments?student_cpf=00000000000
+     https://queropago.com.br/api/v1/enrollments?student_cpf=00000000000
 ```
 
 ### Filtros
@@ -162,23 +163,26 @@ curl --header "Authorization: Bearer ########" \
 
 # Mensalidades
 
-Entidade que representa a cobrança de um determinado mês relacionada a uma **Matrícula**.
+Entidade que representa a cobrança de um determinado mês relacionada a uma **Matrícula**. Toda mensalidade possui um
+boleto, mesmo sendo paga com cartão de crédito.
 
-| Campo | Tipo | Descrição |
-|-------|------|-----------|
-| id | bigint | Identificador da mensalidade no Quero Pago |
-| external_id | text | Identificador da mensalidade na instituição de ensino |
-| status | text | Estado atual da mensalidade |
-| year | int | Ano de referência |
-| month | int | Mês de referência |
-| due_date | date | Data de vencimento |
-| value_with_discount | float | Valor da mensalidade com desconto |
-| value_without_discount | float | Valor da mensalidade sem desconto |
-| interest | float | Valor de juros aplicado |
-| penalty | float | Valor de multa aplicado |
-| paid_value | float | Valor pago |
-| paid_at | datetime | Momento do pagamento, formatado no padrão ISO8601 em UTC |
-| paid_with | array | Lista de meios de pagamento utilizados, vazio se ainda não foi pago |
+| Campo                  | Tipo   | Descrição                                                           |
+|------------------------|--------|---------------------------------------------------------------------|
+| id                     | bigint | Identificador da mensalidade no Quero Pago                          |
+| external_id            | text   | Identificador da mensalidade na instituição de ensino               |
+| status                 | text   | Estado atual da mensalidade                                         |
+| year                   | int    | Ano de referência                                                   |
+| month                  | int    | Mês de referência                                                   |
+| due_date               | date   | Data de vencimento                                                  |
+| value_with_discount    | float  | Valor da mensalidade com desconto                                   |
+| value_without_discount | float  | Valor da mensalidade sem desconto                                   |
+| interest               | float  | Valor de juros aplicado                                             |
+| penalty                | float  | Valor de multa aplicado                                             |
+| paid_value             | float  | Valor pago                                                          |
+| paid_date              | date   | Data do pagamento, formatado no padrão ISO8601                      |
+| paid_with              | array  | Lista de meios de pagamento utilizados, vazio se ainda não foi pago |
+| boleto_barcode         | text   | Código de barras do boleto                                          |
+| boleto_url             | text   | URL para download do boleto                                         |
 
 **Estados possíveis de uma Mensalidade**
 
@@ -203,7 +207,7 @@ Entidade que representa a cobrança de um determinado mês relacionada a uma **M
 ```bash
 curl --header "Authorization: Bearer ########" \
      --header "Content-Type: application/json" \
-     https://queropago.com.br/api/beta/bills
+     https://queropago.com.br/api/v1/bills
 ```
 
 > Resposta
@@ -216,18 +220,25 @@ curl --header "Authorization: Bearer ########" \
     {
       "id": 1,
       "external_id": "1728934017293477",
-      "status": "open",
+      "status": "paid",
       "year": 2018,
       "month": 6,
       "due_date": "2018-06-15",
       "value_without_discount": 1000.00,
       "value_with_discount": 400.00,
       "paid_value": 0.00,
-      "paid_at": null,
+      "paid_date": "2018-12-27",
       "interest": 0.00,
       "penalty": 0.00,
-      "paid_with": [],
-      "boleto_url": "",
+      "paid_with": [
+          {
+              "method_name": "credit_card",
+              "paid_at": "2018-12-27T19:07:03Z",
+              "paid_value": 400.00
+          }
+      ],
+      "boleto_url": "https://boleto-url.com",
+      "boleto_barcode": "12345.12345 12345.123456 12345.123456 1 12300000001234",
       "enrollment": {
         "id": 1,
         "external_id": "RA984930527"
@@ -244,7 +255,7 @@ curl --header "Authorization: Bearer ########" \
 ```bash
 curl --header "Authorization: Bearer ########" \
      --header "Content-Type: application/json" \
-     https://queropago.com.br/api/beta/bills?enrollment_id=123456
+     https://queropago.com.br/api/v1/bills?enrollment_id=123456
 ```
 
 | Nome | Tipo | Descrição |
@@ -274,7 +285,7 @@ O corpo de toda requisição será sempre no formato JSON (`application/json`).
 
 ```ruby
 def authentic_delivery?(secret_key, signature, delivery_id, request_body)
-  digest = digest = OpenSSL::Digest.new('sha256')
+  digest = OpenSSL::Digest.new('sha256')
   text_to_sign = "#{delivery_id};#{request_body}"
   OpenSSL::HMAC.hexdigest(digest, secret_key, text_to_sign) == signature
 end
@@ -546,7 +557,7 @@ Ocorre quando os valores de juros e/ou multa da [**Mensalidade**](#mensalidades)
 ```http
 POST /your-webhook HTTP/1.1
 Content-Type: application/json; charset=utf-8
-X-QP-Event: bill_fees_changed
+X-QP-Event: bill_charges_changed
 X-QP-Signature: f0a62682f54860925766a26b302cdd973cfaad9f71d375e99ca6d287fa109193
 X-QP-Delivery: d10663b9-f755-4f52-8b52-46777d861b1c
 
