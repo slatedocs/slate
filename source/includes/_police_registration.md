@@ -139,7 +139,7 @@ Value | Description
 "SEF" | Data is sent to "Serviço de Estrangeiros e Fronteiras".
 
 
-### Police types in Portugal
+### Police types in Italy
 Police type will set which is the final police organization to which you want to send the data. There is a single police organization in Italy:
 
 Value | Description
@@ -172,6 +172,7 @@ Value | Description
 
 ### Doc types in Italy
 There are a lot of document types in Italy. The most common ones are "PASSAPORTO ORDINARIO" (Passports), "CARTA DI IDENTITA'" (ID cards without MRZ code), and "CARTA IDENTITA' ELETTRONICA" (ID cards with MRZ code).
+
 Value | Description
 ------| -----------
 "ACMIL" |	"TESS. APP.TO AG.CUSTODIA"
