@@ -104,9 +104,9 @@ name | true | The guest's name/s.
 first_surname | true | The guest's first surname
 second_surname | false | The guest's seconds surname. Only required for spanish people.
 doc_issue_date | true | The issue date of the identification document in format YYYY-MM-DD, i.e. 2010-11-23
-doc_isue_place | false | Used for Italians in Italy Only. It must be the ID of one of the Italian cities (see below).
+doc_isue_place | false | Used for Italians in Italy Only. It must be the CODE of one of the Italian cities (see below).
 birth_date | true | The guest's birth date in format YYYY-MM-DD, i.e. 1982-10-15
-birth_place | false | Used for Italians in Italy Only. It must be the ID of one of the Italian cities (see below).
+birth_place | false | Used for Italians in Italy Only. It must be the CODE of one of the Italian cities (see below).
 nationality | true | Country code in ISO 3-letters format, i.e. ESP (Spain) / DEU (Germany) / ITA (Italy)
 generate_receipt | false | true by default. If set to false, the registration receipt won't be generated.
 accommodation_nif | false | NIF number of the legal holder of the accommodation, to be used in the receipt if generate_receipt is true.
@@ -277,9 +277,44 @@ You can get the full list of cities and IDs doing the following request:
 
 `GET https://api.chekin.io/api/v1/tools/police/italy/cities/`
 
+The response will be a JSON list of cities with a name and a code. The code must be used in the api.
+
 <aside class="success">
 Remember — you need to send the authentication headers with User Token!
 </aside>
+
+```shell
+curl -X GET \
+  https://api.chekin.io/api/v1/tools/police/italy/cities/ \
+  -H 'Authorization: Token yourUserTokenHere' \
+  -H 'Content-Type: application/json'
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+    [
+        {
+            "text": "AGLIE'",
+            "code": "401001001"
+        },
+        {
+            "text": "AIRASCA",
+            "code": "401001002"
+        },
+        {
+            "text": "ALA DI STURA",
+            "code": "401001003"
+        },
+        {
+            "text": "ALBIANO D'IVREA",
+            "code": "401001004"
+        },
+        ...
+    ]
+```
+
 
 
 ## Get Registration status & Receipt
