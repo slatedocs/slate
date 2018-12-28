@@ -91,6 +91,7 @@ test_mode | false | false by default. If it's set to true, then the data isn't s
 police_type | false | Police type and police credentials are required to send the guests data to the police. Police type depends of the country. See police types by country below.
 police_user | false | The username used to do login in the police website.
 police_password | false | The password used to do login in the police website.
+police_cert_password | false | Used for Italy Only. The password of the certificate which is usually the same as the user password.
 establishment_num | false | Used for Portugal Only. It's an extra numer provided by the police to do login.
 is_housing_group | false | Used only if police type is POL. Set it to true only if the accommodation is registered at the police as part of a Group.
 police_hostelry_code | false | Used only if is_housing_group is true. Hostelry code given by the police to this accommodation. A list of available codes for this police user can be retrieved doing a GET to https://api.chekin.io/api/v1/housings/police_hostelry_codes
@@ -103,7 +104,9 @@ name | true | The guest's name/s.
 first_surname | true | The guest's first surname
 second_surname | false | The guest's seconds surname. Only required for spanish people.
 doc_issue_date | true | The issue date of the identification document in format YYYY-MM-DD, i.e. 2010-11-23
+doc_isue_place | false | Used for Italians in Italy Only. It must be the ID of one of the Italian cities (see below).
 birth_date | true | The guest's birth date in format YYYY-MM-DD, i.e. 1982-10-15
+birth_place | false | Used for Italians in Italy Only. It must be the ID of one of the Italian cities (see below).
 nationality | true | Country code in ISO 3-letters format, i.e. ESP (Spain) / DEU (Germany) / ITA (Italy)
 generate_receipt | false | true by default. If set to false, the registration receipt won't be generated.
 accommodation_nif | false | NIF number of the legal holder of the accommodation, to be used in the receipt if generate_receipt is true.
@@ -136,6 +139,13 @@ Value | Description
 "SEF" | Data is sent to "Serviço de Estrangeiros e Fronteiras".
 
 
+### Police types in Portugal
+Police type will set which is the final police organization to which you want to send the data. There is a single police organization in Italy:
+
+Value | Description
+----- | -----------
+"ISP" | Data is sent to "Polizia di Stato".
+
 ### Accommodation Group Police Users
 The parameter is housing group is optional and it's only used for the police type POL, "Policía Nacional". 
 In some cases, when the user has a lot of properties, this police gives to the property owners a user of type "Group User". 
@@ -160,6 +170,112 @@ Value | Description
 "O" | For any other documents, like Foreign IDs.
 
 
+### Doc types in Italy
+There are a lot of document types in Italy. The most common ones are "PASSAPORTO ORDINARIO" (Passports), "CARTA DI IDENTITA'" (ID cards without MRZ code), and "CARTA IDENTITA' ELETTRONICA" (ID cards with MRZ code).
+Value | Description
+------| -----------
+"ACMIL" |	"TESS. APP.TO AG.CUSTODIA"
+"ACSOT" |	"TESS. SOTT.LI AG.CUSTODIA"
+"ACUFF" |	"TESS. UFF.LI AG.CUSTODIA"
+"AMMIL" |	"TESS. MILITARE TRUPPA A.M"
+"AMSOT"	| "TESS. SOTTUFFICIALI A.M."
+"AMUFF" |	"TESS. UFFICIALI A.M."
+"CCMIL" |	"TESS. APP.TO CARABINIERI"
+"CCSOT" |	"TESS. SOTTUFFICIALI CC"
+"CCUFF" |	"TESS. UFFICIALE"
+"CERID" |	"CERTIFICATO D'IDENTITA'"
+"CFMIL" |	"TESS. AG. E AG.SC. C.F.S."
+"CFSOT" |	"TESS. SOTTUFICIALI C.F.S."
+"CFUFF" |	"TESS. UFFICIALI C.F.S."
+"CIDIP" |	"CARTA ID. DIPLOMATICA"
+"DESIS" |	"TESS. S.I.S.D.E."
+"EIMIL" |	"TESS. MILITARE E.I."
+"EISOT" |	"TESS. SOTTUFFICIALI E.I."
+"EIUFF" |	"TESS. UFFICIALI E.I."
+"GFMIL" |	"TESS. APP.TO FINANZIERE"
+"GFSOT" |	"TESS. SOTT.LI G.D.F."
+"GFTRI" |	"TESS. POL. TRIB. G.D.F."
+"GFUFF" |	"TESS. UFFICIALI G.D.F."
+"IDELE" |	"CARTA IDENTITA' ELETTRONICA"
+"IDENT" |	"CARTA DI IDENTITA'"
+"MAGIS" |	"TESS. PERS. MAGISTRATI"
+"MMMIL" |	"TESS. MILIT. M.M."
+"MMSOT" |	"TESS. SOTTUFICIALI M.M."
+"MMUFF" |	"TESS. UFFICIALI M.M."
+"PARLA" |	"TESS. PARLAMENTARI"
+"PASDI" |	"PASSAPORTO DIPLOMATICO"
+"PASOR" |	"PASSAPORTO ORDINARIO"
+"PASSE" |	"PASSAPORTO DI SERVIZIO"
+"PATEN" |	"PATENTE DI GUIDA"
+"PATNA" |	"PATENTE NAUTICA"
+"PORM1" |	"PORTO FUCILE USO CACCIA"
+"PORM2" |	"PORTO FUCILE DIF. PERSON."
+"PORM3" |	"PORTO D'ARMI USO SPORTIVO"
+"PORM4" |	"PORTO PISTOLA DIF. PERSON"
+"PORM5" |	"PORTO D'ARMI GUARDIE GIUR"
+"PPAGE" |	"TESS. AGENTI/ASS.TI P.P."
+"PPISP" |	"TESS. ISPETTORI P.P."
+"PPSOV" |	"TESS. SOVRINTENDENTI P.P."
+"PPUFF" |	"TESS. UFFICIALI P.P."
+"PSAPP" |	"TESS. AGENTI/ASS.TI P.S."
+"PSFEM" |	"TESS. POLIZIA FEMMINILE"
+"PSFUN" |	"TESS. FUNZIONARI P.S."
+"PSISP" |	"TESS. ISPETTORI P.S."
+"PSSOT" |	"TESS. SOVRINTENDENTI P.S."
+"PSUFF" |	"TESS. UFFICIALI P.S."
+"RIFUG" |	"TITOLO VIAGGIO RIF.POLIT."
+"SDMIL" |	"TESS. MILIT. TRUPPA SISMI"
+"SDSOT" |	"TESS. SOTTUFFICIALI SISMI"
+"SDUFF" |	"TESS. UFFICIALI SISMI"
+"TEAMC" | "TESS. ISCR. ALBO MED/CHI."
+"TEAOD" |	"TESS. ISCRIZ. ALBO ODONT."
+"TECAM" | "TES. UNICO PER LA CAMERA"
+"TECOC" |	"TESS. CORTE DEI CONTI"
+"TEDOG" |	"TES.DOGANALE RIL.MIN.FIN."
+"TEFSE" | "TESS. FERROV. SENATO"
+"TEMPI" |	"TESS. MIN.PUBB.ISTRUZIONE"
+"TENAT" |	"TESS. MILITARE NATO"
+"TENAV" |	"TES. ENTE NAZ. ASSIS.VOLO"
+"TEPOL" |	"TESS.MIN.POLIT.AGRIC.FOR."
+"TESAE" |	"TESS. MIN. AFFARI ESTERI"
+"TESAR" |	"TESS.ISCR.ALBO ARCHITETTI"
+"TESAV" |	"TESSERA ISCR. ALBO AVVOC."
+"TESCA" |	"TESS. CORTE D'APPELLO"
+"TESCS" |	"TESS. CONSIGLIO DI STATO"
+"TESDI" |	"TESSERA RICONOSC. D.I.A."
+"TESEA" |	"TESS. MEMBRO EQUIP. AEREO"
+"TESIN" | "TESS.ISCR. ALBO INGEGNERI"
+"TESLP" |	"TESS. MINISTERO LAVORI PU"
+"TESMB" |	"TESS. MIN.BEN.E ATT.CULT."
+"TESMD" |	"TESS. MINISTERO DIFESA"
+"TESMF" |	"TESS. MINISTERO FINANZE"
+"TESMG" |	"TESS. MINISTERO GIUSTIZIA"
+"TESMI" |	"TESS. MINISTERO INTERNO"
+"TESMN" |	"TESS. MINIST. TRASP/NAVIG"
+"TESMS" |	"TESS. MINISTERO SANITA'"
+"TESMT" |	"TESS. MINISTERO TESORO"
+"TESNO" |	"TESSERA DELL'ORDINE NOTAI"
+"TESOG" |	"TESS. ORDINE GIORNALISTI"
+"TESPC" |	"TESS. PRES.ZA CONS. MIN."
+"TESPI" |	"TESS. PUBBLICA ISTRUZIONE"
+"TESPT" |	"TES. POSTE E TELECOMUNIC."
+"TESUN" |	"TESSERA U.N.U.C.I."
+"TETEL" |	"TESS. IDENTIF.TELECOM IT."
+"TFERD" | "TES. FERROVIARIA DEPUTATI"
+"TFEXD" |	"TES. FERROV. EX DEPUTATI"
+"VIMIL" |	"TESS. APP.TO/VIG. URBANO"
+"VISOT" |	"TESS. SOTT.LI VIG. URBANI"
+"VIUFF" |	"TESS. UFF.LI VIG.URBANI"
+"VVMIL" |	"TESS. APP.TO/VIG. VV.FF."
+"VVSOT" |	"TESS. SOTTUFF.LI VV.FF."
+"VVUFF" |	"TESS. UFFICIALI VV.FF."
+
+### Italian cities
+This field is only required for italians being registered in Italian State Police.
+ 
+You can get the full list of cities and IDs doing the following request:
+
+`GET https://api.chekin.io/api/v1/tools/police/italy/cities/`
 
 <aside class="success">
 Remember — you need to send the authentication headers with User Token!
