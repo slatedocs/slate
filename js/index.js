@@ -1,7 +1,7 @@
 
 import fs from 'fs'
 import path from 'path'
-import config from '../static-doc/config.json'
+import config from '../mjml/doc/config.json'
 
 const DEST = './CONTENT.md'
 const docFilesPath = '../'
