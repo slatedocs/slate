@@ -7,10 +7,10 @@ This section contains important Accestype release notes. For any queries, please
 ### New Features:
 1. **Invoicing and Taxes** - Set up tax names and rates for generating Invoices. The tax rates set up in this module are applied and tax amounts calculated such that the price of the plan/asset is inclusive of taxes.
 ![Tax Settings](../../images/Accesstype_TaxSettings.png "Tax Settings")
-2. **HTML Template for Invoices** - Upload the HTML invoice using Accesstype. The template can include a bunch of variables that are listed [here](#get-invoice-details). The Invoice Sequence Prefix of your choice can also be updated. Write to us at [support@quintype.com](mailto:support@quintype.com) to reset the invoice sequence number. 
+2. **HTML Template for Invoices** - Upload the HTML invoice using Accesstype. The template can include a bunch of variables that are listed [here](#get-invoice-pdf-download). The Invoice Sequence Prefix of your choice can also be updated. Write to us at [support@quintype.com](mailto:support@quintype.com) to reset the invoice sequence number. 
 ![Invoice Settings](../../images/Accesstype_InvoiceSettings.png "Invoice Settings")
 
-3. **API for PDF invoice download** - The API end point to download PDF invoices for a given subscription is available [here](#get-invoice-details) for those on [Quintype](https://www.quintype.com) platform and [here](#get-invoice-details-for-a-subscription) for those not on the [Quintype](https://www.quintype.com) platform. **Note:** The method to invoke the download Invoice PDF API call can also be made using the AccesstypeJS which is described [here](https://github.com/quintype/subtype/blob/master/frontend/README.md) and [here](https://github.com/quintype/subtype/blob/master/frontend/API.md).
+3. **API for PDF invoice download** - The API end point to download PDF invoices for a given subscription is available [here](#get-invoice-pdf-download) for those on [Quintype](https://www.quintype.com) platform and [here](#get-invoice-details-for-a-subscription) for those not on the [Quintype](https://www.quintype.com) platform. **Note:** The method to invoke the download Invoice PDF API call can also be made using the AccesstypeJS which is described [here](https://github.com/quintype/subtype/blob/master/frontend/README.md) and [here](https://github.com/quintype/subtype/blob/master/frontend/API.md).
 
 ## 11 Oct 2018 Release Notes - Accesstype
 
