@@ -83,6 +83,10 @@ In the `options` object
 
 `dnc_checked` is a boolean to autocheck the DNC checkbox. default value is `false`
 
+ `projects` is an array of Objects of the following signature `[{name: '', campaign_id: ''}]` pass this to show project dropdown in the form.
+ 
+ `selectedProject` is an object of following signature `{name: '', campaign_id: ''}` pass this to select one project by default
+
 Working example can be seen here. https://marketing.anarock.com/static/test.html
 
 `window.onLeadSuccess` && `window.onLeadFailure` are the two functions that are called on submission of lead. These are called with 2 arguments  `lead_id` && `data_submitted_in_anarock_database`
@@ -126,6 +130,94 @@ You can pass `dnc_checked` as `true` in the options to set the checkbox by defau
  </script>
 ```
 
+### Adding Projects Dropdown
+
+You can pass `projects` as `[{name: '', campaign_id: ''}]` in the options to show the project selection dropdown
+
+```html
+<script>
+    var form_container = document.getElementById('anarock-form')
+    window.anarockForms = [{
+      container: form_container,
+      key: "API_KEY",
+      channel_name: "CHANNEL_NAME",
+      campaign_id: "CAMPAIGN_ID",
+      env: ENVIRONMENT,
+      options:  { 
+        projects: [{name: 'Project1', campaign_id: 'project-1'}, {name: 'Project2', campaign_id: 'project-2'}, {name: 'Project3', campaign_id: 'project-3'}, {name: 'Project4', campaign_id: 'project-4'}]
+      }
+    }]
+ </script>
+```
+
+### Selecting one project by default
+
+When you have passed `projects` in options, you may also pass `selectedProject` in options to set one project selected by defaiult
+
+```html
+<script>
+    var form_container = document.getElementById('anarock-form')
+    window.anarockForms = [{
+      container: form_container,
+      key: "API_KEY",
+      channel_name: "CHANNEL_NAME",
+      campaign_id: "CAMPAIGN_ID",
+      env: ENVIRONMENT,
+      options:  { 
+        projects: [{name: 'Project1', campaign_id: 'project-1'}, {name: 'Project2', campaign_id: 'project-2'}],
+        selectedProject: {name: 'Project1', campaign_id: 'project-1'}
+      }
+    }]
+ </script>
+```
+
+### Change Projects DropDown Options and Selected Project in Dropdown dynamically
+
+To cater to use cases where you might have to change selected project based on utm parameters, two objects are exposed
+
+`window.createdAnarockForms` this is an Object with keys as `id` of the containers. If id is not present `class_` index of the form in the anarockForms array is used as key e.g. `class_0` , `class_1`
+
+`window.createdAnarockForms` contains key `form` against each entry and methods `setProjects` or `setSelectedProject`
+ can be used.
+ 
+ if below is your code
+ 
+ ```html
+<script>
+    var form_container = document.getElementById('anarock-form') // 'anarock-from' is the `id` of the form
+    window.anarockForms = [{
+      container: form_container,
+      key: "API_KEY",
+      channel_name: "CHANNEL_NAME",
+      campaign_id: "CAMPAIGN_ID",
+      env: ENVIRONMENT,
+      options:  { 
+        projects: [{name: 'Project1', campaign_id: 'project-1'}, {name: 'Project2', campaign_id: 'project-2'}],
+        selectedProject: {name: 'Project1', campaign_id: 'project-1'}
+      }
+    }]
+ </script>
+```
+
+and now you want to change the selected project. You can do as below
+
+```js
+window.createdAnarockForms['anarock-form'].form.setSelectedProject({name: 'Project2', campaign_id: 'project-2'})
+```
+the campaign_id in the selectedProjet object will superceed the default campaign_id for submission of lead.
+
+of you can change the options in this form as 
+
+```js
+window.createdAnarockForms['anarock-form'].form.setProjects([{name: 'Project3', campaign_id: 'project-3'}, {name: 'Project4', campaign_id: 'project-4'}])
+```
+
+This way you can control what is default selected value show in project selection in form and also you can control that using the above methods
+
+If you want to remove the projects dropdown just call 
+```js
+window.createdAnarockForms['anarock-form'].form.setProjects(null)
+```
 
 ### Thank you page redirection
 
