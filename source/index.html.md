@@ -11,11 +11,8 @@ includes:
   - intro
   - user_token
   - police_registration
+  - ocr_web
   - errors
 
 search: true
 ---
-
-
-
-
