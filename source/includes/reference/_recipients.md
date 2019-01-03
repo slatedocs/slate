@@ -1018,6 +1018,94 @@ Validate Thailand bank account number
 
 
 
+## Banks and Branches
+
+> Example Request (Get list of banks for Hong Kong):
+
+```shell
+curl -X GET https://api.sandbox.transferwise.tech/v1/banks/country=HK
+```
+
+> Example Response (Get list of banks for Hong Kong):
+
+```json
+{
+    "values": [
+        {
+            "code": "003",
+            "title": "STANDARD CHARTERED BANK (HONG KONG) LIMITED"
+        },
+        {
+            "code": "552",
+            "title": "AAREAL BANK AG, WIESBADEN, GERMANY"
+        },
+        {
+            "code": "307",
+            "title": "ABN AMRO BANK N.V."
+        },
+        {
+            "code": "222",
+            "title": "AGRICULTURAL BANK OF CHINA LIMITED"
+        },
+        {
+            "code": "525",
+            "title": "ZIBO CITY COMMERCIAL BANK, SHANDONG"
+        }
+    ]
+}
+```
+
+> Example Request (Get list of bank branches for a Hong Kong bank with code 003):
+
+```shell
+curl -X GET https://api.sandbox.transferwise.tech/v1/bank-branches?country=HK&bankCode=003
+```
+
+> Example Response (Get list of bank branches for a Hong Kong bank with code 003):
+
+```json
+{
+    "country": "HK",
+    "values": [
+        {
+            "code": "251",
+            "title": "Quarry Bay Branch [251]",
+            "parentCode": "003"
+        },
+        {
+            "code": "983",
+            "title": "Canton Road Branch [983]",
+            "parentCode": "003"
+        },
+        {
+            "code": "984",
+            "title": "Tuen Mun Branch [984]",
+            "parentCode": "003"
+        },
+        {
+            "code": "985",
+            "title": "Kwun Tong Branch [985]",
+            "parentCode": "003"
+        }
+    ]
+}
+```
+
+**Get list of banks by country code** 
+
+List of banks is available for these countries:
+BD, BR, CZ, CL, EG, GH, HK, ID, IL, IN, JP, KE, LK, MA, NG, NP, PE, PH, RU, SG, TH, VN
+
+**` GET https://api.sandbox.transferwise.tech/v1/banks?country=HK`**<br/>
+
+
+**Get list of branches by country and bank code**
+
+List of bank branches is available for these countries: BD, GH, HK, IL, IN, JP, LK, SG, VN
+
+**` GET https://api.sandbox.transferwise.tech/v1/bank-branches?country=HK&bankCode=<bankCode>`**<br/>
+
+
 
 ## Create AED Recipient
 
@@ -1145,7 +1233,9 @@ Recipient type = *'iban'*
 
 Required details: bankCode, branchCode, accountNumber
 
-You can get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
+Lists of banks and branches can be obtained from [Banks and Branches](#recipient-accounts-banks-and-branches) endpoints.
+
+You can also get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
 
 ## Create BGN Recipient
 
@@ -1210,7 +1300,9 @@ Recipient type = *'brazil'*
 
 Required details: bankCode, branchCode, accountNumber, accountType (CHECKING or SAVINGS), cpf (tax reg no), recipient phone number
 
-You can get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
+Lists of banks and branches can be obtained from [Banks and Branches](#recipient-accounts-banks-and-branches) endpoints.
+
+You can also get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
 
 
 ## Create CAD Recipient
@@ -1243,8 +1335,6 @@ Private and business recipients are supported.
 Recipient type = *'canadian'*
 
 Required details: institutionNumber, transitNumber, accountNumber, accountType (Checking or Saving)
-
-You can get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
 
 ## Create CHF Recipient
 
@@ -1307,6 +1397,9 @@ Recipient type = *'chile'*
 
 Required details: bankCode, accountNumber, rut (Rol Único Tributario), accountType (CHECKING, SAVINGS, CUENTA_VISTA), recipient phone number
 
+Lists of banks and branches can be obtained from [Banks and Branches](#recipient-accounts-banks-and-branches) endpoints.
+
+You can also get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
 
 ## Create CNY Recipient
 
@@ -1391,6 +1484,10 @@ Recipient type = *'czech'*
 
 Required details: prefix, accountNumber, bankCode
 
+Lists of banks and branches can be obtained from [Banks and Branches](#recipient-accounts-banks-and-branches) endpoints.
+
+You can also get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
+
 <br/>
 
 
@@ -1464,7 +1561,9 @@ Recipient type = *'egypt_local'*
 
 Required details: bankCode, accountNumber (Swift code)
 
-You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
+Lists of banks and branches can be obtained from [Banks and Branches](#recipient-accounts-banks-and-branches) endpoints.
+
+You can also get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
 
 
 ## Create EUR Recipient
@@ -1617,7 +1716,9 @@ Recipient type = *'ghana_local'*
 
 Required details: bankCode, accountNumber
 
-You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
+Lists of banks and branches can be obtained from [Banks and Branches](#recipient-accounts-banks-and-branches) endpoints.
+
+You can also get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
 
 
 
@@ -1649,7 +1750,9 @@ Recipient type = *'hongkong'*
 
 Required details: bankCode, accountNumber
 
-You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
+Lists of banks and branches can be obtained from [Banks and Branches](#recipient-accounts-banks-and-branches) endpoints.
+
+You can also get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
 
 
 
@@ -1776,7 +1879,9 @@ Recipient type = *'indonesian'*
 
 Required details: bankCode, accountNumber
 
-You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
+Lists of banks and branches can be obtained from [Banks and Branches](#recipient-accounts-banks-and-branches) endpoints.
+
+You can also get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
 
 
 ## Create ILS Recipient
@@ -1844,7 +1949,9 @@ Recipient type = *'israeli_bank_code'*
 
 Required details: bankCode, branchCode, accountNumber
 
-You can get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
+Lists of banks and branches can be obtained from [Banks and Branches](#recipient-accounts-banks-and-branches) endpoints.
+
+You can also get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
 
 
 
@@ -1884,6 +1991,10 @@ Recipient type = *'indian'*
 
 Required details: ifscCode, accountNumber
 
+Lists of banks and branches can be obtained from [Banks and Branches](#recipient-accounts-banks-and-branches) endpoints.
+
+You can also get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
+
 
 ## Create JPY Recipient
 
@@ -1916,7 +2027,9 @@ Recipient type = *'japanese'*
 
 Required details: bankCode, branchCode accountNumber, accountType (CURRENT, SAVINGS, CHECKING), 
 
-You can get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
+Lists of banks and branches can be obtained from [Banks and Branches](#recipient-accounts-banks-and-branches) endpoints.
+
+You can also get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
 
 
 ## Create KES Recipient
@@ -1970,7 +2083,9 @@ Recipient type = *'kenya_local'*
 
 Required details: bankCode, accountNumber
 
-You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
+Lists of banks and branches can be obtained from [Banks and Branches](#recipient-accounts-banks-and-branches) endpoints.
+
+You can also get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
 
 <br/>
 
@@ -2021,7 +2136,9 @@ Recipient type = *'srilanka'*
 
 Required details: bankCode, branchCode, accountNumber
 
-You can get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
+Lists of banks and branches can be obtained from [Banks and Branches](#recipient-accounts-banks-and-branches) endpoints.
+
+You can also get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
 
 ## Create MAD Recipient
 
@@ -2052,7 +2169,9 @@ Recipient type = *'morocco'*
 
 Required details: bankCode, accountNumber
 
-You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
+Lists of banks and branches can be obtained from [Banks and Branches](#recipient-accounts-banks-and-branches) endpoints.
+
+You can also get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
 
 
 
@@ -2116,10 +2235,6 @@ Recipient type = *'malaysian'*
 
 Required details: swiftCode, accountNumber
 
-You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
-
-
-
 
 ## Create NGN Recipient
 
@@ -2151,7 +2266,9 @@ Recipient type = *'nigeria'*
 
 Required details: bankCode, accountNumber
 
-You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
+Lists of banks and branches can be obtained from [Banks and Branches](#recipient-accounts-banks-and-branches) endpoints.
+
+You can also get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
 
 
 
@@ -2220,7 +2337,9 @@ Recipient type = *'nepal'*
 
 Required details: bankCode, accountNumber
 
-You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
+Lists of banks and branches can be obtained from [Banks and Branches](#recipient-accounts-banks-and-branches) endpoints.
+
+You can also get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
 
 
 ## Create NZD Recipient
@@ -2285,7 +2404,9 @@ Recipient type = *'peru'*
 
 Required details: bankCode, accountNumber, accountType (CHECKING, SAVINGS), ID document type (DNI, RUC, C_EXT, PASSP), ID document number, recipient phone number
 
-You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
+Lists of banks and branches can be obtained from [Banks and Branches](#recipient-accounts-banks-and-branches) endpoints.
+
+You can also get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
 
 
 
@@ -2328,7 +2449,9 @@ Recipient type = *'philippines'*
 
 Required details: bankCode, accountNumber, recipient address
 
-You can get list of bank and country codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
+Lists of banks and branches can be obtained from [Banks and Branches](#recipient-accounts-banks-and-branches) endpoints.
+
+You can also get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
 
 
 
@@ -2503,6 +2626,8 @@ Required details: bankCode, accountNumber, region, recipient address
 
 You can get list of bank, region and country codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
 
+Lists of banks and branches can be obtained from [Banks and Branches](#recipient-accounts-banks-and-branches) endpoints.
+
 
 
 ## Create SEK Recipient
@@ -2630,7 +2755,9 @@ Recipient type = *'singapore'*
 
 Required details: bankCode, accountNumber
 
-You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
+Lists of banks and branches can be obtained from [Banks and Branches](#recipient-accounts-banks-and-branches) endpoints.
+
+You can also get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
 
 
 
@@ -2670,7 +2797,9 @@ Recipient type = *'thailand'*
 
 Required details: bankCode, accountNumber
 
-You can get list of bank and country codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
+Lists of banks and branches can be obtained from [Banks and Branches](#recipient-accounts-banks-and-branches) endpoints.
+
+You can also get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
 
 
 
@@ -2821,7 +2950,9 @@ Recipient type = *'vietname_earthport'*
 
 Required details: swiftCode, branchCode, accountNumber
 
-You can get list of bank  and branc codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
+Lists of banks and branches can be obtained from [Banks and Branches](#recipient-accounts-banks-and-branches) endpoints.
+
+You can also get list of bank and branch codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
 
 
 
