@@ -2,6 +2,14 @@
 
 This section contains important Accestype release notes. For any queries, please write to us at [support@quintype.com](mailto:support@quintype.com).
 
+## 4 Jan 2019 Release Note - Accesstype
+1. **Updated Subscription CSV Report** - The subscription CSV Report now contains additional fields for financial related purposes: Base Price, Discount amounts, amount after discount before tax and round-off.
+2. **Subscriber Name** - The Subscriber name is now displayed in Accesstype UI as well as the CSV report by default, for all subscriptions, Pay Per Asset purchases and Campaign Patrons.
+![Subscriber Name in UI](../../images/Accesstype_Sub_Name_UI.png "Subscriber Name in UI")
+3. **Getsimpl workflow upgrades** - Optimizations and security enhancements on Simpl payment option workflow. 
+4. **Bug fixes - Subscription CSV Report** - Duplicate entires for recurring subscriptions are elimiated and tax amounts are displayed under the appropriate columns.
+
+
 ## 12 Dec 2018 Release Notes - Accesstype
 
 ### New Features:
