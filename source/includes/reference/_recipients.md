@@ -1094,7 +1094,7 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/bank-branches?country=HK&ba
 **Get list of banks by country code** 
 
 List of banks is available for these countries:
-BD, BR, CZ, CL, EG, GH, HK, ID, IL, IN, JP, KE, LK, MA, NG, NP, PE, PH, RU, SG, TH, VN
+BD, BR, CZ, CL, EG, GH, HK, ID, IL, IN, JP, KE, LK, MA, NG, NP, PE, PH, RU, SG, TH, VN, ZA
 
 **` GET https://api.sandbox.transferwise.tech/v1/banks?country=HK`**<br/>
 
@@ -2990,6 +2990,8 @@ Recipient type = *'southafrica'*
 Required details: swiftCode, accountNumber
 
 You can get list of bank codes by using /v1/quotes/{quoteId}/account-requirements endpoint.
+
+Lists of banks and branches can be obtained from [Banks and Branches](#recipient-accounts-banks-and-branches) endpoints.
 
 
 
