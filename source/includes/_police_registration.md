@@ -78,6 +78,10 @@ Optionally, the registration receipt can be generated.
 The police registration runs asynchronously, then on this first call the registration will be triggered and you will get a status "NEW".
 You will need to do a second call later to check the status until it is "COM" (completion time can be 5-10 seconds).
 
+The police don't allow modifying the guests data once they have been registered successfully. 
+It also has no problem with changes related to the stay, for example if the number of nights of stay is extended later. 
+It is not necessary to inform about that type of changes.
+
 
 ### HTTP Request
 
@@ -375,4 +379,14 @@ The receipts will be deleted in 3 days, unless you have hired the documentation 
 Parameter | Required | Description
 --------- | -------- | -----------
 ID | true | The ID of the registration, obtained previously when registration was triggered.
+
+
+### Web Dashboard
+You can also manage registers from the dashboard.
+You will be able to see a full list of registers, check their status, download receipts, and re-trigger any registration if necessary.
+
+You can access with the user and password used in Sign Up.
+
+[https://tools.chekin.io/login](https://tools.chekin.io/login)
+
 
