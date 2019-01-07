@@ -161,6 +161,40 @@ curl --header "Authorization: Bearer ########" \
 | created_at_gte | Query | Retorna as matrículas criadas a partir da data indicada no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 | created_at_lte | Query | Retorna as matrículas criadas até a data indicada no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 
+## Busca de uma matrícula
+Busca de uma matrícula utilizando o ID Quero Pago
+
+> Requisição
+
+```bash
+curl --header "Authorization: Bearer ########" \
+     --header "Content-Type: application/json" \
+     https://queropago.com.br/api/v1/enrollments/1234567
+```
+
+> Resposta
+
+```json
+{
+  "id": 1234567,
+  "external_id": "RA984930527",
+  "created_at": "2018-12-27T17:01:18Z",
+  "discount_percentage": 0.4,
+  "due_day": 15,
+  "start_year": 2018,
+  "start_month": 7,
+  "duration_in_months": 24,
+  "course": {
+    "id": 1,
+    "external_id": "21348329432"
+  },
+  "student": {
+    "id": 1,
+    "cpf": "00000000000"
+  }
+}
+```
+
 # Mensalidades
 
 Entidade que representa a cobrança de um determinado mês relacionada a uma **Matrícula**. Toda mensalidade possui um
@@ -263,6 +297,49 @@ curl --header "Authorization: Bearer ########" \
 | external_enrollment_id | Query | Identificador da matrícula na instituição de ensino |
 | due_date_gte | Query | Retorna as mensalidades com vencimento maior ou igual à data indicada. Deve ser formatada no padrão [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 | due_date_lte | Query | Retorna as mensalidades com vencimento menor ou igual à data indicada. Deve ser formatada no padrão [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+
+## Busca de uma mensalidade
+Busca de uma mensalidade utilizando o ID Quero Pago
+
+> Requisição
+
+```bash
+curl --header "Authorization: Bearer ########" \
+     --header "Content-Type: application/json" \
+     https://queropago.com.br/api/v1/bills/1
+```
+
+> Resposta
+
+```json
+{
+  "id": 1,
+  "external_id": "1728934017293477",
+  "status": "paid",
+  "year": 2018,
+  "month": 6,
+  "due_date": "2018-06-15",
+  "value_without_discount": 1000.00,
+  "value_with_discount": 400.00,
+  "paid_value": 0.00,
+  "paid_date": "2018-12-27",
+  "interest": 0.00,
+  "penalty": 0.00,
+  "paid_with": [
+    {
+      "method_name": "credit_card",
+      "paid_at": "2018-12-27T19:07:03Z",
+      "paid_value": 400.00
+    }
+  ],
+  "boleto_url": "https://boleto-url.com",
+  "boleto_barcode": "12345.12345 12345.123456 12345.123456 1 12300000001234",
+  "enrollment": {
+    "id": 1,
+    "external_id": "RA984930527"
+  }
+}
+```
 
 # Webhooks
 
