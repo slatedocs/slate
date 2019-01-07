@@ -318,6 +318,31 @@ Field                     | Description             | Format
 estimatedDeliveryDate     | Estimated time when funds will arrive to recipient's bank account  | Timestamp
 
 
+## Get Receipt PDF
+> Example Request:
+
+```shell
+curl -X GET https://api.sandbox.transferwise.tech/v1/transfers/{transferId}/receipt.pdf \
+     -H "Authorization: Bearer <your api token>" 
+```
+
+> Example Response:
+
+```
+Receipt presented as application/pdf content-type
+```
+
+Download transfer confirmation receipt in PDF format for transfers that are in status **outgoing_payment_sent**. <br/>
+
+### Request
+
+**`GET https://api.sandbox.transferwise.tech/v1/transfers/{transferId}/receipt.pdf`**
+
+
+### Response
+
+Transfer confirmation receipt in PDF format.
+
 
 
 ## List
