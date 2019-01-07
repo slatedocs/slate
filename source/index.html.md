@@ -724,6 +724,16 @@ Field | Type | Example
 
 > Example request Rosters
 
+```json
+
+{
+  "channel": "team", 
+  "teamId": "MIN", 
+  "retrieve": "roster", 
+  "uuid": "db69a9d5-13c3-42a0-958a-623630a0fc81"
+}
+
+```
 
 > Example request Rosters in Year
 
@@ -734,15 +744,6 @@ Field | Type | Example
   "retrieve": "schedule", 
   "year": 2018, 
   "uuid": "[uuid]"
-}
-```
-
-```json
-{
-  "channel": "team", 
-  "teamId": "MIN", 
-  "retrieve": "roster", 
-  "uuid": "db69a9d5-13c3-42a0-958a-623630a0fc81"
 }
 ```
 
