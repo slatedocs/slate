@@ -644,7 +644,9 @@ This provides a check and confirmation on the status of the API.
 
 The <span style="color:red"> Games </span> channel returns data for specific games. 
 
-The required fields to query NFL Games data are as follows:
+### ??? games
+
+The available fields to query ??? NFL Games data are as follows:
 
 **Required fields**
 
@@ -661,7 +663,23 @@ Field | Type | Example
 ------ | ------- | --------
 <span style="color:red"> year </span> | Integer |  <span style="color:red"> 2009, 2010, 2011, etc. </span>
 <span style="color:red"> teamId </span> | String  |  <span style="color:red"> CHI, MIN, GB, MIA </span> etc. <a href="#TeamID">See Team ID Table</a>
-<span style="color:red"> realtime </span> | Boolean | <span style="color:red"> true </span>
+
+### Realtime games
+
+You can also query for games that are currently playing. The available fields are as follows: 
+
+**Required fields**
+
+Field | Type | Example
+------ | ------- | ------
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
+<span style="color:red"> realtime  </span> | Boolean (true) | <span style="color:red"> true </span>
+
+**Optional fields**
+
+Field | Type | Example
+------ | ------- | ------
+<span style="color:red"> teamId </span> | String  |  <span style="color:red"> CHI, MIN, GB, MIA </span> etc. <a href="#TeamID">See Team ID Table</a>
 
 
 ## Players
@@ -1137,6 +1155,10 @@ Field | Type | Example
 
 The <span style="color:red"> Games </span> channel returns statistics about specific games played.  
 
+### ??? games
+
+The available fields to query ??? NBA Games data are as follows:
+
 **Required Fields**
 
 Field | Type | Example
@@ -1149,12 +1171,30 @@ Field | Type | Example
 
 <aside class="notice">NOTE: We only support from year 2016 to current. </aside>
 
-**Example Request with teamId**
-
 To search for a game by a specific team, add an optional field for <span style="color:red"> teamId </span>
 
+**Optional fields**
 
-<a href="#NBATeamID">See Team ID Table</a>
+Field | Type | Example
+------ | ------- | --------
+<span style="color:red"> teamId </span> | String  |  <span style="color:red"> ATL, CLE, PHX, LAC </span> etc. <a href="#NBATeamID">See Team ID Table</a>
+
+### Realtime games
+You can also query for games that are currently playing. The available fields are as follows: 
+
+**Required fields**
+
+Field | Type | Example
+------ | ------- | ------
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
+<span style="color:red"> realtime  </span> | Boolean (true) | <span style="color:red"> true </span>
+
+**Optional fields**
+
+Field | Type | Example
+------ | ------- | ------
+<span style="color:red"> teamId </span> | String  | <span style="color:red"> ATL, CLE, PHX, LAC </span> etc. <a href="#NBATeamID">See Team ID Table</a>
+
 
 
 ## Players
