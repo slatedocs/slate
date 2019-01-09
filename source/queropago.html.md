@@ -403,14 +403,7 @@ X-QP-Delivery: 01074956-543a-4045-ad7c-b39831a45646
   "start_year": 2018,
   "start_month": 7,
   "duration_in_months": 24,
-  "course": {
-    "id": 1,
-    "external_id": "21348329432",
-    "name": "Administração",
-    "shift": "Manhã",
-    "kind": "EaD",
-    "level": "Graduação"
-  },
+  "created_at": "2018-04-18T15:04:31Z",
   "student": {
     "id": 1,
     "cpf": "00000000000",
@@ -425,6 +418,14 @@ X-QP-Delivery: 01074956-543a-4045-ad7c-b39831a45646
       "state_acronym": "PE",
       "state_ibge_code": 123456
     }
+  },
+  "course": {
+    "id": 1,
+    "external_id": "21348329432",
+    "name": "Administração",
+    "shift": "Manhã",
+    "kind": "EaD",
+    "level": "Graduação"
   }
 }
 ```
@@ -448,43 +449,14 @@ X-QP-Delivery: cc63acc3-9721-4633-8286-737199c01a75
   "start_year": 2018,
   "start_month": 7,
   "duration_in_months": 24,
-  "course": {
-    "id": 1,
-    "external_id": "21348329432"
-  },
+  "created_at": "2018-04-18T15:04:31Z",
   "student": {
     "id": 1,
     "cpf": "00000000000"
-  }
-}
-```
-
-## Matrícula finalizada (enrollment_finished)
-
-Ocorre quando é pago todo o valor devido de uma [**Matrícula**](#matriculas).
-
-```http
-POST /your-webhook HTTP/1.1
-Content-Type: application/json; charset=utf-8
-X-QP-Event: enrollment_finished
-X-QP-Signature: f0a62682f54860925766a26b302cdd973cfaad9f71d375e99ca6d287fa109193
-X-QP-Delivery: faf10161-dc56-4173-9751-b08da5f57d61
-
-{
-  "id": 1234567,
-  "external_id": "RA984930527",
-  "discount_percentage": 0.4,
-  "due_day": 15,
-  "start_year": 2018,
-  "start_month": 7,
-  "duration_in_months": 24,
+  },
   "course": {
     "id": 1,
     "external_id": "21348329432"
-  },
-  "student": {
-    "id": 1,
-    "cpf": "00000000000"
   }
 }
 ```
@@ -507,18 +479,19 @@ X-QP-Delivery: 39f196c0-c745-41e9-9e7e-835eb0eb3435
   "year": 2018,
   "month": 6,
   "due_date": "2018-06-15",
-  "value_without_discount": 1000.00,
   "value_with_discount": 400.00,
-  "paid_value": 0.00,
-  "paid_at": null,
+  "value_without_discount": 1000.00,
   "interest": 0.00,
   "penalty": 0.00,
+  "paid_value": 0.00,
+  "paid_date": null,
   "paid_with": [],
-  "boleto_url": "",
   "enrollment": {
     "id": 1,
     "external_id": "RA984930527"
-  }
+  },
+  "boleto_barcode": "23791.22928 50001.442024 80000.046906 5 75010000001000",
+  "boleto_url": "https://api.pagar.me/1/boletos/boleto1"
 }
 ```
 
@@ -540,12 +513,12 @@ X-QP-Delivery: 5980475a-c875-4f00-bb9d-d94059b7a4af
   "year": 2018,
   "month": 6,
   "due_date": "2018-06-15",
-  "value_without_discount": 1000.00,
   "value_with_discount": 400.00,
-  "paid_value": 400.00,
-  "paid_at": "2018-04-18T15:04:31Z",
+  "value_without_discount": 1000.00,
   "interest": 0.00,
   "penalty": 0.00,
+  "paid_value": 400.00,
+  "paid_date": "2018-04-18T15:04:31Z",
   "paid_with": [
     { "method_name": "credit_card", "paid_at": "2018-04-18T15:04:31Z", "paid_value": 100.00 },
     { "method_name": "boleto", "paid_at": "2018-04-17T00:00:00Z", "paid_value": 300.00 },
@@ -553,7 +526,9 @@ X-QP-Delivery: 5980475a-c875-4f00-bb9d-d94059b7a4af
   "enrollment": {
     "id": 1,
     "external_id": "RA984930527"
-  }
+  },
+  "boleto_barcode": "23791.22928 50001.442024 80000.046906 5 75010000001000",
+  "boleto_url": "https://api.pagar.me/1/boletos/boleto1"
 }
 ```
 
@@ -577,21 +552,23 @@ X-QP-Delivery: c58812c8-139f-40b0-8aff-2df4845f401f
   "year": 2018,
   "month": 6,
   "due_date": "2018-06-15",
-  "value_without_discount": 1000.00,
   "value_with_discount": 400.00,
-  "paid_value": 0.00,
-  "paid_at": null,
+  "value_without_discount": 1000.00,
   "interest": 0.00,
   "penalty": 0.00,
+  "paid_value": 0.00,
+  "paid_date": null,
   "paid_with": [],
   "enrollment": {
     "id": 1,
     "external_id": "RA984930527"
-  }
+  },
+  "boleto_barcode": "23791.22928 50001.442024 80000.046906 5 75010000001000",
+  "boleto_url": "https://api.pagar.me/1/boletos/boleto1"
 }
 ```
 
-## Vencimento da mensalidade alterada (bill_due_date_changed)
+## Vencimento da mensalidade alterado (bill_due_date_changed)
 
 Ocorre quando a data de vencimento de uma [**Mensalidade**](#mensalidades) é alterada.
 
@@ -611,31 +588,34 @@ X-QP-Delivery: 33940f46-5eb0-4400-812e-1b78018151c8
   "year": 2018,
   "month": 6,
   "due_date": "2018-06-20",
-  "value_without_discount": 1000.00,
   "value_with_discount": 400.00,
-  "paid_value": 0.00,
-  "paid_at": null,
+  "value_without_discount": 1000.00,
   "interest": 0.00,
   "penalty": 0.00,
+  "paid_value": 0.00,
+  "paid_date": null,
   "paid_with": [],
   "enrollment": {
     "id": 1,
     "external_id": "RA984930527"
-  }
+  },
+  "boleto_barcode": "23791.22928 50001.442024 80000.046906 5 75010000001000",
+  "boleto_url": "https://api.pagar.me/1/boletos/boleto1"
 }
 ```
 
-## Encargos da mensalidade alteradas (bill_charges_changed)
-Ocorre quando os valores de juros e/ou multa da [**Mensalidade**](#mensalidades) são alterados.
+## Boleto atualizado (boleto_updated)
+
+Ocorre quando é criado um novo boleto para uma [**Mensalidade**](#mensalidades).
 
 > Exemplo
 
 ```http
 POST /your-webhook HTTP/1.1
 Content-Type: application/json; charset=utf-8
-X-QP-Event: bill_charges_changed
+X-QP-Event: bill_due_date_changed
 X-QP-Signature: f0a62682f54860925766a26b302cdd973cfaad9f71d375e99ca6d287fa109193
-X-QP-Delivery: d10663b9-f755-4f52-8b52-46777d861b1c
+X-QP-Delivery: 33940f46-5eb0-4400-812e-1b78018151c8
 
 {
   "id": 1,
@@ -643,17 +623,19 @@ X-QP-Delivery: d10663b9-f755-4f52-8b52-46777d861b1c
   "status": "overdue",
   "year": 2018,
   "month": 6,
-  "due_date": "2018-06-15",
-  "value_without_discount": 1000.00,
+  "due_date": "2018-06-20",
   "value_with_discount": 400.00,
+  "value_without_discount": 1000.00,
+  "interest": 0.00,
+  "penalty": 0.00,
   "paid_value": 0.00,
-  "paid_at": null,
-  "interest": 1.50,
-  "penalty": 4.00,
+  "paid_date": null,
   "paid_with": [],
   "enrollment": {
     "id": 1,
     "external_id": "RA984930527"
-  }
+  },
+  "boleto_barcode": "23791.22928 50001.662456 46000.046907 7 75740000001000",
+  "boleto_url": "https://api.pagar.me/1/boletos/boleto2"
 }
 ```
