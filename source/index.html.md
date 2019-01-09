@@ -908,7 +908,7 @@ KC	| Kansas City Chiefs	| WAS	| Washington Redskins
   "gameId" : "2016101604", 
   "playerId" : "00-0027973",
   "uuid": "[uuid]"
- }
+}
 
 ```
 > Example request Stats #2
@@ -924,16 +924,14 @@ KC	| Kansas City Chiefs	| WAS	| Washington Redskins
     "statType" : "passing",
     "uuid": "4312144f-a0a9-4c23-bfd5-01405813c2c9"
 }
+
 ```
-
-
 
 > Example of Stats data
 
 ```json
-
 {
-  "uuid:"4312144f-a0a9-4c23-bfd5-01405813c2c9",
+  "uuid":"4312144f-a0a9-4c23-bfd5-01405813c2c9",
   "data":
     [
       {
@@ -953,7 +951,7 @@ KC	| Kansas City Chiefs	| WAS	| Washington Redskins
        },
        ...
     ]
-  }
+}
 
 ```
 
