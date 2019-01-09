@@ -644,9 +644,9 @@ This provides a check and confirmation on the status of the API.
 
 The <span style="color:red"> Games </span> channel returns data for specific games. 
 
-### ??? games
+### Completed and upcoming games
 
-The available fields to query ??? NFL Games data are as follows:
+The available fields to query data from completed and upcoming NFL games are as follows:
 
 **Required fields**
 
@@ -664,7 +664,7 @@ Field | Type | Example
 <span style="color:red"> year </span> | Integer |  <span style="color:red"> 2009, 2010, 2011, etc. </span>
 <span style="color:red"> teamId </span> | String  |  <span style="color:red"> CHI, MIN, GB, MIA </span> etc. <a href="#TeamID">See Team ID Table</a>
 
-### Realtime games
+### Live games
 
 You can also query for games that are currently playing. The available fields are as follows: 
 
@@ -1155,9 +1155,9 @@ Field | Type | Example
 
 The <span style="color:red"> Games </span> channel returns statistics about specific games played.  
 
-### ??? games
+### Completed and upcoming games
 
-The available fields to query ??? NBA Games data are as follows:
+The available fields to query data from completed and upcoming NBA games are as follows:
 
 **Required Fields**
 
@@ -1179,7 +1179,7 @@ Field | Type | Example
 ------ | ------- | --------
 <span style="color:red"> teamId </span> | String  |  <span style="color:red"> ATL, CLE, PHX, LAC </span> etc. <a href="#NBATeamID">See Team ID Table</a>
 
-### Realtime games
+### Live games
 You can also query for games that are currently playing. The available fields are as follows: 
 
 **Required fields**
