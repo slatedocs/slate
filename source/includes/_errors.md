@@ -1,5 +1,19 @@
 # Errors
 
+> Example 401 response:
+
+```json
+{
+    "errors": [
+        {
+            "title": "Invalid authentication details",
+            "status": 401,
+            "code": "invalid_authentication"
+        }
+    ]
+}
+```
+
 The HandsHQ API uses the following error codes:
 
 There may be additional info given in the error in order to help fix the issue, for example if you have reached your limits of document creation.

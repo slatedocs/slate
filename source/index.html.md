@@ -9,11 +9,11 @@ toc_footers:
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
+  - format
   - authentication
   - projects
   - fields
   - errors
-  - comments
 
 search: true
 ---
