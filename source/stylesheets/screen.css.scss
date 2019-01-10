@@ -70,12 +70,15 @@ html, body {
       padding-bottom: 0.5em;
     }
   }
-
+  .logo-wrapper {
+    padding: 10px;
+    max-width: 100%;
+    margin-bottom: $logo-margin;
+  }
   // This is the logo at the top of the ToC
   .logo {
     display: block;
     max-width: 100%;
-    margin-bottom: $logo-margin;
   }
 
   &>.search {
