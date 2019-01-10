@@ -77,6 +77,7 @@ Companies Using Slate
 * [Travis-CI](https://docs.travis-ci.com/api/)
 * [Greenhouse](https://developers.greenhouse.io/harvest.html)
 * [Woocommerce](http://woocommerce.github.io/woocommerce-rest-api-docs/)
+* [PaymentSpring](https://docs.paymentspring.com/)
 * [Dwolla](https://docs.dwolla.com/)
 * [Clearbit](https://clearbit.com/docs)
 * [Coinbase](https://developers.coinbase.com/api)
