@@ -1107,6 +1107,88 @@ List of bank branches is available for these countries: BD, GH, HK, IL, IN, JP, 
 
 
 
+## Countries and States
+
+> Example Request (Get list of allowed countries):
+
+```shell
+curl -X GET https://api.sandbox.transferwise.tech/v1/countries
+```
+
+> Example Response (Get list of allowed countries):
+
+```json
+{
+    "values": [
+        {
+            "code": "AL",
+            "name": "Albania"
+        },
+        {
+            "code": "DZ",
+            "name": "Algeria"
+        },
+        ...
+        {
+            "code": "ZW",
+            "name": "Zimbabwe"
+        },
+        {
+            "code": "AX",
+            "name": "Åland Islands"
+        }
+    ]
+}
+```
+
+> Example Request (Get list of states for a country code US):
+
+```shell
+curl -X GET https://api.sandbox.transferwise.tech/v1/countries/US/states
+```
+
+> Example Response (Get list of states for a country code US):
+
+```json
+{
+    "values": [
+        {
+            "code": "AL",
+            "name": "Alabama"
+        },
+        {
+            "code": "AK",
+            "name": "Alaska"
+        },
+        ...
+        {
+            "code": "PR",
+            "name": "Puerto Rico"
+        },
+        {
+            "code": "VI",
+            "name": "Virgin Islands"
+        }
+    ]
+}
+```
+
+**Get list of countries** 
+
+List of allowed countries to be used in recipient or user-profile addresses.
+
+**` GET https://api.sandbox.transferwise.tech/v1/countries`**<br/>
+
+
+**Get list of states by country code**
+
+List of states is available for these countries: US, CA, BR, AU.
+
+**` GET https://api.sandbox.transferwise.tech/v1/countries/{countryCode}/states`**<br/>
+
+
+
+
 ## Create AED Recipient
 
 > Example Request (AED):

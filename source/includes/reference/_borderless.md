@@ -514,3 +514,76 @@ sampleBankDetails                 |      |
 <br/><br/><br/><br/><br/><br/><br/>
 <br/><br/><br/><br/><br/><br/><br/>
 <br/><br/><br/><br/><br/><br/><br/>
+
+## Get Currency Pairs
+
+> Example Request:
+
+```shell
+curl -X GET https://api.sandbox.transferwise.tech/v1/currency-pairs \
+     -H "Authorization: Bearer <your api token>" 
+```
+
+> Example Response:
+
+```json
+{
+    "sourceCurrencies": [
+        {
+            "currencyCode": "GBP",
+            "maxInvoiceAmount": 1000000,
+            "targetCurrencies": [
+                {
+                    "currencyCode": "EUR",
+                    "minInvoiceAmount": 1,
+                    "fixedTargetPaymentAllowed": true
+                },
+                {
+                    "currencyCode": "INR",
+                    "minInvoiceAmount": 1,
+                    "fixedTargetPaymentAllowed": true
+                },
+                {
+                    "currencyCode": "USD",
+                    "minInvoiceAmount": 1,
+                    "fixedTargetPaymentAllowed": true
+                },
+...
+                {
+                    "currencyCode": "VND",
+                    "minInvoiceAmount": 1,
+                    "fixedTargetPaymentAllowed": true
+                },
+                {
+                    "currencyCode": "ZAR",
+                    "minInvoiceAmount": 1,
+                    "fixedTargetPaymentAllowed": true
+                }
+            ],
+            "totalTargetCurrencies": 47
+        }
+    ],
+    "total": 19
+}
+```
+
+Get list of allowed currency pairs that your can setup your transfers. 
+
+### Request
+
+**`GET https://api.sandbox.transferwise.tech/v1/currency-pairs`**
+
+
+### Response
+
+Field                                      | Description                                                       | Format
+---------                                  | -------                                                           | -----------
+sourceCurrencies.currencyCode              | Source currency code                                              | Text
+sourceCurrencies.maxInvoiceAmount          | Maximum allowed transfer amount in source currency                | Decimal
+targetCurrencies.currencyCode              | Target currency code                                              | Text
+targetCurrencies.minInvoiceAmount          | Minimum allowed transfer amount in source currency for this pair. | Decimal
+targetCurrencies.fixedTargetPaymentAllowed | Can you setup fixed rate payments or not.                         | Boolean
+
+<br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/>
