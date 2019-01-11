@@ -490,7 +490,7 @@ X-QP-Delivery: 39f196c0-c745-41e9-9e7e-835eb0eb3435
     "id": 1,
     "external_id": "RA984930527"
   },
-  "boleto_barcode": "23791.22928 50001.442024 80000.046906 5 75010000001000",
+  "boleto_barcode": "12345.12345 12345.123456 12345.123456 1 12300000001234",
   "boleto_url": "https://api.pagar.me/1/boletos/boleto1"
 }
 ```
@@ -527,7 +527,7 @@ X-QP-Delivery: 5980475a-c875-4f00-bb9d-d94059b7a4af
     "id": 1,
     "external_id": "RA984930527"
   },
-  "boleto_barcode": "23791.22928 50001.442024 80000.046906 5 75010000001000",
+  "boleto_barcode": "12345.12345 12345.123456 12345.123456 1 12300000001234",
   "boleto_url": "https://api.pagar.me/1/boletos/boleto1"
 }
 ```
@@ -563,7 +563,7 @@ X-QP-Delivery: c58812c8-139f-40b0-8aff-2df4845f401f
     "id": 1,
     "external_id": "RA984930527"
   },
-  "boleto_barcode": "23791.22928 50001.442024 80000.046906 5 75010000001000",
+  "boleto_barcode": "12345.12345 12345.123456 12345.123456 1 12300000001234",
   "boleto_url": "https://api.pagar.me/1/boletos/boleto1"
 }
 ```
@@ -599,7 +599,7 @@ X-QP-Delivery: 33940f46-5eb0-4400-812e-1b78018151c8
     "id": 1,
     "external_id": "RA984930527"
   },
-  "boleto_barcode": "23791.22928 50001.442024 80000.046906 5 75010000001000",
+  "boleto_barcode": "12345.12345 12345.123456 12345.123456 1 12300000001234",
   "boleto_url": "https://api.pagar.me/1/boletos/boleto1"
 }
 ```
@@ -635,7 +635,7 @@ X-QP-Delivery: 33940f46-5eb0-4400-812e-1b78018151c8
     "id": 1,
     "external_id": "RA984930527"
   },
-  "boleto_barcode": "23791.22928 50001.662456 46000.046907 7 75740000001000",
+  "boleto_barcode": "54321.54321 54321.654321 54321.654321 1 12300000001234",
   "boleto_url": "https://api.pagar.me/1/boletos/boleto2"
 }
 ```
