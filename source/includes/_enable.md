@@ -25,8 +25,7 @@ __method__ | `PUT`
 __url_params__ | `product_imei` _(str)_
 __payload__ | None
 __response__ | 200
-
-Note that if a unit is already enabled the API will return "success" anyway. 
+ 
 
 ### Pending Status and Enable History
 
