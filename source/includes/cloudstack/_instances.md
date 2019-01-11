@@ -333,11 +333,22 @@ curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/instances/5951c2b8-e901-4c01-8ae0-cb8d7c508d29?operation=stop"
+
+# Request example:
+```
+```json
+{
+   "shouldForceStop":true
+}
 ```
 
  <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=stop</code>
 
- Stop an existing instance. The instance must be in the *Running* state for this operation to work.
+ Stop an existing instance. The instance must be in either the *Running* or *Stopping* state for this operation to work. The default behavior is that the instance (denote by **id**) will be stopped gracefully. An *additional* parameter can be passed with the call to *force stop* an instance. If the API is invoked on an instance that is already in the *Stopping* state, then a *force stop* is enforced regardless of whether this *optional* parameter was provided or not.
+
+Optional | &nbsp;
+------ | -----------
+`shouldForceStop`<br/>*boolean* | Setting it to **true** will force stop an instance that is either *Running* or in the process of *Stopping*
 
 <!-------------------- REBOOT AN INSTANCE -------------------->
 
