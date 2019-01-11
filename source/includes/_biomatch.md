@@ -253,10 +253,10 @@ The limit established for identity verification to be valid is that the distance
 
 Status type | Description
 ----------- |  -----------
-NEW | Image of the stored document without processing.
-PRO | The image is being processed to extract the face.
-COM | Image processing has successfully completed.
-ERR | Error during image processing.
+NEW | The face comparison has started but not processed.
+PRO | Face comparison is being processed.
+COM | The processing of the face comparison has completed successfully.
+ERR | An error has occurred during processing.
 
 
 ### HTTP Request
