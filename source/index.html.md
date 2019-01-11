@@ -11,11 +11,8 @@ includes:
   - intro
   - user_token
   - police_registration
+  - biomatch
   - errors
 
 search: true
 ---
-
-
-
-
