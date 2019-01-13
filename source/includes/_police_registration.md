@@ -98,7 +98,7 @@ police_password | false | The password used to do login in the police website.
 police_cert_password | false | Used for Italy Only. The password of the certificate which is usually the same as the user password.
 establishment_num | false | Used for Portugal Only. It's an extra numer provided by the police to do login.
 is_housing_group | false | Used only if police type is POL. Set it to true only if the accommodation is registered at the police as part of a Group.
-police_hostelry_code | false | Used only if is_housing_group is true. Hostelry code given by the police to this accommodation. A list of available codes for this police user can be retrieved doing a GET to https://api.chekin.io/api/v1/housings/police_hostelry_codes
+police_hostelry_code | false | Used only if is_housing_group is true. Hostelry code given by the police to this accommodation.
 check_in_date | true | The arrival date in format YYYY-MM-DD, i.e. 2018-12-30
 nights_of_stay | true | The number of nights of the stay as an integer, i.e. 3
 doc_type | true | Doc types depends on the country. See Doc Types Table below.  
