@@ -5,7 +5,7 @@
 > A `GET` request to this endpoint, by default, will return up to 1000 of latest recorded locations for your products.
 If you want more locations for a product, you can specify this in the parameters of the `GET` request under the value 
 `results_per_page` (you will also need to pass the number of pages you want to display. If you just want the list, then just
-set page to the value of `1`.
+set page to the value of `1`).
 
 ```python
     url = "https://smartapi.bboxx.co.uk/v1/products/locations"
