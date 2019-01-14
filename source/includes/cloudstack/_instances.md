@@ -348,7 +348,7 @@ curl -X POST \
 
 Optional | &nbsp;
 ------ | -----------
-`shouldForceStop`<br/>*boolean* | Setting it to **true** will force stop an instance that is either *Running* or in the process of *Stopping*
+`forceStop`<br/>*boolean* | Setting it to **true** will force stop an instance that is either *Running* or in the process of *Stopping*
 
 <!-------------------- REBOOT AN INSTANCE -------------------->
 
