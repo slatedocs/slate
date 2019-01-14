@@ -338,7 +338,7 @@ curl -X POST \
 ```
 ```json
 {
-   "shouldForceStop":true
+   "forceStop":true
 }
 ```
 
