@@ -205,6 +205,30 @@ $data = array(
 
 $field = $fieldApi->create($data);
 ```
+**Multiselect Field**
+```php
+<?php
+
+$data = array(
+    'label' => 'API test field',
+    'type' => 'multiselect',
+    'isPubliclyUpdatable' => true,
+    'properties' => array(
+       'list' => array(
+          array(
+            'label' => 'label 1',
+            'value' => 'value 1'
+          ),
+          array(
+            'label' => 'label 2',
+            'value' => 'value 2'
+          )
+        )
+    )
+);
+
+$field = $fieldApi->create($data);
+
 Create a new field.
 
 #### HTTP Request
