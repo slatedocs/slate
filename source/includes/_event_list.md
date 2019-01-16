@@ -1,6 +1,6 @@
 # Event list
 
-## takeaway_assetpage
+## asset_note_update
 
 ```shell
 ```
@@ -10,34 +10,23 @@
 ```js
 
 {
-	ID: location.protocol + '//' + location.host + location.pathname + '#/learning-asset/' + assetData.niceName,
 	Playlist: {
 		ID: String(playlistData.id),
-		Name: playlistData.name,
 		Order: playlistData.position
 	},
 	Asset: {
 		ID: String(assetData.id),
-		Name: assetData.name,
-		Text: assetData.niceName,
 		Order: assetData.position
-	},
-	AssetInfo: {
-		URL: assetData.url,
-		Type: assetData.type,
-		Description: assetData.desc,
-		Duration: formatISODuration(assetData.duration),
-		ProviderID: String(assetData.providerId),
-		ProviderName: providerData.name,
-		ProviderURL: providerData.url,
-		Competencies: mappedCompetencies,
-		Completed: assetData.completed,
-		CompletedStatus: assetData.completedStatus
 	}
 	Type: ui.scene
 	Target: {
 		Text: “Text from notes here”
 	},
+	TimeInfo: {
+		CurrentTime: String(”2019-01-16T12:35:07+00:00”),
+		ZoneName: String(”GMT”),
+		ZoneOffset: 0
+	}
 }
 
 ```
