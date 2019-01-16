@@ -358,8 +358,16 @@ else
       {
         "results": [
           {
+           "recommendations": [
+             {
+               "grade": "positive",
+               "author": "Jeremy Dayan",
+               "timestamp": "2016-07-30",
+               "text": "Nice place to have breakfast in. Relatively good prices and fast service.",
+               "id": "0c64b06e4c8ddaa0c6be4ba88df17f7e13cd95a0"
+             }
+           ],
             "reviews": [
-         
               {
                 "rating": 4,
                 "author": "Jeremy Dayan",
