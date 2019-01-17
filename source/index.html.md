@@ -23,11 +23,11 @@ Timely API helps you integrate your application with Timely. Following are the l
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.1/apps/6594/objects/6594" -d '{"app_objects":{"objects":[{"name":"Fixtures","etag":"1482740512308000","object_id":"timelyapp.com_rfldr8c53ov8j3pvmgipg64008@group.calendar.google.com","project_id":"1","auto_import":"true"},{"name":"anup@timelyapp.com","etag":"1457979055759000","object_id":"anup@timelyapp.com","project_id":"2","auto_import":"false"}]},"objects":{"object_id":70354880998360}}' -X PUT \
+curl "https://api.timelyapp.com/1.1/apps/6702/objects/6702" -d '{"app_objects":{"objects":[{"name":"Fixtures","etag":"1482740512308000","object_id":"timelyapp.com_rfldr8c53ov8j3pvmgipg64008@group.calendar.google.com","project_id":"1","auto_import":"true"},{"name":"anup@timelyapp.com","etag":"1457979055759000","object_id":"anup@timelyapp.com","project_id":"2","auto_import":"false"}]},"objects":{"object_id":70143158571220}}' -X PUT \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 64924d6154cf48c846adf934fb51db88cf811a2b773fd188193dec6ddf76c9df" \
+	-H "Authorization: Bearer c141f78fc48f28117af33f659f64d84162dbc6cc54555c416a496cbf784ba575" \
 	-H "Cookie: "
 ```
 
@@ -36,17 +36,17 @@ curl "https://api.timelyapp.com/1.1/apps/6594/objects/6594" -d '{"app_objects":{
 `PUT /1.1/apps/:app_id/objects/:id`
 
 ```plaintext
-PUT /1.1/apps/6594/objects/6594
+PUT /1.1/apps/6702/objects/6702
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 64924d6154cf48c846adf934fb51db88cf811a2b773fd188193dec6ddf76c9df
+Authorization: Bearer c141f78fc48f28117af33f659f64d84162dbc6cc54555c416a496cbf784ba575
 ```
 
 #### Parameters
 
 
 ```json
-{"app_objects":{"objects":[{"name":"Fixtures","etag":"1482740512308000","object_id":"timelyapp.com_rfldr8c53ov8j3pvmgipg64008@group.calendar.google.com","project_id":"1","auto_import":"true"},{"name":"anup@timelyapp.com","etag":"1457979055759000","object_id":"anup@timelyapp.com","project_id":"2","auto_import":"false"}]},"objects":{"object_id":70354880998360}}
+{"app_objects":{"objects":[{"name":"Fixtures","etag":"1482740512308000","object_id":"timelyapp.com_rfldr8c53ov8j3pvmgipg64008@group.calendar.google.com","project_id":"1","auto_import":"true"},{"name":"anup@timelyapp.com","etag":"1457979055759000","object_id":"anup@timelyapp.com","project_id":"2","auto_import":"false"}]},"objects":{"object_id":70143158571220}}
 ```
 
 | Name | Description |
@@ -68,7 +68,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-[{"object_id":"timelyapp.com_rfldr8c53ov8j3pvmgipg64008@group.calendar.google.com","name":"Fixtures","etag":"\"1482740512308000\"","integrated":true,"updated_at":"2019-01-17T12:40:47+01:00","auto_import":true,"project_id":1},{"object_id":"anup@timelyapp.com","name":"anup@timelyapp.com","etag":"\"1457979055759000\"","integrated":true,"updated_at":"2019-01-17T12:40:47+01:00","auto_import":false,"project_id":2},{"object_id":"timelyapp.com_3qaj6ftsa591l17r3hgra4hn08@group.calendar.google.com","name":"Calendar Sync Test","etag":"\"1457979057839000\"","integrated":false},{"object_id":"timelyapp.com_5q9rqm0eqi68rb1r101o3bv1jo@group.calendar.google.com","name":"Timely Trials","etag":"\"1457979060008000\"","integrated":false},{"object_id":"timelyapp.com_uhbt0atpl6irjbcugvs1kee5j4@group.calendar.google.com","name":"Calendar Sync II","etag":"\"1457979061137000\"","integrated":false},{"object_id":"timelyapp.com_hhm9t83jh3rkdn6ni429g1tc4o@group.calendar.google.com","name":"Calendar integration","etag":"\"1469680526663000\"","integrated":false},{"object_id":"timelyapp.com_7veb7perd2p238atf210cps1n8@group.calendar.google.com","name":"Calendar Sync III","etag":"\"1457979056819000\"","integrated":false}]
+[{"object_id":"timelyapp.com_rfldr8c53ov8j3pvmgipg64008@group.calendar.google.com","name":"Fixtures","etag":"\"1482740512308000\"","integrated":true,"updated_at":"2019-01-17T14:05:36+01:00","auto_import":true,"project_id":1},{"object_id":"anup@timelyapp.com","name":"anup@timelyapp.com","etag":"\"1457979055759000\"","integrated":true,"updated_at":"2019-01-17T14:05:36+01:00","auto_import":false,"project_id":2},{"object_id":"timelyapp.com_3qaj6ftsa591l17r3hgra4hn08@group.calendar.google.com","name":"Calendar Sync Test","etag":"\"1457979057839000\"","integrated":false},{"object_id":"timelyapp.com_5q9rqm0eqi68rb1r101o3bv1jo@group.calendar.google.com","name":"Timely Trials","etag":"\"1457979060008000\"","integrated":false},{"object_id":"timelyapp.com_uhbt0atpl6irjbcugvs1kee5j4@group.calendar.google.com","name":"Calendar Sync II","etag":"\"1457979061137000\"","integrated":false},{"object_id":"timelyapp.com_hhm9t83jh3rkdn6ni429g1tc4o@group.calendar.google.com","name":"Calendar integration","etag":"\"1469680526663000\"","integrated":false},{"object_id":"timelyapp.com_7veb7perd2p238atf210cps1n8@group.calendar.google.com","name":"Calendar Sync III","etag":"\"1457979056819000\"","integrated":false}]
 ```
 
 
@@ -78,11 +78,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.1/apps/6596/objects/6596" -d '{"app_objects":{"objects":[{"name":"Fixtures","etag":"1482740512308000","object_id":"timelyapp.com_rfldr8c53ov8j3pvmgipg64008@group.calendar.google.com","project_id":"1","auto_import":"false"},{"name":"anup@timelyapp.com","etag":"1457979055759000","project_id":"2","auto_import":"false"}]},"objects":{"object_id":70354880470540}}' -X PUT \
+curl "https://api.timelyapp.com/1.1/apps/6704/objects/6704" -d '{"app_objects":{"objects":[{"name":"Fixtures","etag":"1482740512308000","object_id":"timelyapp.com_rfldr8c53ov8j3pvmgipg64008@group.calendar.google.com","project_id":"1","auto_import":"false"},{"name":"anup@timelyapp.com","etag":"1457979055759000","project_id":"2","auto_import":"false"}]},"objects":{"object_id":70143158200760}}' -X PUT \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 5300c8002ed479e8c640a0977d045b458850c0b3747ac2aa3b54512b0054ed4b" \
+	-H "Authorization: Bearer 3547eae56089d6b1b29917bc427ec917506a4537899f02399a4422149e91b3cc" \
 	-H "Cookie: "
 ```
 
@@ -91,17 +91,17 @@ curl "https://api.timelyapp.com/1.1/apps/6596/objects/6596" -d '{"app_objects":{
 `PUT /1.1/apps/:app_id/objects/:id`
 
 ```plaintext
-PUT /1.1/apps/6596/objects/6596
+PUT /1.1/apps/6704/objects/6704
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 5300c8002ed479e8c640a0977d045b458850c0b3747ac2aa3b54512b0054ed4b
+Authorization: Bearer 3547eae56089d6b1b29917bc427ec917506a4537899f02399a4422149e91b3cc
 ```
 
 #### Parameters
 
 
 ```json
-{"app_objects":{"objects":[{"name":"Fixtures","etag":"1482740512308000","object_id":"timelyapp.com_rfldr8c53ov8j3pvmgipg64008@group.calendar.google.com","project_id":"1","auto_import":"false"},{"name":"anup@timelyapp.com","etag":"1457979055759000","project_id":"2","auto_import":"false"}]},"objects":{"object_id":70354880470540}}
+{"app_objects":{"objects":[{"name":"Fixtures","etag":"1482740512308000","object_id":"timelyapp.com_rfldr8c53ov8j3pvmgipg64008@group.calendar.google.com","project_id":"1","auto_import":"false"},{"name":"anup@timelyapp.com","etag":"1457979055759000","project_id":"2","auto_import":"false"}]},"objects":{"object_id":70143158200760}}
 ```
 
 | Name | Description |
@@ -123,7 +123,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-[{"object_id":"timelyapp.com_rfldr8c53ov8j3pvmgipg64008@group.calendar.google.com","name":"Fixtures","etag":"\"1482740512308000\"","integrated":true,"updated_at":"2019-01-17T12:40:48+01:00","auto_import":false,"project_id":1},{"object_id":"anup@timelyapp.com","name":"anup@timelyapp.com","etag":"\"1457979055759000\"","integrated":false},{"object_id":"timelyapp.com_3qaj6ftsa591l17r3hgra4hn08@group.calendar.google.com","name":"Calendar Sync Test","etag":"\"1457979057839000\"","integrated":false},{"object_id":"timelyapp.com_5q9rqm0eqi68rb1r101o3bv1jo@group.calendar.google.com","name":"Timely Trials","etag":"\"1457979060008000\"","integrated":false},{"object_id":"timelyapp.com_uhbt0atpl6irjbcugvs1kee5j4@group.calendar.google.com","name":"Calendar Sync II","etag":"\"1457979061137000\"","integrated":false},{"object_id":"timelyapp.com_hhm9t83jh3rkdn6ni429g1tc4o@group.calendar.google.com","name":"Calendar integration","etag":"\"1469680526663000\"","integrated":false},{"object_id":"timelyapp.com_7veb7perd2p238atf210cps1n8@group.calendar.google.com","name":"Calendar Sync III","etag":"\"1457979056819000\"","integrated":false}]
+[{"object_id":"timelyapp.com_rfldr8c53ov8j3pvmgipg64008@group.calendar.google.com","name":"Fixtures","etag":"\"1482740512308000\"","integrated":true,"updated_at":"2019-01-17T14:05:37+01:00","auto_import":false,"project_id":1},{"object_id":"anup@timelyapp.com","name":"anup@timelyapp.com","etag":"\"1457979055759000\"","integrated":false},{"object_id":"timelyapp.com_3qaj6ftsa591l17r3hgra4hn08@group.calendar.google.com","name":"Calendar Sync Test","etag":"\"1457979057839000\"","integrated":false},{"object_id":"timelyapp.com_5q9rqm0eqi68rb1r101o3bv1jo@group.calendar.google.com","name":"Timely Trials","etag":"\"1457979060008000\"","integrated":false},{"object_id":"timelyapp.com_uhbt0atpl6irjbcugvs1kee5j4@group.calendar.google.com","name":"Calendar Sync II","etag":"\"1457979061137000\"","integrated":false},{"object_id":"timelyapp.com_hhm9t83jh3rkdn6ni429g1tc4o@group.calendar.google.com","name":"Calendar integration","etag":"\"1469680526663000\"","integrated":false},{"object_id":"timelyapp.com_7veb7perd2p238atf210cps1n8@group.calendar.google.com","name":"Calendar Sync III","etag":"\"1457979056819000\"","integrated":false}]
 ```
 
 
@@ -133,11 +133,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/apps/6592/objects" -X GET \
+curl -g "https://api.timelyapp.com/1.1/apps/6700/objects" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 83b13e28745daac49be945ccc6b0938bbeca5e1103c6e07f06cff1baf7e25a4c" \
+	-H "Authorization: Bearer 572a06db5acf087848b308c939412a154b2ddafa3c08ddeb677814ec24f72d87" \
 	-H "Cookie: "
 ```
 
@@ -146,10 +146,10 @@ curl -g "https://api.timelyapp.com/1.1/apps/6592/objects" -X GET \
 `GET /1.1/apps/:app_id/objects`
 
 ```plaintext
-GET /1.1/apps/6592/objects
+GET /1.1/apps/6700/objects
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 83b13e28745daac49be945ccc6b0938bbeca5e1103c6e07f06cff1baf7e25a4c
+Authorization: Bearer 572a06db5acf087848b308c939412a154b2ddafa3c08ddeb677814ec24f72d87
 ```
 
 #### Parameters
@@ -177,11 +177,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/apps/6593/objects" -X GET \
+curl -g "https://api.timelyapp.com/1.1/apps/6701/objects" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer d3822cc0066345bf56302ce3966cf71b55ca2a861872506ea5f9f2bf556231fc" \
+	-H "Authorization: Bearer 8b66975090bdd4ea0fd6c9d4da344deda720da2b6c23ce821f26e0970254ac45" \
 	-H "Cookie: "
 ```
 
@@ -190,10 +190,10 @@ curl -g "https://api.timelyapp.com/1.1/apps/6593/objects" -X GET \
 `GET /1.1/apps/:app_id/objects`
 
 ```plaintext
-GET /1.1/apps/6593/objects
+GET /1.1/apps/6701/objects
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer d3822cc0066345bf56302ce3966cf71b55ca2a861872506ea5f9f2bf556231fc
+Authorization: Bearer 8b66975090bdd4ea0fd6c9d4da344deda720da2b6c23ce821f26e0970254ac45
 ```
 
 #### Parameters
@@ -221,11 +221,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.1/apps/6595/objects/6595" -d '{"app_objects":{"objects":[{"name":"Fixtures","etag":"1482740512308000","object_id":"timelyapp.com_rfldr8c53ov8j3pvmgipg64008@group.calendar.google.com","project_id":"1","auto_import":"false"},{"name":"anup@timelyapp.com","etag":"1457979055759000","object_id":"anup@timelyapp.com","project_id":"2","auto_import":"true"}]},"objects":{"object_id":70354887296240}}' -X PUT \
+curl "https://api.timelyapp.com/1.1/apps/6703/objects/6703" -d '{"app_objects":{"objects":[{"name":"Fixtures","etag":"1482740512308000","object_id":"timelyapp.com_rfldr8c53ov8j3pvmgipg64008@group.calendar.google.com","project_id":"1","auto_import":"false"},{"name":"anup@timelyapp.com","etag":"1457979055759000","object_id":"anup@timelyapp.com","project_id":"2","auto_import":"true"}]},"objects":{"object_id":70143169461260}}' -X PUT \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 6210595ff32b53b1f24f0d4b59db5b0a2e58d5739b83aac9ce24e64cbb9d1a6e" \
+	-H "Authorization: Bearer bc9f2c3804f6b64700f3990d0db9a30e7887acfb9ccf8e72b352d8a53b998995" \
 	-H "Cookie: "
 ```
 
@@ -234,17 +234,17 @@ curl "https://api.timelyapp.com/1.1/apps/6595/objects/6595" -d '{"app_objects":{
 `PUT /1.1/apps/:app_id/objects/:id`
 
 ```plaintext
-PUT /1.1/apps/6595/objects/6595
+PUT /1.1/apps/6703/objects/6703
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 6210595ff32b53b1f24f0d4b59db5b0a2e58d5739b83aac9ce24e64cbb9d1a6e
+Authorization: Bearer bc9f2c3804f6b64700f3990d0db9a30e7887acfb9ccf8e72b352d8a53b998995
 ```
 
 #### Parameters
 
 
 ```json
-{"app_objects":{"objects":[{"name":"Fixtures","etag":"1482740512308000","object_id":"timelyapp.com_rfldr8c53ov8j3pvmgipg64008@group.calendar.google.com","project_id":"1","auto_import":"false"},{"name":"anup@timelyapp.com","etag":"1457979055759000","object_id":"anup@timelyapp.com","project_id":"2","auto_import":"true"}]},"objects":{"object_id":70354887296240}}
+{"app_objects":{"objects":[{"name":"Fixtures","etag":"1482740512308000","object_id":"timelyapp.com_rfldr8c53ov8j3pvmgipg64008@group.calendar.google.com","project_id":"1","auto_import":"false"},{"name":"anup@timelyapp.com","etag":"1457979055759000","object_id":"anup@timelyapp.com","project_id":"2","auto_import":"true"}]},"objects":{"object_id":70143169461260}}
 ```
 
 | Name | Description |
@@ -266,7 +266,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-[{"object_id":"timelyapp.com_rfldr8c53ov8j3pvmgipg64008@group.calendar.google.com","name":"Fixtures","etag":"\"1482740512308000\"","integrated":true,"updated_at":"2019-01-17T12:40:48+01:00","auto_import":false,"project_id":1},{"object_id":"anup@timelyapp.com","name":"anup@timelyapp.com","etag":"\"1457979055759000\"","integrated":true,"updated_at":"2019-01-17T12:40:48+01:00","auto_import":true,"project_id":2},{"object_id":"timelyapp.com_3qaj6ftsa591l17r3hgra4hn08@group.calendar.google.com","name":"Calendar Sync Test","etag":"\"1457979057839000\"","integrated":false},{"object_id":"timelyapp.com_5q9rqm0eqi68rb1r101o3bv1jo@group.calendar.google.com","name":"Timely Trials","etag":"\"1457979060008000\"","integrated":false},{"object_id":"timelyapp.com_uhbt0atpl6irjbcugvs1kee5j4@group.calendar.google.com","name":"Calendar Sync II","etag":"\"1457979061137000\"","integrated":false},{"object_id":"timelyapp.com_hhm9t83jh3rkdn6ni429g1tc4o@group.calendar.google.com","name":"Calendar integration","etag":"\"1469680526663000\"","integrated":false},{"object_id":"timelyapp.com_7veb7perd2p238atf210cps1n8@group.calendar.google.com","name":"Calendar Sync III","etag":"\"1457979056819000\"","integrated":false}]
+[{"object_id":"timelyapp.com_rfldr8c53ov8j3pvmgipg64008@group.calendar.google.com","name":"Fixtures","etag":"\"1482740512308000\"","integrated":true,"updated_at":"2019-01-17T14:05:37+01:00","auto_import":false,"project_id":1},{"object_id":"anup@timelyapp.com","name":"anup@timelyapp.com","etag":"\"1457979055759000\"","integrated":true,"updated_at":"2019-01-17T14:05:37+01:00","auto_import":true,"project_id":2},{"object_id":"timelyapp.com_3qaj6ftsa591l17r3hgra4hn08@group.calendar.google.com","name":"Calendar Sync Test","etag":"\"1457979057839000\"","integrated":false},{"object_id":"timelyapp.com_5q9rqm0eqi68rb1r101o3bv1jo@group.calendar.google.com","name":"Timely Trials","etag":"\"1457979060008000\"","integrated":false},{"object_id":"timelyapp.com_uhbt0atpl6irjbcugvs1kee5j4@group.calendar.google.com","name":"Calendar Sync II","etag":"\"1457979061137000\"","integrated":false},{"object_id":"timelyapp.com_hhm9t83jh3rkdn6ni429g1tc4o@group.calendar.google.com","name":"Calendar integration","etag":"\"1469680526663000\"","integrated":false},{"object_id":"timelyapp.com_7veb7perd2p238atf210cps1n8@group.calendar.google.com","name":"Calendar Sync III","etag":"\"1457979056819000\"","integrated":false}]
 ```
 
 
@@ -280,11 +280,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.1/apps/10602/connected/6614" -d '' -X DELETE \
+curl "https://api.timelyapp.com/1.1/apps/10776/connected/6722" -d '' -X DELETE \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 485c28a577adec603e89b1d6f9916b0c8a9a15c62524714ec8b601f156ad91d3" \
+	-H "Authorization: Bearer fb8350f4f6f851235ff0f3b427914b96be07c1751dc76a3fde9a31067ef48ca9" \
 	-H "Cookie: "
 ```
 
@@ -293,10 +293,10 @@ curl "https://api.timelyapp.com/1.1/apps/10602/connected/6614" -d '' -X DELETE \
 `DELETE /1.1/apps/:app_id/connected/:id`
 
 ```plaintext
-DELETE /1.1/apps/10602/connected/6614
+DELETE /1.1/apps/10776/connected/6722
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 485c28a577adec603e89b1d6f9916b0c8a9a15c62524714ec8b601f156ad91d3
+Authorization: Bearer fb8350f4f6f851235ff0f3b427914b96be07c1751dc76a3fde9a31067ef48ca9
 ```
 
 #### Parameters
@@ -328,7 +328,7 @@ curl -g "https://api.timelyapp.com/1.1/apps" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 91116e89067c7773d43f8ccb64be33cb781199b53a53c53378a6ca720cec01a9" \
+	-H "Authorization: Bearer e4f9b1de7c540435fc85d98b0e19741b850145ec0f090c7099f071ef79625a45" \
 	-H "Cookie: "
 ```
 
@@ -340,7 +340,7 @@ curl -g "https://api.timelyapp.com/1.1/apps" -X GET \
 GET /1.1/apps
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 91116e89067c7773d43f8ccb64be33cb781199b53a53c53378a6ca720cec01a9
+Authorization: Bearer e4f9b1de7c540435fc85d98b0e19741b850145ec0f090c7099f071ef79625a45
 ```
 
 #### Parameters
@@ -358,7 +358,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-[{"app_id":10588,"id":"google_calendar","display_name":"Display name","description":"Get all your calendar events imported directly into Timely as\n    planned time.","layout":"list","integrated":true,"disconnected_integrations_count":0,"connected_integrations_count":1,"first_created_at":"2019-01-17T12:40:48+01:00","last_imported_at":null,"platforms":["ios","android"],"summary":"Auto-import recurring, multi-day and full-day calendar events into Timely to avoid duplicating effort. We don’t send any data back, so edits you make in Timely won’t change your Google Calendar entries.","provider":"Google","provider_url":"https://calendar.google.com","screenshots":["screenshots/google_calendar/screenshot1.png"],"logo_path":"apps_logo/google_calendar.png","authorize_url":"/auth/google_calendar/authorize","connected_apps_url":"/apps/10588/connected"},{"app_id":10589,"id":"office365","display_name":"Display name","description":"Get all your calendar events imported directly into Timely as\n    planned time.","layout":"list","integrated":true,"disconnected_integrations_count":0,"connected_integrations_count":1,"first_created_at":"2019-01-17T12:40:48+01:00","last_imported_at":null,"platforms":["ios","android"],"summary":"Auto-import recurring, multi-day and full-day calendar events into Timely to avoid duplicating effort. We don’t send any data back, so edits you make in Timely won’t change your Office 365 entries.","provider":"Microsoft","provider_url":"https://products.office.com/en-us/business/explore-office-365-for-business","screenshots":["screenshots/office365/screenshot1.png"],"logo_path":"apps_logo/office365.png","authorize_url":"/auth/office365/authorize","connected_apps_url":"/apps/10589/connected"},{"app_id":10590,"id":"gmail","display_name":"Display name","description":"Get all your calendar events imported directly into Timely as\n    planned time.","layout":"list","integrated":true,"disconnected_integrations_count":0,"connected_integrations_count":1,"first_created_at":"2019-01-17T12:40:48+01:00","last_imported_at":null,"platforms":["ios","android"],"summary":"See exactly how much time you spend managing your Gmail each day. All the emails you send in a day will automatically appear in your private Memory timeline for easy reference.","provider":"Google","provider_url":"https://gmail.com/","screenshots":["screenshots/gmail/screenshot1.png"],"logo_path":"apps_logo/gmail.png","authorize_url":"/auth/gmail/authorize","connected_apps_url":"/apps/10590/connected"},{"app_id":10591,"id":"moves_app","display_name":"Display name","description":"Get all your calendar events imported directly into Timely as\n    planned time.","layout":"list","integrated":true,"disconnected_integrations_count":1,"connected_integrations_count":1,"first_created_at":"2019-01-15T12:40:48+01:00","last_imported_at":"2019-01-16T12:40:48+01:00","platforms":["ios","android"],"summary":"Track off-site meetings, travel for work and the time you spend in the office every day. Essential for on-the-go professionals who need to record where they’ve been and for how long.","provider":"Facebook","provider_url":"https://moves-app.com/","screenshots":["screenshots/moves_app/screenshot1.png","screenshots/moves_app/screenshot2.png"],"logo_path":"apps_logo/moves_app.png","authorize_url":"/auth/moves_app/authorize","connected_apps_url":"/apps/10591/connected"}]
+[{"app_id":10762,"id":"google_calendar","display_name":"Display name","description":"Get all your calendar events imported directly into Timely as\n    planned time.","layout":"list","integrated":true,"disconnected_integrations_count":0,"connected_integrations_count":1,"first_created_at":"2019-01-17T14:05:37+01:00","last_imported_at":null,"platforms":["ios","android"],"summary":"Auto-import recurring, multi-day and full-day calendar events into Timely to avoid duplicating effort. We don’t send any data back, so edits you make in Timely won’t change your Google Calendar entries.","provider":"Google","provider_url":"https://calendar.google.com","screenshots":["screenshots/google_calendar/screenshot1.png"],"logo_path":"apps_logo/google_calendar.png","authorize_url":"/auth/google_calendar/authorize","connected_apps_url":"/apps/10762/connected"},{"app_id":10763,"id":"office365","display_name":"Display name","description":"Get all your calendar events imported directly into Timely as\n    planned time.","layout":"list","integrated":true,"disconnected_integrations_count":0,"connected_integrations_count":1,"first_created_at":"2019-01-17T14:05:37+01:00","last_imported_at":null,"platforms":["ios","android"],"summary":"Auto-import recurring, multi-day and full-day calendar events into Timely to avoid duplicating effort. We don’t send any data back, so edits you make in Timely won’t change your Office 365 entries.","provider":"Microsoft","provider_url":"https://products.office.com/en-us/business/explore-office-365-for-business","screenshots":["screenshots/office365/screenshot1.png"],"logo_path":"apps_logo/office365.png","authorize_url":"/auth/office365/authorize","connected_apps_url":"/apps/10763/connected"},{"app_id":10764,"id":"gmail","display_name":"Display name","description":"Get all your calendar events imported directly into Timely as\n    planned time.","layout":"list","integrated":true,"disconnected_integrations_count":0,"connected_integrations_count":1,"first_created_at":"2019-01-17T14:05:37+01:00","last_imported_at":null,"platforms":["ios","android"],"summary":"See exactly how much time you spend managing your Gmail each day. All the emails you send in a day will automatically appear in your private Memory timeline for easy reference.","provider":"Google","provider_url":"https://gmail.com/","screenshots":["screenshots/gmail/screenshot1.png"],"logo_path":"apps_logo/gmail.png","authorize_url":"/auth/gmail/authorize","connected_apps_url":"/apps/10764/connected"},{"app_id":10765,"id":"moves_app","display_name":"Display name","description":"Get all your calendar events imported directly into Timely as\n    planned time.","layout":"list","integrated":true,"disconnected_integrations_count":1,"connected_integrations_count":1,"first_created_at":"2019-01-15T14:05:37+01:00","last_imported_at":"2019-01-16T14:05:37+01:00","platforms":["ios","android"],"summary":"Track off-site meetings, travel for work and the time you spend in the office every day. Essential for on-the-go professionals who need to record where they’ve been and for how long.","provider":"Facebook","provider_url":"https://moves-app.com/","screenshots":["screenshots/moves_app/screenshot1.png","screenshots/moves_app/screenshot2.png"],"logo_path":"apps_logo/moves_app.png","authorize_url":"/auth/moves_app/authorize","connected_apps_url":"/apps/10765/connected"}]
 ```
 
 
@@ -368,11 +368,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/apps/10592/connected" -X GET \
+curl -g "https://api.timelyapp.com/1.1/apps/10766/connected" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer cc19350ba6353a89ee9926cf317e9ebbb79e40cfe41e9e93752cc82f2221a7d1" \
+	-H "Authorization: Bearer 72b588edaa2e9ab4b816b9337b47e1e5611ced4134e39995bcf263ca0eabbb51" \
 	-H "Cookie: "
 ```
 
@@ -381,10 +381,10 @@ curl -g "https://api.timelyapp.com/1.1/apps/10592/connected" -X GET \
 `GET /1.1/apps/:app_id/connected`
 
 ```plaintext
-GET /1.1/apps/10592/connected
+GET /1.1/apps/10766/connected
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer cc19350ba6353a89ee9926cf317e9ebbb79e40cfe41e9e93752cc82f2221a7d1
+Authorization: Bearer 72b588edaa2e9ab4b816b9337b47e1e5611ced4134e39995bcf263ca0eabbb51
 ```
 
 #### Parameters
@@ -402,7 +402,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-[{"id":6602,"name":"Tom Hardy","email":"tom@timelyapp.com","active":true,"created_at":"2019-01-17T12:40:49+01:00","updated_at":"2019-01-17T12:40:49+01:00","last_imported_at":null,"disconnected":false,"disconnected_reason":null,"objects":true,"objects_type":"calendars","objects_url":"/1.1/apps/6602/objects"}]
+[{"id":6710,"name":"Tom Hardy","email":"tom@timelyapp.com","active":true,"created_at":"2019-01-17T14:05:37+01:00","updated_at":"2019-01-17T14:05:37+01:00","last_imported_at":null,"disconnected":false,"disconnected_reason":null,"objects":true,"objects_type":"calendars","objects_url":"/1.1/apps/6710/objects"}]
 ```
 
 
@@ -412,11 +412,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/apps/10598/connected" -X GET \
+curl -g "https://api.timelyapp.com/1.1/apps/10772/connected" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 8747014f4b58a60f3260425461433a9fee4842f66cdd2e660bffc95cec0f908d" \
+	-H "Authorization: Bearer 337fa1d1b436fa79b740e0946cd2fc29f9ba09223743ff782b001d0b9d8fdc6a" \
 	-H "Cookie: "
 ```
 
@@ -425,10 +425,10 @@ curl -g "https://api.timelyapp.com/1.1/apps/10598/connected" -X GET \
 `GET /1.1/apps/:app_id/connected`
 
 ```plaintext
-GET /1.1/apps/10598/connected
+GET /1.1/apps/10772/connected
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 8747014f4b58a60f3260425461433a9fee4842f66cdd2e660bffc95cec0f908d
+Authorization: Bearer 337fa1d1b436fa79b740e0946cd2fc29f9ba09223743ff782b001d0b9d8fdc6a
 ```
 
 #### Parameters
@@ -446,7 +446,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-[{"id":6609,"name":"Tom Hardy","email":"tom@timelyapp.com","active":true,"created_at":"2019-01-17T12:40:49+01:00","updated_at":"2019-01-17T12:40:49+01:00","last_imported_at":null,"disconnected":false,"disconnected_reason":null,"objects":false}]
+[{"id":6717,"name":"Tom Hardy","email":"tom@timelyapp.com","active":true,"created_at":"2019-01-17T14:05:38+01:00","updated_at":"2019-01-17T14:05:38+01:00","last_imported_at":null,"disconnected":false,"disconnected_reason":null,"objects":false}]
 ```
 
 
@@ -460,11 +460,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/23478/projects/23199/budget_recurrences" -X GET \
+curl -g "https://api.timelyapp.com/1.1/23859/projects/23583/budget_recurrences" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer aa8864c9fd9f0f63a0eeb91fb590e17941237d0f41d651d995888f11208cbe75" \
+	-H "Authorization: Bearer 11a2b54481dadfb6e68e0329dcbe04df1e52a2020c2b5b87e3b26e562c6c89f4" \
 	-H "Cookie: "
 ```
 
@@ -473,10 +473,10 @@ curl -g "https://api.timelyapp.com/1.1/23478/projects/23199/budget_recurrences" 
 `GET /1.1/:account_id/projects/:project_id/budget_recurrences`
 
 ```plaintext
-GET /1.1/23478/projects/23199/budget_recurrences
+GET /1.1/23859/projects/23583/budget_recurrences
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer aa8864c9fd9f0f63a0eeb91fb590e17941237d0f41d651d995888f11208cbe75
+Authorization: Bearer 11a2b54481dadfb6e68e0329dcbe04df1e52a2020c2b5b87e3b26e562c6c89f4
 ```
 
 #### Parameters
@@ -504,11 +504,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/23479/projects/23200/budget_recurrences" -X GET \
+curl -g "https://api.timelyapp.com/1.1/23860/projects/23584/budget_recurrences" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 9511b351ffb71fd3447b1474bd4e38b962184420801ef18475a7f1cbea295b4a" \
+	-H "Authorization: Bearer b01744b348bc36eea830374163593b9a6a8023018f3d639e3df78f5d171daeb2" \
 	-H "Cookie: "
 ```
 
@@ -517,10 +517,10 @@ curl -g "https://api.timelyapp.com/1.1/23479/projects/23200/budget_recurrences" 
 `GET /1.1/:account_id/projects/:project_id/budget_recurrences`
 
 ```plaintext
-GET /1.1/23479/projects/23200/budget_recurrences
+GET /1.1/23860/projects/23584/budget_recurrences
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 9511b351ffb71fd3447b1474bd4e38b962184420801ef18475a7f1cbea295b4a
+Authorization: Bearer b01744b348bc36eea830374163593b9a6a8023018f3d639e3df78f5d171daeb2
 ```
 
 #### Parameters
@@ -548,11 +548,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/23476/projects/23197/budget_recurrences" -X GET \
+curl -g "https://api.timelyapp.com/1.1/23857/projects/23581/budget_recurrences" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 165f45d60c0f72fb7de3e61f61bbcca7e41d1431da4ccfd2076067a06b5ec0b5" \
+	-H "Authorization: Bearer 42595b3843099edb3fe9813075ae530fc38d9708ec89a69aa43ae62706e467d7" \
 	-H "Cookie: "
 ```
 
@@ -561,10 +561,10 @@ curl -g "https://api.timelyapp.com/1.1/23476/projects/23197/budget_recurrences" 
 `GET /1.1/:account_id/projects/:project_id/budget_recurrences`
 
 ```plaintext
-GET /1.1/23476/projects/23197/budget_recurrences
+GET /1.1/23857/projects/23581/budget_recurrences
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 165f45d60c0f72fb7de3e61f61bbcca7e41d1431da4ccfd2076067a06b5ec0b5
+Authorization: Bearer 42595b3843099edb3fe9813075ae530fc38d9708ec89a69aa43ae62706e467d7
 ```
 
 #### Parameters
@@ -592,11 +592,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/23477/projects/23198/budget_recurrences" -X GET \
+curl -g "https://api.timelyapp.com/1.1/23858/projects/23582/budget_recurrences" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer e2a7d8f896289500667a9a149f390550df6517f7bb853456ceb603f4b35329ef" \
+	-H "Authorization: Bearer 3750b28e20004763325acbce17e99e733f2ac74e3004ed91b8c8172ec9cc1ac3" \
 	-H "Cookie: "
 ```
 
@@ -605,10 +605,10 @@ curl -g "https://api.timelyapp.com/1.1/23477/projects/23198/budget_recurrences" 
 `GET /1.1/:account_id/projects/:project_id/budget_recurrences`
 
 ```plaintext
-GET /1.1/23477/projects/23198/budget_recurrences
+GET /1.1/23858/projects/23582/budget_recurrences
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer e2a7d8f896289500667a9a149f390550df6517f7bb853456ceb603f4b35329ef
+Authorization: Bearer 3750b28e20004763325acbce17e99e733f2ac74e3004ed91b8c8172ec9cc1ac3
 ```
 
 #### Parameters
@@ -640,11 +640,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.1/23485/suggested_entries/discard" -d '{"discard_entries":{"entry_ids":[12005]}}' -X POST \
+curl "https://api.timelyapp.com/1.1/23866/suggested_entries/discard" -d '{"discard_entries":{"entry_ids":[12203]}}' -X POST \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer bad91197b0ff61ab301d3aebe7a6f60d9b6669849c353e94b135e498443be97f" \
+	-H "Authorization: Bearer cfad00cf560a250d2a4e597022e8a24e1542bd57aa0245c3fa3834b46039ff5b" \
 	-H "Cookie: "
 ```
 
@@ -653,17 +653,17 @@ curl "https://api.timelyapp.com/1.1/23485/suggested_entries/discard" -d '{"disca
 `POST /1.1/:account_id/suggested_entries/discard`
 
 ```plaintext
-POST /1.1/23485/suggested_entries/discard
+POST /1.1/23866/suggested_entries/discard
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer bad91197b0ff61ab301d3aebe7a6f60d9b6669849c353e94b135e498443be97f
+Authorization: Bearer cfad00cf560a250d2a4e597022e8a24e1542bd57aa0245c3fa3834b46039ff5b
 ```
 
 #### Parameters
 
 
 ```json
-{"discard_entries":{"entry_ids":[12005]}}
+{"discard_entries":{"entry_ids":[12203]}}
 ```
 
 None known.
@@ -687,11 +687,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/23484/suggested_entries/discarded" -X GET \
+curl -g "https://api.timelyapp.com/1.1/23865/suggested_entries/discarded" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 390708d8c97ce17c1a139fafba6c74b07f6e58f06de2e324d7689840647dc4a6" \
+	-H "Authorization: Bearer 05065b4c750ae2e1dd92548d100035fcadfbe1ed81ed21d6b16e4fdabb6eb848" \
 	-H "Cookie: "
 ```
 
@@ -700,10 +700,10 @@ curl -g "https://api.timelyapp.com/1.1/23484/suggested_entries/discarded" -X GET
 `GET /1.1/:account_id/suggested_entries/discarded`
 
 ```plaintext
-GET /1.1/23484/suggested_entries/discarded
+GET /1.1/23865/suggested_entries/discarded
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 390708d8c97ce17c1a139fafba6c74b07f6e58f06de2e324d7689840647dc4a6
+Authorization: Bearer 05065b4c750ae2e1dd92548d100035fcadfbe1ed81ed21d6b16e4fdabb6eb848
 ```
 
 #### Parameters
@@ -724,7 +724,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-[{"title":"MacVim","note":"hour.rb (~/code/github/timely/app/models) - VIM1","date":"2019-01-17","from":null,"to":null,"description":"hour.rb (~/code/github/timely/app/models) - VIM1","entry_ids":[12004],"icon_url":"/timeline_app_logos/macvim.png","icon_fallback_url":"/assets/timeline_app_logos/default-ec843823aa8fa1357fc233024c47d3f11adcd237244768bcc7bb9672b77bd8ac.png","projects":[],"importance":0.8,"duration":{"hours":3,"minutes":30,"seconds":0,"formatted":"03:30","total_hours":3.5,"total_seconds":12600,"total_minutes":210}}]
+[{"title":"MacVim","note":"hour.rb (~/code/github/timely/app/models) - VIM1","date":"2019-01-17","from":null,"to":null,"description":"hour.rb (~/code/github/timely/app/models) - VIM1","entry_ids":[12202],"icon_url":"/timeline_app_logos/macvim.png","icon_fallback_url":"/assets/timeline_app_logos/default-ec843823aa8fa1357fc233024c47d3f11adcd237244768bcc7bb9672b77bd8ac.png","projects":[],"importance":0.8,"duration":{"hours":3,"minutes":30,"seconds":0,"formatted":"03:30","total_hours":3.5,"total_seconds":12600,"total_minutes":210}}]
 ```
 
 
@@ -734,11 +734,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.1/23486/suggested_entries/discard" -d '{"discard_entries":{"entry_ids":[12008]}}' -X DELETE \
+curl "https://api.timelyapp.com/1.1/23867/suggested_entries/discard" -d '{"discard_entries":{"entry_ids":[12206]}}' -X DELETE \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 46fcec4740f59d930339adc46d370b3b72bd3bb68d8e7ce0a9240941e18545b4" \
+	-H "Authorization: Bearer 6c7fe38de108b267034f8392768771d96d0fa7aa6a900d73eab32e5d922ab155" \
 	-H "Cookie: "
 ```
 
@@ -747,17 +747,17 @@ curl "https://api.timelyapp.com/1.1/23486/suggested_entries/discard" -d '{"disca
 `DELETE /1.1/:account_id/suggested_entries/discard`
 
 ```plaintext
-DELETE /1.1/23486/suggested_entries/discard
+DELETE /1.1/23867/suggested_entries/discard
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 46fcec4740f59d930339adc46d370b3b72bd3bb68d8e7ce0a9240941e18545b4
+Authorization: Bearer 6c7fe38de108b267034f8392768771d96d0fa7aa6a900d73eab32e5d922ab155
 ```
 
 #### Parameters
 
 
 ```json
-{"discard_entries":{"entry_ids":[12008]}}
+{"discard_entries":{"entry_ids":[12206]}}
 ```
 
 None known.
@@ -785,11 +785,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/entries/durations?entry_ids=12009%2C12010" -X GET \
+curl -g "https://api.timelyapp.com/1.1/entries/durations?entry_ids=12207%2C12208" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer d645c01fb8952590bd05f330e3337b85300ab14063c864b33663858ab9b9b19a" \
+	-H "Authorization: Bearer 62741cb72b6c0c46129749c220e7a6af92acc10da3dc4f8e060682aee0585e40" \
 	-H "Cookie: "
 ```
 
@@ -798,16 +798,16 @@ curl -g "https://api.timelyapp.com/1.1/entries/durations?entry_ids=12009%2C12010
 `GET /1.1/entries/durations`
 
 ```plaintext
-GET /1.1/entries/durations?entry_ids=12009%2C12010
+GET /1.1/entries/durations?entry_ids=12207%2C12208
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer d645c01fb8952590bd05f330e3337b85300ab14063c864b33663858ab9b9b19a
+Authorization: Bearer 62741cb72b6c0c46129749c220e7a6af92acc10da3dc4f8e060682aee0585e40
 ```
 
 #### Parameters
 
 ```json
-entry_ids: 12009,12010
+entry_ids: 12207,12208
 ```
 
 
@@ -834,11 +834,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/entries/durations?entry_ids=12011%2C12012" -X GET \
+curl -g "https://api.timelyapp.com/1.1/entries/durations?entry_ids=12209%2C12210" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 57daf21e2e4b6aefabfb06e129ed935f9131f8d68665bbb33c510350320c04b9" \
+	-H "Authorization: Bearer a7dd8a739d4c50ccaf8a7492e4185211ddc3db528c1d0e0b2a07a0cfe0f4cd26" \
 	-H "Cookie: "
 ```
 
@@ -847,16 +847,16 @@ curl -g "https://api.timelyapp.com/1.1/entries/durations?entry_ids=12011%2C12012
 `GET /1.1/entries/durations`
 
 ```plaintext
-GET /1.1/entries/durations?entry_ids=12011%2C12012
+GET /1.1/entries/durations?entry_ids=12209%2C12210
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 57daf21e2e4b6aefabfb06e129ed935f9131f8d68665bbb33c510350320c04b9
+Authorization: Bearer a7dd8a739d4c50ccaf8a7492e4185211ddc3db528c1d0e0b2a07a0cfe0f4cd26
 ```
 
 #### Parameters
 
 ```json
-entry_ids: 12011,12012
+entry_ids: 12209,12210
 ```
 
 
@@ -883,11 +883,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/entries/durations?entry_ids=12013%2C12014" -X GET \
+curl -g "https://api.timelyapp.com/1.1/entries/durations?entry_ids=12211%2C12212" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 42474809b3fe8961d03aebbd55337957d3dfd6afe8865f28d6bc72a54f92c0ee" \
+	-H "Authorization: Bearer 96da72f6678f644189a36e8dc4db91bc3115831929038afb01217864830fd1f1" \
 	-H "Cookie: "
 ```
 
@@ -896,16 +896,16 @@ curl -g "https://api.timelyapp.com/1.1/entries/durations?entry_ids=12013%2C12014
 `GET /1.1/entries/durations`
 
 ```plaintext
-GET /1.1/entries/durations?entry_ids=12013%2C12014
+GET /1.1/entries/durations?entry_ids=12211%2C12212
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 42474809b3fe8961d03aebbd55337957d3dfd6afe8865f28d6bc72a54f92c0ee
+Authorization: Bearer 96da72f6678f644189a36e8dc4db91bc3115831929038afb01217864830fd1f1
 ```
 
 #### Parameters
 
 ```json
-entry_ids: 12013,12014
+entry_ids: 12211,12212
 ```
 
 
@@ -936,11 +936,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.1/entries/12026" -d '' -X DELETE \
+curl "https://api.timelyapp.com/1.1/entries/12224" -d '' -X DELETE \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer f949b5e072bbd3712751002e7268c39d170d90aabaca25f957bf01f354c0cd57" \
+	-H "Authorization: Bearer 4386d391545ad615008a30d055c6b68ac9f84d7de08be3c8ab633712160da9f7" \
 	-H "Cookie: "
 ```
 
@@ -949,10 +949,10 @@ curl "https://api.timelyapp.com/1.1/entries/12026" -d '' -X DELETE \
 `DELETE /1.1/entries/:id`
 
 ```plaintext
-DELETE /1.1/entries/12026
+DELETE /1.1/entries/12224
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer f949b5e072bbd3712751002e7268c39d170d90aabaca25f957bf01f354c0cd57
+Authorization: Bearer 4386d391545ad615008a30d055c6b68ac9f84d7de08be3c8ab633712160da9f7
 ```
 
 #### Parameters
@@ -984,7 +984,7 @@ curl -g "https://api.timelyapp.com/1.1/entries?date=2019-01-19" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 27d68509691c614df55c8acdbe82f41e994ceb0f659a92f146243214692f0cde" \
+	-H "Authorization: Bearer 22fbbe051bc3c0b0104aa6f12861e2e9ee6159a2528b0550c4895640ab9496e6" \
 	-H "Cookie: "
 ```
 
@@ -996,7 +996,7 @@ curl -g "https://api.timelyapp.com/1.1/entries?date=2019-01-19" -X GET \
 GET /1.1/entries?date=2019-01-19
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 27d68509691c614df55c8acdbe82f41e994ceb0f659a92f146243214692f0cde
+Authorization: Bearer 22fbbe051bc3c0b0104aa6f12861e2e9ee6159a2528b0550c4895640ab9496e6
 ```
 
 #### Parameters
@@ -1023,7 +1023,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-[{"id":12020,"type":"google_calendar","uid":"c600370a-4758-4146-a72b-9ca3bb9dda6c","title":"Meeting","note":"Discuss about future","description":"12:40 - 16:10 • Discuss about future","date":"2019-01-19","from":"2019-01-17T12:40:56+01:00","to":"2019-01-17T16:10:56+01:00","entry_type":null,"duration":{"hours":3,"minutes":30,"seconds":0,"formatted":"03:30","total_hours":3.5,"total_seconds":12600,"total_minutes":210},"at":"2019-01-17T12:40:56+01:00","extra_attributes":[],"icon":"google_calendar.png","color":"rgba(86,210,255,0.30)","sub_entries":[],"icon_url":"/assets/apps_logo/google_calendar-cf4817a3d9bb86a0f2371b67fc49106074b36e8ee05a1932c595181dbd9aecd0.png","icon_fallback_url":"/assets/apps_logo/google_calendar-cf4817a3d9bb86a0f2371b67fc49106074b36e8ee05a1932c595181dbd9aecd0.png","url":null}]
+[{"id":12218,"type":"google_calendar","uid":"699ce68d-be50-4a8e-9510-004e75b04132","title":"Meeting","note":"Discuss about future","description":"14:05 - 17:35 • Discuss about future","date":"2019-01-19","from":"2019-01-17T14:05:44+01:00","to":"2019-01-17T17:35:44+01:00","entry_type":null,"duration":{"hours":3,"minutes":30,"seconds":0,"formatted":"03:30","total_hours":3.5,"total_seconds":12600,"total_minutes":210},"at":"2019-01-17T14:05:44+01:00","extra_attributes":[],"icon":"google_calendar.png","color":"rgba(86,210,255,0.30)","sub_entries":[],"icon_url":"/assets/apps_logo/google_calendar-cf4817a3d9bb86a0f2371b67fc49106074b36e8ee05a1932c595181dbd9aecd0.png","icon_fallback_url":"/assets/apps_logo/google_calendar-cf4817a3d9bb86a0f2371b67fc49106074b36e8ee05a1932c595181dbd9aecd0.png","url":null}]
 ```
 
 
@@ -1037,7 +1037,7 @@ curl -g "https://api.timelyapp.com/1.1/entries" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 9e4b05ab9463d1340806757999d4628bd790a44a0710ae1bc01203e6bc91ab2c" \
+	-H "Authorization: Bearer c59c6a69df606ea908ea5e424a42d2d02520a95da8ab8e4d22e1c663c088161a" \
 	-H "Cookie: "
 ```
 
@@ -1049,7 +1049,7 @@ curl -g "https://api.timelyapp.com/1.1/entries" -X GET \
 GET /1.1/entries
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 9e4b05ab9463d1340806757999d4628bd790a44a0710ae1bc01203e6bc91ab2c
+Authorization: Bearer c59c6a69df606ea908ea5e424a42d2d02520a95da8ab8e4d22e1c663c088161a
 ```
 
 #### Parameters
@@ -1073,7 +1073,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-[{"id":12015,"type":"macOS","uid":"c600370a-4758-4146-a72b-9ca3bb9dda6c","title":"MacVim","note":"hour.rb (~/code/github/timely/app/models) - VIM1","description":"hour.rb (~/code/github/timely/app/models) - VIM1","date":"2019-01-17","from":"2019-01-17T12:40:55+01:00","to":"2019-01-17T16:10:55+01:00","entry_type":null,"duration":{"hours":3,"minutes":30,"seconds":0,"formatted":"03:30","total_hours":3.5,"total_seconds":12600,"total_minutes":210},"at":"2019-01-17T12:40:55+01:00","extra_attributes":[{"name":"application","value":"MacVim"},{"name":"detail","value":""}],"icon":"mac_vim.png","color":"rgba(86,210,255,0.30)","sub_entries":[],"icon_url":"/timeline_app_logos/macvim.png","icon_fallback_url":"/assets/timeline_app_logos/default-ec843823aa8fa1357fc233024c47d3f11adcd237244768bcc7bb9672b77bd8ac.png","url":null},{"id":12016,"type":"google_calendar","uid":"c600370a-4758-4146-a72b-9ca3bb9dda6c","title":"Meeting","note":"Discuss about future","description":"12:40 - 16:10 • Discuss about future","date":"2019-01-17","from":"2019-01-17T12:40:55+01:00","to":"2019-01-17T16:10:55+01:00","entry_type":null,"duration":{"hours":3,"minutes":30,"seconds":0,"formatted":"03:30","total_hours":3.5,"total_seconds":12600,"total_minutes":210},"at":"2019-01-17T12:40:55+01:00","extra_attributes":[],"icon":"google_calendar.png","color":"rgba(86,210,255,0.30)","sub_entries":[],"icon_url":"/assets/apps_logo/google_calendar-cf4817a3d9bb86a0f2371b67fc49106074b36e8ee05a1932c595181dbd9aecd0.png","icon_fallback_url":"/assets/apps_logo/google_calendar-cf4817a3d9bb86a0f2371b67fc49106074b36e8ee05a1932c595181dbd9aecd0.png","url":null}]
+[{"id":12213,"type":"macOS","uid":"699ce68d-be50-4a8e-9510-004e75b04132","title":"MacVim","note":"hour.rb (~/code/github/timely/app/models) - VIM1","description":"hour.rb (~/code/github/timely/app/models) - VIM1","date":"2019-01-17","from":"2019-01-17T14:05:44+01:00","to":"2019-01-17T17:35:44+01:00","entry_type":null,"duration":{"hours":3,"minutes":30,"seconds":0,"formatted":"03:30","total_hours":3.5,"total_seconds":12600,"total_minutes":210},"at":"2019-01-17T14:05:44+01:00","extra_attributes":[{"name":"application","value":"MacVim"},{"name":"detail","value":""}],"icon":"mac_vim.png","color":"rgba(86,210,255,0.30)","sub_entries":[],"icon_url":"/timeline_app_logos/macvim.png","icon_fallback_url":"/assets/timeline_app_logos/default-ec843823aa8fa1357fc233024c47d3f11adcd237244768bcc7bb9672b77bd8ac.png","url":null},{"id":12214,"type":"google_calendar","uid":"699ce68d-be50-4a8e-9510-004e75b04132","title":"Meeting","note":"Discuss about future","description":"14:05 - 17:35 • Discuss about future","date":"2019-01-17","from":"2019-01-17T14:05:44+01:00","to":"2019-01-17T17:35:44+01:00","entry_type":null,"duration":{"hours":3,"minutes":30,"seconds":0,"formatted":"03:30","total_hours":3.5,"total_seconds":12600,"total_minutes":210},"at":"2019-01-17T14:05:44+01:00","extra_attributes":[],"icon":"google_calendar.png","color":"rgba(86,210,255,0.30)","sub_entries":[],"icon_url":"/assets/apps_logo/google_calendar-cf4817a3d9bb86a0f2371b67fc49106074b36e8ee05a1932c595181dbd9aecd0.png","icon_fallback_url":"/assets/apps_logo/google_calendar-cf4817a3d9bb86a0f2371b67fc49106074b36e8ee05a1932c595181dbd9aecd0.png","url":null}]
 ```
 
 
@@ -1083,11 +1083,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/entries?entry_ids=12021%2C12023" -X GET \
+curl -g "https://api.timelyapp.com/1.1/entries?entry_ids=12219%2C12221" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 7061fe716dfe32ea2de81f2cd989834b5b1a8f17ec22704ddd82621660761e6a" \
+	-H "Authorization: Bearer 516fe2c29b39d8ab51695d76277db27ce8280fedd2627ea78e4bc8aa17b4ec03" \
 	-H "Cookie: "
 ```
 
@@ -1096,16 +1096,16 @@ curl -g "https://api.timelyapp.com/1.1/entries?entry_ids=12021%2C12023" -X GET \
 `GET /1.1/entries`
 
 ```plaintext
-GET /1.1/entries?entry_ids=12021%2C12023
+GET /1.1/entries?entry_ids=12219%2C12221
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 7061fe716dfe32ea2de81f2cd989834b5b1a8f17ec22704ddd82621660761e6a
+Authorization: Bearer 516fe2c29b39d8ab51695d76277db27ce8280fedd2627ea78e4bc8aa17b4ec03
 ```
 
 #### Parameters
 
 ```json
-entry_ids: 12021,12023
+entry_ids: 12219,12221
 ```
 
 
@@ -1126,7 +1126,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-[{"id":12021,"type":"macOS","uid":"c600370a-4758-4146-a72b-9ca3bb9dda6c","title":"MacVim","note":"hour.rb (~/code/github/timely/app/models) - VIM1","description":"hour.rb (~/code/github/timely/app/models) - VIM1","date":"2019-01-17","from":"2019-01-17T12:40:56+01:00","to":"2019-01-17T16:10:56+01:00","entry_type":null,"duration":{"hours":3,"minutes":30,"seconds":0,"formatted":"03:30","total_hours":3.5,"total_seconds":12600,"total_minutes":210},"at":"2019-01-17T12:40:56+01:00","extra_attributes":[{"name":"application","value":"MacVim"},{"name":"detail","value":""}],"icon":"mac_vim.png","color":"rgba(86,210,255,0.30)","sub_entries":[],"icon_url":"/timeline_app_logos/macvim.png","icon_fallback_url":"/assets/timeline_app_logos/default-ec843823aa8fa1357fc233024c47d3f11adcd237244768bcc7bb9672b77bd8ac.png","url":null},{"id":12023,"type":"google_calendar","uid":"c600370a-4758-4146-a72b-9ca3bb9dda6c","title":"Meeting","note":"Discuss about future","description":"12:40 - 16:10 • Discuss about future","date":"2019-01-19","from":"2019-01-17T12:40:56+01:00","to":"2019-01-17T16:10:56+01:00","entry_type":null,"duration":{"hours":3,"minutes":30,"seconds":0,"formatted":"03:30","total_hours":3.5,"total_seconds":12600,"total_minutes":210},"at":"2019-01-17T12:40:56+01:00","extra_attributes":[],"icon":"google_calendar.png","color":"rgba(86,210,255,0.30)","sub_entries":[],"icon_url":"/assets/apps_logo/google_calendar-cf4817a3d9bb86a0f2371b67fc49106074b36e8ee05a1932c595181dbd9aecd0.png","icon_fallback_url":"/assets/apps_logo/google_calendar-cf4817a3d9bb86a0f2371b67fc49106074b36e8ee05a1932c595181dbd9aecd0.png","url":null}]
+[{"id":12219,"type":"macOS","uid":"699ce68d-be50-4a8e-9510-004e75b04132","title":"MacVim","note":"hour.rb (~/code/github/timely/app/models) - VIM1","description":"hour.rb (~/code/github/timely/app/models) - VIM1","date":"2019-01-17","from":"2019-01-17T14:05:45+01:00","to":"2019-01-17T17:35:45+01:00","entry_type":null,"duration":{"hours":3,"minutes":30,"seconds":0,"formatted":"03:30","total_hours":3.5,"total_seconds":12600,"total_minutes":210},"at":"2019-01-17T14:05:45+01:00","extra_attributes":[{"name":"application","value":"MacVim"},{"name":"detail","value":""}],"icon":"mac_vim.png","color":"rgba(86,210,255,0.30)","sub_entries":[],"icon_url":"/timeline_app_logos/macvim.png","icon_fallback_url":"/assets/timeline_app_logos/default-ec843823aa8fa1357fc233024c47d3f11adcd237244768bcc7bb9672b77bd8ac.png","url":null},{"id":12221,"type":"google_calendar","uid":"699ce68d-be50-4a8e-9510-004e75b04132","title":"Meeting","note":"Discuss about future","description":"14:05 - 17:35 • Discuss about future","date":"2019-01-19","from":"2019-01-17T14:05:45+01:00","to":"2019-01-17T17:35:45+01:00","entry_type":null,"duration":{"hours":3,"minutes":30,"seconds":0,"formatted":"03:30","total_hours":3.5,"total_seconds":12600,"total_minutes":210},"at":"2019-01-17T14:05:45+01:00","extra_attributes":[],"icon":"google_calendar.png","color":"rgba(86,210,255,0.30)","sub_entries":[],"icon_url":"/assets/apps_logo/google_calendar-cf4817a3d9bb86a0f2371b67fc49106074b36e8ee05a1932c595181dbd9aecd0.png","icon_fallback_url":"/assets/apps_logo/google_calendar-cf4817a3d9bb86a0f2371b67fc49106074b36e8ee05a1932c595181dbd9aecd0.png","url":null}]
 ```
 
 
@@ -1140,11 +1140,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/23507/events/15722" -X GET \
+curl -g "https://api.timelyapp.com/1.1/23888/events/15977" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer ffb5664014b8f249289ec36bb44d6ec126116eccd56ea1efb0cc5f35439a857b" \
+	-H "Authorization: Bearer 87ff9b58c7ee0dd7fec3c37862284513299ef17e2ed05af716467019e2e7f21d" \
 	-H "Cookie: "
 ```
 
@@ -1153,10 +1153,10 @@ curl -g "https://api.timelyapp.com/1.1/23507/events/15722" -X GET \
 `GET /1.1/:account_id/events/:id`
 
 ```plaintext
-GET /1.1/23507/events/15722
+GET /1.1/23888/events/15977
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer ffb5664014b8f249289ec36bb44d6ec126116eccd56ea1efb0cc5f35439a857b
+Authorization: Bearer 87ff9b58c7ee0dd7fec3c37862284513299ef17e2ed05af716467019e2e7f21d
 ```
 
 #### Parameters
@@ -1174,7 +1174,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-{"id":15722,"uid":"9359e18e-f043-4f33-8f54-c92937abb2ea","user":{"id":54305,"email":"quentin@timelyapp.com","name":"Quintin Duponde","active":false,"day_view_onboarded":true,"memory_onboarded":true,"created_at":1547725260,"updated_at":1547725260,"default_hour_rate":0.0,"last_received_memories_date":null,"sign_in_count":null,"external_id":null},"project":{"id":23218,"active":true,"account_id":23507,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17525,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547725260,"label_ids":[],"required_label_ids":[],"team_ids":[],"external_id":null,"budget_scope":null,"budget":0,"budget_type":"","hour_rate":50.0,"hour_rate_in_cents":5000.0,"labels":[]},"duration":{"hours":3,"minutes":30,"seconds":0,"formatted":"03:30","total_hours":3.5,"total_seconds":12600,"total_minutes":210},"estimated_duration":{"hours":4,"minutes":0,"seconds":0,"formatted":"04:00","total_hours":4.0,"total_seconds":14400,"total_minutes":240},"cost":{"fractional":17500,"formatted":"$175.00","amount":175.0},"estimated_cost":{"fractional":20000,"formatted":"$200.00","amount":200.0},"day":"2019-01-17","note":"Notes for testing with some random #hash in it.","sequence":1,"estimated":false,"timer_state":"default","timer_started_on":0,"timer_stopped_on":0,"label_ids":[],"user_ids":[],"updated_at":1547725260,"created_at":1547725260,"created_from":"Web","updated_from":"Web","billed":false,"to":"2019-01-17T16:11:00+01:00","from":"2019-01-17T12:41:00+01:00","deleted":false,"hour_rate":50.0,"hour_rate_in_cents":5000.0,"creator_id":null,"updater_id":null,"external_id":null,"entry_ids":[],"suggestion_id":null}
+{"id":15977,"uid":"99d25bc3-d774-46eb-b039-8c39f7eddc41","user":{"id":55181,"email":"quentin@timelyapp.com","name":"Quintin Duponde","active":false,"day_view_onboarded":true,"memory_onboarded":true,"created_at":1547730349,"updated_at":1547730349,"default_hour_rate":0.0,"last_received_memories_date":null,"sign_in_count":null,"external_id":null},"project":{"id":23602,"active":true,"account_id":23888,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17816,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547730349,"label_ids":[],"required_label_ids":[],"team_ids":[],"external_id":null,"budget_scope":null,"budget":0,"budget_type":"","hour_rate":50.0,"hour_rate_in_cents":5000.0,"labels":[]},"duration":{"hours":3,"minutes":30,"seconds":0,"formatted":"03:30","total_hours":3.5,"total_seconds":12600,"total_minutes":210},"estimated_duration":{"hours":4,"minutes":0,"seconds":0,"formatted":"04:00","total_hours":4.0,"total_seconds":14400,"total_minutes":240},"cost":{"fractional":17500,"formatted":"$175.00","amount":175.0},"estimated_cost":{"fractional":20000,"formatted":"$200.00","amount":200.0},"day":"2019-01-17","note":"Notes for testing with some random #hash in it.","sequence":1,"estimated":false,"timer_state":"default","timer_started_on":0,"timer_stopped_on":0,"label_ids":[],"user_ids":[],"updated_at":1547730349,"created_at":1547730349,"created_from":"Web","updated_from":"Web","billed":false,"to":"2019-01-17T17:35:49+01:00","from":"2019-01-17T14:05:49+01:00","deleted":false,"hour_rate":50.0,"hour_rate_in_cents":5000.0,"creator_id":null,"updater_id":null,"external_id":null,"entry_ids":[],"suggestion_id":null}
 ```
 
 
@@ -1184,11 +1184,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/23508/events/12345" -X GET \
+curl -g "https://api.timelyapp.com/1.1/23889/events/12345" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 8ce159cf97e54919759283b2e27e22ad0bc800d1662fb99baa07cc64dec8ab59" \
+	-H "Authorization: Bearer d9aca71108b324cd1c895b18a259d2dc9fa72a916e325ab34460ac4e10dc744b" \
 	-H "Cookie: "
 ```
 
@@ -1197,10 +1197,10 @@ curl -g "https://api.timelyapp.com/1.1/23508/events/12345" -X GET \
 `GET /1.1/:account_id/events/:id`
 
 ```plaintext
-GET /1.1/23508/events/12345
+GET /1.1/23889/events/12345
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 8ce159cf97e54919759283b2e27e22ad0bc800d1662fb99baa07cc64dec8ab59
+Authorization: Bearer d9aca71108b324cd1c895b18a259d2dc9fa72a916e325ab34460ac4e10dc744b
 ```
 
 #### Parameters
@@ -1236,7 +1236,7 @@ curl -g "https://api.timelyapp.com/1.2/private/plans" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 8191deae657c729522785c0695baf04ccf27db9184afdf0c525a4c2c7f698cc7" \
+	-H "Authorization: Bearer 7ed72f8ab79a200e504d4730ab976c0a7afa46bc2210b43eb5574542f32cd174" \
 	-H "Cookie: "
 ```
 
@@ -1248,7 +1248,7 @@ curl -g "https://api.timelyapp.com/1.2/private/plans" -X GET \
 GET /1.2/private/plans
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 8191deae657c729522785c0695baf04ccf27db9184afdf0c525a4c2c7f698cc7
+Authorization: Bearer 7ed72f8ab79a200e504d4730ab976c0a7afa46bc2210b43eb5574542f32cd174
 ```
 
 #### Parameters
@@ -1280,7 +1280,7 @@ curl -g "https://api.timelyapp.com/1.2/private/plans" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 83ae8fc99ef4b5354c041ddd37aa076b8c883c8b015aafda5a6f3ab8f3fc0d27" \
+	-H "Authorization: Bearer 9ce2aa8db408ea454471e5b26ab7a1f8a88e905ee7e3b0a34db9c43eed5b6d6a" \
 	-H "Cookie: "
 ```
 
@@ -1292,7 +1292,7 @@ curl -g "https://api.timelyapp.com/1.2/private/plans" -X GET \
 GET /1.2/private/plans
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 83ae8fc99ef4b5354c041ddd37aa076b8c883c8b015aafda5a6f3ab8f3fc0d27
+Authorization: Bearer 9ce2aa8db408ea454471e5b26ab7a1f8a88e905ee7e3b0a34db9c43eed5b6d6a
 ```
 
 #### Parameters
@@ -1324,11 +1324,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.1/23518/projects/23229/subscribe" -d '' -X POST \
+curl "https://api.timelyapp.com/1.1/23899/projects/23613/subscribe" -d '' -X POST \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 8c4627329323d6645a9518e9c8568a35fe8c9b81aea944091952a9f7cff81ca7" \
+	-H "Authorization: Bearer e34351218201399317f1e626b2caa5b1044b58a7b87202925543b81cc89d292c" \
 	-H "Cookie: "
 ```
 
@@ -1337,10 +1337,10 @@ curl "https://api.timelyapp.com/1.1/23518/projects/23229/subscribe" -d '' -X POS
 `POST /1.1/:account_id/projects/:project_id/subscribe`
 
 ```plaintext
-POST /1.1/23518/projects/23229/subscribe
+POST /1.1/23899/projects/23613/subscribe
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 8c4627329323d6645a9518e9c8568a35fe8c9b81aea944091952a9f7cff81ca7
+Authorization: Bearer e34351218201399317f1e626b2caa5b1044b58a7b87202925543b81cc89d292c
 ```
 
 #### Parameters
@@ -1368,11 +1368,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.1/23519/projects/23230/subscribe" -d '' -X DELETE \
+curl "https://api.timelyapp.com/1.1/23900/projects/23614/subscribe" -d '' -X DELETE \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 09db4005942190d1644efa7068a84d5ab1f352ac8a013010083fc15472504045" \
+	-H "Authorization: Bearer 8605c7f7fd8c083d29ec59097b41afad6a1c4d20dd97927d2f9e76ead9bf33c2" \
 	-H "Cookie: "
 ```
 
@@ -1381,10 +1381,10 @@ curl "https://api.timelyapp.com/1.1/23519/projects/23230/subscribe" -d '' -X DEL
 `DELETE /1.1/:account_id/projects/:project_id/subscribe`
 
 ```plaintext
-DELETE /1.1/23519/projects/23230/subscribe
+DELETE /1.1/23900/projects/23614/subscribe
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 09db4005942190d1644efa7068a84d5ab1f352ac8a013010083fc15472504045
+Authorization: Bearer 8605c7f7fd8c083d29ec59097b41afad6a1c4d20dd97927d2f9e76ead9bf33c2
 ```
 
 #### Parameters
@@ -1412,11 +1412,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/23515/projects/23226/subscribers" -X GET \
+curl -g "https://api.timelyapp.com/1.1/23896/projects/23610/subscribers" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 56101d1fc26cf7b53691bd1d7944f13456a1214ebe6b71bc9f44444cebdef5be" \
+	-H "Authorization: Bearer 90bead9cb00925ad41ba91964401f8a261a726394de4e9b9ed491b9b633b0563" \
 	-H "Cookie: "
 ```
 
@@ -1425,10 +1425,10 @@ curl -g "https://api.timelyapp.com/1.1/23515/projects/23226/subscribers" -X GET 
 `GET /1.1/:account_id/projects/:project_id/subscribers`
 
 ```plaintext
-GET /1.1/23515/projects/23226/subscribers
+GET /1.1/23896/projects/23610/subscribers
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 56101d1fc26cf7b53691bd1d7944f13456a1214ebe6b71bc9f44444cebdef5be
+Authorization: Bearer 90bead9cb00925ad41ba91964401f8a261a726394de4e9b9ed491b9b633b0563
 ```
 
 #### Parameters
@@ -1446,7 +1446,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-[{"id":54321,"email":"quentin@timelyapp.com","name":"Quintin Duponde","avatar":{"timeline":"https://www.gravatar.com/avatar/341d68b864aca41aadfc9d9ec221e0c1?d=https%3A%2F%2Fapp.timelyapp.com%2Fassets%2Fthumbs%2Fuser_timeline.jpg&s=","medium_retina":"https://www.gravatar.com/avatar/341d68b864aca41aadfc9d9ec221e0c1?d=https%3A%2F%2Fapp.timelyapp.com%2Fassets%2Fthumbs%2Fuser_medium_retina.jpg&s=50","medium":"https://www.gravatar.com/avatar/341d68b864aca41aadfc9d9ec221e0c1?d=https%3A%2F%2Fapp.timelyapp.com%2Fassets%2Fthumbs%2Fuser_medium.jpg&s="}}]
+[{"id":55197,"email":"quentin@timelyapp.com","name":"Quintin Duponde","avatar":{"timeline":"https://www.gravatar.com/avatar/341d68b864aca41aadfc9d9ec221e0c1?d=https%3A%2F%2Fapp.timelyapp.com%2Fassets%2Fthumbs%2Fuser_timeline.jpg&s=","medium_retina":"https://www.gravatar.com/avatar/341d68b864aca41aadfc9d9ec221e0c1?d=https%3A%2F%2Fapp.timelyapp.com%2Fassets%2Fthumbs%2Fuser_medium_retina.jpg&s=50","medium":"https://www.gravatar.com/avatar/341d68b864aca41aadfc9d9ec221e0c1?d=https%3A%2F%2Fapp.timelyapp.com%2Fassets%2Fthumbs%2Fuser_medium.jpg&s="}}]
 ```
 
 
@@ -1456,11 +1456,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/23516/projects/23227/subscription" -X GET \
+curl -g "https://api.timelyapp.com/1.1/23897/projects/23611/subscription" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer faadc3457da9e6ad1d1ac6e2467fb17da5bf6b9f37c1ba133e7d09d0dd488002" \
+	-H "Authorization: Bearer 2c27f0f0e0f8244c1190becbe40c578d4fac423999ce32cdf3f6f25e6823fdb9" \
 	-H "Cookie: "
 ```
 
@@ -1469,10 +1469,10 @@ curl -g "https://api.timelyapp.com/1.1/23516/projects/23227/subscription" -X GET
 `GET /1.1/:account_id/projects/:project_id/subscription`
 
 ```plaintext
-GET /1.1/23516/projects/23227/subscription
+GET /1.1/23897/projects/23611/subscription
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer faadc3457da9e6ad1d1ac6e2467fb17da5bf6b9f37c1ba133e7d09d0dd488002
+Authorization: Bearer 2c27f0f0e0f8244c1190becbe40c578d4fac423999ce32cdf3f6f25e6823fdb9
 ```
 
 #### Parameters
@@ -1500,11 +1500,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/23517/projects/23228/subscription" -X GET \
+curl -g "https://api.timelyapp.com/1.1/23898/projects/23612/subscription" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 844a9379513a185672d61ad65313eb922b031d02f2b86547b834306eb3c7e8cf" \
+	-H "Authorization: Bearer 1081534fc9141ccd799fd5e913357108b365e55a4305c166dc3568ac6e3a0e65" \
 	-H "Cookie: "
 ```
 
@@ -1513,10 +1513,10 @@ curl -g "https://api.timelyapp.com/1.1/23517/projects/23228/subscription" -X GET
 `GET /1.1/:account_id/projects/:project_id/subscription`
 
 ```plaintext
-GET /1.1/23517/projects/23228/subscription
+GET /1.1/23898/projects/23612/subscription
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 844a9379513a185672d61ad65313eb922b031d02f2b86547b834306eb3c7e8cf
+Authorization: Bearer 1081534fc9141ccd799fd5e913357108b365e55a4305c166dc3568ac6e3a0e65
 ```
 
 #### Parameters
@@ -1548,11 +1548,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/23530/projects/search?q=Coco" -X GET \
+curl -g "https://api.timelyapp.com/1.1/23911/projects/search?q=Daisy" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 03e792f19c9310138749560ddfcb2f66a88d818cd29aae342a2941257d585ddf" \
+	-H "Authorization: Bearer 994c821baa51f3e6afddcacc31d585b626a89d84c6ed51e2f0d50ec32cd8c2ea" \
 	-H "Cookie: "
 ```
 
@@ -1561,16 +1561,16 @@ curl -g "https://api.timelyapp.com/1.1/23530/projects/search?q=Coco" -X GET \
 `GET /1.1/:account_id/projects/search`
 
 ```plaintext
-GET /1.1/23530/projects/search?q=Coco
+GET /1.1/23911/projects/search?q=Daisy
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 03e792f19c9310138749560ddfcb2f66a88d818cd29aae342a2941257d585ddf
+Authorization: Bearer 994c821baa51f3e6afddcacc31d585b626a89d84c6ed51e2f0d50ec32cd8c2ea
 ```
 
 #### Parameters
 
 ```json
-q: Coco
+q: Daisy
 ```
 
 
@@ -1589,7 +1589,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-[{"id":23255,"name":"Coco","color":"67a3bc","active":true,"client":{"id":17548,"name":"Timely","active":true,"external_id":null}}]
+[{"id":23634,"name":"Daisy","color":"67a3bc","active":true,"client":{"id":17839,"name":"Timely","active":true,"external_id":null}}]
 ```
 
 
@@ -1599,11 +1599,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/23528/projects?filter=active" -X GET \
+curl -g "https://api.timelyapp.com/1.1/23909/projects?filter=active" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 35b7c5668dfd6f4d0233ea1fe6854724d07ebc3df2609ae8bdc792c46d3ff99c" \
+	-H "Authorization: Bearer 0022fbfcd64392024a59ebbc48e3acbf00b0a4b261d61c81986863db5ecf548d" \
 	-H "Cookie: "
 ```
 
@@ -1612,10 +1612,10 @@ curl -g "https://api.timelyapp.com/1.1/23528/projects?filter=active" -X GET \
 `GET /1.1/:account_id/projects`
 
 ```plaintext
-GET /1.1/23528/projects?filter=active
+GET /1.1/23909/projects?filter=active
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 35b7c5668dfd6f4d0233ea1fe6854724d07ebc3df2609ae8bdc792c46d3ff99c
+Authorization: Bearer 0022fbfcd64392024a59ebbc48e3acbf00b0a4b261d61c81986863db5ecf548d
 ```
 
 #### Parameters
@@ -1641,7 +1641,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-[{"id":23243,"active":true,"account_id":23528,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17546,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547725265,"label_ids":[],"required_label_ids":[],"team_ids":[],"external_id":null,"budget_scope":null,"budget":300,"budget_type":"","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[{"user_id":54347,"hour_rate":100.0,"hour_rate_in_cents":10000.0}],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"labels":[]}]
+[{"id":23627,"active":true,"account_id":23909,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17837,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547730355,"label_ids":[],"required_label_ids":[],"team_ids":[],"external_id":null,"budget_scope":null,"budget":300,"budget_type":"","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[{"user_id":55223,"hour_rate":100.0,"hour_rate_in_cents":10000.0}],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"labels":[]}]
 ```
 
 
@@ -1651,11 +1651,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/23527/projects?filter=all" -X GET \
+curl -g "https://api.timelyapp.com/1.1/23908/projects?filter=all" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 66a56181b6716b8d3b063880f02a4f36467b9c5aecde3871e0c5fcd6eb7faeda" \
+	-H "Authorization: Bearer 70af41ca7223ba183b0dcc71c1495509d9340fe1889a7465b8e7296f9489c5c2" \
 	-H "Cookie: "
 ```
 
@@ -1664,10 +1664,10 @@ curl -g "https://api.timelyapp.com/1.1/23527/projects?filter=all" -X GET \
 `GET /1.1/:account_id/projects`
 
 ```plaintext
-GET /1.1/23527/projects?filter=all
+GET /1.1/23908/projects?filter=all
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 66a56181b6716b8d3b063880f02a4f36467b9c5aecde3871e0c5fcd6eb7faeda
+Authorization: Bearer 70af41ca7223ba183b0dcc71c1495509d9340fe1889a7465b8e7296f9489c5c2
 ```
 
 #### Parameters
@@ -1693,7 +1693,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-[{"id":23241,"active":true,"account_id":23527,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17545,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547725265,"label_ids":[],"required_label_ids":[],"team_ids":[],"external_id":null,"budget_scope":null,"budget":300,"budget_type":"","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[{"user_id":54345,"hour_rate":100.0,"hour_rate_in_cents":10000.0}],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"labels":[]},{"id":23242,"active":false,"account_id":23527,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17545,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547725265,"label_ids":[],"required_label_ids":[],"team_ids":[],"external_id":null,"budget_scope":null,"budget":300,"budget_type":"","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[{"user_id":54345,"hour_rate":100.0,"hour_rate_in_cents":10000.0}],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"labels":[]}]
+[{"id":23625,"active":true,"account_id":23908,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17836,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547730355,"label_ids":[],"required_label_ids":[],"team_ids":[],"external_id":null,"budget_scope":null,"budget":300,"budget_type":"","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[{"user_id":55221,"hour_rate":100.0,"hour_rate_in_cents":10000.0}],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"labels":[]},{"id":23626,"active":false,"account_id":23908,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17836,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547730355,"label_ids":[],"required_label_ids":[],"team_ids":[],"external_id":null,"budget_scope":null,"budget":300,"budget_type":"","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[{"user_id":55221,"hour_rate":100.0,"hour_rate_in_cents":10000.0}],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"labels":[]}]
 ```
 
 
@@ -1703,11 +1703,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/23529/projects?filter=archived" -X GET \
+curl -g "https://api.timelyapp.com/1.1/23910/projects?filter=archived" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 0b73d3db3ada66d0f6511ea6dbe0a9ea4ea641f97a469d0516a408f2ff8ebb6d" \
+	-H "Authorization: Bearer 47453cca7c6b23595d76225ca8fa8f26806335c2193db03abc26a198f003b354" \
 	-H "Cookie: "
 ```
 
@@ -1716,10 +1716,10 @@ curl -g "https://api.timelyapp.com/1.1/23529/projects?filter=archived" -X GET \
 `GET /1.1/:account_id/projects`
 
 ```plaintext
-GET /1.1/23529/projects?filter=archived
+GET /1.1/23910/projects?filter=archived
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 0b73d3db3ada66d0f6511ea6dbe0a9ea4ea641f97a469d0516a408f2ff8ebb6d
+Authorization: Bearer 47453cca7c6b23595d76225ca8fa8f26806335c2193db03abc26a198f003b354
 ```
 
 #### Parameters
@@ -1745,7 +1745,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-[{"id":23246,"active":false,"account_id":23529,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17547,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547725265,"label_ids":[],"required_label_ids":[],"team_ids":[],"external_id":null,"budget_scope":null,"budget":300,"budget_type":"","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[{"user_id":54349,"hour_rate":100.0,"hour_rate_in_cents":10000.0}],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"labels":[]}]
+[{"id":23630,"active":false,"account_id":23910,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17838,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547730355,"label_ids":[],"required_label_ids":[],"team_ids":[],"external_id":null,"budget_scope":null,"budget":300,"budget_type":"","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[{"user_id":55225,"hour_rate":100.0,"hour_rate_in_cents":10000.0}],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"labels":[]}]
 ```
 
 
@@ -1755,11 +1755,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.1/23535/projects" -d '{"project":{"name":"Timely","rate_type":"project","hour_rate":50.0,"active":true,"deleted":false,"currency_code":"usd","color":"67a3bc","company_id":17553,"budget_type":"M","budget":300,"users":[{"user_id":54361}],"budget_recurrence":{"recur":"week","start_date":"2018-09-21","end_date":"","recur_until":"archived"}}}' -X POST \
+curl "https://api.timelyapp.com/1.1/23916/projects" -d '{"project":{"name":"Timely","rate_type":"project","hour_rate":50.0,"active":true,"deleted":false,"currency_code":"usd","color":"67a3bc","company_id":17844,"budget_type":"M","budget":300,"users":[{"user_id":55237}],"budget_recurrence":{"recur":"week","start_date":"2018-09-21","end_date":"","recur_until":"archived"}}}' -X POST \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 291709a608158fefc4ef2a51dbe5829fc663eefe7f0731751e6e962488bbdefe" \
+	-H "Authorization: Bearer 53cacefa1aaf6bda22b61df6c0b1b7b86cf502608a7b3fa656dc81c446812ac1" \
 	-H "Cookie: "
 ```
 
@@ -1768,17 +1768,17 @@ curl "https://api.timelyapp.com/1.1/23535/projects" -d '{"project":{"name":"Time
 `POST /1.1/:account_id/projects`
 
 ```plaintext
-POST /1.1/23535/projects
+POST /1.1/23916/projects
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 291709a608158fefc4ef2a51dbe5829fc663eefe7f0731751e6e962488bbdefe
+Authorization: Bearer 53cacefa1aaf6bda22b61df6c0b1b7b86cf502608a7b3fa656dc81c446812ac1
 ```
 
 #### Parameters
 
 
 ```json
-{"project":{"name":"Timely","rate_type":"project","hour_rate":50.0,"active":true,"deleted":false,"currency_code":"usd","color":"67a3bc","company_id":17553,"budget_type":"M","budget":300,"users":[{"user_id":54361}],"budget_recurrence":{"recur":"week","start_date":"2018-09-21","end_date":"","recur_until":"archived"}}}
+{"project":{"name":"Timely","rate_type":"project","hour_rate":50.0,"active":true,"deleted":false,"currency_code":"usd","color":"67a3bc","company_id":17844,"budget_type":"M","budget":300,"users":[{"user_id":55237}],"budget_recurrence":{"recur":"week","start_date":"2018-09-21","end_date":"","recur_until":"archived"}}}
 ```
 
 | Name | Description |
@@ -1808,7 +1808,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-{"id":23270,"active":true,"account_id":23535,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17553,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547725267,"label_ids":[],"required_label_ids":[],"team_ids":[],"external_id":null,"budget_scope":null,"budget":300,"budget_type":"M","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[{"user_id":54361,"hour_rate":50.0,"hour_rate_in_cents":5000.0}],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"first_logged_on":null,"last_logged_on":null,"labels":[],"budget_recurrence":{"recur":"week","start_date":"2018-09-21","end_date":null,"recur_until":"archived","days_count":0}}
+{"id":23654,"active":true,"account_id":23916,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17844,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547730358,"label_ids":[],"required_label_ids":[],"team_ids":[],"external_id":null,"budget_scope":null,"budget":300,"budget_type":"M","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[{"user_id":55237,"hour_rate":50.0,"hour_rate_in_cents":5000.0}],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"first_logged_on":null,"last_logged_on":null,"labels":[],"budget_recurrence":{"recur":"week","start_date":"2018-09-21","end_date":null,"recur_until":"archived","days_count":0}}
 ```
 
 
@@ -1818,11 +1818,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.1/23532/projects" -d '{"project":{"name":"Timely","rate_type":"project","hour_rate":50.0,"active":true,"deleted":false,"currency_code":"usd","color":"67a3bc","company_id":17550,"users":[{"user_id":54355}],"labels":[{"label_id":5378},{"label_id":5379,"budget":0,"required":false}]}}' -X POST \
+curl "https://api.timelyapp.com/1.1/23913/projects" -d '{"project":{"name":"Timely","rate_type":"project","hour_rate":50.0,"active":true,"deleted":false,"currency_code":"usd","color":"67a3bc","company_id":17841,"users":[{"user_id":55231}],"labels":[{"label_id":5462},{"label_id":5463,"budget":0,"required":false}]}}' -X POST \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 2c8fc5e0a9170c90f0f3ed5ae4570812a2e5a9121af0ecf5fa1ed30734c91c10" \
+	-H "Authorization: Bearer 77249743695043ebf97e6eee885bdf5f64413ed49d977f0514c4e8d201c09c5c" \
 	-H "Cookie: "
 ```
 
@@ -1831,17 +1831,17 @@ curl "https://api.timelyapp.com/1.1/23532/projects" -d '{"project":{"name":"Time
 `POST /1.1/:account_id/projects`
 
 ```plaintext
-POST /1.1/23532/projects
+POST /1.1/23913/projects
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 2c8fc5e0a9170c90f0f3ed5ae4570812a2e5a9121af0ecf5fa1ed30734c91c10
+Authorization: Bearer 77249743695043ebf97e6eee885bdf5f64413ed49d977f0514c4e8d201c09c5c
 ```
 
 #### Parameters
 
 
 ```json
-{"project":{"name":"Timely","rate_type":"project","hour_rate":50.0,"active":true,"deleted":false,"currency_code":"usd","color":"67a3bc","company_id":17550,"users":[{"user_id":54355}],"labels":[{"label_id":5378},{"label_id":5379,"budget":0,"required":false}]}}
+{"project":{"name":"Timely","rate_type":"project","hour_rate":50.0,"active":true,"deleted":false,"currency_code":"usd","color":"67a3bc","company_id":17841,"users":[{"user_id":55231}],"labels":[{"label_id":5462},{"label_id":5463,"budget":0,"required":false}]}}
 ```
 
 | Name | Description |
@@ -1871,7 +1871,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-{"id":23267,"active":true,"account_id":23532,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17550,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547725266,"label_ids":[5378,5379],"required_label_ids":[],"team_ids":[],"external_id":null,"budget_scope":null,"budget":0,"budget_type":"","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[{"user_id":54355,"hour_rate":50.0,"hour_rate_in_cents":5000.0}],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"first_logged_on":null,"last_logged_on":null,"labels":[{"label_id":5378,"budget":null,"required":false},{"label_id":5379,"budget":0,"required":false}]}
+{"id":23651,"active":true,"account_id":23913,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17841,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547730357,"label_ids":[5462,5463],"required_label_ids":[],"team_ids":[],"external_id":null,"budget_scope":null,"budget":0,"budget_type":"","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[{"user_id":55231,"hour_rate":50.0,"hour_rate_in_cents":5000.0}],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"first_logged_on":null,"last_logged_on":null,"labels":[{"label_id":5462,"budget":null,"required":false},{"label_id":5463,"budget":0,"required":false}]}
 ```
 
 
@@ -1881,11 +1881,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.1/23533/projects" -d '{"project":{"name":"Timely","rate_type":"project","hour_rate":50.0,"active":true,"deleted":false,"currency_code":"usd","color":"67a3bc","company_id":17551,"budget_type":"M","budget_scope":"tag","budget":300,"users":[{"user_id":54357}],"labels":[{"label_id":5380,"budget":100,"required":false},{"label_id":5381,"budget":200,"required":true}]}}' -X POST \
+curl "https://api.timelyapp.com/1.1/23914/projects" -d '{"project":{"name":"Timely","rate_type":"project","hour_rate":50.0,"active":true,"deleted":false,"currency_code":"usd","color":"67a3bc","company_id":17842,"budget_type":"M","budget_scope":"tag","budget":300,"users":[{"user_id":55233}],"labels":[{"label_id":5464,"budget":100,"required":false},{"label_id":5465,"budget":200,"required":true}]}}' -X POST \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 3782c55eb03ce68e5b49c3934c9e3c0c0006a4a79fb92f1a3d61f99d1a88da83" \
+	-H "Authorization: Bearer 625a90c0a01575149fa223a919651a5e83497e5b1186cc338d71ab199c2270eb" \
 	-H "Cookie: "
 ```
 
@@ -1894,17 +1894,17 @@ curl "https://api.timelyapp.com/1.1/23533/projects" -d '{"project":{"name":"Time
 `POST /1.1/:account_id/projects`
 
 ```plaintext
-POST /1.1/23533/projects
+POST /1.1/23914/projects
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 3782c55eb03ce68e5b49c3934c9e3c0c0006a4a79fb92f1a3d61f99d1a88da83
+Authorization: Bearer 625a90c0a01575149fa223a919651a5e83497e5b1186cc338d71ab199c2270eb
 ```
 
 #### Parameters
 
 
 ```json
-{"project":{"name":"Timely","rate_type":"project","hour_rate":50.0,"active":true,"deleted":false,"currency_code":"usd","color":"67a3bc","company_id":17551,"budget_type":"M","budget_scope":"tag","budget":300,"users":[{"user_id":54357}],"labels":[{"label_id":5380,"budget":100,"required":false},{"label_id":5381,"budget":200,"required":true}]}}
+{"project":{"name":"Timely","rate_type":"project","hour_rate":50.0,"active":true,"deleted":false,"currency_code":"usd","color":"67a3bc","company_id":17842,"budget_type":"M","budget_scope":"tag","budget":300,"users":[{"user_id":55233}],"labels":[{"label_id":5464,"budget":100,"required":false},{"label_id":5465,"budget":200,"required":true}]}}
 ```
 
 | Name | Description |
@@ -1934,7 +1934,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-{"id":23268,"active":true,"account_id":23533,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17551,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547725266,"label_ids":[5380,5381],"required_label_ids":[5381],"team_ids":[],"external_id":null,"budget_scope":"tag","budget":300,"budget_type":"M","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[{"user_id":54357,"hour_rate":50.0,"hour_rate_in_cents":5000.0}],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"first_logged_on":null,"last_logged_on":null,"labels":[{"label_id":5380,"budget":100,"required":false},{"label_id":5381,"budget":200,"required":true}]}
+{"id":23652,"active":true,"account_id":23914,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17842,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547730357,"label_ids":[5464,5465],"required_label_ids":[5465],"team_ids":[],"external_id":null,"budget_scope":"tag","budget":300,"budget_type":"M","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[{"user_id":55233,"hour_rate":50.0,"hour_rate_in_cents":5000.0}],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"first_logged_on":null,"last_logged_on":null,"labels":[{"label_id":5464,"budget":100,"required":false},{"label_id":5465,"budget":200,"required":true}]}
 ```
 
 
@@ -1944,11 +1944,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.1/23534/projects" -d '{"project":{"name":"Timely","rate_type":"project","hour_rate":50.0,"active":true,"deleted":false,"currency_code":"usd","color":"67a3bc","company_id":17552,"budget_type":"M","budget":300,"users":[{"user_id":54359}],"budget_recurrence":{"recur":"week","start_date":"2018-09-21","end_date":"2019-09-21","recur_until":"end_date"}}}' -X POST \
+curl "https://api.timelyapp.com/1.1/23915/projects" -d '{"project":{"name":"Timely","rate_type":"project","hour_rate":50.0,"active":true,"deleted":false,"currency_code":"usd","color":"67a3bc","company_id":17843,"budget_type":"M","budget":300,"users":[{"user_id":55235}],"budget_recurrence":{"recur":"week","start_date":"2018-09-21","end_date":"2019-09-21","recur_until":"end_date"}}}' -X POST \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 528de4bc88f5a1673afb12f833865bfbdfb80c2d0c579f392f5fdf13aa1e0a4c" \
+	-H "Authorization: Bearer 7f8c4ad8d4a6b4b55394e6bfacba4c0e8be6b2bcbe98e7d10b3c7484d8fce27b" \
 	-H "Cookie: "
 ```
 
@@ -1957,17 +1957,17 @@ curl "https://api.timelyapp.com/1.1/23534/projects" -d '{"project":{"name":"Time
 `POST /1.1/:account_id/projects`
 
 ```plaintext
-POST /1.1/23534/projects
+POST /1.1/23915/projects
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 528de4bc88f5a1673afb12f833865bfbdfb80c2d0c579f392f5fdf13aa1e0a4c
+Authorization: Bearer 7f8c4ad8d4a6b4b55394e6bfacba4c0e8be6b2bcbe98e7d10b3c7484d8fce27b
 ```
 
 #### Parameters
 
 
 ```json
-{"project":{"name":"Timely","rate_type":"project","hour_rate":50.0,"active":true,"deleted":false,"currency_code":"usd","color":"67a3bc","company_id":17552,"budget_type":"M","budget":300,"users":[{"user_id":54359}],"budget_recurrence":{"recur":"week","start_date":"2018-09-21","end_date":"2019-09-21","recur_until":"end_date"}}}
+{"project":{"name":"Timely","rate_type":"project","hour_rate":50.0,"active":true,"deleted":false,"currency_code":"usd","color":"67a3bc","company_id":17843,"budget_type":"M","budget":300,"users":[{"user_id":55235}],"budget_recurrence":{"recur":"week","start_date":"2018-09-21","end_date":"2019-09-21","recur_until":"end_date"}}}
 ```
 
 | Name | Description |
@@ -1997,7 +1997,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-{"id":23269,"active":true,"account_id":23534,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17552,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547725267,"label_ids":[],"required_label_ids":[],"team_ids":[],"external_id":null,"budget_scope":null,"budget":300,"budget_type":"M","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[{"user_id":54359,"hour_rate":50.0,"hour_rate_in_cents":5000.0}],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"first_logged_on":null,"last_logged_on":null,"labels":[],"budget_recurrence":{"recur":"week","start_date":"2018-09-21","end_date":"2019-09-21","recur_until":"end_date","days_count":365}}
+{"id":23653,"active":true,"account_id":23915,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17843,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547730357,"label_ids":[],"required_label_ids":[],"team_ids":[],"external_id":null,"budget_scope":null,"budget":300,"budget_type":"M","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[{"user_id":55235,"hour_rate":50.0,"hour_rate_in_cents":5000.0}],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"first_logged_on":null,"last_logged_on":null,"labels":[],"budget_recurrence":{"recur":"week","start_date":"2018-09-21","end_date":"2019-09-21","recur_until":"end_date","days_count":365}}
 ```
 
 
@@ -2007,11 +2007,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/23525/projects" -X GET \
+curl -g "https://api.timelyapp.com/1.1/23906/projects" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 3d8bf87e7c1bc796c84cd5d5e047eebb430240cc0c8fe74d74a740ef44337a7e" \
+	-H "Authorization: Bearer d3660ed93368d7d465c42ddfdb30e2c7d38ff04f5f92a3a397eedbf0ddd42d9d" \
 	-H "Cookie: "
 ```
 
@@ -2020,10 +2020,10 @@ curl -g "https://api.timelyapp.com/1.1/23525/projects" -X GET \
 `GET /1.1/:account_id/projects`
 
 ```plaintext
-GET /1.1/23525/projects
+GET /1.1/23906/projects
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 3d8bf87e7c1bc796c84cd5d5e047eebb430240cc0c8fe74d74a740ef44337a7e
+Authorization: Bearer d3660ed93368d7d465c42ddfdb30e2c7d38ff04f5f92a3a397eedbf0ddd42d9d
 ```
 
 #### Parameters
@@ -2046,7 +2046,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-[{"id":23237,"active":true,"account_id":23525,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17543,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547725264,"label_ids":[],"required_label_ids":[],"team_ids":[],"external_id":null,"budget_scope":null,"budget":300,"budget_type":"","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[{"user_id":54341,"hour_rate":100.0,"hour_rate_in_cents":10000.0}],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"labels":[]}]
+[{"id":23621,"active":true,"account_id":23906,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17834,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547730354,"label_ids":[],"required_label_ids":[],"team_ids":[],"external_id":null,"budget_scope":null,"budget":300,"budget_type":"","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[{"user_id":55217,"hour_rate":100.0,"hour_rate_in_cents":10000.0}],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"labels":[]}]
 ```
 
 
@@ -2056,11 +2056,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/23526/projects" -X GET \
+curl -g "https://api.timelyapp.com/1.1/23907/projects" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer e31fa87fecb9834d94546a0637303565d204840f9fffe91238066985eb6ce0d5" \
+	-H "Authorization: Bearer 3ecf90fa1ed08f2191e531d8f2d5ccb5da1501450f00e38db8808d55d6d5576b" \
 	-H "Cookie: "
 ```
 
@@ -2069,10 +2069,10 @@ curl -g "https://api.timelyapp.com/1.1/23526/projects" -X GET \
 `GET /1.1/:account_id/projects`
 
 ```plaintext
-GET /1.1/23526/projects
+GET /1.1/23907/projects
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer e31fa87fecb9834d94546a0637303565d204840f9fffe91238066985eb6ce0d5
+Authorization: Bearer 3ecf90fa1ed08f2191e531d8f2d5ccb5da1501450f00e38db8808d55d6d5576b
 ```
 
 #### Parameters
@@ -2105,11 +2105,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.1/23545/projects/23280" -d '{"project":{"budget_type":"M","budget":300}}' -X PUT \
+curl "https://api.timelyapp.com/1.1/23926/projects/23664" -d '{"project":{"budget_type":"M","budget":300}}' -X PUT \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 8dbe0b5733039fa17c2382b588ed192a05a43cb6a68ef1c6da1ae8acaf1ab9af" \
+	-H "Authorization: Bearer 2cdaa74530cc3bda94ff853d20b944c8b3ba78627757997985e0e3e547069997" \
 	-H "Cookie: "
 ```
 
@@ -2118,10 +2118,10 @@ curl "https://api.timelyapp.com/1.1/23545/projects/23280" -d '{"project":{"budge
 `PUT /1.1/:account_id/projects/:id`
 
 ```plaintext
-PUT /1.1/23545/projects/23280
+PUT /1.1/23926/projects/23664
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 8dbe0b5733039fa17c2382b588ed192a05a43cb6a68ef1c6da1ae8acaf1ab9af
+Authorization: Bearer 2cdaa74530cc3bda94ff853d20b944c8b3ba78627757997985e0e3e547069997
 ```
 
 #### Parameters
@@ -2144,7 +2144,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-{"id":23280,"active":true,"account_id":23545,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17563,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547725269,"label_ids":[],"required_label_ids":[],"team_ids":[],"external_id":null,"budget_scope":null,"budget":300,"budget_type":"M","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"first_logged_on":null,"last_logged_on":null,"labels":[],"budget_recurrence":{"recur":"week","start_date":"2018-09-21","end_date":"2019-09-21","recur_until":"end_date","days_count":365}}
+{"id":23664,"active":true,"account_id":23926,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17854,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547730360,"label_ids":[],"required_label_ids":[],"team_ids":[],"external_id":null,"budget_scope":null,"budget":300,"budget_type":"M","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"first_logged_on":null,"last_logged_on":null,"labels":[],"budget_recurrence":{"recur":"week","start_date":"2018-09-21","end_date":"2019-09-21","recur_until":"end_date","days_count":365}}
 ```
 
 
@@ -2154,11 +2154,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.1/23536/projects/23271" -d '{"project":{"labels":[{"label_id":5382},{"label_id":5383,"budget":0,"required":false}]}}' -X PUT \
+curl "https://api.timelyapp.com/1.1/23917/projects/23655" -d '{"project":{"labels":[{"label_id":5466},{"label_id":5467,"budget":0,"required":false}]}}' -X PUT \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer c630d933a94a946a5e03650038e5a5399982038431e6e5547576ea65f9ce7357" \
+	-H "Authorization: Bearer 331a8c8a798a3726c64c48a560f673a8788d08ab5ba5775910815b6a239d9026" \
 	-H "Cookie: "
 ```
 
@@ -2167,17 +2167,17 @@ curl "https://api.timelyapp.com/1.1/23536/projects/23271" -d '{"project":{"label
 `PUT /1.1/:account_id/projects/:id`
 
 ```plaintext
-PUT /1.1/23536/projects/23271
+PUT /1.1/23917/projects/23655
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer c630d933a94a946a5e03650038e5a5399982038431e6e5547576ea65f9ce7357
+Authorization: Bearer 331a8c8a798a3726c64c48a560f673a8788d08ab5ba5775910815b6a239d9026
 ```
 
 #### Parameters
 
 
 ```json
-{"project":{"labels":[{"label_id":5382},{"label_id":5383,"budget":0,"required":false}]}}
+{"project":{"labels":[{"label_id":5466},{"label_id":5467,"budget":0,"required":false}]}}
 ```
 
 | Name | Description |
@@ -2193,7 +2193,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-{"id":23271,"active":true,"account_id":23536,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17554,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547725267,"label_ids":[5382,5383],"required_label_ids":[],"team_ids":[],"external_id":null,"budget_scope":null,"budget":300,"budget_type":"","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"first_logged_on":null,"last_logged_on":null,"labels":[{"label_id":5382,"budget":null,"required":false},{"label_id":5383,"budget":0,"required":false}]}
+{"id":23655,"active":true,"account_id":23917,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17845,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547730358,"label_ids":[5466,5467],"required_label_ids":[],"team_ids":[],"external_id":null,"budget_scope":null,"budget":300,"budget_type":"","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"first_logged_on":null,"last_logged_on":null,"labels":[{"label_id":5466,"budget":null,"required":false},{"label_id":5467,"budget":0,"required":false}]}
 ```
 
 
@@ -2203,11 +2203,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.1/23537/projects/23272" -d '{"project":{"budget_type":"M","budget_scope":"tag","budget":200,"labels":[{"label_id":5384,"budget":100,"required":true},{"label_id":5385,"budget":100,"required":true}]}}' -X PUT \
+curl "https://api.timelyapp.com/1.1/23918/projects/23656" -d '{"project":{"budget_type":"M","budget_scope":"tag","budget":200,"labels":[{"label_id":5468,"budget":100,"required":true},{"label_id":5469,"budget":100,"required":true}]}}' -X PUT \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 5dfb28dc3ee6e630ada0f7d3804b2f4dc62aae7cb929e6ee0c3d3d82a01300a2" \
+	-H "Authorization: Bearer 14668d21773a0606dd7ac007766662a7dd4ee20262f8b3ae90dc1fa526472433" \
 	-H "Cookie: "
 ```
 
@@ -2216,17 +2216,17 @@ curl "https://api.timelyapp.com/1.1/23537/projects/23272" -d '{"project":{"budge
 `PUT /1.1/:account_id/projects/:id`
 
 ```plaintext
-PUT /1.1/23537/projects/23272
+PUT /1.1/23918/projects/23656
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 5dfb28dc3ee6e630ada0f7d3804b2f4dc62aae7cb929e6ee0c3d3d82a01300a2
+Authorization: Bearer 14668d21773a0606dd7ac007766662a7dd4ee20262f8b3ae90dc1fa526472433
 ```
 
 #### Parameters
 
 
 ```json
-{"project":{"budget_type":"M","budget_scope":"tag","budget":200,"labels":[{"label_id":5384,"budget":100,"required":true},{"label_id":5385,"budget":100,"required":true}]}}
+{"project":{"budget_type":"M","budget_scope":"tag","budget":200,"labels":[{"label_id":5468,"budget":100,"required":true},{"label_id":5469,"budget":100,"required":true}]}}
 ```
 
 | Name | Description |
@@ -2242,7 +2242,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-{"id":23272,"active":true,"account_id":23537,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17555,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547725267,"label_ids":[5384,5385],"required_label_ids":[5384,5385],"team_ids":[],"external_id":null,"budget_scope":"tag","budget":200,"budget_type":"M","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"first_logged_on":null,"last_logged_on":null,"labels":[{"label_id":5384,"budget":100,"required":true},{"label_id":5385,"budget":100,"required":true}]}
+{"id":23656,"active":true,"account_id":23918,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17846,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547730358,"label_ids":[5468,5469],"required_label_ids":[5468,5469],"team_ids":[],"external_id":null,"budget_scope":"tag","budget":200,"budget_type":"M","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"first_logged_on":null,"last_logged_on":null,"labels":[{"label_id":5468,"budget":100,"required":true},{"label_id":5469,"budget":100,"required":true}]}
 ```
 
 
@@ -2252,11 +2252,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.1/23538/projects/23273" -d '{"project":{"budget_type":"M","budget_scope":"tag","budget":400,"labels":[{"label_id":5386,"budget":100,"required":true},{"label_id":5387,"budget":100,"required":true},{"label_id":5388,"budget":200,"required":true}]}}' -X PUT \
+curl "https://api.timelyapp.com/1.1/23919/projects/23657" -d '{"project":{"budget_type":"M","budget_scope":"tag","budget":400,"labels":[{"label_id":5470,"budget":100,"required":true},{"label_id":5471,"budget":100,"required":true},{"label_id":5472,"budget":200,"required":true}]}}' -X PUT \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 36d4f60d38a710f9655ee6b696c8ad8b073d4ab9fc76257c1a462fa171c42171" \
+	-H "Authorization: Bearer 56c664429da1603e7ea1e19eecd417e86e125dff2323ad1cc88adf6d90eb5e92" \
 	-H "Cookie: "
 ```
 
@@ -2265,17 +2265,17 @@ curl "https://api.timelyapp.com/1.1/23538/projects/23273" -d '{"project":{"budge
 `PUT /1.1/:account_id/projects/:id`
 
 ```plaintext
-PUT /1.1/23538/projects/23273
+PUT /1.1/23919/projects/23657
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 36d4f60d38a710f9655ee6b696c8ad8b073d4ab9fc76257c1a462fa171c42171
+Authorization: Bearer 56c664429da1603e7ea1e19eecd417e86e125dff2323ad1cc88adf6d90eb5e92
 ```
 
 #### Parameters
 
 
 ```json
-{"project":{"budget_type":"M","budget_scope":"tag","budget":400,"labels":[{"label_id":5386,"budget":100,"required":true},{"label_id":5387,"budget":100,"required":true},{"label_id":5388,"budget":200,"required":true}]}}
+{"project":{"budget_type":"M","budget_scope":"tag","budget":400,"labels":[{"label_id":5470,"budget":100,"required":true},{"label_id":5471,"budget":100,"required":true},{"label_id":5472,"budget":200,"required":true}]}}
 ```
 
 | Name | Description |
@@ -2291,7 +2291,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-{"id":23273,"active":true,"account_id":23538,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17556,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547725268,"label_ids":[5386,5387,5388],"required_label_ids":[5386,5387,5388],"team_ids":[],"external_id":null,"budget_scope":"tag","budget":400,"budget_type":"M","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"first_logged_on":null,"last_logged_on":null,"labels":[{"label_id":5386,"budget":100,"required":true},{"label_id":5387,"budget":100,"required":true},{"label_id":5388,"budget":200,"required":true}]}
+{"id":23657,"active":true,"account_id":23919,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17847,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547730358,"label_ids":[5470,5471,5472],"required_label_ids":[5470,5471,5472],"team_ids":[],"external_id":null,"budget_scope":"tag","budget":400,"budget_type":"M","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"first_logged_on":null,"last_logged_on":null,"labels":[{"label_id":5470,"budget":100,"required":true},{"label_id":5471,"budget":100,"required":true},{"label_id":5472,"budget":200,"required":true}]}
 ```
 
 
@@ -2301,11 +2301,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.1/23539/projects/23274" -d '{"project":{"budget_type":"M","budget_scope":"tag","budget":400,"labels":[{"label_id":5391,"budget":400,"required":true}]}}' -X PUT \
+curl "https://api.timelyapp.com/1.1/23920/projects/23658" -d '{"project":{"budget_type":"M","budget_scope":"tag","budget":400,"labels":[{"label_id":5475,"budget":400,"required":true}]}}' -X PUT \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer a49927b0e85df1943dea8bd80deaea79c25db29871c1c9a94271911aa8636a03" \
+	-H "Authorization: Bearer 0e6abb2220e7e191609d4cdd0e651caf10447d4026e1a75362c4ccb748f0fe3b" \
 	-H "Cookie: "
 ```
 
@@ -2314,17 +2314,17 @@ curl "https://api.timelyapp.com/1.1/23539/projects/23274" -d '{"project":{"budge
 `PUT /1.1/:account_id/projects/:id`
 
 ```plaintext
-PUT /1.1/23539/projects/23274
+PUT /1.1/23920/projects/23658
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer a49927b0e85df1943dea8bd80deaea79c25db29871c1c9a94271911aa8636a03
+Authorization: Bearer 0e6abb2220e7e191609d4cdd0e651caf10447d4026e1a75362c4ccb748f0fe3b
 ```
 
 #### Parameters
 
 
 ```json
-{"project":{"budget_type":"M","budget_scope":"tag","budget":400,"labels":[{"label_id":5391,"budget":400,"required":true}]}}
+{"project":{"budget_type":"M","budget_scope":"tag","budget":400,"labels":[{"label_id":5475,"budget":400,"required":true}]}}
 ```
 
 | Name | Description |
@@ -2340,7 +2340,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-{"id":23274,"active":true,"account_id":23539,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17557,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547725268,"label_ids":[5391],"required_label_ids":[5391],"team_ids":[],"external_id":null,"budget_scope":"tag","budget":400,"budget_type":"M","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"first_logged_on":null,"last_logged_on":null,"labels":[{"label_id":5391,"budget":400,"required":true}]}
+{"id":23658,"active":true,"account_id":23920,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17848,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547730359,"label_ids":[5475],"required_label_ids":[5475],"team_ids":[],"external_id":null,"budget_scope":"tag","budget":400,"budget_type":"M","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"first_logged_on":null,"last_logged_on":null,"labels":[{"label_id":5475,"budget":400,"required":true}]}
 ```
 
 
@@ -2350,11 +2350,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.1/23540/projects/23275" -d '{"project":{"budget_type":"M","budget":400,"labels":[]}}' -X PUT \
+curl "https://api.timelyapp.com/1.1/23921/projects/23659" -d '{"project":{"budget_type":"M","budget":400,"labels":[]}}' -X PUT \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 2a09a74c4cf1df383370f6786d370af9efeb521791ee2f7b13a3222fedbfdba5" \
+	-H "Authorization: Bearer 1c1ce077ebab23412c7d6135e1a34a021414cae1590e3d7b85dff06fdebd1ae6" \
 	-H "Cookie: "
 ```
 
@@ -2363,10 +2363,10 @@ curl "https://api.timelyapp.com/1.1/23540/projects/23275" -d '{"project":{"budge
 `PUT /1.1/:account_id/projects/:id`
 
 ```plaintext
-PUT /1.1/23540/projects/23275
+PUT /1.1/23921/projects/23659
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 2a09a74c4cf1df383370f6786d370af9efeb521791ee2f7b13a3222fedbfdba5
+Authorization: Bearer 1c1ce077ebab23412c7d6135e1a34a021414cae1590e3d7b85dff06fdebd1ae6
 ```
 
 #### Parameters
@@ -2389,7 +2389,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-{"id":23275,"active":true,"account_id":23540,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17558,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547725268,"label_ids":[],"required_label_ids":[],"team_ids":[],"external_id":null,"budget_scope":null,"budget":400,"budget_type":"M","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"first_logged_on":null,"last_logged_on":null,"labels":[]}
+{"id":23659,"active":true,"account_id":23921,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17849,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547730359,"label_ids":[],"required_label_ids":[],"team_ids":[],"external_id":null,"budget_scope":null,"budget":400,"budget_type":"M","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"first_logged_on":null,"last_logged_on":null,"labels":[]}
 ```
 
 
@@ -2399,11 +2399,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.1/23541/projects/23276" -d '{"project":{"budget_type":"M","budget":300,"budget_recurrence":{"recur":"week","start_date":"2018-09-21","end_date":"2019-09-21","recur_until":"end_date"}}}' -X PUT \
+curl "https://api.timelyapp.com/1.1/23922/projects/23660" -d '{"project":{"budget_type":"M","budget":300,"budget_recurrence":{"recur":"week","start_date":"2018-09-21","end_date":"2019-09-21","recur_until":"end_date"}}}' -X PUT \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 8abb0b9f9df6f2ec8c9e1f273940cf4ef407337b1af8c15afb518b592dbbab52" \
+	-H "Authorization: Bearer e32b0d1f2e7875543c82fe1e2ac20e3bd7a5d90a4272dc33a48630e213162c48" \
 	-H "Cookie: "
 ```
 
@@ -2412,10 +2412,10 @@ curl "https://api.timelyapp.com/1.1/23541/projects/23276" -d '{"project":{"budge
 `PUT /1.1/:account_id/projects/:id`
 
 ```plaintext
-PUT /1.1/23541/projects/23276
+PUT /1.1/23922/projects/23660
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 8abb0b9f9df6f2ec8c9e1f273940cf4ef407337b1af8c15afb518b592dbbab52
+Authorization: Bearer e32b0d1f2e7875543c82fe1e2ac20e3bd7a5d90a4272dc33a48630e213162c48
 ```
 
 #### Parameters
@@ -2438,7 +2438,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-{"id":23276,"active":true,"account_id":23541,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17559,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547725269,"label_ids":[],"required_label_ids":[],"team_ids":[],"external_id":null,"budget_scope":null,"budget":300,"budget_type":"M","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"first_logged_on":null,"last_logged_on":null,"labels":[],"budget_recurrence":{"recur":"week","start_date":"2018-09-21","end_date":"2019-09-21","recur_until":"end_date","days_count":365}}
+{"id":23660,"active":true,"account_id":23922,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17850,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547730359,"label_ids":[],"required_label_ids":[],"team_ids":[],"external_id":null,"budget_scope":null,"budget":300,"budget_type":"M","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"first_logged_on":null,"last_logged_on":null,"labels":[],"budget_recurrence":{"recur":"week","start_date":"2018-09-21","end_date":"2019-09-21","recur_until":"end_date","days_count":365}}
 ```
 
 
@@ -2448,11 +2448,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.1/23542/projects/23277" -d '{"project":{"budget_type":"M","budget":300,"budget_recurrence":{"start_date":"2018-09-21","end_date":"","recur_until":"archived"}}}' -X PUT \
+curl "https://api.timelyapp.com/1.1/23923/projects/23661" -d '{"project":{"budget_type":"M","budget":300,"budget_recurrence":{"start_date":"2018-09-21","end_date":"","recur_until":"archived"}}}' -X PUT \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 9004f8a7a09711585967bed27a2a731093c6204037ab8b7ddaab09e5fcac7081" \
+	-H "Authorization: Bearer 82a92cf1f1b4a41d718999548ed99905d3dc63d2f6d06d7e205db1269797e469" \
 	-H "Cookie: "
 ```
 
@@ -2461,10 +2461,10 @@ curl "https://api.timelyapp.com/1.1/23542/projects/23277" -d '{"project":{"budge
 `PUT /1.1/:account_id/projects/:id`
 
 ```plaintext
-PUT /1.1/23542/projects/23277
+PUT /1.1/23923/projects/23661
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 9004f8a7a09711585967bed27a2a731093c6204037ab8b7ddaab09e5fcac7081
+Authorization: Bearer 82a92cf1f1b4a41d718999548ed99905d3dc63d2f6d06d7e205db1269797e469
 ```
 
 #### Parameters
@@ -2487,7 +2487,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-{"id":23277,"active":true,"account_id":23542,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17560,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547725269,"label_ids":[],"required_label_ids":[],"team_ids":[],"external_id":null,"budget_scope":null,"budget":300,"budget_type":"M","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"first_logged_on":null,"last_logged_on":null,"labels":[],"budget_recurrence":{"recur":"week","start_date":"2018-09-21","end_date":null,"recur_until":"archived","days_count":0}}
+{"id":23661,"active":true,"account_id":23923,"name":"Timely","color":"67a3bc","rate_type":"project","client":{"id":17851,"name":"Timely","active":true,"external_id":null},"billable":true,"updated_at":1547730360,"label_ids":[],"required_label_ids":[],"team_ids":[],"external_id":null,"budget_scope":null,"budget":300,"budget_type":"M","hour_rate":50.0,"hour_rate_in_cents":5000.0,"users":[],"cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"estimated_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"estimated_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"billed_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"billed_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"unbilled_cost":{"fractional":0,"formatted":"$0.00","amount":0.0},"unbilled_duration":{"hours":0,"minutes":0,"seconds":0,"formatted":"00:00","total_hours":0.0,"total_seconds":0,"total_minutes":0},"first_logged_on":null,"last_logged_on":null,"labels":[],"budget_recurrence":{"recur":"week","start_date":"2018-09-21","end_date":null,"recur_until":"archived","days_count":0}}
 ```
 
 
@@ -2497,11 +2497,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.1/23543/projects/23278" -d '{"project":{"budget_type":"M","budget":300,"budget_recurrence":{"recur":"month"}}}' -X PUT \
+curl "https://api.timelyapp.com/1.1/23924/projects/23662" -d '{"project":{"budget_type":"M","budget":300,"budget_recurrence":{"recur":"month"}}}' -X PUT \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 5fcc4edafd9a9616dbdf9f4672701012672db85bf594f1c7e2be76fbbfe85851" \
+	-H "Authorization: Bearer 616eb6a9b7c7a7bec89b658de8eae3ede95f4cdb3daac05d846903d4e20c2e0a" \
 	-H "Cookie: "
 ```
 
@@ -2510,10 +2510,10 @@ curl "https://api.timelyapp.com/1.1/23543/projects/23278" -d '{"project":{"budge
 `PUT /1.1/:account_id/projects/:id`
 
 ```plaintext
-PUT /1.1/23543/projects/23278
+PUT /1.1/23924/projects/23662
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 5fcc4edafd9a9616dbdf9f4672701012672db85bf594f1c7e2be76fbbfe85851
+Authorization: Bearer 616eb6a9b7c7a7bec89b658de8eae3ede95f4cdb3daac05d846903d4e20c2e0a
 ```
 
 #### Parameters
@@ -2546,11 +2546,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.1/23544/projects/23279" -d '{"project":{"budget_type":"M","budget":400,"budget_recurrence":{"recur":"week"}}}' -X PUT \
+curl "https://api.timelyapp.com/1.1/23925/projects/23663" -d '{"project":{"budget_type":"M","budget":400,"budget_recurrence":{"recur":"week"}}}' -X PUT \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 1249773c951cb8f64ad050d6cb0a0098596b6745f13eb08a0146c140990920ba" \
+	-H "Authorization: Bearer 9f6b7b40a737ebe08ec12772bbfbdb9dd7e20147228a87f794e33309d433d4e2" \
 	-H "Cookie: "
 ```
 
@@ -2559,10 +2559,10 @@ curl "https://api.timelyapp.com/1.1/23544/projects/23279" -d '{"project":{"budge
 `PUT /1.1/:account_id/projects/:id`
 
 ```plaintext
-PUT /1.1/23544/projects/23279
+PUT /1.1/23925/projects/23663
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 1249773c951cb8f64ad050d6cb0a0098596b6745f13eb08a0146c140990920ba
+Authorization: Bearer 9f6b7b40a737ebe08ec12772bbfbdb9dd7e20147228a87f794e33309d433d4e2
 ```
 
 #### Parameters
@@ -2599,11 +2599,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/23547/suggested_entries?date=2019-01-17" -X GET \
+curl -g "https://api.timelyapp.com/1.1/23928/suggested_entries?date=2019-01-17" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 630a1bc2244d53c2f528486296a6dbd2d1728d45162b33e3f660f702012a872f" \
+	-H "Authorization: Bearer 24bb1a3f474695e61a46a4c85a20696a8bdb1bdb7acca4a55a20fad1db7ff9fd" \
 	-H "Cookie: "
 ```
 
@@ -2612,10 +2612,10 @@ curl -g "https://api.timelyapp.com/1.1/23547/suggested_entries?date=2019-01-17" 
 `GET /1.1/:account_id/suggested_entries`
 
 ```plaintext
-GET /1.1/23547/suggested_entries?date=2019-01-17
+GET /1.1/23928/suggested_entries?date=2019-01-17
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 630a1bc2244d53c2f528486296a6dbd2d1728d45162b33e3f660f702012a872f
+Authorization: Bearer 24bb1a3f474695e61a46a4c85a20696a8bdb1bdb7acca4a55a20fad1db7ff9fd
 ```
 
 #### Parameters
@@ -2638,7 +2638,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-[{"title":"Meeting","note":"Discuss about future","date":"2019-01-17","from":null,"to":null,"description":"14:00 - 15:00 • Discuss about future","entry_ids":[12027],"icon_url":"/assets/apps_logo/google_calendar-cf4817a3d9bb86a0f2371b67fc49106074b36e8ee05a1932c595181dbd9aecd0.png","icon_fallback_url":"/assets/apps_logo/google_calendar-cf4817a3d9bb86a0f2371b67fc49106074b36e8ee05a1932c595181dbd9aecd0.png","projects":[],"importance":0,"duration":{"hours":1,"minutes":0,"seconds":0,"formatted":"01:00","total_hours":1.0,"total_seconds":3600,"total_minutes":60}},{"title":"MacVim","note":"hour.rb (~/code/github/timely/app/models) - VIM1","date":"2019-01-17","from":null,"to":null,"description":"hour.rb (~/code/github/timely/app/models) - VIM1","entry_ids":[12028,12029],"icon_url":"/timeline_app_logos/macvim.png","icon_fallback_url":"/assets/timeline_app_logos/default-ec843823aa8fa1357fc233024c47d3f11adcd237244768bcc7bb9672b77bd8ac.png","projects":[{"project_id":23282,"accuracy":0.8,"count":2}],"importance":0.8,"duration":{"hours":7,"minutes":0,"seconds":0,"formatted":"07:00","total_hours":7.0,"total_seconds":25200,"total_minutes":420}},{"title":"Congratulations on winning $100000","note":"You won $100000, share your netbanking details","date":"2019-01-17","from":null,"to":null,"description":" • You won $100000, share your netbanking details","entry_ids":[12030],"icon_url":"/assets/apps_logo/gmail-507255a1d62e38cfb7bcc5a531337868c05cd6924f1183cdd4f08b0cb4d7efdf.png","icon_fallback_url":"/assets/apps_logo/gmail-507255a1d62e38cfb7bcc5a531337868c05cd6924f1183cdd4f08b0cb4d7efdf.png","projects":[{"project_id":23282,"accuracy":0.8,"count":1}],"importance":0,"duration":{"hours":3,"minutes":30,"seconds":0,"formatted":"03:30","total_hours":3.5,"total_seconds":12600,"total_minutes":210}}]
+[{"title":"Meeting","note":"Discuss about future","date":"2019-01-17","from":null,"to":null,"description":"14:00 - 15:00 • Discuss about future","entry_ids":[12225],"icon_url":"/assets/apps_logo/google_calendar-cf4817a3d9bb86a0f2371b67fc49106074b36e8ee05a1932c595181dbd9aecd0.png","icon_fallback_url":"/assets/apps_logo/google_calendar-cf4817a3d9bb86a0f2371b67fc49106074b36e8ee05a1932c595181dbd9aecd0.png","projects":[],"importance":0,"duration":{"hours":1,"minutes":0,"seconds":0,"formatted":"01:00","total_hours":1.0,"total_seconds":3600,"total_minutes":60}},{"title":"MacVim","note":"hour.rb (~/code/github/timely/app/models) - VIM1","date":"2019-01-17","from":null,"to":null,"description":"hour.rb (~/code/github/timely/app/models) - VIM1","entry_ids":[12226,12227],"icon_url":"/timeline_app_logos/macvim.png","icon_fallback_url":"/assets/timeline_app_logos/default-ec843823aa8fa1357fc233024c47d3f11adcd237244768bcc7bb9672b77bd8ac.png","projects":[{"project_id":23666,"accuracy":0.8,"count":2}],"importance":0.8,"duration":{"hours":7,"minutes":0,"seconds":0,"formatted":"07:00","total_hours":7.0,"total_seconds":25200,"total_minutes":420}},{"title":"Congratulations on winning $100000","note":"You won $100000, share your netbanking details","date":"2019-01-17","from":null,"to":null,"description":" • You won $100000, share your netbanking details","entry_ids":[12228],"icon_url":"/assets/apps_logo/gmail-507255a1d62e38cfb7bcc5a531337868c05cd6924f1183cdd4f08b0cb4d7efdf.png","icon_fallback_url":"/assets/apps_logo/gmail-507255a1d62e38cfb7bcc5a531337868c05cd6924f1183cdd4f08b0cb4d7efdf.png","projects":[{"project_id":23666,"accuracy":0.8,"count":1}],"importance":0,"duration":{"hours":3,"minutes":30,"seconds":0,"formatted":"03:30","total_hours":3.5,"total_seconds":12600,"total_minutes":210}}]
 ```
 
 
@@ -2648,11 +2648,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.1/23548/suggested_entries" -d '{"suggested_entries":{"entries":[{"entry_id":12032,"project_id":23284}]}}' -X PUT \
+curl "https://api.timelyapp.com/1.1/23929/suggested_entries" -d '{"suggested_entries":{"entries":[{"entry_id":12230,"project_id":23668}]}}' -X PUT \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 82f5fbb887b3f4e52e8a9408e75edc6a1d23a0e12e19406580423294e9c1eb2e" \
+	-H "Authorization: Bearer 048b6a53c8d01957df95b693af1a0b818469aea5a440a2dac0282a84fd191b4b" \
 	-H "Cookie: "
 ```
 
@@ -2661,17 +2661,17 @@ curl "https://api.timelyapp.com/1.1/23548/suggested_entries" -d '{"suggested_ent
 `PUT /1.1/:account_id/suggested_entries`
 
 ```plaintext
-PUT /1.1/23548/suggested_entries
+PUT /1.1/23929/suggested_entries
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 82f5fbb887b3f4e52e8a9408e75edc6a1d23a0e12e19406580423294e9c1eb2e
+Authorization: Bearer 048b6a53c8d01957df95b693af1a0b818469aea5a440a2dac0282a84fd191b4b
 ```
 
 #### Parameters
 
 
 ```json
-{"suggested_entries":{"entries":[{"entry_id":12032,"project_id":23284}]}}
+{"suggested_entries":{"entries":[{"entry_id":12230,"project_id":23668}]}}
 ```
 
 | Name | Description |
@@ -2701,11 +2701,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/23549/suggested_hours?date=2019-01-17" -X GET \
+curl -g "https://api.timelyapp.com/1.1/23930/suggested_hours?date=2019-01-17" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 0a6989e82029b48713bb8d1bf2452e3e5fcc557b3bacfe435ab8512fb9cd7330" \
+	-H "Authorization: Bearer 4a9ae81254e3dbca8c03fa0ca0f65fc3bb82f63939e589d316c53a241ae0c272" \
 	-H "Cookie: "
 ```
 
@@ -2714,10 +2714,10 @@ curl -g "https://api.timelyapp.com/1.1/23549/suggested_hours?date=2019-01-17" -X
 `GET /1.1/:account_id/suggested_hours`
 
 ```plaintext
-GET /1.1/23549/suggested_hours?date=2019-01-17
+GET /1.1/23930/suggested_hours?date=2019-01-17
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 0a6989e82029b48713bb8d1bf2452e3e5fcc557b3bacfe435ab8512fb9cd7330
+Authorization: Bearer 4a9ae81254e3dbca8c03fa0ca0f65fc3bb82f63939e589d316c53a241ae0c272
 ```
 
 #### Parameters
@@ -2743,7 +2743,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-[{"id":2554,"owner":{"id":22659,"email":"notifications@timelyapp.com","name":"Timely","avatar":{"timeline":"/assets/timely_user_avatar_timeline.png","medium_retina":"/assets/timely_user_avatar_medium_retina.png","medium":"/assets/timely_user_avatar_medium.png"}},"project_id":23285,"date":"2019-01-17","to":"2019-01-17T16:11:11+01:00","from":"2019-01-17T12:41:11+01:00","note":"Notes for testing with some random #hash in it.","duration":{"hours":3,"minutes":30,"seconds":0,"formatted":"03:30","total_hours":3.5,"total_seconds":12600,"total_minutes":210},"status":"pending","source":"prediction","created_at":"2019-01-17T12:41:11+01:00","suggested_entry_ids":[12035,12036],"version":"0.2.0","updated_at":"2019-01-17T12:41:11+01:00"}]
+[{"id":2596,"owner":{"id":23037,"email":"notifications@timelyapp.com","name":"Timely","avatar":{"timeline":"/assets/timely_user_avatar_timeline.png","medium_retina":"/assets/timely_user_avatar_medium_retina.png","medium":"/assets/timely_user_avatar_medium.png"}},"project_id":23669,"date":"2019-01-17","to":"2019-01-17T17:36:01+01:00","from":"2019-01-17T14:06:01+01:00","note":"Notes for testing with some random #hash in it.","duration":{"hours":3,"minutes":30,"seconds":0,"formatted":"03:30","total_hours":3.5,"total_seconds":12600,"total_minutes":210},"status":"pending","source":"prediction","created_at":"2019-01-17T14:06:01+01:00","suggested_entry_ids":[12233,12234],"version":"0.2.0","updated_at":"2019-01-17T14:06:01+01:00"}]
 ```
 
 
@@ -2753,11 +2753,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/23555/suggested_hours/2566" -X GET \
+curl -g "https://api.timelyapp.com/1.1/23936/suggested_hours/2608" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 83281a20d4d927b7c19bdf0d8da5bd2bebc8c1a62126c92c5b4fe75cda746fbc" \
+	-H "Authorization: Bearer 2ee97c5670fe31b86a5b8ec86064f39d557150915fdf09dfe9814ff4ef5cb56a" \
 	-H "Cookie: "
 ```
 
@@ -2766,10 +2766,10 @@ curl -g "https://api.timelyapp.com/1.1/23555/suggested_hours/2566" -X GET \
 `GET /1.1/:account_id/suggested_hours/:suggested_hour_id`
 
 ```plaintext
-GET /1.1/23555/suggested_hours/2566
+GET /1.1/23936/suggested_hours/2608
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 83281a20d4d927b7c19bdf0d8da5bd2bebc8c1a62126c92c5b4fe75cda746fbc
+Authorization: Bearer 2ee97c5670fe31b86a5b8ec86064f39d557150915fdf09dfe9814ff4ef5cb56a
 ```
 
 #### Parameters
@@ -2790,7 +2790,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-{"id":2566,"owner":{"id":22665,"email":"notifications@timelyapp.com","name":"Timely","avatar":{"timeline":"/assets/timely_user_avatar_timeline.png","medium_retina":"/assets/timely_user_avatar_medium_retina.png","medium":"/assets/timely_user_avatar_medium.png"}},"project_id":23291,"date":"2019-01-17","to":"2019-01-17T16:11:12+01:00","from":"2019-01-17T12:41:12+01:00","note":"Notes for testing with some random #hash in it.","duration":{"hours":3,"minutes":30,"seconds":0,"formatted":"03:30","total_hours":3.5,"total_seconds":12600,"total_minutes":210},"status":"pending","source":"prediction","created_at":"2019-01-17T12:41:12+01:00","suggested_entry_ids":[12059,12060],"version":"0.2.0","updated_at":"2019-01-17T12:41:12+01:00"}
+{"id":2608,"owner":{"id":23043,"email":"notifications@timelyapp.com","name":"Timely","avatar":{"timeline":"/assets/timely_user_avatar_timeline.png","medium_retina":"/assets/timely_user_avatar_medium_retina.png","medium":"/assets/timely_user_avatar_medium.png"}},"project_id":23675,"date":"2019-01-17","to":"2019-01-17T17:36:04+01:00","from":"2019-01-17T14:06:04+01:00","note":"Notes for testing with some random #hash in it.","duration":{"hours":3,"minutes":30,"seconds":0,"formatted":"03:30","total_hours":3.5,"total_seconds":12600,"total_minutes":210},"status":"pending","source":"prediction","created_at":"2019-01-17T14:06:04+01:00","suggested_entry_ids":[12257,12258],"version":"0.2.0","updated_at":"2019-01-17T14:06:04+01:00"}
 ```
 
 
@@ -2800,11 +2800,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/23551/suggested_hours?date=2019-01-17&since=2019-01-15&until=2019-01-17" -X GET \
+curl -g "https://api.timelyapp.com/1.1/23932/suggested_hours?date=2019-01-17&since=2019-01-15&until=2019-01-17" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer e8bdb30f2ef41235c440d9b3a9bb2e30380060c244aa1dceb06dc050d8cd8c0a" \
+	-H "Authorization: Bearer 863b454b9dfa006a7bf097d9aa5092c8fbf5002097baa98bbba5ebecfc60434a" \
 	-H "Cookie: "
 ```
 
@@ -2813,10 +2813,10 @@ curl -g "https://api.timelyapp.com/1.1/23551/suggested_hours?date=2019-01-17&sin
 `GET /1.1/:account_id/suggested_hours`
 
 ```plaintext
-GET /1.1/23551/suggested_hours?date=2019-01-17&amp;since=2019-01-15&amp;until=2019-01-17
+GET /1.1/23932/suggested_hours?date=2019-01-17&amp;since=2019-01-15&amp;until=2019-01-17
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer e8bdb30f2ef41235c440d9b3a9bb2e30380060c244aa1dceb06dc050d8cd8c0a
+Authorization: Bearer 863b454b9dfa006a7bf097d9aa5092c8fbf5002097baa98bbba5ebecfc60434a
 ```
 
 #### Parameters
@@ -2844,7 +2844,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-[{"id":2558,"owner":{"id":22661,"email":"notifications@timelyapp.com","name":"Timely","avatar":{"timeline":"/assets/timely_user_avatar_timeline.png","medium_retina":"/assets/timely_user_avatar_medium_retina.png","medium":"/assets/timely_user_avatar_medium.png"}},"project_id":23287,"date":"2019-01-17","to":"2019-01-17T16:11:11+01:00","from":"2019-01-17T12:41:11+01:00","note":"Notes for testing with some random #hash in it.","duration":{"hours":3,"minutes":30,"seconds":0,"formatted":"03:30","total_hours":3.5,"total_seconds":12600,"total_minutes":210},"status":"pending","source":"prediction","created_at":"2019-01-17T12:41:11+01:00","suggested_entry_ids":[12043,12044],"version":"0.2.0","updated_at":"2019-01-17T12:41:11+01:00"},{"id":2559,"owner":{"id":22661,"email":"notifications@timelyapp.com","name":"Timely","avatar":{"timeline":"/assets/timely_user_avatar_timeline.png","medium_retina":"/assets/timely_user_avatar_medium_retina.png","medium":"/assets/timely_user_avatar_medium.png"}},"project_id":23287,"date":"2019-01-15","to":"2019-01-17T16:11:11+01:00","from":"2019-01-17T12:41:11+01:00","note":"Notes for testing with some random #hash in it.","duration":{"hours":3,"minutes":30,"seconds":0,"formatted":"03:30","total_hours":3.5,"total_seconds":12600,"total_minutes":210},"status":"pending","source":"prediction","created_at":"2019-01-17T12:41:11+01:00","suggested_entry_ids":[12045],"version":"0.2.0","updated_at":"2019-01-17T12:41:11+01:00"}]
+[{"id":2600,"owner":{"id":23039,"email":"notifications@timelyapp.com","name":"Timely","avatar":{"timeline":"/assets/timely_user_avatar_timeline.png","medium_retina":"/assets/timely_user_avatar_medium_retina.png","medium":"/assets/timely_user_avatar_medium.png"}},"project_id":23671,"date":"2019-01-17","to":"2019-01-17T17:36:02+01:00","from":"2019-01-17T14:06:02+01:00","note":"Notes for testing with some random #hash in it.","duration":{"hours":3,"minutes":30,"seconds":0,"formatted":"03:30","total_hours":3.5,"total_seconds":12600,"total_minutes":210},"status":"pending","source":"prediction","created_at":"2019-01-17T14:06:02+01:00","suggested_entry_ids":[12241,12242],"version":"0.2.0","updated_at":"2019-01-17T14:06:02+01:00"},{"id":2601,"owner":{"id":23039,"email":"notifications@timelyapp.com","name":"Timely","avatar":{"timeline":"/assets/timely_user_avatar_timeline.png","medium_retina":"/assets/timely_user_avatar_medium_retina.png","medium":"/assets/timely_user_avatar_medium.png"}},"project_id":23671,"date":"2019-01-15","to":"2019-01-17T17:36:02+01:00","from":"2019-01-17T14:06:02+01:00","note":"Notes for testing with some random #hash in it.","duration":{"hours":3,"minutes":30,"seconds":0,"formatted":"03:30","total_hours":3.5,"total_seconds":12600,"total_minutes":210},"status":"pending","source":"prediction","created_at":"2019-01-17T14:06:02+01:00","suggested_entry_ids":[12243],"version":"0.2.0","updated_at":"2019-01-17T14:06:02+01:00"}]
 ```
 
 
@@ -2854,11 +2854,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/23552/suggested_hours?date=2019-01-17&suggested_hour_ids=2560" -X GET \
+curl -g "https://api.timelyapp.com/1.1/23933/suggested_hours?date=2019-01-17&suggested_hour_ids=2602" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 0a528cb5575cec318f37f822541cbebc9b96412654377547ad79e61027ac785b" \
+	-H "Authorization: Bearer f0b48a295c81e7312b03b8d2e7a005c6d7ddaabf08246386fcd3933c435154de" \
 	-H "Cookie: "
 ```
 
@@ -2867,17 +2867,17 @@ curl -g "https://api.timelyapp.com/1.1/23552/suggested_hours?date=2019-01-17&sug
 `GET /1.1/:account_id/suggested_hours`
 
 ```plaintext
-GET /1.1/23552/suggested_hours?date=2019-01-17&amp;suggested_hour_ids=2560
+GET /1.1/23933/suggested_hours?date=2019-01-17&amp;suggested_hour_ids=2602
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 0a528cb5575cec318f37f822541cbebc9b96412654377547ad79e61027ac785b
+Authorization: Bearer f0b48a295c81e7312b03b8d2e7a005c6d7ddaabf08246386fcd3933c435154de
 ```
 
 #### Parameters
 
 ```json
 date: 2019-01-17
-suggested_hour_ids: 2560
+suggested_hour_ids: 2602
 ```
 
 
@@ -2897,7 +2897,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-[{"id":2560,"owner":{"id":22662,"email":"notifications@timelyapp.com","name":"Timely","avatar":{"timeline":"/assets/timely_user_avatar_timeline.png","medium_retina":"/assets/timely_user_avatar_medium_retina.png","medium":"/assets/timely_user_avatar_medium.png"}},"project_id":23288,"date":"2019-01-17","to":"2019-01-17T16:11:12+01:00","from":"2019-01-17T12:41:12+01:00","note":"Notes for testing with some random #hash in it.","duration":{"hours":3,"minutes":30,"seconds":0,"formatted":"03:30","total_hours":3.5,"total_seconds":12600,"total_minutes":210},"status":"pending","source":"prediction","created_at":"2019-01-17T12:41:12+01:00","suggested_entry_ids":[12047,12048],"version":"0.2.0","updated_at":"2019-01-17T12:41:12+01:00"}]
+[{"id":2602,"owner":{"id":23040,"email":"notifications@timelyapp.com","name":"Timely","avatar":{"timeline":"/assets/timely_user_avatar_timeline.png","medium_retina":"/assets/timely_user_avatar_medium_retina.png","medium":"/assets/timely_user_avatar_medium.png"}},"project_id":23672,"date":"2019-01-17","to":"2019-01-17T17:36:03+01:00","from":"2019-01-17T14:06:03+01:00","note":"Notes for testing with some random #hash in it.","duration":{"hours":3,"minutes":30,"seconds":0,"formatted":"03:30","total_hours":3.5,"total_seconds":12600,"total_minutes":210},"status":"pending","source":"prediction","created_at":"2019-01-17T14:06:03+01:00","suggested_entry_ids":[12245,12246],"version":"0.2.0","updated_at":"2019-01-17T14:06:03+01:00"}]
 ```
 
 
@@ -2907,11 +2907,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.1/23553/suggested_hours/2562" -d '{}' -X PUT \
+curl "https://api.timelyapp.com/1.1/23934/suggested_hours/2604" -d '{}' -X PUT \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 9e174643b41a0d6d4c2dbbdab5e853dfb2e83d205de51dde0de1358844d14696" \
+	-H "Authorization: Bearer dfffa23a8938771265ec717bc8053750871b5237cdd02f4824ff4001aad4f428" \
 	-H "Cookie: "
 ```
 
@@ -2920,10 +2920,10 @@ curl "https://api.timelyapp.com/1.1/23553/suggested_hours/2562" -d '{}' -X PUT \
 `PUT /1.1/:account_id/suggested_hours/:suggested_hour_id`
 
 ```plaintext
-PUT /1.1/23553/suggested_hours/2562
+PUT /1.1/23934/suggested_hours/2604
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 9e174643b41a0d6d4c2dbbdab5e853dfb2e83d205de51dde0de1358844d14696
+Authorization: Bearer dfffa23a8938771265ec717bc8053750871b5237cdd02f4824ff4001aad4f428
 ```
 
 #### Parameters
@@ -2944,7 +2944,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-{"id":2562,"owner":{"id":22663,"email":"notifications@timelyapp.com","name":"Timely","avatar":{"timeline":"/assets/timely_user_avatar_timeline.png","medium_retina":"/assets/timely_user_avatar_medium_retina.png","medium":"/assets/timely_user_avatar_medium.png"}},"project_id":23289,"date":"2019-01-17","to":"2019-01-17T16:11:12+01:00","from":"2019-01-17T12:41:12+01:00","note":"Notes for testing with some random #hash in it.","duration":{"hours":3,"minutes":30,"seconds":0,"formatted":"03:30","total_hours":3.5,"total_seconds":12600,"total_minutes":210},"status":"dismissed","source":"prediction","created_at":"2019-01-17T12:41:12+01:00","suggested_entry_ids":[12051,12052],"version":"0.2.0","updated_at":"2019-01-17T12:41:12+01:00"}
+{"id":2604,"owner":{"id":23041,"email":"notifications@timelyapp.com","name":"Timely","avatar":{"timeline":"/assets/timely_user_avatar_timeline.png","medium_retina":"/assets/timely_user_avatar_medium_retina.png","medium":"/assets/timely_user_avatar_medium.png"}},"project_id":23673,"date":"2019-01-17","to":"2019-01-17T17:36:03+01:00","from":"2019-01-17T14:06:03+01:00","note":"Notes for testing with some random #hash in it.","duration":{"hours":3,"minutes":30,"seconds":0,"formatted":"03:30","total_hours":3.5,"total_seconds":12600,"total_minutes":210},"status":"dismissed","source":"prediction","created_at":"2019-01-17T14:06:03+01:00","suggested_entry_ids":[12249,12250],"version":"0.2.0","updated_at":"2019-01-17T14:06:03+01:00"}
 ```
 
 
@@ -2954,11 +2954,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.1/23554/suggested_hours/decline" -d '{"suggested_hour_ids":[2564]}' -X PUT \
+curl "https://api.timelyapp.com/1.1/23935/suggested_hours/decline" -d '{"suggested_hour_ids":[2606]}' -X PUT \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 94a9a43fb8936a595f5d9c3788188facbd8fc120758965f1ba3d30f2c755d6b6" \
+	-H "Authorization: Bearer 190c13cc25d3ffaee810dd2cda57a2397b66db4d008686a006abacd72e4d3899" \
 	-H "Cookie: "
 ```
 
@@ -2967,17 +2967,17 @@ curl "https://api.timelyapp.com/1.1/23554/suggested_hours/decline" -d '{"suggest
 `PUT /1.1/:account_id/suggested_hours/decline`
 
 ```plaintext
-PUT /1.1/23554/suggested_hours/decline
+PUT /1.1/23935/suggested_hours/decline
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 94a9a43fb8936a595f5d9c3788188facbd8fc120758965f1ba3d30f2c755d6b6
+Authorization: Bearer 190c13cc25d3ffaee810dd2cda57a2397b66db4d008686a006abacd72e4d3899
 ```
 
 #### Parameters
 
 
 ```json
-{"suggested_hour_ids":[2564]}
+{"suggested_hour_ids":[2606]}
 ```
 
 | Name | Description |
@@ -3003,11 +3003,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/23550/suggested_hours?date=2019-01-15" -X GET \
+curl -g "https://api.timelyapp.com/1.1/23931/suggested_hours?date=2019-01-15" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 7c8a279e586fcc91408aad1b18b595e3fcf3b286e3ba8aeba0e4485846b36047" \
+	-H "Authorization: Bearer 717e4af4cd0b3470209deb3affbebb1ce3a140a8e02440e8f623c175dae12b0e" \
 	-H "Cookie: "
 ```
 
@@ -3016,10 +3016,10 @@ curl -g "https://api.timelyapp.com/1.1/23550/suggested_hours?date=2019-01-15" -X
 `GET /1.1/:account_id/suggested_hours`
 
 ```plaintext
-GET /1.1/23550/suggested_hours?date=2019-01-15
+GET /1.1/23931/suggested_hours?date=2019-01-15
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 7c8a279e586fcc91408aad1b18b595e3fcf3b286e3ba8aeba0e4485846b36047
+Authorization: Bearer 717e4af4cd0b3470209deb3affbebb1ce3a140a8e02440e8f623c175dae12b0e
 ```
 
 #### Parameters
@@ -3045,7 +3045,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-[{"id":2557,"owner":{"id":22660,"email":"notifications@timelyapp.com","name":"Timely","avatar":{"timeline":"/assets/timely_user_avatar_timeline.png","medium_retina":"/assets/timely_user_avatar_medium_retina.png","medium":"/assets/timely_user_avatar_medium.png"}},"project_id":23286,"date":"2019-01-15","to":"2019-01-17T16:11:11+01:00","from":"2019-01-17T12:41:11+01:00","note":"Notes for testing with some random #hash in it.","duration":{"hours":3,"minutes":30,"seconds":0,"formatted":"03:30","total_hours":3.5,"total_seconds":12600,"total_minutes":210},"status":"pending","source":"prediction","created_at":"2019-01-17T12:41:11+01:00","suggested_entry_ids":[12041],"version":"0.2.0","updated_at":"2019-01-17T12:41:11+01:00"}]
+[{"id":2599,"owner":{"id":23038,"email":"notifications@timelyapp.com","name":"Timely","avatar":{"timeline":"/assets/timely_user_avatar_timeline.png","medium_retina":"/assets/timely_user_avatar_medium_retina.png","medium":"/assets/timely_user_avatar_medium.png"}},"project_id":23670,"date":"2019-01-15","to":"2019-01-17T17:36:02+01:00","from":"2019-01-17T14:06:02+01:00","note":"Notes for testing with some random #hash in it.","duration":{"hours":3,"minutes":30,"seconds":0,"formatted":"03:30","total_hours":3.5,"total_seconds":12600,"total_minutes":210},"status":"pending","source":"prediction","created_at":"2019-01-17T14:06:02+01:00","suggested_entry_ids":[12239],"version":"0.2.0","updated_at":"2019-01-17T14:06:02+01:00"}]
 ```
 
 
@@ -3059,11 +3059,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.1/23562/training_entries" -d '{"training_entries":{"entries":[{"entry_id":12066,"project_id":23297}]}}' -X POST \
+curl "https://api.timelyapp.com/1.1/23943/training_entries" -d '{"training_entries":{"entries":[{"entry_id":12264,"project_id":23681}]}}' -X POST \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 55cfe49f3496db7ef1e846503ba8fe8e9bc008f9f80217a8fa6b1555b542b7e9" \
+	-H "Authorization: Bearer 56e85be13508c824a8462a7d03d87eec36e53d14156e62fe9927112c3e0fbd4c" \
 	-H "Cookie: "
 ```
 
@@ -3072,17 +3072,17 @@ curl "https://api.timelyapp.com/1.1/23562/training_entries" -d '{"training_entri
 `POST /1.1/:account_id/training_entries`
 
 ```plaintext
-POST /1.1/23562/training_entries
+POST /1.1/23943/training_entries
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 55cfe49f3496db7ef1e846503ba8fe8e9bc008f9f80217a8fa6b1555b542b7e9
+Authorization: Bearer 56e85be13508c824a8462a7d03d87eec36e53d14156e62fe9927112c3e0fbd4c
 ```
 
 #### Parameters
 
 
 ```json
-{"training_entries":{"entries":[{"entry_id":12066,"project_id":23297}]}}
+{"training_entries":{"entries":[{"entry_id":12264,"project_id":23681}]}}
 ```
 
 | Name | Description |
@@ -3108,11 +3108,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/23561/training_entries?date=2019-01-17" -X GET \
+curl -g "https://api.timelyapp.com/1.1/23942/training_entries?date=2019-01-17" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer bab5182bab34a7779f27be373d9f69aea3a53ba1bb6b3addca424cca4d7b78a7" \
+	-H "Authorization: Bearer ea78cf053a8f446d501d565c06c9aef5a83766760f7f3b5bc7f34d8a1afd8abd" \
 	-H "Cookie: "
 ```
 
@@ -3121,10 +3121,10 @@ curl -g "https://api.timelyapp.com/1.1/23561/training_entries?date=2019-01-17" -
 `GET /1.1/:account_id/training_entries`
 
 ```plaintext
-GET /1.1/23561/training_entries?date=2019-01-17
+GET /1.1/23942/training_entries?date=2019-01-17
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer bab5182bab34a7779f27be373d9f69aea3a53ba1bb6b3addca424cca4d7b78a7
+Authorization: Bearer ea78cf053a8f446d501d565c06c9aef5a83766760f7f3b5bc7f34d8a1afd8abd
 ```
 
 #### Parameters
@@ -3147,7 +3147,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-[{"id":12063,"type":"macOS","uid":"c600370a-4758-4146-a72b-9ca3bb9dda6c","title":"MacVim","note":"hour.rb (~/code/github/timely/app/models) - VIM1","description":"hour.rb (~/code/github/timely/app/models) - VIM1","date":"2019-01-17","from":"2019-01-17T10:00:00+01:00","to":"2019-01-17T12:00:00+01:00","entry_type":null,"duration":{"hours":2,"minutes":0,"seconds":0,"formatted":"02:00","total_hours":2.0,"total_seconds":7200,"total_minutes":120},"at":"2019-01-17T10:00:00+01:00","extra_attributes":[{"name":"application","value":"MacVim"},{"name":"detail","value":""}],"icon":"mac_vim.png","color":"rgba(86,210,255,0.30)","sub_entries":[],"icon_url":"/timeline_app_logos/macvim.png","icon_fallback_url":"/assets/timeline_app_logos/default-ec843823aa8fa1357fc233024c47d3f11adcd237244768bcc7bb9672b77bd8ac.png","url":null,"score":0.8},{"id":12064,"type":"macOS","uid":"c600370a-4758-4146-a72b-9ca3bb9dda6c","title":"MacVim","note":"hour.rb (~/code/github/timely/app/models) - VIM1","description":"hour.rb (~/code/github/timely/app/models) - VIM1","date":"2019-01-17","from":"2019-01-17T14:00:00+01:00","to":"2019-01-17T15:00:00+01:00","entry_type":null,"duration":{"hours":1,"minutes":0,"seconds":0,"formatted":"01:00","total_hours":1.0,"total_seconds":3600,"total_minutes":60},"at":"2019-01-17T14:00:00+01:00","extra_attributes":[{"name":"application","value":"MacVim"},{"name":"detail","value":""}],"icon":"mac_vim.png","color":"rgba(86,210,255,0.30)","sub_entries":[],"icon_url":"/timeline_app_logos/macvim.png","icon_fallback_url":"/assets/timeline_app_logos/default-ec843823aa8fa1357fc233024c47d3f11adcd237244768bcc7bb9672b77bd8ac.png","url":null,"score":0.6}]
+[{"id":12261,"type":"macOS","uid":"699ce68d-be50-4a8e-9510-004e75b04132","title":"MacVim","note":"hour.rb (~/code/github/timely/app/models) - VIM1","description":"hour.rb (~/code/github/timely/app/models) - VIM1","date":"2019-01-17","from":"2019-01-17T10:00:00+01:00","to":"2019-01-17T12:00:00+01:00","entry_type":null,"duration":{"hours":2,"minutes":0,"seconds":0,"formatted":"02:00","total_hours":2.0,"total_seconds":7200,"total_minutes":120},"at":"2019-01-17T10:00:00+01:00","extra_attributes":[{"name":"application","value":"MacVim"},{"name":"detail","value":""}],"icon":"mac_vim.png","color":"rgba(86,210,255,0.30)","sub_entries":[],"icon_url":"/timeline_app_logos/macvim.png","icon_fallback_url":"/assets/timeline_app_logos/default-ec843823aa8fa1357fc233024c47d3f11adcd237244768bcc7bb9672b77bd8ac.png","url":null,"score":0.8},{"id":12262,"type":"macOS","uid":"699ce68d-be50-4a8e-9510-004e75b04132","title":"MacVim","note":"hour.rb (~/code/github/timely/app/models) - VIM1","description":"hour.rb (~/code/github/timely/app/models) - VIM1","date":"2019-01-17","from":"2019-01-17T14:00:00+01:00","to":"2019-01-17T15:00:00+01:00","entry_type":null,"duration":{"hours":1,"minutes":0,"seconds":0,"formatted":"01:00","total_hours":1.0,"total_seconds":3600,"total_minutes":60},"at":"2019-01-17T14:00:00+01:00","extra_attributes":[{"name":"application","value":"MacVim"},{"name":"detail","value":""}],"icon":"mac_vim.png","color":"rgba(86,210,255,0.30)","sub_entries":[],"icon_url":"/timeline_app_logos/macvim.png","icon_fallback_url":"/assets/timeline_app_logos/default-ec843823aa8fa1357fc233024c47d3f11adcd237244768bcc7bb9672b77bd8ac.png","url":null,"score":0.6}]
 ```
 
 
@@ -3157,11 +3157,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.1/23563/training_entries" -d '{"training_entries":{"entries":[{"entry_id":12068,"project_id":23298},{"entry_id":12067,"project_id":23298}]}}' -X POST \
+curl "https://api.timelyapp.com/1.1/23944/training_entries" -d '{"training_entries":{"entries":[{"entry_id":12266,"project_id":23682},{"entry_id":12265,"project_id":23682}]}}' -X POST \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer f7ada32f71844a37a2c7aceba30c3db866894238655b4bf375a61750fbf2d17c" \
+	-H "Authorization: Bearer 0953ab98c7eb584e4ab43e113e8b602ed7e8e99780be9b00c62606a58387ac57" \
 	-H "Cookie: "
 ```
 
@@ -3170,17 +3170,17 @@ curl "https://api.timelyapp.com/1.1/23563/training_entries" -d '{"training_entri
 `POST /1.1/:account_id/training_entries`
 
 ```plaintext
-POST /1.1/23563/training_entries
+POST /1.1/23944/training_entries
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer f7ada32f71844a37a2c7aceba30c3db866894238655b4bf375a61750fbf2d17c
+Authorization: Bearer 0953ab98c7eb584e4ab43e113e8b602ed7e8e99780be9b00c62606a58387ac57
 ```
 
 #### Parameters
 
 
 ```json
-{"training_entries":{"entries":[{"entry_id":12068,"project_id":23298},{"entry_id":12067,"project_id":23298}]}}
+{"training_entries":{"entries":[{"entry_id":12266,"project_id":23682},{"entry_id":12265,"project_id":23682}]}}
 ```
 
 | Name | Description |
@@ -3210,11 +3210,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.2/private/accounts/23574/upgrade" -d '{"account":{"next_charge":"2019-02-17","appstore_transaction_id":"some-appstore-id","plan":"essential"}}' -X POST \
+curl "https://api.timelyapp.com/1.2/private/accounts/23955/upgrade" -d '{"account":{"next_charge":"2019-02-17","appstore_transaction_id":"some-appstore-id","plan":"essential"}}' -X POST \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer ce900a97b15c90b293dc52d5f584b1d4c8071340405e1911e74e187acb0b8ad4" \
+	-H "Authorization: Bearer 099f20a8fbd0b47d59807a9d56a46e939ba92c3957d3f2bbbc186c9b98d2bd81" \
 	-H "Cookie: "
 ```
 
@@ -3223,10 +3223,10 @@ curl "https://api.timelyapp.com/1.2/private/accounts/23574/upgrade" -d '{"accoun
 `POST /1.2/private/accounts/:account_id/upgrade`
 
 ```plaintext
-POST /1.2/private/accounts/23574/upgrade
+POST /1.2/private/accounts/23955/upgrade
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer ce900a97b15c90b293dc52d5f584b1d4c8071340405e1911e74e187acb0b8ad4
+Authorization: Bearer 099f20a8fbd0b47d59807a9d56a46e939ba92c3957d3f2bbbc186c9b98d2bd81
 ```
 
 #### Parameters
@@ -3261,11 +3261,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.2/private/accounts/23576/upgrade" -d '{"account":{"next_charge":"2019-02-17","appstore_transaction_id":"some-appstore-id","plan":"solo_v1"}}' -X POST \
+curl "https://api.timelyapp.com/1.2/private/accounts/23957/upgrade" -d '{"account":{"next_charge":"2019-02-17","appstore_transaction_id":"some-appstore-id","plan":"solo_v1"}}' -X POST \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer d71a76a373b2863074b3c4de9ae67bccaf77b993e122a70f36e52e09792e5906" \
+	-H "Authorization: Bearer 9f7eacf64bd690c8de02a8b2a03bea883827a40d1cc529a8f5831a21f7342744" \
 	-H "Cookie: "
 ```
 
@@ -3274,10 +3274,10 @@ curl "https://api.timelyapp.com/1.2/private/accounts/23576/upgrade" -d '{"accoun
 `POST /1.2/private/accounts/:account_id/upgrade`
 
 ```plaintext
-POST /1.2/private/accounts/23576/upgrade
+POST /1.2/private/accounts/23957/upgrade
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer d71a76a373b2863074b3c4de9ae67bccaf77b993e122a70f36e52e09792e5906
+Authorization: Bearer 9f7eacf64bd690c8de02a8b2a03bea883827a40d1cc529a8f5831a21f7342744
 ```
 
 #### Parameters
@@ -3312,11 +3312,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.2/private/accounts/23573/upgrade" -d '{"account":{"next_charge":"2019-02-17","appstore_transaction_id":"some-appstore-id","plan":"essential"}}' -X POST \
+curl "https://api.timelyapp.com/1.2/private/accounts/23954/upgrade" -d '{"account":{"next_charge":"2019-02-17","appstore_transaction_id":"some-appstore-id","plan":"essential"}}' -X POST \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer dd1220db708ddbca2ada44bee29cb4ad89420ca6ee2cd77016ca2431e5d61924" \
+	-H "Authorization: Bearer 88945f9dfd266492eccff17fa6a1a66a23a70df4fe29bf62e6c225117b62a3c4" \
 	-H "Cookie: "
 ```
 
@@ -3325,10 +3325,10 @@ curl "https://api.timelyapp.com/1.2/private/accounts/23573/upgrade" -d '{"accoun
 `POST /1.2/private/accounts/:account_id/upgrade`
 
 ```plaintext
-POST /1.2/private/accounts/23573/upgrade
+POST /1.2/private/accounts/23954/upgrade
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer dd1220db708ddbca2ada44bee29cb4ad89420ca6ee2cd77016ca2431e5d61924
+Authorization: Bearer 88945f9dfd266492eccff17fa6a1a66a23a70df4fe29bf62e6c225117b62a3c4
 ```
 
 #### Parameters
@@ -3353,7 +3353,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-{"id":23573,"name":"Timely","from":"Web","max_users":0,"max_projects":0,"num_users":2,"num_projects":0,"plan_id":28,"plan_name":"Essential","next_charge":"2019-02-17","currency":{"id":"usd","name":"United States Dollar","iso_code":"USD","symbol":"$","symbol_first":true},"start_of_week":0,"beta":false,"created_at":1547725278,"payment_mode":"appstore","paid":false,"company_size":"10-49","color":"44505e","logo":{"large_retina":"/assets/account_thumbs/account_large_retina.png","medium_retina":"/assets/account_thumbs/account_medium_retina.png","small_retina":"/assets/account_thumbs/account_small_retina.png"},"capacity":{"hours":40.0,"minutes":0.0,"seconds":0.0,"formatted":"40:00","total_hours":40.0,"total_seconds":144000.0,"total_minutes":2400.0},"plan_code":"essential","appstore_transaction_id":"some-appstore-id","expired":false,"trial":true,"days_to_end_trial":31,"features":[{"name":"control","days":-1},{"name":"memories","days":-1},{"name":"billing","days":-1},{"name":"project_labels","days":-1},{"name":"teams","days":-1},{"name":"recurring_budget","days":-1}],"firebase_url":"https://shining-fire-1562.firebaseio.com/","firebase_auth_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NTA0MDM2NzgsInYiOjAsImlhdCI6MTU0NzcyNTI3OCwiZCI6eyJ1c2VyX2lkIjoiNTQ0NjAiLCJhY2NvdW50X2lkIjoiMjM1NzMiLCJ1c2VyX3R5cGUiOiJub3JtYWwiLCJ1aWQiOiI3ZDc2YWY3YzI1ZjI1NTczNWE4NWIwZTg0ZWI1NGJhNiJ9fQ._2rvQ5dlz3b89hExDtWgkfwkLrYlDulRXPnynADqOiE"}
+{"id":23954,"name":"Timely","from":"Web","max_users":0,"max_projects":0,"num_users":2,"num_projects":0,"plan_id":28,"plan_name":"Essential","next_charge":"2019-02-17","currency":{"id":"usd","name":"United States Dollar","iso_code":"USD","symbol":"$","symbol_first":true},"start_of_week":0,"beta":false,"created_at":1547730371,"payment_mode":"appstore","paid":false,"company_size":"10-49","color":"44505e","logo":{"large_retina":"/assets/account_thumbs/account_large_retina.png","medium_retina":"/assets/account_thumbs/account_medium_retina.png","small_retina":"/assets/account_thumbs/account_small_retina.png"},"capacity":{"hours":40.0,"minutes":0.0,"seconds":0.0,"formatted":"40:00","total_hours":40.0,"total_seconds":144000.0,"total_minutes":2400.0},"plan_code":"essential","appstore_transaction_id":"some-appstore-id","expired":false,"trial":true,"days_to_end_trial":31,"features":[{"name":"control","days":-1},{"name":"memories","days":-1},{"name":"billing","days":-1},{"name":"project_labels","days":-1},{"name":"teams","days":-1},{"name":"recurring_budget","days":-1}],"firebase_url":"https://shining-fire-1562.firebaseio.com/","firebase_auth_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NTA0MDg3NzEsInYiOjAsImlhdCI6MTU0NzczMDM3MSwiZCI6eyJ1c2VyX2lkIjoiNTUzMzYiLCJhY2NvdW50X2lkIjoiMjM5NTQiLCJ1c2VyX3R5cGUiOiJub3JtYWwiLCJ1aWQiOiJiYmU4ZWVkMDhiNjNmZTdlNzAwN2FjNGY1NDE5YmUwMSJ9fQ.pxRFaXvIU3fM5OrWPurZCudgzSD5O9Mv-LU2lSAoC0s"}
 ```
 
 
@@ -3363,11 +3363,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.2/private/accounts/23572/upgrade" -d '{"account":{"next_charge":"2019-02-17","appstore_transaction_id":"some-appstore-id","plan":"solo_v1"}}' -X POST \
+curl "https://api.timelyapp.com/1.2/private/accounts/23953/upgrade" -d '{"account":{"next_charge":"2019-02-17","appstore_transaction_id":"some-appstore-id","plan":"solo_v1"}}' -X POST \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer 103d70c9c9e3d26ab4edf350e5653abd782c9271d9c0d4f79a6f3830efde632c" \
+	-H "Authorization: Bearer f563b2725eeba67f08cff9803d57bf3fe14d93a77c8a91b79c46b21bdf71b939" \
 	-H "Cookie: "
 ```
 
@@ -3376,10 +3376,10 @@ curl "https://api.timelyapp.com/1.2/private/accounts/23572/upgrade" -d '{"accoun
 `POST /1.2/private/accounts/:account_id/upgrade`
 
 ```plaintext
-POST /1.2/private/accounts/23572/upgrade
+POST /1.2/private/accounts/23953/upgrade
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer 103d70c9c9e3d26ab4edf350e5653abd782c9271d9c0d4f79a6f3830efde632c
+Authorization: Bearer f563b2725eeba67f08cff9803d57bf3fe14d93a77c8a91b79c46b21bdf71b939
 ```
 
 #### Parameters
@@ -3404,7 +3404,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-{"id":23572,"name":"Timely","from":"Web","max_users":1,"max_projects":3,"num_users":2,"num_projects":0,"plan_id":34,"plan_name":"Solo","next_charge":"2019-02-17","currency":{"id":"usd","name":"United States Dollar","iso_code":"USD","symbol":"$","symbol_first":true},"start_of_week":0,"beta":false,"created_at":1547725278,"payment_mode":"appstore","paid":false,"company_size":"10-49","color":"44505e","logo":{"large_retina":"/assets/account_thumbs/account_large_retina.png","medium_retina":"/assets/account_thumbs/account_medium_retina.png","small_retina":"/assets/account_thumbs/account_small_retina.png"},"capacity":{"hours":40.0,"minutes":0.0,"seconds":0.0,"formatted":"40:00","total_hours":40.0,"total_seconds":144000.0,"total_minutes":2400.0},"plan_code":"solo_v1","appstore_transaction_id":"some-appstore-id","expired":false,"trial":true,"days_to_end_trial":31,"features":[{"name":"control","days":-1},{"name":"memories","days":-1},{"name":"billing","days":-1},{"name":"project_labels","days":-1},{"name":"teams","days":-1},{"name":"recurring_budget","days":-1}],"firebase_url":"https://shining-fire-1562.firebaseio.com/","firebase_auth_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NTA0MDM2NzgsInYiOjAsImlhdCI6MTU0NzcyNTI3OCwiZCI6eyJ1c2VyX2lkIjoiNTQ0NTgiLCJhY2NvdW50X2lkIjoiMjM1NzIiLCJ1c2VyX3R5cGUiOiJub3JtYWwiLCJ1aWQiOiI0ODFmOWFkY2ZhZDQ4MjBkZDJlMDY4YTk0ZWJlM2VjMCJ9fQ.v0pZmPVwfIwdjDMbL84f8rimOyT1L-N3NzdKokwpCyk"}
+{"id":23953,"name":"Timely","from":"Web","max_users":1,"max_projects":3,"num_users":2,"num_projects":0,"plan_id":34,"plan_name":"Solo","next_charge":"2019-02-17","currency":{"id":"usd","name":"United States Dollar","iso_code":"USD","symbol":"$","symbol_first":true},"start_of_week":0,"beta":false,"created_at":1547730370,"payment_mode":"appstore","paid":false,"company_size":"10-49","color":"44505e","logo":{"large_retina":"/assets/account_thumbs/account_large_retina.png","medium_retina":"/assets/account_thumbs/account_medium_retina.png","small_retina":"/assets/account_thumbs/account_small_retina.png"},"capacity":{"hours":40.0,"minutes":0.0,"seconds":0.0,"formatted":"40:00","total_hours":40.0,"total_seconds":144000.0,"total_minutes":2400.0},"plan_code":"solo_v1","appstore_transaction_id":"some-appstore-id","expired":false,"trial":true,"days_to_end_trial":31,"features":[{"name":"control","days":-1},{"name":"memories","days":-1},{"name":"billing","days":-1},{"name":"project_labels","days":-1},{"name":"teams","days":-1},{"name":"recurring_budget","days":-1}],"firebase_url":"https://shining-fire-1562.firebaseio.com/","firebase_auth_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NTA0MDg3NzEsInYiOjAsImlhdCI6MTU0NzczMDM3MSwiZCI6eyJ1c2VyX2lkIjoiNTUzMzQiLCJhY2NvdW50X2lkIjoiMjM5NTMiLCJ1c2VyX3R5cGUiOiJub3JtYWwiLCJ1aWQiOiI4OGZkMTI1NDA2NGYxZmI1MDc3YzUyMTU0NzFlM2MzNSJ9fQ.wLQ8Rfez2rg1eqjzHgLRSluTGSUzrYI9xL5l0dVV-G0"}
 ```
 
 
@@ -3414,11 +3414,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl "https://api.timelyapp.com/1.2/private/accounts/23578/upgrade" -d '{"account":{"next_charge":"2019-02-17","appstore_transaction_id":"duplicate-transaction-id","plan":"solo_v1"}}' -X POST \
+curl "https://api.timelyapp.com/1.2/private/accounts/23959/upgrade" -d '{"account":{"next_charge":"2019-02-17","appstore_transaction_id":"duplicate-transaction-id","plan":"solo_v1"}}' -X POST \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer b2c847aa12ca65da8ef383ddcb7f245d70d778790f64e147f4eacd7cb6f513bb" \
+	-H "Authorization: Bearer 4dff9f35eca54b601f88d8d63a9e63e5e5698bca2e792386c42594c746872a7a" \
 	-H "Cookie: "
 ```
 
@@ -3427,10 +3427,10 @@ curl "https://api.timelyapp.com/1.2/private/accounts/23578/upgrade" -d '{"accoun
 `POST /1.2/private/accounts/:account_id/upgrade`
 
 ```plaintext
-POST /1.2/private/accounts/23578/upgrade
+POST /1.2/private/accounts/23959/upgrade
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer b2c847aa12ca65da8ef383ddcb7f245d70d778790f64e147f4eacd7cb6f513bb
+Authorization: Bearer 4dff9f35eca54b601f88d8d63a9e63e5e5698bca2e792386c42594c746872a7a
 ```
 
 #### Parameters
@@ -3509,7 +3509,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-[{"user_id":54213,"property":"has_seen_calendar_day","value":"yes","updated_at":"2019-01-17T12:40:46+01:00"},{"user_id":54213,"property":"has_seen_calendar_week","value":"no","updated_at":"2019-01-17T12:40:46+01:00"}]
+[{"user_id":55089,"property":"has_seen_calendar_day","value":"yes","updated_at":"2019-01-17T14:05:35+01:00"},{"user_id":55089,"property":"has_seen_calendar_week","value":"no","updated_at":"2019-01-17T14:05:35+01:00"}]
 ```
 
 
@@ -3554,7 +3554,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-[{"user_id":54212,"property":"has_seen_calendar_week","value":"yes","updated_at":"2019-01-17T12:40:45+01:00"}]
+[{"user_id":55088,"property":"has_seen_calendar_week","value":"yes","updated_at":"2019-01-17T14:05:34+01:00"}]
 ```
 
 
@@ -3568,11 +3568,11 @@ Content-Type: application/json; charset=utf-8
 ### Request
 
 ```shell
-curl -g "https://api.timelyapp.com/1.1/23570/users/search?q=Ariel+Erdman" -X GET \
+curl -g "https://api.timelyapp.com/1.1/23951/users/search?q=Quintin+Duponde" -X GET \
 	-H "Host: api.timelyapp.test" \
 	-H "Accept: application/json" \
 	-H "Content-Type: application/json" \
-	-H "Authorization: Bearer d798967ccb6dd77c925b7e05202659acf62f7b9ae8d7540cc02c49da9dadc4d8" \
+	-H "Authorization: Bearer 42339fce561394c3b0835266db435c7c4d0ac7972c185eab1b20c1b2d1c73b97" \
 	-H "Cookie: "
 ```
 
@@ -3581,16 +3581,16 @@ curl -g "https://api.timelyapp.com/1.1/23570/users/search?q=Ariel+Erdman" -X GET
 `GET /1.1/:account_id/users/search`
 
 ```plaintext
-GET /1.1/23570/users/search?q=Ariel+Erdman
+GET /1.1/23951/users/search?q=Quintin+Duponde
 Accept: application/json
 Content-Type: application/json
-Authorization: Bearer d798967ccb6dd77c925b7e05202659acf62f7b9ae8d7540cc02c49da9dadc4d8
+Authorization: Bearer 42339fce561394c3b0835266db435c7c4d0ac7972c185eab1b20c1b2d1c73b97
 ```
 
 #### Parameters
 
 ```json
-q: Ariel Erdman
+q: Quintin Duponde
 ```
 
 
@@ -3609,7 +3609,7 @@ Content-Type: application/json; charset=utf-8
 ```
 
 ```json
-[{"id":54437,"email":"dino@gmail.com","name":"Ariel Erdman","active":false,"external_id":null,"avatar":{"large":"https://www.gravatar.com/avatar/717b8857ae9080afdff6d65e88363c77?d=https%3A%2F%2Fapp.timelyapp.com%2Fassets%2Fthumbs%2Fuser_large_retina.jpg&s=200","medium":"https://www.gravatar.com/avatar/717b8857ae9080afdff6d65e88363c77?d=https%3A%2F%2Fapp.timelyapp.com%2Fassets%2Fthumbs%2Fuser_medium_retina.jpg&s=50","small":"https://www.gravatar.com/avatar/717b8857ae9080afdff6d65e88363c77?d=https%3A%2F%2Fapp.timelyapp.com%2Fassets%2Fthumbs%2Fuser_small_retina.jpg&s=25"},"updated_at":1547725277}]
+[{"id":55308,"email":"quentin@timelyapp.com","name":"Quintin Duponde","active":false,"external_id":null,"avatar":{"large":"https://www.gravatar.com/avatar/341d68b864aca41aadfc9d9ec221e0c1?d=https%3A%2F%2Fapp.timelyapp.com%2Fassets%2Fthumbs%2Fuser_large_retina.jpg&s=200","medium":"https://www.gravatar.com/avatar/341d68b864aca41aadfc9d9ec221e0c1?d=https%3A%2F%2Fapp.timelyapp.com%2Fassets%2Fthumbs%2Fuser_medium_retina.jpg&s=50","small":"https://www.gravatar.com/avatar/341d68b864aca41aadfc9d9ec221e0c1?d=https%3A%2F%2Fapp.timelyapp.com%2Fassets%2Fthumbs%2Fuser_small_retina.jpg&s=25"},"updated_at":1547730369}]
 ```
 
 
