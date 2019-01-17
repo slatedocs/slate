@@ -2,8 +2,7 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - Sellerchamp
-
+  - shell
 
 includes:
   - errors
@@ -11,9 +10,19 @@ includes:
 search: true
 ---
 
-# Get Orders
+# Introduction
 
-> To get your all orders:
+Welcome to the SellerChamp API! You can use our API to access SellerChamp API endpoints, to pull back orders, products, inventory, marketplace prices and more.  
+
+You can view code examples in the dark area to the right.
+
+# Authentication
+
+An API Token must be called with every request.  To obtain your API Token contact us at support@sellerchamp.com
+
+# Orders
+
+## Get All Orders w/o parameters
 
 
 ```shell
@@ -81,11 +90,22 @@ curl -X GET \
     ]
 }
 ```
-
+ 
 
 > Make sure to replace `YOUR-TOKEN` with your API key token.
 
-Get your all order record.
+Returns back all the orders for the client object associated with the specified API Token.  Default page size is 250.
  
 `Token: YOUR-TOKEN`
 
+## Get All Orders with parameters
+
+Returns back a list of orders that match the specified criteria. All of the available filters are optional. They do not need to be included in the URL. If you do include them, here's what the URL may look like:
+
+TODO FOR MAYANK
+
+URL format with filters:
+
+TODO FOR MAYANK
+
+MAYANK LOOK AT THIS LINK FOR REFERENCE: Look at https://shipstation.docs.apiary.io/#reference/orders/hold-order-until/list-orders-with-parameters for reference
