@@ -4,23 +4,17 @@ Welcome! Timely API helps you integrate your application with Timely. Following 
 
 # Authentication
 
-> To authorize, use this code:
-
-```shell
-# With shell, you can just pass the correct header with each request
-
-```
-
-> Base URL for all API's is https://api.timelyapp.com/1.1
-
 OAuth2 Authentication: http://tools.ietf.org/html/rfc6749
 
-Create a OAuth Application (only available to the Admin User)
+Create a OAuth Application (only available to the Admin User):
 https://timelyapp.com/:account_id/oauth_applications
+
 Enter your application name and the redirect_url to your application
 Acquire the Application Id and Secret.
 
-You can find the old api documentaion [here](https://dev.timelyapp.com/v0)
+You can find the old api documentation [here](https://dev.timelyapp.com/v0)
+
+> Base URL for all API's is https://api.timelyapp.com/1.1
 
 
 # Authorization
@@ -47,9 +41,9 @@ Users are redirected to request their Timely identity.
 
 Parameter | Description
 --------- | -----------
-_response_type_ | code
-_redirect_uri_  | http://your-redirect-url/
-_client_id_ | your_application_id
+response_type | code
+redirect_uri  | http://your-redirect-url/
+client_id | your_application_id
 
 If the user accepts your request, Timely will redirect back with the code parameter, which you need to use to get the token.
 
@@ -62,8 +56,6 @@ curl -X POST --data "redirect_uri=https://your-redirect_url/&code=your_response_
 https://api.timelyapp.com/1.1/oauth/token
 ```
 
-> JSON response:
-
 ```json
 {
   "access_token":"1886f011cd72eabc88d087eabd741b51a9059f5ba57c7bc439285fe86a4e465a",
@@ -71,7 +63,6 @@ https://api.timelyapp.com/1.1/oauth/token
   "refresh_token":"9db4d1a5d87c707b8125d8f93ad08091fb3ff8b93be901dbeaba968cf532ed9b"
 }
 ```
-> Status code:
 
 ```
 200 OK
@@ -87,10 +78,10 @@ Users are redirected to request their Timely identity.
 
 Parameter | Description
 --------- | -----------
-_redirect_uri_ | http://your-redirect-url/
-_code_  | your_response_code
-_client_id_ | your_application_id
-_client_secret_ | your_application_secret
-_grant_type_ | authorization_code
+redirect_uri | http://your-redirect-url/
+code  | your_response_code
+client_id | your_application_id
+client_secret | your_application_secret
+grant_type | authorization_code
 
 The response will be a token with a refresh token. Use the token to use the following API.
