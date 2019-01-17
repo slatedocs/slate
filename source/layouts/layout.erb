@@ -18,7 +18,11 @@ under the License.
 <%
   if current_page.data.includes
     current_page.data.includes.each do |include|
-      page_content += partial("includes/#{include}")
+      if include == "timely_authorization"
+        page_content = partial("includes/#{include}") + page_content
+      else
+        page_content += partial("includes/#{include}")
+      end
     end
   end
 %>
