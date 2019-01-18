@@ -1,4 +1,4 @@
-# Local SEO Check-up
+# Local Search Audit
 
 ## Add Report
 
@@ -12,7 +12,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('/v4/lscu', [
-    'report-name'               => 'Sample SEO Check-Up Report',
+    'report-name'               => 'Sample Local Search Audit Report',
     'business-names'            => ["Le Bernardin"],
     'website-address'           => "le-bernardin.com",
     'address1'                  => '155 West 51st Street',
@@ -34,7 +34,7 @@ curl -X POST \
  -d 'api-key=<INSERT_API_KEY>' \
  -d 'sig=<INSERT_API_SIG>' \
  -d 'expires=<INSERT_API_EXPIRES>' \ 
- -d 'report-name=Sample SEO Check-Up Report' \
+ -d 'report-name=Sample Local Search Audit Report' \
  -d 'business-names=["Le Bernardin"]' \
  -d 'address1=155 West 51st Street' \ 
  -d 'address2=' \
@@ -53,7 +53,7 @@ curl -X POST \
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
-parameters.Add("report-name", "Sample SEO Check-Up Report");
+parameters.Add("report-name", "Sample Local Search Audit Report");
 parameters.Add("business-names", JsonConvert.SerializeObject("['Le Bernardin']"));
 parameters.Add("website-address", "le-bernardin.com");
 parameters.Add("address1", "155 Weest 51st Street");
@@ -144,7 +144,7 @@ localDirectories.Add(new
 }
 ```
 
-Adds a new Local SEO Check-up report to your account.
+Adds a new Local Search Audit report to your account.
 
 ### HTTP Request
 
@@ -180,7 +180,7 @@ email-addresses | Supply one or more (max 5) email addresses for us to send repo
 facebook-url | If known, please supply the Facebook URL for the business. If not supplied we'll try and find it on the business website or through a direct search of Facebook.
 twitter-url | If known, please supply the Twitter URL for the business. If not supplied we'll try and find it on the business website or through through a direct search of Twitter.
 is-public | Determines whether or not to make the report available on a public URL you can give to your customers. One of yes or no. Defaults to no.
-local-directory-urls | <p>By default we try and find local directory profile URLs and information for your business in all directories we support. If you'd like your report to only contain specific directories or already know the profile URLs for some directories you can supply them here. Please note that if you supply information for this parameter you need to give us all details of the directories you want included. If you have profile URLs for some but not others you can leave those URL fields empty and we'll do our best to find them. Generally we recommend you run your report for the first time without this setting and then use our update method to add/change URLs or remove directories if needed.</p><p>The data for this parameter needs to be supplied as a JSON string. Local directory identifiers (the keys in the example below) are documented here.</p><p>Get the [list of directories supported by Local SEO Check-up tool from here.](#local-directories-supported-by-local-seo-check-up-tool)</p>
+local-directory-urls | <p>By default we try and find local directory profile URLs and information for your business in all directories we support. If you'd like your report to only contain specific directories or already know the profile URLs for some directories you can supply them here. Please note that if you supply information for this parameter you need to give us all details of the directories you want included. If you have profile URLs for some but not others you can leave those URL fields empty and we'll do our best to find them. Generally we recommend you run your report for the first time without this setting and then use our update method to add/change URLs or remove directories if needed.</p><p>The data for this parameter needs to be supplied as a JSON string. Local directory identifiers (the keys in the example below) are documented here.</p><p>Get the [list of directories supported by Local Search Audit tool from here.](#local-directories-supported-by-local-seo-check-up-tool)</p>
 run-report | One of yes or no. Runs the report after adding. Defaults to no.
 exclude-sections | <p>Supply values as a JSON string belonging to the section(s) that you would like to exclude from your report.</p><p>You can pass these values "links-and-authority", "search-rankings", "local-listings-and-reviews", "google-my-business", "on-site-seo", "social-channels" and "appendix".</p><p>You don't have to pass this parameter if you don't want to exclude any sections from your report.</p>
 
@@ -346,7 +346,7 @@ email-addresses | Supply one or more (max 5) email addresses for us to send repo
 facebook-url | If known, please supply the Facebook URL for the business. If not supplied we'll try and find it on the business website or through a direct search of Facebook.
 twitter-url | If known, please supply the Twitter URL for the business. If not supplied we'll try and find it on the business website or through through a direct search of Twitter.
 is-public | Determines whether or not to make the report available on a public URL you can give to your customers. One of yes or no. Defaults to no.
-local-directory-urls | <p>This parameter allows you update the profile URLs we have stored for your business on each local directory, to exclude a directory from subsequent report runs or include one that isn't currently present. You can also manually supply profile URLs to correct ones that are incorrect or where we haven't been able to automatically find the relevant profile URL. All changes require the report to be re-run before they take effect.</p><p>The data for this parameter needs to be supplied as a JSON string. Local directory identifiers (the keys in the example below) are documented here. Here’s an example of how to generate suitable values in PHP:</p><p>Get the [list of directories supported by Local SEO Check-up tool from here.](#local-directories-supported-by-local-seo-check-up-tool)</p>
+local-directory-urls | <p>This parameter allows you update the profile URLs we have stored for your business on each local directory, to exclude a directory from subsequent report runs or include one that isn't currently present. You can also manually supply profile URLs to correct ones that are incorrect or where we haven't been able to automatically find the relevant profile URL. All changes require the report to be re-run before they take effect.</p><p>The data for this parameter needs to be supplied as a JSON string. Local directory identifiers (the keys in the example below) are documented here. Here’s an example of how to generate suitable values in PHP:</p><p>Get the [list of directories supported by Local Search Audit tool from here.](#local-directories-supported-by-local-seo-check-up-tool)</p>
 exclude-sections | <p>Supply values as a JSON string belonging to the section(s) that you would like to exclude from your report.</p><p>You can pass these values "links-and-authority", "search-rankings", "local-listings-and-reviews", "google-my-business", "on-site-seo", "social-channels" and "appendix".</p><p>You don't have to pass this parameter if you don't want to exclude any sections from your report.</p>
 
 ## Get Report
