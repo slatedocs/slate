@@ -1,4 +1,4 @@
-# Local Search Rank Checker
+# Rank Checker
 
 ## Add Report
 

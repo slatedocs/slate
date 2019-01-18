@@ -1,4 +1,4 @@
-# Rankings
+# Rank Checker
 
 ## Search
 
