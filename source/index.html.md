@@ -98,48 +98,46 @@ Returns back a list of orders that match the specified criteria. All of the avai
 
 Url format with filters:
 
-/orders?customerName={customerName}
-&itemKeyword={itemKeyword}
-&createDateStart={createDateStart}
-&createDateEnd={createDateEnd}
-&modifyDateStart={modifyDateStart}
-&modifyDateEnd={modifyDateEnd}
-&orderDateStart={orderDateStart}
-&orderDateEnd={orderDateEnd}
-&orderNumber={orderNumber}
-&orderStatus={orderStatus}
-&paymentDateStart={paymentDateStart}
-&paymentDateEnd={paymentDateEnd}
-&storeId={storeId}
-&sortBy={sortBy}
-&sortDir={sortDir}
+/orders?buyer_name={buyer_name}
+&create_date_start={create_date_start}
+&create_date_end={create_date_end}
+&modify_date_start={modify_date_start}
+&modify_date_end={modify_date_end}
+&order_date_start={order_date_start}
+&order_date_end={order_date_end}
+&order_number={order_number}
+&order_status={order_status}
+&purchased_at_start={purchased_at_start}
+&purchased_at_end={purchased_at_start}
+&store_id={store_id}
+&sort={sort_by}
+&direction={sort_direction}
 &page={page}
-&pageSize={pageSize}
+&page_size={page_size}
 
 
 ```shell
 curl --request GET \
-  --url 'http://staging.sellerchamp.com/api/orders?customerName={customerName}%0A&itemKeyword={itemKeyword}%0A&createDateStart={createDateStart}%0A&createDateEnd={createDateEnd}%0A&modifyDateStart={modifyDateStart}%0A&modifyDateEnd={modifyDateEnd}%0A&orderDateStart={orderDateStart}%0A&orderDateEnd={orderDateEnd}%0A&orderNumber={orderNumber}%0A&orderStatus={orderStatus}%0A&paymentDateStart={paymentDateStart}%0A&paymentDateEnd={paymentDateEnd}%0A&storeId={storeId}%0A&sortBy={sortBy}%0A&sortDir={sortDir}%0A&page={page}%0A&pageSize={pageSize}' \
+ --url 'http://localhost:3000/api/orders?buyer_name={buyer_name}%0A&create_date_start={create_date_start}%0A&create_date_end={create_date_end}%0A&modify_date_start={modify_date_start}%0A&modify_date_end={modify_date_end}%0A&order_date_start={order_date_start}%0A&order_date_end={order_date_end}%0A&order_number={order_number}%0A&order_status={order_status}%0A&purchased_at_start={purchased_at_start}%0A&purchased_at_end={purchased_at_start}%0A&store_id={store_id}%0A&sort={sort_by}%0A&direction={sort_direction}%0A&page={page}%0A&page_size={page_size}' \
   -H 'token: YOUR-TOKEN' \
 ```
 ### URL Parameters
 
 Name | Data Type | Description
 -------------- | -------------- | --------------
-customerName | String | Returns orders that match the specified name. Example: smith.
-itemKeyword | String | Returns orders that contain items that match the specified keyword. Fields searched are Sku, Description, and Options Example: ABC123
-createDateStart | String | Returns orders that were created in ShipStation after the specified date Example: 2015-01-01 00:00:00.
-createDateEnd | String | Returns orders that were created in ShipStation before the specified date Example: 2015-01-08 00:00:00.
-modifyDateStart | String | Returns orders that were modified after the specified date Example: 2015-01-01 00:00:00.
-modifyDateEnd | String | Returns orders that were modified before the specified date Example: 2015-01-08 00:00:00.
-orderDateStart | String | Returns orders greater than the specified date Example: 2015-01-01 00:00:00.
-orderDateEnd | String | Returns orders less than or equal to the specified date Example: 2015-01-08 00:00:00.
-orderNumber | String | Filter by order number, performs a "starts with" search. Example: 12345.
-orderStatus | String | Filter by order status. If left empty, orders of all statuses are returned. Example: awaiting_shipment
-paymentDateStart | String | Returns orders that were paid after the specified date Example: 2015-01-01
-paymentDateEnd | String | Returns orders that were paid before the specified date Example: 2015-01-08
-storeId | Number | Filters orders to a single store. Call List Stores to obtain a list of store Ids. Example: 12345.
-sortBy | String | Sort the responses by a set value. The response will be sorted based off the ascending dates (oldest to most current.) If left empty, the response will be sorted by ascending orderId. Example: OrderDate
-sortDir | String | Sets the direction of the sort order. Example: ASC.
+buyer_name | String | Returns orders that match the specified name. Example: smith.
+create_date_start | String | Returns orders that were created in ShipStation after the specified date Example: 2015-01-01 00:00:00.
+create_date_end | String | Returns orders that were created in ShipStation before the specified date Example: 2015-01-08 00:00:00.
+modify_date_start | String | Returns orders that were modified after the specified date Example: 2015-01-01 00:00:00.
+modify_date_end | String | Returns orders that were modified before the specified date Example: 2015-01-08 00:00:00.
+order_date_start | String | Returns orders greater than the specified date Example: 2015-01-01 00:00:00.
+order_date_end | String | Returns orders less than or equal to the specified date Example: 2015-01-08 00:00:00.
+order_number | String | Filter by order number, performs a "starts with" search. Example: 12345.
+order_status | String | Filter by order status. If left empty, orders of all statuses are returned. Example: shipped
+purchased_at_start | String | Returns orders that were paid after the specified date Example: 2015-01-01
+purchased_at_end | String | Returns orders that were paid before the specified date Example: 2015-01-08
+store_id | Number | Filters orders to a single store. Call List Stores to obtain a list of store Ids. Example: 12345.
+sort | String | Sort the responses by a set value. The response will be sorted based off the ascending dates (oldest to most current.) If left empty, the response will be sorted by ascending order_id. Example: Order_date
+direction | String | Sets the direction of the sort order. Example: ASC.
 page | String | Page number Default: 1.
-pageSize | number | Requested page size. Default: 250.
+page_size | number | Requested page size. Default: 250.
