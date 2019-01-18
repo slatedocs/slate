@@ -1,4 +1,4 @@
-# Google+ Local Wizard Reports
+# Google My Business
 
 ## Add Report
 
@@ -105,7 +105,7 @@ var success = request.Post("/v4/gpw/add", parameters);
 }
 ```
 
-Adds a new Google+ Local Wizard report to your account.
+Adds a new Google My Business report to your account.
 
 ### HTTP Request
 
