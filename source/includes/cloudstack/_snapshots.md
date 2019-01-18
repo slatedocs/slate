@@ -88,3 +88,47 @@ Attributes | &nbsp;
 `volumeId`<br/>*UUID* | The id of the [volume](#cloudstack-volumes) that was snapshotted
 `volume`<br/>*string* | The name of the [volume](#cloudstack-volumes) that was snapshotted
 `volumeType`<br/>*string* | The type of the [volume](#cloudstack-volumes) that was snapshotted
+
+
+<!-------------------- CREATE A SNAPSHOT OF A VOLUME -------------------->
+
+
+#### Create a snapshot
+
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://cloudmc_endpoint/v1/services/compute-on/testing/snapshots?operation=create"
+
+# Request should look like this
+```
+```json
+{
+  "volumeId": "4fe54594-a788-442c-b7a8-0237f7a4f70d",
+  "name": "LionelMessi",
+  "rapid": true
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/snapshots?operation=create</code>
+
+Create a snapshot of an existing storage [volume](#cloudstack-storage). Note that the volume must be attached to an instance. A detached volume cannot be **snapshot*****'ed***. You can get a list of volumes using [this](#cloudstack-list-volumes) API.
+
+*Two* **optional** *parameters can be passed with this call*:
+
+  1. A ***unique name*** for the snapshot. If this parameter is not provided then by default the concatenation of the *instance name*, *volume name* and the *current timestamp* is used. 
+    
+    *Eg:* *[instance.name]\_[volume.name]\_[timestamp]* >>> ***i-root-6E7_RapidVol_20190117153537***
+
+  2. The ***location*** as to where the snapshot is supposed to be made. This is denoted by the flag - ***rapid***.
+
+Required | &nbsp;
+---------- | -----
+volumeId<br/>*UUID* | The id of the [volume](#cloudstack-storage) on which the snapshot is to be taken.
+
+Optional | &nbsp;
+------ | -----------
+`name`<br/>*string* | The name to be given to the newly created **snapshot**.
+`rapid`<br/>*boolean* | Setting this to **true** will ensure that the snapshot is created in the same primary storage as where the volume is. If **false**, then the snapshot is created in a secondary storage. 

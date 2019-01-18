@@ -204,3 +204,47 @@ curl -X POST \
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/volumes/:id?operation=detachFromInstance</code>
 
 Detach a data volume from an [instance](#cloudstack-instances).
+
+
+<!-------------------- CREATE A SNAPSHOT OF A VOLUME -------------------->
+
+
+#### Create a volume snapshot
+
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://cloudmc_endpoint/v1/services/compute-on/testing/volumes/4fe54594-a788-442c-b7a8-0237f7a4f70d?operation=createSnapshotFromVolume"
+
+# Request should look like this
+```
+```json
+{
+   "snapshot": {
+      "name": "CaptainMarvel",
+      "rapid": true
+   }
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/volumes/:id?operation=createSnapshotFromVolume</code>
+
+Create a snapshot of an existing storage [volume](#cloudstack-storage). Note that the volume must be attached to an instance. A detached volume cannot be **snapshot*****'ed***. 
+
+*Two* **optional** *parameters can be passed with this call:*
+
+  1. A ***unique name*** for the snapshot. If this parameter is not provided then by default the concatenation of the *instance name*, *volume name* and the *current timestamp* is used. 
+    
+    *Eg:* *[instance.name]\_[volume.name]\_[timestamp]*  >>>  ***i-root-6E7_RapidVol_20190117153537***
+
+  2. The ***location*** as to where the snapshot is supposed to be made. This is denoted by the flag - ***rapid***. If this is set to ```true``` the snapshot will be created in the primary storage, where the volume resides. Rapid snapshots enable much faster volume and template creation than from regular snapshots, but at a higher expense. Not all volumes support the **rapid** snapshot option.
+
+Note that these *optional* parameters must be provided as a nested ***json*** under the object ***snapshot***. This is because the operation is carried out on the *volume* entity's *snapshot* attribute. This is different if the operation is invoked on the *snapshot* entity as shown [here](#cloudstack-create-a-snapshot).
+
+Optional | &nbsp;
+------ | -----------
+`name`<br/>*string* | The name to be given to the newly created **snapshot**.
+`rapid`<br/>*boolean* | Setting this to **true** will ensure that the snapshot is created in the same primary storage as where the volume is. If **false**, then the snapshot is created in a secondary storage. 
+
