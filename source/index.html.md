@@ -43,48 +43,46 @@ Returns back all the orders for the client object associated with the specified 
 {
     "orders": [
         {
-            "order_number": "132888510095-1544596974003",
-            "order_date": null,
-            "create_date": null,
-            "modify_date": "2019-01-07T23:02:55.490Z",
-            "payment_date": "2019-01-04T00:31:13.000+00:00",
+            "order_number": "132886362059-1538935630003",
+            "created_at": null,
+            "updated_at": "2019-01-07T23:02:55.533Z",
+            "purchased_at": "2018-12-14T00:10:56.000+00:00",
             "order_status": "shipped",
-            "customer_username": "Jeff Bean",
-            "customer_email": null,
+            "buyer_username": "ellis driver",
+            "buyer_email": null,
             "shipTo": {
-                "name": "Jeff Bean",
-                "street1": "562 Wylie Rd SE Ste 4",
+                "name": "ellis driver",
+                "street1": "1623 NC Highway 86 N",
                 "street2": null,
-                "city": "Marietta",
-                "state": "GA",
-                "postal_code": "30067-7880",
+                "city": "hillsborough",
+                "state": "NC",
+                "postal_code": "27278-7516",
                 "country": "US"
             },
             "items": [
                 {
-                    "order_item_id": "5c33da5a07b6203f81000884",
-                    "sku": "S11STJPOHQBI3",
-                    "create_date": null,
-                    "name": "Nikon 70-200mm f/2.8G ED-IF AF-S VR Zoom Nikkor Lens-needs work",
+                    "order_item_id": "5c33da5a07b6203f81000887",
+                    "sku": "S11LPJMI1BZZT",
+                    "created_at": null,
+                    "title": "Premium Rainbow Color Embroidery Floss - Cross Stitch Threads - Friendship Bra..",
                     "weight": {
-                        "value": null,
+                        "value": 0,
                         "units": "ounces"
                     },
-                    "modify_date": null,
+                    "updated_at": null,
                     "quantity": 1,
                     "tax_amount": 0,
-                    "unit_price": 186,
+                    "unit_price": 12.54,
                     "shipping_amount": 0,
                     "warehouse_location": null,
                     "product_id": "",
-                    "fulfillment_sku": "S11STJPOHQBI3"
+                    "fulfillment_sku": "S11LPJMI1BZZT"
                 }
             ],
             "store_id": "5c1902f207b620090a000026",
-            "order_total": 1,
-            "amount_paid": 186,
-            "customer_notes": null,
-            "tag_ids": [],
+            "items_count": 1,
+            "amount_paid": 12.54,
+            "buyer_notes": null,
             "externally_fulfilled": false,
             "externally_fulfilled_by": ""
         }
@@ -99,10 +97,10 @@ Returns back a list of orders that match the specified criteria. All of the avai
 Url format with filters:
 
 /orders?buyer_name={buyer_name}
-&created_date_start={created_date_start}
-&created_date_end={created_date_end}
-&updated_date_start={updated_date_start}
-&updated_date_end={updated_date_end}
+&created_at_start={created_at_start}
+&created_at_end={created_at_end}
+&updated_at_start={updated_at_start}
+&updated_at_end={updated_at_end}
 &order_number={order_number}
 &order_status={order_status}
 &purchased_at_start={purchased_at_start}
@@ -116,7 +114,7 @@ Url format with filters:
 
 ```shell
 curl --request GET \
-  --url 'http://localhost:3000/api/orders?buyer_name={buyer_name}%0A&order_number={order_number}%0A&order_status={order_status}%0A&purchased_at_start={purchased_at_start}%0A&purchased_at_end={purchased_at_start}%0A&store_id={store_id}%0A&sort={sort_by}%0A&direction={sort_direction}%0A&page={page}%0A&page_size={page_size}&created_date_start={created_date_start}%0A&created_date_end={created_date_end}%0A&updated_date_start={updated_date_start}%0A&updated_date_end={updated_date_end}%0A' \
+  --url 'http://localhost:3000/api/orders?buyer_name={buyer_name}%0A&order_number={order_number}%0A&order_status={order_status}%0A&purchased_at_start={purchased_at_start}%0A&purchased_at_end={purchased_at_start}%0A&store_id={store_id}%0A&sort={sort_by}%0A&direction={sort_direction}%0A&page={page}%0A&page_size={page_size}&created_at_start={created_at_start}%0A&created_at_end={created_at_end}%0A&updated_at_start={updated_at_start}%0A&updated_at_end={updated_at_end}%0A' \
   -H 'token: YOUR-TOKEN' \
 ```
 ### URL Parameters
@@ -124,10 +122,10 @@ curl --request GET \
 Name | Data Type | Description
 -------------- | -------------- | --------------
 buyer_name | String | Returns orders that match the specified name. Example: smith.
-created_date_start | String | Returns orders that were created after the specified date Example: 2015-01-01 00:00:00.
-created_date_end | String | Returns orders that were created before the specified date Example: 2015-01-08 00:00:00.
-updated_date_start | String | Returns orders that were modified after the specified date Example: 2015-01-01 00:00:00.
-updated_date_end | String | Returns orders that were modified before the specified date Example: 2015-01-08 00:00:00.
+created_at_start | String | Returns orders that were created after the specified date Example: 2015-01-01 00:00:00.
+created_at_end | String | Returns orders that were created before the specified date Example: 2015-01-08 00:00:00.
+updated_at_start | String | Returns orders that were modified after the specified date Example: 2015-01-01 00:00:00.
+updated_at_end | String | Returns orders that were modified before the specified date Example: 2015-01-08 00:00:00.
 order_number | String | Filter by order number, performs a "starts with" search. Example: 12345.
 order_status | String | Filter by order status. If left empty, orders of all statuses are returned. Example: shipped
 purchased_at_start | String | Returns orders that were paid after the specified date Example: 2015-01-01
