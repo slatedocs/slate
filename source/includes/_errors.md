@@ -2,6 +2,9 @@
 
 > Example responses:
 
+```
+422 Unprocessable Entity
+```
 ```json
 {
   "errors":{
@@ -15,7 +18,7 @@
 }
 ```
 ```
-422 Unprocessable Entity
+403 Forbidden
 ```
 ```json
 {
@@ -25,7 +28,7 @@
 }
 ```
 ```
-403 Forbidden
+404 Not Found 
 ```
 ```json
 {
@@ -33,9 +36,6 @@
     "reference":"dca8215e324a30c08f61bdd5d348af9c"
   }
 }
-```
-```
-404 Not Found 
 ```
 
 
