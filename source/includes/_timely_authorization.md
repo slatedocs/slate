@@ -9,12 +9,14 @@ OAuth2 Authentication: http://tools.ietf.org/html/rfc6749
 Create a OAuth Application (only available to the Admin User):
 https://timelyapp.com/:account_id/oauth_applications
 
-Enter your application name and the redirect_url to your application
+Enter your application name and the redirect_url to your application.
+
 Acquire the Application Id and Secret.
 
 You can find the old api documentation [here](https://dev.timelyapp.com/v0)
 
-> Base URL for all API's is https://api.timelyapp.com/1.1
+> Base URL for all API's is:
+https://api.timelyapp.com/1.1
 
 
 # Authorization
