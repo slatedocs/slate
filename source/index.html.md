@@ -50,7 +50,7 @@ Returns back all the orders for the client object associated with the specified 
             "order_status": "shipped",
             "buyer_username": "ellis driver",
             "buyer_email": null,
-            "shipTo": {
+            "ship_to": {
                 "name": "ellis driver",
                 "street1": "1623 NC Highway 86 N",
                 "street2": null,
