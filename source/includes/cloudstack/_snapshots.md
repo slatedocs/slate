@@ -107,22 +107,14 @@ curl -X POST \
 ```json
 {
   "volumeId": "4fe54594-a788-442c-b7a8-0237f7a4f70d",
-  "name": "LionelMessi",
+  "name": "BeforeUpgradeToV2",
   "rapid": true
 }
 ```
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/snapshots?operation=create</code>
 
-Create a snapshot of an existing storage [volume](#cloudstack-storage). Note that the volume must be attached to an instance. A detached volume cannot be **snapshot*****'ed***. You can get a list of volumes using [this](#cloudstack-list-volumes) API.
-
-*Two* **optional** *parameters can be passed with this call*:
-
-  1. A ***unique name*** for the snapshot. If this parameter is not provided then by default the concatenation of the *instance name*, *volume name* and the *current timestamp* is used. 
-    
-    *Eg:* *[instance.name]\_[volume.name]\_[timestamp]* >>> ***i-root-6E7_RapidVol_20190117153537***
-
-  2. The ***location*** as to where the snapshot is supposed to be made. This is denoted by the flag - ***rapid***.
+Create a snapshot of an existing [volume](#cloudstack-storage). Note that the volume must be attached to an instance. A detached volume cannot be **snapshot*****'ed***. You can get a list of volumes using [this](#cloudstack-list-volumes) API.
 
 Required | &nbsp;
 ---------- | -----
@@ -130,5 +122,5 @@ Required | &nbsp;
 
 Optional | &nbsp;
 ------ | -----------
-`name`<br/>*string* | The name to be given to the newly created **snapshot**.
-`rapid`<br/>*boolean* | Setting this to **true** will ensure that the snapshot is created in the same primary storage as where the volume is. If **false**, then the snapshot is created in a secondary storage. 
+`name`<br/>*string* | A ***unique name*** to be given to the newly created **snapshot**. If this parameter is not provided then by default the concatenation of the *instance name*, *volume name* and the *current timestamp* is used. <br/><br/>*Eg:* *[instance.name]\_[volume.name]\_[timestamp]* >>> ***i-root-6E7_RapidVol_20190117153537***
+`rapid`<br/>*boolean* | Indicates the ***location*** as to where the snapshot is supposed to be created. <br/><br/>Setting this to **true** will ensure that the snapshot is created in the same primary storage as where the volume is. If **false**, then the snapshot is created in a secondary storage. 
