@@ -65,9 +65,9 @@ complemento|não|Complemento do Cliente
 cidade|não|Cidade do Cliente
 estado|não|Estado do Cliente (formato:SP)
 cep|não|CEP do Cliente
-maxparcelas | não | Máximo de parcelas que pode ser dividio
-parcelasemjuros | não | Quantidade máxima de parcelamento sem juros
-valorminparcela | não | Valor mínimo da parcela
-jurosparcela | não | Juros que será aplicado para as parcelas
+maxparcelas | não | Quantidade máxima de parcelas.
+parcelasemjuros | não | Quantidade máxima de parcelas sem juros.
+valorminparcela | não | Valor mínimo de cada parcela.
+jurosparcela | não | Juros que será aplicado no valor total (PRICE) de acordo com a quantidade de parcelas.
 
 
