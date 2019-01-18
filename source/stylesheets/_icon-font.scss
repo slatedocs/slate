@@ -1,34 +1,9 @@
 @font-face {
   font-family: "Avenir";
-  src: url('avenir-regular.eot?#iefix') format('embedded-opentype'),
-  url('avenir-regular.woff') format('woff'),
-  url('avenir-regular.ttf') format('truetype'),
-  url('avenir-regular.svg#avenir-regular') format('svg');
-  font-weight: 400;
-}
-@font-face {
-  font-family: "Avenir";
-  src: url('avenir-demi.eot?#iefix') format('embedded-opentype'),
-  url('avenir-demi.woff') format('woff'),
-  url('avenir-demi.ttf') format('truetype'),
-  url('avenir-demi.svg#avenir-demi') format('svg');
-  font-weight: 700;
-}
-@font-face {
-  font-family: "Avenir";
-  src: url('avenir-bold.eot?#iefix') format('embedded-opentype'),
-  url('avenir-bold.woff') format('woff'),
-  url('avenir-bold.ttf') format('truetype'),
-  url('avenir-bold.svg#avenir-bold') format('svg');
-  font-weight: 900;
-}
-@font-face {
-  font-family: "Avenir";
-  src: url('avenir-it.eot?#iefix') format('embedded-opentype'),
-  url('avenir-it.woff') format('woff'),
-  url('avenir-it.ttf') format('truetype'),
-  url('avenir-it.svg#avenir-it') format('svg');
-  font-style: italic;
+  src: url('/docs/v1/fonts/avenir-regular.eot?#iefix') format('embedded-opentype'),
+  url('/docs/v1/fonts/avenir-regular.woff') format('woff'),
+  url('/docs/v1/fonts/avenir-regular.ttf') format('truetype'),
+  url('/docs/v1/fonts/avenir-regular.svg#avenir-regular') format('svg');
 }
 
 %icon {
