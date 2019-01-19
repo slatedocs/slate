@@ -114,7 +114,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/snapshots?operation=create</code>
 
-Create a snapshot of an existing [volume](#cloudstack-storage). Note that the volume must be attached to an instance. A detached volume cannot be **snapshot*****'ed***. You can get a list of volumes using [this](#cloudstack-list-volumes) API.
+Create a snapshot of an existing [volume](#cloudstack-storage). Note that the volume must be in its *READY* state to be able to take a snapshot of it. You can get a list of volumes using [this](#cloudstack-list-volumes) API.
 
 Required | &nbsp;
 ---------- | -----
