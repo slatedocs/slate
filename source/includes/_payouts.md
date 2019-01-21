@@ -1066,26 +1066,76 @@ query.accountId                | Query parameter repeated         | Integer
 
 
 ## Create topup order
-There are 2 different ways you can send funds to your borderless account:
-1) Simply send domestic bank transfer from your bank account to **your borderless account details** (IBAN / SortCode-AccountNo) which TransferWise issued to your account. There is no need to setup any topup order in this case.
 
-2) Create a topup order and then send corresponding amount via domestic or international bank transfer to **TransferWise escrow acccount details**.
-Before you can do this you need to obtain our escrow bank account details from your account manager.
-This option is usually used when sending funds via international (swift) transfers.
- 
-Setting up topup order is similar to setting up regular transfer with a few tweaks.
+> Step 1 - Create Quote for topup:
 
-### 1. Create topup quote
-
-Same way as described in [Create quote](#transferwise-payouts-guide-create-quote) but use quote type REGULAR:
-
-
+```shell
+curl -X POST https://api.sandbox.transferwise.tech/v1/quotes \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
           "profile": <your profile id>,
           "source": "EUR",
           "target": "EUR",
           "rateType": "FIXED",
           "targetAmount": 6000,
           "type": "REGULAR"
+         }'
+```
+
+
+> Step 2 - Find out your balance recipient account id:
+
+```shell
+curl -X GET https://api.sandbox.transferwise.tech/v1/borderless-accounts?profileId={profileId} \
+     -H "Authorization: Bearer <your api token>" 
+```
+
+> Example Response:
+
+```json
+[
+    {
+        "id": 64,
+        "profileId": <your profile id>,
+        "recipientId": <your balance recipient account id>,
+        ...
+   }
+]
+```
+
+> Step 3 - Create Transfer for topup:
+
+```shell
+curl -X POST https://api.sandbox.transferwise.tech/v1/transfers \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "targetAccount": <recipient account id fetched in step 2>,   
+          "quote": <quote id from step 1>,
+          "customerTransactionId": "<the UUID you generated for the transfer attempt>",
+          "details" : {
+              "reference" : "optional text to identify your topup order"
+            } 
+         }'
+```
+
+
+There are 2 different ways you can send funds to your borderless account:
+
+1) Simply send domestic bank transfer from your bank account to **your borderless account details** (IBAN / SortCode-AccountNo). There is no need to setup a topup order in this case.
+
+2) Create a topup order and then send corresponding amount via domestic or international bank transfer to **TransferWise escrow bank account details**.
+You can obtain escrow account details from your account manager.
+This option is usually used when you are sending funds via international (swift) transfers.
+ 
+Setting up a topup order is similar to setting up a regular transfer. Some minor changes are documented below. 
+
+### 1. Create topup quote
+
+Same way as described in [Create quote](#transferwise-payouts-guide-create-quote) but use quote type REGULAR:
+
+
 
 ### 2. Find out your balance recipient account id
 
@@ -1099,15 +1149,6 @@ This recipientId will not change, so you just need to fetch it once and then you
 
 ### 3. Create topup transfer (order)
 As last step you now need to create transfer (topup order). This is same call as described in [Create transfer](#transferwise-payouts-guide-create-transfer).
-
-
-          "targetAccount": <recipient account id fetched in step 2>,   
-          "quote": <quote id from step 1>,
-          "customerTransactionId": "<the UUID you generated for the transfer attempt>",
-          "details" : {
-              "reference" : "optional text to identify your topup order"
-            } 
-
 All done. 
 
 
