@@ -1067,7 +1067,7 @@ query.accountId                | Query parameter repeated         | Integer
 
 ## Create topup order
 
-> Step 1 - Create Quote for topup:
+> Step 1 - Create quote for topup:
 
 ```shell
 curl -X POST https://api.sandbox.transferwise.tech/v1/quotes \
@@ -1104,7 +1104,7 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/borderless-accounts?profile
 ]
 ```
 
-> Step 3 - Create Transfer for topup:
+> Step 3 - Create transfer for topup:
 
 ```shell
 curl -X POST https://api.sandbox.transferwise.tech/v1/transfers \
@@ -1126,12 +1126,18 @@ There are 2 different ways you can send funds to your borderless account:
 1) Simply send domestic bank transfer from your bank account to **your borderless account details** (IBAN / SortCode-AccountNo). There is no need to setup a topup order in this case.
 
 2) Create a topup order and then send corresponding amount via domestic or international bank transfer to **TransferWise escrow bank account details**.
+
 You can obtain escrow account details from your account manager.
+
 This option is usually used when you are sending funds via international (swift) transfers.
  
 Setting up a topup order is similar to setting up a regular transfer. Some minor changes are documented below. 
 
+
+
 ### 1. Create topup quote
+
+**`POST https://api.sandbox.transferwise.tech/v1/quotes`**
 
 Same way as described in [Create quote](#transferwise-payouts-guide-create-quote) but use quote type REGULAR:
 
@@ -1139,16 +1145,22 @@ Same way as described in [Create quote](#transferwise-payouts-guide-create-quote
 
 ### 2. Find out your balance recipient account id
 
-Call [Check account balance](#transferwise-payouts-guide-check-account-balance) endpoint and fetch **recipientId** field value from the response.
-
 **`GET https://api.sandbox.transferwise.tech/v1/borderless-accounts?profileId={profileId}`**
 
+Call [Check account balance](#transferwise-payouts-guide-check-account-balance) endpoint and fetch **recipientId** field value from the response.
 
-You need to use this value in **targetAccount** field when calling  create transfer endpoint in next step.
-This recipientId will not change, so you just need to fetch it once and then you can use the same value for all topup orders.
+This recipientId will not change, so you just need to fetch it once and then you can re-use the same value for all topup orders.
+
+
 
 ### 3. Create topup transfer (order)
-As last step you now need to create transfer (topup order). This is same call as described in [Create transfer](#transferwise-payouts-guide-create-transfer).
+
+**`POST https://api.sandbox.transferwise.tech/v1/transfers`**
+
+As last step you now need to create a transfer (topup order). This is same call as described in [Create transfer](#transferwise-payouts-guide-create-transfer).
+
+Use the value fetched in previous step in **targetAccount** field.
+
 All done. 
 
 
