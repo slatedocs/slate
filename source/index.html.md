@@ -5,20 +5,15 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - shell
 
 toc_footers:
-  - <span>Write us at soporte@chekin.io to get an API Key</span>
+  - <span>Write us at soporte@chekin.io</span>
 
 includes:
   - intro
-  - api_key
   - user_token
-  - accommodations
-  - reservations
-  - checkins
+  - police_registration
+  - ocr_web
+  - biomatch
   - errors
 
 search: true
 ---
-
-
-
-

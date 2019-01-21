@@ -1,34 +1,13 @@
-# User Token Authentication
+# Signup & get a Token
 
-> To get a user token, use this code:
+To get your token and start using the API you will need to choose your plan and signup with an email and password at: 
 
+[https://tools.chekin.io/pricing](https://tools.chekin.io/pricing)
 
-```shell
-curl -X POST \
-  https://api.chekin.io/api/v1/users/token/create/ \
-  -H 'Api-Key: yourApiKeyhere' \
-  -H 'content-type: multipart/form-data;' \
-  -F email=usersemail@domain.com \
-  -F password=userspassword
-```
-
-> The above command returns JSON structured like this:
-
-```json
-  {
-    "auth_token": "yourUserTokenHere"
-  }
-```
-
-> Make sure to replace `yourApiKeyhere` with your API key in headers.
-
-To act in behalf of a CheKin user through the CheKin API, and access to his data, you will need to generate a user token. 
-To get a token do a `POST` to the tokens endpoint at `https://api.chekin.io/api/v1/users/token/create/` sending user email and password and you will get the token as response. 
+Then you will find your Token in Settings section.
 
 CheKin expects for the user token to be included in all authenticated API requests to the server in a header that looks like the following:
 
-`Authorization: Token yourUserTokenHere`
+`Authorization: Token c7901b5d947541a1c870d472b644cf9ee5945e37`
 
-<aside class="notice">
-You must replace <code>yourUserTokenHere</code> with your user token.
-</aside>
+
