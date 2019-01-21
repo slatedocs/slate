@@ -12,37 +12,48 @@
       "can't be blank"
     ],
     "project_users":[
-
+      "is invalid"
     ]
   }
 }
+```
+```
+422 Unprocessable Entity
 ```
 ```
 403 Forbidden
 ```
 ```json
 {
-  "data":{
-    "reference":"a833626d3b763fbf738267ef792fba4d"
+  "errors":{
+    "message":"error message"
   }
 }
 ```
 ```
-404 Not Found 
+404 Not Found
 ```
 ```json
 {
-  "data":{
-    "reference":"dca8215e324a30c08f61bdd5d348af9c"
+  "errors":{
+    "message":"Not Found"
   }
 }
 ```
-
+401 Unauthorized
+```
+```json
+{
+  "errors":{
+    "message":"Unauthorized"
+  }
+}
+```
 
 Timely uses conventional HTTP response codes to indicate the success or failure of an API request. Codes in the 2xx range indicate success. Codes in the 4xx range indicate an error that failed given the information provided.
 Codes in the 5xx range indicate an error with Timely's servers.
 
-Accessing unauthorized to another project, account, or trying to create or delete objects that are not under our control will result in errors. 
+Accessing unauthorized to another project, account, or trying to create or delete objects that are not under our control will result in errors.
 
 
 The Timely API uses the following error codes:
