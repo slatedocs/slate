@@ -1426,3 +1426,7 @@ Join our Slack channel <a href="https://join.slack.com/t/suredbits/shared_invite
  
 Email us at <a href="mailto:support@suredbits.com">support@suredbits.com</a>
 
+#Homepage
+
+<a href="https://www.suredbits.com"> Return to Suredbits.com</a>
+
