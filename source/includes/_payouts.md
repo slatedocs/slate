@@ -1064,6 +1064,54 @@ query.intervalEnd                | Query parameter repeated                 | Zu
 query.currency                | Query parameter repeated          | Text
 query.accountId                | Query parameter repeated         | Integer
 
+
+## Create topup order
+There are 2 different ways you can send funds to your borderless account:
+1) Simply send domestic bank transfer from your bank account to **your borderless account details** (IBAN / SortCode-AccountNo) which TransferWise issued to your account. There is no need to setup any topup order in this case.
+
+2) Create a topup order and then send corresponding amount via domestic or international bank transfer to **TransferWise escrow acccount details**.
+Before you can do this you need to obtain our escrow bank account details from your account manager.
+This option is usually used when sending funds via international (swift) transfers.
+ 
+Setting up topup order is similar to setting up regular transfer with a few tweaks.
+
+### 1. Create topup quote
+
+Same way as described in [Create quote](#transferwise-payouts-guide-create-quote) but use quote type REGULAR:
+
+
+          "profile": <your profile id>,
+          "source": "EUR",
+          "target": "EUR",
+          "rateType": "FIXED",
+          "targetAmount": 6000,
+          "type": "REGULAR"
+
+### 2. Find out your balance recipient account id
+
+Call [Check account balance](#transferwise-payouts-guide-check-account-balance) endpoint and fetch **recipientId** field value from the response.
+
+**`GET https://api.sandbox.transferwise.tech/v1/borderless-accounts?profileId={profileId}`**
+
+
+You need to use this value in **targetAccount** field when calling  create transfer endpoint in next step.
+This recipientId will not change, so you just need to fetch it once and then you can use the same value for all topup orders.
+
+### 3. Create topup transfer (order)
+As last step you now need to create transfer (topup order). This is same call as described in [Create transfer](#transferwise-payouts-guide-create-transfer).
+
+
+          "targetAccount": <recipient account id fetched in step 2>,   
+          "quote": <quote id from step 1>,
+          "customerTransactionId": "<the UUID you generated for the transfer attempt>",
+          "details" : {
+              "reference" : "optional text to identify your topup order"
+            } 
+
+All done. 
+
+
+
 ## Going live checklist
 
 ### 1. Make your integration bulletproof

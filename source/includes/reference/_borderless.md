@@ -82,7 +82,7 @@ Field                             | Description                                 
 ---------                         | -------                                       | -----------
 id                                | Borderless account id                         | Integer
 profileId                         | Personal or business profile id               | Integer
-recipientId                       | Recipient id you can use for borderless topup payment order  | Integer
+recipientId                       | Recipient id you can use for borderless topup transfer  | Integer
 creationTime                      | Date when balance account was opened                     | Timestamp
 modificationTime                  | Date when balance account setup was modified.            | Timestamp
 active                            | Is borderless account active or inactive       | Boolean
