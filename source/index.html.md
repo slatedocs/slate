@@ -569,7 +569,7 @@ This provides a check and confirmation on the status of the API.
 
 ```json
 {
-  "[uuid]",
+  "1771601c-0fe8-4387-b2ce-be9a0abe1356",
   "data":
     [
       {
@@ -698,32 +698,34 @@ Field | Type | Example
 
 > Example Players data
 
-```json 
+```json
 
-{
-  "uuid":"dfd2a7d4-3a36-4624-96c4-80f0c166d447",
-  "data":
-    [
-      {
-        "playerId":"00-0011754",
-        "gsisName":"R.Moss",
-        "fullName":"Randy Moss",
-        "firstName":"Randy",
-        "lastName":"Moss",
-        "team":"UNK",
-        "position":"UNK",
-        "profileId":2502220,
-        "profileUrl":"http://www.nfl.com/player/randymoss/2502220/profile",
-        "birthDate":"2/13/1977",
-        "college":"Marshall",
-        "yearsPro":14,
-        "height":76,
-        "weight":210,
-        "status": "Unknown",:
-       }
-    ]
-  }
+{  
+   "uuid":"c8aa064c-51d9-4910-ab2d-add823bce374",
+   "data":[  
+      {  
+         "playerId":"00-0011754",
+         "gsisName":"R.Moss",
+         "fullName":"Randy Moss",
+         "firstName":"Randy",
+         "lastName":"Moss",
+         "team":"UNK",
+         "position":"UNK",
+         "profileId":2502220,
+         "profileUrl":"http://www.nfl.com/player/randymoss/2502220/profile",
+         "birthDate":"2/13/1977",
+         "college":"Marshall",
+         "yearsPro":14,
+         "height":76,
+         "weight":210,
+         "status":"Unknown"
+      }
+   ]
+}
+
 ```
+
+  
 
 The <span style="color:red"> Players </span> channel returns data for particular players by <span style="color:red"> name </span>.  
 
@@ -1047,7 +1049,7 @@ Field | Type | Example
   "year": 2016, "month": 12, 
   "day": 20, 
   "teamId": "CHI", 
-  "uuid": "[3f4f2853-e84f-4a29-b807-8a471e59ca44"
+  "uuid": "[3f4f2853-e84f-4a29-b807-8a471e59ca44]"
 }
 ```
 
