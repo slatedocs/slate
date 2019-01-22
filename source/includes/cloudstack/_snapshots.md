@@ -88,3 +88,39 @@ Attributes | &nbsp;
 `volumeId`<br/>*UUID* | The id of the [volume](#cloudstack-volumes) that was snapshotted
 `volume`<br/>*string* | The name of the [volume](#cloudstack-volumes) that was snapshotted
 `volumeType`<br/>*string* | The type of the [volume](#cloudstack-volumes) that was snapshotted
+
+
+<!-------------------- CREATE A SNAPSHOT OF A VOLUME -------------------->
+
+
+#### Create a snapshot
+
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://cloudmc_endpoint/v1/services/compute-on/testing/snapshots?operation=create"
+
+# Request should look like this
+```
+```json
+{
+  "volumeId": "4fe54594-a788-442c-b7a8-0237f7a4f70d",
+  "name": "BeforeUpgradeToV2",
+  "rapid": true
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/snapshots?operation=create</code>
+
+Create a snapshot of an existing [volume](#cloudstack-storage). Note that the volume must be in its *READY* state to be able to take a snapshot of it. You can get a list of volumes using [this](#cloudstack-list-volumes) API.
+
+Required | &nbsp;
+---------- | -----
+`volumeId`<br/>*UUID* | The id of the [volume](#cloudstack-storage) on which the snapshot is to be taken.
+
+Optional | &nbsp;
+------ | -----------
+`name`<br/>*string* | A ***unique name*** to be given to the newly created **snapshot**. If this parameter is not provided then by default the concatenation of the *instance name*, *volume name* and the *current timestamp* is used. <br/><br/>*Eg:*<br/>&nbsp;&nbsp;&nbsp;&nbsp;*[instance.name]\_[volume.name]\_[timestamp]*<br/>&nbsp;&nbsp;&nbsp;&nbsp;***i-root-6E7_RapidVol_20190117153537***
+`rapid`<br/>*boolean* | Indicates the ***location*** as to where the snapshot is supposed to be created. <br/><br/>Setting this to **true** will ensure that the snapshot is created in the same primary storage as where the volume is. If **false**, then the snapshot is created in a secondary storage. 

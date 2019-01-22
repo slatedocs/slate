@@ -204,3 +204,37 @@ curl -X POST \
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/volumes/:id?operation=detachFromInstance</code>
 
 Detach a data volume from an [instance](#cloudstack-instances).
+
+
+<!-------------------- CREATE A SNAPSHOT OF A VOLUME -------------------->
+
+
+#### Create a volume snapshot
+
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://cloudmc_endpoint/v1/services/compute-on/testing/volumes/4fe54594-a788-442c-b7a8-0237f7a4f70d?operation=createSnapshotFromVolume"
+
+# Request should look like this
+```
+```json
+{
+   "snapshot": {
+      "name": "PreMigrationState",
+      "rapid": true
+   }
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/volumes/:id?operation=createSnapshotFromVolume</code>
+
+Create a snapshot of an existing [volume](#cloudstack-storage). Note that the volume must be in its *READY* state to be able to take a snapshot of it. 
+
+Optional | &nbsp;
+------ | -----------
+`name`<br/>*string* | A ***unique name*** to be given to the newly created **snapshot**. If this parameter is not provided then by default the concatenation of the *instance name*, *volume name* and the *current timestamp* is used. <br/><br/>*Eg:*<br/>&nbsp;&nbsp;&nbsp;&nbsp;*[instance.name]\_[volume.name]\_[timestamp]*<br/>&nbsp;&nbsp;&nbsp;&nbsp;***i-root-6E7_RapidVol_20190117153537***
+`rapid`<br/>*boolean* | Indicates the ***location*** as to where the snapshot is supposed to be made. <br/><br/>Setting this to **true** will ensure that the snapshot is created in the same primary storage as where the volume is. If **false**, then the snapshot is created in a secondary storage. <br/><br/>*Note: Rapid snapshots enable much faster volume and template creation than from regular snapshots, but at a higher expense. Not all volumes support the* **rapid** *snapshot option.*
+
