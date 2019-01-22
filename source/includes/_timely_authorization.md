@@ -13,8 +13,6 @@ Enter your application name and the redirect_url to your application.
 
 Acquire the Application Id and Secret.
 
-You can find the old api documentation [here](https://dev.timelyapp.com/v0)
-
 > Base URL for all API's is:
 https://api.timelyapp.com/1.1
 
