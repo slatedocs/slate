@@ -86,7 +86,7 @@ html, body {
       background: $nav-bg;
       border-width: 0 0 1px 0;
       border-color: $search-box-border-color;
-      padding: 6px 0 6px 20px;
+      padding: 6px 0 6px 0px;
       box-sizing: border-box;
       margin: $nav-v-padding $nav-padding;
       width: $nav-width - ($nav-padding*2);
@@ -95,13 +95,13 @@ html, body {
       border-radius: 0; /* ios has a default border radius */
     }
 
-    &:before {
-      position: absolute;
-      top: 17px;
-      left: $nav-padding;
-      color: $nav-text;
-      @extend %icon-search;
-    }
+    // &:before {
+    //   position: absolute;
+    //   top: 17px;
+    //   left: $nav-padding;
+    //   color: $nav-text;
+    //   @extend %icon-search;
+    // }
   }
 
   .search-results {
