@@ -57,6 +57,7 @@ html, body {
   top: 0;
   left: 0;
   bottom: 0;
+  border-right: 1px solid #E7E9EA;
   width: $nav-width;
   background-color: $nav-bg;
   font-size: 13px;
@@ -347,13 +348,13 @@ html, body {
   h1 {
     @extend %header-font;
     font-size: 25px;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
+    padding-top: 0.9em;
+    padding-bottom: 0.1em;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    background-color: #fdfdfd;
+    border-top: 1px solid #ececec;
+    // border-bottom: 1px solid #ccc;
+    // background-color: #fdfdfd;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -366,7 +367,7 @@ html, body {
     font-size: 19px;
     margin-top: 4em;
     margin-bottom: 0;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid #e9e9e9;
     padding-top: 1.2em;
     padding-bottom: 1.2em;
     background-image: linear-gradient(to bottom, rgba(#fff, 0.2), rgba(#fff, 0));
