@@ -72,6 +72,7 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 %default-font {
   font-family: "Avenir","helvetica neue","helvetica","arial";
   font-size: 15px;
+  font-weight: 500;
 }
 
 %header-font {
