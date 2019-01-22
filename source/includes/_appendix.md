@@ -1,6 +1,6 @@
 # Appendix
 
-## Constructing Google+ URLs
+## Constructing Google Local listing URL
 
 ```php
 <?php
@@ -101,7 +101,7 @@ api-key | <span class="label label-required">Required</span>
 sig | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 expires | <span class="label label-required">Required</span> [See above for how to generate signature and expires values.](#authentication)
 
-## Local directories supported by Local SEO Check-up tool
+## Local directories supported by Local Search Audit tool
 
 ### USA
 
