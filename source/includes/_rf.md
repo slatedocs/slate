@@ -1,4 +1,4 @@
-# Reputation Manager Reports
+# Reputation Manager
 
 ## Add Report
 
