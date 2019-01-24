@@ -161,6 +161,12 @@ curl -H "Content-Type:application/json" \
 -X POST https://api.practitest.com/api/v2/projects/4566/runs.json \
 -d '{"data": { "type": "instances", "attributes": {"instance-id": 98142, "exit-code": 0, "custom-fields": { "---f-45293": "Win" }}}} '
 
+# example with custom-fields
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN  \
+-X POST https://api.practitest.com/api/v2/projects/4566/runs.json \
+-d "{\"data\": { \"type\": \"instances\", \"attributes\": {\"instance-id\": 13691064, \"exit-code\": 0 }, \"files\": {\"data\": [{\"filename\": \"results.xml\", \"content_encoded\": \"$( base64 /var/lib/jenkins/workspace/FTI/logs/results.xml )\" }]} } }"
+
 # example with updating multiple instances with results
 curl -H "Content-Type:application/json" \
 -u YOUR_EMAIL:YOUR_TOKEN  \
