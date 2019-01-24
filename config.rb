@@ -10,10 +10,10 @@ set :markdown,
     no_intra_emphasis: true
 
 # Assets
-set :css_dir, 'assets/api-v2/stylesheets'
-set :js_dir, 'assets/api-v2/javascripts'
-set :images_dir, 'assets/api-v2/images'
-set :fonts_dir, 'assets/api-v2/fonts'
+# set :css_dir, 'assets/api-v2/stylesheets'
+# set :js_dir, 'assets/api-v2/javascripts'
+# set :images_dir, 'assets/api-v2/images'
+# set :fonts_dir, 'assets/api-v2/fonts'
 
 
 # Activate the syntax highlighter
@@ -26,7 +26,7 @@ activate :autoprefixer do |config|
 end
 
 # Github pages require relative links
-# activate :relative_assets
+activate :relative_assets
 set :relative_links, true
 
 # Build Configuration
@@ -41,20 +41,21 @@ configure :build do
 end
 
 # Deploy Configuration
-credentials_file_name = File.expand_path('~/.pt-api-sftp-credentials.yml')
-if File.exists?(credentials_file_name)
-  sftp_credentials = YAML::load_file(credentials_file_name)
-
-  activate :deploy do |deploy|
-    deploy.deploy_method   = :sftp
-    deploy.host            = sftp_credentials["host"]
-    deploy.port            = sftp_credentials["port"]
-    deploy.path            = sftp_credentials["path"]
-    # Optional Settings
-    deploy.user     = sftp_credentials["user"]
-    deploy.password = sftp_credentials["password"]
-  end
-end
+# not in use !!
+# credentials_file_name = File.expand_path('~/.pt-api-sftp-credentials.yml')
+# if File.exists?(credentials_file_name)
+#   sftp_credentials = YAML::load_file(credentials_file_name)
+#
+#   activate :deploy do |deploy|
+#     deploy.deploy_method   = :sftp
+#     deploy.host            = sftp_credentials["host"]
+#     deploy.port            = sftp_credentials["port"]
+#     deploy.path            = sftp_credentials["path"]
+#     # Optional Settings
+#     deploy.user     = sftp_credentials["user"]
+#     deploy.password = sftp_credentials["password"]
+#   end
+# end
 
 # If you want Middleman to listen on a different port, you can set that below
 set :port, 4567
