@@ -33,12 +33,18 @@ Here are some useful resources to help you learn and get started with Bicoin and
 3. <a href="https://lightning.network/lightning-network-paper.pdf">Lightning Whitepaper</a>
 4. <a href="https://www.youtube.com/watch?v=l1si5ZWLgy0">Introduction to Bitcoin</a>
 
-## Suredbits Lightning Node
-In order to access our APIs, you will need to connect to our lightning node via your preferred lightning client.   
+## Suredbits Lightning mainnet Node (paid) 
+In order to access our premium APIs, you will need to connect to our lightning node via your preferred lightning client.   
+
+The url is: <span style="color: blue"> 038bdb5538a4e415c42f8fb09750729752c1a1800d321f4bb056a9f582569fbf8e@ln.suredbits.com </span>
+
+
+## Suredbits Lightning testnet Node (free)
+In order to access our free APIs, you will need to connect to our lightning node via your preferred lightning client.   
 
 The url is:
 
-<span style="color:blue"> *0338f57e4e20abf4d5c86b71b59e995ce4378e373b021a7b6f41dabb42d3aad069@ln.test.suredbits.com* </span>
+<span style="color:blue"> 0338f57e4e20abf4d5c86b71b59e995ce4378e373b021a7b6f41dabb42d3aad069@ln.test.suredbits.com </span>
 
 
 ## Suredbits Lightning Payment 
@@ -1430,5 +1436,5 @@ Email us at <a href="mailto:support@suredbits.com">support@suredbits.com</a>
 
 #Homepage
 
-<a href="https://www.suredbits.com"> Return to Suredbits.com</a>
+<a href="https://www.suredbits.com"> Return to Suredbits.com </a>
 
