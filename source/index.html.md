@@ -17,9 +17,17 @@ search: true
 
 # Introduction
 
+-- Introduction --
+
 Welcome to the Factmata API!
 
 # Scoring URLs
+
+Scoring URLs using Factmata API works in two steps:
+
+1. Submitting URL for scoring
+
+2. Fetching the scores
 
 ## Submit a URL for scoring
 
