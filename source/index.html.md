@@ -25,13 +25,25 @@ Welcome to the Factmata API!
 
 Scoring URLs using Factmata API works in two steps:
 
-1. Submitting URL for scoring
+## 1. Submitting URL for scoring
+   
+    Before a URL can be scored, it needs to be scraped, and then scored by our models.
+    And hence the URL needs to be submitted first.
 
-2. Fetching the scores
+## 2. Fetching the scores
+
+    After the URL has been submitted, the results will be available in some time.
+
+    URL Scoring is complete when it has been scored by all models.
+
+    During the time between submission and fetching, URL might already have 
+    been scored by some models, while some are still are processing. In this case,
+    the user has the option to fetch the partial scores.
+
 
 ## Submit a URL for scoring
 
-To score a URL, it needs first needs to be submitted for scoring.
+To score a URL, it needs first needs to be submitted.
 
 ```python
 import requests
@@ -70,24 +82,28 @@ STATUS: 299
 
 ### HTTP Request
 
-`POST URL`
+`POST www.factmata.com`
 
 ### Request Payload
 
 Parameter | Description
 --------- | -----------
-url | A valid URL
+url | A valid URL string. This parameter is `required`. In case the URL is malformed or absent, request is abortd with status `422`. If the URL has already been submitted for scoring, status `299` is returned.
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+<aside class="notice">
+URL once submitted once, does not need to be submitted again
+</aside>
+
+<aside class="notice">
+After submitting the URL, the average time before it is fully processed is `x ms`
 </aside>
 
 ## Fetch the scores of a URL
 
 After a URL has been submitted for scoring, you can fetch the scores
-using the following API
+using this API.
 
---Document the time gap and cases--
+
 
 
 ```python
@@ -151,11 +167,25 @@ STATUS: 202
 
 ### HTTP Request
 
-`GET URL?url=www.example.com&partial_results=False`
+`GET http://www.example.com?url=www.example.com&partial_results=False`
 
+Fetching the scores has the following use cases:
+
+### URL is fully processed 
+
+When the URL is fully processed, all the model scores, as well as the `combined score` are returned.
+
+### URL is partially processed, `partial_results` is True
+
+The case when GET request is made, but only some models have finished scoring the URL, the user can fetch the scores of the `finished` models using the `partial_results` query parameter.
+When `partial_results` is set to `True`, scores from models that have finished processing are returned.
+
+### URL is partially processed, `partial_results` is False
+
+In this case, no scores are returned, and the API returns status code `202`
 ### URL Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-url | None | A Valid URL. URL is required
-partial_results | False | Optional Boolean flag if you want partial results
+url | None | A valid URL string. This parameter is `required`. In case the URL is malformed or absent, request is abortd with status `422`. If the URL has already been submitted for scoring, status `299` is returned.
+partial_results | False | Optional Boolean flag if partial results are wanted
