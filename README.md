@@ -93,14 +93,16 @@ Deployment -- new, with Jekyll website:
 
 ```shell
 #from clean
+./deploy
+
+#OR
 bundle exec middleman build --clean
 
-aws s3 sync build  s3://pt_public/api/slate-apiv2/
-aws s3 sync build  s3://pt_public/api/slate-apiv2/ --acl public-read
+aws s3 sync build/index.html  s3://pt_public/api/slate-apiv2/index.html --acl public-read
 aws cloudfront create-invalidation --distribution-id E2V3PVGRJTV0N8 \
   --paths /api/slate-apiv2/index.html
 
-# deploy => this is not final yet. some errors with javascripts
+# deploy old
 # cp build/index.html ../website-jekyll/pages/api-v2.html
 
 # cp build/stylesheets/* ../website-jekyll/assets/api-v2/stylesheets
