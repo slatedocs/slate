@@ -3,9 +3,7 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
   - python
-  - javascript
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -19,221 +17,137 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Factmata API!
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+# Scoring URLs
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+## Submit a URL for scoring
 
-# Authentication
-
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+To score a URL, it needs first needs to be submitted for scoring.
 
 ```python
-import kittn
+import requests
 
-api = kittn.authorize('meowmeowmeow')
+data = {
+  'url': 'www.example.com'
+}
+
+res = requests.post("URL", json=data)
 ```
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+curl "URL"
+  -X POST
+  -H "Content-Type: application/json"
+  -d '{"url": "www.example.com"}'
 ```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
+> When the URL is successfully submitted for processing, the following response is returned
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+STATUS: 202
+```
+```json
+{"answer": "Request Sent Successfully"}
 ```
 
-This endpoint retrieves all kittens.
+> If the URL is already being processed, the following response is returned
+
+```json
+STATUS: 299
+```
+```
+{ "answer": "URL is being processed" }
+```
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`POST URL`
 
-### Query Parameters
+### Request Payload
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+Parameter | Description
+--------- | -----------
+url | A valid URL
 
 <aside class="success">
 Remember — a happy kitten is an authenticated kitten!
 </aside>
 
-## Get a Specific Kitten
+## Fetch the scores of a URL
 
-```ruby
-require 'kittn'
+After a URL has been submitted for scoring, you can fetch the scores
+using the following API
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
+--Document the time gap and cases--
+
 
 ```python
-import kittn
+import requests
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
+data = {
+  'url': 'www.example.com'
+}
+res = requests.get("URL", params=data)
 ```
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+curl "URL?url=www.example.com"
+  -X GET
 ```
 
-```javascript
-const kittn = require('kittn');
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
+> If the URL has finished processing, the JSON structured like this is returned:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "models_scores": [
+    {
+      "model": 1,
+      "score": 0.314
+    },
+    {
+      "model": 2,
+      "score": 0.314
+    },
+    ...
+  ],
+  "combined_score": 0.1414
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
+> If `partial_results` flag is set and the URL is still processing, the following response is returned
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+  "models_scores": [
+    {
+      "model": 1,
+      "score": 0.314
+    },
+    ## At this stage only model 1 has finished processing
+  ]
 }
 ```
 
-This endpoint deletes a specific kitten.
+> If the `partial_results` flag is not set and the URL is still processing, the following response is returned 
+
+```json
+STATUS: 202
+```
+```json
+{
+  "answer": "Please try again later"
+}
+```
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+`GET URL?url=www.example.com&partial_results=False`
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
+Parameter | Default | Description
+--------- | ------- | -----------
+url | None | A Valid URL. URL is required
+partial_results | False | Optional Boolean flag if you want partial results
