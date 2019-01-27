@@ -23,6 +23,7 @@ Options:
 run_build() {
   bundle exec middleman build --clean
   cp CNAME build/
+  cp references.md build/
   mkdir build/api
   cp swagger.json build/api/
 }
