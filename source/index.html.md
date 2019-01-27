@@ -33,16 +33,32 @@ Here are some useful resources to help you learn and get started with Bicoin and
 3. <a href="https://lightning.network/lightning-network-paper.pdf">Lightning Whitepaper</a>
 4. <a href="https://www.youtube.com/watch?v=l1si5ZWLgy0">Introduction to Bitcoin</a>
 
-## Suredbits Lightning mainnet Node (paid) 
-In order to access our premium APIs, you will need to connect to our lightning node via your preferred lightning client.   
+## Suredbits Lightning mainnet Node (paid) &#8383; 
+In order to access our paid API service, you will need to connect to our lightning node via your preferred lightning client.  
 
-The url is: <span style="color: blue"> 038bdb5538a4e415c42f8fb09750729752c1a1800d321f4bb056a9f582569fbf8e@ln.suredbits.com </span>
+Our paid service offers complete coverage for all channels, endpoints and fields .  
+
+The url for our paid service is: <span style="color: blue"> 038bdb5538a4e415c42f8fb09750729752c1a1800d321f4bb056a9f582569fbf8e@ln.suredbits.com </span>
 
 
-## Suredbits Lightning testnet Node (free)
-In order to access our free APIs, you will need to connect to our lightning node via your preferred lightning client.   
+## Suredbits Lightning testnet Node (free) &#9787;
+We provide a number of free data services so users can experiment and learn the structure of our Lightning API service. The following are our free services:  
 
-The url is:
+**Crypto Exchange API**
+
+Currently, we offer the trading pair <span style="color:red"> `BTCUSD` </span> data for free across all available exchanges.
+
+**NFL API**
+
+Currently, we offer <span style="color:red"> `rosters` </span> data in the **Teams** endpoint for free.
+
+**NBA API**
+
+Currently, we offer <span style="color:red"> `rosters` </span> data in the **Teams** endpoint for free. 
+
+In order to access our free API service, you will need to connect to our lightning node via your preferred lightning client.   
+
+The url for our testnet service is:
 
 <span style="color:blue"> 0338f57e4e20abf4d5c86b71b59e995ce4378e373b021a7b6f41dabb42d3aad069@ln.test.suredbits.com </span>
 
@@ -53,7 +69,7 @@ This is our recommended lnd lightning client library: <a href="https://github.co
 
 This is an alternative c-lightning client library: <a href="https://github.com/suredbits/lightning-charge">https://github.com/suredbits/lightning-charge</a>
 
-<aside class="success"> Note: all API services are currently on testnet.  Testnet is used for testing purposes and is not real bitcoin. </aside>
+<aside class="success"> Notice: We reserve the right to change pricing as necessary.  We also reserve the right to change what is available in our free API offerings. Any changes in pricing or services will be announced via our Twitter <a href="https://twitter.com/SuredBits">@Suredbits</a> </aside>
 
 ## UUID
 
@@ -150,7 +166,9 @@ A successful request will generate a lightning invoice that will look similar to
 
 ## Crypto Exchange Websocket Endpoint 
 
-**wss://test.api.suredbits.com/exchange/v0**
+This is the paid service url **wss://api.suredbits.com/exchange/v0**
+
+This is the free version ufl **wss://test.api.suredbits.com/exchange/v0**
 
 ## Overview
 
