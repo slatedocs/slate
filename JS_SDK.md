@@ -62,7 +62,7 @@ Including this SDK exposes `window.createForm` function which takes in below par
 | CHANNEL_NAME | string | null | true | CHANNEL NAME given by anarock team |
 | CAMPAIGN_ID | string | null | true | CAMPAIGN ID given by anarock team |
 | ENVIRONMENT | string | 'staging' | true | possible values are `staging` or `production` |
-| options | object | null | - | possible keys are `showRemarks` or `remarksTitle`, `show_label`, `show_placeholder`, `contacting_authority`, `show_thankyou`, `dnc_checked`, `projects`, `selectedProject`|
+| options | object | null | - | possible keys are `showRemarks` or `remarksTitle`, `show_label`, `show_placeholder`, `contacting_authority`, `show_thankyou`, `dnc_checked`, `projects`, `selectedProject`,  `default_country`|
 
 
 In the `options` object 
@@ -86,7 +86,11 @@ In the `options` object
  `projects` is an array of Objects of the following signature `[{name: '', campaign_id: ''}]` pass this to show project dropdown in the form.
  
  `selectedProject` is an object of following signature `{name: '', campaign_id: ''}` pass this to select one project by default
-
+ 
+` default_country` is a string, that will define the default country selected in the dropdown.
+List of all countries is given here https://s3.console.aws.amazon.com/s3/object/anarock.misc/countryCode.js. Use the url_name to pass. 
+e.g if you want the default selected country to be U.A.E. then pass `{default_country: ae}` as options
+ 
 Working example can be seen here. https://marketing.anarock.com/static/test.html
 
 `window.onLeadSuccess` && `window.onLeadFailure` are the two functions that are called on submission of lead. These are called with 2 arguments  `lead_id` && `data_submitted_in_anarock_database`
