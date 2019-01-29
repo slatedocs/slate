@@ -33,7 +33,7 @@
 
 <b>A user creates or updates a note attached to a learning asset</b>
 
-## launch_assetpage
+## asset_launch
 
 ```shell
 ```
@@ -43,31 +43,21 @@
 ```js
 
 {
-	ID: location.protocol + '//' + location.host + location.pathname + '#/learning-asset/' + assetData.niceName,
 	Playlist: {
 		ID: String(playlistData.id),
-		Name: playlistData.name,
-		Order: playlistData.position
+		Type: String(playlistData.type)
 	},
 	Asset: {
 		ID: String(assetData.id),
-		Name: assetData.name,
-		Text: assetData.niceName,
 		Order: assetData.position
 	},
-	AssetInfo: {
-		URL: assetData.url,
-		Type: assetData.type,
-		Description: assetData.desc,
-		Duration: formatISODuration(assetData.duration),
-		ProviderID: String(assetData.providerId),
-		ProviderName: providerData.name,
-		ProviderURL: providerData.url,
-		Competencies: mappedCompetencies,
-		Completed: assetData.completed,
-		CompletedStatus: assetData.completedStatus
-	},
-	Type: ui.scene
+	Type: ui.scene,
+	Mode: ui.ClientPage,
+	TimeInfo: {
+		CurrentTime: String(”2019-01-16T12:35:07+00:00”),
+		ZoneName: String(”GMT”),
+		ZoneOffset: 0
+	}
 }
 
 ```
