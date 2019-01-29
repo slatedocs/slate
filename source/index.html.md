@@ -33,7 +33,7 @@ Here are some useful resources to help you learn and get started with Bicoin and
 3. <a href="https://lightning.network/lightning-network-paper.pdf">Lightning Whitepaper</a>
 4. <a href="https://www.youtube.com/watch?v=l1si5ZWLgy0">Introduction to Bitcoin</a>
 
-## Suredbits Lightning mainnet Node (paid) &#8383; 
+## Mainnet Node (paid) 
 In order to access our paid API service, you will need to connect to our lightning node via your preferred lightning client.  
 
 Our paid service offers complete coverage for all channels, endpoints and fields .  
@@ -41,20 +41,7 @@ Our paid service offers complete coverage for all channels, endpoints and fields
 The url for our paid service is: <span style="color: blue"> 038bdb5538a4e415c42f8fb09750729752c1a1800d321f4bb056a9f582569fbf8e@ln.suredbits.com </span>
 
 
-## Suredbits Lightning testnet Node (free) &#9787;
-We provide a number of free data services so users can experiment and learn the structure of our Lightning API service. The following are our free services:  
-
-**Crypto Exchange API**
-
-Currently, we offer the trading pair <span style="color:red"> `BTCUSD` </span> data for free across all available exchanges.
-
-**NFL API**
-
-Currently, we offer <span style="color:red"> `rosters` </span> data in the **Teams** endpoint for free.
-
-**NBA API**
-
-Currently, we offer <span style="color:red"> `rosters` </span> data in the **Teams** endpoint for free. 
+## Testnet Node (free) 
 
 In order to access our free API service, you will need to connect to our lightning node via your preferred lightning client.   
 
@@ -63,13 +50,47 @@ The url for our testnet service is:
 <span style="color:blue"> 0338f57e4e20abf4d5c86b71b59e995ce4378e373b021a7b6f41dabb42d3aad069@ln.test.suredbits.com </span>
 
 
-## Suredbits Lightning Payment 
+We provide a number of free data endpoints so users can experiment and learn the structure of our Lightning API service. To allow for complete testing, we make the following data avaialble for free on testnet:  
+
+**Crypto Exchange API**
+
+Currently, we offer the trading pair <span style="color:red"> `BTCUSD` </span> data for free across all available exchanges.
+
+**NFL API**
+
+Currently, we offer <span style="color:red"> Info </span> and <span style="color:red"> Games </span> data endpoints for free on testnet. 
+
+In addition, to help developers build and test end-to-end applications, we offer a series of data across all endpoints: `Games`, `Players`, `Team` and `Stats` for a specific player.  For testing, we provide data for <span style="color:red"> Tom Brady </span> for free on testnet.   
+
+**NBA API**
+
+Currently, we offer <span style="color:red"> Info </span> and <span style="color:red"> Games </span> data endpoints for free. 
+
+In addition, to help developers build and test end-to-end applications, we offer a series of data across all endpoints: `Games`, `Players`, `Team` and `Stats` for a specific player.  For testing, we provide data for <span style="color:red"> Lebron James </span> for free on testnet.   
+
+
+## Payment & Pricing
+
+**How to Pay**
 
 This is our recommended lnd lightning client library: <a href="https://github.com/SuredBits/sb-api-lnd">https://github.com/SuredBits/sb-api-lnd</a>
 
 This is an alternative c-lightning client library: <a href="https://github.com/suredbits/lightning-charge">https://github.com/suredbits/lightning-charge</a>
 
-<aside class="success"> Notice: We reserve the right to change pricing as necessary.  We also reserve the right to change what is available in our free API offerings. Any changes in pricing or services will be announced via our Twitter <a href="https://twitter.com/SuredBits">@Suredbits</a> </aside>
+
+**Pricing**
+
+<aside class="success"> All payments are transacted in cryptocurrency.  For convenience, we have quoted prices in USD equiavalents. </aside>
+
+<aside class="success"> We reserve the right to change pricing as necessary.  We also reserve the right to change what is available in our free API offerings. Any changes in pricing or services will be announced via our Twitter <a href="https://twitter.com/SuredBits">@Suredbits</a> </aside>
+
+For NFL Data and NBA Data APIs, the cost is $.01 (1 cent) per call.  
+
+For our streaming Crypto Exchange API, the cost is $.10 (10 cents) per sixty seconds of streaming data.   
+
+Anything less than 60 seconds will be prorated accordingly.  
+
+A minimum of 10 satoshis will be charged for all streaming data calls. 
 
 ## UUID
 
