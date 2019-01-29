@@ -78,7 +78,7 @@ for example: metadata.id or metadata.name or metadata.date, and so on.
 
 See the examples for more information.
 
-### API methods that support metadata.
+## API methods that support metadata.
 
 Not all API methods support metadata. Currently, the following API methods and their corresponding objects support metadata.
 
@@ -86,7 +86,7 @@ Not all API methods support metadata. Currently, the following API methods and t
 2. The contacts API
 3. The collection requests API
 
-## Custom Fields
+# Custom Fields
 
 Custom Fields are similar to Metadata - they allow you to add custom data to some objects. Custom fields can be added to contacts,
 payments or collection requests.
@@ -97,7 +97,7 @@ There are a couple of differences between custom fields and other metadata:
 2. Metadata keys and values can be created and edited through the API, while custom fields 'labels' can only be created through the web interface by your organization administrator. However, once custom fields have been created through the web interface, they can be updated or edited through the API as well.
 3. Metadata consists of string-based keys and string-based values. Custom field keys are strings (starting with "s_"), but the values may be of different types, including strings, numbers, boolean values or enum values (restricted to a predefined set of values)
 
-### Adding or updating custom field data
+## Adding or updating custom field data
 
 All internal custom field labels or keys start with "s_". To see the available custom fields, and their actual key names, you can read or list the related object records, as detailed in the respective APIs.
 
@@ -105,7 +105,7 @@ For example, to see custom fields that have been added to your payment object, l
 
 Once you know the custom field key, you can update it's value just like any other metadata value.
 
-### API methods that support custom fields.
+## API methods that support custom fields.
 
 Not all API methods support custom fields. Currently, the following API methods and their corresponding objects support custom fields.
 
