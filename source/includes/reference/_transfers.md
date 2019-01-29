@@ -199,6 +199,30 @@ Only transfers which are not funded can be cancelled. Cancellation is final it c
 
 Use transfer id that you obtained when creating a transfer. 
 
+### Response
+
+Field                     | Description                                   | Format
+---------                 | -------                                       | -----------
+id                        | Transfer id                                   | Integer
+user                      | Your user id                                  | Integer
+targetAccount             | Recipient account id                          | Integer
+sourceAccount             | Not used                                      | Integer
+quote                     | Quote id                                      | Integer
+status                    | Transfer current status | Text
+reference                 | Deprecated, use details.reference instead     | Text
+rate                      | Exchange rate value                           | Decimal
+created                   | Timestamp when transfer was created | Timestamp 
+business                  | Your business profile id                     | 
+transferRequest           | Not used   | Integer
+details.reference         | Payment reference text        | Text
+hasActiveIssues           | Are there any pending issues which stop executing the transfer?  | Boolean 
+sourceCurrency            | Source currency code   | Text
+sourceValue               | Transfer amount in source currency   |  Decimal
+targetCurrency            | Target currency code  | Text
+targetValue               | Transfer amount in target currency   | Decimal
+customerTransactionId     | UUID format unique identifier assinged by customer. Used for idempotency check purposes.  | UUID 
+
+
 
 ## Get by Id
 
@@ -240,9 +264,28 @@ Get transfer info by id. Since we don't have push notifications yet, you can pol
 ### Request
 **`GET https://api.sandbox.transferwise.tech/v1/transfers/{transferId}`**
 
+### Response
 
-
-
+Field                     | Description                                   | Format
+---------                 | -------                                       | -----------
+id                        | Transfer id                                   | Integer
+user                      | Your user id                                  | Integer
+targetAccount             | Recipient account id                          | Integer
+sourceAccount             | Not used                                      | Integer
+quote                     | Quote id                                      | Integer
+status                    | Transfer current status | Text
+reference                 | Deprecated, use details.reference instead     | Text
+rate                      | Exchange rate value                           | Decimal
+created                   | Timestamp when transfer was created | Timestamp 
+business                  | Your business profile id                     | 
+transferRequest           | Not used   | Integer
+details.reference         | Payment reference text        | Text
+hasActiveIssues           | Are there any pending issues which stop executing the transfer?  | Boolean 
+sourceCurrency            | Source currency code   | Text
+sourceValue               | Transfer amount in source currency   |  Decimal
+targetCurrency            | Target currency code  | Text
+targetValue               | Transfer amount in target currency   | Decimal
+customerTransactionId     | UUID format unique identifier assinged by customer. Used for idempotency check purposes.  | UUID 
 
 
 
@@ -429,6 +472,28 @@ createdDateEnd            | Ending date to filter transfers, inclusive of the pr
 limit                     | Maximum number of records to be returned in response   | Integer
 offset                    | Starting record number | Integer
 
+### Response
+
+Field                     | Description                                   | Format
+---------                 | -------                                       | -----------
+id                        | Transfer id                                   | Integer
+user                      | Your user id                                  | Integer
+targetAccount             | Recipient account id                          | Integer
+sourceAccount             | Not used                                      | Integer
+quote                     | Quote id                                      | Integer
+status                    | Transfer current status | Text
+reference                 | Deprecated, use details.reference instead     | Text
+rate                      | Exchange rate value                           | Decimal
+created                   | Timestamp when transfer was created | Timestamp 
+business                  | Your business profile id                     | 
+transferRequest           | Not used   | Integer
+details.reference         | Payment reference text        | Text
+hasActiveIssues           | Are there any pending issues which stop executing the transfer?  | Boolean 
+sourceCurrency            | Source currency code   | Text
+sourceValue               | Transfer amount in source currency   |  Decimal
+targetCurrency            | Target currency code  | Text
+targetValue               | Transfer amount in target currency   | Decimal
+customerTransactionId     | UUID format unique identifier assinged by customer. Used for idempotency check purposes.  | UUID 
 
 
 ## Requirements
