@@ -24,7 +24,7 @@ POST https://zoomsymbols.com/authenticate
     },
     "accepted_terms": false
 }
-````
+```
 
 > Make sure to replace `email and password` with your Zoomsymbols account.
 
