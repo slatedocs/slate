@@ -27,7 +27,7 @@ You can:
 <ul> 
   <li>Power your cross-border and domestic payouts with a single API integration.</li>
   <li>Pay out directly to bank accounts or email recipients.</li>
-  <li>Monitor payments received to your TransferWise local bank details (AUD, EUR, GBP, USD).</li> 
+  <li>Monitor payments received to your TransferWise local bank details (AUD, EUR, GBP, NZD, USD).</li> 
   <li>Get statements for balance reconciliation and accounting purposes.</li>
   <li>Fully automate transfer creation and track statuses.</li>
   <li>Always get the mid-market exchange and our low cost transparent fees.</li>
