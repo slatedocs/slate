@@ -38,14 +38,14 @@ In order to access our paid API service, you will need to connect to our lightni
 
 Our paid service offers complete coverage for all channels, endpoints and fields .  
 
-The url for our paid service is: <span style="color: blue"> 038bdb5538a4e415c42f8fb09750729752c1a1800d321f4bb056a9f582569fbf8e@ln.suredbits.com </span>
+The Lightning Node url for our paid service is: <span style="color: blue"> 038bdb5538a4e415c42f8fb09750729752c1a1800d321f4bb056a9f582569fbf8e@ln.suredbits.com </span>
 
 
 ## Testnet Node (free) 
 
 In order to access our free API service, you will need to connect to our lightning node via your preferred lightning client.   
 
-The url for our testnet service is:
+The Lightning Node url for our testnet service is:
 
 <span style="color:blue"> 0338f57e4e20abf4d5c86b71b59e995ce4378e373b021a7b6f41dabb42d3aad069@ln.test.suredbits.com </span>
 
@@ -56,13 +56,120 @@ We provide a number of free data endpoints so users can experiment and learn the
 
 Currently, we offer the trading pair <span style="color:red"> `BTCUSD` </span> data for free across all available exchanges.
 
-**NFL API**
+## NFL Testnet API Samples
+
+> Example request for "Tom Brady" in "Players" endpoint
+
+```json
+{
+  "channel":"players", 
+  "lastName" : "Brady", 
+  "firstName" : "Tom", 
+  "uuid": "6dc1320d-de0e-40a5-8162-83d9eb4634de"
+}
+
+```
+
+> Example request for "NE" (New England) in "Team" endpoint
+
+```json
+{
+  "channel": "team", 
+  "teamId": "NE", 
+  "retrieve": "roster", 
+  "uuid": "689c2c7d-cd08-4b2c-b87d-f1de10b4e94d"
+}
+
+```
+> Example request for Tom Brady in "Stats" endpoint by lastName and firstName
+
+```json
+{
+    "channel":"stats", 
+    "lastName" : "Brady", 
+    "firstName" : "Tom", 
+    "year": 2018, 
+    "week" : 2, 
+    "seasonPhase" : "Postseason", 
+    "statType" : "passing",
+    "uuid": "b97247c2-8bd6-450e-b81c-3c5a725e2057"
+}
+
+```
+
+> Example request for Tom Brady in "Stats" endpoint by playerId and gameId
+
+```json
+{
+  "channel":"stats", 
+  "statType" : "passing", 
+  "gameId" : "2019011300", 
+  "playerId" : "00-0019596",
+  "uuid": "aa334616-71e0-45ee-be6d-6dbce545bad3"
+}
+
+```
 
 Currently, we offer <span style="color:red"> Info </span> and <span style="color:red"> Games </span> data endpoints for free on testnet. 
 
 In addition, to help developers build and test end-to-end applications, we offer a series of data across all endpoints: `Games`, `Players`, `Team` and `Stats` for a specific player.  For testing, we provide data for <span style="color:red"> Tom Brady </span> for free on testnet.   
 
-**NBA API**
+## NBA Testnet API Samples
+
+> Example request for "Lebron James" in Players endpoint  
+
+```json
+
+{
+  "channel": "players", 
+  "lastName": "James", 
+  "firstName": "Lebron", 
+  "uuid": "2602b409-1737-49e5-a32d-62608d1e2c29"
+}
+```
+
+> Example request for "LAL" (Los Angeles Lakers) in "Team" endpoint
+
+```json
+{
+  "channel": "games", 
+  "year": 2019, 
+  "month": 1, 
+  "day": 14, 
+  "teamId":"LAL",
+  "uuid": "2c48e899-01ef-443e-b455-144486b1c291"
+}
+
+```
+
+> Example request of Lebron James in "Stats" endpoint by playerId and gameId
+
+```json
+
+{
+  "channel": "stats", 
+  "gameId": "21800500", 
+  "playerId": "2544", 
+  "uuid": "ddc2632e-f9bb-4ea9-bdf6-992e1590f676"
+}
+
+```
+
+> Example request for Lebron James in "Stats" endpoint by lastName and firstName 
+
+```json
+
+{
+  "channel": "stats", 
+  "lastName": "James", 
+  "firstName": "Lebron", 
+  "year": 2019, 
+  "month": 1, 
+  "day": 13, 
+  "uuid": "689c2c7d-cd08-4b2c-b87d-f1de10b4e94d"
+}
+
+```
 
 Currently, we offer <span style="color:red"> Info </span> and <span style="color:red"> Games </span> data endpoints for free. 
 
@@ -94,7 +201,7 @@ A minimum of 10 satoshis will be charged for all streaming data calls.
 
 ## UUID
 
-> Example Data returned with valid UUID
+> Example data returned with valid UUID
 
 ```json
 {
@@ -127,7 +234,7 @@ A valid <span style="color:red"> `uuid` </span> is required for all requests and
 ```
 
 
-> Example Data returned
+> Example data returned
 
 ```json 
 {  
@@ -207,7 +314,7 @@ ETHUSD  |          |    X    |    X     |   X     |
 
 **Subscribe**
 
-> Example request Format: 
+> Example request format: 
 
 ```json
 {  
@@ -221,7 +328,7 @@ ETHUSD  |          |    X    |    X     |   X     |
 }
 ```
 
-> Example Subscription confirmation 
+> Example subscription confirmation 
 
 ```json
 {  
@@ -315,7 +422,7 @@ In the event of maintenance or service interruption, we will refund any remainin
 
 ## Tickers
 
-> Example Request Tickers
+> Example request Tickers
 
 ```json
 {  "event":"subscribe",
@@ -523,7 +630,7 @@ Field |  Type | Exchanges Supporting
 
 ## Order Books
 
-> Example Request Order Books
+> Example request Order Books
 
 ```json
 { "event":"subscribe", 
@@ -1289,7 +1396,7 @@ Field | Type | Example
 <span style="color:red"> lastName </span>  | String | <span style="color:red"> Durant </span>
 
 
-## Teams
+## Team
 
 > Example request for Roster
 
