@@ -93,7 +93,7 @@ balances[n].amount.value             | Available balance in specified currency  
 balances[n].amount.currency          | Currency code       | Text
 balances[n].reservedAmount.value     | Reserved amount from your balance | Decimal
 balances[n].reservedAmount.currency  | Reserved amount currency code       | Text
-balances[n].bankDetails              | Bank account details assigned to your borderless account. Available for EUR, GBP, USD, AUD.  | Group
+balances[n].bankDetails              | Bank account details assigned to your borderless account. Available for EUR, GBP, USD, AUD, NZD  | Group
 balances[n].bankDetails.id           | Bank account details id | Integer 
 balances[n].bankDetails.currency     | Bank account currency | Text 
 balances[n].bankDetails.bankCode     | Bank account code  | Text 

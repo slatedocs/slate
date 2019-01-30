@@ -102,6 +102,6 @@ Instead, TransferWise will act as a third-party to your customers when they init
 We’re working on making this feature available soon. Please contact bizdev@transferwise.com for more info.  
 
 ## Receive Money
-You can receive money to the local bank details that come with your TransferWise account (AUD, EUR, GBP and USD) and reconcile these incoming payments via the API. 
+You can receive money to the local bank details that come with your TransferWise account (AUD, EUR, GBP, NZD and USD) and reconcile these incoming payments via the API. 
 
 We currently don’t offer the option to build TransferWise into your checkout flow as a payment option to receive money. Note though that TransferWise can be added as a payout option on your site for beneficiaries to choose to receive their payout through (to an email or straight to bank account).
