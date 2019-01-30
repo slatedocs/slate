@@ -21,6 +21,20 @@ search: true
 
 Welcome to the Factmata API!
 
+# Authorization
+
+Factmata API is authorized using API Key( Add link to obtain key).
+
+The API_KEY is accepted as a request header `x-api-key`.
+
+Do not share you API Key in publicly accessible platforms.
+
+```shell
+
+curl https://www.factmata.com \
+-H "x-api-key: API_KEY"
+```
+
 # Scoring URLs
 
 Scoring URLs using Factmata API works in two steps:
@@ -51,14 +65,17 @@ import requests
 data = {
   'url': 'www.example.com'
 }
-
-res = requests.post("URL", json=data)
+headers = {
+  'x-api-key': API_KEY
+}
+res = requests.post("URL", headers=headers, json=data)
 ```
 
 ```shell
-curl "URL"
-  -X POST
-  -H "Content-Type: application/json"
+curl https://www.factmata.com 
+  -X POST 
+  -H "Content-Type: application/json" 
+  -H "x-api-key: API_KEY"
   -d '{"url": "www.example.com"}'
 ```
 
@@ -82,7 +99,7 @@ STATUS: 299
 
 ### HTTP Request
 
-`POST www.factmata.com`
+`POST https://www.factmata.com`
 
 ### Request Payload
 
@@ -112,11 +129,17 @@ import requests
 data = {
   'url': 'www.example.com'
 }
-res = requests.get("URL", params=data)
+
+headers = {
+  'x-api-key': API_KEY
+}
+
+res = requests.get("URL", headers=headers, params=data)
 ```
 
 ```shell
 curl "URL?url=www.example.com"
+  - H "x-api-key: API_KEY"
   -X GET
 ```
 
