@@ -7,14 +7,17 @@
 ```APIs
 POST https://zoomsymbols.com/authenticate
 ```
-> BODY 
+> BODY
+
 ```json
 {
   "email": "your zoomsymbols email address",
   "password": "your zoomsymbols password",
 }
 ```
+
 > Response
+
 ```json
 {
     "status": "Authorized",
