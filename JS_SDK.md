@@ -129,7 +129,7 @@ You can pass `dnc_checked` as `true` in the options to set the checkbox by defau
       channel_name: "CHANNEL_NAME",
       campaign_id: "CAMPAIGN_ID",
       env: ENVIRONMENT,
-      options:  { dnc_checked: true } // options as described below
+      options:  { dnc_checked: true, skipMandatoryEmail:true } // options as described below
     }]
  </script>
 ```
