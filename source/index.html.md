@@ -354,19 +354,6 @@ Field | Type | Example
 <span style="color:red"> refundInvoice </span> | String | <span style="color:red"> lnbcrt10n1pd5v2mwpp5ulxpj8ht... </span>
 
 
-**Payment** 
-
-<aside class="warning"> Our pricing model is still evolving and could change as our API service grows and matures. For now, for each second of streaming data, you will be charged 1 Satoshi. </aside>
-
-1 second = 1 Satoshi
-
-10 seconds = 10 Satoshis
-
-100 seconds = 100 Satoshis
-
-
-We will post notification of any future changes in our pricing model here and via our twitter @Suredbits.
-
 **Snapshots**
 
 > Example of Snapshot from Trades Channel
