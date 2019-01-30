@@ -1,8 +1,8 @@
 ---
 title: API Reference
 
-language_tabs: # must be one of https://git.io/vQNgJ
-  - APIs
+# anguage_tabs: # must be one of https://git.io/vQNgJ
+#  - APIs
 
 toc_footers:
   - <a href='https://zoomsymbols.com/signup'>Sign Up for a Developer Key</a>
