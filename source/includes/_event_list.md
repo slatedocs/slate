@@ -64,7 +64,7 @@
 
 <b>Triggered navigation to learning asset URL</b>
 
-## click_asset
+## asset_open
 
 ```shell
 ```
@@ -74,52 +74,253 @@
 ```js
 
 {
-	ID: location.protocol + '//' + location.host + location.pathname + '#/learning-asset/' + assetData.niceName,
-	Playlist: {
-		ID: String(playlistData.id),
-		Name: playlistData.name,
-		Order: playlistData.position
+	"Asset" : {
+		"ID" : "13429",
+		"Name" : "Is it ok to cry at work?",
+		"Order" : 0,
+		"Text" : "<p>Is crying at work still taboo? And how can we best support our work colleagues when they become tearful? Jane Garvey talks to Dr Emily Grossman and Nell Frizzell on the politics of crying at work.</p>\n"
 	},
-	Asset: {
-		ID: String(assetData.id),
-		Name: assetData.name,
-		Text: assetData.niceName,
-		Order: assetData.position
+	"AssetInfo" : {
+		"Competencies" : [
+			{
+				"ID" : "615",
+				"Name" : "Resilience"
+			},
+			{
+				"ID" : "631",
+				"Name" : "People Management"
+			}
+		],
+		"Completed" : false,
+		"CompletedStatus" : "",
+		"Description" : "<p>Is crying at work still taboo? And how can we best support our work colleagues when they become tearful? Jane Garvey talks to Dr Emily Grossman and Nell Frizzell on the politics of crying at work.</p>\n",
+		"Duration" : "360",
+		"ProviderID" : "4",
+		"ProviderName" : "BBC",
+		"ProviderURL" : "bbc.co.uk",
+		"Type" : "Podcast",
+		"URL" : "https://www.bbc.co.uk/programmes/p040hgb5"
 	},
-	AssetInfo: {
-		URL: assetData.url,
-		Type: assetData.type,
-		Description: assetData.desc,
-		Duration: formatISODuration(assetData.duration),
-		ProviderID: String(assetData.providerId),
-		ProviderName: providerData.name,
-		ProviderURL: providerData.url,
-		Competencies: mappedCompetencies,
-		Completed: assetData.completed,
-		CompletedStatus: assetData.completedStatus
+	"Function" : {
+		"ID" : "5",
+		"Name" : "Manufacturing"
 	},
-	Type: ui.scene
+	"Group" : {
+		"ID" : "ht2labs-main",
+		"Name" : "HT2Labs-main"
+	},
+	"HasGDPR" : {
+		"Bool" : false,
+		"Valid" : false
+	},
+	"ID" : "https://172.31.0.2/#/learning-asset/13429-is-it-ok-to-cry-at-work",
+	"JobTitle" : {
+		"ID" : "-1",
+		"Name" : "-"
+	},
+	"Mode" : "",
+	"Organisation" : {
+		"ID" : "ht2labs",
+		"Name" : "HT2Labs"
+	},
+	"Playlist" : {
+		"ID" : "615",
+		"Name" : "Resilience",
+		"Order" : 6
+	},
+	"Referer" : "",
+	"Sector" : {
+		"ID" : "8",
+		"Name" : "Education"
+	},
+	"Seniority" : {
+		"ID" : "1",
+		"Name" : "CEO/C-suite"
+	},
+	"Target" : {
+		"Text" : ""
+	},
+	"TimeInfo" : {
+		"CurrentTime" : "2019-01-29T16:38:13Z",
+		"ZoneName" : "UTC",
+		"ZoneOffset" : 0
+	},
+	"Type" : "api"
 }
 
 ```
 
 <b>Clicking an asset to obtain information on it</b>
 
-## remove_playlistasset
+## asset_bookmark_remove
 
 ```shell
 ```
 
-> Structure: N/A
+> Structure:
+
+```js
+{
+	"Asset" : {
+		"ID" : "13429",
+		"Name" : "Is it ok to cry at work?",
+		"Order" : 0,
+		"Text" : "<p>Is crying at work still taboo? And how can we best support our work colleagues when they become tearful? Jane Garvey talks to Dr Emily Grossman and Nell Frizzell on the politics of crying at work.</p>\n"
+	},
+	"AssetInfo" : {
+		"Competencies" : [
+			{
+				"ID" : "615",
+				"Name" : "Resilience"
+			},
+			{
+				"ID" : "631",
+				"Name" : "People Management"
+			}
+		],
+		"Completed" : false,
+		"CompletedStatus" : "",
+		"Description" : "<p>Is crying at work still taboo? And how can we best support our work colleagues when they become tearful? Jane Garvey talks to Dr Emily Grossman and Nell Frizzell on the politics of crying at work.</p>\n",
+		"Duration" : "360",
+		"ProviderID" : "4",
+		"ProviderName" : "BBC",
+		"ProviderURL" : "bbc.co.uk",
+		"Type" : "Podcast",
+		"URL" : "https://www.bbc.co.uk/programmes/p040hgb5"
+	},
+	"Function" : {
+		"ID" : "5",
+		"Name" : "Manufacturing"
+	},
+	"Group" : {
+		"ID" : "ht2labs-main",
+		"Name" : "HT2Labs-main"
+	},
+	"HasGDPR" : {
+		"Bool" : false,
+		"Valid" : false
+	},
+	"ID" : "https://172.31.0.2/#/learning-asset/13429-is-it-ok-to-cry-at-work",
+	"JobTitle" : {
+		"ID" : "-1",
+		"Name" : "-"
+	},
+	"Mode" : "",
+	"Organisation" : {
+		"ID" : "ht2labs",
+		"Name" : "HT2Labs"
+	},
+	"Playlist" : {
+		"ID" : "615",
+		"Name" : "Resilience",
+		"Order" : 6
+	},
+	"Referer" : "",
+	"Sector" : {
+		"ID" : "8",
+		"Name" : "Education"
+	},
+	"Seniority" : {
+		"ID" : "1",
+		"Name" : "CEO/C-suite"
+	},
+	"Target" : {
+		"Text" : ""
+	},
+	"TimeInfo" : {
+		"CurrentTime" : "2019-01-29T16:38:13Z",
+		"ZoneName" : "UTC",
+		"ZoneOffset" : 0
+	},
+	"Type" : "api"
+}
+```
 
 <b>Removing an asset from a playlist</b>
 
-## add_playlistasset
+## asset_bookmark_add
 
 ```shell
 ```
 
-> Structure: N/A
+> Structure:
+
+```js
+{
+	"Asset" : {
+		"ID" : "13429",
+		"Name" : "Is it ok to cry at work?",
+		"Order" : 0,
+		"Text" : "<p>Is crying at work still taboo? And how can we best support our work colleagues when they become tearful? Jane Garvey talks to Dr Emily Grossman and Nell Frizzell on the politics of crying at work.</p>\n"
+	},
+	"AssetInfo" : {
+		"Competencies" : [
+			{
+				"ID" : "615",
+				"Name" : "Resilience"
+			},
+			{
+				"ID" : "631",
+				"Name" : "People Management"
+			}
+		],
+		"Completed" : false,
+		"CompletedStatus" : "",
+		"Description" : "<p>Is crying at work still taboo? And how can we best support our work colleagues when they become tearful? Jane Garvey talks to Dr Emily Grossman and Nell Frizzell on the politics of crying at work.</p>\n",
+		"Duration" : "360",
+		"ProviderID" : "4",
+		"ProviderName" : "BBC",
+		"ProviderURL" : "bbc.co.uk",
+		"Type" : "Podcast",
+		"URL" : "https://www.bbc.co.uk/programmes/p040hgb5"
+	},
+	"Function" : {
+		"ID" : "5",
+		"Name" : "Manufacturing"
+	},
+	"Group" : {
+		"ID" : "ht2labs-main",
+		"Name" : "HT2Labs-main"
+	},
+	"HasGDPR" : {
+		"Bool" : false,
+		"Valid" : false
+	},
+	"ID" : "https://172.31.0.2/#/learning-asset/13429-is-it-ok-to-cry-at-work",
+	"JobTitle" : {
+		"ID" : "-1",
+		"Name" : "-"
+	},
+	"Mode" : "",
+	"Organisation" : {
+		"ID" : "ht2labs",
+		"Name" : "HT2Labs"
+	},
+	"Playlist" : {
+		"ID" : "615",
+		"Name" : "Resilience",
+		"Order" : 6
+	},
+	"Referer" : "",
+	"Sector" : {
+		"ID" : "8",
+		"Name" : "Education"
+	},
+	"Seniority" : {
+		"ID" : "1",
+		"Name" : "CEO/C-suite"
+	},
+	"Target" : {
+		"Text" : ""
+	},
+	"TimeInfo" : {
+		"CurrentTime" : "2019-01-29T16:38:13Z",
+		"ZoneName" : "UTC",
+		"ZoneOffset" : 0
+	},
+	"Type" : "api"
+}
+```
 
 <b>Adding an asset to a playlist</b>
 
@@ -139,7 +340,7 @@
 
 <b>Track when a user answers the sector input</b>
 
-## learning_asset_complete
+## asset_complete
 
 ```shell
 ```
@@ -148,8 +349,78 @@
 
 ```js
 {
-   valueText: ‘Text here’,
-   value: 2
+	"Asset" : {
+		"ID" : "13429",
+		"Name" : "Is it ok to cry at work?",
+		"Order" : 0,
+		"Text" : "<p>Is crying at work still taboo? And how can we best support our work colleagues when they become tearful? Jane Garvey talks to Dr Emily Grossman and Nell Frizzell on the politics of crying at work.</p>\n"
+	},
+	"AssetInfo" : {
+		"Competencies" : [
+			{
+				"ID" : "615",
+				"Name" : "Resilience"
+			},
+			{
+				"ID" : "631",
+				"Name" : "People Management"
+			}
+		],
+		"Completed" : false,
+		"CompletedStatus" : "",
+		"Description" : "<p>Is crying at work still taboo? And how can we best support our work colleagues when they become tearful? Jane Garvey talks to Dr Emily Grossman and Nell Frizzell on the politics of crying at work.</p>\n",
+		"Duration" : "360",
+		"ProviderID" : "4",
+		"ProviderName" : "BBC",
+		"ProviderURL" : "bbc.co.uk",
+		"Type" : "Podcast",
+		"URL" : "https://www.bbc.co.uk/programmes/p040hgb5"
+	},
+	"Function" : {
+		"ID" : "5",
+		"Name" : "Manufacturing"
+	},
+	"Group" : {
+		"ID" : "ht2labs-main",
+		"Name" : "HT2Labs-main"
+	},
+	"HasGDPR" : {
+		"Bool" : false,
+		"Valid" : false
+	},
+	"ID" : "https://172.31.0.2/#/learning-asset/13429-is-it-ok-to-cry-at-work",
+	"JobTitle" : {
+		"ID" : "-1",
+		"Name" : "-"
+	},
+	"Mode" : "",
+	"Organisation" : {
+		"ID" : "ht2labs",
+		"Name" : "HT2Labs"
+	},
+	"Playlist" : {
+		"ID" : "615",
+		"Name" : "Resilience",
+		"Order" : 6
+	},
+	"Referer" : "",
+	"Sector" : {
+		"ID" : "8",
+		"Name" : "Education"
+	},
+	"Seniority" : {
+		"ID" : "1",
+		"Name" : "CEO/C-suite"
+	},
+	"Target" : {
+		"Text" : ""
+	},
+	"TimeInfo" : {
+		"CurrentTime" : "2019-01-29T16:38:13Z",
+		"ZoneName" : "UTC",
+		"ZoneOffset" : 0
+	},
+	"Type" : "api"
 }
 ```
 
