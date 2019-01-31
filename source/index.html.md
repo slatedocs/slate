@@ -300,7 +300,7 @@ A successful request will generate a lightning invoice that will look similar to
 
 This is the paid service url **wss://api.suredbits.com/exchange/v0** on mainnet.
 
-This is the free version ufl **wss://test.api.suredbits.com/exchange/v0** on testnet. 
+This is the free version url **wss://test.api.suredbits.com/exchange/v0** on testnet. 
 
 ## Overview
 
@@ -1169,7 +1169,7 @@ Field | Type | Example
 
 This is the paid service url **wss://api.suredbits.com/nba/v0** on mainnet.
 
-This is the free version ufl **wss://test.api.suredbits.com/nba/v0** on testnet. 
+This is the free version url **wss://test.api.suredbits.com/nba/v0** on testnet. 
 
 ## Info
 
