@@ -52,11 +52,11 @@ The Lightning Node url for our testnet service is:
 
 We provide a number of free data endpoints so users can experiment and learn the structure of our Lightning API service. To allow for complete testing, we make the following data avaialble for free on testnet:  
 
-**Crypto Exchange API**
+##Crypto Exchange Testnet API
 
 Currently, we offer the trading pair <span style="color:red"> `BTCUSD` </span> data for free across all available exchanges.
 
-## NFL Testnet API Samples
+## NFL Testnet API 
 
 > Example request for "Tom Brady" in "Players" endpoint
 
@@ -112,9 +112,11 @@ Currently, we offer the trading pair <span style="color:red"> `BTCUSD` </span> d
 
 Currently, we offer <span style="color:red"> Info </span> and <span style="color:red"> Games </span> data endpoints for free on testnet. 
 
-In addition, to help developers build and test end-to-end applications, we offer a series of data across all endpoints: `Games`, `Players`, `Team` and `Stats` for a specific player.  For testing, we provide data for <span style="color:red"> Tom Brady </span> for free on testnet.   
+In addition, to help developers build and test end-to-end applications, we offer a series of data across all endpoints: `Games`, `Players`, `Team` and `Stats` for a specific player.  
 
-## NBA Testnet API Samples
+For testing, we provide data for <span style="color:red"> Tom Brady </span> for free on testnet.   
+
+## NBA Testnet API 
 
 > Example request for "Lebron James" in Players endpoint  
 
@@ -173,7 +175,9 @@ In addition, to help developers build and test end-to-end applications, we offer
 
 Currently, we offer <span style="color:red"> Info </span> and <span style="color:red"> Games </span> data endpoints for free. 
 
-In addition, to help developers build and test end-to-end applications, we offer a series of data across all endpoints: `Games`, `Players`, `Team` and `Stats` for a specific player.  For testing, we provide data for <span style="color:red"> Lebron James </span> for free on testnet.   
+In addition, to help developers build and test end-to-end applications, we offer a series of data across all endpoints: `Games`, `Players`, `Team` and `Stats` for a specific player.  
+
+For testing, we provide data for <span style="color:red"> Lebron James </span> for free on testnet.   
 
 
 ## Payment & Pricing
@@ -294,9 +298,9 @@ A successful request will generate a lightning invoice that will look similar to
 
 ## Crypto Exchange Websocket Endpoint 
 
-This is the paid service url **wss://api.suredbits.com/exchange/v0**
+This is the paid service url **wss://api.suredbits.com/exchange/v0** on mainnet.
 
-This is the free version ufl **wss://test.api.suredbits.com/exchange/v0**
+This is the free version ufl **wss://test.api.suredbits.com/exchange/v0** on testnet. 
 
 ## Overview
 
@@ -353,9 +357,15 @@ Field | Type | Example
 <span style="color:red"> duration </span> | Integer (milliseconds) | <span style="color:red"> "15000" </span>
 <span style="color:red"> refundInvoice </span> | String | <span style="color:red"> lnbcrt10n1pd5v2mwpp5ulxpj8ht... </span>
 
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+
+
 
 **Snapshots**
-
 > Example of Snapshot from Trades Channel
 
 ```json
@@ -379,6 +389,22 @@ Field | Type | Example
 ```
 
 Upon subscribing to a channel an initial snapshot is sent.  The snapshot provides a view of the current state of the market.
+
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+
+
+**Sequence Identifier**
+
+In order to better monitor potential gaps in streaming data, we provide a sequence number for each returned data value. 
+
+Example: <span style="color:red"> "seq: 21" </span> , <span style="color:red"> "seq:437" </span>, <span style="color:red"> "seq:2873" </span> etc. 
+
 
 **Refill**
 
@@ -489,7 +515,8 @@ In the event of maintenance or service interruption, we will refund any remainin
       "statCloseTime":1541716718568,
       "firstTradeId":77686104,
       "lastTradeId":77828352,
-      "totalTrades":142249
+      "totalTrades":142249,
+      "seq":123
    }
 }
 ```
@@ -581,7 +608,8 @@ Field | Type | Exchanges Supporting
       "buyerId":"183136564",
       "sellerId":"183136526",
       "tradeTime":1541715784094,
-      "marketMaker":false
+      "marketMaker":false,
+      "seq":893
    }
 }{  
    "uuid":"8dda8625-2946-4500-8dd5-13c78d2f42b8",
@@ -594,7 +622,8 @@ Field | Type | Exchanges Supporting
       "buyerId":"183136558",
       "sellerId":"183136565",
       "tradeTime":1541715784156,
-      "marketMaker":true
+      "marketMaker":true,
+      "seq":22
    }
 }
 ```
@@ -661,7 +690,8 @@ Field |  Type | Exchanges Supporting
          "eventTime":1541715102336,
          "orderId":18836717052,
          "price":6504.4,
-         "quantity":0.16911629
+         "quantity":0.16911629,
+         "seq":622
       }
    }{  
       "uuid":"d7975109-e6d0-47ae-9c26-531d553c420b",
@@ -669,7 +699,8 @@ Field |  Type | Exchanges Supporting
          "eventTime":1541715102336,
          "orderId":18836717013,
          "price":6502.9,
-         "quantity":0.1691553
+         "quantity":0.1691553,
+         "seq":309
       }
    }
    ```
@@ -682,14 +713,19 @@ Field | Type | Exchanges Supporting
 <span style="color:red"> eventTime </span> | Integer | <span style="color:red"> bitfinex </span>, <span style="color:red"> bitstamp </span>, <span style="color:red"> gemini </span>
 <span style="color:red"> orderId </span> |  Integer | <span style="color:red"> bitfinex </span>, <span style="color:red"> bitstamp </span>
 <span style="color:red"> price  </span>| Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> coinbase  </span>, <span style="color:red"> bitstamp </span>,<span style="color:red"> gemini </span>
-<span style="color:red"> quantity </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> coinbase  </span>, <span style="color:red"> bitstamp </span>, <span style="color:red"> gemini </span>
+<span style="color:red"> quantityTotal </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> coinbase  </span>, <span style="color:red"> bitstamp </span>, <span style="color:red"> gemini </span>
+<span style="color:red"> quantityChange </span> | Double | <span style="color:red"> bitstamp </span>, <span style="color:red"> gemini </span>
 <span style="color:red"> symbol </span> | String |  <span style="color:red"> coinbase </span>
 
 <h1 id="NFLData"> NFL Data</h1>
 
 ## NFL Websocket Endpoint
 
-**wss://test.api.suredbits.com/nfl/v0**
+
+
+This is the paid service url **wss://api.suredbits.com/nfl/v0** on mainnet.
+
+This is the free service url **wss://test.api.suredbits.com/nfl/v0** on testnet.
 
 ## Info
 
@@ -1131,7 +1167,9 @@ Field | Type | Example
 
 ## NBA Websocket Endpoint
 
-**wss://test.api.suredbits.com/nba/v0**
+This is the paid service url **wss://api.suredbits.com/nba/v0** on mainnet.
+
+This is the free version ufl **wss://test.api.suredbits.com/nba/v0** on testnet. 
 
 ## Info
 
