@@ -10,22 +10,19 @@
 ```js
 
 {
-	Playlist: {
-		ID: String(playlistData.id),
-		Order: playlistData.position
-	},
-	Asset: {
-		ID: String(assetData.id),
-		Order: assetData.position
-	}
-	Type: ui.scene
-	Target: {
-		Text: “Text from notes here”
-	},
-	TimeInfo: {
-		CurrentTime: String(”2019-01-16T12:35:07+00:00”),
-		ZoneName: String(”GMT”),
-		ZoneOffset: 0
+	"data": {
+		"Playlist": {
+			"ID": "615",
+			"Order": 1
+		},
+		"Asset": {
+			"ID": 13429
+		},
+		"TimeInfo": {
+			"CurrentTime": "2019-01-29T16:47:22Z",
+			"ZoneName": "UTC",
+			"ZoneOffset": 0
+		}
 	}
 }
 
@@ -43,20 +40,19 @@
 ```js
 
 {
-	Playlist: {
-		ID: String(playlistData.id),
-		Type: String(playlistData.type)
-	},
-	Asset: {
-		ID: String(assetData.id),
-		Order: assetData.position
-	},
-	Type: ui.scene,
-	Mode: ui.ClientPage,
-	TimeInfo: {
-		CurrentTime: String(”2019-01-16T12:35:07+00:00”),
-		ZoneName: String(”GMT”),
-		ZoneOffset: 0
+	"data": {
+		"Playlist": {
+			"ID": "615",
+			"Order": 1
+		},
+		"Asset": {
+			"ID": 13429
+		},
+		"TimeInfo": {
+			"CurrentTime": "2019-01-29T16:47:22Z",
+			"ZoneName": "UTC",
+			"ZoneOffset": 0
+		}
 	}
 }
 
@@ -64,7 +60,7 @@
 
 <b>Triggered navigation to learning asset URL</b>
 
-## click_asset
+## asset_open
 
 ```shell
 ```
@@ -74,52 +70,79 @@
 ```js
 
 {
-	ID: location.protocol + '//' + location.host + location.pathname + '#/learning-asset/' + assetData.niceName,
-	Playlist: {
-		ID: String(playlistData.id),
-		Name: playlistData.name,
-		Order: playlistData.position
-	},
-	Asset: {
-		ID: String(assetData.id),
-		Name: assetData.name,
-		Text: assetData.niceName,
-		Order: assetData.position
-	},
-	AssetInfo: {
-		URL: assetData.url,
-		Type: assetData.type,
-		Description: assetData.desc,
-		Duration: formatISODuration(assetData.duration),
-		ProviderID: String(assetData.providerId),
-		ProviderName: providerData.name,
-		ProviderURL: providerData.url,
-		Competencies: mappedCompetencies,
-		Completed: assetData.completed,
-		CompletedStatus: assetData.completedStatus
-	},
-	Type: ui.scene
+	"data": {
+		"Playlist": {
+			"ID": "615",
+			"Order": 1
+		},
+		"Asset": {
+			"ID": 13429
+		},
+		"TimeInfo": {
+			"CurrentTime": "2019-01-29T16:47:22Z",
+			"ZoneName": "UTC",
+			"ZoneOffset": 0
+		}
+	}
 }
 
 ```
 
 <b>Clicking an asset to obtain information on it</b>
 
-## remove_playlistasset
+## asset_bookmark_remove
 
 ```shell
 ```
 
-> Structure: N/A
+> Structure:
+
+```js
+{
+	"data": {
+		"Playlist": {
+			"ID": "615",
+			"Order": 1
+		},
+		"Asset": {
+			"ID": 13429
+		},
+		"TimeInfo": {
+			"CurrentTime": "2019-01-29T16:47:22Z",
+			"ZoneName": "UTC",
+			"ZoneOffset": 0
+		}
+	}
+}
+```
 
 <b>Removing an asset from a playlist</b>
 
-## add_playlistasset
+## asset_bookmark_add
 
 ```shell
 ```
 
-> Structure: N/A
+> Structure:
+
+```js
+{
+	"data": {
+		"Playlist": {
+			"ID": "615",
+			"Order": 1
+		},
+		"Asset": {
+			"ID": 13429
+		},
+		"TimeInfo": {
+			"CurrentTime": "2019-01-29T16:47:22Z",
+			"ZoneName": "UTC",
+			"ZoneOffset": 0
+		}
+	}
+}
+```
 
 <b>Adding an asset to a playlist</b>
 
@@ -139,7 +162,7 @@
 
 <b>Track when a user answers the sector input</b>
 
-## learning_asset_complete
+## asset_complete
 
 ```shell
 ```
@@ -148,8 +171,20 @@
 
 ```js
 {
-   valueText: ‘Text here’,
-   value: 2
+	"data": {
+		"Playlist": {
+			"ID": "615",
+			"Order": 1
+		},
+		"Asset": {
+			"ID": 13429
+		},
+		"TimeInfo": {
+			"CurrentTime": "2019-01-29T16:47:22Z",
+			"ZoneName": "UTC",
+			"ZoneOffset": 0
+		}
+	}
 }
 ```
 
@@ -164,35 +199,20 @@
 
 ```js
 {
-	ID: location.protocol + '//' + location.host + location.pathname + '#/learning-asset/' + assetData.niceName,
-	Playlist: {
-		ID: String(playlistData.id),
-		Name: playlistData.name,
-		Order: playlistData.position
-	},
-	Asset: {
-		ID: String(assetData.id),
-		Name: assetData.name,
-		Text: assetData.niceName,
-		Order: assetData.position
-	},
-	AssetInfo: {
-		URL: assetData.url,
-		Type: assetData.type,
-		Description: assetData.desc,
-		Duration: formatISODuration(assetData.duration),
-		ProviderID: String(assetData.providerId),
-		ProviderName: providerData.name,
-		ProviderURL: providerData.url,
-		Competencies: mappedCompetencies,
-		Completed: assetData.completed,
-		CompletedStatus: assetData.completedStatus
+	"data": {
+		"Playlist": {
+			"ID": "615",
+			"Order": 1
+		},
+		"Asset": {
+			"ID": 13429
+		},
+		"TimeInfo": {
+			"CurrentTime": "2019-01-29T16:47:22Z",
+			"ZoneName": "UTC",
+			"ZoneOffset": 0
+		}
 	}
-	Type: ui.scene
-	Target: {
-		Text: “0”,
-		Name: ‘useful’
-	},
 }
 ```
 
