@@ -680,7 +680,7 @@ Field |  Type | Exchanges Supporting
          "eventTime":1543850299172,
          "orderId":19811509228,
          "price":3894.7,
-         "quantity":0.25
+         "quantityTotal":0.25
       },
       ...
    ]
@@ -692,7 +692,7 @@ Field |  Type | Exchanges Supporting
          "eventTime":1541715102336,
          "orderId":18836717052,
          "price":6504.4,
-         "quantity":0.16911629,
+         "quantityTotal":0.16911629,
          "seq":622
       }
    }{  
@@ -701,7 +701,7 @@ Field |  Type | Exchanges Supporting
          "eventTime":1541715102336,
          "orderId":18836717013,
          "price":6502.9,
-         "quantity":0.1691553,
+         "quantityTotal":0.1691553,
          "seq":309
       }
    }
