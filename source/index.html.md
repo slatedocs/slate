@@ -24,7 +24,7 @@ Thank you and welcome to SuredBits' Lightning App API documentation. This API al
 
 We are currently focused primarily on developers already familiar with Bitcoin and know Lightning or are interested in building apps using the Lightning protocol. However, if you are just starting out in cryptocurrency development, we have included some helpful links below.
 
-<aside class="success">IMPORTANT: Suredbits is a Lightning Application built on the Bitcoin protocol.  This initial release is only on testnet. </aside>
+<aside class="success">IMPORTANT: Suredbits is a Lightning Application built on the Bitcoin protocol.  As of February 1, 2019, we have moved our API services to mainnet. We have kept some data available for free - on testnet - for testing and experiment.  See <a href="#Testnet"> Testnet Node </a> section below. </aside>
 
 Here are some useful resources to help you learn and get started with Bicoin and Lightning Network.  Read and watch and come back when you're ready. 
 
@@ -41,7 +41,7 @@ Our paid service offers complete coverage for all channels, endpoints and fields
 The Lightning Node url for our paid service is: <span style="color: blue"> 038bdb5538a4e415c42f8fb09750729752c1a1800d321f4bb056a9f582569fbf8e@ln.suredbits.com </span>
 
 
-## Testnet Node (free) 
+<h2 id="Testnet"> Testnet Node (free) </h2>
 
 In order to access our free API service, you will need to connect to our lightning node via your preferred lightning client.   
 
@@ -54,7 +54,9 @@ We provide a number of free data endpoints so users can experiment and learn the
 
 ##Crypto Exchange Testnet API
 
-Currently, we offer the trading pair <span style="color:red"> `BTCUSD` </span> data for free across all available exchanges.
+Currently, we offer the trading pair <span style="color:red"> `BTCUSD` </span> data for free across all available exchanges. 
+
+For Binance, the symbol is <span style="color:red"> `BTCUSDT` </span>.
 
 ## NFL Testnet API 
 
@@ -1428,7 +1430,8 @@ Field | Type | Example
 ```json
 {
   "channel": "team", 
-  "retrieve": "roster", 
+  "retrieve": "roster",
+  "teamId""[team]", 
   "uuid": "[uuid]"
 }
 ```
