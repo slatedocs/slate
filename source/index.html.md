@@ -351,7 +351,7 @@ To subscribe to a data stream, use the following command format:
 
 Field | Type | Example
 ------ | ------ | -------
-<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span>
 <span style="color:red"> event </span> | String | <span style="color:red"> "subscribe" </span>
 <span style="color:red"> channel </span> | String | <span style="color:red">  "tickers" </span>
 <span style="color:red"> symbol  </span> | String | <span style="color:red"> "ETHBTC" </span>
@@ -405,7 +405,7 @@ Upon subscribing to a channel an initial snapshot is sent.  The snapshot provide
 
 In order to better monitor potential gaps in streaming data, we provide a sequence number for each returned data value. 
 
-Example: <span style="color:red"> "seq: 21" </span> , <span style="color:red"> "seq:437" </span>, <span style="color:red"> "seq:2873" </span> etc. 
+Example: <span style="color:red"> "seq": 21" </span> , <span style="color:red"> "seq":437" </span>, <span style="color:red"> "seq":2873" </span> etc. 
 
 
 **Refill**
@@ -414,7 +414,7 @@ You may refill your subscrption at any time with the following command format:
 
 Field | Type | Example
 ------| ------ | --------
-<span style="color:red"> uuid </span> | String | <span style="color:red"> "e.g. 123e4567-e89b-12d3-a456-426655440000" </span>
+<span style="color:red"> uuid </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span>
 <span style="color:red"> addedDuration </span> | Integer (milliseconds) | <span style="color:red"> "1000" </span>
 <span style="color:red"> event </span> | String | <span style="color:red"> "refill" </span>
 
@@ -425,7 +425,7 @@ You may unsubscribe from a channel using the following command:
 
 Field | Type | Example
 ------| ------ | --------
-<span style="color:red"> uuid </span> | String | <span style="color:red"> "e.g. 123e4567-e89b-12d3-a456-426655440000" </span> 
+<span style="color:red"> uuid </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span> 
 <span style="color:red"> event </span> | String | <span style="color:red"> "unsubscribe" </span>
 
 <aside class="note"> Note: If you unsubscribe from a channel, any time remaining from your original subscription will be refunded. </aside>
@@ -518,8 +518,8 @@ In the event of maintenance or service interruption, we will refund any remainin
       "firstTradeId":77686104,
       "lastTradeId":77828352,
       "totalTrades":142249,
-      "seq":123
-   }
+   },
+   "seq":123
 }
 ```
 
@@ -528,7 +528,7 @@ The <span style="color:red"> Tickers </span> channel streams high level updates 
 
 Field | Type | Exchanges Supporting
 ------ | ------ | --------
-<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000</span>
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000"</span>
 <span style="color:red"> eventTime </span>| Integer | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span> , <span style="color:red"> coinbase  </span>,  <span style="color:red"> bitstamp </span>
 <span style="color:red"> symbol </span> | String | <span style="color:red"> binance </span> , <span style="color:red"> coinbase  </span>, <span style="color:red"> bitstamp </span>, <span style="color:red"> gemini </span>
 <span style="color:red"> priceChange </span> | Double | <span style="color:red"> binance </span> , <span style="color:red"> bitfinex </span>
@@ -611,8 +611,8 @@ Field | Type | Exchanges Supporting
       "sellerId":"183136526",
       "tradeTime":1541715784094,
       "marketMaker":false,
-      "seq":893
    }
+   "seq":893
 }{  
    "uuid":"8dda8625-2946-4500-8dd5-13c78d2f42b8",
    "data":{  
@@ -625,8 +625,8 @@ Field | Type | Exchanges Supporting
       "sellerId":"183136565",
       "tradeTime":1541715784156,
       "marketMaker":true,
-      "seq":22
    }
+   "seq":894
 }
 ```
 
@@ -634,7 +634,7 @@ The <span style="color:red"> Trades </span> channel streams executed trades for 
 
 Field |  Type | Exchanges Supporting 
 ------ | ------- | -----------
-<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span>
 <span style="color:red"> eventTime </span> | Integer | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
 <span style="color:red"> symbol </span> | String | <span style="color:red"> binance </span> , <span style="color:red"> coinbase  </span>
 <span style="color:red"> tradeId </span> | Integer | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span> , <span style="color:red"> coinbase  </span>, <span style="color:red"> bitstamp </span>, <span style="color:red"> gemini </span>
@@ -693,8 +693,8 @@ Field |  Type | Exchanges Supporting
          "orderId":18836717052,
          "price":6504.4,
          "quantityTotal":0.16911629,
-         "seq":622
       }
+      "seq":622
    }{  
       "uuid":"d7975109-e6d0-47ae-9c26-531d553c420b",
       "data":{  
@@ -702,8 +702,8 @@ Field |  Type | Exchanges Supporting
          "orderId":18836717013,
          "price":6502.9,
          "quantityTotal":0.1691553,
-         "seq":309
       }
+      "seq":309
    }
    ```
 
@@ -711,7 +711,7 @@ The <span style="color:red"> Books </span> channel streams bids and asks for a g
 
 Field | Type | Exchanges Supporting
 ------| -------| --------
-<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span>
 <span style="color:red"> eventTime </span> | Integer | <span style="color:red"> bitfinex </span>, <span style="color:red"> bitstamp </span>, <span style="color:red"> gemini </span>
 <span style="color:red"> orderId </span> |  Integer | <span style="color:red"> bitfinex </span>, <span style="color:red"> bitstamp </span>
 <span style="color:red"> price  </span>| Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> coinbase  </span>, <span style="color:red"> bitstamp </span>,<span style="color:red"> gemini </span>
@@ -829,7 +829,7 @@ The available fields to query data from completed and upcoming NFL games are as 
 
 Field | Type | Example
 ------ | ------- | ------
-<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span>
 <span style="color:red"> week </span> | Integer | <span style="color:red"> </span> <span style="color:red"> 1, 2, 3 </span> etc...
 <span style="color:red"> seasonPhase </span> | String |  <span style="color:red"> Preaseason, Regular </span> , or <span style="color:red"> *Postseason* </span>
 
@@ -849,7 +849,7 @@ You can also query for games that are currently playing. The available fields ar
 
 Field | Type | Example
 ------ | ------- | ------
-<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span>
 <span style="color:red"> realtime  </span> | Boolean (true) | <span style="color:red"> true </span>
 
 **Optional fields**
@@ -912,7 +912,7 @@ The required fields to request NFL Player data are as follows:
 
 Field | Type | Example
 ------ | ----- | -----
-<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span>
 <span style="color:red"> firstName </span> | String |  <span style="color:red"> Randy </span>
 <span style="color:red"> lastName </span>  | String |  <span style="color:red"> Moss </span>
 
@@ -1042,7 +1042,7 @@ The required fields to request NFL Team & Roster data are as follows:
 
 Field | Type | Example 
 ------ | ----- | ------
-<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span>
 <span style="color:red"> teamId </span> | String |  <span style="color:red"> CHI </span>, <span style="color:red"> MIN </span> etc.
 <span style="color:red"> retrieve </span> | String |  <span style="color:red"> roster </span> or <span style="color:red"> schedule </span>
 
@@ -1143,7 +1143,7 @@ To query by <span style="color:red"> *gameId* </span> and <span style="color:red
 
 Field | Type | Example
 ------ | ----- | -------
-<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span>
 <span style="color:red"> channel </span> | String| <span style="color:red"> *stats* </span>
 <span style="color:red"> statType </span> | String | <span style="color:red"> *passing, rushing, receiving, defense* </span>
 <span style="color:red"> gameId </span> | String | <span style="color:red"> *2016101604* </span>
@@ -1156,7 +1156,7 @@ To query by <span style="color:red"> *name* </span> and <span style="color:red">
 
 Field | Type | Example
 ------ | ------- | -----
-<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span>
 <span style="color:red"> channel </span> | String | <span style="color:red"> *stats* </span>
 <span style="color:red"> statType </span> | String | <span style="color:red"> *passing, rushing, receiving, defense* </span>
 <span style="color:red"> year </span> | Integer | <span style="color:red"> *2016, 2017* </span>
@@ -1203,7 +1203,7 @@ The <span style="color:red"> Info </span> channel returns high level information
 
 Field | Type | Example
 ------ | ----- | -------
-<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span>
 
 
 ## Games
@@ -1342,7 +1342,7 @@ The available fields to query data from completed and upcoming NBA games are as 
 
 Field | Type | Example
 ------ | ----- | -------
-<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span>
 <span style="color:red"> channel </span> | String | <span style="color:red"> games </span>
 <span style="color:red"> year </span> | Integer  | <span style="color:red"> 2016 </span>, <span style="color:red"> 2017 </span> and <span style="color:red"> 2018 </span>
 <span style="color:red"> month </span> | Integer  | <span style="color:red"> 3 </span>, <span style="color:red"> 8 </span>, <span style="color:red"> 12 </span> etc..
@@ -1365,7 +1365,7 @@ You can also query for games that are currently playing. The available fields ar
 
 Field | Type | Example
 ------ | ------- | ------
-<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span>
 <span style="color:red"> realtime  </span> | Boolean (true) | <span style="color:red"> true </span>
 
 **Optional fields**
@@ -1417,7 +1417,7 @@ The <span style="color:red"> Players </span> channel returns biographical inform
 
 Field | Type | Example 
 ------ | ------ |-------
-<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span>
 <span style="color:red"> channel </span> | String | <span style="color:red"> players </span>
 <span style="color:red"> firstName </span> | String | <span style="color:red"> Kevin </span>
 <span style="color:red"> lastName </span>  | String | <span style="color:red"> Durant </span>
@@ -1487,7 +1487,7 @@ The <span style="color:red"> Teams </span> channel returns information such as <
 
 Field | Type |  Example
 ----- | ----- | --------
-<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span>
 <span style="color:red"> channel </span> | String |  <span style="color:red"> teams </span>
 <span style="color:red"> teamId </span> | String | <span style="color:red"> CHI </span>, <span style="color:red"> LAC </span>, <span style="color:red"> MIA </span>, etc...
 <span style="color:red"> retrieve </span> | String | <span style="color:red"> roster </span> or <span style="color:red"> schedule </span> 
@@ -1583,7 +1583,7 @@ The <span style="color:red"> Stats </span> channel returns data for individual p
 
 Field | Type | Example 
 ------ | ------ | ------
-<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span>
 <span style="color:red"> channel </span> | String | <span style="color:red"> stats </span>
 <span style="color:red"> gameId </span> | String  | <span style="color:red"> "21600854" </span>
 <span style="color:red"> playerId </span>  | String | <span style="color:red"> "201142" </span>
@@ -1593,7 +1593,7 @@ Field | Type | Example
 
 Field | Type | Example
 ------| -----| ---------
-<span style="color:red"> uuid  </span> | String | <span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span>
+<span style="color:red"> uuid  </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span>
 <span style="color:red"> channel </span> | String | <span style="color:red"> stats </span>
 <span style="color:red"> Year </span> | Integer  | <span style="color:red"> 2016 </span>, <span style="color:red"> 2017 </span> and <span style="color:red"> 2018 </span>
 <span style="color:red"> Month </span>| Integer  | <span style="color:red"> 2 </span>, <span style="color:red"> 6 </span>, <span style="color:red"> 10 </span> etc..
