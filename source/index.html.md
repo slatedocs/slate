@@ -24,7 +24,7 @@ Thank you and welcome to SuredBits' Lightning App API documentation. This API al
 
 We are currently focused primarily on developers already familiar with Bitcoin and know Lightning or are interested in building apps using the Lightning protocol. However, if you are just starting out in cryptocurrency development, we have included some helpful links below.
 
-<aside class="success">IMPORTANT: Suredbits is a Lightning Application built on the Bitcoin protocol.  As of February 1, 2019, we have moved our API services to mainnet. We have kept some data available for free - on testnet - for testing and experiment.  See <a href="#Testnet"> Testnet Node </a> section below. </aside>
+<aside class="success">IMPORTANT: Suredbits is a Lightning application built on the Bitcoin protocol.  As of February 1, 2019, we have moved our API services to mainnet. We have kept some data available for free - on testnet - for testing and experiment.  See <a href="#Testnet"> Testnet Node </a> section below. </aside>
 
 Here are some useful resources to help you learn and get started with Bicoin and Lightning Network.  Read and watch and come back when you're ready. 
 
@@ -275,7 +275,7 @@ Suredbits APIs are available via websockets with the following format:
 
 <aside class="note">NOTE: All times are in Universal Time Coordinated or "UTC".  So be sure to do time zone conversions. </aside>
 
-1. Send a request over the websocket (see <a href="#NFLData">NFL Data</a>). 
+1. Send a request over the websocket 
 
 2. Upon confirmation of a valid request, you will receive a Lightning Network Invoice that should appear similar to the one below.
 
