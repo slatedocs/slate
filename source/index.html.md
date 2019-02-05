@@ -24,7 +24,7 @@ Thank you and welcome to SuredBits' Lightning App API documentation. This API al
 
 We are currently focused primarily on developers already familiar with Bitcoin and know Lightning or are interested in building apps using the Lightning protocol. However, if you are just starting out in cryptocurrency development, we have included some helpful links below.
 
-<aside class="success">IMPORTANT: Suredbits is a Lightning application built on the Bitcoin protocol.  As of February 1, 2019, we have moved our API services to mainnet. We have kept some data available for free - on testnet - for testing and experiment.  See <a href="#Testnet"> Testnet Node </a> section below. </aside>
+<aside class="success">IMPORTANT: Suredbits is a Lightning application built on the Bitcoin protocol.  As of February 6, 2019, we have moved our API services to mainnet. We have kept some data available for free - on testnet - for testing and experiment.  See <a href="#Testnet"> Testnet Node </a> section below. </aside>
 
 Here are some useful resources to help you learn and get started with Bicoin and Lightning Network.  Read and watch and come back when you're ready. 
 
@@ -405,7 +405,7 @@ Upon subscribing to a channel an initial snapshot is sent.  The snapshot provide
 
 In order to better monitor potential gaps in streaming data, we provide a sequence number for each returned data value. 
 
-Example: <span style="color:red"> "seq": 21" </span> , <span style="color:red"> "seq":437" </span>, <span style="color:red"> "seq":2873" </span> etc. 
+Example: <span style="color:red"> "seq": 21 </span> , <span style="color:red"> "seq":437 </span>, <span style="color:red"> "seq":2873 </span> etc. 
 
 
 **Refill**
