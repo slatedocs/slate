@@ -161,8 +161,8 @@ Field                 | Description                                   | Format
 id                    | accountId                                     | Integer
 profile               | Personal or business profile id               | Integer
 acccountHolderName    | Recipient full name                           | Text
-currency              | 2 character country code                      | Text
-country               | 3 character currency code                     | Text
+currency              | 3 character country code                      | Text
+country               | 2 character currency code                     | Text
 type                  | Recipient type                                | Text
 details               | Currency specific fields                      | Object
 details.legalType     | Recipient legal type                          | Text
@@ -1404,7 +1404,7 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
            "legalType": "PRIVATE",
            "institutionNumber": "006",
            "transitNumber": "04841",
-           "accountNumber": "1234567",
+           "accountNumber": "3456712",
            "accountType": "Checking",
      }
   }'
