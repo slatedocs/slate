@@ -170,6 +170,7 @@ Server response example:
       "posId":"763",
       "subTotalProduct":24.00,
       "totalAdjustment":2.00,
+      "adjustmentDescription":"10% Discount on order",
       "totalProduct":22.00,
       "description":"Order number 2245",
       "currency":"NIS",
@@ -185,7 +186,8 @@ Server response example:
          "taxAmount":"5.00",
          "shipCharge":"1.00",
          "shipTaxAmount":"1.00",
-         "totalAdjustment":"1.00"
+         "totalAdjustment":"1.00",
+         "adjustmentDescription":"30% Discount item"
       }
    ]
 }
@@ -248,10 +250,12 @@ totalShipping | Total shipping amount | No
 totalTaxShipping | Shipping tax amount | No 
 subTotalProduct | Sub-total amount (before tax and discount) | Yes
 totalAdjustment | Total amount of discounts applied on order | No 
+adjustmentDescription | Order Level Discout description (e.g. 10% Discount) | No
 description | Short description of order, if needed| No 
 currency | Currency used (USD, ILS, etc....) | Yes 
 timePlaced | Time and date of when the order was placed, Date format:  | Yes 
 createdBy | Identifier for the cashier (name or ID) | No
+
 
 **Billing Address Object**
 
@@ -285,6 +289,8 @@ taxAmount | Tax Amount | No
 shipCharge | Amount of shipping, if any | No
 shipTaxAmount | Tax Amount of shipping, if any | No
 totalAdjustment | Discount amount of list item | No
+adjustmentDescription | Item Level Discout description (e.g. 10% Discount) | No
+
 
 
 <aside class="notice">
