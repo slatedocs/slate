@@ -246,6 +246,7 @@ totalProduct | Order Total amount | Yes
 totalTax | Order Tax amount | No
 totalShipping | Total shipping amount | No 
 totalTaxShipping | Shipping tax amount | No 
+subTotalProduct | Sub-total amount (before tax and discount) | Yes
 totalAdjustment | Total amount of discounts applied on order | No 
 description | Short description of order, if needed| No 
 currency | Currency used (USD, ILS, etc....) | Yes 
