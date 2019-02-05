@@ -145,6 +145,18 @@ curl https://app.procurementexpress.com/api/v1/bulk_datas
           "updated_at": "2018-10-12T07:11:34.484-05:00"
         }
       ],
+      "meta": {
+        "current_page": 1,
+        "next_page": 2,
+        "prev_page": null,
+        "total_pages": 2,
+        "total_count": 60,
+        "paginated_objects": [
+          "budgets",
+          "suppliers",
+          "products"
+        ]
+      },
       "tax_rates": [
         {
           "id": 1,
@@ -224,6 +236,18 @@ List of current users object along with it's associated companies with `company_
 ### HTTP Request
 
 `GET https://app.procurementexpress.com/api/v1/bulk_datas?synced_at=...`
+
+### Pagination
+
+We need to use pagination, so that we don't put heavy load to the server by fetching hundreds
+of thousands of records at once. To do that, you can pass `page` query params, which is a page
+number of the records you want to fetch in batch of 50 records per page by default.
+
+In the response, you will see `meta` json attributes for each companies, which determines, which
+page number are you on right now, and how many pages are there, total number of records, etc. Use
+this information to build your pagination.
+
+`GET https://app.procurementexpress.com/api/v1/bulk_datas?synced_at=...&page=1`
 
 ### Query Parameters
 
