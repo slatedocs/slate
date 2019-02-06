@@ -778,7 +778,7 @@ This API can be used to delete all wallets of a user.
 This API is safe to call from the front end JS, where it will read session-cookie to determine the current user. Backend callers can use X-QT-AUTH for the same purpose.
 
 
-## Get prices of Assets
+## GET prices of Assets
 
 ```shell--request
 curl -X GET 'http://sketches.quintype.com/api/v1/asset/<asset-type>/pricing-plans?id=123456'

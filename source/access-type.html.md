@@ -22,8 +22,11 @@ includes:
   - accesstype/coupon_codes
   - accesstype/invoices
   - accesstype/for-platform-customers
+  - accesstype/_amp
   - accesstype/faq
   - accesstype/release_notes
+
+
 ---
 
 # Introduction To AccessType
