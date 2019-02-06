@@ -1,6 +1,7 @@
+
 <!doctype html>
 <html>
-<head>
+  <head>
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -214,23 +215,23 @@
 <!-- End Appzi -->
 </head>
 
-<body class="index" data-languages="[&quot;json&quot;]">
-<a href="#" id="nav-button">
+  <body class="index" data-languages="[&quot;json&quot;]">
+    <a href="#" id="nav-button">
       <span>
         NAV
         <img src="./assets/images/navbar.png" alt="Navbar" />
       </span>
-</a>
-<div class="toc-wrapper">
-    <img src="./assets/images/logo.png" class="logo" alt="Logo" />
-    <div class="lang-selector">
-        <a href="#" data-language-name="json">json</a>
-    </div>
-    <div class="search">
-        <input type="text" class="search" id="input-search" placeholder="Search">
-    </div>
-    <ul class="search-results"></ul>
-    <div id="toc" class="toc-list-h1">
+    </a>
+    <div class="toc-wrapper">
+      <img src="./assets/images/logo.png" class="logo" alt="Logo" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="json">json</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc" class="toc-list-h1">
           <li>
             <a href="#lightning-api-v0-beta-documentation" class="toc-h1 toc-link" data-title="lightning-api-v0-beta-documentation">Lightning API v0 Beta Documentation</a>
               <ul class="toc-list-h2">
@@ -241,10 +242,22 @@
                     <a href="#background-resources" class="toc-h2 toc-link" data-title="background-resources">Background Resources</a>
                   </li>
                   <li>
-                    <a href="#suredbits-lightning-node" class="toc-h2 toc-link" data-title="suredbits-lightning-node">Suredbits Lightning Node</a>
+                    <a href="#mainnet-node-paid" class="toc-h2 toc-link" data-title="mainnet-node-paid">Mainnet Node (paid)</a>
                   </li>
                   <li>
-                    <a href="#suredbits-lightning-payment" class="toc-h2 toc-link" data-title="suredbits-lightning-payment">Suredbits Lightning Payment</a>
+                    <a href="#Testnet" class="toc-h2 toc-link" data-title="testnet-node-free"> Testnet Node (free) </a>
+                  </li>
+                  <li>
+                    <a href="#crypto-exchange-testnet-api" class="toc-h2 toc-link" data-title="crypto-exchange-testnet-api">Crypto Exchange Testnet API</a>
+                  </li>
+                  <li>
+                    <a href="#nfl-testnet-api" class="toc-h2 toc-link" data-title="nfl-testnet-api">NFL Testnet API</a>
+                  </li>
+                  <li>
+                    <a href="#nba-testnet-api" class="toc-h2 toc-link" data-title="nba-testnet-api">NBA Testnet API</a>
+                  </li>
+                  <li>
+                    <a href="#payment-amp-pricing" class="toc-h2 toc-link" data-title="payment-amp-pricing">Payment &amp; Pricing</a>
                   </li>
                   <li>
                     <a href="#uuid" class="toc-h2 toc-link" data-title="uuid">UUID</a>
@@ -313,7 +326,7 @@
                     <a href="#players-2" class="toc-h2 toc-link" data-title="players">Players</a>
                   </li>
                   <li>
-                    <a href="#teams" class="toc-h2 toc-link" data-title="teams">Teams</a>
+                    <a href="#team-2" class="toc-h2 toc-link" data-title="team">Team</a>
                   </li>
                   <li>
                     <a href="#stats-2" class="toc-h2 toc-link" data-title="stats">Stats</a>
@@ -335,7 +348,7 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='lightning-api-v0-beta-documentation'>Lightning API v0 Beta Documentation</h1><h2 id='connect-with-us'>Connect With Us</h2>
-<p>Follow us on twitter <a href="https://twitter.com/SuredBits">@@Suredbits</a></p>
+<p>Follow us on twitter <a href="https://twitter.com/SuredBits">@Suredbits</a></p>
 
 <p>We invite you to join our Slack channel <a href="https://join.slack.com/t/suredbits/shared_invite/enQtNDEyMjY3MTg1MTg3LTYyYjkwOGUzMDQ4NDAwZjE1M2I3MmQyNWNlZjNlYjg4OGRjYTRjNWUwNjRjNjg4Y2NjZjAxYjU1N2JjMTU1YWM">Suredbits Slack</a></p>
 <h2 id='background-resources'>Background Resources</h2>
@@ -343,7 +356,7 @@
 
 <p>We are currently focused primarily on developers already familiar with Bitcoin and know Lightning or are interested in building apps using the Lightning protocol. However, if you are just starting out in cryptocurrency development, we have included some helpful links below.</p>
 
-<aside class="success">IMPORTANT: Suredbits is a Lightning Application built on the Bitcoin protocol.  This initial release is only on testnet. </aside>
+<aside class="success">IMPORTANT: Suredbits is a Lightning application built on the Bitcoin protocol.  As of February 6, 2019, we have moved our API services to mainnet. We have kept some data available for free - on testnet - for testing and experiment.  See <a href="#Testnet"> Testnet Node </a> section below. </aside>
 
 <p>Here are some useful resources to help you learn and get started with Bicoin and Lightning Network.  Read and watch and come back when you&#39;re ready. </p>
 
@@ -353,21 +366,161 @@
 <li><a href="https://lightning.network/lightning-network-paper.pdf">Lightning Whitepaper</a></li>
 <li><a href="https://www.youtube.com/watch?v=l1si5ZWLgy0">Introduction to Bitcoin</a></li>
 </ol>
-<h2 id='suredbits-lightning-node'>Suredbits Lightning Node</h2>
-<p>In order to access our APIs, you will need to connect to our lightning node via your preferred lightning client.   </p>
+<h2 id='mainnet-node-paid'>Mainnet Node (paid)</h2>
+<p>In order to access our paid API service, you will need to connect to our lightning node via your preferred lightning client.  </p>
 
-<p>The url is:</p>
+<p>Our paid service offers complete coverage for all channels, endpoints and fields .  </p>
 
-<p><span style="color:blue"> <em>0338f57e4e20abf4d5c86b71b59e995ce4378e373b021a7b6f41dabb42d3aad069@@ln.test.suredbits.com</em> </span></p>
-<h2 id='suredbits-lightning-payment'>Suredbits Lightning Payment</h2>
+<p>The Lightning Node url for our paid service is: <span style="color: blue"> 038bdb5538a4e415c42f8fb09750729752c1a1800d321f4bb056a9f582569fbf8e@ln.suredbits.com </span></p>
+
+<h2 id="Testnet"> Testnet Node (free) </h2>
+
+<p>In order to access our free API service, you will need to connect to our lightning node via your preferred lightning client.   </p>
+
+<p>The Lightning Node url for our testnet service is:</p>
+
+<p><span style="color:blue"> 0338f57e4e20abf4d5c86b71b59e995ce4378e373b021a7b6f41dabb42d3aad069@ln.test.suredbits.com </span></p>
+
+<p>We provide a number of free data endpoints so users can experiment and learn the structure of our Lightning API service. To allow for complete testing, we make the following data avaialble for free on testnet:  </p>
+<h2 id='crypto-exchange-testnet-api'>Crypto Exchange Testnet API</h2>
+<p>Currently, we offer the trading pair <span style="color:red"> <code>BTCUSD</code> </span> data for free across all available exchanges. </p>
+
+<p>For Binance, the symbol is <span style="color:red"> <code>BTCUSDT</code> </span>.</p>
+<h2 id='nfl-testnet-api'>NFL Testnet API</h2>
+<blockquote>
+<p>Example request for &quot;Tom Brady&quot; in &quot;Players&quot; endpoint</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"channel"</span><span class="p">:</span><span class="s2">"players"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"lastName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Brady"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"firstName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6dc1320d-de0e-40a5-8162-83d9eb4634de"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>Example request for &quot;NE&quot; (New England) in &quot;Team&quot; endpoint</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"team"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"teamId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NE"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"retrieve"</span><span class="p">:</span><span class="w"> </span><span class="s2">"roster"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"689c2c7d-cd08-4b2c-b87d-f1de10b4e94d"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>Example request for Tom Brady in &quot;Stats&quot; endpoint by lastName and firstName</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"channel"</span><span class="p">:</span><span class="s2">"stats"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"lastName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Brady"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"firstName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2018</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"week"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"seasonPhase"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Postseason"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"statType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"passing"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b97247c2-8bd6-450e-b81c-3c5a725e2057"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>Example request for Tom Brady in &quot;Stats&quot; endpoint by playerId and gameId</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"channel"</span><span class="p">:</span><span class="s2">"stats"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"statType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"passing"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"gameId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2019011300"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"playerId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"00-0019596"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aa334616-71e0-45ee-be6d-6dbce545bad3"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>Currently, we offer <span style="color:red"> Info </span> and <span style="color:red"> Games </span> data endpoints for free on testnet. </p>
+
+<p>In addition, to help developers build and test end-to-end applications, we offer a series of data across all endpoints: <code>Games</code>, <code>Players</code>, <code>Team</code> and <code>Stats</code> for a specific player.  </p>
+
+<p>For testing, we provide data for <span style="color:red"> Tom Brady </span> for free on testnet.   </p>
+<h2 id='nba-testnet-api'>NBA Testnet API</h2>
+<blockquote>
+<p>Example request for &quot;Lebron James&quot; in Players endpoint  </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"players"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"James"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lebron"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2602b409-1737-49e5-a32d-62608d1e2c29"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Example request for &quot;LAL&quot; (Los Angeles Lakers) in &quot;Team&quot; endpoint</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"games"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2019</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"month"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"teamId"</span><span class="p">:</span><span class="s2">"LAL"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2c48e899-01ef-443e-b455-144486b1c291"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>Example request of Lebron James in &quot;Stats&quot; endpoint by playerId and gameId</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stats"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"gameId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21800500"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"playerId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2544"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ddc2632e-f9bb-4ea9-bdf6-992e1590f676"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>Example request for Lebron James in &quot;Stats&quot; endpoint by lastName and firstName </p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stats"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"James"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lebron"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2019</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"month"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"689c2c7d-cd08-4b2c-b87d-f1de10b4e94d"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>Currently, we offer <span style="color:red"> Info </span> and <span style="color:red"> Games </span> data endpoints for free. </p>
+
+<p>In addition, to help developers build and test end-to-end applications, we offer a series of data across all endpoints: <code>Games</code>, <code>Players</code>, <code>Team</code> and <code>Stats</code> for a specific player.  </p>
+
+<p>For testing, we provide data for <span style="color:red"> Lebron James </span> for free on testnet.   </p>
+<h2 id='payment-amp-pricing'>Payment &amp; Pricing</h2>
+<p><strong>How to Pay</strong></p>
+
 <p>This is our recommended lnd lightning client library: <a href="https://github.com/SuredBits/sb-api-lnd">https://github.com/SuredBits/sb-api-lnd</a></p>
 
 <p>This is an alternative c-lightning client library: <a href="https://github.com/suredbits/lightning-charge">https://github.com/suredbits/lightning-charge</a></p>
 
-<aside class="success"> Note: all API services are currently on testnet.  Testnet is used for testing purposes and is not real bitcoin. </aside>
+<p><strong>Pricing</strong></p>
+
+<aside class="success"> All payments are transacted in cryptocurrency.  For convenience, we have quoted prices in USD equiavalents. </aside>
+
+<aside class="success"> We reserve the right to change pricing as necessary.  We also reserve the right to change what is available in our free API offerings. Any changes in pricing or services will be announced via our Twitter <a href="https://twitter.com/SuredBits">@Suredbits</a> </aside>
+
+<p>For NFL Data and NBA Data APIs, the cost is $.01 (1 cent) per call.  </p>
+
+<p>For our streaming Crypto Exchange API, the cost is $.10 (10 cents) per sixty seconds of streaming data.   </p>
+
+<p>Anything less than 60 seconds will be prorated accordingly.  </p>
+
+<p>A minimum of 10 satoshis will be charged for all streaming data calls. </p>
 <h2 id='uuid'>UUID</h2>
 <blockquote>
-<p>Example Data returned with valid UUID</p>
+<p>Example data returned with valid UUID</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"uuid"</span><span class="p">:</span><span class="s2">"123e4567-e89b-12d3-a456-426655440000"</span><span class="p">,</span><span class="w">
@@ -396,7 +549,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
-<p>Example Data returned</p>
+<p>Example data returned</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
   </span><span class="s2">"uuid"</span><span class="p">:</span><span class="s2">"bfbef9da-eb9e-418c-8f6b-963743355ef7"</span><span class="p">,</span><span class="w">
@@ -429,7 +582,7 @@
 <aside class="note">NOTE: All times are in Universal Time Coordinated or "UTC".  So be sure to do time zone conversions. </aside>
 
 <ol>
-<li><p>Send a request over the websocket (see <a href="#NFLData">NFL Data</a>). </p></li>
+<li><p>Send a request over the websocket </p></li>
 <li><p>Upon confirmation of a valid request, you will receive a Lightning Network Invoice that should appear similar to the one below.</p></li>
 <li><p>Pay that ln invoice in your lightning client </p></li>
 <li><p>Receive data :)</p></li>
@@ -447,7 +600,9 @@
 
 <p><span style="color:red"> <em>lnbcrt10n1pd5v2mwpp5ulxpj8ht4gvtqnyl8zuykfk4wcv6sz455ce5dy0e0lqt...</em> </span></p>
 <h1 id='crypto-exchange-api'>Crypto Exchange API</h1><h2 id='crypto-exchange-websocket-endpoint'>Crypto Exchange Websocket Endpoint</h2>
-<p><strong>wss://test.api.suredbits.com/exchange/v0</strong></p>
+<p>This is the paid service url <strong>wss://api.suredbits.com/exchange/v0</strong> on mainnet.</p>
+
+<p>This is the free version url <strong>wss://test.api.suredbits.com/exchange/v0</strong> on testnet. </p>
 <h2 id='overview'>Overview</h2>
 <p><strong>Trading Pairs Supported</strong></p>
 
@@ -506,7 +661,7 @@
 <p><strong>Subscribe</strong></p>
 
 <blockquote>
-<p>Example request Format: </p>
+<p>Example request format: </p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
    </span><span class="s2">"event"</span><span class="p">:</span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
@@ -519,7 +674,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
-<p>Example Subscription confirmation </p>
+<p>Example subscription confirmation </p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
    </span><span class="s2">"uuid"</span><span class="p">:</span><span class="s2">"8dda8625-2946-4500-8dd5-13c78d2f42b8"</span><span class="p">,</span><span class="w">
@@ -541,7 +696,7 @@
 <tr>
 <td><span style="color:red"> uuid  </span></td>
 <td>String</td>
-<td><span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span></td>
+<td><span style="color:red"> &quot;123e4567-e89b-12d3-a456-426655440000&quot; </span></td>
 </tr>
 <tr>
 <td><span style="color:red"> event </span></td>
@@ -575,17 +730,11 @@
 </tr>
 </tbody></table>
 
-<p><strong>Payment</strong> </p>
-
-<aside class="warning"> Our pricing model is still evolving and could change as our API service grows and matures. For now, for each second of streaming data, you will be charged 1 Satoshi. </aside>
-
-<p>1 second = 1 Satoshi</p>
-
-<p>10 seconds = 10 Satoshis</p>
-
-<p>100 seconds = 100 Satoshis</p>
-
-<p>We will post notification of any future changes in our pricing model here and via our twitter @@Suredbits.</p>
+<p><br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br></p>
 
 <p><strong>Snapshots</strong></p>
 
@@ -612,6 +761,20 @@
 </span></code></pre>
 <p>Upon subscribing to a channel an initial snapshot is sent.  The snapshot provides a view of the current state of the market.</p>
 
+<p><br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br></p>
+
+<p><strong>Sequence Identifier</strong></p>
+
+<p>In order to better monitor potential gaps in streaming data, we provide a sequence number for each returned data value. </p>
+
+<p>Example: <span style="color:red"> &quot;seq&quot;: 21 </span> , <span style="color:red"> &quot;seq&quot;:437 </span>, <span style="color:red"> &quot;seq&quot;:2873 </span> etc. </p>
+
 <p><strong>Refill</strong></p>
 
 <p>You may refill your subscrption at any time with the following command format: </p>
@@ -626,7 +789,7 @@
 <tr>
 <td><span style="color:red"> uuid </span></td>
 <td>String</td>
-<td><span style="color:red"> &quot;e.g. 123e4567-e89b-12d3-a456-426655440000&quot; </span></td>
+<td><span style="color:red"> &quot;123e4567-e89b-12d3-a456-426655440000&quot; </span></td>
 </tr>
 <tr>
 <td><span style="color:red"> addedDuration </span></td>
@@ -654,7 +817,7 @@
 <tr>
 <td><span style="color:red"> uuid </span></td>
 <td>String</td>
-<td><span style="color:red"> &quot;e.g. 123e4567-e89b-12d3-a456-426655440000&quot; </span></td>
+<td><span style="color:red"> &quot;123e4567-e89b-12d3-a456-426655440000&quot; </span></td>
 </tr>
 <tr>
 <td><span style="color:red"> event </span></td>
@@ -670,7 +833,7 @@
 <p>In the event of maintenance or service interruption, we will refund any remaining portion of your subscription. </p>
 <h2 id='tickers'>Tickers</h2>
 <blockquote>
-<p>Example Request Tickers</p>
+<p>Example request Tickers</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  </span><span class="s2">"event"</span><span class="p">:</span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"channel"</span><span class="p">:</span><span class="s2">"tickers"</span><span class="p">,</span><span class="w">
@@ -748,8 +911,9 @@
       </span><span class="s2">"statCloseTime"</span><span class="p">:</span><span class="mi">1541716718568</span><span class="p">,</span><span class="w">
       </span><span class="s2">"firstTradeId"</span><span class="p">:</span><span class="mi">77686104</span><span class="p">,</span><span class="w">
       </span><span class="s2">"lastTradeId"</span><span class="p">:</span><span class="mi">77828352</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"totalTrades"</span><span class="p">:</span><span class="mi">142249</span><span class="w">
-   </span><span class="p">}</span><span class="w">
+      </span><span class="s2">"totalTrades"</span><span class="p">:</span><span class="mi">142249</span><span class="p">,</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"seq"</span><span class="p">:</span><span class="mi">123</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>The <span style="color:red"> Tickers </span> channel streams high level updates for given trading pairs.  See the table below for which exchanges return which fields.</p>
@@ -764,7 +928,7 @@
 <tr>
 <td><span style="color:red"> uuid  </span></td>
 <td>String</td>
-<td><span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000</span></td>
+<td><span style="color:red"> &quot;123e4567-e89b-12d3-a456-426655440000&quot;</span></td>
 </tr>
 <tr>
 <td><span style="color:red"> eventTime </span></td>
@@ -932,8 +1096,9 @@
       </span><span class="s2">"buyerId"</span><span class="p">:</span><span class="s2">"183136564"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"sellerId"</span><span class="p">:</span><span class="s2">"183136526"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"tradeTime"</span><span class="p">:</span><span class="mi">1541715784094</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"marketMaker"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+      </span><span class="s2">"marketMaker"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
    </span><span class="p">}</span><span class="w">
+   </span><span class="s2">"seq"</span><span class="p">:</span><span class="mi">893</span><span class="w">
 </span><span class="p">}{</span><span class="w">  
    </span><span class="s2">"uuid"</span><span class="p">:</span><span class="s2">"8dda8625-2946-4500-8dd5-13c78d2f42b8"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">  
@@ -945,8 +1110,9 @@
       </span><span class="s2">"buyerId"</span><span class="p">:</span><span class="s2">"183136558"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"sellerId"</span><span class="p">:</span><span class="s2">"183136565"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"tradeTime"</span><span class="p">:</span><span class="mi">1541715784156</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"marketMaker"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+      </span><span class="s2">"marketMaker"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
    </span><span class="p">}</span><span class="w">
+   </span><span class="s2">"seq"</span><span class="p">:</span><span class="mi">894</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>The <span style="color:red"> Trades </span> channel streams executed trades for a given trading pair.  See the table below for which exchanges returns which fields. </p>
@@ -961,7 +1127,7 @@
 <tr>
 <td><span style="color:red"> uuid  </span></td>
 <td>String</td>
-<td><span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span></td>
+<td><span style="color:red"> &quot;123e4567-e89b-12d3-a456-426655440000&quot; </span></td>
 </tr>
 <tr>
 <td><span style="color:red"> eventTime </span></td>
@@ -1011,7 +1177,7 @@
 </tbody></table>
 <h2 id='order-books'>Order Books</h2>
 <blockquote>
-<p>Example Request Order Books</p>
+<p>Example request Order Books</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"event"</span><span class="p">:</span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"channel"</span><span class="p">:</span><span class="s2">"books"</span><span class="p">,</span><span class="w"> 
@@ -1041,7 +1207,7 @@
          </span><span class="s2">"eventTime"</span><span class="p">:</span><span class="mi">1543850299172</span><span class="p">,</span><span class="w">
          </span><span class="s2">"orderId"</span><span class="p">:</span><span class="mi">19811509228</span><span class="p">,</span><span class="w">
          </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">3894.7</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"quantity"</span><span class="p">:</span><span class="mf">0.25</span><span class="w">
+         </span><span class="s2">"quantityTotal"</span><span class="p">:</span><span class="mf">0.25</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="err">...</span><span class="w">
    </span><span class="p">]</span><span class="w">
@@ -1053,16 +1219,18 @@
          </span><span class="s2">"eventTime"</span><span class="p">:</span><span class="mi">1541715102336</span><span class="p">,</span><span class="w">
          </span><span class="s2">"orderId"</span><span class="p">:</span><span class="mi">18836717052</span><span class="p">,</span><span class="w">
          </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">6504.4</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"quantity"</span><span class="p">:</span><span class="mf">0.16911629</span><span class="w">
+         </span><span class="s2">"quantityTotal"</span><span class="p">:</span><span class="mf">0.16911629</span><span class="p">,</span><span class="w">
       </span><span class="p">}</span><span class="w">
+      </span><span class="s2">"seq"</span><span class="p">:</span><span class="mi">622</span><span class="w">
    </span><span class="p">}{</span><span class="w">  
       </span><span class="s2">"uuid"</span><span class="p">:</span><span class="s2">"d7975109-e6d0-47ae-9c26-531d553c420b"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">  
          </span><span class="s2">"eventTime"</span><span class="p">:</span><span class="mi">1541715102336</span><span class="p">,</span><span class="w">
          </span><span class="s2">"orderId"</span><span class="p">:</span><span class="mi">18836717013</span><span class="p">,</span><span class="w">
          </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">6502.9</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"quantity"</span><span class="p">:</span><span class="mf">0.1691553</span><span class="w">
+         </span><span class="s2">"quantityTotal"</span><span class="p">:</span><span class="mf">0.1691553</span><span class="p">,</span><span class="w">
       </span><span class="p">}</span><span class="w">
+      </span><span class="s2">"seq"</span><span class="p">:</span><span class="mi">309</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>The <span style="color:red"> Books </span> channel streams bids and asks for a given trading pair on given exchange.  Note, Binance is currently not supported in  <span style="color:red"> Books </span> </p>
@@ -1077,7 +1245,7 @@
 <tr>
 <td><span style="color:red"> uuid  </span></td>
 <td>String</td>
-<td><span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span></td>
+<td><span style="color:red"> &quot;123e4567-e89b-12d3-a456-426655440000&quot; </span></td>
 </tr>
 <tr>
 <td><span style="color:red"> eventTime </span></td>
@@ -1095,9 +1263,14 @@
 <td><span style="color:red"> bitfinex </span> , <span style="color:red"> coinbase  </span>, <span style="color:red"> bitstamp </span>,<span style="color:red"> gemini </span></td>
 </tr>
 <tr>
-<td><span style="color:red"> quantity </span></td>
+<td><span style="color:red"> quantityTotal </span></td>
 <td>Double</td>
 <td><span style="color:red"> bitfinex </span> , <span style="color:red"> coinbase  </span>, <span style="color:red"> bitstamp </span>, <span style="color:red"> gemini </span></td>
+</tr>
+<tr>
+<td><span style="color:red"> quantityChange </span></td>
+<td>Double</td>
+<td><span style="color:red"> bitstamp </span>, <span style="color:red"> gemini </span></td>
 </tr>
 <tr>
 <td><span style="color:red"> symbol </span></td>
@@ -1108,7 +1281,9 @@
 
 <h1 id="NFLData"> NFL Data</h1>
 <h2 id='nfl-websocket-endpoint'>NFL Websocket Endpoint</h2>
-<p><strong>wss://test.api.suredbits.com/nfl/v0</strong></p>
+<p>This is the paid service url <strong>wss://api.suredbits.com/nfl/v0</strong> on mainnet.</p>
+
+<p>This is the free service url <strong>wss://test.api.suredbits.com/nfl/v0</strong> on testnet.</p>
 <h2 id='info'>Info</h2>
 <blockquote>
 <p>Example request</p>
@@ -1206,7 +1381,7 @@
 <tr>
 <td><span style="color:red"> uuid  </span></td>
 <td>String</td>
-<td><span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span></td>
+<td><span style="color:red"> &quot;123e4567-e89b-12d3-a456-426655440000&quot; </span></td>
 </tr>
 <tr>
 <td><span style="color:red"> week </span></td>
@@ -1255,7 +1430,7 @@
 <tr>
 <td><span style="color:red"> uuid  </span></td>
 <td>String</td>
-<td><span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span></td>
+<td><span style="color:red"> &quot;123e4567-e89b-12d3-a456-426655440000&quot; </span></td>
 </tr>
 <tr>
 <td><span style="color:red"> realtime  </span></td>
@@ -1335,7 +1510,7 @@
 <tr>
 <td><span style="color:red"> uuid  </span></td>
 <td>String</td>
-<td><span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span></td>
+<td><span style="color:red"> &quot;123e4567-e89b-12d3-a456-426655440000&quot; </span></td>
 </tr>
 <tr>
 <td><span style="color:red"> firstName </span></td>
@@ -1473,7 +1648,7 @@
 <tr>
 <td><span style="color:red"> uuid  </span></td>
 <td>String</td>
-<td><span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span></td>
+<td><span style="color:red"> &quot;123e4567-e89b-12d3-a456-426655440000&quot; </span></td>
 </tr>
 <tr>
 <td><span style="color:red"> teamId </span></td>
@@ -1683,7 +1858,7 @@
 <tr>
 <td><span style="color:red"> uuid  </span></td>
 <td>String</td>
-<td><span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span></td>
+<td><span style="color:red"> &quot;123e4567-e89b-12d3-a456-426655440000&quot; </span></td>
 </tr>
 <tr>
 <td><span style="color:red"> channel </span></td>
@@ -1721,7 +1896,7 @@
 <tr>
 <td><span style="color:red"> uuid  </span></td>
 <td>String</td>
-<td><span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span></td>
+<td><span style="color:red"> &quot;123e4567-e89b-12d3-a456-426655440000&quot; </span></td>
 </tr>
 <tr>
 <td><span style="color:red"> channel </span></td>
@@ -1760,7 +1935,9 @@
 </tr>
 </tbody></table>
 <h1 id='nba-data'>NBA Data</h1><h2 id='nba-websocket-endpoint'>NBA Websocket Endpoint</h2>
-<p><strong>wss://test.api.suredbits.com/nba/v0</strong></p>
+<p>This is the paid service url <strong>wss://api.suredbits.com/nba/v0</strong> on mainnet.</p>
+
+<p>This is the free version url <strong>wss://test.api.suredbits.com/nba/v0</strong> on testnet. </p>
 <h2 id='info-2'>Info</h2>
 <blockquote>
 <p>Example request Info</p>
@@ -1796,7 +1973,7 @@
 <tr>
 <td><span style="color:red"> uuid  </span></td>
 <td>String</td>
-<td><span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span></td>
+<td><span style="color:red"> &quot;123e4567-e89b-12d3-a456-426655440000&quot; </span></td>
 </tr>
 </tbody></table>
 <h2 id='games-2'>Games</h2>
@@ -1937,7 +2114,7 @@
 <tr>
 <td><span style="color:red"> uuid  </span></td>
 <td>String</td>
-<td><span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span></td>
+<td><span style="color:red"> &quot;123e4567-e89b-12d3-a456-426655440000&quot; </span></td>
 </tr>
 <tr>
 <td><span style="color:red"> channel </span></td>
@@ -1995,7 +2172,7 @@
 <tr>
 <td><span style="color:red"> uuid  </span></td>
 <td>String</td>
-<td><span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span></td>
+<td><span style="color:red"> &quot;123e4567-e89b-12d3-a456-426655440000&quot; </span></td>
 </tr>
 <tr>
 <td><span style="color:red"> realtime  </span></td>
@@ -2065,7 +2242,7 @@
 <tr>
 <td><span style="color:red"> uuid  </span></td>
 <td>String</td>
-<td><span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span></td>
+<td><span style="color:red"> &quot;123e4567-e89b-12d3-a456-426655440000&quot; </span></td>
 </tr>
 <tr>
 <td><span style="color:red"> channel </span></td>
@@ -2083,13 +2260,14 @@
 <td><span style="color:red"> Durant </span></td>
 </tr>
 </tbody></table>
-<h2 id='teams'>Teams</h2>
+<h2 id='team-2'>Team</h2>
 <blockquote>
 <p>Example request for Roster</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"team"</span><span class="p">,</span><span class="w"> 
-  </span><span class="s2">"retrieve"</span><span class="p">:</span><span class="w"> </span><span class="s2">"roster"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"retrieve"</span><span class="p">:</span><span class="w"> </span><span class="s2">"roster"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"teamId""[team]"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[uuid]"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -2152,7 +2330,7 @@
 <tr>
 <td><span style="color:red"> uuid  </span></td>
 <td>String</td>
-<td><span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span></td>
+<td><span style="color:red"> &quot;123e4567-e89b-12d3-a456-426655440000&quot; </span></td>
 </tr>
 <tr>
 <td><span style="color:red"> channel </span></td>
@@ -2355,7 +2533,7 @@
 <tr>
 <td><span style="color:red"> uuid  </span></td>
 <td>String</td>
-<td><span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span></td>
+<td><span style="color:red"> &quot;123e4567-e89b-12d3-a456-426655440000&quot; </span></td>
 </tr>
 <tr>
 <td><span style="color:red"> channel </span></td>
@@ -2386,7 +2564,7 @@
 <tr>
 <td><span style="color:red"> uuid  </span></td>
 <td>String</td>
-<td><span style="color:red"> e.g. 123e4567-e89b-12d3-a456-426655440000 </span></td>
+<td><span style="color:red"> &quot;123e4567-e89b-12d3-a456-426655440000&quot; </span></td>
 </tr>
 <tr>
 <td><span style="color:red"> channel </span></td>
@@ -2420,13 +2598,13 @@
 </tr>
 </tbody></table>
 <h1 id='contact-us'>Contact Us</h1>
-<p>Follow us on twitter <a href="https://twitter.com/SuredBits">@@Suredbits</a></p>
+<p>Follow us on twitter <a href="https://twitter.com/SuredBits">@Suredbits</a></p>
 
 <p>Join our Slack channel <a href="https://join.slack.com/t/suredbits/shared_invite/enQtNDEyMjY3MTg1MTg3LTYyYjkwOGUzMDQ4NDAwZjE1M2I3MmQyNWNlZjNlYjg4OGRjYTRjNWUwNjRjNjg4Y2NjZjAxYjU1N2JjMTU1YWM">Suredbits Slack</a></p>
 
-<p>Email us at <a href="mailto:support@@suredbits.com">support@@suredbits.com</a></p>
+<p>Email us at <a href="mailto:support@suredbits.com">support@suredbits.com</a></p>
 <h1 id='homepage'>Homepage</h1>
-<p><a href="https://www.suredbits.com"> Return to Suredbits.com</a></p>
+<p><a href="https://www.suredbits.com"> Return to Suredbits.com </a></p>
 
       </div>
       <div class="dark-box">
