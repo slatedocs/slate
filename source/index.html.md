@@ -715,7 +715,7 @@ Field | Type | Exchanges Supporting
 <span style="color:red"> eventTime </span> | Integer | <span style="color:red"> bitfinex </span>, <span style="color:red"> bitstamp </span>, <span style="color:red"> gemini </span>
 <span style="color:red"> orderId </span> |  Integer | <span style="color:red"> bitfinex </span>, <span style="color:red"> bitstamp </span>
 <span style="color:red"> price  </span>| Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> coinbase  </span>, <span style="color:red"> bitstamp </span>,<span style="color:red"> gemini </span>
-<span style="color:red"> quantityTotal </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> coinbase  </span>, <span style="color:red"> bitstamp </span>, <span style="color:red"> gemini </span>
+<span style="color:red"> quantityTotal </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> coinbase  </span>, <span style="color:red"> gemini </span>
 <span style="color:red"> quantityChange </span> | Double | <span style="color:red"> bitstamp </span>, <span style="color:red"> gemini </span>
 <span style="color:red"> symbol </span> | String |  <span style="color:red"> coinbase </span>
 
