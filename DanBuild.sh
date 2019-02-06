@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-
-echo "Warning: This script is for use with simple changes only!"
-
 old_index="Built_API_Docs.html"
 
 old_line_count=`wc --lines < $old_index`
@@ -18,7 +15,7 @@ function custom_part {
 }
 
 
-# bundle exec middleman build --clean
+bundle exec middleman build --clean
 
 built="build/index.html"
 built_line_count=`wc --lines < $built`
@@ -33,3 +30,9 @@ tail -n `expr $built_line_count - $built_from_index` $built >> new.html
 sed -i 's#images/#./assets/images/#' new.html 
 
 mv new.html Built_API_Docs.html
+
+if test `git ls-files -m | grep Built_API_Docs.html`; then
+    echo "There's been changes since last time, you should probably commit"
+else
+    echo "There's been no changes since last time"
+fi
