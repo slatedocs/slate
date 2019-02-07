@@ -1,0 +1,10 @@
+branch-defaults:
+  darena:
+    environment: documentation
+global:
+  application_name: documentation
+  default_ec2_keyname: null
+  default_platform: 64bit Amazon Linux 2018.03 v2.12.7 running Docker 18.06.1-ce
+  default_region: null
+  profile: tier-stage
+  sc: null

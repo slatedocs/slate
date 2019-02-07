@@ -49,17 +49,13 @@ jobs:
           command: |
             mkdir -p ~/.aws
             export ECR=075108987694.dkr.ecr.eu-central-1.amazonaws.com
-            echo "[${ENVIRONMENT}]" > ~/.aws/credentials
-            echo "aws_access_key_id = ${AWS_ACCESS_KEY_ID}" >> ~/.aws/credentials
-            echo "aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" >> ~/.aws/credentials
             eval $(aws ecr get-login --region eu-central-1 --no-include-email)
             docker tag tier/documentation ${ECR}/tier/documentation
             docker push ${ECR}/tier/documentation:latest
             docker push ${ECR}/tier/documentation:${CIRCLE_SHA1}
       - run:
           name: "Deployment"
-          command: |
-            eb deploy documentation-${ENVIRONMENT} --profile ${ENVIRONMENT}
+          command: eb deploy documentation
       - run:
           name: "Announce Deployment"
           command: ./.datadog/announce-deployment.sh
@@ -87,23 +83,16 @@ jobs:
       - run:
           name: "Push Container"
           command: |
-            eval $(aws ecr get-login --region eu-central-1 --no-include-email)
-            export ACCOUNT=075108987694
-            docker tag tier/documentation ${ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/tier/documentation
-            docker push ${ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/tier/documentation:latest
-            docker push ${ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/tier/documentation:${CIRCLE_SHA1}
-      - run:
-          name: "Deployment"
-          command: |
             mkdir -p ~/.aws
             export ECR=075108987694.dkr.ecr.eu-central-1.amazonaws.com
-            echo "[${ENVIRONMENT}]" > ~/.aws/credentials
-            echo "aws_access_key_id = ${AWS_ACCESS_KEY_ID}" >> ~/.aws/credentials
-            echo "aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" >> ~/.aws/credentials
             eval $(aws ecr get-login --region eu-central-1 --no-include-email)
             docker tag tier/documentation ${ECR}/tier/documentation
             docker push ${ECR}/tier/documentation:latest
             docker push ${ECR}/tier/documentation:${CIRCLE_SHA1}
+      - run:
+          name: "Deployment"
+          command: eb deploy documentation
+
       - run:
           name: "Announce Deployment"
           command: ./.datadog/announce-deployment.sh
