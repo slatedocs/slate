@@ -57,7 +57,10 @@ jobs:
             docker push ${ECR}/tier/documentation:latest
       - run:
           name: "Deployment"
-          command: eb deploy documentation
+          command: |
+            export PREFIX=stage
+            aws s3api put-bucket-policy --bucket tier-documentation --policy "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"arn:aws:iam::075108987694:root\"},\"Action\":\"s3:PutObject\",\"Resource\":\"arn:aws:s3:::tier-documentation/${PREFIX}AWSLogs/*\"}]}"  
+            eb deploy documentation
       - run:
           name: "Announce Deployment"
           command: ./.datadog/announce-deployment.sh
@@ -95,7 +98,10 @@ jobs:
             docker push ${ECR}/tier/documentation:latest
       - run:
           name: "Deployment"
-          command: eb deploy documentation
+          command: |
+            export PREFIX=production
+            aws s3api put-bucket-policy --bucket tier-documentation --policy "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"arn:aws:iam::075108987694:root\"},\"Action\":\"s3:PutObject\",\"Resource\":\"arn:aws:s3:::tier-documentation/${PREFIX}AWSLogs/*\"}]}"  
+            eb deploy documentation
 
       - run:
           name: "Announce Deployment"
