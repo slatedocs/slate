@@ -22,14 +22,14 @@ commands:
 
 jobs:
   deploy-to-stage:
-  
+
     environment:
       ENVIRONMENT: 'stage'
 
     working_directory: ~/repo
 
     docker:
-      - image: docker:17.05.0-ce-git
+      - image: circleci/ruby:2.4.2-jessie-node
 
     steps:
     - checkout
@@ -67,7 +67,7 @@ jobs:
     working_directory: ~/repo
 
     docker:
-      - image: docker:17.05.0-ce-git
+      - image: circleci/ruby:2.4.2-jessie-node
 
     steps:
     - checkout
