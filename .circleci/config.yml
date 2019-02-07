@@ -52,7 +52,6 @@ jobs:
             eval $(aws ecr get-login --region eu-central-1 --no-include-email)
             docker tag tier/documentation ${ECR}/tier/documentation
             docker push ${ECR}/tier/documentation:latest
-            docker push ${ECR}/tier/documentation:${CIRCLE_SHA1}
       - run:
           name: "Deployment"
           command: eb deploy documentation
@@ -88,7 +87,6 @@ jobs:
             eval $(aws ecr get-login --region eu-central-1 --no-include-email)
             docker tag tier/documentation ${ECR}/tier/documentation
             docker push ${ECR}/tier/documentation:latest
-            docker push ${ECR}/tier/documentation:${CIRCLE_SHA1}
       - run:
           name: "Deployment"
           command: eb deploy documentation
