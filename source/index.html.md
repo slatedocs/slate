@@ -62,23 +62,6 @@ Example of an auth message:
 }
 </pre>
 
-Example of a command message:
-
-<pre class="center-column">
-{
-  "type":"event",
-  "event":{
-     "data":{},
-     "event_type":"test_event",
-     "time_fired":"2016-11-26T01:37:24.265429+00:00",
-     "origin":"LOCAL"
-  }
-}
-</pre>
-
-Each API message is a JSON serialized object containing a type key. After the authentication phase messages also must contain an id, an integer that contains the number of interactions.
-
-
 
 
 # Authentication phase
@@ -113,15 +96,6 @@ This means that the next message from the client should be an auth message. You 
 }
 </pre>
 
-For now, we also support authentication with an API password (legacy auth).
-
-<pre class="center-column">
-{
-  "type": "auth",
-  "api_password": "supersecret"
-}
-</pre>
-
 If the client supplies valid authentication, the authentication phase will complete by the server sending the auth_ok message:
 
 <pre class="center-column">
@@ -142,18 +116,7 @@ If the data is incorrect, the server will reply with auth_invalid message and di
 
 # Command phase
 
-During this phase the client can give commands to the server. The server will respond to each command with a <code>result</code> message indicating when the command is done and if it was successful.
-
-Server response example:
-<pre class="center-column">
-{
-  "id": 6.
-  "type": "result",
-  "success": true,
-  // Can contain extra result info
-  "result": null
-}
-</pre>
+During this phase the client can give commands to the server. The server will respond to each command with a specific message for each command indicating when the command is done and if it was successful.
 
 # Messages
 
@@ -197,7 +160,7 @@ Server response example:
 
 Create a new order containing the data to be sent to the customer in front of the POS temrinal.
 
-Workflow:
+Workflow after a successful authentication:
 
 Case 1 - Success scenario:
 
