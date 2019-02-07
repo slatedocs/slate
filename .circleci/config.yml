@@ -15,10 +15,10 @@ commands:
           sudo pip install awsebcli --upgrade
 
   build_docs:
-    description: "Build documentation container"
+    description: "Build documentation"
     steps:
     - run:
-        name: Build Docs
+        name: "Build Docs"
         command: |
           bundle install
           bundle exec middleman build --clean
@@ -38,11 +38,11 @@ jobs:
     - checkout
     - install_deps
     - build_docs
-    
+
     - setup_remote_docker  
 
     - run:
-      name: Build Docs
+      name: "Build Container"
       command: docker build -t tier/documentation -f docker/Dockerfile .
     
     - run:
