@@ -22,71 +22,79 @@ commands:
 
 jobs:
   deploy-to-stage:
+  
     environment:
       ENVIRONMENT: 'stage'
+
     working_directory: ~/repo
+
     docker:
       - image: docker:17.05.0-ce-git
+
     steps:
     - checkout
     - install_deps
     - build_docs
 
-    - run:
-      name: Push
-      command: |
-        eval $(aws ecr get-login --no-include-email)
-        export ACCOUNT=075108987694
-        docker tag tier/documentation ${ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/tier/documentation
-        docker push ${ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/tier/documentation:latest
-        docker push ${ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/tier/documentation:${CIRCLE_SHA1}
+    #- run:
+    #  name: Push
+    #  command: |
+    #    eval $(aws ecr get-login --no-include-email)
+    #    export ACCOUNT=075108987694
+    #    docker tag tier/documentation ${ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/tier/documentation
+    #    docker push ${ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/tier/documentation:latest
+    #    docker push ${ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/tier/documentation:${CIRCLE_SHA1}
 
-    - run:
-        name: Deploy
-        working_directory: ~/repo
-        command: |
-          mkdir -p ~/.aws
-          echo "[${ENVIRONMENT}]" > ~/.aws/credentials
-          echo "aws_access_key_id = ${AWS_ACCESS_KEY_ID}" >> ~/.aws/credentials
-          echo "aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" >> ~/.aws/credentials
-          eb deploy documentation-${ENVIRONMENT} --profile ${ENVIRONMENT}
+    #- run:
+    #    name: Deploy
+    #    working_directory: ~/repo
+    #    command: |
+    #      mkdir -p ~/.aws
+    #      echo "[${ENVIRONMENT}]" > ~/.aws/credentials
+    #      echo "aws_access_key_id = ${AWS_ACCESS_KEY_ID}" >> ~/.aws/credentials
+    #      echo "aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" >> ~/.aws/credentials
+    #      eb deploy documentation-${ENVIRONMENT} --profile ${ENVIRONMENT}
 
-    - run:
-        name: Announce Deployment
-        command: ./.datadog/announce-deployment.sh
+    #- run:
+    #    name: Announce Deployment
+    #    command: ./.datadog/announce-deployment.sh
 
   deploy-to-production:
+
     environment:
       ENVIRONMENT: 'production'
+
     working_directory: ~/repo
+
     docker:
       - image: docker:17.05.0-ce-git
+
     steps:
     - checkout
     - install_deps
     - build_docs
 
-    - run:
-      name: Push
-      command: |
-        eval $(aws ecr get-login --no-include-email)
-        export ACCOUNT=075108987694
-        docker tag tier/documentation ${ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/tier/documentation
-        docker push ${ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/tier/documentation:latest
-        docker push ${ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/tier/documentation:${CIRCLE_SHA1}
-    - run:
-        name: Deploy
-        working_directory: ~/repo
-        command: |
-          mkdir -p ~/.aws
-          echo "[${ENVIRONMENT}]" > ~/.aws/credentials
-          echo "aws_access_key_id = ${AWS_ACCESS_KEY_ID}" >> ~/.aws/credentials
-          echo "aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" >> ~/.aws/credentials
-          eb deploy documentation-${ENVIRONMENT} --profile ${ENVIRONMENT}
+    #- run:
+    #  name: Push
+    #  command: |
+    #    eval $(aws ecr get-login --no-include-email)
+    #    export ACCOUNT=075108987694
+    #    docker tag tier/documentation ${ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/tier/documentation
+    #    docker push ${ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/tier/documentation:latest
+    #    docker push ${ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/tier/documentation:${CIRCLE_SHA1}
+    #- run:
+    #    name: Deploy
+    #    working_directory: ~/repo
+    #    command: |
+    #      mkdir -p ~/.aws
+    #      echo "[${ENVIRONMENT}]" > ~/.aws/credentials
+    #      echo "aws_access_key_id = ${AWS_ACCESS_KEY_ID}" >> ~/.aws/credentials
+    #      echo "aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" >> ~/.aws/credentials
+    #      eb deploy documentation-${ENVIRONMENT} --profile ${ENVIRONMENT}
 
-    - run:
-        name: Announce Deployment
-        command: ./.datadog/announce-deployment.sh
+    #- run:
+    #    name: Announce Deployment
+    #    command: ./.datadog/announce-deployment.sh
 
 workflows:
   version: 2
