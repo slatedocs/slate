@@ -65,7 +65,7 @@ jobs:
     - install_deps
     - build_docs
 
-        - run:
+    - run:
       name: Push
       command: |
         $(aws ecr get-login --no-include-email)
