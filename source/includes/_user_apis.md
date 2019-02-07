@@ -8,6 +8,11 @@ You need to login using your zoomsymbols account before using those APIs
 
 Get your user profile
 
+
+```APIs
+GET https://dev.zoomsymbols.com/api/user/getProfile
+```
+
 > Response
 
 ```json
@@ -47,9 +52,6 @@ Get your user profile
 }
 ```
 
-```APIs
-GET https://dev.zoomsymbols.com/api/user/getProfile
-```
 
 ## Set Profile
 
