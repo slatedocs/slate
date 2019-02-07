@@ -10,7 +10,8 @@ toc_footers:
 
 includes:
   - introduction
-  - _authentication
+  - authentication
+  - user_apis
   - errors
 
 search: true
