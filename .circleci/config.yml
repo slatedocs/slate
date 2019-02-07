@@ -13,6 +13,7 @@ commands:
           sudo pip install awscli --upgrade
           sudo apt-get install -y dnsutils
           sudo pip install awsebcli --upgrade
+          
   build_docs:
     description: "Build documentation container"
     steps:
@@ -31,6 +32,20 @@ commands:
         name: Build Docs
         command: docker build -t tier/documentation -f docker/Dockerfile .
 
+  push_container:
+    description: "Push container"
+    steps:
+    - setup_remote_docker:
+        docker_layer_caching: true      
+      - run:
+      name: Push
+      command: |
+        eval $(aws ecr get-login --no-include-email)
+        export ACCOUNT=075108987694
+        docker tag tier/documentation ${ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/tier/documentation
+        docker push ${ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/tier/documentation:latest
+        docker push ${ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/tier/documentation:${CIRCLE_SHA1}
+
 jobs:
   deploy-to-stage:
 
@@ -47,15 +62,7 @@ jobs:
     - install_deps
     - build_docs
     - build_nginx
-
-    - run:
-      name: Push
-      command: |
-        eval $(aws ecr get-login --no-include-email)
-        export ACCOUNT=075108987694
-        docker tag tier/documentation ${ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/tier/documentation
-        docker push ${ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/tier/documentation:latest
-        docker push ${ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/tier/documentation:${CIRCLE_SHA1}
+    - push_container
 
     #- run:
     #    name: Deploy
