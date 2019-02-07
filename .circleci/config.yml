@@ -16,6 +16,15 @@ commands:
   build_docs:
     description: "Build documentation container"
     steps:
+    - run:
+        name: Build Docs
+        command: |
+          bundle install
+          bundle exec middleman build --clean
+
+  build_nginx:
+    description: "Build nginx container"
+    steps:
     - setup_remote_docker:
         docker_layer_caching: true
     - run:
@@ -37,6 +46,7 @@ jobs:
     - checkout
     - install_deps
     - build_docs
+    - build_nginx
 
     #- run:
     #  name: Push
