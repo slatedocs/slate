@@ -13,7 +13,7 @@ commands:
           sudo pip install awscli --upgrade
           sudo apt-get install -y dnsutils
           sudo pip install awsebcli --upgrade
-          
+
   build_docs:
     description: "Build documentation container"
     steps:
@@ -37,7 +37,7 @@ commands:
     steps:
     - setup_remote_docker:
         docker_layer_caching: true      
-      - run:
+    - run:
       name: Push
       command: |
         eval $(aws ecr get-login --no-include-email)
