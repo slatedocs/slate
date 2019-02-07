@@ -89,7 +89,7 @@ jobs:
             echo "[${ENVIRONMENT}]" > ~/.aws/credentials
             echo "aws_access_key_id = ${AWS_ACCESS_KEY_ID}" >> ~/.aws/credentials
             echo "aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" >> ~/.aws/credentials
-            export ECR=075108987694.dkr.ecr.eu-central-1.amazonaws.com
+            export ECR=373437620866.dkr.ecr.eu-central-1.amazonaws.com
             eval $(aws ecr get-login --region eu-central-1 --no-include-email)
             docker tag tier/documentation ${ECR}/tier/documentation
             docker push ${ECR}/tier/documentation:latest --profile ${ENVIRONMENT}
