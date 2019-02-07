@@ -16,6 +16,8 @@ commands:
   build_docs:
     description: "Build documentation container"
     steps:
+    - setup_remote_docker:
+        docker_layer_caching: true
     - run:
         name: Build Docs
         command: docker build -t tier/documentation -f docker/Dockerfile .
