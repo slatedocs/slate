@@ -1,0 +1,8 @@
+{
+   "AWSEBDockerrunVersion": "1",
+   "Image": {
+     "Name": "075108987694.dkr.ecr.eu-central-1.amazonaws.com/tier/documentation",
+     "Update": "true"
+   },
+   "Ports": [ { "ContainerPort" : 80 } ]
+}

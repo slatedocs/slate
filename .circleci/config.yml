@@ -1,0 +1,99 @@
+version: 2.1
+
+commands:
+  install_deps:
+    description: "Install necessary dependencies"
+    steps:
+    - run:
+        name: "Installing dependencies"
+        command: |
+          sudo apt-get update && sudo apt-get install -y python-dev
+          sudo curl -O https://bootstrap.pypa.io/get-pip.py
+          sudo python get-pip.py
+          sudo pip install awscli --upgrade
+          sudo apt-get install -y dnsutils
+          sudo pip install awsebcli --upgrade
+  build_docs:
+    description: "Build documentation container"
+    steps:
+    - run:
+        name: Build Docs
+        command: docker build -t tier/documentation -f docker/Dockerfile .
+
+jobs:
+  deploy-to-stage:
+    environment:
+      ENVIRONMENT: 'stage'
+    working_directory: ~/repo
+    docker:
+      - image: docker:17.05.0-ce-git
+    steps:
+    - checkout
+    - install_deps
+    - build_docs
+
+    - run:
+      name: Push
+      command: |
+        $(aws ecr get-login --no-include-email)
+        export ACCOUNT=075108987694
+        docker tag tier/documentation ${ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/tier/documentation
+        docker push tier/documentation:latest
+        docker push tier/documentation:${CIRCLE_SHA1}
+    - run:
+        name: Deploy
+        working_directory: ~/repo
+        command: |
+          mkdir -p ~/.aws
+          echo "[${ENVIRONMENT}]" > ~/.aws/credentials
+          echo "aws_access_key_id = ${AWS_ACCESS_KEY_ID}" >> ~/.aws/credentials
+          echo "aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" >> ~/.aws/credentials
+          eb deploy documentation-${ENVIRONMENT} --profile ${ENVIRONMENT}
+
+    - run:
+        name: Announce Deployment
+        command: ./.datadog/announce-deployment.sh
+
+  deploy-to-production:
+    environment:
+      ENVIRONMENT: 'production'
+    working_directory: ~/repo
+    docker:
+      - image: docker:17.05.0-ce-git
+    steps:
+    - checkout
+    - install_deps
+    - build_docs
+
+    - run:
+      name: Push
+      command: |
+        $(aws ecr get-login --no-include-email)
+        export ACCOUNT=075108987694
+        docker tag tier/documentation ${ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/tier/documentation
+        docker push tier/documentation:latest
+        docker push tier/documentation:${CIRCLE_SHA1}
+    - run:
+        name: Deploy
+        working_directory: ~/repo
+        command: |
+          mkdir -p ~/.aws
+          echo "[${ENVIRONMENT}]" > ~/.aws/credentials
+          echo "aws_access_key_id = ${AWS_ACCESS_KEY_ID}" >> ~/.aws/credentials
+          echo "aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" >> ~/.aws/credentials
+          eb deploy documentation-${ENVIRONMENT} --profile ${ENVIRONMENT}
+
+    - run:
+        name: Announce Deployment
+        command: ./.datadog/announce-deployment.sh
+
+workflows:
+  version: 2
+  deploy:
+    jobs:
+    - deploy-to-stage:
+        context: global-staging
+    - deploy-to-production:
+        context: global-production
+        requires:
+          - deploy-to-stage
