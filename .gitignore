@@ -23,3 +23,8 @@ _yardoc
 doc/
 .idea/
 vendor/
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

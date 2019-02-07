@@ -13,13 +13,12 @@ commands:
           sudo pip install awscli --upgrade
           sudo apt-get install -y dnsutils
           sudo pip install awsebcli --upgrade
-
   build_docs:
-    description: "Building the API documentation"
+    description: "Build documentation container"
     steps:
     - run:
         name: Build Docs
-        command: docker build -t tier/documentation -f Dockerfile .
+        command: docker build -t tier/documentation -f docker/Dockerfile .
 
 jobs:
   deploy-to-stage:
@@ -34,6 +33,14 @@ jobs:
     - build_docs
 
     - run:
+      name: Push
+      command: |
+        $(aws ecr get-login --no-include-email)
+        export ACCOUNT=075108987694
+        docker tag tier/documentation ${ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/tier/documentation
+        docker push tier/documentation:latest
+        docker push tier/documentation:${CIRCLE_SHA1}
+    - run:
         name: Deploy
         working_directory: ~/repo
         command: |
@@ -41,6 +48,7 @@ jobs:
           echo "[${ENVIRONMENT}]" > ~/.aws/credentials
           echo "aws_access_key_id = ${AWS_ACCESS_KEY_ID}" >> ~/.aws/credentials
           echo "aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" >> ~/.aws/credentials
+          eb deploy documentation-${ENVIRONMENT} --profile ${ENVIRONMENT}
 
     - run:
         name: Announce Deployment
@@ -57,6 +65,14 @@ jobs:
     - install_deps
     - build_docs
 
+        - run:
+      name: Push
+      command: |
+        $(aws ecr get-login --no-include-email)
+        export ACCOUNT=075108987694
+        docker tag tier/documentation ${ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/tier/documentation
+        docker push tier/documentation:latest
+        docker push tier/documentation:${CIRCLE_SHA1}
     - run:
         name: Deploy
         working_directory: ~/repo
@@ -65,7 +81,7 @@ jobs:
           echo "[${ENVIRONMENT}]" > ~/.aws/credentials
           echo "aws_access_key_id = ${AWS_ACCESS_KEY_ID}" >> ~/.aws/credentials
           echo "aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" >> ~/.aws/credentials
-          export ELBACCOUNT=054676820928
+          eb deploy documentation-${ENVIRONMENT} --profile ${ENVIRONMENT}
 
     - run:
         name: Announce Deployment
