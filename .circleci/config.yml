@@ -54,7 +54,7 @@ jobs:
             export ECR=075108987694.dkr.ecr.eu-central-1.amazonaws.com
             eval $(aws ecr get-login --region eu-central-1 --no-include-email)
             docker tag tier/documentation ${ECR}/tier/documentation
-            docker push ${ECR}/tier/documentation:latest --profile ${ENVIRONMENT}
+            docker push ${ECR}/tier/documentation:latest
       - run:
           name: "Deployment"
           command: eb deploy documentation
@@ -92,7 +92,7 @@ jobs:
             export ECR=373437620866.dkr.ecr.eu-central-1.amazonaws.com
             eval $(aws ecr get-login --region eu-central-1 --no-include-email)
             docker tag tier/documentation ${ECR}/tier/documentation
-            docker push ${ECR}/tier/documentation:latest --profile ${ENVIRONMENT}
+            docker push ${ECR}/tier/documentation:latest
       - run:
           name: "Deployment"
           command: eb deploy documentation
