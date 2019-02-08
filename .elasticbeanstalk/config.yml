@@ -1,6 +1,8 @@
 branch-defaults:
   master:
-    environment: documentation
+    environment: documentation-production
+  development:
+    environment: documentation--stage
 global:
   application_name: documentation
   branch: null
