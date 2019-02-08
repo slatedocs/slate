@@ -4,5 +4,7 @@ build:
 	docker run -it -p 80:80 tier/documentation
 
 aws:
+	#aws iam attach-role-policy --role-name aws-elasticbeanstalk-ec2-role --policy-arn arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
 	aws s3api create-bucket --bucket tier-documentation --region eu-central-1  --create-bucket-configuration LocationConstraint=eu-central-1
 	aws s3api put-bucket-policy --bucket tier-documentation --policy "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"arn:aws:iam::054676820928:root\"},\"Action\":\"s3:PutObject\",\"Resource\":\"arn:aws:s3:::tier-documentation/*-AWSLogs/*\"}]}"
+	#eb create documentation
