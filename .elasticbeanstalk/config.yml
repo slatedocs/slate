@@ -2,7 +2,7 @@ branch-defaults:
   master:
     environment: documentation-production
   development:
-    environment: documentation--stage
+    environment: documentation-stage
 global:
   application_name: documentation
   branch: null
