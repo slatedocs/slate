@@ -12,6 +12,7 @@ includes:
   - introduction
   - authentication
   - user_apis
+  - portfolio_apis
   - errors
 
 search: true
