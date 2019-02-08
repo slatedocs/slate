@@ -3,9 +3,9 @@ branch-defaults:
     environment: documentation
 global:
   application_name: documentation
+  branch: null
   default_ec2_keyname: null
   default_platform: docker
-  branch: null
   default_region: eu-central-1
   include_git_submodules: true
   instance_profile: null

@@ -97,7 +97,13 @@ jobs:
       - run:
           name: "Deployment"
           command: |
-            eb deploy documentation
+            ### 
+            #   Hack EB Deploy deploys what is checked in to HEAD
+            #   We change the organisation ECR and stage it so eb deploy functions
+            ### 
+            sed -i s/075108987694/373437620866/g Dockerrun.aws.json
+            git add Dockerrun.aws.json
+            eb deploy documentation --staged
 
       - run:
           name: "Announce Deployment"
