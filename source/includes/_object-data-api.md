@@ -43,7 +43,7 @@ Property | Description
 }
 ```
 
-We've provided a convenient way to access more data in any request for sequential data where the number of records exceeds 5000. Simply call the url in the nextLink parameter and we'll respond with the next set of data.
+We've provided a convenient way to access more data in any request for sequential data where the number of records exceeds 500. Simply call the url in the nextLink parameter and we'll respond with the next set of data.
 
 ## Object Relational Data
 Many Intelex objects have relations to other objects. These relations are configured as relation type or lookup type fields.  These fields are accessible via the API as navigation properties. 
@@ -1739,7 +1739,7 @@ Parameter | Description | Example Value
 Accept|Provide the content type in order to download the file|application/octet-stream
 Prefer|Used to request a thumbnail version of an image file|attachment=thumbnail
 
-### Downloading Document Control Files - Beta
+### Downloading Document Control Files
 
 > Example Request
 
