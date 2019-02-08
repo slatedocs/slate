@@ -58,7 +58,6 @@ jobs:
       - run:
           name: "Deployment"
           command: |
-            export PREFIX=stage
             eb deploy documentation
       - run:
           name: "Announce Deployment"
@@ -98,7 +97,6 @@ jobs:
       - run:
           name: "Deployment"
           command: |
-            export PREFIX=production
             eb deploy documentation
 
       - run:
