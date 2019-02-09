@@ -70,6 +70,11 @@ speed and the capability to park the vehicle.
 
 The provided coordinates describe a polygone.
 
+<aside class="notice">
+There is no additional functionality for the client to implement for the constraint zones. Those constraints are either enforced by endpoints (e.g. parking is rejected)
+or by automatisms. It is yet essential to inform anyone about those areas to provide a good UX.
+</aside>
+
 ### HTTP Request
 
 `GET https://api.tier.app/zone`
