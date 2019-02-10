@@ -1,0 +1,32 @@
+> **Examples**
+
+> Retrieve a list of all active users.
+
+```shell
+```
+
+```csharp
+```
+
+```java
+```
+
+```javascript
+```
+
+```php
+```
+
+```ruby
+```
+
+```python
+```
+
+```go
+```
+
+> The above examples return JSON with the following structure:
+
+```json
+```
