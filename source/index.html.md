@@ -11,6 +11,7 @@ toc_footers:
 includes:
   - zones
   - vehicles
+  - customers
   - errors
 
 search: true
@@ -41,3 +42,5 @@ to <a href='mailto:api@tier.app'>api@tier.app</a>
 <aside class="notice">
 You must replace <code>TIER API KEY</code> with your personal API key.
 </aside>
+
+The customer relevant endpoints are using JWT

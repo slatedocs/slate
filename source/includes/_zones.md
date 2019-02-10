@@ -66,7 +66,7 @@ curl "https://api.tier.app/zone"
 This endpoint retrieves all the zones that limits the range of the scooter. Outside of a business zone
 the speed will automatically be reduced and will only be restored once entering the business zone again.
 Within a business zone there are constrained zones which limit the capability of the vehicle like maximum
-speed and the capability to park the vehicle.
+speed and the capability to park the vehicle. The reduced speed is currently fixed and set to 5kmh.
 
 The provided coordinates describe a polygone.
 
