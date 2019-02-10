@@ -1,0 +1,6 @@
+Add in-page anchor the the current user anchor
+In overview section: All Datetimes are ISO8601 format
+Audit for bearer token (search S.7)
+Fix stupid description of the User object.  Describe what it is.
+Add link from User Object customfields property to the Custom Fields Object
+Add a dedicated section for Supplemental Data and link to it as needed
