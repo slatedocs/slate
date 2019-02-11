@@ -4,7 +4,7 @@
 ## Get All Vehicles
 
 ```shell
-curl "https://api.tier.app/vehicle"
+curl "https://api.tier-services.io/vehicle"
   -H "x-api-key: TIER API KEY"
 ```
 
@@ -40,7 +40,7 @@ This endpoint retrieves all the vehicles.
 
 ### HTTP Request
 
-`GET https://api.tier.app/vehicle`
+`GET https://api.tier-services.io/vehicle`
 
 ### Query Parameters
 

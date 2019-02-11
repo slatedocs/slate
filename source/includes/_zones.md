@@ -4,7 +4,7 @@
 ## Get All Zones
 
 ```shell
-curl "https://api.tier.app/zone"
+curl "https://api.tier-services.io/zone"
   -H "x-api-key: TIER API KEY"
 ```
 
@@ -77,7 +77,7 @@ or by automatisms. It is yet essential to inform anyone about those areas to pro
 
 ### HTTP Request
 
-`GET https://api.tier.app/zone`
+`GET https://api.tier-services.io/zone`
 
 ### Query Parameters
 
