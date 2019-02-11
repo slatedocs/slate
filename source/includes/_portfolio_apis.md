@@ -600,6 +600,7 @@ For mobile UI, Get Transaction Dropdown items
 ```APIs
 GET https://dev.zoomsymbols.com/api/user-portfolio-v2/getTransactionDropDownItems
 ```
+
 > Response
 
 ```json
@@ -627,6 +628,7 @@ For mobile UI, Get Transaction types
 ```APIs
 GET https://dev.zoomsymbols.com/api/user-portfolio-v2/getTransactionTypes
 ```
+
 > Response
 
 ```json
