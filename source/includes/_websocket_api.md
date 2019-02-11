@@ -249,7 +249,40 @@ Please note that the product symbol is prepended with a "MARK:" to subscribe for
 
 Private channels require clients to authenticate.
 
-## trading_notifications
+## Margins
+**margins** Channel provides updates for margin blocked for different assets
+
+```
+// margin update
+{
+    "type": "margins",
+    "balance": "1.0012",
+    "order_margin": "0.121212",     // Margin blocked in open orders
+    "position_margin: "0.101212",   // Margin blocked in position
+    "commission": "0.00012",        // commissions blocked in position and order
+    "asset_id": 2                   // BTC
+}
+```
+
+## Positions
+**positions** Channel provides updates for change in position. Need to pass list of product symbols while subscribing.
+
+```
+// Position update
+{
+    "type": "positions",
+    "symbol": "BTCUSD_29Mar",           // Product Symbol
+    "product_id": 1,                    // Product ID
+    "size": -100,                       // Position size, if > 0 -> long else short
+    "margin": "0.0121",                 // Margin blocked in the position
+    "entry_price": "3500.0",            // Avg Entry price of the position
+    "liquidation_price": "3356.0",      // Liquidation trigger price
+    "bankruptcy_price": "3300.0",       // Bankruptcy Price
+    "commission": "0.00001212"          // Commissions blocked for closing the position
+}
+```
+
+## Trading Notitifications
 
 **trading_notifications** channel provides updates of all the private trade notifications.
 
