@@ -75,7 +75,7 @@ url = URI("https://rest.tsheets.com/api/v1/current_user")
 http = Net::HTTP.new(url.host, url.port)
 
 request = Net::HTTP::Get.new(url)
-request["Authorization"] = 'Bearer <Token<'
+request["Authorization"] = 'Bearer <Token>'
 
 response = http.request(request)
 puts response.read_body

@@ -92,17 +92,17 @@ _The following properties are returned in the response to a User Retreive operat
 
 Name | Type | Format | Description
 ---- | ---- | ------ | -----------
-`id` | _Integer_ | | Unique id of this user.
+`id` | _Int_ | | Unique id of this user.
 `last_modified` | _String_ | ISO8601 | Date/time when this user was last modified.
 `last_active` | _String_ | ISO8601 | Date/time when this user last performed any action within TSheets.
 `created` | _String_ | ISO8601 | Date/time when this user was created.
 `client_url` | _String_ |  | Client account url identifier associated with this user.
 `company_name` | _String_ | | Client account name identifier associated with the user.
 `profile_image_url` | _String_ | URL | Url identifier associated with this user's profile image.
-`pto_balances` | _Object_ | Map: String -> Integer |  List of jobcode identifiers and their respective PTO balances for this user (in seconds). Jobcode information for PTO Jobcodes will be supplied in `supplemental_data`.
-`manager_of_group_ids` | _Integer Array_ | | The group ids that this user manages.
+`pto_balances` | _Object_ | Map: String -> Int |  List of jobcode identifiers and their respective PTO balances for this user (in seconds). Jobcode information for PTO Jobcodes will be supplied in `supplemental_data`.
+`manager_of_group_ids` | _Int Array_ | | The group ids that this user manages.
 `pay_rate` | _Float_ | | The rate of pay associated with this user.
-`pay_interval` | _Enum_ | One of: _'hour', 'year'_ | The timeframe to which this user's pay rate applies.
+`pay_interval` | _String Enum_ | 'hour' or 'year' | The timeframe to which this user's pay rate applies.
 
 ### Write-Only Properties
 _The following properties are allowed to be set in User Create and Update operations but are **not** returned in the response to a User Retrieve operation._
@@ -110,7 +110,7 @@ _The following properties are allowed to be set in User Create and Update operat
 Name |  Type | Format | Description
 ---- |  ---- | ------ | -----------
 `password` | _String_ | | May only be set when editing the currently authenticated user (i.e. you may only edit your own password).
-`login_pin` | _Integer_ | 4 digits | Used for logging into a Kiosk or similar.
+`login_pin` | _Int_ | 4 digits | Used for logging into a Kiosk or similar.
 
 ### Read-Write Properties
 _The following properties are allowed to be set in User Create and Update operations and are returned in the response to a User Retrieve operation._
@@ -119,9 +119,9 @@ Name |  Type | Format | Description
 ---- |  ---- | ------ | -----------
 `first_name` | _String_ | | First name of the user.
 `last_name` | _String_ | | Last name of the user.
-`group_id` | _Integer_ | | Id of the group this user belongs to.
+`group_id` | _Int_ | | Id of the group this user belongs to.
 `active` | _Boolean_ | | If false, this user is considered archived.
-`employee_number` | _Integer_ | | Unique number associated with this user, for external use.
+`employee_number` | _Int_ | | Unique number associated with this user, for external use.
 `salaried` | _Boolean_ | | Indicates whether or not the user is salaried.
 `exempt` | _Boolean_ | | Indicates whether or not the user is eligible for overtime pay.
 `username` | _String_ | | Username associated with this user.
@@ -142,24 +142,24 @@ The rights assignable to an individual user. All properties are of type _**Boole
 
 Name | Default | Description
 ---- | ------- | -----------
-`admin` | _false_ | Administrator, can perform any changes on the account.
-`mobile` | _true_ | Allowed to use mobile devices to record time.
-`status_box` | _false_ | Able to view the list of users currently working for the company.
-`reports` | _false_ | Able to run/view all reports for the company.
-`manage_timesheets` | _false_ | Able to create/edit/delete timesheets for anyone in the company.
-`manage_authorization` | _false_ | Able to manage computer authorization for the company.
-`manage_users` | _false_ | Able to create/edit/delete users, groups, and managers for the entire company.
-`manage_my_timesheets` | _false_ | Able to completely manage own timesheets.
-`manage_jobcodes` | _false_ | Able to create/edit/delete jobcodes and custom field items for the entire company.
-`pin_login` | _false_ | Able to login to apps via PIN.
-`approve_timesheets` | _false_ | Able to run approval reports and approve time for all employees.
-`manage_schedules` | _false_ | Able to create/edit/delete events within the schedule for the groups that the user can manage.
-`manage_my_schedule` | _false_ | Able to create/edit/delete events within the schedule for only themselves.
-`manage_company_schedules` | _false_ | Able to create/edit/delete events within the schedule for any user in the company.
-`manage_no_schedule` | _false_ | Not able to create/edit/delete events within the schedule for any user.
-`view_company_schedules` | _false_ | Able to view published events within the schedule for any user in the company.
-`view_group_schedules` | _false_ | Able to view published events within the schedule for the groups that the user is a member of.
-`view_my_schedules` | _false_ | Able to view published events within the schedule for themselves.
+`admin` | false | Administrator, can perform any changes on the account.
+`mobile` | true | Allowed to use mobile devices to record time.
+`status_box` | false | Able to view the list of users currently working for the company.
+`reports` | false | Able to run/view all reports for the company.
+`manage_timesheets` | false | Able to create/edit/delete timesheets for anyone in the company.
+`manage_authorization` | false | Able to manage computer authorization for the company.
+`manage_users` | false | Able to create/edit/delete users, groups, and managers for the entire company.
+`manage_my_timesheets` | false | Able to completely manage own timesheets.
+`manage_jobcodes` | false | Able to create/edit/delete jobcodes and custom field items for the entire company.
+`pin_login` | false | Able to login to apps via PIN.
+`approve_timesheets` | false | Able to run approval reports and approve time for all employees.
+`manage_schedules` | false | Able to create/edit/delete events within the schedule for the groups that the user can manage.
+`manage_my_schedule` | false | Able to create/edit/delete events within the schedule for only themselves.
+`manage_company_schedules` | false | Able to create/edit/delete events within the schedule for any user in the company.
+`manage_no_schedule` | false | Not able to create/edit/delete events within the schedule for any user.
+`view_company_schedules` | false | Able to view published events within the schedule for any user in the company.
+`view_group_schedules` | false | Able to view published events within the schedule for the groups that the user is a member of.
+`view_my_schedules` | false | Able to view published events within the schedule for themselves.
 
  <aside class="notice">
 The <code>submitted_to</code> property is <i><b>read only</b></i> unless the account setting <i>approvals->settings->employee_approval = 1</i>. See <a href="#effective-settings">Effective Settings</a> documentation for details.
@@ -254,7 +254,7 @@ url = URI("https://rest.tsheets.com/api/v1/users")
 http = Net::HTTP.new(url.host, url.port)
 
 request = Net::HTTP::Get.new(url)
-request["Authorization"] = 'Bearer <Token<'
+request["Authorization"] = 'Bearer <Token>'
 
 response = http.request(request)
 puts response.read_body
@@ -712,25 +712,25 @@ Retrieves a list of all users associated with your company, with optional filter
 `GET https://rest.tsheets.com/api/v1/users`
 
 ### Query Parameters
-All parameters are **_optional_**.
+All parameters are **_optional_** and results are unfiltered with respect to any not provided.
 
 Parameter | Type | Format | Default | Description
 --------- | ---- | ------- | ------ | -----------
-`ids` | _String_ | comma-separated | _unfiltered_ | List of user ids to include.
-`not_ids` | _String_ | comma-separated | _unfiltered_ | List of user ids to exclude.
-`employee_numbers` | _String_ | comma-separated | _unfiltered_ | List of employee numbers to include.
-`usernames` | _String_ | comma-separated | _unfiltered_ | List of usernames to include.
-`group_ids` | _String_ | comma-separated | _unfiltered_ | List of group ids to include.
-`not_group_ids` | _String_ | comma-separated | _unfiltered_ | List of group ids to exclude.
-`payroll_ids` |  _String_ | comma-separated | _unfiltered_ | List of payroll ids to filter the included users.
-`active` | _Enum_ | One of: _'yes'_, _'no'_, _'both'_ | _'yes'_ | Include only users with given status.
-`first_name` | _String_ | wildcard search | _'*'_ | The search pattern for filtering users by first name.
-`last_name` | _String_ | wildcard search | _'*'_ | The search pattern for filtering users by last name.
-`modified_before` | _DateTime_ | ISO8601 | _unfiltered_ | Include only users modified before this date/time.
-`modified_since` | _DateTime_ | ISO8601 | _unfiltered_ | Include only users modified since this date/time.
-`supplemental_data` |  _Enum_ | One of: _'yes', 'no'_| _'yes'_ | Indicates whether supplemental data should be returned.
-`per_page` | _Integer_ | Range: _1 - 50_ | _50_ | The number of results to retrieve per request.
-`page` | _Integer_ | Value: _>= 1_ | _1_ | The page of results to retrieve.
+`ids` | _String_ | comma-separated | null | List of user ids to include.
+`not_ids` | _String_ | comma-separated | null | List of user ids to exclude.
+`employee_numbers` | _String_ | comma-separated | null | List of employee numbers to include.
+`usernames` | _String_ | comma-separated | null | List of usernames to include.
+`group_ids` | _String_ | comma-separated | null | List of group ids to include.
+`not_group_ids` | _String_ | comma-separated | null | List of group ids to exclude.
+`payroll_ids` |  _String_ | comma-separated | null | List of payroll ids to filter the included users.
+`active` | _String Enum_ | 'yes', 'no' or 'both' | 'yes' | Include only users with given status.
+`first_name` | _String_ | wildcardable | '*' | The search pattern for filtering users by first name.
+`last_name` | _String_ | wildcardable | '*' | The search pattern for filtering users by last name.
+`modified_before` | _DateTime_ | ISO8601 | null | Include only users modified before this date/time.
+`modified_since` | _DateTime_ | ISO8601 | null | Include only users modified since this date/time.
+`supplemental_data` |  _String Enum_ | 'yes' or 'no' | 'yes' | Indicates whether supplemental data should be returned.
+`per_page` | _Int_ | 1 - 50 | 50 | The number of results to retrieve per request.
+`page` | _Int_ | >= 1 | 1 | The page of results to retrieve.
 
 <aside class="notice">
 Wildcard searches start matching from the beginning of the string.
@@ -1419,7 +1419,7 @@ The batch of user updates is passed as a JSON string in the body of the HTTP req
 
 Name | Type | Description
 ---- | ---- | -----------
-`id` | _Integer_ | Id of the user to update.
+`id` | _Int_ | Id of the user to update.
 
 **OR**
 

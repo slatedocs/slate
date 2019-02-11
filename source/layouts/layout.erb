@@ -70,6 +70,18 @@ under the License.
         <ul class="search-results"></ul>
       <% end %>
       <ul id="toc" class="toc-list-h1">
+        <span class="api-reference">Overview
+          <style>
+            .api-reference {
+              position: relative;
+              left: 12px;
+              text-transform: uppercase;
+              font-weight: bold;
+              font-size: 12px;
+              color: #999999;
+            }
+          </style>
+        </span>        
         <% toc_data(page_content).each do |h1| %>
           <% if h1[:title] == "Current User" %>
             <br/>
