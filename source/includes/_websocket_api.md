@@ -8,8 +8,8 @@ Websocket api can be used for the following use cases
 
 Access url
 
-- Production - wss://api.delta.exchange:3091
-- Testnet - wss://testnet-api.delta.exchange:3091
+- Production - wss://api.delta.exchange:2096
+- Testnet - wss://testnet-api.delta.exchange:2096
 
 # Subscribing to Channels
 
@@ -130,7 +130,7 @@ signature_data = method + timestamp + path
 signature = generate_signature(api_secret, signature_data)
 
 
-ws = websocket.WebSocketApp('wss://api.delta.exchange:3091')
+ws = websocket.WebSocketApp('wss://api.delta.exchange:2096')
 ws.send(json.dumps({
     "type": "auth",
     "payload": {
