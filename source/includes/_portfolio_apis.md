@@ -248,23 +248,24 @@ itemId: the portfolio object id
       "default_commision": 0.2,
       "notes": "test notes",
       "transactions": [{
-          "user_item_portfolio_transaction_id": 2,
-          "user_item_id": 10142,
-          "user_item_portfolio_transaction_type_id": 2,
-          "symbol_id": null,
-          "quantity": 50,
-          "trade_price": 11.2,
-          "commision": 0.2,
-          "currency_id": 1,
-          "cash_deposits": 100,
-          "transaction_date": "2019-02-07",
-          "transaction_time": "18:00:00",
-          "notes": "test notes",
-          "create_date": "2019-02-07T16:41:40.320223",
-          "modify_date": "2019-02-07T16:41:40.320223",
-          "is_deleted": false
-        },
-        ...
+                        "transaction_id": 13,
+                        "transaction_type": "cash",
+                        "symbol_id": null,
+                        "symbol_value": null,
+                        "symbol_name": null,
+                        "quantity": 6,
+                        "trade_price": 11.2,
+                        "commision": 0.2,
+                        "currency_id": 72,
+                        "currency_name": "Israeli Shekel",
+                        "iso_code": "ILS",
+                        "cash_deposits": 100,
+                        "transaction_date": "2019-02-08",
+                        "transaction_time": "16:00:00",
+                        "notes": "test notes 2"
+                      }
+                      ,
+                        ...
       ]
     }]
   }
@@ -454,5 +455,194 @@ POST https://dev.zoomsymbols.com/api/user-portfolio-v2/listSharing
             "can_write": false
         }
     ]
+}
+```
+
+## Add Transaction
+
+Add new transaction to portfolio object
+
+```APIs
+POST https://dev.zoomsymbols.com/api/user-portfolio-v2/addTransaction
+```
+> BODY
+
+```json
+{  
+  "itemId" : 10147, 
+  "transaction_type":"cash",
+  "quantity" : 6,
+  "trade_price" : 11.2,
+  "commision" : 0.2,
+  "currency_code" : "USD",
+  "cash_deposits" : 100,
+  "transaction_date" : "2019-02-08",
+  "transaction_time" : "16:00",
+  "notes" : "test notes 2"
+}
+```
+> Response
+
+```json
+{
+    "result": {
+        "transaction_id": 14,
+        "transaction_type": "cash",
+        "symbol_id": null,
+        "symbol_value": null,
+        "symbol_name": null,
+        "quantity": 6,
+        "trade_price": 11.2,
+        "commision": 0.2,
+        "currency_id": 161,
+        "currency_name": "US Dollar",
+        "iso_code": "USD",
+        "cash_deposits": 100,
+        "transaction_date": "2019-02-08",
+        "transaction_time": "16:00:00",
+        "notes": "test notes 2"
+    }
+}
+```
+
+## Update Transaction
+
+Update your transaction object
+
+```APIs
+POST https://dev.zoomsymbols.com/api/user-portfolio-v2/updateTransaction
+```
+> BODY
+
+```json
+{  
+  "itemId" : 10147, 
+  "transaction_type":"cash",
+  "quantity" : 6,
+  "trade_price" : 11.2,
+  "commision" : 0.2,
+  "currency_code" : "USD",
+  "cash_deposits" : 100,
+  "transaction_date" : "2019-02-08",
+  "transaction_time" : "16:00",
+  "notes" : "test notes 2"
+}
+```
+> Response
+
+```json
+{
+    "result": {
+        "transaction_id": 14,
+        "transaction_type": "buy",
+        "symbol_id": 68,
+        "symbol_value": "MSFT",
+        "symbol_name": "Microsoft Corporation",
+        "quantity": 6,
+        "trade_price": 11.2,
+        "commision": 0.2,
+        "currency_id": 161,
+        "currency_name": "US Dollar",
+        "iso_code": "USD",
+        "cash_deposits": 100,
+        "transaction_date": "2019-02-08",
+        "transaction_time": "16:00:00",
+        "notes": "test notes 2"
+    }
+}
+```
+
+## Delete Transaction
+
+Delete your transaction object
+
+```APIs
+POST https://dev.zoomsymbols.com/api/user-portfolio-v2/deleteTransaction
+```
+> BODY
+
+```json
+{  
+  "transactionId":14
+}
+```
+> Response
+
+```json
+{
+    "result": {
+        "transaction_id": 14,
+        "transaction_type": "buy",
+        "symbol_id": 68,
+        "symbol_value": "MSFT",
+        "symbol_name": "Microsoft Corporation",
+        "quantity": 6,
+        "trade_price": 11.2,
+        "commision": 0.2,
+        "currency_id": 161,
+        "currency_name": "US Dollar",
+        "iso_code": "USD",
+        "cash_deposits": 100,
+        "transaction_date": "2019-02-08",
+        "transaction_time": "16:00:00",
+        "notes": "test notes 2",
+        "is_deleted": true
+    }
+}
+```
+
+## UI
+
+### Get Transaction Dropdown items
+
+For mobile UI, Get Transaction Dropdown items
+
+```APIs
+GET https://dev.zoomsymbols.com/api/user-portfolio-v2/getTransactionDropDownItems
+```
+> Response
+
+```json
+{
+  "result": [{
+      "code": "all",
+      "name": "All"
+    },
+    {
+      "code": "open",
+      "name": "Open"
+    },
+    {
+      "code": "close",
+      "name": "Close"
+    }
+  ]
+}
+```
+
+### Get Transaction Types
+
+For mobile UI, Get Transaction types
+
+```APIs
+GET https://dev.zoomsymbols.com/api/user-portfolio-v2/getTransactionTypes
+```
+> Response
+
+```json
+{
+  "result": [{
+      "code": "buy",
+      "name": "Buy"
+    },
+    {
+      "code": "sell",
+      "name": "Sell"
+    },
+    {
+      "code": "cash",
+      "name": "Cash"
+    }
+  ]
 }
 ```
