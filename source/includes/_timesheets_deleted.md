@@ -1,5 +1,5 @@
 # Timesheets Deleted
  
-## The Timesheets Delete Object
+## The Timesheets Deleted Object
 
 ## Retrieve Timesheets Deleted

@@ -59,8 +59,8 @@ html, body {
   bottom: 0;
   width: $nav-width;
   background-color: $nav-bg;
-  font-size: 13px;
-  font-weight: bold;
+  font-size: 14px;
+  
 
   // language selector for mobile devices
   .lang-selector {
@@ -76,6 +76,9 @@ html, body {
     display: block;
     max-width: 100%;
     margin-bottom: $logo-margin;
+    position: relative;
+    left: 15px;
+    top: 7px;
   }
 
   &>.search {

@@ -71,6 +71,21 @@ under the License.
       <% end %>
       <ul id="toc" class="toc-list-h1">
         <% toc_data(page_content).each do |h1| %>
+          <% if h1[:title] == "Current User" %>
+            <br/>
+            <span class="api-reference">API Reference
+              <style>
+                .api-reference {
+                  position: relative;
+                  left: 12px;
+                  text-transform: uppercase;
+                  font-weight: bold;
+                  font-size: 12px;
+                  color: #999999;
+                }
+              </style>
+            </span>
+          <% end %>            
           <li>
             <a href="#<%= h1[:id] %>" class="toc-h1 toc-link" data-title="<%= h1[:title] %>"><%= h1[:content] %></a>
             <% if h1[:children].length > 0 %>
