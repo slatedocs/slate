@@ -591,9 +591,7 @@ POST https://dev.zoomsymbols.com/api/user-portfolio-v2/deleteTransaction
 }
 ```
 
-## UI
-
-### Get Transaction Dropdown items
+## Get Transaction Dropdown items
 
 For mobile UI, Get Transaction Dropdown items
 
@@ -621,7 +619,7 @@ GET https://dev.zoomsymbols.com/api/user-portfolio-v2/getTransactionDropDownItem
 }
 ```
 
-### Get Transaction Types
+## Get Transaction Types
 
 For mobile UI, Get Transaction types
 
