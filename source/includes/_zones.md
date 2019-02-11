@@ -38,7 +38,7 @@ curl "https://api.tier-services.io/zone"
 				}
 			]
 		}],
-		"contrainedZones": [{
+		"constrainedZones": [{
 			"coordinates": [{
 					"lng": 2.368090152740479,
 					"lat": 48.841517296129474
