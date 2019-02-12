@@ -16,9 +16,20 @@ toc_footers:
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - current_user
-  - custom_fields
-  - custom_field_items
+  - APIReference/CurrentUser/current_user
+  - APIReference/CurrentUser/current_user-object
+  - APIReference/CurrentUser/current_user-get
+
+  - APIReference/CustomFields/custom_fields  
+  - APIReference/CustomFields/custom_fields-object
+  - APIReference/CustomFields/custom_fields-get
+
+  - APIReference/CustomFieldItems/custom_field_items
+  - APIReference/CustomFieldItems/custom_field_items-object
+  - APIReference/CustomFieldItems/custom_field_items-get
+  - APIReference/CustomFieldItems/custom_field_items-post
+  - APIReference/CustomFieldItems/custom_field_items-put  
+
   - effective_settings
   - files
   - geofence_configs
@@ -37,7 +48,13 @@ includes:
   - schedule_events
   - timesheets
   - timesheets_deleted
-  - users
+
+  - APIReference/Users/users
+  - APIReference/Users/users-object
+  - APIReference/Users/users-get
+  - APIReference/Users/users-post
+  - APIReference/Users/users-put
+  
   - errors
 
 search: true
