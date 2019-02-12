@@ -219,7 +219,7 @@
     "/orders/batch" : {
       "post" : {
         "tags" : [ "Orders" ],
-        "summary" : "Place orders in batch (max 5)",
+        "summary" : "Create batch orders",
         "operationId" : "batchCreate",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
@@ -264,7 +264,7 @@
       },
       "delete": {
         "tags": [ "Orders" ],
-        "summary": "Delete orders in batch (max 5)",
+        "summary": "Delele batch orders",
         "operationId" : "batchDelete",
         "consumes" : [ "application/json" ],
         "produces" : [ "application/json" ],
@@ -311,7 +311,7 @@
     "/orders/leverage" : {
       "post" : {
         "tags" : [ "Orders" ],
-        "summary" : "Change leverage for open orders",
+        "summary" : "Change order leverage",
         "operationId" : "changeOrderLeverage",
         "security" : [ {
           "api-key" : [ ],
@@ -362,7 +362,7 @@
       },
       "get" : {
         "tags" : [ "Orders" ],
-        "summary" : "Get leverage for all open orders",
+        "summary" : "Get order leverage",
         "operationId" : "getOrderLeverage",
         "security" : [ {
           "api-key" : [ ],

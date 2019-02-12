@@ -637,7 +637,7 @@ p JSON.parse(result)
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
 </aside>
 
-## Place orders in batch (max 5)
+## Create batch orders
 
 <a id="opIdbatchCreate"></a>
 
@@ -708,7 +708,7 @@ p JSON.parse(result)
 ]
 ```
 
-<h3 id="place-orders-in-batch-(max-5)-parameters">Parameters</h3>
+<h3 id="create-batch-orders-parameters">Parameters</h3>
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -766,14 +766,14 @@ p JSON.parse(result)
 }
 ```
 
-<h3 id="place-orders-in-batch-(max-5)-responses">Responses</h3>
+<h3 id="create-batch-orders-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|returns the orders placed|[Order](#schemaorder)|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|returns error if orders couldnt be placed|Inline|
 
-<h3 id="place-orders-in-batch-(max-5)-responseschema">Response Schema</h3>
+<h3 id="create-batch-orders-responseschema">Response Schema</h3>
 
 Status Code **400**
 
@@ -798,7 +798,7 @@ Status Code **400**
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
 </aside>
 
-## Delete orders in batch (max 5)
+## Delele batch orders
 
 <a id="opIdbatchDelete"></a>
 
@@ -866,7 +866,7 @@ p JSON.parse(result)
 ]
 ```
 
-<h3 id="delete-orders-in-batch-(max-5)-parameters">Parameters</h3>
+<h3 id="delele-batch-orders-parameters">Parameters</h3>
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -924,14 +924,14 @@ p JSON.parse(result)
 }
 ```
 
-<h3 id="delete-orders-in-batch-(max-5)-responses">Responses</h3>
+<h3 id="delele-batch-orders-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|returns the orders deleted|[Order](#schemaorder)|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|returns error if orders couldnt be deleted|Inline|
 
-<h3 id="delete-orders-in-batch-(max-5)-responseschema">Response Schema</h3>
+<h3 id="delele-batch-orders-responseschema">Response Schema</h3>
 
 Status Code **400**
 
@@ -952,7 +952,7 @@ Status Code **400**
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
 </aside>
 
-## Change leverage for open orders
+## Change order leverage
 
 <a id="opIdchangeOrderLeverage"></a>
 
@@ -1018,7 +1018,7 @@ p JSON.parse(result)
 }
 ```
 
-<h3 id="change-leverage-for-open-orders-parameters">Parameters</h3>
+<h3 id="change-order-leverage-parameters">Parameters</h3>
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -1030,14 +1030,14 @@ p JSON.parse(result)
 
 > 200 Response
 
-<h3 id="change-leverage-for-open-orders-responses">Responses</h3>
+<h3 id="change-order-leverage-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|returns the OrderLeverage object|[OrderLeverage](#schemaorderleverage)|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns error if leverage couldnt be changed|Inline|
 
-<h3 id="change-leverage-for-open-orders-responseschema">Response Schema</h3>
+<h3 id="change-order-leverage-responseschema">Response Schema</h3>
 
 Status Code **400**
 
@@ -1057,7 +1057,7 @@ Status Code **400**
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
 </aside>
 
-## Get leverage for all open orders
+## Get order leverage
 
 <a id="opIdgetOrderLeverage"></a>
 
@@ -1112,7 +1112,7 @@ p JSON.parse(result)
 
 `GET /orders/leverage`
 
-<h3 id="get-leverage-for-all-open-orders-parameters">Parameters</h3>
+<h3 id="get-order-leverage-parameters">Parameters</h3>
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -1122,7 +1122,7 @@ p JSON.parse(result)
 
 > 200 Response
 
-<h3 id="get-leverage-for-all-open-orders-responses">Responses</h3>
+<h3 id="get-order-leverage-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
