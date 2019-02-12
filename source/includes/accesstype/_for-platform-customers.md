@@ -882,7 +882,7 @@ $ curl -H "Content-Type: text/plain" -X POST 'https://sketches.quintype.com/api/
 ```
 It is a credentialed CORS POST endpoint to be used for the Publisher to update metering information. Call this endpoint when the Reader has started viewing the document.
 
-This API is safe to call from the front end JS, where it will read thin-min cookie for determining meter identity.
+This API is safe to call from the front end JS, where it will read thin-mint cookie for determining meter identity.
 
 Important: The pingback JSON object is sent with Content-type: text/plain. This is intentional as it removes the need for a CORS preflight check.
 
