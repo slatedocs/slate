@@ -814,7 +814,7 @@ This API returns the prices of a story or a collection when sold individually.
 |`collection_id[]`|string|0 or many|The identifier of the collection that the story belongs to. Used when the value of `/<asset-type>/` is `story`.|
 
 
-## GET Access details
+## GET Access details [DEPRECATED]
 
 ```shell--request
  curl -H "X-QT-AUTH: <your-auth-token>" -X GET 'http://sketches.quintype.com/api/v1/stories/<story-id>/access-data'
@@ -833,6 +833,58 @@ This API can be used to get access details of any story for a user.
 It returns 403 if the story is not accessible to user, else 200.
 
 This API is safe to call from the front end JS, where it will read session-cookie to determine the current user. Backend callers can use X-QT-AUTH for the same purpose.
+
+## GET Access details with metering
+```shell--request
+
+$ curl -X GET 'https://sketches.quintype.com/api/access/v1/stories/<story-id>/access'
+
+```
+```shell--response
+
+{
+  "granted": true,
+  "grantReason": "METERING",
+  "data": {
+    "numberRemaining": 6,
+    "isLoggedIn": true
+  }
+}
+
+```
+It is a credentialed CORS GET endpoint.
+
+The properties in the response are:
+
+* "granted" - boolean stating if the access to the document is granted or not.
+* "grantReason" - the string of the reason for giving the access to the document, recognized reasons are either SUBSCRIBER meaning the user is fully subscribed or METERING meaning user is on metering.
+* "data" - any free form data which can be used for render templating.
+
+This API is safe to call from the front end JS, where it will read session-cookie to determine the current user and thin-mint cookie for determining meter identity.
+
+*Note* An additional query param `disable-meter=true` needs to be sent for stories behind hard paywall. Such stories will not be metered and access will be granted only to subscribers.
+
+## POST Pingback and update meter
+```shell--request
+
+$ curl -H "Content-Type: text/plain" -X POST 'https://sketches.quintype.com/api/access/v1/stories/<story-id>/pingback -d {
+  "granted": true,
+  "grantReason": "METERING",
+  "data": {
+    "numberRemaining": 6,
+    "isLoggedIn": true
+  }
+}'
+
+```
+```shell--response
+
+```
+It is a credentialed CORS POST endpoint to be used for the Publisher to update metering information. Call this endpoint when the Reader has started viewing the document.
+
+This API is safe to call from the front end JS, where it will read thin-min cookie for determining meter identity.
+
+Important: The pingback JSON object is sent with Content-type: text/plain. This is intentional as it removes the need for a CORS preflight check.
 
 
 
