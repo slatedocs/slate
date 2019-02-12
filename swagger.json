@@ -884,11 +884,6 @@
         "order_type": {
           "type" : "string",
           "enum" : [ "limit_order", "market_order" ]
-        },
-        "post_only": {
-          "type" : "string",
-          "description" : "Flag for placing orders in post only mode",
-          "enum" : [ "true", "false" ] 
         }
       }
     },
