@@ -15,6 +15,7 @@ Standardize whether Format fields are italicized or not
 Add Formats to all that are missing
 Fix icon on browser tab
 Make sure POST and PUT are correct across all the samples
+Fix awkward language: "results are unfiltered with respect to any not provided."
 
 Walkthroughs/Guides/References
 Section on supplemental_data
