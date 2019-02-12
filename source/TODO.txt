@@ -13,3 +13,11 @@ Use code markdown style for property names
 Add response code sections to all methods
 Standardize whether Format fields are italicized or not
 Add Formats to all that are missing
+Fix icon on browser tab
+Make sure POST and PUT are correct across all the samples
+
+Walkthroughs/Guides/References
+Section on supplemental_data
+Explanation of shortcodes
+
+

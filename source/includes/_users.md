@@ -20,10 +20,9 @@ data-postman-var-1="01861e468223de53ba7a"></div>
 </style>
 <p/>
 
-Within TSheets, the _User_ (aka "employee") refers to everyone on your account, including yourself, your employees, managers, administrators, and vendors.  The API provides methods to Create, Read, Update, and Archive (i.e. "soft delete") users, as well as set a variety of permissions.  Time can be tracked against all users.
+Within TSheets, the _User_ (aka "employee") refers to anyone on your account, including yourself, your employees, managers, administrators, and vendors.  Time can be tracked against any user.  The API provides methods to Create, Read, and Update users and their permissions.  Set the `active` property _false_ to archive a user.
 
 ## The User Object
-
 > **Example**: User Object
 
 ```json
@@ -84,15 +83,12 @@ Within TSheets, the _User_ (aka "employee") refers to everyone on your account, 
   "customfields": ""
 }
 ```
-
-Following is a list of the properties that belong to a User object, and a description of each.
-
 ### Read-Only Properties
 _The following properties are returned in the response to a User Retreive operation but are **not** allowed to be set in User Create and Update operations._
 
 Name | Type | Format | Description
 ---- | ---- | ------ | -----------
-`id` | _Int_ | | Unique id of this user.
+`id` | _Int_ | | Unique identifier of this user.
 `last_modified` | _String_ | ISO8601 | Date/time when this user was last modified.
 `last_active` | _String_ | ISO8601 | Date/time when this user last performed any action within TSheets.
 `created` | _String_ | ISO8601 | Date/time when this user was created.
@@ -1101,7 +1097,7 @@ Name | Type | Description
 
 ### Optional Properties
 
-For a full list of the properties that may be set on an employee, see [the User object](#the-user-object).
+For a full list of the properties that may be set on a user, see [the User object](#the-user-object).
 
 <aside class="notice">
 The maximum batch size is <i>50</i> users. If exceeded, a <code>413: Request entity too large</code> HTTP response will be returned.
