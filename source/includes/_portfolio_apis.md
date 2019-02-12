@@ -646,3 +646,88 @@ GET https://dev.zoomsymbols.com/api/user-portfolio-v2/getTransactionTypes
   ]
 }
 ```
+
+## Get Portfolio Summary 
+
+For mobile UI, Get summary view for user's portfolio objects
+
+```APIs
+GET https://dev.zoomsymbols.com/api/user-portfolio-v2/getPortfolioSummary
+```
+
+> Response
+
+```json
+{
+  "columns": [{
+      "code": "portfolio_id",
+      "name": "Portfolio Id",
+      "styles": {
+        "textAlign": "right"
+      },
+      "format": {
+        "type": "number",
+        "cellsFormat": "d",
+        "formatValue": "0"
+      }
+    },
+    {
+      "code": "portfolio_name",
+      "name": "Portfolio Name",
+      "styles": {
+        "textAlign": "left"
+      }
+    },
+    {
+      "code": "symbol_count",
+      "name": "Stocks",
+      "styles": {
+        "textAlign": "right"
+      },
+      "format": {
+        "type": "number",
+        "cellsFormat": "d",
+        "formatValue": "0"
+      }
+    },
+    {
+      "code": "profit",
+      "name": "Gain",
+      "styles": {
+        "textAlign": "right"
+      },
+      "format": {
+        "type": "number",
+        "cellsFormat": "d",
+        "formatValue": "2"
+      },
+      "width": 120
+    },
+    {
+      "code": "profit_pct",
+      "name": "Gain %",
+      "styles": {
+        "textAlign": "right"
+      },
+      "format": {
+        "type": "number",
+        "cellsFormat": "d",
+        "formatValue": "2"
+      },
+      "width": 120
+    }
+  ],
+  "result": [{
+      "portfolio_id": 10147,
+      "portfolio_name": "Akram portfolio title",
+      "symbol_count": 2,
+      "total_buy_value": "179.00",
+      "total_sell_value": "291.00",
+      "portfolio_value": "1393.44",
+      "profit": "1214.44",
+      "profit_pct": "578.46"
+    },
+    ...
+  ]
+}
+```
