@@ -3,6 +3,7 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - json
+  - javascript
  
 
 toc_footers:
@@ -72,7 +73,15 @@ For Binance, the symbol is <span style="color:red"> `BTCUSDT` </span>.
 
 ```
 
-> Example request for "NE" (New England) in "Team" endpoint
+```javascript
+import {  Lnd, Sockets } from "sb-api"
+const ln = await Lnd()
+
+const nfl = await Sockets.nflTestnet(ln)
+const players = await nfl.players() // automatically queries for Tom Brady since we're on testnet
+```
+
+> Example request for "NE" (New England) roster in "Team" endpoint
 
 ```json
 {
@@ -83,6 +92,15 @@ For Binance, the symbol is <span style="color:red"> `BTCUSDT` </span>.
 }
 
 ```
+
+```javascript
+import {  Lnd, Sockets } from "sb-api"
+const ln = await Lnd()
+
+const nfl = await Sockets.nflTestnet(ln)
+const roster = await nfl.roster({ teamId: "NE" })
+```
+
 > Example request for Tom Brady in "Stats" endpoint by lastName and firstName
 
 ```json
@@ -99,6 +117,19 @@ For Binance, the symbol is <span style="color:red"> `BTCUSDT` </span>.
 
 ```
 
+```javascript
+import {  Lnd, Sockets } from "sb-api"
+const ln = await Lnd()
+
+const nfl = await Sockets.nflTestnet(ln)
+const stats = await nfl.statsByNameAndWeek({
+  year: 2018,
+  week: 2,
+  seasonPhase: "Postseason",
+  statType: "passing"
+})
+```
+
 > Example request for Tom Brady in "Stats" endpoint by playerId and gameId
 
 ```json
@@ -110,6 +141,18 @@ For Binance, the symbol is <span style="color:red"> `BTCUSDT` </span>.
   "uuid": "aa334616-71e0-45ee-be6d-6dbce545bad3"
 }
 
+```
+
+```javascript
+import {  Lnd, Sockets } from "sb-api"
+const ln = await Lnd()
+
+const nfl = await Sockets.nflTestnet(ln)
+const stats = await nfl.statsById({
+  statType: "passing",
+  gameId: "2019011300",
+  playerId: "00-0019596"
+})
 ```
 
 Currently, we offer <span style="color:red"> Info </span> and <span style="color:red"> Games </span> data endpoints for free on testnet. 
@@ -306,7 +349,7 @@ This is the free version url **wss://test.api.suredbits.com/exchange/v0** on tes
 
 ## Overview
 
-**Trading Pairs Supported**
+### Trading Pairs Supported
 
 Symbol | Binance | Bitfinex | Coinbase | Bitstamp | Gemini
 ------- | ------ | --------- | -------- | ------- | -------
@@ -318,7 +361,7 @@ ETHUSD  |          |    X    |    X     |   X     |
 
 
 
-**Subscribe**
+### Subscribe
 
 > Example request format: 
 
@@ -367,7 +410,7 @@ Field | Type | Example
 
 
 
-**Snapshots**
+### Snapshots
 > Example of Snapshot from Trades Channel
 
 ```json
@@ -399,36 +442,83 @@ Upon subscribing to a channel an initial snapshot is sent.  The snapshot provide
 <br></br>
 <br></br>
 <br></br>
+<br></br>
 
 
-**Sequence Identifier**
+### Sequence Identifier
 
 In order to better monitor potential gaps in streaming data, we provide a sequence number for each returned data value. 
 
 Example: <span style="color:red"> "seq": 21 </span> , <span style="color:red"> "seq":437 </span>, <span style="color:red"> "seq":2873 </span> etc. 
 
 
-**Refill**
+### Refill
 
-You may refill your subscrption at any time with the following command format: 
+> Subscription refill 
 
-Field | Type | Example
-------| ------ | --------
-<span style="color:red"> uuid </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span>
-<span style="color:red"> addedDuration </span> | Integer (milliseconds) | <span style="color:red"> "1000" </span>
-<span style="color:red"> event </span> | String | <span style="color:red"> "refill" </span>
+```javascript
+import { Lnd, Sockets } from "sb-api"
 
+const ln = await Lnd()
+const refundInvoice = await ln.receive()
+const sub = await exchangeSocket.books({
+  duration: 10000,
+  exchange: "bitfinex",
+  refundInvoice,
+  symbol: "ETHBTC",
+  onData: data => console.log("received data", data),
+  onSnapshot: snapshot => console.log("received snapshot: ", snapshot),
+})
+await sub.refill(60000) // adds one minute to our subscription
+```
  
-**Unsubscribe**
 
-You may unsubscribe from a channel using the following command:
 
-Field | Type | Example
-------| ------ | --------
-<span style="color:red"> uuid </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span> 
-<span style="color:red"> event </span> | String | <span style="color:red"> "unsubscribe" </span>
+```json
+{
+    "event": "refill",
+    "addedDuration": 60000, // adds one minute to our subscription
+    "uuid": "8f2e4f08-2ef4-11e9-9f18-5f29bb1268a9"
+}
+```
 
-<aside class="note"> Note: If you unsubscribe from a channel, any time remaining from your original subscription will be refunded. </aside>
+You may refill your subscription at any time. 
+
+<br></br>
+<br></br>
+<br></br>
+
+
+### Unsubscribe
+ 
+> Subscription cancellation
+
+```javascript
+import { Lnd, Sockets } from "sb-api"
+
+const ln = await Lnd()
+const refundInvoice = await ln.receive()
+const sub = await exchangeSocket.books({
+  duration: 10000,
+  exchange: "bitfinex",
+  refundInvoice,
+  symbol: "ETHBTC",
+  onData: data => console.log("received data", data),
+  onSnapshot: snapshot => console.log("received snapshot: ", snapshot),
+})
+await sub.unsubscribe()
+```
+```json
+{
+    "event": "unsubscribe",
+    "uuid": "8f2e4f08-2ef4-11e9-9f18-5f29bb1268a9"
+}
+```
+You may unsubscribe from a channel at any time. Any time remainaing will be refunded. 
+
+<br></br>
+<br></br>
+<br></br>
 
 **Maintenance**
 
@@ -448,6 +538,24 @@ In the event of maintenance or service interruption, we will refund any remainin
    "refundInvoice":"lnbcrt1pdace6qpp5my6nc58d50r5gk...",
     "uuid":"dc48f38e-7f71-4ea2-8c4c-52c683db93fa"
 }
+```
+
+```javascript
+import { Lnd, Sockets } from "sb-api"
+
+const ln = await Lnd()
+const refundInvoice = await ln.receive()
+const tickersSub = await exchangeSocket.tickers({
+  duration: 10000,
+  exchange: "binance",
+  symbol: "BTCUSDT",
+  refundInvoice,
+  onData: data => console.log("received data", data),
+  onSnapshot: snapshot => console.log("received snapshot: ", snapshot),
+  onSubscriptionEnded: dataset => console.log(`got dataset with ${dataset.length} elements`) 
+  //                    ^^^ dataset is the list of all your 
+  //                        previously received data points
+})
 ```
 
 > Example Tickers data
@@ -569,6 +677,24 @@ Field | Type | Exchanges Supporting
 }
 ```
 
+```javascript
+import { Lnd, Sockets } from "sb-api"
+
+const ln = await Lnd()
+const refundInvoice = await ln.receive()
+const tickersSub = await exchangeSocket.trades({
+  duration: 10000,
+  exchange: "gemini",
+  symbol: "BTCUSD",
+  refundInvoice,
+  onData: data => console.log("received data", data),
+  onSnapshot: snapshot => console.log("received snapshot: ", snapshot),
+  onSubscriptionEnded: dataset => console.log(`got dataset with ${dataset.length} elements`) 
+  //                    ^^^ dataset is the list of all your 
+  //                        previously received data points
+})
+```
+
 > Example Trades data
 
 ```json
@@ -659,6 +785,25 @@ Field |  Type | Exchanges Supporting
   "refundInvoice":"lnbcrt1pdace6qpp5my6nc58d50r5...",
   "uuid":"d7975109-e6d0-47ae-9c26-531d553c420b"
 }
+```
+
+
+```javascript
+import { Lnd, Sockets } from "sb-api"
+
+const ln = await Lnd()
+const refundInvoice = await ln.receive()
+const tickersSub = await exchangeSocket.trades({
+  duration: 10000,
+  exchange: "bitfinex",
+  symbol: "ETHBTC",
+  refundInvoice,
+  onData: data => console.log("received data", data),
+  onSnapshot: snapshot => console.log("received snapshot: ", snapshot),
+  onSubscriptionEnded: dataset => console.log(`got dataset with ${dataset.length} elements`) 
+  //                    ^^^ dataset is the list of all your 
+  //                        previously received data points
+})
 ```
 
 > Example Order Books data
@@ -1591,15 +1736,15 @@ Field | Type | Example
 
 **Required Field for Stats by Name**
 
-Field | Type | Example
-------| -----| ---------
-<span style="color:red"> uuid  </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span>
-<span style="color:red"> channel </span> | String | <span style="color:red"> stats </span>
-<span style="color:red"> Year </span> | Integer  | <span style="color:red"> 2016 </span>, <span style="color:red"> 2017 </span> and <span style="color:red"> 2018 </span>
-<span style="color:red"> Month </span>| Integer  | <span style="color:red"> 2 </span>, <span style="color:red"> 6 </span>, <span style="color:red"> 10 </span> etc..
-<span style="color:red"> Day </span> | Integer  | Follows typical calendar convention: <span style="color:red"> 3 </span>, <span style="color:red"> 18 </span>, <span style="color:red"> 25 </span>, etc...
-<span style="color:red"> firstName </span> | String | <span style="color:red">  Kevin </span>
-<span style="color:red"> lastName </span> | String | <span style="color:red"> Durant </span>
+| Field                                      | Type    | Example                                                                                                                                                   |
+| ------------------------------------------ | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <span style="color:red"> uuid  </span>     | String  | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span>                                                                                   |
+| <span style="color:red"> channel </span>   | String  | <span style="color:red"> stats </span>                                                                                                                    |
+| <span style="color:red"> Year </span>      | Integer | <span style="color:red"> 2016 </span>, <span style="color:red"> 2017 </span> and <span style="color:red"> 2018 </span>                                    |
+| <span style="color:red"> Month </span>     | Integer | <span style="color:red"> 2 </span>, <span style="color:red"> 6 </span>, <span style="color:red"> 10 </span> etc..                                         |
+| <span style="color:red"> Day </span>       | Integer | Follows typical calendar convention: <span style="color:red"> 3 </span>, <span style="color:red"> 18 </span>, <span style="color:red"> 25 </span>, etc... |
+| <span style="color:red"> firstName </span> | String  | <span style="color:red">  Kevin </span>                                                                                                                   |
+| <span style="color:red"> lastName </span>  | String  | <span style="color:red"> Durant </span>                                                                                                                   |
 
 # Contact Us
 Follow us on twitter <a href="https://twitter.com/SuredBits">@Suredbits</a>
