@@ -28,9 +28,12 @@ includes:
   - APIReference/CustomFieldItems/custom_field_items-object
   - APIReference/CustomFieldItems/custom_field_items-get
   - APIReference/CustomFieldItems/custom_field_items-post
-  - APIReference/CustomFieldItems/custom_field_items-put  
+  - APIReference/CustomFieldItems/custom_field_items-put
 
-  - effective_settings
+  - APIReference/EffectiveSettings/effective_settings
+  - APIReference/EffectiveSettings/effective_settings-object
+  - APIReference/EffectiveSettings/effective_settings-get
+
   - files
   - geofence_configs
   - geolocations
