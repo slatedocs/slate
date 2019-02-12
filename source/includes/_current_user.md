@@ -268,3 +268,6 @@ Retrieves the user object for the currently authenticated user. This is the user
 
 `GET https://rest.tsheets.com/api/v1/current_user`
 
+### Query Parameters
+_None_
+

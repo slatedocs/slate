@@ -1,7 +1,8 @@
 # Custom Fields
 
-## The Custom Field Object
 Custom Fields (aka "Advanced Tracking") provides a means to extend the data that is tracked on employee time cards to capture custom activities beyond time tracking, e.g. mileage, equipment, expenses, etc.  The API provides a Read method.  Use the web UI to Create or Update custom fields.
+
+## The Custom Field Object
 
 > **Example**: Custom Field Object
 
@@ -21,11 +22,10 @@ Custom Fields (aka "Advanced Tracking") provides a means to extend the data that
   "required_customfields": []
 }
 ```
-Following is a list of the properties that belong to a customfield object, and a description of each.
 
 Name | Type | Format | Description
 ---- | ---- | ------ | -----------
-`id` | _Int_ | | Id of customfield
+`id` | _Int_ | | Unique identifier of the customfield
 `active` | _Boolean_ | | If false, the field is archived
 `name` | _String_ | | Name of the customfield
 `short_code` | _String_ | | This is a shortened code or alias that is associated with the customfield. It may only consist of letters and numbers.
@@ -413,8 +413,6 @@ func main() {
 }
 ```
 
-
-
 > The above examples return JSON with the following structure:
 
 ```json
@@ -473,7 +471,7 @@ Retrieves a list of all customfields associated with your company, with optional
 
 ### HTTP Request
 
-`GET https://rest.tsheets.com/api/v1/users`
+`GET https://rest.tsheets.com/api/v1/customfields`
 
 ### Query Parameters
 All parameters are **_optional_** and results are unfiltered with respect to any not provided.
