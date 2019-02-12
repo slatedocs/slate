@@ -185,7 +185,7 @@ This operation does not require authentication.
 
 <h1 id="delta-exchange-api-orders">Orders</h1>
 
-Placing Orders, Cancelling Orders, Get Open orders, Change Orders Leverage
+Placing Orders, Cancelling Orders, Placing batch orders, Cancelling batch orders, Get Open orders, Change Orders Leverage
 
 ## Place Order
 
@@ -249,14 +249,11 @@ p JSON.parse(result)
 ```json
 {
   "product_id": 0,
+  "limit_price": "string",
   "size": 0,
   "side": "buy",
   "order_type": "limit_order",
-  "limit_price": "string",
-  "post_only": "true",
-  "stop_order_type": "stop_loss_order",
-  "stop_price": "string",
-  "close_on_trigger": "true"
+  "post_only": "true"
 }
 ```
 
@@ -264,30 +261,7 @@ p JSON.parse(result)
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|object|true|Order which needs to be created|
-|» product_id|body|integer|true|none|
-|» size|body|integer|true|none|
-|» side|body|string|true|none|
-|» order_type|body|string|true|none|
-|» limit_price|body|string|false|Limit Price for limit order, its a bigdecimal and needs to be passed as a string|
-|» post_only|body|string|false|Flag for placing orders in post only mode|
-|» stop_order_type|body|string|false|none|
-|» stop_price|body|string|false|Stop Price for stop orders|
-|» close_on_trigger|body|string|false|Flag for placing orders that should close positions (only for stop orders)|
-
-#### Enumerated Values
-
-|Parameter|Value|
-|---|---|
-|» side|buy|
-|» side|sell|
-|» order_type|limit_order|
-|» order_type|market_order|
-|» post_only|true|
-|» post_only|false|
-|» stop_order_type|stop_loss_order|
-|» close_on_trigger|true|
-|» close_on_trigger|false|
+|body|body|[CreateOrderRequest](#schemacreateorderrequest)|true|Order which needs to be created|
 
 > Example responses
 
@@ -445,9 +419,7 @@ p JSON.parse(result)
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|object|true|Order which needs to be cancelled|
-|» id|body|integer|true|none|
-|» product_id|body|integer|true|none|
+|body|body|[DeleteOrderRequest](#schemadeleteorderrequest)|true|Order which needs to be cancelled|
 
 > Example responses
 
@@ -661,6 +633,322 @@ p JSON.parse(result)
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of orders as per the query|[ArrayOfOrders](#schemaarrayoforders)|
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
+## Place orders in batch (max 5)
+
+<a id="opIdbatchCreate"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.post('https://api.delta.exchange/orders/batch', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X POST https://api.delta.exchange/orders/batch \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.post 'https://api.delta.exchange/orders/batch',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`POST /orders/batch`
+
+> Body parameter
+
+```json
+[
+  {
+    "product_id": 0,
+    "limit_price": "string",
+    "size": 0,
+    "side": "buy",
+    "order_type": "limit_order",
+    "post_only": "true"
+  }
+]
+```
+
+<h3 id="place-orders-in-batch-(max-5)-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[ArrayOfCreateOrderRequest](#schemaarrayofcreateorderrequest)|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "id": 0,
+  "user_id": 0,
+  "size": 0,
+  "unfilled_size": 0,
+  "side": "buy",
+  "order_type": "limit_order",
+  "limit_price": "string",
+  "stop_order_type": "stop_loss_order",
+  "stop_price": "string",
+  "close_on_trigger": "false",
+  "state": "open",
+  "created_at": "string",
+  "product": {
+    "id": 0,
+    "symbol": "string",
+    "description": "string",
+    "product_type": "future",
+    "initial_margin": "string",
+    "maintenance_margin": "string",
+    "settlement_time": "string",
+    "impact_size": 0,
+    "pricing_source": "string",
+    "tick_size": "string",
+    "trading_status": "operational",
+    "position_size_limit": 0,
+    "commission_rate": "string",
+    "maker_commission_rate": "string",
+    "underlying_asset": {
+      "id": 0,
+      "symbol": "string",
+      "precision": 0
+    },
+    "quoting_asset": {
+      "id": 0,
+      "symbol": "string",
+      "precision": 0
+    },
+    "settling_asset": {
+      "id": 0,
+      "symbol": "string",
+      "precision": 0
+    }
+  }
+}
+```
+
+<h3 id="place-orders-in-batch-(max-5)-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|returns the orders placed|[Order](#schemaorder)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|returns error if orders couldnt be placed|Inline|
+
+<h3 id="place-orders-in-batch-(max-5)-responseschema">Response Schema</h3>
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» error|string|false|none|none|
+|» message|string|false|none|A more verbose error message|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|error|InsufficientMargin|
+|error|OrderSizeExceededAvailable|
+|error|OrderExceedsSizeLimit|
+|error|OrderLeverageNotSet|
+|error|InvalidProduct|
+|error|ImmediateLiquidationOrder|
+|error|LowerthanBankruptcy|
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
+## Delete orders in batch (max 5)
+
+<a id="opIdbatchDelete"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.delete('https://api.delta.exchange/orders/batch', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X DELETE https://api.delta.exchange/orders/batch \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.delete 'https://api.delta.exchange/orders/batch',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`DELETE /orders/batch`
+
+> Body parameter
+
+```json
+[
+  {
+    "id": 0,
+    "product_id": 0
+  }
+]
+```
+
+<h3 id="delete-orders-in-batch-(max-5)-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[ArrayOfDeleteOrderRequest](#schemaarrayofdeleteorderrequest)|true|none|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "id": 0,
+  "user_id": 0,
+  "size": 0,
+  "unfilled_size": 0,
+  "side": "buy",
+  "order_type": "limit_order",
+  "limit_price": "string",
+  "stop_order_type": "stop_loss_order",
+  "stop_price": "string",
+  "close_on_trigger": "false",
+  "state": "open",
+  "created_at": "string",
+  "product": {
+    "id": 0,
+    "symbol": "string",
+    "description": "string",
+    "product_type": "future",
+    "initial_margin": "string",
+    "maintenance_margin": "string",
+    "settlement_time": "string",
+    "impact_size": 0,
+    "pricing_source": "string",
+    "tick_size": "string",
+    "trading_status": "operational",
+    "position_size_limit": 0,
+    "commission_rate": "string",
+    "maker_commission_rate": "string",
+    "underlying_asset": {
+      "id": 0,
+      "symbol": "string",
+      "precision": 0
+    },
+    "quoting_asset": {
+      "id": 0,
+      "symbol": "string",
+      "precision": 0
+    },
+    "settling_asset": {
+      "id": 0,
+      "symbol": "string",
+      "precision": 0
+    }
+  }
+}
+```
+
+<h3 id="delete-orders-in-batch-(max-5)-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|returns the orders deleted|[Order](#schemaorder)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|returns error if orders couldnt be deleted|Inline|
+
+<h3 id="delete-orders-in-batch-(max-5)-responseschema">Response Schema</h3>
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» error|string|false|none|none|
+|» message|string|false|none|A more verbose error message|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|error|ALREADY_FILLED|
+|error|InvalidOrder|
+|error|InvalidProduct|
 
 <aside class="warning">
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
@@ -2227,6 +2515,111 @@ This operation does not require authentication.
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |*anonymous*|[[Order](#schemaorder)]|false|none|[An Order object]|
+
+<h2 id="tocScreateorderrequest">CreateOrderRequest</h2>
+
+<a id="schemacreateorderrequest"></a>
+
+```json
+{
+  "product_id": 0,
+  "limit_price": "string",
+  "size": 0,
+  "side": "buy",
+  "order_type": "limit_order",
+  "post_only": "true"
+}
+
+```
+
+*A create order object*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|product_id|integer|false|none|none|
+|limit_price|string|false|none|none|
+|size|integer|false|none|none|
+|side|string|false|none|side for which to place order|
+|order_type|string|false|none|none|
+|post_only|string|false|none|Flag for placing orders in post only mode|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|side|buy|
+|side|sell|
+|order_type|limit_order|
+|order_type|market_order|
+|post_only|true|
+|post_only|false|
+
+<h2 id="tocSarrayofcreateorderrequest">ArrayOfCreateOrderRequest</h2>
+
+<a id="schemaarrayofcreateorderrequest"></a>
+
+```json
+[
+  {
+    "product_id": 0,
+    "limit_price": "string",
+    "size": 0,
+    "side": "buy",
+    "order_type": "limit_order",
+    "post_only": "true"
+  }
+]
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[[CreateOrderRequest](#schemacreateorderrequest)]|false|none|[A create order object]|
+
+<h2 id="tocSdeleteorderrequest">DeleteOrderRequest</h2>
+
+<a id="schemadeleteorderrequest"></a>
+
+```json
+{
+  "id": 0,
+  "product_id": 0
+}
+
+```
+
+*A delete order object*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|integer|false|none|none|
+|product_id|integer|false|none|none|
+
+<h2 id="tocSarrayofdeleteorderrequest">ArrayOfDeleteOrderRequest</h2>
+
+<a id="schemaarrayofdeleteorderrequest"></a>
+
+```json
+[
+  {
+    "id": 0,
+    "product_id": 0
+  }
+]
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[[DeleteOrderRequest](#schemadeleteorderrequest)]|false|none|[A delete order object]|
 
 <h2 id="tocSposition">Position</h2>
 
