@@ -1,0 +1,4 @@
+# Locations
+
+## The Location Object
+

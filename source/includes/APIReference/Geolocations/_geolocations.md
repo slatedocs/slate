@@ -1,0 +1,4 @@
+# Geolocations
+
+## The Geolocation Object
+

@@ -17,53 +17,103 @@ toc_footers:
 
 includes:
   - APIReference/CurrentUser/current_user
-  - APIReference/CurrentUser/current_user-object
-  - APIReference/CurrentUser/current_user-get
+  - APIReference/CurrentUser/retrieve
 
   - APIReference/CustomFields/custom_fields  
-  - APIReference/CustomFields/custom_fields-object
-  - APIReference/CustomFields/custom_fields-get
+  - APIReference/CustomFields/retrieve
 
   - APIReference/CustomFieldItems/custom_field_items
-  - APIReference/CustomFieldItems/custom_field_items-object
-  - APIReference/CustomFieldItems/custom_field_items-get
-  - APIReference/CustomFieldItems/custom_field_items-post
-  - APIReference/CustomFieldItems/custom_field_items-put
+  - APIReference/CustomFieldItems/retrieve
+  - APIReference/CustomFieldItems/create
+  - APIReference/CustomFieldItems/update
 
   - APIReference/EffectiveSettings/effective_settings
-  - APIReference/EffectiveSettings/effective_settings-object
-  - APIReference/EffectiveSettings/effective_settings-get
+  - APIReference/EffectiveSettings/retrieve
 
   - APIReference/Files/files
-  - APIReference/Files/files-object
-  - APIReference/Files/files-get  
-  - APIReference/Files/files-post
-  - APIReference/Files/files-put
-  - APIReference/Files/files-download
-  - APIReference/Files/files-delete 
+  - APIReference/Files/retrieve  
+  - APIReference/Files/create
+  - APIReference/Files/update
+  - APIReference/Files/download
+  - APIReference/Files/delete 
 
-  - geofence_configs
-  - geolocations
-  - groups
-  - jobcodes
-  - jobcode_assignments
-  - last_modified
-  - locations
-  - locations_maps
-  - managed_clients
-  - notifications
-  - reminders
-  - reports
-  - schedule_calendars
-  - schedule_events
-  - timesheets
-  - timesheets_deleted
+  - APIReference/GeofenceConfigs/geofence_configs
+  - APIReference/GeofenceConfigs/retrieve
+
+  - APIReference/Geolocations/geolocations
+  - APIReference/Geolocations/retrieve  
+  - APIReference/Geolocations/create
+
+  - APIReference/Groups/groups
+  - APIReference/Groups/retrieve  
+  - APIReference/Groups/create    
+  - APIReference/Groups/update
+
+  - APIReference/Invitations/invitations
+  - APIReference/Invitations/create
+
+  - APIReference/Jobcodes/jobcodes
+  - APIReference/Jobcodes/retrieve
+  - APIReference/Jobcodes/create
+  - APIReference/Jobcodes/update
+
+  - APIReference/JobcodeAssignments/jobcode_assignments
+  - APIReference/JobcodeAssignments/retrieve
+  - APIReference/JobcodeAssignments/create
+  - APIReference/JobcodeAssignments/delete
+
+  - APIReference/LastModified/last_modified
+  - APIReference/LastModified/retrieve
+
+  - APIReference/Locations/locations
+  - APIReference/Locations/retrieve
+  - APIReference/Locations/create
+  - APIReference/Locations/update
+
+  - APIReference/LocationsMaps/locations_maps
+  - APIReference/LocationsMaps/retrieve
+
+  - APIReference/ManagedClients/managed_clients
+  - APIReference/ManagedClients/retrieve  
+  - APIReference/ManagedClients/managing
+
+  - APIReference/Notifications/notifications
+  - APIReference/Notifications/retrieve
+  - APIReference/Notifications/create
+  - APIReference/Notifications/delete
+
+  - APIReference/Reminders/reminders
+  - APIReference/Reminders/retrieve
+  - APIReference/Reminders/create
+  - APIReference/Reminders/update
+
+  - APIReference/Reports/reports
+  - APIReference/Reports/current_totals
+  - APIReference/Reports/payroll
+  - APIReference/Reports/payroll_by_jobcode       
+  - APIReference/Reports/project  
+  
+  - APIReference/ScheduleCalendars/schedule_calendars
+  - APIReference/ScheduleCalendars/retrieve
+
+  - APIReference/ScheduleEvents/schedule_events
+  - APIReference/ScheduleEvents/retrieve
+  - APIReference/ScheduleEvents/create 
+  - APIReference/ScheduleEvents/update
+
+  - APIReference/Timesheets/timesheets
+  - APIReference/Timesheets/retrieve
+  - APIReference/Timesheets/create 
+  - APIReference/Timesheets/update
+  - APIReference/Timesheets/delete          
+
+  - APIReference/TimesheetsDeleted/timesheets_deleted
+  - APIReference/Timesheets/retrieve
 
   - APIReference/Users/users
-  - APIReference/Users/users-object
-  - APIReference/Users/users-get
-  - APIReference/Users/users-post
-  - APIReference/Users/users-put
+  - APIReference/Users/retrieve
+  - APIReference/Users/create
+  - APIReference/Users/update
   
   - errors
 
