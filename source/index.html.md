@@ -39,16 +39,17 @@ In order to access our paid API service, you will need to connect to our lightni
 
 Our paid service offers complete coverage for all channels, endpoints and fields .  
 
-The Lightning Node url for our paid service is: <span style="color: blue"> 038bdb5538a4e415c42f8fb09750729752c1a1800d321f4bb056a9f582569fbf8e@ln.suredbits.com </span>
+The Lightning Node URL for our paid service is: 
+<span style="color: blue"><code style="word-wrap: break-word;"> 038bdb5538a4e415c42f8fb09750729752c1a1800d321f4bb056a9f582569fbf8e@ln.suredbits.com </code></span>
 
 
 <h2 id="Testnet"> Testnet Node (free) </h2>
 
 In order to access our free API service, you will need to connect to our lightning node via your preferred lightning client.   
 
-The Lightning Node url for our testnet service is:
+The Lightning Node URL for our testnet service is:
 
-<span style="color:blue"> 0338f57e4e20abf4d5c86b71b59e995ce4378e373b021a7b6f41dabb42d3aad069@ln.test.suredbits.com </span>
+<span style="color:blue"><code style="word-wrap: break-word;" > 0338f57e4e20abf4d5c86b71b59e995ce4378e373b021a7b6f41dabb42d3aad069@ln.test.suredbits.com </code></span>
 
 
 We provide a number of free data endpoints so users can experiment and learn the structure of our Lightning API service. To allow for complete testing, we make the following data avaialble for free on testnet:  
@@ -175,6 +176,14 @@ For testing, we provide data for <span style="color:red"> Tom Brady </span> for 
 }
 ```
 
+```javascript
+import { Lnd, Sockets } from './src'
+const ln = await Lnd()
+
+const nba = await Sockets.nbaTestnet(ln)
+const players = await nba.players() // name is inferred automatically on testnet
+```
+
 > Example request for "LAL" (Los Angeles Lakers) in "Team" endpoint
 
 ```json
@@ -186,20 +195,33 @@ For testing, we provide data for <span style="color:red"> Tom Brady </span> for 
   "teamId":"LAL",
   "uuid": "2c48e899-01ef-443e-b455-144486b1c291"
 }
+```
 
+```javascript
+import { Lnd, Sockets } from './src'
+const ln = await Lnd()
+
+const nba = await Sockets.nbaTestnet(ln)
+const games = await nba.games({ day: 14, month: 1, year: 2019, teamId: 'LAL' })
 ```
 
 > Example request of Lebron James in "Stats" endpoint by playerId and gameId
 
 ```json
-
 {
   "channel": "stats", 
   "gameId": "21800500", 
   "playerId": "2544", 
   "uuid": "ddc2632e-f9bb-4ea9-bdf6-992e1590f676"
 }
+```
 
+```javascript
+import { Lnd, Sockets } from './src'
+const ln = await Lnd()
+
+const nba = await Sockets.nbaTestnet(ln)
+const stats = await nba.statsById({ gameId: '21800500', playerId: '2544' })
 ```
 
 > Example request for Lebron James in "Stats" endpoint by lastName and firstName 
@@ -216,6 +238,15 @@ For testing, we provide data for <span style="color:red"> Tom Brady </span> for 
   "uuid": "689c2c7d-cd08-4b2c-b87d-f1de10b4e94d"
 }
 
+```
+
+```javascript
+import { Lnd, Sockets } from './src'
+const ln = await Lnd()
+
+const nba = await Sockets.nbaTestnet(ln)
+const stats = await nba.statsByName({ year: 2019, month: 1, day: 13 }) 
+// name is inferred automatically because we're on testnet
 ```
 
 Currently, we offer <span style="color:red"> Info </span> and <span style="color:red"> Games </span> data endpoints for free. 
@@ -265,6 +296,10 @@ A minimum of 10 satoshis will be charged for all streaming data calls.
     }
  }
 ```
+
+```javascript
+// our JS client library automatically generates and inserts UUIDs for you
+```
 <aside class="warning"> All request require a field called <b> uuid </b> </aside>  
 
 A valid <span style="color:red"> `uuid` </span> is required for all requests and will appear on all invoices, data responses, and errors related to that request.  If no <span style="color:red"> `uuid` </span> is specified in a request, then there will be an error message returned.
@@ -285,27 +320,49 @@ A valid <span style="color:red"> `uuid` </span> is required for all requests and
 
 > Example data returned
 
+```javascript
+  [
+    { 
+      playerId: "00-0011754",
+      gsisName: "R.Moss",
+      fullName: "Randy Moss",
+      firstName: "Randy",
+      lastName: "Moss",
+      team: "UNK",
+      position: "UNK",
+      profileId: 2502220,
+      profileUrl: "http://www.nfl.com/player/randymoss/2502220/profile",
+      birthDate: "2/13/1977",
+      college: "Marshall",
+      yearsPro: 14,
+      height: 76,
+      weight: 210,
+      status: "Unknown"
+    }
+  ]
+```
+
 ```json 
 {  
   "uuid":"bfbef9da-eb9e-418c-8f6b-963743355ef7",
   "data":
   [
     { 
-      "playerId":"00-0011754",
-      "gsisName":"R.Moss",
-      "fullName":"Randy Moss",
-      "firstName":"Randy",
-      "lastName":"Moss",
-      "team":"UNK",
-      "position":"UNK",
-      "profileId":2502220,
-      "profileUrl":"http://www.nfl.com/player/randymoss/2502220/profile",
-      "birthDate":"2/13/1977",
-      "college":"Marshall",
-      "yearsPro":14,
-      "height":76,
-      "weight":210,"status":
-      "Unknown",:
+      "playerId": "00-0011754",
+      "gsisName": "R.Moss",
+      "fullName": "Randy Moss",
+      "firstName": "Randy",
+      "lastName": "Moss",
+      "team": "UNK",
+      "position": "UNK",
+      "profileId": 2502220,
+      "profileUrl": "http://www.nfl.com/player/randymoss/2502220/profile",
+      "birthDate": "2/13/1977",
+      "college": "Marshall",
+      "yearsPro": 14,
+      "height": 76,
+      "weight": 210,
+      "status": "Unknown"
     }
   ]
 }
@@ -320,24 +377,24 @@ Suredbits APIs are available via websockets with the following format:
 
 1. Send a request over the websocket 
 
-2. Upon confirmation of a valid request, you will receive a Lightning Network Invoice that should appear similar to the one below.
+2. Upon confirmation of a valid request, you will receive a Lightning Network invoice that should appear similar to the one below.
 
-3. Pay that ln invoice in your lightning client 
+3. Pay that LN invoice in your lightning client 
 
 4. Receive data :)
 
 **Ping/Pong**
 
-To confirm your connection, send a <span style="color:red"> ping </span> request. Ping has an optional uuid field for correlating multiple pongs to multiple pings. 
+To confirm your connection, send a <span style="color:red">`ping`</span> request. Ping has an optional `uuid` field for correlating multiple pongs to multiple pings. 
 
-<aside class="success"> {"event": "ping"} should return {"event":"pong"} </aside>
+<aside class="success"><code>{"event": "ping"}</code> should return <code>{"event":"pong"}</code></aside>
 
 
 **Sample Lightning Invoice**
 
 A successful request will generate a lightning invoice that will look similar to the example below:
 
-<span style="color:red"> *lnbcrt10n1pd5v2mwpp5ulxpj8ht4gvtqnyl8zuykfk4wcv6sz455ce5dy0e0lqt...* </span>
+<span style="color:red"><code style="word-wrap:break-word;">lnbcrt10n1pd5v2mwpp5ulxpj8ht4gvtqnyl8zuykfk4wcv6sz455ce5dy0e0lqt...</code></span>
 
 #Crypto Exchange API 
 
@@ -365,6 +422,12 @@ ETHUSD  |          |    X    |    X     |   X     |
 
 > Example request format: 
 
+```javascript
+// Our library handles request construction for you
+// Refer to the sections on tickers, trades and books
+// for specfics on how to send requests
+```
+
 ```json
 {  
    "event":"subscribe",
@@ -378,6 +441,12 @@ ETHUSD  |          |    X    |    X     |   X     |
 ```
 
 > Example subscription confirmation 
+
+```javascript
+// Our library handles request construction for you
+// Refer to the sections on tickers, trades and books
+// for specfics on how to send requests
+```
 
 ```json
 {  
@@ -411,7 +480,24 @@ Field | Type | Example
 
 
 ### Snapshots
-> Example of Snapshot from Trades Channel
+> Example of snapshot from trades channel
+
+```javascript 
+[
+  {
+    eventTime: 1543347647113,
+    symbol: 'BTCUSDT',
+    tradeId: 82634229,
+    price: 3809.1,
+    quantity: 0.293652,
+    buyerId: 195007870,
+    sellerId: 195007859,
+    tradeTime: 1543347647109,
+    marketMaker: false,
+  }
+]
+
+```
 
 ```json
 {  
@@ -449,7 +535,7 @@ Upon subscribing to a channel an initial snapshot is sent.  The snapshot provide
 
 In order to better monitor potential gaps in streaming data, we provide a sequence number for each returned data value. 
 
-Example: <span style="color:red"> "seq": 21 </span> , <span style="color:red"> "seq":437 </span>, <span style="color:red"> "seq":2873 </span> etc. 
+Example: <span style="color:red"><code>"seq": 21</code></span> , <span style="color:red"> <code>"seq":437 </code></span>, <span style="color:red"> <code>"seq":2873 </code></span> etc. 
 
 
 ### Refill
@@ -559,6 +645,63 @@ const tickersSub = await exchangeSocket.tickers({
 ```
 
 > Example Tickers data
+
+```javascript
+// snapshot
+[
+  {
+    eventTime: 1543849532563,
+    symbol: 'BTCUSDT',
+    priceChange: -253.84,
+    priceChangePerc: -6.08,
+    weightedAvePrice: 4079.82822535,
+    prevClose: 4174.49,
+    close: 3921.26,
+    closeQuantity: 1.144132,
+    bid: 3920.31,
+    bidSize: 0.052611,
+    ask: 3922.57,
+    askSize: 1.207388,
+    open: 4175.1,
+    high: 4268,
+    low: 3896.03,
+    volume: 42258.714174,
+    quoteVolume: 172408294.85387801,
+    statOpenTime: 1543763132561,
+    statCloseTime: 1543849532561,
+    firstTradeId: 83998182,
+    lastTradeId: 84182065,
+    totalTrades: 183884,
+  }
+]
+
+
+// data
+{
+  eventTime: 1541716718571,
+  symbol: 'BTCUSDT',
+  priceChange: -68.06,
+  priceChangePerc: -1.036,
+  weightedAvePrice: 6524.40647569,
+  prevClose: 6575.83,
+  close: 6503.16,
+  closeQuantity: 0.040421,
+  bid: 6501.05,
+  bidSize: 0.123017,
+  ask: 6503.16,
+  askSize: 0.463804,
+  open: 6571.22,
+  high: 6594,
+  low: 6471.22,
+  volume: 12760.988421,
+  quoteVolume: 83257875.49020969,
+  statOpenTime: 1541630318568,
+  statCloseTime: 1541716718568,
+  firstTradeId: 77686104,
+  lastTradeId: 77828352,
+  totalTrades: 142249
+}
+```
 
 ```json
 
@@ -697,6 +840,40 @@ const tickersSub = await exchangeSocket.trades({
 
 > Example Trades data
 
+```javascript
+// snapshot
+[
+  {
+    eventTime: 1543839862868,
+    symbol: 'BTCUSDT',
+    tradeId: 84153760,
+    price: 4038.81,
+    quantity: 0.115984,
+    buyerId: '199276007',
+    sellerId: '199274414',
+    tradeTime: 1543839862861,
+    marketMaker: false,
+  },
+  // rest of elements omitted
+  // for brevity
+]
+
+
+//data
+{
+  eventTime: 1541715784094,
+  symbol: 'BTCUSDT',
+  tradeId: 77827378,
+  price: 6502.99,
+  quantity: 0.030665,
+  buyerId: '183136564',
+  sellerId: '183136526',
+  tradeTime: 1541715784094,
+  marketMaker: false,
+}
+
+```
+
 ```json
 
 {  
@@ -808,6 +985,30 @@ const tickersSub = await exchangeSocket.trades({
 
 > Example Order Books data
 
+```javascript
+// snapshot
+[
+  {
+    eventTime: 1543850299172,
+    orderId: 19811509228,
+    price: 3894.7,
+    quantityTotal: 0.25,
+  },
+  // rest of elements omitted
+  // for brevity
+]
+
+
+// data
+{
+  eventTime: 1541715102336,
+  orderId: 18836717013,
+  price: 6502.9,
+  quantityTotal: 0.1691553,
+}
+
+```
+
 ```json
 
 {  
@@ -878,6 +1079,14 @@ This is the free service url **wss://test.api.suredbits.com/nfl/v0** on testnet.
 
 > Example request
 
+```javascript
+import { Lnd, Sockets } from './src'
+const ln = await Lnd()
+
+const nfl = await Sockets.nfl(ln)
+const info = await nfl.info()
+```
+
 ```json
 {
    "channel": "info", 
@@ -889,11 +1098,20 @@ This provides a check and confirmation on the status of the API.
 
 > Example data
 
+```javascript
+{
+  version: '8',
+  lastRosterDownload: '2018-08-13T17:07:53.668Z',
+  seasonType: 'Preseason',
+  seasonYear: 2018,
+  week: 'NflPreSeasonWeek1'
+}
+```
+
 ```json
 {
-  "1771601c-0fe8-4387-b2ce-be9a0abe1356",
+  "uuid": "1771601c-0fe8-4387-b2ce-be9a0abe1356",
   "data":
-    [
       {
         "version":"8",
         "lastRosterDownload":"2018-08-13T17:07:53.668Z",
@@ -901,7 +1119,6 @@ This provides a check and confirmation on the status of the API.
         "seasonYear":2018,
         "week":"NflPreSeasonWeek1"
        }
-    ]
  }
 ```
 
@@ -909,6 +1126,14 @@ This provides a check and confirmation on the status of the API.
 ## Games
 
 > Example request Games
+
+```javascript
+import { Lnd, Sockets } from './src'
+const ln = await Lnd()
+
+const nfl = await Sockets.nfl(ln)
+const games = await nfl.games({ week: 1, seasonPhase: 'Regular', year: 2017 })
+```
 
 ```json
 {
@@ -923,8 +1148,43 @@ This provides a check and confirmation on the status of the API.
 
 > Example of Games data
 
-```json
+```javascript
+[
+  {
+    gsisId: '2017091006',
+    gameKey: '57241',
+    startTime: '2017-09-10T17:00:00.000Z',
+    week: 'NflWeek1',
+    dayOfWeek: 'Sunday',
+    seasonYear: 2017,
+    seasonType: 'Regular',
+    finished: true,
+    homeTeam: {
+      team: 'MIA',
+      score: 0,
+      scoreQ1: 0,
+      scoreQ2: 0,
+      scoreQ3: 0,
+      scoreQ4: 0,
+      turnovers: 0,
+    },
+    awayTeam: {
+      team: 'TB',
+      score: 0,
+      scoreQ1: 0,
+      scoreQ2: 0,
+      scoreQ3: 0,
+      scoreQ4: 0,
+      turnovers: 0,
+    },
+    timeInserted: '2017-08-04T18:29:15.669Z',
+    timeUpdate: '2018-06-08T19:34:44.063Z',
+  },
+  // more elements omitted for brevity
+]
+```
 
+```json
  {
    "uuid": "8ccbd2d9-65aa-401e-a056-44d543544d47",
    "data":
@@ -1008,6 +1268,14 @@ Field | Type | Example
 
 > Example request Players
 
+```javascript
+import { Lnd, Sockets } from './src'
+const ln = await Lnd()
+
+const nfl = await Sockets.nfl(ln)
+const players = await nfl.players({ firstName: 'Randy', lastName: 'Moss' })
+```
+
 ```json
 {
   "channel":"players", 
@@ -1015,10 +1283,31 @@ Field | Type | Example
   "firstName" : "Randy", 
   "uuid": "dfd2a7d4-3a36-4624-96c4-80f0c166d447ok"
 }
-
 ```
 
 > Example Players data
+
+```javascript
+[
+  {
+    playerId: '00-0011754',
+    gsisName: 'R.Moss',
+    fullName: 'Randy Moss',
+    firstName: 'Randy',
+    lastName: 'Moss',
+    team: 'UNK',
+    position: 'UNK',
+    profileId: 2502220,
+    profileUrl: 'http://www.nfl.com/player/randymoss/2502220/profile',
+    birthDate: '2/13/1977',
+    college: 'Marshall',
+    yearsPro: 14,
+    height: 76,
+    weight: 210,
+    status: 'Unknown',
+  }
+]
+```
 
 ```json
 
@@ -1044,7 +1333,6 @@ Field | Type | Example
       }
    ]
 }
-
 ```
 
   
@@ -1066,6 +1354,14 @@ Field | Type | Example
 
 > Example request Rosters
 
+```javascript
+import { Lnd, Sockets } from './src'
+const ln = await Lnd()
+
+const nfl = await Sockets.nfl(ln)
+const roster = await nfl.roster({ teamId: 'MIN' })
+```
+
 ```json
 
 {
@@ -1079,6 +1375,14 @@ Field | Type | Example
 
 > Example request Rosters in Year
 
+```javascript
+import { Lnd, Sockets } from './src'
+const ln = await Lnd()
+
+const nfl = await Sockets.nfl(ln)
+const roster = await nfl.roster({ teamId: 'MIN', year: 2018 }
+```
+
 ```json
 {
   "channel": "team", 
@@ -1091,8 +1395,31 @@ Field | Type | Example
 
 > Example of Roster data
 
-```json
+```javascript
+[
+  {
+    playerId: '00-0027981',
+    gsisName: 'K.Rudolph',
+    fullName: 'Kyle Rudolph',
+    firstName: 'Kyle',
+    lastName: 'Rudolph',
+    team: 'MIN',
+    position: 'TE',
+    profileId: 2495438,
+    profileUrl: 'http://www.nfl.com/player/kylerudolph/2495438/profile',
+    uniformNumber: 82,
+    birthDate: '11/9/1989',
+    college: 'Notre Dame',
+    yearsPro: 8,
+    height: 78,
+    weight: 265,
+    status: 'Active',
+  },
+  // more elements omitted for brevity
+]
+```
 
+```json
 {
   "uuid":"db69a9d5-13c3-42a0-958a-623630a0fc81",
   "data":
@@ -1117,11 +1444,17 @@ Field | Type | Example
        ...
     ]
   }
-  
-  
 ```
-
+  
 > Example request Schedules
+  
+```javascript
+import { Lnd, Sockets } from './src'
+const ln = await Lnd()
+  
+const nfl = await Sockets.nfl(ln)
+const schedule = await nfl.schedule({ teamId: 'CHI' })
+```
 
 ```json
 {
@@ -1135,8 +1468,43 @@ Field | Type | Example
 
 >Example of Schedule data
 
-```json
+```javascript
+[
+  {
+    gsisId: '2017091001',
+    gameKey: '57236',
+    startTime: '2017-09-10T170000.000Z',
+    week: 'NflWeek1',
+    dayOfWeek: 'Sunday',
+    seasonYear: 2017,
+    seasonType: 'Regular',
+    finished: true,
+    homeTeam: {
+      team: 'CHI',
+      score: 17,
+      scoreQ1: 0,
+      scoreQ2: 10,
+      scoreQ3: 0,
+      scoreQ4: 7,
+      turnovers: 0,
+    },
+    awayTeam: {
+      team: 'ATL',
+      score: 23,
+      scoreQ1: 3,
+      scoreQ2: 7,
+      scoreQ3: 3,
+      scoreQ4: 10,
+      turnovers: 1,
+    },
+    timeInserted: '2017-08-04T182915.669Z',
+    timeUpdate: '2018-06-08T192330.452Z',
+  },
+  // more elements omitted for brevity
+]
+```
 
+```json
  {
    "uuid": "ede60177-f218-40ff-8fde-605f29a8bfce",
    "data":
@@ -1225,15 +1593,26 @@ KC	| Kansas City Chiefs	| WAS	| Washington Redskins
 
 > Example request Stats #1
 
+```javascript
+import { Lnd, Sockets } from './src'
+const ln = await Lnd()
+
+const nfl = await Sockets.nfl(ln)
+const stats = await nfl.statsById({ 
+  gameId: '2016101604', 
+  playerId: '00=0027973', 
+  statType: 'passing' 
+})
+```
+
 ```json
 {
   "channel":"stats", 
   "statType" : "passing", 
   "gameId" : "2016101604", 
   "playerId" : "00-0027973",
-  "uuid": "[uuid]"
+  "uuid": "4312144f-a0a9-4c23-bfd5-01405813c2c9"
 }
-
 ```
 > Example request Stats #2
 
@@ -1252,6 +1631,26 @@ KC	| Kansas City Chiefs	| WAS	| Washington Redskins
 ```
 
 > Example of Stats data
+
+```javascript
+[
+  {
+    att: 37,
+    cmp: 27,
+    cmpAirYds: 167,
+    inCmp: 10,
+    inCmpAirYds: 75,
+    passingInt: 0,
+    sack: 1,
+    sackYds: -7,
+    passingTds: 1,
+    passingTwoPointAttempt: 0,
+    passingTwoPointAttemptMade: 0,
+    passingTwoPointAttemptMissed: 0,
+    passingYds: 291,
+  }
+]
+```
 
 ```json
 {
