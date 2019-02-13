@@ -803,6 +803,165 @@ name | true | string | | Name of item or product
 weight | true | integer | | Weight of item or product
 quantity | true | integer | | Quantity of item or product
 
+## Cancel tracking
+
+```http
+DELETE /snappy/trackings/cancel?access_token=<access_token> HTTP/1.1
+Content-Type: application/json
+```
+
+> Sample params
+
+```json
+{
+    "access_token": "eyJ1aWQiOiIxNGQ0YTFhMS1lYTQyLTQxNjQtODA1ZC1lMjQwZjI1NjFmNzEiLCJpYXQiOj",
+    "tracking_id": "S20010326",
+    "note": "Lý do hủy vận đơn"
+}
+```
+
+> Response if success
+
+```json
+{
+    "message": "Cập nhật trạng thái vận đơn thành công",
+    "success": true,
+    "tracking": {
+        "addition_services": [],
+        "balance_adjustment": -20000,
+        "business": {
+            "id": 1,
+            "name": "Snappy",
+            "owner": {
+                "fb_id": null,
+                "name": "Hoàng Sơn"
+            },
+            "phone_number": "+84999999999"
+        },
+        "business_id": 1,
+        "creator": {
+            "fb_id": null,
+            "name": "user4",
+            "phone_number": "+84904123123"
+        },
+        "creator_id": "132abd0a-73b0-4b22-9934-68bb6ef0df36",
+        "current_status": "Đã hủy",
+        "current_status_en": "canceled",
+        "custom_id": "S01181207001",
+        "customer_tracking_id": null,
+        "department": {
+            "address": "Số 33 Tô Vĩnh Diện",
+            "district_name": "Quận Thanh Xuân",
+            "name": "HN",
+            "phone_number": "02420.233.555",
+            "province_name": "Hà Nội",
+            "second_phone_number": "02421.233.555"
+        },
+        "from": {
+            "address": "Luffy",
+            "commune_id": "1010111",
+            "district_id": "10101",
+            "full_address": "ABC - Luffy Phường Kim Mã, Quận Ba Đình, Hà Nội",
+            "id": "11ac8617-a5fa-4f3a-a1ab-6e2de6c7c8cc",
+            "name": "ABC",
+            "phone_number": "+84999999999",
+            "province_id": "101"
+        },
+        "full_pos_id": null,
+        "id": "S20010326",
+        "inserted_at": "2018-12-07T12:16:26",
+        "last_update": {
+            "last_updated_at": "2019-02-13T17:56:28",
+            "location": null,
+            "note": "asndaslnda",
+            "status": "Đã hủy",
+            "status_color": "#DB3E36",
+            "updated_at": "2019-02-13T17:56:28"
+        },
+        "logs": [],
+        "package_info": {
+            "items": [
+                {
+                    "id": "40",
+                    "name": "test",
+                    "quantity": 2,
+                    "retail_price": 0,
+                    "selected": false,
+                    "weight": 2000
+                }
+            ],
+            "snippet": "2 x 2kg test",
+            "total_weight": 4000
+        },
+        "services": {
+            "cod_service": {
+                "amount": 0,
+                "cost": 0,
+                "is_save_log_cod": true,
+                "use_cod": false
+            },
+            "insurance_cost": 0,
+            "is_allow_checking_good": false,
+            "is_allow_try_out": false,
+            "is_receiver_pay": false,
+            "is_save_log_insurance_cost": false,
+            "is_save_log_return": false,
+            "is_save_log_shipping_cost": true,
+            "is_save_log_shipping_cost_of_shop": false,
+            "name": "same_day",
+            "name_vi": "Trong ngày",
+            "shipping_cost": 20000,
+            "shipping_cost_of_shop": 0
+        },
+        "short_id": 1032,
+        "status_color": "#DB3E36",
+        "to": {
+            "address": "test",
+            "commune_id": null,
+            "district_id": "10107",
+            "full_address": "test - Quận Hai Bà Trưng, Hà Nội",
+            "id": null,
+            "name": "test",
+            "phone_number": "0999999999",
+            "province_id": "101"
+        },
+        "updated_at": "2019-02-13T17:56:28",
+        "updates": [
+            {
+                "last_updated_at": "2018-12-07T12:16:26",
+                "location": "ABC - Luffy Phường Kim Mã, Quận Ba Đình, Hà Nội",
+                "note": "Khởi tạo vận đơn",
+                "status": "Đã khởi tạo",
+                "status_color": "#AD7E05",
+                "updated_at": "2018-12-07T12:16:26"
+            },
+            {
+                "last_updated_at": "2019-02-13T17:56:28",
+                "location": null,
+                "note": "asndaslnda",
+                "status": "Đã hủy",
+                "status_color": "#DB3E36",
+                "updated_at": "2019-02-13T17:56:28"
+            }
+        ]
+    }
+}
+```
+
+This endpoint cancel a tracking into your business.
+
+### HTTP Request
+
+`DELETE /snappy/trackings/cancel`
+
+### Query Parameters
+
+Parameter | Required | Type    | Default | Description
+--------- | ------- | ------- | ------- | -----------
+access_token | true | string | | Your personal acess_token
+tracking_id | true | string | | Unique id of tracking
+note | true | string | `Hủy vận đơn` | Note of status canceled
+
 ## Tracking Status
 
 Name | Vn Name | Color code | Description
