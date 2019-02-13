@@ -28,17 +28,17 @@
 ```shell
 curl -X PUT \
   https://rest.tsheets.com/api/v1/users \
-  -H 'Authorization: Bearer <INSERT TOKEN>' \
+  -H 'Authorization: Bearer <TOKEN>' \
   -H 'Content-Type: application/json' \
-  -d '<INSERT REQUEST BODY>'
+  -d '<REQUEST BODY>'
 ```
 
 ```csharp
 var client = new RestClient("https://rest.tsheets.com/api/v1/users");
 var request = new RestRequest(Method.PUT);
 request.AddHeader("Content-Type", "application/json");
-request.AddHeader("Authorization", "Bearer <INSERT TOKEN>");
-request.AddParameter("undefined", "<INSERT REQUEST BODY>",	ParameterType.RequestBody);
+request.AddHeader("Authorization", "Bearer <TOKEN>");
+request.AddParameter("undefined", "<REQUEST BODY>",	ParameterType.RequestBody);
 IRestResponse response = client.Execute(request);
 ```
 
@@ -46,11 +46,11 @@ IRestResponse response = client.Execute(request);
 OkHttpClient client = new OkHttpClient();
 
 MediaType mediaType = MediaType.parse("application/json");
-RequestBody body = RequestBody.create(mediaType, "<INSERT REQUEST BODY>");
+RequestBody body = RequestBody.create(mediaType, "<REQUEST BODY>");
 Request request = new Request.Builder()
   .url("https://rest.tsheets.com/api/v1/users")
   .put(body)
-  .addHeader("Authorization", "Bearer <INSERT TOKEN>")
+  .addHeader("Authorization", "Bearer <TOKEN>")
   .addHeader("Content-Type", "application/json")
   .build();
 
@@ -64,8 +64,8 @@ var options = { method: 'PUT',
   url: 'https://rest.tsheets.com/api/v1/users',
   headers: 
    { 'Content-Type': 'application/json',
-     Authorization: 'Bearer <INSERT TOKEN>' },
-  body: '<INSERT REQUEST BODY>',
+     Authorization: 'Bearer <TOKEN>' },
+  body: '<REQUEST BODY>',
   json: true };
 
 request(options, function (error, response, body) {
@@ -84,10 +84,10 @@ $request->setMethod(HTTP_METH_PUT);
 
 $request->setHeaders(array(
   'Content-Type' => 'application/json',
-  'Authorization' => 'Bearer <INSERT TOKEN>
+  'Authorization' => 'Bearer <TOKEN>
 ));
 
-$request->setBody('<INSERT REQUEST BODY>');
+$request->setBody('<REQUEST BODY>');
 
 try {
   $response = $request->send();
@@ -107,9 +107,9 @@ url = URI("https://rest.tsheets.com/api/v1/users")
 http = Net::HTTP.new(url.host, url.port)
 
 request = Net::HTTP::Put.new(url)
-request["Authorization"] = 'Bearer <INSERT TOKEN>'
+request["Authorization"] = 'Bearer <TOKEN>'
 request["Content-Type"] = 'application/json'
-request.body = "<INSERT REQUEST BODY>"
+request.body = "<REQUEST BODY>"
 
 response = http.request(request)
 puts response.read_body
@@ -120,9 +120,9 @@ import requests
 
 url = "https://rest.tsheets.com/api/v1/users"
 
-payload = "<INSERT REQUEST BODY>"
+payload = "<REQUEST BODY>"
 headers = {
-    'Authorization': "Bearer <INSERT TOKEN>",
+    'Authorization': "Bearer <TOKEN>",
     'Content-Type': "application/json"
     }
 
@@ -145,11 +145,11 @@ func main() {
 
 	url := "https://rest.tsheets.com/api/v1/users"
 
-	payload := strings.NewReader("<INSERT REQUEST BODY>")
+	payload := strings.NewReader("<REQUEST BODY>")
 
 	req, _ := http.NewRequest("PUT", url, payload)
 
-	req.Header.Add("Authorization", "Bearer <INSERT TOKEN>")
+	req.Header.Add("Authorization", "Bearer <TOKEN>")
 	req.Header.Add("Content-Type", "application/json")
 
 	res, _ := http.DefaultClient.Do(req)
@@ -292,34 +292,25 @@ func main() {
 }
 ```
 
-Update one or more users in your company.
+Update one or more users in your company.  The batch of user updates is passed as a JSON string in the body of the HTTP request.  If the value passed in is the same as it was previously, or if a particular property is not passed in at all, it will be ignored.
 
 ### HTTP Request
 
-`PUT https://rest.tsheets.com/api/v1/users`
+<api>PUT https://rest.tsheets.com/api/v1/users</api>
 
-### HTTP Request Body
 
-The batch of user updates is passed as a JSON string in the body of the HTTP request.
+### Properties
 
-### Required Properties
+|                |             |
+| -------------: | ----------- |
+| **id**<br/>required | Id of the user to update. |
+| **OR** | |
+| **username**<br/>required | Username of the user to update. |
 
-Name | Type | Description
----- | ---- | -----------
-`id` | _Int_ | Id of the user to update.
-
-**OR**
-
-Name | Type | Description
----- | ---- | -----------
-`username` | _String_ | Username of the user to update.
-
-### Optional Properties
-
-For a full list of the properties that may be set on an employee, see [the User object](#the-user-object).  If the value passed in is the same as it was previously, or if a particular property is not passed in at all, it will be ignored.
+For a full list of the properties that may be set on an employee, see [the User object](#the-user-object).  
 
 <aside class="notice">
-The maximum batch size is <i>50</i> users. If exceeded, a <code>413: Request entity too large</code> HTTP response will be returned.
+The maximum batch size is <i>50</i> items. If exceeded, a <code>413: Request entity too large</code> HTTP response will be returned.
 </aside>
 
 <aside class="notice">

@@ -6,13 +6,13 @@
 
 ```shell
 curl "https://rest.tsheets.com/api/v1/users"
-  -H "Authorization: Bearer <INSERT TOKEN>"
+  -H "Authorization: Bearer <TOKEN>"
 ```
 
 ```csharp
 var client = new RestClient("https://rest.tsheets.com/api/v1/users");
 var request = new RestRequest(Method.GET);
-request.AddHeader("Authorization", "Bearer <INSERT TOKEN>");
+request.AddHeader("Authorization", "Bearer <TOKEN>");
 IRestResponse response = client.Execute(request);
 ```
 
@@ -22,7 +22,7 @@ OkHttpClient client = new OkHttpClient();
 Request request = new Request.Builder()
   .url("https://rest.tsheets.com/api/v1/users")
   .get()
-  .addHeader("Authorization", "Bearer <INSERT TOKEN>")
+  .addHeader("Authorization", "Bearer <TOKEN>")
   .build();
 
 Response response = client.newCall(request).execute();
@@ -34,7 +34,7 @@ var request = require("request");
 var options = { method: 'GET',
   url: 'https://rest.tsheets.com/api/v1/users',
   headers: 
-   { Authorization: 'Bearer <INSERT TOKEN>' } };
+   { Authorization: 'Bearer <TOKEN>' } };
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
@@ -51,7 +51,7 @@ $request->setUrl('https://rest.tsheets.com/api/v1/users');
 $request->setMethod(HTTP_METH_GET);
 
 $request->setHeaders(array(
-  'Authorization' => 'Bearer <INSERT TOKEN>'
+  'Authorization' => 'Bearer <TOKEN>'
 ));
 
 try {
@@ -85,7 +85,7 @@ url = "https://rest.tsheets.com/api/v1/users"
 
 payload = ""
 headers = {
-    'Authorization': "Bearer <INSERT TOKEN>"
+    'Authorization': "Bearer <TOKEN>"
     }
 
 response = requests.request("GET", url, data=payload, headers=headers)
@@ -108,7 +108,7 @@ func main() {
 
   req, _ := http.NewRequest("GET", url, nil)
 
-  req.Header.Add("Authorization", "Bearer <INSERT TOKEN>")
+  req.Header.Add("Authorization", "Bearer <TOKEN>")
 
   res, _ := http.DefaultClient.Do(req)
 
@@ -125,13 +125,13 @@ func main() {
 
 ```shell
 curl "https://rest.tsheets.com/api/v1/users?last_name=J%2A&per_page=10"
-  -H "Authorization: Bearer <INSERT TOKEN>"
+  -H "Authorization: Bearer <TOKEN>"
 ```
 
 ```csharp
 var client = new RestClient("https://rest.tsheets.com/api/v1/users?last_name=J%2A&per_page=10");
 var request = new RestRequest(Method.GET);
-request.AddHeader("Authorization", "Bearer <INSERT TOKEN>");
+request.AddHeader("Authorization", "Bearer <TOKEN>");
 IRestResponse response = client.Execute(request);
 ```
 
@@ -141,7 +141,7 @@ OkHttpClient client = new OkHttpClient();
 Request request = new Request.Builder()
   .url("https://rest.tsheets.com/api/v1/users?last_name=J%2A&per_page=10")
   .get()
-  .addHeader("Authorization", "Bearer <INSERT TOKEN>")
+  .addHeader("Authorization", "Bearer <TOKEN>")
   .build();
 
 Response response = client.newCall(request).execute();
@@ -154,7 +154,7 @@ var options = { method: 'GET',
   url: 'https://rest.tsheets.com/api/v1/users',
   qs: { last_name: 'J%2A', per_page: '10' },
   headers: 
-   { Authorization: 'Bearer <INSERT TOKEN>' } };
+   { Authorization: 'Bearer <TOKEN>' } };
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
@@ -177,7 +177,7 @@ $request->setQueryData(array(
 ));
 
 $request->setHeaders(array(
-  'Authorization' => 'Bearer <INSERT TOKEN>'
+  'Authorization' => 'Bearer <TOKEN>'
 ));
 
 try {
@@ -198,7 +198,7 @@ url = URI("https://rest.tsheets.com/api/v1/users?last_name=J%2A&per_page=10")
 http = Net::HTTP.new(url.host, url.port)
 
 request = Net::HTTP::Get.new(url)
-request["Authorization"] = 'Bearer <INSERT TOKEN>'
+request["Authorization"] = 'Bearer <TOKEN>'
 
 response = http.request(request)
 puts response.read_body
@@ -213,7 +213,7 @@ querystring = {"last_name":"J%2A","per_page":"10"}
 
 payload = ""
 headers = {
-    'Authorization': "Bearer <INSERT TOKEN>",
+    'Authorization': "Bearer <TOKEN>",
     }
 
 response = requests.request("GET", url, data=payload, headers=headers, params=querystring)
@@ -236,7 +236,7 @@ func main() {
 
 	req, _ := http.NewRequest("GET", url, nil)
 
-	req.Header.Add("Authorization", "Bearer <INSERT TOKEN>")
+	req.Header.Add("Authorization", "Bearer <TOKEN>")
 
 	res, _ := http.DefaultClient.Do(req)
 
@@ -252,6 +252,7 @@ func main() {
 > The above examples return JSON with the following structure:
 
 ```json
+
 {
   "results": {
     "users": {
@@ -527,28 +528,26 @@ Retrieves a list of all users associated with your company, with optional filter
 
 ### HTTP Request
 
-`GET https://rest.tsheets.com/api/v1/users`
+<api>GET https://rest.tsheets.com/api/v1/users</api>
 
-### Query Parameters
-All parameters are **_optional_** and results are unfiltered with respect to any not provided.
-
-Parameter | Type | Format | Default | Description
---------- | ---- | ------- | ------ | -----------
-`ids` | _String_ | comma-separated | null | List of user ids to include.
-`not_ids` | _String_ | comma-separated | null | List of user ids to exclude.
-`employee_numbers` | _String_ | comma-separated | null | List of employee numbers to include.
-`usernames` | _String_ | comma-separated | null | List of usernames to include.
-`group_ids` | _String_ | comma-separated | null | List of group ids to include.
-`not_group_ids` | _String_ | comma-separated | null | List of group ids to exclude.
-`payroll_ids` |  _String_ | comma-separated | null | List of payroll ids to filter the included users.
-`active` | _String Enum_ | 'yes', 'no' or 'both' | 'yes' | Include only users with given status.
-`first_name` | _String_ | wildcardable | '*' | The search pattern for filtering users by first name.
-`last_name` | _String_ | wildcardable | '*' | The search pattern for filtering users by last name.
-`modified_before` | _DateTime_ | ISO8601 | null | Include only users modified before this date/time.
-`modified_since` | _DateTime_ | ISO8601 | null | Include only users modified since this date/time.
-`supplemental_data` |  _String Enum_ | 'yes' or 'no' | 'yes' | Indicates whether supplemental data should be returned.
-`per_page` | _Int_ | 1 - 50 | 50 | The number of results to retrieve per request.
-`page` | _Int_ | >= 1 | 1 | The page of results to retrieve.
+### Parameters
+|                |             |
+| -------------: | ----------- |
+| **ids**<br/>optional | Comma-separated list of user ids to include. |
+| **not_ids**<br/>optional | Comma-separated list of user ids to exclude. |
+| **employee_numbers**<br/>optional | Comma-separated list of employee numbers to include. |
+| **usernames**<br/>optional | Comma-separated list of usernames to include. |
+| **group_ids**<br/>optional | Comma-separated list of group ids to include. |
+| **not_group_ids**<br/>optional |Comma-separated list of group ids to exclude. |
+| **payroll_ids**<br/>optional |  Comma-separated list of payroll ids to filter the included users. |
+| **active**<br/>optional | Include only users with given status.  Can be `yes`, `no`, or `both`.  Default is `yes`. |
+| **first_name**<br/>optional | The search pattern for filtering users by first name ('\*' may be used as a wildcard). |
+| **last_name**<br/>optional | The search pattern for filtering users by last name ('\*' may be used as a wildcard). |
+| **modified_before**<br/>optional | Include only users modified before this date/time.  Must be ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`). |
+| **modified_since**<br/>optional | Include only users modified since this date/time.  Must be ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`). |
+| **supplemental_data**<br/>optional |  Indicates whether supplemental data should be returned.  Can be `yes` or `no`.  Default is `yes`. |
+| **per_page**<br/>optional | The number of results to retrieve per request. Max is `50`. Default is `50`. |
+| **page**<br/>optional | The page number of results to retrieve. |
 
 <aside class="notice">
 Wildcard searches start matching from the beginning of the string.

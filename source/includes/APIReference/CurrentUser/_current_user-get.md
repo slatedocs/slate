@@ -6,13 +6,13 @@
 
 ```shell
 curl "https://rest.tsheets.com/api/v1/current_user"
-  -H "Authorization: Bearer <INSERT TOKEN>"
+  -H "Authorization: Bearer <TOKEN>"
 ```
 
 ```csharp
 var client = new RestClient("https://rest.tsheets.com/api/v1/current_user");
 var request = new RestRequest(Method.GET);
-request.AddHeader("Authorization", "Bearer <INSERT TOKEN>");
+request.AddHeader("Authorization", "Bearer <TOKEN>");
 IRestResponse response = client.Execute(request);
 ```
 
@@ -22,7 +22,7 @@ OkHttpClient client = new OkHttpClient();
 Request request = new Request.Builder()
   .url("https://rest.tsheets.com/api/v1/current_user")
   .get()
-  .addHeader("Authorization", "Bearer <INSERT TOKEN>")
+  .addHeader("Authorization", "Bearer <TOKEN>")
   .build();
 
 Response response = client.newCall(request).execute();
@@ -34,7 +34,7 @@ var request = require("request");
 var options = { method: 'GET',
   url: 'https://rest.tsheets.com/api/v1/current_user',
   headers: 
-   { Authorization: 'Bearer <INSERT TOKEN>' } };
+   { Authorization: 'Bearer <TOKEN>' } };
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
@@ -51,7 +51,7 @@ $request->setUrl('https://rest.tsheets.com/api/v1/current_user');
 $request->setMethod(HTTP_METH_GET);
 
 $request->setHeaders(array(
-  'Authorization' => 'Bearer <INSERT TOKEN>'
+  'Authorization' => 'Bearer <TOKEN>'
 ));
 
 try {
@@ -85,7 +85,7 @@ url = "https://rest.tsheets.com/api/v1/current_user"
 
 payload = ""
 headers = {
-    'Authorization': "Bearer <INSERT TOKEN>"
+    'Authorization': "Bearer <TOKEN>"
     }
 
 response = requests.request("GET", url, data=payload, headers=headers)
@@ -108,7 +108,7 @@ func main() {
 
   req, _ := http.NewRequest("GET", url, nil)
 
-  req.Header.Add("Authorization", "Bearer <INSERT TOKEN>")
+  req.Header.Add("Authorization", "Bearer <TOKEN>")
 
   res, _ := http.DefaultClient.Do(req)
 
@@ -263,7 +263,7 @@ Retrieves the user object for the currently authenticated user. This is the user
 
 ### HTTP Request
 
-`GET https://rest.tsheets.com/api/v1/current_user`
+<api>`GET https://rest.tsheets.com/api/v1/current_user`</api>
 
 ### Query Parameters
 _None_

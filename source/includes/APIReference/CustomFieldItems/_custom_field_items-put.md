@@ -27,17 +27,17 @@
 ```shell
 curl -X PUT \
   https://rest.tsheets.com/api/v1/customfielditems \
-  -H 'Authorization: Bearer <INSERT TOKEN>' \
+  -H 'Authorization: Bearer <TOKEN>' \
   -H 'Content-Type: application/json' \
-  -d '<INSERT REQUEST BODY>'
+  -d '<REQUEST BODY>'
 ```
 
 ```csharp
 var client = new RestClient("https://rest.tsheets.com/api/v1/customfielditems");
 var request = new RestRequest(Method.PUT);
 request.AddHeader("Content-Type", "application/json");
-request.AddHeader("Authorization", "Bearer <INSERT TOKEN>");
-request.AddParameter("undefined", "<INSERT REQUEST BODY>",	ParameterType.RequestBody);
+request.AddHeader("Authorization", "Bearer <TOKEN>");
+request.AddParameter("undefined", "<REQUEST BODY>",	ParameterType.RequestBody);
 IRestResponse response = client.Execute(request);
 ```
 
@@ -45,11 +45,11 @@ IRestResponse response = client.Execute(request);
 OkHttpClient client = new OkHttpClient();
 
 MediaType mediaType = MediaType.parse("application/json");
-RequestBody body = RequestBody.create(mediaType, "<INSERT REQUEST BODY>");
+RequestBody body = RequestBody.create(mediaType, "<REQUEST BODY>");
 Request request = new Request.Builder()
   .url("https://rest.tsheets.com/api/v1/customfielditems")
   .put(body)
-  .addHeader("Authorization", "Bearer <INSERT TOKEN>")
+  .addHeader("Authorization", "Bearer <TOKEN>")
   .addHeader("Content-Type", "application/json")
   .build();
 
@@ -63,8 +63,8 @@ var options = { method: 'PUT',
   url: 'https://rest.tsheets.com/api/v1/customfielditems',
   headers: 
    { 'Content-Type': 'application/json',
-     Authorization: 'Bearer <INSERT TOKEN>' },
-  body: '<INSERT REQUEST BODY>',
+     Authorization: 'Bearer <TOKEN>' },
+  body: '<REQUEST BODY>',
   json: true };
 
 request(options, function (error, response, body) {
@@ -83,10 +83,10 @@ $request->setMethod(HTTP_METH_PUT);
 
 $request->setHeaders(array(
   'Content-Type' => 'application/json',
-  'Authorization' => 'Bearer <INSERT TOKEN>
+  'Authorization' => 'Bearer <TOKEN>
 ));
 
-$request->setBody('<INSERT REQUEST BODY>');
+$request->setBody('<REQUEST BODY>');
 
 try {
   $response = $request->send();
@@ -106,9 +106,9 @@ url = URI("https://rest.tsheets.com/api/v1/customfielditems")
 http = Net::HTTP.new(url.host, url.port)
 
 request = Net::HTTP::Put.new(url)
-request["Authorization"] = 'Bearer <INSERT TOKEN>'
+request["Authorization"] = 'Bearer <TOKEN>'
 request["Content-Type"] = 'application/json'
-request.body = "<INSERT REQUEST BODY>"
+request.body = "<REQUEST BODY>"
 
 response = http.request(request)
 puts response.read_body
@@ -119,9 +119,9 @@ import requests
 
 url = "https://rest.tsheets.com/api/v1/customfielditems"
 
-payload = "<INSERT REQUEST BODY>"
+payload = "<REQUEST BODY>"
 headers = {
-    'Authorization': "Bearer <INSERT TOKEN>",
+    'Authorization': "Bearer <TOKEN>",
     'Content-Type': "application/json"
     }
 
@@ -144,11 +144,11 @@ func main() {
 
 	url := "https://rest.tsheets.com/api/v1/customfielditems"
 
-	payload := strings.NewReader("<INSERT REQUEST BODY>")
+	payload := strings.NewReader("<REQUEST BODY>")
 
 	req, _ := http.NewRequest("PUT", url, payload)
 
-	req.Header.Add("Authorization", "Bearer <INSERT TOKEN>")
+	req.Header.Add("Authorization", "Bearer <TOKEN>")
 	req.Header.Add("Content-Type", "application/json")
 
 	res, _ := http.DefaultClient.Do(req)

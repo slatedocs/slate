@@ -6,13 +6,13 @@
 
 ```shell
 curl "https://rest.tsheets.com/api/v1/effective_settings?user_id=317046"
-  -H "Authorization: Bearer <INSERT TOKEN>"
+  -H "Authorization: Bearer <TOKEN>"
 ```
 
 ```csharp
 var client = new RestClient("https://rest.tsheets.com/api/v1/effective_settings?user_id=317046");
 var request = new RestRequest(Method.GET);
-request.AddHeader("Authorization", "Bearer <INSERT TOKEN>");
+request.AddHeader("Authorization", "Bearer <TOKEN>");
 IRestResponse response = client.Execute(request);
 ```
 
@@ -22,7 +22,7 @@ OkHttpClient client = new OkHttpClient();
 Request request = new Request.Builder()
   .url("https://rest.tsheets.com/api/v1/effective_settings?user_id=317046")
   .get()
-  .addHeader("Authorization", "Bearer <INSERT TOKEN>")
+  .addHeader("Authorization", "Bearer <TOKEN>")
   .build();
 
 Response response = client.newCall(request).execute();
@@ -35,7 +35,7 @@ var options = { method: 'GET',
   url: 'https://rest.tsheets.com/api/v1/effective_settings',
   qs: { user_id: '317046' },
   headers: 
-   { Authorization: 'Bearer <INSERT TOKEN>' } };
+   { Authorization: 'Bearer <TOKEN>' } };
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
@@ -56,7 +56,7 @@ $request->setQueryData(array(
 ));
 
 $request->setHeaders(array(
-  'Authorization' => 'Bearer <INSERT TOKEN>'
+  'Authorization' => 'Bearer <TOKEN>'
 ));
 
 try {
@@ -92,7 +92,7 @@ querystring = {"user_id":"317046"}
 
 payload = ""
 headers = {
-    'Authorization': "Bearer <INSERT TOKEN>"
+    'Authorization': "Bearer <TOKEN>"
     }
 
 response = requests.request("GET", url, data=payload, headers=headers)
@@ -115,7 +115,7 @@ func main() {
 
   req, _ := http.NewRequest("GET", url, nil)
 
-  req.Header.Add("Authorization", "Bearer <INSERT TOKEN>")
+  req.Header.Add("Authorization", "Bearer <TOKEN>")
 
   res, _ := http.DefaultClient.Do(req)
 
@@ -132,13 +132,13 @@ func main() {
 
 ```shell
 curl "https://rest.tsheets.com/api/v1/effective_settings?modified_since=2019-02-01T00%3A00%3A00%2B00%3A00"
-  -H "Authorization: Bearer <INSERT TOKEN>"
+  -H "Authorization: Bearer <TOKEN>"
 ```
 
 ```csharp
 var client = new RestClient("https://rest.tsheets.com/api/v1/effective_settings?modified_since=2019-02-01T00%3A00%3A00%2B00%3A00");
 var request = new RestRequest(Method.GET);
-request.AddHeader("Authorization", "Bearer <INSERT TOKEN>");
+request.AddHeader("Authorization", "Bearer <TOKEN>");
 IRestResponse response = client.Execute(request);
 ```
 
@@ -148,7 +148,7 @@ OkHttpClient client = new OkHttpClient();
 Request request = new Request.Builder()
   .url("https://rest.tsheets.com/api/v1/effective_settings?modified_since=2019-02-01T00%3A00%3A00%2B00%3A00")
   .get()
-  .addHeader("Authorization", "Bearer <INSERT TOKEN>")
+  .addHeader("Authorization", "Bearer <TOKEN>")
   .build();
 
 Response response = client.newCall(request).execute();
@@ -161,7 +161,7 @@ var options = { method: 'GET',
   url: 'https://rest.tsheets.com/api/v1/effective_settings',
   qs: { modified_since: '2019-02-01T00:00:00+00:00' },
   headers: 
-   { Authorization: 'Bearer <INSERT TOKEN>' } };
+   { Authorization: 'Bearer <TOKEN>' } };
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
@@ -182,7 +182,7 @@ $request->setQueryData(array(
 ));
 
 $request->setHeaders(array(
-  'Authorization' => 'Bearer <INSERT TOKEN>'
+  'Authorization' => 'Bearer <TOKEN>'
 ));
 
 try {
@@ -218,7 +218,7 @@ querystring = {"modified_since":"2019-02-01T00:00:00+00:00"}
 
 payload = ""
 headers = {
-    'Authorization': "Bearer <INSERT TOKEN>"
+    'Authorization': "Bearer <TOKEN>"
     }
 
 response = requests.request("GET", url, data=payload, headers=headers)
@@ -241,7 +241,7 @@ func main() {
 
   req, _ := http.NewRequest("GET", url, nil)
 
-  req.Header.Add("Authorization", "Bearer <INSERT TOKEN>")
+  req.Header.Add("Authorization", "Bearer <TOKEN>")
 
   res, _ := http.DefaultClient.Do(req)
 
