@@ -34,6 +34,10 @@ Here are some useful resources to help you learn and get started with Bicoin and
 3. <a href="https://lightning.network/lightning-network-paper.pdf">Lightning Whitepaper</a>
 4. <a href="https://www.youtube.com/watch?v=l1si5ZWLgy0">Introduction to Bitcoin</a>
 
+## Recommended Client Library
+
+We recommend using our custom <a href="https://github.com/suredbits/sb-api"> Javascript Client Library</a> for interacting with our API services. It supports all major implementations of the Lightning protocol: lnd, c-lightning and eclair.   
+
 ## Mainnet Node (paid) 
 In order to access our paid API service, you will need to connect to our lightning node via your preferred lightning client.  
 
