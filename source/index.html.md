@@ -15,12 +15,12 @@ search: true
 
 ## Connect With Us
 
-Follow us on twitter <a href="https://twitter.com/SuredBits">@Suredbits</a>
+Follow us on twitter <a href="https://twitter.com/Suredbits">@Suredbits</a>
 
 We invite you to join our Slack channel <a href="https://join.slack.com/t/suredbits/shared_invite/enQtNDEyMjY3MTg1MTg3LTYyYjkwOGUzMDQ4NDAwZjE1M2I3MmQyNWNlZjNlYjg4OGRjYTRjNWUwNjRjNjg4Y2NjZjAxYjU1N2JjMTU1YWM">Suredbits Slack</a>
 
 ## Background Resources
-Thank you and welcome to SuredBits' Lightning App API documentation. This API allows you to query our NFL, NBA and Crypto Exchange data. Our NFL and NBA APIs offer multiple channels including teams, players, games, scores, and statistics.  Our Crypto Exchange API allows you to stream data on Trades, Tickers and Order Books. 
+Thank you and welcome to Suredbits' Lightning App API documentation. This API allows you to query our NFL, NBA and Crypto Exchange data. Our NFL and NBA APIs offer multiple channels including teams, players, games, scores, and statistics.  Our Crypto Exchange API allows you to stream data on Trades, Tickers and Order Books. 
 
 We are currently focused primarily on developers already familiar with Bitcoin and know Lightning or are interested in building apps using the Lightning protocol. However, if you are just starting out in cryptocurrency development, we have included some helpful links below.
 
@@ -186,7 +186,7 @@ For testing, we provide data for <span style="color:red"> Lebron James </span> f
 
 **How to Pay**
 
-This is our recommended lnd lightning client library: <a href="https://github.com/SuredBits/sb-api-lnd">https://github.com/SuredBits/sb-api-lnd</a>
+This is our recommended lnd lightning client library: <a href="https://github.com/Suredbits/sb-api-lnd">https://github.com/Suredbits/sb-api-lnd</a>
 
 This is an alternative c-lightning client library: <a href="https://github.com/suredbits/lightning-charge">https://github.com/suredbits/lightning-charge</a>
 
@@ -195,7 +195,7 @@ This is an alternative c-lightning client library: <a href="https://github.com/s
 
 <aside class="success"> All payments are transacted in cryptocurrency.  For convenience, we have quoted prices in USD equiavalents. </aside>
 
-<aside class="success"> We reserve the right to change pricing as necessary.  We also reserve the right to change what is available in our free API offerings. Any changes in pricing or services will be announced via our Twitter <a href="https://twitter.com/SuredBits">@Suredbits</a> </aside>
+<aside class="success"> We reserve the right to change pricing as necessary.  We also reserve the right to change what is available in our free API offerings. Any changes in pricing or services will be announced via our Twitter <a href="https://twitter.com/Suredbits">@Suredbits</a> </aside>
 
 For NFL Data and NBA Data APIs, the cost is $.01 (1 cent) per call.  
 
@@ -1602,7 +1602,7 @@ Field | Type | Example
 <span style="color:red"> lastName </span> | String | <span style="color:red"> Durant </span>
 
 # Contact Us
-Follow us on twitter <a href="https://twitter.com/SuredBits">@Suredbits</a>
+Follow us on twitter <a href="https://twitter.com/Suredbits">@Suredbits</a>
 
 Join our Slack channel <a href="https://join.slack.com/t/suredbits/shared_invite/enQtNDEyMjY3MTg1MTg3LTYyYjkwOGUzMDQ4NDAwZjE1M2I3MmQyNWNlZjNlYjg4OGRjYTRjNWUwNjRjNjg4Y2NjZjAxYjU1N2JjMTU1YWM">Suredbits Slack</a>
  
