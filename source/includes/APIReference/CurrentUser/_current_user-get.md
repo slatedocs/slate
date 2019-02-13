@@ -2,6 +2,8 @@
 
 > **Example**
 
+> Retrieve current user
+
 ```shell
 curl "https://rest.tsheets.com/api/v1/current_user"
   -H "Authorization: Bearer <INSERT TOKEN>"

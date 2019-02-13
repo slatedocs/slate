@@ -34,7 +34,14 @@ includes:
   - APIReference/EffectiveSettings/effective_settings-object
   - APIReference/EffectiveSettings/effective_settings-get
 
-  - files
+  - APIReference/Files/files
+  - APIReference/Files/files-object
+  - APIReference/Files/files-get  
+  - APIReference/Files/files-post
+  - APIReference/Files/files-put
+  - APIReference/Files/files-download
+  - APIReference/Files/files-delete 
+
   - geofence_configs
   - geolocations
   - groups
