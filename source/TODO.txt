@@ -16,6 +16,7 @@ Add Formats to all that are missing
 Fix icon on browser tab
 Make sure POST and PUT are correct across all the samples
 Fix awkward language: "results are unfiltered with respect to any not provided."
+All comma-separated parameters should be type Int, not String
 
 Walkthroughs/Guides/References
 Section on supplemental_data
