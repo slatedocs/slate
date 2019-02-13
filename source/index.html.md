@@ -177,7 +177,7 @@ For testing, we provide data for <span style="color:red"> Tom Brady </span> for 
 ```
 
 ```javascript
-import { Lnd, Sockets } from './src'
+import { Lnd, Sockets } from 'sb-api'
 const ln = await Lnd()
 
 const nba = await Sockets.nbaTestnet(ln)
@@ -198,7 +198,7 @@ const players = await nba.players() // name is inferred automatically on testnet
 ```
 
 ```javascript
-import { Lnd, Sockets } from './src'
+import { Lnd, Sockets } from 'sb-api'
 const ln = await Lnd()
 
 const nba = await Sockets.nbaTestnet(ln)
@@ -217,7 +217,7 @@ const games = await nba.games({ day: 14, month: 1, year: 2019, teamId: 'LAL' })
 ```
 
 ```javascript
-import { Lnd, Sockets } from './src'
+import { Lnd, Sockets } from 'sb-api'
 const ln = await Lnd()
 
 const nba = await Sockets.nbaTestnet(ln)
@@ -241,7 +241,7 @@ const stats = await nba.statsById({ gameId: '21800500', playerId: '2544' })
 ```
 
 ```javascript
-import { Lnd, Sockets } from './src'
+import { Lnd, Sockets } from 'sb-api'
 const ln = await Lnd()
 
 const nba = await Sockets.nbaTestnet(ln)
@@ -1080,7 +1080,7 @@ This is the free service url **wss://test.api.suredbits.com/nfl/v0** on testnet.
 > Example request
 
 ```javascript
-import { Lnd, Sockets } from './src'
+import { Lnd, Sockets } from 'sb-api'
 const ln = await Lnd()
 
 const nfl = await Sockets.nfl(ln)
@@ -1090,7 +1090,7 @@ const info = await nfl.info()
 ```json
 {
    "channel": "info", 
-    "uuid": "[uuid]"
+  "uuid": "d7975109-e6d0-47ae-9c26-531d553c420b"
 }
 ```
 
@@ -1128,7 +1128,7 @@ This provides a check and confirmation on the status of the API.
 > Example request Games
 
 ```javascript
-import { Lnd, Sockets } from './src'
+import { Lnd, Sockets } from 'sb-api'
 const ln = await Lnd()
 
 const nfl = await Sockets.nfl(ln)
@@ -1269,7 +1269,7 @@ Field | Type | Example
 > Example request Players
 
 ```javascript
-import { Lnd, Sockets } from './src'
+import { Lnd, Sockets } from 'sb-api'
 const ln = await Lnd()
 
 const nfl = await Sockets.nfl(ln)
@@ -1355,7 +1355,7 @@ Field | Type | Example
 > Example request Rosters
 
 ```javascript
-import { Lnd, Sockets } from './src'
+import { Lnd, Sockets } from 'sb-api'
 const ln = await Lnd()
 
 const nfl = await Sockets.nfl(ln)
@@ -1376,7 +1376,7 @@ const roster = await nfl.roster({ teamId: 'MIN' })
 > Example request Rosters in Year
 
 ```javascript
-import { Lnd, Sockets } from './src'
+import { Lnd, Sockets } from 'sb-api'
 const ln = await Lnd()
 
 const nfl = await Sockets.nfl(ln)
@@ -1449,7 +1449,7 @@ const roster = await nfl.roster({ teamId: 'MIN', year: 2018 }
 > Example request Schedules
   
 ```javascript
-import { Lnd, Sockets } from './src'
+import { Lnd, Sockets } from 'sb-api'
 const ln = await Lnd()
   
 const nfl = await Sockets.nfl(ln)
@@ -1594,7 +1594,7 @@ KC	| Kansas City Chiefs	| WAS	| Washington Redskins
 > Example request Stats #1
 
 ```javascript
-import { Lnd, Sockets } from './src'
+import { Lnd, Sockets } from 'sb-api'
 const ln = await Lnd()
 
 const nfl = await Sockets.nfl(ln)
@@ -1616,6 +1616,21 @@ const stats = await nfl.statsById({
 ```
 > Example request Stats #2
 
+```javascript
+import { Lnd, Sockets } from 'sb-api'
+const ln = await Lnd()
+
+const nfl = await Sockets.nfl(ln)
+const stats = await nfl.statsByNameAndWeek({
+  firstName: 'Drew',
+  lastName: 'Brees',
+  seasonPhase: 'Regular',
+  statType: 'passing',
+  week: 1,
+  year: 2017,
+})
+
+```
 ```json
 {
     "channel":"stats", 
@@ -1721,6 +1736,14 @@ This is the free version url **wss://test.api.suredbits.com/nba/v0** on testnet.
 
 > Example request Info
 
+```javascript
+import { Lnd, Sockets } from 'sb-api'
+const ln = await Lnd()
+
+const nba = await Sockets.nba(ln)
+const info = await nba.info()
+```
+
 ```json
 {
   "channel": "info", 
@@ -1729,6 +1752,15 @@ This is the free version url **wss://test.api.suredbits.com/nba/v0** on testnet.
 ```
 
 > Example of Info data
+
+```javascript
+{
+  seasonYear: '2018-2019',
+  seasonPhase: 'Regular',
+  version: 0,
+  lastUpdated: Date('2018-11-15T21:58:50.490Z'),
+}
+```
 
 ```json
 {  
@@ -1754,29 +1786,141 @@ Field | Type | Example
 
 > Example request Games
 
+```javascript
+import { Lnd, Sockets } from 'sb-api'
+const ln = await Lnd()
+
+const nba = await Sockets.nba(ln)
+const games = await nba.games({ year: 2018, month: 11, day: 24 })
+```
+
 ```json
 {
   "channel": "games", 
   "year": 2018, 
   "month": 11, 
   "day": 24, 
-  "uuid": "[uuid]"
+  "uuid": "3f4f2853-e84f-4a29-b807-8a471e59ca44"
 }
 ```
 
 > Example request Games with TeamId
 
+```javascript
+import { Lnd, Sockets } from 'sb-api'
+const ln = await Lnd()
+
+const nba = await Sockets.nba(ln)
+const games = await nba.games({ year: 2016, month: 12, day: 20, teamId: 'CHI' })
+```
+
 ```json
 {
   "channel": "games", 
-  "year": 2016, "month": 12, 
+  "year": 2016, 
+  "month": 12, 
   "day": 20, 
   "teamId": "CHI", 
-  "uuid": "[3f4f2853-e84f-4a29-b807-8a471e59ca44]"
+  "uuid": "3f4f2853-e84f-4a29-b807-8a471e59ca44"
 }
 ```
 
 > Example Games data
+
+```javascript
+[
+  {
+    gameId: 21800280,
+    startTime: Date('2018-11-25T01:00:00.000Z'),
+    homeTeam: {
+      teamID: 'WAS',
+      finalScore: 0,
+    },
+    awayTeam: {
+      teamID: 'NOP',
+      finalScore: 0,
+    },
+    finished: false,
+    seasonPhase: 'Regular',
+    year: '2018-2019',
+  },
+  {
+    gameId: 21800282,
+    startTime: Date('2018-11-25T01:00:00.000Z'),
+    homeTeam: {
+      teamID: 'OKC',
+      finalScore: 0,
+    },
+    awayTeam: {
+      teamID: 'DEN',
+      finalScore: 0,
+    },
+    finished: false,
+    seasonPhase: 'Regular',
+    year: '2018-2019',
+  },
+  {
+    gameId: 21800285,
+    startTime: Date('2018-11-25T01:30:00.000Z'),
+    homeTeam: {
+      teamID: 'GSW',
+      finalScore: 0,
+    },
+    awayTeam: {
+      teamID: 'SAC',
+      finalScore: 0,
+    },
+    finished: false,
+    seasonPhase: 'Regular',
+    year: '2018-2019',
+  },
+  {
+    gameId: 21800284,
+    startTime: Date('2018-11-25T01:30:00.000Z'),
+    homeTeam: {
+      teamID: 'MIL',
+      finalScore: 0,
+    },
+    awayTeam: {
+      teamID: 'SAS',
+      finalScore: 0,
+    },
+    finished: false,
+    seasonPhase: 'Regular',
+    year: '2018-2019',
+  },
+  {
+    gameId: 21800279,
+    startTime: Date('2018-11-25T00:30:00.000Z'),
+    homeTeam: {
+      teamID: 'CLE',
+      finalScore: 0,
+    },
+    awayTeam: {
+      teamID: 'HOU',
+      finalScore: 0,
+    },
+    finished: false,
+    seasonPhase: 'Regular',
+    year: '2018-2019',
+  },
+  {
+    gameId: 21800281,
+    startTime: Date('2018-11-25T01:00:00.000Z'),
+    homeTeam: {
+      teamID: 'MIN',
+      finalScore: 0,
+    },
+    awayTeam: {
+      teamID: 'CHI',
+      finalScore: 0,
+    },
+    finished: false,
+    seasonPhase: 'Regular',
+    year: '2018-2019',
+  },
+]
+```
 
 ```json
 {  
@@ -1898,31 +2042,39 @@ To search for a game by a specific team, add an optional field for <span style="
 
 **Optional fields**
 
-Field | Type | Example
------- | ------- | --------
-<span style="color:red"> teamId </span> | String  |  <span style="color:red"> ATL, CLE, PHX, LAC </span> etc. <a href="#NBATeamID">See Team ID Table</a>
+| Field                                   | Type   | Example                                                                                             |
+| --------------------------------------- | ------ | --------------------------------------------------------------------------------------------------- |
+| <span style="color:red"> teamId </span> | String | <span style="color:red"> ATL, CLE, PHX, LAC </span> etc. <a href="#NBATeamID">See Team ID Table</a> |
 
 ### Live games
 You can also query for games that are currently playing. The available fields are as follows: 
 
 **Required fields**
 
-Field | Type | Example
------- | ------- | ------
-<span style="color:red"> uuid  </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span>
-<span style="color:red"> realtime  </span> | Boolean (true) | <span style="color:red"> true </span>
+| Field                                      | Type           | Example                                                                 |
+| ------------------------------------------ | -------------- | ----------------------------------------------------------------------- |
+| <span style="color:red"> uuid  </span>     | String         | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span> |
+| <span style="color:red"> realtime  </span> | Boolean (true) | <span style="color:red"> true </span>                                   |
 
 **Optional fields**
 
-Field | Type | Example
------- | ------- | ------
-<span style="color:red"> teamId </span> | String  | <span style="color:red"> ATL, CLE, PHX, LAC </span> etc. <a href="#NBATeamID">See Team ID Table</a>
+| Field                                   | Type   | Example                                                                                             |
+| --------------------------------------- | ------ | --------------------------------------------------------------------------------------------------- |
+| <span style="color:red"> teamId </span> | String | <span style="color:red"> ATL, CLE, PHX, LAC </span> etc. <a href="#NBATeamID">See Team ID Table</a> |
 
 
 
 ## Players
 
 > Example request Players
+
+```javascript
+import { Lnd, Sockets } from 'sb-api'
+const ln = await Lnd()
+
+const nba = await Sockets.nba(ln)
+const players = await nba.players({ firstName: 'Kevin', lastName: 'Durant' }
+```
 
 ```json
 {
@@ -1934,6 +2086,23 @@ Field | Type | Example
 ```
 
 > Example Players data (Kevin Durant)
+
+```javascript
+[
+  {
+    playerId: 201142,
+    firstName: 'Kevin',
+    lastName: 'Durant',
+    fullName: 'Kevin Durant',
+    team: 'GSW',
+    profileUrl: '',
+    birthDate: Date('2018-10-19T11:43:30.426Z'),
+    status: 'Active',
+    rookieYear: 2007,
+    lastYear: 2018,
+  },
+]
+```
 
 ```json
 {  
@@ -1959,37 +2128,62 @@ The <span style="color:red"> Players </span> channel returns biographical inform
 
 **Required Fields**
 
-Field | Type | Example 
------- | ------ |-------
-<span style="color:red"> uuid  </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span>
-<span style="color:red"> channel </span> | String | <span style="color:red"> players </span>
-<span style="color:red"> firstName </span> | String | <span style="color:red"> Kevin </span>
-<span style="color:red"> lastName </span>  | String | <span style="color:red"> Durant </span>
+| Field                                      | Type   | Example                                                                 |
+| ------------------------------------------ | ------ | ----------------------------------------------------------------------- |
+| <span style="color:red"> uuid  </span>     | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span> |
+| <span style="color:red"> channel </span>   | String | <span style="color:red"> players </span>                                |
+| <span style="color:red"> firstName </span> | String | <span style="color:red"> Kevin </span>                                  |
+| <span style="color:red"> lastName </span>  | String | <span style="color:red"> Durant </span>                                 |
 
 
 ## Team
 
 > Example request for Roster
 
+```javascript
+import { Lnd, Sockets } from 'sb-api'
+const ln = await Lnd()
+
+const nba = await Sockets.nba(ln)
+const roster = await nba.roster({ teamId: 'DEN' }
+```
+
 ```json
 {
   "channel": "team", 
   "retrieve": "roster",
-  "teamId""[team]", 
-  "uuid": "[uuid]"
+  "teamId": "DEN", 
+  "uuid": "3f4f2853-e84f-4a29-b807-8a471e59ca44"
 }
 ```
-> Example request with Year
+> Example request with season
+
+```javascript
+import { Lnd, Sockets } from 'sb-api'
+const ln = await Lnd()
+
+const nba = await Sockets.nba(ln)
+const roster = await nba.roster({ season: '2016-2017', teamId: 'GSW' })
+```
 
 ```json
 {
   "channel": "team", 
   "retrieve": "schedule", 
+  "teamId": "GSW",
   "season": "2016-2017", 
-  "uuid": "[uuid]"
+  "uuid": "3f4f2853-e84f-4a29-b807-8a471e59ca44"
 }
 ```
 > Example request for Schedule 
+
+```javascript
+import { Lnd, Sockets } from 'sb-api'
+const ln = await Lnd()
+
+const nba = await Sockets.nba(ln)
+const schedule = await nba.schedule({ teamId: 'CHI' })
+```
 
 ```json
 {
@@ -2001,6 +2195,27 @@ Field | Type | Example
 ```
 
 > Example of team Schedule (Chicago Bulls)
+
+```javascript
+[
+  {
+    gameId: 21600073,
+    startTime: Date('2016-11-05T00:00:00.000Z'),
+    homeTeam: {
+      teamID: 'CHI',
+      finalScore: 104,
+    },
+    awayTeam: {
+      teamID: 'NYK',
+      finalScore: 117,
+    },
+    finished: true,
+    seasonPhase: 'Regular',
+    year: '2016-2017',
+  }, 
+  // more elements omitted for brevity
+]
+```
 
 ```json
 {  
@@ -2021,6 +2236,7 @@ Field | Type | Example
          "seasonPhase":"Regular",
          "year":"2016-2017",
       }
+   ]
 }
 ...
 
@@ -2029,55 +2245,77 @@ The <span style="color:red"> Teams </span> channel returns information such as <
 
 **Required Fields**
 
-Field | Type |  Example
------ | ----- | --------
-<span style="color:red"> uuid  </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span>
-<span style="color:red"> channel </span> | String |  <span style="color:red"> teams </span>
-<span style="color:red"> teamId </span> | String | <span style="color:red"> CHI </span>, <span style="color:red"> LAC </span>, <span style="color:red"> MIA </span>, etc...
-<span style="color:red"> retrieve </span> | String | <span style="color:red"> roster </span> or <span style="color:red"> schedule </span> 
+| Field                                     | Type   | Example                                                                                                                  |
+| ----------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------ |
+| <span style="color:red"> uuid  </span>    | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span>                                                  |
+| <span style="color:red"> channel </span>  | String | <span style="color:red"> teams </span>                                                                                   |
+| <span style="color:red"> teamId </span>   | String | <span style="color:red"> CHI </span>, <span style="color:red"> LAC </span>, <span style="color:red"> MIA </span>, etc... |
+| <span style="color:red"> retrieve </span> | String | <span style="color:red"> roster </span> or <span style="color:red"> schedule </span>                                     |
 
 **Optional Fields**
 
-Field | Type | Example
-------|------|--------
-<span style="color:red"> season </span> | String | <span style="color:red"> 2016-2017 </span>
+| Field                                   | Type   | Example                                    |
+| --------------------------------------- | ------ | ------------------------------------------ |
+| <span style="color:red"> season </span> | String | <span style="color:red"> 2016-2017 </span> |
 
 
 <h3 id="NBATeamID"> Team ID Table</h3>
 
-Team ID  | Team | Team ID | Team
------ | ------- | ------- | -------
-ATL | Atlanta Hawks	| PHI | Philadelphia 76ers 
-MIA	| Miami Heat | DET | Detroit Pistons	
-BKN	| Brooklyn Nets | PHX	| Phoenix Suns
-MIL	| Milwaukee Bucks | GSW  | Golden State Warriors
-BOS	| Boston Celtics| POR	    | Portland Trail Blazers
-MIN	| Minnesota Timberwolves | HOU  | Houston Rockets	
-CHA	| Charlotte Hornets	| SAC  | Sacramento Kings
-NOP	| New Orleans Pelicans | IND | Indiana Pacers	
-CHI	| Chicago Bulls	| SAS   | San Antonio Spurs
-NYK	| New York Knicks | LAC  | Los Angeles Clippers
-CLE	| Cleveland Cavaliers | TOR   |	Toronto Raptors
-OKC	| Oklahoma City Thunder | LAL | Los Angeles Lakers
-DAL	| Dallas Mavericks |UTA	  | Utah Jazz
-ORL	| Orlando Magic | MEM   | Memphis Grizzlies	
-DEN	| Denver Broncos | WAS  | Washington Wizards
+| Team ID | Team                   | Team ID | Team                   |
+| ------- | ---------------------- | ------- | ---------------------- |
+| ATL     | Atlanta Hawks          | PHI     | Philadelphia 76ers     |
+| MIA     | Miami Heat             | DET     | Detroit Pistons        |
+| BKN     | Brooklyn Nets          | PHX     | Phoenix Suns           |
+| MIL     | Milwaukee Bucks        | GSW     | Golden State Warriors  |
+| BOS     | Boston Celtics         | POR     | Portland Trail Blazers |
+| MIN     | Minnesota Timberwolves | HOU     | Houston Rockets        |
+| CHA     | Charlotte Hornets      | SAC     | Sacramento Kings       |
+| NOP     | New Orleans Pelicans   | IND     | Indiana Pacers         |
+| CHI     | Chicago Bulls          | SAS     | San Antonio Spurs      |
+| NYK     | New York Knicks        | LAC     | Los Angeles Clippers   |
+| CLE     | Cleveland Cavaliers    | TOR     | Toronto Raptors        |
+| OKC     | Oklahoma City Thunder  | LAL     | Los Angeles Lakers     |
+| DAL     | Dallas Mavericks       | UTA     | Utah Jazz              |
+| ORL     | Orlando Magic          | MEM     | Memphis Grizzlies      |
+| DEN     | Denver Broncos         | WAS     | Washington Wizards     |
 
 
 ## Stats 
 
 > Example request Stats by ID
 
+```javascript
+import { Lnd, Sockets } from 'sb-api'
+const ln = await Lnd()
+
+const nba = await Sockets.nba(ln)
+const stats = await nba.statsById({ gameId: '21600854', playerId: '201142' }
+```
+
 ```json
 {
   "channel": "stats", 
   "gameId": "21600854", 
   "playerId": "201142", 
-  "uuid": "[uuid]"
+  "uuid": "3f4f2853-e84f-4a29-b807-8a471e59ca44"
 }
 ```
 
 > Example request for Stats by Name
+
+```javascript
+import { Lnd, Sockets } from 'sb-api'
+const ln = await Lnd()
+
+const nba = await Sockets.nba(ln)
+const stats = await nba.statsByName({ 
+  firstName: 'Kevin', 
+  lastName: 'Durant', 
+  year: 2017, 
+  month: 12, 
+  day: 12 
+})
+```
 
 ```json
 {
@@ -2092,6 +2330,31 @@ DEN	| Denver Broncos | WAS  | Washington Wizards
 ```
 
 > Example of player Stats data (Kevin Durant)
+
+```javascript
+[
+  {
+    playerId: 201142,
+    min: 0,
+    fgm: 0,
+    fga: 0,
+    tpm: 0,
+    tpa: 0,
+    ftm: 0,
+    fta: 0,
+    plusminus: 0,
+    off: 0,
+    deff: 0,
+    tot: 0,
+    ast: 0,
+    pf: 0,
+    st: 0,
+    to: 0,
+    bs: 0,
+    pts: 0,
+  }
+]
+```
 
 ```json
 {  
@@ -2118,10 +2381,10 @@ DEN	| Denver Broncos | WAS  | Washington Wizards
          "pts":0
       }
    ]
-}`
+}
 ```
 
-The <span style="color:red"> Stats </span> channel returns data for individual players and allows you to query by <span style="color:red"> gameId </span>, <span style="color:red"> playerId </span> or by specific player <span style="color:red"> name </span>.
+The <span style="color:red"> Stats </span> channel returns data for individual players and allows you to query by <span style="color:red"> gameId </span>, <span style="color:red"> playerId </span> or by specific player <span style="color:red"> name</span>.
 
 **Required Fields for Stats by Id**
 
