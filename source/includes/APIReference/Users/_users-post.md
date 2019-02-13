@@ -26,17 +26,17 @@
 ```shell
 curl -X POST \
   https://rest.tsheets.com/api/v1/users \
-  -H 'Authorization: Bearer <INSERT TOKEN>' \
+  -H 'Authorization: Bearer <TOKEN>' \
   -H 'Content-Type: application/json' \
-  -d '<INSERT REQUEST BODY>'
+  -d '<REQUEST BODY>'
 ```
 
 ```csharp
 var client = new RestClient("https://rest.tsheets.com/api/v1/users");
 var request = new RestRequest(Method.POST);
 request.AddHeader("Content-Type", "application/json");
-request.AddHeader("Authorization", "Bearer <INSERT TOKEN>");
-request.AddParameter("undefined", "<INSERT REQUEST BODY>",	ParameterType.RequestBody);
+request.AddHeader("Authorization", "Bearer <TOKEN>");
+request.AddParameter("undefined", "<REQUEST BODY>",	ParameterType.RequestBody);
 IRestResponse response = client.Execute(request);
 ```
 
@@ -44,11 +44,11 @@ IRestResponse response = client.Execute(request);
 OkHttpClient client = new OkHttpClient();
 
 MediaType mediaType = MediaType.parse("application/json");
-RequestBody body = RequestBody.create(mediaType, "<INSERT REQUEST BODY>");
+RequestBody body = RequestBody.create(mediaType, "<REQUEST BODY>");
 Request request = new Request.Builder()
   .url("https://rest.tsheets.com/api/v1/users")
   .post(body)
-  .addHeader("Authorization", "Bearer <INSERT TOKEN>")
+  .addHeader("Authorization", "Bearer <TOKEN>")
   .addHeader("Content-Type", "application/json")
   .build();
 
@@ -62,8 +62,8 @@ var options = { method: 'POST',
   url: 'https://rest.tsheets.com/api/v1/users',
   headers: 
    { 'Content-Type': 'application/json',
-     Authorization: 'Bearer <INSERT TOKEN>' },
-  body: '<INSERT REQUEST BODY>',
+     Authorization: 'Bearer <TOKEN>' },
+  body: '<REQUEST BODY>',
   json: true };
 
 request(options, function (error, response, body) {
@@ -82,10 +82,10 @@ $request->setMethod(HTTP_METH_POST);
 
 $request->setHeaders(array(
   'Content-Type' => 'application/json',
-  'Authorization' => 'Bearer <INSERT TOKEN>
+  'Authorization' => 'Bearer <TOKEN>
 ));
 
-$request->setBody('<INSERT REQUEST BODY>');
+$request->setBody('<REQUEST BODY>');
 
 try {
   $response = $request->send();
@@ -105,9 +105,9 @@ url = URI("https://rest.tsheets.com/api/v1/users")
 http = Net::HTTP.new(url.host, url.port)
 
 request = Net::HTTP::Post.new(url)
-request["Authorization"] = 'Bearer <INSERT TOKEN>'
+request["Authorization"] = 'Bearer <TOKEN>'
 request["Content-Type"] = 'application/json'
-request.body = "<INSERT REQUEST BODY>"
+request.body = "<REQUEST BODY>"
 
 response = http.request(request)
 puts response.read_body
@@ -118,9 +118,9 @@ import requests
 
 url = "https://rest.tsheets.com/api/v1/users"
 
-payload = "<INSERT REQUEST BODY>"
+payload = "<REQUEST BODY>"
 headers = {
-    'Authorization': "Bearer <INSERT TOKEN>",
+    'Authorization': "Bearer <TOKEN>",
     'Content-Type': "application/json"
     }
 
@@ -143,11 +143,11 @@ func main() {
 
 	url := "https://rest.tsheets.com/api/v1/users"
 
-	payload := strings.NewReader("<INSERT REQUEST BODY>")
+	payload := strings.NewReader("<REQUEST BODY>")
 
 	req, _ := http.NewRequest("POST", url, payload)
 
-	req.Header.Add("Authorization", "Bearer <INSERT TOKEN>")
+	req.Header.Add("Authorization", "Bearer <TOKEN>")
 	req.Header.Add("Content-Type", "application/json")
 
 	res, _ := http.DefaultClient.Do(req)
@@ -343,30 +343,24 @@ func main() {
 }
 ```
 
-Add one or more users to your company.
+Add one or more users to your company.  The batch of users is passed as a JSON string in the body of the HTTP request.
 
 ### HTTP Request
 
-`POST https://rest.tsheets.com/api/v1/users`
+<api>POST https://rest.tsheets.com/api/v1/users</api>
 
-### HTTP Request Body
+### Properties
 
-The batch of users is passed as a JSON string in the body of the HTTP request.
+|                |             |
+| -------------: | ----------- |
+| **username**<br/>required | The value used by the user to login. |
+| **first_name**<br/>required | The user's given name. |
+| **last_name**<br/>required | The user's surname. |
 
-### Required Properties
-
-Name | Type | Description
----- | ---- | -----------
-`username` | _String_ | Username that will be used by the employee to log on to TSheets.
-`first_name` | _String_ | First name of the employee.
-`last_name` | _String_ | Last name of the employee.
-
-### Optional Properties
-
-For a full list of the properties that may be set on a user, see [the User object](#the-user-object).
+For a full list of properties that may be set on a user, see [the User object](#the-user-object).
 
 <aside class="notice">
-The maximum batch size is <i>50</i> users. If exceeded, a <code>413: Request entity too large</code> HTTP response will be returned.
+The maximum batch size is <i>50</i> items. If exceeded, a <code class="standout">413: Request entity too large</code> HTTP response will be returned.
 </aside>
 
 <aside class="notice">

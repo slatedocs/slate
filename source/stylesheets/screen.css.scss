@@ -400,6 +400,7 @@ html, body {
   }
 
   table {
+    width: 50%;
     margin-bottom: 1em;
     overflow: auto;
     th,td {
@@ -426,11 +427,11 @@ html, body {
     }
 
     tr:nth-child(odd)>td {
-      background-color: lighten($main-bg,4.2%);
+      background-color: $table-odd-row-bg;
     }
 
     tr:nth-child(even)>td {
-      background-color: lighten($main-bg,2.4%);
+      background-color: $table-even-row-bg;
     }
   }
 
@@ -451,12 +452,23 @@ html, body {
     max-width: 100%;
   }
 
+  api {
+    background-color: $table-even-row-bg;
+    padding: 7px;
+    @extend %break-words;
+    @extend %api-font;
+  }  
+
   code {
-    background-color: rgba(0,0,0,0.05);
+    background-color: transparent;
     padding: 3px;
     border-radius: 3px;
     @extend %break-words;
     @extend %code-font;
+
+    &.standout {
+      background-color: rgba(0,0,0,0.05);
+    }    
   }
 
   pre>code {

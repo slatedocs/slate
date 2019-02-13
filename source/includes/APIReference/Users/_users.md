@@ -18,7 +18,3 @@ data-postman-var-1="01861e468223de53ba7a"></div>
     left: 30px;
   }
 </style>
-<p/>
-
-Within TSheets, the _User_ (aka "employee") refers to anyone on your account, including yourself, your employees, managers, administrators, and vendors.  Time can be tracked against any user.  The API provides methods to Create, Read, and Update users and their permissions.  Set the `active` property _false_ to archive a user.
-
