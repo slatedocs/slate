@@ -17,6 +17,7 @@ Fix icon on browser tab
 Make sure POST and PUT are correct across all the samples
 Fix awkward language: "results are unfiltered with respect to any not provided."
 All comma-separated parameters should be type Int, not String
+Object examples in right-side code pane should just read "Example"
 
 Walkthroughs/Guides/References
 Section on supplemental_data
