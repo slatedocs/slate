@@ -33,6 +33,92 @@ opportunity_ids | integer[] | An array of unique identifiers of opportunity obje
 content | string | The string containing the content of the note.
 created_at | datetime | The string representing the time when the note was created.
 
+## Get all notes
+
+> Example Request
+
+```shell
+curl "https://api.affinity.co/notes" -u :<API-KEY>
+```
+> Example Response
+
+```json
+[
+  {
+    "id":22984,
+    "creator_id":860197,
+    "person_ids":[38706,89734],
+    "organization_ids":[64779194],
+    "opportunity_ids":[117],
+    "content":"Had a lunch meeting with Jane ... ",
+    "created_at":"2017-03-28 00:38:41 -0700"
+  },
+  {
+    "id":22983,
+    "creator_id":860196,
+    "person_ids":[],
+    "organization_ids":[64779194],
+    "opportunity_ids":[115],
+    "content":"Had a lunch meeting @ Google ... ",
+    "created_at":"2018-03-28 00:38:41 -0700"
+  },
+  ...
+]
+```
+
+`GET /notes`
+
+Returns all field values attached to a `person`, `organization`, `opportunity`.
+
+### Path Parameters
+
+Parameter | Type | Required | Description
+--------- | ------- | ---------- | -----------
+person_id | integer | false | A unique identifier that reperesents a Person that was tagged in the retrieved notes.
+organization_id | integer | false | A unique identifier that represents an Organization that was tagged in the retrieved notes.
+opportunity_id | integer | false | A unique identifier that represents an Opportunity that was tagged in the retrieved notes.
+creator_id | integer | false | A unique identifier that represents an Affinity user whose created notes should be retrieved.
+
+### Returns
+An array of all the note resources available to you.
+
+## Get a specific note
+
+> Example Request
+
+```shell
+# Returns the note with the specified `note_id`
+curl "https://api.affinity.co/notes/22984" -u :<API-KEY>
+```
+
+> Example Response
+
+```json
+{
+  "id":22984,
+  "creator_id":860197,
+  "person_ids":[38706,89734],
+  "organization_ids":[64779194],
+  "opportunity_ids":[117],
+  "content":"Had a lunch meeting with Jane ... ",
+  "created_at":"2017-03-28 00:38:41 -0700"
+},
+```
+
+`GET /notes/{note_id}`
+
+Gets the details for a specific note given the existing note id.
+
+### Path Parameters
+
+Parameter | Type | Required | Description
+--------- | ------- | ---------- | -----------
+note_id | integer | true | The unique identifier of the note object to be retrieved.
+
+### Returns
+The details of the note resource corresponding to the note id specified in the path
+parameter. An appropriate error is returned if an invalid note is supplied.
+
 ## Create a new note
 
 > Example Request
