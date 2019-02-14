@@ -205,7 +205,7 @@ Retrieves a list of all geofence configs, with optional filters to narrow down t
 
 ### HTTP Request
 
-<api>GET https://rest.tsheets.com/api/v1/geofence_configs</api>
+<img src="../../images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/geofence_configs</api>
 
 ### Parameters
 All parameters are **_optional_** and results are unfiltered with respect to any not provided.

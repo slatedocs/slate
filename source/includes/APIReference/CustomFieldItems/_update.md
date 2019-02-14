@@ -218,7 +218,7 @@ Update one or more customfielditems for a customfield.
 
 ### HTTP Request
 
-<api>PUT https://rest.tsheets.com/api/v1/customfielditems</api>
+<img src="../../images/put.png" alt="put"/><api>https://rest.tsheets.com/api/v1/customfielditems</api>
 
 ### HTTP Request Body
 

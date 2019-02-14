@@ -547,7 +547,7 @@ Retrieves a list of all users associated with your company, with optional filter
 
 ### HTTP Request
 
-<api>GET https://rest.tsheets.com/api/v1/users</api>
+<img src="../../images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/users</api>
 
 ### Parameters
 |                |             |

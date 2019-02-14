@@ -454,7 +454,9 @@ html, body {
 
   api {
     background-color: $table-even-row-bg;
-    padding: 7px;
+    position: relative;
+    top: -12px;
+    padding: 8px;
     @extend %break-words;
     @extend %api-font;
   }  
