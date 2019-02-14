@@ -157,6 +157,7 @@ curl https://app.procurementexpress.com/api/v1/bulk_datas
           "products"
         ]
       },
+      "has_unassigned_budgets": true,
       "tax_rates": [
         {
           "id": 1,
@@ -249,6 +250,10 @@ this information to build your pagination.
 
 `GET https://app.procurementexpress.com/api/v1/bulk_datas?synced_at=...&page=1`
 
+### About approval routing
+
+Read [Approval Routing Docs](https://github.com/rubberstamp/po-app/wiki/Rubberstamp-Approvals-Flow) for more information. In bulk_datas api endpoint response, each companies object will hold `has_unassigned_budgets` attribute, if it is true, then we should implement manual approval routing and if the value is false then it should be auto approval routing.
+
 ### Query Parameters
 
 | Param                | Type     | Description                                                       |
@@ -278,7 +283,6 @@ RestClient.post(
         company_id: 1,
         currency_id: 1,
         department_id:  1,
-        source: 'mobile_android',
         purchase_order_items_attributes: [
           {
             description: "hello",
@@ -306,7 +310,6 @@ curl 'https://app.procurementexpress.com/api/v1/purchase_orders/bulk_save'
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
   -H "app_company_id: 1"
-  -d "purchase_order[data][][source]=mobile_android"
   -d "purchase_order[data][][creator_id]=1"
   -d "purchase_order[data][][commit]=send"
   -d "purchase_order[data][][supplier_name]=John Doe"
@@ -338,11 +341,6 @@ In this api endpoint, you can pass multiple new purchase orders request at once,
 
 `commit` params will accept 2 values `send` and `draft`, default is `draft`. If you pass `send` as a value, it will create purchase order as pending, and send it for approval, otherwise it will be in draft state.
 
-### About source column
-
-Source column is used to determine what is the source of data, and it accept one of these
-four values `website`, `mobile_ios`, `mobile_android`, `mobile_other`. Default value is `website`.
-
 ### HTTP Request
 
 `POST https://app.procurementexpress.com/api/v1/purchase_orders/bulk_save`
@@ -354,7 +352,6 @@ four values `website`, `mobile_ios`, `mobile_android`, `mobile_other`. Default v
 | authentication_token                                                                                       | header  | required                                                           | Authentication Token                                       |
 | app_company_id                                                                                             | header  | required                                                           | Company ID                                                 |
 | commit                                                                                                     | string  | `Send` <br /> `Draft`                                              | Possible values are `Send` and `Draft`                     |
-| purchase_order[data][][source]                                                                             | string  | one of `website`, `mobile_android`, `mobile_ios` or `mobile_other` |
 | purchase_order[data][][supplier_name]                                                                      | string  | required                                                           | Supplier Name                                              |
 | purchase_order[data][][new_supplier_name]                                                                  | string  | optional                                                           | New Supplier Name                                          |
 | purchase_order[data][][department_id]                                                                      | integer | required                                                           | Department ID                                              |

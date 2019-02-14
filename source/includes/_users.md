@@ -14,7 +14,6 @@ curl 'https://app.procurementexpress.com/api/v1/register'
   -d "name=Api user"
   -d "phone_number=98xxxxxxxx"
   -d "terms_of_service=true"
-  -d "source=mobile_android"
 
 # Example With Tracking Info
 
@@ -49,8 +48,7 @@ RestClient.post(
     password_confirmation: 'pass1234',
     name: 'Api user',
     phone_number: '98xxxxxx',
-    terms_of_service: true,
-    source: 'mobile_android'
+    terms_of_service: true
   }
 )
 
@@ -108,11 +106,6 @@ with `authentication_token`.
 
 `terms_of_service` is a required field.
 
-### About source column
-
-Source column is used to determine what is the source of data, and it accept one of these
-four values `website`, `mobile_ios`, `mobile_android`, `mobile_other`. Default value is `website`.
-
 ### HTTP Request
 
 `POST https://app.procurementexpress.com/api/v1/register`
@@ -148,7 +141,6 @@ You can track each registration with [segment.io](https://segment.com) by passin
 | name                                   | string  | required | Your First Name and Last Name                                      |
 | phone_number                           | string  | required | Phone number                                                       |
 | terms_of_serivce                       | boolean | required | You must accept terms of service                                   |
-| source                                 | string  | optional | one of `website`, `mobile_android`, `mobile_ios` or `mobile_other` |
 | tracking_info[properties][uuid]        | header  | optional | Pass uuid to track                                                 |
 | tracking_info[properties][is_web-view] | header  | optional | `true` if user is using web browsers otherwise `false`             |
 | tracking_info[properties][is_ipad]     | header  | optional | `true` if user is using IPad otherwise `false`                     |

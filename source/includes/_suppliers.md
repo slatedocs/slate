@@ -12,8 +12,7 @@ RestClient.post(
       name: 'iCare Center',
       email: 'icare@example.com',
       address: '234 Saint St.',
-      notes: 'purchase iPhone 7',
-      source: 'mobile_android'
+      notes: 'purchase iPhone 7'
     }
   }
   headers = {
@@ -33,7 +32,6 @@ curl 'https://app.procurementexpress.com/api/v1/suppliers'
   -d "supplier[email]=icare@example.com"
   -d "supplier[address]=234 Saint St."
   -d "supplier[notes]=purchase iPhone 7"
-  -d "supplier[source]=mobile_android"
 ```
 
 > The above command returns JSON structured like this:
@@ -56,11 +54,6 @@ curl 'https://app.procurementexpress.com/api/v1/suppliers'
 
 Create a new suppliers and returns the `Supplier` object that is created.
 
-### About source column
-
-Source column is used to determine what is the source of data, and it accept one of these
-four values `website`, `mobile_ios`, `mobile_android`, `mobile_other`. Default value is `website`.
-
 ### HTTP Request
 
 `POST https://app.procurementexpress.com/api/v1/suppliers`
@@ -71,7 +64,6 @@ four values `website`, `mobile_ios`, `mobile_android`, `mobile_other`. Default v
 | ------------------------- | ------- | -------- | ------------------------------------------------------------------ |
 | authentication_token      | header  | required | Authentication token                                               |
 | app_company_id            | header  | required | Company ID                                                         |
-| supplier[source]          | string  | optional | one of `website`, `mobile_android`, `mobile_ios` or `mobile_other` |
 | supplier[name]            | string  | required | Supplier name must present and should be unique                    |
 | supplier[email]           | string  | optional | Email address                                                      |
 | supplier[address]         | string  | optional | Supplier address                                                   |

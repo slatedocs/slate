@@ -17,7 +17,6 @@ RestClient.post(
       company_id: 1,
       currency_id: 1,
       department_id:  1,
-      source: 'mobile_android',
       purchase_order_items_attributes: [
         {
           description: "hello",
@@ -44,7 +43,6 @@ curl 'https://app.procurementexpress.com/api/v1/purchase_orders'
   -H "authentication_token: your token"
   -H "app_company_id: 1"
   -d "commit=Send"
-  -d "purchase_order[source]=mobile_android"
   -d "purchase_order[creator_id]=1"
   -d "purchase_order[status]=draft"
   -d "purchase_order[supplier_name]=John Doe"
@@ -152,11 +150,6 @@ Create a new Purchase Order and return the `Purchase Order` object that is creat
 You need to pass `commit` param which accepts 2 values for now `Draft` and `Send`,
 these values will determine the status of the Purchase Order.
 
-### About source column
-
-Source column is used to determine what is the source of data, and it accept one of these
-four values `website`, `mobile_ios`, `mobile_android`, `mobile_other`. Default value is `website`.
-
 ### HTTP Request
 
 `POST https://app.procurementexpress.com/api/v1/purchase_orders`
@@ -168,7 +161,6 @@ four values `website`, `mobile_ios`, `mobile_android`, `mobile_other`. Default v
 | authentication_token                                                                               | header  | required                                                           | Authentication Token                                       |
 | app_company_id                                                                                     | header  | required                                                           | Company ID                                                 |
 | commit                                                                                             | string  | `Send` <br /> `Draft`                                              | Possible values are `Send` and `Draft`                     |
-| purchase_order[source]                                                                             | string  | one of `website`, `mobile_android`, `mobile_ios` or `mobile_other` |
 | purchase_order[supplier_name]                                                                      | string  | required                                                           | Supplier Name                                              |
 | purchase_order[new_supplier_name]                                                                  | string  | optional                                                           | New Supplier Name                                          |
 | purchase_order[department_id]                                                                      | integer | required                                                           | Department ID                                              |

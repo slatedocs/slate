@@ -10,7 +10,6 @@ RestClient.post(
   {
     company: {
       name: 'ABC Corp.',
-      source: 'website',
       gross_or_net_config: 1,
       company_setting_attributes: {
         currency_id: 1
@@ -29,7 +28,6 @@ curl 'https://app.procurementexpress.com/api/v1/companies'
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
   -d "company[name]=ABC Corp."
-  -d "company[source]=website"
   -d "company[gross_or_net_config]=1"
   -d "company[company_setting_attributes][currency_id]=1"
 ```
@@ -45,11 +43,6 @@ curl 'https://app.procurementexpress.com/api/v1/companies'
 
 Create a new Company and returns the `Company` object that is created.
 
-### About source column
-
-Source column is used to determine what is the source of data, and it accept one of these
-four values `website`, `mobile_ios`, `mobile_android`, `mobile_other`. Default value is `website`.
-
 ### HTTP Request
 
 `POST https://app.procurementexpress.com/api/v1/companies`
@@ -60,7 +53,6 @@ four values `website`, `mobile_ios`, `mobile_android`, `mobile_other`. Default v
 | ----------------------------------------------------------------------------------- | ------- | -------- | ------------------------------------------------------------------ |
 | authentication_token                                                                | header  | required | Authentication token                                               |
 | company[name]                                                                       | string  | required | `Required` - Company name                                          |
-| company[source]                                                                     | string  | optional | one of `website`, `mobile_ios`, `mobile_android` or `mobile_other` |
 | company[gross_or_net_config]                                                        | integer | optional | Gross or Net config                                                |
 | company[default_tax_rate]                                                           | double  | optional | Default TAX Rate                                                   |
 | company[supported_currency_ids]                                                     | Array[] | optional | Supported currency ids                                             |

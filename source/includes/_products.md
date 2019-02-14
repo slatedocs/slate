@@ -12,8 +12,7 @@ RestClient.post(
       description: '1 IPad Charging Station',
       sku: 'SKU-001',
       unit_price: 44.23,
-      supplier_id: 1,
-      source: 'mobile_android'
+      supplier_id: 1
     }
   },
   headers = {
@@ -33,7 +32,6 @@ curl 'https://app.procurementexpress.com/api/v1/products'
   -d "product[sku]=SKU-001"
   -d "product[unit_price]=44.23"
   -d "product[supplier_id]=1"
-  -d "product[source]=mobile_android"
 ```
 
 > The above command returns JSON structured like this:
@@ -52,11 +50,6 @@ curl 'https://app.procurementexpress.com/api/v1/products'
 
 Create a new products and returns the `Product` object that is created.
 
-### About source column
-
-Source column is used to determine what is the source of data, and it accept one of these
-four values `website`, `mobile_ios`, `mobile_android`, `mobile_other`. Default value is `website`.
-
 ### HTTP Request
 
 `POST https://app.procurementexpress.com/api/v1/products`
@@ -71,7 +64,6 @@ four values `website`, `mobile_ios`, `mobile_android`, `mobile_other`. Default v
 | product[sku]         | string  | optional | Product Stock Keeping Unit (sku)                                   |
 | product[unit_price]  | decimal | optional | Product Unit Price                                                 |
 | product[supplier_id] | integer | optional | Supplier ID                                                        |
-| product[source]      | string  | optional | one of `website`, `mobile_android`, `mobile_ios` or `mobile_other` |
 
 ## Get all Products
 

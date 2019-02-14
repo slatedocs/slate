@@ -9,7 +9,6 @@ RestClient.post(
   'https://app.procurementexpress.com/api/v1/budgets',
   {
     budget: {
-      source: 'mobile_android'
       amount: 100.0,
       name: 'Test',
       currency_id: 1,
@@ -32,7 +31,6 @@ curl https://app.procurementexpress.com/api/v1/budgets
   -H "Content-Type: application/json"
   -H "authentication_token: your token"
   -H "app_company_id: 1"
-  -d "budget[source]=mobile_android"
   -d "budget[amount]=100.0"
   -d "budget[name]=Test"
   -d "budget[currency_id]=1"
@@ -82,11 +80,6 @@ Because we support multiple date formats, we need to send dates depending on
 `company_setting.date_format`. In this API endpoint, you need to provide proper
 date format for `start_date` and `end_date`. Please find date format in [Company Setting](/slate/#get-a-specific-company)
 
-### About source column
-
-Source column is used to determine what is the source of data, and it accept one of these
-four values `website`, `mobile_ios`, `mobile_android`, `mobile_other`. Default value is `website`.
-
 ### HTTP Request
 
 `POST https://app.procurementexpress.com/api/v1/budgets`
@@ -108,7 +101,6 @@ four values `website`, `mobile_ios`, `mobile_android`, `mobile_other`. Default v
 | budget[end_date]                     | date    | optional | Budget end date                                                    |
 | budget[approver_ids]                 | Array   | optional | Array of approver ids                                              |
 | budget[department_ids]               | Array   | optional | Array of department ids                                            |
-| budget[source]                       | string  | optional | one of `website`, `mobile_android`, `mobile_ios` or `mobile_other` |
 
 ## GET All Budgets
 
