@@ -296,7 +296,7 @@ Update one or more users in your company.  The batch of user updates is passed a
 
 ### HTTP Request
 
-<api>PUT https://rest.tsheets.com/api/v1/users</api>
+<img src="../../images/put.png" alt="put"/><api>https://rest.tsheets.com/api/v1/users</api>
 
 
 ### Properties

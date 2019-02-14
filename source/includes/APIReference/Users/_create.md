@@ -347,7 +347,7 @@ Add one or more users to your company.  The batch of users is passed as a JSON s
 
 ### HTTP Request
 
-<api>POST https://rest.tsheets.com/api/v1/users</api>
+<img src="../../images/post.png" alt="post"/><api>https://rest.tsheets.com/api/v1/users</api>
 
 ### Properties
 

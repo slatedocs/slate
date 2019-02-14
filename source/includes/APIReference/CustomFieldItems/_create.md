@@ -213,7 +213,7 @@ Add one or more customfielditems to a customfield.
 
 ### HTTP Request
 
-<api>POST https://rest.tsheets.com/api/v1/customfielditems</api>
+<img src="../../images/post.png" alt="post"/><api>https://rest.tsheets.com/api/v1/customfielditems</api>
 
 ### HTTP Request Body
 

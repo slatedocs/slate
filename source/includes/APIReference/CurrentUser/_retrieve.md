@@ -263,7 +263,7 @@ Retrieves the user object for the currently authenticated user. This is the user
 
 ### HTTP Request
 
-<api>`GET https://rest.tsheets.com/api/v1/current_user`</api>
+<img src="../../images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/current_user</api>
 
 ### Parameters
 _None_

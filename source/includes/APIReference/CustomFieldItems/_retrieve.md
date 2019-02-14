@@ -586,7 +586,7 @@ Retrieves a list of all customfielditems associated with a customfield, with opt
 
 ### HTTP Request
 
-<api>GET https://rest.tsheets.com/api/v1/customfielditems`</api>
+<img src="../../images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/customfielditems</api>
 
 ### Parameters
 

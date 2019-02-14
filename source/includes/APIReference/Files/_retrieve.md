@@ -375,7 +375,7 @@ Retrieves a list of all uploaded files, with optional filters to narrow down the
 
 ### HTTP Request
 
-<api>GET https://rest.tsheets.com/api/v1/customfields</api>
+<img src="../../images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/customfields</api>
 
 ### Query Parameters
  * All parameters are **_optional_** and results are unfiltered with respect to any not provided.
