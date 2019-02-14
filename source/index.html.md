@@ -108,7 +108,7 @@ includes:
   - APIReference/Timesheets/delete          
 
   - APIReference/TimesheetsDeleted/timesheets_deleted
-  - APIReference/Timesheets/retrieve
+  - APIReference/TimesheetsDeleted/retrieve
 
   - APIReference/Users/users
   - APIReference/Users/retrieve
