@@ -551,6 +551,7 @@ import { Lnd, Sockets } from "sb-api"
 
 const ln = await Lnd()
 const refundInvoice = await ln.receive()
+const exchangeSocket = await Sockets.exchange(ln)
 const sub = await exchangeSocket.books({
   duration: 10000,
   exchange: "bitfinex",
@@ -588,6 +589,7 @@ import { Lnd, Sockets } from "sb-api"
 
 const ln = await Lnd()
 const refundInvoice = await ln.receive()
+const exchangeSocket = await Sockets.exchange(ln)
 const sub = await exchangeSocket.books({
   duration: 10000,
   exchange: "bitfinex",
@@ -635,6 +637,7 @@ import { Lnd, Sockets } from "sb-api"
 
 const ln = await Lnd()
 const refundInvoice = await ln.receive()
+const exchangeSocket = await Sockets.exchange(ln)
 const tickersSub = await exchangeSocket.tickers({
   duration: 10000,
   exchange: "binance",
@@ -829,6 +832,7 @@ import { Lnd, Sockets } from "sb-api"
 
 const ln = await Lnd()
 const refundInvoice = await ln.receive()
+const exchangeSocket = await Sockets.exchange(ln)
 const tickersSub = await exchangeSocket.trades({
   duration: 10000,
   exchange: "gemini",
@@ -974,6 +978,7 @@ import { Lnd, Sockets } from "sb-api"
 
 const ln = await Lnd()
 const refundInvoice = await ln.receive()
+const exchangeSocket = await Sockets.exchange(ln)
 const tickersSub = await exchangeSocket.trades({
   duration: 10000,
   exchange: "bitfinex",
