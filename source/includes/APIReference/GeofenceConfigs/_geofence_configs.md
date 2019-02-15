@@ -25,6 +25,6 @@
 | **active**<br/>read-write | _Boolean_ | If true, this geofence config is active. If false, this geofence config is archived. |
 | **enabled**<br/>read-write | _Boolean_ | Indicates whether a geofence for the associated entity should be enabled. |
 | **radius**<br/>read-write | _Int_ | Configures the size of the geofence. |
-| **last_modified**<br/>read-only | _String_ | Date/time when this geofence config was last modified, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
-| **created**<br/>read-only | _String_ | Date/time when this geofence config was created, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
+| **last_modified**<br/>read-only | _String_ | Date/time when this geofence config was last modified, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`). |
+| **created**<br/>read-only | _String_ | Date/time when this geofence config was created, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`). |
 

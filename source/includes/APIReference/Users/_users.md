@@ -124,7 +124,7 @@ The rights assignable to an individual user. All properties are _read-write_, an
 | **view_my_schedules** | false | Able to view published events within the schedule for themselves. |
 
  <aside class="notice">
-The <code>submitted_to</code> and <code>approved_to</code> properties required the <i>approvals addon</i> to be installed.
+The <code>submitted_to</code> and <code>approved_to</code> properties require the <i>Approvals Add-On</i> to be installed.
 </aside>
 
  <aside class="notice">

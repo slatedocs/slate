@@ -19,8 +19,8 @@
 | **label**<br/>read-only | _String_ | The formated name for the location. If the location was found using the geocode service the formated address will be saved in this field, otherwise it will be what the user has named the location. |
 | **notes**<br/>read-write | _String_ | Notes related to the location |
 | **geocoding_status**<br/>read-only | _String_ | The geocoding status of this address. Will be one of: `none`, `in_progress`, `retry`, `error`, or `complete`. |
-| **last_modified**<br/>read-only | _String_ | Date/time when this jobcode assignment was last modified, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`) |
-| **created**<br/>read-only | _String_ | Date/time when this jobcode assignment was created, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`) |
+| **last_modified**<br/>read-only | _String_ | Date/time when this jobcode assignment was last modified, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`) |
+| **created**<br/>read-only | _String_ | Date/time when this jobcode assignment was created, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`) |
 | **linked_objects**<br/>read-only | _Object_ | A key/value map of all the objects linked to this location and the corresponding object ids. |
 | **geofence_config_id**<br/>read-only | _Int_ | Id of the `geofence_config` associated with this location. |
 
