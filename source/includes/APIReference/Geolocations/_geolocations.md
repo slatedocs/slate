@@ -14,7 +14,5 @@
 | **heading**<br/>read-write | _Int_ | The heading of the geolocation (in degrees) |
 | **source**<br/>read-write | _String_ | The source by which the geolocation was obtained.  Can be `gps`, `wifi`, or `cell` |
 | **device_identifier**<br/>read-write | _String_ | Unique identifier for the device associated with this geolocation |
-| **created**<br/>read-only | _String_ | Date/time when this geolocation was created, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`) |
-
-
+| **created**<br/>read-only | _String_ | Date/time when this geolocation was created, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`) |
 

@@ -2,3 +2,95 @@
  
 ## The Schedule Event Object
 
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **id**<br/>read-only | _Int_ | Id of the event. |
+| **schedule_calendar_id**<br/>read-write | _Int_ | Id of the calendar that contains this event. |
+| **start**<br/>read-write | _String_ | Date/time that represents the start time of this schedule event, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`) |
+| **end**<br/>read-write | _String_ | Date/time that represents the end time of this schedule event, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`) |
+| **all_day**<br/>read-write | _Boolean_ | If true, the event duration is all day on the day specified in start. If false, the event duration is determined by date/time specified in end. |
+| **user_id**<br/>read-only | _Int_ | Id of the user that this event belongs to. |
+| **unassigned**<br/>read-only | _Boolean_ | If true, this event is unassigned. If false, the event is assigned to the user specified in `user_id`. |
+| **assigned_user_ids**<br/>read-write | _Int[]_ | Ids of the user(s) assigned to this event. Empty array if the event is unassigned. Changing the assigned user IDs of an event may result in multiple event modifications. Check for a `201` status code and the supplemental data portion of the response for additional event modifications. |
+| **jobcode_id**<br/>read-write | _Int_ | Id of the jobcode associated with this event. |
+| **active**<br/>read-write | _Boolean_ | If true, the event is active. If false, the event has been deleted/archived. |
+| **draft**<br/>read-write | _Boolean_ | If true, the event is a draft. If false, the event is published. Saving a published event will send the appropriate event published notifications to the assigned users. |
+| **timezone**<br/>read-write | _String_ | Timezone of the schedule event. (i.e. America/Denver) |
+| **title**<br/>read-write | _String_ | Title or name of this event. |
+| **notes**<br/>read-write | _String_ | Notes associated with the event. |
+| **location**<br/>read-write | _String_ | Location of the event. Location can be an address, business name, GPS coordinate, etc., so when users click on the location it will open it up in their mapping application. |
+| **color**<br/>read-write | _String_ | Hex color code assigned to this schedule event. See the table below for a list of valid hex color codes. |
+| **customfields**<br/>read-write | _JSON Object_ | Only present if the Advanced Tracking Add-on is installed. This is a key / value map of customfield ids to the customfield items that are associated with the event. |
+| **last_modified**<br/>read-only | _String_ | Date/time when this schedule event was last modified, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`) |
+| **created**<br/>read-only | _String_ | Date/time when this schedule event was created, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`) |
+
+ <aside class="warning">
+ The following fields are <i><b>deprecated</b></i> and will be removed from a future release: <code>user_id</code> & <code>unassigned</code>.  New applications should use <code>assigned_user_ids</code>.
+ </aside>
+
+### Valid Schedule Event Colors
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg th{font-family:Arial, sans-serif;color:#EEEEEE;font-size:13px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:3px;overflow:hidden;word-break:normal;}
+.tg .tg-dftd{background-color:#888888;border-color:#f8f8fa;text-align:center;vertical-align:top}
+.tg .tg-jpjs{background-color:#cdc8a2;border-color:#f8f8fa;text-align:center;vertical-align:top}
+.tg .tg-uogh{background-color:#827717;border-color:#f8f8fa;text-align:center;vertical-align:top}
+.tg .tg-lbn2{background-color:#009688;border-color:#f8f8fa;text-align:center;vertical-align:top}
+.tg .tg-ytsj{background-color:#78909c;border-color:#f8f8fa;text-align:center;vertical-align:top}
+.tg .tg-889i{background-color:#785548;border-color:#f8f8fa;text-align:center;vertical-align:top}
+.tg .tg-yf6p{background-color:#bf1959;border-color:#f8f8fa;text-align:center;vertical-align:top}
+.tg .tg-9856{background-color:#2196f3;border-color:#f8f8fa;text-align:center;vertical-align:top}
+.tg .tg-pckd{background-color:#d7a8df;border-color:#f8f8fa;text-align:center;vertical-align:top}
+.tg .tg-qvnv{background-color:#486b7a;border-color:#f8f8fa;text-align:center;vertical-align:top}
+.tg .tg-hr5h{background-color:#673ab7;border-color:#f8f8fa;text-align:center;vertical-align:top}
+.tg .tg-s9vl{background-color:#f44336;border-color:#f8f8fa;text-align:center;vertical-align:top}
+.tg .tg-c3cy{background-color:#43a047;border-color:#f8f8fa;text-align:center;vertical-align:top}
+.tg .tg-qjki{background-color:#a6d5fa;border-color:#f8f8fa;text-align:center;vertical-align:top}
+.tg .tg-bk2l{background-color:#8a2731;border-color:#f8f8fa;text-align:center;vertical-align:top}
+.tg .tg-rxjo{background-color:#010101;border-color:#f8f8fa;text-align:center;vertical-align:top}
+.tg .tg-eh3n{background-color:#3f51b5;border-color:#f8f8fa;text-align:center;vertical-align:top}
+.tg .tg-ufl3{background-color:#6a5e72;border-color:#f8f8fa;text-align:center;vertical-align:top}
+.tg .tg-79iu{background-color:#b3d9b5;border-color:#f8f8fa;text-align:center;vertical-align:top}
+.tg .tg-pa18{background-color:#f8c499;border-color:#f8f8fa;text-align:center;vertical-align:top}
+.tg .tg-r4vz{background-color:#fab3ae;border-color:#f8f8fa;text-align:center;vertical-align:top}
+.tg .tg-kd0h{background-color:#ef6c00;border-color:#f8f8fa;text-align:center;vertical-align:top}
+.tg .tg-db1m{background-color:#e91e63;border-color:#f8f8fa;text-align:center;vertical-align:top}
+.tg .tg-6loy{background-color:#9c27b0;border-color:#f8f8fa;text-align:center;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+	<th class="tg-r4vz">Light Red<br/>#FAB3AE</th>  	
+    <th class="tg-s9vl">Red<br/>#F44336</th>
+    <th class="tg-pa18">Light Orange<br/>#F8C499</th>
+    <th class="tg-yf6p">Beet<br/>#BF1959</th>
+    <th class="tg-db1m">Pink<br/>#E91E63</th>
+    <th class="tg-bk2l">Crimson<br/>#8A2731</th>
+  </tr>
+  <tr>
+    <th class="tg-dftd">Grey<br/>#888888</th>
+    <th class="tg-79iu">Light Green<br/>#B3D9B5</th>
+    <th class="tg-c3cy">Green<br/>#43A047</th>
+    <th class="tg-lbn2">Teal<br/>#009688</th>
+    <th class="tg-qvnv">Slate<br/>#486B7A</th>
+    <th class="tg-ytsj">Blue Grey<br/>#78909C</th>
+  </tr>
+  <tr>
+    <th class="tg-qjki">Light Blue<br/>#A6D5FA</th>
+    <th class="tg-9856">Blue<br/>#2196F3</th>
+    <th class="tg-eh3n">Indigo<br/>#3F51B5</th>
+    <th class="tg-hr5h">Deep Purple<br/>#673AB7</th>
+    <th class="tg-pckd">Light Purple<br/>#D7A8DF</th>
+    <th class="tg-6loy">Purple<br/>#9C27B0</th>
+  </tr>
+  <tr>
+    <th class="tg-rxjo">Black<br/>#010101</th>
+    <th class="tg-889i">Brown<br/>#785548</th>
+    <th class="tg-kd0h">Orange<br/>#EF6C00</th>
+    <th class="tg-jpjs">Light Olive<br/>#CDC8A2</th>
+    <th class="tg-uogh">Olive<br/>#827717</th>
+    <th class="tg-ufl3">Bloomy Plum<br/>#6A5E72</th>
+  </tr>
+</table>
+
+

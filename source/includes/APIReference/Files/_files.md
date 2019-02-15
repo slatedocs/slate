@@ -33,8 +33,8 @@
 | **uploaded_by_user_id**<br/>read-only | _Int_ | Id of the user who uploaded the file |
 | **active**<br/>read-only | _Boolean_ | If false, this file is considered deleted. |
 | **size**<br/>read-only | _Int_ | Size of the file in bytes |
-| **created**<br/>read-only | _String_ | Date/time when this customfield was created, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
-| **last_modified**<br/>read-only | _String_ | Date/time when this customfield was last modified, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
+| **created**<br/>read-only | _String_ | Date/time when this customfield was created, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`). |
+| **last_modified**<br/>read-only | _String_ | Date/time when this customfield was last modified, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`). |
 | **linked_objects**<br/>read-only | _Object_ | This is a key/value map of all the objects linked to this file and the corresponding object ids. |
 | **meta_data**<br/>read-write | _Object_ | This is a key/value map of any additional data associated with this file. List of allowed keys |
 
