@@ -27,12 +27,12 @@ We can track source for given models. This will help us identify which device ha
 
 `app_source` header params needs to be pass to set source for those models, and it will accept one of given values
 
-| source value           | comment                         |
-| ---------------------- | ------------------------------- |
-| website                | default value                   |
-| mobile_ios             | ios device                      |
-| mobile_android         | android device                  |
-| mobile_other           | other mobile devices            |
-| mobile_android_offline | android device but offline mode |
-| mobile_ios_offline     | ios device but offline mode     |
-| push_cart              | Push Cart chrome extension      |
+| Database value | source value           | comment                         |
+| -------------- | ---------------------- | ------------------------------- |
+| 0              | website                | default value                   |
+| 1              | mobile_ios             | ios device                      |
+| 2              | mobile_android         | android device                  |
+| 3              | mobile_other           | other mobile devices            |
+| 4              | mobile_android_offline | android device but offline mode |
+| 5              | mobile_ios_offline     | ios device but offline mode     |
+| 6              | push_cart              | Push Cart chrome extension      |
