@@ -3,12 +3,12 @@
 title: SILA API Documentation
 
 language_tabs: 
+   - json
    - shell
    - javascript
 
 toc_footers: 
    - <a href='#'>Sign Up for a Developer Key</a> 
-   - <a href='https://github.com/lavkumarv'>Documentation Powered by lav</a> 
 
 includes: 
    - errors 
@@ -19,17 +19,20 @@ search: true
 
 # Introduction 
 
-**Version:** 2018-11-27X 
+**Version:** 0.1.1
 
-Welcome to the Sila API! This API gives you the ability to manage sila accounts and transactions directly from your applications.
+Welcome to the Sila API! 
 
-We have language bindings for cURL and Node.js.
+Within weeks, you should be able to integrate know-your-customer, bank account linking, and tokenized money transfers into your application. We're excited to see what you build.
+
+# Flow
 
 # Authentication
 
+```json
+```
+
 ```shell
-test
-generate signature
 ```
 
 ```javascript
@@ -64,11 +67,53 @@ Use these examples to generate a signature for the following message: `{ test: '
 
 <aside class="notice">Replace `'PRIVATE_KEY'` with your private key</aside>
 
-# /PROTECTEDAPPROVED
-## ***POST*** 
+# Endpoints
+
+## /check_handle
+
+*Checks if a specific handle is already taken.*
+
+A "handle" works like a username in the Sila ecosystem. If an entity has already been created with that handle, it will respond with an error that says the handle is already in use, and the entity will fail to be created.
+
+**/check_handle** makes sure that the handle you or your user is thinking of using does indeed exist.
+
+```json
+{
+  "header": {
+    "created": 1234567890,
+    "auth_handle": "handle.silamoney.eth",
+    "user_handle": "user.silamoney.eth",
+    "version": "v1_1",
+    "crypto": "ETH",
+    "reference": "ref"
+  },
+  "message": "header_msg"
+}
+```
+
+### Request Body
+
+| Key | Type | Description | Required |
+| --- | ---- | ----------- | -------- |
+| `header` | object | This object is required in every call. The information it includes is used to verify the signature. | true |
+| `header.created` | integer | Epoch time that the API call was started (in nanoseconds). | true |
+| `header.auth_handle` | string | This is the superuser handle that is calling the API on behalf of the user. This superuser must have been used to create the user_handle or the call will fail. | true |
+| `header.user_handle` | string | This is the user handle for whom the call is being done. | true |
+
+
+
+### Responses
+
+|  Status Code | Description |
+| ---- | ----------- |
+| 200 | 200 response |
+
+## /create_entity
+
+This is the endpoint you will use to create a new user.
 
 ### HTTP Request 
-`***POST*** /protectedapproved` 
+`POST /create_entity` 
 
 **Responses**
 
@@ -76,97 +121,12 @@ Use these examples to generate a signature for the following message: `{ test: '
 | ---- | ----------- |
 | 200 | 200 response |
 
-# /GETVENDORDATA
-## ***POST*** 
-
-**Summary:** Creates a vendor-specific entry for specialized purposes, such as a Synapse validation key
-
-### HTTP Request 
-`***POST*** /getvendordata` 
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | 200 response |
-
-# /ADDIDENTITY
-## ***POST*** 
-
-**Summary:** Add a new national identifier such as Social Security Number
-
-### HTTP Request 
-`***POST*** /addidentity` 
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | 200 response |
-
-# /CHECKTRANSACTION
-## ***POST*** 
-
-**Summary:** Verify a transaction
-
-### HTTP Request 
-`***POST*** /checktransaction` 
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | 200 response |
-
-# /ADDCRYPTO
-## ***POST*** 
-
-**Summary:** Add an ethereum public key to an existing user
-
-### HTTP Request 
-`***POST*** /addcrypto` 
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | 200 response |
-
-# /CREATEENTITY
-## ***POST*** 
-
-**Summary:** Creates a new entity (user, developer, vendor, organization)
-
-### HTTP Request 
-`***POST*** /createentity` 
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | 200 response |
-
-# /CHECKHANDLE
-## ***POST*** 
-
-**Summary:** Check if a specific handle is already taken
-
-### HTTP Request 
-`***POST*** /checkhandle` 
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | 200 response |
-
-# /LINKACCOUNT
-## ***POST*** 
+## /link_account
 
 **Summary:** Link Account message from Plaid
 
 ### HTTP Request 
-`***POST*** /linkaccount` 
+`***POST*** /link_account` 
 
 **Responses**
 
@@ -174,28 +134,12 @@ Use these examples to generate a signature for the following message: `{ test: '
 | ---- | ----------- |
 | 200 | 200 response |
 
-# /VERIFYACCOUNT
-## ***POST*** 
-
-**Summary:** Verify a new account by executing two small transactions
-
-### HTTP Request 
-`***POST*** /verifyaccount` 
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | 200 response |
-
-# /issuesila
-
-## ***POST*** 
+## /issue_sila
 
 **Summary:** Issue an amount of sila currency to a user
 
 ### HTTP Request 
-`***POST*** /issuesila`
+`***POST*** /issue_sila`
 
 
 ```shell
@@ -204,15 +148,14 @@ Use these examples to generate a signature for the following message: `{ test: '
 
 ```javascript
 var message = {
-  "amount": 120, // Amount in sila
+  "amount": 120, // Amount in Sila
   "account_name": "default", // Linked account name
   "header": {
-    "reference": "00000000-0000-0000-0000-000000000000",
-    "created": "2017-09-29T21:40:07Z",
+    "reference": "your-reference-string-here",
+    "created": 1550171834,
     "handle": "test.silamoney.eth", // User handle
-    "version": "v1_0",
+    "version": "v1_1",
     "crypto": "ETH",
-    'signature': "SIGNATURE_STRING" // Signature
   },
   "message": "issue_msg"
 }
@@ -227,13 +170,12 @@ var message = {
 
 See the [Authentication](#authentication) section for details on generating the SIGNATURE_STRING
 
-# /TRANSFERSILA
-## ***POST*** 
+## /transfer_sila
 
 **Summary:** Transfer an amount of sila currency from one user to another user
 
 ### HTTP Request 
-`***POST*** /transfersila` 
+`***POST*** /transfer_sila` 
 
 **Responses**
 
@@ -241,13 +183,12 @@ See the [Authentication](#authentication) section for details on generating the 
 | ---- | ----------- |
 | 200 | 200 response |
 
-# /REDEEMSILA
-## ***POST*** 
+## /redeem_sila
 
 **Summary:** Redeem an amount of sila currency for dollars
 
 ### HTTP Request 
-`***POST*** /redeemsila` 
+`***POST*** /redeem_sila` 
 
 **Responses**
 
