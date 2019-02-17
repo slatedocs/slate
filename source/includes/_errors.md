@@ -1,4 +1,4 @@
-# Errors
+# Default Errors
 
 The Tier API uses the following error codes:
 
