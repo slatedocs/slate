@@ -4,7 +4,7 @@
 ## Get state of my current customer
 
 ```shell
-curl "https://api.tier-services.io/customer"
+curl "https://platform.tier-services.io/customer"
   -H "x-api-key: TIER API KEY"
 ```
 
@@ -22,4 +22,4 @@ The customer endpoints using JWT for authentication
 
 ### HTTP Request
 
-`GET https://api.tier-services.io/customer`
+`GET https://platform.tier-services.io/customer`

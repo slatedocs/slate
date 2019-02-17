@@ -4,7 +4,7 @@
 ## Get All Vehicles
 
 ```shell
-curl "https://api.tier-services.io/vehicle"
+curl "https://platform.tier-services.io/vehicle"
   -H "x-api-key: TIER API KEY"
 ```
 
@@ -19,28 +19,27 @@ curl "https://api.tier-services.io/vehicle"
   "data": [
     {
       "id": "5abfe41d-1e41-41bc-ae02-eb5f7240b30d",
-      "state": "ACTIVE",
-      "city": "VIENNA",
       "lastLocationUpdate": "2019-02-09T21:14:27Z",
       "lastStateChange": "2019-02-09T21:01:29Z",
       "batteryLevel": 64,
       "licencePlate": "11456",
-      "vehicleNumber": "N2LSF1837C1370",
       "lat": 48.19821,
       "lng": 16.381173,
       "isUnlocked": false,
       "maxSpeed": 18,
-      "zoneId": "BERLIN"
+      "zoneId": "BERLIN",
+      "code": "11942"
     }
   ]
 }
 ```
 
-This endpoint retrieves all the vehicles.
+This endpoint retrieves all the vehicles, which are currently available for rent or are 
+currently in an active rent if `isUnlocked` is `true`. The `code` is also provided 
 
 ### HTTP Request
 
-`GET https://api.tier-services.io/vehicle`
+`GET https://platform.tier-services.io/vehicle`
 
 ### Query Parameters
 

@@ -4,7 +4,7 @@
 ## Get All Zones
 
 ```shell
-curl "https://api.tier-services.io/zone"
+curl "https://platform.tier-services.io/zone"
   -H "x-api-key: TIER API KEY"
 ```
 
@@ -16,7 +16,14 @@ curl "https://api.tier-services.io/zone"
 		"lastTimeUpdated": "2019-02-09T22:38:46+00:00",
 		"definition": {
 			"lat": 52.5200,
-			"lng": 13.405
+			"lng": 13.405,
+			"country": "DE",
+			"currency": "EUR",
+			"fair": {
+			  "perMinute": 1,
+			  "perKilometer": 0,
+			  "perUnlock": 1
+			}
 		},
 		"zone": "BERLIN",
 		"businessZones": [{
@@ -77,7 +84,7 @@ or by automatisms. It is yet essential to inform anyone about those areas to pro
 
 ### HTTP Request
 
-`GET https://api.tier-services.io/zone`
+`GET https://platform.tier-services.io/zone`
 
 ### Query Parameters
 

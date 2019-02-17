@@ -12,6 +12,7 @@ includes:
   - zones
   - vehicles
   - customers
+  - rental
   - errors
 
 search: true
