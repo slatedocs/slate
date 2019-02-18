@@ -215,7 +215,7 @@
 <!-- End Appzi -->
 </head>
 
-  <body class="index" data-languages="[&quot;json&quot;]">
+  <body class="index" data-languages="[&quot;json&quot;,&quot;javascript&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -226,6 +226,7 @@
       <img src="./assets/images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
               <a href="#" data-language-name="json">json</a>
+              <a href="#" data-language-name="javascript">javascript</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -240,6 +241,9 @@
                   </li>
                   <li>
                     <a href="#background-resources" class="toc-h2 toc-link" data-title="background-resources">Background Resources</a>
+                  </li>
+                  <li>
+                    <a href="#recommended-client-library" class="toc-h2 toc-link" data-title="recommended-client-library">Recommended Client Library</a>
                   </li>
                   <li>
                     <a href="#mainnet-node-paid" class="toc-h2 toc-link" data-title="mainnet-node-paid">Mainnet Node (paid)</a>
@@ -348,11 +352,11 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='lightning-api-v0-beta-documentation'>Lightning API v0 Beta Documentation</h1><h2 id='connect-with-us'>Connect With Us</h2>
-<p>Follow us on twitter <a href="https://twitter.com/SuredBits">@Suredbits</a></p>
+<p>Follow us on twitter <a href="https://twitter.com/Suredbits">@Suredbits</a></p>
 
 <p>We invite you to join our Slack channel <a href="https://join.slack.com/t/suredbits/shared_invite/enQtNDEyMjY3MTg1MTg3LTYyYjkwOGUzMDQ4NDAwZjE1M2I3MmQyNWNlZjNlYjg4OGRjYTRjNWUwNjRjNjg4Y2NjZjAxYjU1N2JjMTU1YWM">Suredbits Slack</a></p>
 <h2 id='background-resources'>Background Resources</h2>
-<p>Thank you and welcome to SuredBits&#39; Lightning App API documentation. This API allows you to query our NFL, NBA and Crypto Exchange data. Our NFL and NBA APIs offer multiple channels including teams, players, games, scores, and statistics.  Our Crypto Exchange API allows you to stream data on Trades, Tickers and Order Books. </p>
+<p>Thank you and welcome to Suredbits&#39; Lightning App API documentation. This API allows you to query our NFL, NBA and Crypto Exchange data. Our NFL and NBA APIs offer multiple channels including teams, players, games, scores, and statistics.  Our Crypto Exchange API allows you to stream data on Trades, Tickers and Order Books. </p>
 
 <p>We are currently focused primarily on developers already familiar with Bitcoin and know Lightning or are interested in building apps using the Lightning protocol. However, if you are just starting out in cryptocurrency development, we have included some helpful links below.</p>
 
@@ -366,20 +370,23 @@
 <li><a href="https://lightning.network/lightning-network-paper.pdf">Lightning Whitepaper</a></li>
 <li><a href="https://www.youtube.com/watch?v=l1si5ZWLgy0">Introduction to Bitcoin</a></li>
 </ol>
+<h2 id='recommended-client-library'>Recommended Client Library</h2>
+<p>We recommend using our custom <a href="https://github.com/suredbits/sb-api"> Javascript Client Library</a> for interacting with our API services. It supports all major implementations of the Lightning protocol: lnd, c-lightning and eclair.   </p>
 <h2 id='mainnet-node-paid'>Mainnet Node (paid)</h2>
 <p>In order to access our paid API service, you will need to connect to our lightning node via your preferred lightning client.  </p>
 
 <p>Our paid service offers complete coverage for all channels, endpoints and fields .  </p>
 
-<p>The Lightning Node url for our paid service is: <span style="color: blue"> 038bdb5538a4e415c42f8fb09750729752c1a1800d321f4bb056a9f582569fbf8e@ln.suredbits.com </span></p>
+<p>The Lightning Node URL for our paid service is: 
+<span style="color: blue"><code style="word-wrap: break-word;"> 038bdb5538a4e415c42f8fb09750729752c1a1800d321f4bb056a9f582569fbf8e@ln.suredbits.com </code></span></p>
 
 <h2 id="Testnet"> Testnet Node (free) </h2>
 
 <p>In order to access our free API service, you will need to connect to our lightning node via your preferred lightning client.   </p>
 
-<p>The Lightning Node url for our testnet service is:</p>
+<p>The Lightning Node URL for our testnet service is:</p>
 
-<p><span style="color:blue"> 0338f57e4e20abf4d5c86b71b59e995ce4378e373b021a7b6f41dabb42d3aad069@ln.test.suredbits.com </span></p>
+<p><span style="color:blue"><code style="word-wrap: break-word;" > 0338f57e4e20abf4d5c86b71b59e995ce4378e373b021a7b6f41dabb42d3aad069@ln.test.suredbits.com </code></span></p>
 
 <p>We provide a number of free data endpoints so users can experiment and learn the structure of our Lightning API service. To allow for complete testing, we make the following data avaialble for free on testnet:  </p>
 <h2 id='crypto-exchange-testnet-api'>Crypto Exchange Testnet API</h2>
@@ -397,9 +404,14 @@
   </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6dc1320d-de0e-40a5-8162-83d9eb4634de"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre>
+</span></code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span>  <span class="nx">Lnd</span><span class="p">,</span> <span class="nx">Sockets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">"sb-api"</span>
+<span class="kr">const</span> <span class="nx">ln</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Lnd</span><span class="p">()</span>
+
+<span class="kr">const</span> <span class="nx">nfl</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Sockets</span><span class="p">.</span><span class="nx">nflTestnet</span><span class="p">(</span><span class="nx">ln</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">players</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">nfl</span><span class="p">.</span><span class="nx">players</span><span class="p">()</span> <span class="c1">// automatically queries for Tom Brady since we're on testnet</span>
+</code></pre>
 <blockquote>
-<p>Example request for &quot;NE&quot; (New England) in &quot;Team&quot; endpoint</p>
+<p>Example request for &quot;NE&quot; (New England) roster in &quot;Team&quot; endpoint</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"team"</span><span class="p">,</span><span class="w"> 
@@ -408,7 +420,12 @@
   </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"689c2c7d-cd08-4b2c-b87d-f1de10b4e94d"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre>
+</span></code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span>  <span class="nx">Lnd</span><span class="p">,</span> <span class="nx">Sockets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">"sb-api"</span>
+<span class="kr">const</span> <span class="nx">ln</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Lnd</span><span class="p">()</span>
+
+<span class="kr">const</span> <span class="nx">nfl</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Sockets</span><span class="p">.</span><span class="nx">nflTestnet</span><span class="p">(</span><span class="nx">ln</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">roster</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">nfl</span><span class="p">.</span><span class="nx">roster</span><span class="p">({</span> <span class="na">teamId</span><span class="p">:</span> <span class="s2">"NE"</span> <span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Example request for Tom Brady in &quot;Stats&quot; endpoint by lastName and firstName</p>
 </blockquote>
@@ -423,7 +440,17 @@
     </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"b97247c2-8bd6-450e-b81c-3c5a725e2057"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre>
+</span></code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span>  <span class="nx">Lnd</span><span class="p">,</span> <span class="nx">Sockets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">"sb-api"</span>
+<span class="kr">const</span> <span class="nx">ln</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Lnd</span><span class="p">()</span>
+
+<span class="kr">const</span> <span class="nx">nfl</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Sockets</span><span class="p">.</span><span class="nx">nflTestnet</span><span class="p">(</span><span class="nx">ln</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">stats</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">nfl</span><span class="p">.</span><span class="nx">statsByNameAndWeek</span><span class="p">({</span>
+  <span class="na">year</span><span class="p">:</span> <span class="mi">2018</span><span class="p">,</span>
+  <span class="na">week</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="na">seasonPhase</span><span class="p">:</span> <span class="s2">"Postseason"</span><span class="p">,</span>
+  <span class="na">statType</span><span class="p">:</span> <span class="s2">"passing"</span>
+<span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Example request for Tom Brady in &quot;Stats&quot; endpoint by playerId and gameId</p>
 </blockquote>
@@ -435,7 +462,16 @@
   </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aa334616-71e0-45ee-be6d-6dbce545bad3"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre>
+</span></code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span>  <span class="nx">Lnd</span><span class="p">,</span> <span class="nx">Sockets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">"sb-api"</span>
+<span class="kr">const</span> <span class="nx">ln</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Lnd</span><span class="p">()</span>
+
+<span class="kr">const</span> <span class="nx">nfl</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Sockets</span><span class="p">.</span><span class="nx">nflTestnet</span><span class="p">(</span><span class="nx">ln</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">stats</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">nfl</span><span class="p">.</span><span class="nx">statsById</span><span class="p">({</span>
+  <span class="na">statType</span><span class="p">:</span> <span class="s2">"passing"</span><span class="p">,</span>
+  <span class="na">gameId</span><span class="p">:</span> <span class="s2">"2019011300"</span><span class="p">,</span>
+  <span class="na">playerId</span><span class="p">:</span> <span class="s2">"00-0019596"</span>
+<span class="p">})</span>
+</code></pre>
 <p>Currently, we offer <span style="color:red"> Info </span> and <span style="color:red"> Games </span> data endpoints for free on testnet. </p>
 
 <p>In addition, to help developers build and test end-to-end applications, we offer a series of data across all endpoints: <code>Games</code>, <code>Players</code>, <code>Team</code> and <code>Stats</code> for a specific player.  </p>
@@ -452,7 +488,12 @@
   </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lebron"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2602b409-1737-49e5-a32d-62608d1e2c29"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">Lnd</span><span class="p">,</span> <span class="nx">Sockets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'sb-api'</span>
+<span class="kr">const</span> <span class="nx">ln</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Lnd</span><span class="p">()</span>
+
+<span class="kr">const</span> <span class="nx">nba</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Sockets</span><span class="p">.</span><span class="nx">nbaTestnet</span><span class="p">(</span><span class="nx">ln</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">players</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">nba</span><span class="p">.</span><span class="nx">players</span><span class="p">()</span> <span class="c1">// name is inferred automatically on testnet</span>
+</code></pre>
 <blockquote>
 <p>Example request for &quot;LAL&quot; (Los Angeles Lakers) in &quot;Team&quot; endpoint</p>
 </blockquote>
@@ -464,20 +505,27 @@
   </span><span class="s2">"teamId"</span><span class="p">:</span><span class="s2">"LAL"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2c48e899-01ef-443e-b455-144486b1c291"</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">Lnd</span><span class="p">,</span> <span class="nx">Sockets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'sb-api'</span>
+<span class="kr">const</span> <span class="nx">ln</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Lnd</span><span class="p">()</span>
 
-</span></code></pre>
+<span class="kr">const</span> <span class="nx">nba</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Sockets</span><span class="p">.</span><span class="nx">nbaTestnet</span><span class="p">(</span><span class="nx">ln</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">games</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">nba</span><span class="p">.</span><span class="nx">games</span><span class="p">({</span> <span class="na">day</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span> <span class="na">month</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">year</span><span class="p">:</span> <span class="mi">2019</span><span class="p">,</span> <span class="na">teamId</span><span class="p">:</span> <span class="s1">'LAL'</span> <span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Example request of Lebron James in &quot;Stats&quot; endpoint by playerId and gameId</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-</span><span class="p">{</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stats"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"gameId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21800500"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"playerId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2544"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ddc2632e-f9bb-4ea9-bdf6-992e1590f676"</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">Lnd</span><span class="p">,</span> <span class="nx">Sockets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'sb-api'</span>
+<span class="kr">const</span> <span class="nx">ln</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Lnd</span><span class="p">()</span>
 
-</span></code></pre>
+<span class="kr">const</span> <span class="nx">nba</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Sockets</span><span class="p">.</span><span class="nx">nbaTestnet</span><span class="p">(</span><span class="nx">ln</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">stats</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">nba</span><span class="p">.</span><span class="nx">statsById</span><span class="p">({</span> <span class="na">gameId</span><span class="p">:</span> <span class="s1">'21800500'</span><span class="p">,</span> <span class="na">playerId</span><span class="p">:</span> <span class="s1">'2544'</span> <span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Example request for Lebron James in &quot;Stats&quot; endpoint by lastName and firstName </p>
 </blockquote>
@@ -492,7 +540,13 @@
   </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"689c2c7d-cd08-4b2c-b87d-f1de10b4e94d"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre>
+</span></code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">Lnd</span><span class="p">,</span> <span class="nx">Sockets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'sb-api'</span>
+<span class="kr">const</span> <span class="nx">ln</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Lnd</span><span class="p">()</span>
+
+<span class="kr">const</span> <span class="nx">nba</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Sockets</span><span class="p">.</span><span class="nx">nbaTestnet</span><span class="p">(</span><span class="nx">ln</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">stats</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">nba</span><span class="p">.</span><span class="nx">statsByName</span><span class="p">({</span> <span class="na">year</span><span class="p">:</span> <span class="mi">2019</span><span class="p">,</span> <span class="na">month</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">day</span><span class="p">:</span> <span class="mi">13</span> <span class="p">})</span> 
+<span class="c1">// name is inferred automatically because we're on testnet</span>
+</code></pre>
 <p>Currently, we offer <span style="color:red"> Info </span> and <span style="color:red"> Games </span> data endpoints for free. </p>
 
 <p>In addition, to help developers build and test end-to-end applications, we offer a series of data across all endpoints: <code>Games</code>, <code>Players</code>, <code>Team</code> and <code>Stats</code> for a specific player.  </p>
@@ -501,7 +555,7 @@
 <h2 id='payment-amp-pricing'>Payment &amp; Pricing</h2>
 <p><strong>How to Pay</strong></p>
 
-<p>This is our recommended lnd lightning client library: <a href="https://github.com/SuredBits/sb-api-lnd">https://github.com/SuredBits/sb-api-lnd</a></p>
+<p>This is our recommended lnd lightning client library: <a href="https://github.com/Suredbits/sb-api-lnd">https://github.com/Suredbits/sb-api-lnd</a></p>
 
 <p>This is an alternative c-lightning client library: <a href="https://github.com/suredbits/lightning-charge">https://github.com/suredbits/lightning-charge</a></p>
 
@@ -509,7 +563,7 @@
 
 <aside class="success"> All payments are transacted in cryptocurrency.  For convenience, we have quoted prices in USD equiavalents. </aside>
 
-<aside class="success"> We reserve the right to change pricing as necessary.  We also reserve the right to change what is available in our free API offerings. Any changes in pricing or services will be announced via our Twitter <a href="https://twitter.com/SuredBits">@Suredbits</a> </aside>
+<aside class="success"> We reserve the right to change pricing as necessary.  We also reserve the right to change what is available in our free API offerings. Any changes in pricing or services will be announced via our Twitter <a href="https://twitter.com/Suredbits">@Suredbits</a> </aside>
 
 <p>For NFL Data and NBA Data APIs, the cost is $.01 (1 cent) per call.  </p>
 
@@ -533,7 +587,8 @@
       </span><span class="s2">"week"</span><span class="p">:</span><span class="s2">"NflWeek17"</span><span class="w"> 
     </span><span class="p">}</span><span class="w">
  </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// our JS client library automatically generates and inserts UUIDs for you</span>
+</code></pre>
 <aside class="warning"> All request require a field called <b> uuid </b> </aside>  
 
 <p>A valid <span style="color:red"> <code>uuid</code> </span> is required for all requests and will appear on all invoices, data responses, and errors related to that request.  If no <span style="color:red"> <code>uuid</code> </span> is specified in a request, then there will be an error message returned.</p>
@@ -551,26 +606,45 @@
 <blockquote>
 <p>Example data returned</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+<pre class="highlight javascript tab-javascript"><code>  <span class="p">[</span>
+    <span class="p">{</span> 
+      <span class="na">playerId</span><span class="p">:</span> <span class="s2">"00-0011754"</span><span class="p">,</span>
+      <span class="na">gsisName</span><span class="p">:</span> <span class="s2">"R.Moss"</span><span class="p">,</span>
+      <span class="na">fullName</span><span class="p">:</span> <span class="s2">"Randy Moss"</span><span class="p">,</span>
+      <span class="na">firstName</span><span class="p">:</span> <span class="s2">"Randy"</span><span class="p">,</span>
+      <span class="na">lastName</span><span class="p">:</span> <span class="s2">"Moss"</span><span class="p">,</span>
+      <span class="na">team</span><span class="p">:</span> <span class="s2">"UNK"</span><span class="p">,</span>
+      <span class="na">position</span><span class="p">:</span> <span class="s2">"UNK"</span><span class="p">,</span>
+      <span class="na">profileId</span><span class="p">:</span> <span class="mi">2502220</span><span class="p">,</span>
+      <span class="na">profileUrl</span><span class="p">:</span> <span class="s2">"http://www.nfl.com/player/randymoss/2502220/profile"</span><span class="p">,</span>
+      <span class="na">birthDate</span><span class="p">:</span> <span class="s2">"2/13/1977"</span><span class="p">,</span>
+      <span class="na">college</span><span class="p">:</span> <span class="s2">"Marshall"</span><span class="p">,</span>
+      <span class="na">yearsPro</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>
+      <span class="na">height</span><span class="p">:</span> <span class="mi">76</span><span class="p">,</span>
+      <span class="na">weight</span><span class="p">:</span> <span class="mi">210</span><span class="p">,</span>
+      <span class="na">status</span><span class="p">:</span> <span class="s2">"Unknown"</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
   </span><span class="s2">"uuid"</span><span class="p">:</span><span class="s2">"bfbef9da-eb9e-418c-8f6b-963743355ef7"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w">
   </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w"> 
-      </span><span class="s2">"playerId"</span><span class="p">:</span><span class="s2">"00-0011754"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"gsisName"</span><span class="p">:</span><span class="s2">"R.Moss"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"fullName"</span><span class="p">:</span><span class="s2">"Randy Moss"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"firstName"</span><span class="p">:</span><span class="s2">"Randy"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"lastName"</span><span class="p">:</span><span class="s2">"Moss"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"team"</span><span class="p">:</span><span class="s2">"UNK"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"position"</span><span class="p">:</span><span class="s2">"UNK"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"profileId"</span><span class="p">:</span><span class="mi">2502220</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"profileUrl"</span><span class="p">:</span><span class="s2">"http://www.nfl.com/player/randymoss/2502220/profile"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"birthDate"</span><span class="p">:</span><span class="s2">"2/13/1977"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"college"</span><span class="p">:</span><span class="s2">"Marshall"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"yearsPro"</span><span class="p">:</span><span class="mi">14</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"height"</span><span class="p">:</span><span class="mi">76</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"weight"</span><span class="p">:</span><span class="mi">210</span><span class="p">,</span><span class="s2">"status"</span><span class="p">:</span><span class="w">
-      </span><span class="s2">"Unknown"</span><span class="p">,:</span><span class="w">
+      </span><span class="s2">"playerId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00-0011754"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"gsisName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"R.Moss"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fullName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Randy Moss"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Randy"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Moss"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"team"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UNK"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UNK"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"profileId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2502220</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"profileUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.nfl.com/player/randymoss/2502220/profile"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"birthDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2/13/1977"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"college"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Marshall"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"yearsPro"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"height"</span><span class="p">:</span><span class="w"> </span><span class="mi">76</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">210</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unknown"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -583,29 +657,27 @@
 
 <ol>
 <li><p>Send a request over the websocket </p></li>
-<li><p>Upon confirmation of a valid request, you will receive a Lightning Network Invoice that should appear similar to the one below.</p></li>
-<li><p>Pay that ln invoice in your lightning client </p></li>
+<li><p>Upon confirmation of a valid request, you will receive a Lightning Network invoice that should appear similar to the one below.</p></li>
+<li><p>Pay that LN invoice in your lightning client </p></li>
 <li><p>Receive data :)</p></li>
 </ol>
 
 <p><strong>Ping/Pong</strong></p>
 
-<p>To confirm your connection, send a <span style="color:red"> ping </span> request. Ping has an optional uuid field for correlating multiple pongs to multiple pings. </p>
+<p>To confirm your connection, send a <span style="color:red"><code>ping</code></span> request. Ping has an optional <code>uuid</code> field for correlating multiple pongs to multiple pings. </p>
 
-<aside class="success"> {"event": "ping"} should return {"event":"pong"} </aside>
+<aside class="success"><code>{"event": "ping"}</code> should return <code>{"event":"pong"}</code></aside>
 
 <p><strong>Sample Lightning Invoice</strong></p>
 
 <p>A successful request will generate a lightning invoice that will look similar to the example below:</p>
 
-<p><span style="color:red"> <em>lnbcrt10n1pd5v2mwpp5ulxpj8ht4gvtqnyl8zuykfk4wcv6sz455ce5dy0e0lqt...</em> </span></p>
+<p><span style="color:red"><code style="word-wrap:break-word;">lnbcrt10n1pd5v2mwpp5ulxpj8ht4gvtqnyl8zuykfk4wcv6sz455ce5dy0e0lqt...</code></span></p>
 <h1 id='crypto-exchange-api'>Crypto Exchange API</h1><h2 id='crypto-exchange-websocket-endpoint'>Crypto Exchange Websocket Endpoint</h2>
 <p>This is the paid service url <strong>wss://api.suredbits.com/exchange/v0</strong> on mainnet.</p>
 
 <p>This is the free version url <strong>wss://test.api.suredbits.com/exchange/v0</strong> on testnet. </p>
-<h2 id='overview'>Overview</h2>
-<p><strong>Trading Pairs Supported</strong></p>
-
+<h2 id='overview'>Overview</h2><h3 id='trading-pairs-supported'>Trading Pairs Supported</h3>
 <table><thead>
 <tr>
 <th>Symbol</th>
@@ -657,13 +729,14 @@
 <td></td>
 </tr>
 </tbody></table>
-
-<p><strong>Subscribe</strong></p>
-
+<h3 id='subscribe'>Subscribe</h3>
 <blockquote>
 <p>Example request format: </p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+<pre class="highlight javascript tab-javascript"><code><span class="c1">// Our library handles request construction for you</span>
+<span class="c1">// Refer to the sections on tickers, trades and books</span>
+<span class="c1">// for specfics on how to send requests</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
    </span><span class="s2">"event"</span><span class="p">:</span><span class="s2">"subscribe"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"channel"</span><span class="p">:</span><span class="s2">"trades"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTCUSDT"</span><span class="p">,</span><span class="w">  
@@ -676,7 +749,10 @@
 <blockquote>
 <p>Example subscription confirmation </p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+<pre class="highlight javascript tab-javascript"><code><span class="c1">// Our library handles request construction for you</span>
+<span class="c1">// Refer to the sections on tickers, trades and books</span>
+<span class="c1">// for specfics on how to send requests</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
    </span><span class="s2">"uuid"</span><span class="p">:</span><span class="s2">"8dda8625-2946-4500-8dd5-13c78d2f42b8"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"exchange"</span><span class="p">:</span><span class="s2">"binance"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTCUSDT"</span><span class="p">,</span><span class="w">
@@ -735,13 +811,25 @@
 <br></br>
 <br></br>
 <br></br></p>
-
-<p><strong>Snapshots</strong></p>
-
+<h3 id='snapshots'>Snapshots</h3>
 <blockquote>
-<p>Example of Snapshot from Trades Channel</p>
+<p>Example of snapshot from trades channel</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+<pre class="highlight javascript tab-javascript"><code><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="na">eventTime</span><span class="p">:</span> <span class="mi">1543347647113</span><span class="p">,</span>
+    <span class="na">symbol</span><span class="p">:</span> <span class="s1">'BTCUSDT'</span><span class="p">,</span>
+    <span class="na">tradeId</span><span class="p">:</span> <span class="mi">82634229</span><span class="p">,</span>
+    <span class="na">price</span><span class="p">:</span> <span class="mf">3809.1</span><span class="p">,</span>
+    <span class="na">quantity</span><span class="p">:</span> <span class="mf">0.293652</span><span class="p">,</span>
+    <span class="na">buyerId</span><span class="p">:</span> <span class="mi">195007870</span><span class="p">,</span>
+    <span class="na">sellerId</span><span class="p">:</span> <span class="mi">195007859</span><span class="p">,</span>
+    <span class="na">tradeTime</span><span class="p">:</span> <span class="mi">1543347647109</span><span class="p">,</span>
+    <span class="na">marketMaker</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
    </span><span class="s2">"uuid"</span><span class="p">:</span><span class="s2">"f8363f36-65dd-4a07-a3e0-75f38b816df7"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"snapshot"</span><span class="p">:[</span><span class="w">  
       </span><span class="p">{</span><span class="w">  
@@ -767,66 +855,69 @@
 <br></br>
 <br></br>
 <br></br>
+<br></br>
 <br></br></p>
-
-<p><strong>Sequence Identifier</strong></p>
-
+<h3 id='sequence-identifier'>Sequence Identifier</h3>
 <p>In order to better monitor potential gaps in streaming data, we provide a sequence number for each returned data value. </p>
 
-<p>Example: <span style="color:red"> &quot;seq&quot;: 21 </span> , <span style="color:red"> &quot;seq&quot;:437 </span>, <span style="color:red"> &quot;seq&quot;:2873 </span> etc. </p>
+<p>Example: <span style="color:red"><code>&quot;seq&quot;: 21</code></span> , <span style="color:red"> <code>&quot;seq&quot;:437 </code></span>, <span style="color:red"> <code>&quot;seq&quot;:2873 </code></span> etc. </p>
+<h3 id='refill'>Refill</h3>
+<blockquote>
+<p>Subscription refill </p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">Lnd</span><span class="p">,</span> <span class="nx">Sockets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">"sb-api"</span>
 
-<p><strong>Refill</strong></p>
+<span class="kr">const</span> <span class="nx">ln</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Lnd</span><span class="p">()</span>
+<span class="kr">const</span> <span class="nx">refundInvoice</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">ln</span><span class="p">.</span><span class="nx">receive</span><span class="p">()</span>
+<span class="kr">const</span> <span class="nx">exchangeSocket</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Sockets</span><span class="p">.</span><span class="nx">exchange</span><span class="p">(</span><span class="nx">ln</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">sub</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">exchangeSocket</span><span class="p">.</span><span class="nx">books</span><span class="p">({</span>
+  <span class="na">duration</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+  <span class="na">exchange</span><span class="p">:</span> <span class="s2">"bitfinex"</span><span class="p">,</span>
+  <span class="nx">refundInvoice</span><span class="p">,</span>
+  <span class="na">symbol</span><span class="p">:</span> <span class="s2">"ETHBTC"</span><span class="p">,</span>
+  <span class="na">onData</span><span class="p">:</span> <span class="nx">data</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"received data"</span><span class="p">,</span> <span class="nx">data</span><span class="p">),</span>
+  <span class="na">onSnapshot</span><span class="p">:</span> <span class="nx">snapshot</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"received snapshot: "</span><span class="p">,</span> <span class="nx">snapshot</span><span class="p">),</span>
+<span class="p">})</span>
+<span class="nx">await</span> <span class="nx">sub</span><span class="p">.</span><span class="nx">refill</span><span class="p">(</span><span class="mi">60000</span><span class="p">)</span> <span class="c1">// adds one minute to our subscription</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"refill"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"addedDuration"</span><span class="p">:</span><span class="w"> </span><span class="mi">60000</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">adds</span><span class="w"> </span><span class="err">one</span><span class="w"> </span><span class="err">minute</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">our</span><span class="w"> </span><span class="err">subscription</span><span class="w">
+    </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8f2e4f08-2ef4-11e9-9f18-5f29bb1268a9"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>You may refill your subscription at any time. </p>
 
-<p>You may refill your subscrption at any time with the following command format: </p>
+<p><br></br>
+<br></br>
+<br></br></p>
+<h3 id='unsubscribe'>Unsubscribe</h3>
+<blockquote>
+<p>Subscription cancellation</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">Lnd</span><span class="p">,</span> <span class="nx">Sockets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">"sb-api"</span>
 
-<table><thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Example</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><span style="color:red"> uuid </span></td>
-<td>String</td>
-<td><span style="color:red"> &quot;123e4567-e89b-12d3-a456-426655440000&quot; </span></td>
-</tr>
-<tr>
-<td><span style="color:red"> addedDuration </span></td>
-<td>Integer (milliseconds)</td>
-<td><span style="color:red"> &quot;1000&quot; </span></td>
-</tr>
-<tr>
-<td><span style="color:red"> event </span></td>
-<td>String</td>
-<td><span style="color:red"> &quot;refill&quot; </span></td>
-</tr>
-</tbody></table>
+<span class="kr">const</span> <span class="nx">ln</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Lnd</span><span class="p">()</span>
+<span class="kr">const</span> <span class="nx">refundInvoice</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">ln</span><span class="p">.</span><span class="nx">receive</span><span class="p">()</span>
+<span class="kr">const</span> <span class="nx">exchangeSocket</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Sockets</span><span class="p">.</span><span class="nx">exchange</span><span class="p">(</span><span class="nx">ln</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">sub</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">exchangeSocket</span><span class="p">.</span><span class="nx">books</span><span class="p">({</span>
+  <span class="na">duration</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+  <span class="na">exchange</span><span class="p">:</span> <span class="s2">"bitfinex"</span><span class="p">,</span>
+  <span class="nx">refundInvoice</span><span class="p">,</span>
+  <span class="na">symbol</span><span class="p">:</span> <span class="s2">"ETHBTC"</span><span class="p">,</span>
+  <span class="na">onData</span><span class="p">:</span> <span class="nx">data</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"received data"</span><span class="p">,</span> <span class="nx">data</span><span class="p">),</span>
+  <span class="na">onSnapshot</span><span class="p">:</span> <span class="nx">snapshot</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"received snapshot: "</span><span class="p">,</span> <span class="nx">snapshot</span><span class="p">),</span>
+<span class="p">})</span>
+<span class="nx">await</span> <span class="nx">sub</span><span class="p">.</span><span class="nx">unsubscribe</span><span class="p">()</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unsubscribe"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8f2e4f08-2ef4-11e9-9f18-5f29bb1268a9"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>You may unsubscribe from a channel at any time. Any time remainaing will be refunded. </p>
 
-<p><strong>Unsubscribe</strong></p>
-
-<p>You may unsubscribe from a channel using the following command:</p>
-
-<table><thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Example</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><span style="color:red"> uuid </span></td>
-<td>String</td>
-<td><span style="color:red"> &quot;123e4567-e89b-12d3-a456-426655440000&quot; </span></td>
-</tr>
-<tr>
-<td><span style="color:red"> event </span></td>
-<td>String</td>
-<td><span style="color:red"> &quot;unsubscribe&quot; </span></td>
-</tr>
-</tbody></table>
-
-<aside class="note"> Note: If you unsubscribe from a channel, any time remaining from your original subscription will be refunded. </aside>
+<p><br></br>
+<br></br>
+<br></br></p>
 
 <p><strong>Maintenance</strong></p>
 
@@ -843,11 +934,81 @@
    </span><span class="s2">"refundInvoice"</span><span class="p">:</span><span class="s2">"lnbcrt1pdace6qpp5my6nc58d50r5gk..."</span><span class="p">,</span><span class="w">
     </span><span class="s2">"uuid"</span><span class="p">:</span><span class="s2">"dc48f38e-7f71-4ea2-8c4c-52c683db93fa"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">Lnd</span><span class="p">,</span> <span class="nx">Sockets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">"sb-api"</span>
+
+<span class="kr">const</span> <span class="nx">ln</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Lnd</span><span class="p">()</span>
+<span class="kr">const</span> <span class="nx">refundInvoice</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">ln</span><span class="p">.</span><span class="nx">receive</span><span class="p">()</span>
+<span class="kr">const</span> <span class="nx">exchangeSocket</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Sockets</span><span class="p">.</span><span class="nx">exchange</span><span class="p">(</span><span class="nx">ln</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">tickersSub</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">exchangeSocket</span><span class="p">.</span><span class="nx">tickers</span><span class="p">({</span>
+  <span class="na">duration</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+  <span class="na">exchange</span><span class="p">:</span> <span class="s2">"binance"</span><span class="p">,</span>
+  <span class="na">symbol</span><span class="p">:</span> <span class="s2">"BTCUSDT"</span><span class="p">,</span>
+  <span class="nx">refundInvoice</span><span class="p">,</span>
+  <span class="na">onData</span><span class="p">:</span> <span class="nx">data</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"received data"</span><span class="p">,</span> <span class="nx">data</span><span class="p">),</span>
+  <span class="na">onSnapshot</span><span class="p">:</span> <span class="nx">snapshot</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"received snapshot: "</span><span class="p">,</span> <span class="nx">snapshot</span><span class="p">),</span>
+  <span class="na">onSubscriptionEnded</span><span class="p">:</span> <span class="nx">dataset</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`got dataset with </span><span class="p">${</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">length</span><span class="p">}</span><span class="s2"> elements`</span><span class="p">)</span> 
+  <span class="c1">//                    ^^^ dataset is the list of all your </span>
+  <span class="c1">//                        previously received data points</span>
+<span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Example Tickers data</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
+<pre class="highlight javascript tab-javascript"><code><span class="c1">// snapshot</span>
+<span class="p">[</span>
+  <span class="p">{</span>
+    <span class="na">eventTime</span><span class="p">:</span> <span class="mi">1543849532563</span><span class="p">,</span>
+    <span class="na">symbol</span><span class="p">:</span> <span class="s1">'BTCUSDT'</span><span class="p">,</span>
+    <span class="na">priceChange</span><span class="p">:</span> <span class="o">-</span><span class="mf">253.84</span><span class="p">,</span>
+    <span class="na">priceChangePerc</span><span class="p">:</span> <span class="o">-</span><span class="mf">6.08</span><span class="p">,</span>
+    <span class="na">weightedAvePrice</span><span class="p">:</span> <span class="mf">4079.82822535</span><span class="p">,</span>
+    <span class="na">prevClose</span><span class="p">:</span> <span class="mf">4174.49</span><span class="p">,</span>
+    <span class="na">close</span><span class="p">:</span> <span class="mf">3921.26</span><span class="p">,</span>
+    <span class="na">closeQuantity</span><span class="p">:</span> <span class="mf">1.144132</span><span class="p">,</span>
+    <span class="na">bid</span><span class="p">:</span> <span class="mf">3920.31</span><span class="p">,</span>
+    <span class="na">bidSize</span><span class="p">:</span> <span class="mf">0.052611</span><span class="p">,</span>
+    <span class="na">ask</span><span class="p">:</span> <span class="mf">3922.57</span><span class="p">,</span>
+    <span class="na">askSize</span><span class="p">:</span> <span class="mf">1.207388</span><span class="p">,</span>
+    <span class="na">open</span><span class="p">:</span> <span class="mf">4175.1</span><span class="p">,</span>
+    <span class="na">high</span><span class="p">:</span> <span class="mi">4268</span><span class="p">,</span>
+    <span class="na">low</span><span class="p">:</span> <span class="mf">3896.03</span><span class="p">,</span>
+    <span class="na">volume</span><span class="p">:</span> <span class="mf">42258.714174</span><span class="p">,</span>
+    <span class="na">quoteVolume</span><span class="p">:</span> <span class="mf">172408294.85387801</span><span class="p">,</span>
+    <span class="na">statOpenTime</span><span class="p">:</span> <span class="mi">1543763132561</span><span class="p">,</span>
+    <span class="na">statCloseTime</span><span class="p">:</span> <span class="mi">1543849532561</span><span class="p">,</span>
+    <span class="na">firstTradeId</span><span class="p">:</span> <span class="mi">83998182</span><span class="p">,</span>
+    <span class="na">lastTradeId</span><span class="p">:</span> <span class="mi">84182065</span><span class="p">,</span>
+    <span class="na">totalTrades</span><span class="p">:</span> <span class="mi">183884</span><span class="p">,</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+
+
+<span class="c1">// data</span>
+<span class="p">{</span>
+  <span class="nl">eventTime</span><span class="p">:</span> <span class="mi">1541716718571</span><span class="p">,</span>
+  <span class="nx">symbol</span><span class="p">:</span> <span class="s1">'BTCUSDT'</span><span class="p">,</span>
+  <span class="nx">priceChange</span><span class="p">:</span> <span class="o">-</span><span class="mf">68.06</span><span class="p">,</span>
+  <span class="nx">priceChangePerc</span><span class="p">:</span> <span class="o">-</span><span class="mf">1.036</span><span class="p">,</span>
+  <span class="nx">weightedAvePrice</span><span class="p">:</span> <span class="mf">6524.40647569</span><span class="p">,</span>
+  <span class="nx">prevClose</span><span class="p">:</span> <span class="mf">6575.83</span><span class="p">,</span>
+  <span class="nx">close</span><span class="p">:</span> <span class="mf">6503.16</span><span class="p">,</span>
+  <span class="nx">closeQuantity</span><span class="p">:</span> <span class="mf">0.040421</span><span class="p">,</span>
+  <span class="nx">bid</span><span class="p">:</span> <span class="mf">6501.05</span><span class="p">,</span>
+  <span class="nx">bidSize</span><span class="p">:</span> <span class="mf">0.123017</span><span class="p">,</span>
+  <span class="nx">ask</span><span class="p">:</span> <span class="mf">6503.16</span><span class="p">,</span>
+  <span class="nx">askSize</span><span class="p">:</span> <span class="mf">0.463804</span><span class="p">,</span>
+  <span class="nx">open</span><span class="p">:</span> <span class="mf">6571.22</span><span class="p">,</span>
+  <span class="nx">high</span><span class="p">:</span> <span class="mi">6594</span><span class="p">,</span>
+  <span class="nx">low</span><span class="p">:</span> <span class="mf">6471.22</span><span class="p">,</span>
+  <span class="nx">volume</span><span class="p">:</span> <span class="mf">12760.988421</span><span class="p">,</span>
+  <span class="nx">quoteVolume</span><span class="p">:</span> <span class="mf">83257875.49020969</span><span class="p">,</span>
+  <span class="nx">statOpenTime</span><span class="p">:</span> <span class="mi">1541630318568</span><span class="p">,</span>
+  <span class="nx">statCloseTime</span><span class="p">:</span> <span class="mi">1541716718568</span><span class="p">,</span>
+  <span class="nx">firstTradeId</span><span class="p">:</span> <span class="mi">77686104</span><span class="p">,</span>
+  <span class="nx">lastTradeId</span><span class="p">:</span> <span class="mi">77828352</span><span class="p">,</span>
+  <span class="nx">totalTrades</span><span class="p">:</span> <span class="mi">142249</span>
+<span class="p">}</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">  
    </span><span class="s2">"uuid"</span><span class="p">:</span><span class="s2">"dc48f38e-7f71-4ea2-8c4c-52c683db93fa"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"exchange"</span><span class="p">:</span><span class="s2">"binance"</span><span class="p">,</span><span class="w">
@@ -1054,11 +1215,58 @@
    </span><span class="s2">"refundInvoice"</span><span class="p">:</span><span class="s2">"lnbcrt1pdace6qpp5my6nc58d50r5gk38ynyz..."</span><span class="p">,</span><span class="w">
    </span><span class="s2">"uuid"</span><span class="p">:</span><span class="s2">"8dda8625-2946-4500-8dd5-13c78d2f42b8"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">Lnd</span><span class="p">,</span> <span class="nx">Sockets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">"sb-api"</span>
+
+<span class="kr">const</span> <span class="nx">ln</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Lnd</span><span class="p">()</span>
+<span class="kr">const</span> <span class="nx">refundInvoice</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">ln</span><span class="p">.</span><span class="nx">receive</span><span class="p">()</span>
+<span class="kr">const</span> <span class="nx">exchangeSocket</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Sockets</span><span class="p">.</span><span class="nx">exchange</span><span class="p">(</span><span class="nx">ln</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">tickersSub</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">exchangeSocket</span><span class="p">.</span><span class="nx">trades</span><span class="p">({</span>
+  <span class="na">duration</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+  <span class="na">exchange</span><span class="p">:</span> <span class="s2">"gemini"</span><span class="p">,</span>
+  <span class="na">symbol</span><span class="p">:</span> <span class="s2">"BTCUSD"</span><span class="p">,</span>
+  <span class="nx">refundInvoice</span><span class="p">,</span>
+  <span class="na">onData</span><span class="p">:</span> <span class="nx">data</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"received data"</span><span class="p">,</span> <span class="nx">data</span><span class="p">),</span>
+  <span class="na">onSnapshot</span><span class="p">:</span> <span class="nx">snapshot</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"received snapshot: "</span><span class="p">,</span> <span class="nx">snapshot</span><span class="p">),</span>
+  <span class="na">onSubscriptionEnded</span><span class="p">:</span> <span class="nx">dataset</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`got dataset with </span><span class="p">${</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">length</span><span class="p">}</span><span class="s2"> elements`</span><span class="p">)</span> 
+  <span class="c1">//                    ^^^ dataset is the list of all your </span>
+  <span class="c1">//                        previously received data points</span>
+<span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Example Trades data</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
+<pre class="highlight javascript tab-javascript"><code><span class="c1">// snapshot</span>
+<span class="p">[</span>
+  <span class="p">{</span>
+    <span class="na">eventTime</span><span class="p">:</span> <span class="mi">1543839862868</span><span class="p">,</span>
+    <span class="na">symbol</span><span class="p">:</span> <span class="s1">'BTCUSDT'</span><span class="p">,</span>
+    <span class="na">tradeId</span><span class="p">:</span> <span class="mi">84153760</span><span class="p">,</span>
+    <span class="na">price</span><span class="p">:</span> <span class="mf">4038.81</span><span class="p">,</span>
+    <span class="na">quantity</span><span class="p">:</span> <span class="mf">0.115984</span><span class="p">,</span>
+    <span class="na">buyerId</span><span class="p">:</span> <span class="s1">'199276007'</span><span class="p">,</span>
+    <span class="na">sellerId</span><span class="p">:</span> <span class="s1">'199274414'</span><span class="p">,</span>
+    <span class="na">tradeTime</span><span class="p">:</span> <span class="mi">1543839862861</span><span class="p">,</span>
+    <span class="na">marketMaker</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="c1">// rest of elements omitted</span>
+  <span class="c1">// for brevity</span>
+<span class="p">]</span>
+
+
+<span class="c1">//data</span>
+<span class="p">{</span>
+  <span class="nl">eventTime</span><span class="p">:</span> <span class="mi">1541715784094</span><span class="p">,</span>
+  <span class="nx">symbol</span><span class="p">:</span> <span class="s1">'BTCUSDT'</span><span class="p">,</span>
+  <span class="nx">tradeId</span><span class="p">:</span> <span class="mi">77827378</span><span class="p">,</span>
+  <span class="nx">price</span><span class="p">:</span> <span class="mf">6502.99</span><span class="p">,</span>
+  <span class="nx">quantity</span><span class="p">:</span> <span class="mf">0.030665</span><span class="p">,</span>
+  <span class="nx">buyerId</span><span class="p">:</span> <span class="s1">'183136564'</span><span class="p">,</span>
+  <span class="nx">sellerId</span><span class="p">:</span> <span class="s1">'183136526'</span><span class="p">,</span>
+  <span class="nx">tradeTime</span><span class="p">:</span> <span class="mi">1541715784094</span><span class="p">,</span>
+  <span class="nx">marketMaker</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+<span class="p">}</span>
+
+</code></pre><pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">  
    </span><span class="s2">"uuid"</span><span class="p">:</span><span class="s2">"8dda8625-2946-4500-8dd5-13c78d2f42b8"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"exchange"</span><span class="p">:</span><span class="s2">"binance"</span><span class="p">,</span><span class="w">
@@ -1187,11 +1395,48 @@
   </span><span class="s2">"refundInvoice"</span><span class="p">:</span><span class="s2">"lnbcrt1pdace6qpp5my6nc58d50r5..."</span><span class="p">,</span><span class="w">
   </span><span class="s2">"uuid"</span><span class="p">:</span><span class="s2">"d7975109-e6d0-47ae-9c26-531d553c420b"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
+</span></code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">Lnd</span><span class="p">,</span> <span class="nx">Sockets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">"sb-api"</span>
+
+<span class="kr">const</span> <span class="nx">ln</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Lnd</span><span class="p">()</span>
+<span class="kr">const</span> <span class="nx">refundInvoice</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">ln</span><span class="p">.</span><span class="nx">receive</span><span class="p">()</span>
+<span class="kr">const</span> <span class="nx">exchangeSocket</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Sockets</span><span class="p">.</span><span class="nx">exchange</span><span class="p">(</span><span class="nx">ln</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">tickersSub</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">exchangeSocket</span><span class="p">.</span><span class="nx">trades</span><span class="p">({</span>
+  <span class="na">duration</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+  <span class="na">exchange</span><span class="p">:</span> <span class="s2">"bitfinex"</span><span class="p">,</span>
+  <span class="na">symbol</span><span class="p">:</span> <span class="s2">"ETHBTC"</span><span class="p">,</span>
+  <span class="nx">refundInvoice</span><span class="p">,</span>
+  <span class="na">onData</span><span class="p">:</span> <span class="nx">data</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"received data"</span><span class="p">,</span> <span class="nx">data</span><span class="p">),</span>
+  <span class="na">onSnapshot</span><span class="p">:</span> <span class="nx">snapshot</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"received snapshot: "</span><span class="p">,</span> <span class="nx">snapshot</span><span class="p">),</span>
+  <span class="na">onSubscriptionEnded</span><span class="p">:</span> <span class="nx">dataset</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`got dataset with </span><span class="p">${</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">length</span><span class="p">}</span><span class="s2"> elements`</span><span class="p">)</span> 
+  <span class="c1">//                    ^^^ dataset is the list of all your </span>
+  <span class="c1">//                        previously received data points</span>
+<span class="p">})</span>
+</code></pre>
 <blockquote>
 <p>Example Order Books data</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
+<pre class="highlight javascript tab-javascript"><code><span class="c1">// snapshot</span>
+<span class="p">[</span>
+  <span class="p">{</span>
+    <span class="na">eventTime</span><span class="p">:</span> <span class="mi">1543850299172</span><span class="p">,</span>
+    <span class="na">orderId</span><span class="p">:</span> <span class="mi">19811509228</span><span class="p">,</span>
+    <span class="na">price</span><span class="p">:</span> <span class="mf">3894.7</span><span class="p">,</span>
+    <span class="na">quantityTotal</span><span class="p">:</span> <span class="mf">0.25</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="c1">// rest of elements omitted</span>
+  <span class="c1">// for brevity</span>
+<span class="p">]</span>
+
+
+<span class="c1">// data</span>
+<span class="p">{</span>
+  <span class="nl">eventTime</span><span class="p">:</span> <span class="mi">1541715102336</span><span class="p">,</span>
+  <span class="nx">orderId</span><span class="p">:</span> <span class="mi">18836717013</span><span class="p">,</span>
+  <span class="nx">price</span><span class="p">:</span> <span class="mf">6502.9</span><span class="p">,</span>
+  <span class="nx">quantityTotal</span><span class="p">:</span> <span class="mf">0.1691553</span><span class="p">,</span>
+<span class="p">}</span>
+
+</code></pre><pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">  
       </span><span class="s2">"uuid"</span><span class="p">:</span><span class="s2">"d7975109-e6d0-47ae-9c26-531d553c420b"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"exchange"</span><span class="p">:</span><span class="s2">"bitfinex"</span><span class="p">,</span><span class="w">
@@ -1288,9 +1533,14 @@
 <blockquote>
 <p>Example request</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">Lnd</span><span class="p">,</span> <span class="nx">Sockets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'sb-api'</span>
+<span class="kr">const</span> <span class="nx">ln</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Lnd</span><span class="p">()</span>
+
+<span class="kr">const</span> <span class="nx">nfl</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Sockets</span><span class="p">.</span><span class="nx">nfl</span><span class="p">(</span><span class="nx">ln</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">info</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">nfl</span><span class="p">.</span><span class="nx">info</span><span class="p">()</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
    </span><span class="s2">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"info"</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[uuid]"</span><span class="w">
+  </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d7975109-e6d0-47ae-9c26-531d553c420b"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This provides a check and confirmation on the status of the API. </p>
@@ -1298,10 +1548,16 @@
 <blockquote>
 <p>Example data</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"1771601c-0fe8-4387-b2ce-be9a0abe1356"</span><span class="p">,</span><span class="w">
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="nl">version</span><span class="p">:</span> <span class="s1">'8'</span><span class="p">,</span>
+  <span class="nx">lastRosterDownload</span><span class="p">:</span> <span class="s1">'2018-08-13T17:07:53.668Z'</span><span class="p">,</span>
+  <span class="nx">seasonType</span><span class="p">:</span> <span class="s1">'Preseason'</span><span class="p">,</span>
+  <span class="nx">seasonYear</span><span class="p">:</span> <span class="mi">2018</span><span class="p">,</span>
+  <span class="nx">week</span><span class="p">:</span> <span class="s1">'NflPreSeasonWeek1'</span>
+<span class="p">}</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1771601c-0fe8-4387-b2ce-be9a0abe1356"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w">
-    </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"version"</span><span class="p">:</span><span class="s2">"8"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"lastRosterDownload"</span><span class="p">:</span><span class="s2">"2018-08-13T17:07:53.668Z"</span><span class="p">,</span><span class="w">
@@ -1309,13 +1565,17 @@
         </span><span class="s2">"seasonYear"</span><span class="p">:</span><span class="mi">2018</span><span class="p">,</span><span class="w">
         </span><span class="s2">"week"</span><span class="p">:</span><span class="s2">"NflPreSeasonWeek1"</span><span class="w">
        </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
  </span><span class="p">}</span><span class="w">
 </span></code></pre><h2 id='games'>Games</h2>
 <blockquote>
 <p>Example request Games</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">Lnd</span><span class="p">,</span> <span class="nx">Sockets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'sb-api'</span>
+<span class="kr">const</span> <span class="nx">ln</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Lnd</span><span class="p">()</span>
+
+<span class="kr">const</span> <span class="nx">nfl</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Sockets</span><span class="p">.</span><span class="nx">nfl</span><span class="p">(</span><span class="nx">ln</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">games</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">nfl</span><span class="p">.</span><span class="nx">games</span><span class="p">({</span> <span class="na">week</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">seasonPhase</span><span class="p">:</span> <span class="s1">'Regular'</span><span class="p">,</span> <span class="na">year</span><span class="p">:</span> <span class="mi">2017</span> <span class="p">})</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"channel"</span><span class="p">:</span><span class="s2">"games"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"week"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"seasonPhase"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Regular"</span><span class="p">,</span><span class="w"> 
@@ -1326,8 +1586,40 @@
 <blockquote>
 <p>Example of Games data</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
- </span><span class="p">{</span><span class="w">
+<pre class="highlight javascript tab-javascript"><code><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="na">gsisId</span><span class="p">:</span> <span class="s1">'2017091006'</span><span class="p">,</span>
+    <span class="na">gameKey</span><span class="p">:</span> <span class="s1">'57241'</span><span class="p">,</span>
+    <span class="na">startTime</span><span class="p">:</span> <span class="s1">'2017-09-10T17:00:00.000Z'</span><span class="p">,</span>
+    <span class="na">week</span><span class="p">:</span> <span class="s1">'NflWeek1'</span><span class="p">,</span>
+    <span class="na">dayOfWeek</span><span class="p">:</span> <span class="s1">'Sunday'</span><span class="p">,</span>
+    <span class="na">seasonYear</span><span class="p">:</span> <span class="mi">2017</span><span class="p">,</span>
+    <span class="na">seasonType</span><span class="p">:</span> <span class="s1">'Regular'</span><span class="p">,</span>
+    <span class="na">finished</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="na">homeTeam</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">team</span><span class="p">:</span> <span class="s1">'MIA'</span><span class="p">,</span>
+      <span class="na">score</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="na">scoreQ1</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="na">scoreQ2</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="na">scoreQ3</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="na">scoreQ4</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="na">turnovers</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">awayTeam</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">team</span><span class="p">:</span> <span class="s1">'TB'</span><span class="p">,</span>
+      <span class="na">score</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="na">scoreQ1</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="na">scoreQ2</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="na">scoreQ3</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="na">scoreQ4</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="na">turnovers</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">timeInserted</span><span class="p">:</span> <span class="s1">'2017-08-04T18:29:15.669Z'</span><span class="p">,</span>
+    <span class="na">timeUpdate</span><span class="p">:</span> <span class="s1">'2018-06-08T19:34:44.063Z'</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="c1">// more elements omitted for brevity</span>
+<span class="p">]</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">{</span><span class="w">
    </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8ccbd2d9-65aa-401e-a056-44d543544d47"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"data"</span><span class="p">:</span><span class="w">
     </span><span class="p">[</span><span class="w">
@@ -1458,18 +1750,41 @@
 <blockquote>
 <p>Example request Players</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">Lnd</span><span class="p">,</span> <span class="nx">Sockets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'sb-api'</span>
+<span class="kr">const</span> <span class="nx">ln</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Lnd</span><span class="p">()</span>
+
+<span class="kr">const</span> <span class="nx">nfl</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Sockets</span><span class="p">.</span><span class="nx">nfl</span><span class="p">(</span><span class="nx">ln</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">players</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">nfl</span><span class="p">.</span><span class="nx">players</span><span class="p">({</span> <span class="na">firstName</span><span class="p">:</span> <span class="s1">'Randy'</span><span class="p">,</span> <span class="na">lastName</span><span class="p">:</span> <span class="s1">'Moss'</span> <span class="p">})</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"channel"</span><span class="p">:</span><span class="s2">"players"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"lastName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Moss"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"firstName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Randy"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dfd2a7d4-3a36-4624-96c4-80f0c166d447ok"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
 </span></code></pre>
 <blockquote>
 <p>Example Players data</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
+<pre class="highlight javascript tab-javascript"><code><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="na">playerId</span><span class="p">:</span> <span class="s1">'00-0011754'</span><span class="p">,</span>
+    <span class="na">gsisName</span><span class="p">:</span> <span class="s1">'R.Moss'</span><span class="p">,</span>
+    <span class="na">fullName</span><span class="p">:</span> <span class="s1">'Randy Moss'</span><span class="p">,</span>
+    <span class="na">firstName</span><span class="p">:</span> <span class="s1">'Randy'</span><span class="p">,</span>
+    <span class="na">lastName</span><span class="p">:</span> <span class="s1">'Moss'</span><span class="p">,</span>
+    <span class="na">team</span><span class="p">:</span> <span class="s1">'UNK'</span><span class="p">,</span>
+    <span class="na">position</span><span class="p">:</span> <span class="s1">'UNK'</span><span class="p">,</span>
+    <span class="na">profileId</span><span class="p">:</span> <span class="mi">2502220</span><span class="p">,</span>
+    <span class="na">profileUrl</span><span class="p">:</span> <span class="s1">'http://www.nfl.com/player/randymoss/2502220/profile'</span><span class="p">,</span>
+    <span class="na">birthDate</span><span class="p">:</span> <span class="s1">'2/13/1977'</span><span class="p">,</span>
+    <span class="na">college</span><span class="p">:</span> <span class="s1">'Marshall'</span><span class="p">,</span>
+    <span class="na">yearsPro</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>
+    <span class="na">height</span><span class="p">:</span> <span class="mi">76</span><span class="p">,</span>
+    <span class="na">weight</span><span class="p">:</span> <span class="mi">210</span><span class="p">,</span>
+    <span class="na">status</span><span class="p">:</span> <span class="s1">'Unknown'</span><span class="p">,</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">  
    </span><span class="s2">"uuid"</span><span class="p">:</span><span class="s2">"c8aa064c-51d9-4910-ab2d-add823bce374"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">  
@@ -1492,7 +1807,6 @@
       </span><span class="p">}</span><span class="w">
    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
 </span></code></pre>
 <p>The <span style="color:red"> Players </span> channel returns data for particular players by <span style="color:red"> name </span>.  </p>
 
@@ -1527,7 +1841,12 @@
 <blockquote>
 <p>Example request Rosters</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">Lnd</span><span class="p">,</span> <span class="nx">Sockets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'sb-api'</span>
+<span class="kr">const</span> <span class="nx">ln</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Lnd</span><span class="p">()</span>
+
+<span class="kr">const</span> <span class="nx">nfl</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Sockets</span><span class="p">.</span><span class="nx">nfl</span><span class="p">(</span><span class="nx">ln</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">roster</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">nfl</span><span class="p">.</span><span class="nx">roster</span><span class="p">({</span> <span class="na">teamId</span><span class="p">:</span> <span class="s1">'MIN'</span> <span class="p">})</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"team"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"teamId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MIN"</span><span class="p">,</span><span class="w"> 
@@ -1539,7 +1858,12 @@
 <blockquote>
 <p>Example request Rosters in Year</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">Lnd</span><span class="p">,</span> <span class="nx">Sockets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'sb-api'</span>
+<span class="kr">const</span> <span class="nx">ln</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Lnd</span><span class="p">()</span>
+
+<span class="kr">const</span> <span class="nx">nfl</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Sockets</span><span class="p">.</span><span class="nx">nfl</span><span class="p">(</span><span class="nx">ln</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">roster</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">nfl</span><span class="p">.</span><span class="nx">roster</span><span class="p">({</span> <span class="na">teamId</span><span class="p">:</span> <span class="s1">'MIN'</span><span class="p">,</span> <span class="na">year</span><span class="p">:</span> <span class="mi">2018</span> <span class="p">}</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"team"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"teamId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MIN"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"retrieve"</span><span class="p">:</span><span class="w"> </span><span class="s2">"schedule"</span><span class="p">,</span><span class="w"> 
@@ -1550,8 +1874,28 @@
 <blockquote>
 <p>Example of Roster data</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
-</span><span class="p">{</span><span class="w">
+<pre class="highlight javascript tab-javascript"><code><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="na">playerId</span><span class="p">:</span> <span class="s1">'00-0027981'</span><span class="p">,</span>
+    <span class="na">gsisName</span><span class="p">:</span> <span class="s1">'K.Rudolph'</span><span class="p">,</span>
+    <span class="na">fullName</span><span class="p">:</span> <span class="s1">'Kyle Rudolph'</span><span class="p">,</span>
+    <span class="na">firstName</span><span class="p">:</span> <span class="s1">'Kyle'</span><span class="p">,</span>
+    <span class="na">lastName</span><span class="p">:</span> <span class="s1">'Rudolph'</span><span class="p">,</span>
+    <span class="na">team</span><span class="p">:</span> <span class="s1">'MIN'</span><span class="p">,</span>
+    <span class="na">position</span><span class="p">:</span> <span class="s1">'TE'</span><span class="p">,</span>
+    <span class="na">profileId</span><span class="p">:</span> <span class="mi">2495438</span><span class="p">,</span>
+    <span class="na">profileUrl</span><span class="p">:</span> <span class="s1">'http://www.nfl.com/player/kylerudolph/2495438/profile'</span><span class="p">,</span>
+    <span class="na">uniformNumber</span><span class="p">:</span> <span class="mi">82</span><span class="p">,</span>
+    <span class="na">birthDate</span><span class="p">:</span> <span class="s1">'11/9/1989'</span><span class="p">,</span>
+    <span class="na">college</span><span class="p">:</span> <span class="s1">'Notre Dame'</span><span class="p">,</span>
+    <span class="na">yearsPro</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="na">height</span><span class="p">:</span> <span class="mi">78</span><span class="p">,</span>
+    <span class="na">weight</span><span class="p">:</span> <span class="mi">265</span><span class="p">,</span>
+    <span class="na">status</span><span class="p">:</span> <span class="s1">'Active'</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="c1">// more elements omitted for brevity</span>
+<span class="p">]</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"uuid"</span><span class="p">:</span><span class="s2">"db69a9d5-13c3-42a0-958a-623630a0fc81"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w">
     </span><span class="p">[</span><span class="w">
@@ -1575,13 +1919,16 @@
        </span><span class="err">...</span><span class="w">
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
-
-
 </span></code></pre>
 <blockquote>
 <p>Example request Schedules</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">Lnd</span><span class="p">,</span> <span class="nx">Sockets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'sb-api'</span>
+<span class="kr">const</span> <span class="nx">ln</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Lnd</span><span class="p">()</span>
+
+<span class="kr">const</span> <span class="nx">nfl</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Sockets</span><span class="p">.</span><span class="nx">nfl</span><span class="p">(</span><span class="nx">ln</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">schedule</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">nfl</span><span class="p">.</span><span class="nx">schedule</span><span class="p">({</span> <span class="na">teamId</span><span class="p">:</span> <span class="s1">'CHI'</span> <span class="p">})</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"team"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"teamId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CHI"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"retrieve"</span><span class="p">:</span><span class="w"> </span><span class="s2">"schedule"</span><span class="p">,</span><span class="w"> 
@@ -1591,8 +1938,40 @@
 <blockquote>
 <p>Example of Schedule data</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w">
- </span><span class="p">{</span><span class="w">
+<pre class="highlight javascript tab-javascript"><code><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="na">gsisId</span><span class="p">:</span> <span class="s1">'2017091001'</span><span class="p">,</span>
+    <span class="na">gameKey</span><span class="p">:</span> <span class="s1">'57236'</span><span class="p">,</span>
+    <span class="na">startTime</span><span class="p">:</span> <span class="s1">'2017-09-10T170000.000Z'</span><span class="p">,</span>
+    <span class="na">week</span><span class="p">:</span> <span class="s1">'NflWeek1'</span><span class="p">,</span>
+    <span class="na">dayOfWeek</span><span class="p">:</span> <span class="s1">'Sunday'</span><span class="p">,</span>
+    <span class="na">seasonYear</span><span class="p">:</span> <span class="mi">2017</span><span class="p">,</span>
+    <span class="na">seasonType</span><span class="p">:</span> <span class="s1">'Regular'</span><span class="p">,</span>
+    <span class="na">finished</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="na">homeTeam</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">team</span><span class="p">:</span> <span class="s1">'CHI'</span><span class="p">,</span>
+      <span class="na">score</span><span class="p">:</span> <span class="mi">17</span><span class="p">,</span>
+      <span class="na">scoreQ1</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="na">scoreQ2</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+      <span class="na">scoreQ3</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="na">scoreQ4</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+      <span class="na">turnovers</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">awayTeam</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">team</span><span class="p">:</span> <span class="s1">'ATL'</span><span class="p">,</span>
+      <span class="na">score</span><span class="p">:</span> <span class="mi">23</span><span class="p">,</span>
+      <span class="na">scoreQ1</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+      <span class="na">scoreQ2</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+      <span class="na">scoreQ3</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+      <span class="na">scoreQ4</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+      <span class="na">turnovers</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">timeInserted</span><span class="p">:</span> <span class="s1">'2017-08-04T182915.669Z'</span><span class="p">,</span>
+    <span class="na">timeUpdate</span><span class="p">:</span> <span class="s1">'2018-06-08T192330.452Z'</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="c1">// more elements omitted for brevity</span>
+<span class="p">]</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="w"> </span><span class="p">{</span><span class="w">
    </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ede60177-f218-40ff-8fde-605f29a8bfce"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"data"</span><span class="p">:</span><span class="w">
     </span><span class="p">[</span><span class="w">
@@ -1791,19 +2170,40 @@
 <blockquote>
 <p>Example request Stats #1</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">Lnd</span><span class="p">,</span> <span class="nx">Sockets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'sb-api'</span>
+<span class="kr">const</span> <span class="nx">ln</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Lnd</span><span class="p">()</span>
+
+<span class="kr">const</span> <span class="nx">nfl</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Sockets</span><span class="p">.</span><span class="nx">nfl</span><span class="p">(</span><span class="nx">ln</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">stats</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">nfl</span><span class="p">.</span><span class="nx">statsById</span><span class="p">({</span> 
+  <span class="na">gameId</span><span class="p">:</span> <span class="s1">'2016101604'</span><span class="p">,</span> 
+  <span class="na">playerId</span><span class="p">:</span> <span class="s1">'00=0027973'</span><span class="p">,</span> 
+  <span class="na">statType</span><span class="p">:</span> <span class="s1">'passing'</span> 
+<span class="p">})</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"channel"</span><span class="p">:</span><span class="s2">"stats"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"statType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"passing"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"gameId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2016101604"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"playerId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"00-0027973"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[uuid]"</span><span class="w">
+  </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4312144f-a0a9-4c23-bfd5-01405813c2c9"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
 </span></code></pre>
 <blockquote>
 <p>Example request Stats #2</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">Lnd</span><span class="p">,</span> <span class="nx">Sockets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'sb-api'</span>
+<span class="kr">const</span> <span class="nx">ln</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Lnd</span><span class="p">()</span>
+
+<span class="kr">const</span> <span class="nx">nfl</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Sockets</span><span class="p">.</span><span class="nx">nfl</span><span class="p">(</span><span class="nx">ln</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">stats</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">nfl</span><span class="p">.</span><span class="nx">statsByNameAndWeek</span><span class="p">({</span>
+  <span class="na">firstName</span><span class="p">:</span> <span class="s1">'Drew'</span><span class="p">,</span>
+  <span class="na">lastName</span><span class="p">:</span> <span class="s1">'Brees'</span><span class="p">,</span>
+  <span class="na">seasonPhase</span><span class="p">:</span> <span class="s1">'Regular'</span><span class="p">,</span>
+  <span class="na">statType</span><span class="p">:</span> <span class="s1">'passing'</span><span class="p">,</span>
+  <span class="na">week</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="na">year</span><span class="p">:</span> <span class="mi">2017</span><span class="p">,</span>
+<span class="p">})</span>
+
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"channel"</span><span class="p">:</span><span class="s2">"stats"</span><span class="p">,</span><span class="w"> 
     </span><span class="s2">"lastName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Brees"</span><span class="p">,</span><span class="w"> 
     </span><span class="s2">"firstName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Drew"</span><span class="p">,</span><span class="w"> 
@@ -1818,7 +2218,24 @@
 <blockquote>
 <p>Example of Stats data</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<pre class="highlight javascript tab-javascript"><code><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="na">att</span><span class="p">:</span> <span class="mi">37</span><span class="p">,</span>
+    <span class="na">cmp</span><span class="p">:</span> <span class="mi">27</span><span class="p">,</span>
+    <span class="na">cmpAirYds</span><span class="p">:</span> <span class="mi">167</span><span class="p">,</span>
+    <span class="na">inCmp</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="na">inCmpAirYds</span><span class="p">:</span> <span class="mi">75</span><span class="p">,</span>
+    <span class="na">passingInt</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="na">sack</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="na">sackYds</span><span class="p">:</span> <span class="o">-</span><span class="mi">7</span><span class="p">,</span>
+    <span class="na">passingTds</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="na">passingTwoPointAttempt</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="na">passingTwoPointAttemptMade</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="na">passingTwoPointAttemptMissed</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="na">passingYds</span><span class="p">:</span> <span class="mi">291</span><span class="p">,</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"uuid"</span><span class="p">:</span><span class="s2">"4312144f-a0a9-4c23-bfd5-01405813c2c9"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w">
     </span><span class="p">[</span><span class="w">
@@ -1942,7 +2359,12 @@
 <blockquote>
 <p>Example request Info</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">Lnd</span><span class="p">,</span> <span class="nx">Sockets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'sb-api'</span>
+<span class="kr">const</span> <span class="nx">ln</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Lnd</span><span class="p">()</span>
+
+<span class="kr">const</span> <span class="nx">nba</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Sockets</span><span class="p">.</span><span class="nx">nba</span><span class="p">(</span><span class="nx">ln</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">info</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">nba</span><span class="p">.</span><span class="nx">info</span><span class="p">()</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"info"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123e4567-e89b-12d3-a456-426655440000"</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -1950,7 +2372,13 @@
 <blockquote>
 <p>Example of Info data</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="nl">seasonYear</span><span class="p">:</span> <span class="s1">'2018-2019'</span><span class="p">,</span>
+  <span class="nx">seasonPhase</span><span class="p">:</span> <span class="s1">'Regular'</span><span class="p">,</span>
+  <span class="nx">version</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="nx">lastUpdated</span><span class="p">:</span> <span class="nb">Date</span><span class="p">(</span><span class="s1">'2018-11-15T21:58:50.490Z'</span><span class="p">),</span>
+<span class="p">}</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
    </span><span class="s2">"uuid"</span><span class="p">:</span><span class="s2">"123e4567-e89b-12d3-a456-426655440000"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">  
       </span><span class="s2">"seasonYear"</span><span class="p">:</span><span class="s2">"2018-2019"</span><span class="p">,</span><span class="w">
@@ -1980,29 +2408,132 @@
 <blockquote>
 <p>Example request Games</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">Lnd</span><span class="p">,</span> <span class="nx">Sockets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'sb-api'</span>
+<span class="kr">const</span> <span class="nx">ln</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Lnd</span><span class="p">()</span>
+
+<span class="kr">const</span> <span class="nx">nba</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Sockets</span><span class="p">.</span><span class="nx">nba</span><span class="p">(</span><span class="nx">ln</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">games</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">nba</span><span class="p">.</span><span class="nx">games</span><span class="p">({</span> <span class="na">year</span><span class="p">:</span> <span class="mi">2018</span><span class="p">,</span> <span class="na">month</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span> <span class="na">day</span><span class="p">:</span> <span class="mi">24</span> <span class="p">})</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"games"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2018</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"month"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w"> 
-  </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[uuid]"</span><span class="w">
+  </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3f4f2853-e84f-4a29-b807-8a471e59ca44"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>Example request Games with TeamId</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">Lnd</span><span class="p">,</span> <span class="nx">Sockets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'sb-api'</span>
+<span class="kr">const</span> <span class="nx">ln</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Lnd</span><span class="p">()</span>
+
+<span class="kr">const</span> <span class="nx">nba</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Sockets</span><span class="p">.</span><span class="nx">nba</span><span class="p">(</span><span class="nx">ln</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">games</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">nba</span><span class="p">.</span><span class="nx">games</span><span class="p">({</span> <span class="na">year</span><span class="p">:</span> <span class="mi">2016</span><span class="p">,</span> <span class="na">month</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="na">day</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="na">teamId</span><span class="p">:</span> <span class="s1">'CHI'</span> <span class="p">})</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"games"</span><span class="p">,</span><span class="w"> 
-  </span><span class="s2">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2016</span><span class="p">,</span><span class="w"> </span><span class="s2">"month"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"year"</span><span class="p">:</span><span class="w"> </span><span class="mi">2016</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"month"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"day"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"teamId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CHI"</span><span class="p">,</span><span class="w"> 
-  </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[3f4f2853-e84f-4a29-b807-8a471e59ca44]"</span><span class="w">
+  </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3f4f2853-e84f-4a29-b807-8a471e59ca44"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>Example Games data</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+<pre class="highlight javascript tab-javascript"><code><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="na">gameId</span><span class="p">:</span> <span class="mi">21800280</span><span class="p">,</span>
+    <span class="na">startTime</span><span class="p">:</span> <span class="nb">Date</span><span class="p">(</span><span class="s1">'2018-11-25T01:00:00.000Z'</span><span class="p">),</span>
+    <span class="na">homeTeam</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">teamID</span><span class="p">:</span> <span class="s1">'WAS'</span><span class="p">,</span>
+      <span class="na">finalScore</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">awayTeam</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">teamID</span><span class="p">:</span> <span class="s1">'NOP'</span><span class="p">,</span>
+      <span class="na">finalScore</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">finished</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="na">seasonPhase</span><span class="p">:</span> <span class="s1">'Regular'</span><span class="p">,</span>
+    <span class="na">year</span><span class="p">:</span> <span class="s1">'2018-2019'</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="na">gameId</span><span class="p">:</span> <span class="mi">21800282</span><span class="p">,</span>
+    <span class="na">startTime</span><span class="p">:</span> <span class="nb">Date</span><span class="p">(</span><span class="s1">'2018-11-25T01:00:00.000Z'</span><span class="p">),</span>
+    <span class="na">homeTeam</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">teamID</span><span class="p">:</span> <span class="s1">'OKC'</span><span class="p">,</span>
+      <span class="na">finalScore</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">awayTeam</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">teamID</span><span class="p">:</span> <span class="s1">'DEN'</span><span class="p">,</span>
+      <span class="na">finalScore</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">finished</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="na">seasonPhase</span><span class="p">:</span> <span class="s1">'Regular'</span><span class="p">,</span>
+    <span class="na">year</span><span class="p">:</span> <span class="s1">'2018-2019'</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="na">gameId</span><span class="p">:</span> <span class="mi">21800285</span><span class="p">,</span>
+    <span class="na">startTime</span><span class="p">:</span> <span class="nb">Date</span><span class="p">(</span><span class="s1">'2018-11-25T01:30:00.000Z'</span><span class="p">),</span>
+    <span class="na">homeTeam</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">teamID</span><span class="p">:</span> <span class="s1">'GSW'</span><span class="p">,</span>
+      <span class="na">finalScore</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">awayTeam</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">teamID</span><span class="p">:</span> <span class="s1">'SAC'</span><span class="p">,</span>
+      <span class="na">finalScore</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">finished</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="na">seasonPhase</span><span class="p">:</span> <span class="s1">'Regular'</span><span class="p">,</span>
+    <span class="na">year</span><span class="p">:</span> <span class="s1">'2018-2019'</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="na">gameId</span><span class="p">:</span> <span class="mi">21800284</span><span class="p">,</span>
+    <span class="na">startTime</span><span class="p">:</span> <span class="nb">Date</span><span class="p">(</span><span class="s1">'2018-11-25T01:30:00.000Z'</span><span class="p">),</span>
+    <span class="na">homeTeam</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">teamID</span><span class="p">:</span> <span class="s1">'MIL'</span><span class="p">,</span>
+      <span class="na">finalScore</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">awayTeam</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">teamID</span><span class="p">:</span> <span class="s1">'SAS'</span><span class="p">,</span>
+      <span class="na">finalScore</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">finished</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="na">seasonPhase</span><span class="p">:</span> <span class="s1">'Regular'</span><span class="p">,</span>
+    <span class="na">year</span><span class="p">:</span> <span class="s1">'2018-2019'</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="na">gameId</span><span class="p">:</span> <span class="mi">21800279</span><span class="p">,</span>
+    <span class="na">startTime</span><span class="p">:</span> <span class="nb">Date</span><span class="p">(</span><span class="s1">'2018-11-25T00:30:00.000Z'</span><span class="p">),</span>
+    <span class="na">homeTeam</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">teamID</span><span class="p">:</span> <span class="s1">'CLE'</span><span class="p">,</span>
+      <span class="na">finalScore</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">awayTeam</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">teamID</span><span class="p">:</span> <span class="s1">'HOU'</span><span class="p">,</span>
+      <span class="na">finalScore</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">finished</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="na">seasonPhase</span><span class="p">:</span> <span class="s1">'Regular'</span><span class="p">,</span>
+    <span class="na">year</span><span class="p">:</span> <span class="s1">'2018-2019'</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="na">gameId</span><span class="p">:</span> <span class="mi">21800281</span><span class="p">,</span>
+    <span class="na">startTime</span><span class="p">:</span> <span class="nb">Date</span><span class="p">(</span><span class="s1">'2018-11-25T01:00:00.000Z'</span><span class="p">),</span>
+    <span class="na">homeTeam</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">teamID</span><span class="p">:</span> <span class="s1">'MIN'</span><span class="p">,</span>
+      <span class="na">finalScore</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">awayTeam</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">teamID</span><span class="p">:</span> <span class="s1">'CHI'</span><span class="p">,</span>
+      <span class="na">finalScore</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">finished</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="na">seasonPhase</span><span class="p">:</span> <span class="s1">'Regular'</span><span class="p">,</span>
+    <span class="na">year</span><span class="p">:</span> <span class="s1">'2018-2019'</span><span class="p">,</span>
+  <span class="p">},</span>
+<span class="p">]</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
    </span><span class="s2">"uuid"</span><span class="p">:</span><span class="s2">"3f4f2853-e84f-4a29-b807-8a471e59ca44"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">  
       </span><span class="p">{</span><span class="w">  
@@ -2200,7 +2731,12 @@
 <blockquote>
 <p>Example request Players</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">Lnd</span><span class="p">,</span> <span class="nx">Sockets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'sb-api'</span>
+<span class="kr">const</span> <span class="nx">ln</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Lnd</span><span class="p">()</span>
+
+<span class="kr">const</span> <span class="nx">nba</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Sockets</span><span class="p">.</span><span class="nx">nba</span><span class="p">(</span><span class="nx">ln</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">players</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">nba</span><span class="p">.</span><span class="nx">players</span><span class="p">({</span> <span class="na">firstName</span><span class="p">:</span> <span class="s1">'Kevin'</span><span class="p">,</span> <span class="na">lastName</span><span class="p">:</span> <span class="s1">'Durant'</span> <span class="p">}</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"players"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Durant"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kevin"</span><span class="p">,</span><span class="w"> 
@@ -2210,7 +2746,21 @@
 <blockquote>
 <p>Example Players data (Kevin Durant)</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+<pre class="highlight javascript tab-javascript"><code><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="na">playerId</span><span class="p">:</span> <span class="mi">201142</span><span class="p">,</span>
+    <span class="na">firstName</span><span class="p">:</span> <span class="s1">'Kevin'</span><span class="p">,</span>
+    <span class="na">lastName</span><span class="p">:</span> <span class="s1">'Durant'</span><span class="p">,</span>
+    <span class="na">fullName</span><span class="p">:</span> <span class="s1">'Kevin Durant'</span><span class="p">,</span>
+    <span class="na">team</span><span class="p">:</span> <span class="s1">'GSW'</span><span class="p">,</span>
+    <span class="na">profileUrl</span><span class="p">:</span> <span class="s1">''</span><span class="p">,</span>
+    <span class="na">birthDate</span><span class="p">:</span> <span class="nb">Date</span><span class="p">(</span><span class="s1">'2018-10-19T11:43:30.426Z'</span><span class="p">),</span>
+    <span class="na">status</span><span class="p">:</span> <span class="s1">'Active'</span><span class="p">,</span>
+    <span class="na">rookieYear</span><span class="p">:</span> <span class="mi">2007</span><span class="p">,</span>
+    <span class="na">lastYear</span><span class="p">:</span> <span class="mi">2018</span><span class="p">,</span>
+  <span class="p">},</span>
+<span class="p">]</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
    </span><span class="s2">"uuid"</span><span class="p">:</span><span class="s2">"3f4f2853-e84f-4a29-b807-8a471e59ca44"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">  
       </span><span class="p">{</span><span class="w">  
@@ -2264,27 +2814,43 @@
 <blockquote>
 <p>Example request for Roster</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">Lnd</span><span class="p">,</span> <span class="nx">Sockets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'sb-api'</span>
+<span class="kr">const</span> <span class="nx">ln</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Lnd</span><span class="p">()</span>
+
+<span class="kr">const</span> <span class="nx">nba</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Sockets</span><span class="p">.</span><span class="nx">nba</span><span class="p">(</span><span class="nx">ln</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">roster</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">nba</span><span class="p">.</span><span class="nx">roster</span><span class="p">({</span> <span class="na">teamId</span><span class="p">:</span> <span class="s1">'DEN'</span> <span class="p">}</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"team"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"retrieve"</span><span class="p">:</span><span class="w"> </span><span class="s2">"roster"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"teamId""[team]"</span><span class="p">,</span><span class="w"> 
-  </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[uuid]"</span><span class="w">
+  </span><span class="s2">"teamId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEN"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3f4f2853-e84f-4a29-b807-8a471e59ca44"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
-<p>Example request with Year</p>
+<p>Example request with season</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">Lnd</span><span class="p">,</span> <span class="nx">Sockets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'sb-api'</span>
+<span class="kr">const</span> <span class="nx">ln</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Lnd</span><span class="p">()</span>
+
+<span class="kr">const</span> <span class="nx">nba</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Sockets</span><span class="p">.</span><span class="nx">nba</span><span class="p">(</span><span class="nx">ln</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">roster</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">nba</span><span class="p">.</span><span class="nx">roster</span><span class="p">({</span> <span class="na">season</span><span class="p">:</span> <span class="s1">'2016-2017'</span><span class="p">,</span> <span class="na">teamId</span><span class="p">:</span> <span class="s1">'GSW'</span> <span class="p">})</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"team"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"retrieve"</span><span class="p">:</span><span class="w"> </span><span class="s2">"schedule"</span><span class="p">,</span><span class="w"> 
+  </span><span class="s2">"teamId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GSW"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"season"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-2017"</span><span class="p">,</span><span class="w"> 
-  </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[uuid]"</span><span class="w">
+  </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3f4f2853-e84f-4a29-b807-8a471e59ca44"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>Example request for Schedule </p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">Lnd</span><span class="p">,</span> <span class="nx">Sockets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'sb-api'</span>
+<span class="kr">const</span> <span class="nx">ln</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Lnd</span><span class="p">()</span>
+
+<span class="kr">const</span> <span class="nx">nba</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Sockets</span><span class="p">.</span><span class="nx">nba</span><span class="p">(</span><span class="nx">ln</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">schedule</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">nba</span><span class="p">.</span><span class="nx">schedule</span><span class="p">({</span> <span class="na">teamId</span><span class="p">:</span> <span class="s1">'CHI'</span> <span class="p">})</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"team"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"teamId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CHI"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"retrieve"</span><span class="p">:</span><span class="w"> </span><span class="s2">"schedule"</span><span class="p">,</span><span class="w"> 
@@ -2294,7 +2860,25 @@
 <blockquote>
 <p>Example of team Schedule (Chicago Bulls)</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+<pre class="highlight javascript tab-javascript"><code><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="na">gameId</span><span class="p">:</span> <span class="mi">21600073</span><span class="p">,</span>
+    <span class="na">startTime</span><span class="p">:</span> <span class="nb">Date</span><span class="p">(</span><span class="s1">'2016-11-05T00:00:00.000Z'</span><span class="p">),</span>
+    <span class="na">homeTeam</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">teamID</span><span class="p">:</span> <span class="s1">'CHI'</span><span class="p">,</span>
+      <span class="na">finalScore</span><span class="p">:</span> <span class="mi">104</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">awayTeam</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">teamID</span><span class="p">:</span> <span class="s1">'NYK'</span><span class="p">,</span>
+      <span class="na">finalScore</span><span class="p">:</span> <span class="mi">117</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">finished</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="na">seasonPhase</span><span class="p">:</span> <span class="s1">'Regular'</span><span class="p">,</span>
+    <span class="na">year</span><span class="p">:</span> <span class="s1">'2016-2017'</span><span class="p">,</span>
+  <span class="p">},</span> 
+  <span class="c1">// more elements omitted for brevity</span>
+<span class="p">]</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
    </span><span class="s2">"uuid"</span><span class="p">:</span><span class="s2">"3f4f2853-e84f-4a29-b807-8a471e59ca44"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">  
       </span><span class="p">{</span><span class="w">  
@@ -2312,6 +2896,7 @@
          </span><span class="s2">"seasonPhase"</span><span class="p">:</span><span class="s2">"Regular"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"year"</span><span class="p">:</span><span class="s2">"2016-2017"</span><span class="p">,</span><span class="w">
       </span><span class="p">}</span><span class="w">
+   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span><span class="err">...</span><span class="w">
 
@@ -2470,17 +3055,33 @@
 <blockquote>
 <p>Example request Stats by ID</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">Lnd</span><span class="p">,</span> <span class="nx">Sockets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'sb-api'</span>
+<span class="kr">const</span> <span class="nx">ln</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Lnd</span><span class="p">()</span>
+
+<span class="kr">const</span> <span class="nx">nba</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Sockets</span><span class="p">.</span><span class="nx">nba</span><span class="p">(</span><span class="nx">ln</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">stats</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">nba</span><span class="p">.</span><span class="nx">statsById</span><span class="p">({</span> <span class="na">gameId</span><span class="p">:</span> <span class="s1">'21600854'</span><span class="p">,</span> <span class="na">playerId</span><span class="p">:</span> <span class="s1">'201142'</span> <span class="p">}</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stats"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"gameId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"21600854"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"playerId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"201142"</span><span class="p">,</span><span class="w"> 
-  </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[uuid]"</span><span class="w">
+  </span><span class="s2">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3f4f2853-e84f-4a29-b807-8a471e59ca44"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>Example request for Stats by Name</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">Lnd</span><span class="p">,</span> <span class="nx">Sockets</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'sb-api'</span>
+<span class="kr">const</span> <span class="nx">ln</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Lnd</span><span class="p">()</span>
+
+<span class="kr">const</span> <span class="nx">nba</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">Sockets</span><span class="p">.</span><span class="nx">nba</span><span class="p">(</span><span class="nx">ln</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">stats</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">nba</span><span class="p">.</span><span class="nx">statsByName</span><span class="p">({</span> 
+  <span class="na">firstName</span><span class="p">:</span> <span class="s1">'Kevin'</span><span class="p">,</span> 
+  <span class="na">lastName</span><span class="p">:</span> <span class="s1">'Durant'</span><span class="p">,</span> 
+  <span class="na">year</span><span class="p">:</span> <span class="mi">2017</span><span class="p">,</span> 
+  <span class="na">month</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> 
+  <span class="na">day</span><span class="p">:</span> <span class="mi">12</span> 
+<span class="p">})</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"stats"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Durant"</span><span class="p">,</span><span class="w"> 
   </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Kevin"</span><span class="p">,</span><span class="w"> 
@@ -2493,7 +3094,29 @@
 <blockquote>
 <p>Example of player Stats data (Kevin Durant)</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
+<pre class="highlight javascript tab-javascript"><code><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="na">playerId</span><span class="p">:</span> <span class="mi">201142</span><span class="p">,</span>
+    <span class="na">min</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="na">fgm</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="na">fga</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="na">tpm</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="na">tpa</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="na">ftm</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="na">fta</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="na">plusminus</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="na">off</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="na">deff</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="na">tot</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="na">ast</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="na">pf</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="na">st</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="na">to</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="na">bs</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="na">pts</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">  
    </span><span class="s2">"uuid"</span><span class="p">:</span><span class="s2">"3f4f2853-e84f-4a29-b807-8a471e59ca44"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">  
       </span><span class="p">{</span><span class="w">  
@@ -2517,9 +3140,9 @@
          </span><span class="s2">"pts"</span><span class="p">:</span><span class="mi">0</span><span class="w">
       </span><span class="p">}</span><span class="w">
    </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="err">`</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>The <span style="color:red"> Stats </span> channel returns data for individual players and allows you to query by <span style="color:red"> gameId </span>, <span style="color:red"> playerId </span> or by specific player <span style="color:red"> name </span>.</p>
+<p>The <span style="color:red"> Stats </span> channel returns data for individual players and allows you to query by <span style="color:red"> gameId </span>, <span style="color:red"> playerId </span> or by specific player <span style="color:red"> name</span>.</p>
 
 <p><strong>Required Fields for Stats by Id</strong></p>
 
@@ -2598,7 +3221,7 @@
 </tr>
 </tbody></table>
 <h1 id='contact-us'>Contact Us</h1>
-<p>Follow us on twitter <a href="https://twitter.com/SuredBits">@Suredbits</a></p>
+<p>Follow us on twitter <a href="https://twitter.com/Suredbits">@Suredbits</a></p>
 
 <p>Join our Slack channel <a href="https://join.slack.com/t/suredbits/shared_invite/enQtNDEyMjY3MTg1MTg3LTYyYjkwOGUzMDQ4NDAwZjE1M2I3MmQyNWNlZjNlYjg4OGRjYTRjNWUwNjRjNjg4Y2NjZjAxYjU1N2JjMTU1YWM">Suredbits Slack</a></p>
 
@@ -2610,6 +3233,7 @@
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="json">json</a>
+                <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>
     </div>

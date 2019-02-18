@@ -262,14 +262,14 @@ For testing, we provide data for <span style="color:red"> Lebron James </span> f
 
 ## Payment & Pricing
 
-**How to Pay**
+###How to Pay
 
 This is our recommended lnd lightning client library: <a href="https://github.com/Suredbits/sb-api-lnd">https://github.com/Suredbits/sb-api-lnd</a>
 
 This is an alternative c-lightning client library: <a href="https://github.com/suredbits/lightning-charge">https://github.com/suredbits/lightning-charge</a>
 
 
-**Pricing**
+###Pricing
 
 <aside class="success"> All payments are transacted in cryptocurrency.  For convenience, we have quoted prices in USD equiavalents. </aside>
 
@@ -387,14 +387,14 @@ Suredbits APIs are available via websockets with the following format:
 
 4. Receive data :)
 
-**Ping/Pong**
+###Ping/Pong
 
 To confirm your connection, send a <span style="color:red">`ping`</span> request. Ping has an optional `uuid` field for correlating multiple pongs to multiple pings. 
 
 <aside class="success"><code>{"event": "ping"}</code> should return <code>{"event":"pong"}</code></aside>
 
 
-**Sample Lightning Invoice**
+###Sample Lightning Invoice
 
 A successful request will generate a lightning invoice that will look similar to the example below:
 
@@ -475,13 +475,6 @@ Field | Type | Example
 <span style="color:red"> duration </span> | Integer (milliseconds) | <span style="color:red"> "15000" </span>
 <span style="color:red"> refundInvoice </span> | String | <span style="color:red"> lnbcrt10n1pd5v2mwpp5ulxpj8ht... </span>
 
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-
-
 
 ### Snapshots
 > Example of snapshot from trades channel
@@ -524,15 +517,6 @@ Field | Type | Example
 ```
 
 Upon subscribing to a channel an initial snapshot is sent.  The snapshot provides a view of the current state of the market.
-
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
-<br></br>
 
 
 ### Sequence Identifier
@@ -612,7 +596,7 @@ You may unsubscribe from a channel at any time. Any time remainaing will be refu
 <br></br>
 <br></br>
 
-**Maintenance**
+###Maintenance
 
 In the event of maintenance or service interruption, we will refund any remaining portion of your subscription. 
 
@@ -1235,7 +1219,7 @@ const games = await nfl.games({ week: 1, seasonPhase: 'Regular', year: 2017 })
 
 The <span style="color:red"> Games </span> channel returns data for specific games. 
 
-### Completed and upcoming games
+**Completed and upcoming games**
 
 The available fields to query data from completed and upcoming NFL games are as follows:
 
@@ -1255,7 +1239,7 @@ Field | Type | Example
 <span style="color:red"> year </span> | Integer |  <span style="color:red"> 2009, 2010, 2011, etc. </span>
 <span style="color:red"> teamId </span> | String  |  <span style="color:red"> CHI, MIN, GB, MIA </span> etc. <a href="#TeamID">See Team ID Table</a>
 
-### Live games
+**Live games**
 
 You can also query for games that are currently playing. The available fields are as follows: 
 
@@ -1560,7 +1544,7 @@ The <span style="color:red"> Team </span> channel returns data for <span style="
 
 The required fields to request NFL Team & Roster data are as follows:
 
-**Required fields**: 
+**Required fields** 
 
 Field | Type | Example 
 ------ | ----- | ------
@@ -1568,7 +1552,7 @@ Field | Type | Example
 <span style="color:red"> teamId </span> | String |  <span style="color:red"> CHI </span>, <span style="color:red"> MIN </span> etc.
 <span style="color:red"> retrieve </span> | String |  <span style="color:red"> roster </span> or <span style="color:red"> schedule </span>
 
-**Optional Field**
+**Optional Fields**
 
 Field | Type | Example
 ------| ----- | ------
@@ -2031,7 +2015,7 @@ const games = await nba.games({ year: 2016, month: 12, day: 20, teamId: 'CHI' })
 
 The <span style="color:red"> Games </span> channel returns statistics about specific games played.  
 
-### Completed and upcoming games
+**Completed and upcoming games**
 
 The available fields to query data from completed and upcoming NBA games are as follows:
 
@@ -2055,7 +2039,7 @@ To search for a game by a specific team, add an optional field for <span style="
 | --------------------------------------- | ------ | --------------------------------------------------------------------------------------------------- |
 | <span style="color:red"> teamId </span> | String | <span style="color:red"> ATL, CLE, PHX, LAC </span> etc. <a href="#NBATeamID">See Team ID Table</a> |
 
-### Live games
+**Live games**
 You can also query for games that are currently playing. The available fields are as follows: 
 
 **Required fields**
