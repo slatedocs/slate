@@ -9,6 +9,7 @@ search: true
 includes:
   - usecases
   - payouts
+  - third-party-payouts
   - banks
   - affiliates
   - contact-us

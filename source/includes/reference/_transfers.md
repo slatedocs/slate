@@ -745,7 +745,7 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/profiles/{profileId}/third
               "name" : {
                 "fullName": "Hot Air Balloon Services Ltd"
               },
-      			  "businessRegistrationCode": "1999212",
+              "businessRegistrationCode": "1999212",
               "address" : {
                 "firstLine": "Aiandi tee 1431",
                 "city": "Tallinn",
@@ -810,9 +810,9 @@ This endpoint is applicable for [Third-Party Payouts](#transferwise-api-third-pa
 
 **`POST https://api.sandbox.transferwise.tech/v1/profiles/{profileId}/third-party-transfers`**
 
-This is very similar to **Create transfers** endpoint, but please not these differences:
+This is very similar to **Create transfers** endpoint, but please note these differences:
 <ul>
-  <li>Originator datablock is additionally required</li>
+  <li>originator datablock is additionally required</li>
   <li>originalTransferId field is being used instead of customerTransactionId</li>
 </ul>
 
