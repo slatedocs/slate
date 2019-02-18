@@ -13,14 +13,14 @@ https://api.transferwise.com
 
 Welcome to the TransferWise API documentation. You can explore the different ways to use our API and choose the right one for you below. 
 
-* [TransferWise Payouts and Account Automation](#transferwise-api-transferwise-payouts-and-account-automation) 
+* [Payouts and Account Automation](#transferwise-api-payouts-and-account-automation) 
+* [Third-Party Payouts](#transferwise-api-third-party-payouts) 
 * [Banks](#transferwise-api-banks) 
 * [Affiliates](#transferwise-api-affiliates) 
 * [Connected Applications](#transferwise-api-connected-applications) 
-* [Third-Party Payouts](#transferwise-api-third-party-payouts) 
 * [Receive Money](#transferwise-api-receive-money)
 
-## TransferWise Payouts and Account Automation
+## Payouts and Account Automation
 This lets you to automate how you use your TransferWise account. You can automate payments, connect your business tools, and create ways to manage your finances. 
 
 You can:
@@ -34,7 +34,25 @@ You can:
   <li>Use our platform to create and build your own tool to manage your finances.</li>
 </ul>
 
-Our [Payouts Guide](#transferwise-payouts-guide) will help you get started with the technical integration.
+Our [Payouts Guide](#payouts-guide) will help you get started with the technical integration.
+
+
+## Third-Party Payouts
+Third-Party Payouts allows marketplaces and financial institutions (banks and payment service providers) to use TransferWise as a payout option for their customers.
+It’s different from Payouts since it doesn’t require your company to be the originator of payments. 
+Instead, TransferWise will act as a third-party to your customers when they initiate a payment through your site.  
+
+All the above listed payouts and account automation benefits are also true for third-party payouts service. 
+You can build payment services to your customers on top of TransferWise payment platform that enables your customers to send cross-border payouts to 40+ currencies in 70+ countries. 
+
+In addition there will also be a dedicated account manager who will be your primary contact 
+to solve all questions and support issues should these arise. 
+
+Please note that subscribing to third party payouts service requires your company to complete enhanced due diligence process performed by TransferWise compliance team. 
+Please contact bizdev@transferwise.com for more info how to get started.
+
+Our [Third-Party Payouts Guide](#third-party-payouts-guide) will help you get started with the technical integration.
+
 
 ## Banks
 Our bank integration lets banks build TransferWise payments seamlessly into their own desktop and mobile apps. Banks can also build their own native user experience directly onto our API, co-branded with TransferWise.
@@ -93,13 +111,6 @@ The [Affiliates Integration Guide](#affiliates-integration-guide) helps you get 
 With Connected Applications, you can let your customers connect their TransferWise accounts to your product. Say you’re an accounting software – doing this could let your customers automate reconciliation. If you’re a payroll company, you could push customer payments right into TransferWise. Or you could push TransferWise notifications through your app. Whatever you want to build, you likely could! 
 
 Unfortunately this functionality isn’t available to everyone yet, but we’re working hard to open it to everyone. To discuss your use case please contact [bizdev@transferwise.com](mailto:bizdev@transferwise.com).
-
-## Third-Party Payouts
-Third-Party Payouts allows marketplaces and financial institutions (banks and payment service providers) to use TransferWise as a payout option for their customers.
-It’s different from Payouts because it doesn’t require you to be the originator of payments. 
-Instead, TransferWise will act as a third-party to your customers when they initiate a payment through your site.  
-
-We’re working on making this feature available soon. Please contact bizdev@transferwise.com for more info.  
 
 ## Receive Money
 You can receive money to the local bank details that come with your TransferWise account (AUD, EUR, GBP, NZD and USD) and reconcile these incoming payments via the API. 

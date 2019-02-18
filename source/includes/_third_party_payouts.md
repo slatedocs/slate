@@ -1,4 +1,6 @@
-# Payouts Guide
+# Third-Party Payouts Guide
+
+
 Welcome to the TransferWise payouts API documentation. 
 Before you start coding, please take few moments to review some important information about TransferWise and our API.
 
@@ -7,6 +9,8 @@ Before you start coding, please take few moments to review some important inform
 TransferWise and its borderless account features and pricing are best explained below.
 
 [https://transferwise.com/gb/borderless/pricing](https://transferwise.com/gb/borderless/pricing)
+
+
 
 ### 2. Sign up for your TransferWise account, activate your borderless account, and complete verification.
 Using the product before integrating with our API will help you understand how our payment flow works. 

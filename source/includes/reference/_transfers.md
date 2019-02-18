@@ -691,6 +691,197 @@ fields[n].group[n].validationAsync          | Validator URL and parameter name y
 fields[n].group[n].valuesAllowed[n].key     | List of allowed values. Value key                         | Text
 fields[n].group[n].valuesAllowed[n].name    | List of allowed values. Value name.                       | Text
 
+
+## Create Third-Party Transfers
+
+> Example Request (Originator Type = PRIVATE):
+
+```shell
+curl -X POST https://api.sandbox.transferwise.tech/v1/profiles/{profileId}/third-party-transfers \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "targetAccount": <recipient account id>,   
+          "quote": <quote id>,
+          "originalTransferId": "<unique transfer id in your system>",
+          "details" : {
+              "reference" : "Ski trip"
+          },
+          "originator" : {
+              "legalEntityType" : "PRIVATE",
+              "reference" : "<unique customer id in your system>",
+              "name" : {
+                "givenName": "John",
+                "middleNames": ["Ryan"],
+                "familyName": "Godspeed"
+              },
+      			  "dateOfBirth": "1977-07-01",
+              "address" : {
+                "firstLine": "Salu tee 100, Apt 4B",
+                "city": "Tallinn",
+                "countryCode": "EE",
+                "postCode": "12112"
+              }
+          } 
+         }'
+```
+
+> Example Request (Originator Type = BUSINESS):
+
+```shell
+curl -X POST https://api.sandbox.transferwise.tech/v1/profiles/{profileId}/third-party-transfers \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "targetAccount": <recipient account id>,   
+          "quote": <quote id>,
+          "originalTransferId": "<unique transfer id in your system>",
+          "details" : {
+              "reference" : "Payment for invoice 22092"
+          },
+          "originator" : {
+              "legalEntityType" : "BUSINESS",
+              "reference" : "<originator customer id in your system>",
+              "name" : {
+                "fullName": "Hot Air Balloon Services Ltd"
+              },
+      			  "businessRegistrationCode": "1999212",
+              "address" : {
+                "firstLine": "Aiandi tee 1431",
+                "city": "Tallinn",
+                "countryCode": "EE",
+                "postCode": "12112"
+              }
+          } 
+       }'
+```
+
+> Example Response:
+
+```json
+
+{
+    "id": 47755772,
+    "originalTransferId": "PMT-29991221",
+    "user": <your user id>,
+    "targetAccount": <recipient account id>,
+    "quote": <quote id>,
+    "status": "incoming_payment_waiting",
+    "rate": 0.8762,
+    "details": {
+        "reference": "Ski trip"
+    },
+    "hasActiveIssues": false,
+    "sourceCurrency": "EUR",
+    "sourceValue": 0,
+    "targetCurrency": "GBP",
+    "targetValue": 500,
+    "originator": {
+        "name": {
+            "givenName": "John",
+            "middleNames": [
+                "Ryan"
+            ],
+            "familyName": "Godspeed",
+            "patronymicName": null,
+            "fullName": "John Godspeed"
+        },
+        "dateOfBirth": "1977-07-01",
+        "reference": "CST-2991992",
+        "legalEntityType": "PRIVATE",
+        "businessRegistrationCode": null,
+        "address": {
+            "firstLine": "Salu tee 14",
+            "city": "Tallinn",
+            "stateCode": null,
+            "countryCode": "EE",
+            "postCode": "12112"
+        }
+    },
+    "created": "2019-02-18T12:59:42.000Z"
+}
+
+```
+
+
+This endpoint is applicable for [Third-Party Payouts](#transferwise-api-third-party-payouts) use case only. 
+
+### Request
+
+**`POST https://api.sandbox.transferwise.tech/v1/profiles/{profileId}/third-party-transfers`**
+
+This is very similar to **Create transfers** endpoint, but please not these differences:
+<ul>
+  <li>Originator datablock is additionally required</li>
+  <li>originalTransferId field is being used instead of customerTransactionId</li>
+</ul>
+
+Field                           | Description                                   | Format
+---------                       | -------                                       | -----------
+targetAccount                   | Recipient account id. You can create multiple transfers to same recipient account.   | Integer
+quote                           | Quote id. You can only create one transfer per one quote. <br/>You cannot use same quote ID to create multiple transfers. | Integer
+originalTransferId              | Unique transfer id in your system. We use this field also to perform idempotency check to avoid duplicate transfers in case of network failures or timeouts.  You can only submit one transfer with same originalTransferId.  | Text
+details.reference (optional)    | Recipient will see this reference text in their bank statement. Maximum allowed characters depends on the currency route. [Business Payments Tips](https://transferwise.com/help/article/2348295/business/business-payment-tips) article has a full list. | Text
+originator                      | Data block to capture payment originator details. | Group 
+originator.legalEntityType      | PRIVATE or BUSINESS. Payment originator legal type. | Text
+originator.reference            | Unique customer id in your system. This allows us to uniquely identify each originator. Required. | Text
+originator.name.givenName       | Payment originator first name. Required if legalEntityType = PRIVATE. | Text
+originator.name.middleNames     | Payment originator middle name(s). Used only if legalEntityType = PRIVATE.  Optional | Text Array
+originator.name.familyName      | Payment originator family name. Required if legalEntityType = PRIVATE. | Text
+originator.name.patronymicName  | Payment originator patronymic name. Used only if legalEntityType = PRIVATE.  Optional | Text
+originator.name.fullName        | Payment originator full legal name. Required if legalEntityType = BUSINESS. | Text
+originator.dateOfBirth          | Payment originator date of birth. Required if legalEntityType = PRIVATE.  | YYYY-MM-DD 
+originator.businessRegistrationCode | Payment originator business registry number / incorporation number. Required if legalEntityType = BUSINESS. | Text  
+originator.address.firstLine    | Payment originator address first line. Required | Text 
+originator.address.city         | Payment originator address city. Required | Text
+originator.address.stateCode    | Payment originator address state code. Required if address country code in (US, CA, BR, AU). See [Countries and states](#recipient-accounts-countries-and-states) | Text 
+originator.address.countryCode  | Payment originator address first line. Required | Text 
+originator.address.postCode     | Originator address zip code. Optional | Text
+
+
+### Response
+
+You need to save transfer id for tracking its status later.
+
+Field                     | Description                                   | Format
+---------                 | -------                                       | -----------
+id                        | Transfer id                                   | Integer
+originalTransferId       | Transfer id                                   | Integer
+user                      | Your user id                                  | Integer
+targetAccount             | Recipient account id                          | Integer
+sourceAccount             | Not used                                      | Integer
+quote                     | Quote id                                      | Integer
+status                    | Transfer current status | Text
+rate                      | Exchange rate value                           | Decimal
+details.reference         | Payment reference text        | Text
+hasActiveIssues           | Are there any pending issues which stop executing the transfer?  | Boolean 
+sourceCurrency            | Source currency code   | Text
+sourceValue               | Transfer amount in source currency   |  Decimal
+targetCurrency            | Target currency code  | Text
+targetValue               | Transfer amount in target currency   | Decimal
+originator                      | Data block to capture payment originator details | Group 
+originator.legalEntityType      | Payment originator legal type. | Text
+originator.reference            | Unique customer id in your system. | Text
+originator.name.givenName       | Payment originator first name. | Text
+originator.name.middleNames     | Payment originator middle name(s). | Text Array
+originator.name.familyName      | Payment originator family name.| Text
+originator.name.patronymicName  | Payment originator patronymic name. | Text
+originator.name.fullName        | Payment originator full legal name. | Text
+originator.dateOfBirth          | Payment originator date of birth. | YYYY-MM-DD 
+originator.businessRegistrationCode | Payment originator business registry number / incorporation number. | Text  
+originator.address.firstLine    | Payment originator address first line. | Text 
+originator.address.city         | Payment originator address city.  | Text
+originator.address.stateCode    | Payment originator address state code.  | Text 
+originator.address.countryCode  | Payment originator address first line. | Text 
+originator.address.postCode     | Originator address zip code. | Text
+created                         | Timestamp when transfer was created | Timestamp 
+
+
+### Avoiding duplicate transfers
+We use **originalTransferId** field to avoid duplicate transfer requests. 
+When your first call fails (error or timeout) then you should use the same value in **originalTransferId** field that you used in the original call when you are submitting a retry message. 
+This way we can treat subsequent retry messages as **repeat messages** and will not create duplicate transfers to your account. 
+
 <br/><br/><br/><br/><br/><br/><br/>
 <br/><br/><br/><br/><br/><br/><br/>
 <br/><br/><br/><br/><br/><br/><br/>
