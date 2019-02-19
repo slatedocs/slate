@@ -5,7 +5,6 @@
 The TSheets API (Application Programming Interface) is based on [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) principles. It's very easy to write and test applications. You can use your browser to access URLs, and you can use pretty much any TLS-capable HTTP client in any programming language to interact with the API. The API allows you to query metadata about your account, users, jobcodes, timesheets, GPS points, and custom fields. You can also create timesheets, users, jobcodes, etc.
 
 All access to the API occurs over an TLS-encrypted secure channel, so your API client must support TLS. To ensure data privacy, unencrypted HTTP is not supported.
-
 ## Getting Started
 
 The quickest way to get started is to use our [Postman](http://www.getpostman.com/) request collection. The following steps will help you get up and running as quickly as possible. If you prefer, our API can also easily be explored with other tools, like cURL.
