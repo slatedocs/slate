@@ -1,13 +1,17 @@
 # Jobcode Assignments
 
+A jobcode assignment represents that a user has access to a given jobcode for selection while tracking time. A jobcode is considered _assigned_ if the jobcode has been specifically assigned to a person, or if the jobcode has the `assigned_to_all`property set to _true_.
+
 ## The Jobcode Assignments Object
+
+Following is a list of the properties that belong to a jobcode assignment object, and a description of each.
 
 |                |             |             |
 | -------------: | :---------: | ----------- |
-| **id**<br/>read-only | _Int_ | Unique identifier of the jobcode assignment |
-| **user_id**<br/>read-write | _Int_ | Id of the user to whom the jobcode assignment pertains |
-| **jobcode_id**<br/>read-write | _Int_ | Id of the jobcode to which the jobcode assignment pertains |
-| **active**<br/>read-write | _Boolean_ | Specifier for whether the jobcode assignment is in-force or archived |
+| **id**<br/>read-only | _Int_ | Id of jobcode assignment. |
+| **user_id**<br/>read-write | _Int_ | Id of the user that this assignment pertains to. |
+| **jobcode_id**<br/>read-write | _Int_ | Id of the jobcode that this assignment pertains to. |
+| **active**<br/>read-write | _Boolean_ | true or false. Whether or not this assignment is 'active'. If _false_, then the assignment has been deleted. _true_ means it is in force. |
 | **last_modified**<br/>read-only | _String_ | Date/time when this jobcode assignment was last modified, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`) |
 | **created**<br/>read-only | _String_ | Date/time when this jobcode assignment was created, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`) |
 

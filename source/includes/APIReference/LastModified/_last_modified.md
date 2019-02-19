@@ -1,4 +1,8 @@
 # Last Modified
 
-## The Last Modified Timestamps Object
+This object contains the most recent modification timestamp for objects from each requested API endpoint.
+
+The object consists of a name of each requested endpoint and a corresponding timestamp. Each timestamp represents the most recent time that a change was made to one of the objects tied to its respective API endpoint. This is especially useful because you can see with just one request what endpoints may need to be queried to get changes since the last time you connected to the API.
+
+See the [List](#retrieve-last-modified-timestamps) documentation for example output.
 

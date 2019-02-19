@@ -7,7 +7,7 @@ Edit one or more jobcodes in your company.
 <img src="../../images/put.png" alt="put"/><api>https://rest.tsheets.com/api/v1/jobcodes</api>
 
 ### Properties
-_Pass an array of group objects as the value to a 'data' property (see example)._
+_Pass an array of jobcode objects as the value to a 'data' property (see example)._
 
 |                |             |             |
 | -------------: | :---------: | ----------- |
