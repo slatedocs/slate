@@ -717,7 +717,7 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/profiles/{profileId}/third
                 "middleNames": ["Ryan"],
                 "familyName": "Godspeed"
               },
-      			  "dateOfBirth": "1977-07-01",
+              "dateOfBirth": "1977-07-01",
               "address" : {
                 "firstLine": "Salu tee 100, Apt 4B",
                 "city": "Tallinn",
