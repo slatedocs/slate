@@ -58,7 +58,7 @@ The Lightning Node URL for our testnet service is:
 
 We provide a number of free data endpoints so users can experiment and learn the structure of our Lightning API service. To allow for complete testing, we make the following data avaialble for free on testnet:  
 
-##Crypto Exchange Testnet API
+## Crypto Exchange Testnet API
 
 Currently, we offer the trading pair <span style="color:red"> `BTCUSD` </span> data for free across all available exchanges. 
 
@@ -262,14 +262,14 @@ For testing, we provide data for <span style="color:red"> Lebron James </span> f
 
 ## Payment & Pricing
 
-###How to Pay
+### How to Pay
 
 This is our recommended lnd lightning client library: <a href="https://github.com/Suredbits/sb-api-lnd">https://github.com/Suredbits/sb-api-lnd</a>
 
 This is an alternative c-lightning client library: <a href="https://github.com/suredbits/lightning-charge">https://github.com/suredbits/lightning-charge</a>
 
 
-###Pricing
+### Pricing
 
 <aside class="success"> All payments are transacted in cryptocurrency.  For convenience, we have quoted prices in USD equiavalents. </aside>
 
@@ -387,20 +387,20 @@ Suredbits APIs are available via websockets with the following format:
 
 4. Receive data :)
 
-###Ping/Pong
+### Ping/Pong
 
 To confirm your connection, send a <span style="color:red">`ping`</span> request. Ping has an optional `uuid` field for correlating multiple pongs to multiple pings. 
 
 <aside class="success"><code>{"event": "ping"}</code> should return <code>{"event":"pong"}</code></aside>
 
 
-###Sample Lightning Invoice
+### Sample Lightning Invoice
 
 A successful request will generate a lightning invoice that will look similar to the example below:
 
 <span style="color:red"><code style="word-wrap:break-word;">lnbcrt10n1pd5v2mwpp5ulxpj8ht4gvtqnyl8zuykfk4wcv6sz455ce5dy0e0lqt...</code></span>
 
-#Crypto Exchange API 
+# Crypto Exchange API 
 
 ## Crypto Exchange Websocket Endpoint 
 
@@ -596,7 +596,7 @@ You may unsubscribe from a channel at any time. Any time remainaing will be refu
 <br></br>
 <br></br>
 
-###Maintenance
+### Maintenance
 
 In the event of maintenance or service interruption, we will refund any remaining portion of your subscription. 
 
@@ -2408,7 +2408,7 @@ Join our Slack channel <a href="https://join.slack.com/t/suredbits/shared_invite
  
 Email us at <a href="mailto:support@suredbits.com">support@suredbits.com</a>
 
-#Homepage
+# Homepage
 
 <a href="https://www.suredbits.com"> Return to Suredbits.com </a>
 
