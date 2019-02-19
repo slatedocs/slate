@@ -461,14 +461,16 @@ For example you can query:<br/>
 
 ### Request
 
-**`GET https://api.sandbox.transferwise.tech/v1/transfers/?offset=0&limit=100&profile=<your profile id>&status=funds_refunded&createdDateStart=2018-12-15&createdDateEnd=2018-12-30`**
+**`GET https://api.sandbox.transferwise.tech/v1/transfers/?offset=0&limit=100&profile=<your profile id>&status=funds_refunded&sourceCurrency=EUR&createdDateStart=2018-12-15T01:30:00.000Z&createdDateEnd=2018-12-30T01:30:00.000Z`**
 
 Field                     | Description             | Format
 ---------                 | -------                 | -----------
 profile                   | User profile id. If parameter is omitted, defaults to user's personal profile | Integer
 status                    | Status code or codes list (as comma separated value list) to filter returned transfers with. See [Track transfer status](#transferwise-payouts-guide-track-transfer-status) for complete list of statuses. | Text
-createdDateStart          | Starting date to filter transfers, inclusive of the provided date.   | yyyy-MM-dd
-createdDateEnd            | Ending date to filter transfers, inclusive of the provided date.     | yyyy-MM-dd
+sourceCurrency            | Source currency code  | Text
+targetCurrency            | Target currency code  | Text
+createdDateStart          | Starting date to filter transfers, inclusive of the provided date.   | yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
+createdDateEnd            | Ending date to filter transfers, inclusive of the provided date.     | yyyy-MM-dd'T'HH:mm:ss.SSS'Z'
 limit                     | Maximum number of records to be returned in response   | Integer
 offset                    | Starting record number | Integer
 
