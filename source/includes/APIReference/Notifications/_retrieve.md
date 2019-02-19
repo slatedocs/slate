@@ -1,6 +1,25 @@
 ## Retrieve Notifications
 
+Retrieves a list of notifications associated with your company, with filters to narrow down the results.
+
 ### HTTP Request
 
 <img src="../../images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/notifications</api>
+
+### Parameters
+_If no filters are set, all notifications for the requesting user (based on the Access-Token) will be returned._
+
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **ids**<br/>optional | _Int_ | Comma separated list of one or more notification ids you'd like to filter on. Only notifications with an id set to one of these values will be returned. |
+| **delivery_before**<br/>optional | _String_ | Only notifications with a delivery date/time before this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
+| **delivery_after**<br/>optional | _String_ | Only notifications with a delivery date/time after this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
+| **user_id**<br/>optional | _Int_ | Only notifications linked to this user ID will be returned. |
+| **msg_tracking_id**<br/>optional | _String_ | Tracking ID string of a notification. Only the notification with this `msg_tracking_id` will be returned. |
+| **per_page**<br/>optional | _Int_ | Represents how many results you'd like to retrieve per request (page). Default is 50. Max is 50. |
+| **page**<br/>optional | _Int_ | Represents the page of results you'd like to retrieve. Default is 1. |
+
+<aside class="notice">
+Only administrators may retrieve notifications for users other than themselves. Furthermore, administrators may only retrieve notifications for users that belong to their company.
+</aside>
 

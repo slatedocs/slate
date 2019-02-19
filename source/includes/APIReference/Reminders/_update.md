@@ -1,7 +1,29 @@
 ## Update Reminders
 
+Edit one or more reminders for employees within your company.
+
 ### HTTP Request
 
 <img src="../../images/put.png" alt="put"/><api>https://rest.tsheets.com/api/v1/reminders</api>
 
- 
+### Properties
+_Pass an array of reminder objects as the value to a 'data' property (see example)._
+
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **id**<br/>required | _Int_ | Id of the reminder. |
+
+Other properties defined on a [reminder object](#the-reminder-object) may be passed in to the request with a new value in order to change it. If the value passed in is the same as it was previously, or if a particular property is not passed in at all, it will not be updated.
+
+### Status Codes
+
+Each reminder that is edited will come back with a `_status_code` and `_status_message` that will indicate whether the reminder was edited successfully. If there was a problem editing a reminder, there may also be an additional field, `_status_extra`, which will contain more details about the failure.
+
+|         |          |
+| :-----: | :------- |
+| <code class="level200">200</code> | OK. Reminder was edited successfully. |
+| <code class="level400">417</code> | Expectation Failed. Something was wrong or missing with the properties supplied for this reminder. See the `_status_extra` value for more detail. |
+
+ <aside class="notice">
+The maximum batch size is <i>50</i> reminders. If exceeded, a <code class="standout">413: Request entity too large</code> HTTP response will be returned.
+</aside>

@@ -1,3 +1,6 @@
 ## Managing Clients
 
+If you have the External Access add-on installed, you can make API requests using your auth token against clients that you manage. When you want to make an API request against one of the clients that you manage, you must include an additional header in each request, **`vnd.tsheets.ManagedClientId`**. 
+
+The value of the header is the client ID of the account you are managing. You can obtain the client IDs of the clients you manage by issuing a [GET on the /managed_clients](#retrieve-managed-clients) endpoint.
  
