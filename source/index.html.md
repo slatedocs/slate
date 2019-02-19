@@ -315,14 +315,13 @@ topTextArea show on the top of the receipt. Example:
 "topTextArea" : "Cash transaction"
 </pre>
 
-<img src="images/top-bottom-text-area.png"/>
-
 bottomTextArea show at the bottom of the receipt, below Total. Example:
 
 <pre class="center-column">
 "bottomTextArea": "Paid: $ 100, Change: $ 60.02, Points from this sale: 20, Total points: 100"
 </pre>
 
+<img src="images/top-bottom-text-area.png"/>
 
 # Need Help?
 If you have trouble with any of the information above, or if it's confusing, Please email us at [hello@getreceet.com](mailto:hello@getreceet.com) Thanks!
