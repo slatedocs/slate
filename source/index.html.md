@@ -251,8 +251,8 @@ description | Short description of order, if needed| No
 currency | Currency used (USD, ILS, etc....) | Yes 
 timePlaced | Time and date of when the order was placed, Date format:  | Yes 
 createdBy | (STRING) - Identifier for the cashier (name or ID) | No
-topTextArea | (STRING) Free text area shows at the top of the receipt | No
-bottomTextArea | (STRING) Key, value pair will show at the bottom of the receipt | No
+topTextArea | (STRING) Free text area shows at the top of the receipt. Can take multiple values (pipe separated, example below). Each value show on a new line | No
+bottomTextArea | (STRING) Key, value pair will show at the bottom of the receipt. Can take multiple values (pipe separated, example below). Each value show on a new line | No
 
 **Billing Address Object**
 
@@ -287,7 +287,7 @@ shipCharge | Amount of shipping, if any | No
 shipTaxAmount | Tax Amount of shipping, if any | No
 totalAdjustment | Discount amount of list item | No
 adjustmentDescription | Item Level Discout description (e.g. 10% Discount) | No
-itemNumber | Item Number, barcode, etc.. | No 
+itemNumber | (STRING) Item Number, barcode, etc.. | No 
 
 
 
@@ -318,7 +318,7 @@ topTextArea show on the top of the receipt. Example:
 bottomTextArea show at the bottom of the receipt, below Total. Example:
 
 <pre class="center-column">
-"bottomTextArea": "Paid: $ 100, Change: $ 60.02, Points from this sale: 20, Total points: 100"
+"bottomTextArea": "Paid: $ 100 | Change: $ 60.02 | Points from this sale: 20 | Total points: 100"
 </pre>
 
 <img src="images/top-bottom-text-area.png"/>
