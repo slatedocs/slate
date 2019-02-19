@@ -1,6 +1,40 @@
 ## Create Jobcode Assignments
 
+Add one or more jobcode assignments to a user.
+
 ### HTTP Request
 
 <img src="../../images/post.png" alt="post"/><api>https://rest.tsheets.com/api/v1/jobcode_assignments</api>
+
+### Properties
+_Pass an array of jobcode assignment objects as the value to a 'data' property (see example)._
+
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **user_id**<br/>required | _Int_ | User id for this jobcode assignment. _(See note below)_|
+| **jobcode_id**<br/>required | _Int_ | Jobcode id for this jobcode assignment. |
+
+### Status Codes
+Each jobcode assignment that is created will come back with a `_status_code` and `_status_message` that will indicate whether the jobcode assignment was created successfully. If there was a problem creating a jobcode assignment, there may also be an additional field, `_status_extra`, which will contain more details about the failure.
+
+|         |          |
+| :-----: | :------- |
+| <code class="level200">200</code> | OK. Jobcode assignment was created successfully. |
+| <code class="level400">417</code> | Expectation Failed. Something was wrong or missing with the properties supplied for this jobcode assignment. See the `_status_extra` value for more detail. |
+
+<aside class="warning">
+To use this method, you must be a group manager of the user you're making assignments for, be an admin, or have the <code>manage_users</code> permission.
+</aside>
+
+<aside class="notice">
+Specify a <code>user_id</code> of <i>0</i> to indicate that this <code>jobcode_assignment</code> should apply to all users. This is equivalent to setting the <code>assigned_to_all</code> property to <i>true</i> on a jobcode object.
+</aside>
+
+<aside class="notice">
+When assigning jobcodes, keep in mind that when assigning a parent jobcode (in a multi-level jobcode scenario), all child jobcodes will also be assigned to the user.
+</aside>
+
+<aside class="notice">
+The maximum batch size is <i>50</i> jobcode assignments. If exceeded, a <code class="standout">413: Request entity too large</code> HTTP response will be returned.
+</aside>
 
