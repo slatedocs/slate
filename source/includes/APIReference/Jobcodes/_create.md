@@ -1,6 +1,31 @@
 ## Create Jobcodes
 
+Add one or more jobcodes to your company.
+
 ### HTTP Request
 
 <img src="../../images/post.png" alt="post"/><api>https://rest.tsheets.com/api/v1/jobcodes</api>
+
+### Properties
+_Pass an array of jobcode objects as the value to a 'data' property (see example)._
+
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **name**<br/>required | _String_ | Name of the jobcode. |
+
+For a full list of the properties that may be set on a jobcode, see the [Jobcode object](#the-jobcode-object).
+
+### Status Codes
+
+Each jobcode that is created will come back with a `_status_code` and `_status_message` that will indicate whether the jobcode was created successfully. If there was a problem creating a jobcode, there may also be an additional field, `_status_extra`, which will contain more details about the failure.
+
+|         |          |
+| :-----: | :------- |
+| <code class="level200">200</code> | OK. Jobcode was created successfully. |
+| <code class="level200">202</code> | 	OK. Jobcode accepted but not created because a jobcode with the same parent_id, name and type already exists. |
+| <code class="level400">417</code> | Expectation Failed. Something was wrong or missing with the properties supplied for this jobcode. See the `_status_extra` value for more detail. |
+
+<aside class="notice">
+The maximum batch size is <i>50</i> jobcodes. If exceeded, a <code class="standout">413: Request entity too large</code> HTTP response will be returned.
+</aside>
 

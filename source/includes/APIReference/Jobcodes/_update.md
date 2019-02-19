@@ -1,6 +1,33 @@
 ## Update Jobcodes
 
+Edit one or more jobcodes in your company.
+
 ### HTTP Request
 
 <img src="../../images/put.png" alt="put"/><api>https://rest.tsheets.com/api/v1/jobcodes</api>
+
+### Properties
+_Pass an array of group objects as the value to a 'data' property (see example)._
+
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **id**<br/>required | _Int_ | Id of the jobcode. |
+
+Other properties defined on a [jobcode object](#the-jobcode-object) may be passed in to the request with a new value in order to change it. If the value passed in is the same as it was previously, or if a particular property is not passed in at all, it will be ignored.
+
+<aside class="notice">
+You cannot edit a jobcode that is <i>archived</i>. You must restore the jobcode first. It is permissible to make an edit to a jobcode and restore it in a single edit request (i.e. change active to <i>1</i> and rename the jobcode in one step).
+</aside>
+
+### Status Codes
+
+Each jobcode that is edited will come back with a `_status_code` and `_status_message` that will indicate whether the jobcode was edited successfully. If there was a problem editing a jobcode, there may also be an additional field, `_status_extra`, which will contain more details about the failure.
+
+|         |          |
+| :-----: | :------- |
+| <code class="level200">200</code> | OK. Jobcode was edited successfully. |
+| <code class="level400">417</code> | Expectation Failed. Something was wrong or missing with the properties supplied for this jobcode. See the `_status_extra` value for more detail. |
  
+<aside class="notice">
+The maximum batch size is <i>50</i> jobcodes. If exceeded, a <code class="standout">413: Request entity too large</code> HTTP response will be returned.
+</aside>

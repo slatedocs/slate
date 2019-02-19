@@ -1,6 +1,34 @@
 ## Create Invitations
 
+Invite one or more users to your company.
+
 ### HTTP Request
 
 <img src="../../images/post.png" alt="post"/><api>https://rest.tsheets.com/api/v1/invitations</api>
+
+### Properties
+_Pass an array of invitation objects as the value to a 'data' property (see example)._
+
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **contact_method**<br/>required | _String_ | Method to be used for the invitation, either 'sms' or 'email' |
+| **contact_info**<br/>required | _String_ | Email address or mobile phone number matching the type specified by the `contact_method` parameter.
+| **user_id**<br/>required | _Int_ | Id of [User](#the-user-object) object.
+
+<aside class="notice">
+The <code>contact_info</code> and <code>user_id</code> parameters are mutually exclusive.  One and only one must be supplied.
+</aside>
+
+### Status Codes
+
+Each invitation that is created will come back with a `_status_code` and `_status_message` that will indicate whether the invitation was created successfully.  If there was a problem creating an invitation, there may also be an additional field, `_status_extra`, which will contain more details about the failure.
+
+|         |          |
+| :-----: | :------- |
+| <code class="level200">201</code> | Created. Invitation was created successfully. |
+| <code class="level400">400</code> | Bad Request. See the `_status_extra` value for more detail. |
+
+<aside class="notice">
+The maximum batch size is <i>50</i> invitations. If exceeded, a <code class="standout">413: Request entity too large</code> HTTP response will be returned.
+</aside>
 
