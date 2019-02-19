@@ -459,7 +459,7 @@ html, body {
     padding: 8px;
     @extend %break-words;
     @extend %api-font;
-  }  
+  }
 
   code {
     background-color: transparent;
@@ -470,6 +470,18 @@ html, body {
 
     &.standout {
       background-color: rgba(0,0,0,0.05);
+    }
+
+    &.level200 {
+      color: #00BB00;
+      @extend %api-font;
+      font-weight: bold;
+    }
+
+    &.level400 {
+      color: #BB0000;
+      @extend %api-font;
+      font-weight: bold;
     }    
   }
 

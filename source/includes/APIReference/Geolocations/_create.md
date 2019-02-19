@@ -3,4 +3,33 @@
 ### HTTP Request
 
 <img src="../../images/post.png" alt="post"/><api>https://rest.tsheets.com/api/v1/geolocations</api>
+
+### Properties
+_Pass an array of geolocation objects as the value to a 'data' property (see example)._
+
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **user_id**<br/>required | _Int_ | User id for the user that this timesheet belongs to. |
+| **accuracy**<br/>required | _Int_ | Indicates the radius of accuracy around the geolocation in meters. |
+| **altitude**<br/>required | _Float_ | Indicates the altitude of the geolocation in meters. Enter 0 if altitude is unknown. |
+| **latitude**<br/>required | _Float_ | Indicates the latitude of the geolocation in degrees. |
+| **longitude**<br/>required | _Float_ | Indicates the longitude of the geolocation in degrees. |
+| **device_identifier**<br/>required | _String_ | Unique identifier (for the given client) for the device associated with this geolocation. |
+
+For a full list of properties that may be set on a geolocation, see [the Geolocation object](#the-geolocation-object).
+
+### Status Codes
+
+Each geolocation that is created will come back with a `_status_code` and `_status_message` that will indicate whether the geolocation was created successfully. If there was a problem creating a geolocation, there may also be an additional field, `_status_extra`, which will contain more details about the failure.
+
+|         |          |
+| :-----: | :------- |
+| <code class="level200">200</code> | OK. geolocation was created successfully. |
+| <code class="level200">202</code> | OK. geolocation was accepted, but not created (because we already have a geolocation with all the same characteristics as the submitted one) |
+| <code class="level400">417</code> | Expectation Failed. Something was wrong or missing with the properties supplied for this geolocation. See the `_status_extra` value for more detail. |
+
+
+<aside class="notice">
+The maximum batch size is <i>50</i> geolocations. If exceeded, a <code class="standout">413: Request entity too large</code> HTTP response will be returned.
+</aside>
  

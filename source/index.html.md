@@ -124,6 +124,3 @@ includes:
 
 search: true
 ---
-
-# Batch Item Status Codes
-For each item created or updated, a `_status_code` and `_status_message` will be returned in the JSON response object indicating whether the operation succeeded. An additional field `_status_extra` containing more details about the failure may also be included.
