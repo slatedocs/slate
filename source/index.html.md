@@ -96,6 +96,10 @@ This means that the next message from the client should be an auth message. You 
 }
 </pre>
 
+<aside class="notice">
+Obtain your access_token from your account manager at Receet or email us at hello@getreceet.com
+</aside>
+
 If the client supplies valid authentication, the authentication phase will complete by the server sending the auth_ok message:
 
 <pre class="center-column">
@@ -126,33 +130,62 @@ During this phase the client can give commands to the server. The server will re
 
 ```json
 {
-   "media":"digital",
-   "languageId":1,
-   "order":{
-      "externalId":"T004-126572",
-      "posId":"763",
-      "subTotalProduct":24.00,
-      "totalAdjustment":2.00,
-      "adjustmentDescription":"10% Discount on order",
-      "totalProduct":22.00,
-      "description":"Order number 2245",
-      "currency":"NIS",
-      "timePlaced":"2018-12-23 11:39:36.343",
-      "createdBy":"12344"
-   },
-   "order_items":[
-      {
-         "price":"16.00",
-         "quantity":"1",
-         "description":"Rice 1Kg",
-         "totalProduct":"24.00",
-         "taxAmount":"5.00",
-         "shipCharge":"1.00",
-         "shipTaxAmount":"1.00",
-         "totalAdjustment":"1.00",
-         "adjustmentDescription":"30% Discount item"
-      }
-   ]
+ "media": "digital",
+ "languageId": 1,
+
+ "order": {
+   "externalId" : "T004-126572",
+   "posId" :744,
+   "totalProduct" : 39.98,
+   "subTotalProduct" : 39.98,
+   "totalTax" : 0.00,
+   "totalShipping" : 0.00,
+   "totalTaxShipping" : 0.00,
+   "totalAdjustment" : 0.00,
+   "description" : "Test",
+   "currency" : "USD",
+   "timePlaced": "2019-02-19 11:39:00",
+   "topTextArea" : "Cash transaction",
+   "bottomTextArea": "Paid: $ 100, Change: $ 60.02, Points from this sale: 20, Total points: 100"
+ },
+ "billing_address" : {
+    "isPrimary": 2,
+    "address1": "Nablus",
+    "address2": "Rafidia",
+    "address3": "-",
+    "city": "Nablus",
+    "state": "Palestine",
+    "country": "Palestine",
+    "zipCode": "0",
+    "phone1": "599999999",
+    "phone2": "09-2599999",
+    "fax": "09-25999999",
+    "email": "hello@getreceet.com"
+  },
+ "order_items" : [
+ {
+   "price" : 24.99,
+   "description": "Black Leather Jacket",
+   "quantity" : 1,
+   "totalProduct" : 10.3,
+   "taxAmount" : 5.00,
+   "shipCharg" : 1.00,
+   "shipTaxAmount" : 1.00,
+   "totalAdjustment" : 1.00,
+   "itemNumber":"8651230984234"
+
+ },
+ {
+   "price" : 14.99,
+   "description": "Blue Shirt",
+   "quantity" : 1,
+   "totalProduct" : 10.3,
+   "taxAmount" : 5.00,
+   "shipCharg" : 1.00,
+   "shipTaxAmount" : 1.00,
+   "totalAdjustment" : 1.00
+
+ }]
 }
 ```
 
@@ -217,8 +250,9 @@ adjustmentDescription | Order Level Discout description (e.g. 10% Discount) | No
 description | Short description of order, if needed| No 
 currency | Currency used (USD, ILS, etc....) | Yes 
 timePlaced | Time and date of when the order was placed, Date format:  | Yes 
-createdBy | Identifier for the cashier (name or ID) | No
-
+createdBy | (STRING) - Identifier for the cashier (name or ID) | No
+topTextArea | (STRING) Free text area shows at the top of the receipt | No
+bottomTextArea | (STRING) Key, value pair will show at the bottom of the receipt | No
 
 **Billing Address Object**
 
@@ -253,6 +287,7 @@ shipCharge | Amount of shipping, if any | No
 shipTaxAmount | Tax Amount of shipping, if any | No
 totalAdjustment | Discount amount of list item | No
 adjustmentDescription | Item Level Discout description (e.g. 10% Discount) | No
+itemNumber | Item Number, barcode, etc.. | No 
 
 
 
@@ -271,6 +306,22 @@ Either the server or the POS system can send out a <code>close</code> message to
   "close": "Close Current Session"
 }
 ```
+
+# Custom Text
+
+topTextArea show on the top of the receipt. Example:
+
+<pre class="center-column">
+"topTextArea" : "Cash transaction"
+</pre>
+
+<img src="images/top-bottom-text-area.png"/>
+
+bottomTextArea show at the bottom of the receipt, below Total. Example:
+
+<pre class="center-column">
+"bottomTextArea": "Paid: $ 100, Change: $ 60.02, Points from this sale: 20, Total points: 100"
+</pre>
 
 
 # Need Help?
