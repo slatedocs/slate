@@ -1,6 +1,18 @@
 ## Retrieve Managed Clients
+
+Retrieves a list of managed clients available from your account.
  
 ### HTTP Request
 
 <img src="../../images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/managed_clients</api>
 
+### Parameters
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **active**<br/>optional | _String_ | 'yes', 'no', or 'both'. Default is 'yes'. |
+| **per_page**<br/>optional | _Int_ | Represents how many results you'd like to retrieve per request (page). Default is 50. Max is 50. |
+| **page**<br/>optional | _Int_ | Represents the page of results you'd like to retrieve. Default is 1. |
+
+<aside class="warning">
+To use this endpoint you must be an admin on your account and have the External Access add-on installed.
+</aside>

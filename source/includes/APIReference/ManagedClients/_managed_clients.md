@@ -2,6 +2,8 @@
 
 ## The Managed Client Object
 
+Following is a list of the properties that belong to a managed client object, and a description of each
+
 |                |             |             |
 | -------------: | :---------: | ----------- |
 | **id**<br/>read-only | _Int_ | Id of the managed client. |

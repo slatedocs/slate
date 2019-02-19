@@ -1,6 +1,35 @@
 ## Create Reminders
 
+Add one or more user-specific or company-wide reminders.
+
 ### HTTP Request
 
 <img src="../../images/post.png" alt="post"/><api>https://rest.tsheets.com/api/v1/reminders</api>
 
+### Properties
+_Pass an array of reminder objects as the value to a 'data' property (see example)._
+
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **user_id**<br/>required | _Int_ | Id of the user that this reminder pertains to. A `user_id` of _0_ indicates that this is a company-wide reminder. |
+| **reminder_type**<br/>required | _String_ | The type of this reminder object. Supported reminder_types are 'clock-in' and 'clock-out'. |
+| **due_time**<br/>required | _String_ | The 24-hour time that the reminder should be sent, expressed as "hh:mm:ss". The time should be in the user's local time and must be in even 5 minute increments. For example: '13:45:00' or '08:00:00'. |
+| **due_days_of_week**<br/>required | _String_ | A comma-separated list of the days of the week when the reminder should be sent. The value can be any combination of 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri' and 'Sat'. For example: 'Mon,Tue,Wed,Thu,Fri' or 'Tue,Sat'. |
+| **distribution_methods**<br/>required | _String_ | A comma-separated list of the transport method(s) indicating how the reminder message should be sent. The value can be any combination of 'Push', 'SMS' and 'Email'. For example: "Push,SMS". The 'Push' method utilizes the TSheets mobile app to deliver the notification to a mobile device. The 'SMS' method requires that the 'Text Messaging' Add-On be installed and that a 'Cell Number' is registered for each employee. |
+| **active**<br/>required | _Boolean_ | true or false. If _true_, this reminder is active and will be evaluated at the 'due_time' and 'due_days_of_week'. If false, this reminder is inactive and will not be evaluated. If `active` = _false_ for user-specific reminders, then the company-wide reminder (of the same reminder type) will apply. |
+| **enabled**<br/>required | _Boolean_ | true or false. If _true_, the reminder is enabled and will be sent at the 'due_time' and 'due_days_of_week'. If false, the reminder is disabled and will not be sent. A user with an active (`active` = _true_) but disabled (`enabled` = _false_) reminder will not receive that reminder type regardless of how company-wide reminders are configured. |
+
+For a full list of the properties that may be set on a reminder, see [the Reminder object](#the-reminder-object).
+
+### Status Codes
+Each reminder that is created will come back with a `_status_code` and `_status_message` that will indicate whether the reminder was created successfully. If there was a problem creating a reminder, there may also be an additional field, `_status_extra`, which will contain more details about the failure.
+
+|         |          |
+| :-----: | :------- |
+| <code class="level200">200</code> | OK. Reminder was created successfully. |
+| <code class="level200">202</code> | OK. Reminder accepted but not created because this reminder_type exists for the specified user. |
+| <code class="level400">417</code> | Expectation Failed. Something was wrong or missing with the properties supplied for this reminder. See the `_status_extra` value for more detail. |
+
+<aside class="notice">
+The maximum batch size is <i>50</i> reminders. If exceeded, a <code class="standout">413: Request entity too large</code> HTTP response will be returned.
+</aside>
