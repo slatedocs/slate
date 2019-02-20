@@ -343,27 +343,33 @@ func main() {
 }
 ```
 
-Add one or more users to your company.  The batch of users is passed as a JSON string in the body of the HTTP request.
+Add one or more users to your company.
 
 ### HTTP Request
 
 <img src="../../images/post.png" alt="post"/><api>https://rest.tsheets.com/api/v1/users</api>
 
 ### Properties
+_Pass an array of user objects as the value to a 'data' property (see example)._
 
 |                |             |
 | -------------: | ----------- |
-| **username**<br/>required | The value used by the user to login. |
-| **first_name**<br/>required | The user's given name. |
-| **last_name**<br/>required | The user's surname. |
+| **username**<br/>required | Username that will be used by the employee to log on to TSheets. |
+| **first_name**<br/>required | First name of the employee. |
+| **last_name**<br/>required | Last name of the employee. |
 
 For a full list of properties that may be set on a user, see [the User object](#the-user-object).
 
-<aside class="notice">
-The maximum batch size is <i>50</i> items. If exceeded, a <code class="standout">413: Request entity too large</code> HTTP response will be returned.
-</aside>
+### Status Codes
+Each user that is created will come back with a `_status_code` and `_status_message` that will indicate whether the user was created successfully. If there was a problem creating a user, there may also be an additional field, `_status_extra`, which will contain more details about the failure.
+
+|         |          |
+| :-----: | :------- |
+| <code class="level200">200</code> | OK. User was created successfully. |
+| <code class="level400">417</code> | Expectation Failed. Something was wrong or missing with the properties supplied for this user. See the `_status_extra` value for more detail. |
 
 <aside class="notice">
-In the event of partial failure of the batch operation, a successful HTTP response code will nevertheless be returned.  See important note in <a href="#batch-item-status-codes">Batch Item Status Codes</a>.
+The maximum batch size is <i>50</i> users. If exceeded, a <code class="standout">413: Request entity too large</code> HTTP response will be returned.
 </aside>
+
 

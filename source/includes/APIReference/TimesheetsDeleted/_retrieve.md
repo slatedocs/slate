@@ -1,6 +1,28 @@
 ## Retrieve Timesheets Deleted
 
+Gets deleted timesheets records.
+
 ### HTTP Request
 
 <img src="../../images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/timesheets_deleted</api>
+
+### Parameters
+
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **start_date**<br/>required (unless `modified_before`, `modified_since`, or `ids` is set) | _String_ | `YYYY-MM-DD` formatted date. Beginning date for the report data (based off the date the timesheets were created for). |
+| **end_date**<br/>required (unless `modified_before`, `modified_since`, or `ids` is set) | _String_ | `YYYY-MM-DD` formatted date. Ending date for the report data (based off the date the timesheets were created for). |
+| **ids**<br/>required (unless `modified_before`, `modified_since`, or `start_date` and `end_date` are set) | _String_ | Timesheet ids. This can be a single id, an array of ids, or a comma-separated string of ids. '' by default. |
+| **modified_since**<br/>required (unless `modified_before`, `ids`, or `start_date` and `end_date`  are set) | _String_ | Only timesheets deleted since this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
+| **modified_before**<br/>required (unless `modified_since`, `ids`, or `start_date` and `end_date`  are set) | _String_ | Only timesheets deleted before this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
+| **group_ids**<br/>optional | _String_ | This can be a single id, an array of ids, or a comma-separated string of ids. If present, only timesheets associated with the specified group(s) will be returned. '' by default. |
+| **user_ids**<br/>optional | _String_ | This can be a single id, an array of ids, or a comma-separated string of ids. If present, only timesheets associated with the specified user(s) will be returned. '' by default. |
+| **username**<br/>optional | _String_ | If present, only timesheets associated with the specified username will be returned. Overrides `user_ids` and `group_ids`. '' by default. |
+| **jobcode_ids**<br/>optional | _String_ | This can be a single id, an array of ids, or a comma-separated string of ids. If present, only timesheets recorded against the specified jobcode(s) and any children will be returned. '' by default. |
+| **jobcode_type**<br/>optional | _String_ | 'regular', 'pto', 'paid_break', 'unpaid_break', or 'all'. Default is 'all'. Only timesheets linked to a jobcode of the given type are returned. |
+| **type**<br/>optional | _String_ | 'manual', 'regular', or 'both'. 'both' is the default. |
+| **order_results_by**<br/>optional | _String_ | 'fname', 'lname', 'username', or 'date'. 'date' is the default. All are secondarily sorted by 'date', unless 'date' is the choice, in which case 'date' is the only field the timesheets are sorted by. |
+| **order_results_reverse**<br/>optional | _Boolean_ | 1 or 0. If set to 1, then results are returned in reverse order by whatever they're sorted on. |
+| **page**<br/>optional | _Int_ | Represents the page of results you'd like to retrieve. Default is 1. |
+| **per_page**<br/>optional | _Int_ | Represents how many results you'd like to retrieve per request (page). Default is 50. Max is 50. |
 
