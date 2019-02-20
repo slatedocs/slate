@@ -11,6 +11,7 @@ toc_footers:
 includes:
   - zones
   - vehicles
+  - itineraries
   - customers
   - rental
   - errors
@@ -20,7 +21,7 @@ search: true
 
 # Introduction
 
-Welcome to the Tier API. It provides the essentials to integrate with Tier's mobility platform. 
+Welcome to the Tier API. It provides the essentials to integrate with Tier's mobility platform.
 We are using the JSON:API standard.
 
 # Authentication
