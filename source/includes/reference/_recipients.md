@@ -108,7 +108,7 @@ Recipient data includes three data blocks.
 <li>Owned by customer</li>
 </ul>
 
-Owned by customer is a boolen to flag whetehr this recipient is the same entity (person or business) as th eone sending the funds. i.e. A user sending money to thier own account in another country/currency. This can be used to separate these recipients in your UI.
+Owned by customer is a boolen to flag whether this recipient is the same entity (person or business) as the one sending the funds. i.e. A user sending money to thier own account in another country/currency. This can be used to separate these recipients in your UI.
 
 **2) Bank account data**
 
@@ -516,7 +516,6 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/accounts?profile=<profileId
       "ownedByCustomer": true
   }
 ]
-
 ```
 Fetch a list of your recipient accounts. Use the `currency` and `profile` parameters to filter by currency and/or user profile Id.
 This list does not currently support pagination, therefore if you have many recipient accounts defined in your business profile then please filter by currency to ensure a reasonable response time.
@@ -772,11 +771,13 @@ The `GET` and `POST` account-requirements endpoints help you to figure out which
 You can use this data to build a dynamic user interface on top of these endpoints. 
 This is a step-by-step guide on how these endpoints work.
 
+##Using account requirements
+
 1.First create a quote to specify currencies and transfer amounts. See [Create.Quote](#quotes-create).
 
-2.Call `GET /v1/quotes/{quoteId}/account-requirements` to get list of fields you need to fill with values in "details" section for creating a valid recipient account. 
+2.Call `GET /v1/quotes/{quoteId}/account-requirements` to get the list of fields you need to fill with values in the "details" section for creating a valid recipient account. 
 
-In order to create "aba" recipient type you need these top level fields:<br/>
+In order to create an "aba" recipient type you need these top level fields:<br/>
 <ul>
  <li>legalType (PRIVATE / BUSINESS)</li>
  <li>abartn (ABA routing number)</li>
@@ -789,9 +790,10 @@ In order to create "aba" recipient type you need these top level fields:<br/>
 
 Some fields require multiple levels of fields in the details request, for example Country followed by State. This should be handled by the client based on the `refreshRequirementsOnChange` field. In the example above 'address.country' has this field set to true, indicating that there are additional fields required depending on the selected value. To manage this you should create a request with all of the initially requested data and call the `POST account-requirements` endpoint. You will be returned a response similar the previosuly returned data from `GET account-requirements` but with additional fields.
 
-3.For example, construct a recipient object with top level fields and call POST /v1/quotes/{quoteId}/account-requirements with these value to expose sub fields.  <br/>
+3.For example, construct a recipient object with all top level fields and call POST /v1/quotes/{quoteId}/account-requirements with these value to expose sub fields.  <br/>
 For example posting US as country will also add "state" to list of fields.<br/>
 
+<div class="center-column"></div>
 ```
 {
     "type": "aba",
@@ -806,8 +808,10 @@ For example posting US as country will also add "state" to list of fields.<br/>
     }
 }
 ```
+
 However, posting GB as country will not add any new fields as GB addresses do not have this extra requirement.
 
+<div class="center-column"></div>
 ```
 {
     "type": "aba",
@@ -817,7 +821,7 @@ However, posting GB as country will not add any new fields as GB addresses do no
       "accountNumber": "12345678",
       "accountType": "CHECKING",
       "address": {
-        "country": "US"
+        "country": "GB"
       }
     }
 }
@@ -829,6 +833,8 @@ It is possible that any new fields retuened may _also_ have `refreshRequirements
 
 For example this is a valid request to create a recipient with address in US Arizona:
 <br/> `POST /v1/accounts`:<br/>
+
+<div class="center-column"></div>
 ```
 {
     "profile": your-profile-id,
@@ -851,6 +857,8 @@ For example this is a valid request to create a recipient with address in US Ari
 }
 ```
 
+We do not require the recipient's address for most receiving currencies and as such do not return these form elements by default. In some cases it may be desirable for you to collect this from users and store it as part of the recipient object in the TransferWise platform. If you wish to do this you can include the parameter `&addressRequired=true` in your call to `GET /v1/quotes/{quoteId}/account-requirements`, if this is present we will return address fields as part of the form.
+
 ###Building a user interface
 When requesting the form data from the account-requirements several the first level of the response defines different types of recipient you can create, the first thing to do is present the user a choice of which recipient type they wish to create, e.g. to GBP this could be local details or IBAN format. Each recipient type then has mutiple `fields` describing the form elements required to be shown to collect information from the user. Each field will have a `type` value, these tell you the field type that your front end needs to render to be able to collect the data. A number of field types are permitted, these are:
 
@@ -861,7 +869,7 @@ select          | A selection box/dialog
 radio           | A radio button choice between options
 date            | A text box with a date picker
 
-Example data is also included in each `field` which should be shown to the user, alone with a regex or min and mex length constraints that should be applied. You can optionally implement the dynamic validation using the `validationAsync` field, howver these checks wil also be done when a completed recipient is submitted.
+Example data is also included in each field which should be shown to the user, along with a regex or min and mex length constraints that should be applied as field level validations. You can optionally implement the dynamic validation using the `validationAsync` field, however these checks wil also be done when a completed recipient is submitted to `POST /v1/accounts`.
 
 
 ### Response
