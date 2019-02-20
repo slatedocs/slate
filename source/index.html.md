@@ -415,10 +415,10 @@ This is the free version url **wss://test.api.suredbits.com/exchange/v0** on tes
 Symbol | Binance | Bitfinex | Coinbase | Bitstamp | Gemini
 ------- | ------ | --------- | -------- | ------- | -------
 BTCUSDT |    X     |         |          |         |
-ETHBTC  |    X     |    X    |    X     |   X     | 
+ETHBTC  |    X     |    X    |    X     |   X     |    X 
 ETHUSDT |    X     |         |          |         | 
 BTCUSD  |          |    X    |    X     |   X     |    X
-ETHUSD  |          |    X    |    X     |   X     | 
+ETHUSD  |          |    X    |    X     |   X     |    X
 
 
 
