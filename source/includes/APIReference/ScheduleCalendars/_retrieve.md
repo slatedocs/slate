@@ -1,6 +1,19 @@
 ## Retrieve Schedule Calendars
 
+Retrieves a list of schedule calendars associated with your employees, with filters to narrow down the results.
+
 ### HTTP Request
 
 <img src="../../images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/schedule_calendars</api>
  
+### Parameters
+
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **ids**<br/>optional | _Int_ | Comma separated list of one or more schedule calendar ids you'd like to filter on. Only schedule calendars with an id set to one of these values will be returned. |
+| **modified_before**<br/>optional | _String_ | Only schedule calendars modified before this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
+| **modified_since**<br/>optional | _String_ | Only schedule calendars modified since this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
+| **supplemental_data**<br/>optional | _String_ | 'yes' or 'no'. Default is 'yes'. Indicates whether supplemental data should be returned. |
+| **per_page**<br/>optional | _Int_ | Represents how many results you'd like to retrieve per request (page). Default is 50. Max is 50. |
+| **page**<br/>optional | _Int_ | Represents the page of results you'd like to retrieve. Default is 1. |
+

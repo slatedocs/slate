@@ -1,6 +1,61 @@
 ## Update Timesheets
 
+Edit one or more timesheets in your company.
+
 ### HTTP Request
 
 <img src="../../images/put.png" alt="put"/><api>https://rest.tsheets.com/api/v1/timesheets</api>
+
+### Properties
+_Pass an array of timesheet objects as the value to a 'data' property (see example)._
+
+When editing a [timesheet](#the-timesheet-object), you must uniquely identify the timesheet by passing in its id. All other properties defined below may be passed in to the request with a new value in order to change it. If the value passed in is the same as it was previously, or if a particular property is not passed in at all, it will be ignored.
+
+<br/>
+**All Timesheets**
+
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **id**<br/>required | _Int_ | Timesheet id of the timesheet that you are going to edit. |
+| **jobcode_id**<br/>optional | _Int_ | Jobcode id that you'd like this timesheet to be recorded against. |
+| **notes**<br/>optional | _String_ | Notes you'd like associated with this timesheet. |
+| **customfields**<br/>optional | _JSON Object_ | A key/value map of customfield ids to the customfield items that are associated with the timesheet. _(See note below)_ |
+| **attached_files**<br/>optional | _Array_ | Ids of files attached to this timesheet. |
+
+<br/>
+**Regular Timesheets**
+
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **start**<br/>optional | _String_ | Start time of the timesheet, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`). Time should reflect the user's local time. |
+| **end**<br/>optional | _String_ | End time of the timesheet, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`). Time should reflect the user's local time. Enter an empty string to make the timesheet active. |
+| **origin_hint_start**<br/>optional | _String_ | This is a string that will be logged as part of the timesheet history when someone is put on the clock, or a timesheet is created with both start and end. |
+| **origin_hint_end**<br/>optional | _String_ | This is a string that will be logged as part of the timesheet history when someone is taken off the clock, or a timesheet is created with both start and end. |
+
+<br/>
+**Manual Timesheets**
+
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **duration**<br/>optional | _Int_ | Number of seconds that you'd like to record against this manual timesheet. Will get converted to hours, rounded to the nearest 2 decimal places when the timesheet is saved. |
+| **date**<br/>optional | _String_ | `YYYY-MM-DD` formatted date string. Date you'd like the manual timesheet recorded against. |
+
+### Status Codes
+Each timesheet that is edited will come back with a `_status_code` and `_status_message` that will indicate whether the timesheet was edited successfully. If there was a problem editing a timesheet, there may also be an additional field, `_status_extra`, which will contain more details about the failure.
+
+|         |          |
+| :-----: | :------- |
+| <code class="level200">200</code> | OK. Timesheet was edited successfully. |
+| <code class="level200">201</code> | Fulfilled. Timesheet was created successfully. Other timesheets may have been modified as a result (i.e. due to timesheet splits or an automatic Lunch Break). Be sure to process entries for `timesheets` or `timesheets_deleted` in the `supplemental_data` portion of the response. |
+| <code class="level400">404</code> | Not Found. Timesheet either has never existed or has been deleted. |
+| <code class="level400">409</code> | Conflict. Because a conflict would have resulted in the change requested, the timesheet was not modified. The unmodified timesheet's properties will be included in the response, to make it easy to revert to the unmodified version of the timesheet. |
+| <code class="level400">417</code> | Expectation Failed. Something was wrong or missing with the properties supplied for this timesheet. See the `_status_extra` value for more detail. |
+
+<aside class="notice">
+The customfields property is only applicable if the <i>Advanced Tracking Add-on</i> is installed.
+</aside>
+
+<aside class="notice">
+The maximum batch size is <i>50</i> timesheets. If exceeded, a <code class="standout">413: Request entity too large</code> HTTP response will be returned.
+</aside>
 
