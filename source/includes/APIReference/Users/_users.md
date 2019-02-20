@@ -62,21 +62,21 @@
 }
 ```
 
-Within TSheets, the `User` (aka "employee") refers to anyone on your account, including yourself, your employees, managers, administrators, and vendors.  Time can be tracked against any user.  The API provides methods to _Create_, _Read_, and _Update_ users and their permissions.  To archive a user, set the `active` property _false_.
+Following is a list of the properties that belong to a user object, and a description of each.
 
 |                |             |             |
 | -------------: | :---------: | ----------- |
-| **id**<br/>read-only | _Int_ | Unique identifier of this user. |
-| **first_name**<br/>read-write | _String_ | The user's given name. |
-| **last_name**<br/>read-write | _String_ | The user's surname. |
+| **id**<br/>read-only | _Int_ | Id of this user. |
+| **first_name**<br/>read-write | _String_ | First name of user. |
+| **last_name**<br/>read-write | _String_ | Last name of user. |
 | **group_id**<br/>read-write | _Int_ | Id of the group this user belongs to. |
-| **active**<br/>read-write | _Boolean_ | If false, this user is considered archived. |
-| **employee_number**<br/>read-write | _Int_ | Unique number associated with this user, for external use. |
-| **salaried**<br/>read-write | _Boolean_ | Indicates whether or not the user is salaried. |
-| **exempt**<br/>read-write | _Boolean_ | Indicates whether or not the user is eligible for overtime pay. |
+| **active**<br/>read-write | _Boolean_ | _true_ or _false_. If _false_, this user is considered archived. |
+| **employee_number**<br/>read-write | _Int_ | Unique number associated with this user. For your reference only. |
+| **salaried**<br/>read-write | _Boolean_ | _true_ or _false_. Indicates whether or not the user is salaried. |
+| **exempt**<br/>read-write | _Boolean_ | _true_ or _false_ Indicates e.g. whether or not the user is eligible for overtime pay. |
 | **username**<br/>read-write | _String_ | Username associated with this user. |
 | **email**<br/>read-write | _String_ | Email address associated with this user. |
-| **email_verified**<br/>read-write | _Boolean_ | Indicates whether or not the email address has been confirmed by the user. |
+| **email_verified**<br/>read-write | _Boolean_ | _true_ or _false_. Indicates whether or not the email address has been confirmed by the user. |
 | **payroll_id**<br/>read-write | _String_ | Unique company wide string associated with this user. Usually used for linking with external systems. |
 | **hire_date**<br/>read-write | _String_ |  Date on which this user was hired (`YYYY-MM-DD` format).
 | **term_date**<br/>read-write |  _String_ | Date on which this user was terminated (`YYYY-MM-DD` format).
@@ -87,15 +87,15 @@ Within TSheets, the `User` (aka "employee") refers to anyone on your account, in
 | **company_name**<br/>read-only | _String_ | Client account name identifier associated with the user. |
 | **profile_image_url**<br/>read-only | _String_ | Url identifier associated with this user's profile image. |
 | **mobile_number**<br/>read-write |  _String_ | Mobile phone number associated with this user. |
-| **pto_balances**<br/>read-only | _Object_ | List of jobcode identifiers and their respective PTO balances for this user (in seconds). Jobcode information |for PTO Jobcodes will be supplied in `supplemental_data`. |
-| **submitted_to**<br/>read-write | _String_ | The latest date this user has submitted timesheets up to (`YYYY-MM-DD` format). |
-| **approved_to**<br/>read-write |  _String_ | The latest date this user has had timesheets approved to (`YYYY-MM-DD` format). |
+| **pto_balances**<br/>read-only | _Object_ | List of jobcode identifiers and their respective PTO balances for this user (in seconds). Jobcode information for PTO Jobcodes will be supplied in `supplemental_data`. |
+| **submitted_to**<br/>read-write | _String_ | The latest date this user has submitted timesheets up to (`YYYY-MM-DD` format). _(See note below)_ |
+| **approved_to**<br/>read-write |  _String_ | The latest date this user has had timesheets approved to (`YYYY-MM-DD` format). _(See note below)_ |
 | **manager_of_group_ids**<br/>read-only | _Int[]_ | The group ids that this user manages. |
-| **require_password_change**<br/>read-write | _Boolean_ | If true, this user will be required to change their password on their next login. |
-| **password**<br/>write-only | _String_ | May only be set when editing the currently authenticated user (i.e. you may only edit your own password). |
+| **require_password_change**<br/>read-write | _Boolean_ | If true, this user will be required to change their password on their next login. _(See note below)_ |
+| **password**<br/>write-only | _String_ | May only be set when editing the currently authenticated user (i.e. you may only edit your own password). _(See note below)_ |
 | **login_pin**<br/>write-only | _Int_ | Used for logging into a Kiosk or similar. |
-| **pay_rate**<br/>read-only | _Float_ | The rate of pay associated with this user. |
-| **pay_interval**<br/>read-only | _String_ | The timeframe to which this user's pay rate applies, either `hour` or `year` |
+| **pay_rate**<br/>read-only | _Float_ | The rate of pay associated with this user. Only visible to admins. |
+| **pay_interval**<br/>read-only | _String_ | The timeframe to which this user's pay rate applies, either 'hour' or 'year'. Only visible to admins. |
 | **permissions**<br/>read-write | _Object_ | The [permission settings](#user-permissions) that apply to this user. |
 | **customfields**<br/>read-write | _Object_ | [Customfield](#the-custom-field-object) items that are associated with the user. |
 
@@ -143,7 +143,7 @@ The following fields are considered <i>private</i> and are exposed only to manag
 
  <aside class="warning">
  The following fields are <i><b>deprecated</b></i> for User Create and Update operations:
- <code>require_password_change</code> & <code>password</code>
+ <code>require_password_change</code> & <code>password</code>.
  </aside>
 
 

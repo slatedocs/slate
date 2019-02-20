@@ -292,7 +292,7 @@ func main() {
 }
 ```
 
-Update one or more users in your company.  The batch of user updates is passed as a JSON string in the body of the HTTP request.  If the value passed in is the same as it was previously, or if a particular property is not passed in at all, it will be ignored.
+Edit one or more users in your company.  The batch of user updates is passed as a JSON string in the body of the HTTP request.  If the value passed in is the same as it was previously, or if a particular property is not passed in at all, it will be ignored.
 
 ### HTTP Request
 
@@ -300,19 +300,28 @@ Update one or more users in your company.  The batch of user updates is passed a
 
 
 ### Properties
+_Pass an array of user objects as the value to a 'data' property (see example)._
 
 |                |             |
 | -------------: | ----------- |
 | **id**<br/>required | Id of the user to update. |
-| **OR** | |
+
+**OR**
+
+|                |             |
+| -------------: | ----------- |
 | **username**<br/>required | Username of the user to update. |
 
-For a full list of the properties that may be set on an employee, see [the User object](#the-user-object).  
+All other properties defined on a [user object](#the-user-object) may be passed in to the request with a new value in order to change it. If the value passed in is the same as it was previously, or if a particular property is not passed in at all, it will be ignored.
+
+### Status Codes
+Each user that is edited will come back with a `_status_code` and `_status_message` that will indicate whether the user was edited successfully. If there was a problem editing a user, there may also be an additional field, `_status_extra`, which will contain more details about the failure.
+
+|         |          |
+| :-----: | :------- |
+| <code class="level200">200</code> | OK. User was edited successfully. |
+| <code class="level400">417</code> | Expectation Failed. Something was wrong or missing with the properties supplied for this user. See the `_status_extra` value for more detail. |
 
 <aside class="notice">
-The maximum batch size is <i>50</i> items. If exceeded, a <code>413: Request entity too large</code> HTTP response will be returned.
-</aside>
-
-<aside class="notice">
-In the event of partial failure of the batch operation, a successful HTTP response code will nevertheless be returned.  See important note in <a href="#batch-item-status-codes">Batch Item Status Codes</a>.
+The maximum batch size is <i>50</i> users. If exceeded, a <code>413: Request entity too large</code> HTTP response will be returned.
 </aside>

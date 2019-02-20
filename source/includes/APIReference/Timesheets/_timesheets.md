@@ -14,7 +14,7 @@ Following is a list of the properties that are common to both types of timesheet
 | **customfields**<br/>read-write | _JSON Object_ | A key/value map of customfield ids to the customfield items that are associated with the timesheet. _(See note below)._ |
 | **created**<br/>read-only | _String_ | Date/time when this timesheet was created, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`) |
 | **last_modified**<br/>read-only | _String_ | Date/time when this timesheet was last modified, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`) |
-| **type**<br/>read-write | _String_ | Either 'regular' or 'manual'. Regular timesheets have a start & end time (duration is calculated by TSheets). Manual timesheets have a date and a duration (in seconds). Unique properties for each timesheet type are below. |
+| **type**<br/>read-write | _String_ | Either 'regular' or 'manual'. Regular timesheets have a `start` & `end` time (duration is calculated by TSheets). Manual timesheets have a `date` and a `duration` (in seconds). Unique properties for each timesheet type are below. |
 | **on_the_clock**<br/>read-only | _Boolean_ | If _true_, the user is currently on the clock (i.e. not clocked out, so end time is empty). If _false_ the user is not currently working on this timesheet. Manual timesheets will always have this property set as _false_. |
 | **attached_files**<br/>read-write | _Int[]_ | Ids of files attached to this timesheet. |
 | **created_by_user_id**<br/>read-only | _Int_ | User id for the user that initially created this timesheet. |

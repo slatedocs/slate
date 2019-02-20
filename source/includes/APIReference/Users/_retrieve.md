@@ -4,25 +4,6 @@
 
 > Retrieve a list of all active users.
 
-<div class="postman-run-button"
-data-postman-action="collection/import"
-data-postman-var-1="01861e468223de53ba7a"></div>
-<script type="text/javascript">
-  (function (p,o,s,t,m,a,n) {
-    !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });
-    !o.getElementById(s+t) && o.getElementsByTagName("head")[0].appendChild((
-      (n = o.createElement("script")),
-      (n.id = s+t), (n.async = 1), (n.src = m), n
-    ));
-  }(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));
-</script>
-<style>
-  .postman-run-button {
-    position: relative;
-    left: 30px;
-  }
-</style>
-
 ```shell
 curl "https://rest.tsheets.com/api/v1/users"
   -H "Authorization: Bearer <TOKEN>"
@@ -550,25 +531,21 @@ Retrieves a list of all users associated with your company, with optional filter
 <img src="../../images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/users</api>
 
 ### Parameters
-|                |             |
-| -------------: | ----------- |
-| **ids**<br/>optional | Comma-separated list of user ids to include. |
-| **not_ids**<br/>optional | Comma-separated list of user ids to exclude. |
-| **employee_numbers**<br/>optional | Comma-separated list of employee numbers to include. |
-| **usernames**<br/>optional | Comma-separated list of usernames to include. |
-| **group_ids**<br/>optional | Comma-separated list of group ids to include. |
-| **not_group_ids**<br/>optional |Comma-separated list of group ids to exclude. |
-| **payroll_ids**<br/>optional |  Comma-separated list of payroll ids to filter the included users. |
-| **active**<br/>optional | Include only users with given status.  Can be `yes`, `no`, or `both`.  Default is `yes`. |
-| **first_name**<br/>optional | The search pattern for filtering users by first name ('\*' may be used as a wildcard). |
-| **last_name**<br/>optional | The search pattern for filtering users by last name ('\*' may be used as a wildcard). |
-| **modified_before**<br/>optional | Include only users modified before this date/time.  Must be ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`). |
-| **modified_since**<br/>optional | Include only users modified since this date/time.  Must be ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`). |
-| **supplemental_data**<br/>optional |  Indicates whether supplemental data should be returned.  Can be `yes` or `no`.  Default is `yes`. |
-| **per_page**<br/>optional | The number of results to retrieve per request. Max is `50`. Default is `50`. |
-| **page**<br/>optional | The page number of results to retrieve. |
-
-<aside class="notice">
-Wildcard searches start matching from the beginning of the string.
-</aside>
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **ids**<br/>optional | _Int_ | Comma separated list of one or more user ids you'd like to filter on. |
+| **not_ids**<br/>optional | _Int_ | Comma separated list of one or more user ids you'd like to filter on. Specifically, the user ids you'd like to exclude. |
+| **employee_numbers**<br/>optional | _Int_ | Comma separated list of one or more employee numbers you'd like to filter on. |
+| **usernames**<br/>optional | _String_ | Comma separated list of one or more usernames you'd like to filter on. |
+| **group_ids**<br/>optional | _Int_ | Comma separated list of one or more group ids you'd like to filter on. |
+| **not_group_ids**<br/>optional | _Int_ | Comma separated list of one or more group ids you'd like to filter on. Specifically, the group ids you'd like to exclude. |
+| **payroll_ids**<br/>optional | _String_ | A comma-separated string of payroll ids. Only users with these payroll ids will be returned. |
+| **active**<br/>optional | _String_ | 'yes', 'no', or 'both'. Default is 'yes'. |
+| **first_name**<br/>optional | _String_ | * will be interpreted as a wild card. Starts matching from the beginning of the string. |
+| **last_name**<br/>optional | _String_ | * will be interpreted as a wild card. Starts matching from the beginning of the string. |
+| **modified_before**<br/>optional | _String_ | Only users modified before this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
+| **modified_since**<br/>optional | _String_ | Only users modified since this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
+| **supplemental_data**<br/>optional | _String_ | 'yes' or 'no'. Default is 'yes'. Indicates whether supplemental data should be returned. |
+| **per_page**<br/>optional | _Int_ | Represents how many results you'd like to retrieve per request (page). Default is 50. Max is 50. |
+| **page**<br/>optional | _Int_ | Represents the page of results you'd like to retrieve. Default is 1. |
 
