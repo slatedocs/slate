@@ -2,22 +2,20 @@
 
 ## The Timesheet Object
 
-<aside class="notice">
-Each employee/user may only ever have a single active timesheet (no <code>end_time</code> defined) at any given point in time. This is enforced by the API and any attempts to create additional timesheets without <code>end_time</code> defined will fail.
-</aside>
+Following is a list of the properties that are common to both types of timesheet objects, and a description of each.
 
 |                |             |             |
 | -------------: | :---------: | ----------- |
 | **id**<br/>read-only | _Int_ | Id of the timesheet. |
 | **user_id**<br/>read-write | _Int_ | User id for the user that this timesheet belongs to. |
 | **jobcode_id**<br/>read-write | _Int_ | Jobcode id for the jobcode that this timesheet is recorded against. |
-| **locked**<br/>read-only | _Int_ | If > 0, the timesheet is locked for editing. A timesheet could be locked for various reasons, such as being exported, invoiced, etc. _See note below._ |
+| **locked**<br/>read-only | _Int_ | If greater than 0, the timesheet is locked for editing. A timesheet could be locked for various reasons, such as being exported, invoiced, etc. _(See note below.)_ |
 | **notes**<br/>read-write | _String_ | Notes associated with this timesheet. |
-| **customfields**<br/>read-write | _JSON Object_ | A key/value map of customfield ids to the customfield items that are associated with the timesheet. _See note below._ |
+| **customfields**<br/>read-write | _JSON Object_ | A key/value map of customfield ids to the customfield items that are associated with the timesheet. _(See note below)._ |
 | **created**<br/>read-only | _String_ | Date/time when this timesheet was created, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`) |
 | **last_modified**<br/>read-only | _String_ | Date/time when this timesheet was last modified, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`) |
-| **type**<br/>read-write | _String_ | Either `regular` or `manual`. Regular timesheets have a start & end time (duration is calculated by TSheets). Manual timesheets have a date and a duration (in seconds). Unique properties for each timesheet type are below. |
-| **on_the_clock**<br/>read-only | _Boolean_ | If `true`, the user is currently on the clock (i.e. not clocked out, so end time is empty). If `false`, the user is not currently working on this timesheet. Manual timesheets will always have this property set as false. |
+| **type**<br/>read-write | _String_ | Either 'regular' or 'manual'. Regular timesheets have a start & end time (duration is calculated by TSheets). Manual timesheets have a date and a duration (in seconds). Unique properties for each timesheet type are below. |
+| **on_the_clock**<br/>read-only | _Boolean_ | If _true_, the user is currently on the clock (i.e. not clocked out, so end time is empty). If _false_ the user is not currently working on this timesheet. Manual timesheets will always have this property set as _false_. |
 | **attached_files**<br/>read-write | _Int[]_ | Ids of files attached to this timesheet. |
 | **created_by_user_id**<br/>read-only | _Int_ | User id for the user that initially created this timesheet. |
 
@@ -46,5 +44,9 @@ The <code>locked</code> setting does not reflect the approved or submitted statu
 
 <aside class="notice">
 The customfields property is present only if the <i>Advanced Tracking Add-On</i> is installed.
+</aside>
+
+<aside class="notice">
+Each employee/user may only ever have a single active timesheet (no <code>end_time</code> defined) at any given point in time. This is enforced by the API and any attempts to create additional timesheets without <code>end_time</code> defined will fail.
 </aside>
 

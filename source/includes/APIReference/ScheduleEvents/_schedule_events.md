@@ -8,19 +8,19 @@
 | **schedule_calendar_id**<br/>read-write | _Int_ | Id of the calendar that contains this event. |
 | **start**<br/>read-write | _String_ | Date/time that represents the start time of this schedule event, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`) |
 | **end**<br/>read-write | _String_ | Date/time that represents the end time of this schedule event, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`) |
-| **all_day**<br/>read-write | _Boolean_ | If true, the event duration is all day on the day specified in start. If false, the event duration is determined by date/time specified in end. |
+| **all_day**<br/>read-write | _Boolean_ | If _true_, the event duration is all day on the day specified in start. If false, the event duration is determined by date/time specified in end. |
 | **user_id**<br/>read-only | _Int_ | Id of the user that this event belongs to. |
-| **unassigned**<br/>read-only | _Boolean_ | If true, this event is unassigned. If false, the event is assigned to the user specified in `user_id`. |
-| **assigned_user_ids**<br/>read-write | _Int[]_ | Ids of the user(s) assigned to this event. Empty array if the event is unassigned. Changing the assigned user IDs of an event may result in multiple event modifications. Check for a `201` status code and the supplemental data portion of the response for additional event modifications. |
-| **jobcode_id**<br/>read-write | _Int_ | Id of the jobcode associated with this event. |
-| **active**<br/>read-write | _Boolean_ | If true, the event is active. If false, the event has been deleted/archived. |
-| **draft**<br/>read-write | _Boolean_ | If true, the event is a draft. If false, the event is published. Saving a published event will send the appropriate event published notifications to the assigned users. |
+| **unassigned**<br/>read-only | _Boolean_ | If _true_, this event is unassigned. If _false_, the event is assigned to the user specified in `user_id`. |
+| **assigned_user_ids**<br/>read-write | _Array_ | Ids of the user(s) assigned to this event. Empty array if the event is unassigned. Changing the assigned user IDs of an event may result in multiple event modifications. Check for a `201` status code and the supplemental data portion of the response for additional event modifications. |
+| **jobcode_id**<br/>read-write | _Int_ | Id of the [jobcode](#the-jobcode-object) associated with this event. |
+| **active**<br/>read-write | _Boolean_ | If _true_, the event is active. If _false_, the event has been deleted/archived. |
+| **draft**<br/>read-write | _Boolean_ | If _true_, the event is a draft. If _false_, the event is published. Saving a published event will send the appropriate event published notifications to the assigned users. |
 | **timezone**<br/>read-write | _String_ | Timezone of the schedule event. (i.e. America/Denver) |
 | **title**<br/>read-write | _String_ | Title or name of this event. |
 | **notes**<br/>read-write | _String_ | Notes associated with the event. |
 | **location**<br/>read-write | _String_ | Location of the event. Location can be an address, business name, GPS coordinate, etc., so when users click on the location it will open it up in their mapping application. |
 | **color**<br/>read-write | _String_ | Hex color code assigned to this schedule event. See the table below for a list of valid hex color codes. |
-| **customfields**<br/>read-write | _JSON Object_ | Only present if the Advanced Tracking Add-on is installed. This is a key / value map of customfield ids to the customfield items that are associated with the event. |
+| **customfields**<br/>read-write | _JSON Object_ | Only present if the Advanced Tracking Add-on is installed. This is a key / value map of [customfield ids](#the-custom-field-object) to the [customfield items](#the-custom-field-item-object) that are associated with the event. |
 | **last_modified**<br/>read-only | _String_ | Date/time when this schedule event was last modified, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`) |
 | **created**<br/>read-only | _String_ | Date/time when this schedule event was created, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`) |
 

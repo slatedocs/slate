@@ -2,6 +2,8 @@
 
 ## The Schedule Calendar Object
 
+Following is a list of the properties that belong to a schedule calendar object, and a description of each.
+
 |                |             |             |
 | -------------: | :---------: | ----------- |
 | **id**<br/>read-only | _Int_ | Id of the schedule calendar. |
