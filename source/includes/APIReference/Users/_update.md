@@ -302,15 +302,15 @@ Edit one or more users in your company.  The batch of user updates is passed as 
 ### Properties
 _Pass an array of user objects as the value to a 'data' property (see example)._
 
-|                |             |
-| -------------: | ----------- |
-| **id**<br/>required | Id of the user to update. |
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **id**<br/>required | _Int_ | Id of the user to update. |
 
 **OR**
 
-|                |             |
-| -------------: | ----------- |
-| **username**<br/>required | Username of the user to update. |
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **username**<br/>required | _String_ | Username of the user to update. |
 
 All other properties defined on a [user object](#the-user-object) may be passed in to the request with a new value in order to change it. If the value passed in is the same as it was previously, or if a particular property is not passed in at all, it will be ignored.
 

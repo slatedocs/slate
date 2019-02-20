@@ -4,6 +4,8 @@ A Custom Field Item represents an allowable value for a Custom Field Object of _
 
 ## The Custom Field Item Object
 
+Following is a list of the properties that belong to a customfield object, and a description of each.
+
 > **Example**
 
 ```json
@@ -20,16 +22,16 @@ A Custom Field Item represents an allowable value for a Custom Field Object of _
 
 |                |             |             |
 | -------------: | :---------: | ----------- |
-| **id**<br/>read-only | _Int_ | Unique identifier of customfielditem |
-| **customfield_id**<br/>read-only | _Int_ | Id for the customfield that this item belongs to |
-| **name**<br/>read-write | _String_ | Name of the customfielditem |
+| **id**<br/>read-only | _Int_ | Id of customfielditem. |
+| **customfield_id**<br/>read-only | _Int_ | Id for the customfield that this item belongs to. |
+| **name**<br/>read-write | _String_ | Name of the customfielditem. |
 | **short_code**<br/>read-write | _String_ | This is a short alias that is associated with the customfielditem. It may only consist of letters and numbers. |
-| **active**<br/>read-write | _Boolean_ | If false, the custom field item is considered archived |
-| **last_modified**<br/>read-only | _String_ | Date/time when last modified, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`). |
-| **created**<br/>read-only | _String_ | Date/time when created, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`). |
-| **required_customfields**<br/>read-write | _Int[]_ | Ids of customfields that should be displayed when this customfielditem is selected on a timecard. |
+| **active**<br/>read-write | _Boolean_ | _true_ or _false_. If _false_, the customfielditem is considered archived. |
+| **last_modified**<br/>read-only | _String_ | Date/time when this customfielditem was last modified, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`). |
+| **created**<br/>read-only | _String_ | Date/time when  this customfielditem was created, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`). |
+| **required_customfields**<br/>read-write | _Int[]_ | Ids of [customfields](#the-customfield-object) that should be displayed when this customfielditem is selected on a timecard. |
 
 <aside class="notice">
-Custom Field Item <code>short_code</code> values must be unique.
+Custom Field Item <code>short_code</code> values must be unique for each TSheets account.
 </aside>
 

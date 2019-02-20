@@ -348,11 +348,11 @@ Retrieves a list of all effective settings associated with a single user, with o
 
 <img src="../../images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/effective_settings</api>
 
-### Query Parameters
-All parameters are **_optional_** and results are unfiltered with respect to any not provided.
+### Filter Parameters
 
-Parameter | Type | Format | Description
---------- | ---- | ------ | -----------
-`user_id` | _Int_ | | User id for whom you'd like to retrieve effective settings. If none is specified, the currently logged in user's id will be used. Only effective settings that apply to this `user_id` will be returned. An admin will see more settings than will a regular user.
-`modified_before` | _DateTime_ | ISO8601 | Include only sections with settings modified before this date/time.
-`modified_since` | _DateTime_ | ISO8601 | Include only sections with settings modified since this date/time.
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **user_id**<br/>optional | _Int_ | User id for whom you'd like to retrieve effective settings. If none is specified, the currently logged in user's id will be used. Only effective settings that apply to this `user_id` will be returned. An admin will see more settings than a regular user will. |
+| **modified_before**<br/>optional | _String_ | Only sections with settings modified before this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
+| **modified_since**<br/>optional | _String_ | Only sections with settings modified since this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
+

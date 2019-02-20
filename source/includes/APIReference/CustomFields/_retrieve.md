@@ -433,18 +433,17 @@ Retrieves a list of all customfields associated with your company, with optional
 
 <img src="../../images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/customfields</api>
 
-### Query Parameters
-All parameters are **_optional_** and results are unfiltered with respect to any not provided.
+### Filter Parameters
 
-Parameter | Type | Format | Default | Description
---------- | ---- | ------- | ------ | -----------
-`ids` | _String_ | comma-separated | null | List of customfield ids to include.
-`active` | _String Enum_ | 'yes', 'no' or 'both' | 'yes' | Include only customfields with given status.
-`applies_to` | _String Enum_ | 'timesheet', 'user', 'jobcode' or 'all' | 'timesheet' | Include only customfields that apply to the given type.
-`value_type` | _String Enum_ | 'managed-list', 'free-form' or 'both' | 'both' | Include only customfields that have the given value type.
-`modified_before` | _DateTime_ | ISO8601 | null | Include only customfields modified before this date/time.
-`modified_since` | _DateTime_ | ISO8601 | null | Include only customfields modified since this date/time.
-`supplemental_data` |  _String Enum_ | 'yes' or 'no'| 'yes' | Indicates whether supplemental data should be returned.
-`per_page` | _Int_ | 1 - 50 | 50 | The number of results to retrieve per request.
-`page` | _Int_ | >= 1 | 1 | The page of results to retrieve.
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **ids**<br/>optional | _Int_ | Comma separated list of one or more customfield ids you'd like to filter on. Only customfields with an id set to one of these values will be returned. If omitted, all customfields matching other specified filters are returned. |
+| **active**<br/>optional | _String_ | 'yes', 'no', or 'both'. Default is 'yes'. |
+| **applies_to**<br/>optional | _String_ | 'timesheet', 'user', 'jobcode', or 'all'. Default is 'timesheet'. |
+| **value_type**<br/>optional | _String_ | 'managed-list', 'free-form', or 'both'. Default is 'both'. |
+| **modified_before**<br/>optional | _String_ | Only customfields modified before this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
+| **modified_since**<br/>optional | _String_ | Only customfields modified since this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
+| **supplemental_data**<br/>optional | _String_ | 'yes' or 'no'. Default is 'yes'. Indicates whether supplemental data should be returned. |
+| **per_page**<br/>optional | _Int_ | Represents how many results you'd like to retrieve per request (page). Default is 50. Max is 50. |
+| **page**<br/>optional | _Int_ | Represents the page of results you'd like to retrieve. Default is 1. |
 

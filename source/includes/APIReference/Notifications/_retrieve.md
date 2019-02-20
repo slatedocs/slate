@@ -6,7 +6,7 @@ Retrieves a list of notifications associated with your company, with filters to 
 
 <img src="../../images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/notifications</api>
 
-### Parameters
+### Filter Parameters
 _If no filters are set, all notifications for the requesting user (based on the Access-Token) will be returned._
 
 |                |             |             |

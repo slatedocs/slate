@@ -588,20 +588,16 @@ Retrieves a list of all customfielditems associated with a customfield, with opt
 
 <img src="../../images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/customfielditems</api>
 
-### Parameters
+### Filter Parameters
 
- * The `customfield_id` parameter is **_required_**.
- * All other parameters are **_optional_**.
- * Results are unfiltered with respect to any parameters not provided.
-
-Parameter | Type | Format | Default | Description
---------- | ---- | ------- | ------ | -----------
-`customfield_id` | _Int_ | | N/A | Id of the custom field whose items you'd like to list.
-`ids` | _String_ | comma-separated | null | List of customfielditem ids to include.
-`active` | _String Enum_ | 'yes', 'no' or 'both' | 'yes' | Include only customfielditems with given status.
-`modified_before` | _DateTime_ | ISO8601 | null | Include only customfielditems modified before this date/time.
-`modified_since` | _DateTime_ | ISO8601 | null | Include only customfielditems modified since this date/time.
-`supplemental_data` |  _String Enum_ | 'yes' or 'no'| 'yes' | Indicates whether supplemental data should be returned.
-`per_page` | _Int_ | 1 - 50 | 50 | The number of results to retrieve per request.
-`page` | _Int_ | >= 1 | 1 | The page of results to retrieve.
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **customfield_id**<br/>required | _Int_ | Id of the custom field whose items you'd like to list. |
+| **ids**<br/>optional | _Int_ | Comma separated list of one or more customfielditem ids you'd like to filter on. Only customfielditems with an `id` set to one of these values will be returned. If omitted, all customfielditems matching other specified filters are returned. |
+| **active**<br/>optional | _String_ | 'yes', 'no', or 'both'. Default is 'yes'. If a customfielditem is active, it is available for selection during time entry. |
+| **modified_before**<br/>optional | _String_ | Only customfielditems modified before this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
+| **modified_since**<br/>optional | _String_ | Only customfielditems modified since this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
+| **supplemental_data**<br/>optional | _String_ | 'yes' or 'no'. Default is 'yes'. Indicates whether supplemental data should be returned. |
+| **per_page**<br/>optional | _Int_ | Represents how many results you'd like to retrieve per request (page). Default is 50. Max is 50. |
+| **page**<br/>optional | _Int_ | Represents the page of results you'd like to retrieve. Default is 1. |
 

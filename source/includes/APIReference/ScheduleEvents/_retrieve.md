@@ -6,7 +6,7 @@ Retrieves a list of schedule events associated with your employees, with filters
 
 <img src="../../images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/schedule_events</api>
 
-### Parameters
+### Filter Parameters
 
 |                |             |             |
 | -------------: | :---------: | ----------- |

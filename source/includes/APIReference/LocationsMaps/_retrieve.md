@@ -6,7 +6,7 @@ Retrieves a list of all locations maps associated with your company, with option
 
 <img src="../../images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/locations_maps</api>
  
-### Parameters
+### Filter Parameters
 |                |             |             |
 | -------------: | :---------: | ----------- |
 | **ids**<br/>optional | _Int_ | Comma separated list of one or more locations map ids you'd like to filter on. Only locations maps with an id set to one of these values will be returned. If omitted, all locations maps matching other specified filters are returned. |

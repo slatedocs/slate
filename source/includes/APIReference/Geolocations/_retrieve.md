@@ -6,7 +6,7 @@ Retrieves a list of geolocations associated with your company, with filters to n
 
 <img src="../../images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/geolocations</api>
 
-### Parameters
+### Filter Parameters
 |                |             |             |
 | -------------: | :---------: | ----------- |
 | **ids**<br/>required (unless `modified_before` or `modified_since` is set) | _Int_ | Comma separated list of one or more geolocation ids you'd like to filter on. Only geolocations with an id set to one of these values will be returned. |

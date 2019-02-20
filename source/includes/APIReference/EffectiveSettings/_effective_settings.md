@@ -255,7 +255,7 @@
 
 All combined, cascaded settings that apply to a given user are contained in the effective settings object.
 
-The effective settings object consists of a series of sections. Each section contains a `settings` and a `last_modified` property. The `settings` property is a list of key/value pairs. The `last_modified` property is an ISO8601-formatted timestamp. It gets updated any time a key/value pair within a section has changed.
+The effective settings object consists of a series of sections. Each section contains a `settings` and a `last_modified` property. The `settings` property is a list of key/value pairs. The `last_modified` property is an ISO 8601-formatted timestamp. It gets updated any time a key/value pair within a section has changed.
 
 Below is a list of the possible section headings.
 
@@ -290,5 +290,4 @@ Below is a list of the possible section headings.
  <aside class="notice">
 For all sections except <code>general</code>, if not installed, the only setting will be <code>installed</code> with a value of <i>0</i>. If installed, all applicable settings will be available.
 </aside>
-
 

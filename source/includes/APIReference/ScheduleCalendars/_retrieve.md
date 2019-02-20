@@ -6,7 +6,7 @@ Retrieves a list of schedule calendars associated with your employees, with filt
 
 <img src="../../images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/schedule_calendars</api>
  
-### Parameters
+### Filter Parameters
 
 |                |             |             |
 | -------------: | :---------: | ----------- |

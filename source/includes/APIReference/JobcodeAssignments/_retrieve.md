@@ -6,7 +6,7 @@ Retrieves a list of all jobcode assignments associated with users, with optional
 
 <img src="../../images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/jobcode_assignments</api>
 
-### Parameters
+### Filter Parameters
 |                |             |             |
 | -------------: | :---------: | ----------- |
 | **user_ids**<br/>optional | _Int_ | Comma separated string of one or more user ids for whom you'd like to retrieve jobcode assignments. If none are specified, all jobcode assignments (which you have rights to view) will be returned. Only jobcode assignments belonging to these `user_ids` or where the jobcode `assigned_to_all` property is _true_ will be returned. Results where `assigned_to_all` is _true_ for a jobcode are indicated by a `user_id` value of _0_ for the `jobcode_assignment` object. To view jobcode assignments for users other than yourself you must be an admin or a group manager or have the `manage_users` permission or the `manage_jobcodes` permission. |
