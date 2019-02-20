@@ -1,12 +1,78 @@
-## Retrieve Current Totals Report
+# Retrieve Current Totals Report
+
+> Example
+
+```json
+{
+  "results": {
+    "current_totals": {
+      "1751136": {                             # Totals are indexed by unique 
+                                               # user_id
+        "user_id": 1751136,
+
+        "on_the_clock": true,                  # Whether this user is currently
+                                               # on the clock
+        
+        "timesheet_id": 173523290,             # Timesheet id for the current 
+                                               # timesheet
+
+        "jobcode_id": 26730062,                # Jobcode id for the current 
+                                               # timesheet
+
+        "group_id": 180010,                    # Unique group id for this user,
+                                               # value of zero represents those
+                                               # without a group
+
+        "shift_geolocations_available": true,  # If geolocations are available 
+                                               # for the current timesheet
+
+        "shift_seconds": 25275,                # Total time for the current
+                                               # shift, in seconds
+                       
+        "day_seconds": 25275                   # Total time for the day, 
+                                               # in seconds
+      },
+      "1738864": {
+        "user_id": 1738864,
+        "on_the_clock": false,
+        "timesheet_id": null,
+        "jobcode_id": null,
+        "group_id": 180010,
+        "shift_geolocations_available": false,
+        "shift_seconds": 0,
+        "day_seconds": 25719
+      },
+      ...
+    }
+  }
+}
+```
 
 Retrieves a snapshot report for the current totals (shift and day) along with additional information provided for those who are currently on the clock.
 
-### HTTP Request
+**HTTP Request**
 
 <img src="../../images/post.png" alt="post"/><api>https://rest.tsheets.com/api/v1/reports/current_totals</api>
 
-### Understanding the Output
-The best way to understand how the output is laid out is to look at some sample output - with comments out to the side explaining things. 
+**Filter Properties**
 
-_Note: When a user is off the clock, both the `timesheet_id` and `jobcode_id` attributes will return as null and shift seconds will be 0._
+_Pass an an object of filters as the value to a 'data' property (see example)._
+
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **user_ids**<br/>optional | _Int_ | A comma-separated list of user ids. Only totals for these users will be included. |
+| **group_ids**<br/>optional | _Int_ | A comma-separated list of group ids. Only totals for users from these groups will be included. |
+| **on_the_clock**<br/>optional | _String_ | 'yes', 'no', or 'both'. Default is 'no'. If a user is `on_the_clock`, it means the user is currently working (has not clocked out yet). |
+| **page**<br/>optional | _Int_ | Represents the page of results you'd like to retrieve. Default is 1. |
+| **per_page**<br/>optional | _Int_ | Represents how many results you'd like to retrieve per request (page). Default is 50. Max is 50. Using this filter requires a page to be defined. |
+| **order_by**<br/>optional | _String_ | Attribute name by which to order the result data, one of: 'username', 'first_name', 'last_name', 'group_name', 'group_id', 'shift_seconds', or 'day_seconds'. |
+| **order_desc**<br/>optional | _Boolean_ | Either _true_ or _false_. If _true_, result data will be ordered descending by the attribute specified in the `order_by` filter. |
+
+<aside class="notice">
+When a user is off the clock, both the <code>timesheet_id</code> and <code>jobcode_id</code> attributes will return as <i>null</i> and shift seconds will be <i>0</i>.
+</aside>
+
+**Understanding the Output**
+
+See example to the right for an explanation of the reponse layout.
+

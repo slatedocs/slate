@@ -6,7 +6,7 @@ Retrieves a list of all timesheets associated with your company, with filters to
 
 <img src="../../images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/timesheets</api>
 
-### Parameters
+### Filter Parameters
 
 |                |             |             |
 | -------------: | :---------: | ----------- |

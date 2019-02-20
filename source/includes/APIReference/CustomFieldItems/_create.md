@@ -215,26 +215,26 @@ Add one or more customfielditems to a customfield.
 
 <img src="../../images/post.png" alt="post"/><api>https://rest.tsheets.com/api/v1/customfielditems</api>
 
-### HTTP Request Body
+### Properties
+_Pass an array of customfielditem objects as the value to a 'data' property (see example)._
 
-The batch of customfielditems is passed as a JSON string in the body of the HTTP request.
-
-### Required Properties
-
-Name | Type | Description
----- | ---- | -----------
-`name` | _String_ | Name of the customfielditem.
-`customfield_id` | _Int_ | The id of the customfield to which this item should be added.
-
-### Optional Properties
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **name**<br/>required | _String_ | Name of the customfielditem. |
+| **customfield_id**<br/>required | _Int_ | The id of the customfield you want this item to belong to. |
 
 For a full list of the properties that may be set on a customfielditem, see [The Custom Field Item Object](#the-custom-field-item-object).
 
-<aside class="notice">
-The maximum batch size is <i>50</i> items. If exceeded, a <code>413: Request entity too large</code> HTTP response will be returned.
-</aside>
+### Status Codes
+Each customfielditem that is created will come back with a `_status_code` and `_status_message` that will indicate whether the customfielditem was created successfully. If there was a problem creating a customfielditem, there may also be an additional field, `_status_extra`, which will contain more details about the failure.
+
+|         |          |
+| :-----: | :------- |
+| <code class="level200">200</code> | OK. customfielditem was created successfully. |
+| <code class="level400">417</code> | Expectation Failed. Something was wrong or missing with the properties supplied for this customfielditem. See the `_status_extra` value for more detail. |
 
 <aside class="notice">
-In the event of partial failure of the batch operation, a successful HTTP response code will nevertheless be returned.  See important note in <a href="#batch-item-status-codes">Batch Item Status Codes</a>.
+The maximum batch size is <i>50</i> customfielditems. If exceeded, a <code>413: Request entity too large</code> HTTP response will be returned.
 </aside>
+
 

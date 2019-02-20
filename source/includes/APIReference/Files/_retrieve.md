@@ -377,22 +377,24 @@ Retrieves a list of all uploaded files, with optional filters to narrow down the
 
 <img src="../../images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/files</api>
 
-### Query Parameters
- * All parameters are **_optional_** and results are unfiltered with respect to any not provided.
- * Parameters `linked_object_type` and `object_ids` are mutually inclusive.  Both or neither must be provided.
+### Filter Parameters
 
-Parameter | Type | Format | Default | Description
---------- | ---- | ------- | ------ | -----------
-`ids` | _String_ | comma-separated | null | List of file ids to include.
-`uploaded_by_user_ids` | _String_ | comma-separated | null | List of user ids to include. Only files uploaded by these users will be returned. 
-`linked_object_type` | _String Enum_ | 'timesheet' | null | Only files linked to this object type are returned.
-`object_ids` | _String_ | comma-separated | null | Linked object ids to include.
-`active` | _String Enum_ | 'yes', 'no' or 'both' | 'yes' | Include only files with given status.
-`modified_before` | _DateTime_ | ISO8601 | null | Include only files modified before this date/time.
-`modified_since` | _DateTime_ | ISO8601 | null | Include only files modified since this date/time.
-`supplemental_data` |  _String Enum_ | 'yes' or 'no'| 'yes' | Indicates whether supplemental data should be returned.
-`per_page` | _Int_ | 1 - 50 | 50 | The number of results to retrieve per request.
-`page` | _Int_ | >= 1 | 1 | The page of results to retrieve.
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **ids**<br/>optional | _Int_ | Comma separated list of one or more file ids you'd like to filter on. |
+| **uploaded_by_user_ids**<br/>optional | _Int_ | Comma separated list of one or more user ids you'd like to filter on. Only files uploaded by these users will be returned. If `uploaded_by_user_ids` is not set, it will default to return files uploaded by the current user making the api request. |
+| **linked_object_type**<br/>optional | _String_ | Only files linked to this object type are returned. Allowed values: 'timesheet'. |
+| **object_ids**<br/>optional | _Int_ | Comma separated list of one or more linked object ids you'd like to filter on. |
+| **active**<br/>optional | _String_ | 'yes', 'no', or 'both'. Default is 'yes'. |
+| **modified_before**<br/>optional | _String_ | Only files modified before this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
+| **modified_since**<br/>optional | _String_ | Only files modified since this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
+| **supplemental_data**<br/>optional | _String_ | 'yes' or 'no'. Default is 'yes'. Indicates whether supplemental data should be returned. |
+| **per_page**<br/>optional | _Int_ | Represents how many results you'd like to retrieve per request (page). Default is 50. Max is 50. |
+| **page**<br/>optional | _Int_ | Represents the page of results you'd like to retrieve. Default is 1. |
+
+ <aside class="notice">
+Parameters `linked_object_type` and `object_ids` are mutually inclusive.  Both or neither must be provided.
+</aside>
 
  <aside class="notice">
 If <code>uploaded_by_user_ids</code> is not set, the list of files uploaded by the current user making the api request will be returned.

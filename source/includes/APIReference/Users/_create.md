@@ -352,11 +352,11 @@ Add one or more users to your company.
 ### Properties
 _Pass an array of user objects as the value to a 'data' property (see example)._
 
-|                |             |
-| -------------: | ----------- |
-| **username**<br/>required | Username that will be used by the employee to log on to TSheets. |
-| **first_name**<br/>required | First name of the employee. |
-| **last_name**<br/>required | Last name of the employee. |
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **username**<br/>required | _String_ | Username that will be used by the employee to log on to TSheets. |
+| **first_name**<br/>required | _String_ | First name of the employee. |
+| **last_name**<br/>required | _String_ | Last name of the employee. |
 
 For a full list of properties that may be set on a user, see [the User object](#the-user-object).
 

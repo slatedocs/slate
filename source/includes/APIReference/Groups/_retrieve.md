@@ -6,7 +6,7 @@ Retrieves a list of all groups associated with your company, with optional filte
 
 <img src="../../images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/groups</api>
 
-### Parameters
+### Filter Parameters
 |                |             |             |
 | -------------: | :---------: | ----------- |
 | **ids**<br/>optional | _Int_ | Comma separated list of one or more group ids you'd like to filter on. |

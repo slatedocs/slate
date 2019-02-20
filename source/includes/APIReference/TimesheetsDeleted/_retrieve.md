@@ -6,7 +6,7 @@ Gets deleted timesheets records.
 
 <img src="../../images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/timesheets_deleted</api>
 
-### Parameters
+### Filter Parameters
 
 |                |             |             |
 | -------------: | :---------: | ----------- |

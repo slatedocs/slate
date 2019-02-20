@@ -6,7 +6,7 @@ Retrieves a list of reminders associated with your employees or company, with fi
 
 <img src="../../images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/reminders</api>
 
-### Parameters
+### Filter Parameters
 
 |                |             |             |
 | -------------: | :---------: | ----------- |

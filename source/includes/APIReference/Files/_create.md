@@ -1,6 +1,41 @@
 ## Upload Files
 
+Add one or more files that can be attached to objects. Currently we only allow .png, .jpeg, .jpg file formats.
+
 ### HTTP Request
 
 <img src="../../images/post.png" alt="post"/><api>https://rest.tsheets.com/api/v1/files</api>
 
+### Properties
+_Pass an array of file objects as the value to a 'data' property (see example)._
+
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **file_name**<br/>required | _String_ | Name of the file. |
+| **file_data**<br/>required | _String_ | Base64 encoded string of the file. |
+
+For a full list of the properties that may be set on a file, see the [File object](#the-file-object).
+
+### Status Codes
+Each file that is uploaded will come back with a `_status_code` and `_status_message` that will indicate whether the file was uploaded successfully. If there was a problem uploading a file, there may also be an additional field, `_status_extra`, which will contain more details about the failure.
+
+|         |          |
+| :-----: | :------- |
+| <code class="level200">200</code> | OK. File was uploaded successfully. |
+| <code class="level400">417</code> | Expectation Failed. Something was wrong or missing with the properties supplied for this file. See the `_status_extra` value for more detail. |
+
+<aside class="warning">
+The <code>Content-Length</code> header <bold>must</bold> be provided when using this method.
+</aside>
+
+<aside class="notice">
+The entire request size may not exceed 2 MB. For example, you could submit a request with 10 files that are each 200 KB in size, or a single file that is no larger than 2 MB in size.
+</aside>
+
+<aside class="notice">
+Currently files can only be attached to Timesheet objects. See <a href="#update-timesheets" alt="update-timesheets">Update Timesheets</a> for details.
+</aside>
+
+<aside class="notice">
+The maximum batch size is <i>50</i> files. If exceeded, a <code>413: Request entity too large</code> HTTP response will be returned.
+</aside>

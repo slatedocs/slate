@@ -530,7 +530,7 @@ Retrieves a list of all users associated with your company, with optional filter
 
 <img src="../../images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/users</api>
 
-### Parameters
+### Filter Parameters
 |                |             |             |
 | -------------: | :---------: | ----------- |
 | **ids**<br/>optional | _Int_ | Comma separated list of one or more user ids you'd like to filter on. |

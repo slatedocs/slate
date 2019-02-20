@@ -1,5 +1,35 @@
 ## Update Files
 
+Edit one or more files that are attached to objects.
+
 ### HTTP Request
 
 <img src="../../images/put.png" alt="put"/><api>https://rest.tsheets.com/api/v1/files</api>
+
+### Properties
+_Pass an array of file objects as the value to a 'data' property (see example)._
+
+When editing a file, you must uniquely identify the file by passing in its id. All other properties defined below may be passed in to the request with a new value in order to change it. If the value passed in is the same as it was previously, or if a particular property is not passed in at all, it will be ignored.
+
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **id**<br/>required | _Int_ | Id of the file to edit. |
+| **file_name**<br/>optional | _String_ | Name of this file the file to edit. |
+| **meta_data**<br/>read-write | _JSON Object_ | This is a key/value map of any additional data associated with this file. List of allowed keys:<br/><ul><li><b>file_description</b>:  <i>String</i>  Description of this file.</li><li><b>image_rotation</b>:  <i>Int</i>  Original image orientation in degrees. Accepted values are: <i>0</i> (top), <i>90</i> (right), <i>180</i> (bottom), <i>270</i> (left).</li></ul> |
+
+### Status Codes
+Each file that is updated will come back with a `_status_code` and `_status_message` that will indicate whether the file was updated successfully. If there was a problem updating a file, there may also be an additional field, `_status_extra`, which will contain more details about the failure.
+
+|         |          |
+| :-----: | :------- |
+| <code class="level200">200</code> | OK. File was updated successfully. |
+| <code class="level400">404</code> | Not Found. File either has never existed or has been deleted. |
+| <code class="level400">417</code> | Expectation Failed. Something was wrong or missing with the properties supplied for this file. See the `_status_extra` value for more detail. |
+
+<aside class="notice">
+Currently files can only be attached to Timesheet objects. See <a href="#update-timesheets" alt="update-timesheets">Update Timesheets</a> for details.
+</aside>
+
+<aside class="notice">
+The maximum batch size is <i>50</i> files. If exceeded, a <code>413: Request entity too large</code> HTTP response will be returned.
+</aside>

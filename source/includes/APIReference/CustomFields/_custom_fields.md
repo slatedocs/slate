@@ -23,18 +23,20 @@ Custom Fields (aka "Advanced Tracking") provides a means to extend the data that
 }
 ```
 
+Following is a list of the properties that belong to a customfield object, and a description of each.
+
 |                |             |             |
 | -------------: | :---------: | ----------- |
-| **id**<br/>read-only | _Int_ | Unique identifier of the customfield |
-| **active**<br/>read-write | _Boolean_ | If false, the field is archived |
-| **name**<br/>read-write | _String_ | Name of the customfield |
+| **id**<br/>read-only | _Int_ | Id of customfield. |
+| **active**<br/>read-write | _Boolean_ | _true_ or _false_. If _true_, this custom field is active. If _false_, this custom field is archived. |
+| **name**<br/>read-write | _String_ | Name of the customfield. |
 | **short_code**<br/>read-write | _String_ | This is a shortened code or alias that is associated with the customfield. It may only consist of letters and numbers. |
-| **required**<br/>read-write | _Boolean_ | Indicates whether a value for this customfield is required on a timesheet |
-| **applies_to**<br/>read-write | _String_ | Indicates what type of object this customfield applies to. Can be `timesheet`, `user` or `jobcode`. |
-| **type**<br/>read-write | _String_ | Can be `managed-list` or `free-form`. If `free-form`, then it should be displayed in a UI as a text box, where users can enter values for this customfield and they'll get added automatically to the customfield if they don't already exist. If `managed-list`, then it should be displayed as a select-box and users can only choose an existing value. |
-| **ui_preference**<br/>read-write | _String_ | Indicates the suggested user interface depending on the specified type.  Can be `drop_down` or `text_box_with_suggest`. |
-| **regex_filter**<br/>read-write | _String_ | Regular expression that will be applied to any new items as they're added to the customfield. Values which do not match the filter cannot be added. |
+| **required**<br/>read-write | _Boolean_ | _true_ or _false_. Indicates whether a value for this customfield is required on a timesheet |
+| **applies_to**<br/>read-write | _String_ |  'timesheet' or 'user' or 'jobcode'. Indicates what type of object this customfield applies to. |
+| **type**<br/>read-write | _String_ | 'managed-list' or 'free-form'. If 'free-form', then it should be displayed in a UI as a text box, where users can enter values for this customfield and they'll get added automatically to the customfield if they don't already exist. If 'managed-list', then it should be displayed as a select-box and users can only choose an existing value. |
+| **ui_preference**<br/>read-write | _String_ | 'drop_down' or 'text_box_with_suggest'. Indicates the suggested user interface depending on the specified type. |
+| **regex_filter**<br/>read-write | _String_ | Regular expression that will be applied to any new items as they're added to the customfield. If they do not match the regex_filter, they may not be added. |
 | **last_modified**<br/>read-only | _String_ | Date/time when this customfield was last modified, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`). |
 | **created**<br/>read-only | _String_ | Date/time when this customfield was created, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`). |
-| **required_customfields**<br/>read-write | _Int[]_ | Ids of customfields that should be displayed when this customfield is visible on a timecard |
+| **required_customfields**<br/>read-write | _Array_ | Ids of customfields that should be displayed when this customfield is visible on a timecard |
 

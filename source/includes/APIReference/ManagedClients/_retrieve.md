@@ -6,7 +6,7 @@ Retrieves a list of managed clients available from your account.
 
 <img src="../../images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/managed_clients</api>
 
-### Parameters
+### Filter Parameters
 |                |             |             |
 | -------------: | :---------: | ----------- |
 | **active**<br/>optional | _String_ | 'yes', 'no', or 'both'. Default is 'yes'. |
