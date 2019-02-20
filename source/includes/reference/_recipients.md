@@ -11,7 +11,8 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/accounts \
      -d '{ 
           "currency": "GBP", 
           "type": "sort_code", 
-          "profile": <your profile id>, 
+          "profile": <your profile id>,
+          "ownedByCustomer": true, 
           "accountHolderName": "Ann Johnson",
            "details": { 
               "legalType": "PRIVATE",
@@ -90,7 +91,8 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/accounts \
         "BIC": null
     },
     "user": <your user ID>,
-    "active": true
+    "active": true,
+    "ownedByCustomer": true
 }
 ```
 
@@ -103,7 +105,10 @@ Recipient data includes three data blocks.
 <li>Recipient full name</li>
 <li>Legal type (private/business)</li>
 <li>Currency</li>
+<li>Owned by customer</li>
 </ul>
+
+Owned by customer is a boolen to flag whetehr this recipient is the same entity (person or business) as th eone sending the funds. i.e. A user sending money to thier own account in another country/currency. This can be used to separate these recipients in your UI.
 
 **2) Bank account data**
 
@@ -140,34 +145,36 @@ As you can see many of the fields are `null`, in order to know which fields are 
 
 **`POST https://api.sandbox.transferwise.tech/v1/accounts`**
 
-Field                 | Description                                   | Format
----------             | -------                                       | -----------
-currency              | 3 character currency code                     | Text
-type                  | Recipient type                                | Text
-profile               | Personal or business profile id               | Integer
-accountHolderName     | Recipient full name                           | Text
-details               | Currency specific fields                      | Object
-details.legalType     | Recipient legal type: PRIVATE or BUSINESS     | Text
-details.sortCode      | Recipient bank sort code (GBP example)        | Text
-details.accountNumber | Recipient bank account no (GBP example)       | Text
+Field                 | Description                                           | Format        | Optional
+---------             | -------                                               | -----------   | ----------- 
+currency              | 3 character currency code                             | Text          | false
+type                  | Recipient type                                        | Text          | false
+profile               | Personal or business profile id                       | Integer       | false
+accountHolderName     | Recipient full name                                   | Text          | false
+ownedByCustomer       | Whether this account is owned by the sending user     | Text          | true
+details               | Currency specific fields                              | Object        | false
+details.legalType     | Recipient legal type: PRIVATE or BUSINESS             | Text          | false
+details.sortCode      | Recipient bank sort code (GBP example)                | Text          | false
+details.accountNumber | Recipient bank account no (GBP example)               | Text          | false
 
 
 ### Response
 
 Recipient account id is needed for creating transfers in step 3.
 
-Field                 | Description                                   | Format
----------             | -------                                       | -----------
-id                    | accountId                                     | Integer
-profile               | Personal or business profile id               | Integer
-acccountHolderName    | Recipient full name                           | Text
-currency              | 3 character country code                      | Text
-country               | 2 character currency code                     | Text
-type                  | Recipient type                                | Text
-details               | Currency specific fields                      | Object
-details.legalType     | Recipient legal type                          | Text
-details.sortCode      | Recipient bank sort code (GBP example)        | Text
-details.accountNumber | Recipient bank account no (GBP example)       | Text
+Field                 | Description                                           | Format
+---------             | -------                                               | -----------
+id                    | accountId                                             | Integer
+profile               | Personal or business profile id                       | Integer
+acccountHolderName    | Recipient full name                                   | Text
+currency              | 3 character country code                              | Text
+country               | 2 character currency code                             | Text
+type                  | Recipient type                                        | Text
+ownedByCustomer       | Whether this account is owned by the sending user     | Text
+details               | Currency specific fields                              | Object
+details.legalType     | Recipient legal type                                  | Text
+details.sortCode      | Recipient bank sort code (GBP example)                | Text
+details.accountNumber | Recipient bank account no (GBP example)               | Text
 
 
 ## Create Email Recipient
@@ -257,7 +264,8 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/accounts \
         "BIC": null
     },
     "user": <your user id>,
-    "active": true
+    "active": true,
+    "ownedByCustomer": false
 }
 
 ```
@@ -349,7 +357,8 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/accounts/{accountId} \
         "BIC": null
     },
     "user": <your user ID>,
-    "active": true
+    "active": true,
+    "ownedByCustomer": false
 }
 ```
 
@@ -436,7 +445,8 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/accounts?profile=<profileId
           "BIC": null
       },
       "user": <your user ID>,
-      "active": true
+      "active": true,
+      "ownedByCustomer": false
   },
   {
       "id": 31273090,
@@ -502,7 +512,8 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/accounts?profile=<profileId
           "BIC": null
       },
       "user": <your user ID>,
-      "active": true
+      "active": true,
+      "ownedByCustomer": true
   }
 ]
 
@@ -555,6 +566,7 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/quotes/{quoteId}/account-re
 [
   {
     "type": "aba",
+     "title": "Local bank account",
      "fields": [
           {
             "name": "Legal type",
@@ -756,13 +768,13 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/quotes/{quoteId}/account-re
 **` GET https://api.sandbox.transferwise.tech/v1/quotes/{quoteId}/account-requirements`**<br/>
 **` POST https://api.sandbox.transferwise.tech/v1/quotes/{quoteId}/account-requirements`**<br/>
 
-GET and POST account-requirements endpoints help you to figure out which fields are required to create a valid recipient for different currencies.
-You can use this to build a dynamic user interface on top of these endpoints. 
+The `GET` and `POST` account-requirements endpoints help you to figure out which fields are required to create a valid recipient for different currencies.
+You can use this data to build a dynamic user interface on top of these endpoints. 
 This is a step-by-step guide on how these endpoints work.
 
 1.First create a quote to specify currencies and transfer amounts. See [Create.Quote](#quotes-create).
 
-2.Call GET /v1/quotes/{quoteId}/account-requirements to get list of fields you need to fill with values in "details" section for creating a valid recipient account. 
+2.Call `GET /v1/quotes/{quoteId}/account-requirements` to get list of fields you need to fill with values in "details" section for creating a valid recipient account. 
 
 In order to create "aba" recipient type you need these top level fields:<br/>
 <ul>
@@ -775,7 +787,7 @@ In order to create "aba" recipient type you need these top level fields:<br/>
  <li>address.firstLine</li>
 </ul>
 
-Some fields require multiple levels of fields in the details request, for example Country followed by State. This should be handled by the client base don the `refreshRequirementsOnChange` field. In the example above 'address.country' has this field set to true, indicating that there are additional fields required depending on the selected value. To manage this you should create a request with all of the initially requested data and call the `POST account-requirements` endpoint. You will be returned a response similar the previosuly returned data from `GET account-requirements` but with additional fields.
+Some fields require multiple levels of fields in the details request, for example Country followed by State. This should be handled by the client based on the `refreshRequirementsOnChange` field. In the example above 'address.country' has this field set to true, indicating that there are additional fields required depending on the selected value. To manage this you should create a request with all of the initially requested data and call the `POST account-requirements` endpoint. You will be returned a response similar the previosuly returned data from `GET account-requirements` but with additional fields.
 
 3.For example, construct a recipient object with top level fields and call POST /v1/quotes/{quoteId}/account-requirements with these value to expose sub fields.  <br/>
 For example posting US as country will also add "state" to list of fields.<br/>
@@ -811,7 +823,7 @@ However, posting GB as country will not add any new fields as GB addresses do no
 }
 ```
 
-It is possible that any new fields retuened may _also_ have `refreshRequirementsOnChange` field set to true. Thereofe you must keep iterating on the partially created details object until `POST account-requirements` returns you no new fields that it previously didn't include in the response, you can do this by checking the size of the array returned.
+It is possible that any new fields retuened may _also_ have `refreshRequirementsOnChange` field set to true. Therefore you must keep iterating on the partially created details object until `POST account-requirements` returns you no new fields that it previously didn't include in the response, you can do this by checking the size of the array returned.
 
 4.Once you have built your full reciepient details object you can use it to create a reciepient.
 
@@ -839,24 +851,36 @@ For example this is a valid request to create a recipient with address in US Ari
 }
 ```
 
+###Building a user interface
+When requesting the form data from the account-requirements several the first level of the response defines different types of recipient you can create, the first thing to do is present the user a choice of which recipient type they wish to create, e.g. to GBP this could be local details or IBAN format. Each recipient type then has mutiple `fields` describing the form elements required to be shown to collect information from the user. Each field will have a `type` value, these tell you the field type that your front end needs to render to be able to collect the data. A number of field types are permitted, these are:
+
+type            | UI element
+---------       | ------- 
+text            | A free text box 
+select          | A selection box/dialog
+radio           | A radio button choice between options
+date            | A text box with a date picker
+
+Example data is also included in each `field` which should be shown to the user, alone with a regex or min and mex length constraints that should be applied. You can optionally implement the dynamic validation using the `validationAsync` field, howver these checks wil also be done when a completed recipient is submitted.
+
 
 ### Response
-Field                                       | Description                                        | Format
----------                                   | -------                                            | -----------
-type                                        | "address"                                          | Text
-fields[n].name                              | Field description                                  | Text
-fields[n].group[n].key                      | Key is name of the field you should include in the JSON                                     | Text
-fields[n].group[n].type                     | Display type of field (e.g. text, select, etc)                                  | Text
+Field                                       | Description                                                     | Format
+---------                                   | -------                                                         | -----------
+type                                        | "address"                                                       | Text
+fields[n].name                              | Field description                                               | Text
+fields[n].group[n].key                      | Key is name of the field you should include in the JSON         | Text
+fields[n].group[n].type                     | Display type of field (e.g. text, select, etc)                  | Text
 fields[n].group[n].refreshRequirementsOnChange |  Tells you whether you should call POST account-requirements once the field value is set to discover required lower level fields.  | Boolean
-fields[n].group[n].required                 | Indicates if the field is mandatory or not                                 | Boolean
-fields[n].group[n].displayFormat            | Display format pattern.                                | Text
-fields[n].group[n].example                  | Example value.                                | Text
-fields[n].group[n].minLength                | Min valid length of field value.                                   | Integer
-fields[n].group[n].maxLength                | Max valid length of field value.                             | Integer
-fields[n].group[n].validationRegexp         | Regexp validation pattern.                                     | Text
+fields[n].group[n].required                 | Indicates if the field is mandatory or not                      | Boolean
+fields[n].group[n].displayFormat            | Display format pattern.                                         | Text
+fields[n].group[n].example                  | Example value.                                                  | Text
+fields[n].group[n].minLength                | Min valid length of field value.                                | Integer
+fields[n].group[n].maxLength                | Max valid length of field value.                                | Integer
+fields[n].group[n].validationRegexp         | Regexp validation pattern.                                      | Text
 fields[n].group[n].validationAsync          | Validator URL and parameter name you should use when submitting the value for validation | Text
-fields[n].group[n].valuesAllowed[n].key     | List of allowed values. Value key                           | Text
-fields[n].group[n].valuesAllowed[n].name    | List of allowed values. Value name.                          | Text
+fields[n].group[n].valuesAllowed[n].key     | List of allowed values. Value key                               | Text
+fields[n].group[n].valuesAllowed[n].name    | List of allowed values. Value name.                             | Text
 
 
 
