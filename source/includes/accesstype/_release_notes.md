@@ -2,6 +2,14 @@
 
 This section contains important Accestype release notes. For any queries, please write to us at [support@quintype.com](mailto:support@quintype.com).
 
+## 18 Feb 2019 Release Note - Accesstype
+1. **Juspay integration** - Integration with payment aggregator [Juspay](https://juspay.in) for iframe type of integration. Juspay's algorithms choose the best payment gateways for best success rates and also take into account pre-defined priority logic to offer the most efficient payment option to customers. 
+To create a Merchant account on Juspay write to [support@juspay.in](mailto:support@juspay.in).
+![Accesstype Juspay](../../images/Accesstype_JuspayPG.png "Accesstype Juspay")
+
+2. **Analytics Dashboard** - Monthly and daily insights into the total number of subscriptions that are created.
+![Accesstype Analytics Subscription Count](../../images/Accesstype_Analytics.png "Accesstype Analytics Subscription Count")
+
 ## 4 Jan 2019 Release Note - Accesstype
 1. **Updated Subscription CSV Report** - The subscription CSV Report now contains additional fields for financial related purposes: Base Price, Discount amounts, amount after discount before tax and round-off.
 2. **Subscriber Name** - The Subscriber name is now displayed in Accesstype UI as well as the CSV report by default, for all subscriptions, Pay Per Asset purchases and Campaign Patrons.
