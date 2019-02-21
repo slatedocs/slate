@@ -22,7 +22,7 @@ There are different ways to build the frontend experience, especially when it co
 For example, you can put sign up/log in step as a first step, then show the currency calculator, and then collect recipient details.
 Alternatively, you can build it so a user starts from the calculator, then you collect recipient details, and as a last step ask user to sign up/log in.
 
-We have plenty of examples to show you how this has been done by our current parterns and can help you to build a great expereince for your customers.
+We have plenty of examples to show you how this has been done by our current parterns and can help you to build a great experience for your customers.
 
 ## Building your backend
 
