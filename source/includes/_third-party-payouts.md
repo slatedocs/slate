@@ -41,6 +41,6 @@ All other functionality is available exactly same way as described under Payouts
 
 * **Email recipients are not supported.** We don't support setting up third party transfers to email recipients. You can send payments to bank accounts only.
  
-* **Few target currencies are not supported.** Please contact bizdev@transferwise.com for details. 
+* **Some currency routes are not supported.** Please contact bizdev@transferwise.com for details. 
 
 
