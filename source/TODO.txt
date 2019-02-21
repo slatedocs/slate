@@ -20,8 +20,8 @@ All comma-separated parameters should be type Int, not String
 Object examples in right-side code pane should just read "Example"
 Find all instances of "hh?ss" and replace with "hh±ss"
 Check Permissions section of each method.
-
-Params tables should have 3 columns
+Look for old dates in examples, throughout.
+Fix H3 headers in Reports methods
 
 Walkthroughs/Guides/References
 Section on supplemental_data

@@ -1,36 +1,28 @@
-# Retrieve Current Totals Report
+## Retrieve Current Totals Report
 
-> Example
+> **Response Layout**
 
 ```json
 {
   "results": {
     "current_totals": {
       "1751136": {                             # Totals are indexed by unique 
-                                               # user_id
-        "user_id": 1751136,
-
+        "user_id": 1751136,                    #   user_id.
         "on_the_clock": true,                  # Whether this user is currently
-                                               # on the clock
-        
+                                               #   on the clock.
         "timesheet_id": 173523290,             # Timesheet id for the current 
-                                               # timesheet
-
+                                               #   timesheet.
         "jobcode_id": 26730062,                # Jobcode id for the current 
-                                               # timesheet
-
+                                               #   timesheet.
         "group_id": 180010,                    # Unique group id for this user,
-                                               # value of zero represents those
-                                               # without a group
-
+                                               #   value of zero represents those
+                                               #   without a group.
         "shift_geolocations_available": true,  # If geolocations are available 
-                                               # for the current timesheet
-
+                                               #   for the current timesheet.
         "shift_seconds": 25275,                # Total time for the current
-                                               # shift, in seconds
-                       
+                                               #   shift, in seconds.
         "day_seconds": 25275                   # Total time for the day, 
-                                               # in seconds
+                                               #   in seconds.
       },
       "1738864": {
         "user_id": 1738864,
@@ -74,5 +66,5 @@ When a user is off the clock, both the <code>timesheet_id</code> and <code>jobco
 
 **Understanding the Output**
 
-See example to the right for an explanation of the reponse layout.
+See explanation of response layout to the right.
 
