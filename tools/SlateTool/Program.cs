@@ -157,6 +157,10 @@ namespace TSheets.CodeGenTool
 
         internal void DoCodeGen(string endpoint, string method, List<string> kvps)
         {
+
+            Console.WriteLine(" > **Example**:\n");
+            Console.WriteLine(" > Request\n");
+
             List<KeyValuePair<string, string>> parameters = null;
 
             if (kvps.Count > 0)
@@ -189,7 +193,8 @@ namespace TSheets.CodeGenTool
                     break;
             }
            
-            Console.WriteLine("> The above command returns JSON with the following structure:\n");
+            Console.WriteLine("> Response<br/><i>(all examples will have the following layout)</i>\n");
+            Console.WriteLine("> <code class=\"level200\">200 OK</code>\n");
             Console.WriteLine("```json");
             Console.WriteLine("TODO");
             Console.WriteLine("```\n");

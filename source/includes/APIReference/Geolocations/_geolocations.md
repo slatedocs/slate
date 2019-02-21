@@ -2,6 +2,24 @@
 
 ## The Geolocation Object
 
+> **Example**
+
+```json
+{
+  "id": 185648268,
+  "user_id": 29474,
+  "accuracy": 21,
+  "altitude": 0,
+  "latitude": 43.6866258,
+  "longitude": -116.3516646,
+  "device_identifier": "",
+  "source": "gps",
+  "heading": 0,
+  "speed": 0,  
+  "created": "2018-08-16T17:56:57+00:00"
+}
+```
+
 Following is a list of the properties that belong to a geolocation, and a description of each.
 
 |                |             |             |
