@@ -2,6 +2,28 @@
 
 ## The Jobcode Object
 
+ > **Example**
+
+```json
+{
+  "id": 17288279,
+  "parent_id": 0,
+  "assigned_to_all": false,
+  "billable": false,
+  "active": true,
+  "type": "regular",
+  "has_children": false,
+  "billable_rate": 0,
+  "short_code": "asm",
+  "name": "Assembly Line",
+  "last_modified": "2018-07-12T21:13:14+00:00",
+  "created": "2018-05-28T20:18:17+00:00",
+  "filtered_customfielditems": "",
+  "required_customfields": [],    
+  "locations": []
+}
+```
+
 Following is a list of the properties that belong to a jobcode object, and a description of each.
 
 |                |             |             |

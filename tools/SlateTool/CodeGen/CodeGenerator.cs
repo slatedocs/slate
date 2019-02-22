@@ -22,7 +22,7 @@ namespace TSheets.CodeGenTool.CodeGen
 
         internal abstract string GenPutCode();
 
-        internal abstract string GetDeleteCode();
+        internal abstract string GenDeleteCode(List<KeyValuePair<string, string>> parameters);
 
         protected static string NewLine(int count = 1)
         {

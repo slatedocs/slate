@@ -30,9 +30,14 @@ namespace TSheets.CodeGenTool.CodeGen
                  + $"IRestResponse response = client.Execute(request);";
         }
 
-        internal override string GetDeleteCode()
+        internal override string GenDeleteCode(List<KeyValuePair<string, string>> parameters)
         {
-            throw new NotImplementedException();
+            string paramsString = ParamsToUrlString(parameters);
+
+            return $"var client = new RestClient(\"{BaseUrl}/{this.Endpoint}{paramsString}\");" + NewLine()
+                 + $"var request = new RestRequest(Method.DELETE);" + NewLine()
+                 + $"request.AddHeader(\"Authorization\", \"Bearer <TOKEN>\");" + NewLine()
+                 + $"IRestResponse response = client.Execute(request);";
         }
 
         internal override string GenPostCode()

@@ -41,9 +41,19 @@ namespace TSheets.CodeGenTool.CodeGen
                  + $"Response response = client.newCall(request).execute();";
         }
 
-        internal override string GetDeleteCode()
+        internal override string GenDeleteCode(List<KeyValuePair<string, string>> parameters)
         {
-            throw new NotImplementedException();
+            string paramsString = ParamsToUrlString(parameters);
+
+            return $"OkHttpClient client = new OkHttpClient();" + NewLine(2)
+
+                 + $"Request request = new Request.Builder()" + NewLine()
+                 + $"  .url(\"{BaseUrl}/{this.Endpoint}{paramsString}\")" + NewLine()
+                 + $"  .delete()" + NewLine()
+                 + $"  .addHeader(\"Authorization\", \"Bearer <TOKEN>\")" + NewLine()
+                 + $"  .build();" + NewLine(2)
+
+                 + $"Response response = client.newCall(request).execute();";
         }
 
         internal override string GenPostCode()

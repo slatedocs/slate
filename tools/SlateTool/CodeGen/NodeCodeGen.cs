@@ -56,9 +56,30 @@ namespace TSheets.CodeGenTool.CodeGen
                  + $"}});";
         }
 
-        internal override string GetDeleteCode()
+        internal override string GenDeleteCode(List<KeyValuePair<string, string>> parameters)
         {
-            throw new NotImplementedException();
+            string paramString = null;
+            if (parameters != null)
+            {
+                paramString = "  qs: { "
+                    + string.Join("," + NewLine() + new string(' ', 8), parameters.Select(kvp => $"{kvp.Key}: '{kvp.Value}'").ToList()) + NewLine()
+                    + "  }," + NewLine();
+            }
+
+            string code1 = $"var request = require(\"request\");" + NewLine(2)
+
+                         + $"var options = {{ method: 'DELETE'," + NewLine()
+                         + $"  url: '{BaseUrl}/{this.Endpoint}'," + NewLine();
+
+            string code2 = $"  headers: " + NewLine()
+                         + $"   {{ Authorization: 'Bearer <TOKEN>' }} }};" + NewLine(2)
+
+                         + $"request(options, function (error, response, body) {{" + NewLine()
+                         + $"  if (error) throw new Error(error);" + NewLine(2)
+                         + $"  console.log(body);" + NewLine()
+                         + $"}});";
+
+            return code1 + paramString + code2;
         }
 
         internal override string GenPostCode()
