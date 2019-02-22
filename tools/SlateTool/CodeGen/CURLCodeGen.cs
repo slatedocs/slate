@@ -30,9 +30,13 @@ namespace TSheets.CodeGenTool.CodeGen
                  + $"  -d '<REQUEST BODY>'";
         }
 
-        internal override string GetDeleteCode()
+        internal override string GenDeleteCode(List<KeyValuePair<string, string>> parameters)
         {
-            throw new NotImplementedException();
+            string paramsString = ParamsToUrlString(parameters);
+
+            return $"curl -X DELETE \\" + NewLine()
+                 + $"  {BaseUrl}/{this.Endpoint}{paramsString}" + NewLine()
+                 + $"  -H \"{AuthHeader}\"";
         }
 
         internal override string GenPostCode()

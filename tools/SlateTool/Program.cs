@@ -189,7 +189,7 @@ namespace TSheets.CodeGenTool
                     break;
 
                 case "delete":
-                    DoCodeGenDelete(endpoint);
+                    DoCodeGenDelete(endpoint, parameters);
                     break;
             }
            
@@ -224,9 +224,16 @@ namespace TSheets.CodeGenTool
             }
         }
 
-        private void DoCodeGenDelete(string endpoint)
+        private void DoCodeGenDelete(string endpoint, List<KeyValuePair<string, string>> parameters)
         {
-            throw new NotImplementedException();
+            Dictionary<string, CodeGenerator> codeGenerators = CodeGenFactory.Instance.GetCodeGenerators(endpoint);
+
+            foreach (string lang in this.langs)
+            {
+                Console.WriteLine($"```{lang}");
+                Console.WriteLine(codeGenerators[lang].GenDeleteCode(parameters));
+                Console.WriteLine($"```\n");
+            }
         }
 
         private void DoCodeGenPut(string endpoint)

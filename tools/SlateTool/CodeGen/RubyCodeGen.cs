@@ -47,9 +47,22 @@ namespace TSheets.CodeGenTool.CodeGen
                  + $"puts response.read_body";
         }
 
-        internal override string GetDeleteCode()
+        internal override string GenDeleteCode(List<KeyValuePair<string, string>> parameters)
         {
-            throw new NotImplementedException();
+            string paramsString = ParamsToUrlString(parameters);
+
+            return $"require 'uri'" + NewLine()
+                 + $"require 'net/http'" + NewLine(2)
+
+                 + $"url = URI(\"{BaseUrl}/{this.Endpoint}{paramsString}\")" + NewLine(2)
+
+                 + $"http = Net::HTTP.new(url.host, url.port)" + NewLine(2)
+
+                 + $"request = Net::HTTP::Delete.new(url)" + NewLine()
+                 + $"request[\"Authorization\"] = 'Bearer <TOKEN>'" + NewLine(2)
+
+                 + $"response = http.request(request)" + NewLine()
+                 + "puts response.read_body";
         }
 
         internal override string GenPostCode()

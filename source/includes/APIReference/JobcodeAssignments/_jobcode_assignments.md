@@ -4,6 +4,19 @@ A jobcode assignment represents that a user has access to a given jobcode for se
 
 ## The Jobcode Assignments Object
 
+ > **Example**
+
+```json
+{
+  "id": 26881275,
+  "user_id": 1242515,
+  "jobcode_id": 17285791,
+  "active": true,
+  "last_modified": "",
+  "created": ""
+}
+```
+
 Following is a list of the properties that belong to a jobcode assignment object, and a description of each.
 
 |                |             |             |

@@ -74,9 +74,35 @@ namespace TSheets.CodeGenTool.CodeGen
                  + $"}}";
         }
 
-        internal override string GetDeleteCode()
+        internal override string GenDeleteCode(List<KeyValuePair<string, string>> parameters)
         {
-            throw new NotImplementedException();
+            string paramsString = ParamsToUrlString(parameters);
+
+            return $"package main" + NewLine(2)
+
+                 + $"import (" + NewLine()
+                 + $"  \"fmt\"" + NewLine()
+                 + $"  \"net/http\"" + NewLine()
+                 + $"  \"io/ioutil\"" + NewLine()
+                 + $")" + NewLine(2)
+
+                 + $"func main() {{" + NewLine(2)
+
+                 + $"  url := \"{BaseUrl}/{this.Endpoint}{paramsString}\"" + NewLine(2)
+
+                 + $"  req, _ := http.NewRequest(\"DELETE\", url, nil)" + NewLine(2)
+
+                 + $"  req.Header.Add(\"Authorization\", \"Bearer <TOKEN>\")" + NewLine(2)
+
+                 + $"  res, _ := http.DefaultClient.Do(req)" + NewLine(2)
+
+                 + $"  defer res.Body.Close()" + NewLine()
+                 + $"  body, _ := ioutil.ReadAll(res.Body)" + NewLine(2)
+
+                 + $"  fmt.Println(res)" + NewLine()
+                 + $"  fmt.Println(string(body))" + NewLine(2)
+
+                 + $"}}";
         }
 
         internal override string GenPostCode()
