@@ -412,13 +412,13 @@ This is the free version url **wss://test.api.suredbits.com/exchange/v0** on tes
 
 ### Trading Pairs Supported
 
-Symbol | Binance | Bitfinex | Coinbase | Bitstamp | Gemini  |  
-------- | ------ | --------- | -------- | ------- | ------- | 
+Symbol | Binance | Bitfinex | Coinbase | Bitstamp | Gemini  |  Kraken |
+------- | ------ | --------- | -------- | ------- | ------- | -------
 BTCUSDT |    X     |         |          |         |         |
-ETHBTC  |    X     |    X    |    X     |   X     |    X    | 
+ETHBTC  |    X     |    X    |    X     |   X     |    X    |    X
 ETHUSDT |    X     |         |          |         |         |
-BTCUSD  |          |    X    |    X     |   X     |    X    |
-ETHUSD  |          |    X    |    X     |   X     |    X    |
+BTCUSD  |          |    X    |    X     |   X     |    X    |    X
+ETHUSD  |          |    X    |    X     |   X     |    X    |    X
 
 
 
@@ -770,29 +770,29 @@ The <span style="color:red"> Tickers </span> channel streams high level updates 
 
 Field | Type | Exchanges Supporting
 ------ | ------ | --------
-<span style="color:red"> uuid  </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000"</span>
-<span style="color:red"> eventTime </span>| Integer | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span> , <span style="color:red"> coinbase  </span>,  <span style="color:red"> bitstamp </span>
-<span style="color:red"> symbol </span> | String | <span style="color:red"> binance </span> , <span style="color:red"> coinbase  </span>, <span style="color:red"> bitstamp </span>, <span style="color:red"> gemini </span>
-<span style="color:red"> priceChange </span> | Double | <span style="color:red"> binance </span> , <span style="color:red"> bitfinex </span>
-<span style="color:red"> priceChangePerc </span> |  Double | <span style="color:red"> binance </span> , <span style="color:red"> bitfinex </span>
-<span style="color:red"> weightedAvePrice </span> |  Double | <span style="color:red"> binance </span> , <span style="color:red"> bitstamp </span>
-<span style="color:red"> prevClose </span> | Double | <span style="color:red"> binance </span>
-<span style="color:red"> close </span> | Double | <span style="color:red"> binance </span> , <span style="color:red"> bitfinex </span>
-<span style="color:red"> closeQuantity </span> |  Double | <span style="color:red"> binance </span>
-<span style="color:red"> bid </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span> , <span style="color:red"> coinbase  </span>, <span style="color:red"> bitstamp </span>, <span style="color:red"> gemini </span>     
-<span style="color:red"> bidSize </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>          
-<span style="color:red"> ask </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span> , <span style="color:red"> coinbase  </span>, <span style="color:red"> bitstamp </span>, <span style="color:red"> gemini </span>        
-<span style="color:red"> askSize </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>        
-<span style="color:red"> open </span> | Double | <span style="color:red"> binance </span> , <span style="color:red"> coinbase  </span>, <span style="color:red"> bitstamp </span>
-<span style="color:red"> high </span> | Double | <span style="color:red"> binance </span> , <span style="color:red"> bitfinex </span> , <span style="color:red"> coinbase  </span>, <span style="color:red"> bitstamp </span>
-<span style="color:red"> low </span> | Double | <span style="color:red"> binance </span> , <span style="color:red"> bitfinex </span> , <span style="color:red"> coinbase  </span>, <span style="color:red"> bitstamp </span>
-<span style="color:red"> volume </span> | Double | <span style="color:red"> binance </span> , <span style="color:red"> bitfinex </span> , <span style="color:red"> coinbase  </span>, <span style="color:red"> bitstamp </span>, <span style="color:red"> gemini </span>
-<span style="color:red"> quoteVolume </span> | Double| <span style="color:red"> binance </span>
-<span style="color:red"> statOpenTime </span> | Integer | <span style="color:red"> binance </span>
-<span style="color:red"> statCloseTime </span> | Integer | <span style="color:red"> binance </span>, <span style="color:red"> gemini </span>
-<span style="color:red"> firstTradeId </span> | Integer | <span style="color:red"> binance </span>
-<span style="color:red"> lastTradId </span> | Integer | <span style="color:red"> binance </span> , <span style="color:red"> coinbase  </span>
-<span style="color:red"> totalTrades </span> | Integer | <span style="color:red"> binance </span>
+<span style="color:red"> uuid  </span> | String | "123e4567-e89b-12d3-a456-426655440000"
+<span style="color:red"> eventTime </span>| Integer | bitfinex, binance, coinbase, bitstamp, kraken
+<span style="color:red"> symbol </span> | String | binance, coinbase, bitstamp, gemini, kraken
+<span style="color:red"> priceChange </span> | Double | binance, bitfinex 
+<span style="color:red"> priceChangePerc </span> |  Double | binance, bitfinex 
+<span style="color:red"> weightedAvePrice </span> |  Double | binance, bitstamp, kraken
+<span style="color:red"> prevClose </span> | Double | binance 
+<span style="color:red"> close </span> | Double | binance, bitfinex, kraken
+<span style="color:red"> closeQuantity </span> |  Double | binance, kraken
+<span style="color:red"> bid </span> | Double | bitfinex, binance, coinbase, bitstamp, gemini, kraken    
+<span style="color:red"> bidSize </span> | Double |  bitfinex, binance, kraken 
+<span style="color:red"> ask </span> | Double | bitfinex, binance, coinbase, bitstamp, gemini, kraken      
+<span style="color:red"> askSize </span> | Double | bitfinex, binance, kraken        
+<span style="color:red"> open </span> | Double | binance, coinbase, bitstamp, kraken
+<span style="color:red"> high </span> | Double | binance, bitfinex, coinbase, bitstamp, kraken
+<span style="color:red"> low </span> | Double | binance, bitfinex, coinbase, bitstamp, kraken
+<span style="color:red"> volume </span> | Double | binance, bitfinex, coinbase, bitstamp, gemini, kraken
+<span style="color:red"> quoteVolume </span> | Double| binance 
+<span style="color:red"> statOpenTime </span> | Integer | binance, kraken
+<span style="color:red"> statCloseTime </span> | Integer | binance, gemini, kraken
+<span style="color:red"> firstTradeId </span> | Integer | binance 
+<span style="color:red"> lastTradId </span> | Integer | binance, coinbase
+<span style="color:red"> totalTrades </span> | Integer | binance, kraken
 
 
 ## Trades
@@ -929,16 +929,16 @@ The <span style="color:red"> Trades </span> channel streams executed trades for 
 
 Field |  Type | Exchanges Supporting 
 ------ | ------- | -----------
-<span style="color:red"> uuid  </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span>
-<span style="color:red"> eventTime </span> | Integer | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span>
-<span style="color:red"> symbol </span> | String | <span style="color:red"> binance </span> , <span style="color:red"> coinbase  </span>
-<span style="color:red"> tradeId </span> | Integer | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span> , <span style="color:red"> coinbase  </span>, <span style="color:red"> bitstamp </span>, <span style="color:red"> gemini </span>
-<span style="color:red"> price </span> | Double | <span style="color:red"> binance </span> , <span style="color:red"> bitfinex </span> , <span style="color:red"> coinbase  </span>, <span style="color:red"> bitstamp </span>, <span style="color:red"> gemini </span>
-<span style="color:red"> quantity </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> binance  </span> , <span style="color:red"> coinbase  </span>, <span style="color:red"> bitstamp </span>, <span style="color:red"> gemini </span>
-<span style="color:red"> buyerId </span> | String | <span style="color:red"> binance </span> , <span style="color:red"> coinbase  </span>, <span style="color:red"> bitstamp </span>
-<span style="color:red"> sellerId </span> | String | <span style="color:red"> binance </span> , <span style="color:red"> coinbase  </span>, <span style="color:red"> bitstamp </span>
-<span style="color:red"> tradeTime </span> | Integer | <span style="color:red"> binance </span> , <span style="color:red"> coinbase  </span>, <span style="color:red"> gemini </span>
-<span style="color:red"> marketMaker </span> |  Boolean | <span style="color:red"> binance </span> , <span style="color:red"> coinbase  </span>, <span style="color:red"> bitstamp </span>, <span style="color:red"> gemini </span>
+<span style="color:red"> uuid  </span> | String | "123e4567-e89b-12d3-a456-426655440000"
+<span style="color:red"> eventTime </span> | Integer | bitfinex, binance, kraken
+<span style="color:red"> symbol </span> | String | binance, coinbase, kraken
+<span style="color:red"> tradeId </span> | Integer | bitfinex, binance, coinbase, bitstamp, gemini 
+<span style="color:red"> price </span> | Double | binance, bitfinex, coinbase, bitstamp, gemini, kraken
+<span style="color:red"> quantity </span> | Double | bitfinex, binance, coinbase, bitstamp, gemini, kraken
+<span style="color:red"> buyerId </span> | String | binance, coinbase, bitstamp
+<span style="color:red"> sellerId </span> | String | binance, coinbase, bitstamp 
+<span style="color:red"> tradeTime </span> | Integer | binance, coinbase, gemini, kraken
+<span style="color:red"> marketMaker </span> |  Boolean | binance, coinbase, bitstamp, gemini, kraken
 
 
 ## Order Books
@@ -1050,13 +1050,13 @@ The <span style="color:red"> Books </span> channel streams bids and asks for a g
 
 Field | Type | Exchanges Supporting
 ------| -------| --------
-<span style="color:red"> uuid  </span> | String | <span style="color:red"> "123e4567-e89b-12d3-a456-426655440000" </span>
-<span style="color:red"> eventTime </span> | Integer | <span style="color:red"> bitfinex </span>, <span style="color:red"> bitstamp </span>, <span style="color:red"> gemini </span>
-<span style="color:red"> orderId </span> |  Integer | <span style="color:red"> bitfinex </span>, <span style="color:red"> bitstamp </span>
-<span style="color:red"> price  </span>| Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> coinbase  </span>, <span style="color:red"> bitstamp </span>,<span style="color:red"> gemini </span>
-<span style="color:red"> quantityTotal </span> | Double | <span style="color:red"> bitfinex </span> , <span style="color:red"> coinbase  </span>, <span style="color:red"> gemini </span>
-<span style="color:red"> quantityChange </span> | Double | <span style="color:red"> bitstamp </span>, <span style="color:red"> gemini </span>
-<span style="color:red"> symbol </span> | String |  <span style="color:red"> coinbase </span>
+<span style="color:red"> uuid  </span> | String | "123e4567-e89b-12d3-a456-426655440000"
+<span style="color:red"> eventTime </span> | Integer | bitfinex, bitstamp, gemini 
+<span style="color:red"> orderId </span> |  Integer | bitfinex, bitstamp 
+<span style="color:red"> price  </span>| Double | bitfinex, coinbase, bitstamp, gemini 
+<span style="color:red"> quantityTotal </span> | Double | bitfinex, coinbase, gemini 
+<span style="color:red"> quantityChange </span> | Double | bitstamp, gemini 
+<span style="color:red"> symbol </span> | String |  coinbase 
 
 <h1 id="NFLData"> NFL Data</h1>
 
