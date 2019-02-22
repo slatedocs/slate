@@ -160,7 +160,7 @@ const stats = await nfl.statsById({
 })
 ```
 
-Currently, we offer <span style="color:red"> Info </span> and <span style="color:red"> Games </span> data endpoints for free on testnet. 
+Currently, we offer `Info` and `Games` data endpoints for free on testnet. 
 
 In addition, to help developers build and test end-to-end applications, we offer a series of data across all endpoints: `Games`, `Players`, `Team` and `Stats` for a specific player.  
 
@@ -467,13 +467,13 @@ To subscribe to a data stream, use the following command format:
 
 Field | Type | Example
 ------ | ------ | -------
-<span style="color:red"> uuid  </span> | String | "123e4567-e89b-12d3-a456-426655440000"
-<span style="color:red"> event </span> | String | "subscribe"
-<span style="color:red"> channel </span> | String | "tickers" 
-<span style="color:red"> symbol  </span> | String | "ETHBTC"
-<span style="color:red"> exchange </span> | String | "bitfinex" 
-<span style="color:red"> duration </span> | Integer (milliseconds) | "15000" 
-<span style="color:red"> refundInvoice </span> | String | lnbcrt10n1pd5v2mwpp5ulxpj8ht...
+ `uuid`  | String | "123e4567-e89b-12d3-a456-426655440000"
+ `event` | String | "subscribe"
+ `channel` | String | "tickers" 
+ `symbol`  | String | "ETHBTC"
+ `exchange`  | String | "bitfinex" 
+ `duration` | Integer (milliseconds) | "15000" 
+ `refundInvoice`  | String | lnbcrt10n1pd5v2mwpp5ulxpj8ht...
 
 
 ### Snapshots
@@ -559,10 +559,6 @@ await sub.refill(60000) // adds one minute to our subscription
 
 You may refill your subscription at any time. 
 
-<br></br>
-<br></br>
-<br></br>
-
 
 ### Unsubscribe
  
@@ -592,9 +588,6 @@ await sub.unsubscribe()
 ```
 You may unsubscribe from a channel at any time. Any time remainaing will be refunded. 
 
-<br></br>
-<br></br>
-<br></br>
 
 ### Maintenance
 
@@ -770,29 +763,29 @@ The **Tickers** channel streams high level updates for given trading pairs.  See
 
 Field | Type | Exchanges Supporting
 ------ | ------ | --------
-<span style="color:red"> uuid  </span> | String | "123e4567-e89b-12d3-a456-426655440000"
-<span style="color:red"> eventTime </span>| Integer | bitfinex, binance, coinbase, bitstamp, kraken
-<span style="color:red"> symbol </span> | String | binance, coinbase, bitstamp, gemini, kraken
-<span style="color:red"> priceChange </span> | Double | binance, bitfinex 
-<span style="color:red"> priceChangePerc </span> |  Double | binance, bitfinex 
-<span style="color:red"> weightedAvePrice </span> |  Double | binance, bitstamp, kraken
-<span style="color:red"> prevClose </span> | Double | binance 
-<span style="color:red"> close </span> | Double | binance, bitfinex, kraken
-<span style="color:red"> closeQuantity </span> |  Double | binance, kraken
-<span style="color:red"> bid </span> | Double | bitfinex, binance, coinbase, bitstamp, gemini, kraken    
-<span style="color:red"> bidSize </span> | Double |  bitfinex, binance, kraken 
-<span style="color:red"> ask </span> | Double | bitfinex, binance, coinbase, bitstamp, gemini, kraken      
-<span style="color:red"> askSize </span> | Double | bitfinex, binance, kraken        
-<span style="color:red"> open </span> | Double | binance, coinbase, bitstamp, kraken
-<span style="color:red"> high </span> | Double | binance, bitfinex, coinbase, bitstamp, kraken
-<span style="color:red"> low </span> | Double | binance, bitfinex, coinbase, bitstamp, kraken
-<span style="color:red"> volume </span> | Double | binance, bitfinex, coinbase, bitstamp, gemini, kraken
-<span style="color:red"> quoteVolume </span> | Double| binance 
-<span style="color:red"> statOpenTime </span> | Integer | binance, kraken
-<span style="color:red"> statCloseTime </span> | Integer | binance, gemini, kraken
-<span style="color:red"> firstTradeId </span> | Integer | binance 
-<span style="color:red"> lastTradId </span> | Integer | binance, coinbase
-<span style="color:red"> totalTrades </span> | Integer | binance, kraken
+`uuid`  | String | "123e4567-e89b-12d3-a456-426655440000"
+`eventTime` | Integer | bitfinex, binance, coinbase, bitstamp, kraken
+`symbol` | String | binance, coinbase, bitstamp, gemini, kraken
+`priceChange` | Double | binance, bitfinex 
+`priceChangePerc`  |  Double | binance, bitfinex 
+`weightedAvePrice` |  Double | binance, bitstamp, kraken
+`prevClose` | Double | binance 
+`close` | Double | binance, bitfinex, kraken
+`closeQuantity` |  Double | binance, kraken
+`bid` | Double | bitfinex, binance, coinbase, bitstamp, gemini, kraken    
+`bidSize` | Double |  bitfinex, binance, kraken 
+`ask` | Double | bitfinex, binance, coinbase, bitstamp, gemini, kraken      
+`askSize` | Double | bitfinex, binance, kraken        
+`open`  | Double | binance, coinbase, bitstamp, kraken
+`high`  | Double | binance, bitfinex, coinbase, bitstamp, kraken
+`low`  | Double | binance, bitfinex, coinbase, bitstamp, kraken
+`volume`  | Double | binance, bitfinex, coinbase, bitstamp, gemini, kraken
+`quoteVolume` | Double| binance 
+`statOpenTime` | Integer | binance, kraken
+`statCloseTime`  | Integer | binance, gemini, kraken
+`firstTradeId`  | Integer | binance 
+`lastTradId`  | Integer | binance, coinbase
+`totalTrades` | Integer | binance, kraken
 
 
 ## Trades
