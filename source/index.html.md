@@ -253,7 +253,7 @@ const stats = await nba.statsByName({ year: 2019, month: 1, day: 13 })
 // name is inferred automatically because we're on testnet
 ```
 
-Currently, we offer <span style="color:red"> Info </span> and <span style="color:red"> Games </span> data endpoints for free. 
+Currently, we offer `Info` and `Games` data endpoints for free. 
 
 In addition, to help developers build and test end-to-end applications, we offer a series of data across all endpoints: `Games`, `Players`, `Team` and `Stats` for a specific player.  
 
