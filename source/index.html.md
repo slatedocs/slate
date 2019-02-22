@@ -922,16 +922,16 @@ The **Trades** channel streams executed trades for a given trading pair.  See th
 
 Field |  Type | Exchanges Supporting 
 ------ | ------- | -----------
-<span style="color:red"> uuid  </span> | String | "123e4567-e89b-12d3-a456-426655440000"
-<span style="color:red"> eventTime </span> | Integer | bitfinex, binance, kraken
-<span style="color:red"> symbol </span> | String | binance, coinbase, kraken
-<span style="color:red"> tradeId </span> | Integer | bitfinex, binance, coinbase, bitstamp, gemini 
-<span style="color:red"> price </span> | Double | binance, bitfinex, coinbase, bitstamp, gemini, kraken
-<span style="color:red"> quantity </span> | Double | bitfinex, binance, coinbase, bitstamp, gemini, kraken
-<span style="color:red"> buyerId </span> | String | binance, coinbase, bitstamp
-<span style="color:red"> sellerId </span> | String | binance, coinbase, bitstamp 
-<span style="color:red"> tradeTime </span> | Integer | binance, coinbase, gemini, kraken
-<span style="color:red"> marketMaker </span> |  Boolean | binance, coinbase, bitstamp, gemini, kraken
+`uuid` | String | "123e4567-e89b-12d3-a456-426655440000"
+`eventTime` | Integer | bitfinex, binance, kraken
+`symbol` | String | binance, coinbase, kraken
+`tradeId` | Integer | bitfinex, binance, coinbase, bitstamp, gemini 
+`price` | Double | binance, bitfinex, coinbase, bitstamp, gemini, kraken
+`quantity` | Double | bitfinex, binance, coinbase, bitstamp, gemini, kraken
+`buyerId` | String | binance, coinbase, bitstamp
+`sellerId` | String | binance, coinbase, bitstamp 
+`tradeTime` | Integer | binance, coinbase, gemini, kraken
+`marketMaker` |  Boolean | binance, coinbase, bitstamp, gemini, kraken
 
 
 ## Order Books
