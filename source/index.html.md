@@ -1039,17 +1039,17 @@ const tickersSub = await exchangeSocket.trades({
    }
    ```
 
-The **Books** channel streams bids and asks for a given trading pair on given exchange.  Note, Binance is currently not supported in  <span style="color:red"> Books </span> 
+The **Books** channel streams bids and asks for a given trading pair on given exchange.  Note, Binance is currently not supported in `Books`. 
 
 Field | Type | Exchanges Supporting
 ------| -------| --------
-<span style="color:red"> uuid  </span> | String | "123e4567-e89b-12d3-a456-426655440000"
-<span style="color:red"> eventTime </span> | Integer | bitfinex, bitstamp, gemini 
-<span style="color:red"> orderId </span> |  Integer | bitfinex, bitstamp 
-<span style="color:red"> price  </span>| Double | bitfinex, coinbase, bitstamp, gemini 
-<span style="color:red"> quantityTotal </span> | Double | bitfinex, coinbase, gemini 
-<span style="color:red"> quantityChange </span> | Double | bitstamp, gemini 
-<span style="color:red"> symbol </span> | String |  coinbase 
+`uuid`  | String | "123e4567-e89b-12d3-a456-426655440000"
+`eventTime` | Integer | bitfinex, bitstamp, gemini 
+`orderId` |  Integer | bitfinex, bitstamp 
+`price`  | Double | bitfinex, coinbase, bitstamp, gemini 
+`quantityTotal` | Double | bitfinex, coinbase, gemini 
+`quantityChange` | Double | bitstamp, gemini 
+`symbol` | String |  coinbase 
 
 <h1 id="NFLData"> NFL Data</h1>
 
@@ -1219,17 +1219,17 @@ The available fields to query data from completed and upcoming NFL games are as 
 
 Field | Type | Example
 ------ | ------- | ------
-<span style="color:red"> uuid  </span> | String | "123e4567-e89b-12d3-a456-426655440000" 
-<span style="color:red"> week </span> | Integer |  1, 2, 3 etc...
-<span style="color:red"> seasonPhase </span> | String |   Preaseason, Regular, or Postseason 
+`uuid` | String | "123e4567-e89b-12d3-a456-426655440000" 
+`week` | Integer |  1, 2, 3 etc...
+`seasonPhase` | String |   Preaseason, Regular, or Postseason 
 
 
 **Optional fields**
 
 Field | Type | Example
 ------ | ------- | --------
-<span style="color:red"> year </span> | Integer |  2009, 2010, 2011, etc. 
-<span style="color:red"> teamId </span> | String  |  CHI, MIN, GB, MIA etc. <a href="#TeamID">See Team ID Table</a>
+`year` | Integer |  2009, 2010, 2011, etc. 
+`teamId` | String  |  CHI, MIN, GB, MIA etc. <a href="#TeamID">See Team ID Table</a>
 
 **Live games**
 
@@ -1239,14 +1239,14 @@ You can also query for games that are currently playing. The available fields ar
 
 Field | Type | Example
 ------ | ------- | ------
-<span style="color:red"> uuid  </span> | String | "123e4567-e89b-12d3-a456-426655440000"
-<span style="color:red"> realtime  </span> | Boolean (true) | true 
+`uuid`  | String | "123e4567-e89b-12d3-a456-426655440000"
+`realtime` | Boolean (true) | true 
 
 **Optional fields**
 
 Field | Type | Example
 ------ | ------- | ------
-<span style="color:red"> teamId </span> | String  |  CHI, MIN, GB, MIA etc. <a href="#TeamID">See Team ID Table</a>
+`teamId` | String  |  CHI, MIN, GB, MIA etc. <a href="#TeamID">See Team ID Table</a>
 
 
 ## Players
@@ -1322,7 +1322,7 @@ const players = await nfl.players({ firstName: 'Randy', lastName: 'Moss' })
 
   
 
-The **Players** channel returns data for particular players by <span style="color:red"> name </span>.  
+The **Players** channel returns data for particular players by `name`.  
 
 The required fields to request NFL Player data are as follows: 
 
@@ -1330,9 +1330,9 @@ The required fields to request NFL Player data are as follows:
 
 Field | Type | Example
 ------ | ----- | -----
-<span style="color:red"> uuid  </span> | String | "123e4567-e89b-12d3-a456-426655440000"
-<span style="color:red"> firstName </span> | String |  Randy 
-<span style="color:red"> lastName </span>  | String |  Moss 
+`uuid` | String | "123e4567-e89b-12d3-a456-426655440000"
+`firstName` | String |  Randy 
+`lastName` | String |  Moss 
 
 
 ## Team
@@ -1540,15 +1540,15 @@ The required fields to request NFL Team & Roster data are as follows:
 
 Field | Type | Example 
 ------ | ----- | ------
-<span style="color:red"> uuid  </span> | String | "123e4567-e89b-12d3-a456-426655440000" 
-<span style="color:red"> teamId </span> | String |  CHI, MIN, MIA  etc.
-<span style="color:red"> retrieve </span> | String |  roster or schedule 
+`uuid`  | String | "123e4567-e89b-12d3-a456-426655440000" 
+`teamId` | String |  CHI, MIN, MIA  etc.
+`retrieve` | String |  roster or schedule 
 
 **Optional Fields**
 
 Field | Type | Example
 ------| ----- | ------
-<span style="color:red"> year </span> | Integer | 2018,  2015, 2011, etc. 
+`year` | Integer | 2018,  2015, 2011, etc. 
 
 NOTE: the `year` field defaults to current year. 
 
@@ -1687,11 +1687,11 @@ To query by `gameId` and `playerId`:
 
 Field | Type | Example
 ------ | ----- | -------
-<span style="color:red"> uuid  </span> | String | "123e4567-e89b-12d3-a456-426655440000"
-<span style="color:red"> channel </span> | String| stats
-<span style="color:red"> statType </span> | String | passing, rushing, receiving, defense
-<span style="color:red"> gameId </span> | String | 2016101604
-<span style="color:red"> playerId </span> | String | 00-0027973
+`uuid`  | String | "123e4567-e89b-12d3-a456-426655440000"
+`channel` | String| stats
+`statType` | String | passing, rushing, receiving, defense
+`gameId` | String | 2016101604
+`playerId` | String | 00-0027973
 
 
 To query by `name` and `week`:
@@ -1700,14 +1700,14 @@ To query by `name` and `week`:
 
 Field | Type | Example
 ------ | ------- | -----
-<span style="color:red"> uuid  </span> | String | "123e4567-e89b-12d3-a456-426655440000"
-<span style="color:red"> channel </span> | String | stats
-<span style="color:red"> statType </span> | String | passing, rushing, receiving, defense
-<span style="color:red"> year </span> | Integer | 2016, 2017
-<span style="color:red"> week </span> | Integer  | 1, 2... 
-<span style="color:red"> seasonPhase | String  | Preseason, Regular, Postseason* 
-<span style="color:red"> firstName  | String | Drew
-<span style="color:red"> lastName | String | Brees
+`uuid`  | String | "123e4567-e89b-12d3-a456-426655440000"
+`channel` | String | stats
+`statType` | String | passing, rushing, receiving, defense
+`year` | Integer | 2016, 2017
+`week` | Integer  | 1, 2... 
+`seasonPhase` | String  | Preseason, Regular, Postseason* 
+`firstName`  | String | Drew
+`lastName` | String | Brees
 
 # NBA Data
 
@@ -1764,7 +1764,7 @@ The `Info` channel returns high level information of the current status of the `
 
 Field | Type | Example
 ------ | ----- | -------
-<span style="color:red"> uuid  </span> | String |  "123e4567-e89b-12d3-a456-426655440000" 
+`uuid` | String |  "123e4567-e89b-12d3-a456-426655440000" 
 
 
 ## Games
@@ -2015,11 +2015,11 @@ The available fields to query data from completed and upcoming NBA games are as 
 
 Field | Type | Example
 ------ | ----- | -------
-<span style="color:red"> uuid  </span> | String | "123e4567-e89b-12d3-a456-426655440000"
-<span style="color:red"> channel </span> | String |  games 
-<span style="color:red"> year </span> | Integer  | 2016, 2017 and 2018 
-<span style="color:red"> month </span> | Integer  | 3, 8, 12 etc..
-<span style="color:red"> day </span>    | Integer |  Follows typical calendar convention: 2, 17, 28, etc...
+`uuid` | String | "123e4567-e89b-12d3-a456-426655440000"
+`channel` | String |  games 
+`year` | Integer  | 2016, 2017 and 2018 
+`month` | Integer  | 3, 8, 12 etc..
+`day` | Integer |  Follows typical calendar convention: 2, 17, 28, etc...
 
 <aside class="notice">NOTE: We only support from year 2016 to current. </aside>
 
@@ -2029,7 +2029,7 @@ To search for a game by a specific team, add an optional field for `teamId`
 
 | Field                                   | Type   | Example                                                                                             |
 | --------------------------------------- | ------ | --------------------------------------------------------------------------------------------------- |
-| <span style="color:red"> teamId </span> | String | ATL, CLE, PHX, LAC etc. <a href="#NBATeamID">See Team ID Table</a> |
+| `teamId` | String | ATL, CLE, PHX, LAC etc. <a href="#NBATeamID">See Team ID Table</a> |
 
 **Live games**
 You can also query for games that are currently playing. The available fields are as follows: 
@@ -2038,14 +2038,14 @@ You can also query for games that are currently playing. The available fields ar
 
 | Field                                      | Type           | Example                                                                 |
 | ------------------------------------------ | -------------- | ----------------------------------------------------------------------- |
-| <span style="color:red"> uuid  </span>     | String         | "123e4567-e89b-12d3-a456-426655440000" 
-| <span style="color:red"> realtime  </span> | Boolean (true) | true                                  |
+| `uuid` | String         | "123e4567-e89b-12d3-a456-426655440000" 
+| `realtime` | Boolean (true) | true                                  |
 
 **Optional fields**
 
 | Field                                   | Type   | Example                                                                                             |
 | --------------------------------------- | ------ | --------------------------------------------------------------------------------------------------- |
-| <span style="color:red"> teamId </span> | String | ATL, CLE, PHX, LAC etc. <a href="#NBATeamID">See Team ID Table</a> |
+| `teamId` | String | ATL, CLE, PHX, LAC etc. <a href="#NBATeamID">See Team ID Table</a> |
 
 
 
@@ -2115,10 +2115,10 @@ The **Players** channel returns biographical information about specific players.
 
 | Field                                      | Type   | Example                                                                 |
 | ------------------------------------------ | ------ | ----------------------------------------------------------------------- |
-| <span style="color:red"> uuid  </span>     | String | "123e4567-e89b-12d3-a456-426655440000"  |
-| <span style="color:red"> channel </span>   | String |  players                                 |
-| <span style="color:red"> firstName </span> | String |  Kevin                                   |
-| <span style="color:red"> lastName </span>  | String |  Durant                                 |
+| `uuid`  | String | "123e4567-e89b-12d3-a456-426655440000"  |
+| `channel` | String |  players                                 |
+| `firstName` | String |  Kevin                                   |
+| `lastName` | String |  Durant                                 |
 
 
 ## Team
@@ -2232,16 +2232,16 @@ The **Teams** channel returns information such as `rosters` or `schedules` for s
 
 | Field                                     | Type   | Example                                                                                                                  |
 | ----------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------ |
-| <span style="color:red"> uuid  </span>    | String | "123e4567-e89b-12d3-a456-426655440000"                                                 |
-| <span style="color:red"> channel </span>  | String | teams                                                                                    |
-| <span style="color:red"> teamId </span>   | String | CHI, LAC, MIA, etc... |
-| <span style="color:red"> retrieve </span> | String | roster or schedule                                     |
+| `uuid` | String | "123e4567-e89b-12d3-a456-426655440000"                                                 |
+| `channel` | String | teams                                                                                    |
+| `teamId` | String | CHI, LAC, MIA, etc... |
+| `retrieve` | String | roster or schedule                                     |
 
 **Optional Fields**
 
 | Field                                   | Type   | Example                                    |
 | --------------------------------------- | ------ | ------------------------------------------ |
-| <span style="color:red"> season </span> | String | 2016-2017 |
+| `season` | String | 2016-2017 |
 
 
 <h3 id="NBATeamID"> Team ID Table</h3>
@@ -2375,23 +2375,23 @@ The **Stats** channel returns data for individual players and allows you to quer
 
 Field | Type | Example 
 ------ | ------ | ------
-<span style="color:red"> uuid  </span> | String | "123e4567-e89b-12d3-a456-426655440000" 
-<span style="color:red"> channel </span> | String | stats 
-<span style="color:red"> gameId </span> | String  | "21600854"
-<span style="color:red"> playerId </span>  | String | "201142"
+`uuid`  | String | "123e4567-e89b-12d3-a456-426655440000" 
+`channel` | String | stats 
+`gameId` | String  | "21600854"
+`playerId` | String | "201142"
 
 
 **Required Field for Stats by Name**
 
 | Field                                      | Type    | Example                                                                                                                                                   |
 | ------------------------------------------ | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <span style="color:red"> uuid  </span>     | String  | "123e4567-e89b-12d3-a456-426655440000"                                                                                   |
-| <span style="color:red"> channel </span>   | String  | stats                                                                                                                    |
-| <span style="color:red"> Year </span>      | Integer | 2016, 2017 and 2018                                     |
-| <span style="color:red"> Month </span>     | Integer | 2, 6, 10 etc..                                         |
-| <span style="color:red"> Day </span>       | Integer | Follows typical calendar convention: 3, 18, 25, etc... |
-| <span style="color:red"> firstName </span> | String  | Kevin                                                                                                                |
-| <span style="color:red"> lastName </span>  | String  | Durant                                                                                                                   |
+| `uuid`   | String  | "123e4567-e89b-12d3-a456-426655440000"                                                                                   |
+| `channel`  | String  | stats                                                                                                                    |
+| `year` | Integer | 2016, 2017 and 2018                                     |
+| `month` | Integer | 2, 6, 10 etc..                                         |
+| `day` | Integer | Follows typical calendar convention: 3, 18, 25, etc... |
+| `firstName` | String  | Kevin                                                                                                                |
+| `lastName`  | String  | Durant                                                                                                                   |
 
 # Contact Us
 Follow us on twitter <a href="https://twitter.com/Suredbits">@Suredbits</a>
