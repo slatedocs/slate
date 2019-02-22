@@ -71,13 +71,291 @@
 }  
 ```
 
+ > **Example**: Retrieve a payroll report for a given time period for all users on an account.
+
+ > Request Body
+
+```json
+{
+ "data":
+  {
+    "start_date": "2018-03-02",
+    "end_date": "2018-03-15",
+    "advanced_overtime": "no"
+  }
+}
+
+```
+
+ > Request
+
+```shell
+curl -X POST \
+  https://rest.tsheets.com/api/v1/reports/payroll \
+  -H 'Authorization: Bearer <TOKEN>' \
+  -H 'Content-Type: application/json' \
+  -d '<REQUEST BODY>'
+```
+
+```csharp
+var client = new RestClient("https://rest.tsheets.com/api/v1/reports/payroll");
+var request = new RestRequest(Method.POST);
+request.AddHeader("Content-Type", "application/json");
+request.AddHeader("Authorization", "Bearer <TOKEN>");
+request.AddParameter("undefined", "<REQUEST BODY>", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
+```
+
+```java
+OkHttpClient client = new OkHttpClient();
+
+MediaType mediaType = MediaType.parse("application/json");
+RequestBody body = RequestBody.create(mediaType, "<REQUEST BODY>");
+Request request = new Request.Builder()
+  .url("https://rest.tsheets.com/api/v1/reports/payroll")
+  .post(body)
+  .addHeader("Authorization", "Bearer <TOKEN>")
+  .addHeader("Content-Type", "application/json")
+  .build();
+
+Response response = client.newCall(request).execute();
+```
+
+```javascript
+var request = require("request");
+
+var options = { method: 'POST',
+  url: 'https://rest.tsheets.com/api/v1/reports/payroll',
+  headers: 
+   { 'Content-Type': 'application/json',
+     Authorization: 'Bearer <TOKEN>' },
+  body: '<REQUEST BODY>',
+  json: true };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```php
+<?php
+
+$request = new HttpRequest();
+$request->setUrl('https://rest.tsheets.com/api/v1/reports/payroll');
+$request->setMethod(HTTP_METH_POST);
+
+$request->setHeaders(array(
+  'Content-Type' => 'application/json',
+  'Authorization' => 'Bearer <TOKEN>'
+));
+
+$request->setBody('<REQUEST BODY>');
+
+try {
+  $response = $request->send();
+
+  echo $response->getBody();
+} catch (HttpException $ex) {
+  echo $ex;
+}
+```
+
+```ruby
+require 'uri'
+require 'net/http'
+
+url = URI("https://rest.tsheets.com/api/v1/reports/payroll")
+
+http = Net::HTTP.new(url.host, url.port)
+
+request = Net::HTTP::Post.new(url)
+request["Authorization"] = 'Bearer <TOKEN>'
+request["Content-Type"] = 'application/json'
+request.body = "<REQUEST BODY>"
+
+response = http.request(request)
+puts response.read_body
+```
+
+```python
+import requests
+
+url = "https://rest.tsheets.com/api/v1/reports/payroll"
+
+payload = "<REQUEST BODY>"
+headers = {
+    'Authorization': "Bearer <TOKEN>",
+    'Content-Type': "application/json"
+    }
+
+response = requests.request("POST", url, data=payload, headers=headers)
+
+print(response.text)
+```
+
+```go
+package main
+
+import (
+  "fmt"
+  "strings"
+  "net/http"
+  "io/ioutil"
+)
+
+func main() {
+
+  url := "https://rest.tsheets.com/api/v1/reports/payroll"
+
+  payload := strings.NewReader("<REQUEST BODY>")
+
+  req, _ := http.NewRequest("POST", url, payload)
+
+  req.Header.Add("Authorization", "Bearer <TOKEN>")
+  req.Header.Add("Content-Type", "application/json")
+
+  res, _ := http.DefaultClient.Do(req)
+
+  defer res.Body.Close()
+  body, _ := ioutil.ReadAll(res.Body)
+
+  fmt.Println(res)
+  fmt.Println(string(body))
+
+}
+```
+
+> Response<br/><i>(example will have the following layout)</i>
+
+> <code class="level200">200 OK</code>
+
+```json
+{
+  "results": {
+    "payroll_report": {
+      "191544": {
+        "user_id": 191544,
+        "client_id": "183",
+        "start_date": "2018-03-02",
+        "end_date": "2018-03-15",
+        "total_re_seconds": 1816,
+        "total_ot_seconds": 0,
+        "total_dt_seconds": 0,
+        "total_pto_seconds": 0,
+        "total_work_seconds": 1816,
+        "pto_seconds": {}
+      },
+      "31174": {
+        "user_id": 31174,
+        "client_id": "183",
+        "start_date": "2018-03-02",
+        "end_date": "2018-03-15",
+        "total_re_seconds": 28800,
+        "total_ot_seconds": 14400,
+        "total_dt_seconds": 563645,
+        "total_pto_seconds": 0,
+        "total_work_seconds": 606845,
+        "pto_seconds": {}
+      },
+      "15004": {
+        "user_id": 15004,
+        "client_id": "183",
+        "start_date": "2018-03-02",
+        "end_date": "2018-03-15",
+        "total_re_seconds": 1819,
+        "total_ot_seconds": 0,
+        "total_dt_seconds": 0,
+        "total_pto_seconds": 0,
+        "total_work_seconds": 1819,
+        "pto_seconds": {}
+      },
+      "29494": {
+        "user_id": 29494,
+        "client_id": "183",
+        "start_date": "2018-03-02",
+        "end_date": "2018-03-15",
+        "total_re_seconds": 1806,
+        "total_ot_seconds": 0,
+        "total_dt_seconds": 0,
+        "total_pto_seconds": 0,
+        "total_work_seconds": 1806,
+        "pto_seconds": {}
+      },
+      "29504": {
+        "user_id": 29504,
+        "client_id": "183",
+        "start_date": "2018-03-02",
+        "end_date": "2018-03-15",
+        "total_re_seconds": 1815,
+        "total_ot_seconds": 0,
+        "total_dt_seconds": 0,
+        "total_pto_seconds": 0,
+        "total_work_seconds": 1815,
+        "pto_seconds": {}
+      },
+      "29604": {
+        "user_id": 29604,
+        "client_id": "183",
+        "start_date": "2018-03-02",
+        "end_date": "2018-03-15",
+        "total_re_seconds": 275,
+        "total_ot_seconds": 0,
+        "total_dt_seconds": 0,
+        "total_pto_seconds": 28800,
+        "total_work_seconds": 29075,
+        "pto_seconds": {
+          "12074": 28800
+        }
+      }
+    }
+  },
+  "supplemental_data": {
+    "users": {
+      "191544": {
+        "id": 191544,
+        "first_name": "Harrison",
+        "last_name": "Ford",
+        "group_id": 4124,
+        "active": true,
+        "employee_number": 3333,
+        "salaried": false,
+        "exempt": false,
+        ...
+      }
+    }
+  },
+  "jobcodes": {
+    "12074": {
+      "id": 12074,
+      "parent_id": 0,
+      "assigned_to_all": false,
+      "billable": false,
+      "active": true,
+      "type": "pto",
+      "has_children": false,
+      "billable_rate": 0,
+      "short_code": "",
+      "name": "Holiday",
+      "last_modified": "2018-03-18T17:58:52+00:00",
+      "created": "2017-04-01T17:20:24+00:00",
+      "required_customfields": [
+
+      ],
+      "filtered_customfielditems": ""
+    }
+  }
+}
+```
+
 Retrieves a payroll report associated with a timeframe, with filters to narrow down the results.
 
-**HTTP Request**
+### HTTP Request
 
 <img src="../../images/post.png" alt="post"/><api>https://rest.tsheets.com/api/v1/reports/payroll</api>
 
-**Filter Properties**
+### Filter Properties
 
 _Pass an an object of filters as the value to a 'data' property (see example)._
 
@@ -98,7 +376,7 @@ For <code>advanced_overtime</code> the default for api keys created before Oct 2
 The <code>advanced_overtime</code> setting is required to be passed as 'yes' if the Overtime add-on is installed and rates other than the standard 1.5x and 2x rates are defined. This is enforced so that incorrect overtime values that do not comply with the standard "total_ot_seconds" (1.5x) and "total_dt_seconds" (2x) rates are not missed.
 </aside>
 
-**Understanding the Output**
+### Understanding the Output
 
 See explanation of response layouts to the right.
 

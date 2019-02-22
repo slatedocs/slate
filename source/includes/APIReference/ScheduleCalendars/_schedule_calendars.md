@@ -2,6 +2,17 @@
 
 ## The Schedule Calendar Object
 
+> **Example**
+
+```json
+{
+  "id": 72595,
+  "name": "Schedule Calendar Name",
+  "last_modified": "2018-07-15T19:33:57+00:00",
+  "created": "2018-07-15T19:08:33+00:00"
+}
+```
+
 Following is a list of the properties that belong to a schedule calendar object, and a description of each.
 
 |                |             |             |

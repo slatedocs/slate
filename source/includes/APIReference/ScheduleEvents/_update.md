@@ -1,5 +1,215 @@
 ## Update Schedule Events
 
+ > **Example**: Edit the title of an event.
+
+ > Request Body
+
+```json
+{
+  "data":
+  [
+    {
+      "schedule_calendar_id":5,
+      "id": 2816375,
+      "title":"changed title"
+    }
+  ],
+  "team_events": "base"
+}
+```
+
+ > Request
+
+```shell
+curl -X PUT \
+  https://rest.tsheets.com/api/v1/schedule_events \
+  -H 'Authorization: Bearer <TOKEN>' \
+  -H 'Content-Type: application/json' \
+  -d '<REQUEST BODY>'
+```
+
+```csharp
+var client = new RestClient("https://rest.tsheets.com/api/v1/schedule_events");
+var request = new RestRequest(Method.PUT);
+request.AddHeader("Content-Type", "application/json");
+request.AddHeader("Authorization", "Bearer <TOKEN>");
+request.AddParameter("undefined", "<REQUEST BODY>", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
+```
+
+```java
+OkHttpClient client = new OkHttpClient();
+
+MediaType mediaType = MediaType.parse("application/json");
+RequestBody body = RequestBody.create(mediaType, "<REQUEST BODY>");
+Request request = new Request.Builder()
+  .url("https://rest.tsheets.com/api/v1/schedule_events")
+  .put(body)
+  .addHeader("Authorization", "Bearer <TOKEN>")
+  .addHeader("Content-Type", "application/json")
+  .build();
+
+Response response = client.newCall(request).execute();
+```
+
+```javascript
+var request = require("request");
+
+var options = { method: 'PUT',
+  url: 'https://rest.tsheets.com/api/v1/schedule_events',
+  headers: 
+   { 'Content-Type': 'application/json',
+      Authorization: 'Bearer <TOKEN>' },
+  body: '<REQUEST BODY>',
+  json: true };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```php
+<?php
+
+$request = new HttpRequest();
+$request->setUrl('https://rest.tsheets.com/api/v1/schedule_events');
+$request->setMethod(HTTP_METH_PUT);
+
+$request->setHeaders(array(
+  'Content-Type' => 'application/json',
+  'Authorization' => 'Bearer <TOKEN>'
+));
+
+$request->setBody('<REQUEST BODY>');
+
+try {
+  $response = $request->send();
+
+  echo $response->getBody();
+} catch (HttpException $ex) {
+  echo $ex;
+}
+```
+
+```ruby
+require 'uri'
+require 'net/http'
+
+url = URI("https://rest.tsheets.com/api/v1/schedule_events")
+
+http = Net::HTTP.new(url.host, url.port)
+
+request = Net::HTTP::Put.new(url)
+request["Authorization"] = 'Bearer <TOKEN>'
+request["Content-Type"] = 'application/json'
+request.body = "<REQUEST BODY>"
+
+response = http.request(request)
+puts response.read_body
+```
+
+```python
+import requests
+
+url = "https://rest.tsheets.com/api/v1/schedule_events"
+
+payload = "<REQUEST BODY>"
+headers = {
+    'Authorization': "Bearer <TOKEN>",
+    'Content-Type': "application/json"
+    }
+
+response = requests.request("PUT", url, data=payload, headers=headers)
+
+print(response.text)
+```
+
+```go
+package main
+
+import (
+  "fmt"
+  "strings"
+  "net/http"
+  "io/ioutil"
+)
+
+func main() {
+
+  url := "https://rest.tsheets.com/api/v1/schedule_events"
+
+  payload := strings.NewReader("<REQUEST BODY>")
+
+  req, _ := http.NewRequest("PUT", url, payload)
+
+  req.Header.Add("Authorization", "Bearer <TOKEN>")
+  req.Header.Add("Content-Type", "application/json")
+
+  res, _ := http.DefaultClient.Do(req)
+
+  defer res.Body.Close()
+  body, _ := ioutil.ReadAll(res.Body)
+
+  fmt.Println(res)
+  fmt.Println(string(body))
+
+}
+```
+
+> Response<br/><i>(example will have the following layout)</i>
+
+> <code class="level200">200 OK</code>
+
+```json
+{
+  "results": {
+    "schedule_events": {
+      "1": {
+        "_status_code": 200,
+        "_status_message": "Updated",
+        "id": 2816375,
+        "user_id": 11,
+        "unassigned": false,
+        "schedule_calendar_id": 5,
+        "jobcode_id": 0,
+        "all_day": false,
+        "start": "2018-12-05T16:00:00+00:00",
+        "end": "2018-12-05T18:00:00+00:00",
+        "active": true,
+        "draft": true,
+        "timezone": "UTC",
+        "title": "changed title",
+        "notes": "",
+        "color": "#888888",
+        "last_modified": "2018-12-07T18:12:29+00:00",
+        "created": "2018-12-07T17:47:37+00:00",
+        "customfields": "",
+        "assigned_user_ids": "11,1365",
+        "location": ""
+      }
+    }
+  },
+  "supplemental_data": {
+    "users": {
+      "11": {
+        "id": 11,
+        "first_name": "Joni",
+        "last_name": "Smith",
+        ...
+      }
+    }
+  },
+  "calendars": {
+    "5": {
+      "id": "5",
+      ...
+    }
+  }
+}
+```
+
 Edit one or more schedule events.
 
 ### HTTP Request

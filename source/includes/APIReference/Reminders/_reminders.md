@@ -2,6 +2,23 @@
 
 ## The Reminder Object
 
+ > **Example**
+
+```json
+{
+  "id": 72595,
+  "reminder_type": "clock-in",
+  "due_time": "23:00:00",
+  "due_days_of_week": "Mon,Tue,Thu,Fri",
+  "distribution_methods": "Push,SMS",
+  "active": true,
+  "enabled": true,
+  "last_modified": "2018-07-15T19:33:57+00:00",
+  "created": "2018-07-15T19:08:33+00:00",
+  "user_id": 0
+}
+```
+
 Following is a list of the properties that belong to a reminder object, and a description of each.
 
 |                |             |             |

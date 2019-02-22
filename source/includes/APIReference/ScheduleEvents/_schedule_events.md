@@ -2,6 +2,37 @@
  
 ## The Schedule Event Object
 
+ > **Example**
+
+```json
+{
+  "id": 894562,
+  "user_id": 1283037,
+  "unassigned": false,
+  "schedule_calendar_id": 72595,
+  "jobcode_id": 17285791,
+  "start": "2018-08-08T08:00:00-06:00",
+  "end": "2018-08-08T14:00:00-06:00",
+  "timezone": "tsMT",
+  "notes": "Some Custom Notes",
+  "all_day": false,
+  "assigned_user_ids": [
+    "332234"
+  ],
+  "active": true,
+  "draft": false,
+  "title": "Shift work",
+  "location": "235 E Colchester Dr 101, Eagle, ID 83616",
+  "color": "#BF1959",
+  "last_modified": "2018-08-09T17:30:54-06:00",
+  "created": "2018-07-15T19:08:33-06:00",
+  "customfields": {
+    "19142": "Item 1",
+    "19144": "Item 2"
+  }
+}
+```
+
 |                |             |             |
 | -------------: | :---------: | ----------- |
 | **id**<br/>read-only | _Int_ | Id of the event. |
