@@ -25,7 +25,6 @@ curl "https://platform.tier-services.io/vehicle"
       "licencePlate": "11456",
       "lat": 48.19821,
       "lng": 16.381173,
-      "isUnlocked": false,
       "maxSpeed": 18,
       "zoneId": "BERLIN",
       "code": "11942"
