@@ -1,11 +1,12 @@
 --- 
 
-title: SILA API Documentation
+title: Sila API Documentation
 
-language_tabs: 
-   - json
-   - shell
-   - javascript
+language_tabs:
+   - javascript: JavaScript
+   - python: Python 3.X
+   - java: Java
+   - go: Go
 
 toc_footers: 
    - <a href='#'>Sign Up for a Developer Key</a> 
@@ -18,8 +19,6 @@ search: true
 --- 
 
 # Introduction 
-
-**Version:** 0.1.1
 
 Welcome to the Sila API! 
 
@@ -34,12 +33,6 @@ TODO:
 - order of endpoints to call
 
 # Authentication
-
-```json
-```
-
-```shell
-```
 
 ```javascript
 // For the purposes of this example, we will let a library do the heavy lifting
@@ -77,14 +70,6 @@ Use these examples to generate a signature for the following message: `{ test: '
 
 ## /check_handle
 
-*Checks if a specific handle is already taken.*
-
-A "handle" works like a username in the Sila ecosystem. If an entity has already been created with that handle, it will respond with an error that says the handle is already in use, and the entity will fail to be created.
-
-This endpoint makes sure that the handle you or your user is thinking of using does indeed exist.
-
-### Request Body
-
 ```json
 {
   "header": {
@@ -99,16 +84,15 @@ This endpoint makes sure that the handle you or your user is thinking of using d
 }
 ```
 
-| Key | Type | Description | Required |
-| --- | ---- | ----------- | -------- |
-| `header` | object | This object is required in every call. The information it includes is used to verify the signature. | true |
-| `header.created` | integer | Epoch time that the API call was started (in nanoseconds). | true |
-| `header.auth_handle` | string | This is the superuser handle used to identify the API consumer making the call. | true |
-| `header.user_handle` | string | This is the user handle to check. | true |
-| `header.reference` | string | This is an idempotency string used to identify the call you've made. | true |
-| `header.version` | string | This tag specifies the version of the API you want to use. (As of writing, the only valid version string to use is `v1_1`.) | true |
-| `header.crypto` | string | This tag specifies the blockchain network to use. (As of writing, the only valid crypto tag available is `ETH`.) | true |
-| `message` | string | This tag specifies the JSON schema object to validate against. For this call, use `header_msg`. | true |
+*Checks if a specific handle is already taken.*
+
+A "handle" works like a username in the Sila ecosystem. If an entity has already been created with that handle, it will respond with an error that says the handle is already in use, and the entity will fail to be created.
+
+This endpoint makes sure that the handle you or your user is thinking of using does indeed exist.
+
+The request body at this endpoint is the [header_msg](#header_msg) JSON object. 
+
+In the "user_handle" field, insert the handle for which you want to check availability. The entry for "auth_handle" should have your developer handle.
 
 ### Responses
 
@@ -117,12 +101,6 @@ This endpoint makes sure that the handle you or your user is thinking of using d
 | 200 | Handle is free to use. |  |
 
 ## /create_entity
-
-*Starts verifcation process on a person and attaches result and specified blockchain address to assigned handle.*
-
-This is the endpoint you will use to create a new user. In the call, you will need to complete all fields and include a valid Ethereum address (not already used in system and not a smart contract). The information provided will be used to verify that this information belongs to a real person, and the results will be returned asynchronously by hitting the **check_kyc** endpoint.
-
-### Request Body
 
 ```json
 {
@@ -168,41 +146,11 @@ This is the endpoint you will use to create a new user. In the call, you will ne
 }
 ```
 
-| Key | Type | Description | Required |
-| --- | ---- | ----------- | -------- |
-| `header` | object | This object is required in every call. The information it includes is used to verify the signature. | true |
-| `header.created` | integer | Epoch time that the API call was started (in nanoseconds). | true |
-| `header.auth_handle` | string | This is the superuser handle used to identify the API consumer making the call. | true |
-| `header.user_handle` | string | This is the user handle attached to the KYC'd entity. | true |
-| `header.reference` | string | This is an idempotency string used to identify the call you've made. | true |
-| `header.version` | string | This tag specifies the version of the API you want to use. (As of writing, the only valid version string to use is `v1_1`.) | true |
-| `header.crypto` | string | This tag specifies the blockchain network to use. (As of writing, the only valid crypto tag available is `ETH`.) | true |
-| `message` | string | This tag specifies the JSON schema object to validate against. For this call, use `entity_msg`. | true |
-| `address` | object | This object specifies the street address of the person being verified. | true |
-| `address.address_alias` | string | This is a nickname that can be attached to the address object. While a required field, it can be left blank if desired. | true |
-| `address.street_address_1` | string | This is line 1 of a street address. Post office boxes are not accepted in this field. | true |
-| `address.street_address_2` | string | This is line 2 of a street address. This may include suite or apartment numbers. | false |
-| `address.city` | string | Name of the city where the person being verified is a current resident. | true |
-| `address.state` | string | Name of state where verified person is a current resident. (As of writing, this is a required field as the only accepted country is the US, but this may be expected to change in future versions.) | true |
-| `address.country` | string | Two-letter country code. (As of writing, the only acceptable value is `US`.) | true |
-| `address.postal_code` | string | In the US, this can be the 5-digit ZIP code or ZIP+4 code. | true |
-| `identity` | object | This is used to specify an ID and what kind of ID is being specified. (As of writing, Sila only accepts social security numbers, but this will expand in the future.) | true |
-| `identity.alias` | string | This describes what kind of ID is being sent. (As of writing, the only accepted value is `SSN`.) | true |
-| `identity.identity_value` | string | This is where the ID value would go. | true |
-| `contact` | object | This is where the verified person's phone number and email address are sent. | true |
-| `contact.phone` | string | This is the verified person's phone number. Please specify area code at a minimum and country code if anywhere but US. | true |
-| `contact.email` | string | This is the verified person's email address. | true |
-| `contact.contact_alias` | string | Any name attached to the email/phone pair. If desired, leave empty, but don't leave out. | true |
-| `crypto_entry` | object | Used to specify the blockchain address and network code it runs on. | true |
-| `crypto_entry.crypto_alias` | string | A name to identify the address/code pairing. Can be left blank. | true |
-| `crypto_entry.crypto_address` | string | Hex-encoded blockchain address. | true |
-| `crypto_entry.crypto_code` | string | Code to identify network address is on. (As of writing, the only acceptable value is `ETH`.) | true |
-| `entity` | object | Includes names, birthdates, and user type. | true |
-| `entity.birthdate` | string | Date of birth/inception. Must be formatted YYYY-MM-DD. | true |
-| `entity.entity_name` | string | Full name of entity. This field is used because some names are "Last First" rather than the "First Last" format usually expected in the US. | true |
-| `entity.first_name` | string | First name of entity. | true |
-| `entity.last_name` | string | Last name of entity. | true |
-| `entity.relationship` | string | This is the entity type. Specify `user` in this field to manage the entity as a user. | true |
+*Starts verification process on a person and attaches result and specified blockchain address to assigned handle.*
+
+This is the endpoint you will use to create a new user. In the call, you will need to complete all fields and include a valid Ethereum address (not already used in system and not a smart contract). The information provided will be used to verify that this information belongs to a real person, and the results will be returned asynchronously by hitting the **check_kyc** endpoint.
+
+This endpoint's request body is the [entity_msg](#entity_msg) JSON object.
 
 ### Responses
 
@@ -215,13 +163,7 @@ This is the endpoint you will use to create a new user. In the call, you will ne
 
 | Key | Type | Description | Required |
 | --- | ---- | ----------- | -------- |
-| `header` | object | This object is required in every call. The information it includes is used to verify the signature. | true |
-| `header.created` | integer | Epoch time that the API call was started (in nanoseconds). | true |
-| `header.auth_handle` | string | This is the superuser handle used to identify the API consumer making the call. | true |
-| `header.user_handle` | string | This is the user handle attached to the KYC'd entity. | true |
-| `header.reference` | string | This is an idempotency string used to identify the call you've made. | true |
-| `header.version` | string | This tag specifies the version of the API you want to use. (As of writing, the only valid version string to use is `v1_1`.) | true |
-| `header.crypto` | string | This tag specifies the blockchain network to use. (As of writing, the only valid crypto tag available is `ETH`.) | true |
+| `header` | object | This object is required in every call. The information it includes is used to verify the signature. Object reference [here](#header) | true |
 | `message` | string | This tag specifies the JSON schema object to validate against. For this call, use `header_msg`. | true |
 
 ## /link_account
@@ -243,7 +185,6 @@ This is the endpoint you will use to create a new user. In the call, you will ne
 
 ### HTTP Request 
 `***POST*** /issue_sila`
-
 
 ```shell
   Curl example
@@ -268,8 +209,6 @@ var message = {
 | Code | Description |
 | ---- | ----------- |
 | 200 | 200 response |
-
-
 
 See the [Authentication](#authentication) section for details on generating the SIGNATURE_STRING
 
@@ -299,6 +238,216 @@ See the [Authentication](#authentication) section for details on generating the 
 | ---- | ----------- |
 | 200 | 200 response |
 
+## /get_transactions
+
 # Message Types
+
+Request bodies, also called "messages," are required to have particularly-structured JSON. These message types have names, making it easier to identify exactly what structure you need in the endpoint you need to use.
+
+We have a public JSON schema [here](https://api.silamoney.com/PROD/getschema?schema=SilaSchema).
+
+## header_msg
+
+**Used By Endpoints**:
+
+- [/check_handle](#check_handle)
+- [/check_kyc](#check_kyc)
+
+**JSON structure**:
+
+| Key | Type | Description | Required |
+| --- | ---- | ----------- | -------- |
+| `header` | object | This object is required in every call. The information it includes is used to verify the signature. Object reference [here](#header) | true |
+| `message` | string | This tag specifies the JSON schema object to validate against. For this call, use `header_msg`. | true |
+
+## entity_msg
+
+**Used By Endpoints:**
+
+- [/create_entity](#create_entity)
+
+**JSON Structure:**
+
+| Key | Type | Description | Required |
+| --- | ---- | ----------- | -------- |
+| `header` | object | Object reference [here](#header). This object is required in every call. The information it includes is used to verify the signature. | true |
+| `message` | string | This tag specifies the JSON schema object to validate against. For this call, use `entity_msg`. | true |
+| `address` | object | Object reference [here](#address). This object specifies the street address of the person being verified. | true |
+| `identity` | object | Object reference [here](#identity). This is used to specify an ID and what kind of ID is being specified. (As of writing, Sila only accepts social security numbers, but this will expand in the future.) | true |
+| `contact` | object | Object reference [here](#contact). This is where the verified person's phone number and email address are sent. | true |
+| `crypto_entry` | object | Object reference [here](#crypto_entry). Used to specify the blockchain address and network code it runs on. | true |
+| `entity` | object | Object definition [here](#entity). Includes names, birthdates, and user type. | true |
+
+## get_users_msg
+
+**Used By Endpoints:**
+
+- [/get_users](#)
+
+**JSON Structure:**
+
+TODO
+
+## link_account_msg
+
+**Used By Endpoints:**
+
+- [/link_account](#)
+
+**JSON Structure:**
+
+TODO
+
+## get_accounts_msg
+
+**Used By Endpoints:**
+
+- [/get_accounts](#)
+
+**JSON Structure:**
+
+TODO
+
+## issue_msg
+
+**Used By Endpoints:**
+
+- [/issue_sila](#issue_sila)
+
+**JSON Structure:**
+
+TODO
+
+## transfer_msg
+
+**Used By Endpoints:**
+
+- [/transfer_sila](#transfer_sila)
+
+**JSON Structure:**
+
+TODO
+
+## redeem_msg
+
+**Used By Endpoints:**
+
+- [/redeem_sila](#redeem_sila)
+
+**JSON Structure:**
+
+TODO
+
+## get_transactions_msg
+
+**Used By Endpoints:**
+
+- [/get_transactions](#get_transactions)
+
+**JSON Structure:**
+
+TODO
+
+# Message Object References
+
+## header
+
+**Referenced in Message Types:**
+
+- [header_msg](#header_msg)
+- [entity_msg](#entity_msg)
+- [link_account_msg](#link_account_msg)
+- [issue_msg](#issue_msg)
+- [transfer_msg](#transfer_msg)
+- [redeem_msg](#redeem_msg)
+- [get_users_msg](#get_users_msg)
+- [get_accounts_msg](#get_accounts_msg)
+- [get_transactions_msg](#get_transactions_msg)
+
+**JSON Structure:**
+
+| Key | Type | Description | Required |
+| --- | ---- | ----------- | -------- |
+| `header.created` | integer | Epoch time that the API call was started (in nanoseconds). | true |
+| `header.auth_handle` | string | This is the superuser handle used to identify the API consumer making the call. | true |
+| `header.user_handle` | string | This is the user handle attached to the KYC'd entity. | true |
+| `header.reference` | string | This is an idempotency string used to identify the call you've made. | true |
+| `header.version` | string | This tag specifies the version of the API you want to use. (As of writing, the only valid version string to use is `v1_1`.) | true |
+| `header.crypto` | string | This tag specifies the blockchain network to use. (As of writing, the only valid crypto tag available is `ETH`.) | true |
+
+## address
+
+**Referenced in Message Types:**
+
+- [entity_msg](#entity_msg)
+
+**JSON Structure:**
+
+| Key | Type | Description | Required |
+| --- | ---- | ----------- | -------- |
+| `address.address_alias` | string | This is a nickname that can be attached to the address object. While a required field, it can be left blank if desired. | true |
+| `address.street_address_1` | string | This is line 1 of a street address. Post office boxes are not accepted in this field. | true |
+| `address.street_address_2` | string | This is line 2 of a street address. This may include suite or apartment numbers. | false |
+| `address.city` | string | Name of the city where the person being verified is a current resident. | true |
+| `address.state` | string | Name of state where verified person is a current resident. (As of writing, this is a required field as the only accepted country is the US, but this may be expected to change in future versions.) | true |
+| `address.country` | string | Two-letter country code. (As of writing, the only acceptable value is `US`.) | true |
+| `address.postal_code` | string | In the US, this can be the 5-digit ZIP code or ZIP+4 code. | true |
+
+## crypto_entry
+
+**Referenced in Message Types:**
+
+- [entity_msg](#entity_msg)
+
+**JSON Structure:**
+
+| Key | Type | Description | Required |
+| --- | ---- | ----------- | -------- |
+| `crypto_entry.crypto_alias` | string | A name to identify the address/code pairing. Can be left blank. | true |
+| `crypto_entry.crypto_address` | string | Hex-encoded blockchain address. | true |
+| `crypto_entry.crypto_code` | string | Code to identify network address is on. (As of writing, the only acceptable value is `ETH`.) | true |
+
+## identity
+
+**Referenced in Message Types:**
+
+- [entity_msg](#entity_msg)
+
+**JSON Structure:**
+
+| Key | Type | Description | Required |
+| --- | ---- | ----------- | -------- |
+| `identity.alias` | string | This describes what kind of ID is being sent. (As of writing, the only accepted value is `SSN`.) | true |
+| `identity.identity_value` | string | This is where the ID value would go. | true |
+
+## contact
+
+**Referenced in Message Types:**
+
+- [entity_msg](#entity_msg)
+
+**JSON Structure:**
+
+| Key | Type | Description | Required |
+| --- | ---- | ----------- | -------- |
+| `contact.phone` | string | This is the verified person's phone number. Please specify area code at a minimum and country code if anywhere but US. | true |
+| `contact.email` | string | This is the verified person's email address. | true |
+| `contact.contact_alias` | string | Any name attached to the email/phone pair. If desired, leave empty, but don't leave out. | true |
+
+## entity
+
+**Referenced in Message Types:**
+
+- [entity_msg](#entity_msg)
+
+**JSON Structure:**
+
+| Key | Type | Description | Required |
+| --- | ---- | ----------- | -------- |
+| `entity.birthdate` | string | Date of birth/inception. Must be formatted YYYY-MM-DD. | true |
+| `entity.entity_name` | string | Full name of entity. This field is used because some names are "Last First" rather than the "First Last" format usually expected in the US. | true |
+| `entity.first_name` | string | First name of entity. | true |
+| `entity.last_name` | string | Last name of entity. | true |
+| `entity.relationship` | string | This is the entity type. Specify `user` in this field to manage the entity as a user. | true |
 
 # Transaction Error Codes
