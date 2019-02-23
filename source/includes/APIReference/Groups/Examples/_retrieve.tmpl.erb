@@ -1,0 +1,17 @@
+<% @response_body = File.read("source/includes/APIReference/Groups/Examples/_retrieve-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "groups",
+    :description => "Retrieve a list of all active groups.",
+  }
+%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "groups",
+    :description => "Retrieve a list of groups with a given id. Set pagination to 30 results/page.",
+    :parameters => [ ["id", "6%2C16"], ["per_page", "30"] ],    
+    :response_body => @response_body
+  }
+%>

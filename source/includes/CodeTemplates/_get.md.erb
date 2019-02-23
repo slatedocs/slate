@@ -1,0 +1,160 @@
+ > **Example**: <%= description %>
+
+ > Request
+
+ <% @full_url = "https://rest.tsheets.com/api/v1/#{endpoint}" -%>
+ <% if defined? parameters -%>
+  <% @params = [] -%>
+  <% parameters.each do |kvp| -%>
+    <% @params.push(kvp.join('=')) -%>
+  <% end -%>
+  <% @full_url += "?#{@params.join('&')}" -%>  
+<% end -%>
+
+```shell
+<%= "curl \"#{@full_url}\"" %>
+  -H "Authorization: Bearer <TOKEN>"
+```
+
+```csharp
+<%= "var client = new RestClient(\"#{@full_url}\");" %>
+var request = new RestRequest(Method.GET);
+request.AddHeader("Authorization", "Bearer <TOKEN>");
+IRestResponse response = client.Execute(request);
+```
+
+```java
+OkHttpClient client = new OkHttpClient();
+
+Request request = new Request.Builder()
+  <%= ".url(\"#{@full_url}\")" %>
+  .get()
+  .addHeader("Authorization", "Bearer <TOKEN>")
+  .build();
+
+Response response = client.newCall(request).execute();
+```
+
+```javascript
+var request = require("request");
+
+var options = { method: 'GET',
+  url: 'https://rest.tsheets.com/api/v1/<%= endpoint %>',
+<% if defined? parameters -%>
+  qs: {
+  <% parameters.each do |kvp| -%>
+    <%= "#{kvp[0]}: '#{kvp[1]}'," %>
+  <% end -%>
+  },
+<% end %>
+  headers: 
+   { Authorization: 'Bearer <TOKEN>' } };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+```php
+<?php
+
+$request = new HttpRequest();
+$request->setUrl('https://rest.tsheets.com/api/v1/<%= endpoint %>');
+$request->setMethod(HTTP_METH_GET);
+<% if defined? parameters -%>
+
+$request->setQueryData(array(
+<% parameters.each do |kvp| -%>
+  <%= "'#{kvp[0]}' => '#{kvp[1]}'," %>
+<% end -%>
+));
+<% end %>
+
+$request->setHeaders(array(
+  'Authorization' => 'Bearer <TOKEN>'
+));
+
+try {
+  $response = $request->send();
+
+  echo $response->getBody();
+} catch (HttpException $ex) {
+  echo $ex;
+}
+```
+
+```ruby
+require 'uri'
+require 'net/http'
+
+<%= "url = URI(\"#{@full_url}\")" %>
+
+http = Net::HTTP.new(url.host, url.port)
+
+request = Net::HTTP::Get.new(url)
+request["Authorization"] = 'Bearer <TOKEN>'
+
+response = http.request(request)
+puts response.read_body
+```
+
+```python
+import requests
+
+url = "https://rest.tsheets.com/api/v1/<%= endpoint %>"
+<% if defined? parameters -%>
+
+querystring = {
+<% parameters.each do |kvp| -%>
+  <%= "\"#{kvp[0]}\":\"#{kvp[1]}\"," %>
+<% end -%>
+}
+<% end %>
+
+payload = ""
+headers = {
+    'Authorization': "Bearer <TOKEN>"
+    }
+
+response = requests.request("GET", url, data=payload, headers=headers)
+
+print(response.text)
+```
+
+```go
+package main
+
+import (
+  "fmt"
+  "net/http"
+  "io/ioutil"
+)
+
+func main() {
+
+  <%= "url := \"#{@full_url}\"" %>
+
+  req, _ := http.NewRequest("GET", url, nil)
+
+  req.Header.Add("Authorization", "Bearer <TOKEN>")
+
+  res, _ := http.DefaultClient.Do(req)
+
+  defer res.Body.Close()
+  body, _ := ioutil.ReadAll(res.Body)
+
+  fmt.Println(res)
+  fmt.Println(string(body))
+}
+```
+<% if defined?(response_body) %>
+ > Response<br/><i>(example will have the following layout)</i>
+
+ > <code class="level200">200 OK</code>
+
+```json
+<%= response_body %>
+```
+<% end %>

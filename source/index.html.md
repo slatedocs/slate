@@ -49,10 +49,10 @@ includes:
   - APIReference/Geolocations/retrieve  
   - APIReference/Geolocations/create
 
-  - APIReference/Groups/groups
-  - APIReference/Groups/retrieve  
-  - APIReference/Groups/create    
-  - APIReference/Groups/update
+  - APIReference/Groups/groups.md.erb
+  - APIReference/Groups/retrieve.md.erb
+  - APIReference/Groups/create.md.erb
+  - APIReference/Groups/update.md.erb
 
   - APIReference/Invitations/invitations
   - APIReference/Invitations/create

@@ -1,0 +1,31 @@
+## Create Groups
+
+<%= partial "includes/APIReference/Groups/Examples/create.tmpl.erb" %>
+
+Add one or more groups to your company.
+
+### HTTP Request
+
+<img src="../../images/post.png" alt="post"/><api>https://rest.tsheets.com/api/v1/groups</api>
+
+### Properties
+_Pass an array of group objects as the value to a 'data' property (see example)._
+
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **name**<br/>required | _String_ | Name of the group. |
+
+For a full list of properties that may be set on a group, see [the Group object](#the-group-object).
+
+### Status Codes
+
+Each group that is created will come back with a `_status_code` and `_status_message` that will indicate whether the group was created successfully. If there was a problem creating a group, there may also be an additional field, `_status_extra`, which will contain more details about the failure.
+
+|         |          |
+| :-----: | :------- |
+| <code class="level200">200</code> | OK. Group was created successfully. |
+| <code class="level400">417</code> | Expectation Failed. Something was wrong or missing with the properties supplied for this group. See the `_status_extra` value for more detail. |
+
+<aside class="notice">
+The maximum batch size is <i>50</i> groups. If exceeded, a <code class="standout">413: Request entity too large</code> HTTP response will be returned.
+</aside>
