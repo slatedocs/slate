@@ -1,8 +1,8 @@
 ## Retrieve Users
 
-> **Examples**
+ > **Example**: Retrieve a list of all active users.
 
-> Retrieve a list of all active users.
+ > Request
 
 ```shell
 curl "https://rest.tsheets.com/api/v1/users"
@@ -72,7 +72,7 @@ url = URI("https://rest.tsheets.com/api/v1/users")
 http = Net::HTTP.new(url.host, url.port)
 
 request = Net::HTTP::Get.new(url)
-request["Authorization"] = 'Bearer <Token>'
+request["Authorization"] = 'Bearer <TOKEN>'
 
 response = http.request(request)
 puts response.read_body
@@ -121,15 +121,17 @@ func main() {
 }
 ```
 
-> Retrieve a list of all users (active or deleted) whose last name starts with _J_. Set pagination to 10 results/page.
+ > **Example**: Retrieve a list of all users (active or deleted) whose last name starts with 'sm'. Set pagination to 30 results/page.
+
+ > Request
 
 ```shell
-curl "https://rest.tsheets.com/api/v1/users?last_name=J%2A&per_page=10"
+curl "https://rest.tsheets.com/api/v1/users?per_page=30&last_name=sm%2A"
   -H "Authorization: Bearer <TOKEN>"
 ```
 
 ```csharp
-var client = new RestClient("https://rest.tsheets.com/api/v1/users?last_name=J%2A&per_page=10");
+var client = new RestClient("https://rest.tsheets.com/api/v1/users?per_page=30&last_name=sm%2A");
 var request = new RestRequest(Method.GET);
 request.AddHeader("Authorization", "Bearer <TOKEN>");
 IRestResponse response = client.Execute(request);
@@ -139,7 +141,7 @@ IRestResponse response = client.Execute(request);
 OkHttpClient client = new OkHttpClient();
 
 Request request = new Request.Builder()
-  .url("https://rest.tsheets.com/api/v1/users?last_name=J%2A&per_page=10")
+  .url("https://rest.tsheets.com/api/v1/users?per_page=30&last_name=sm%2A")
   .get()
   .addHeader("Authorization", "Bearer <TOKEN>")
   .build();
@@ -152,7 +154,9 @@ var request = require("request");
 
 var options = { method: 'GET',
   url: 'https://rest.tsheets.com/api/v1/users',
-  qs: { last_name: 'J%2A', per_page: '10' },
+  qs: { per_page: '30',
+        last_name: 'sm*'
+  },
   headers: 
    { Authorization: 'Bearer <TOKEN>' } };
 
@@ -161,7 +165,6 @@ request(options, function (error, response, body) {
 
   console.log(body);
 });
-
 ```
 
 ```php
@@ -172,8 +175,8 @@ $request->setUrl('https://rest.tsheets.com/api/v1/users');
 $request->setMethod(HTTP_METH_GET);
 
 $request->setQueryData(array(
-  'last_name' => 'J%2A',
-  'per_page' => '10'
+  'per_page' => '30',
+  'last_name' => 'sm*'
 ));
 
 $request->setHeaders(array(
@@ -193,7 +196,7 @@ try {
 require 'uri'
 require 'net/http'
 
-url = URI("https://rest.tsheets.com/api/v1/users?last_name=J%2A&per_page=10")
+url = URI("https://rest.tsheets.com/api/v1/users?per_page=30&last_name=sm%2A")
 
 http = Net::HTTP.new(url.host, url.port)
 
@@ -209,11 +212,14 @@ import requests
 
 url = "https://rest.tsheets.com/api/v1/users"
 
-querystring = {"last_name":"J%2A","per_page":"10"}
+querystring = {
+  "per_page":"30",
+  "last_name":"sm*"
+}
 
 payload = ""
 headers = {
-    'Authorization': "Bearer <TOKEN>",
+    'Authorization': "Bearer <TOKEN>"
     }
 
 response = requests.request("GET", url, data=payload, headers=headers, params=querystring)
@@ -225,72 +231,75 @@ print(response.text)
 package main
 
 import (
-	"fmt"
-	"net/http"
-	"io/ioutil"
+  "fmt"
+  "net/http"
+  "io/ioutil"
 )
 
 func main() {
 
-	url := "https://rest.tsheets.com/api/v1/users?last_name=J%2A&per_page=10"
+  url := "https://rest.tsheets.com/api/v1/users?per_page=30&last_name=sm%2A"
 
-	req, _ := http.NewRequest("GET", url, nil)
+  req, _ := http.NewRequest("GET", url, nil)
 
-	req.Header.Add("Authorization", "Bearer <TOKEN>")
+  req.Header.Add("Authorization", "Bearer <TOKEN>")
 
-	res, _ := http.DefaultClient.Do(req)
+  res, _ := http.DefaultClient.Do(req)
 
-	defer res.Body.Close()
-	body, _ := ioutil.ReadAll(res.Body)
+  defer res.Body.Close()
+  body, _ := ioutil.ReadAll(res.Body)
 
-	fmt.Println(res)
-	fmt.Println(string(body))
+  fmt.Println(res)
+  fmt.Println(string(body))
 
 }
 ```
 
-> The above examples return JSON with the following structure:
+> Response<br/><i>(all examples will have the following layout)</i>
+
+> <code class="level200">200 OK</code>
 
 ```json
-
 {
   "results": {
     "users": {
-      "317044": {
-        "id": 317044,
-        "first_name": "Bob",
-        "last_name": "Jones",
-        "group_id": 6908,
+      "933849": {
+        "id": 933849,
+        "first_name": "Mary",
+        "last_name": "Samsonite",
+        "group_id": 0,
         "active": true,
-        "employee_number": 10,
+        "employee_number": 0,
         "salaried": false,
         "exempt": false,
-        "username": "bjones",
-        "email": "bob_jones@anymail.com",
+        "username": "admin",
+        "email": "admin@example.com",
         "email_verified": false,
-        "payroll_id": "SC010",
-        "mobile_number": "2085551234",
-        "hire_date": "2018-07-02",
+        "payroll_id": "",
+        "mobile_number": "2087231456",
+        "hire_date": "0000-00-00",
         "term_date": "0000-00-00",
-        "last_modified": "2019-02-09T17:59:06+00:00",
-        "last_active": "2019-02-09T18:45:39+00:00",
-        "created": "2018-10-04T02:25:38+00:00",
-        "client_url": "spudsfunpark",
-        "company_name": "Spuds Fun Park",
-        "profile_image_url": "https://www.gravatar.com/avatar/6be49c2065c016dcdfcd26d1da111e9f",
+        "last_modified": "2018-03-28T17:24:20+00:00",
+        "last_active": "",
+        "created": "2018-03-27T16:13:34+00:00",
+        "client_url": "api_sample_output",
+        "company_name": "API Sample Output Company",
+        "profile_image_url": "https:\/\/www.gravatar.com\/avatar\/e64c7d89f26bd1972efa854d13d7dd61",
         "pto_balances": {
-          "2913946": 0,
-          "2913948": 0,
-          "2913950": 0
+          "2624351": 0,
+          "2624353": 0,
+          "2624355": 0
         },
         "submitted_to": "2000-01-01",
         "approved_to": "2000-01-01",
-        "manager_of_group_ids": [],
+        "manager_of_group_ids": [
+
+        ],
         "require_password_change": false,
-        "pay_rate": 8.26,
+        "pay_rate": 0,
         "pay_interval": "hour",
         "permissions": {
-          "admin": false,
+          "admin": true,
           "mobile": true,
           "status_box": false,
           "reports": false,
@@ -299,7 +308,7 @@ func main() {
           "manage_users": false,
           "manage_my_timesheets": false,
           "manage_jobcodes": false,
-          "pin_login": true,
+          "pin_login": false,
           "approve_timesheets": false,
           "manage_schedules": false,
           "external_access": false,
@@ -312,98 +321,40 @@ func main() {
         },
         "customfields": ""
       },
-      "317046": {
-        "id": 317046,
-        "first_name": "Laura",
-        "last_name": "McKenzie",
-        "group_id": 6912,
+      "933845": {
+        "id": 933845,
+        "first_name": "Bob",
+        "last_name": "Smith",
+        "group_id": 64965,
         "active": true,
-        "employee_number": 2,
+        "employee_number": 0,
         "salaried": false,
         "exempt": false,
-        "username": "lmckenzie",
-        "email": "laura_mckenzie@anymail.com",
+        "username": "bobsmith",
+        "email": "",
         "email_verified": false,
-        "payroll_id": "SC002",
-        "mobile_number": "2085551235",
-        "hire_date": "2018-07-02",
+        "payroll_id": "",
+        "hire_date": "0000-00-00",
         "term_date": "0000-00-00",
-        "last_modified": "2019-02-09T18:33:58+00:00",
-        "last_active": "2019-02-09T18:45:39+00:00",
-        "created": "2018-10-04T02:25:38+00:00",
-        "client_url": "spudsfunpark",
-        "company_name": "Spuds Fun Park",
-        "profile_image_url": "https://www.gravatar.com/avatar/ad30131c700cbb1ad59a19879ac66e7e",
+        "last_modified": "2018-03-27T16:13:33+00:00",
+        "last_active": "2018-03-28T20:16:39+00:00",
+        "created": "2018-03-27T16:13:33+00:00",
+        "client_url": "api_sample_output",
+        "company_name": "API Sample Output Company",
+        "profile_image_url": "",
+        "mobile_number": "",
         "pto_balances": {
-          "2913946": 0,
-          "2913948": 0,
-          "2913950": 0
+          "2624351": 0,
+          "2624353": 0,
+          "2624355": 0
         },
-        "submitted_to": "2018-10-01",
-        "approved_to": "2018-10-01",
+        "submitted_to": "2000-01-01",
+        "approved_to": "2000-01-01",
         "manager_of_group_ids": [
-          6912
+
         ],
         "require_password_change": false,
-        "pay_rate": 12.25,
-        "pay_interval": "hour",
-        "permissions": {
-          "admin": true,
-          "mobile": true,
-          "status_box": true,
-          "reports": true,
-          "manage_timesheets": true,
-          "manage_authorization": true,
-          "manage_users": true,
-          "manage_my_timesheets": true,
-          "manage_jobcodes": true,
-          "pin_login": true,
-          "approve_timesheets": true,
-          "manage_schedules": false,
-          "external_access": false,
-          "manage_my_schedule": false,
-          "manage_company_schedules": false,
-          "view_company_schedules": false,
-          "view_group_schedules": false,
-          "manage_no_schedules": false,
-          "view_my_schedules": false
-        },
-        "customfields": ""
-      },
-      "317072": {
-        "id": 317072,
-        "first_name": "Duwayne",
-        "last_name": "Jackson",
-        "group_id": 6910,
-        "active": true,
-        "employee_number": 14,
-        "salaried": false,
-        "exempt": false,
-        "username": "djackson",
-        "email": "duwayne_jackson@anymail.com",
-        "email_verified": false,
-        "payroll_id": "SC014",
-        "mobile_number": "2085551243",
-        "hire_date": "2018-07-09",
-        "term_date": "0000-00-00",
-        "last_modified": "2019-02-09T18:33:31+00:00",
-        "last_active": "2019-02-09T18:45:38+00:00",
-        "created": "2018-10-04T02:32:34+00:00",
-        "client_url": "spudsfunpark",
-        "company_name": "Spuds Fun Park",
-        "profile_image_url": "https://www.gravatar.com/avatar/d136015ad7d20d180e6903eaffa7624b",
-        "pto_balances": {
-          "2913946": 0,
-          "2913948": 0,
-          "2913950": 0
-        },
-        "submitted_to": "2018-10-01",
-        "approved_to": "2018-10-01",
-        "manager_of_group_ids": [
-          6910
-        ],
-        "require_password_change": false,
-        "pay_rate": 8.25,
+        "pay_rate": 0,
         "pay_interval": "hour",
         "permissions": {
           "admin": false,
@@ -415,7 +366,7 @@ func main() {
           "manage_users": false,
           "manage_my_timesheets": false,
           "manage_jobcodes": false,
-          "pin_login": true,
+          "pin_login": false,
           "approve_timesheets": false,
           "manage_schedules": false,
           "external_access": false,
@@ -432,44 +383,9 @@ func main() {
   },
   "more": false,
   "supplemental_data": {
-    "groups": {
-      "6908": {
-        "id": 6908,
-        "active": true,
-        "name": "Ride Operators",
-        "last_modified": "2019-02-09T18:34:22+00:00",
-        "created": "2018-10-04T02:27:15+00:00",
-        "manager_ids": [
-          "300806",
-          "317076"
-        ]
-      },
-      "6910": {
-        "id": 6910,
-        "active": true,
-        "name": "Food Workers",
-        "last_modified": "2019-02-09T18:33:31+00:00",
-        "created": "2018-10-04T02:27:26+00:00",
-        "manager_ids": [
-          "300806",
-          "317072"
-        ]
-      },
-      "6912": {
-        "id": 6912,
-        "active": true,
-        "name": "Game Attendants",
-        "last_modified": "2019-02-09T18:33:58+00:00",
-        "created": "2018-10-04T02:27:43+00:00",
-        "manager_ids": [
-          "300806",
-          "317046"
-        ]
-      }
-    },
     "jobcodes": {
-      "2913946": {
-        "id": 2913946,
+      "2624351": {
+        "id": 2624351,
         "parent_id": 0,
         "assigned_to_all": true,
         "billable": false,
@@ -479,14 +395,18 @@ func main() {
         "billable_rate": 0,
         "short_code": "",
         "name": "Sick",
-        "last_modified": "2018-10-02T20:27:21+00:00",
-        "created": "2018-10-02T20:27:21+00:00",
+        "last_modified": "2018-03-27T16:13:28+00:00",
+        "created": "2018-03-27T16:13:28+00:00",
         "filtered_customfielditems": "",
-        "required_customfields": [],
-        "locations": []
+        "required_customfields": [
+
+        ],
+        "locations": [
+
+        ]
       },
-      "2913948": {
-        "id": 2913948,
+      "2624353": {
+        "id": 2624353,
         "parent_id": 0,
         "assigned_to_all": true,
         "billable": false,
@@ -496,14 +416,18 @@ func main() {
         "billable_rate": 0,
         "short_code": "",
         "name": "Vacation",
-        "last_modified": "2018-10-02T20:27:21+00:00",
-        "created": "2018-10-02T20:27:21+00:00",
+        "last_modified": "2018-03-27T16:13:28+00:00",
+        "created": "2018-03-27T16:13:28+00:00",
         "filtered_customfielditems": "",
-        "required_customfields": [],
-        "locations": []
+        "required_customfields": [
+
+        ],
+        "locations": [
+
+        ]
       },
-      "2913950": {
-        "id": 2913950,
+      "2624355": {
+        "id": 2624355,
         "parent_id": 0,
         "assigned_to_all": true,
         "billable": false,
@@ -513,11 +437,27 @@ func main() {
         "billable_rate": 0,
         "short_code": "",
         "name": "Holiday",
-        "last_modified": "2018-10-02T20:27:21+00:00",
-        "created": "2018-10-02T20:27:21+00:00",
+        "last_modified": "2018-03-27T16:13:28+00:00",
+        "created": "2018-03-27T16:13:28+00:00",
         "filtered_customfielditems": "",
-        "required_customfields": [],
-        "locations": []
+        "required_customfields": [
+
+        ],
+        "locations": [
+
+        ]
+      }
+    },
+    "groups": {
+      "64965": {
+        "id": 64965,
+        "active": true,
+        "name": "Construction",
+        "last_modified": "2018-03-27T16:13:30+00:00",
+        "created": "2018-03-27T16:13:29+00:00",
+        "manager_ids": [
+          "933833"
+        ]
       }
     }
   }

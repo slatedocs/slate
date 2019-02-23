@@ -1,27 +1,30 @@
 ## Create Users
 
-> **Example**: Create two new users.
+ > **Example**: Create two new users.
 
-> Request Body
+ > Request Body
 
 ```json
-{
+ {
   "data":
   [ 
     {
-      "username": "wwallace",
-      "first_name": "William",
-      "last_name": "Wallace",
-      "email": "wwallace@example.com"
+      "username": "joni",
+      "first_name": "Joni",
+      "last_name": "Smith",
+      "email": "jsmith@example.com"
     },
     {
-      "username": "mcurie",
-      "first_name": "Marie",
-      "last_name": "Curie"
-    }    
+      "username": "frank",
+      "first_name": "Frank",
+      "last_name": "Church",
+      "mobile_number": "2018675309"
+    }
   ]
 }
 ```
+
+ > Request
 
 ```shell
 curl -X POST \
@@ -36,7 +39,7 @@ var client = new RestClient("https://rest.tsheets.com/api/v1/users");
 var request = new RestRequest(Method.POST);
 request.AddHeader("Content-Type", "application/json");
 request.AddHeader("Authorization", "Bearer <TOKEN>");
-request.AddParameter("undefined", "<REQUEST BODY>",	ParameterType.RequestBody);
+request.AddParameter("undefined", "<REQUEST BODY>", ParameterType.RequestBody);
 IRestResponse response = client.Execute(request);
 ```
 
@@ -82,7 +85,7 @@ $request->setMethod(HTTP_METH_POST);
 
 $request->setHeaders(array(
   'Content-Type' => 'application/json',
-  'Authorization' => 'Bearer <TOKEN>
+  'Authorization' => 'Bearer <TOKEN>'
 ));
 
 $request->setBody('<REQUEST BODY>');
@@ -133,35 +136,37 @@ print(response.text)
 package main
 
 import (
-	"fmt"
-	"strings"
-	"net/http"
-	"io/ioutil"
+  "fmt"
+  "strings"
+  "net/http"
+  "io/ioutil"
 )
 
 func main() {
 
-	url := "https://rest.tsheets.com/api/v1/users"
+  url := "https://rest.tsheets.com/api/v1/users"
 
-	payload := strings.NewReader("<REQUEST BODY>")
+  payload := strings.NewReader("<REQUEST BODY>")
 
-	req, _ := http.NewRequest("POST", url, payload)
+  req, _ := http.NewRequest("POST", url, payload)
 
-	req.Header.Add("Authorization", "Bearer <TOKEN>")
-	req.Header.Add("Content-Type", "application/json")
+  req.Header.Add("Authorization", "Bearer <TOKEN>")
+  req.Header.Add("Content-Type", "application/json")
 
-	res, _ := http.DefaultClient.Do(req)
+  res, _ := http.DefaultClient.Do(req)
 
-	defer res.Body.Close()
-	body, _ := ioutil.ReadAll(res.Body)
+  defer res.Body.Close()
+  body, _ := ioutil.ReadAll(res.Body)
 
-	fmt.Println(res)
-	fmt.Println(string(body))
+  fmt.Println(res)
+  fmt.Println(string(body))
 
 }
 ```
 
-> The above example returns JSON with the following structure:
+> Response<br/><i>(example will have the following layout)</i>
+
+> <code class="level200">200 OK</code>
 
 ```json
 {
@@ -170,36 +175,36 @@ func main() {
       "1": {
         "_status_code": 200,
         "_status_message": "Created",
-        "id": 2385283,
-        "first_name": "William",
-        "last_name": "Wallace",
+        "id": 947725,
+        "first_name": "Joni",
+        "last_name": "Smith",
         "group_id": 0,
         "active": true,
         "employee_number": 0,
         "salaried": false,
         "exempt": false,
-        "username": "wwallace",
-        "email": "wwallace@example.com",
+        "username": "joni",
+        "email": "",
         "email_verified": false,
         "payroll_id": "",
         "hire_date": "0000-00-00",
         "term_date": "0000-00-00",
-        "last_modified": "2019-02-09T21:24:10+00:00",
+        "last_modified": "2018-03-28T20:16:44+00:00",
         "last_active": "",
-        "created": "2019-02-09T21:24:10+00:00",
-        "client_url": "spudsfunpark",
-        "company_name": "Spuds Fun Park",
-        "profile_image_url": "https://www.gravatar.com/avatar/b88b293d792c7dd7ad953a5fd83da9b3",
+        "created": "2018-03-28T20:16:44+00:00",
+        "client_url": "api_sample_output",
+        "company_name": "API Sample Output Company",
+        "profile_image_url": "",
         "mobile_number": "",
         "pto_balances": {
-          "2913946": 0,
-          "2913948": 0,
-          "2913950": 0
+          "2624351": 0,
+          "2624353": 0,
+          "2624355": 0
         },
         "submitted_to": "2000-01-01",
         "approved_to": "2000-01-01",
-        "manager_of_group_ids": [],
-        "require_password_change": false,
+        "manager_of_group_ids": [ ],
+        "require_password_change": true,
         "pay_rate": 0,
         "pay_interval": "hour",
         "permissions": {
@@ -212,7 +217,7 @@ func main() {
           "manage_users": false,
           "manage_my_timesheets": false,
           "manage_jobcodes": false,
-          "pin_login": true,
+          "pin_login": false,
           "approve_timesheets": false,
           "manage_schedules": false,
           "external_access": false,
@@ -228,36 +233,36 @@ func main() {
       "2": {
         "_status_code": 200,
         "_status_message": "Created",
-        "id": 2385285,
-        "first_name": "Marie",
-        "last_name": "Curie",
+        "id": 947727,
+        "first_name": "Frank",
+        "last_name": "Church",
         "group_id": 0,
         "active": true,
         "employee_number": 0,
         "salaried": false,
         "exempt": false,
-        "username": "mcurie",
+        "username": "frank",
         "email": "",
         "email_verified": false,
         "payroll_id": "",
         "hire_date": "0000-00-00",
         "term_date": "0000-00-00",
-        "last_modified": "2019-02-09T21:24:10+00:00",
+        "last_modified": "2018-03-28T20:16:44+00:00",
         "last_active": "",
-        "created": "2019-02-09T21:24:10+00:00",
-        "client_url": "spudsfunpark",
-        "company_name": "Spuds Fun Park",
+        "created": "2018-03-28T20:16:44+00:00",
+        "client_url": "api_sample_output",
+        "company_name": "API Sample Output Company",
         "profile_image_url": "",
         "mobile_number": "",
         "pto_balances": {
-          "2913946": 0,
-          "2913948": 0,
-          "2913950": 0
+          "2624351": 0,
+          "2624353": 0,
+          "2624355": 0
         },
         "submitted_to": "2000-01-01",
         "approved_to": "2000-01-01",
-        "manager_of_group_ids": [],
-        "require_password_change": false,
+        "manager_of_group_ids": [ ],
+        "require_password_change": true,
         "pay_rate": 0,
         "pay_interval": "hour",
         "permissions": {
@@ -270,7 +275,7 @@ func main() {
           "manage_users": false,
           "manage_my_timesheets": false,
           "manage_jobcodes": false,
-          "pin_login": true,
+          "pin_login": false,
           "approve_timesheets": false,
           "manage_schedules": false,
           "external_access": false,
@@ -287,8 +292,8 @@ func main() {
   },
   "supplemental_data": {
     "jobcodes": {
-      "2913946": {
-        "id": 2913946,
+      "2624351": {
+        "id": 2624351,
         "parent_id": 0,
         "assigned_to_all": true,
         "billable": false,
@@ -298,14 +303,14 @@ func main() {
         "billable_rate": 0,
         "short_code": "",
         "name": "Sick",
-        "last_modified": "2018-10-02T20:27:21+00:00",
-        "created": "2018-10-02T20:27:21+00:00",
+        "last_modified": "2018-03-27T16:13:28+00:00",
+        "created": "2018-03-27T16:13:28+00:00",
         "filtered_customfielditems": "",
-        "required_customfields": [],
-        "locations": []
+        "required_customfields": [ ],
+        "locations": [ ]
       },
-      "2913948": {
-        "id": 2913948,
+      "2624353": {
+        "id": 2624353,
         "parent_id": 0,
         "assigned_to_all": true,
         "billable": false,
@@ -315,14 +320,14 @@ func main() {
         "billable_rate": 0,
         "short_code": "",
         "name": "Vacation",
-        "last_modified": "2018-10-02T20:27:21+00:00",
-        "created": "2018-10-02T20:27:21+00:00",
+        "last_modified": "2018-03-27T16:13:28+00:00",
+        "created": "2018-03-27T16:13:28+00:00",
         "filtered_customfielditems": "",
-        "required_customfields": [],
-        "locations": []
+        "required_customfields": [ ],
+        "locations": [ ]
       },
-      "2913950": {
-        "id": 2913950,
+      "2624355": {
+        "id": 2624355,
         "parent_id": 0,
         "assigned_to_all": true,
         "billable": false,
@@ -332,11 +337,11 @@ func main() {
         "billable_rate": 0,
         "short_code": "",
         "name": "Holiday",
-        "last_modified": "2018-10-02T20:27:21+00:00",
-        "created": "2018-10-02T20:27:21+00:00",
+        "last_modified": "2018-03-27T16:13:28+00:00",
+        "created": "2018-03-27T16:13:28+00:00",
         "filtered_customfielditems": "",
-        "required_customfields": [],
-        "locations": []
+        "required_customfields": [ ],
+        "locations": [ ]
       }
     }
   }

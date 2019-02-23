@@ -1,8 +1,8 @@
 ## Retrieve the Current User
 
-> **Example**
+ > **Example**: Retrieve current user.
 
-> Retrieve current user
+ > Request
 
 ```shell
 curl "https://rest.tsheets.com/api/v1/current_user"
@@ -72,7 +72,7 @@ url = URI("https://rest.tsheets.com/api/v1/current_user")
 http = Net::HTTP.new(url.host, url.port)
 
 request = Net::HTTP::Get.new(url)
-request["Authorization"] = 'Bearer <Token>'
+request["Authorization"] = 'Bearer <TOKEN>'
 
 response = http.request(request)
 puts response.read_body
@@ -121,59 +121,59 @@ func main() {
 }
 ```
 
-> The above command returns JSON with the following structure:
+> Response<br/><i>(example will have the following layout)</i>
+
+> <code class="level200">200 OK</code>
 
 ```json
 {
   "results": {
     "users": {
-      "317046": {
-        "id": 317046,
-        "first_name": "Laura",
-        "last_name": "McKenzie",
-        "group_id": 6912,
+      "933849": {
+        "id": 933849,
+        "first_name": "Mary",
+        "last_name": "Samsonite",
+        "group_id": 0,
         "active": true,
-        "employee_number": 2,
+        "employee_number": 0,
         "salaried": false,
         "exempt": false,
-        "username": "lmckenzie",
-        "email": "laura_mckenzie@anymail.com",
+        "username": "admin",
+        "email": "admin@example.com",
         "email_verified": false,
-        "payroll_id": "SC002",
-        "mobile_number": "2085551235",
-        "hire_date": "2018-07-02",
+        "payroll_id": "",
+        "mobile_number": "2087231456",
+        "hire_date": "0000-00-00",
         "term_date": "0000-00-00",
-        "last_modified": "2019-02-09T18:33:58+00:00",
-        "last_active": "2019-02-09T18:45:39+00:00",
-        "created": "2018-10-04T02:25:38+00:00",
-        "client_url": "spudsfunpark",
-        "company_name": "Spuds Fun Park",
-        "profile_image_url": "https://www.gravatar.com/avatar/ad30131c700cbb1ad59a19879ac66e7e",
+        "last_modified": "2018-03-28T17:24:20+00:00",
+        "last_active": "",
+        "created": "2018-03-27T16:13:34+00:00",
+        "client_url": "api_sample_output",
+        "company_name": "API Sample Output Company",
+        "profile_image_url": "https:\/\/www.gravatar.com\/avatar\/e64c7d89f26bd1972efa854d13d7dd61",
         "pto_balances": {
-          "2913946": 0,
-          "2913948": 0,
-          "2913950": 0
+          "2624351": 0,
+          "2624353": 0,
+          "2624355": 0
         },
-        "submitted_to": "2018-10-01",
-        "approved_to": "2018-10-01",
-        "manager_of_group_ids": [
-          6912
-        ],
+        "submitted_to": "2000-01-01",
+        "approved_to": "2000-01-01",
+        "manager_of_group_ids": [ ],
         "require_password_change": false,
-        "pay_rate": 12.25,
+        "pay_rate": 0,
         "pay_interval": "hour",
         "permissions": {
           "admin": true,
           "mobile": true,
-          "status_box": true,
-          "reports": true,
-          "manage_timesheets": true,
-          "manage_authorization": true,
-          "manage_users": true,
-          "manage_my_timesheets": true,
-          "manage_jobcodes": true,
-          "pin_login": true,
-          "approve_timesheets": true,
+          "status_box": false,
+          "reports": false,
+          "manage_timesheets": false,
+          "manage_authorization": false,
+          "manage_users": false,
+          "manage_my_timesheets": false,
+          "manage_jobcodes": false,
+          "pin_login": false,
+          "approve_timesheets": false,
           "manage_schedules": false,
           "external_access": false,
           "manage_my_schedule": false,
@@ -189,22 +189,9 @@ func main() {
   },
   "more": false,
   "supplemental_data": {
-    "groups": {
-      "6912": {
-        "id": 6912,
-        "active": true,
-        "name": "Game Attendants",
-        "last_modified": "2019-02-09T18:33:58+00:00",
-        "created": "2018-10-04T02:27:43+00:00",
-        "manager_ids": [
-          "300806",
-          "317046"
-        ]
-      }
-    },
     "jobcodes": {
-      "2913946": {
-        "id": 2913946,
+      "2624351": {
+        "id": 2624351,
         "parent_id": 0,
         "assigned_to_all": true,
         "billable": false,
@@ -214,14 +201,14 @@ func main() {
         "billable_rate": 0,
         "short_code": "",
         "name": "Sick",
-        "last_modified": "2018-10-02T20:27:21+00:00",
-        "created": "2018-10-02T20:27:21+00:00",
+        "last_modified": "2018-03-27T16:13:28+00:00",
+        "created": "2018-03-27T16:13:28+00:00",
         "filtered_customfielditems": "",
-        "required_customfields": [],
-        "locations": []
+        "required_customfields": [ ],
+        "locations": [ ]
       },
-      "2913948": {
-        "id": 2913948,
+      "2624353": {
+        "id": 2624353,
         "parent_id": 0,
         "assigned_to_all": true,
         "billable": false,
@@ -231,14 +218,14 @@ func main() {
         "billable_rate": 0,
         "short_code": "",
         "name": "Vacation",
-        "last_modified": "2018-10-02T20:27:21+00:00",
-        "created": "2018-10-02T20:27:21+00:00",
+        "last_modified": "2018-03-27T16:13:28+00:00",
+        "created": "2018-03-27T16:13:28+00:00",
         "filtered_customfielditems": "",
-        "required_customfields": [],
-        "locations": []
+        "required_customfields": [ ],
+        "locations": [ ]
       },
-      "2913950": {
-        "id": 2913950,
+      "2624355": {
+        "id": 2624355,
         "parent_id": 0,
         "assigned_to_all": true,
         "billable": false,
@@ -248,11 +235,11 @@ func main() {
         "billable_rate": 0,
         "short_code": "",
         "name": "Holiday",
-        "last_modified": "2018-10-02T20:27:21+00:00",
-        "created": "2018-10-02T20:27:21+00:00",
+        "last_modified": "2018-03-27T16:13:28+00:00",
+        "created": "2018-03-27T16:13:28+00:00",
         "filtered_customfielditems": "",
-        "required_customfields": [],
-        "locations": []
+        "required_customfields": [ ],
+        "locations": [ ]
       }
     }
   }

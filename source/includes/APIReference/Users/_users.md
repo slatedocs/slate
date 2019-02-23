@@ -1,44 +1,47 @@
 # Users
 
 ## The User Object
-> **Example**
+
+ > **Example**
 
 ```json
 {
-  "id": 317044,
-  "first_name": "Bob",
-  "last_name": "Jones",
-  "group_id": 6908,
+  "id": 933849,
+  "first_name": "Mary",
+  "last_name": "Samsonite",
+  "group_id": 0,
   "active": true,
-  "employee_number": 10,
+  "employee_number": 0,
   "salaried": false,
   "exempt": false,
-  "username": "bjones",
-  "email": "bob_jones@anymail.com",
+  "username": "admin",
+  "email": "admin@example.com",
   "email_verified": false,
-  "payroll_id": "SC010",
-  "mobile_number": "2085551234",
-  "hire_date": "2018-07-02",
+  "payroll_id": "",
+  "mobile_number": "2087231456",
+  "hire_date": "0000-00-00",
   "term_date": "0000-00-00",
-  "last_modified": "2019-02-09T17:59:06+00:00",
-  "last_active": "2019-02-09T18:45:39+00:00",
-  "created": "2018-10-04T02:25:38+00:00",
-  "client_url": "spudsfunpark",
-  "company_name": "Spuds Fun Park",
-  "profile_image_url": "https://www.gravatar.com/avatar/6be49c2065c016dcdfcd26d1da111e9f",
+  "last_modified": "2018-03-28T17:24:20+00:00",
+  "last_active": "",
+  "created": "2018-03-27T16:13:34+00:00",
+  "client_url": "api_sample_output",
+  "company_name": "API Sample Output Company",
+  "profile_image_url": "https:\/\/www.gravatar.com\/avatar\/e64c7d89f26bd1972efa854d13d7dd61",
   "pto_balances": {
-    "2913946": 0,
-    "2913948": 0,
-    "2913950": 0
+    "2624351": 0,
+    "2624353": 0,
+    "2624355": 0
   },
   "submitted_to": "2000-01-01",
   "approved_to": "2000-01-01",
-  "manager_of_group_ids": [],
+  "manager_of_group_ids": [
+
+  ],
   "require_password_change": false,
-  "pay_rate": 8.26,
+  "pay_rate": 0,
   "pay_interval": "hour",
   "permissions": {
-    "admin": false,
+    "admin": true,
     "mobile": true,
     "status_box": false,
     "reports": false,
@@ -47,7 +50,7 @@
     "manage_users": false,
     "manage_my_timesheets": false,
     "manage_jobcodes": false,
-    "pin_login": true,
+    "pin_login": false,
     "approve_timesheets": false,
     "manage_schedules": false,
     "external_access": false,
