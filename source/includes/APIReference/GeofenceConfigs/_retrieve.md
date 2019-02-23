@@ -215,7 +215,7 @@ Retrieves a list of all geofence configs, with optional filters to narrow down t
 
 |                |             |             |
 | -------------: | :---------: | ----------- |
-| **ids**<br/>optional | _Int_ | Comma separated list of one or more geofence config ids you?d like to filter on. Only geofence configs with an id set to one of these values will be returned. If omitted, all geofence configs matching other specified filters are returned. |
+| **ids**<br/>optional | _Int_ | Comma separated list of one or more geofence config ids you'd like to filter on. Only geofence configs with an id set to one of these values will be returned. If omitted, all geofence configs matching other specified filters are returned. |
 | **type**<br/>optional | _String_ | Comma separated list of one or more types. If specified only geofence configs of that type will be returned. |
 | **type_ids**<br/>optional | _Int_ | Comma separated list of one or more type ids you'd like to filter on. Only geofence configs with a type_id set to one of these values will be returned. |
 | **enabled**<br/>optional | _Boolean_ | _true_ or _false_. If specified only geofence configs with matching enabled values will be returned. |

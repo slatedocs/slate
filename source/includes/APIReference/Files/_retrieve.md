@@ -1,8 +1,8 @@
 ## Retrieve Files
 
-> **Examples**
+ > **Example**: Retrieve a list of all files.
 
-> Retrieve a list of all files.
+ > Request
 
 ```shell
 curl "https://rest.tsheets.com/api/v1/files"
@@ -33,7 +33,7 @@ var request = require("request");
 
 var options = { method: 'GET',
   url: 'https://rest.tsheets.com/api/v1/files',
-  headers:
+  headers: 
    { Authorization: 'Bearer <TOKEN>' } };
 
 request(options, function (error, response, body) {
@@ -121,15 +121,17 @@ func main() {
 }
 ```
 
-> Retrieve a list of all files (active or deleted) linked to timesheet with specific id.
+ > **Example**: Retrieve a list of all files (active or deleted) linked to timesheet with given id
+
+ > Request
 
 ```shell
-curl "https://rest.tsheets.com/api/v1/files?linked_object_type=timesheet&object_ids=1757985"
+curl "https://rest.tsheets.com/api/v1/files?linked_object_type=timesheet&object_ids=21718670"
   -H "Authorization: Bearer <TOKEN>"
 ```
 
 ```csharp
-var client = new RestClient("https://rest.tsheets.com/api/v1/files?linked_object_type=timesheet&object_ids=1757985");
+var client = new RestClient("https://rest.tsheets.com/api/v1/files?linked_object_type=timesheet&object_ids=21718670");
 var request = new RestRequest(Method.GET);
 request.AddHeader("Authorization", "Bearer <TOKEN>");
 IRestResponse response = client.Execute(request);
@@ -139,7 +141,7 @@ IRestResponse response = client.Execute(request);
 OkHttpClient client = new OkHttpClient();
 
 Request request = new Request.Builder()
-  .url("https://rest.tsheets.com/api/v1/files?linked_object_type=timesheet&object_ids=1757985")
+  .url("https://rest.tsheets.com/api/v1/files?linked_object_type=timesheet&object_ids=21718670")
   .get()
   .addHeader("Authorization", "Bearer <TOKEN>")
   .build();
@@ -153,9 +155,9 @@ var request = require("request");
 var options = { method: 'GET',
   url: 'https://rest.tsheets.com/api/v1/files',
   qs: { linked_object_type: 'timesheet',
-        object_ids: '1757985'
+        object_ids: '21718670'
   },
-  headers:
+  headers: 
    { Authorization: 'Bearer <TOKEN>' } };
 
 request(options, function (error, response, body) {
@@ -174,7 +176,7 @@ $request->setMethod(HTTP_METH_GET);
 
 $request->setQueryData(array(
   'linked_object_type' => 'timesheet',
-  'object_ids' => '1757985'
+  'object_ids' => '21718670'
 ));
 
 $request->setHeaders(array(
@@ -194,7 +196,7 @@ try {
 require 'uri'
 require 'net/http'
 
-url = URI("https://rest.tsheets.com/api/v1/files?linked_object_type=timesheet&object_ids=1757985")
+url = URI("https://rest.tsheets.com/api/v1/files?linked_object_type=timesheet&object_ids=21718670")
 
 http = Net::HTTP.new(url.host, url.port)
 
@@ -212,7 +214,7 @@ url = "https://rest.tsheets.com/api/v1/files"
 
 querystring = {
   "linked_object_type":"timesheet",
-  "object_ids":"1757985"
+  "object_ids":"21718670"
 }
 
 payload = ""
@@ -236,7 +238,7 @@ import (
 
 func main() {
 
-  url := "https://rest.tsheets.com/api/v1/files?linked_object_type=timesheet&object_ids=1757985"
+  url := "https://rest.tsheets.com/api/v1/files?linked_object_type=timesheet&object_ids=21718670"
 
   req, _ := http.NewRequest("GET", url, nil)
 
@@ -253,68 +255,99 @@ func main() {
 }
 ```
 
-> The above command returns JSON with the following structure:
+> Response<br/><i>(all examples will have the following layout)</i>
+
+> <code class="level200">200 OK</code>
 
 ```json
 {
   "results": {
     "files": {
-      "1757985": {
-        "id": 1757985,
-        "uploaded_by_user_id": 317046,
-        "file_name": "IMG3567.png",
+      "44878": {
+        "id": 44878,
+        "uploaded_by_user_id": 19128,
+        "file_name": "tsheets.jpeg",
         "active": true,
-        "size": 3581,
-        "last_modified": "2019-02-13T00:50:51+00:00",
-        "created": "2019-02-13T00:50:51+00:00",
+        "size": 7890,
+        "last_modified": "2018-07-03T17:46:58+00:00",
+        "created": "2018-07-03T17:46:58+00:00",
         "linked_objects": {
           "timesheets": [
-            "19931296"
+            "135288482",
+            "135288514",
+            "135288460"
           ]
         },
         "meta_data": {
-          "file_description": "Woodland Theater Audience",
-          "image_rotation": "90"
+          "file_description": "Excellent app to track time"
         }
-      }      
+      },
+      "44174": {
+        "id": 44174,
+        "uploaded_by_user_id": 19128,
+        "file_name": "relentless.jpeg",
+        "active": true,
+        "size": 34900,
+        "last_modified": "2018-07-03T17:47:53+00:00",
+        "created": "2018-07-03T17:47:53+00:00",
+        "linked_objects": [],
+        "meta_data": {
+          "file_description": "Passionate about our clients success!"
+        }
+      },
+      "50692": {
+        "id": 50692,
+        "uploaded_by_user_id": 19128,
+        "file_name": "healthy.jpg",
+        "active": true,
+        "size": 4560,
+        "last_modified": "2018-08-24T00:09:32+00:00",
+        "created": "2018-08-24T00:09:32+00:00",
+        "linked_objects": {
+          "timesheets": [
+            "135288482",
+            "135288514",
+            "135288460"
+          ]
+        },
+        "meta_data": {
+          "file_description": "Work hard period play hard period!"
+        }
+      }
     }
   },
   "supplemental_data": {
     "users": {
-      "317046": {
-        "id": 317046,
-        "first_name": "Laura",
-        "last_name": "McKenzie",
-        "group_id": 6912,
+      "19128": {
+        "id": 19128,
+        "first_name": "Shree",
+        "last_name": "Yalamanchili",
+        "group_id": 0,
         "active": true,
-        "employee_number": 2,
+        "employee_number": 0,
         "salaried": false,
         "exempt": false,
-        "username": "lmckenzie",
-        "email": "laura_mckenzie@anymail.com",
-        "email_verified": false,
-        "payroll_id": "SC002",
-        "mobile_number": "2085551235",
-        "hire_date": "2018-07-02",
+        "username": "shree",
+        "email": "shree_dev@tsheets.com",
+        "email_verified": true,
+        "payroll_id": "",
+        "hire_date": "0000-00-00",
         "term_date": "0000-00-00",
-        "last_modified": "2019-02-09T18:33:58+00:00",
-        "last_active": "2019-02-13T00:17:29+00:00",
-        "created": "2018-10-04T02:25:38+00:00",
-        "client_url": "spudsfunpark",
-        "company_name": "Spuds Fun Park",
-        "profile_image_url": "https://www.gravatar.com/avatar/ad30131c700cbb1ad59a19879ac66e7e",
-        "pto_balances": {
-          "2913946": 0,
-          "2913948": 0,
-          "2913950": 0
-        },
-        "submitted_to": "2018-02-08",
-        "approved_to": "2019-02-08",
+        "last_modified": "2018-08-16T18:32:46+00:00",
+        "last_active": "2018-08-16T15:16:22+00:00",
+        "created": "2017-04-05T15:41:30+00:00",
+        "client_url": "devrocks",
+        "company_name": "DevRocks",
+        "profile_image_url": "",
+        "mobile_number": "",
+        "pto_balances": "",
+        "submitted_to": "2018-01-22",
+        "approved_to": "2018-01-15",
         "manager_of_group_ids": [
-          6912
+          27520
         ],
         "require_password_change": false,
-        "pay_rate": 12.25,
+        "pay_rate": 0,
         "pay_interval": "hour",
         "permissions": {
           "admin": true,
@@ -328,10 +361,10 @@ func main() {
           "manage_jobcodes": true,
           "pin_login": true,
           "approve_timesheets": true,
-          "manage_schedules": false,
+          "manage_schedules": true,
           "external_access": false,
           "manage_my_schedule": false,
-          "manage_company_schedules": false,
+          "manage_company_schedules": true,
           "view_company_schedules": false,
           "view_group_schedules": false,
           "manage_no_schedules": false,
@@ -341,30 +374,83 @@ func main() {
       }
     },
     "timesheets": {
-      "19931296": {
-        "id": 19931296,
-        "user_id": 317046,
-        "jobcode_id": 20608085,
-        "start": "2019-02-08T07:33:00-07:00",
-        "end": "2019-02-08T19:26:08-07:00",
-        "duration": 42788,
-        "date": "2019-02-08",
-        "tz": -7,
+      "135288482": {
+        "id": 135288482,
+        "user_id": 1242515,
+        "jobcode_id": 17288283,
+        "start": "2018-07-16T09:04:00-06:00",
+        "end": "2018-07-16T15:57:00-06:00",
+        "duration": 24780,
+        "date": "2018-07-16",
+        "tz": -6,
         "tz_str": "tsMT",
         "type": "regular",
-        "location": "(Boise, ID?)",
+        "location": "(Eagle, ID?)",
         "on_the_clock": false,
         "locked": 0,
         "notes": "",
         "customfields": {
-          "134913": "Proficient",
-          "143369": "Jungle Safari",
-          "143377": "30"
+          "19142": "Item 1",
+          "19144": "Item 2"
         },
-        "last_modified": "2019-02-13T00:17:29+00:00",
         "attached_files": [
-          1757985
-        ]
+          50692,
+          44878
+        ],
+        "last_modified": "1970-01-01T00:00:00+00:00",
+        "created": "1970-01-01T00:00:00+00:00"
+      },
+      "135288514": {
+        "id": 135288514,
+        "user_id": 1242509,
+        "jobcode_id": 18080900,
+        "start": "2018-07-16T13:07:00-06:00",
+        "end": "2018-07-16T17:29:00-06:00",
+        "duration": 15720,
+        "date": "2018-07-16",
+        "tz": -6,
+        "tz_str": "tsMT",
+        "type": "regular",
+        "location": "(Eagle, ID?)",
+        "on_the_clock": false,
+        "locked": 0,
+        "notes": "",
+        "customfields": {
+          "19142": "Item 1",
+          "19144": "Item 2"
+        },
+        "attached_files": [
+          50692,
+          44878
+        ],
+        "last_modified": "1970-01-01T00:00:00+00:00",
+        "created": "1970-01-01T00:00:00+00:00"
+      },
+      "135288460": {
+        "id": 135288460,
+        "user_id": 1242509,
+        "jobcode_id": 18080900,
+        "start": "2018-07-18T08:09:00-06:00",
+        "end": "2018-07-18T14:58:00-06:00",
+        "duration": 24540,
+        "date": "2018-07-18",
+        "tz": -6,
+        "tz_str": "tsMT",
+        "type": "regular",
+        "location": "(Eagle, ID?)",
+        "on_the_clock": false,
+        "locked": 0,
+        "notes": "",
+        "customfields": {
+          "19142": "Item 1",
+          "19144": "Item 2"
+        },
+        "attached_files": [
+          50692,
+          44878
+        ],
+        "last_modified": "1970-01-01T00:00:00+00:00",
+        "created": "1970-01-01T00:00:00+00:00"
       }
     }
   }
