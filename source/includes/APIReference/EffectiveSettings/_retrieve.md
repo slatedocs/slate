@@ -1,16 +1,16 @@
 ## Retrieve Effective Settings
 
-> **Examples**
+ > **Example**: Retrieve a list of all effective settings for a specific user.
 
-> Retrieve a list of all effective settings for a specific user
+ > Request
 
 ```shell
-curl "https://rest.tsheets.com/api/v1/effective_settings?user_id=317046"
+curl "https://rest.tsheets.com/api/v1/effective_settings?user_id=1234"
   -H "Authorization: Bearer <TOKEN>"
 ```
 
 ```csharp
-var client = new RestClient("https://rest.tsheets.com/api/v1/effective_settings?user_id=317046");
+var client = new RestClient("https://rest.tsheets.com/api/v1/effective_settings?user_id=1234");
 var request = new RestRequest(Method.GET);
 request.AddHeader("Authorization", "Bearer <TOKEN>");
 IRestResponse response = client.Execute(request);
@@ -20,7 +20,7 @@ IRestResponse response = client.Execute(request);
 OkHttpClient client = new OkHttpClient();
 
 Request request = new Request.Builder()
-  .url("https://rest.tsheets.com/api/v1/effective_settings?user_id=317046")
+  .url("https://rest.tsheets.com/api/v1/effective_settings?user_id=1234")
   .get()
   .addHeader("Authorization", "Bearer <TOKEN>")
   .build();
@@ -33,7 +33,8 @@ var request = require("request");
 
 var options = { method: 'GET',
   url: 'https://rest.tsheets.com/api/v1/effective_settings',
-  qs: { user_id: '317046' },
+  qs: { user_id: '1234'
+  },
   headers: 
    { Authorization: 'Bearer <TOKEN>' } };
 
@@ -52,7 +53,7 @@ $request->setUrl('https://rest.tsheets.com/api/v1/effective_settings');
 $request->setMethod(HTTP_METH_GET);
 
 $request->setQueryData(array(
-  'user_id' => '317046'
+  'user_id' => '1234'
 ));
 
 $request->setHeaders(array(
@@ -72,12 +73,12 @@ try {
 require 'uri'
 require 'net/http'
 
-url = URI("https://rest.tsheets.com/api/v1/effective_settings?user_id=317046")
+url = URI("https://rest.tsheets.com/api/v1/effective_settings?user_id=1234")
 
 http = Net::HTTP.new(url.host, url.port)
 
 request = Net::HTTP::Get.new(url)
-request["Authorization"] = 'Bearer <Token>'
+request["Authorization"] = 'Bearer <TOKEN>'
 
 response = http.request(request)
 puts response.read_body
@@ -88,14 +89,16 @@ import requests
 
 url = "https://rest.tsheets.com/api/v1/effective_settings"
 
-querystring = {"user_id":"317046"}
+querystring = {
+  "user_id":"1234"
+}
 
 payload = ""
 headers = {
     'Authorization': "Bearer <TOKEN>"
     }
 
-response = requests.request("GET", url, data=payload, headers=headers)
+response = requests.request("GET", url, data=payload, headers=headers, params=querystring)
 
 print(response.text)
 ```
@@ -111,7 +114,7 @@ import (
 
 func main() {
 
-  url := "https://rest.tsheets.com/api/v1/effective_settings?user_id=317046"
+  url := "https://rest.tsheets.com/api/v1/effective_settings?user_id=1234"
 
   req, _ := http.NewRequest("GET", url, nil)
 
@@ -128,15 +131,17 @@ func main() {
 }
 ```
 
-> Retrieve a list of all effective settings modified since the given date. Currently logged in user's id will be used since none is explicity specified in the request.
+ > **Example**: Retrieve a list of all effective settings modified since a specified date. Currently logged in user's id will be used since none is specified in the request.
+
+ > Request
 
 ```shell
-curl "https://rest.tsheets.com/api/v1/effective_settings?modified_since=2019-02-01T00%3A00%3A00%2B00%3A00"
+curl "https://rest.tsheets.com/api/v1/effective_settings?modified_since=2018-03-01T00%3A00%3A00-0600"
   -H "Authorization: Bearer <TOKEN>"
 ```
 
 ```csharp
-var client = new RestClient("https://rest.tsheets.com/api/v1/effective_settings?modified_since=2019-02-01T00%3A00%3A00%2B00%3A00");
+var client = new RestClient("https://rest.tsheets.com/api/v1/effective_settings?modified_since=2018-03-01T00%3A00%3A00-0600");
 var request = new RestRequest(Method.GET);
 request.AddHeader("Authorization", "Bearer <TOKEN>");
 IRestResponse response = client.Execute(request);
@@ -146,7 +151,7 @@ IRestResponse response = client.Execute(request);
 OkHttpClient client = new OkHttpClient();
 
 Request request = new Request.Builder()
-  .url("https://rest.tsheets.com/api/v1/effective_settings?modified_since=2019-02-01T00%3A00%3A00%2B00%3A00")
+  .url("https://rest.tsheets.com/api/v1/effective_settings?modified_since=2018-03-01T00%3A00%3A00-0600")
   .get()
   .addHeader("Authorization", "Bearer <TOKEN>")
   .build();
@@ -159,7 +164,8 @@ var request = require("request");
 
 var options = { method: 'GET',
   url: 'https://rest.tsheets.com/api/v1/effective_settings',
-  qs: { modified_since: '2019-02-01T00:00:00+00:00' },
+  qs: { modified_since: '2018-03-01T00:00:00-0600'
+  },
   headers: 
    { Authorization: 'Bearer <TOKEN>' } };
 
@@ -178,7 +184,7 @@ $request->setUrl('https://rest.tsheets.com/api/v1/effective_settings');
 $request->setMethod(HTTP_METH_GET);
 
 $request->setQueryData(array(
-  'modified_since' => '2019-02-01T00:00:00+00:00'
+  'modified_since' => '2018-03-01T00:00:00-0600'
 ));
 
 $request->setHeaders(array(
@@ -198,12 +204,12 @@ try {
 require 'uri'
 require 'net/http'
 
-url = URI("https://rest.tsheets.com/api/v1/effective_settings?modified_since=2019-02-01T00%3A00%3A00%2B00%3A00")
+url = URI("https://rest.tsheets.com/api/v1/effective_settings?modified_since=2018-03-01T00%3A00%3A00-0600")
 
 http = Net::HTTP.new(url.host, url.port)
 
 request = Net::HTTP::Get.new(url)
-request["Authorization"] = 'Bearer <Token>'
+request["Authorization"] = 'Bearer <TOKEN>'
 
 response = http.request(request)
 puts response.read_body
@@ -214,14 +220,16 @@ import requests
 
 url = "https://rest.tsheets.com/api/v1/effective_settings"
 
-querystring = {"modified_since":"2019-02-01T00:00:00+00:00"}
+querystring = {
+  "modified_since":"2018-03-01T00:00:00-0600"
+}
 
 payload = ""
 headers = {
     'Authorization': "Bearer <TOKEN>"
     }
 
-response = requests.request("GET", url, data=payload, headers=headers)
+response = requests.request("GET", url, data=payload, headers=headers, params=querystring)
 
 print(response.text)
 ```
@@ -237,7 +245,7 @@ import (
 
 func main() {
 
-  url := "https://rest.tsheets.com/api/v1/effective_settings?modified_since=2019-02-01T00%3A00%3A00%2B00%3A00"
+  url := "https://rest.tsheets.com/api/v1/effective_settings?modified_since=2018-03-01T00%3A00%3A00-0600"
 
   req, _ := http.NewRequest("GET", url, nil)
 
@@ -254,7 +262,9 @@ func main() {
 }
 ```
 
-> The above examples return JSON with the following structure:
+> Response<br/><i>(all examples will have the following layout)</i>
+
+> <code class="level200">200 OK</code>
 
 ```json
 {
@@ -272,9 +282,9 @@ func main() {
           "daily_regular_hours": 8,
           "date_locale": "us",
           "emp_panel": 1,
-          "emp_panel_email": "0",
-          "emp_panel_passwd": "0",
-          "emp_panel_tz": "0",
+          "emp_panel_email": 1,
+          "emp_panel_passwd": 1,
+          "emp_panel_tz": 1,
           "employee_pto_entry": 0,
           "enable_timesheet_notes": "1",
           "hide_working_time": "0",
@@ -284,58 +294,180 @@ func main() {
           "lunch_threshold": 9,
           "max_customfielditems": "-1",
           "max_jobcodes": "-1",
-          "parent_clockin_display": 0,
-          "payroll_end_date": "2018-09-28",
-          "payroll_first_end_day": "1",
-          "payroll_last_end_day": "16",
-          "payroll_month_end_day": "1",
-          "payroll_type": "biweekly",
           "pto_entry": 1,
           "pto_overtime": 0,
           "simple_clockin": 0,
           "time_format": 12,
-          "timecard_fields": "JOBCODE,134913,143369,143377",
-          "timeclock_label": "Time Clock",
+          "timecard_fields": "JOBCODE,195923,195921,195919",
           "timesheet_edit_notes_for_all_users": 0,
           "timesheet_notes_notify_admin": 0,
           "timesheet_notes_notify_mgrs": 0,
           "timesheet_notes_required": 0,
-          "tz": "America/Denver",
+          "tz": "US\/Mountain",
           "week_start": 0,
           "weekly_regular_hours": "40"
         },
-        "last_modified": "2019-02-11T17:45:18+00:00"
+        "last_modified": "2018-04-05T19:19:45+00:00"
+      },
+      "alerts": {
+        "settings": {
+          "installed": 0
+        },
+        "last_modified": "2001-01-01T12:00:00+00:00"
+      },
+      "approvals": {
+        "settings": {
+          "installed": "1"
+        },
+        "last_modified": "2018-04-04T19:42:03+00:00"
+      },
+      "breaks": {
+        "settings": {
+          "hide_pre_clockout_option": 0
+        },
+        "last_modified": "2018-04-04T19:42:03+00:00"
+      },
+      "dcaa": {
+        "settings": {
+          "installed": 0
+        },
+        "last_modified": "2001-01-01T12:00:00+00:00"
+      },
+      "dialin": {
+        "settings": {
+          "installed": 0
+        },
+        "last_modified": "2001-01-01T12:00:00+00:00"
+      },
+      "files": {
+        "settings": {
+          "installed": 0
+        },
+        "last_modified": "2001-01-01T12:00:00+00:00"
+      },
+      "invoicing": {
+        "settings": {
+          "installed": 0
+        },
+        "last_modified": "2001-01-01T12:00:00+00:00"
+      },
+      "mobile_app_integrations": {
+        "settings": {
+          "installed": 0,
+          "apps": ""
+        },
+        "last_modified": "2001-01-01T12:00:00+00:00"
       },
       "mobile_app_settings": {
         "settings": {
-          "installed": "1",
-          "location_tracking": "off",
-          "mandatory_location_services": "0"
+          "installed": 1,
+          "location_tracking": "optional",
+          "mandatory_location_services": 0
         },
-        "last_modified": "2019-02-09T18:39:20+00:00"
+        "last_modified": "2018-04-04T19:42:03+00:00"
+      },
+      "reminders": {
+        "settings": {
+          "installed": 1
+        },
+        "last_modified": "2018-04-04T19:42:03+00:00"
+      },
+      "quickbooks": {
+        "settings": {
+          "installed": 0
+        },
+        "last_modified": "2018-04-04T19:42:03+00:00"
+      },
+      "restapi": {
+        "settings": {
+          "installed": 0
+        },
+        "last_modified": "2001-01-01T12:00:00+00:00"
+      },
+      "rounding": {
+        "settings": {
+          "installed": 0
+        },
+        "last_modified": "2001-01-01T12:00:00+00:00"
       },
       "schedule": {
         "settings": {
           "installed": "1",
           "business_hours_end": "17:00:00",
           "business_hours_start": "08:00:00",
-          "drafted_first_schedule_event_occurred": "1",
           "manage_schedule_permission": "company",
-          "published_first_schedule_event_occurred": "1",
-          "trial_expiration_date": "2018-10-17",
+          "trial_expiration_date": "2018-04-11",
           "view_schedule_permission": "company",
-          "learning_step": "7",
           "employee_view": "company",
           "manager_view": "company"
         },
-        "last_modified": "2019-02-09T18:03:55+00:00"
+        "last_modified": "2018-04-04T19:42:03+00:00"
+      },
+      "sms": {
+        "settings": {
+          "installed": 0,
+          "email_notify": "1",
+          "mobile_number": "2087231456",
+          "sms_notify": "1"
+        },
+        "last_modified": "2018-03-27T16:13:35+00:00"
+      },
+      "sounds": {
+        "settings": {
+          "installed": 0
+        },
+        "last_modified": "2001-01-01T12:00:00+00:00"
       },
       "customfields": {
         "settings": {
           "maximum_allowed_timesheet_custom_fields": 6,
           "installed": "1"
         },
-        "last_modified": "2019-02-10T20:34:10+00:00"
+        "last_modified": "2018-04-04T19:42:03+00:00"
+      },
+      "time_entry": {
+        "settings": {
+          "installed": 1,
+          "time_entry_method": "timecard",
+          "mtc_format_time_display": "hhmm",
+          "time_entry": 0,
+          "timecard": 1,
+          "weekly_timecard": 1,
+          "timecard_daily": 0,
+          "timesheet_edit": 0,
+          "timesheet_map": 1,
+          "pto_entry": 1,
+          "timesheet_list_date_range_selection": "week",
+          "timesheet_list_show_days_with_no_time": 1,
+          "timesheet_list_wrap_text": 0,
+          "timesheet_list_column_selection": "time,job,location,kiosk,attachments,notes",
+          "timesheet_list_bottomless_scroll": 0
+        },
+        "last_modified": "2018-04-04T19:42:03+00:00"
+      },
+      "toodledo": {
+        "settings": {
+          "installed": 0
+        },
+        "last_modified": "2001-01-01T12:00:00+00:00"
+      },
+      "twitter": {
+        "settings": {
+          "installed": 0
+        },
+        "last_modified": "2001-01-01T12:00:00+00:00"
+      },
+      "xero": {
+        "settings": {
+          "installed": 0
+        },
+        "last_modified": "2001-01-01T12:00:00+00:00"
+      },
+      "zenpayroll": {
+        "settings": {
+          "installed": 0
+        },
+        "last_modified": "2001-01-01T12:00:00+00:00"
       }
     }
   }

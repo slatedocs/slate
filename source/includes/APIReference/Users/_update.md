@@ -1,29 +1,25 @@
 ## Update Users
 
-> **Example**
+ > **Example**:  Change the last name for each of these employees, and add the mobile permission to the second one. 
 
-> Change the email address for the first employee, and set the pay rate and approve timesheets permission for the second one.
-
-> Request Body
+ > Request Body
 
 ```json
 {
-  "data": [
-    {
-      "id": 2385283,
-      "email": "william_wallace@anymail.com"
-    },
-    {
-      "username": "mcurie",
-      "pay_rate": 50.0,
-      "permissions":
-      {
-        "approve_timesheets": true    	
-      }
+  "data": [{
+    "id": "933849",
+    "first_name": "Mary",
+    "last_name": "Samsonite"
+  }, {
+    "username": "nancysmith",
+    "permissions": {
+      "mobile": true
     }
-  ]
+  }]
 }
 ```
+
+ > Request
 
 ```shell
 curl -X PUT \
@@ -38,7 +34,7 @@ var client = new RestClient("https://rest.tsheets.com/api/v1/users");
 var request = new RestRequest(Method.PUT);
 request.AddHeader("Content-Type", "application/json");
 request.AddHeader("Authorization", "Bearer <TOKEN>");
-request.AddParameter("undefined", "<REQUEST BODY>",	ParameterType.RequestBody);
+request.AddParameter("undefined", "<REQUEST BODY>", ParameterType.RequestBody);
 IRestResponse response = client.Execute(request);
 ```
 
@@ -64,7 +60,7 @@ var options = { method: 'PUT',
   url: 'https://rest.tsheets.com/api/v1/users',
   headers: 
    { 'Content-Type': 'application/json',
-     Authorization: 'Bearer <TOKEN>' },
+      Authorization: 'Bearer <TOKEN>' },
   body: '<REQUEST BODY>',
   json: true };
 
@@ -84,7 +80,7 @@ $request->setMethod(HTTP_METH_PUT);
 
 $request->setHeaders(array(
   'Content-Type' => 'application/json',
-  'Authorization' => 'Bearer <TOKEN>
+  'Authorization' => 'Bearer <TOKEN>'
 ));
 
 $request->setBody('<REQUEST BODY>');
@@ -135,35 +131,37 @@ print(response.text)
 package main
 
 import (
-	"fmt"
-	"strings"
-	"net/http"
-	"io/ioutil"
+  "fmt"
+  "strings"
+  "net/http"
+  "io/ioutil"
 )
 
 func main() {
 
-	url := "https://rest.tsheets.com/api/v1/users"
+  url := "https://rest.tsheets.com/api/v1/users"
 
-	payload := strings.NewReader("<REQUEST BODY>")
+  payload := strings.NewReader("<REQUEST BODY>")
 
-	req, _ := http.NewRequest("PUT", url, payload)
+  req, _ := http.NewRequest("PUT", url, payload)
 
-	req.Header.Add("Authorization", "Bearer <TOKEN>")
-	req.Header.Add("Content-Type", "application/json")
+  req.Header.Add("Authorization", "Bearer <TOKEN>")
+  req.Header.Add("Content-Type", "application/json")
 
-	res, _ := http.DefaultClient.Do(req)
+  res, _ := http.DefaultClient.Do(req)
 
-	defer res.Body.Close()
-	body, _ := ioutil.ReadAll(res.Body)
+  defer res.Body.Close()
+  body, _ := ioutil.ReadAll(res.Body)
 
-	fmt.Println(res)
-	fmt.Println(string(body))
+  fmt.Println(res)
+  fmt.Println(string(body))
 
 }
 ```
 
-> The above example returns JSON with the following structure:
+> Response<br/><i>(example will have the following layout)</i>
+
+> <code class="level200">200 OK</code>
 
 ```json
 {
@@ -172,40 +170,42 @@ func main() {
       "1": {
         "_status_code": 200,
         "_status_message": "Updated",
-        "id": 2385283,
-        "first_name": "William",
-        "last_name": "Wallace",
+        "id": 933849,
+        "first_name": "Mary",
+        "last_name": "Samsonite",
         "group_id": 0,
         "active": true,
         "employee_number": 0,
         "salaried": false,
         "exempt": false,
-        "username": "wwallace",
-        "email": "william_wallace@anymail.com",
+        "username": "admin",
+        "email": "admin@example.com",
         "email_verified": false,
         "payroll_id": "",
         "hire_date": "0000-00-00",
         "term_date": "0000-00-00",
-        "last_modified": "2019-02-10T00:24:17+00:00",
+        "last_modified": "2018-03-28T17:24:20+00:00",
         "last_active": "",
-        "created": "2019-02-09T21:24:10+00:00",
-        "client_url": "spudsfunpark",
-        "company_name": "Spuds Fun Park",
-        "profile_image_url": "https://www.gravatar.com/avatar/e85046cc80e6d39eaee9c3bf0da582e0",
-        "mobile_number": "",
+        "created": "2018-03-27T16:13:34+00:00",
+        "client_url": "api_sample_output",
+        "company_name": "API Sample Output Company",
+        "profile_image_url": "https:\/\/www.gravatar.com\/avatar\/e64c7d89f26bd1972efa854d13d7dd61",
+        "mobile_number": "2087231456",
         "pto_balances": {
-          "2913946": 0,
-          "2913948": 0,
-          "2913950": 0
+          "2624351": 0,
+          "2624353": 0,
+          "2624355": 0
         },
         "submitted_to": "2000-01-01",
         "approved_to": "2000-01-01",
-        "manager_of_group_ids": [],
+        "manager_of_group_ids": [
+
+        ],
         "require_password_change": false,
         "pay_rate": 0,
         "pay_interval": "hour",
         "permissions": {
-          "admin": false,
+          "admin": true,
           "mobile": true,
           "status_box": false,
           "reports": false,
@@ -214,7 +214,7 @@ func main() {
           "manage_users": false,
           "manage_my_timesheets": false,
           "manage_jobcodes": false,
-          "pin_login": true,
+          "pin_login": false,
           "approve_timesheets": false,
           "manage_schedules": false,
           "external_access": false,
@@ -228,16 +228,71 @@ func main() {
         "customfields": ""
       },
       "2": {
-        "_status_code": 417,
-        "_status_message": "Invalid param(s): pay_rate",
-        "username": "mcurie"
+        "_status_code": 200,
+        "_status_message": "Updated",
+        "id": 933837,
+        "first_name": "Nancy",
+        "last_name": "Smith",
+        "group_id": 64965,
+        "active": true,
+        "employee_number": 0,
+        "salaried": false,
+        "exempt": false,
+        "username": "nancysmith",
+        "email": "",
+        "email_verified": false,
+        "payroll_id": "",
+        "hire_date": "0000-00-00",
+        "term_date": "0000-00-00",
+        "last_modified": "2018-03-28T20:16:46+00:00",
+        "last_active": "2018-03-28T20:16:39+00:00",
+        "created": "2018-03-27T16:13:30+00:00",
+        "client_url": "api_sample_output",
+        "company_name": "API Sample Output Company",
+        "profile_image_url": "",
+        "mobile_number": "",
+        "pto_balances": {
+          "2624351": 0,
+          "2624353": 0,
+          "2624355": 0
+        },
+        "submitted_to": "2000-01-01",
+        "approved_to": "2000-01-01",
+        "manager_of_group_ids": [
+
+        ],
+        "require_password_change": false,
+        "pay_rate": 0,
+        "pay_interval": "hour",
+        "permissions": {
+          "admin": false,
+          "mobile": true,
+          "status_box": false,
+          "reports": false,
+          "manage_timesheets": false,
+          "manage_authorization": false,
+          "manage_users": false,
+          "manage_my_timesheets": false,
+          "manage_jobcodes": false,
+          "pin_login": false,
+          "approve_timesheets": false,
+          "manage_schedules": false,
+          "external_access": false,
+          "manage_my_schedule": false,
+          "manage_company_schedules": false,
+          "view_company_schedules": false,
+          "view_group_schedules": false,
+          "manage_no_schedules": false,
+          "view_my_schedules": false
+        },
+        "customfields": ""
       }
     }
   },
   "supplemental_data": {
     "jobcodes": {
-      "2913946": {
-        "id": 2913946,
+      "2624351": {
+        "id": 2624351,
         "parent_id": 0,
         "assigned_to_all": true,
         "billable": false,
@@ -247,14 +302,18 @@ func main() {
         "billable_rate": 0,
         "short_code": "",
         "name": "Sick",
-        "last_modified": "2018-10-02T20:27:21+00:00",
-        "created": "2018-10-02T20:27:21+00:00",
+        "last_modified": "2018-03-27T16:13:28+00:00",
+        "created": "2018-03-27T16:13:28+00:00",
         "filtered_customfielditems": "",
-        "required_customfields": [],
-        "locations": []
+        "required_customfields": [
+
+        ],
+        "locations": [
+
+        ]
       },
-      "2913948": {
-        "id": 2913948,
+      "2624353": {
+        "id": 2624353,
         "parent_id": 0,
         "assigned_to_all": true,
         "billable": false,
@@ -264,14 +323,18 @@ func main() {
         "billable_rate": 0,
         "short_code": "",
         "name": "Vacation",
-        "last_modified": "2018-10-02T20:27:21+00:00",
-        "created": "2018-10-02T20:27:21+00:00",
+        "last_modified": "2018-03-27T16:13:28+00:00",
+        "created": "2018-03-27T16:13:28+00:00",
         "filtered_customfielditems": "",
-        "required_customfields": [],
-        "locations": []
+        "required_customfields": [
+
+        ],
+        "locations": [
+
+        ]
       },
-      "2913950": {
-        "id": 2913950,
+      "2624355": {
+        "id": 2624355,
         "parent_id": 0,
         "assigned_to_all": true,
         "billable": false,
@@ -281,11 +344,27 @@ func main() {
         "billable_rate": 0,
         "short_code": "",
         "name": "Holiday",
-        "last_modified": "2018-10-02T20:27:21+00:00",
-        "created": "2018-10-02T20:27:21+00:00",
+        "last_modified": "2018-03-27T16:13:28+00:00",
+        "created": "2018-03-27T16:13:28+00:00",
         "filtered_customfielditems": "",
-        "required_customfields": [],
-        "locations": []
+        "required_customfields": [
+
+        ],
+        "locations": [
+
+        ]
+      }
+    },
+    "groups": {
+      "64965": {
+        "id": 64965,
+        "active": true,
+        "name": "Construction",
+        "last_modified": "2018-03-27T16:13:30+00:00",
+        "created": "2018-03-27T16:13:29+00:00",
+        "manager_ids": [
+          "933833"
+        ]
       }
     }
   }

@@ -1,6 +1,8 @@
 ## Retrieve Geofence Configs
 
-> **Examples**
+ > **Example**: Retrieve a list of all geofence configs for the current client.
+
+ > Request
 
 ```shell
 curl "https://rest.tsheets.com/api/v1/geofence_configs"
@@ -31,7 +33,7 @@ var request = require("request");
 
 var options = { method: 'GET',
   url: 'https://rest.tsheets.com/api/v1/geofence_configs',
-  headers:
+  headers: 
    { Authorization: 'Bearer <TOKEN>' } };
 
 request(options, function (error, response, body) {
@@ -119,7 +121,9 @@ func main() {
 }
 ```
 
-> The above command returns JSON with the following structure:
+> Response<br/><i>(example will have the following layout)</i>
+
+> <code class="level200">200 OK</code>
 
 ```json
 {
@@ -166,8 +170,8 @@ func main() {
         "label": "1234 W Way St Eagle, Idaho 83714 US",
         "notes": "",
         "geocoding_status": "complete",
-        "created": "2013-07-12T21:13:14+00:00",
-        "last_modified": "2013-07-12T21:13:14+00:00",
+        "created": "2018-07-12T21:13:14+00:00",
+        "last_modified": "2018-07-12T21:13:14+00:00",
         "linked_objects": {},
         "geofence_config_id": 151
       },
@@ -187,12 +191,12 @@ func main() {
         "label": "5678 E End St Eagle, Idaho 83714 US",
         "notes": "",
         "geocoding_status": "complete",
-        "created": "2013-07-12T21:13:14+00:00",
-        "last_modified": "2013-07-12T21:13:14+00:00",
+        "created": "2018-07-12T21:13:14+00:00",
+        "last_modified": "2018-07-12T21:13:14+00:00",
         "linked_objects": {
-         "jobcodes": [
-         2589531
-         ]
+          "jobcodes": [
+            2589531
+          ]
         },
         "geofence_config_id": 297
       }
