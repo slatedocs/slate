@@ -1,0 +1,10 @@
+<% @response_body = File.read("source/includes/APIReference/ScheduleEvents/Examples/_retrieve-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "schedule_events",
+    :description => "Retrieve schedule events from a calendar.",
+    :parameters => [ [ "schedule_calendar_ids", "72595" ],[ "modified_since", "2018-01-01T13:00:00-06:00" ] ],
+    :response_body => @response_body
+  }
+%>

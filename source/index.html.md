@@ -98,22 +98,22 @@ includes:
   - APIReference/Reports/payroll_by_jobcode.md.erb      
   - APIReference/Reports/project.md.erb 
   
-  - APIReference/ScheduleCalendars/schedule_calendars
-  - APIReference/ScheduleCalendars/retrieve
+  - APIReference/ScheduleCalendars/schedule_calendars.md.erb
+  - APIReference/ScheduleCalendars/retrieve.md.erb
 
-  - APIReference/ScheduleEvents/schedule_events
-  - APIReference/ScheduleEvents/retrieve
-  - APIReference/ScheduleEvents/create 
-  - APIReference/ScheduleEvents/update
+  - APIReference/ScheduleEvents/schedule_events.md.erb
+  - APIReference/ScheduleEvents/retrieve.md.erb
+  - APIReference/ScheduleEvents/create.md.erb
+  - APIReference/ScheduleEvents/update.md.erb
 
-  - APIReference/Timesheets/timesheets
-  - APIReference/Timesheets/retrieve
-  - APIReference/Timesheets/create 
-  - APIReference/Timesheets/update
-  - APIReference/Timesheets/delete          
+  - APIReference/Timesheets/timesheets.md.erb
+  - APIReference/Timesheets/retrieve.md.erb
+  - APIReference/Timesheets/create.md.erb 
+  - APIReference/Timesheets/update.md.erb
+  - APIReference/Timesheets/delete.md.erb          
 
-  - APIReference/TimesheetsDeleted/timesheets_deleted
-  - APIReference/TimesheetsDeleted/retrieve
+  - APIReference/TimesheetsDeleted/timesheets_deleted.md.erb
+  - APIReference/TimesheetsDeleted/retrieve.md.erb
 
   - APIReference/Users/users
   - APIReference/Users/retrieve

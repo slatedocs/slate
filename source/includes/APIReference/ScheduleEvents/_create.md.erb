@@ -1,0 +1,36 @@
+## Create Schedule Events
+
+<%= partial "includes/APIReference/ScheduleEvents/Examples/create.tmpl.erb" %>
+
+Add one or more schedule events.
+
+### HTTP Request
+
+<img src="../../images/post.png" alt="post"/><api>https://rest.tsheets.com/api/v1/schedule_events</api>
+
+### Properties
+_Pass an array of schedule event objects as the value to a 'data' property (see example)._
+
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **schedule_calendar_id**<br/>required | _Int_ | Id of the Schedule Calendar that contains this event. |
+| **start**<br/>required | _Int_ | Date/time that represents the start time of this event, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
+| **end**<br/>required | _Int_ | Date/time that represents the end time of this event, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
+| **all_day**<br/>required | _Boolean_ | If _true_, the event duration is all day on the day specified in start. If _false_, the event duration is determined by date/time specified in end. |
+| **team_events**<br/>optional | _String_ | 'base' or 'instance'. Default is 'instance'. If 'instance' is specified, supplemental events that are created for multiple users will be returned as individual single events for each assigned user. If 'base' is specified, supplemental events that are created for multiple users will be returned as one combined event for all assignees. |
+
+For a full list of the properties that may be set on an event, see the [Schedule Event object](#the-schedule-event-object).
+
+### Status Codes
+Each event that is created will come back with a `_status_code` and `_status_message` that will indicate whether the event was created successfully. If there was a problem creating an event, there may also be an additional field, `_status_extra`, which will contain more details about the failure.
+
+|         |          |
+| :-----: | :------- |
+| <code class="level200">200</code> | OK. Event was created successfully. |
+| <code class="level200">201</code> | Fulfilled. Event was created successfully and additional events that were created as a result are included in the supplemental data section of the response. |
+| <code class="level400">403</code> | Permission Denied. The requesting user did not have high enough manage schedule permissions to create the event. |
+| <code class="level400">417</code> | Expectation Failed. Something was wrong or missing with the properties supplied for this event. See the `_status_extra` value for more detail. |
+
+<aside class="notice">
+The maximum batch size is <i>50</i> schedule events. If exceeded, a <code class="standout">413: Request entity too large</code> HTTP response will be returned.
+</aside>

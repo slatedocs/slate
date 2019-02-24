@@ -1,0 +1,11 @@
+<% @request_body = File.read("source/includes/APIReference/Timesheets/Examples/_create-request.md.erb") -%>
+<% @response_body = File.read("source/includes/APIReference/Timesheets/Examples/_create-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/post.md.erb",
+  :locals => {
+    :endpoint => "timesheets",
+    :description => "Create three new timesheets (one manual and two regular). Two succeed. The third fails because of an overlap with an existing timesheet.",
+    :request_body => @request_body,
+    :response_body => @response_body
+  }
+%>
