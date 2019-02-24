@@ -1,0 +1,87 @@
+{
+  "results": {
+    "jobcode_assignments": {
+      "1": {
+        "_status_code": 200,
+        "_status_message": "Created",
+        "id": 106063,
+        "user_id": "1234",
+        "jobcode_id": "37",
+        "last_modified": "2018-01-17 21:15:18",
+        "created": "2018-01-17 21:15:18"
+      },
+      "2": {
+        "_status_code": 417,
+        "_status_message": "Expectation Failed",
+        "_status_extra": "Oops! You don't have permission to manage that user",
+        "user_id": "4567",
+        "jobcode_id": "37"
+      }
+    }
+  },
+  "supplemental_data": {
+    "users": {
+      "1234": {
+        "id": "1234",
+        "first_name": "John",
+        "last_name": "Smith",
+        "group_id": "983247",
+        "active": 1,
+        "employee_number": 0,
+        "salaried": 1,
+        "exempt": 1,
+        "username": "jsmith",
+        "email": "jsmith@example.com",
+        "payroll_id": 127,
+        "hire_date": "2017-04-01",
+        "term_date": "0000-00-00",
+        "last_modified": "2017-04-20T16:21:56+00:00",
+        "last_active": "2018-01-28T05:24:59+00:00",
+        "created": "2017-04-19T16:20:20+00:00",
+        "client_url": "fake",
+        "mobile_number": "",
+        "approved_to": "2000-01-01",
+        "submitted_to": "2000-01-01",
+        "manager_of_group_ids": {
+          "permissions": {
+            "admin": 1,
+            "mobile": "",
+            "status_box": "",
+            "reports": "",
+            "manage_timesheets": "",
+            "manage_authorization": "",
+            "manage_users": "",
+            "manage_my_timesheets": "",
+            "manage_jobcodes": "",
+            "approve_timesheets": "",
+            "manage_no_schedules": false,
+            "manage_my_schedule": false,
+            "manage_schedules": true,
+            "manage_company_schedules": false,
+            "view_my_schedules": false,
+            "view_group_schedules": false,
+            "view_company_schedules": false
+          }
+        }
+      }
+    },
+    "jobcodes": {
+      "37": {
+        "id": 37,
+        "parent_id": 0,
+        "assigned_to_all": "",
+        "billable": "",
+        "active": 1,
+        "type": "regular",
+        "has_children": "",
+        "billable_rate": "0",
+        "short_code": "",
+        "name": "My Jobcode Name",
+        "last_modified": "2018-06-27T21:34:05+00:00",
+        "created": "2018-06-27T21:33:45+00:00",
+        "required_customfields": {}
+        "filtered_customfielditems": {}
+      }
+    }
+  }
+}

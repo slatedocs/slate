@@ -42,12 +42,12 @@ includes:
   - APIReference/Files/download.md.erb
   - APIReference/Files/delete.md.erb
 
-  - APIReference/GeofenceConfigs/geofence_configs
-  - APIReference/GeofenceConfigs/retrieve
+  - APIReference/GeofenceConfigs/geofence_configs.md.erb
+  - APIReference/GeofenceConfigs/retrieve.md.erb
 
-  - APIReference/Geolocations/geolocations
-  - APIReference/Geolocations/retrieve  
-  - APIReference/Geolocations/create
+  - APIReference/Geolocations/geolocations.md.erb
+  - APIReference/Geolocations/retrieve.md.erb
+  - APIReference/Geolocations/create.md.erb
 
   - APIReference/Groups/groups.md.erb
   - APIReference/Groups/retrieve.md.erb
@@ -57,18 +57,18 @@ includes:
   - APIReference/Invitations/invitations
   - APIReference/Invitations/create
 
-  - APIReference/Jobcodes/jobcodes
-  - APIReference/Jobcodes/retrieve
-  - APIReference/Jobcodes/create
-  - APIReference/Jobcodes/update
+  - APIReference/Jobcodes/jobcodes.md.erb
+  - APIReference/Jobcodes/retrieve.md.erb
+  - APIReference/Jobcodes/create.md.erb
+  - APIReference/Jobcodes/update.md.erb
 
-  - APIReference/JobcodeAssignments/jobcode_assignments
-  - APIReference/JobcodeAssignments/retrieve
-  - APIReference/JobcodeAssignments/create
-  - APIReference/JobcodeAssignments/delete
+  - APIReference/JobcodeAssignments/jobcode_assignments.md.erb
+  - APIReference/JobcodeAssignments/retrieve.md.erb
+  - APIReference/JobcodeAssignments/create.md.erb
+  - APIReference/JobcodeAssignments/delete.md.erb
 
-  - APIReference/LastModified/last_modified
-  - APIReference/LastModified/retrieve
+  - APIReference/LastModified/last_modified.md.erb
+  - APIReference/LastModified/retrieve.md.erb
 
   - APIReference/Locations/locations
   - APIReference/Locations/retrieve

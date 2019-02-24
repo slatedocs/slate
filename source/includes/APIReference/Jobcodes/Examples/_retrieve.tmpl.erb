@@ -1,0 +1,35 @@
+<% @response_body_1 = File.read("source/includes/APIReference/Jobcodes/Examples/_retrieve-response-1.md.erb") -%>
+<% @response_body_2 = File.read("source/includes/APIReference/Jobcodes/Examples/_retrieve-response-2.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "jobcodes",
+    :description => "Retrieve a list of all active top-level jobcodes.",
+  }
+%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "jobcodes",
+    :description => "Retrieve a list of jobcodes with given ids.",
+    :parameters => [ ["ids", "12,367,3489"] ],     
+  }
+%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "jobcodes",
+    :description => "Retrieve a list of jobcodes that have been modified since a particular date.",
+    :parameters => [ ["modified_since", "2018-01-01T00:00:00-0600"] ],
+    :response_body => @response_body_1    
+  }
+%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "jobcodes",
+    :description => "Retrieve a list of all jobcodes (active or deleted) with given parent jobcode id. Set pagination to 10 results/page. Locations related to parent jobcodes will be returned with the supplemental data.",
+    :parameters => [ ["parent_ids", "235494"], ["per_page", "10"], [ "active", "both" ] ],    
+    :response_body => @response_body_2
+  }
+%>
