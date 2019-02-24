@@ -1,0 +1,24 @@
+## Retrieve Jobcode Assignments
+
+<%= partial "includes/APIReference/JobcodeAssignments/Examples/retrieve.tmpl.erb" %>
+
+Retrieves a list of all jobcode assignments associated with users, with optional filters to narrow down the results. Note that jobcodes with the property `assigned_to_all` set to _true_ will always be considered assigned to any given user. `assigned_to_all` jobcode assignments are indicated by a `user_id` value of _0_ in the results. Also note that only active jobcodes will be considered assigned, as once a jobcode is archived, it is no longer available for selection for time entry.
+
+### HTTP Request
+
+<img src="../../images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/jobcode_assignments</api>
+
+### Filter Parameters
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **user_ids**<br/>optional | _Int_ | Comma separated string of one or more user ids for whom you'd like to retrieve jobcode assignments. If none are specified, all jobcode assignments (which you have rights to view) will be returned. Only jobcode assignments belonging to these `user_ids` or where the jobcode `assigned_to_all` property is _true_ will be returned. Results where `assigned_to_all` is _true_ for a jobcode are indicated by a `user_id` value of _0_ for the `jobcode_assignment` object. To view jobcode assignments for users other than yourself you must be an admin or a group manager or have the `manage_users` permission or the `manage_jobcodes` permission. |
+| **type**<br/>optional | _String_ | Refers to the jobcode type - 'regular', 'pto', 'unpaid_break', 'paid_break', or 'all'. Defaults to 'regular'. |
+| **jobcode_id**<br/>optional | _Int_ | If specified, only assignments for jobcodes with the given id are returned. |
+| **jobcode_parent_id**<br/>optional | _Int_ | When omitted, all jobcode assignments are returned regardless of jobcode parent. If specified, only assignments for jobcodes with the given jobcode `parent_id` are returned. To get a list of only top-level jobcode assignments, pass in a `jobcode_parent_id` of _0_. |
+| **active**<br/>optional | _String_ | 'yes', 'no, or 'both'. Default is 'both'. 'yes' means the assignment is active, 'no' means it is deleted/inactive. |
+| **modified_before**<br/>optional | _String_ | Only jobcode assignments modified before this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
+| **modified_since**<br/>optional | _String_ | Only jobcode assignments modified since this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
+| **supplemental_data**<br/>optional | _String_ | 'yes' or 'no'. Default is 'yes'. Indicates whether supplemental data should be returned. |
+| **per_page**<br/>optional | _Int_ | Represents how many results you'd like to retrieve per request (page). Default is 50. Max is 50. |
+| **page**<br/>optional | _Int_ | Represents the page of results you'd like to retrieve. Default is 1. |
+

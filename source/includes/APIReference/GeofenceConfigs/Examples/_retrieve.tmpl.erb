@@ -1,0 +1,10 @@
+<% @response_body = File.read("source/includes/APIReference/GeofenceConfigs/Examples/_retrieve-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "geofence_configs",
+    :description => "Retrieve a list of all geofence configs for the current client.",
+    :response_body => @response_body
+  }
+%>
+

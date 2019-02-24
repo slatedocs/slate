@@ -1,0 +1,11 @@
+<% @response_body = File.read("source/includes/APIReference/Geolocations/Examples/_retrieve-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "geolocations",
+    :description => "Retrieve a list of all geolocations modified since a given date.",
+    :parameters => [ [ "modified_since", "2018-08-01T12:00:00-06:00" ] ],
+    :response_body => @response_body
+  }
+%>
+

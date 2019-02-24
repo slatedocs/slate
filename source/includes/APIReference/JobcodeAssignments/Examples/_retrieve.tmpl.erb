@@ -1,0 +1,20 @@
+<% @response_body_1 = File.read("source/includes/APIReference/JobcodeAssignments/Examples/_retrieve-response-1.md.erb") -%>
+<% @response_body_2 = File.read("source/includes/APIReference/JobcodeAssignments/Examples/_retrieve-response-2.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "jobcode_assignments",
+    :description => "Retrieve a list of all jobcode assignments for a given `user_id`.",
+    :parameters => [ ["user_ids", "1242515"] ],
+    :response_body => @response_body_1
+  }
+%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "jobcode_assignments",
+    :description => "Retrieve a list of all jobcode assignments modified since a particular date. Set pagination to 10 results/page. Currently logged in user's id will be used, since none is specified in the request.",
+    :parameters => [ ["modified_since", "2018-03-01T00:00:00-0600"], ["per_page", "10"] ],    
+    :response_body => @response_body_2
+  }
+%>
