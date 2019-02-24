@@ -1,0 +1,10 @@
+<% @response_body = File.read("source/includes/APIReference/Files/Examples/_delete-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/delete.md.erb",
+  :locals => {
+    :endpoint => "files",
+    :description => "Request to delete four files. Two succeed and two fail.",
+    :parameters => [ [ "ids", "129526,129524,13455,89999" ] ],
+    :response_body => @response_body    
+  }
+%>

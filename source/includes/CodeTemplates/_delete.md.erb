@@ -12,13 +12,13 @@
 <% end -%>
 
 ```shell
-<%= "curl \"#{@full_url}\"" %>
+<%= "curl -X DELETE \"#{@full_url}\"" %>
   -H "Authorization: Bearer <TOKEN>"
 ```
 
 ```csharp
 <%= "var client = new RestClient(\"#{@full_url}\");" %>
-var request = new RestRequest(Method.GET);
+var request = new RestRequest(Method.DELETE);
 request.AddHeader("Authorization", "Bearer <TOKEN>");
 IRestResponse response = client.Execute(request);
 ```
@@ -28,7 +28,7 @@ OkHttpClient client = new OkHttpClient();
 
 Request request = new Request.Builder()
   <%= ".url(\"#{@full_url}\")" %>
-  .get()
+  .delete()
   .addHeader("Authorization", "Bearer <TOKEN>")
   .build();
 
@@ -38,7 +38,7 @@ Response response = client.newCall(request).execute();
 ```javascript
 var request = require("request");
 
-var options = { method: 'GET',
+var options = { method: 'DELETE',
   url: 'https://rest.tsheets.com/api/v1/<%= endpoint %>',
 <% if defined? parameters -%>
   qs: {
@@ -62,7 +62,7 @@ request(options, function (error, response, body) {
 
 $request = new HttpRequest();
 $request->setUrl('https://rest.tsheets.com/api/v1/<%= endpoint %>');
-$request->setMethod(HTTP_METH_GET);
+$request->setMethod(HTTP_METH_DELETE);
 <% if defined? parameters -%>
 
 $request->setQueryData(array(
@@ -93,7 +93,7 @@ require 'net/http'
 
 http = Net::HTTP.new(url.host, url.port)
 
-request = Net::HTTP::Get.new(url)
+request = Net::HTTP::Delete.new(url)
 request["Authorization"] = 'Bearer <TOKEN>'
 
 response = http.request(request)
@@ -140,7 +140,7 @@ func main() {
 
   <%= "url := \"#{@full_url}\"" %>
 
-  req, _ := http.NewRequest("GET", url, nil)
+  req, _ := http.NewRequest("DELETE", url, nil)
 
   req.Header.Add("Authorization", "Bearer <TOKEN>")
 

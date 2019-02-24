@@ -1,0 +1,17 @@
+<% @response_body = File.read("source/includes/APIReference/Files/Examples/_retrieve-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "files",
+    :description => "Retrieve a list of all files."
+  }
+%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "files",
+    :description => "Retrieve a list of all files (active or deleted) linked to timesheet with given id.",
+    :parameters => [ [ "linked_object_type", "timesheet" ], [ "object_ids", "21718670"] ],
+    :response_body => @response_body    
+  }
+%>

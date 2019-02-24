@@ -21,26 +21,26 @@ includes:
   - Overview/authentication
   - Overview/request_formats  
 
-  - APIReference/CurrentUser/current_user
-  - APIReference/CurrentUser/retrieve
+  - APIReference/CurrentUser/current_user.md.erb
+  - APIReference/CurrentUser/retrieve.md.erb
 
-  - APIReference/CustomFields/custom_fields  
-  - APIReference/CustomFields/retrieve
+  - APIReference/CustomFields/custom_fields.md.erb
+  - APIReference/CustomFields/retrieve.md.erb
 
   - APIReference/CustomFieldItems/custom_field_items
   - APIReference/CustomFieldItems/retrieve
   - APIReference/CustomFieldItems/create
   - APIReference/CustomFieldItems/update
 
-  - APIReference/EffectiveSettings/effective_settings
-  - APIReference/EffectiveSettings/retrieve
+  - APIReference/EffectiveSettings/effective_settings.md.erb
+  - APIReference/EffectiveSettings/retrieve.md.erb
 
-  - APIReference/Files/files
-  - APIReference/Files/retrieve  
-  - APIReference/Files/create
-  - APIReference/Files/update
-  - APIReference/Files/download
-  - APIReference/Files/delete 
+  - APIReference/Files/files.md.erb
+  - APIReference/Files/retrieve.md.erb
+  - APIReference/Files/create.md.erb
+  - APIReference/Files/update.md.erb
+  - APIReference/Files/download.md.erb
+  - APIReference/Files/delete.md.erb
 
   - APIReference/GeofenceConfigs/geofence_configs
   - APIReference/GeofenceConfigs/retrieve

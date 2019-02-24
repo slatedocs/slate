@@ -12,6 +12,11 @@
 curl -X POST \
   https://rest.tsheets.com/api/v1/<%= endpoint %> \
   -H 'Authorization: Bearer <TOKEN>' \
+<% if defined? extra_headers -%>
+  <% extra_headers.each do |header| -%>
+  <%= "-H '#{header[0]}: #{header[1]}' \\" %>
+  <% end -%>
+<% end -%>
   -H 'Content-Type: application/json' \
   -d '<REQUEST BODY>'
 ```
@@ -19,8 +24,13 @@ curl -X POST \
 ```csharp
 var client = new RestClient("https://rest.tsheets.com/api/v1/<%= endpoint %>");
 var request = new RestRequest(Method.POST);
-request.AddHeader("Content-Type", "application/json");
 request.AddHeader("Authorization", "Bearer <TOKEN>");
+<% if defined? extra_headers -%>
+  <% extra_headers.each do |header| -%>
+<%= "request.AddHeader(\"#{header[0]}\", \"#{header[1]}\");" %>
+  <% end -%>
+<% end -%>  
+request.AddHeader("Content-Type", "application/json");
 request.AddParameter("undefined", "<REQUEST BODY>", ParameterType.RequestBody);
 IRestResponse response = client.Execute(request);
 ```
@@ -34,6 +44,11 @@ Request request = new Request.Builder()
   .url("https://rest.tsheets.com/api/v1/<%= endpoint %>")
   .post(body)
   .addHeader("Authorization", "Bearer <TOKEN>")
+<% if defined? extra_headers -%>
+  <% extra_headers.each do |header| -%>
+  <%= ".addHeader(\"#{header[0]}\", \"#{header[1]}\")" %>
+  <% end -%>
+<% end -%>      
   .addHeader("Content-Type", "application/json")
   .build();
 
@@ -47,7 +62,12 @@ var options = { method: 'POST',
   url: 'https://rest.tsheets.com/api/v1/<%= endpoint %>',
   headers: 
    { 'Content-Type': 'application/json',
-     Authorization: 'Bearer <TOKEN>' },
+<% if defined? extra_headers -%>
+  <% extra_headers.each do |header| -%>
+     <%= "'#{header[0]}': '#{header[1]}'," %>
+  <% end -%>
+<% end -%>      
+     'Authorization': 'Bearer <TOKEN>' },
   body: '<REQUEST BODY>',
   json: true };
 
@@ -67,6 +87,11 @@ $request->setMethod(HTTP_METH_POST);
 
 $request->setHeaders(array(
   'Content-Type' => 'application/json',
+<% if defined? extra_headers -%>
+  <% extra_headers.each do |header| -%>
+  <%= "'#{header[0]}' => '#{header[1]}'," %>
+  <% end -%>
+<% end -%>   
   'Authorization' => 'Bearer <TOKEN>'
 ));
 
@@ -91,6 +116,11 @@ http = Net::HTTP.new(url.host, url.port)
 
 request = Net::HTTP::Post.new(url)
 request["Authorization"] = 'Bearer <TOKEN>'
+<% if defined? extra_headers -%>
+  <% extra_headers.each do |header| -%>
+<%= "request[\"#{header[0]}\"] = '#{header[1]}'," %>
+  <% end -%>
+<% end -%>   
 request["Content-Type"] = 'application/json'
 request.body = "<REQUEST BODY>"
 
@@ -106,6 +136,11 @@ url = "https://rest.tsheets.com/api/v1/<%= endpoint %>"
 payload = "<REQUEST BODY>"
 headers = {
     'Authorization': "Bearer <TOKEN>",
+<% if defined? extra_headers -%>
+  <% extra_headers.each do |header| -%>
+    <%= "'#{header[0]}': '#{header[1]}'," %>
+  <% end -%>
+<% end -%>         
     'Content-Type': "application/json"
     }
 
@@ -133,6 +168,11 @@ func main() {
   req, _ := http.NewRequest("POST", url, payload)
 
   req.Header.Add("Authorization", "Bearer <TOKEN>")
+<% if defined? extra_headers -%>
+  <% extra_headers.each do |header| -%>
+  <%= "req.Header.Add(\"#{header[0]}\", \"#{header[1]}\")" %>
+  <% end -%>
+<% end -%>      
   req.Header.Add("Content-Type", "application/json")
 
   res, _ := http.DefaultClient.Do(req)

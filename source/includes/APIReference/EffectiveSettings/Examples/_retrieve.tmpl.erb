@@ -1,0 +1,18 @@
+<% @response_body = File.read("source/includes/APIReference/EffectiveSettings/Examples/_retrieve-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "effective_settings",
+    :description => "Retrieve a list of all effective settings for a specific user.",
+    :parameters => [ [ "user_id", "1234" ] ]    
+  }
+%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "effective_settings",
+    :description => "Retrieve a list of all effective settings modified since a specified date. Currently logged in user's id will be used since none is specified in the request.",
+    :parameters => [ [ "modified_since", "2018-03-01T00:00:00-0600" ] ],
+    :response_body => @response_body    
+  }
+%>

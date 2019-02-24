@@ -1,0 +1,11 @@
+<% @request_body = File.read("source/includes/APIReference/Files/Examples/_update-request.md.erb") -%>
+<% @response_body = File.read("source/includes/APIReference/Files/Examples/_update-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/put.md.erb",
+  :locals => {
+    :endpoint => "files",
+    :description => "Update a file.",
+    :request_body => @request_body,
+    :response_body => @response_body,
+  }
+%>
