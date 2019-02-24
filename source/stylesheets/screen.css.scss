@@ -473,16 +473,31 @@ html, body {
     }
 
     &.level200 {
-      color: #00BB00;
+      color: #45BF7B;
       @extend %api-font;
       font-weight: bold;
     }
 
     &.level400 {
-      color: #BB0000;
+      color: #C92D0C;
       @extend %api-font;
       font-weight: bold;
     }    
+
+    &.level200s {
+      color: #45BF7B;
+      font-weight: bold;
+    }
+
+    &.level400s {
+      color: #C92D0C;
+      font-weight: bold;
+    }
+
+    &.level500s {
+      color: #C92D0C;
+      font-weight: bold;
+    } 
   }
 
   pre>code {

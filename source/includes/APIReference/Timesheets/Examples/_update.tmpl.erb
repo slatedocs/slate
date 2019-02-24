@@ -1,7 +1,7 @@
 <% @request_body = File.read("source/includes/APIReference/Timesheets/Examples/_update-request.md.erb") -%>
 <% @response_body = File.read("source/includes/APIReference/Timesheets/Examples/_update-response.md.erb") -%>
 
-<%= partial "includes/CodeTemplates/post.md.erb",
+<%= partial "includes/CodeTemplates/put.md.erb",
   :locals => {
     :endpoint => "timesheets",
     :description => "Change some information for each of these timesheets.",

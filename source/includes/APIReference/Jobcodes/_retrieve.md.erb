@@ -6,7 +6,7 @@ Retrieves a list of all jobcodes associated with your company, with optional fil
 
 ### HTTP Request
 
-<img src="../../images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/jobcodes</api>
+<img src="images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/jobcodes</api>
 
 ### Filter Parameters
 |                |             |             |
@@ -15,8 +15,8 @@ Retrieves a list of all jobcodes associated with your company, with optional fil
 | **parent_ids**<br/>optional | _Int_ | Default is _-1_ (meaning all jobcodes will be returned regardless of `parent_id`).<br/><br/>Comma separated list of one or more jobcode `parent_ids` you'd like to filter on. Only jobcodes with a `parent_id` set to one of these values will be returned. Additionally you can use _0_ to get only the top-level jobcodes. Then get the `id` of any results with `has_children`=_yes_ and feed that in as the value of `parent_ids` for your next request to get the 2nd level of jobcodes, and so on, to traverse an entire tree of jobcodes.<br/><br/>Use _-1_ to return all jobcodes regardless of `parent_id`. This is especially useful when combined with the `modified_since` filter. When `parent_ids` is _-1_, you'll have the jobcode records needed to trace each result back to it's top level parent in the `supplemental_data` section of the response. |
 | **type**<br/>optional | _String_ | Indicates jobcode type. One of 'regular', 'pto', 'paid_break', 'unpaid_break', or 'all'.  Default is 'regular'. |
 | **active**<br/>optional | _String_ | 'yes', 'no', or 'both'. Default is 'yes'. If a jobcode is active, it is available for selection during time entry. |
-| **modified_before**<br/>optional | _String_ | Only jobcodes modified before this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
-| **modified_since**<br/>optional | _String_ | Only jobcodes modified since this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
+| **modified_before**<br/>optional | _String_ | Only jobcodes modified before this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`). |
+| **modified_since**<br/>optional | _String_ | Only jobcodes modified since this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`). |
 | **supplemental_data**<br/>optional | _String_ | 'yes' or 'no'. Default is 'yes'. Indicates whether supplemental data should be returned. |
 | **per_page**<br/>optional | _Int_ | Represents how many results you'd like to retrieve per request (page). Default is 50. Max is 50. |
 | **page**<br/>optional | _Int_ | Represents the page of results you'd like to retrieve. Default is 1. |

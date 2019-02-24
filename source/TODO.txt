@@ -1,24 +1,10 @@
 Add in-page anchor the the current user anchor
 In overview section: All Datetimes are ISO8601 format
-Audit for bearer token (search S.7)
-Fix stupid description of the User object.  Describe what it is.
-Add link from User Object customfields property to the Custom Fields Object
-Add a dedicated section for Supplemental Data and link to it as needed
 Fix CSS for custom ToC headers (in layout.erb)
 Fix Run in Postman button so it gets the collection from Github
-Standardize periods at the end of object descriptions
-Make sure all ISO8601's are DateTime type (not String)
 Make sure to use in-page anchors anywhere an object is referenced
 Use code markdown style for property names
-Add response code sections to all methods
-Standardize whether Format fields are italicized or not
-Add Formats to all that are missing
 Fix icon on browser tab
-Make sure POST and PUT are correct across all the samples
-Fix awkward language: "results are unfiltered with respect to any not provided."
-All comma-separated parameters should be type Int, not String
-Object examples in right-side code pane should just read "Example"
-Find all instances of "hh?ss" and replace with "hh±ss"
 Check Permissions section of each method.
 Look for old dates in examples, throughout.
 Fix H3 headers in Reports methods

@@ -589,3 +589,60 @@ func main() {
 }
 ```
 You can delete an existing object by sending an `HTTP DELETE` action to the resource's endpoint url. An `HTTP DELETE` is similar to a GET, where all relevant parameters are passed as part of a query string. You must include an identifying id of some sort for the object you would like to delete as part of your parameters.
+
+## Possible Response Status Codes
+
+### 2xx response codes
+All 2xx response codes indicate success for the action requested. Following are the most common 2xx response codes:
+
+|          |               |
+| -------: | :------------ |
+| <code class="level200s">200 OK</code> | The request was successful and the response body contains the response for the action requested. Usually comes in response to a GET request. |
+| <code class="level200s">201 Created</code> | The request was successful and the response body contains the response for the action requested. A _201_ indicates that changes may have been made on the server side to the object when the request was handled (e.g. a timesheet was split due to break settings). The caller should check the `supplemental_data` of the response to process any related changes. Usually comes in response to a POST (create) or PUT (update) request. |
+| <code class="level200s">202 Accepted</code> | The request was successful and the response body contains the response for the action requested. A _202_ indicates that the details of the create request match an already existing, active object. Rather than create a duplicate object, a _202_ is returned along with the id of the original object. Usually comes in response to a POST (create) request. |
+
+### 3xx response codes
+All 3xx response codes indicate that you need to look elsewhere for your result. The response body will contain directions on where you should be redirected to.
+
+### 4xx response codes
+All 4xx response codes indicate failure for the action requested. Following are the most common 4xx response codes:
+
+|          |               |
+| -------: | :------------ |
+| <code class="level400s">400 Bad Request</code> | There was something wrong with your request. |
+| <code class="level400s">401 Unauthorized</code> | You don't have sufficient permission to perform the action you requested. |
+| <code class="level400s">402 Billing not current</code> | Your account billing is not current, so access was denied. |
+| <code class="level400s">405 Method Not Allowed</code> | The action you are trying to perform is not allowed. |
+| <code class="level400s">406 Not Acceptable</code> | The data you have tried to create conflicts with existing data. |
+| <code class="level400s">409 Conflict</code> | The data you have tried to modify conflicts with existing data. |
+| <code class="level400s">413 Max Items Exceeded</code> | The number of objects you are listing or editing or adding is too large. |
+| <code class="level400s">417 Expectation Failed</code> | Your request was missing required parameters or your request was somehow otherwise malformed. |
+| <code class="level400s">429 Too Many Requests</code> | You have sent too many requests to the API in too short a time. You'll have to try your requests again later. |
+
+### 5xx response codes
+All 5xx response codes indicate a server error or exceptional condition on the TSheets side. Following are the most common 5xx response codes:
+
+|          |               |
+| -------: | :------------ |
+| <code class="level500s">500 Internal Server Error</code> | There was an unspecified error on the TSheets side. Try your request again in a moment; if you receive the same error then wait a few minutes before repeating it, as we are probably working to correct it. If you continue to receive the error after several hours, contact us to report a bug. |
+| <code class="level500s">501 Method not implemented</code> | This method is not implemented for this object. It may be in the future. |
+| <code class="level500s">503 (Various messages)</code> | A _503_ response code indicates that the service is temporarily unavailable. Wait a few minutes for the condition to clear, and try again. |
+
+## Response Formats
+
+<%= partial "includes/Overview/Examples/response_format.tmpl.erb" %>
+
+TSheets returns resource representations as JSON, unless an exception occurs. Each JSON response object will contain the response data underneath an object property labeled 'results'. 
+
+For GET requests, in the response body there will also be a boolean with the name, "more". If true, it means that there is another page of objects that can be retrieved. Otherwise _false_ will be the value. 
+
+If the resource object references any other objects via an id (i.e. `group_id`), a corresponding JSON representation of that object will be contained in another top level property labeled `supplemental_data`.
+
+## Exceptions
+
+TSheets returns exceptions in the HTTP response body when something goes wrong. An exception has the following properties:
+
+| Property    | Description |
+| :---------- | :---------- |
+| **code**    | The HTTP status code for the exception. |
+| **message** | A descriptive message regarding the exception. |

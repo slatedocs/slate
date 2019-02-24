@@ -6,7 +6,7 @@ Retrieves a list of schedule events associated with your employees, with filters
 
 ### HTTP Request
 
-<img src="../../images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/schedule_events</api>
+<img src="images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/schedule_events</api>
 
 ### Filter Parameters
 
@@ -16,13 +16,13 @@ Retrieves a list of schedule events associated with your employees, with filters
 | **users_ids**<br/>optional | _Int_ | Comma-separated list of one or more user ids to retrieve schedule events for. |
 | **schedule_calendar_ids**<br/>required | _Int_ | Comma separated list of one or more schedule calendar ids you'd like to filter on. Only schedule events with a schedule calendar id set to one of these values will be returned. |
 | **jobcode_ids**<br/>optional | _Int_ | A comma-separated string of jobcode ids. Only schedule events with these jobcodes will be returned. |
-| **start**<br/>required (unless `ids`, `modified_before`, or `modified_since` are set) | _String_ | Only schedule events starting on or after this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
-| **end**<br/>optional | _String_ | Only schedule events ending on or before this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
+| **start**<br/>required (unless `ids`, `modified_before`, or `modified_since` are set) | _String_ | Only schedule events starting on or after this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`). |
+| **end**<br/>optional | _String_ | Only schedule events ending on or before this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`). |
 | **active**<br/>optional | _String_ | 'yes', 'no' or 'both'. Default is 'both'. Only schedule events whose active state match the requested filter will be returned. |
 | **draft**<br/>optional | _String_ | 'yes', 'no' or 'both'. Default is 'no'. Only schedule events whose draft state match the requested filter will be returned. |
 | **team_events**<br/>optional | _String_ | 'base' or 'instance'. Default is 'instance'. If 'instance' is specified, events that are assigned to multiple users will be returned as individual single events for each assigned user. If 'base' is specified, events that are assigned to multiple users will be returned as one combined event for all assignees. |
-| **modified_before**<br/>required (unless `ids`, `modified_since`, or `start` are set) | _String_ | Only schedule events modified before this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
-| **modified_since**<br/>required (unless `ids`, `modified_before`, or `start` are set) | _String_ | Only schedule events modified since this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
+| **modified_before**<br/>required (unless `ids`, `modified_since`, or `start` are set) | _String_ | Only schedule events modified before this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`). |
+| **modified_since**<br/>required (unless `ids`, `modified_before`, or `start` are set) | _String_ | Only schedule events modified since this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`). |
 | **supplemental_data**<br/>optional | _String_ | 'yes' or 'no'. Default is 'yes'. Indicates whether supplemental data should be returned. |
 | **per_page**<br/>optional | _Int_ | Represents how many results you'd like to retrieve per request (page). Default is 50. Max is 50. |
 | **page**<br/>optional | _Int_ | Represents the page of results you'd like to retrieve. Default is 1. |

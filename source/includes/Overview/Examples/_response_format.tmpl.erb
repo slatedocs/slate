@@ -1,0 +1,7 @@
+<% @object_body = File.read("source/includes/Overview/Examples/_response_format.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/object.md.erb",
+  :locals => {
+    :object_body => @object_body
+  }
+%>
