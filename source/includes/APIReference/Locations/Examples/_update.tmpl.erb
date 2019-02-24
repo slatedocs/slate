@@ -1,0 +1,11 @@
+<% @request_body = File.read("source/includes/APIReference/Locations/Examples/_update-request.md.erb") -%>
+<% @response_body = File.read("source/includes/APIReference/Locations/Examples/_update-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/put.md.erb",
+  :locals => {
+    :endpoint => "locations",
+    :description => "Change some information for each of these locations as well as unlink one of the location from a jobcode.",
+    :request_body => @request_body,
+    :response_body => @response_body
+  }
+%>

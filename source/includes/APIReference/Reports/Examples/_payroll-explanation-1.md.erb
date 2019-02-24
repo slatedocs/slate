@@ -1,0 +1,20 @@
+{
+  "results": {
+    "payroll_report": {
+      "191544": {                    # Indexed by user_id
+        "user_id": 191544,
+        "client_id": "183",
+        "start_date": "2019-03-02",  # Start of reporting timeframe.
+        "end_date": "2019-03-15",    # End of the payroll reporting timeframe.
+        "total_re_seconds": 1816,    # Regular time, in seconds.
+        "total_ot_seconds": 0,       # Overtime, in seconds.
+        "total_dt_seconds": 0,       # Doubletime, in seconds.
+        "total_pto_seconds": 7200,   # Total PTO time, in seconds.
+        "total_work_seconds": 1816,  # Total overall time, in seconds.
+        "pto_seconds": {             # Break-down of PTO time by PTO code.
+          "123876": 7200             # Indexed by PTO code id, then value is 
+        }                            #   the time, in seconds.
+      }
+    }
+  }
+}

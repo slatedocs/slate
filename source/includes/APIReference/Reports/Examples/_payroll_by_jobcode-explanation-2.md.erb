@@ -1,0 +1,106 @@
+{
+  "results": {
+    "filters": {                        # The parameters (passed to the API).
+      "start_date": "2017-03-12",       # Start date for the report.
+      "end_date": "2017-03-18",         # End date for the report.
+      "user_ids": [                     # Array of user IDs to include in the
+        "15790",                        #   report. If not present, all users
+        "76108",                        #   will be included.
+        "76124"
+      ]
+    },
+    "payroll_by_jobcode_report": {      # The report section of the output
+      "totals": {                       # Overall totals for each jobcode
+                                        #   contained in the report.
+        "82026": {                      # Jobcode ID
+          "jobcode_id": 82026,           
+          "total_re_seconds": 0,        # Total regular seconds for this jobcode.
+          "total_pto_seconds": 28800,   # Total PTO seconds for this jobcode.
+          "total_work_seconds": 28800,  # Total number of seconds for this jobcode.
+          "overtime_seconds": {         # This replaces "total_ot_seconds" 
+            "1.6": 0,                   #   and "total_dt_seconds".
+            "3" : 0
+          },
+          "fixed_rate_seconds": {
+            "2": 3600,                  # Fixed rate time is listed here.
+            "4": 7200                   # The overtime_seconds section above
+          }                             #   is for multiplier rates.
+        },                     
+        "733512": {
+          "jobcode_id": 733512,
+          "total_re_seconds": 57600,
+          "total_pto_seconds": 0,
+          "total_work_seconds": 75900
+          "overtime_seconds": {           
+            "1.6": 18300,                
+            "3" : 0
+          },
+          "fixed_rate_seconds": {}      
+        }
+      },
+      "by_user": {                      # Totals Section (by user)
+        "15790": {                      # User ID
+          "user_id": 15790,             
+          "totals": {                   # Totals for each jobcode, for this user.
+            "82026": {                  # Jobcode ID
+              "jobcode_id": 82026,         
+              "total_re_seconds": 0,
+              "total_pto_seconds": 28800,
+              "total_work_seconds": 28800
+              "overtime_seconds": {           
+                "1.6": 0,                
+                "3" : 0
+              },
+              "fixed_rate_seconds": {
+                "2": 3600,
+                "4": 7200
+              }       
+            },
+            "733512": {
+              "jobcode_id": 733512,
+              "total_re_seconds": 57600,
+              "total_pto_seconds": 0,
+              "total_work_seconds": 75900
+              "overtime_seconds": {           
+                "1.6": 18300,                
+                "3" : 0
+              },
+              "fixed_rate_seconds": {}      
+            }
+          },
+          "dates": {                    # Totals by Date (for this user)
+            "2017-03-15": {             # Date
+              "82026": {                # Jobcode ID
+                "jobcode_id": 82026,        
+                "total_re_seconds": 0,
+                "total_pto_seconds": 28800,
+                "total_unpaid_seconds": 0,
+                "total_work_seconds": 28800
+                "overtime_seconds": {           
+                  "1.6": 0,                
+                  "3" : 0
+                },
+                "fixed_rate_seconds": {
+                  "2": 3600,
+                  "4": 7200
+                }      
+              },
+              "733512": {
+                "jobcode_id": 733512,
+                "total_re_seconds": 28800,
+                "total_pto_seconds": 0,
+                "total_unpaid_seconds": 0,
+                "total_work_seconds": 37140
+                "overtime_seconds": {           
+                  "1.6": 8340,                
+                  "3" : 0
+                },
+                "fixed_rate_seconds": {}      
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+<% @response_body = File.read("source/includes/APIReference/ManagedClients/Examples/_managing-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "managed_clients",
+    :description => "Retrieve the users on a managed client's account.",
+    :extra_headers => [ [ "vnd.tsheets.ManagedClientId", "<Managed-Client-Id>"] ],
+    :response_body => @response_body
+  }
+%>

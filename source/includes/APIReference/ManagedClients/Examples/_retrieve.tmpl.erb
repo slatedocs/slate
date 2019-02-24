@@ -1,0 +1,9 @@
+<% @response_body = File.read("source/includes/APIReference/ManagedClients/Examples/_retrieve-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "managed_clients",
+    :description => "Retrieve a list of all managed clients under your account.",
+    :response_body => @response_body
+  }
+%>

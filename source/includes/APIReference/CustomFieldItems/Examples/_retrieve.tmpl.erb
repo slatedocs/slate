@@ -1,0 +1,34 @@
+<% @response_body = File.read("source/includes/APIReference/CustomFieldItems/Examples/_retrieve-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "customfielditems",
+    :description => "Retrieve a list of all active customfielditems belonging to the given customfield.",
+    :parameters => [ ["customfield_id", "195923"] ],
+  }
+%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "customfielditems",
+    :description => "Retrieve a list of all customfielditems (active or deleted) belonging to the given customfield, and set pagination to 10 results/page.",
+    :parameters => [ [ "customfield_id", "195923" ], [ "per_page", "10" ], [ "active", "both" ] ]
+  }
+%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "customfielditems",
+    :description => "Retrieve a list of customfielditems belonging to the given customfield and having given ids.",
+    :parameters => [ [ "customfield_id", "195923" ], [ "ids", "3875655,3875657" ] ]
+  }
+%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "customfielditems",
+    :description => "Retrieve a list of customfielditems belonging to a given customfield that have been modified since a particular date.",
+    :parameters => [ [ "customfield_id", "195923" ], ["modified_since", "2018-01-01T00:00:00-06:00"] ],    
+    :response_body => @response_body
+  }
+%>

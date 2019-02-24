@@ -1,0 +1,14 @@
+<% @response_body_1 = File.read("source/includes/APIReference/Reports/Examples/_payroll_by_jobcode-explanation-1.md.erb") -%>
+<% @response_body_2 = File.read("source/includes/APIReference/Reports/Examples/_payroll_by_jobcode-explanation-2.md.erb") -%>
+
+ > **Response Layout**
+
+```json
+<%= @response_body_1 %>
+```
+
+> The format with advanced overtime is as follows:
+
+```json
+<%= @response_body_2 %>
+```

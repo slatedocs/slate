@@ -1,0 +1,10 @@
+<% @response_body = File.read("source/includes/APIReference/Notifications/Examples/_retrieve-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "notifications",
+    :description => "Retrieve a list of all notifications scheduled for a specific user.",
+    :parameters => [ [ "user_id", "1242515" ] ],
+    :response_body => @response_body
+  }
+%>

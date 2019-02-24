@@ -1,0 +1,11 @@
+<% @request_body = File.read("source/includes/APIReference/Reports/Examples/_payroll_by_jobcode-request.md.erb") -%>
+<% @response_body = File.read("source/includes/APIReference/Reports/Examples/_payroll_by_jobcode-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/post.md.erb",
+  :locals => {
+    :endpoint => "reports",
+    :description => "Retrieve a payroll report, broken down by jobcode, for the given time period within an account.",
+    :request_body => @request_body,
+    :response_body => @response_body
+  }
+%>

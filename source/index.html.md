@@ -27,10 +27,10 @@ includes:
   - APIReference/CustomFields/custom_fields.md.erb
   - APIReference/CustomFields/retrieve.md.erb
 
-  - APIReference/CustomFieldItems/custom_field_items
-  - APIReference/CustomFieldItems/retrieve
-  - APIReference/CustomFieldItems/create
-  - APIReference/CustomFieldItems/update
+  - APIReference/CustomFieldItems/custom_field_items.md.erb
+  - APIReference/CustomFieldItems/retrieve.md.erb
+  - APIReference/CustomFieldItems/create.md.erb
+  - APIReference/CustomFieldItems/update.md.erb
 
   - APIReference/EffectiveSettings/effective_settings.md.erb
   - APIReference/EffectiveSettings/retrieve.md.erb
@@ -70,33 +70,33 @@ includes:
   - APIReference/LastModified/last_modified.md.erb
   - APIReference/LastModified/retrieve.md.erb
 
-  - APIReference/Locations/locations
-  - APIReference/Locations/retrieve
-  - APIReference/Locations/create
-  - APIReference/Locations/update
+  - APIReference/Locations/locations.md.erb
+  - APIReference/Locations/retrieve.md.erb
+  - APIReference/Locations/create.md.erb
+  - APIReference/Locations/update.md.erb
 
-  - APIReference/LocationsMaps/locations_maps
-  - APIReference/LocationsMaps/retrieve
+  - APIReference/LocationsMaps/locations_maps.md.erb
+  - APIReference/LocationsMaps/retrieve.md.erb
 
-  - APIReference/ManagedClients/managed_clients
-  - APIReference/ManagedClients/retrieve  
-  - APIReference/ManagedClients/managing
+  - APIReference/ManagedClients/managed_clients.md.erb
+  - APIReference/ManagedClients/retrieve.md.erb 
+  - APIReference/ManagedClients/managing.md.erb
 
-  - APIReference/Notifications/notifications
-  - APIReference/Notifications/retrieve
-  - APIReference/Notifications/create
-  - APIReference/Notifications/delete
+  - APIReference/Notifications/notifications.md.erb
+  - APIReference/Notifications/retrieve.md.erb
+  - APIReference/Notifications/create.md.erb
+  - APIReference/Notifications/delete.md.erb
 
-  - APIReference/Reminders/reminders
-  - APIReference/Reminders/retrieve
-  - APIReference/Reminders/create
-  - APIReference/Reminders/update
+  - APIReference/Reminders/reminders.md.erb
+  - APIReference/Reminders/retrieve.md.erb
+  - APIReference/Reminders/create.md.erb
+  - APIReference/Reminders/update.md.erb
 
-  - APIReference/Reports/reports
-  - APIReference/Reports/current_totals
-  - APIReference/Reports/payroll
-  - APIReference/Reports/payroll_by_jobcode       
-  - APIReference/Reports/project  
+  - APIReference/Reports/reports.md.erb
+  - APIReference/Reports/current_totals.md.erb
+  - APIReference/Reports/payroll.md.erb
+  - APIReference/Reports/payroll_by_jobcode.md.erb      
+  - APIReference/Reports/project.md.erb 
   
   - APIReference/ScheduleCalendars/schedule_calendars
   - APIReference/ScheduleCalendars/retrieve

@@ -1,0 +1,11 @@
+<% @request_body = File.read("source/includes/APIReference/CustomFieldItems/Examples/_create-request.md.erb") -%>
+<% @response_body = File.read("source/includes/APIReference/CustomFieldItems/Examples/_create-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/post.md.erb",
+  :locals => {
+    :endpoint => "customfielditems",
+    :description => "Create two new customfielditems. One succeeds. The other fails because of a duplicate `short_code` on an existing customfielditem.",
+    :request_body => @request_body,
+    :response_body => @response_body
+  }
+%>

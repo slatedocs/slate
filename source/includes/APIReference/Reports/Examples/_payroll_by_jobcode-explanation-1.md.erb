@@ -1,0 +1,79 @@
+{
+  "results": {
+    "filters": {                       # The parameters (passed to the API).
+      "start_date": "2019-03-12",      # Start date for the report.
+      "end_date": "2019-03-18",        # End date for the report.
+      "user_ids": [                    # Array of user IDs to include in the
+        "15790",                       #   report. If not present, all users
+        "76108",                       #   will be included.
+        "76124"
+      ]
+    },
+    "payroll_by_jobcode_report": {     # The report section of the output.
+      "totals": {                      # Overall totals for each jobcode
+                                       #   contained in the report.
+        "82026": {                     # Jobcode ID.
+          "jobcode_id": 82026,     
+          "total_re_seconds": 0,       # Total regular seconds for this jobcode.
+          "total_ot_seconds": 0,       # Total overtime seconds for this jobcode.
+          "total_dt_seconds": 0,       # Total double time seconds for this jobcode.
+          "total_pto_seconds": 28800,  # Total PTO seconds for this jobcode.
+          "total_work_seconds": 28800  # Total number of seconds for this jobcode.
+        },                     
+        "733512": {
+          "jobcode_id": 733512,
+          "total_re_seconds": 57600,
+          "total_ot_seconds": 18300,
+          "total_dt_seconds": 0,
+          "total_pto_seconds": 0,
+          "total_work_seconds": 75900
+        }
+      },
+      "by_user": {                     # Totals Section (by user).
+        "15790": {                     # User ID.
+          "user_id": 15790,             
+          "totals": {                  # Totals for each jobcode, for this user.
+            "82026": {                 # Jobcode ID.
+              "jobcode_id": 82026,         
+              "total_re_seconds": 0,
+              "total_ot_seconds": 0,
+              "total_dt_seconds": 0,
+              "total_pto_seconds": 28800,
+              "total_work_seconds": 28800
+            },
+            "733512": {
+              "jobcode_id": 733512,
+              "total_re_seconds": 57600,
+              "total_ot_seconds": 18300,
+              "total_dt_seconds": 0,
+              "total_pto_seconds": 0,
+              "total_work_seconds": 75900
+            }
+          },
+          "dates": {                   # Totals by Date (for this user).
+            "2019-03-15": {            # Date.
+              "82026": {               # Jobcode ID.
+                "jobcode_id": 82026,        
+                "total_re_seconds": 0,
+                "total_ot_seconds": 0,
+                "total_dt_seconds": 0,
+                "total_pto_seconds": 28800,
+                "total_unpaid_seconds": 0,
+                "total_work_seconds": 28800
+              },
+              "733512": {
+                "jobcode_id": 733512,
+                "total_re_seconds": 28800,
+                "total_ot_seconds": 8340,
+                "total_dt_seconds": 0,
+                "total_pto_seconds": 0,
+                "total_unpaid_seconds": 0,
+                "total_work_seconds": 37140
+              }
+            }
+          }
+        } 
+      }
+    }
+  }
+}

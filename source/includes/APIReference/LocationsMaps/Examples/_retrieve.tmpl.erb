@@ -1,0 +1,25 @@
+<% @response_body = File.read("source/includes/APIReference/LocationsMaps/Examples/_retrieve-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "locations_maps",
+    :description => "Retrieve a list of all active locations maps.",
+  }
+%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "locations_maps",
+    :description => "Retrieve a list of locations maps with given ids.",
+    :parameters => [ [ "ids", "12,367,3489" ] ]
+  }
+%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "locations_maps",
+    :description => "Retrieve a list of locations maps that have been modified since a given date.",
+    :parameters => [ [ "modified_since", "2018-01-01T00:00:00-06:00" ] ],    
+    :response_body => @response_body
+  }
+%>
