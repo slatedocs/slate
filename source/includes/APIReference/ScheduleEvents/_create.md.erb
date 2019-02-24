@@ -6,7 +6,7 @@ Add one or more schedule events.
 
 ### HTTP Request
 
-<img src="../../images/post.png" alt="post"/><api>https://rest.tsheets.com/api/v1/schedule_events</api>
+<img src="images/post.png" alt="post"/><api>https://rest.tsheets.com/api/v1/schedule_events</api>
 
 ### Properties
 _Pass an array of schedule event objects as the value to a 'data' property (see example)._
@@ -14,8 +14,8 @@ _Pass an array of schedule event objects as the value to a 'data' property (see 
 |                |             |             |
 | -------------: | :---------: | ----------- |
 | **schedule_calendar_id**<br/>required | _Int_ | Id of the Schedule Calendar that contains this event. |
-| **start**<br/>required | _Int_ | Date/time that represents the start time of this event, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
-| **end**<br/>required | _Int_ | Date/time that represents the end time of this event, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
+| **start**<br/>required | _Int_ | Date/time that represents the start time of this event, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`). |
+| **end**<br/>required | _Int_ | Date/time that represents the end time of this event, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss±hh:mm`). |
 | **all_day**<br/>required | _Boolean_ | If _true_, the event duration is all day on the day specified in start. If _false_, the event duration is determined by date/time specified in end. |
 | **team_events**<br/>optional | _String_ | 'base' or 'instance'. Default is 'instance'. If 'instance' is specified, supplemental events that are created for multiple users will be returned as individual single events for each assigned user. If 'base' is specified, supplemental events that are created for multiple users will be returned as one combined event for all assignees. |
 

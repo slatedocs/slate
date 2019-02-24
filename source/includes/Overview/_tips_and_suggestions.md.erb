@@ -1,0 +1,62 @@
+# Tips & Suggestions
+
+## Requesting items that have changed since you last made a request to the API
+
+When you are looking to see whether any items have changed since your last request, it is best to query the [last_modified_timestamps](#last-modified-timestamps) API endpoint. This will allow you to easily make a single API query and see the most recent time any object from an endpoint was modified.
+
+When you determine that you need to query an endpoint, use the **`modified_since`** parameter to get only those items that have been modified since the last time you made a request.
+
+## Working with Jobcodes & Jobcode Assignments
+
+When working with Jobcodes it is highly recommended to use the [Jobcode Assignments](#the-jobcode-assignments-object) endpoint whenever possible in order to limit the number of jobcodes returned from a request. This becomes very important when dealing with TSheets accounts connected with external services such as Quickbooks since it is likely that the account will have a large number of Jobcodes.
+
+## Archiving objects no longer in use
+
+To keep your account running as efficiently as possible, it is a good idea to archive certain objects once you are done with them. You can archive Users, Jobcodes, and Customfielditems when they're no longer actively being used. You do this by setting their `active` field to _false_. All of these items are still represented in reports, even though they're archived.
+
+You cannot archive timesheets. If you delete a timesheet, it is permanently removed. To retain the ability to perform historical reporting on time, we recommend that you do **not** delete timesheets, unless it's for the purpose of correcting an inaccuracy.
+
+## Handling Supplemental Timesheet Data
+
+When fetching timesheets via TSheets, supplemental data that is pertinent to the timesheets returned will be sent back in a `supplemental_data` JSON object unless you exclude it with an API filter. Within this object you will find additional objects related to the timesheets that were returned in the result set. In the example, Jobcode, User, and Custom Field objects are returned if they are referenced in the timesheet results. This is done specifically to esure that API consumers have all the necessary data to display any timesheets that are returned. Knowing this, it is a best practice for API consumers to always parse and store any supplemental data should they wish to persist and display these timesheets later (for offline viewing, etc).
+
+You can exclude supplemental data from GET requests for the timesheets and other endpoints by including the parameter `supplemental_data` with a value of _"no"_. If your application will not be using the supplemental data from a given request, you can include this parameter to reduce payload size and improve the response time.
+
+## Recipes for Some Common Workflows
+
+### Getting current status of a single user (whether on or off the clock)
+
+Query the timesheets endpoint for the given user with active status = _true_ over the last 7 days.
+
+<code class="standout">/timesheets?user_ids=[USER_ID]&on_the_clock=yes&start_date=[7_DAYS_AGO]</code>
+
+This works because:
+
+ * We auto-clock-out any user after 7 days on the clock.
+ * If you get a result back, they're currently on the clock and you'll have all the detail you need.
+ * If they're off the clock, you'll get no result back.
+
+
+### Getting current status and totals of all users (or one) in compact format
+
+Query the <code class="standout">/reports</code> endpoint for the 'current_totals' report (this is what fuels our "who's working" window in the web dashboard).  This will get you a tally of time for the day and the current task and whether or not each user is on the clock at the moment.
+
+
+### Approving time
+
+A user may submit their time (if configured to allow it), while managers and admins may approve time.  PUT to the [Users](#update-users) endpoint, modifying the `submitted_to` and/or `approved_to` properties.
+
+
+### Running Payroll
+
+If you have the _Approvals Add-On_ installed, then each user will have a `submitted_to` and `approved_to` property.
+
+When you query the /reports endpoint for a payroll report - entries will reference a `user_id` which will correspond to an entry in the `supplemental_data` portion of the response. You can check the `approved_to` property of each user via the `supplemental_data` in the response.
+
+We recommend that you do one of two things:
+
+ **1)** Only use payroll entries where the user's time has been approved.
+
+    - OR -
+
+ **2)** Use all payroll entries, but somehow distinguish (in the UI) between those who are approved versus those who are not.

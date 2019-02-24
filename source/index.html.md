@@ -17,9 +17,11 @@ toc_footers:
   - <a href='https://www.tsheets.com/partners'>Partnership Program</a>  
 
 includes:
-  - Overview/overview
-  - Overview/authentication
-  - Overview/request_formats  
+  - Overview/overview.md.erb
+  - Overview/authentication.md.erb
+  - Overview/request_formats.md.erb
+  - Overview/tips_and_suggestions.md.erb
+  - Overview/changelog.md.erb
 
   - APIReference/CurrentUser/current_user.md.erb
   - APIReference/CurrentUser/retrieve.md.erb
@@ -119,8 +121,6 @@ includes:
   - APIReference/Users/retrieve.md.erb
   - APIReference/Users/create.md.erb
   - APIReference/Users/update.md.erb
-  
-  - errors
 
 search: true
 ---
