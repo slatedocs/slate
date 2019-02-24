@@ -1,0 +1,42 @@
+<% @response_body = File.read("source/includes/APIReference/Timesheets/Examples/_retrieve-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "timesheets",
+    :description => "Retrieve a list of `on_the_clock` and not `on_the_clock` timesheets over a 10-day period.",
+    :parameters => [ [ "start_date", "2018-07-15" ], [ "end_date", "2018-07-25" ], [ "on_the_clock", "both" ] ]
+  }
+%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "timesheets",
+    :description => "Retrieve a list of all timesheets within a certain date range which were recorded against a given jobcode id. Set pagination to 10 results/page.",
+    :parameters => [ [ "start_date", "2018-01-01" ], [ "end_date", "2018-01-31" ], [ "on_the_clock", "no" ], [ "jobcode_ids", "235494" ], [ "per_page", "10"] ]
+  }
+%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "timesheets",
+    :description => "Retrieve a list of timesheets with given ids.",
+    :parameters => [ [ "ids", "12,367,348" ] ]
+  }
+%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "timesheets",
+    :description => "Retrieve page 3 of a list of timesheets linked to a specific user within a given time range.",
+    :parameters => [ [ "page", "3" ], [ "user_ids", "1123" ], [ "start_date", "2018-01-01" ], [ "end_date", "2018-02-01" ] ]
+  }
+%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "timesheets",
+    :description => "Retrieve a list of timesheets that have been modified since a given date.",
+    :parameters => [ [ "modified_since", "2018-01-01:00:00:00-06:00" ] ],
+    :response_body => @response_body
+  }
+%>

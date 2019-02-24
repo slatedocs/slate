@@ -1,0 +1,19 @@
+<% @response_body_1 = File.read("source/includes/APIReference/ScheduleCalendars/Examples/_retrieve-response-1.md.erb") -%>
+<% @response_body_2 = File.read("source/includes/APIReference/ScheduleCalendars/Examples/_retrieve-response-2.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "schedule_calendars",
+    :description => "Retrieve a list of all schedule calendars.",
+    :response_body => @response_body_1
+  }
+%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "schedule_calendars",
+    :description => "Retrieve schedule calendars that have been modified since a given date and time.",
+    :parameters => [ [ "modified_since", "2018-07-15T19:32:00-06:00" ] ],
+    :response_body => @response_body_2
+  }
+%>

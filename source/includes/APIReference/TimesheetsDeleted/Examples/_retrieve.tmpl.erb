@@ -1,0 +1,30 @@
+<% @response_body_1 = File.read("source/includes/APIReference/TimesheetsDeleted/Examples/_retrieve-response-1.md.erb") -%>
+<% @response_body_2 = File.read("source/includes/APIReference/TimesheetsDeleted/Examples/_retrieve-response-2.md.erb") -%>
+<% @response_body_3 = File.read("source/includes/APIReference/TimesheetsDeleted/Examples/_retrieve-response-3.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "timesheets_deleted",
+    :description => "Retrieve a list of timesheets that have been deleted since a given date.",
+    :parameters => [ [ "modified_since", "2018-08-04T00:00:00-06:00" ] ],
+    :response_body => @response_body_1
+  }
+%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "timesheets_deleted",
+    :description => "Retrieve a list of deleted timesheets that were created within a range of dates.",
+    :parameters => [ [ "start_date", "2018-08-01" ], [ "end_date", "2018-08-08" ] ],
+    :response_body => @response_body_2
+  }
+%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "timesheets_deleted",
+    :description => "Retrieve a list of deleted timesheets with the specified ids.",
+    :parameters => [ [ "ids", "136022048" ] ],
+    :response_body => @response_body_3
+  }
+%>

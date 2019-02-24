@@ -1,0 +1,11 @@
+<% @request_body = File.read("source/includes/APIReference/ScheduleEvents/Examples/_create-request.md.erb") -%>
+<% @response_body = File.read("source/includes/APIReference/ScheduleEvents/Examples/_create-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/post.md.erb",
+  :locals => {
+    :endpoint => "schedule_events",
+    :description => "Create two new events: one unassigned, and the second assigned to two users.",
+    :request_body => @request_body,
+    :response_body => @response_body
+  }
+%>
