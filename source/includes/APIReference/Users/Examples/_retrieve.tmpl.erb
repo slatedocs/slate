@@ -1,0 +1,18 @@
+<% @response_body = File.read("source/includes/APIReference/Users/Examples/_retrieve-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "users",
+    :description => "Retrieve a list of all active users.",
+  }
+%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "users",
+    :description => "Retrieve a list of all users (active or deleted) whose last name starts with 'sm'. Set pagination to 30 results/page.",
+    :parameters => [ [ "per_page", "30" ], [ "last_name", "sm*" ] ],
+    :response_body => @response_body    
+  }
+%>
+

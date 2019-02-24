@@ -1,0 +1,7 @@
+<% @object_body = File.read("source/includes/APIReference/Users/Examples/_object.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/object.md.erb",
+  :locals => {
+    :object_body => @object_body
+  }
+%>

@@ -1,0 +1,11 @@
+<% @request_body = File.read("source/includes/APIReference/Users/Examples/_update-request.md.erb") -%>
+<% @response_body = File.read("source/includes/APIReference/Users/Examples/_update-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/put.md.erb",
+  :locals => {
+    :endpoint => "users",
+    :description => "Change the last name for each of these employees, and add the mobile permission to the second one.",
+    :request_body => @request_body,
+    :response_body => @response_body
+  }
+%>

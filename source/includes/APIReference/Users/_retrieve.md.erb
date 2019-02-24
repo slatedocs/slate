@@ -1,0 +1,29 @@
+## Retrieve Users
+
+<%= partial "includes/APIReference/Users/Examples/retrieve.tmpl.erb" %>
+
+Retrieves a list of all users associated with your company, with optional filters to narrow down the results.
+
+### HTTP Request
+
+<img src="../../images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/users</api>
+
+### Filter Parameters
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **ids**<br/>optional | _Int_ | Comma separated list of one or more user ids you'd like to filter on. |
+| **not_ids**<br/>optional | _Int_ | Comma separated list of one or more user ids you'd like to filter on. Specifically, the user ids you'd like to exclude. |
+| **employee_numbers**<br/>optional | _Int_ | Comma separated list of one or more employee numbers you'd like to filter on. |
+| **usernames**<br/>optional | _String_ | Comma separated list of one or more usernames you'd like to filter on. |
+| **group_ids**<br/>optional | _Int_ | Comma separated list of one or more group ids you'd like to filter on. |
+| **not_group_ids**<br/>optional | _Int_ | Comma separated list of one or more group ids you'd like to filter on. Specifically, the group ids you'd like to exclude. |
+| **payroll_ids**<br/>optional | _String_ | A comma-separated string of payroll ids. Only users with these payroll ids will be returned. |
+| **active**<br/>optional | _String_ | 'yes', 'no', or 'both'. Default is 'yes'. |
+| **first_name**<br/>optional | _String_ | * will be interpreted as a wild card. Starts matching from the beginning of the string. |
+| **last_name**<br/>optional | _String_ | * will be interpreted as a wild card. Starts matching from the beginning of the string. |
+| **modified_before**<br/>optional | _String_ | Only users modified before this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
+| **modified_since**<br/>optional | _String_ | Only users modified since this date/time will be returned, in ISO 8601 format (`YYYY-MM-DDThh:mm:ss?hh:mm`). |
+| **supplemental_data**<br/>optional | _String_ | 'yes' or 'no'. Default is 'yes'. Indicates whether supplemental data should be returned. |
+| **per_page**<br/>optional | _Int_ | Represents how many results you'd like to retrieve per request (page). Default is 50. Max is 50. |
+| **page**<br/>optional | _Int_ | Represents the page of results you'd like to retrieve. Default is 1. |
+
