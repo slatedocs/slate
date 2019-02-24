@@ -54,8 +54,8 @@ includes:
   - APIReference/Groups/create.md.erb
   - APIReference/Groups/update.md.erb
 
-  - APIReference/Invitations/invitations
-  - APIReference/Invitations/create
+  - APIReference/Invitations/invitations.md.erb
+  - APIReference/Invitations/create.md.erb
 
   - APIReference/Jobcodes/jobcodes.md.erb
   - APIReference/Jobcodes/retrieve.md.erb
@@ -115,10 +115,10 @@ includes:
   - APIReference/TimesheetsDeleted/timesheets_deleted.md.erb
   - APIReference/TimesheetsDeleted/retrieve.md.erb
 
-  - APIReference/Users/users
-  - APIReference/Users/retrieve
-  - APIReference/Users/create
-  - APIReference/Users/update
+  - APIReference/Users/users.md.erb
+  - APIReference/Users/retrieve.md.erb
+  - APIReference/Users/create.md.erb
+  - APIReference/Users/update.md.erb
   
   - errors
 
