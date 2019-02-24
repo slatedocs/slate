@@ -1,0 +1,25 @@
+<% @response_body = File.read("source/includes/APIReference/CustomFields/Examples/_retrieve-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "customfields",
+    :description => "Retrieve a list of all customfields.",
+  }
+%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "customfields",
+    :description => "Retrieve a list of customfields with a given id.",
+    :parameters => [ [ "ids", "195923" ] ]
+  }
+%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "customfields",
+    :description => "Retrieve a list of customfields that have been modified since a given date.",
+    :parameters => [ ["modified_since", "2018-01-01T00:00:00%2B00:00"] ],    
+    :response_body => @response_body
+  }
+%>

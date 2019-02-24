@@ -1,0 +1,20 @@
+## Download a File
+
+<%= partial "includes/APIReference/Files/Examples/download.tmpl.erb" %>
+
+Download a file in raw binary format.
+
+### HTTP Request
+
+<img src="../../images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/files/raw</api>
+
+### Parameters
+
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **id**<br/>required | _Int_ | Id of the file to download. |
+
+### Response
+
+The raw bytes of the file are returned, and the `Content-Type` header is set to a binary media type of 'application/octet-stream'.
+

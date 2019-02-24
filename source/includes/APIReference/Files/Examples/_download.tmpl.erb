@@ -1,0 +1,10 @@
+<% @response_body = File.read("source/includes/APIReference/Files/Examples/_download-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "files/raw",
+    :description => "The following request returns a .jpg object.",
+    :parameters => [ [ "id", "123828"] ],
+    :response_body => @response_body  
+  }
+%>

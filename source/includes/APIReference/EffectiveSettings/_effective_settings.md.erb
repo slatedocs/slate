@@ -1,0 +1,44 @@
+# Effective Settings
+
+## The Effective Settings Object
+
+<%= partial "includes/APIReference/EffectiveSettings/Examples/effective_settings.tmpl.erb" %>
+
+All combined, cascaded settings that apply to a given user are contained in the effective settings object.
+
+The effective settings object consists of a series of sections. Each section contains a `settings` and a `last_modified` property. The `settings` property is a list of key/value pairs. The `last_modified` property is an ISO 8601-formatted timestamp. It gets updated any time a key/value pair within a section has changed.
+
+Below is a list of the possible section headings.
+
+|       |             |
+| ----- | ----------- |
+| **general** | General application settings |
+| **alerts** | Settings for the Alerts Add-On |
+| **approvals** | Settings for the Approvals Add-On |
+| **breaks** | Settings for the Breaks Add-On |
+| **dcaa** | Settings for the DCAA Compliance Add-On |
+| **dialin** | Settings for the Dial-in Add-On |
+| **files** | Settings for the Files Add-On |
+| **invoicing** | Settings for the Invoicing Add-On |
+| **location_aware** | Settings for the Location Aware Add-On |
+| **mobile_app_integrations** | Settings for the Mobile App Integrations Add-On |
+| **mobile_app_settings** | Settings for the Mobile App Settings Add-On |
+| **reminders** | Settings for the Reminders Add-On |
+| **projects** | Settings for the Projects Add-On |
+| **quickbooks** | Settings for the Quickbooks Integration Add-On |
+| **restapi** | Settings for the TSheets Rest API Add-On |
+| **rounding** | Settings for the Timesheet Rounding Add-On |
+| **schedule** | Settings for the Schedule Add-On |
+| **sms** | Settings for the Text Messaging Add-On |
+| **sounds** | Settings for the Sounds Add-On |
+| **customfields** | Settings for the Advanced Tracking Add-On |
+| **time_entry** | Settings for the Time Card Selector Add-On |
+| **toodledo** | Settings for the Toodledo Add-On |
+| **twitter** | Settings for the Twitter Add-On |
+| **xero** | Settings for the Xero Integration Add-On |
+| **zenpayroll** | Settings for the Zen Payroll Integration Add-On |
+
+ <aside class="notice">
+For all sections except <code>general</code>, if not installed, the only setting will be <code>installed</code> with a value of <i>0</i>. If installed, all applicable settings will be available.
+</aside>
+
