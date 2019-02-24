@@ -31,7 +31,6 @@ request.AddHeader("Authorization", "Bearer <TOKEN>");
   <% end -%>
 <% end -%>  
 request.AddHeader("Content-Type", "application/json");
-request.AddParameter("undefined", "<REQUEST BODY>", ParameterType.RequestBody);
 IRestResponse response = client.Execute(request);
 ```
 
@@ -186,7 +185,7 @@ func main() {
 }
 ```
 
-> Response<br/><i>(example will have the following layout)</i>
+> Response Format
 
 > <code class="level200">200 OK</code>
 

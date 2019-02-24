@@ -1,0 +1,10 @@
+<% @response_body = File.read("source/includes/APIReference/Notifications/Examples/_delete-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/delete.md.erb",
+  :locals => {
+    :endpoint => "notifications",
+    :description => "Delete two notifications",
+    :parameters => [ [ "ids", "135694294,135694494" ] ],
+    :response_body => @response_body    
+  }
+%>

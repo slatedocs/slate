@@ -1,0 +1,33 @@
+<% @response_body = File.read("source/includes/APIReference/Locations/Examples/_retrieve-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "locations",
+    :description => "Retrieve a list of all active locations.",
+  }
+%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "locations",
+    :description => "Retrieve a list of all locations (active or deleted) with geocoding_status of 'complete'. Set pagination to 10 results/page.",
+    :parameters => [ [ "geocoding_status", "complete" ], [ "per_page", "10" ], [ "active", "both" ] ]
+  }
+%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "locations",
+    :description => "Retrieve a list of customfielditems belonging to the given customfield and having given ids.",
+    :parameters => [ [ "ids", "12,367,3489" ] ]
+  }
+%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "locations",
+    :description => "Retrieve a list of locations that have been modified since a given date.",
+    :parameters => [ [ "modified_since", "2018-01-01T00:00:00-06:00" ] ],    
+    :response_body => @response_body
+  }
+%>

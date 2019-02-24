@@ -12,13 +12,23 @@
 <% end -%>
 
 ```shell
-<%= "curl \"#{@full_url}\"" %>
+<%= "curl \"#{@full_url}\" \\" %>
+<% if defined? extra_headers -%>
+  <% extra_headers.each do |header| -%>
+  <%= "-H \"#{header[0]}: #{header[1]}\" \\" %>
+  <% end -%>
+<% end -%>
   -H "Authorization: Bearer <TOKEN>"
 ```
 
 ```csharp
 <%= "var client = new RestClient(\"#{@full_url}\");" %>
 var request = new RestRequest(Method.GET);
+<% if defined? extra_headers -%>
+  <% extra_headers.each do |header| -%>
+<%= "request.AddHeader(\"#{header[0]}\", \"#{header[1]}\");" %>
+  <% end -%>
+<% end -%> 
 request.AddHeader("Authorization", "Bearer <TOKEN>");
 IRestResponse response = client.Execute(request);
 ```
@@ -29,6 +39,11 @@ OkHttpClient client = new OkHttpClient();
 Request request = new Request.Builder()
   <%= ".url(\"#{@full_url}\")" %>
   .get()
+<% if defined? extra_headers -%>
+  <% extra_headers.each do |header| -%>
+  <%= ".addHeader(\"#{header[0]}\", \"#{header[1]}\")" %>
+  <% end -%>
+<% end -%>   
   .addHeader("Authorization", "Bearer <TOKEN>")
   .build();
 
@@ -48,7 +63,15 @@ var options = { method: 'GET',
   },
 <% end %>
   headers: 
-   { Authorization: 'Bearer <TOKEN>' } };
+<% if defined? extra_headers -%>
+   { 'Authorization': 'Bearer <TOKEN>',
+  <% extra_headers.each do |header| -%>
+     <%= "'#{header[0]}': '#{header[1]}'," %>
+  <% end -%>
+   } };
+<% else %>
+   { 'Authorization': 'Bearer <TOKEN>' } };
+<% end -%>     
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
@@ -73,8 +96,16 @@ $request->setQueryData(array(
 <% end %>
 
 $request->setHeaders(array(
+<% if defined? extra_headers -%>
+  'Authorization' => 'Bearer <TOKEN>',
+  <% extra_headers.each do |header| -%>
+  <%= "'#{header[0]}' => '#{header[1]}'," %>
+  <% end -%>
+));
+<% else %>
   'Authorization' => 'Bearer <TOKEN>'
 ));
+<% end -%>
 
 try {
   $response = $request->send();
@@ -95,6 +126,11 @@ http = Net::HTTP.new(url.host, url.port)
 
 request = Net::HTTP::Get.new(url)
 request["Authorization"] = 'Bearer <TOKEN>'
+<% if defined? extra_headers -%>
+  <% extra_headers.each do |header| -%>
+<%= "request[\"#{header[0]}\"] = '#{header[1]}'," %>
+  <% end -%>
+<% end -%>   
 
 response = http.request(request)
 puts response.read_body
@@ -115,8 +151,15 @@ querystring = {
 
 payload = ""
 headers = {
-    'Authorization': "Bearer <TOKEN>"
-    }
+<% if defined? extra_headers -%>
+   'Authorization': "Bearer <TOKEN>",
+  <% extra_headers.each do |header| -%>
+   <%= "'#{header[0]}': \"#{header[1]}\"," %>
+  <% end -%>
+<% else %>
+   'Authorization': "Bearer <TOKEN>"
+<% end -%> 
+  }
 
 <% if defined? parameters -%>
 response = requests.request("GET", url, data=payload, headers=headers, params=querystring)
@@ -142,6 +185,11 @@ func main() {
 
   req, _ := http.NewRequest("GET", url, nil)
 
+<% if defined? extra_headers -%>
+  <% extra_headers.each do |header| -%>
+  <%= "req.Header.Add(\"#{header[0]}\", \"#{header[1]}\")" %>
+  <% end -%>
+<% end -%> 
   req.Header.Add("Authorization", "Bearer <TOKEN>")
 
   res, _ := http.DefaultClient.Do(req)
@@ -154,7 +202,7 @@ func main() {
 }
 ```
 <% if defined?(response_body) %>
- > Response<br/><i>(example will have the following layout)</i>
+ > Response Format
 
  > <code class="level200">200 OK</code>
 

@@ -1,0 +1,11 @@
+<% @request_body = File.read("source/includes/APIReference/Reports/Examples/_current_totals-request.md.erb") -%>
+<% @response_body = File.read("source/includes/APIReference/Reports/Examples/_current_totals-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/post.md.erb",
+  :locals => {
+    :endpoint => "reports",
+    :description => "Retrieve a `current_totals` report for all users on an account.",
+    :request_body => @request_body,
+    :response_body => @response_body
+  }
+%>

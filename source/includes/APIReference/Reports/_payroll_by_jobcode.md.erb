@@ -1,0 +1,51 @@
+## Retrieve Payroll by Jobcode Report
+
+<%= partial "includes/APIReference/Reports/Examples/payroll_by_jobcode-explanation.tmpl.erb" %>
+
+<%= partial "includes/APIReference/Reports/Examples/payroll_by_jobcode.tmpl.erb" %>
+
+Retrieves a payroll report, broken down by jobcode, with filters to narrow down the results.
+
+Overtime (and double time) are allocated based on the jobcode they are working on at the time the thresholds are crossed. In other words, by order of occurrence. 
+
+As an example, assume that an employee works 60 hours against 3 different job codes, following this schedule: 25 hours against jobcode A, then 25 hours against jobcode B, then 10 hours against jobcode C. The report would allocate the time as follows:
+
+| Jobcode | Hours | Regular | Overtime |
+| :-----: | :---: | :-----: | :------: |
+| A | 25 | 25 | 0 |
+| B | 25 | 15 | 10 |
+| C | 10 | 0 | 10 |
+
+### HTTP Request
+
+<img src="../../images/post.png" alt="post"/><api>https://rest.tsheets.com/api/v1/reports/payroll_by_jobcode</api>
+
+### Filter Properties
+
+_Pass an an object of filters as the value to a 'data' property (see example)._
+
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **start_date**<br/>required | _String_ | `YYYY-MM-DD` formatted date. Any time with a date falling on or after this date will be included.  |
+| **end_date**<br/>required | _String_ | `YYYY-MM-DD` formatted date. Any time with a date falling on or before this date will be included. |
+| **user_ids**<br/>optional | _Int_ | A comma-separated list of user ids. Only time for these users will be included. |
+| **group_ids**<br/>optional | _Int_ | A comma-separated list of group ids. Only time for users from these groups will be included. |
+| **advanced_overtime**<br/>(see notes below) | _String_ | 'yes' or 'no'. If 'yes', overtime will be formatted such that it includes the time for individual multipliers and can support more than just 1.5x (ot) and 2x (dt) overtime. |
+
+<aside class="notice">
+The date range defined by <code>start_date</code> and <code>end_date</code> must not exceed 31 days.
+</aside>
+
+<aside class="notice">
+For <code>advanced_overtime</code> the default for api keys created before Oct 25th 2017 is 'no', however, the default for api keys created after this date is 'yes' and attempting to pass this parameter with a value of 'no' will result in an exception.
+</aside>
+
+<aside class="notice">
+The <code>advanced_overtime</code> setting is required to be passed as 'yes' if the Overtime add-on is installed and rates other than the standard 1.5x and 2x rates are defined. This is enforced so that incorrect overtime values that do not comply with the standard "total_ot_seconds" (1.5x) and "total_dt_seconds" (2x) rates are not missed.
+</aside>
+
+### Understanding the Output
+
+See explanation of response layouts to the right.
+
+Notice in the advanced overtime layout that the `total_ot_seconds` and `total_dt_seconds` values have been replaced by the `overtime_seconds` and `fixed_rate_seconds` objects in each instance. In the `overtime_seconds` object the key is the multiplier rate and the value is the number of seconds of overtime at that rate (i.e 8340 seconds at 1.5x). In the `fixed_rate_seconds` object, the key is the additional rate amount to add to the employee's hourly rate and the value is the time in seconds.

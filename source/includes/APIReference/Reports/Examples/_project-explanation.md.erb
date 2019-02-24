@@ -1,0 +1,45 @@
+{
+  "results": {
+    "project_report": {
+      "start_date": "2019-03-02",
+      "end_date": "2019-03-15",
+      "totals": {
+        "users": {                 # This contains all users, indexed by user_id and
+          "29604": "0.08"          #   the number of hours for each.
+        },
+        "groups": {                # This contains the number of hours for each group.
+          "0": 0.08                # Time for which there is no group
+        },                         #   is represented by an index of '0'.
+        "jobcodes": {              # This contains the number of hours for each jobcode.
+          "4647114": "0.08"        # Time for which there is no jobcode
+        },                         #   is represented by an index of '0'.
+        "customfields": {          # This contains the number of hours for each customfield.
+          "28840": {               # Indexes are each customfield id.
+            "0": "0.08"            # Each of these sub-containers is a breakdown of the
+                                   #   amount of hours for each item (indexed by id) in
+                                   #   the customfield. Time for which there is no item
+                                   #   assigned from this customfield is represented by
+          },                       #   a customfielditem id of '0'.
+          "2054": {
+            "0": "0.08"
+          },
+          "64": {
+            "664014": "0.08"
+          },
+          "34": {
+            "0": "0.08"
+          },
+          "54": {
+            "0": "0.08"
+          },
+          "44": {
+            "3711483": "0.08"
+          },
+          "3184": {
+            "0": "0.08"
+          }
+        }
+      }
+    }
+  }
+}

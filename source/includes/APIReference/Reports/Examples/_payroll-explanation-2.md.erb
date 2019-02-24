@@ -1,0 +1,41 @@
+{
+  "results": {
+    "payroll_report": {
+      "191549": {                    # Indexed by user_id.
+        "user_id": 191549,
+        "client_id": "188",
+        "start_date": "2019-03-02",  # Start of the reporting timeframe.
+        "end_date": "2019-03-15",    # End of the reporting timeframe.
+        "total_re_seconds": 1816,    # Regular time, in seconds.
+        "total_pto_seconds": 7200,   # Total PTO time, in seconds.
+        "total_work_seconds": 5416,  # Total overall time, in seconds.
+        "pto_seconds": {             # Break-down of PTO time by PTO code.
+          "123876": 7200             # Indexed by PTO code id, then value is 
+        },                           #   the time, in seconds.
+        "overtime_seconds": {        # This replaces total_ot_seconds
+          "1.6": 3600,               #   and total_dt_seconds.
+          "3" : 0
+        },
+        "fixed_rate_seconds": {
+          "2": 3600,                 # Fixed rate time is listed here.
+          "5": 7200                  # The overtime_seconds section above is
+        }                            #   for multiplier rates.
+      },
+      "31174": {
+        "user_id": 31174,
+        "client_id": "188",
+        "start_date": "2019-03-02",
+        "end_date": "2019-03-15",
+        "total_re_seconds": 28800,
+        "total_pto_seconds": 0,
+        "total_work_seconds": 606845,
+        "pto_seconds": {}
+        "overtime_seconds": {          # With the Overtime add-on, different
+          "1.5": 14400,                # rates can apply to different people 
+          "2" : 563645                 # So 1.5x & 2x instead of 1.6x & 3x. 
+         },
+        "fixed_rate_seconds" : {}    
+      }
+    }
+  }
+}
