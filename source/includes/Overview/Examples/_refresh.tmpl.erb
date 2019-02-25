@@ -1,0 +1,9 @@
+<% @response_body = File.read("source/includes/Overview/Examples/_refresh-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "grant",
+    :description => "Refresh Token Request.",
+    :response_body => @response_body
+  }
+%>

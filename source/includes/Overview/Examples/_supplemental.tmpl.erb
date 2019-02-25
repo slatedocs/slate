@@ -1,0 +1,10 @@
+<% @response_body = File.read("source/includes/Overview/Examples/_supplemental-response.md.erb") -%>
+
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "timesheets",
+    :description => "Suppemental Data.",
+    :parameters => [ [ "start_date", "12-05-2017" ], ["modified_since", "12-05-2018"] ],    
+    :response_body => @response_body
+  }
+%>

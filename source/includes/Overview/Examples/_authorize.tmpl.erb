@@ -1,0 +1,7 @@
+<%= partial "includes/CodeTemplates/get.md.erb",
+  :locals => {
+    :endpoint => "authorize",
+    :description => "Authorization Request.",
+    :parameters => [ [ "response_type", "code" ], [ "client_id", "MYAPPCLIENTID" ], [ "redirect_uri", "https://somedomain.com/callback" ], [ "state", "MYSTATE"] ]
+  }
+%>

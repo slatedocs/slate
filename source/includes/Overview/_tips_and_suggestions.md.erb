@@ -18,6 +18,8 @@ You cannot archive timesheets. If you delete a timesheet, it is permanently remo
 
 ## Handling Supplemental Timesheet Data
 
+<%= partial "includes/Overview/Examples/supplemental.tmpl.erb" %>
+
 When fetching timesheets via TSheets, supplemental data that is pertinent to the timesheets returned will be sent back in a `supplemental_data` JSON object unless you exclude it with an API filter. Within this object you will find additional objects related to the timesheets that were returned in the result set. In the example, Jobcode, User, and Custom Field objects are returned if they are referenced in the timesheet results. This is done specifically to esure that API consumers have all the necessary data to display any timesheets that are returned. Knowing this, it is a best practice for API consumers to always parse and store any supplemental data should they wish to persist and display these timesheets later (for offline viewing, etc).
 
 You can exclude supplemental data from GET requests for the timesheets and other endpoints by including the parameter `supplemental_data` with a value of _"no"_. If your application will not be using the supplemental data from a given request, you can include this parameter to reduce payload size and improve the response time.
@@ -49,14 +51,12 @@ A user may submit their time (if configured to allow it), while managers and adm
 
 ### Running Payroll
 
-If you have the _Approvals Add-On_ installed, then each user will have a `submitted_to` and `approved_to` property.
-
-When you query the /reports endpoint for a payroll report - entries will reference a `user_id` which will correspond to an entry in the `supplemental_data` portion of the response. You can check the `approved_to` property of each user via the `supplemental_data` in the response.
+If you have the _Approvals Add-On_ installed, then each user will have a `submitted_to` and `approved_to` property. When you query the `/reports` endpoint for a payroll report - entries will reference a `user_id` which will correspond to an entry in the `supplemental_data` portion of the response. You can check the `approved_to` property of each user via the `supplemental_data` in the response.
 
 We recommend that you do one of two things:
 
  **1)** Only use payroll entries where the user's time has been approved.
 
-    - OR -
+  OR
 
  **2)** Use all payroll entries, but somehow distinguish (in the UI) between those who are approved versus those who are not.
