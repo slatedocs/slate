@@ -17,7 +17,7 @@ toc_footers:
   - <a href='https://www.tsheets.com/partners'>Partnership Program</a>  
 
 includes:
-  - Overview/overview.md.erb
+  - Overview/welcome.md.erb
   - Overview/authentication.md.erb
   - Overview/request_formats.md.erb
   - Overview/tips_and_suggestions.md.erb

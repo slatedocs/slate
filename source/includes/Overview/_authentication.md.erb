@@ -9,7 +9,7 @@
   }
   </style>
 </img>
-<span>TSheets uses OAuth2 for authentication and authorization of our API. [OAuth2](http://oauth.net/2/) is a protocol designed to let third-party applications authenticate to perform actions as a user, without getting the user's password. There are several libraries available that implement the protocol, a good list can be found at the [OAuth2](http://oauth.net/2/) home page. Through the use of OAuth2, you'll go through the process of obtaining a token and then you'll use that token in every request made to the API to verify your identity.</span>
+<span>TSheets uses OAuth2 for authentication and authorization of our API. [OAuth2](http://oauth.net/2/) is a protocol designed to let third-party applications authenticate to perform actions as a user, without getting the user's password. There are several libraries available that implement the protocol, and a good list can be found at the [OAuth2](http://oauth.net/2/) home page. Through the use of OAuth2, you'll go through the process of obtaining a token and then you'll use that token in every request made to the API to verify your identity.</span>
 
 ## Obtaining a Token
 
@@ -21,9 +21,10 @@ Before you can make any request of the API, you must first authenticate. Once yo
  As a convenience to you, we allow access tokens to be created through the web UI via the API Add-on preferences page (<code>Add-ons -> API -> click 'Preferences'</code>). You can also extend the expiration date on these tokens via the web UI, so that you don't have to deal with refreshing tokens. <bold>Remember to keep your access tokens secret; treat them just like passwords!</bold>
 </aside>
 
-Performing the OAuth2 token request flow requires an OAuth client ID and an OAuth client secret. To obtain these application credentials, you will need to install the API Add-On in your TSheets account and follow the instructions found there. The **OAuth client secret should never be shared**.
+Performing the OAuth2 token request flow requires an OAuth client ID and an OAuth client secret. To obtain these application credentials, you will need to install the API Add-On in your TSheets account and follow the instructions found there. The _**OAuth client secret should never be shared**_.
 
-There are 2 steps required in order to obtain an access token, as described below.
+There are 2 steps required in order to obtain an access token, as follows:
+
 ### Step 1. Authorization Request
 
 This first step consists of a user authorizing your application to access their information on TSheets. To do this, you'll create a link somewhere on your site that they can use to initiate the process. The link will contain several parameters that are necessary for TSheets to consider it valid. The user should use a web browser to follow the link and perform the authorization request.
@@ -35,9 +36,91 @@ Once the user is directed to access the authorization endpoint at TSheets ('auth
 
  The link that a user will follow to perform an authorization request is made to the /authorize end-point:
 
- <code class="standout">https://rest.tsheets.com/api/v1/authorize</code>
+ <%= partial "includes/Overview/Examples/authorize.tmpl.erb" %>
 
- An example of a link that calls this URL is shown below:
+### HTTP Request
 
-<code class="standout">https://rest.tsheets.com/api/v1/authorize?response_type=code&client_id=MYAPPCLIENTID&redirect_uri=https://somedomain.com/callback&state=MYSTATE</code>
+<img src="images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/authorize</api>
+
+### Parameters
+
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **response_type**<br/>required | _String_ | This parameter MUST always be set to the string 'code'. |
+| **client_id**<br/>required | _String_ | This parameter MUST always be set to the value of the OAuth client ID that you obtained when you registered your app in the TSheets API Add-On in your TSheets account. |
+| **redirect_uri**<br/>required | _String_ | The HTTPS url that you submitted as the 'OAuth Redirect URI' when you set up your app in the TSheets API Add-On. If the user grants access to your application, we'll redirect them back to this url with a temporary code in a `code` parameter. They'll use this code to obtain an access token. |
+| **state**<br/>required | _String_ | A random value used by the client to maintain state between the request and callback. The authorization server includes this value when redirecting the user-agent back to the client. It is used to protect against cross-site request forgery attacks. If the states don't match, the request has been created by a third party and the process should be aborted. |
+| **display_mode**<br/>optional | _String_ | Optional. Can be 'create' or 'login'. Default is 'login'. If 'login', the form for logging into an existing TSheets account is displayed first. If 'create', the form for creating a _new_ TSheets account is shown first. |
+
+Upon successful authorization and if the user grants access for their data to the app, TSheets will redirect the connected user to the redirect_uri (https://somedomain.com/callback in this example) found in the original request, and two parameters will be appended to it:
+
+   **1)** `code` - the unique code generated for this request - to be used in the token call later in the flow.
+   **2)** `state` - the value passed in 'state' in the original authorization request.
+
+For example: 
+
+<code class="standout">https://somedomain.com/callback?code=bbcaef03191517dfb60d0305bfea38ea995af1az&state=MYSTATE</code>
+
+The server that handles the request to `https://somedomain.com/callback` should extract and save the `code` parameter value, as it is required as part of the next step in the flow. The `state` value should be compared to what was originally sent and verified to be the same.
+
+If the call to the `/authorize` end-point is malformed, or if the user denies access to the requesting app, then TSheets will still redirect the user back to the `redirect_uri`, but instead it will append `error` and `error_description` parameters. For example:
+
+<code class="standout">https://somedomain.com/callback?error=SOME_ERROR&error_description=SOME_DESCRIPTION</code>
+
+<aside class="notice">
+We do not currently support <code>scope</code> for our clients, so the <code>scope</code> parameter mentioned in the OAuth 2.0 specification is not required.
+</aside>
+
+### Step 2. Access Token Request
+
+At this point you have an authorization 'code' for the user of your app. To exchange the code for an access token, your application needs to do a POST to our `/grant` API end-point. In this step, TSheets will check that the authorization code was issued to the same application that is making the token request.
+
+The access_token should be included with every call to the API. Failure to include the access token or using an expired token will result in a _401_ response. Note that when you receive your access token, you also receive the `user_id` and `client_id` properties that are associated with the user that the access token is for. These properties are provided for convenience, to potentially save you the need for making a request to the [current user](#the-current-user-object) endpoint. 
+
+If the client has IP Authorization security enabled with the _block all access_ option turned on, the request could fail with a _499_ status code if it comes from an unauthorized IP address. All subsequent requests will also fail until the device switches to an authorized IP address.
+
+<%= partial "includes/Overview/Examples/grant.tmpl.erb" %>
+
+### HTTP Request
+
+<img src="images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/grant</api>
+
+### Parameters
+
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **grant_type**<br/>required | _String_ | This parameter MUST always be set to the string 'authorization_code'. This tells us what type of code is included. |
+| **client_id**<br/>required | _String_ | This parameter MUST always be set to the value of the OAuth client ID that you obtained when you set up your app in the API Add-On in your TSheets account. |
+| **client_secret**<br/>required | _String_ | This parameter MUST always be set to the value of the OAuth client secret that you obtained when you set up your app in the API Add-On in your TSheets account. |
+| **code**<br/>required | _String_ | The 'code' being exchanged for an access token. This should be the authorization code received above. |
+| **redirect_uri**<br/>required | _String_ | The HTTPS url that was included in Step 1 of the authorization request. The value must be identical. |
+
+## Make Requests With the Access Token
+
+<%= partial "includes/Overview/Examples/auth_request.tmpl.erb" %>
+
+Once you have an OAuth access token, you can use it to make API requests. Use the HTTP Authorization header when making a request.
+
+## Storing a Token
+
+When appropriate, applications should store the token locally, rather than requesting a new token for the same user each time the user uses the application. If the token is deleted or expires, the application will get a _401 Unauthorized_ error from the API, in which case the application should perform the OAuth flow again to receive a new token. Storing a token is in many ways equivalent to storing the user's password, so tokens should be stored and used in a secure manner.
+
+## Refreshing an Access Token
+
+Access tokens expire after `expires_in` seconds (see example response). In order to avoid sending the user through the OAuth2 process described above every time they want to access resources, API consumers can exchange a `refresh_token` for a new `access_token` before the current one expires. To do so, you make a request similar to the original request described above.
+
+<%= partial "includes/Overview/Examples/refresh.tmpl.erb" %>
+
+### HTTP Request
+
+<img src="images/get.png" alt="get"/><api>https://rest.tsheets.com/api/v1/grant</api>
+
+### Parameters
+
+|                |             |             |
+| -------------: | :---------: | ----------- |
+| **grant_type**<br/>required | _String_ | This parameter MUST be set to the string 'refresh_token'. |
+| **client_id**<br/>required | _String_ | This parameter MUST always be set to the value of the OAuth client ID that you obtained when you set up your app in the API Add-On in your TSheets account. |
+| **client_secret**<br/>required | _String_ | This parameter MUST always be set to the value of the OAuth client secret that you obtained when you set up your app in the API Add-On in your TSheets account. |
+| **refresh_token**<br/>required | _String_ | This parameter is the `refresh_token` that you're exchanging for a `new access_token`. |
 

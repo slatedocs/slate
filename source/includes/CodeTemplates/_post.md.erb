@@ -1,10 +1,11 @@
  > **Example**: <%= description %>
-
+<% if defined?(request_body) -%>
  > Request Body
 
 ```json
 <%= request_body %>
 ```
+<% end -%>
 
  > Request
 
@@ -184,7 +185,7 @@ func main() {
 
 }
 ```
-
+<% if defined?(response_body) -%>
 > Response Format
 
 > <code class="level200">200 OK</code>
@@ -192,3 +193,4 @@ func main() {
 ```json
 <%= response_body %>
 ```
+<% end -%>
