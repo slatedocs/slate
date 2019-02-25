@@ -252,7 +252,8 @@ p JSON.parse(result)
   "limit_price": "string",
   "size": 0,
   "side": "buy",
-  "order_type": "limit_order"
+  "order_type": "limit_order",
+  "time_in_force": "gtc"
 }
 ```
 
@@ -703,7 +704,8 @@ p JSON.parse(result)
     "limit_price": "string",
     "size": 0,
     "side": "buy",
-    "order_type": "limit_order"
+    "order_type": "limit_order",
+    "time_in_force": "gtc"
   }
 ]
 ```
@@ -2524,7 +2526,8 @@ This operation does not require authentication.
   "limit_price": "string",
   "size": 0,
   "side": "buy",
-  "order_type": "limit_order"
+  "order_type": "limit_order",
+  "time_in_force": "gtc"
 }
 
 ```
@@ -2540,6 +2543,7 @@ This operation does not require authentication.
 |size|integer|false|none|none|
 |side|string|false|none|side for which to place order|
 |order_type|string|false|none|none|
+|time_in_force|string|false|none|none|
 
 #### Enumerated Values
 
@@ -2549,6 +2553,9 @@ This operation does not require authentication.
 |side|sell|
 |order_type|limit_order|
 |order_type|market_order|
+|time_in_force|gtc|
+|time_in_force|ioc|
+|time_in_force|fok|
 
 <h2 id="tocSarrayofcreateorderrequest">ArrayOfCreateOrderRequest</h2>
 
@@ -2561,7 +2568,8 @@ This operation does not require authentication.
     "limit_price": "string",
     "size": 0,
     "side": "buy",
-    "order_type": "limit_order"
+    "order_type": "limit_order",
+    "time_in_force": "gtc"
   }
 ]
 

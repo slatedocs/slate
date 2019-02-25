@@ -1,14 +1,25 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/lord/img/master/logo-slate.png" alt="Slate: API Documentation Generator" width="226">
-  <br>
-  <a href="https://travis-ci.org/lord/slate"><img src="https://travis-ci.org/lord/slate.svg?branch=master" alt="Build Status"></a>
-</p>
+### Delta Api Documentation
+Api documentation for Delta Exchange (built using Slate). Rest api is generated from swagger json using widdershins.
 
-<p align="center">Slate helps you create beautiful, intelligent, responsive API documentation.</p>
+## Setup
+bundle install
+npm install -g widdershins
 
-<p align="center"><img src="https://raw.githubusercontent.com/lord/img/master/screenshot-slate.png" width=700 alt="Screenshot of Example Documentation created with Slate"></p>
+## Updating Rest Api Markdown
+Rest Api markdown is generated using swagger. Steps
+1. Update swagger.json
+2. run `./deploy.sh --gen-widdershins` to update _rest_api.md
+3. Remove table of contents markdown from the top of _rest_api.md
 
-<p align="center"><em>The example above was created with Slate. Check it out at <a href="https://lord.github.io/slate">lord.github.io/slate</a>.</em></p>
+## How to run
+bundle install
+bundle exec middleman server
+
+## How to publish
+./deploy.sh
+
+
+### Slate Documentation
 
 Features
 ------------

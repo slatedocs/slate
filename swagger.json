@@ -884,6 +884,11 @@
         "order_type": {
           "type" : "string",
           "enum" : [ "limit_order", "market_order" ]
+        },
+        "time_in_force": {
+          "type" : "string",
+          "enum" : [ "gtc", "ioc", "fok" ],
+          "required": false
         }
       }
     },
