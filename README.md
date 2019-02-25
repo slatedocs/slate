@@ -2,10 +2,10 @@
 Api documentation for Delta Exchange (built using Slate). Rest api is generated from swagger json using widdershins.
 
 ### Setup
-`
+```
 bundle install
 npm install -g widdershins
-`
+```
 
 ### Updating Rest Api Markdown
 Rest Api markdown is generated using swagger. Steps
@@ -14,11 +14,15 @@ Rest Api markdown is generated using swagger. Steps
 3. Remove table of contents markdown from the top of _rest_api.md
 
 ### How to run
+```
 bundle install
 bundle exec middleman server
+```
 
 ### How to publish
+```
 ./deploy.sh
+```
 
 
 ## Slate Documentation
