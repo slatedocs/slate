@@ -21,6 +21,7 @@ includes:
   - Overview/authentication.md.erb
   - Overview/request_formats.md.erb
   - Overview/tips_and_suggestions.md.erb
+  - Overview/walkthroughs.md.erb  
   - Overview/changelog.md.erb
 
   - APIReference/CurrentUser/current_user.md.erb

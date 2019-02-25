@@ -1,30 +1,33 @@
-<br/>
-<img src="images/tsheets-lakemoor.jpg" class="welcome">
-  <style>
-  .welcome {
-    width: 100%;
-  }
-  </style>
-</img>
-
 # Welcome
 
+Thank you for visiting the TSheets API Documentation Portal!  We hope you'll easily find everything you need. If not, please let us know and we'll make it right.  Whether you're running into a problem, have feedback or a great suggestion, or would just like to talk through integration scenarios, we'd [love to hear from you](mailto:help@tsheets.com).
+
 ## Introduction
+The TSheets API provides programmatic access to the same time tracking, managing, scheduling and reporting features as our top-rated web-based and mobile apps.  With it you can build amazing integrations, for example to automatically sync accurate employee time tracking data for payroll and invoicing. Or, create new scheduling or project management solutions.  The options are many.
 
-The TSheets API (Application Programming Interface) is based on [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) principles. It's very easy to write and test applications. You can use your browser to access URLs, and you can use pretty much any TLS-capable HTTP client in any programming language to interact with the API. The API allows you to query metadata about your account, users, jobcodes, timesheets, GPS points, and custom fields. You can also create timesheets, users, jobcodes, etc.
+Based on [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) principles, it's very easy to write and test applications. You can use your browser to access URLs, and practically any TLS-capable HTTP client in any programming language to interact with the API. The API allows you to query metadata about your account, users, jobcodes, timesheets, GPS points, and custom fields. You can also create timesheets, users, jobcodes, etc.  All access to the API occurs over a TLS-encrypted secure channel, so your API client must support TLS. To ensure data privacy, unencrypted HTTP is not supported.
 
-All access to the API occurs over an TLS-encrypted secure channel, so your API client must support TLS. To ensure data privacy, unencrypted HTTP is not supported.
 ## Getting Started
 
-The quickest way to get started is to use our [Postman](http://www.getpostman.com/) request collection. The following steps will help you get up and running as quickly as possible. If you prefer, our API can also easily be explored with other tools, like cURL.
+<img src="images/getting_started.png" class="getting-started"/>
 
-### 1) Create an Access Token
+**1) Signup for a Free Trial**<br/>
+Visit [https://www.tsheets.com](https://www.tsheets.com) today and get started within minutes.
 
- * Login to your TSheets account, or <a href="https://www.tsheets.com/">sign up for a free trial</a>.
- * Create an API Access token by following the instructions in [Obtaining a token](#obtaining-a-token)
- * Copy the token value for use with the imported collection, below.
+**2) Obtain an Access Token**<br/>
+See the [guided walkthrough](#obtaining-an-api-access-token) to complete the simple steps. (See also [Authentication](#authentication))
 
-### 2) Open the TSheets Postman Collection
+**3) Build your Integration**<br/>
+For the quickest start, try our [Postman Collection](#postman-collection) along with the API Reference documentation.
+
+**4) Partner with Us!**<br/>
+We'd love to have a conversation with you and explore integration ideas for the mutual benefit of your business and TSheets. See our [Partnership Page](#https://www.tsheets.com/partners) for details.
+
+## Postman Collection
+
+The quickest way to get started is to use our [Postman](http://www.getpostman.com/) request collection. The following steps will help you get up and running. If you prefer, our API can also easily be explored with other tools, like cURL.
+
+### 1) Open the TSheets Postman Collection
 
 <div class="postman-run-button"
 data-postman-action="collection/import"
@@ -45,18 +48,22 @@ data-postman-var-1="01861e468223de53ba7a"></div>
   }
 </style>
 
-### 3) Configure the Postman Environment
+### 2) Configure the Postman Environment
 
  * Setup a new environment by clicking the Gear icon at top right
  * Name the new environment _TSheets_ and click _Add_ to create
  * Expand the _GET STARTED_ folder and select the _Environment Setup_ method
- * Select the _Pre-req._ tab and set `tsheets-bearer-token` to the value obtained in step 1 above
+ * Select the _Pre-req._ tab and set `tsheets-bearer-token` to the Access Token Value previously obtained
  * Click the _Send_ button
 
-### 4) Explore the API
+### 3) Explore the API
 
  * Execute any of the requests within the collection
  * Refer to this documentation for the requirements of each method
+
+<aside class="warning">
+If Postman returns a <i><b>"Could not get any response"</b></i> error, most likely you need to set the environment (as in step #2 above).
+</aside>
 
 ## Base URL
 
