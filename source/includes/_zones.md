@@ -15,11 +15,11 @@ curl "https://platform.tier-services.io/zone"
   "data": [
     {
       "type": "zones",
-      "id": "MADRID-CONSTRAINED-79-171",
+      "id": "MADRID",
       "attributes": {
-        "name": "MADRID-constrained-79-171",
-        "lat": null,
-        "lng": null,
+        "name": "MADRID",
+        "lng": -3.690478,
+        "lat": 40.451744,
         "polygon": [
           {
             "lng": -3.690478,
@@ -39,11 +39,11 @@ curl "https://platform.tier-services.io/zone"
           }
         ],
         "country": "SPAIN",
-        "zoneType": "constrained",
+        "zoneType": "root",
         "created": "2019-02-23T11:24:21Z",
         "updated": "2019-02-23T11:24:23Z",
         "parentId": "MADRID",
-        "isActive": true,
+        "isActive": true
       }
     }
   ]

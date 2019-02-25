@@ -11,9 +11,9 @@ toc_footers:
 includes:
   - zones
   - vehicles
-  - itineraries
   - customers
   - rental
+  - itineraries
   - errors
 
 search: true
