@@ -40,10 +40,7 @@ curl "https://platform.tier-services.io/zone"
         ],
         "country": "SPAIN",
         "zoneType": "root",
-        "created": "2019-02-23T11:24:21Z",
-        "updated": "2019-02-23T11:24:23Z",
         "parentId": "MADRID",
-        "isActive": true
       }
     }
   ]
