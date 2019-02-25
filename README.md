@@ -1,31 +1,36 @@
-Built using slate ([github link](https://github.com/lord/slate)).
+# Affinity API Docs
 
-## Development
+Affinity's API docs uses the formatting and build system from [lord/slate].
 
-Initialize and start Slate. You can either do this locally, or with Vagrant:
+## Prerequisites
 
-```shell
-# either run this to run locally
-bundle install
-bundle exec middleman server
+Make sure Ruby is installed. Instead of the system Ruby, you may want to use
+[rbenv] or Homebrew Ruby (`brew install ruby`).
 
-# OR run this to run with vagrant
-vagrant up
-```
+After Ruby is set up, run:\
+`$ gem install bundler && bundle install`
 
-You can now see the docs at http://localhost:4567. Whoa! That was fast!
+## Editing and testing locally
 
-Now that Slate is all set up on your machine, you'll probably want to learn more about [editing Slate markdown](https://github.com/lord/slate/wiki/Markdown-Syntax), or [how to publish your docs](https://github.com/lord/slate/wiki/Deploying-Slate).
+For editing help, see [Slate markdown].
 
-If you'd prefer to use Docker, instructions are available [in the wiki](https://github.com/lord/slate/wiki/Docker).
+Start the development server:\
+`$ bundle exec middleman server`\
+Visit <http://localhost:4567/> to check the result.
 
-To deploy
---------------------
-1. Make sure to fetch the AWS credentials using MFA and copy them to `~/.aws/credentials` as described in the last bullet point of this section: https://github.com/affinity-team/infrastructure-secrets#accessing-aws-from-the-command-line.
+## Building and deploying
 
-1. To build: `bundle exec middleman build --clean`
+Build the site into static files in `build/`:\
+`$ bundle exec middleman build --clean`
 
-1. To upload to aws: `aws s3 sync build s3://api-docs.affinity.co --delete --acl public-read --profile mfa`
+Serve the static files in `build/`:\
+`$ bash -c 'cd build && ruby -run -e httpd . -p 4567'`\
+Visit <http://localhost:4567/> to check the result.
 
-1. Invalidate cache on cloudfront by following the instructions at this URL: https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Invalidation.html#Invalidation_Requests. Type `/*` to invalidate all paths.
+Build and deploy the site by pushing to the `gh-pages` branch:\
+`$ ./deploy.sh`
 
+<!-- Links -->
+[lord/slate]: https://github.com/lord/slate
+[rbenv]: https://github.com/rbenv/rbenv
+[Slate markdown]: https://github.com/lord/slate/wiki/Markdown-Syntax
