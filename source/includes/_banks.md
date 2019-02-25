@@ -63,10 +63,15 @@ To keep your users informed of the status and estimated time of arrival of their
 
 At a high level there are three steps to gaining access to an existing TransferWise account.
 <ol>
-  <li>Your app redirects the user to TransferWise authorization webpage, which prompts them to login if necessary.
-
+  <li>Your app redirects the user to TransferWise authorization webpage, which prompts them to login if necessary.<br/>
+    
+Sandbox:  
   `
-  https://api.sandbox.transferwise.tech/oauth/authorize?response_type=code&client_id=<your api client id>&redirect_uri=https://www.yourbank.com
+  https://sandbox.transferwise.tech/oauth/authorize?response_type=code&client_id=<your api client id>&redirect_uri=https://www.yourbank.com
+  ` <br/>
+Live:  
+  `
+  https://api.transferwise.com/oauth/authorize?response_type=code&client_id=<your api client id>&redirect_uri=https://www.yourbank.com
   `
   </li>
   <li>The user logs in to TransferWise</li>
