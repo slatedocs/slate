@@ -6,7 +6,6 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 
 The Sila API uses the following error codes:
 
-
 Error Code | Meaning
 ---------- | -------
 400 | Bad Request -- Your request is invalid.
