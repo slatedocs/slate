@@ -131,4 +131,4 @@ currently in an active rent if `isUnlocked` is `true`. The `code` is also provid
 
 Parameter  | Description
 --------- | -----------
-zone | a zone of type `root`
+zoneId | a zone of type `root`
