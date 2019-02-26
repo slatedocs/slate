@@ -398,7 +398,7 @@ To confirm your connection, send a <span style="color:red">`ping`</span> request
 
 A successful request will generate a lightning invoice that will look similar to the example below:
 
-<span style="color:red"><code style="word-wrap:break-word;">lnbcrt10n1pd5v2mwpp5ulxpj8ht4gvtqnyl8zuykfk4wcv6sz455ce5dy0e0lqt...</code></span>
+<span style="color:blue"><code style="word-wrap:break-word;">lnbcrt10n1pd5v2mwpp5ulxpj8ht4gvtqnyl8zuykfk4wcv6sz455ce5dy0e0lqt...</code></span>
 
 # Crypto Exchange API 
 
