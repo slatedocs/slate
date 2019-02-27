@@ -8,7 +8,7 @@ The credentials are needed to complete the authorisation_code grant type of OAut
 We also need *redirect_url* from your technical team so that we can limit our callbacks to only that URL, this is URL that we will forward users to after successfully granting your application access to their TransferWise account. Specifying this explicitly makes the integration more secure.
 [OAuth 2.0: The Complete Guide](https://auth0.com/blog/oauth2-the-complete-guide/) is a great way to refresh your knowledge about the protocol itself.
 
-### TEST and LIVE environments
+### SANDBOX and LIVE environments
 
 * Sandbox API is located at https://api.sandbox.transferwise.tech
 * LIVE API is located at https://api.transferwise.com
@@ -22,7 +22,7 @@ There are different ways to build the frontend experience, especially when it co
 For example, you can put sign up/log in step as a first step, then show the currency calculator, and then collect recipient details.
 Alternatively, you can build it so a user starts from the calculator, then you collect recipient details, and as a last step ask user to sign up/log in.
 
-We have plenty of examples to show you how this has been done by our current parterns and can help you to build a great experience for your customers.
+We have plenty of examples to show you how this has been done by our current partners and can help you to build a great experience for your customers.
 
 ## Building your backend
 
@@ -92,7 +92,7 @@ Your webiste or app opens the folowing url in the user's browser.
 `https://sandbox.transferwise.tech/oauth/authorize?response_type=code&client_id=<your-api-client-id>&redirect_uri=<redirect-uri>`
 
 Replace *your-api-client-id* and *redirect-uri* with your specific values. 
-The redirect URL should be the address you want the user to return to after the authorization flow, which will have been preconfigured when you requested your API access tokens. This can be different accross the sandbox and production environements and we can update it for you upon reuqest.
+The redirect URL should be the address you want the user to return to after the authorization flow, which will have been preconfigured when you requested your API access tokens. This can be different across the sandbox and production environments and we can update it for you upon request.
 
  You should not use `WebView` components to show the authorization page to the users because they are not secure and will not allow users to log in to TransferWise with Google, which is an option used by some of our users. Your app should instead open the device's full browser app.
 
@@ -250,7 +250,7 @@ In the case you created the user using the [sign up new users via API](#bank-int
 
 If the user has not reclaimed their account then the original `registrationCode` you generated should still be able to generate new tokens for the user. Because of this you should store this code alongside the created user ID in your database at the point of user generation.
 
-If the previosuly stored token fails with an error code 400 and error:
+If the previously stored token fails with an error code 400 and error:
 
 ```json
 {
@@ -261,7 +261,6 @@ If the previosuly stored token fails with an error code 400 and error:
 In this case you can assume the user has reclaimed the account and push them through the [get user authorization for existing accounts](#bank-integrations-guide-get-user-authorization-for-existing-accounts) flow.
 
 ## Create personal user profile
-
 When you first get access to a user's TransferWise user account you will cannot predict if they already have submitted their profile data or not.
 
 [User Profiles.List](#user-profiles-list) endpoint will give you data for both personal and business profiles, if it exists. This makes it easy to
@@ -273,21 +272,29 @@ There are three steps to creating a new personal user profile:
 
 1) [Create personal user profile – general data](#user-profiles-create-personal). This includes customer name, date of birth, and phone number. 
 
-2) [Create personal user profile – address data](#addresses-create). Once the general profile information has been saved, you also need to add address information to the personal user profile.
+2) [Open update window](#user-profiles-open-update-window). Open the update window for the profile updates.
 
-3) [Create identification document](#user-profiles-create-identification-document). Adding identification document (Passport, Drivers License etc ) metadata to user profile.  This is an optional step depending on the KYC relationship we have with your bank, please contact the team at TransferWise to discuss further.
+3) [Create personal user profile – address data](#addresses-create). Add address information to the personal user profile.
+
+4) [Close update window](#user-profiles-close-update-window). Close the update window for the profile updates.
 
 ## Create business user profile
-
 A personal profile has to be created first. You can’t create a business user profile without a personal profile.
 
-Creating a business profile is similar to how you created personal profile. There are two steps:
+Creating a business profile is similar to how you created a personal profile. There are four steps:
 
-1) [Create business user profile – general data](#user-profiles-create-business)
+1) [Create business user profile – general data](#user-profiles-create-business). This includes business name, type and other information. 
 
-2) [Create business user profile – address data](#addresses-create) 
+2) [Open update window](#user-profiles-open-update-window). Open the update window for the profile updates.
 
-Currently we do not support a fully automated business onboarding flow over the API - this feature is coming soon, please contact the TransferWise team for more details.
+3) [Create business user profile – address data](#addresses-create). Add address information to the business user profile.
+
+4) [Create business user profile - director data](#user-profiles-add-business-directors). Add business director information to the business user profile.
+
+5) [Create business user profile - UBO data](#user-profiles-add-business-ultimate-beneficial-owners). Add ultimate business owner information to the business user profile.
+
+6) [Close update window](#user-profiles-close-update-window). Close the update window for the profile updates.
+
 
 ## Create quote
 Please look at [Create quote](#quotes-create) under Full API Reference.
@@ -322,6 +329,28 @@ Please look at [Track transfer status](#transferwise-payouts-guide-track-transfe
 ## Get updated transfer delivery time estimate
 Please look at [Get transfer delivery time](#transferwise-payouts-guide-get-transfer-delivery-time) under TransferWise Payouts Guide.
 
+## Updating personal profile
+When user data changes the personal profile information must be updated.
+
+1) [Open update window](#user-profiles-open-update-window). Open the update window for profile updates.
+
+2) [Update personal profile - general data](#user-profiles-update). Update the personal profile data.
+ 
+3) [Close update window](#user-profiles-close-update-window). Close the update window for profile updates.
+ 
+## Updating business profile
+When business data changes the business profile information must be updated.
+
+1) [Open update window](#user-profiles-open-update-window). Open the update window for profile updates.
+
+2) [Update business profile - general data](#user-profiles-update). Update the business profile data.
+
+3) [Update business profile - directors data](#user-profiles-update-business-directors). Update directors information in the business user profile.
+
+3) [Update business profile - UBO data](#user-profiles-update-business-ultimate-beneficial-owners). Update ultimate business owners information in the business user profile.
+ 
+4) [Close update window](#user-profiles-close-update-window). Close the update window for profile updates.
+
 ## Edge case handling
 This section discusses some edge cases that you should test and handle before going live with your integration.
 
@@ -332,7 +361,7 @@ This works well when the email addresses match in the first place and aren't upd
 
 ### Non-matching email addresses
 
-If a user already has a TransferWise account and you create a user for the same person under a differnt email address they could end up with a duplicate user account under the second email address. Currently we monitor this behaviour for abuse but we are working on a more robust user creation solution to prevent this occuring.
+If a user already has a TransferWise account and you create a user for the same person under a different email address they could end up with a duplicate user account under the second email address. Currently we monitor this behaviour for abuse but we are working on a more robust user creation solution to prevent this occurring.
 
 ### Email Change
 
@@ -354,7 +383,7 @@ If the token expires for a user not created by the bank and the user has a new e
 The result of many of these flows is that the user may end up with more than one TransferWise account, which is undesirable. Currently we monitor this behaviour for abuse but we are working on a more robust user creation scenario to prevent this occurring.
 
 ### Email change mitigation 
-The result of these eventualities are that over time a user of the bank could be linked to more than one TransferWise account and so therefore you will need to be defensive when requesting older user data as the request may fail because we forbid one user to access other user's data. We recommend to keep a local copy of your user's transfer data and update it asynchronously such that older transfers remain accessible to the user in the case where it can no longerbe accessed. You should also make sure to handle these failing calls gracefully and continue to process transfers that can be accessed over the API.
+The result of these eventualities are that over time a user of the bank could be linked to more than one TransferWise account and so therefore you will need to be defensive when requesting older user data as the request may fail because we forbid one user to access other user's data. We recommend to keep a local copy of your user's transfer data and update it asynchronously such that older transfers remain accessible to the user in the case where it can no longer be accessed. You should also make sure to handle these failing calls gracefully and continue to process transfers that can be accessed over the API.
 
 In the event a user is not happy at losing access to their older data or having two accounts is confusing then we can manually update the email addresses to match for the two accounts they want.
 

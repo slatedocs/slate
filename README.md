@@ -37,3 +37,8 @@ bundle exec middleman server
 You can now see the docs at http://localhost:4567. Whoa! That was fast!
 
 You can also do it with with Vagrant, read more from [Slate docs](https://github.com/lord/slate)
+
+If you are running on Ubuntu you might need to install Ruby and build tools before running `bundle install`:
+
+    sudo apt-get install ruby-full build-essential liblzma-dev patch ruby-dev zlib1g-dev
+    

@@ -327,3 +327,386 @@ issuerCountry            | Issued by country code. For example "US"    | Text
 issuerState              | Issued by state code. For example "NY"      | Text
 expiryDate               | Document expiry date. (optional)            | YYYY-MM-DD
 
+
+## Get business directors
+
+> Example Request:
+
+```shell
+curl -X GET https://api.sandbox.transferwise.tech/v1/profiles/{profileId}/directors \
+     -H "Authorization: Bearer <your api token>" 
+```
+
+> Example Response:
+
+```json
+[
+  {
+    "id": 10,
+    "firstName": "John",
+    "lastName": "Doe",
+    "dateOfBirth": "1982-05-20",
+    "countryOfResidenceIso3Code": "usa"
+  },
+  {
+    "id": 11,
+    "firstName": "Jane",
+    "lastName": "Doe",
+    "dateOfBirth": "1981-12-07",
+    "countryOfResidenceIso3Code": "usa"
+  }
+]
+```
+Returns the list of all directors associated with the business profile.
+
+### Request (Business)
+**`GET https://api.sandbox.transferwise.tech/v1/profiles/{profileId}/directors`**
+
+
+## Add business directors
+
+> Example Request:
+
+```shell
+curl -X POST https://api.sandbox.transferwise.tech/v1/profiles/{profileId}/directors \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '[
+             {
+                 "firstName": "John",
+                 "lastName": "Doe",
+                 "dateOfBirth": "1982-05-20",
+                 "countryOfResidenceIso3Code": "usa"
+             },
+             {
+                 "firstName": "Jane",
+                 "lastName": "Doe",
+                 "dateOfBirth": "1981-12-07",
+                 "countryOfResidenceIso3Code": "usa"
+             }
+        ]'
+```
+
+> Example Response:
+
+```json
+[
+    {
+        "id": 10,
+        "firstName": "John",
+        "lastName": "Doe",
+        "dateOfBirth": "1982-05-20",
+        "countryOfResidenceIso3Code": "usa"
+    },
+    {
+        "id": 11,
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "dateOfBirth": "1981-12-07",
+        "countryOfResidenceIso3Code": "usa"
+    },
+    {
+        "id": 7,
+        "firstName": "Oliver",
+        "lastName": "Wilson",
+        "dateOfBirth": "2017-12-31",
+        "countryOfResidenceIso3Code": "gbr"
+    }
+]
+```
+Adds new directors to the business profile.
+Returns the list of all directors associated with the business profile.
+
+### Request (Business)
+**`POST https://api.sandbox.transferwise.tech/v1/profiles/{profileId}/directors`**
+
+Field                      | Description                   | Format
+---------                  | -------                       |-----------
+firstName                  | Director first name           | Text
+lastName                   | Director last name            | Text
+dateOfBirth                | Date of birth                 | YYYY-MM-DD
+countryOfResidenceIso3Code | 3 character country code      | Text
+
+
+## Update business directors
+
+> Example Request:
+
+```shell
+curl -X PUT https://api.sandbox.transferwise.tech/v1/profiles/{profileId}/directors \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '[
+             {
+                 "firstName": "John",
+                 "lastName": "Doe",
+                 "dateOfBirth": "1982-05-20",
+                 "countryOfResidenceIso3Code": "usa"
+             },
+             {
+                 "firstName": "Jane",
+                 "lastName": "Doe",
+                 "dateOfBirth": "1981-12-07",
+                 "countryOfResidenceIso3Code": "usa"
+             }
+        ]'
+```
+
+> Example Response:
+
+```json
+[
+    {
+        "id": 14,
+        "firstName": "John",
+        "lastName": "Doe",
+        "dateOfBirth": "1982-05-20",
+        "countryOfResidenceIso3Code": "usa"
+    },
+    {
+        "id": 15,
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "dateOfBirth": "1981-12-07",
+        "countryOfResidenceIso3Code": "usa"
+    }
+]
+```
+Overrides directors in the business profile.
+Returns the list of all directors associated with the business profile.
+
+### Request (Business)
+**`PUT https://api.sandbox.transferwise.tech/v1/profiles/{profileId}/directors`**
+
+Field                      | Description                  | Format
+---------                  | -------                      |-----------
+firstName                  | Director first name          | Text
+lastName                   | Director last name           | Text
+dateOfBirth                | Date of birth                | YYYY-MM-DD
+countryOfResidenceIso3Code | 3 character country code     | Text
+
+
+## Get business ultimate beneficial owners
+
+> Example Request:
+
+```shell
+curl -X GET https://api.sandbox.transferwise.tech/v1/profiles/{profileId}/ubos \
+     -H "Authorization: Bearer <your api token>" 
+```
+
+> Example Response:
+
+```json
+[
+    {
+        "id": "013ab1c2688d0185b582ee7e0bcb28b2",
+        "name": "John Doe",
+        "dateOfBirth": "1982-05-20",
+        "countryOfResidenceIso3Code": "usa",
+        "addressFirstLine": "123 Fake St",
+        "postCode": "FK 12345",
+        "ownershipPercentage": 30
+    },
+    {
+        "id": "912ce3f31c8b3a10572137e78417caa3",
+        "name": "Jane Doe",
+        "dateOfBirth": "1981-12-07",
+        "countryOfResidenceIso3Code": "usa",
+        "addressFirstLine": "125 Fake St",
+        "postCode": "FK 12545",
+        "ownershipPercentage": 70
+    }
+]
+```
+Returns the list of all ultimate beneficial owners associated with the business profile.
+
+### Request (Business)
+**`GET https://api.sandbox.transferwise.tech/v1/profiles/{profileId}/ubos`**
+
+
+## Add business ultimate beneficial owners
+
+> Example Request:
+
+```shell
+curl -X POST https://api.sandbox.transferwise.tech/v1/profiles/{profileId}/ubos \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '[
+             {
+                 "name": "John Doe",
+                 "dateOfBirth": "1982-05-20",
+                 "countryOfResidenceIso3Code": "usa",
+                 "addressFirstLine": "123 Fake St",
+                 "postCode": "FK 12345",
+                 "ownershipPercentage": 30
+             },
+             {
+                 "name": "Jane Doe",
+                 "dateOfBirth": "1981-12-07",
+                 "countryOfResidenceIso3Code": "usa",
+                 "addressFirstLine": "125 Fake St",
+                 "postCode": "FK 12545",
+                 "ownershipPercentage": 40
+             }
+        ]'
+```
+
+> Example Response:
+
+```json
+[
+     {
+         "id": "f3e71aa1c97448d0b1eb5bdc0bacdcce",
+         "name": "John Doe",
+         "dateOfBirth": "1982-05-20",
+         "countryOfResidenceIso3Code": "usa",
+         "addressFirstLine": "123 Fake St",
+         "postCode": "FK 12345",
+         "ownershipPercentage": 30
+     },
+     {
+         "id": "c6008d58a1664413b4c4dcacec1377f4",
+         "name": "Jane Doe",
+         "dateOfBirth": "1981-12-07",
+         "countryOfResidenceIso3Code": "usa",
+         "addressFirstLine": "125 Fake St",
+         "postCode": "FK 12545",
+         "ownershipPercentage": 40
+     },
+     {
+         "id": "63bbdd1cf5ec4dd587597e74dbace376",
+         "name": "Oliver Wilson",
+         "dateOfBirth": "2017-12-31",
+         "countryOfResidenceIso3Code": "gbr",
+         "addressFirstLine": "222 Fake St",
+         "postCode": "FK 22222",
+         "ownershipPercentage": 30
+     }
+]
+```
+Adds new ultimate beneficial owners to the business profile.
+Returns the list of all ultimate beneficial owners associated with the business profile.
+
+### Request (Business)
+**`POST https://api.sandbox.transferwise.tech/v1/profiles/{profileId}/ubos`**
+
+Field                      | Description                    | Format
+---------                  | -------                        |-----------
+name                       | Owner full name                | Text
+dateOfBirth                | Date of birth                  | YYYY-MM-DD
+countryOfResidenceIso3Code | 3 character country code       | Text
+addressFirstLine           | First line of address          | Text
+postCode                   | Address post code              | Text
+ownershipPercentage        | Percentage of ownership        | Integer
+
+
+## Update business ultimate beneficial owners
+
+> Example Request:
+
+```shell
+curl -X PUT https://api.sandbox.transferwise.tech/v1/profiles/{profileId}/ubos \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '[
+             {
+                 "name": "John Doe",
+                 "dateOfBirth": "1982-05-20",
+                 "countryOfResidenceIso3Code": "usa",
+                 "addressFirstLine": "123 Fake St",
+                 "postCode": "FK 12345",
+                 "ownershipPercentage": 30
+             },
+             {
+                 "name": "Jane Doe",
+                 "dateOfBirth": "1981-12-07",
+                 "countryOfResidenceIso3Code": "usa",
+                 "addressFirstLine": "125 Fake St",
+                 "postCode": "FK 12545",
+                 "ownershipPercentage": 70
+             }
+        ]'
+```
+
+> Example Response:
+
+```json
+[
+     {
+         "id": "ff01cf3f206b40c090a14a1e51163e9e",
+         "name": "John Doe",
+         "dateOfBirth": "1982-05-20",
+         "countryOfResidenceIso3Code": "usa",
+         "addressFirstLine": "123 Fake St",
+         "postCode": "FK 12545",
+         "ownershipPercentage": 30
+     },
+     {
+         "id": "c36b687d28ad44ad8c3864411f5f2612",
+         "name": "Jane Doe",
+         "dateOfBirth": "1981-12-07",
+         "countryOfResidenceIso3Code": "usa",
+         "addressFirstLine": "125 Fake St",
+         "postCode": "FK 12545",
+         "ownershipPercentage": 70
+     }
+]
+```
+Overrides ultimate beneficial owners in the business profile.
+Returns the list of all ultimate beneficial owners associated with the business profile.
+
+### Request (Business)
+**`PUT https://api.sandbox.transferwise.tech/v1/profiles/{profileId}/ubos`**
+
+Field                      | Description                    | Format
+---------                  | -------                        |-----------
+name                       | Owner full name                | Text
+dateOfBirth                | Date of birth                  | YYYY-MM-DD
+countryOfResidenceIso3Code | 3 character country code       | Text
+addressFirstLine           | First line of address          | Text
+postCode                   | Address post code              | Text
+ownershipPercentage        | Percentage of ownership        | Integer
+
+
+## Open update window
+
+> Example Request:
+
+```shell
+curl -X POST https://api.sandbox.transferwise.tech/v1/profiles/{profileId}/update-window \
+     -H "Authorization: Bearer <your api token>" 
+```
+
+> Example Response:
+
+```json
+
+```
+
+Opens the update window for updating the profile information: details, addresses, directors, owners, others.
+
+### Request
+**`POST https://api.sandbox.transferwise.tech/v1/profiles/{profileId}/update-window`**
+
+
+## Close update window
+
+> Example Request:
+
+```shell
+curl -X DELETE https://api.sandbox.transferwise.tech/v1/profiles/{profileId}/update-window \
+     -H "Authorization: Bearer <your api token>" 
+```
+
+> Example Response:
+
+```json
+
+```
+
+Deletes the update window for updating the profile.
+
+### Request
+**`POST https://api.sandbox.transferwise.tech/v1/profiles/{profileId}/update-window`**
