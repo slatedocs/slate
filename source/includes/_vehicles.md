@@ -132,3 +132,20 @@ currently in an active rent if `isUnlocked` is `true`. The `code` is also provid
 Parameter  | Description
 --------- | -----------
 zoneId | a zone of type `root`
+
+### HTTP Request
+
+`POST https://platform.tier-services.io/vehicle/47372/flash`
+
+## Make vehicle flash
+
+```shell
+curl -X POST "https://platform.tier-services.io/vehicle/47372/flash"
+  -H "x-api-key: TIER API KEY"
+```
+
+This endpoints triggers a flashing of the vehicle to locate it better
+
+### HTTP Request
+
+`GET https://platform.tier-services.io/vehicle/47372/flash`
