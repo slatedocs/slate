@@ -148,4 +148,4 @@ This endpoints triggers a flashing of the vehicle to locate it better
 
 ### HTTP Request
 
-`GET https://platform.tier-services.io/vehicle/47372/flash`
+`POST https://platform.tier-services.io/vehicle/47372/flash`
