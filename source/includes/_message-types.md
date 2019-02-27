@@ -50,7 +50,7 @@ We have a public JSON schema [here](https://api.silamoney.com/PROD/getschema?sch
 
 **Used By Endpoints:**
 
-- [/create_entity](#create_entity)
+- [/register](#register)
 
 **JSON Structure:**
 

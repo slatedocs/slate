@@ -1,7 +1,7 @@
 # Authentication
 
 ```javascript
-// Authentication mechanism example
+// Authentication example:
 
 // For this example, we will use a library for message signing.
 // See: https://github.com/pubkey/eth-crypto
@@ -23,7 +23,8 @@ var msg_hash = EthCrypto.hash.keccak256(message);
 // Create a signature using your private key and the hashed message.
 var signature = EthCrypto.sign(private_key, messageHash);
 
-// The EthCrypto library adds a leading '0x' which should be removed from the signature.
+// The EthCrypto library adds a leading '0x' which should be removed 
+// from the signature.
 signature = signature.substring(2);
 
 // The raw message should then be sent in an HTTP request body, and the signature
@@ -44,7 +45,7 @@ request_data.body = message;
 ```
 
 ```go
-// Authentication mechanism example
+// Authentication example:
 
 // Imports used:
 import (
@@ -58,22 +59,24 @@ import (
 
 // You will need a message (the contents of the request body
 // you will send) and a private key.
-// This private key will be an ethereum private key. In this example,
-// it should be a hex string 64 characters in length, omitting any "0x" 
-// that might precede the number.
+// This private key will be an ethereum private key. In this 
+// example, it should be a hex string 64 characters in length,
+// omitting any "0x" that might precede the number.
 privateKey := "PRIVATE_KEY"
 messageJSON := map[string]interface{}{
   "test": "message",
 }
 
-// Convert a private key from hex to the *ecdsa.PrivateKey type if needed.
+// Convert a private key from hex to the *ecdsa.PrivateKey type 
+// in your function if needed.
 pk, err := crypto.HexToECDSA(privateKey)
 if err != nil {
-  log.Fatal(err) // handle errors however you'd like in your implementation.
+  log.Fatal(err)
 }
 
 // Marshal the message to JSON; this function returns bytes.
-// (The bytes that get hashed should be guaranteed to be the same as what is sent in the request.)
+// (The bytes that get hashed should be guaranteed to be the
+// same as what is sent in the request.)
 message, err := json.Marshal(&messageJSON)
 if err != nil {
   log.Fatal(err)
@@ -88,17 +91,20 @@ if err != nil {
   log.Fatal(err)
 }
 
-// The signature just created is off by -27 from what the API will expect.
-// Correct that by converting the signature bytes to a big int and adding 27.
+// The signature just created is off by -27 from what the API
+// will expect. Correct that by converting the signature bytes 
+// to a big int and adding 27.
 var offset int64 = 27
 var bigSig = new(big.Int).SetBytes(sigBytes)
 sigBytes = bigSig.Add(bigSig, big.NewInt(offset)).Bytes()
 
-// The big library takes out any padding, but the resultant signature must be
-// 130 characters (65 bytes) long. In some cases, you might find that sigBytes
-// now has a length of 64, so you can fix that in this way (this prepends
-// the hex value with "0" until the requisite length is reached).
-// Example: if you must pass in two digits but your value is 1, you can pass in 01.
+// The big library takes out any padding, but the resultant 
+// signature must be 130 characters (65 bytes) long. In some 
+// cases, you might find that sigBytes now has a length of 64, so 
+// you can fix that in this way (this prepends the hex value with 
+// "0" until the requisite length is reached).
+// Example: if two digits were required but the value was 1, you'd 
+// pass in 01.
 var sigBytesLength = 65 // length of a valid signature byte array
 var arr = make([]byte, sigBytesLength)
 copy(arr[(sigBytesLength-len(sigBytes)):], sigBytes)
@@ -106,8 +112,8 @@ copy(arr[(sigBytesLength-len(sigBytes)):], sigBytes)
 // Encode the bytes to a hex string.
 sig := hex.EncodeToString(arr)
 
-// The raw message should then be sent in an HTTP request body, and the signature
-// should be sent in a header.
+// The raw message should then be sent in an HTTP request body, and
+// the signature should be sent in a header.
 log.Println("Message:", string(message))
 log.Println("Signature:", sig, "Signature length:", len(sig))
 

@@ -52,10 +52,10 @@ The request body at this endpoint is the [header_msg](#header_msg) JSON object.
 | ----------- | ------------- | ----------- |
 | 200 | | |
 
-## /create_entity
+## /register
 
 ```
-POST /0.1/check_handle HTTP/1.1
+POST /0.1/register HTTP/1.1
 Host: api.silamoney.com
 
 authsignature: [GENERATED AUTHSIGNATURE HERE]
@@ -89,7 +89,6 @@ Content-Type: application/json
     "contact_alias": "",
     "email": "example@silamoney.com"
   },
-  
   "crypto_entry": {
     "crypto_alias": "Address 1",
     "crypto_address": "0x1234567890abcdef1234567890abcdef12345678",
@@ -106,19 +105,19 @@ Content-Type: application/json
 ```
 
 ```javascript
-// JavaScript create_entity example coming soon
+// JavaScript register example coming soon
 ```
 
 ```python
-# Python create_entity example coming soon
+# Python register example coming soon
 ```
 
 ```java
-// Java create_entity example coming soon
+// Java register example coming soon
 ```
 
 ```go
-// Go create_entity example coming soon
+// Go register example coming soon
 ```
 
 *Starts verification process on a person and attaches result and specified blockchain address to assigned handle.*
@@ -173,7 +172,7 @@ Content-Type: application/json
 
 *Returns whether entity attached to user handle is verified, not valid, or still pending.*
 
-This endpoint should be run after successfully completing a /create_entity call. Since ID verification is a relatively lengthy process (generally will take around 30 minutes to an hour to complete), /create_entity will never confirm in the response that an entity was verified. Therefore, /check_kyc may be polled until a final confirmation is returned.
+This endpoint should be run after successfully completing a /register call. Since ID verification is a relatively lengthy process (generally will take around 30 minutes to an hour to complete), /register will never confirm in the response that an entity was verified. Therefore, /check_kyc may be polled until a final confirmation is returned.
 
 The request body at this endpoint is the [header_msg](#header_msg) JSON object. 
 
