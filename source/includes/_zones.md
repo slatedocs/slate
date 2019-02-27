@@ -1,10 +1,10 @@
 
 # Zones
 
-## Get All Zones
+## Get All Zones near by
 
 ```shell
-curl "https://platform.tier-services.io/zone"
+curl "https://platform.tier-services.io/zone?lat=40&lng=-3"
   -H "x-api-key: TIER API KEY"
 ```
 
@@ -62,7 +62,7 @@ or by automatisms. It is yet essential to inform anyone about those areas to pro
 
 ### HTTP Request
 
-`GET https://platform.tier-services.io/zone`
+`GET https://platform.tier-services.io/zone?lat=40&lng=-3`
 
 ### Query Parameters
 
@@ -70,3 +70,69 @@ Parameter  | Description
 --------- | -----------
 lat | Latitude to search for zones nearby
 lng | Longitude to search for zones nearby
+
+
+## Get All Zones by type
+
+```shell
+curl "https://platform.tier-services.io/zone?type=root"
+  -H "x-api-key: TIER API KEY"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": [
+    {
+      "type": "zones",
+      "id": "MADRID",
+      "attributes": {
+        "name": "MADRID",
+        "lng": -3.690478,
+        "lat": 40.451744,
+        "polygon": [
+          {
+            "lng": -3.690478,
+            "lat": 40.451744
+          },
+          {
+            "lng": -3.690084,
+            "lat": 40.451697
+          },
+          {
+            "lng": -3.690389,
+            "lat": 40.452475
+          },
+          {
+            "lng": -3.690478,
+            "lat": 40.451744
+          }
+        ],
+        "country": "SPAIN",
+        "zoneType": "root",
+        "parentId": "MADRID",
+      }
+    }
+  ]
+}
+
+```
+
+This endpoint retrieves all the zones filtered by type
+
+The provided coordinates describe a polygone.
+
+<aside class="notice">
+Possible 
+</aside>
+
+### HTTP Request
+
+`GET https://platform.tier-services.io/zone?type=root`
+
+### Query Parameters
+
+Parameter  | Description
+--------- | -----------
+type | possible types are root, business, warehouse, constrained
