@@ -2,6 +2,165 @@
 
 Entity files are files uploaded to a relevant entity. Possible files, for example, would be a pitch deck for an opportunity or a physical mail correspondence for a person.
 
+## The entity file resource
+
+> Example Response
+
+```json
+{
+    "id": 43212,
+    "name": "JohnDoeFriends.csv",
+    "size": 993,
+    "personId": 10,
+    "organizationId": null,
+    "opportunityId": null,
+    "createdAt": "2011-01-25T09:59:35.288-08:00",
+    "uploaderId": 10
+}
+```
+Attribute | Type | Description
+--------- | ------- | -----------
+id | integer | The unique identifier of the entity file object.
+name | string | The name of the file.
+size | string | The size of the file in bytes.
+personId | integer | The unique identifier of the person corresponding to the entity file.
+organizationId | integer | The unique identifier of the organization corresponding to the entity file.
+opportunityId | integer | The unique identifier of the opportunity corresponding to the entity file.
+uploaderId | integer | The unique identifier of the user who created the entity file.
+created_at | datetime | The time when the entity file was created.
+
+
+## Get all files
+
+> Example Request
+
+```shell
+curl "https://api.affinity.co/entity-files" -u :<API-KEY>
+```
+
+> Example Response
+
+```json
+{
+    "entity_files": [
+        {
+            "id": 43212,
+            "name": "JohnDoeFriends.csv",
+            "size": 993,
+            "personId": 142,
+            "organizationId": null,
+            "opportunityId": null,
+            "createdAt": "2011-01-25T09:59:35.288-08:00",
+            "uploaderId": 10
+        },
+        {
+            "id": 131,
+            "name": "Import.csv",
+            "size": 227224,
+            "personId": 38654,
+            "organizationId": null,
+            "opportunityId": null,
+            "createdAt": "2019-01-13T12:52:51.539-08:00",
+            "uploaderId": 101
+        },
+        ...
+    ],
+    "next_page_token": "eyJwYXJhbXMiOnt9LCJwYWdlX3NpemUiOjUwMCwib2Zmc2V0Ijo1MDB9",
+}
+```
+
+> Example pagination
+
+```shell
+# To get the second page of results, issue the following query:
+curl "https://api.affinity.co/entity-files?page_token=eyJwYXJhbXMiOnsidGVybSI6IiJ9LCJwYWdlX3NpemUiOjUsIm9mZnNldCI6MTB9" -u :<API-KEY>
+```
+
+`GET /entity-files`
+
+Returns all entity files within your organization. This result will be
+an object with two fields: `entity_files` and `next_page_token`. `entity_files` maps to an
+array of all the entity file resources. The value of `next_page_token` should be sent as the
+query parameter `page_token` in another request to retrieve the next page of results. While
+paginating through results, each request must have identical query parameters other than the
+changing `page_token`. Otherwise, an `Invalid page_token variable` error will be returned.
+
+The absence of a `next_page_token` indicates that all the records have been fetched,
+though its presence does not necessarily indicate that there are _more_ resources to be
+fetched. The next page may be empty (but then `next_page_token` would be `null` to
+confirm that there are no more resources).
+
+
+### Query Parameters
+
+Parameter | Type | Required | Description
+--------- | ------- | ---------- | -----------
+page_size | number | false | How many results to return per page. (Default is the maximum value of 500.)
+page_token | string | false | The `next_page_token` from the previous response required to retrieve the next page of results.
+
+### Returns
+An object with two fields: `entity_files` and `next_page_token`. `entity_files ` maps to an
+array of all the entity file resources. See description for more details on pagination.
+
+## Get a specific file
+
+> Example Request
+
+```shell
+curl "https://api.affinity.co/entity-files/43212" -u :<API-KEY>
+```
+
+> Example Response
+
+```json
+{
+    "id": 43212,
+    "name": "GoogleFriends.csv",
+    "size": 993,
+    "personId": null,
+    "organizationId": 10,
+    "opportunityId": null,
+    "createdAt": "2011-01-25T09:59:35.288-08:00",
+    "uploaderId": 10
+}
+```
+
+`GET /entity-files/{entity_file_id}`
+
+Fetches an entity with a specified `entity_file_id`.
+
+### Path Parameters
+
+Parameter | Type | Required | Description
+--------- | ------- | ---------- | -----------
+entity_file_id | integer | true | The unique id of the entity file that needs to be retrieved.
+
+### Returns
+The entity file resource corresponding to the `entity_file_id`.
+
+## Download File
+
+> Example Request
+
+```shell
+curl "https://api.affinity.co/entity-files/download/12345" \
+  -u :<API-KEY> \
+  --location place_to_store_file.png
+```
+
+`GET /entity-files/download/{entity_file_id}`
+
+Downloads an entity file with a specified `entity_file_id`
+
+### Path Parameters
+
+Parameter | Type | Required | Description
+--------- | ------- | ---------- | -----------
+entity_file_id | integer | true | The unique id of the entity file that needs to be downloaded.
+
+### Returns
+The actual entity file corresponding to the `entity_file_id`.
+
 ## Upload files
 
 > Example Request
@@ -13,6 +172,7 @@ curl "https://api.affinity.co/entity-files" \
   -F files[]=@10_01_18_meeting.txt \
   -F person_id=4113456
 ```
+
 > Example Response
 
 ```json
