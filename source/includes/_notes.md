@@ -70,7 +70,7 @@ curl "https://api.affinity.co/notes" -u :<API-KEY>
 
 Returns all field values attached to a `person`, `organization`, `opportunity`.
 
-### Path Parameters
+### Query Parameters
 
 Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------
