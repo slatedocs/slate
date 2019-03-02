@@ -15,7 +15,7 @@ Access url
 
 ## Subscribe
 
-To begin receiving feed messages, you must first send a subscribe message to the server indicating which channels and contracts to subscribe for. This message is mandatory — you will be disconnected if no subscribe has been received within 5 seconds.
+To begin receiving feed messages, you must first send a subscribe message to the server indicating which channels and contracts to subscribe for. This message is mandatory — you will be disconnected if no subscribe has been received within 60 seconds.
 
 To specify contracts within each channel, just pass a list of symbols inside the channel payload.
 
@@ -154,6 +154,17 @@ ws.send(json.dumps({
 }))
 
 ```
+
+To subscribe to private channels, the client needs to first send an auth event, providing api-key, and signature. 
+
+You can create a new API key from here :
+https://www.delta.exchange/app/account/manageapikeys
+
+## Heartbeats
+
+Delta websocket server sends ping frame every 30 secs, to which it expects a pong frame.
+In case no pong frame is returned, the client will be disconnected in 1 minute.
+
 
 # Public Channels
 
