@@ -214,6 +214,52 @@
             }
           }
         }
+      },
+      "put" : {
+        "tags" : [ "Orders" ],
+        "summary" : "Edit Order",
+        "operationId" : "editOrder",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "security" : [ {
+          "api-key" : [ ],
+          "signature" : [ ],
+          "timestamp" : [ ]
+        } ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "order",
+          "description" : "Order which needs to be edited",
+          "required" : true,
+          "schema" : {
+            "type": "array",
+            "$ref" : "#/definitions/EditOrderRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Returns back the order object with assigned id and latest state",
+            "schema" : {
+              "$ref" : "#/definitions/Order"
+            }
+          },
+          "400" : {
+            "description" : "Returns error if order could not be placed",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "error" : {
+                  "type" : "string",
+                  "enum" : [ "InsufficientMargin", "OrderSizeExceededAvailable", "OrderExceedsSizeLimit", "OrderLeverageNotSet", "InvalidProduct", "ImmediateLiquidationOrder", "LowerthanBankruptcy", "SelfMatchingPostOnlyMode", "ImmediateExecutionPostOnlyOrder" ]
+                },
+                "message" : {
+                  "type" : "string",
+                  "description" : "A more verbose error message"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/orders/batch" : {
@@ -896,6 +942,31 @@
       "type" : "array",
       "items" : {
         "$ref" : "#/definitions/CreateOrderRequest"
+      }
+    },
+    "EditOrderRequest":{
+      "type": "object",
+      "description": "edit order object",
+      "properties": {
+        "order_id": {
+          "type": "integer"
+        },
+        "product_id": {
+          "type": "integer" 
+        },
+        "limit_price": {
+          "type": "string" 
+        },
+        "unfilled_size": {
+          "type": "integer",
+          "description": "Remaining total unfilled size after editing order"
+        }
+      }
+    },
+    "ArrayOfEditOrderRequest" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/EditOrderRequest"
       }
     },
     "DeleteOrderRequest":{

@@ -638,6 +638,166 @@ p JSON.parse(result)
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
 </aside>
 
+## Edit Order
+
+<a id="opIdeditOrder"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.put('https://api.delta.exchange/orders', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X PUT https://api.delta.exchange/orders \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.put 'https://api.delta.exchange/orders',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`PUT /orders`
+
+> Body parameter
+
+```json
+{
+  "order_id": 0,
+  "product_id": 0,
+  "limit_price": "string",
+  "unfilled_size": 0
+}
+```
+
+<h3 id="edit-order-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[EditOrderRequest](#schemaeditorderrequest)|true|Order which needs to be edited|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "id": 0,
+  "user_id": 0,
+  "size": 0,
+  "unfilled_size": 0,
+  "side": "buy",
+  "order_type": "limit_order",
+  "limit_price": "string",
+  "stop_order_type": "stop_loss_order",
+  "stop_price": "string",
+  "close_on_trigger": "false",
+  "state": "open",
+  "created_at": "string",
+  "product": {
+    "id": 0,
+    "symbol": "string",
+    "description": "string",
+    "product_type": "future",
+    "initial_margin": "string",
+    "maintenance_margin": "string",
+    "settlement_time": "string",
+    "impact_size": 0,
+    "pricing_source": "string",
+    "tick_size": "string",
+    "trading_status": "operational",
+    "position_size_limit": 0,
+    "commission_rate": "string",
+    "maker_commission_rate": "string",
+    "underlying_asset": {
+      "id": 0,
+      "symbol": "string",
+      "precision": 0
+    },
+    "quoting_asset": {
+      "id": 0,
+      "symbol": "string",
+      "precision": 0
+    },
+    "settling_asset": {
+      "id": 0,
+      "symbol": "string",
+      "precision": 0
+    }
+  }
+}
+```
+
+<h3 id="edit-order-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Returns back the order object with assigned id and latest state|[Order](#schemaorder)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns error if order could not be placed|Inline|
+
+<h3 id="edit-order-responseschema">Response Schema</h3>
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» error|string|false|none|none|
+|» message|string|false|none|A more verbose error message|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|error|InsufficientMargin|
+|error|OrderSizeExceededAvailable|
+|error|OrderExceedsSizeLimit|
+|error|OrderLeverageNotSet|
+|error|InvalidProduct|
+|error|ImmediateLiquidationOrder|
+|error|LowerthanBankruptcy|
+|error|SelfMatchingPostOnlyMode|
+|error|ImmediateExecutionPostOnlyOrder|
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
 ## Create batch orders
 
 <a id="opIdbatchCreate"></a>
@@ -2580,6 +2740,53 @@ This operation does not require authentication.
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |*anonymous*|[[CreateOrderRequest](#schemacreateorderrequest)]|false|none|[A create order object]|
+
+<h2 id="tocSeditorderrequest">EditOrderRequest</h2>
+
+<a id="schemaeditorderrequest"></a>
+
+```json
+{
+  "order_id": 0,
+  "product_id": 0,
+  "limit_price": "string",
+  "unfilled_size": 0
+}
+
+```
+
+*edit order object*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|order_id|integer|false|none|none|
+|product_id|integer|false|none|none|
+|limit_price|string|false|none|none|
+|unfilled_size|integer|false|none|Remaining total unfilled size after editing order|
+
+<h2 id="tocSarrayofeditorderrequest">ArrayOfEditOrderRequest</h2>
+
+<a id="schemaarrayofeditorderrequest"></a>
+
+```json
+[
+  {
+    "order_id": 0,
+    "product_id": 0,
+    "limit_price": "string",
+    "unfilled_size": 0
+  }
+]
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[[EditOrderRequest](#schemaeditorderrequest)]|false|none|[edit order object]|
 
 <h2 id="tocSdeleteorderrequest">DeleteOrderRequest</h2>
 
