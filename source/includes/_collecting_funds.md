@@ -17,3 +17,5 @@ See the [Collections](#collections) documentation for more information on how to
 **Related Events**
 
 The "collection.received" event is triggered whenever you receive funds from a user. You can configure a web link to receive notifications whenever this event occurs. This will allow you to respond automatically whenever you receive funds. See our [Webhooks API](#webhooks) documentation for more information.
+
+The "collectionrequest.status.changed" event is triggered whenever the status of your collection request changes, for example if a collection is received in response to your collection request, or if the collection request fails or expires. You can configure a web link to receive notifications whenever this event occurs. This will allow you to respond automatically to updates made to your collection request. See our [Webhooks API](#webhooks) documentation for more information.

@@ -19,6 +19,7 @@ includes:
   - authentication
   - duplicate_requests
   - errors
+  - throttling
   - pagination
   - ordering
   - filtering
