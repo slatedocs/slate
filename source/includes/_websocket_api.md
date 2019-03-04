@@ -209,9 +209,9 @@ On subscribing to **ticker** channel, socket server will emit messages with type
 }
 ```
 
-## trades
+## Recent trades
 
-**trades** channel provides a real time feed of all recent trades (fills).
+**recent_trade** channel provides a real time feed of all recent trades (fills).
 
 ```
 // Trades Response
