@@ -49,6 +49,55 @@ You'll see "CODE" buttons next to method calls that are >= 500 ms. [If you've en
 
 If you don't enable the GitHub integration, you'll see a backtrace.
 
+## Timeline Transaction Trace
+
+<aside class="notice">The Timeline view of a transaction trace is in BETA. Share your feedback via <a href="https://github.com/scoutapp/roadmap/issues/33" target="_blank">this GitHub issue</a>.</aside>
+
+![trace timeline](trace_timeline.png)
+
+Scout now provides more details on the execution order of your code by presenting traces in a timeline format in addtion to the existing summary view. 
+
+This is helpful for situations like:
+
+* Understanding the distribution of `Controller` time across a request. Is there a lot of time spent in your custom code at the beginning of a request? Is it spread out? Is it at the end of a request?
+* Understanding the timing of distinct SQL queries. Is one instance of many nearly identical queries slow or all of them?
+* Getting the complete picture of parent method calls and exclusive versus total call time in each method. How many SQL calls are being triggered by view partial?
+
+### Upgrade instructions
+
+1. Modify your `Gemfile` entry for `scout_apm`, changing it to:
+```
+gem 'scout_apm', git: 'https://github.com/scoutapp/scout_apm_ruby.git', branch: 'detailed-traces'
+```
+2. `bundle update scout_apm`
+3. Deploy.
+
+### Toggling between summary and timeline traces
+
+Once the branch is deployed, Scout will record traces in both the existing summary format and the new timeline format. When looking at a list of traces, traces with the timeline format available are labeled with a "v2" indicator. You can toggle between the summary and timeline format when viewing a trace:
+
+![image](https://user-images.githubusercontent.com/7880/52580818-60b95f00-2de6-11e9-870d-668b2afe194c.png)
+
+### Beta limitations
+
+* Ruby-only
+* No ScoutProf support
+* No links to backtraces on the Beta view
+* No support for background jobs
+
+Please report issues to support@scoutapp.com.
+
+### Downgrade Instructions
+
+1. Revert your `Gemfile` entry for `scout_apm`:
+
+```
+- gem 'scout_apm', git: 'https://github.com/scoutapp/scout_apm_ruby.git', branch: 'scoutprof-detailed-traces'
++ gem 'scout_apm'
+```
+2. `bundle update scout_apm`
+3. Deploy.
+
 ## Trace Explorer
 
 What was the slowest request yesterday? How has the app performed for `user@domain.com`? Which endpoints are generating the bulk of slow requests? Trace Explorer lets you quickly filter the transaction traces collected by Scout, giving you answers to your unique questions.
