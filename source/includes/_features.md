@@ -51,8 +51,6 @@ If you don't enable the GitHub integration, you'll see a backtrace.
 
 ## Trace Explorer
 
-<aside class="notice">Trace Explorer is in our tech preview program. Share your feedback via <a href="https://github.com/scoutapp/roadmap/issues/33" target="_blank">this GitHub issue</a>.</aside>
-
 What was the slowest request yesterday? How has the app performed for `user@domain.com`? Which endpoints are generating the bulk of slow requests? Trace Explorer lets you quickly filter the transaction traces collected by Scout, giving you answers to your unique questions.
 
 ![crossfilter](https://s3-us-west-1.amazonaws.com/scout-blog/s_vs_nr/crossfilter.gif)
