@@ -1,5 +1,9 @@
 # Contact Us
 
+**Having issues while calling our API endpoints?**</br>
+Check our API status at [https://status.transferwise.com/](https://status.transferwise.com/)
+If you would like to receive status change notifications, feel free to signup [here](http://eepurl.com/geU_O2).
+
 **Have a technical question about API?**</br>
 Send email to api@transferwise.com
 

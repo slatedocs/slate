@@ -408,4 +408,6 @@ In the event a user is not happy at losing access to their older data or having 
   * Test successful flow and bounce back flow (where funds cannot be delivered). 
   * All set. Switch it on.
 
-
+### 4. Signup for API status notifications.
+  * You can always track our API status [here](https://status.transferwise.com/).
+  * Also you can [signup](http://eepurl.com/geU_O2) for API status notifications.
