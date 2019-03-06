@@ -1186,3 +1186,7 @@ All done.
   * Make a small deposit into your borderless account. 
   * Make few small value test payments via LIVE API before you start executing larger transfers.
   * All set. Switch it on.
+
+### 5. Signup for API status notifications.
+  * You can always track our API status [here](https://status.transferwise.com/).
+  * Also you can [signup](http://eepurl.com/geU_O2) for API status notifications.
