@@ -58,6 +58,10 @@ under the License.
     <!-- Appzi: Capture Insightful Feedback -->
     <script async src="https://app.appzi.io/bootstrap/bundle.js?token=l3l6w"></script>
     <!-- End Appzi -->
+
+    <!-- WS playground button -->
+      <%= javascript_include_tag  "ws_playground" %>
+    <!-- End WS playground button -->
   </head>
 
   <body class="<%= page_classes %>" data-languages="<%=h language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>">
