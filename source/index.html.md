@@ -1051,6 +1051,26 @@ Field | Type | Exchanges Supporting
 `quantityChange` | Double | bitstamp, gemini 
 `symbol` | String |  binance, coinbase 
 
+# Crypto Futures API
+
+## Crypto Futures API Endpoints
+
+This is the paid service url **wss://api.suredbits.com/futures/v0** on mainnet.
+
+This is the free version url **wss://test.api.suredbits.com/futures/v0** on testnet. 
+
+## Overview
+
+### Trading Pairs Supported 
+
+Symbol | Bitmex | Kraken
+------| -------- | --------
+`BTCUSD` |  X    |    X
+`ETHUSD` |  X    |    X
+`ETHBTC` | X     | 
+
+
+
 <h1 id="NFLData"> NFL Data</h1>
 
 ## NFL Websocket Endpoint
