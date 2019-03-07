@@ -200,7 +200,7 @@
 ```js
 {
 	"data": {
-		"Playlist": {
+		"Playlist": { 
 			"ID": "615",
 			"Order": 1
 		},
@@ -239,7 +239,21 @@
 ```shell
 ```
 
-> Structure: N/A
+> Structure: 
+
+```js
+{
+	"name": "open_searchbar",
+	"data": {
+		"scene": "SCENE_DASHBOARD",
+		"TimeInfo": {
+			"CurrentTime": "2019-01-29T16:47:22Z",
+			"ZoneName": "UTC",
+			"ZoneOffset": 0
+		}
+	}
+}
+```
 
 <b>Triggered when search UI is opened</b>
 
