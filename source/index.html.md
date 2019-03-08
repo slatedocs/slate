@@ -10,6 +10,7 @@ toc_footers:
 includes:
   - intro
   - user_token
+  - mobileocr
   - police_registration
   - ocr_web
   - biomatch
