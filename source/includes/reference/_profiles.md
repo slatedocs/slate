@@ -709,4 +709,4 @@ curl -X DELETE https://api.sandbox.transferwise.tech/v1/profiles/{profileId}/upd
 Deletes the update window for updating the profile.
 
 ### Request
-**`POST https://api.sandbox.transferwise.tech/v1/profiles/{profileId}/update-window`**
+**`DELETE https://api.sandbox.transferwise.tech/v1/profiles/{profileId}/update-window`**
