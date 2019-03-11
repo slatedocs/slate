@@ -234,7 +234,7 @@
 
 <b>Triggered when chat recommended learning asset is clicked</b>
 
-## open_searchbar
+## searchbar_open
 
 ```shell
 ```
@@ -243,7 +243,7 @@
 
 ```js
 {
-	"name": "open_searchbar",
+	"name": "searchbar_open",
 	"data": {
 		"scene": "SCENE_DASHBOARD",
 		"TimeInfo": {
