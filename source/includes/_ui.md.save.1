@@ -1,0 +1,158 @@
+# UI APIs
+
+Does not require authentication.
+
+## Get Applications
+
+Returns all available applications (grouped).
+
+```APIs
+GET https://dev.zoomsymbols.com/api/ui/getApplications
+```
+
+> Parameters (OPTIONAL)
+
+```
+isMobile: true/false
+```
+
+> Response
+
+```json
+{
+  "result": [{
+      "application_group_id": "1",
+      "application_group_code": "markets",
+      "application_group_name": "Markets",
+      "application_id": 1,
+      "application_name": "markets_overview",
+      "application_title": "Markets Overview",
+      "can_repeat": true,
+      "short_description": null,
+      "application_type_id": null,
+      "application_type_code": null,
+      "application_type_name": null,
+      "list_order": 1,
+      "is_favorite": false,
+      "user_can_access": false
+      },
+  ...
+  ]
+}
+```
+
+## List Updates
+
+Returns data from "What's New".
+
+```APIs
+GET https://dev.zoomsymbols.com/api/ui/listUpdates
+```
+
+> Response
+
+```json
+{
+  "totalRecords": "3",
+  "totalPages": 1,
+  "pageSize": 100,
+  "pageNum": null,
+  "result": [{
+      "whats_news_id": "1",
+      "create_date": "2018-11-20xx:xx:xx.xxxx",
+      "version": "1.0 (2018-11-01)",
+      "details": "Markets : xxxxxxx",
+      "totalRecords": "3",
+      },
+  ...
+  ]
+}
+```
+
+## List Release Notes
+
+Returns the release notes.
+
+```APIs
+GET https://dev.zoomsymbols.com/api/ui/listReleaseNotes
+```
+
+> Response
+
+```json
+{
+  "totalRecords": "2",
+  "totalPages": 1,
+  "pageSize": 100,
+  "pageNum": null,
+  "result": [{
+      "release_notes_id": "1",
+      "category": "notes",
+      "post_date": "2018-09-10T00:00:00.000Z",
+      "details": "Markets > xxxxxxx",
+      "totalRecords": "2",
+      },
+  ...
+  ]
+}
+```
+
+## Get Dashboards List
+
+Returns the list of dashboards.
+
+```APIs
+GET https://dev.zoomsymbols.com/api/ui/dashboards/list
+```
+
+> Response
+
+```json
+{
+  "result": [{
+      "id": "426",
+      "user_id": "xxxxx",
+      "title": "AA2",
+      "applications": [{
+          "id": "xxxxxxxx",
+          "key": "screener",
+          "appId": 56,
+          "title": "Screener",
+          "can_repeat": true,
+          "params": {}
+    },
+      ...
+   ]
+      },
+  ...
+  ]
+}
+```
+
+
+## Save Dashboard Item
+
+Save an item from the dashboard.
+
+```APIs
+POST https://dev.zoomsymbols.com/api/ui/dashboards/save
+```
+
+> Parameters
+
+```
+id: item_id
+title: item_title
+applications: [array of apps] (each app represnted by its data stored in an object)
+list_order: item_list_order
+is_selected: true/false (false by default)
+view_mode: item_view_mode ('tabs' by default)
+```
+
+> Response
+
+```json
+{
+  "result": "Updated"
+}
+```

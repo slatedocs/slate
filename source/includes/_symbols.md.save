@@ -1,0 +1,300 @@
+
+
+# Symbols APIs
+
+Requires authentication.
+
+## Get History
+
+Returns history for given symbol.
+
+```APIs
+GET https://dev.zoomsymbols.com/api/v2/symbols/getHistory
+```
+
+> Parameters
+
+```
+(Must be given at least one parameter.)
+symbol: your_symbol
+symbolId: symbol_id
+symbols: array_of_symbols
+symbolIds: symbol_ids
+watchlist: your_watchlist
+portfolio: your_portfolio
+```
+
+
+> Response
+
+```json
+{
+   "totalRecords": "51",
+   "totalPages": 1,
+   "pageSize": 100,
+   "pageNum": null,
+   "result": [
+       {
+           "px_dte": "1996-12-31",
+           "symbol_id": "1595093",
+           "symbol_value": "$ALBANIACONSPE",
+           "symbol": "$ALBANIACONSPE",
+           "symbol_name": "Albania Consumer Spending",
+           "chg_1d": null,
+           "return_1d": null,
+           "px_open": null,
+           "px_high": null,
+           "px_low": null,
+           "px_close": "337561.00",
+           "volume": null,
+           "totalRecords": "51"
+       },
+       ...
+   ]
+}
+```
+
+
+## Get Latest History
+
+Returns latest history for given symbol.
+
+```APIs
+GET https://dev.zoomsymbols.com/api/v2/symbols/getHistoryLatest
+```
+
+> Parameters
+
+```
+(Must be given at least one parameter.)
+symbol: your_symbol
+symbolId: symbol_id
+symbols: array_of_symbols
+symbolIds: symbol_ids
+watchlist: your_watchlist
+portfolio: your_portfolio
+```
+
+
+> Response
+
+```json
+{
+   "totalRecords": "1",
+   "totalPages": 1,
+   "pageSize": 100,
+   "pageNum": null,
+   "result": [
+       {
+           "px_dte": "1996-12-31",
+           "symbol_id": "1595093",
+           "symbol_value": "$ALBANIACONSPE",
+           "symbol": "$ALBANIACONSPE",
+           "symbol_name": "Albania Consumer Spending",
+           "chg_1d": null,
+           "return_1d": null,
+           "px_open": null,
+           "px_high": null,
+           "px_low": null,
+           "px_close": "337561.00",
+           "volume": null,
+           "totalRecords": "1"
+       },
+   ]
+}
+```
+
+
+## Clear User Symbol History
+
+Clears symbol history for currently authorized user.
+
+```APIs
+POST https://dev.zoomsymbols.com/api/v2/symbols/clearUserSymbolHistory
+```
+
+> Response
+
+```json
+{
+   "result": "Done"
+}
+```
+
+## Search Symbols List
+
+Returns a list of search symbols.
+
+```APIs
+GET https://dev.zoomsymbols.com/api/v2/symbols/searchSymbolsList
+```
+
+> Parameters
+
+```
+symbol/query: symbol_or_query
+extension: your_extenstion (optional)
+compare/queryCompare: comparable_query (default 'contains')
+```
+
+> Response
+
+```json
+{
+  "result": [
+      {
+        "symbol_id": "1595832",
+        "company_id": -1595832,
+        "symbol_value": "$ALBANIALFPR",
+        "symbol": "$ALBANIALFPR",
+        "symbol_name": "Albania Labor Force Participation Rate",
+        "exchange_id": null,
+        "exchange_code": null,
+        "exchange_name": null,
+        "data_provider_id": 3,
+        "exchange_country_name": null,
+        "exchange_country_iso2": null,
+        "exchange_parent_code": null,
+        "symbol_status_name": "Active",
+        "security_type_code": "indicator",
+        "latest_px_date": "2018-09-30T00:00:00.000Z",
+        "latest_px_open": null,
+        "latest_px_high": null,
+        "latest_px_low": null,
+        "latest_px_close": "68.30",
+        "latest_volume": null,
+        "latest_chg_1d": "0.3000",
+        "latest_return_1d": "0.4412",
+        "price_data_provider_id": 3,
+        "latest_modify_date": "2018-12-19T21:28:11.293Z",
+        "exchange_currency_name": "Albanian Lek",
+        "exchange_currency_code": "ALL",
+        "row_id": "130548",
+        "is_active": true,
+        "ciq_security_id": null,
+        "is_fav": false
+     },
+     ...
+   ]
+}
+```
+
+## Get All Fields Info
+
+Returns all info fields.
+
+```APIs
+GET https://dev.zoomsymbols.com/api/v2/symbols/getAllFieldsInfo
+```
+
+> Response
+
+```json
+{
+   "result": [
+       {
+           "field_id": 2018,
+           "field_code": "accounts_payable_total",
+           "field_name": "Accounts Payable, Total",
+           "field_type_code": "number",
+           "field_group_id": 1054,
+           "field_group_code": "dnb_financial_data",
+           "field_group_name": "DnB Financial Data"
+       },
+       ...
+    ]
+}
+```
+
+## Get Symbols Info
+
+Returns all info regarding a giving symbol
+
+```APIs
+GET https://dev.zoomsymbols.com/api/v2/symbols/getSymbolsInfo
+```
+
+> Parameters
+
+```
+(Must be given at least one parameter.)
+symbol: your_symbol
+symbolId: symbol_id
+```
+
+> Response
+
+```json
+{
+   "result": [
+       {
+           "symbol": "$ALBANIACONSPE",
+           "symbol_id": "1595093",
+           "company_id": -1595093,
+           "symbol_value": "$ALBANIACONSPE",
+           "symbol_name": "Albania Consumer Spending",
+           "exchange_id": null,
+           "exchange_code": "Timeseries",
+           "exchange_name": "Timeseries",
+           "data_provider_id": 3,
+           "exchange_country_name": "Albania",
+           "exchange_country_iso2": "AL",
+           "exchange_parent_code": null,
+           "symbol_status_name": "Active",
+           "security_type_code": "indicator",
+           "latest_px_date": "2018-09-30T00:00:00.000Z",
+           "latest_px_open": null,
+           "latest_px_high": null,
+           "latest_px_low": null,
+           "latest_px_close": "68.30",
+           "latest_volume": null,
+           "latest_chg_1d": "0.3000",
+           "latest_return_1d": "0.4412",
+           "price_data_provider_id": 3,
+           "latest_modify_date": "2018-12-19T21:28:11.293Z",
+           "exchange_currency_name": "Albanian Lek",
+           "exchange_currency_code": "ALL",
+           "row_id": "130548",
+           "is_active": true,
+           "ciq_security_id": null,
+           "exchange_country_id": 2,
+           "briefDescription": "06/30/2018 | Timeseries | EOD | Currency in ALL",
+           "enable_trade": false
+        }
+     ]
+  }
+```
+
+## Get Related Securities
+
+Returns all related securities for given symbol.
+
+```APIs
+GET https://dev.zoomsymbols.com/api/v2/symbols/getRelatedSecurities
+```
+
+> Parameters
+
+```
+(Must be given at least one symbol.)
+symbol: your_symbol
+symbolId: symbol_id
+```
+
+> Response
+
+```
+{
+   "columns": [
+       {
+          "code": "symbol_value",
+          "name": "Symbol",
+          "styles": {
+              "textAlign": "left"
+          },
+          "width": 140
+       },
+       ...
+}
+```
+

@@ -13,6 +13,25 @@ includes:
   - authentication
   - user_apis
   - portfolio_apis
+  - countries
+  - info
+  - ui
+  - knowledge_base
+  - indicator
+  - forecast
+  - calendars
+  - fundamentals
+  - filing
+  - earnings
+  - symbols_history
+  - symbols_router
+  - symbol_company
+  - gics_types
+  - symbols_future
+  - etf_holdings
+  - symbols_performance
+  - symbol_activity
+  - user_custom_views
   - errors
 
 search: true

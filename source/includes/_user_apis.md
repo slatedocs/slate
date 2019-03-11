@@ -111,3 +111,108 @@ POST https://dev.zoomsymbols.com/api/user/setProfile
 }
 ```
 
+## Get Global User Settings
+
+Get mobile global settings for a user
+
+
+```APIs
+GET https://dev.zoomsymbols.com/api/user/settings/getDefaultSettings
+```
+
+> Response
+
+```json
+{
+"result":{
+  "user_setting_id":664,
+  "user_id":"7b3bxxxxx",
+  "username":"Alex",
+  "is_default":false,
+  ...
+  } 
+
+}
+```
+## Set Global User Settings
+
+Set mobile global settings for a user
+
+
+
+```APIs
+POST https://dev.zoomsymbols.com/api/user/settings/setDefaultSettings
+```
+
+> Params
+
+```json
+{
+  "symbol_id": "92",
+  "auto_sign_in": "0",
+  "timezone_id" : "1",
+  "convert_currency_id_from" : "1",
+  "convert_currency_id_to" : "2",
+  "set_automatically_timezone" : true,
+  "exchange_code" : "AAB",
+  "exchange_id" : "1",
+  "send_daily_market_email_report" : true,
+  "send_daily_portfolio_email_report" : true    
+}
+```
+
+
+## Reset Global User Settings
+
+Reset mobile global settings for a user
+
+
+```APIs
+POST https://dev.zoomsymbols.com/api/user/settings/resetDefaultSettings
+```
+
+
+## Get Today App User Settings (Mobile)
+
+Get mobile global settings for a user
+
+
+```APIs
+GET https://dev.zoomsymbols.com/api/user/settings/getTodayAppSettings
+```
+
+> Response
+
+```json
+{
+"result":{
+  "user_setting_id":664,
+  "user_id":"7b3bxxxxx",
+  "username":"Alex",
+  "is_default":false,
+  ...
+  } 
+
+}
+```
+
+## Set Today App User Settings
+
+Set mobile global settings for a user
+
+
+```APIs
+POST https://dev.zoomsymbols.com/api/user/settings/setTodayAppSettings
+```
+
+> Params
+
+```json
+{
+  "enable_earning": "1",
+  "enable_news": "1",
+  "enable_market_equity" : "0",
+  "enable_market_commodity" : "0",
+  "enable_market_global_instrument" : "0"
+}
+```

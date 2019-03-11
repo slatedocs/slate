@@ -731,3 +731,48 @@ GET https://dev.zoomsymbols.com/api/user-portfolio-v2/getPortfolioSummary
   ]
 }
 ```
+
+## Get Transactions
+
+Get all transactions for a given item id.
+
+```APIs
+GET https://dev.zoomsymbols.com/api/user-portfolio-v2/getTransactions
+```
+
+> Parameters
+
+```
+itemId: your_item_id
+```
+
+> Response
+
+```json
+{
+    "columns": [
+       {
+           "code": "symbol_value",
+           "name": "Symbol",
+           "styles": {
+               "textAlign": "left"
+           },
+           "width": 140,
+           "fixed": true,
+           "onPress": {
+               "navigateTo": {
+                   "screen": "Symbol",
+                   "params": {
+                       "symbolItem": {
+                           "symbol_id": "{symbol_id}",
+                           "symbol_value": "{symbol_value}",
+                           "symbol_name": "{symbol_name}"
+                       }
+                   } 
+               }
+           }
+       },
+       ...
+    ]
+}
+```
