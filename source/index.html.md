@@ -3,6 +3,7 @@
 title: Sila API Documentation
 
 language_tabs:
+   - specs
    - javascript
    - python
    - java

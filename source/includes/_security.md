@@ -125,20 +125,3 @@ This API is secured by validating a signature of the request body (also simply r
 Each created user and developer application must have a set of Ethereum keys. Whether managed by the developer or the user, the user's private key must be used to sign the request body of most messages, and the developer application keys must be used to sign every message.
 
 <aside class="notice">In the code examples, replace `'PRIVATE_KEY'` with your private key.</aside>
-
-## Zero Knowledge Proof
-
-(TODO: Overview of how Ethereum signatures work to prove ownership of the private key without revealing the private key. Provide a link.)
-
-## Managing Private Keys
-
-- If generating and storing private keys on behalf of users, private keys should be stored in an encrypted form and never be sent over a network.
-- If your developer keys or a user's keys are compromised, contact us immediately, and we can deactivate users/linked bank accounts, change addresses, and revert transactions as necessary.
-
-(TODO: more details on recommended practices)
-
-## Security
-
-(TODO: Mention how replay attacks are prevented by enforcing a range on the created timestamp)
-(2FA required for users and developers)
-(Anything else?)
