@@ -9,37 +9,20 @@ search: true
 
 # General
 
-Welcome to the FalconX trading API.
+Welcome to the FalconX trading API. 
 
-## Matching Engine
+The API allows you to access our
 
-FalconX operates a continuous first-come, first-serve order book. Orders are executed in price-time priority as received by the matching engine.
-
-
-## Self-Trade Prevention
-Self-trading is not allowed on FalconX. Two orders from the same user will not fill one another. When placing an order, you can specify the self-trade prevention behavior.
-
-### DECREMENT AND CANCEL
-The default behavior is decrement and cancel. When two orders from the same user cross, the smaller order will be canceled and the larger order size will be decremented by the smaller order size. If the two orders are the same size, both will be canceled.
-
-### CANCEL OLDEST
-Cancel the older (resting) order in full. The new order continues to execute.
-
-### CANCEL NEWEST
-Cancel the newer (taking) order in full. The old resting order remains on the order book.
-
-### CANCEL BOTH
-Immediately cancel both orders.
-
-### NOTES FOR MARKET ORDERS
-When a market order using dc self-trade prevention encounters an open limit order, the behavior depends on which fields for the market order message were specified. If funds and size are specified for a buy order, then size for the market order will be decremented internally within the matching engine and funds will remain unchanged. The intent is to offset your target size without limiting your buying power. If size is not specified, then funds will be decremented. For a market sell, the size will be decremented when encountering existing limit orders.
+1. OTC Services
+2. Market data API
+3. Brokerage Services
 
 ## Order Lifecycle
 Valid orders sent to the matching engine are confirmed immediately and are in the received state. If an order executes against another order immediately, the order is considered done. An order can execute in part or whole. Any part of the order not filled immediately, will be considered open. Orders will stay in the open state until canceled or subsequently filled by new orders. Orders that are no longer eligible for matching (filled or canceled) are in the done state.
 
-## Fees
+## Commission
 
-To be decided
+Zero commission currently and subject to revision.
 
 
 # API
