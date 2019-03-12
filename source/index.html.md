@@ -64,6 +64,10 @@ Currently, we offer the trading pair `BTCUSD` data for free across all available
 
 For Binance, the symbol is `BTCUSDT`.
 
+## Crypto Futures Testnet API
+
+Currently, we offer the trading pair `BTCUSD` data for free across all available exchanges. 
+
 ## NFL Testnet API 
 
 > Example request for "Tom Brady" in "Players" endpoint
@@ -414,11 +418,11 @@ This is the free version url **wss://test.api.suredbits.com/exchange/v0** on tes
 
 Symbol | Binance | Bitfinex | Coinbase | Bitstamp | Gemini  |  Kraken |
 ------- | ------ | --------- | -------- | ------- | ------- | -------
-BTCUSDT |    X     |         |          |         |         |
-ETHBTC  |    X     |    X    |    X     |   X     |    X    |    X
-ETHUSDT |    X     |         |          |         |         |
-BTCUSD  |          |    X    |    X     |   X     |    X    |    X
-ETHUSD  |          |    X    |    X     |   X     |    X    |    X
+`BTCUSDT` |    X     |         |          |         |         |
+`ETHBTC`  |    X     |    X    |    X     |   X     |    X    |    X
+`ETHUSDT` |    X     |         |          |         |         |
+`BTCUSD`  |          |    X    |    X     |   X     |    X    |    X
+`ETHUSD`  |          |    X    |    X     |   X     |    X    |    X
 
 
 
@@ -1063,12 +1067,74 @@ This is the free version url **wss://test.api.suredbits.com/futures/v0** on test
 
 ### Trading Pairs Supported 
 
-Symbol | Bitmex | Kraken
-------| -------- | --------
-`BTCUSD` |  X    |    X
-`ETHUSD` |  X    |    X
-`ETHBTC` | X     | 
+Symbol | Kraken  | 
+------| -------- | 
+`BTCUSD` |  X    |    
+`ETHUSD` |  X    |   
+`ETHBTC` |       | 
 
+## Tickers
+
+The **Tickers** channel streams high level updates for given trading pairs.  See the table below for which exchanges return which fields.
+
+Field | Type | Exchanges Supporting
+------| -------| --------
+`eventTime` | Integer | Kraken
+`symbol` | String | Kraken
+`maturationInterval`| String | Kraken
+`maturationTime`| Integer | Kraken
+`bid` | Float | Kraken
+`bidSize` | Float | Kraken
+`ask` | Float | Kraken
+`askSize`| Float | Kraken
+`price`| Float | Kraken
+`priceChange`| Float | Kraken
+`last`| Float | Kraken
+`low` | Float | Kraken
+`high`| Float | Kraken
+`volume` | Float | Kraken
+`volWeightedAvePrice`| Float | Kraken
+`leverage`| String | Kraken
+`premium`| Float | Kraken
+`index`| Float | Kraken
+`openInterest`| Float | Kraken
+`fundingRate`| Float | Kraken
+`nextFundingRateTime`| Integer | Kraken
+`fundingRatePrediction` | Float | Kraken
+
+
+## Trades
+
+The **Trades** channel streams executed trades for a given trading pair.  See the table below for which exchanges returns which fields. 
+
+Field | Type | Exchanges Supporting
+------| -------| --------
+`eventTime` | Integer | Kraken
+`symbol` | String | Kraken
+`tradeId` | Integer | Kraken
+`price` | Float | Kraken
+`quantity` | Float | Kraken
+`buyerId` | String | Kraken
+`sellerId` | String | Kraken
+`tradeTime` | Integer | Kraken
+`marketMaker` | Boolean | Kraken
+`reason` | String | Kraken
+`maturationTime` | String | Kraken
+
+
+## Order Books 
+
+The **Books** channel streams bids and asks for a given trading pair on given exchange. 
+
+Field | Type | Exchanges Supporting
+------| -------| --------
+`eventTime` | Integer | Kraken
+`symbol` | String | Kraken
+`maturation` | Integer | Kraken 
+`orderId`| Integer | Kraken
+`price` | Float | Kraken
+`quantityChange`| Float | Kraken
+`quantityTotal` | Float | Kraken
 
 
 <h1 id="NFLData"> NFL Data</h1>
