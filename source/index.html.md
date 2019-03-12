@@ -201,7 +201,7 @@ Response Parameters
       String
     </td>
     <td>
-      The symbol of the token pair
+      The symbol of the market
     </td>
   </tr>
   <tr>
@@ -212,7 +212,7 @@ Response Parameters
       String
     </td>
     <td>
-      The minimum quantity you can request
+      The minimum quantity of the base token for which you can request a quote
     </td>
   </tr>
 </table>
@@ -278,12 +278,6 @@ Response Parameters
     </td>
   </tr>
 </table>
-
-
-To get the balance of a particular currency
-
-### HTTP Request
-`GET https://api.falconx.io/balance/<currency>`
 
 ## Request For Quote
 ```python
@@ -365,7 +359,7 @@ Response Parameters
   <tr>
     <td>market</td>
     <td>String</td>
-    <td>The token pair for which you requested a quote</td>
+    <td>The market for which you requested a quote</td>
   </tr>
   <tr>
     <td>sell_price</td>
@@ -433,7 +427,7 @@ Request Parameters
   <tr>
     <td>market</td>
     <td>String</td>
-    <td>The token pair that was traded</td>
+    <td>The market that was traded</td>
   </tr>
   <tr>
     <td>side</td>
@@ -459,19 +453,17 @@ Request Parameters
   {
     "trade_id": "ef69dz9f-5ade-4aa4-87c2-e2eaef37d8bc",
     "created_timestamp": "2016-12-14T14:17:03Z",
-    "currency": "BTC",
+    "market": "BTC-USD",
     "quantity": "100.00000000",
     "price": "4000.00000000",
-    "quantity": "100.00000000",
     "side": "buy"
   },
   {
     "trade_id": "393f9373-8a9a-478b-8669-6fc443a36780",
     "created_timestamp": "2016-12-15T12:18:01Z",
-    "currency": "ETH",
+    "market": "ETH-USD",
     "quantity": "1000.00000000",
     "price": "130.00000000",
-    "quantity": "1000.00000000",
     "side": "sell"
   }
 ]
@@ -480,3 +472,43 @@ Returns the trade history
 
 ### HTTP Request
 `GET https://api.falconx.io/trade/history`
+
+Response Parameters
+
+<table>
+  <tr>
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>trade_id</td>
+    <td>String</td>
+    <td>The unique id of this trade</td>
+  </tr>
+  <tr>
+    <td>created_timestamp</td>
+    <td>String</td>
+    <td>The timestamp at which this trade occurred</td>
+  </tr>
+  <tr>
+    <td>market</td>
+    <td>String</td>
+    <td>The market that was traded</td>
+  </tr>
+  <tr>
+    <td>quantity</td>
+    <td>String</td>
+    <td>The quantity that was traded</td>
+  </tr>
+  <tr>
+    <td>price</td>
+    <td>String</td>
+    <td>The unit price of the trae</td>
+  </tr>
+  <tr>
+    <td>side</td>
+    <td>String</td>
+    <td>Buy or sell</td>
+  </tr>
+</table>
