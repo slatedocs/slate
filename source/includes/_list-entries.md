@@ -14,7 +14,6 @@
     "type": 1,
     "first_name": "John",
     "last_name": "Doe",
-    "phone_numbers": [ ],
     "primary_email": "jdoe@jdoe.com",
     "emails": [
       "jdoe@jdoe.com",
@@ -70,7 +69,6 @@ curl "https://api.affinity.co/lists/450/list-entries" -u :<API-KEY>
       "type": 0,
       "first_name": "Affinity",
       "last_name": "Team",
-      "phone_numbers": [ ],
       "primary_email": "team@affinity.co",
       "emails": [
         "team@affinity.co"
@@ -87,7 +85,6 @@ curl "https://api.affinity.co/lists/450/list-entries" -u :<API-KEY>
       "type": 0,
       "first_name": "John",
       "last_name": "Doe",
-      "phone_numbers": [ ],
       "primary_email": "jdoe@stanford.edu",
       "emails": [
         "jdoe@stanford.edu"
@@ -138,7 +135,6 @@ curl "https://api.affinity.co/lists/450/list-entries/16367" -u :<API-KEY>
     "type": 0,
     "first_name": "John",
     "last_name": "Doe",
-    "phone_numbers": [ ],
     "primary_email": "jdoe@stanford.edu",
     "emails": [
       "jdoe@stanford.edu"
@@ -179,7 +175,6 @@ curl "https://api.affinity.co/lists/450/list-entries" \
     "type": 0,
     "first_name": "John",
     "last_name": "Doe",
-    "phone_numbers": [ ],
     "primary_email": "jdoe@stanford.edu",
     "emails": [
       "jdoe@stanford.edu"

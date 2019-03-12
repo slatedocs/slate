@@ -21,7 +21,6 @@ spreadsheet), please check out the [Field Values](#field-values) section of the 
   "type": 0,
   "first_name": "John",
   "last_name": "Doe",
-  "phone_numbers": ["123-456-7890"],
   "primary_email": "john@affinity.co",
   "emails": [
     "john@affinity.co",
@@ -50,7 +49,7 @@ spreadsheet), please check out the [Field Values](#field-values) section of the 
 },
 ```
 
-Each person resource is assigned a unique `id` and stores the name, phone numbers, and
+Each person resource is assigned a unique `id` and stores the name, type, and
 email addresses of the person. A person resource also has access to a smart attribute
 called `primary_email`. The value of `primary_email` is automatically computed by
 Affinity's proprietary algorithms and refers to the email that is most likely to be the
@@ -80,7 +79,6 @@ type | integer | The type of person (see below).
 first_name | string | The first name of the person.
 last_name | string | The last name of the person.
 emails | string[] | The email addresses of the person.
-phone_numbers | string[] | The phone numbers of the person.
 primary_email | string | The email (automatically computed) that is most likely to the current active email address of the person.
 organization_ids | integer[] | An array of unique identifiers of organizations that the person is associated with.
 list_entries | ListEntry[] | An array of list entry resources associated with the person, only returned as part of the [Get a specific person](#get-a-specific-person) endpoint.
@@ -134,7 +132,6 @@ curl "https://api.affinity.co/persons?term=doe" -u :<API-KEY>
       "type": 0,
       "first_name": "John",
       "last_name": "Doe",
-      "phone_numbers": ["123-456-7890"],
       "primary_email": "john@affinity.co",
       "emails": [
         "john@affinity.co",
@@ -148,7 +145,6 @@ curl "https://api.affinity.co/persons?term=doe" -u :<API-KEY>
       "type": 1,
       "first_name": "Jane",
       "last_name": "Doe",
-      "phone_numbers": ["098-765-4321"],
       "primary_email": "jane@gmail.com",
       "emails": [
         "jane@gmail.com"
@@ -201,7 +197,6 @@ curl "https://api.affinity.co/persons/38706" -u :<API-KEY>
   "type": 0,
   "first_name": "John",
   "last_name": "Doe",
-  "phone_numbers": ["123-456-7890"],
   "primary_email": "john@affinity.co",
   "emails": [
     "john@affinity.co",
@@ -247,7 +242,6 @@ curl "https://api.affinity.co/persons" \
   -d first_name="Alice" \
   -d last_name="Doe" \
   -d emails[]="alice@affinity.co" \
-  -d phone_numbers[]="123-123-123" \
   -d organization_ids[]=1687449
 ```
 
@@ -259,7 +253,6 @@ curl "https://api.affinity.co/persons" \
   "type":0,
   "first_name":"Alice",
   "last_name":"Doe",
-  "phone_numbers":["123-123-123"],
   "primary_email":"alice@affinity.co",
   "emails":["alice@affinity.co"],
   "organization_ids":[1687449]
@@ -284,7 +277,6 @@ Parameter | Type | Required | Description
 first_name | string | true | The first name of the person.
 last_name | string | true | The last name of the person.
 emails | string[] | true | The email addresses of the person. If there are no email addresses, please specify an empty array.
-phone_numbers | string[] | false | The phone numbers of the person. If there are no phone numbers, please specify an empty array.
 organization_ids | integer[] | false | An array of unique identifiers of organizations that the person is associated with.
 
 ### Returns
@@ -297,8 +289,8 @@ The person resource was newly created from this successful request.
 ```shell
 curl "https://api.affinity.co/860197" \
   -u :<API-KEY> \
-  -d phone_numbers[]="123-123-123" \
-  -d phone_numbers[]="234-234-234" \
+  -d emails[]="allison@example.com" \
+  -d emails[]="allison@gmail.com" \
   -d first_name="Allison" \
   -X "PUT"
 ```
@@ -311,9 +303,8 @@ curl "https://api.affinity.co/860197" \
   "type":0,
   "first_name":"Allison",
   "last_name":"Doe",
-  "phone_numbers":["123-123-123","234-234-234"],
   "primary_email":"alice@affinity.co",
-  "emails":["alice@affinity.co"],
+  "emails":["alice@affinity.co", "allison@example.com", "allison@gmail.com"],
   "organization_ids":[1687449]
 }
 ```
@@ -328,9 +319,8 @@ that need to be changed must be passed in.
 If you are looking to add an existing person to a list, please check the
 [List Entries](#list-entries) section of the API.
 
-If you are trying to add a new phone number, email, or organization to a person, the
-existing values for `phone_numbers`, `emails` and `organization_ids` must also be
-supplied as parameters.
+If you are trying to add a new email or organization to a person, the
+existing values for `emails` and `organization_ids` must also be supplied as parameters.
 
 ### Path Parameters
 
@@ -346,7 +336,6 @@ Parameter | Type | Required | Description
 first_name | string | false | The first name of the person.
 last_name | string | false | The last name of the person.
 emails | string[] | false | The email addresses of the person. If there are no email addresses, please specify an empty array.
-phone_numbers | string[] | false | The phone numbers of the person. If there are no phone numbers, please specify an empty array.
 organization_ids | integer[] | false | An array of unique identifiers of organizations that the person is associated with
 
 ### Returns
