@@ -3,7 +3,7 @@
 ## /check_handle
 
 ```specs
-POST /0.1/check_handle HTTP/1.1
+POST /0.2/check_handle HTTP/1.1
 Host: api.silamoney.com
 
 authsignature: [GENERATED AUTHSIGNATURE HERE]
@@ -48,14 +48,16 @@ The request body at this endpoint is the [header_msg](#header_msg) JSON object.
 
 ### Responses
 
-| Status Code | Response Body | Description |
-| ----------- | ------------- | ----------- |
-| 200 | | |
+| Status | Response Body | Description |
+| :------: | ------------- | ----------- |
+| 200 | {"reference":"","message":"handle.silamoney.eth is available","status":"SUCCESS"} | Response for an available "handle.silamoney.eth" handle. |
+| 200 | {"reference":"","message":"handle.silamoney.eth is already taken","status":"FAILURE"} | Response for an unavailable "handle.silamoney.eth" handle. |
+| 400 | {"reference":"","message":"#: #/header/user_handle: string [ubuntu.silamoney.eth] does not match pattern \\w+(?<!admin&#124;root&#124;administrator&#124;user&#124;guest&#124;ubuntu&#124;support)\\.silamoney.(eth&#124;xlm&#124;trx&#124;eos&#124;com)$","status":"FAILURE"} | Response for an unacceptable handle. |
 
 ## /register
 
 ```specs
-POST /0.1/register HTTP/1.1
+POST /0.2/register HTTP/1.1
 Host: api.silamoney.com
 
 authsignature: [GENERATED AUTHSIGNATURE HERE]
@@ -135,7 +137,7 @@ This endpoint's request body is the [entity_msg](#entity_msg) JSON object.
 ## /request_kyc
 
 ```specs
-POST /0.1/request_kyc HTTP/1.1
+POST /0.2/request_kyc HTTP/1.1
 Host: api.silamoney.com
 
 authsignature: [GENERATED AUTHSIGNATURE HERE]
@@ -188,7 +190,7 @@ The request body at this endpoint is the [header_msg](#header_msg) JSON object.
 ## /check_kyc
 
 ```specs
-POST /0.1/check_handle HTTP/1.1
+POST /0.2/check_handle HTTP/1.1
 Host: api.silamoney.com
 
 authsignature: [GENERATED AUTHSIGNATURE HERE]
@@ -238,7 +240,7 @@ The request body at this endpoint is the [header_msg](#header_msg) JSON object.
 ## /link_account
 
 ```specs
-POST /0.1/check_handle HTTP/1.1
+POST /0.2/check_handle HTTP/1.1
 Host: api.silamoney.com
 
 authsignature: [GENERATED AUTHSIGNATURE HERE]
@@ -288,7 +290,7 @@ The request body at this endpoint is the [link_account_msg](#) JSON object.
 ## /get_accounts
 
 ```specs
-POST /0.1/get_accounts HTTP/1.1
+POST /0.2/get_accounts HTTP/1.1
 Host: api.silamoney.com
 
 authsignature: [GENERATED AUTHSIGNATURE HERE]
@@ -339,7 +341,7 @@ The request body at this endpoint is the [get_accounts_msg](#) JSON object.
 ## /issue_sila
 
 ```specs
-POST /0.1/check_handle HTTP/1.1
+POST /0.2/check_handle HTTP/1.1
 Host: api.silamoney.com
 
 authsignature: [GENERATED AUTHSIGNATURE HERE]
@@ -389,7 +391,7 @@ The request body at this endpoint is the [issue_msg](#) JSON object.
 ## /transfer_sila
 
 ```specs
-POST /0.1/check_handle HTTP/1.1
+POST /0.2/check_handle HTTP/1.1
 Host: api.silamoney.com
 
 authsignature: [GENERATED AUTHSIGNATURE HERE]
@@ -439,7 +441,7 @@ The request body at this endpoint is the [transfer_msg](#) JSON object.
 ## /redeem_sila
 
 ```specs
-POST /0.1/check_handle HTTP/1.1
+POST /0.2/check_handle HTTP/1.1
 Host: api.silamoney.com
 
 authsignature: [GENERATED AUTHSIGNATURE HERE]
@@ -489,7 +491,7 @@ The request body at this endpoint is the [redeem_msg](#) JSON object.
 ## /get_transactions
 
 ```specs
-POST /0.1/check_handle HTTP/1.1
+POST /0.2/check_handle HTTP/1.1
 Host: api.silamoney.com
 
 authsignature: [GENERATED AUTHSIGNATURE HERE]
