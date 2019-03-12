@@ -9,21 +9,26 @@ search: true
 
 # General
 
-Welcome to the FalconX trading API. The API provides developers 24x7 programmatic access to the following
+Welcome to the FalconX trading API. The API provides developers programmatic access to the following APIs
 
 * OTC REST API
 * Marketdata REST API
 * Marketdata WebSocket API
 * Brokerage REST API
 
-# FalconX OTC REST API
+# OTC REST API
+
+## Introduction
+
+### Request For Quote (RFQ)
+The RFQ process involves the client sending details about the market pair they want to trade including the quantity.  The side can be revealed later when they actually execute the trade.  The FalconX API returns the price at which the client can buy or sell the request quantity in the requested market pair.  The quote is valid only for a short period of time.  If the client accepts the quote before it expires (by revealing the side) and FalconX sends a confirmation then the trade is considered closed.
+
+## Requests
+All requests and responses are application/json content type and follow typical HTTP response status codes for success and failure.
 
 ### API Endpoint
 * `https://api.falconx.io` for production
 * `https://sandboxapi.falconx.io` for testing
-
-## Requests
-All requests and responses are application/json content type and follow typical HTTP response status codes for success and failure.
 
 ### Errors
 
@@ -152,9 +157,117 @@ The **FX-ACCESS-TIMESTAMP** header MUST be number of seconds since Unix Epoch in
 
 Your timestamp must be within 30 seconds of the api service time or your request will be considered expired and rejected. We recommend using the [time](#time) endpoint to query for the API server time if you believe there many be time skew between your server and the API servers.
 
-# FalconX Marketdata REST API
+## Markets
+Lists all the markets available for trading
 
-# FalconX Marketdata WebSocket API
+### HTTP Request
+`GET https://api.falconx.io/markets`
 
-# FalconX Brokerage REST API
+## Balances
+Returns the current balances of all or a particular currency.  A positive number means you are owed a certain amount of a currency.  A negative number means that you owe a certain amount of a currency.
+
+To get all balances
+
+### HTTP Request
+`GET https://api.falconx.io/balances`
+
+To get the balance of a particular currency
+
+### HTTP Request
+`GET https://api.falconx.io/balance/<currency>`
+
+## Request For Quote
+Client sends request to get quotes to this endpoint.  The response contains the timestamp until which the quotes are valid.  Only a valid quote can be used to place an order
+
+### HTTP Request
+`POST https://api.falconx.io/rfq`
+
+Request Parameters
+
+<table>
+  <tr>
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>
+      market
+    </td>
+    <td>
+      String
+    </td>
+    <td>
+      The market for which the client is requesting quote
+    </td>
+  </tr>
+  <tr>
+    <td>quantity</td>
+	  <td>String</td>
+    <td>Quantity in base token</td>
+  </tr>
+</table>
+
+Response Parameters
+
+<table>
+  <tr>
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>
+      quote_id
+    </td>
+    <td>
+      String
+    </td>
+    <td>
+      Unique id of the quote to be used to place an order
+    </td>
+  </tr>
+  <tr>
+    <td>buy_quote</td>
+	  <td>String</td>
+    <td>The quote for buying the requested quantity</td>
+  </tr>
+  <tr>
+    <td>sell_quote</td>
+	  <td>String</td>
+    <td>The quote for selling the requested quantity</td>
+  </tr>
+</table>
+
+## Trade
+Place a trade after RFQ.  Note that the trade side is revealed now.
+
+### HTTP Request
+`GET https://api.falconx.io/trade`
+
+Request Parameters
+
+<table>
+  <tr>
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>quote_id</td>
+    <td>String</td>
+    <td>The unique quote id returned in the RFQ call</td>
+  </tr>
+  <tr>
+    <td>side</td>
+    <td>String</td>
+    <td>Either buy or sell</td>
+  </tr>
+</table>
+
+## Trade History
+Returns the trade history
+
+### HTTP Request
+`GET https://api.falconx.io/trade/history`
 
