@@ -97,7 +97,7 @@ class FXExchangeAuth(AuthBase):
         hmac_key = base64.b64decode(self.secret_key)
         signature = hmac.new(hmac_key, message.encode(), hashlib.sha256)
         signature_b64 = base64.b64encode(signature.digest())
- 
+
         request.headers.update({
             'FX-ACCESS-SIGN': signature_b64,
             'FX-ACCESS-TIMESTAMP': timestamp,
@@ -158,12 +158,88 @@ The **FX-ACCESS-TIMESTAMP** header MUST be number of seconds since Unix Epoch in
 Your timestamp must be within 30 seconds of the api service time or your request will be considered expired and rejected. We recommend using the [time](#time) endpoint to query for the API server time if you believe there many be time skew between your server and the API servers.
 
 ## Markets
+```python
+
+```
+
+> Example of JSON structure returned by the request
+
+```json
+[
+  {
+    "symbol": "BTC-USD",
+    "minimum": "10"
+  },
+  {
+    "symbol": "ETH-USD",
+    "minimum": "100"
+  },
+  {
+    "symbol": "ETH-BTC",
+    "minimum": "100"
+  },
+]
+```
 Lists all the markets available for trading
 
 ### HTTP Request
 `GET https://api.falconx.io/markets`
 
+Response Parameters
+
+<table>
+  <tr>
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>
+      symbol
+    </td>
+    <td>
+      String
+    </td>
+    <td>
+      The symbol of the token pair
+    </td>
+  </tr>
+  <tr>
+    <td>
+      minimum
+    </td>
+    <td>
+      String
+    </td>
+    <td>
+      The minimum quantity you can request
+    </td>
+  </tr>
+</table>
+
 ## Balances
+```python
+
+```
+
+> Example of JSON structure returned by the request
+
+```json
+{
+  "BTC": {
+    "total": "100",
+    "tradable": "90"
+  },
+  "USD": {
+    "total": "100000",
+    "tradable": "100000"
+  },
+  "ETH": {
+    "total": "1000",
+    "tradable": "800"
+  }
+}
+```
 Returns the current balances of all or a particular currency.  A positive number means you are owed a certain amount of a currency.  A negative number means that you owe a certain amount of a currency.
 
 To get all balances
@@ -171,12 +247,62 @@ To get all balances
 ### HTTP Request
 `GET https://api.falconx.io/balances`
 
+Response Parameters
+
+<table>
+  <tr>
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>
+      total
+    </td>
+    <td>
+      String
+    </td>
+    <td>
+      The total quantity of this currency that you have in your wallet
+    </td>
+  </tr>
+  <tr>
+    <td>
+      tradable
+    </td>
+    <td>
+      String
+    </td>
+    <td>
+      The quantity of this currency that is available for you to trade (i.e. not in the withdrawal queue)
+    </td>
+  </tr>
+</table>
+
+
 To get the balance of a particular currency
 
 ### HTTP Request
 `GET https://api.falconx.io/balance/<currency>`
 
 ## Request For Quote
+```python
+
+```
+
+> Example of JSON structure returned by the request
+
+```json
+{
+  "created_timestamp": "2019-01-01T19:45:07.025464Z",
+  "expiration_timestamp": "2019-01-01T19:45:22.025464Z",
+  "quote_id": "d4e41399-e7a1-4576-9b46-349420040e1a",
+  "quantity": "100.0000000000",
+  "market": "BTC-USD",
+  "sell_price": "3998.00000000",
+  "buy_price": "4001.00000000"
+}
+```
 Client sends request to get quotes to this endpoint.  The response contains the timestamp until which the quotes are valid.  Only a valid quote can be used to place an order
 
 ### HTTP Request
@@ -217,29 +343,60 @@ Response Parameters
     <th>Description</th>
   </tr>
   <tr>
-    <td>
-      quote_id
-    </td>
-    <td>
-      String
-    </td>
-    <td>
-      Unique id of the quote to be used to place an order
-    </td>
+    <td>created_timestamp</td>
+    <td>String</td>
+    <td>The timestamp at which the quote was requested</td>
   </tr>
   <tr>
-    <td>buy_quote</td>
-	  <td>String</td>
-    <td>The quote for buying the requested quantity</td>
+    <td>expiration_timestamp</td>
+    <td>String</td>
+    <td>The timestamp at which the quote expires</td>
   </tr>
   <tr>
-    <td>sell_quote</td>
+    <td>quote_id</td>
+    <td>String</td>
+    <td>Unique id of the quote to be used to place an order</td>
+  </tr>
+  <tr>
+    <td>quantity</td>
+    <td>String</td>
+    <td>The quantity requested of the token</td>
+  </tr>
+  <tr>
+    <td>market</td>
+    <td>String</td>
+    <td>The token pair for which you requested a quote</td>
+  </tr>
+  <tr>
+    <td>sell_price</td>
 	  <td>String</td>
     <td>The quote for selling the requested quantity</td>
+  </tr>
+  <tr>
+    <td>buy_price</td>
+	  <td>String</td>
+    <td>The quote for buying the requested quantity</td>
   </tr>
 </table>
 
 ## Trade
+```python
+
+```
+
+> Example of JSON structure returned by the request
+
+```json
+{
+  "created_timestamp": "2016-09-27T11:27:46.599039Z",
+  "trade_id": "5c7e90cc-a8d6-4db5-8348-44053b2dcbdf",
+  "quote_id": "f7492962-783e-45c7-ae81-6eb61f4d7251",
+  "price": "4000.0000000000",
+  "market": "BTC-USD",
+  "side": "buy",
+  "quantity": "10.00000000"
+}
+```
 Place a trade after RFQ.  Note that the trade side is revealed now.
 
 ### HTTP Request
@@ -254,20 +411,72 @@ Request Parameters
     <th>Description</th>
   </tr>
   <tr>
+    <td>created_timestamp</td>
+    <td>String</td>
+    <td>The timestamp at which the trade was placed</td>
+  </tr>
+  <tr>
+    <td>trade_id</td>
+    <td>String</td>
+    <td>The unique id of this trade</td>
+  </tr>
+  <tr>
     <td>quote_id</td>
     <td>String</td>
     <td>The unique quote id returned in the RFQ call</td>
+  </tr>
+  <tr>
+    <td>price</td>
+    <td>String</td>
+    <td>The price at which the trade was placed</td>
+  </tr>
+  <tr>
+    <td>market</td>
+    <td>String</td>
+    <td>The token pair that was traded</td>
   </tr>
   <tr>
     <td>side</td>
     <td>String</td>
     <td>Either buy or sell</td>
   </tr>
+  <tr>
+    <td>quantity</td>
+    <td>String</td>
+    <td>The quantity of the token that was traded</td>
+  </tr>
 </table>
 
 ## Trade History
+```python
+
+```
+
+> Example of JSON structure returned by the request
+
+```json
+[
+  {
+    "trade_id": "ef69dz9f-5ade-4aa4-87c2-e2eaef37d8bc",
+    "created_timestamp": "2016-12-14T14:17:03Z",
+    "currency": "BTC",
+    "quantity": "100.00000000",
+    "price": "4000.00000000",
+    "quantity": "100.00000000",
+    "side": "buy"
+  },
+  {
+    "trade_id": "393f9373-8a9a-478b-8669-6fc443a36780",
+    "created_timestamp": "2016-12-15T12:18:01Z",
+    "currency": "ETH",
+    "quantity": "1000.00000000",
+    "price": "130.00000000",
+    "quantity": "1000.00000000",
+    "side": "sell"
+  }
+]
+```
 Returns the trade history
 
 ### HTTP Request
 `GET https://api.falconx.io/trade/history`
-
