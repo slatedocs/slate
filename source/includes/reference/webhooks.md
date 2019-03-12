@@ -236,7 +236,7 @@ status                    | Status of test notification delivery          | Stri
 code                      | HTTP status code we have received from your server | Integer
 elapsed                   | Time taken to deliver notification, in ms     | Integer
 
-## Transfer state change event
+## Transfer status change event
 
 > Example event:
 
@@ -252,15 +252,17 @@ elapsed                   | Time taken to deliver notification, in ms     | Inte
 
 ### Event
 
+Event will be triggered every time transfer status is updated.
+
 Field                     | Description                                   | Format
 ---------                 | -------                                       | -----------
 subscriptionId            | ID of subscription that triggers this notification | String
 profileId                 | ID of the profile that owns the resource      | Integer
 resourceId                | ID of the resource that got updated           | Integer
-status                    | New status of the resource                    | String
+status                    | New status of the resource, possible values are same as [transfer statuses](#transferwise-payouts-guide-track-transfer-status)               | String
 eventTime                 | Timestamp when update happened                | Timestamp
 
-## Balance update event
+## Balance deposit event
 
 > Example event:
 
@@ -275,10 +277,12 @@ eventTime                 | Timestamp when update happened                | Time
 ```
 ### Event
 
+Event will be triggered every time balance is debited.
+
 Field                     | Description                                   | Format
 ---------                 | -------                                       | -----------
 subscriptionId            | ID of subscription that triggers this notification | String
 profileId                 | ID of the profile that owns the balance       | Integer
-amount                    | Debit/credit amount                           | Integer
+amount                    | Deposit amount                                | Integer
 currency                  | Currency of the balance that got updated      | String
 eventType                 | Type of update                                | String
