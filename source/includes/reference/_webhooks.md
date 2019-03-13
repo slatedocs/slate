@@ -197,11 +197,9 @@ curl -X DELETE https://api.transferwise.com/v1/subscriptions/{subscriptionId}/ \
 
 Deactivate a subscription.
 
-# Events
+## Events
 
-Events will not contain any personally identifiable information.
-
-In case first delivery attempt fails, we will try to resend it 3 times consequently.
+Events describe payload that will be sent to your server in a form of a `POST` request. They will not contain any personally identifiable information. To acknowledge succesfully processed event, make sure your server answers with a status code `200`. Otherwise, we will try to resend the notification 3 times consequently.
 
 ## Test event
 
@@ -258,7 +256,7 @@ elapsed                   | Time taken to deliver notification, in ms     | Inte
 
 ### Event
 
-Event will be triggered every time transfer status is updated.
+Event will be triggered every time transfer status is updated. Each event contains a timestamp. As we do not guarantee the order of events, please use that `eventTime` to reconcile the order. 
 
 Field                     | Description                                   | Format
 ---------                 | -------                                       | -----------
