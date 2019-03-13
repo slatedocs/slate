@@ -36,10 +36,16 @@ curl -X POST https://api.transferwise.com/v1/subscriptions/ \
 }
 ```
 
-Webhook subscription is a mechanism that will allow you to receive notifications to your servers whenever your transfers and/or balance get updated. Before proceeding, please make sure your server does the following:
-* listens to HTTPS requests on port 443
-* has a valid domain name and URL
-* has a valid SSL certificate (self-signed certificates are not allowed)
+Webhook subscription is a mechanism that will allow you to receive notifications to your servers whenever your transfers and/or balance get updated.
+
+Before proceeding, make sure the endpoint where you intend to receive webhooks satisfies the following requirements:
+
+* Has a valid domain name (IP-s are not allowed)
+* Listens to HTTPS requests on port `443`
+* Has a valid HTTPS certificate signed by a trusted CA (self-signed or expired certificates are not accepted)
+* Does not include any query arguments in the URI
+
+`https://webhooks.example.com/balance-change` is a valid URL; `http://webhooks.example.com:8080/hook.php?type=balance` is not.
 
 Currently we are delivering all notifications and `enabled_notifications` criteria will not be taken into account.
 
