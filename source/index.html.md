@@ -25,6 +25,7 @@ includes:
   - reference/users
   - reference/profiles
   - reference/language
+  - reference/webhooks
   - reference/errors
 
 ---
