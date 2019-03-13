@@ -1065,6 +1065,8 @@ This is the free version url **wss://test.api.suredbits.com/futures/v0** on test
 
 ## Overview
 
+For **Futures** request, you must include an `interval` request of: `monthly`, `quarterly`, or `perpetual`.  If no `interval` is requested, it will default to `perpetual`. 
+
 ### Trading Pairs Supported 
 
 Symbol | Kraken  | 
