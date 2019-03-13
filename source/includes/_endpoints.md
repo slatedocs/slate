@@ -216,7 +216,7 @@ The request body at this endpoint is the [header_msg](#header_msg) JSON object.
 ## /check_kyc
 
 ```http
-POST /0.2/check_handle HTTP/1.1
+POST /0.2/check_kyc HTTP/1.1
 Host: sandbox.silamoney.com
 authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
 usersignature: [GENERATED USERSIGNATURE HEX STRING HERE]
@@ -278,7 +278,7 @@ The handle for which KYC confirmation is being checked should be in the `header.
 ## /link_account
 
 ```http
-POST /0.2/check_handle HTTP/1.1
+POST /0.2/link_account HTTP/1.1
 Host: sandbox.silamoney.com
 authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
 usersignature: [GENERATED USERSIGNATURE HEX STRING HERE]
@@ -405,7 +405,7 @@ The request body at this endpoint is the [get_accounts_msg](#) JSON object.
 ## /issue_sila
 
 ```http
-POST /0.2/check_handle HTTP/1.1
+POST /0.2/issue_sila HTTP/1.1
 Host: sandbox.silamoney.com
 authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
 usersignature: [GENERATED USERSIGNATURE HEX STRING HERE]
@@ -448,7 +448,7 @@ HTTP/1.1 200 OK
 // Go example coming soon
 ```
 
-*Debits a specified account and issues tokens to the address belonging to the requested handle*
+*Debits a specified account and issues tokens to the address belonging to the requested handle.*
 
 The /issue_sila endpoint starts the debit of a user's linked bank account; once that monetary transaction has officially settled, a process that takes about two business days to complete, the handle's blockchain address will be issued SILA tokens.
 
@@ -475,7 +475,7 @@ The `account_name` field is the name of the handle's linked account from which t
 ## /transfer_sila
 
 ```http
-POST /0.2/check_handle HTTP/1.1
+POST /0.2/transfer_sila HTTP/1.1
 Host: sandbox.silamoney.com
 authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
 usersignature: [GENERATED USERSIGNATURE HEX STRING HERE]
@@ -491,7 +491,7 @@ Content-Type: application/json
     "reference": "ref"
   }, 
   "message": "transfer_msg",
-  "amount": 127,
+  "amount": 13,
   "destination": "user2.silamoney.eth"
 }
 
@@ -518,9 +518,13 @@ HTTP/1.1 200 OK
 // Go example coming soon
 ```
 
-*Overview*
+*Starts a transfer of the requested amount of SILA to the requested destination handle.*
 
-Detailed description
+This request triggers a transfer of SILA tokens over the blockchain, going from the current authenticated user to the specified destination handle.
+
+In theory, SILA tokens can be transferred from any blockchain address to any blockchain address. This endpoint assumes that the recipient has been registered with Sila and has a handle. During Sila's beta phase, token transfers are restricted to whitelisted addresses (addresses which belong to KYC-verified users). After full launch, tokens will be transferable to any address.
+
+Also, since the Ethereum platform is currently the only platform we support (though we plan to support others), this will create one blockchain transaction. When other platforms are added, transfers from one platform to another will result in burning of tokens from an address on one platform to minting of tokens to an address on a different platform (two different blockchain transactions).
 
 ### Requests
 
@@ -530,12 +534,12 @@ The request body at this endpoint is the [transfer_msg](#) JSON object.
 
 | Status Code | Description |
 | :---------: | ----------- |
-| 200 | |
+| 200 | Transfer process started. |
 
 ## /redeem_sila
 
 ```http
-POST /0.2/check_handle HTTP/1.1
+POST /0.2/redeem_sila HTTP/1.1
 Host: sandbox.silamoney.com
 authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
 usersignature: [GENERATED USERSIGNATURE HEX STRING HERE]
@@ -550,7 +554,9 @@ Content-Type: application/json
     "crypto": "ETH", 
     "reference": "ref"
   }, 
-  "message": "header_msg"
+  "message": "redeem_msg",
+  "amount": 1000,
+  "account_name": "default"
 }
 
 HTTP/1.1 200 OK
@@ -576,22 +582,24 @@ HTTP/1.1 200 OK
 // Go example coming soon
 ```
 
-*Overview*
+*Burns given amount of SILA at the handle's blockchain address and credits their named bank account in the equivalent monetary amount.*
 
 Detailed description
+
+### Requests
 
 The request body at this endpoint is the [redeem_msg](#) JSON object.
 
 ### Responses
 
-| Status Code | Response Body | Description |
-| ----------- | ------------- | ----------- |
-| 200 | | |
+| Status Code | Description |
+| :---------: | ----------- |
+| 200 | Process to redeem USD started. |
 
 ## /get_transactions
 
 ```http
-POST /0.2/check_handle HTTP/1.1
+POST /0.2/get_transactions HTTP/1.1
 Host: sandbox.silamoney.com
 authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
 usersignature: [GENERATED USERSIGNATURE HEX STRING HERE]
@@ -606,7 +614,20 @@ Content-Type: application/json
     "crypto": "ETH", 
     "reference": "ref"
   }, 
-  "message": "header_msg"
+  "message": "get_transactions_msg",
+  "search_filters": {
+    "transaction_id": "some UUID assigned by Sila",
+    "reference_id": "the reference string sent in the header object when transaction request was made",
+    "show_timelines": false,
+    "sort_ascending": false,
+    "max_sila_amount": 1300,
+    "min_sila_amount": 1000,
+    "statuses": ["pending", "successful", "failed", "complete"],
+    "start_epoch": 1234567860,
+    "end_epoch": 1234567891,
+    "page": 1,
+    "per_page": 20,
+  }
 }
 
 HTTP/1.1 200 OK
@@ -632,14 +653,18 @@ HTTP/1.1 200 OK
 // Go example coming soon
 ```
 
-*Overview*
+*Gets array of user handle's transactions with detailed status information.*
 
-Detailed description
+## Requests
 
 The request body at this endpoint is the [get_transactions_msg](#) JSON object.
 
+The `search_filters` object and all of its nested keys are optional. They can be used to filter the transactions that are returned.
+
+Results are paginated; by default, the first 20 results are returned in descending order of date transaction was started. You can request up to 100 results per page (`"per_page": 100`) and sort them in ascending order of date transaction was started (`"sort_ascending": true`) if desired.
+
 ### Responses
 
-| Status Code | Response Body | Description |
-| ----------- | ------------- | ----------- |
-| 200 | | |
+| Status Code | Description |
+| :---------: | ----------- |
+| 200 | Able to return transaction information. |
