@@ -2,11 +2,10 @@
 
 ## /check_handle
 
-```specs
+```http
 POST /0.2/check_handle HTTP/1.1
-Host: api.silamoney.com
-
-authsignature: [GENERATED AUTHSIGNATURE HERE]
+Host: sandbox.silamoney.com
+authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
 Content-Type: application/json
 
 {
@@ -19,6 +18,14 @@ Content-Type: application/json
     "reference": "ref"
   }, 
   "message": "header_msg"
+}
+
+HTTP/1.1 200 OK
+
+{
+  "reference": "ref",
+  "message": "user.silamoney.eth is available.",
+  "status": "SUCCESS"
 }
 ```
 
@@ -40,27 +47,30 @@ Content-Type: application/json
 
 *Checks if a specific handle is already taken.*
 
-A "handle" works like a username in the Sila ecosystem. If an entity has already been created with that handle, it will respond with an error that says the handle is already in use, and the entity will fail to be created.
+A "handle" works like a username in the Sila ecosystem. This endpoint ensures that a potential handle is available for use. If an entity has already been created with that handle, this endpoint will respond with a message that says that the handle is already in use and a `"status": "FAILURE"` in the JSON response body.
 
-This endpoint makes sure that the handle you or your user is thinking of using does indeed exist. In the "user_handle" field, insert the handle for which you want to check availability. The entry for "auth_handle" should have your developer handle.
+### Requests
 
-The request body at this endpoint is the [header_msg](#header_msg) JSON object. 
+In the `header.user_handle` field, put the handle for which you want to check availability. The entry for `header.auth_handle` should have your developer handle.
+
+The request body format for this endpoint is the [header_msg](#header_msg) JSON object. 
 
 ### Responses
 
-| Status | Response Body | Description |
-| :------: | ------------- | ----------- |
-| 200 | {"reference":"","message":"handle.silamoney.eth is available","status":"SUCCESS"} | Response for an available "handle.silamoney.eth" handle. |
-| 200 | {"reference":"","message":"handle.silamoney.eth is already taken","status":"FAILURE"} | Response for an unavailable "handle.silamoney.eth" handle. |
-| 400 | {"reference":"","message":"#: #/header/user_handle: string [ubuntu.silamoney.eth] does not match pattern \\w+(?<!admin&#124;root&#124;administrator&#124;user&#124;guest&#124;ubuntu&#124;support)\\.silamoney.(eth&#124;xlm&#124;trx&#124;eos&#124;com)$","status":"FAILURE"} | Response for an unacceptable handle. |
+The `status` attribute is a JSON key sent in the response body.
+
+| Status Code | `status` Attribute | Description |
+| :---------: | :------------------: | ----------- |
+| 200 | `"SUCCESS"` | Handle sent in `header.user_handle` is available. |
+| 200 | `"FAILURE"` | Handle sent in `header.user_handle` is taken. |
+| 400 | `"FAILURE"` | Handle sent in `header.user_handle` is a reserved handle according to our JSON schema. |
 
 ## /register
 
-```specs
+```http
 POST /0.2/register HTTP/1.1
-Host: api.silamoney.com
-
-authsignature: [GENERATED AUTHSIGNATURE HERE]
+Host: sandbox.silamoney.com
+authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
 usersignature: [GENERATED USERSIGNATURE HERE]
 Content-Type: application/json
 
@@ -104,6 +114,12 @@ Content-Type: application/json
     "relationship": "user"
   }
 }
+
+HTTP/1.1 200 OK
+
+{
+
+}
 ```
 
 ```javascript
@@ -124,23 +140,26 @@ Content-Type: application/json
 
 *Attaches KYC data and specified blockchain address to an assigned handle.*
 
-This is the endpoint you will use to create a new user. In the call, you will need to complete all fields and include a valid Ethereum address (not already used in system and not a smart contract). The information provided will be used to verify that this information belongs to a real person, and the results will be returned asynchronously by hitting the **check_kyc** endpoint.
+This is the endpoint you will use to create a new user and attach information that will be used to verify their identity. This does not start verification of the KYC data; it only adds the data to be verified. See [/request_kyc](#request_kyc) and [/check_kyc](#check_kyc) for verifying KYC status.
+
+### Requests
+
+At this endpoint, you will need to complete all fields with user information and include a valid Ethereum address (must not be already used in Sila system and not a smart contract). The private key associated with the `crypto_entry.crypto_address` will be used to generate usersignature headers on some subsequent calls.
 
 This endpoint's request body is the [entity_msg](#entity_msg) JSON object.
 
 ### Responses
 
-| Status Code | Response Body | Description |
-| ----------- | ------------- | ----------- |
-| 200 | | |
+| Status Code | Description |
+| ----------- | ----------- |
+| 200 | Handle successfully added to system with KYC data. |
 
 ## /request_kyc
 
-```specs
+```http
 POST /0.2/request_kyc HTTP/1.1
-Host: api.silamoney.com
-
-authsignature: [GENERATED AUTHSIGNATURE HERE]
+Host: sandbox.silamoney.com
+authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
 Content-Type: application/json
 
 {
@@ -153,6 +172,12 @@ Content-Type: application/json
     "reference": "ref"
   }, 
   "message": "header_msg"
+}
+
+HTTP/1.1 200 OK
+
+{
+  
 }
 ```
 
@@ -172,28 +197,27 @@ Content-Type: application/json
 // check_handle Go example coming soon
 ```
 
-*Starts verification process on a registered user handle.*
+*Starts KYC verification process on a registered user handle.*
 
-A "handle" works like a username in the Sila ecosystem. If an entity has already been created with that handle, it will respond with an error that says the handle is already in use, and the entity will fail to be created.
+After having created a user at a handle with [/register](#register), you can start the KYC verification process on the user with this endpoint. The results are asynchronously returned at the [/check_kyc](#check_kyc) endpoint.
 
-This endpoint makes sure that the handle you or your user is thinking of using does indeed exist. In the "user_handle" field, insert the handle for which you want to check availability. The entry for "auth_handle" should have your developer handle.
+### Requests
 
 The request body at this endpoint is the [header_msg](#header_msg) JSON object. 
 
 ### Responses
 
 | Status Code | Response Body | Description |
-| ----------- | ------------- | ----------- |
+| :---------: | ------------- | ----------- |
 | 200 | | |
 
 
 ## /check_kyc
 
-```specs
+```http
 POST /0.2/check_handle HTTP/1.1
-Host: api.silamoney.com
-
-authsignature: [GENERATED AUTHSIGNATURE HERE]
+Host: sandbox.silamoney.com
+authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
 Content-Type: application/json
 
 {
@@ -206,6 +230,12 @@ Content-Type: application/json
     "reference": "ref"
   }, 
   "message": "header_msg"
+}
+
+HTTP/1.1 200 OK
+
+{
+  
 }
 ```
 
@@ -239,11 +269,10 @@ The request body at this endpoint is the [header_msg](#header_msg) JSON object.
 
 ## /link_account
 
-```specs
+```http
 POST /0.2/check_handle HTTP/1.1
-Host: api.silamoney.com
-
-authsignature: [GENERATED AUTHSIGNATURE HERE]
+Host: sandbox.silamoney.com
+authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
 Content-Type: application/json
 
 {
@@ -256,6 +285,12 @@ Content-Type: application/json
     "reference": "ref"
   }, 
   "message": "header_msg"
+}
+
+HTTP/1.1 200 OK
+
+{
+  
 }
 ```
 
@@ -289,11 +324,10 @@ The request body at this endpoint is the [link_account_msg](#) JSON object.
 
 ## /get_accounts
 
-```specs
+```http
 POST /0.2/get_accounts HTTP/1.1
-Host: api.silamoney.com
-
-authsignature: [GENERATED AUTHSIGNATURE HERE]
+Host: sandbox.silamoney.com
+authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
 Content-Type: application/json
 
 {
@@ -306,6 +340,12 @@ Content-Type: application/json
     "reference": "ref"
   }, 
   "message": "header_msg"
+}
+
+HTTP/1.1 200 OK
+
+{
+  
 }
 ```
 
@@ -340,11 +380,10 @@ The request body at this endpoint is the [get_accounts_msg](#) JSON object.
 
 ## /issue_sila
 
-```specs
+```http
 POST /0.2/check_handle HTTP/1.1
-Host: api.silamoney.com
-
-authsignature: [GENERATED AUTHSIGNATURE HERE]
+Host: sandbox.silamoney.com
+authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
 Content-Type: application/json
 
 {
@@ -357,6 +396,12 @@ Content-Type: application/json
     "reference": "ref"
   }, 
   "message": "header_msg"
+}
+
+HTTP/1.1 200 OK
+
+{
+  
 }
 ```
 
@@ -390,11 +435,10 @@ The request body at this endpoint is the [issue_msg](#) JSON object.
 
 ## /transfer_sila
 
-```specs
+```http
 POST /0.2/check_handle HTTP/1.1
-Host: api.silamoney.com
-
-authsignature: [GENERATED AUTHSIGNATURE HERE]
+Host: sandbox.silamoney.com
+authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
 Content-Type: application/json
 
 {
@@ -407,6 +451,12 @@ Content-Type: application/json
     "reference": "ref"
   }, 
   "message": "header_msg"
+}
+
+HTTP/1.1 200 OK
+
+{
+  
 }
 ```
 
@@ -440,11 +490,10 @@ The request body at this endpoint is the [transfer_msg](#) JSON object.
 
 ## /redeem_sila
 
-```specs
+```http
 POST /0.2/check_handle HTTP/1.1
-Host: api.silamoney.com
-
-authsignature: [GENERATED AUTHSIGNATURE HERE]
+Host: sandbox.silamoney.com
+authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
 Content-Type: application/json
 
 {
@@ -457,6 +506,12 @@ Content-Type: application/json
     "reference": "ref"
   }, 
   "message": "header_msg"
+}
+
+HTTP/1.1 200 OK
+
+{
+  
 }
 ```
 
@@ -490,11 +545,10 @@ The request body at this endpoint is the [redeem_msg](#) JSON object.
 
 ## /get_transactions
 
-```specs
+```http
 POST /0.2/check_handle HTTP/1.1
-Host: api.silamoney.com
-
-authsignature: [GENERATED AUTHSIGNATURE HERE]
+Host: sandbox.silamoney.com
+authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
 Content-Type: application/json
 
 {
@@ -507,6 +561,12 @@ Content-Type: application/json
     "reference": "ref"
   }, 
   "message": "header_msg"
+}
+
+HTTP/1.1 200 OK
+
+{
+  
 }
 ```
 
