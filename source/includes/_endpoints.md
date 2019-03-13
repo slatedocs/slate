@@ -324,9 +324,15 @@ HTTP/1.1 200 OK
 
 *Uses a provided Plaid public token to link a bank account to a verified entity.*
 
-This endpoint accepts results from customer interaction with a [Plaid Link](https://plaid.com/docs/#integrating-with-link) integration.
+This endpoint accepts results from customer interaction with a Plaid Link integration.
 
-Your frontend Plaid integration will need to use a public key from Sila, be set to the "production" environment, and use the "auth" product. Its onSuccess function will return a public token and metadata object. (For an example of how this looks, you can look at Plaid's documentation and review our demo app.)
+Your frontend Plaid integration will need to: 
+
+- use a public key from Sila
+- be set to the "production" environment
+- use the "auth" product
+
+Its onSuccess function will return a public token and metadata object. (For an example of how this looks, you can look at Plaid's [documentation](https://plaid.com/docs/#integrating-with-link) and review our demo app.)
 
 ### Requests
 
@@ -655,7 +661,7 @@ HTTP/1.1 200 OK
 
 *Gets array of user handle's transactions with detailed status information.*
 
-## Requests
+### Requests
 
 The request body at this endpoint is the [get_transactions_msg](#) JSON object.
 
