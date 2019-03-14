@@ -324,10 +324,10 @@ In order for us to link this incoming domestic payment with a corresponding tran
 Calling endpoint [Get pay-in methods](#quotes-get-pay-in-methods) with quoteId returns you the correct reference text. e.g. `quote-1456477 P5472304`. We currently drive this behaviour using the second part of this string, starting with _P_, you should use a regular expression to extract this string to send as the reference, e.g. `.*(P\d+)`, taking the second group.
  
 ## Track transfer status
-Please look at [Track transfer status](#transferwise-payouts-guide-track-transfer-status) under TransferWise Payouts Guide.
+Please look at [Track transfer status](#payouts-guide-track-transfer-status) under TransferWise Payouts Guide.
  
 ## Get updated transfer delivery time estimate
-Please look at [Get transfer delivery time](#transferwise-payouts-guide-get-transfer-delivery-time) under TransferWise Payouts Guide.
+Please look at [Get transfer delivery time](#payouts-guide-get-transfer-delivery-time) under TransferWise Payouts Guide.
 
 ## Updating personal profile
 When user data changes the personal profile information must be updated.
