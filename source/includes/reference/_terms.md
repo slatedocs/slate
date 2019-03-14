@@ -34,6 +34,6 @@ No authentication is required for this endpoint.
 
 
 ### Response
-Terms and conditions in HTML format.
+Terms and conditions in HTML format
 
 

@@ -1,0 +1,65 @@
+defaults: &defaults
+  working_directory: ~/api-docs
+  docker:
+    - image: circleci/ruby:2.4.1-node-browsers
+      environment:
+        BUNDLE_JOBS: 3
+        BUNDLE_RETRY: 3
+        BUNDLE_PATH: vendor/bundle
+version: 2
+jobs:
+  install:
+    <<: *defaults
+    steps:
+      - checkout
+      # Which version of bundler?
+      - run:
+          name: Which bundler?
+          command: bundle -v
+      # Restore bundle cache
+      - restore_cache:
+          keys:
+            - api-docs-bundle-{{ checksum "Gemfile.lock" }}
+            - api-docs-bundle-
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+      # Store bundle cache
+      - save_cache:
+          key: api-docs-bundle-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      - persist_to_workspace:
+          root: .
+          paths:
+            - '*'
+  build:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/api-docs
+      - run: bundle exec middleman build --clean
+  build_and_deploy:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/api-docs
+      - run: ./deploy.sh
+
+workflows:
+  version: 2
+  build_and_release:
+    jobs:
+      - install
+      - build:
+          requires:
+            - install
+          filters:
+            branches:
+              ignore: master
+      - build_and_deploy:
+          requires:
+            - install
+          filters:
+            branches:
+              only: master

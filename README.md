@@ -10,7 +10,9 @@ This project is forked from [Slate](https://github.com/lord/slate).
 
 1. [Run the project locally](#run-the-project-locally)
 2. Do your changes (most of the text is in `/source/includes` folder). Learn more about [editing Slate markdown](https://github.com/lord/slate/wiki/Markdown-Syntax)
-3. Create pull request. Merge. Go to `master` branch and pull. **Deploy** (just run `./deploy.sh`)
+3. Create a pull request.
+
+Your changes will be deployed automatically when merged to master.
 
 For more detailed guides etc go to [Slate documentation](https://github.com/lord/slate).
 
