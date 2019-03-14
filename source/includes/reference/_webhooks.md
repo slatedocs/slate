@@ -199,7 +199,7 @@ Deactivate a subscription.
 
 ## Events
 
-Events describe payload that will be sent to your server in a form of a `POST` request. They will not contain any personally identifiable information. To acknowledge succesfully processed event, make sure your server answers with a status code `200`. Otherwise, we will try to resend the notification 3 times consequently.
+Events describe payload that will be sent to your server in a form of a `POST` request. They will not contain any personally identifiable information. To acknowledge succesfully processed event, make sure your server answers with a status code `200` within 5s. Otherwise, we will try to resend the notification 3 times consequently.
 
 ## Test event
 
@@ -263,7 +263,7 @@ Field                     | Description                                   | Form
 subscriptionId            | ID of subscription that triggers this notification | String
 profileId                 | ID of the profile that owns the resource      | Integer
 resourceId                | ID of the resource that got updated           | Integer
-status                    | New status of the resource, possible values are same as [transfer statuses](#transferwise-payouts-guide-track-transfer-status)               | String
+status                    | New status of the resource, possible values are same as [transfer statuses](#payouts-guide-track-transfer-status)               | String
 eventTime                 | Timestamp when update happened                | Timestamp
 
 ## Balance deposit event
@@ -287,6 +287,6 @@ Field                     | Description                                   | Form
 ---------                 | -------                                       | -----------
 subscriptionId            | ID of subscription that triggers this notification | String
 profileId                 | ID of the profile that owns the balance       | Integer
-amount                    | Deposit amount                                | Integer
+amount                    | Deposit amount                                | Decimal
 currency                  | Currency of the balance that got updated      | String
 eventType                 | Type of update                                | String

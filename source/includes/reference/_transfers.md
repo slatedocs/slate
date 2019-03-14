@@ -466,7 +466,7 @@ For example you can query:<br/>
 Field                     | Description             | Format
 ---------                 | -------                 | -----------
 profile                   | User profile id. If parameter is omitted, defaults to user's personal profile | Integer
-status                    | Status code or codes list (as comma separated value list) to filter returned transfers with. See [Track transfer status](#transferwise-payouts-guide-track-transfer-status) for complete list of statuses. | Text
+status                    | Status code or codes list (as comma separated value list) to filter returned transfers with. See [Track transfer status](#payouts-guide-track-transfer-status) for complete list of statuses. | Text
 sourceCurrency            | Source currency code  | Text
 targetCurrency            | Target currency code  | Text
 createdDateStart          | Starting date to filter transfers, inclusive of the provided date.   | yyyy-MM-dd'T'HH:mm:ss.SSS'Z'

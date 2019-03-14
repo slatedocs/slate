@@ -711,7 +711,7 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/transfers/{transferId} \
 
 ```   
 
-You can check your latest transfer status by polling this endpoint. We’re building webhook notification support us notifying about status changes, but unfortunately this isn’t available yet. Normal state flow of transfers: 
+You can check your latest transfer status by polling this endpoint. You can use [webhooks](#Webhooks) to get notified about transfer status updates. Normal state flow of transfers: 
 
 **Incoming Payment Waiting ⇒ Processing ⇒ Funds Converted ⇒ Outgoing Payment Sent**
 
