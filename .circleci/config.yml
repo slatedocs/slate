@@ -44,19 +44,34 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/api-docs
-      - run: ./deploy.sh
+      - add_ssh_keys:
+          fingerprints:
+            - "dd:14:8e:27:13:02:e4:47:df:3c:2c:f9:4b:7c:00:69"
+      - run:
+          name: Deploy docs
+          command: |
+            ssh-keyscan github.com >> ~/.ssh/known_hosts
+            git config --global user.email "circleci@transferwise.com"
+            git config --global user.name "CircleCI"
+            ./deploy.sh
 
 workflows:
   version: 2
   build_and_release:
     jobs:
-      - install
+      - install:
+          filters:
+            branches:
+              ignore:
+                - gh-pages
       - build:
           requires:
             - install
           filters:
             branches:
-              ignore: master
+              ignore:
+                - master
+                - gh-pages
       - build_and_deploy:
           requires:
             - install

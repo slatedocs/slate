@@ -30,10 +30,10 @@ This endpoint is applicable for bank integrations and third party application in
 
 Use "default" as clientId to fetch Transferwise general terms and conditions.
 
-No authentication is required for this endpoint.
+No authentication is required for this endpoint
 
 
 ### Response
-Terms and conditions in HTML format
+Terms and conditions in HTML format.
 
 
