@@ -2,7 +2,7 @@
 
 <!-------------------- LIST USAGE SUMMARY -------------------->
 
-### List usage summary
+### List organization usage summary
 
 `GET /usage_summary/organizations/:id`
 
@@ -54,6 +54,8 @@ Attributes | &nbsp;
 `usageType`<br/>*string* | Usage type of the record.
 `secondaryType`<br/>*string* | Secondary type of the record.
 
+*Note*: The utilityUsage reported by this API is the total usage recorded for the specified period. The resource commitment is not taken into account for this endpoint but is outlined in the endpoint `/top_level/organizations/{org_id}` below. 
+
 Query Parameters (*required*) | &nbsp;
 ---------- | -----
 `start_date`<br/>*String* | Start date (inclusive). Should have the following format YYYY-MM-DD.
@@ -65,6 +67,56 @@ Query Parameters | &nbsp;
 `include_sub_orgs`<br/>*boolean* | Include usage summary of all its sub-organizations. Defaults to false.
 `include_cost`<br/>*boolean* | Include the utility cost and service connection pricing id fields. Defaults to true.
 `include_free_usage`<br/>*boolean* | Include all summary records that has no cost associated to it (i.e. utilityCost == 0). Defaults to true.
-`combine_usage_types`<br/>*boolean* | Sums up all the utility cost per organization and service connection. The following fields are removed from the output: `serviceConnectionPricingId`, `usageType`, `secondaryType`, `utilityUsage` 
+`combine_usage_types`<br/>*boolean* | Sums up all the utility cost per organization and service connection. The following fields are removed from the output: `serviceConnectionPricingId`, `usageType`, `secondaryType`, `utilityUsage`
 `period`<br/>*String* | The period on which the aggregation is made. HOUR, DAY or PERIOD. The default is HOUR.
 `format`<br/>*String* | JSON or CSV. Defaults to JSON.
+`include_deleted`<br/>*boolean* | Will find usage of an organization that may have been deleted
+
+### List top level organization usage summary
+
+`GET /usage_summary/top_level/organizations/:id`<br/>
+
+This endpoint is very similar to the endpoint described above (they share identical query parameters) however make an important distinction in reporting utility usage. This endpoint will separate the total usage of an organization and its sub-organizations into two separate buckets, utility usage and resource commitment usage. This endpoint returns the same attributes listed above, adding one new concept outlined in the table below.
+
+Attributes | &nbsp;
+---- | -----------
+`resourceCommitmentUsage`<br/>*string* | The amount of usage that was counted toward the resourceCommitmentCapacity defined by the resource commitment.
+
+##### Resource Commitment Usage:
+The usage that is counted toward a pre assigned pool of resources defined by the Resource Commitment of the organization on a specified service connection. The resource commitment usage is capped by the resource commitment capacity which is the total amount of resource allocated to the organization.
+
+##### Utility Usage:
+Usage that burst outside of the allocated resource commitment if one exists. Note that utility usage will only appear in the response when the `actualUsage` > `resourceCommitmentsUsage`. Note that the `resourceCommitmentUsage` will always be less than or equal to the `resourceCommitmentCapacity` which is defined by the commitment.
+
+The following will always hold:
+`utilityUsage + resourceCommitmentUsage = actualUsage`
+
+This endpoint can be called in the following way:
+
+```shell
+# Retrieve usage summary in JSON
+curl curl --request GET \
+  --url 'https://cloudmc_endpoint/rest/usage_summary/top_level/organizations/52fd201e-aa82-4a27-86b3-ea9650a7fb1e?start_date=2019-03-12&end_date=2019-03-13' \
+  --header 'content-type: application/json' \
+  --header 'mc-api-key: your_api_key' \
+
+# Response body example
+```
+```json
+{
+  "data": [
+   {
+     "organizationId": "52fd201e-aa82-4a27-86b3-ea9650a7fb1e",
+     "serviceConnectionId": "818fa22d-1621-4cf3-87c3-4c10b146524c",
+     "serviceConnectionPricingId": "c2e38b0d-9b6e-4e79-959f-731cf3d00b1a",
+     "usageType": "1",
+     "secondaryType": "RAM",
+     "utilityCost": 0.480000,
+     "utilityUsage": 3.99999910,
+     "resourceCommitmentUsage": 1.0000000,
+     "startDate": "2019-03-12T00:00:00Z",
+     "endDate": "2019-03-12T01:00:00Z"
+   }]
+}
+```
+```shell
