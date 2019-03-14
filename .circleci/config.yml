@@ -59,19 +59,13 @@ workflows:
   version: 2
   build_and_release:
     jobs:
-      - install:
-          filters:
-            branches:
-              ignore:
-                - gh-pages
+      - install
       - build:
           requires:
             - install
           filters:
             branches:
-              ignore:
-                - master
-                - gh-pages
+              ignore: master
       - build_and_deploy:
           requires:
             - install

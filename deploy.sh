@@ -87,7 +87,7 @@ main() {
 
   #default commit message uses last title if a custom one is not supplied
   if [[ -z $commit_message ]]; then
-    commit_message="publish: $commit_title"
+    commit_message="publish: $commit_title [ci skip]"
   fi
 
   #append hash to commit message unless no hash flag was found
