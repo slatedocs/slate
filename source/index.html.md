@@ -504,7 +504,7 @@ Response Parameters
   <tr>
     <td>price</td>
     <td>String</td>
-    <td>The unit price of the trae</td>
+    <td>The unit price of the trade</td>
   </tr>
   <tr>
     <td>side</td>
@@ -512,3 +512,401 @@ Response Parameters
     <td>Buy or sell</td>
   </tr>
 </table>
+
+# Marketdata REST API
+
+The marketdata API is meant for getting aggregated market data (orderbooks, trades, and OHLCV). Using the REST API for marketdata, historical data for an exchange pair may be pulled from FalconX.
+
+## Authentication
+
+FalconX uses an API key strategy for providing marketdata. The authentication header looks like the following
+
+`X-API-KEY: secret-api-key`
+
+If the `X-API-KEY` header is not present, a 401 Unauthorized error will be returned.
+
+## Historical Trades
+
+```python
+```
+
+> Example Response returned by the request
+
+```json
+[
+  {
+    "quantity": "1",
+    "exchange_time": "2019-01-01T00:01:23.456789",
+    "base_token": "BTC",
+    "quote_token": "USD",
+    "taker_side": "buy",
+    "price": "3800.00",
+    "market": "binance_BTC_USD"
+  },
+  {
+    "quantity": "0.00005",
+    "exchange_item": "2019-01-01T00:02:00.000000",
+    "base_token": "BTC",
+    "quote_token": "USD",
+    "taker_side": "sell",
+    "price": "3801.00",
+    "market": "binance_BTC_USD"
+  }
+]
+```
+
+Get historical trade data.
+
+### HTTP Request
+
+`GET https://api.falconx.io/marketdata/historical_trades/`
+
+
+### Request Parameters
+
+<table>
+  <tr>
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>exchange</th>
+    <td>String</td>
+    <td>Y</td>
+    <td>The exchange name to query</td>
+  </tr>
+  <tr>
+    <td>pair</td>
+    <td>String</td>
+    <td>Y</td>
+    <td>The token pair to query, eg BTC-USD</td>
+  </tr>
+  <tr>
+    <td>start_time</td>
+    <td>Timestamp</td>
+    <td>Y</td>
+    <td>The timestamp of the beginning of the interval in ISO format, eg 2019-01-01T00:00:00.000</td>
+  </tr>
+  <tr>
+    <td>end_time</td>
+    <td>Timestamp</td>
+    <td>N</td>
+    <td>The timestamp of the end of the interval in ISO format, eg 2019-01-01T00:01:00.000. If not provided, only 100 trades will be returned.</td>
+  </tr>
+</table>
+
+### Response Codes
+
+<table>
+  <tr>
+    <th>Code</th>
+    <th>Status</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>200</td>
+    <td>OK</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>400</td>
+    <td>Bad Request</td>
+    <td>Either some parameters are missing or malformed</td>
+  </tr>
+  <tr>
+    <td>401</td>
+    <td>Unauthorized</td>
+    <td>X-API-KEY missing or invalid</td>
+  </tr>
+  <tr>
+    <td>429</td>
+    <td>Too Many Requests</td>
+    <td>Rate limit of requests exceeded</td>
+  </tr>
+  <tr>
+    <td>500</td>
+    <td>Internal Server Error</td>
+    <td>An error occurred within the backend</td>
+  </tr>
+</table>
+
+## Historical Orderbooks
+
+```python
+```
+
+> Example response returned by the request
+
+```json
+[
+  {
+    "asks": [
+      [3800, 1],
+      [3801, 0.1],
+      [3802, 100],
+      ...
+    ],
+    "bids": [
+      [3798, 10],
+      [3797, 0.001],
+      [3796, 1],
+      ...
+    ],
+    "exchange_timestamp": "2019-01-01T00:00:01.120000",
+    "base_token": "BTC",
+    "quote_token": "USD",
+    "market": "binance_BTC_USD"
+  }
+]
+```
+
+Get historical orderbook data for a specific market pair.
+
+### HTTP Request
+
+`GET https://api.falconx.io/marketdata/historical_orderbooks/`
+
+### Request Parameters
+
+<table>
+  <tr>
+    <th>Parameter</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>exchange</th>
+    <td>String</td>
+    <td>Y</td>
+    <td>The exchange name to query</td>
+  </tr>
+  <tr>
+    <td>pair</td>
+    <td>String</td>
+    <td>Y</td>
+    <td>The token pair to query, eg BTC-USD</td>
+  </tr>
+  <tr>
+    <td>start_time</td>
+    <td>Timestamp</td>
+    <td>Y</td>
+    <td>The timestamp of the beginning of the interval in ISO format, eg 2019-01-01T00:00:00.000</td>
+  </tr>
+  <tr>
+    <td>end_time</td>
+    <td>Timestamp</td>
+    <td>N</td>
+    <td>The timestamp of the end of the interval in ISO format, eg 2019-01-01T00:01:00.000. If not provided, only 10 orderbooks will be returned.</td>
+  </tr>
+</table>
+
+### Response Codes
+
+<table>
+  <tr>
+    <th>Code</th>
+    <th>Status</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>200</td>
+    <td>OK</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>400</td>
+    <td>Bad Request</td>
+    <td>Either some parameters are missing or malformed</td>
+  </tr>
+  <tr>
+    <td>401</td>
+    <td>Unauthorized</td>
+    <td>X-API-KEY missing or invalid</td>
+  </tr>
+  <tr>
+    <td>429</td>
+    <td>Too Many Requests</td>
+    <td>Rate limit of requests exceeded</td>
+  </tr>
+  <tr>
+    <td>500</td>
+    <td>Internal Server Error</td>
+    <td>An error occurred within the backend</td>
+  </tr>
+</table>
+
+# Marketdata Websocket API
+
+The marketdata websocket API streams marketdata updates in real-time to all connected clients. Data is published to the subscribers as soon as the market update is collected.
+
+## Authentication
+
+FalconX uses an API key strategy for providing marketdata. The authentication header must be provided at the time of establishing the connection. The authentication header looks like the following
+
+`X-API-KEY: secret-api-key`
+
+If the `X-API-KEY` header is not present, a 401 Unauthorized error will be returned, and the websocket connection will be terminated.
+
+## Trades
+
+```python
+```
+
+> Example of a Published Trade
+
+```json
+{
+  "quantity": "1",
+  "exchange_time": "2019-01-01T00:01:23.456789",
+  "base_token": "BTC",
+  "quote_token": "USD",
+  "taker_side": "buy",
+  "price": "3800.00",
+  "market": "binance_BTC_USD"
+}
+```
+
+Provides real-time streaming of trades from the market.
+
+### Establishing Connection
+
+```json
+{
+  "connection_id": "e0d19a81-6b6e-4384-9021-b57a21f9fc64",
+  "status": "ok"
+}
+```
+
+To start getting trade streams, connect to the following URL.
+
+`wss://ws.falconx.io/trades/`
+
+Note that unauthenticated connections aren't allowed, and the `X-API-KEY` header must be sent when establishing the connection.
+
+### Subscribing to a market
+
+> Response on successful subscription
+
+```json
+{
+  "status": "subscribed",
+  "market": "binance-BTC-USD",
+  "subscription_id": "081bac77-671f-49a7-8d28-e44fe935cb30"
+}
+```
+
+> Response on a subscription error
+
+```json
+{
+  "status": "error",
+  "message": "The requested market is not available"
+}
+```
+
+To subscribe to a particular market, send the following message
+
+`{ "action": "subscribe", "exchange": "binance", "pair": "BTC-USD" }`
+
+### Unsubscribing
+
+> Response on successful unsubscription
+
+```json
+{
+  "status": "unsubscribed",
+  "market": "binance-BTC-USD"
+}
+```
+
+To unsubscribe and stop receiving the trade stream, send the following message on the channel
+
+`{ "action": "unsubscribe", "exchange": "binance", "pair": "BTC-USD" }`
+
+## Orderbooks
+
+```python
+```
+
+> Example of a Published Orderbook
+
+```json
+{
+  "asks": [
+    [3800, 1],
+    [3801, 0.1],
+    [3802, 100],
+    ...
+  ],
+  "bids": [
+    [3798, 10],
+    [3797, 0.001],
+    [3796, 1],
+    ...
+  ],
+  "exchange_timestamp": "2019-01-01T00:00:01.120000",
+  "base_token": "BTC",
+  "quote_token": "USD",
+  "market": "binance_BTC_USD"
+}
+```
+
+Provides real-time streaming of orderbooks.
+
+### Establishing Connection
+
+```json
+{
+  "connection_id": "e0d19a81-6b6e-4384-9021-b57a21f9fc64",
+  "status": "ok"
+}
+```
+
+To start getting trade streams, connect to the following URL.
+
+`wss://ws.falconx.io/orderbooks/`
+
+Note that unauthenticated connections aren't allowed, and the `X-API-KEY` header must be sent when establishing the connection.
+
+### Subscribing to a market
+
+> Response on successful subscription
+
+```json
+{
+  "status": "subscribed",
+  "market": "binance-BTC-USD",
+  "subscription_id": "081bac77-671f-49a7-8d28-e44fe935cb30"
+}
+```
+
+> Response on a subscription error
+
+```json
+{
+  "status": "error",
+  "message": "The requested market is not available"
+}
+```
+
+To subscribe to a particular market, send the following message
+
+`{ "action": "subscribe", "exchange": "binance", "pair": "BTC-USD" }`
+
+### Unsubscribing
+
+> Response on successful unsubscription
+
+```json
+{
+  "status": "unsubscribed",
+  "market": "binance-BTC-USD"
+}
+```
+
+To unsubscribe and stop receiving the trade stream, send the following message on the channel
+
+`{ "action": "unsubscribe", "exchange": "binance", "pair": "BTC-USD" }`
