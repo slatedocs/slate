@@ -1,5 +1,12 @@
 # Webhooks
 
+There's two ways you can manage webhooks:
+
+* via API (read more below)
+* via user interface (go to your <a href="https://transferwise.com/user/settings#webhooks" target="_blank">settings page</a>)
+
+For the data that will be sent to your server see [events section.](#webhooks-events)
+
 ## Create
 
 > Example Request:
