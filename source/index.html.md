@@ -1174,28 +1174,28 @@ The **Tickers** channel streams high level updates for given trading pairs.  See
 
 Field | Type | Exchanges Supporting
 ------| -------| --------
-`eventTime` | Integer | Kraken
-`symbol` | String | Kraken
-`maturationInterval`| String | Kraken
-`maturationTime`| Integer | Kraken
-`bid` | Float | Kraken
-`bidSize` | Float | Kraken
-`ask` | Float | Kraken
-`askSize`| Float | Kraken
-`price`| Float | Kraken
-`priceChange`| Float | Kraken
-`last`| Float | Kraken
-`low` | Float | Kraken
-`high`| Float | Kraken
-`volume` | Float | Kraken
-`volWeightedAvePrice`| Float | Kraken
-`leverage`| String | Kraken
-`premium`| Float | Kraken
-`index`| Float | Kraken
-`openInterest`| Float | Kraken
-`fundingRate`| Float | Kraken
-`nextFundingRateTime`| Integer | Kraken
-`fundingRatePrediction` | Float | Kraken
+`eventTime` | Integer | kraken
+`symbol` | String | krakken
+`maturationInterval`| String | kraken
+`maturationTime`| Integer | kraken
+`bid` | Float | kraken
+`bidSize` | Float | kraken
+`ask` | Float | kraken
+`askSize`| Float | kraken
+`price`| Float | kraken
+`priceChange`| Float | kraken
+`last`| Float | kraken
+`low` | Float | kraken
+`high`| Float | kraken
+`volume` | Float | kraken
+`volWeightedAvePrice`| Float | kraken
+`leverage`| String | kraken
+`premium`| Float | kraken
+`index`| Float | kraken
+`openInterest`| Float | kraken
+`fundingRate`| Float | kraken
+`nextFundingRateTime`| Integer | kraken
+`fundingRatePrediction` | Float | kraken
 
 
 ## Trades
@@ -1204,17 +1204,20 @@ The **Trades** channel streams executed trades for a given trading pair.  See th
 
 Field | Type | Exchanges Supporting
 ------| -------| --------
-`eventTime` | Integer | Kraken
-`symbol` | String | Kraken
-`tradeId` | Integer | Kraken
-`price` | Float | Kraken
-`quantity` | Float | Kraken
-`buyerId` | String | Kraken
-`sellerId` | String | Kraken
-`tradeTime` | Integer | Kraken
-`marketMaker` | Boolean | Kraken
-`reason` | String | Kraken
-`maturationTime` | String | Kraken
+`eventTime` | Integer | kraken
+`symbol` | String | bitmex, kraken
+`tradeId` | String | bitmex, kraken
+`price` | Float | bitmex, kraken
+`quantity` | Float | bitmex, kraken
+`buyerId` | String | kraken
+`sellerId` | String | kraken
+`tradeTime` | Integer | bitmex, kraken
+`marketMaker` | Boolean | bitmex, kraken
+`reason` | String | kraken
+`maturationTime` | String | bitmex, kraken
+`grossvalue` | Integer | bitmex
+`homeNotional` | Float | bitmex
+`foreignNotional` | Float | bitmex
 
 
 ## Order Books 
@@ -1223,13 +1226,13 @@ The **Books** channel streams bids and asks for a given trading pair on given ex
 
 Field | Type | Exchanges Supporting
 ------| -------| --------
-`eventTime` | Integer | Kraken
-`symbol` | String | Kraken
-`maturation` | Integer | Kraken 
-`orderId`| Integer | Kraken
-`price` | Float | Kraken
-`quantityChange`| Float | Kraken
-`quantityTotal` | Float | Kraken
+`eventTime` | Integer | kraken
+`symbol` | String | bitmex, kraken
+`maturation` | Integer | bitmex, kraken 
+`orderId`| Integer | bitmex, kraken
+`price` | Float | bitmex, kraken
+`quantityChange`| Float | bitmex, kraken
+`quantityTotal` | Float | kraken
 
 
 <h1 id="NFLData"> NFL Data</h1>
