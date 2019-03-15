@@ -1041,6 +1041,8 @@ const tickersSub = await exchangeSocket.trades({
       }
       "seq":309
    }
+...
+
    ```
 
 The **Books** channel streams bids and asks for a given trading pair on given exchange. 
@@ -1065,17 +1067,108 @@ This is the free version url **wss://test.api.suredbits.com/futures/v0** on test
 
 ## Overview
 
-For **Futures** request, you must include an `interval` request of: `monthly`, `quarterly`, or `perpetual`.  If no `interval` is requested, it will default to `perpetual`. 
+**Futures** request follow the same query structure as the **Crypto Exchange API** with one addition: you must include an `interval` request of: `monthly`, `quarterly`, `biquarterly` or `perpetual`.  
+
+If no `interval` is requested, it will default to `perpetual` for all trading pairs except `ETHBTC` on the Bitmex exchange. That will default to `quarterly`. 
 
 ### Trading Pairs Supported 
 
-Symbol | Kraken  | 
-------| -------- | 
-`BTCUSD` |  X    |    
-`ETHUSD` |  X    |   
-`ETHBTC` |       | 
+**Legend**:
+P = Perpetual Contract
+M = Monthly Contract
+Q = Quarterly Contract
+B = Bi-quarterly Contract
+
+Symbol  | Kraken   | Bitmex |
+------  | -------- | -------
+`BTCUSD` |  M Q P  | Q P B  |  
+`ETHUSD` |  M Q P  |  P     |
+`ETHBTC` |    N/A  |  Q     |
 
 ## Tickers
+
+> Example request Tickers
+
+```json
+
+{  "event":"subscribe",
+   "interval": "perpetual",
+   "channel":"tickers",
+   "symbol":"BTCUSD",
+   "exchange":"kraken",
+   "duration":15000,
+"refundInvoice":"lnbc1pw9ff23pp55qvmh9xan5vfkf49tlmp3q80twqmk...",
+   "uuid":"8c948cbb-dcc9-40c2-9bab-6384b1379f9f"
+}
+
+```
+
+> Example Tickers data
+
+```json
+
+{  
+   "uuid":"8c948cbb-dcc9-40c2-9bab-6384b1379f9f",
+   "snapshot":[  
+      {  
+         "eventTime":1552661137915,
+         "symbol":"BTCUSD",
+         "maturationInterval":"perpetual",
+         "bid":3885,
+         "bidSize":72838,
+         "ask":3886,
+         "askSize":122,
+         "markPrice":3886,
+         "priceChange":1.1,
+         "last":3885,
+         "volume":4049778,
+         "leverage":"50x",
+         "premium":0,
+         "index":3885.43,
+         "openInterest":6053161,
+         "fundingRate":2.1017787561E-8,
+         "nextFundingRateTime":1552665600000,
+         "fundingRatePrediction":9.695378633E-9
+      }
+   ]
+}
+
+{  
+   "uuid":"8c948cbb-dcc9-40c2-9bab-6384b1379f9f",
+   "exchange":"kraken",
+   "symbol":"BTCUSD",
+   "duration":15000,
+   "event":"payment received"
+}
+
+{  
+   "uuid":"8c948cbb-dcc9-40c2-9bab-6384b1379f9f",
+   "data":{  
+      "eventTime":1552661140917,
+      "symbol":"BTCUSD",
+      "maturationInterval":"perpetual",
+      "bid":3885,
+      "bidSize":72838,
+      "ask":3886,
+      "askSize":122,
+      "markPrice":3886,
+      "priceChange":1.1,
+      "last":3885,
+      "volume":4049778,
+      "leverage":"50x",
+      "premium":0,
+      "index":3885.56,
+      "openInterest":6053161,
+      "fundingRate":2.1017787561E-8,
+      "nextFundingRateTime":1552665600000,
+      "fundingRatePrediction":9.695378633E-9
+   },
+   "seq":63599
+}
+...
+
+
+```
 
 The **Tickers** channel streams high level updates for given trading pairs.  See the table below for which exchanges return which fields.
 
