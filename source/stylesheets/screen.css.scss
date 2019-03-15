@@ -409,25 +409,26 @@ html, body {
     }
 
     th {
-      padding: 5px 10px;
-      border-bottom: 1px solid #ccc;
+      //padding: 5px 10px;
+      padding: 5px 7px;
+      border-bottom: 1px solid $table-border-color;
       vertical-align: bottom;
+      //white-space: nowrap;
     }
 
     td {
-      padding: 10px;
+      //padding: 10px;
+      padding: 5px;
+      border-left: 1px solid $table-border-color;
+      border-right: 1px solid $table-border-color;
+    }
+    
+    tr {
+      border-bottom: 1px solid $table-border-color;
     }
 
-    tr:last-child {
-      border-bottom: 1px solid #ccc;
-    }
-
-    tr:nth-child(odd)>td {
+    tr>td {
       background-color: lighten($main-bg,4.2%);
-    }
-
-    tr:nth-child(even)>td {
-      background-color: lighten($main-bg,2.4%);
     }
   }
 
