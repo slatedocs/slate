@@ -721,7 +721,11 @@ Outgoing Payment Sent is the final state of the normal flow. If the payment fail
 
 Most bounce backs occur within 2-3 business days. However, to be on the safe side, we advise you to check the transfer status for potential bounce backs for 2 weeks. 
 
-![Transfer state flow](/../../images/transfer_state_flow.png)
+<br/>
+
+**Transfer state flow**
+
+![alt text](https://i.ibb.co/rbbhz6Y/transfer-state-flow.png "Transfer state flow")
 
 See below for the full list of transfer statuses and what they mean in the order of occurrence:
 
