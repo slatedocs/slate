@@ -13,7 +13,7 @@ Content-Type: application/json
     "created": 1234567890, 
     "auth_handle": "handle.silamoney.eth", 
     "user_handle":"user.silamoney.eth", 
-    "version": "v1_1", 
+    "version": "0.2", 
     "crypto": "ETH", 
     "reference": "ref"
   }, 
@@ -71,7 +71,6 @@ The `status` attribute is a JSON key sent in the response body.
 POST /0.2/register HTTP/1.1
 Host: sandbox.silamoney.com
 authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
-usersignature: [GENERATED USERSIGNATURE HERE]
 Content-Type: application/json
 
 {
@@ -80,7 +79,7 @@ Content-Type: application/json
     "created": 1234567890,
     "user_handle": "user.silamoney.eth",
     "auth_handle": "handle.silamoney.eth",
-    "version": "v1_1",
+    "version": "0.2",
     "crypto": "ETH"
   },
   "message": "entity_msg",
@@ -151,7 +150,7 @@ This endpoint's request body is the [entity_msg](#entity_msg) JSON object.
 ### Responses
 
 | Status Code | Description |
-| ----------- | ----------- |
+| :---------: | ----------- |
 | 200 | Handle successfully added to system with KYC data. |
 
 ## /request_kyc
@@ -160,6 +159,7 @@ This endpoint's request body is the [entity_msg](#entity_msg) JSON object.
 POST /0.2/request_kyc HTTP/1.1
 Host: sandbox.silamoney.com
 authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
+usersignature: [GENERATED USERSIGNATURE HEX STRING HERE]
 Content-Type: application/json
 
 {
@@ -167,7 +167,7 @@ Content-Type: application/json
     "created": 1234567890, 
     "auth_handle": "handle.silamoney.eth", 
     "user_handle":"user.silamoney.eth", 
-    "version": "v1_1", 
+    "version": "0.2", 
     "crypto": "ETH", 
     "reference": "ref"
   }, 
@@ -199,25 +199,27 @@ HTTP/1.1 200 OK
 
 *Starts KYC verification process on a registered user handle.*
 
-After having created a user at a handle with [/register](#register), you can start the KYC verification process on the user with this endpoint. The results are asynchronously returned at the [/check_kyc](#check_kyc) endpoint.
+After having created a user at a handle with [/register](#register), you can start the KYC verification process on the user with this endpoint. The verification results for a handle are asynchronously returned at the [/check_kyc](#check_kyc) endpoint.
 
 ### Requests
 
 The request body at this endpoint is the [header_msg](#header_msg) JSON object. 
 
+`header.user_handle` should have the registered handle to be verified.
+
 ### Responses
 
-| Status Code | Response Body | Description |
-| :---------: | ------------- | ----------- |
-| 200 | | |
-
+| Status Code | Description |
+| :---------: | ------------- |
+| 200 | The verification process for the user registered under `header.user_handle` has been successfully started. |
 
 ## /check_kyc
 
 ```http
-POST /0.2/check_handle HTTP/1.1
+POST /0.2/check_kyc HTTP/1.1
 Host: sandbox.silamoney.com
 authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
+usersignature: [GENERATED USERSIGNATURE HEX STRING HERE]
 Content-Type: application/json
 
 {
@@ -225,7 +227,7 @@ Content-Type: application/json
     "created": 1234567890, 
     "auth_handle": "handle.silamoney.eth", 
     "user_handle":"user.silamoney.eth", 
-    "version": "v1_1", 
+    "version": "0.2", 
     "crypto": "ETH", 
     "reference": "ref"
   }, 
@@ -257,22 +259,29 @@ HTTP/1.1 200 OK
 
 *Returns whether entity attached to user handle is verified, not valid, or still pending.*
 
-This endpoint should be run after successfully completing a /register call. Since ID verification is a relatively lengthy process (generally will take around 30 minutes to an hour to complete), /register will never confirm in the response that an entity was verified. Therefore, /check_kyc may be polled until a final confirmation is returned.
+This endpoint should be run after successfully completing [/register](#register) and [/request_kyc](#request_kyc) calls. 
 
-The request body at this endpoint is the [header_msg](#header_msg) JSON object. 
+Since ID verification is a relatively lengthy process (generally will take around 30 minutes to an hour to complete), /request_kyc will never confirm in its response that an entity was verified. Therefore, /check_kyc may be polled until a final confirmation is returned.
+
+### Requests
+
+The request body at this endpoint is the [header_msg](#header_msg) JSON object.
+
+The handle for which KYC confirmation is being checked should be in the `header.user_handle` field.
 
 ### Responses
 
-| Status Code | Response Body | Description |
-| ----------- | ------------- | ----------- |
-| 200 | | |
+| Status Code | Description |
+| :---------: | ------------- |
+| 200 | Request was successful. |
 
 ## /link_account
 
 ```http
-POST /0.2/check_handle HTTP/1.1
+POST /0.2/link_account HTTP/1.1
 Host: sandbox.silamoney.com
 authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
+usersignature: [GENERATED USERSIGNATURE HEX STRING HERE]
 Content-Type: application/json
 
 {
@@ -280,11 +289,14 @@ Content-Type: application/json
     "created": 1234567890, 
     "auth_handle": "handle.silamoney.eth", 
     "user_handle":"user.silamoney.eth", 
-    "version": "v1_1", 
+    "version": "0.2", 
     "crypto": "ETH", 
     "reference": "ref"
   }, 
-  "message": "header_msg"
+  "message": "link_account_msg",
+  "public_token": "Plaid token from customer session",
+  "account_name": "Custom Account Name",
+  "selected_account_id": "optional_selected_account_id"
 }
 
 HTTP/1.1 200 OK
@@ -312,15 +324,31 @@ HTTP/1.1 200 OK
 
 *Uses a provided Plaid public token to link a bank account to a verified entity.*
 
-(Detailed description)
+This endpoint accepts results from customer interaction with a Plaid Link integration.
+
+Your frontend Plaid integration will need to: 
+
+- use a public key from Sila
+- be set to the "production" environment
+- use the "auth" product
+
+Its onSuccess function will return a public token and metadata object. (For an example of how this looks, you can look at Plaid's [documentation](https://plaid.com/docs/#integrating-with-link) and review our demo app.)
+
+### Requests
 
 The request body at this endpoint is the [link_account_msg](#) JSON object.
 
+The `public_token` key is a required field and must have the public token returned in the onSuccess function of Plaid Link. 
+
+The `account_name` key is not required, but can be used to set a custom name to identify the linked checking account. If not provided, the linked account's name will be "default". We highly recommend specifying a custom name. *Note: user handles cannot have two linked accounts with the same name.*
+
+The `selected_account_id` is not required; if provided, it should be an account ID in the array of selected accounts returned in the metadata object from Plaid Link. Currently, we do not link multiple accounts at once; you will need to send only one account ID. If no account ID is provided, we will link the first checking account we encounter from the array of accounts the customer has at their chosen bank.
+
 ### Responses
 
-| Status Code | Response Body | Description |
-| ----------- | ------------- | ----------- |
-| 200 | | |
+| Status Code | Description |
+| :---------: | ----------- |
+| 200 | Account successfully linked. |
 
 ## /get_accounts
 
@@ -328,6 +356,7 @@ The request body at this endpoint is the [link_account_msg](#) JSON object.
 POST /0.2/get_accounts HTTP/1.1
 Host: sandbox.silamoney.com
 authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
+usersignature: [GENERATED USERSIGNATURE HEX STRING HERE]
 Content-Type: application/json
 
 {
@@ -335,11 +364,11 @@ Content-Type: application/json
     "created": 1234567890, 
     "auth_handle": "handle.silamoney.eth", 
     "user_handle":"user.silamoney.eth", 
-    "version": "v1_1", 
+    "version": "0.2",
     "crypto": "ETH", 
     "reference": "ref"
   }, 
-  "message": "header_msg"
+  "message": "get_accounts_msg"
 }
 
 HTTP/1.1 200 OK
@@ -367,23 +396,25 @@ HTTP/1.1 200 OK
 
 *Gets basic bank account names linked to user handle.*
 
-(Detailed description)
+This will return a list of account names, along with basic account information, linked to the requested user handle. These are the accounts that were linked using the [/link_account](#link_account) endpoint.
+
+### Requests
 
 The request body at this endpoint is the [get_accounts_msg](#) JSON object.
 
 ### Responses
 
-| Status Code | Response Body | Description |
-| ----------- | ------------- | ----------- |
-| 200 | | |
-
+| Status Code | Description |
+| :---------: | ----------- |
+| 200 | Successful call. |
 
 ## /issue_sila
 
 ```http
-POST /0.2/check_handle HTTP/1.1
+POST /0.2/issue_sila HTTP/1.1
 Host: sandbox.silamoney.com
 authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
+usersignature: [GENERATED USERSIGNATURE HEX STRING HERE]
 Content-Type: application/json
 
 {
@@ -391,11 +422,13 @@ Content-Type: application/json
     "created": 1234567890, 
     "auth_handle": "handle.silamoney.eth", 
     "user_handle":"user.silamoney.eth", 
-    "version": "v1_1", 
+    "version": "0.2", 
     "crypto": "ETH", 
     "reference": "ref"
   }, 
-  "message": "header_msg"
+  "message": "issue_msg",
+  "amount": 1000,
+  "account_name": "default"
 }
 
 HTTP/1.1 200 OK
@@ -421,24 +454,37 @@ HTTP/1.1 200 OK
 // Go example coming soon
 ```
 
-*Overview*
+*Debits a specified account and issues tokens to the address belonging to the requested handle.*
 
-Detailed description
+The /issue_sila endpoint starts the debit of a user's linked bank account; once that monetary transaction has officially settled, a process that takes about two business days to complete, the handle's blockchain address will be issued SILA tokens.
+
+**Important note**: SILA tokens are pegged to the value of $0.01 USD. To request the debit of $795.43, for instance, you would request `"amount": 79543`.
+
+Issuance and redemption requests also have a minimum amount of 1000 SILA ($10.00 USD). (Transfer requests have no minimum amount.)
+
+Keep in mind that, because ACH (automated clearing house) transactions take such a long time to clear, results must be returned asynchronously. You can check the results of a transaction using the [/get_transactions](#get_transactions) endpoint.
+
+### Requests
 
 The request body at this endpoint is the [issue_msg](#) JSON object.
 
+The `amount` field is the amount of SILA tokens to issue, which is equivalent to a dollar amount x 100, or a number of cents. For example, to debit $1 from a user's account, you would request an amount of 100.
+
+The `account_name` field is the name of the handle's linked account from which to debit the equivalent dollar amount.
+
 ### Responses
 
-| Status Code | Response Body | Description |
-| ----------- | ------------- | ----------- |
-| 200 | | |
+| Status Code | Description |
+| :---------: | ----------- |
+| 200 | Debit/issuance process started. |
 
 ## /transfer_sila
 
 ```http
-POST /0.2/check_handle HTTP/1.1
+POST /0.2/transfer_sila HTTP/1.1
 Host: sandbox.silamoney.com
 authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
+usersignature: [GENERATED USERSIGNATURE HEX STRING HERE]
 Content-Type: application/json
 
 {
@@ -446,11 +492,13 @@ Content-Type: application/json
     "created": 1234567890, 
     "auth_handle": "handle.silamoney.eth", 
     "user_handle":"user.silamoney.eth", 
-    "version": "v1_1", 
+    "version": "0.2", 
     "crypto": "ETH", 
     "reference": "ref"
   }, 
-  "message": "header_msg"
+  "message": "transfer_msg",
+  "amount": 13,
+  "destination": "user2.silamoney.eth"
 }
 
 HTTP/1.1 200 OK
@@ -476,24 +524,31 @@ HTTP/1.1 200 OK
 // Go example coming soon
 ```
 
-*Overview*
+*Starts a transfer of the requested amount of SILA to the requested destination handle.*
 
-Detailed description
+This request triggers a transfer of SILA tokens over the blockchain, going from the current authenticated user to the specified destination handle.
+
+In theory, SILA tokens can be transferred from any blockchain address to any blockchain address. This endpoint assumes that the recipient has been registered with Sila and has a handle. During Sila's beta phase, token transfers are restricted to whitelisted addresses (addresses which belong to KYC-verified users). After full launch, tokens will be transferable to any address.
+
+Also, since the Ethereum platform is currently the only platform we support (though we plan to support others), this will create one blockchain transaction. When other platforms are added, transfers from one platform to another will result in burning of tokens from an address on one platform to minting of tokens to an address on a different platform (two different blockchain transactions).
+
+### Requests
 
 The request body at this endpoint is the [transfer_msg](#) JSON object.
 
 ### Responses
 
-| Status Code | Response Body | Description |
-| ----------- | ------------- | ----------- |
-| 200 | | |
+| Status Code | Description |
+| :---------: | ----------- |
+| 200 | Transfer process started. |
 
 ## /redeem_sila
 
 ```http
-POST /0.2/check_handle HTTP/1.1
+POST /0.2/redeem_sila HTTP/1.1
 Host: sandbox.silamoney.com
 authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
+usersignature: [GENERATED USERSIGNATURE HEX STRING HERE]
 Content-Type: application/json
 
 {
@@ -501,11 +556,13 @@ Content-Type: application/json
     "created": 1234567890, 
     "auth_handle": "handle.silamoney.eth", 
     "user_handle":"user.silamoney.eth", 
-    "version": "v1_1", 
+    "version": "0.2", 
     "crypto": "ETH", 
     "reference": "ref"
   }, 
-  "message": "header_msg"
+  "message": "redeem_msg",
+  "amount": 1000,
+  "account_name": "default"
 }
 
 HTTP/1.1 200 OK
@@ -531,24 +588,27 @@ HTTP/1.1 200 OK
 // Go example coming soon
 ```
 
-*Overview*
+*Burns given amount of SILA at the handle's blockchain address and credits their named bank account in the equivalent monetary amount.*
 
 Detailed description
+
+### Requests
 
 The request body at this endpoint is the [redeem_msg](#) JSON object.
 
 ### Responses
 
-| Status Code | Response Body | Description |
-| ----------- | ------------- | ----------- |
-| 200 | | |
+| Status Code | Description |
+| :---------: | ----------- |
+| 200 | Process to redeem USD started. |
 
 ## /get_transactions
 
 ```http
-POST /0.2/check_handle HTTP/1.1
+POST /0.2/get_transactions HTTP/1.1
 Host: sandbox.silamoney.com
 authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
+usersignature: [GENERATED USERSIGNATURE HEX STRING HERE]
 Content-Type: application/json
 
 {
@@ -556,11 +616,24 @@ Content-Type: application/json
     "created": 1234567890, 
     "auth_handle": "handle.silamoney.eth", 
     "user_handle":"user.silamoney.eth", 
-    "version": "v1_1", 
+    "version": "0.2", 
     "crypto": "ETH", 
     "reference": "ref"
   }, 
-  "message": "header_msg"
+  "message": "get_transactions_msg",
+  "search_filters": {
+    "transaction_id": "some UUID string assigned by Sila",
+    "reference_id": "the reference string sent in the header object when transaction request was made",
+    "show_timelines": false,
+    "sort_ascending": false,
+    "max_sila_amount": 1300,
+    "min_sila_amount": 1000,
+    "statuses": ["pending", "successful", "failed", "complete"],
+    "start_epoch": 1234567860,
+    "end_epoch": 1234567891,
+    "page": 1,
+    "per_page": 20,
+  }
 }
 
 HTTP/1.1 200 OK
@@ -586,14 +659,18 @@ HTTP/1.1 200 OK
 // Go example coming soon
 ```
 
-*Overview*
+*Gets array of user handle's transactions with detailed status information.*
 
-Detailed description
+### Requests
 
 The request body at this endpoint is the [get_transactions_msg](#) JSON object.
 
+The `search_filters` object and all of its nested keys are optional. They can be used to filter the transactions that are returned.
+
+Results are paginated; by default, the first 20 results are returned in descending order of date transaction was started. You can request up to 100 results per page (`"per_page": 100`) and sort them in ascending order of date transaction was started (`"sort_ascending": true`) if desired.
+
 ### Responses
 
-| Status Code | Response Body | Description |
-| ----------- | ------------- | ----------- |
-| 200 | | |
+| Status Code | Description |
+| :---------: | ----------- |
+| 200 | Able to return transaction information. |
