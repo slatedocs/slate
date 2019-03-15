@@ -622,7 +622,7 @@ Content-Type: application/json
   }, 
   "message": "get_transactions_msg",
   "search_filters": {
-    "transaction_id": "some UUID assigned by Sila",
+    "transaction_id": "some UUID string assigned by Sila",
     "reference_id": "the reference string sent in the header object when transaction request was made",
     "show_timelines": false,
     "sort_ascending": false,
