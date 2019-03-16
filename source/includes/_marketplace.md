@@ -223,7 +223,7 @@ id: dataset_id
 }
 ```
 
-## Get Dataset Settings
+## Set Dataset Item
 
 Returns all settings for given dataset.
 
@@ -235,6 +235,26 @@ POST https://dev.zoomsymbols.com/api/marketplace/setDatasetItem
 
 ```
 awaiting...
+```
+
+> Response
+
+```json
+result: 'awaiting...'
+```
+
+## Delete Dataset Item
+
+Returns all settings for given dataset.
+
+```APIs
+POST https://dev.zoomsymbols.com/api/marketplace/deleteDatasetItem
+```
+
+> Parameters
+
+```
+id: dataset_id
 ```
 
 > Response
