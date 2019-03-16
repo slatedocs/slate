@@ -16,6 +16,7 @@ type: open/private/all
 ```
 
 > Response
+
 ```json
 {
     columns: [{
