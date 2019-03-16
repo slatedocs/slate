@@ -192,3 +192,33 @@ id: dataset_id
         date: "2019-03-12T00:00:00.000Z",
         value: "113.31"
     }, ...]
+}
+```
+
+## Get Dataset Settings
+
+Returns all settings for given dataset.
+
+```APIs
+GET https://dev.zoomsymbols.com/api/marketplace/getDatasetSettings
+```
+
+> Parameters
+
+```
+id: dataset_id
+```
+
+> Response
+
+```json
+{
+    result: {
+        name: "akram_ds",
+        title: "Akram DS",
+        dataset_type: "Open",
+        target_symbol: "MSFT",
+        market_type: "Equity"
+    }
+}
+```
