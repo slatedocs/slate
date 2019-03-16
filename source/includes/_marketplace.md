@@ -77,3 +77,28 @@ type: open/private/all
     }]
 }
 ```
+
+
+## Get Dataset Types
+
+Returns all dataset types.
+
+```APIs
+GET https://dev.zoomsymbols.com/api/marketplace/getDatasetTypes
+```
+
+
+> Response
+
+```json
+{
+    result: [{
+            code: "open",
+            name: "Open"
+        },
+        {
+            code: "private",
+            name: "Private"
+        }
+    ]
+}
