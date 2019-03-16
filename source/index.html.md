@@ -33,6 +33,7 @@ includes:
   - symbol_activity
   - user_custom_views
   - marketplace
+  - ipos
   - errors
 
 search: true
