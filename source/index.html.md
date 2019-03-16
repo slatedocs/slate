@@ -32,6 +32,7 @@ includes:
   - symbols_performance
   - symbol_activity
   - user_custom_views
+  - marketplace
   - errors
 
 search: true
