@@ -1174,28 +1174,29 @@ The **Tickers** channel streams high level updates for given trading pairs.  See
 
 Field | Type | Exchanges Supporting
 ------| -------| --------
-`eventTime` | Integer | kraken
-`symbol` | String | krakken
-`maturationInterval`| String | kraken
-`maturationTime`| Integer | kraken
-`bid` | Float | kraken
+`eventTime` | Integer | bitmex, kraken
+`symbol` | String | bitmex, krakken
+`maturationInterval`| String | bitmex, kraken
+`maturationTime`| Integer | bitmex, kraken
+`bid` | Float | bitmex, kraken
 `bidSize` | Float | kraken
-`ask` | Float | kraken
+`ask` | Float | bitmex, kraken
 `askSize`| Float | kraken
+`markprice` | Float | bitmex
 `price`| Float | kraken
-`priceChange`| Float | kraken
-`last`| Float | kraken
-`low` | Float | kraken
-`high`| Float | kraken
-`volume` | Float | kraken
-`volWeightedAvePrice`| Float | kraken
-`leverage`| String | kraken
+`priceChange`| Float | bitmex, kraken
+`last`| Float | bitmex,  kraken
+`low` | Float | bitmex, kraken
+`high`| Float | bitmex, kraken
+`volume` | Float | bitmex, kraken
+`volWeightedAvePrice`| Float | bitmex, kraken
+`leverage`| String | bitmex, kraken
 `premium`| Float | kraken
-`index`| Float | kraken
-`openInterest`| Float | kraken
-`fundingRate`| Float | kraken
-`nextFundingRateTime`| Integer | kraken
-`fundingRatePrediction` | Float | kraken
+`index`| Float | bitmex, kraken
+`openInterest`| Float | bitmex, kraken
+`fundingRate`| Float | bitmex, kraken
+`nextFundingRateTime`| Integer | bitmex, kraken
+`fundingRatePrediction` | Float | bitmex, kraken
 
 
 ## Trades
