@@ -34,6 +34,7 @@ includes:
   - user_custom_views
   - marketplace
   - ipos
+  - watchlists
   - errors
 
 search: true
