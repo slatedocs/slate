@@ -74,7 +74,9 @@ type: open/private/all
         create_date: "2019-03-12T14:20:48.706Z",
         modify_date: "2019-03-12T14:20:48.706Z",
         is_deleted: false
-    }]
+    },
+    ...
+  ]
 }
 ```
 
@@ -102,3 +104,35 @@ GET https://dev.zoomsymbols.com/api/marketplace/getDatasetTypes
         }
     ]
 }
+
+
+## Get Dataset Charts
+
+Returns all dataset charts.
+
+```APIs
+GET https://dev.zoomsymbols.com/api/marketplace/getDatasetCharts
+```
+
+> Parameters
+
+```
+id: dataset_id
+```
+
+> Response
+
+```json
+{
+    result: [{
+            title: "Target - MSFT",
+            rows: [{
+                    date: "2019-03-12",
+                    value: 113.62
+                },
+                ...
+            ]
+        }
+    }
+}
+```
