@@ -108,7 +108,7 @@ GET https://dev.zoomsymbols.com/api/marketplace/getDatasetTypes
 
 ## Get Dataset Charts
 
-Returns all dataset charts.
+Returns all charts for given dataset.
 
 ```APIs
 GET https://dev.zoomsymbols.com/api/marketplace/getDatasetCharts
@@ -132,7 +132,63 @@ id: dataset_id
                 },
                 ...
             ]
-        }
+        },
+      ]
     }
 }
 ```
+
+## Get Dataset File Data
+
+Returns all files data for given dataset.
+
+```APIs
+GET https://dev.zoomsymbols.com/api/marketplace/getDatasetFileData
+```
+
+> Parameters
+
+```
+id: dataset_id
+```
+
+> Response
+
+```json
+
+
+{
+    columns: [{
+            code: "date",
+            name: "Date",
+            enableSort: true,
+            styles: {
+                textAlign: "left"
+            },
+            format: {
+                type: "date",
+                formatValue: "MM/DD/YYYY",
+                enableSort: true
+            },
+            width: 150
+        },
+        {
+            code: "value",
+            name: "Value",
+            enableSort: true,
+            styles: {
+                textAlign: "right"
+            },
+            format: {
+                type: "number",
+                cellsFormat: "d",
+                formatValue: "2",
+                enableSort: true
+            },
+            width: 130
+        }
+    ],
+    result: [{
+        date: "2019-03-12T00:00:00.000Z",
+        value: "113.31"
+    }, ...]
