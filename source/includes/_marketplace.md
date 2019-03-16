@@ -104,7 +104,7 @@ GET https://dev.zoomsymbols.com/api/marketplace/getDatasetTypes
         }
     ]
 }
-
+```
 
 ## Get Dataset Charts
 
