@@ -222,3 +222,23 @@ id: dataset_id
     }
 }
 ```
+
+## Get Dataset Settings
+
+Returns all settings for given dataset.
+
+```APIs
+POST https://dev.zoomsymbols.com/api/marketplace/setDatasetItem
+```
+
+> Parameters
+
+```
+awaiting...
+```
+
+> Response
+
+```json
+result: 'awaiting...'
+```
