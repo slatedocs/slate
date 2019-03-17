@@ -146,7 +146,7 @@ During this phase the client can give commands to the server. The server will re
    "currency" : "USD",
    "timePlaced": "2019-02-19 11:39:00",
    "topTextArea" : "Cash transaction",
-   "bottomTextArea": "Paid: $ 100, Change: $ 60.02, Points from this sale: 20, Total points: 100"
+   "bottomTextArea": "Paid: $ 100 | Change: $ 60.02 | Points from this sale: 20 | Total points: 100"
  },
  "billing_address" : {
     "isPrimary": 2,
