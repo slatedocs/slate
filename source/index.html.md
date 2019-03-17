@@ -38,6 +38,11 @@ Here are some useful resources to help you learn and get started with Bicoin and
 
 We recommend using our custom <a href="https://github.com/suredbits/sb-api"> Javascript Client Library</a> for interacting with our API services. It supports all major implementations of the Lightning protocol: lnd, c-lightning and eclair.   
 
+## Websocket Playground
+
+Explore and experiment with our APIs on our <a href="https://suredbits.com/ws-playground/"> Websocket Playground. </a>
+
+
 ## Mainnet Node (paid) 
 In order to access our paid API service, you will need to connect to our lightning node via your preferred lightning client.  
 
@@ -63,6 +68,10 @@ We provide a number of free data endpoints so users can experiment and learn the
 Currently, we offer the trading pair `BTCUSD` data for free across all available exchanges. 
 
 For Binance, the symbol is `BTCUSDT`.
+
+## Crypto Futures Testnet API
+
+Currently, we offer the trading pair `BTCUSD` data for free across all available exchanges. 
 
 ## NFL Testnet API 
 
@@ -414,11 +423,11 @@ This is the free version url **wss://test.api.suredbits.com/exchange/v0** on tes
 
 Symbol | Binance | Bitfinex | Coinbase | Bitstamp | Gemini  |  Kraken |
 ------- | ------ | --------- | -------- | ------- | ------- | -------
-BTCUSDT |    X     |         |          |         |         |
-ETHBTC  |    X     |    X    |    X     |   X     |    X    |    X
-ETHUSDT |    X     |         |          |         |         |
-BTCUSD  |          |    X    |    X     |   X     |    X    |    X
-ETHUSD  |          |    X    |    X     |   X     |    X    |    X
+`BTCUSDT` |    X     |         |          |         |         |
+`ETHBTC`  |    X     |    X    |    X     |   X     |    X    |    X
+`ETHUSDT` |    X     |         |          |         |         |
+`BTCUSD`  |          |    X    |    X     |   X     |    X    |    X
+`ETHUSD`  |          |    X    |    X     |   X     |    X    |    X
 
 
 
@@ -1037,6 +1046,8 @@ const tickersSub = await exchangeSocket.trades({
       }
       "seq":309
    }
+...
+
    ```
 
 The **Books** channel streams bids and asks for a given trading pair on given exchange. 
@@ -1050,6 +1061,320 @@ Field | Type | Exchanges Supporting
 `quantityTotal` | Double | binance, bitfinex, coinbase, gemini 
 `quantityChange` | Double | bitstamp, gemini 
 `symbol` | String |  binance, coinbase 
+
+# Crypto Futures API
+
+## Crypto Futures API Endpoints
+
+This is the paid service url **wss://api.suredbits.com/futures/v0** on mainnet.
+
+This is the free version url **wss://test.api.suredbits.com/futures/v0** on testnet. 
+
+## Overview
+
+**Futures** request follow the same query structure as the **Crypto Exchange API** with one addition: you must include an `interval` request of: `monthly`, `quarterly`, `biquarterly` or `perpetual`.  
+
+If no `interval` is requested, it will default to `perpetual` for all trading pairs except `ETHBTC` on the Bitmex exchange. That will default to `quarterly`. 
+
+### Trading Pairs Supported 
+
+**Legend**:
+P = Perpetual Contract
+M = Monthly Contract
+Q = Quarterly Contract
+B = Bi-quarterly Contract
+
+Symbol  | Kraken   | Bitmex |
+------  | -------- | -------
+`BTCUSD` |  M Q P  | Q P B  |  
+`ETHUSD` |  M Q P  |  P     |
+`ETHBTC` |    N/A  |  Q     |
+
+## Tickers
+
+> Example request Tickers
+
+```json
+
+{  "event":"subscribe",
+   "interval": "perpetual",
+   "channel":"tickers",
+   "symbol":"BTCUSD",
+   "exchange":"kraken",
+   "duration":15000,
+"refundInvoice":"lnbc1pw9ff23pp55qvmh9xan5vfkf49tlmp3q80twqmk...",
+   "uuid":"8c948cbb-dcc9-40c2-9bab-6384b1379f9f"
+}
+
+```
+
+> Example Tickers data
+
+```json
+
+{  
+   "uuid":"8c948cbb-dcc9-40c2-9bab-6384b1379f9f",
+   "snapshot":[  
+      {  
+         "eventTime":1552661137915,
+         "symbol":"BTCUSD",
+         "maturationInterval":"perpetual",
+         "bid":3885,
+         "bidSize":72838,
+         "ask":3886,
+         "askSize":122,
+         "markPrice":3886,
+         "priceChange":1.1,
+         "last":3885,
+         "volume":4049778,
+         "leverage":"50x",
+         "premium":0,
+         "index":3885.43,
+         "openInterest":6053161,
+         "fundingRate":2.1017787561E-8,
+         "nextFundingRateTime":1552665600000,
+         "fundingRatePrediction":9.695378633E-9
+      }
+   ]
+}
+
+{  
+   "uuid":"8c948cbb-dcc9-40c2-9bab-6384b1379f9f",
+   "exchange":"kraken",
+   "symbol":"BTCUSD",
+   "duration":15000,
+   "event":"payment received"
+}
+
+{  
+   "uuid":"8c948cbb-dcc9-40c2-9bab-6384b1379f9f",
+   "data":{  
+      "eventTime":1552661140917,
+      "symbol":"BTCUSD",
+      "maturationInterval":"perpetual",
+      "bid":3885,
+      "bidSize":72838,
+      "ask":3886,
+      "askSize":122,
+      "markPrice":3886,
+      "priceChange":1.1,
+      "last":3885,
+      "volume":4049778,
+      "leverage":"50x",
+      "premium":0,
+      "index":3885.56,
+      "openInterest":6053161,
+      "fundingRate":2.1017787561E-8,
+      "nextFundingRateTime":1552665600000,
+      "fundingRatePrediction":9.695378633E-9
+   },
+   "seq":63599
+}
+...
+
+
+```
+
+The **Tickers** channel streams high level updates for given trading pairs.  See the table below for which exchanges return which fields.
+
+Field | Type | Exchanges Supporting
+------| -------| --------
+`eventTime` | Integer | bitmex, kraken
+`symbol` | String | bitmex, krakken
+`maturationInterval`| String | bitmex, kraken
+`maturationTime`| Integer | bitmex, kraken
+`bid` | Float | bitmex, kraken
+`bidSize` | Float | kraken
+`ask` | Float | bitmex, kraken
+`askSize`| Float | kraken
+`markprice` | Float | bitmex
+`price`| Float | kraken
+`priceChange`| Float | bitmex, kraken
+`last`| Float | bitmex,  kraken
+`low` | Float | bitmex, kraken
+`high`| Float | bitmex, kraken
+`volume` | Float | bitmex, kraken
+`volWeightedAvePrice`| Float | bitmex, kraken
+`leverage`| String | bitmex, kraken
+`premium`| Float | kraken
+`index`| Float | bitmex, kraken
+`openInterest`| Float | bitmex, kraken
+`fundingRate`| Float | bitmex, kraken
+`nextFundingRateTime`| Integer | bitmex, kraken
+`fundingRatePrediction` | Float | bitmex, kraken
+
+
+## Trades
+
+> Example Trades request 
+
+```json
+{  
+   "event":"subscribe",
+   "interval":"perpetual",
+   "channel":"trades",
+   "symbol":"BTCUSD",
+   "exchange":"bitmex",
+   "duration":20000,
+   "refundInvoice":"lnbc1pw9ff23pp55qvmh9xan5vfkf49tlmp3q80twqmkvskatz4n9rlat4egpz3uaxsdp2v3skugrdv95kumn9wss8yetxw4hxggrfdemx76trv5xqrrss33rls5h8j2546gp26hl6n3r9u6kqq9a7jeffjsa3x9p5a9tqkwzp785haylzj45kcnnrm7sq2ynz7axrm7uzvpnwkcrtumpx92tckqgpd6trqp",
+   "uuid":"1920827c-a301-45d2-8794-8868cdac55e0"
+}
+
+```
+
+> Example Trades data
+
+```json
+{  
+   "uuid":"1920827c-a301-45d2-8794-8868cdac55e0",
+   "exchange":"bitmex",
+   "symbol":"BTCUSD",
+   "duration":20000,
+   "event":"payment received"
+}
+{  
+   "uuid":"1920827c-a301-45d2-8794-8868cdac55e0",
+   "snapshot":[  
+      {  
+         "symbol":"BTCUSD",
+         "tradeId":"451f2cda-ada6-a4c4-a66c-5662a7853324",
+         "price":3971,
+         "quantity":264,
+         "grossValue":6648312,
+         "homeNotional":0.06648312,
+         "foreignNotional":264,
+         "tradeTime":1552833758095,
+         "marketMaker":true
+      },
+      {  
+         "symbol":"BTCUSD",
+         "tradeId":"078c64c0-e5d0-6f3d-050c-0e0ff058662f",
+         "price":3971,
+         "quantity":176,
+         "grossValue":4432208,
+         "homeNotional":0.04432208,
+         "foreignNotional":176,
+         "tradeTime":1552833758095,
+         "marketMaker":true
+      },
+}
+...
+
+{  
+   "uuid":"1920827c-a301-45d2-8794-8868cdac55e0",
+   "data":{  
+      "symbol":"BTCUSD",
+      "tradeId":"39a1f9b2-4d10-b8b9-5852-6d11facf79de",
+      "price":3971,
+      "quantity":845,
+      "grossValue":21279635,
+      "homeNotional":0.21279635,
+      "foreignNotional":845,
+      "tradeTime":1552833768748,
+      "marketMaker":true
+   },
+   "seq":4145
+}
+...
+
+```
+
+
+The **Trades** channel streams executed trades for a given trading pair.  See the table below for which exchanges returns which fields. 
+
+Field | Type | Exchanges Supporting
+------| -------| --------
+`eventTime` | Integer | kraken
+`symbol` | String | bitmex, kraken
+`tradeId` | String | bitmex, kraken
+`price` | Float | bitmex, kraken
+`quantity` | Float | bitmex, kraken
+`buyerId` | String | kraken
+`sellerId` | String | kraken
+`tradeTime` | Integer | bitmex, kraken
+`marketMaker` | Boolean | bitmex, kraken
+`reason` | String | kraken
+`maturationTime` | String | bitmex, kraken
+`grossvalue` | Integer | bitmex
+`homeNotional` | Float | bitmex
+`foreignNotional` | Float | bitmex
+
+
+## Order Books 
+
+> Example Books request
+
+```json
+{  "event":"subscribe",
+   "interval": "quarterly",
+   "channel":"books",
+   "symbol":"ETHBTC",
+   "exchange":"bitmex",
+   "duration":15000,
+"refundInvoice":"lnbc1pw9ff23pp55qvmh9xan5vfkf49tlmp3q80twqmkvskatz4n9rlat4egpz3uaxsdp2v3skugrdv95kumn9wss8yetxw4hxggrfdemx76trv5xqrrss33rls5h8j2546gp26hl6n3r9u6kqq9a7jeffjsa3x9p5a9tqkwzp785haylzj45kcnnrm7sq2ynz7axrm7uzvpnwkcrtumpx92tckqgpd6trqp",
+   "uuid":"ae24b4d3-3d83-4433-8f3c-ef4322a66d62"
+}
+
+```
+
+> Example Books data
+
+```json
+
+{  
+   "uuid":"ae24b4d3-3d83-4433-8f3c-ef4322a66d62",
+   "snapshot":[  
+      {  
+         "symbol":"ETHBTC",
+         "maturation":1553860800000,
+         "orderId":31899996636,
+         "price":0.03364,
+         "quantityChange":129
+      },
+      {  
+         "symbol":"ETHBTC",
+         "maturation":1553860800000,
+         "orderId":31899996060,
+         "price":0.0394,
+         "quantityChange":22
+      },
+      {  
+         "symbol":"ETHBTC",
+         "maturation":1553860800000,
+         "orderId":31899996437,
+         "price":0.03563,
+         "quantityChange":89
+      },
+...
+
+{  
+   "uuid":"ae24b4d3-3d83-4433-8f3c-ef4322a66d62",
+   "data":{  
+      "symbol":"ETHBTC",
+      "maturation":1553860800000,
+      "orderId":31899996488,
+      "price":0.03512,
+      "quantityChange":1009
+   },
+   "seq":5177
+}
+...
+      
+
+```
+
+The **Books** channel streams bids and asks for a given trading pair on given exchange. 
+
+Field | Type | Exchanges Supporting
+------| -------| --------
+`eventTime` | Integer | kraken
+`symbol` | String | bitmex, kraken
+`maturation` | Integer | bitmex, kraken 
+`orderId`| Integer | bitmex, kraken
+`price` | Float | bitmex, kraken
+`quantityChange`| Float | bitmex, kraken
+`quantityTotal` | Float | kraken
+
 
 <h1 id="NFLData"> NFL Data</h1>
 
