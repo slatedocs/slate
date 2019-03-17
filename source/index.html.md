@@ -38,6 +38,11 @@ Here are some useful resources to help you learn and get started with Bicoin and
 
 We recommend using our custom <a href="https://github.com/suredbits/sb-api"> Javascript Client Library</a> for interacting with our API services. It supports all major implementations of the Lightning protocol: lnd, c-lightning and eclair.   
 
+## Websocket Playground
+
+Explore and experiment with our APIs on our <a href="https://suredbits.com/ws-playground/"> Websocket Playground. </a>
+
+
 ## Mainnet Node (paid) 
 In order to access our paid API service, you will need to connect to our lightning node via your preferred lightning client.  
 
@@ -1201,6 +1206,80 @@ Field | Type | Exchanges Supporting
 
 ## Trades
 
+> Example Trades request 
+
+```json
+{  
+   "event":"subscribe",
+   "interval":"perpetual",
+   "channel":"trades",
+   "symbol":"BTCUSD",
+   "exchange":"bitmex",
+   "duration":20000,
+   "refundInvoice":"lnbc1pw9ff23pp55qvmh9xan5vfkf49tlmp3q80twqmkvskatz4n9rlat4egpz3uaxsdp2v3skugrdv95kumn9wss8yetxw4hxggrfdemx76trv5xqrrss33rls5h8j2546gp26hl6n3r9u6kqq9a7jeffjsa3x9p5a9tqkwzp785haylzj45kcnnrm7sq2ynz7axrm7uzvpnwkcrtumpx92tckqgpd6trqp",
+   "uuid":"1920827c-a301-45d2-8794-8868cdac55e0"
+}
+
+```
+
+> Example Trades data
+
+```json
+{  
+   "uuid":"1920827c-a301-45d2-8794-8868cdac55e0",
+   "exchange":"bitmex",
+   "symbol":"BTCUSD",
+   "duration":20000,
+   "event":"payment received"
+}
+{  
+   "uuid":"1920827c-a301-45d2-8794-8868cdac55e0",
+   "snapshot":[  
+      {  
+         "symbol":"BTCUSD",
+         "tradeId":"451f2cda-ada6-a4c4-a66c-5662a7853324",
+         "price":3971,
+         "quantity":264,
+         "grossValue":6648312,
+         "homeNotional":0.06648312,
+         "foreignNotional":264,
+         "tradeTime":1552833758095,
+         "marketMaker":true
+      },
+      {  
+         "symbol":"BTCUSD",
+         "tradeId":"078c64c0-e5d0-6f3d-050c-0e0ff058662f",
+         "price":3971,
+         "quantity":176,
+         "grossValue":4432208,
+         "homeNotional":0.04432208,
+         "foreignNotional":176,
+         "tradeTime":1552833758095,
+         "marketMaker":true
+      },
+}
+...
+
+{  
+   "uuid":"1920827c-a301-45d2-8794-8868cdac55e0",
+   "data":{  
+      "symbol":"BTCUSD",
+      "tradeId":"39a1f9b2-4d10-b8b9-5852-6d11facf79de",
+      "price":3971,
+      "quantity":845,
+      "grossValue":21279635,
+      "homeNotional":0.21279635,
+      "foreignNotional":845,
+      "tradeTime":1552833768748,
+      "marketMaker":true
+   },
+   "seq":4145
+}
+...
+
+```
+
+
 The **Trades** channel streams executed trades for a given trading pair.  See the table below for which exchanges returns which fields. 
 
 Field | Type | Exchanges Supporting
@@ -1222,6 +1301,67 @@ Field | Type | Exchanges Supporting
 
 
 ## Order Books 
+
+> Example Books request
+
+```json
+{  "event":"subscribe",
+   "interval": "quarterly",
+   "channel":"books",
+   "symbol":"ETHBTC",
+   "exchange":"bitmex",
+   "duration":15000,
+"refundInvoice":"lnbc1pw9ff23pp55qvmh9xan5vfkf49tlmp3q80twqmkvskatz4n9rlat4egpz3uaxsdp2v3skugrdv95kumn9wss8yetxw4hxggrfdemx76trv5xqrrss33rls5h8j2546gp26hl6n3r9u6kqq9a7jeffjsa3x9p5a9tqkwzp785haylzj45kcnnrm7sq2ynz7axrm7uzvpnwkcrtumpx92tckqgpd6trqp",
+   "uuid":"ae24b4d3-3d83-4433-8f3c-ef4322a66d62"
+}
+
+```
+
+> Example Books data
+
+```json
+
+{  
+   "uuid":"ae24b4d3-3d83-4433-8f3c-ef4322a66d62",
+   "snapshot":[  
+      {  
+         "symbol":"ETHBTC",
+         "maturation":1553860800000,
+         "orderId":31899996636,
+         "price":0.03364,
+         "quantityChange":129
+      },
+      {  
+         "symbol":"ETHBTC",
+         "maturation":1553860800000,
+         "orderId":31899996060,
+         "price":0.0394,
+         "quantityChange":22
+      },
+      {  
+         "symbol":"ETHBTC",
+         "maturation":1553860800000,
+         "orderId":31899996437,
+         "price":0.03563,
+         "quantityChange":89
+      },
+...
+
+{  
+   "uuid":"ae24b4d3-3d83-4433-8f3c-ef4322a66d62",
+   "data":{  
+      "symbol":"ETHBTC",
+      "maturation":1553860800000,
+      "orderId":31899996488,
+      "price":0.03512,
+      "quantityChange":1009
+   },
+   "seq":5177
+}
+...
+      
+
+```
 
 The **Books** channel streams bids and asks for a given trading pair on given exchange. 
 
