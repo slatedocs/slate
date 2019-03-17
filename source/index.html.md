@@ -35,6 +35,7 @@ includes:
   - marketplace
   - ipos
   - watchlists
+  - global_currencies
   - errors
 
 search: true
