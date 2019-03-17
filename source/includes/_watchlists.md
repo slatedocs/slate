@@ -96,7 +96,7 @@ GET https://dev.zoomsymbols.com/api/user-watchlists/list
 ```
 type: watchlist_type (default 'P')
 scope: "O/P/S/F"
-query: watchlist_name
+watchlist: watchlist_id
 ```
 
 > Response
