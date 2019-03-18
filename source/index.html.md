@@ -1181,14 +1181,13 @@ Field | Type | Exchanges Supporting
 ------| -------| --------
 `eventTime` | Integer | bitmex, kraken
 `symbol` | String | bitmex, krakken
-`maturationInterval`| String | bitmex, kraken
-`maturationTime`| Integer | bitmex, kraken
+`maturationInterval`| String | bitmex, kraken 
+`maturationTime`| Integer | bitmex, kraken *
 `bid` | Float | bitmex, kraken
 `bidSize` | Float | kraken
 `ask` | Float | bitmex, kraken
 `askSize`| Float | kraken
-`markprice` | Float | bitmex
-`price`| Float | kraken
+`markprice` | Float | bitmex, kraken
 `priceChange`| Float | bitmex, kraken
 `last`| Float | bitmex,  kraken
 `low` | Float | bitmex, kraken
@@ -1199,10 +1198,12 @@ Field | Type | Exchanges Supporting
 `premium`| Float | kraken
 `index`| Float | bitmex, kraken
 `openInterest`| Float | bitmex, kraken
-`fundingRate`| Float | bitmex, kraken
-`nextFundingRateTime`| Integer | bitmex, kraken
-`fundingRatePrediction` | Float | bitmex, kraken
+`fundingRate`| Float | bitmex, kraken **
+`nextFundingRateTime`| Integer | bitmex, kraken **
+`fundingRatePrediction` | Float | bitmex, kraken **
 
+* No `maturationTime` for Perpetual contracts * 
+* Only for Perpetual contracts **
 
 ## Trades
 
