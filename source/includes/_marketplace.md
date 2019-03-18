@@ -338,3 +338,25 @@ id: dataset_id
     }
 }
 ```
+
+## Subscribe
+
+Subscribes currently authorized user to the given dataset.
+
+```APIs
+POST https://dev.zoomsymbols.com/api/marketplace/subscribe
+```
+
+> Parameters
+
+```
+id: dataset_id
+```
+
+> Response
+
+```json
+{
+    "result": "User has subscribed to the dataset successfully!"
+}
+```
