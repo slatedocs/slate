@@ -220,6 +220,7 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/user/signup/registration_c
 ```shell
 curl \
 -u '[your-api-client-id]:[your-api-client-secret]' \
+-H 'Content-Type: application/x-www-form-urlencoded' \
 -d 'grant_type=registration_code' \
 -d 'email=<user email>' \
 -d 'client_id=[your-api-client-id]' \
