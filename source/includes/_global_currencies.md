@@ -139,7 +139,7 @@ base: your_base (default "USD")
 > Response
 
 ## Prices
-Returns the history for a specific currency.
+Returns the prices for a specific currency.
 
 ```APIs
 GET https://dev.zoomsymbols.com/api/global-currencies/prices
