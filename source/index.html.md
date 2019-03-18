@@ -36,6 +36,7 @@ includes:
   - ipos
   - watchlists
   - global_currencies
+  - mobile
   - errors
 
 search: true
