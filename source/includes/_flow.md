@@ -9,7 +9,7 @@ Users added to an application must have a private key and handle, then they need
 3. The user must pass in their required *KYC information* and the *address associated with the user's private key* (see [entity message type](#entity_msg)). This information should be used to populate a [/register](#register) request.
 4. It may take some time for the KYC process to complete, and a success response from /register only means that the verification process has started, not that the user has been verified. Subsequent [/check_kyc](#check_kyc) requests are the only way to know whether the person's information has been verified. 
 
-*Note that the rest of the endpoints, including /check_kyc, require a signature, not only from the developer's private key, but also from the user's private key.*
+*Note that most of the endpoints require a signature from the user's private key in addition to the developer's private key.*
 
 ## Bank Account Linking
 

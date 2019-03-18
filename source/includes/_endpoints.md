@@ -633,6 +633,7 @@ Content-Type: application/json
     "end_epoch": 1234567891,
     "page": 1,
     "per_page": 20,
+    "transaction_types": ["issue", "redeem", "transfer"]
   }
 }
 
