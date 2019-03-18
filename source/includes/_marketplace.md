@@ -310,5 +310,31 @@ id: dataset_id
 > Response
 
 ```json
-result: 'awaiting...'
+{
+    "result": {
+        "id": 19,
+        "name": "testDataset",
+        "title": "testTitle",
+        "owner_id": "7b3b58c8-2091-11e8-9d2e-53dce223a590",
+        "owner_name": "kirdun vlad",
+        "type": "Open",
+        "is_published": true,
+        "description": "The test description",
+        "symbol_id": 68,
+        "symbol_value": "MSFT",
+        "symbol_name": "Microsoft Corporation",
+        "frequency": "Weekly",
+        "is_paid": true,
+        "payment_type": "Weekly",
+        "payment_code": 100,
+        "currency_id": 161,
+        "currency_code": "USD",
+        "is_free_trial": true,
+        "trial_type": "Week",
+        "free_trial_duration": 100,
+        "create_date": "2019-03-18T13:26:34.027832",
+        "modify_date": "2019-03-18T13:26:34.027832",
+        "is_deleted": true
+    }
+}
 ```
