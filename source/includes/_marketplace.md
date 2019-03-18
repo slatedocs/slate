@@ -360,3 +360,25 @@ id: dataset_id
     "result": "User has subscribed to the dataset successfully!"
 }
 ```
+
+## Subscribe
+
+Unsubscribes currently authorized user to the given dataset.
+
+```APIs
+POST https://dev.zoomsymbols.com/api/marketplace/unsubscribe
+```
+
+> Parameters
+
+```
+id: dataset_id
+```
+
+> Response
+
+```json
+{
+    "result": "User has unsubscribed to the dataset successfully!"
+}
+```

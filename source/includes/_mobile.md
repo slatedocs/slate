@@ -49,13 +49,13 @@ GET https://dev.zoomsymbols.com/api/mobile/getMarketsPage
   }
   ```
 
-  ## Get Markets Page Grid Rows
+## Get Markets Page Grid Rows
 
-  Returns data for all available markets but as rows.
+Returns data for all available markets but as rows.
 
-  ```APIs
-  GET https://dev.zoomsymbols.com/api/mobile/getMarketsPageGridRows
-  ```
+```APIs
+GET https://dev.zoomsymbols.com/api/mobile/getMarketsPageGridRows
+```
 
 > Response
 
