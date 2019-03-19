@@ -2,7 +2,7 @@
 
 ## User Registration
 
-Users added to an application must have a private key and handle, then they need to be sent through a KYC verification process.
+Users added to an application must have a private key and handle along with KYC information so that we can send them through a KYC verification process.
 
 1. Generate a private key for the user (or have them generate/manage it themselves).
 2. Either randomly generate a handle or allow the user to pick a handle for themselves. The handle should be checked against the [/check_handle](#check_handle) endpoint for availability.
@@ -36,4 +36,4 @@ The SILA token is used to exchange USD value among users. For example, this woul
 9. 5173 SILA are immediately burned from B's address and the process of crediting $51.73 to their linked bank account from our backend is started. (If crediting fails, perhaps due to the bank account being closed, the transaction will be rolled back, thus re-minting the SILA at B's address.)
 10. Thus, A has been debited $51.73 and B has been credited $51.73.
 
-*Note: this does not take any per-transaction fees into account.*
+*Note: this does not take any per-transaction fees into account.* ***No fees are currently applied on transactions in this beta version of the API.***

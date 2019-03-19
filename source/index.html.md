@@ -26,6 +26,10 @@ search: true
 
 # Introduction 
 
+```
+Code snippets will be shown in this panel.
+```
+
 Welcome to the Sila API! 
 
 Sila allows you to transfer money among KYC-verified users with an underlying stablecoin. Our aim is to make this process simple and accessible, especially for innovators and disruptors.

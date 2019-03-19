@@ -20,6 +20,8 @@ Content-Type: application/json
   "message": "header_msg"
 }
 
+***
+
 HTTP/1.1 200 OK
 
 {
@@ -53,7 +55,9 @@ A "handle" works like a username in the Sila ecosystem. This endpoint ensures th
 
 In the `header.user_handle` field, put the handle for which you want to check availability. The entry for `header.auth_handle` should have your developer handle.
 
-The request body format for this endpoint is the [header_msg](#header_msg) JSON object. 
+The request body format for this endpoint is the [header_msg](#header_msg) JSON object.
+
+An `authsignature` header is required for this request. (Create this using the keypair associated with the `auth_handle`; see [authentication](#authentication) for help generating this signature.)
 
 ### Responses
 
@@ -61,9 +65,10 @@ The `status` attribute is a JSON key sent in the response body.
 
 | Status Code | `status` Attribute | Description |
 | :---------: | :------------------: | ----------- |
-| 200 | `"SUCCESS"` | Handle sent in `header.user_handle` is available. |
-| 200 | `"FAILURE"` | Handle sent in `header.user_handle` is taken. |
-| 400 | `"FAILURE"` | Handle sent in `header.user_handle` is a reserved handle according to our JSON schema. |
+| 200 | `SUCCESS` | Handle sent in `header.user_handle` is available. |
+| 200 | `FAILURE` | Handle sent in `header.user_handle` is taken. |
+| 400 | `FAILURE` | Handle sent in `header.user_handle` is a reserved handle according to our JSON schema. (Or: request body otherwise does not conform to JSON schema.) |
+| 401 | `FAILURE` | Auth signature is absent or derived address does not belong to auth_handle. |
 
 ## /register
 
@@ -106,7 +111,7 @@ Content-Type: application/json
     "crypto_code": "ETH"
   },
   "entity": {
-    "birthdate": "1900-01-01",
+    "birthdate": "1900-01-31",
     "entity_name": "Example User",
     "first_name": "Example",
     "last_name": "User",
@@ -114,10 +119,14 @@ Content-Type: application/json
   }
 }
 
+***
+
 HTTP/1.1 200 OK
 
 {
-
+  "reference":"SOME ID",
+  "message":"user.silamoney.eth was successfully registered ",
+  "status":"SUCCESS"
 }
 ```
 
@@ -147,11 +156,15 @@ At this endpoint, you will need to complete all fields with user information and
 
 This endpoint's request body is the [entity_msg](#entity_msg) JSON object.
 
+An `authsignature` header is required for this request.
+
 ### Responses
 
-| Status Code | Description |
+| Status Code | `status` Attribute | Description |
 | :---------: | ----------- |
-| 200 | Handle successfully added to system with KYC data. |
+| 200 | `SUCCESS` | Handle successfully added to system with KYC data. |
+| 400 | `FAILURE` | Invalid request body format, handle already in use, or blockchain address already in use. |
+| 401 | `FAILURE` | `authsignature` header was absent or incorrect. |
 
 ## /request_kyc
 
@@ -174,10 +187,14 @@ Content-Type: application/json
   "message": "header_msg"
 }
 
+***
+
 HTTP/1.1 200 OK
 
 {
-  
+  "reference":"ref",
+  "message":"user.silamoney.eth submitted for KYC review",
+  "status":"SUCCESS"
 }
 ```
 
@@ -207,11 +224,15 @@ The request body at this endpoint is the [header_msg](#header_msg) JSON object.
 
 `header.user_handle` should have the registered handle to be verified.
 
+An `authsignature` header is required for this request.
+
 ### Responses
 
-| Status Code | Description |
-| :---------: | ------------- |
-| 200 | The verification process for the user registered under `header.user_handle` has been successfully started. |
+| Status Code | `status` Attribute | Description |
+| :---------: | ------------------ | ----------- |
+| 200 | `SUCCESS` | The verification process for the user registered under `header.user_handle` has been successfully started. |
+| 400 | `FAILURE` | Invalid request body format. |
+| 401 | `FAILURE` | `authsignature` or `usersignature` header was absent or incorrect. |
 
 ## /check_kyc
 
@@ -233,6 +254,8 @@ Content-Type: application/json
   }, 
   "message": "header_msg"
 }
+
+***
 
 HTTP/1.1 200 OK
 
@@ -269,11 +292,16 @@ The request body at this endpoint is the [header_msg](#header_msg) JSON object.
 
 The handle for which KYC confirmation is being checked should be in the `header.user_handle` field.
 
+Both `authsignature` and `usersignature` headers are required for this request. (The `usersignature` header should be generated with the keypair associated with the user; see [authentication](#authentication) section for more details.)
+
 ### Responses
 
-| Status Code | Description |
-| :---------: | ------------- |
-| 200 | Request was successful. |
+| Status Code | `status` Attribute | Description |
+| :---------: | ------------------ | ----------- |
+| 200 | `SUCCESS` | The user handle has successfully passed KYC verification. |
+| 200 | `FAILURE` | The user handle has not successfully passed KYC verification (may be pending, not have been registered, or have failed; "message" value will contain "pending" or "failed" substring).
+| 400 | `FAILURE` | Invalid request body format. |
+| 401 | `FAILURE` | `authsignature` or `usersignature` header was absent or incorrect. |
 
 ## /link_account
 
@@ -298,6 +326,8 @@ Content-Type: application/json
   "account_name": "Custom Account Name",
   "selected_account_id": "optional_selected_account_id"
 }
+
+***
 
 HTTP/1.1 200 OK
 
@@ -336,13 +366,15 @@ Its onSuccess function will return a public token and metadata object. (For an e
 
 ### Requests
 
-The request body at this endpoint is the [link_account_msg](#) JSON object.
+The request body at this endpoint is the [link_account_msg](#link_account_msg) JSON object.
 
 The `public_token` key is a required field and must have the public token returned in the onSuccess function of Plaid Link. 
 
 The `account_name` key is not required, but can be used to set a custom name to identify the linked checking account. If not provided, the linked account's name will be "default". We highly recommend specifying a custom name. *Note: user handles cannot have two linked accounts with the same name.*
 
 The `selected_account_id` is not required; if provided, it should be an account ID in the array of selected accounts returned in the metadata object from Plaid Link. Currently, we do not link multiple accounts at once; you will need to send only one account ID. If no account ID is provided, we will link the first checking account we encounter from the array of accounts the customer has at their chosen bank.
+
+Both `authsignature` and `usersignature` headers are required for this request.
 
 ### Responses
 
@@ -370,6 +402,8 @@ Content-Type: application/json
   }, 
   "message": "get_accounts_msg"
 }
+
+***
 
 HTTP/1.1 200 OK
 
@@ -400,7 +434,9 @@ This will return a list of account names, along with basic account information, 
 
 ### Requests
 
-The request body at this endpoint is the [get_accounts_msg](#) JSON object.
+The request body at this endpoint is the [get_accounts_msg](#get_accounts_msg) JSON object.
+
+Both `authsignature` and `usersignature` headers are required for this request.
 
 ### Responses
 
@@ -431,6 +467,8 @@ Content-Type: application/json
   "account_name": "default"
 }
 
+***
+
 HTTP/1.1 200 OK
 
 {
@@ -456,21 +494,23 @@ HTTP/1.1 200 OK
 
 *Debits a specified account and issues tokens to the address belonging to the requested handle.*
 
-The /issue_sila endpoint starts the debit of a user's linked bank account; once that monetary transaction has officially settled, a process that takes about two business days to complete, the handle's blockchain address will be issued SILA tokens.
+The /issue_sila endpoint starts the debit of a user's linked bank account; once that transaction has officially settled, a process that takes about two business days to complete, the handle's blockchain address will be issued SILA tokens.
 
-**Important note**: SILA tokens are pegged to the value of $0.01 USD. To request the debit of $795.43, for instance, you would request `"amount": 79543`.
+SILA tokens are pegged to the value of $0.01 USD. To request the debit of $795.43, for instance, you would request `"amount": 79543`.
 
-Issuance and redemption requests also have a minimum amount of 1000 SILA ($10.00 USD). (Transfer requests have no minimum amount.)
+Keep in mind that, especially because ACH (automated clearing house) transactions take such a long time to clear, results must be returned asynchronously. You can check the results of a transaction using the [/get_transactions](#get_transactions) endpoint.
 
-Keep in mind that, because ACH (automated clearing house) transactions take such a long time to clear, results must be returned asynchronously. You can check the results of a transaction using the [/get_transactions](#get_transactions) endpoint.
+**Important Note**: No transaction fees are charged in this beta version of the API. Expect this to change in upcoming future versions.
 
 ### Requests
 
-The request body at this endpoint is the [issue_msg](#) JSON object.
+The request body at this endpoint is the [issue_msg](#issue_msg) JSON object.
 
 The `amount` field is the amount of SILA tokens to issue, which is equivalent to a dollar amount x 100, or a number of cents. For example, to debit $1 from a user's account, you would request an amount of 100.
 
 The `account_name` field is the name of the handle's linked account from which to debit the equivalent dollar amount.
+
+Both `authsignature` and `usersignature` headers are required for this request.
 
 ### Responses
 
@@ -501,6 +541,8 @@ Content-Type: application/json
   "destination": "user2.silamoney.eth"
 }
 
+***
+
 HTTP/1.1 200 OK
 
 {
@@ -530,11 +572,15 @@ This request triggers a transfer of SILA tokens over the blockchain, going from 
 
 In theory, SILA tokens can be transferred from any blockchain address to any blockchain address. This endpoint assumes that the recipient has been registered with Sila and has a handle. During Sila's beta phase, token transfers are restricted to whitelisted addresses (addresses which belong to KYC-verified users). After full launch, tokens will be transferable to any address.
 
-Also, since the Ethereum platform is currently the only platform we support (though we plan to support others), this will create one blockchain transaction. When other platforms are added, transfers from one platform to another will result in burning of tokens from an address on one platform to minting of tokens to an address on a different platform (two different blockchain transactions).
+Since the Ethereum platform is currently the only platform we support (though we plan to support others), this will create one blockchain transaction. When other platforms are added, transfers from one platform to another will result in burning of tokens from an address on one platform to minting of tokens to an address on a different platform (two different blockchain transactions).
+
+**Important Note**: No transaction fees are charged in this beta version of the API. Expect this to change in upcoming future versions.
 
 ### Requests
 
-The request body at this endpoint is the [transfer_msg](#) JSON object.
+The request body at this endpoint is the [transfer_msg](#transfer_msg) JSON object.
+
+Both `authsignature` and `usersignature` headers are required for this request.
 
 ### Responses
 
@@ -565,6 +611,8 @@ Content-Type: application/json
   "account_name": "default"
 }
 
+***
+
 HTTP/1.1 200 OK
 
 {
@@ -590,11 +638,17 @@ HTTP/1.1 200 OK
 
 *Burns given amount of SILA at the handle's blockchain address and credits their named bank account in the equivalent monetary amount.*
 
-Detailed description
+This is the reverse process of /issue_sila; tokens are removed from the handle's associated address, then the process of crediting the named bank account is started. 
+
+If the bank account cannot be credited (for instance, if the account has been closed), this operation will roll back and re-mint the tokens at the handle's address.
+
+**Important Note**: No transaction fees are charged in this beta version of the API. Expect this to change in upcoming future versions.
 
 ### Requests
 
-The request body at this endpoint is the [redeem_msg](#) JSON object.
+The request body at this endpoint is the [redeem_msg](#redeem_msg) JSON object.
+
+Both `authsignature` and `usersignature` headers are required for this request.
 
 ### Responses
 
@@ -637,6 +691,8 @@ Content-Type: application/json
   }
 }
 
+***
+
 HTTP/1.1 200 OK
 
 {
@@ -664,14 +720,123 @@ HTTP/1.1 200 OK
 
 ### Requests
 
-The request body at this endpoint is the [get_transactions_msg](#) JSON object.
+The request body at this endpoint is the [get_transactions_msg](#get_transactions_msg) JSON object.
 
 The `search_filters` object and all of its nested keys are optional. They can be used to filter the transactions that are returned.
 
 Results are paginated; by default, the first 20 results are returned in descending order of date transaction was started. You can request up to 100 results per page (`"per_page": 100`) and sort them in ascending order of date transaction was started (`"sort_ascending": true`) if desired.
+
+Both `authsignature` and `usersignature` headers are required for this request.
 
 ### Responses
 
 | Status Code | Description |
 | :---------: | ----------- |
 | 200 | Able to return transaction information. |
+
+## Contract Endpoint: /silaBalance
+
+```http
+POST /silaBalance HTTP/1.1
+Host: test.silatokenapi.silamoney.com
+Content-Type: application/json
+
+{
+  "address": "0xabc123abc123abc123"
+}
+
+***
+
+HTTP/1.1 200 OK
+
+1000
+```
+
+```javascript
+// JavaScript example coming soon
+```
+
+```python
+# Python example coming soon
+```
+
+```java
+// Java example coming soon
+```
+
+```go
+// Go example coming soon
+```
+
+*Gets Sila balance for a given blockchain address.*
+
+This endpoint uses a different host and connects directly to the blockchain to query for an address's SILA balance.
+
+### Requests
+
+The request body is in JSON and has a single key, `address`. It accepts a string value and expects a correctly-formatted blockchain address.
+
+No signatures are required in the headers of this request.
+
+### Responses
+
+Success responses at this endpoint are returned in plain text rather than JSON and are always numeric. `0` indicates the address holds no SILA tokens. `1000` would indicate the address holds 1000 SILA tokens, the equivalent of $10.00 USD.
+
+| Status Code | Response | Description |
+| :---------: | -------- | ----------- |
+| 200 | (A plaintext numeric value) | Successful request. |
+| 500 | `{"message": "Internal Server Error"}` | The provided address value is not an address. |
+
+## Contract Endpoint: /isBetalisted
+
+```http
+POST /isBetalisted HTTP/1.1
+Host: test.silatokenapi.silamoney.com
+Content-Type: application/json
+
+{
+  "address": "0xabc123abc123abc123"
+}
+
+***
+
+HTTP/1.1 200 OK
+
+true
+```
+
+```javascript
+// JavaScript example coming soon
+```
+
+```python
+# Python example coming soon
+```
+
+```java
+// Java example coming soon
+```
+
+```go
+// Go example coming soon
+```
+
+*Checks that a given blockchain address is added to our temporary whitelist ("betalist").*
+
+This endpoint uses a different host and connects directly to the blockchain to query for a matching address in the contract's betalist.
+
+### Requests
+
+The request body is in JSON and has a single key, `address`. It accepts a string value and expects a correctly-formatted blockchain address.
+
+No signatures are required in the headers of this request.
+
+### Responses
+
+Success responses at this endpoint come back in raw text rather than JSON: `true` or `false`.
+
+| Status Code | Response | Description |
+| :---------: | -------- | ----------- |
+| 200 | `true` | The provided address is betalisted. |
+| 200 | `false` | The provided address is not betalisted. |
+| 500 | `{"message": "Internal Server Error"}` | The provided address value is not an address. |

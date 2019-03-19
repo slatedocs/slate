@@ -67,8 +67,8 @@ messageJSON := map[string]interface{}{
   "test": "message",
 }
 
-// Convert a private key from hex to the *ecdsa.PrivateKey type 
-// in your function if needed.
+// Convert a private key from hex to the *ecdsa.PrivateKey
+// type in your function if needed.
 pk, err := crypto.HexToECDSA(privateKey)
 if err != nil {
   log.Fatal(err)
@@ -85,7 +85,7 @@ if err != nil {
 // Generate the message hash using the Keccak 256 algorithm.
 msgHash := crypto.Keccak256(message)
 
-// Create a signature using your private key and the hashed message.
+// Create a signature using your private key and hashed message.
 sigBytes, err := crypto.Sign(msgHash, pk)
 if err != nil {
   log.Fatal(err)
@@ -100,9 +100,9 @@ sigBytes = bigSig.Add(bigSig, big.NewInt(offset)).Bytes()
 
 // The big library takes out any padding, but the resultant 
 // signature must be 130 characters (65 bytes) long. In some 
-// cases, you might find that sigBytes now has a length of 64 or less, so 
-// you can fix that in this way (this prepends the hex value with 
-// "0" until the requisite length is reached).
+// cases, you might find that sigBytes now has a length of 64 or
+// less, so you can fix that in this way (this prepends the hex 
+// value with "0" until the requisite length is reached).
 // Example: if two digits were required but the value was 1, you'd 
 // pass in 01.
 var sigBytesLength = 65 // length of a valid signature byte array
@@ -141,19 +141,19 @@ During this whole process, Sila never requires knowledge of the app's or user's 
 While digital signatures are generally considered highly secure and require zero knowledge of the original private key to verify ownership of the private key, here are a few hurdles you may encounter when implementing this authentication protocol.
 
 - You'll (most likely) want to use a cryptographic library in whatever language(s) you use. Each library is different and may have its own quirks.
-- Private keys, as hex-encoded strings, should be **64** characters long. When signing with them, you may need to make sure the hex strings do *not* have a "0x" prefix, depending on your library.
-- Make sure you have marshaled your request body to JSON *before* you create the signature. For instance, you may have a struct, hashmap, or JSONObject that you marshal when signing, then marshal again when sending the request. **Marshaling may or may not be a symmetric operation**; that is, the keys in the resulting string may be ordered differently when the operation is conducted a second time. This will completely change the signature and result in failed validation.
+- Private keys, as hex-encoded strings, should be **64** characters long (not including any "0x" prefix). When signing with them, you may need to make sure the hex strings do *not* have a "0x" prefix, depending on your library.
+- When registering addresses with Sila, *do* leave the "0x" at the front of the string.
+- Make sure you have marshalled your request body to JSON (bytes or string) *before* you create the signature. **Marshalling may or may not be a symmetric operation**; that is, the keys in the resulting string may be ordered differently when the operation is conducted a second time. Problems may arise if you have a struct, hashmap, or JSONObject that you marshal when signing, then marshal again when sending the request. This will completely change the signature and result in failed validation.
 - Some signing libraries may create a signature with a certain offset from what the Sila endpoint expects. For instance, signatures generated with a particular Go library are consistently off by 27. You will want to check your algorithm against some of our examples to make sure you don't have an offset issue.
 - If you do have an offset issue, you will need to convert the hex string to a big integer, add the offset to it, and convert it back to a hex-encoded string.
 - Signatures, as hex-encoded strings, should be **130** characters long. When sending them, you may need to ensure that they do *not* have a "0x" prefix. (If, without a "0x" prefix, the signature is shorter than 130 characters, prefix it with 0s until it is the correct length.)
-- When registering addresses with Sila, leave the "0x" at the front of the string.
 
 ### Sample Input/Outputs
 
 These are some sample inputs and outputs using a sample private key. ***It is NOT recommended that you use this key for ANYTHING except testing your signature algorithm***.
 
-**Private key**: badba7368134dcd61c60f9b56979c09196d03f5891a20c1557b1afac0202a97c<br>
-**Address**: 0x65a796a4bD3AaF6370791BefFb1A86EAcfdBc3C1
+**Private key**: `badba7368134dcd61c60f9b56979c09196d03f5891a20c1557b1afac0202a97c`<br>
+**Address**: `0x65a796a4bD3AaF6370791BefFb1A86EAcfdBc3C1`
 
 | Message String | Signature Hex String |
 | :------------: | -------------------- |
