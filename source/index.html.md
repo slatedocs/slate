@@ -38,6 +38,7 @@ includes:
   - global_currencies
   - mobile
   - user_favourite_symbols
+  - invite_friends
   - errors
 
 search: true
