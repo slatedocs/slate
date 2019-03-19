@@ -130,7 +130,7 @@ GET https://dev.zoomsymbols.com/api/user/settings/getDefaultSettings
   "username":"Alex",
   "is_default":false,
   ...
-  } 
+  }
 
 }
 ```
@@ -191,7 +191,7 @@ GET https://dev.zoomsymbols.com/api/user/settings/getTodayAppSettings
   "username":"Alex",
   "is_default":false,
   ...
-  } 
+  }
 
 }
 ```
@@ -214,5 +214,61 @@ POST https://dev.zoomsymbols.com/api/user/settings/setTodayAppSettings
   "enable_market_equity" : "0",
   "enable_market_commodity" : "0",
   "enable_market_global_instrument" : "0"
+}
+```
+
+
+## Create User
+
+Creates a new (unverified) user. A verify box will appear afterwards to confirm the account.
+
+```APIs
+POST https://dev.zoomsymbols.com/createUser
+```
+
+> Parameters
+
+```json
+{
+"first_name": "Akram 2019",
+"last_name": "Kamal",
+"email": "dev@zoomsymbols.com",
+"password": "AkramKamalQ1"
+}
+```
+
+> Response
+
+```json
+{
+    "status": "unverified",
+    "email": "dev@zoomsymbols.com",
+    "message": "Your account was created! We've sent verification code to your e-mail. Enter it below to start using the app."
+}
+```
+
+## Activate User
+
+Verifies unauthorized user.
+
+```APIs
+POST https://dev.zoomsymbols.com/activateUser
+```
+
+> Parameters
+
+```json
+{
+   "token": "xxxxxxxxxx"
+}
+```
+
+> Response
+
+```json
+{
+   "status": "verified",
+   "email": "dev@zoomsymbols.com",
+   "message": "User verified successfully."
 }
 ```
