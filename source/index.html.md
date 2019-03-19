@@ -37,6 +37,7 @@ includes:
   - watchlists
   - global_currencies
   - mobile
+  - user_favourite_symbols
   - errors
 
 search: true
