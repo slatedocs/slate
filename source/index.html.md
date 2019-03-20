@@ -39,6 +39,7 @@ includes:
   - mobile
   - user_favourite_symbols
   - invite_friends
+  - owners
   - errors
 
 search: true
