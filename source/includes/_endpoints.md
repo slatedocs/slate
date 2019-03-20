@@ -412,9 +412,14 @@ Content-Type: application/json
 
 HTTP/1.1 200 OK
 
-{
-  
-}
+[
+  {
+    "account_number": "*1234",
+    "account_name": "default",
+    "account_type": "CHECKING",
+    "account_status": "active"
+  }
+]
 ```
 
 ```javascript
@@ -479,7 +484,9 @@ Content-Type: application/json
 HTTP/1.1 200 OK
 
 {
-  
+  "reference": "ref",
+  "message": "ref submitted to ACH queue",
+  "status": "SUCCESS"
 }
 ```
 
@@ -556,7 +563,9 @@ Content-Type: application/json
 HTTP/1.1 200 OK
 
 {
-  
+  "reference": "ref",
+  "message": "ref submitted to ETH queue",
+  "status": "SUCCESS"
 }
 ```
 
@@ -629,7 +638,9 @@ Content-Type: application/json
 HTTP/1.1 200 OK
 
 {
-  
+  "reference": "ref",
+  "message": "ref submitted to ETH queue",
+  "status": "SUCCESS"
 }
 ```
 
@@ -694,7 +705,7 @@ Content-Type: application/json
   "search_filters": {
     "transaction_id": "some UUID string assigned by Sila",
     "reference_id": "the reference string sent in the header object when transaction request was made",
-    "show_timelines": false,
+    "show_timelines": true,
     "sort_ascending": false,
     "max_sila_amount": 1300,
     "min_sila_amount": 1000,
@@ -712,7 +723,59 @@ Content-Type: application/json
 HTTP/1.1 200 OK
 
 {
-  
+  "success": true,
+  "page": 1,
+  "returned_count": 1,
+  "total_count": 1,
+  "transactions": [
+    {
+      "user_handle": "user.silamoney.eth",
+      "reference_id": "ref",
+      "transaction_id": "12345678-abcd-1234-abcd-1234567890ab",
+      "transaction_hash": "0x1234567890abcdef1234567890abcdef",
+      "transaction_type": "issue",
+      "sila_amount": 1000,
+      "bank_account_name": "default",
+      "handle_address": "0x65a796a4bD3AaF6370791BefFb1A86EAcfdBc3C1",
+      "status": "success",
+      "usd_status": "success",
+      "token_status": "success",
+      "created": "2019-04-03T00:00:00.000Z",
+      "last_update": "2019-04-03T00:00:00.003Z",
+      "created_epoch": 1234567890,
+      "last_update_epoch": 1234567899,
+      "timeline": [
+        {
+          "date": "2019-04-03T00:00:00.000Z",
+          "date_epoch": 1234567890,
+          "status": "queued",
+          "usd_status": "not started",
+          "token_status": "not started"
+        },
+        {
+          "date": "2019-04-03T00:00:00.001Z",
+          "date_epoch": 1234567890,
+          "status": "pending",
+          "usd_status": "pending",
+          "token_status": "not started"
+        },
+        {
+          "date": "2019-04-03T00:00:00.002Z",
+          "date_epoch": 1234567890,
+          "status": "pending",
+          "usd_status": "success",
+          "token_status": "pending"
+        },
+        {
+          "date": "2019-04-03T00:00:00.003Z",
+          "date_epoch": 1234567899,
+          "status": "success",
+          "usd_status": "success",
+          "token_status": "success"
+        }
+      ]
+    }
+  ]
 }
 ```
 

@@ -1,5 +1,7 @@
 # Transaction Error Codes
 
+Transactions returned from the [/get_transactions](#get_transactions) endpoint, if they have failed, will have an error code and error message returned with them. These are the error codes we return as of version 0.2.
+
 | Error Code | Meaning |
 | ---------- | ------- |
 | `ACH_ACCT_DNE` | A bank account with the given name does not exist under the user handle's linked accounts. |
