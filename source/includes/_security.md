@@ -1,5 +1,23 @@
 # Authentication
 
+```plaintext
+Pick a language tab for a signature generation example.
+
+1. Import a library for hashing and signing.
+2. Get appropriate private key to use in signature.
+3. Marshal request body to JSON, producing a "message."
+	* If testing signatures, you can just use an example string.
+4. Hash message with the Keccak-256 algorithm.
+5. Sign the hash with the private key, producing a "signature."
+6. Check and adjust results with further steps if needed.
+	* Remove 0x prefix from signature hex string if present.
+	* Check for an offset issue (last few characters will differ from expected results).
+	* If there is an offset issue:
+		- Do hex arithmetic to figure out the difference between expected and actual results.
+		- When producing signatures, add the discovered offset.
+		- Make sure corrected signature strings are 130 characters long.
+```
+
 ```javascript
 // Authentication example:
 

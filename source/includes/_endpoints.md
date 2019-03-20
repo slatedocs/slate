@@ -2,7 +2,7 @@
 
 ## /check_handle
 
-```http
+```plaintext
 POST /0.2/check_handle HTTP/1.1
 Host: sandbox.silamoney.com
 authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
@@ -64,7 +64,7 @@ An `authsignature` header is required for this request. (Create this using the k
 The `status` attribute is a JSON key sent in the response body.
 
 | Status Code | `status` Attribute | Description |
-| :---------: | :------------------: | ----------- |
+| :---------: | :----------------: | ----------- |
 | 200 | `SUCCESS` | Handle sent in `header.user_handle` is available. |
 | 200 | `FAILURE` | Handle sent in `header.user_handle` is taken. |
 | 400 | `FAILURE` | Handle sent in `header.user_handle` is a reserved handle according to our JSON schema. (Or: request body otherwise does not conform to JSON schema.) |
@@ -72,7 +72,7 @@ The `status` attribute is a JSON key sent in the response body.
 
 ## /register
 
-```http
+```plaintext
 POST /0.2/register HTTP/1.1
 Host: sandbox.silamoney.com
 authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
@@ -161,14 +161,14 @@ An `authsignature` header is required for this request.
 ### Responses
 
 | Status Code | `status` Attribute | Description |
-| :---------: | ----------- |
+| :---------: | :----------------: | ----------- | 
 | 200 | `SUCCESS` | Handle successfully added to system with KYC data. |
 | 400 | `FAILURE` | Invalid request body format, handle already in use, or blockchain address already in use. |
 | 401 | `FAILURE` | `authsignature` header was absent or incorrect. |
 
 ## /request_kyc
 
-```http
+```plaintext
 POST /0.2/request_kyc HTTP/1.1
 Host: sandbox.silamoney.com
 authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
@@ -229,14 +229,14 @@ An `authsignature` header is required for this request.
 ### Responses
 
 | Status Code | `status` Attribute | Description |
-| :---------: | ------------------ | ----------- |
+| :---------: | :----------------: | ----------- |
 | 200 | `SUCCESS` | The verification process for the user registered under `header.user_handle` has been successfully started. |
 | 400 | `FAILURE` | Invalid request body format. |
 | 401 | `FAILURE` | `authsignature` or `usersignature` header was absent or incorrect. |
 
 ## /check_kyc
 
-```http
+```plaintext
 POST /0.2/check_kyc HTTP/1.1
 Host: sandbox.silamoney.com
 authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
@@ -260,7 +260,9 @@ Content-Type: application/json
 HTTP/1.1 200 OK
 
 {
-  
+  "reference":"ref",
+  "message":"KYC passed for user.silamoney.eth",
+  "status":"SUCCESS"
 }
 ```
 
@@ -297,15 +299,15 @@ Both `authsignature` and `usersignature` headers are required for this request. 
 ### Responses
 
 | Status Code | `status` Attribute | Description |
-| :---------: | ------------------ | ----------- |
+| :---------: | :----------------: | ----------- |
 | 200 | `SUCCESS` | The user handle has successfully passed KYC verification. |
-| 200 | `FAILURE` | The user handle has not successfully passed KYC verification (may be pending, not have been registered, or have failed; "message" value will contain "pending" or "failed" substring).
+| 200 | `FAILURE` | The user handle has not successfully passed KYC verification (may be pending, not have been registered, or have failed; `message` attribute will contain "pending" or "failed" substring).
 | 400 | `FAILURE` | Invalid request body format. |
 | 401 | `FAILURE` | `authsignature` or `usersignature` header was absent or incorrect. |
 
 ## /link_account
 
-```http
+```plaintext
 POST /0.2/link_account HTTP/1.1
 Host: sandbox.silamoney.com
 authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
@@ -332,7 +334,7 @@ Content-Type: application/json
 HTTP/1.1 200 OK
 
 {
-  
+  "status": "SUCCESS"
 }
 ```
 
@@ -378,13 +380,16 @@ Both `authsignature` and `usersignature` headers are required for this request.
 
 ### Responses
 
-| Status Code | Description |
-| :---------: | ----------- |
-| 200 | Account successfully linked. |
+| Status Code | `status` Attribute | Description |
+| :---------: | :----------------: | ----------- |
+| 200 | `SUCCESS` | Bank account successfully linked. |
+| 200 | `FAILURE` | Bank account not successfully linked (public token may have expired; tokens expire in 30 minutes after creation).
+| 400 | `FAILURE` | Invalid request body format. |
+| 401 | `FAILURE` | `authsignature` or `usersignature` header was absent or incorrect. |
 
 ## /get_accounts
 
-```http
+```plaintext
 POST /0.2/get_accounts HTTP/1.1
 Host: sandbox.silamoney.com
 authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
@@ -442,11 +447,13 @@ Both `authsignature` and `usersignature` headers are required for this request.
 
 | Status Code | Description |
 | :---------: | ----------- |
-| 200 | Successful call. |
+| 200 | Successfully fetched array of accounts. |
+| 400 | Invalid request body format. |
+| 401 | `authsignature` or `usersignature` header was absent or incorrect. |
 
 ## /issue_sila
 
-```http
+```plaintext
 POST /0.2/issue_sila HTTP/1.1
 Host: sandbox.silamoney.com
 authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
@@ -514,13 +521,16 @@ Both `authsignature` and `usersignature` headers are required for this request.
 
 ### Responses
 
-| Status Code | Description |
-| :---------: | ----------- |
-| 200 | Debit/issuance process started. |
+| Status Code | `status` Attribute | Description |
+| :---------: | :----------------: | ----------- |
+| 200 | `SUCCESS` | Issuance process started. |
+| 200 | `FAILURE` | Issuance process not started; see `message` attribute. |
+| 400 | `FAILURE` | Invalid request body format. |
+| 401 | `FAILURE` | `authsignature` or `usersignature` header was absent or incorrect. |
 
 ## /transfer_sila
 
-```http
+```plaintext
 POST /0.2/transfer_sila HTTP/1.1
 Host: sandbox.silamoney.com
 authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
@@ -584,13 +594,16 @@ Both `authsignature` and `usersignature` headers are required for this request.
 
 ### Responses
 
-| Status Code | Description |
-| :---------: | ----------- |
-| 200 | Transfer process started. |
+| Status Code | `status` Attribute | Description |
+| :---------: | :----------------: | ----------- |
+| 200 | `SUCCESS` | Transfer process started. |
+| 200 | `FAILURE` | Transfer process not started; see `message` attribute. |
+| 400 | `FAILURE` | Invalid request body format. |
+| 401 | `FAILURE` | `authsignature` or `usersignature` header was absent or incorrect. |
 
 ## /redeem_sila
 
-```http
+```plaintext
 POST /0.2/redeem_sila HTTP/1.1
 Host: sandbox.silamoney.com
 authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
@@ -652,13 +665,16 @@ Both `authsignature` and `usersignature` headers are required for this request.
 
 ### Responses
 
-| Status Code | Description |
-| :---------: | ----------- |
-| 200 | Process to redeem USD started. |
+| Status Code | `status` Attribute | Description |
+| :---------: | :----------------: | ----------- |
+| 200 | `SUCCESS` | Redemption process started. |
+| 200 | `FAILURE` | Redemption process not started; see `message` attribute. |
+| 400 | `FAILURE` | Invalid request body format. |
+| 401 | `FAILURE` | `authsignature` or `usersignature` header was absent or incorrect. |
 
 ## /get_transactions
 
-```http
+```plaintext
 POST /0.2/get_transactions HTTP/1.1
 Host: sandbox.silamoney.com
 authsignature: [GENERATED AUTHSIGNATURE HEX STRING HERE]
@@ -736,7 +752,7 @@ Both `authsignature` and `usersignature` headers are required for this request.
 
 ## Contract Endpoint: /silaBalance
 
-```http
+```plaintext
 POST /silaBalance HTTP/1.1
 Host: test.silatokenapi.silamoney.com
 Content-Type: application/json
@@ -789,7 +805,7 @@ Success responses at this endpoint are returned in plain text rather than JSON a
 
 ## Contract Endpoint: /isBetalisted
 
-```http
+```plaintext
 POST /isBetalisted HTTP/1.1
 Host: test.silatokenapi.silamoney.com
 Content-Type: application/json

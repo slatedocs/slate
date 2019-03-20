@@ -2,7 +2,7 @@
 
 Request bodies, also called "messages," are required to have particularly-structured JSON. These message types have names, making it easier to identify exactly what structure you need in the endpoint you need to use.
 
-We have a public JSON schema here: [https://api.silamoney.com/0.2/getschema?schema=SilaSchema](https://api.silamoney.com/0.2/getschema?schema=SilaSchema).
+We have a public JSON schema here: [https://sandbox.silamoney.com/0.2/getschema?schema=SilaSchema](https://sandbox.silamoney.com/0.2/getschema?schema=SilaSchema).
 
 ## header_msg
 
