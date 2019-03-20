@@ -41,6 +41,7 @@ includes:
   - invite_friends
   - owners
   - search
+  - today
   - errors
 
 search: true
