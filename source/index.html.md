@@ -40,6 +40,7 @@ includes:
   - user_favourite_symbols
   - invite_friends
   - owners
+  - search
   - errors
 
 search: true
