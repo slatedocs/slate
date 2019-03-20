@@ -107,7 +107,7 @@ Once a user gives your banking app authorization to connect to TransferWise and 
 
 `https://www.yourbank.com/?code=[CODE]`
 
-Your website or service can then use this code to obtain the access token to act on behalf of the user account.
+Your website or service can then use this code to obtain the access token to act on behalf of the user account described in the [get user tokens](#bank-integrations-guide-get-user-tokens) section.
 
 If you are building your TransferWise integration as a native mobile phone app then the redirect URL should be able to handle returning the user to the correct place in the app.
 
@@ -125,7 +125,7 @@ Existing TransferWise users will always need to be redirected to authorization p
 
 ## Get user tokens
 
-If you are using the first option ([get user authorization for existing accounts ](#bank-integrations-guide-get-user-authorization-for-existing-accounts)) then the next step is to generate tokens so you can call API endpoints on behalf of the user who authorized your banking app. You do this using the access code that was returned to you as a query string parameter in the *redirect_uri* you provided us.
+When using the first option to ([get user authorization for existing accounts ](#bank-integrations-guide-get-user-authorization-for-existing-accounts)) then this step is to generate user-level tokens so you can call API endpoints on behalf of the user who authorized your banking app. You do this using the access code that was returned to you as a query string parameter in the *redirect_uri* you provided us.
 
 > Example Request:
 
