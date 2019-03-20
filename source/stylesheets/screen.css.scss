@@ -614,3 +614,29 @@ html, body {
 .highlight, .highlight .w {
   background-color: $code-bg;
 }
+
+/* Styles for Sila Theme */
+.toc-wrapper {
+  background-image: linear-gradient(-144deg, #3638F7 0%, #9140FF 100%);
+  .search {
+    background: #ffffff;
+    input {
+      background: #ffffff;
+      border-radius: 5px;
+      border: 1px solid #e1e1e1;
+      padding: 5px 5px 5px 20px;
+      color: #555555;
+      font-weight: lighter;
+    }
+    &:before {
+      left: 20px;
+      color: #cccccc;
+    }
+  }
+  .toc-link.active-parent {
+    background: #3F63F7;
+  }
+  .toc-link.active {
+    background: #0CD495;
+  }
+}
