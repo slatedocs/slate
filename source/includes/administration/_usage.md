@@ -54,7 +54,7 @@ Attributes | &nbsp;
 `usageType`<br/>*string* | Usage type of the record.
 `secondaryType`<br/>*string* | Secondary type of the record.
 
-*Note*: The utilityUsage reported by this API is the total usage recorded for the specified period. The resource commitment is not taken into account for this endpoint but is outlined in the endpoint `/top_level/organizations/{org_id}` below. 
+*Note*: The `utilityUsage` reported by this API is the total usage recorded for the specified period. The resource commitment is not taken into account for this endpoint but is outlined in the endpoint `/top_level/organizations/{org_id}` below.
 
 Query Parameters (*required*) | &nbsp;
 ---------- | -----
@@ -67,7 +67,7 @@ Query Parameters | &nbsp;
 `include_sub_orgs`<br/>*boolean* | Include usage summary of all its sub-organizations. Defaults to false.
 `include_cost`<br/>*boolean* | Include the utility cost and service connection pricing id fields. Defaults to true.
 `include_free_usage`<br/>*boolean* | Include all summary records that has no cost associated to it (i.e. utilityCost == 0). Defaults to true.
-`combine_usage_types`<br/>*boolean* | Sums up all the utility cost per organization and service connection. The following fields are removed from the output: `serviceConnectionPricingId`, `usageType`, `secondaryType`, `utilityUsage`
+`combine_usage_types`<br/>*boolean* | Sums up the utility cost per organization and service connection. The following fields are removed from the output: `serviceConnectionPricingId`, `usageType`, `secondaryType`, `utilityUsage`
 `period`<br/>*String* | The period on which the aggregation is made. HOUR, DAY or PERIOD. The default is HOUR.
 `format`<br/>*String* | JSON or CSV. Defaults to JSON.
 `include_deleted`<br/>*boolean* | Will find usage of an organization that may have been deleted
@@ -86,7 +86,7 @@ Attributes | &nbsp;
 The usage that is counted toward a pre assigned pool of resources defined by the Resource Commitment of the organization on a specified service connection. The resource commitment usage is capped by the resource commitment capacity which is the total amount of resource allocated to the organization.
 
 ##### Utility Usage:
-Usage that burst outside of the allocated resource commitment if one exists. Note that utility usage will only appear in the response when the `actualUsage` > `resourceCommitmentsUsage`. Note that the `resourceCommitmentUsage` will always be less than or equal to the `resourceCommitmentCapacity` which is defined by the commitment.
+Usage that bursts outside of the allocated resource commitment if one exists. Note that utility usage will only appear in the response when the `actualUsage` > `resourceCommitmentsUsage`. Note that the `resourceCommitmentUsage` will always be less than or equal to the `resourceCommitmentCapacity` which is defined by the commitment.
 
 The following will always hold:
 `utilityUsage + resourceCommitmentUsage = actualUsage`
@@ -119,4 +119,3 @@ curl curl --request GET \
    }]
 }
 ```
-```shell
