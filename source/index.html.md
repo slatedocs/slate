@@ -27,7 +27,7 @@ search: true
 # Introduction 
 
 ```
-Code snippets will be shown in this panel.
+Code will be shown in this panel.
 ```
 
 Welcome to Sila's API! 
