@@ -6,7 +6,7 @@ Pick a language tab for a signature generation example.
 1. Import a library for hashing and signing.
 2. Get appropriate private key to use in signature.
 3. Marshal request body to JSON, producing a "message."
-	* If testing signatures, you can just use an example string.
+	* If just testing signatures locally, you can use an example string.
 4. Hash message with the Keccak-256 algorithm.
 5. Sign the hash with the private key, producing a "signature."
 6. Check and adjust results with further steps if needed.
@@ -28,12 +28,14 @@ const EthCrypto = require('eth-crypto');
 // You will need a message (request body contents) and a private key.
 // This private key will be an Ethereum private key, hex-encoded 
 // and 64 characters in length, omitting any "0x" that might precede it.
-var private_key = 'PRIVATE_KEY';
+var private_key = 'badba7368134dcd61c60f9b56979c09196d03f5891a20c1557b1afac0202a97c';
 var messageJSON = { test: 'message' };
 
 // Stringify the message. (The string that gets hashed should be
 // guaranteed to be the same as what is sent in the request.)
-var message = JSON.stringify(messageJSON)
+// NOTE: if testing the example strings, you can just declare them as
+// strings, e.g. var message = 'Sila';
+var message = JSON.stringify(messageJSON);
 
 // Generate the message hash using the Keccak 256 algorithm.
 var msg_hash = EthCrypto.hash.keccak256(message);
@@ -63,7 +65,9 @@ request_data.body = message;
 ```
 
 ```go
-// Authentication example:
+// Go authentication example:
+
+package main
 
 // Imports used:
 import (
@@ -75,74 +79,76 @@ import (
 	"github.com/ethereum/go-ethereum/crypto"
 )
 
-// You will need a message (the contents of the request body
-// you will send) and a private key.
-// This private key will be an ethereum private key. In this 
-// example, it should be a hex string 64 characters in length,
-// omitting any "0x" that might precede the number.
-privateKey := "PRIVATE_KEY"
-messageJSON := map[string]interface{}{
-  "test": "message",
+func main() {
+	// You will need a message (the contents of the request body
+	// you will send) and a private key.
+	// This private key will be an ethereum private key. In this 
+	// example, it should be a hex string 64 characters in length,
+	// omitting any "0x" that might precede the number.
+	privateKey := "badba7368134dcd61c60f9b56979c09196d03f5891a20c1557b1afac0202a97c"
+	messageJSON := map[string]interface{}{
+		"test": "message",
+	}
+
+	// Convert a private key from hex to the *ecdsa.PrivateKey
+	// type in your function if needed.
+	pk, err := crypto.HexToECDSA(privateKey)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Marshal the message to JSON; this function returns bytes.
+	// (The bytes that get hashed should be guaranteed to be the
+	// same as what is sent in the request.)
+	// NOTE: if testing the example strings, you can just declare them as
+	// strings and cast them to bytes, e.g. message := []byte("Sila")
+	message, err := json.Marshal(&messageJSON)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Generate the message hash using the Keccak 256 algorithm.
+	msgHash := crypto.Keccak256(message)
+
+	// Create a signature using your private key and hashed message.
+	sigBytes, err := crypto.Sign(msgHash, pk)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// The signature just created is off by -27 from what the API
+	// will expect. Correct that by converting the signature bytes 
+	// to a big int and adding 27.
+	var offset int64 = 27
+	var bigSig = new(big.Int).SetBytes(sigBytes)
+	sigBytes = bigSig.Add(bigSig, big.NewInt(offset)).Bytes()
+
+	// The big library takes out any padding, but the resultant 
+	// signature must be 130 characters (65 bytes) long. In some 
+	// cases, you might find that sigBytes now has a length of 64 or
+	// less, so you can fix that in this way (this prepends the hex 
+	// value with "0" until the requisite length is reached).
+	// Example: if two digits were required but the value was 1, you'd 
+	// pass in 01.
+	var sigBytesLength = 65 // length of a valid signature byte array
+	var arr = make([]byte, sigBytesLength)
+	copy(arr[(sigBytesLength-len(sigBytes)):], sigBytes)
+
+	// Encode the bytes to a hex string.
+	sig := hex.EncodeToString(arr)
+
+	// The raw message should then be sent in an HTTP request body, and
+	// the signature should be sent in a header.
+	log.Println("Message:", string(message))
+	log.Println("Signature:", sig, "Signature length:", len(sig))
 }
-
-// Convert a private key from hex to the *ecdsa.PrivateKey
-// type in your function if needed.
-pk, err := crypto.HexToECDSA(privateKey)
-if err != nil {
-  log.Fatal(err)
-}
-
-// Marshal the message to JSON; this function returns bytes.
-// (The bytes that get hashed should be guaranteed to be the
-// same as what is sent in the request.)
-message, err := json.Marshal(&messageJSON)
-if err != nil {
-  log.Fatal(err)
-}
-
-// Generate the message hash using the Keccak 256 algorithm.
-msgHash := crypto.Keccak256(message)
-
-// Create a signature using your private key and hashed message.
-sigBytes, err := crypto.Sign(msgHash, pk)
-if err != nil {
-  log.Fatal(err)
-}
-
-// The signature just created is off by -27 from what the API
-// will expect. Correct that by converting the signature bytes 
-// to a big int and adding 27.
-var offset int64 = 27
-var bigSig = new(big.Int).SetBytes(sigBytes)
-sigBytes = bigSig.Add(bigSig, big.NewInt(offset)).Bytes()
-
-// The big library takes out any padding, but the resultant 
-// signature must be 130 characters (65 bytes) long. In some 
-// cases, you might find that sigBytes now has a length of 64 or
-// less, so you can fix that in this way (this prepends the hex 
-// value with "0" until the requisite length is reached).
-// Example: if two digits were required but the value was 1, you'd 
-// pass in 01.
-var sigBytesLength = 65 // length of a valid signature byte array
-var arr = make([]byte, sigBytesLength)
-copy(arr[(sigBytesLength-len(sigBytes)):], sigBytes)
-
-// Encode the bytes to a hex string.
-sig := hex.EncodeToString(arr)
-
-// The raw message should then be sent in an HTTP request body, and
-// the signature should be sent in a header.
-log.Println("Message:", string(message))
-log.Println("Signature:", sig, "Signature length:", len(sig))
-
-//...
 ```
 
 Where many other API systems may require client IDs and secrets, Sila uses the [Elliptic Curve Digital Signature Algorithm (ECDSA)](https://hackernoon.com/a-closer-look-at-ethereum-signatures-5784c14abecc) to secure and validate requests. Apps and users will have private keys, and Sila will only store addresses, which are directly derived from public keys.
 
 Here is a rough overview of the whole process:
 
-1. A private/public ECDSA key pair is generated. (It may belong to an app or to a user.)
+1. A private/public ECDSA key pair is generated.
 2. An "address" is derived from the public key.
 3. The address is registered to a "handle" (like usernames in the Sila ecosystem) and stored by Sila.
 4. A JSON request body is constructed and stringified. (This is the "message.")
@@ -158,20 +164,26 @@ During this whole process, Sila never requires knowledge of the app's or user's 
 
 While digital signatures are generally considered highly secure and require zero knowledge of the original private key to verify ownership of the private key, here are a few hurdles you may encounter when implementing this authentication protocol.
 
+**Expected Values:**
+
+- Private keys should be **64** characters long as hex-encoded strings, not including any "0x" prefix. When signing with them, you may need to make sure the hex strings do *not* have a "0x" prefix, depending on your library.
+- Addresses should be **42** characters long as hex-encoded strings, *including* a "0x" prefix. When sending them, add the prefix if your library doesn't add it automatically.
+- Signatures should be **130** characters long as hex-encoded strings, not including any "0x" prefix. When sending them, you may need to ensure that they do *not* have a "0x" prefix.
+
+**Known Pitfalls:**
+
 - You'll (most likely) want to use a cryptographic library in whatever language(s) you use. Each library is different and may have its own quirks.
-- Private keys, as hex-encoded strings, should be **64** characters long (not including any "0x" prefix). When signing with them, you may need to make sure the hex strings do *not* have a "0x" prefix, depending on your library.
-- When registering addresses with Sila, *do* leave the "0x" at the front of the string.
-- Make sure you have marshalled your request body to JSON (bytes or string) *before* you create the signature. **Marshalling may or may not be a symmetric operation**; that is, the keys in the resulting string may be ordered differently when the operation is conducted a second time. Problems may arise if you have a struct, hashmap, or JSONObject that you marshal when signing, then marshal again when sending the request. This will completely change the signature and result in failed validation.
+- Make sure you have marshalled your request body to JSON (bytes or string) *before* you create the signature. **Marshalling may or may not be a symmetric operation**; that is, the keys in the resulting JSON string may be ordered differently when the marshalling operation is conducted a second time. Problems may arise if you have a struct, hashmap, or JSONObject that you marshal when signing, then marshal again when sending the request. Any difference in the marshalled JSON request body will completely change its signature and result in failed validation.
 - Some signing libraries may create a signature with a certain offset from what the Sila endpoint expects. For instance, signatures generated with a particular Go library are consistently off by 27. You will want to check your algorithm against some of our examples to make sure you don't have an offset issue.
 - If you do have an offset issue, you will need to convert the hex string to a big integer, add the offset to it, and convert it back to a hex-encoded string.
-- Signatures, as hex-encoded strings, should be **130** characters long. When sending them, you may need to ensure that they do *not* have a "0x" prefix. (If, without a "0x" prefix, the signature is shorter than 130 characters, prefix it with 0s until it is the correct length.)
+- If you do have an offset issue and correct it, you may find that your new hex-encoded signature string may sometimes be less than 130 characters long. You can precede the string with 0s until it reaches the expected length to solve this issue.
 
 ### Sample Input/Outputs
 
 These are some sample inputs and outputs using a sample private key. ***It is NOT recommended that you use this key for ANYTHING except testing your signature algorithm***.
 
-**Private key**: `badba7368134dcd61c60f9b56979c09196d03f5891a20c1557b1afac0202a97c`<br>
-**Address**: `0x65a796a4bD3AaF6370791BefFb1A86EAcfdBc3C1`
+**Private key**: 	`badba7368134dcd61c60f9b56979c09196d03f5891a20c1557b1afac0202a97c`<br>
+**Address**: 		`0x65a796a4bD3AaF6370791BefFb1A86EAcfdBc3C1`
 
 | Message String | Signature Hex String |
 | :------------: | -------------------- |
