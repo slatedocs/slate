@@ -4,7 +4,7 @@
 
 Users added to an application must have a private key and handle along with KYC information so that we can send them through a KYC verification process.
 
-1. Generate a private key for the user (or have them generate/manage it themselves).
+1. Generate a private key for the user. You can have them generate/manage it themselves.
 2. Either randomly generate a handle or allow the user to pick a handle for themselves. The handle should be checked against the [/check_handle](#check_handle) endpoint for availability.
 3. The user must pass in their required *KYC information* and the *address associated with the user's private key* (see [entity message type](#entity_msg)). This information should be used to populate a [/register](#register) request.
 4. It may take some time for the KYC process to complete, and a success response from /register only means that the verification process has started, not that the user has been verified. Subsequent [/check_kyc](#check_kyc) requests are the only way to know whether the person's information has been verified. 
