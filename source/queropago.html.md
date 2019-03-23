@@ -104,7 +104,10 @@ Entidade que representa toda a cobrança de um **Aluno** num **Curso**.
 | start_year          | int      | Ano de início das cobranças                                                                   |
 | start_month         | int      | Mês de início das cobranças. Valores de 1 a 12, sendo 1 Janeiro e 12 Dezembro                 |
 | duration_in_months  | int      | Número total de mensalidades do curso                                                         |
+| student | object | Referência a entidade Aluno em que a matrícula pertence |
+| course | object | Referência a entidade Curso em que a matrícula pertence |
 | created_at          | datetime | Momento da criação da matrícula no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) em UTC |
+| updated_at          | datetime | Momento da última atualização da matrícula no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) em UTC |
 
 ## Listagem de Matrículas
 
@@ -125,20 +128,21 @@ curl --header "Authorization: Bearer ########" \
     {
       "id": 1234567,
       "external_id": "RA984930527",
-      "created_at": "2018-12-27T17:01:18Z",
-      "discount_percentage": 0.4,
+      "discount_percentage": 40.0,
       "due_day": 15,
       "start_year": 2018,
       "start_month": 7,
       "duration_in_months": 24,
+      "student": {
+        "id": 1,
+        "cpf": "01234567890"
+      },
       "course": {
         "id": 1,
         "external_id": "21348329432"
       },
-      "student": {
-        "id": 1,
-        "cpf": "00000000000"
-      }
+      "created_at": "2019-03-20T22:31:32Z",
+      "updated_at": "2019-03-20T22:32:32Z"
     }
   ]
 }
@@ -152,14 +156,25 @@ curl --header "Authorization: Bearer ########" \
      https://queropago.com.br/api/v1/enrollments?student_cpf=00000000000
 ```
 
+
+### Parâmetros da request
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `GET` |
+| URL | `https://queropago.com.br/api/v1/enrollments` |
+
 ### Filtros
 
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
 | page | Query | Número da página que deve ser retornada |
-| student_cpf | Query | Retorna as matrículas pertencentes ao aluno com o CPF indicado. Pode ser enviado com ou sem formato, apenas os dígitos serão considerados |
-| created_at_gte | Query | Retorna as matrículas criadas a partir da data indicada no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
-| created_at_lte | Query | Retorna as matrículas criadas até a data indicada no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| student_cpf | Query | Retorna as matrículas pertencentes ao aluno com o CPF indicado. Devem ser enviados apenas os números |
+| created_at_gte | Query | Retorna as matrículas criadas a partir da data indicada no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) em UTC |
+| created_at_lte | Query | Retorna as matrículas criadas até a data indicada no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) em UTC |
+| external_id | Query | Identificador da matrícula na instituição de ensino   |
 
 ## Busca de uma matrícula
 Busca de uma matrícula utilizando o ID Quero Pago
@@ -178,22 +193,83 @@ curl --header "Authorization: Bearer ########" \
 {
   "id": 1234567,
   "external_id": "RA984930527",
-  "created_at": "2018-12-27T17:01:18Z",
-  "discount_percentage": 0.4,
+  "discount_percentage": 40.0,
   "due_day": 15,
   "start_year": 2018,
   "start_month": 7,
   "duration_in_months": 24,
+  "student": {
+    "id": 1,
+    "cpf": "01234567890"
+  },
   "course": {
     "id": 1,
     "external_id": "21348329432"
   },
-  "student": {
-    "id": 1,
-    "cpf": "00000000000"
-  }
+  "created_at": "2019-03-20T22:31:32Z",
+  "updated_at": "2019-03-20T22:32:32Z"
 }
 ```
+
+### Parâmetros da request
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `GET` |
+| URL | `https://queropago.com.br/api/v1/enrollments/1234567` |
+
+## Update de uma matrícula
+Faz o update de uma matrícula no sistema do Quero Pago e retorna o objeto atualizado
+
+> Requisição
+
+```bash
+curl --header "Authorization: Bearer ########" \
+     --header "Content-Type: application/json" \
+     -X PUT -d external_id=RA1234 \
+     https://queropago.com.br/api/v1/enrollments/1234567
+```
+
+> Resposta
+
+```json
+{
+  "id": 1234567,
+  "external_id": "RA1234",
+  "discount_percentage": 40.0,
+  "due_day": 15,
+  "start_year": 2018,
+  "start_month": 7,
+  "duration_in_months": 24,
+  "student": {
+    "id": 1,
+    "cpf": "01234567890"
+  },
+  "course": {
+    "id": 1,
+    "external_id": "21348329432"
+  },
+  "created_at": "2019-03-20T22:31:32Z",
+  "updated_at": "2019-03-20T22:32:32Z"
+}
+```
+
+### Parâmetros da request
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `PUT` |
+| URL | `https://queropago.com.br/api/v1/enrollments/1234567` |
+
+### Possíveis atributos para realizar o update
+
+| Atributo | Tipo | Descrição |
+| ---- | ---- | --------- |
+| external_id | Query | Identificador da matrícula na instituição de ensino |
 
 # Mensalidades
 
@@ -213,10 +289,12 @@ boleto, mesmo sendo paga com cartão de crédito.
 | interest               | float  | Valor de juros aplicado                                             |
 | penalty                | float  | Valor de multa aplicado                                             |
 | paid_value             | float  | Valor pago                                                          |
-| paid_date              | date   | Data do pagamento, formatado no padrão ISO8601                      |
-| paid_with              | array  | Lista de meios de pagamento utilizados, vazio se ainda não foi pago |
+| paid_date              | date   | Data do pagamento, formatado no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| payment_methods        | array  | Lista de métodos de pagamento utilizados                               |
 | boleto_barcode         | text   | Código de barras do boleto                                          |
 | boleto_url             | text   | URL para download do boleto                                         |
+| created_at             | datetime | Momento da criação da mensalidade no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) em UTC |
+| updated_at             | datetime | Momento da última atualização da mensalidade no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) em UTC |
 
 **Estados possíveis de uma Mensalidade**
 
@@ -225,14 +303,36 @@ boleto, mesmo sendo paga com cartão de crédito.
 | open | Mensalidade em aberto/disponível para pagamento |
 | paid | Mensalidade paga |
 | overdue | Mensalidade em atraso |
+| exempted | Mensalidade isenta |
 
 **Atributos dos Métodos de Pagamento utilizados**
 
 | Campo | Tipo | Descrição |
 | ----- | ---- | --------- |
-| method_name | text | Nome do meio de pagamento utilizado |
-| paid_at | datetime | Momento do pagamento, formatado no padrão ISO8601 em UTC |
-| paid_value | float | Valor pago |
+| method_name | text | Nome do método de pagamento utilizado podendo variar entre `boleto` e `credit_card` |
+| status | text | Status do método de pagamento, podendo variar entre `waiting_payment`, `inactive`, `paid`, `partial`, `refused`, `refunded` e `chargedback` |
+| paid_at | datetime | Momento do pagamento no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) em UTC, caso o método de pagamento esteja pago ou parcialmente pago |
+| full_value | float | Valor total do método de pagamento |
+| paid_value | float | Valor pago do método de pagamento |
+| refunded_value | float | Valor reembolsado do método de pagamento |
+| installments | int | Quantidades de parcelas em que o método de pagamento foi dividido, caso o `method_name` seja `boleto` vai ser sempre 1 |
+| boleto_barcode | text | Código de barras do boleto, irá existir somente se o `method_name` for `boleto` |
+| boleto_url | text | URL do boleto, irá existir somente se o `method_name` for `boleto` |
+| boleto_expiry_date | text | Data de expiração do boleto no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601), irá existir somente se o `method_name` for `boleto` |
+| created_at             | datetime | Momento da criação do método de pagamento no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) em UTC |
+| updated_at             | datetime | Momento da última atualização do método de pagamento no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) em UTC |
+
+**Status dos Métodos de Pagamento utilizados**
+
+| Status | Descrição |
+| ----- | ---- |
+| waiting_payment | Utilizado quando método de pagamento está aguardando ser pago, ou seja, ainda não foi pago |
+| inactive | Quando o método de pagamento foi inativado, um método de pagamento pode ser inativado quando outro mais atualizado é criado, por exemplo quando tem reajustes no valor da mensalidade e é necessário gerar outro boleto com outro valor |
+| paid | Quando o método de pagamento foi pago por completo, o `full_value` é igual ao `paid_value` |
+| partial | Quando o método de pagamento foi pago parcialmente, o `paid_value` é maior que zero mas é menor que o `full_value` |
+| refused | Quando o método de pagamento é recusado, por exemplo um pagamento em um cartão que não tinha saldo |
+| refunded | Caso um pagamento seja reembolsado por completo, ou seja, o `paid_value` é igual ao `refunded_value` |
+| chargedback | Caso aconteça um Chargeback (aluno sinalizou a operadora que a cobrança foi indevida e negou a cobrança), nesse caso o `paid_value` é atualizado para 0 |
 
 ## Listagem de mensalidades
 
@@ -255,31 +355,49 @@ curl --header "Authorization: Bearer ########" \
       "external_id": "1728934017293477",
       "status": "paid",
       "year": 2018,
-      "month": 6,
-      "due_date": "2018-06-15",
-      "value_without_discount": 1000.00,
-      "value_with_discount": 400.00,
-      "paid_value": 0.00,
+      "month": 12,
+      "due_date": "2018-12-28",
+      "value_without_discount": 1000.0,
+      "value_with_discount": 400.0,
+      "interest": 0.0,
+      "penalty": 0.0,
+      "paid_value": 400.0,
       "paid_date": "2018-12-27",
-      "interest": 0.00,
-      "penalty": 0.00,
-      "paid_with": [
-          {
-              "method_name": "credit_card",
-              "paid_at": "2018-12-27T19:07:03Z",
-              "paid_value": 400.00
-          }
+      "payment_methods": [
+        {
+          "method_name": "boleto",
+          "status": "paid",
+          "paid_at": "2018-12-27T22:31:32Z",
+          "full_value": 400.0,
+          "paid_value": 400.0,
+          "refunded_value": 0.0,
+          "installments": 1,
+          "boleto_barcode": "12345.12345 12345.123456 12345.123456 1 12300000001234",
+          "boleto_url": "https://boleto-url.com",
+          "boleto_expiry_date": "2018-12-28",
+          "created_at": "2018-03-21T22:31:32Z",
+          "updated_at": "2018-03-21T22:32:32Z",
+        }
       ],
-      "boleto_url": "https://boleto-url.com",
-      "boleto_barcode": "12345.12345 12345.123456 12345.123456 1 12300000001234",
       "enrollment": {
-        "id": 1,
+        "id": 123456,
         "external_id": "RA984930527"
-      }
+      },
+      "created_at": "2018-03-20T22:31:32Z",
+      "updated_at": "2018-03-20T22:32:32Z"
     }
   ]
 }
 ```
+
+### Parâmetros da request
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `GET` |
+| URL | `https://queropago.com.br/api/v1/bills` |
 
 ### Filtros
 
@@ -297,6 +415,7 @@ curl --header "Authorization: Bearer ########" \
 | external_enrollment_id | Query | Identificador da matrícula na instituição de ensino |
 | due_date_gte | Query | Retorna as mensalidades com vencimento maior ou igual à data indicada. Deve ser formatada no padrão [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
 | due_date_lte | Query | Retorna as mensalidades com vencimento menor ou igual à data indicada. Deve ser formatada no padrão [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| external_id | Query | Identificador da mensalidade na instituição de ensino |
 
 ## Busca de uma mensalidade
 Busca de uma mensalidade utilizando o ID Quero Pago
@@ -317,29 +436,745 @@ curl --header "Authorization: Bearer ########" \
   "external_id": "1728934017293477",
   "status": "paid",
   "year": 2018,
-  "month": 6,
-  "due_date": "2018-06-15",
-  "value_without_discount": 1000.00,
-  "value_with_discount": 400.00,
-  "paid_value": 0.00,
+  "month": 12,
+  "due_date": "2018-12-28",
+  "value_without_discount": 1000.0,
+  "value_with_discount": 400.0,
+  "interest": 0.0,
+  "penalty": 0.0,
+  "paid_value": 400.0,
   "paid_date": "2018-12-27",
-  "interest": 0.00,
-  "penalty": 0.00,
-  "paid_with": [
+  "payment_methods": [
     {
-      "method_name": "credit_card",
-      "paid_at": "2018-12-27T19:07:03Z",
-      "paid_value": 400.00
+      "method_name": "boleto",
+      "status": "paid",
+      "paid_at": "2018-12-27T22:31:32Z",
+      "full_value": 400.0,
+      "paid_value": 400.0,
+      "refunded_value": 0.0,
+      "installments": 1,
+      "boleto_barcode": "12345.12345 12345.123456 12345.123456 1 12300000001234",
+      "boleto_url": "https://boleto-url.com",
+      "boleto_expiry_date": "2018-12-28",
+      "created_at": "2018-03-21T22:31:32Z",
+      "updated_at": "2018-03-21T22:32:32Z",
     }
   ],
-  "boleto_url": "https://boleto-url.com",
-  "boleto_barcode": "12345.12345 12345.123456 12345.123456 1 12300000001234",
   "enrollment": {
-    "id": 1,
+    "id": 123456,
     "external_id": "RA984930527"
+  },
+  "created_at": "2018-03-20T22:31:32Z",
+  "updated_at": "2018-03-20T22:32:32Z"
+}
+```
+
+### Parâmetros da request
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `GET` |
+| URL | `https://queropago.com.br/api/v1/bills/1` |
+
+## Update de uma mensalidade
+Faz o update de uma mensalidade no sistema do Quero Pago e retorna o objeto atualizado
+
+> Requisição
+
+```bash
+curl --header "Authorization: Bearer ########" \
+     --header "Content-Type: application/json" \
+     -X PUT -d external_id=12345 \
+     https://queropago.com.br/api/v1/bills/1
+```
+
+> Resposta
+
+```json
+{
+  "id": 1,
+  "external_id": "12345",
+  "status": "paid",
+  "year": 2018,
+  "month": 12,
+  "due_date": "2018-12-28",
+  "value_without_discount": 1000.0,
+  "value_with_discount": 400.0,
+  "interest": 0.0,
+  "penalty": 0.0,
+  "paid_value": 400.0,
+  "paid_date": "2018-12-27",
+  "payment_methods": [
+    {
+      "method_name": "boleto",
+      "status": "paid",
+      "paid_at": "2018-12-27T22:31:32Z",
+      "full_value": 400.0,
+      "paid_value": 400.0,
+      "refunded_value": 0.0,
+      "installments": 1,
+      "boleto_barcode": "12345.12345 12345.123456 12345.123456 1 12300000001234",
+      "boleto_url": "https://boleto-url.com",
+      "boleto_expiry_date": "2018-12-28",
+      "created_at": "2018-03-21T22:31:32Z",
+      "updated_at": "2018-03-21T22:32:32Z",
+    }
+  ],
+  "enrollment": {
+    "id": 123456,
+    "external_id": "RA984930527"
+  },
+  "created_at": "2018-03-20T22:31:32Z",
+  "updated_at": "2018-03-20T22:32:32Z"
+}
+```
+
+### Parâmetros da request
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `PUT` |
+| URL | `https://queropago.com.br/api/v1/bills/1` |
+
+### Possíveis atributos para realizar o update
+
+| Atributo | Tipo | Descrição |
+| ---- | ---- | --------- |
+| external_id | Query | Identificador da mensalidade na instituição de ensino |
+
+# Campus
+Entidade que representa o **Campus** da instituição no sistema do Quero Pago.
+
+| Campo | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | int | Identificador do campus no Quero Pago  |
+| external_id | text | Identificador do campus no na instituição de ensino  |
+| name | text | Nome do campus  |
+| address | text | Endereço do campus |
+| address_number | text | Número do campus |
+| address_complement | text | Complemento do campus |
+| lat | float | Latitude do campus |
+| lat | float | Longitude do campus |
+| city | object | Referência a entidade Cidade em que o campus pertence |
+| created_at | datetime | Momento da criação do campus no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) em UTC |
+| updated_at | datetime | Momento da última atualização do campus no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) em UTC |
+
+## Listagem de campus
+
+> Requisição
+
+```bash
+curl --header "Authorization: Bearer ########" \
+     --header "Content-Type: application/json" \
+     https://queropago.com.br/api/v1/campuses
+```
+
+> Resposta
+
+```json
+{
+  "page": 1,
+  "items": [
+    {
+      "id": 1,
+      "external_id": "1234",
+      "name": "Campus Quero Pago",
+      "address": "Rua Quero Pago",
+      "address_number": "123",
+      "address_complement": "",
+      "lat": -8.81108100,
+      "lng": -70.23221200,
+      "city": {
+        "id": 1,
+        "ibge_code": "123456"
+      },
+      "created_at": "2018-03-20T22:31:32Z",
+      "updated_at": "2018-03-20T22:32:32Z"
+    }
+  ]
+}
+```
+
+### Parâmetros da request
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `GET` |
+| URL | `https://queropago.com.br/api/v1/campuses` |
+
+### Filtros
+
+> Exemplo de requisição filtrando por city_id
+
+```bash
+curl --header "Authorization: Bearer ########" \
+     --header "Content-Type: application/json" \
+     https://queropago.com.br/api/v1/campuses?city_id=1
+```
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| state_id | Query | Identificador do estado no Quero Pago |
+| city_id | Query | Identificador da cidade no Quero Pago |
+| name | Query | Nome do campus |
+| external_id | Query | Identificador do campus na instituição de ensino |
+
+## Busca de um campus
+Busca de um campus utilizando o ID Quero Pago
+
+> Requisição
+
+```bash
+curl --header "Authorization: Bearer ########" \
+     --header "Content-Type: application/json" \
+     https://queropago.com.br/api/v1/campuses/1
+```
+
+> Resposta
+
+```json
+{
+  "id": 1,
+  "external_id": "1234",
+  "name": "Campus Quero Pago",
+  "address": "Rua Quero Pago",
+  "address_number": "123",
+  "address_complement": "",
+  "lat": -8.81108100,
+  "lng": -70.23221200,
+  "city": {
+    "id": 1,
+    "ibge_code": "123456"
+  },
+  "created_at": "2018-03-20T22:31:32Z",
+  "updated_at": "2018-03-20T22:32:32Z"
+}
+```
+
+### Parâmetros da request
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `GET` |
+| URL | `https://queropago.com.br/api/v1/campuses/1` |
+
+
+## Update de um campus
+
+Faz o update de um campus no sistema do Quero Pago e retorna o objeto atualizado
+
+> Requisição
+
+```bash
+curl --header "Authorization: Bearer ########" \
+     --header "Content-Type: application/json" \
+     -X PUT -d external_id=123 \
+     https://queropago.com.br/api/v1/campuses/1
+```
+
+> Resposta
+
+```json
+{
+  "id": 1,
+  "external_id": "123",
+  "name": "Campus Quero Pago",
+  "address": "Rua Quero Pago",
+  "address_number": "123",
+  "address_complement": "",
+  "lat": -8.81108100,
+  "lng": -70.23221200,
+  "city": {
+    "id": 1,
+    "ibge_code": "123456"
+  },
+  "created_at": "2018-03-20T22:31:32Z",
+  "updated_at": "2018-03-20T22:32:32Z"
+}
+```
+
+### Parâmetros da request
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `PUT` |
+| URL | `https://queropago.com.br/api/v1/campuses/1` |
+
+### Possíveis atributos para realizar o update
+
+| Atributo | Tipo | Descrição |
+| ---- | ---- | --------- |
+| external_id | Query | Identificador do campus na instituição de ensino |
+
+# Cidades
+Entidade que representa a **Cidade** no sistema do Quero Pago.
+
+| Campo | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | int | Identificador da cidade no Quero Pago  |
+| ibge_code | text | Identificador da cidade no sistema do IBGE |
+| name | text | Nome da cidade  |
+| lat | float | Latitude da cidade |
+| lat | float | Longitude da cidade |
+| state | object | Referência a entidade Estado em que a cidade pertence |
+
+## Listagem de cidades
+
+> Requisição
+
+```bash
+curl --header "Authorization: Bearer ########" \
+     --header "Content-Type: application/json" \
+     https://queropago.com.br/api/v1/cities
+```
+
+> Resposta
+
+```json
+{
+  "page": 1,
+  "items": [
+    {
+      "id": 1,
+      "ibge_code": "3549904",
+      "name": "São José dos Campos",
+      "lat": -23.21184000,
+      "lng": -45.88259700,
+      "state": {
+        "id": 26,
+        "acronym": "SP"
+      }
+    }
+  ]
+}
+```
+
+### Parâmetros da request
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `GET` |
+| URL | `https://queropago.com.br/api/v1/cities` |
+
+### Filtros
+
+> Exemplo de requisição filtrando por ibge_code
+
+```bash
+curl --header "Authorization: Bearer ########" \
+     --header "Content-Type: application/json" \
+     https://queropago.com.br/api/v1/cities?ibge_code=3549904
+```
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| state_id | Query | Identificador do estado no Quero Pago |
+| ibge_code | Query | Identificador da cidade no sistema do IBGE |
+
+## Busca de uma cidade
+Busca de uma cidade utilizando o ID Quero Pago
+
+> Requisição
+
+```bash
+curl --header "Authorization: Bearer ########" \
+     --header "Content-Type: application/json" \
+     https://queropago.com.br/api/v1/cities/1
+```
+
+> Resposta
+
+```json
+{
+  "id": 1,
+  "ibge_code": "3549904",
+  "name": "São José dos Campos",
+  "lat": -23.21184000,
+  "lng": -45.88259700,
+  "state": {
+    "id": 26,
+    "acronym": "SP"
   }
 }
 ```
+
+### Parâmetros da request
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `GET` |
+| URL | `https://queropago.com.br/api/v1/cities/1` |
+
+# Estados
+Entidade que representa o **Estado** no sistema do Quero Pago.
+
+| Campo | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | int | Identificador da cidade no Quero Pago  |
+| acronym | text | Acrônimo do Estado |
+| name | text | Nome do Estado |
+| lat | float | Latitude do Estado |
+| lat | float | Longitude do Estado |
+
+## Listagem de Estados
+
+> Requisição
+
+```bash
+curl --header "Authorization: Bearer ########" \
+     --header "Content-Type: application/json" \
+     https://queropago.com.br/api/v1/states
+```
+
+> Resposta
+
+```json
+{
+  "page": 1,
+  "items": [
+    {
+      "id": 26,
+      "acronym": "SP",
+      "name": "São Paulo",
+      "lat": -22.69073900,
+      "lng": -47.48442700
+    }
+  ]
+}
+```
+
+### Parâmetros da request
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `GET` |
+| URL | `https://queropago.com.br/api/v1/states` |
+
+## Busca de um Estado
+Busca de um Estado utilizando o ID Quero Pago
+
+> Requisição
+
+```bash
+curl --header "Authorization: Bearer ########" \
+     --header "Content-Type: application/json" \
+     https://queropago.com.br/api/v1/states/1
+```
+
+> Resposta
+
+```json
+{
+  "id": 26,
+  "acronym": "SP",
+  "name": "São Paulo",
+  "lat": -22.69073900,
+  "lng": -47.48442700
+}
+```
+
+### Parâmetros da request
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `GET` |
+| URL | `https://queropago.com.br/api/v1/states/1` |
+
+# Curso
+Entidade que representa o **Curso** da instituição no sistema do Quero Pago.
+
+| Campo | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | int | Identificador do curso no Quero Pago  |
+| external_id | text | Identificador do curso no na instituição de ensino  |
+| name | text | Nome do curso  |
+| shift | text | Turno do curso |
+| kind | text | Modalidade do curso |
+| level | text | Nível do curso |
+| campus | object | Referência a entidade Campus em que o curso pertence |
+| created_at | datetime | Momento da criação do curso no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) em UTC |
+| updated_at | datetime | Momento da última atualização do curso no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) em UTC |
+
+## Listagem de cursos
+
+> Requisição
+
+```bash
+curl --header "Authorization: Bearer ########" \
+     --header "Content-Type: application/json" \
+     https://queropago.com.br/api/v1/courses
+```
+
+> Resposta
+
+```json
+{
+  "page": 1,
+  "items": [
+    {
+      "id": 1,
+      "external_id": "1234",
+      "name": "Curso Quero Pago",
+      "shift": "Manhã",
+      "kind": "Presencial",
+      "level": "Graduação",
+      "campus": {
+        "id": 1,
+        "external_id": "1234"
+      },
+      "created_at": "2018-03-20T22:31:32Z",
+      "updated_at": "2018-03-20T22:32:32Z"
+    }
+  ]
+}
+```
+
+### Parâmetros da request
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `GET` |
+| URL | `https://queropago.com.br/api/v1/courses` |
+
+### Filtros
+
+> Exemplo de requisição filtrando por name
+
+```bash
+curl --header "Authorization: Bearer ########" \
+     --header "Content-Type: application/json" \
+     https://queropago.com.br/api/v1/courses?name=quero
+```
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| campus_id | Query | Identificador do campus no Quero Pago |
+| name | Query | Nome do curso |
+| external_id | Query | Identificador do curso na instituição de ensino |
+
+## Busca de um curso
+Busca de um curso utilizando o ID Quero Pago
+
+> Requisição
+
+```bash
+curl --header "Authorization: Bearer ########" \
+     --header "Content-Type: application/json" \
+     https://queropago.com.br/api/v1/courses/1
+```
+
+> Resposta
+
+```json
+{
+  "id": 1,
+  "external_id": "1234",
+  "name": "Curso Quero Pago",
+  "shift": "Manhã",
+  "kind": "Presencial",
+  "level": "Graduação",
+  "campus": {
+    "id": 1,
+    "external_id": "1234"
+  },
+  "created_at": "2018-03-20T22:31:32Z",
+  "updated_at": "2018-03-20T22:32:32Z"
+}
+```
+
+### Parâmetros da request
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `GET` |
+| URL | `https://queropago.com.br/api/v1/courses/1` |
+
+
+## Update de um curso
+
+Faz o update de um curso no sistema do Quero Pago e retorna o objeto atualizado
+
+> Requisição
+
+```bash
+curl --header "Authorization: Bearer ########" \
+     --header "Content-Type: application/json" \
+     -X PUT -d external_id=123 \
+     https://queropago.com.br/api/v1/course/1
+```
+
+> Resposta
+
+```json
+{
+  "id": 1,
+  "external_id": "123",
+  "name": "Curso Quero Pago",
+  "shift": "Manhã",
+  "kind": "Presencial",
+  "level": "Graduação",
+  "campus": {
+    "id": 1,
+    "external_id": "1234"
+  },
+  "created_at": "2018-03-20T22:31:32Z",
+  "updated_at": "2018-03-20T22:32:32Z"
+}
+```
+
+### Parâmetros da request
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `PUT` |
+| URL | `https://queropago.com.br/api/v1/courses/1` |
+
+### Possíveis atributos para realizar o update
+
+| Atributo | Tipo | Descrição |
+| ---- | ---- | --------- |
+| external_id | Query | Identificador do curso na instituição de ensino |
+
+# Alunos
+Entidade que representa o **Aluno** no sistema do Quero Pago.
+
+| Campo | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | int | Identificador do Aluno no Quero Pago  |
+| cpf | text | CPF do aluno, apenas números |
+| name | text | Nome do aluno |
+| email | text | Email do aluno |
+| gender | text | Sexo do aluno, podendo variar entre `M` ou `F` |
+| birthday | date | Data de nascimento do aluno no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| address | text | Objeto de endereço do aluno |
+| created_at | datetime | Momento da criação do curso no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) em UTC |
+| updated_at | datetime | Momento da última atualização do curso no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) em UTC |
+
+
+**Atributos do endereço do aluno**
+
+| Campo | Tipo | Descrição |
+| ---- | ---- | --------- |
+| street | text | Rua do endereço |
+| number | text | Número |
+| neighborhood | text | Bairro |
+| city | object | Referência a entidade Cidade em que o endereço pertence |
+
+## Listagem de alunos
+
+> Requisição
+
+```bash
+curl --header "Authorization: Bearer ########" \
+     --header "Content-Type: application/json" \
+     https://queropago.com.br/api/v1/students
+```
+
+> Resposta
+
+```json
+{
+  "page": 1,
+  "items": [
+    {
+      "id": 1,
+      "cpf": "01234567890",
+      "name": "Aluno Quero Pago",
+      "email": "queropago@queropago.com",
+      "gender": "M",
+      "birthday": "1996-04-10",
+      "address": {
+        "street": "Rua Quero Pago",
+        "number": "123",
+        "neighborhood": "Bairro Quero Pago",
+        "city": {
+          "id": 1,
+          "ibge_code": "123456"
+        }
+      },
+      "created_at": "2018-03-20T22:31:32Z",
+      "updated_at": "2018-03-20T22:32:32Z"
+    }
+  ]
+}
+```
+
+### Parâmetros da request
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `GET` |
+| URL | `https://queropago.com.br/api/v1/students` |
+
+## Busca de um Aluno
+Busca de um Aluno utilizando o ID Quero Pago
+
+> Requisição
+
+```bash
+curl --header "Authorization: Bearer ########" \
+     --header "Content-Type: application/json" \
+     https://queropago.com.br/api/v1/students/1
+```
+
+> Resposta
+
+```json
+{
+  "id": 1,
+  "cpf": "01234567890",
+  "name": "Aluno Quero Pago",
+  "email": "queropago@queropago.com",
+  "gender": "M",
+  "birthday": "1996-04-10",
+  "address": {
+    "street": "Rua Quero Pago",
+    "number": "123",
+    "neighborhood": "Bairro Quero Pago",
+    "city": {
+      "id": 1,
+      "ibge_code": "123456"
+    }
+  },
+  "created_at": "2018-03-20T22:31:32Z",
+  "updated_at": "2018-03-20T22:32:32Z"
+}
+```
+
+### Parâmetros da request
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `GET` |
+| URL | `https://queropago.com.br/api/v1/students/1` |
 
 # Webhooks
 
