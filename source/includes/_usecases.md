@@ -49,7 +49,7 @@ In addition there will also be a dedicated account manager who will be your prim
 to solve all questions and support issues should these arise. 
 
 Please note that subscribing to third party payouts service requires your company to complete enhanced due diligence process performed by TransferWise compliance team. 
-Please contact bizdev@transferwise.com for more info how to get started.
+Please contact [bizdev@transferwise.com](mailto:bizdev@transferwise.com) for more info how to get started.
 
 Our [Third-Party Payouts Guide](#third-party-payouts-guide) will help you get started with the technical integration.
 
@@ -110,12 +110,9 @@ The [Affiliates Integration Guide](#affiliates-integration-guide) helps you get 
 ## Connected Applications
 With Connected Applications, you can let your customers connect their TransferWise accounts to your product. Say you’re an accounting software – doing this could let your customers automate reconciliation. If you’re a payroll company, you could push customer payments right into TransferWise. Or you could push TransferWise notifications through your app. Whatever you want to build, you likely could! 
 
-We will to take a deeper look into your application use case and the added value it will bring to our joint customers. So before starting the technical integration please contact bizdev@transferwise.com for more info how to get started.
+We will to take a deeper look into your application use case and the added value it will bring to our joint customers. So before starting the technical integration please contact [bizdev@transferwise.com](mailto:bizdev@transferwise.com) for more info how to get started.
 
 Our [Connected Apps Guide](#connected-apps-guide) gives you an overview of required technical integration work.
-
-
-Unfortunately this functionality isn’t available to everyone yet, but we’re working hard to open it to everyone. To discuss your use case please contact [bizdev@transferwise.com](mailto:bizdev@transferwise.com).
 
 ## Receive Money
 You can receive money to the local bank details that come with your TransferWise account (AUD, EUR, GBP, NZD and USD) and reconcile these incoming payments via the API. 

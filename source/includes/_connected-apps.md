@@ -1,8 +1,8 @@
 # Connected Apps Guide
 
-This guide described how your application can request TransferWise customers to grant access to their account to your application. 
+This guide described how your application can request TransferWise customers to grant access to their account. 
 
-Note that asking TransferWise users to copy-paste their Transferwise API access tokens directly into your application is a violating of our security policy.  So please only use proper OAuth authorization flow as described below.
+Note that asking TransferWise users to copy-paste their Transferwise API tokens directly into your application is a violating of our security policy.  So please only use proper OAuth authorization flow as described below.
  
 ## API access
 
