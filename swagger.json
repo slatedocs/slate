@@ -109,7 +109,7 @@
               "properties" : {
                 "error" : {
                   "type" : "string",
-                  "enum" : [ "InsufficientMargin", "OrderSizeExceededAvailable", "OrderExceedsSizeLimit", "OrderLeverageNotSet", "InvalidProduct", "ImmediateLiquidationOrder", "LowerthanBankruptcy", "SelfMatchingPostOnlyMode", "ImmediateExecutionPostOnlyOrder" ]
+                  "enum" : [ "InsufficientMargin", "OrderSizeExceededAvailable", "OrderExceedsSizeLimit", "OrderLeverageNotSet", "InvalidProduct", "ImmediateLiquidationOrder", "LowerthanBankruptcy", "SelfMatchingPostOnlyMode", "ImmediateExecutionPostOnlyOrder" , "BracketOrderPositionExists", "InvalidBracketOrder" ]
                 },
                 "message" : {
                   "type" : "string",
@@ -251,6 +251,54 @@
                 "error" : {
                   "type" : "string",
                   "enum" : [ "InsufficientMargin", "OrderSizeExceededAvailable", "OrderExceedsSizeLimit", "OrderLeverageNotSet", "InvalidProduct", "ImmediateLiquidationOrder", "LowerthanBankruptcy", "SelfMatchingPostOnlyMode", "ImmediateExecutionPostOnlyOrder" ]
+                },
+                "message" : {
+                  "type" : "string",
+                  "description" : "A more verbose error message"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders/bracket":{
+      "post" : {
+        "tags" : [ "Orders" ],
+        "summary" : "Place Bracket Order",
+        "operationId" : "placeBracketOrder",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "security" : [ {
+          "api-key" : [ ],
+          "signature" : [ ],
+          "timestamp" : [ ]
+        } ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "bracketOrder",
+          "description": "Bracket order which needs to be created",
+          "required" : true,
+          "schema" : {
+            "type": "array",
+            "$ref" : "#/definitions/CreateBracketOrderRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Returns back the stop loss and take profit orders with assigned ids and latest states",
+            "schema" : {
+              "$ref" : "#/definitions/BracketOrder"
+            }
+          },
+          "400" : {
+            "description" : "Returns error if order could not be placed",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "error" : {
+                  "type" : "string",
+                  "enum" : [ "ImmediateExecutionStopOrder", "CloseOnTriggerExists", "NoOpenPosition" ]
                 },
                 "message" : {
                   "type" : "string",
@@ -909,6 +957,17 @@
         "$ref" : "#/definitions/Order"
       }
     },
+    "BracketOrder" : {
+      "type": "object",
+      "properties": {
+        "stop_loss_order":{
+          "$ref" : "#/definitions/Order"
+        },
+        "take_profit_order":{
+          "$ref" : "#/definitions/Order"
+        }
+      }
+    },
     "CreateOrderRequest":{
       "type": "object",
       "description": "A create order object",
@@ -935,6 +994,53 @@
           "type" : "string",
           "enum" : [ "gtc", "ioc", "fok" ],
           "required": false
+        },
+        "bracket_order": {
+          "type": "object",
+          "properties": {
+            "stop_loss_price": {
+              "type": "string"
+            },
+            "take_profit_price":{
+              "type": "string"
+            },
+            "trail_amount": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "CreateBracketOrderRequest":{
+      "type": "object",
+      "description": "bracket order object",
+      "properties": {
+        "product_id": {
+          "type": "integer" 
+        },
+        "stop_loss_order": {
+          "type" : "object",
+          "properties" : {
+            "order_type" : {
+              "type" : "string",
+              "enum" : [ "market_order" ]
+            },
+            "stop_price" : {
+              "type" : "string"
+            }
+          }
+        },
+        "take_profit_order": {
+          "type" : "object",
+          "properties" : {
+            "order_type" : {
+              "type" : "string",
+              "enum" : [ "market_order" ]
+            },
+            "stop_price" : {
+              "type" : "string"
+            }
+          }
         }
       }
     },
