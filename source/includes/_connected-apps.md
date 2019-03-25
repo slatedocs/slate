@@ -2,7 +2,7 @@
 
 This guide described how your application can request TransferWise customers to grant access to their account. 
 
-Note that asking TransferWise users to copy-paste their Transferwise API tokens directly into your application is a violating of our security policy.  So please only use proper OAuth authorization flow as described below.
+Note that asking TransferWise users to copy-paste their Transferwise API tokens directly into your application is a violation of our security policy.  So please only use proper OAuth authorization flow as described below.
  
 ## API access
 
