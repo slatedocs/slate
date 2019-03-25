@@ -36,7 +36,7 @@ Sila allows you to transfer money among KYC-verified users with an underlying st
 
 ### Getting Started
 
-To get set up with using Sila, you'll need to obtain your own **developer handle** with a **set of keys**. In order to obtain these, a prospective developer must first go through an automated KYC vetting process. Visit the [quickstart guides](https://guide.silamoney.com/api/) to learn more.
+To get set up with using Sila, you'll need to obtain your own **developer handle** with a **set of keys**. In order to obtain these, a prospective developer must first go through an automated KYC vetting process. Visit the [quickstart guides](https://guide.silamoney.com/api/)to learn more.
 
 The set of "auth keys" you receive can double as Ethereum private/public keys. These keys will be used in the API's [authentication mechanism](#authentication); you should *not* plan to hold large amounts of assets at the associated Ethereum address.
 

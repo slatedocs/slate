@@ -55,7 +55,20 @@ request_data.body = message;
 ```
 
 ```python
-# No signing example here yet. Check back later!
+from eth_account import Account
+import sha3
+import json
+
+#Take the keccak256 hash of the message
+k= sha3.keccak_256()
+encoded_message=(json.dumps(msg)).encode("utf-8")
+k.update(encoded_message)
+message_hash=k.hexdigest()
+
+#sign the message_hash
+signed_message=Account.signHash(message_hash,key)
+sig_hx=signed_message.signature.hex()
+print(sig_hx)
 ```
 
 ```java
