@@ -12,6 +12,7 @@ includes:
   - third-party-payouts
   - banks
   - affiliates
+  - connected-apps
   - contact-us
   - full-reference-separator
   - reference/addresses

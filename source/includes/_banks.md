@@ -78,7 +78,7 @@ These steps are explained in more detail below.
 
 ###  1. Your banking app redirects user to TransferWise authorization webpage
 
-Your website or app opens the folowing url in the user's browser.
+Your website or app opens the following url in the user's browser.
 
 Sandbox:  
 `
