@@ -282,7 +282,8 @@ curl --header "Authorization: Bearer ########" \
 
 | Atributo | Tipo | Descrição |
 | ---- | ---- | --------- |
-| external_id | Query | Identificador da matrícula na instituição de ensino |
+| external_id | text | Identificador da matrícula na instituição de ensino |
+| due_day | int | Dia de vencimento das mensalidades, tem que estar entre 1 e 31. Ao atualizar o dia de vencimento das mensalidades, são gerados novos boletos começando a partir do próximo mês, ou seja, não é possível alterar a data de vencimento da mensalidade atual via API |
 
 ## Criação de uma matrícula
 
@@ -719,7 +720,7 @@ curl --header "Authorization: Bearer ########" \
 
 | Atributo | Tipo | Descrição |
 | ---- | ---- | --------- |
-| external_id | Query | Identificador da mensalidade na instituição de ensino |
+| external_id | text | Identificador da mensalidade na instituição de ensino |
 
 # Campus
 Entidade que representa o **Campus** da instituição no sistema do Quero Pago.
@@ -890,7 +891,7 @@ curl --header "Authorization: Bearer ########" \
 
 | Atributo | Tipo | Descrição |
 | ---- | ---- | --------- |
-| external_id | Query | Identificador do campus na instituição de ensino |
+| external_id | text | Identificador do campus na instituição de ensino |
 
 # Cidades
 Entidade que representa a **Cidade** no sistema do Quero Pago.
@@ -1234,7 +1235,7 @@ curl --header "Authorization: Bearer ########" \
 
 | Atributo | Tipo | Descrição |
 | ---- | ---- | --------- |
-| external_id | Query | Identificador do curso na instituição de ensino |
+| external_id | text | Identificador do curso na instituição de ensino |
 
 # Alunos
 Entidade que representa o **Aluno** no sistema do Quero Pago.
