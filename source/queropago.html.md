@@ -128,11 +128,15 @@ curl --header "Authorization: Bearer ########" \
     {
       "id": 1234567,
       "external_id": "RA984930527",
-      "discount_percentage": 40.0,
-      "due_day": 15,
-      "start_year": 2018,
+      "value_without_discount": 1000.0,
+      "value_with_discount": 500.0,
+      "discount_percentage": 50.0,
+      "due_day": 10,
       "start_month": 7,
+      "start_year": 2019,
       "duration_in_months": 24,
+      "period_installments": 6,
+      "enrollment_semester": "2019.2",
       "student": {
         "id": 1,
         "cpf": "01234567890"
@@ -193,11 +197,15 @@ curl --header "Authorization: Bearer ########" \
 {
   "id": 1234567,
   "external_id": "RA984930527",
-  "discount_percentage": 40.0,
-  "due_day": 15,
-  "start_year": 2018,
+  "value_without_discount": 1000.0,
+  "value_with_discount": 500.0,
+  "discount_percentage": 50.0,
+  "due_day": 10,
   "start_month": 7,
+  "start_year": 2019,
   "duration_in_months": 24,
+  "period_installments": 6,
+  "enrollment_semester": "2019.2",
   "student": {
     "id": 1,
     "cpf": "01234567890"
@@ -228,7 +236,8 @@ Faz o update de uma matrícula no sistema do Quero Pago e retorna o objeto atual
 ```bash
 curl --header "Authorization: Bearer ########" \
      --header "Content-Type: application/json" \
-     -X PUT -d external_id=RA1234 \
+     -d external_id=RA1234 \
+     -X PUT \
      https://queropago.com.br/api/v1/enrollments/1234567
 ```
 
@@ -238,11 +247,15 @@ curl --header "Authorization: Bearer ########" \
 {
   "id": 1234567,
   "external_id": "RA1234",
-  "discount_percentage": 40.0,
-  "due_day": 15,
-  "start_year": 2018,
+  "value_without_discount": 1000.0,
+  "value_with_discount": 500.0,
+  "discount_percentage": 50.0,
+  "due_day": 10,
   "start_month": 7,
+  "start_year": 2019,
   "duration_in_months": 24,
+  "period_installments": 6,
+  "enrollment_semester": "2019.2",
   "student": {
     "id": 1,
     "cpf": "01234567890"
@@ -270,6 +283,167 @@ curl --header "Authorization: Bearer ########" \
 | Atributo | Tipo | Descrição |
 | ---- | ---- | --------- |
 | external_id | Query | Identificador da matrícula na instituição de ensino |
+
+## Criação de uma matrícula
+
+> Requisição
+
+```bash
+curl --header "Authorization: Bearer ########" \
+     --header "Content-Type: application/json" \
+     -d "@request_body.json" \
+     -X POST \
+     https://queropago.com.br/api/v1/enrollments
+```
+
+> request_body.json
+
+```json
+{
+  "student": {
+    "name": "Aluno Quero Pago",
+    "gender": "M",
+    "cpf": "01234567890",
+    "birthday": "1996-04-10",
+    "identity_card": "42134567X",
+    "identity_card_emissor": "SSP",
+    "city_id": 1,
+    "state_id": 1,
+    "address": "Rua Quero Pago",
+    "address_number": "123",
+    "address_complement": "Perto da quero",
+    "neighborhood": "Bairro Quero Pago",
+    "postal_code": "12345620",
+    "cellphone": "12912345678",
+    "email": "queropago@queropago.com"
+  },
+  "enrollment": {
+    "value_without_discount": 1000,
+    "value_with_discount": 500,
+    "discount_percentage": 50,
+    "duration_in_months": 24,
+    "course_id": 1,
+    "due_day": 10,
+    "start_month": 7,
+    "start_year": 2019,
+    "period_installments": 6,
+    "enrollment_semester": "2019.2",
+    "external_id": "RA1234"
+  }
+}
+```
+
+> Resposta
+
+```json
+{
+  "id": 1234567,
+  "external_id": "RA1234",
+  "value_without_discount": 1000.0,
+  "value_with_discount": 500.0,
+  "discount_percentage": 50.0,
+  "due_day": 10,
+  "start_month": 7,
+  "start_year": 2019,
+  "duration_in_months": 24,
+  "period_installments": 6,
+  "enrollment_semester": "2019.2",
+  "student": {
+    "id": 1,
+    "cpf": "01234567890",
+    "name": "Aluno Quero Pago",
+    "email": "queropago@queropago.com",
+    "gender": "M",
+    "birthday": "1996-04-10",
+    "identity_card": "42134567X",
+    "identity_card_emissor": "SSP",
+    "cellphone": "12912345678",
+    "address": {
+      "street": "Rua Quero Pago",
+      "number": "123",
+      "neighborhood": "Bairro Quero Pago",
+      "postal_code": "12345620",
+      "complement": "Perto da quero",
+      "city": {
+        "id": 1,
+        "ibge_code": "123456"
+      }
+    },
+    "created_at": "2018-03-20T22:31:32Z",
+    "updated_at": "2018-03-20T22:32:32Z"
+  },
+  "course": {
+    "id": 1,
+    "external_id": "1234",
+    "name": "Curso Quero Pago",
+    "shift": "Manhã",
+    "kind": "Presencial",
+    "level": "Graduação",
+    "campus": {
+      "id": 1,
+      "external_id": "1234"
+    },
+    "created_at": "2018-03-20T22:31:32Z",
+    "updated_at": "2018-03-20T22:32:32Z"
+  },
+  "created_at": "2019-03-20T22:31:32Z",
+  "updated_at": "2019-03-20T22:32:32Z"
+}
+```
+
+### Parâmetros da request
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `POST` |
+| Body | JSON com os parâmetros para a criação |
+| URL | `https://queropago.com.br/api/v1/enrollments` |
+
+### Parâmetros do body da request
+
+| Atributo | Tipo | Obrigatório | Descrição |
+| ---- | ---- | ---- | --------- |
+| student | objeto | Sim | Objeto com os dados do aluno para criarmos a matrícula |
+| enrollment | objeto | Sim | Objeto com os dados da cobrança para criarmos a matrícula |
+
+
+### Parâmetros do body da request - Student
+
+| Atributo | Tipo | Obrigatório | Descrição |
+| ---- | ---- | ---- | --------- |
+| name | text | Sim | Nome do aluno, deve conter apenas letras e espaços |
+| cpf | text | Sim | CPF do aluno, contendo apenas números |
+| email | text | Sim | E-mail do aluno, deve ser um e-mail válido |
+| gender | text | Não | Sexo do aluno, deve estar entre `M` ou `F` |
+| birthday | date | Não | Data de nascimento do aluno no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| identity_card | text | Não | RG do aluno |
+| identity_card_emissor | text | Não | Orgão emissor do RG |
+| city_id | int | Não | Identificador Quero Pago da cidade do aluno |
+| state_id | int | Não | Identificador Quero Pago do estado do aluno |
+| address | text | Não | Rua do endereço do aluno |
+| address_number | text | Não | Número do endereço do aluno |
+| address_complement | text | Não | Complemento do endereço do aluno |
+| neighborhood | text | Não | Bairro do aluno |
+| postal_code | text | Não | CEP do aluno |
+| cellphone | text | Não | Telefone celular do aluno |
+
+### Parâmetros do body da request - Enrollment
+
+| Atributo | Tipo | Obrigatório | Descrição |
+| ---- | ---- | ---- | --------- |
+| value_without_discount | float | Sim | Valor da mensalidade do aluno sem desconto |
+| value_with_discount | float | Sim | Valor da mensalidade do aluno com desconto |
+| discount_percentage | float | Sim | Valor da porcentagem do desconto |
+| duration_in_months | int | Sim | Duração total do curso do aluno, em meses |
+| course_id | int | Sim | Identificador Quero Pago do curso |
+| due_day | int | Sim | Dia de vencimento das mensalidades |
+| start_month | int | Sim | Mês de ínicio da cobrança |
+| start_year | int | Sim | Ano de ínicio da cobrança |
+| period_installments | int | Sim | Quantidade de mensalidades que devem ser geradas para o período atual do aluno, as mensalidades não são geradas todas de uma vez pois existem prazos de reajuste no valor, então elas são geradas por períodos. Ex: Em caso de Graduação normalmente os periodos são Semestrais, então deve ser passado o número 6, e serão geradas 6 mensalidades. Em caso de Pós-Graduação normalmente o período é igual a quantidade de meses de duração do curso, então deve ser passado o mesmo numero do `duration_in_months` |
+| enrollment_semester | text | Sim | Semestre que o aluno ingressou no curso |
+| external_id | text | Não | Identificador externo da matrícula na instituição |
 
 # Mensalidades
 
@@ -486,7 +660,8 @@ Faz o update de uma mensalidade no sistema do Quero Pago e retorna o objeto atua
 ```bash
 curl --header "Authorization: Bearer ########" \
      --header "Content-Type: application/json" \
-     -X PUT -d external_id=12345 \
+     -d external_id=12345 \
+     -X PUT \
      https://queropago.com.br/api/v1/bills/1
 ```
 
@@ -676,7 +851,8 @@ Faz o update de um campus no sistema do Quero Pago e retorna o objeto atualizado
 ```bash
 curl --header "Authorization: Bearer ########" \
      --header "Content-Type: application/json" \
-     -X PUT -d external_id=123 \
+     -d external_id=123 \
+     -X PUT \
      https://queropago.com.br/api/v1/campuses/1
 ```
 
@@ -1021,7 +1197,8 @@ Faz o update de um curso no sistema do Quero Pago e retorna o objeto atualizado
 ```bash
 curl --header "Authorization: Bearer ########" \
      --header "Content-Type: application/json" \
-     -X PUT -d external_id=123 \
+     -d external_id=123 \
+     -X PUT \
      https://queropago.com.br/api/v1/course/1
 ```
 
@@ -1070,6 +1247,9 @@ Entidade que representa o **Aluno** no sistema do Quero Pago.
 | email | text | Email do aluno |
 | gender | text | Sexo do aluno, podendo variar entre `M` ou `F` |
 | birthday | date | Data de nascimento do aluno no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) |
+| identity_card | text | RG do aluno |
+| identity_card_emissor | text | Orgão emissor do RG do aluno |
+| cellphone | text | Celular do aluno |
 | address | text | Objeto de endereço do aluno |
 | created_at | datetime | Momento da criação do curso no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) em UTC |
 | updated_at | datetime | Momento da última atualização do curso no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) em UTC |
@@ -1082,6 +1262,8 @@ Entidade que representa o **Aluno** no sistema do Quero Pago.
 | street | text | Rua do endereço |
 | number | text | Número |
 | neighborhood | text | Bairro |
+| postal_code | texto | CEP da residência |
+| complement | texto | Complemento do endereço |
 | city | object | Referência a entidade Cidade em que o endereço pertence |
 
 ## Listagem de alunos
@@ -1107,10 +1289,15 @@ curl --header "Authorization: Bearer ########" \
       "email": "queropago@queropago.com",
       "gender": "M",
       "birthday": "1996-04-10",
+      "identity_card": "42134567X",
+      "identity_card_emissor": "SSP",
+      "cellphone": "12912345678",
       "address": {
         "street": "Rua Quero Pago",
         "number": "123",
         "neighborhood": "Bairro Quero Pago",
+        "postal_code": "12345620",
+        "complement": "Perto da quero",
         "city": {
           "id": 1,
           "ibge_code": "123456"
@@ -1153,10 +1340,15 @@ curl --header "Authorization: Bearer ########" \
   "email": "queropago@queropago.com",
   "gender": "M",
   "birthday": "1996-04-10",
+  "identity_card": "42134567X",
+  "identity_card_emissor": "SSP",
+  "cellphone": "12912345678",
   "address": {
     "street": "Rua Quero Pago",
     "number": "123",
     "neighborhood": "Bairro Quero Pago",
+    "postal_code": "12345620",
+    "complement": "Perto da quero",
     "city": {
       "id": 1,
       "ibge_code": "123456"
@@ -1175,6 +1367,9 @@ curl --header "Authorization: Bearer ########" \
 | Header | `"Content-Type: application/json"` |
 | Método HTTP | `GET` |
 | URL | `https://queropago.com.br/api/v1/students/1` |
+
+## Criação de um aluno
+A criação de um aluno ocorre junto com a criação da **Matrícula**.
 
 # Webhooks
 
