@@ -1468,12 +1468,88 @@ Para verificar se a requisição é autêntica você pode seguir o seguinte pass
  - Utilizando a implementação de HMAC SHA256 em sua liguagem de programação, construa o hash da string obtida no passo anterior usando sua chave secreta;
  - Compare com a assinatura presente no cabeçalho `X-QP-Signature`, se forem iguais a requisição é autêntica.
 
+
 ### Bibliotecas HMAC em algumas linguagens:
-- [Java/Scala](https://docs.oracle.com/javase/8/docs/api/index.html?javax/crypto/Mac.html)
-- [Ruby](http://ruby-doc.org/stdlib-2.1.0/libdoc/openssl/rdoc/OpenSSL/HMAC.html)
-- [Node.js](https://nodejs.org/api/crypto.html#crypto_class_hmac)
-- [Python](https://docs.python.org/2/library/hmac.html)
-- [PHP](http://php.net/manual/pt_BR/function.hash-hmac.php)
+ - [Java/Scala](https://docs.oracle.com/javase/8/docs/api/index.html?javax/crypto/Mac.html)
+ - [Ruby](http://ruby-doc.org/stdlib-2.1.0/libdoc/openssl/rdoc/OpenSSL/HMAC.html)
+ - [Node.js](https://nodejs.org/api/crypto.html#crypto_class_hmac)
+ - [Python](https://docs.python.org/2/library/hmac.html)
+ - [PHP](http://php.net/manual/pt_BR/function.hash-hmac.php)
+
+## Listagem de eventos
+
+Retorna a lista de todos os eventos cadastratos para a sua instituição
+
+> Requisição
+
+```bash
+curl --header "Authorization: Bearer ########" \
+     --header "Content-Type: application/json" \
+     https://queropago.com.br/api/v1/webhooks
+```
+
+> Resposta
+
+```json
+{
+  "events": [
+    "enrollment_created",
+    "enrollment_canceled",
+    "enrollment_finished",
+    "bill_created",
+    "bill_paid",
+    "bill_overdue",
+    "bill_due_date_changed",
+    "bill_charges_changed"
+  ]
+}
+```
+
+### Parâmetros da request
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `GET` |
+| URL | `https://queropago.com.br/api/v1/webhooks` |
+
+## Update de eventos
+
+Atualiza os eventos cadastrados da sua instituição, caso seja atualizado com sucesso é retornado um json com o status 200
+
+> Requisição
+
+```bash
+curl --header "Authorization: Bearer ########" \
+     --header "Content-Type: application/json" \
+     -d "@request_body.json" \
+     -X PUT \
+     https://queropago.com.br/api/v1/webhooks
+```
+
+> request_body.json
+
+```json
+{
+  "events": ["enrollment_created", "bill_created"]
+}
+```
+
+### Parâmetros da request
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `PUT` |
+| URL | `https://queropago.com.br/api/v1/webhooks` |
+
+### Possíveis atributos para realizar o update
+
+| Atributo | Tipo | Descrição |
+| ---- | ---- | --------- |
+| events | array de strings | Lista de eventos que sua instituição deseja ser notificada |
 
 # Eventos
 
