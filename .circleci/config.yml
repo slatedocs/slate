@@ -104,7 +104,15 @@ jobs:
             sed -i s/075108987694/373437620866/g Dockerrun.aws.json
             git add Dockerrun.aws.json
             eb deploy documentation-production --staged
-
+      - run:
+          name: "DeploymentK8s"
+          command: |
+            mkdir -p ~/.aws
+            echo "[${ENVIRONMENT}]" > ~/.aws/credentials
+            echo "aws_access_key_id = ${AWS_ACCESS_KEY_ID}" >> ~/.aws/credentials
+            echo "aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" >> ~/.aws/credentials
+            aws eks update-kubeconfig --name tier-k8s-cluster
+            helm upgrade --namespace ${ENVIRONMENT} --recreate-pods --install documentation ./k8s/documentation
       - run:
           name: "Announce Deployment"
           command: ./.datadog/announce-deployment.sh

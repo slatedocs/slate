@@ -28,3 +28,7 @@ vendor/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+
+# node
+node_modules/
