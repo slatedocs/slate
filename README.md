@@ -170,7 +170,7 @@ return axios({
 }
 ```
 
-This endpoint is used to posts a lead to ANAROCK database.
+This endpoint is used to  posts a lead to ANAROCK database.
 
 ### HTTP Request
 
