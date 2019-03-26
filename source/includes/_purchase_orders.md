@@ -209,7 +209,7 @@ these values will determine the status of the Purchase Order.
 | purchase_order[allocations_attributes][][maybe_value]                                              | integer | optional                                                           | Value                                                      |
 | purchase_order[allocations_attributes][][_destroy]                                                 | destroy | `true` <br/> `false`                                               | set `true` if you want to delete specifi row of allocation |
 
-## Send purchase orders for approval routing
+## Update existing Purchase Order
 
 ```ruby
 require 'rest-client'
