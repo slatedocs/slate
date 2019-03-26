@@ -176,7 +176,7 @@ This endpoint is used to posts a lead to ANAROCK database.
 
 `staging`
 
-`POST https://lead.staging.anarock.com/api/v0/CHANNEL_NAME/sync-lead`
+`POST https://lead-webhook.staging.anarock.com/api/v0/CHANNEL_NAME/sync-lead`
 
 ``
 
@@ -296,7 +296,7 @@ $hash = hash_hmac('sha256', $message, $key);
 
 $phone = 9999999999 // Phone number to test
 
-$api_url = "https://lead.staging.anarock.com/api/v0/CHANNEL_NAME/last-lead-data?phone="+$phone+"&current_time="+$current_time+"&hash="+$hash
+$api_url = "https://lead-webhook.staging.anarock.com/api/v0/CHANNEL_NAME/last-lead-data?phone="+$phone+"&current_time="+$current_time+"&hash="+$hash
 
 $ch = curl_init();
 
@@ -317,7 +317,7 @@ const phone = 9999999999 // Phone number to test
 
 axios({
   method: "GET",
-  url: `https://lead.staging.anarock.com/api/v0/CHANNEL_NAME/last-lead-data?phone=${phone}&current_time=${timeStamp}&hash=${hash}`
+  url: `https://lead-webhook.staging.anarock.com/api/v0/CHANNEL_NAME/last-lead-data?phone=${phone}&current_time=${timeStamp}&hash=${hash}`
 })
 
 ```
@@ -352,7 +352,7 @@ Use the following GET API
 
 `staging`
 
-`https://lead.staging.anarock.com/api/v0/CHANNEL_NAME/last-lead-data?phone=PHONE_NUMBER&current_time=CURRENT_TIME&hash=HASH`
+`https://lead-webhook.staging.anarock.com/api/v0/CHANNEL_NAME/last-lead-data?phone=PHONE_NUMBER&current_time=CURRENT_TIME&hash=HASH`
 
 `production`
 
