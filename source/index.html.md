@@ -64,10 +64,10 @@ API key is always needed for accessing private endpoints.
 ## Session information
 
 ```shell
-COINBTR_TOKEN='your_api_key'
+COINBTR_API_KEY='your_api_key'
 
 curl -X GET \
--H "Authorization: Token $COINBTR_TOKEN" \
+-H "Authorization: Token $COINBTR_API_KEY" \
 https://api.coinbtr.com/api/v1/user/session
 ```
 This API call will response relevant information about the current session associated to your account and the token key used.
@@ -103,11 +103,11 @@ None -->
 ## Get Deposit Address
 
 ```shell
-COINBTR_TOKEN='your_api_key'
+COINBTR_API_KEY='your_api_key'
 COIN=btc
 
 curl -X GET "https://api.coinbtr.com/api/v1/data/getdepositaddress/?coin=$COIN" \
--H "Authorization: Token $COINBTR_TOKEN"
+-H "Authorization: Token $COINBTR_API_KEY"
 ```
 This API call will bring you a deposit address for funding your cryptocurrency wallet.
 
@@ -136,21 +136,21 @@ This API call will bring you a deposit address for funding your cryptocurrency w
 Extra information is required for certain coins like XEM (Nem) or XLM (Stellar) that need to be included in your transaction for detecting that you're the owner of the funds.
 </aside>
 * XEM requires a `message` field.
-* XLM requires wheter a `memoId` or `memoText`.
+* XLM requires whether a `memoId` or `memoText`.
 
 Most of exchanges or wallets allows you to include this information in your transaction.
 
 ## Cryptocurrency Withdraw
 
 ```shell
-COINBTR_TOKEN="your_api_key"
+COINBTR_API_KEY="your_api_key"
 ADDRESS="2N9JiEUYgRwKAw6FfnUca54VUeaSYSL9qqG"
 COIN="btc"
 AMOUNT="0.001"
 
 curl -X POST "https://api.coinbtr.com/api/v1/data/withdraw/" \
 -H "Content-Type: application/json" \
--H "Authorization: Token $COINBTR_TOKEN" \
+-H "Authorization: Token $COINBTR_API_KEY" \
 -d "{\"coin\": \"$COIN\", \"address\": \"$ADDRESS\", \"amount\": \"$AMOUNT\"}"
 ```
 This API call allows you to send cryptocurrency to a given destination address.
@@ -183,20 +183,91 @@ This API call allows you to send cryptocurrency to a given destination address.
 | memoId | Integer | No | XLM | Memo id attached to the transaction. |
 | memoText | String | No | XLM | Memo text attached to the transaction. |
 
-<!-- ## MXN Withdraw (SPEI)
-This API call is used to withdraw MXN to a given clabe, card number.
+<aside class="notice">
+Make sure your API key has permission to perform this action.
+</aside>
+
+
+## btr pay®
+
+```shell
+COINBTR_API_KEY="your_api_key"
+EMAIL="jhon@mail.com"
+COIN="mxn"
+AMOUNT="100" # 100 MXN
+
+curl -X POST "https://api.coinbtr.com/api/v1/data/withdraw/" \
+-H "Content-Type: application/json" \
+-H "Authorization: Token $COINBTR_API_KEY" \
+-d "{\"coin\": \"$COIN\", \"email\": \"$EMAIL\", \"amount\": \"$AMOUNT\"}"
+```
+*btr pay®* allows you to send funds to another user registered in Coinbtr.
+Funds are transferred instantly with 0 commission fee.
 
 ### HTTP Request
+`POST /api/v1/data/transfer/`
 
-### Body Parameters -->
+> The API response will look like this:
+
+```json
+{
+  "success":true,
+  "msg": "100.00 MXN sent to jhon@mail.com.",
+  "data": {
+    "amount": 100.00,
+    "coin": "MXN"
+  }
+}
+```
+### Body Parameters
+
+| Parameter | Type | Required | Coins | Description |
+|---|---|---|---|---|
+| coin | String | Yes | All | Coin symbol (e.g. 'btc'). |
+| email | String | Yes | All | Receiver email. |
+| amount | Float | Yes | All | Amount to send. |
+
+## Mexican Pesos Withdraw (SPEI)
+```shell
+COINBTR_API_KEY="your_api_key"
+CLABE="002123456789012345"
+RECIPIENT="RAMON SANCHEZ CRUZ"
+COIN="mxn"
+AMOUNT="100" # 100 MXN
+
+curl -X POST "https://api.coinbtr.com/api/v1/data/transfer/" \
+-H "Content-Type: application/json" \
+-H "Authorization: Token $COINBTR_API_KEY" \
+-d "{\"coin\": \"$COIN\", \"clabe\": \"$CLABE\", \"amount\": \"$AMOUNT\", \"recipient\": \"$RECIPIENT\"}"
+```
+> The API response will look like this:
+
+```json
+{
+  "success": true,
+  "msg": "Withdrawal created. Your withdrawal will processed in the next 60 minutes",
+}
+```
+This API call is used to withdraw MXN to a given CLABE.
+
+### HTTP Request
+`POST /api/v1/data/fiatwithdraw/`
+
+### Body Parameters
+| Parameter | Type | Required | Coins | Description |
+|---|---|---|---|---|
+| coin | String | Yes | MXN | Fiat coin symbol. Currently `MXN` is only supported |
+| clabe | String | Yes | MXN | 18 digits recipient's CLABE (*Clave Bancaria Estandarizada*). |
+| amount | Float | Yes | MXN | Amount to send. |
+| recipient | String | Yes | MXN | Recipient's full name. |
 
 ## List Balances
 ```shell
-COINBTR_TOKEN='your_api_key'
+COINBTR_API_KEY='your_api_key'
 
 curl -X GET "https://api.coinbtr.com/api/v1/data/listbalances/" \
 -H "Content-Type: application/json" \
--H "Authorization: Token $COINBTR_TOKEN"
+-H "Authorization: Token $COINBTR_API_KEY"
 ```
 This API call is used to retrieve your wallets balances, including their deposit addresses. There are three type of balances in coinbtr: `available`, `pending` and `frozen`.
 
@@ -239,11 +310,11 @@ None
 Alternatively you can request your balance for a specific coin.
 
 ```shell
-COINBTR_TOKEN='your_api_key'
+COINBTR_API_KEY='your_api_key'
 
 curl -X GET "https://api.coinbtr.com/api/v1/data/getbalance/?coin=btc" \
 -H "Content-Type: application/json" \
--H "Authorization: Token $COINBTR_TOKEN"
+-H "Authorization: Token $COINBTR_API_KEY"
 ```
 
 > The API response will look like this:
@@ -270,15 +341,15 @@ curl -X GET "https://api.coinbtr.com/api/v1/data/getbalance/?coin=btc" \
 ### Body Parameters
 | Parameter | Type | Required |  Description |
 |---|---|---|---|---|
-| coin | String | No | Cryptocurrency symbol (e.g. `btc`). |
+| coin | String | No | Coin symbol (e.g. `btc`). |
 
 ## List transfers
 ```shell
-COINBTR_TOKEN='your_api_key'
+COINBTR_API_KEY='your_api_key'
 
 curl -X GET "https://api.coinbtr.com/api/v1/data/transfershistory/?coin=btc&type=deposits" \   
 -H "Content-Type: application/json" \
--H "Authorization: Token $COINBTR_TOKEN"
+-H "Authorization: Token $COINBTR_API_KEY"
 ```
 
 > The API response will look like this:
@@ -317,18 +388,18 @@ This API call is used to retrieve your withdraws and deposits history. These can
 
 | Parameter | Type | Required |  Description |
 |---|---|---|---|---|
-| coin | String | No | Cryptocurrency symbol (e.g. `btc`). |
+| coin | String | No | Coin symbol (e.g. `btc`). |
 | type | String | No |type of transfer, wich can be `withdrawals` or `deposits`. |
 
 #Trading Operations
 <!-- ====================================================================================================== -->
 <aside class="notice">
-Make sure that your API key has permissions to perform this actions.
+Make sure that your API key has permissions to perform these actions.
 </aside>
 
-## Place an new order
+## Place a new order
 ```shell
-COINBTR_TOKEN='your_api_key'
+COINBTR_API_KEY='your_api_key'
 MKT="btc-mxn"
 SIDE="sell"
 TYPE="limit"
@@ -337,10 +408,10 @@ PRICE="100000" # Means 1 BTC = $100,000.00 MXN
 
 curl -X POST "https://api.coinbtr.com/api/v1/trading/placeorder/" \
 -H "Content-Type: application/json" \
--H "Authorization: Token $COINBTR_TOKEN" \
+-H "Authorization: Token $COINBTR_API_KEY" \
 -d "{ \"market\": \"$MKT\", \"amount\": \"$AMOUNT\", \"type\":\"$TYPE\", \"side\": \"$SIDE\", \"price\": \"$PRICE\"}"
 ```
-You can place two types of orders: `limit` and `market`. Orders can be placed only if your account has enough funds. Once an order is placed, your wallet funds will be frozen. If you cancel your order, the associated funds will be restored. If you cancel an open order that has been partially filled the exchanged funds will not be restored.
+You can place two types of orders: `limit` and `market`. Orders can be placed only if your wallet has enough funds. Once an order is placed, your wallet funds will be frozen. If you cancel your order, the associated funds will be restored. If you cancel an open order that has been partially filled the exchanged funds will not be restored.
 ### HTTP Request
 `POST /api/v1/trading/placeorder/`
 
@@ -394,7 +465,7 @@ This endpoint returns a list of existing exchange order books and their respecti
 `GET /market/getcurrencies`
 
 #Coin specific implementations
-There are aditional data that you most provide for certain cryptocurrencies operations.
+There are additional data that you most provide for certain cryptocurrencies operations.
 
 ## Nem (XEM) withdraws
 
