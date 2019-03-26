@@ -446,6 +446,67 @@ curl --header "Authorization: Bearer ########" \
 | enrollment_semester | text | Sim | Semestre que o aluno ingressou no curso |
 | external_id | text | Não | Identificador externo da matrícula na instituição |
 
+## Interrupção de matrícula
+
+> Requisição
+
+```bash
+curl --header "Authorization: Bearer ########" \
+     --header "Content-Type: application/json" \
+     -d "@request_body.json" \
+     -X POST \
+     https://queropago.com.br/api/v1/enrollments/1/interrupt
+```
+
+> request_body.json
+
+```json
+{
+  "interruption_reason": "dropout",
+  "remaining_value": 1000,
+  "installments": 10,
+  "first_due_date": "2019-10-10"
+}
+```
+
+> Resposta
+
+```json
+{
+  "message": "Matrícula interrompida com sucesso"
+}
+```
+
+Interrompe a matrícula de acordo com os parâmetros passados
+
+### Parâmetros da request
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `POST` |
+| Body | JSON com os parâmetros para a criação |
+| URL | `https://queropago.com.br/api/v1/enrollments/1/interrupt` |
+
+### Parâmetros do body da request
+
+| Atributo | Tipo | Obrigatório | Descrição |
+| ---- | ---- | ---- | --------- |
+| interruption_reason | text | Sim | Razão da interrupção da cobrança, podendo ser `cancellation`, `transfer`, `dropout` ou `pause` |
+| remaining_value | float | Não | Valor restante a ser pago, necessário somente se o aluno estiver com saldo devedor |
+| installments | int | Não | Quantidade de mensalidades que o aluno pode dividir o saldo devedor, necessário somente se o aluno estiver com saldo devedor |
+| first_due_date | date | Não | Data da primeira mensalidade no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601), necessário somente se o aluno estiver com saldo devedor  |
+
+**Razões de interrupção**
+
+| Atributo | Descrição |
+| ---- | --------- |
+| cancellation | Motivo genérico para interrupção |
+| transfer | Aluno fez transferência de instituição |
+| dropout | Aluno desistiu do curso |
+| pause | Aluno trancou o curso |
+
 # Mensalidades
 
 Entidade que representa a cobrança de um determinado mês relacionada a uma **Matrícula**. Toda mensalidade possui um
