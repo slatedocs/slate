@@ -17,7 +17,7 @@ search: true
 
 # Introduction
 
-Welcome to Anarock! You can use API for pushing leads from your system to our database.
+Welcome to Anarock!  You can use API for pushing leads from your system to our database.
 
 Below is a documentation about how to use the API for publishing leads to Anarock databse.
 
