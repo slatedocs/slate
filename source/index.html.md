@@ -112,7 +112,7 @@ curl -X GET "https://api.coinbtr.com/api/v1/data/getdepositaddress/?coin=$COIN" 
 This API call will bring you a deposit address for funding your cryptocurrency wallet.
 
 ### HTTP Request
-`GET /api/v1/data/getdepositaddress/?coin=btc`
+`GET /api/v1/data/getdepositaddress/`
 
 > The API call will response this:
 
@@ -198,7 +198,14 @@ curl -X GET "https://api.coinbtr.com/api/v1/data/listbalances/" \
 -H "Content-Type: application/json" \
 -H "Authorization: Token $COINBTR_TOKEN"
 ```
-This API call is used to retrieve your wallets balances, including their deposit addresses.
+This API call is used to retrieve your wallets balances, including their deposit addresses. There are three type of balances in coinbtr: `available`, `pending` and `frozen`.
+
+* `available`: Funds you can spend.
+
+* `pending`: Funds that will be added in your account due to an incoming transfer.
+
+* `frozen`: Frozen funds due to a limit order you have previously placed.
+
 
 ### HTTP Request
 > The API response will look like this:
@@ -223,7 +230,7 @@ This API call is used to retrieve your wallets balances, including their deposit
 	]
 }
 ```
-`GET /api/v1/data/listbalances`
+`GET /api/v1/data/listbalances/`
 
 ### Body Parameters
 None
@@ -259,6 +266,11 @@ curl -X GET "https://api.coinbtr.com/api/v1/data/getbalance/?coin=btc" \
 
 ### HTTP Request
 `GET /api/v1/data/getbalance/`
+
+### Body Parameters
+| Parameter | Type | Required |  Description |
+|---|---|---|---|---|
+| coin | String | No | Cryptocurrency symbol (e.g. `btc`). |
 
 ## List transfers
 ```shell
@@ -306,9 +318,10 @@ This API call is used to retrieve your withdraws and deposits history. These can
 | Parameter | Type | Required |  Description |
 |---|---|---|---|---|
 | coin | String | No | Cryptocurrency symbol (e.g. `btc`). |
-| type | String | No |type of transfer, wich can be `withdrawals` or `deposits` |
+| type | String | No |type of transfer, wich can be `withdrawals` or `deposits`. |
 
 #Trading Operations
+<!-- ====================================================================================================== -->
 <aside class="notice">
 Make sure that your API key has permissions to perform this actions.
 </aside>
@@ -327,8 +340,7 @@ curl -X POST "https://api.coinbtr.com/api/v1/trading/placeorder/" \
 -H "Authorization: Token $COINBTR_TOKEN" \
 -d "{ \"market\": \"$MKT\", \"amount\": \"$AMOUNT\", \"type\":\"$TYPE\", \"side\": \"$SIDE\", \"price\": \"$PRICE\"}"
 ```
-
-This endpoint is used to place a sell order in a given market.
+You can place two types of orders: `limit` and `market`. Orders can be placed only if your account has enough funds. Once an order is placed, your wallet funds will be frozen. If you cancel your order, the associated funds will be restored. If you cancel an open order that has been partially filled the exchanged funds will not be restored.
 ### HTTP Request
 `POST /api/v1/trading/placeorder/`
 
