@@ -1,5 +1,5 @@
 ---
-title: CoinBTR API Reference
+title: Coinbtr API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -17,26 +17,27 @@ search: true
 
 # Introduction
 
-CoinBTR provides a simple and practical REST API to help you to automatically perform nearly all actions you can do in our platform [CoinBTR](https://coinbtr.com).
+Coinbtr provides a simple and practical REST API to help you to automatically perform nearly all actions you can do in our platform [Coinbtr](https://coinbtr.com).
 
 ## General considerations
 
 Before making API calls consider the following:
 
-* All requests use the `application/json` content type and go over `http`. The base url is `https://coinbtr.com/api/v1/`.
-* All requests are `GET` and `POST` requests and all responses come in a default response object with the result in the `data` field.
-* Always check the `success` flag to ensure that your API call succeeded.
-* If something goes wrong look at the `msg` field. There you will find the error description and error code.
+* All requests use the `application/json` content type and go over `https`.
+* The base url is `https://api.coinbtr.com/api/v1/`.
+* All requests are `GET` and `POST` requests methods and responses come in a default response object with the result in the `data` field.
+* Check the `success` flag to ensure that your API call succeeded.
+* If something goes wrong look at the `msg` field. There you will find the error description.
 
 ## HTTP API Responses
 
-CoinBTR REST API calls will always return a JSON Object.
+Coinbtr REST API calls will always return a JSON Object.
 
-* A successful API call will response a JSON  object that looks like:
+* A typical successful API call will response a JSON  object that looks like:
 
 `{
   "success": true,
-  "msg":"",
+  "msg": null,
   "data": {
     RELATED_DATA_HERE
     }
@@ -46,13 +47,8 @@ CoinBTR REST API calls will always return a JSON Object.
 
 `{
   "success": false,
-  "msg": {
-    "error": ERROR_MESSAGE,
-    "code": ERROR_CODE
-  }
+  "msg": ERROR_DESCRIPTION
 }`
-
-## Error codes
 
 # Authentication
 
@@ -61,12 +57,9 @@ CoinBTR REST API calls will always return a JSON Object.
 In order to use our platform through API calls you must request and configure as many API keys as you need. You can configure each API key with its own level of permission. To add, delete or modify your API keys please go to your profile `Settings` > `Manage API Keys`.
 
 <aside class="notice">
-API key is always needed for accessing private methods.
+API key is always needed for accessing private endpoints.
 </aside>
-<aside class="warning">
-You must have 2FA enabled to create an API key.
-</aside>
-# Session
+<!-- # Session
 
 ## Session information
 
@@ -75,7 +68,7 @@ COINBTR_TOKEN='your_api_key'
 
 curl -X GET \
 -H "Authorization: Token $COINBTR_TOKEN" \
-https://coinbtr.com/api/v1/user/session
+https://api.coinbtr.com/api/v1/user/session
 ```
 This API call will response relevant information about the current session associated to your account and the token key used.
 
@@ -85,7 +78,7 @@ This API call will response relevant information about the current session assoc
 ```json
 {
   "success": true,
-  "msg": "",
+  "msg": null,
   "data": {
     "username": "jhon@mail.com",
     "ip":"189.200.10.0",
@@ -102,9 +95,10 @@ This API call will response relevant information about the current session assoc
 ```
 `GET /api/v1/user/session`
 ### Body Parameters
-None
+None -->
 
 # Wallet Operations
+<!-- ====================================================================================================== -->
 
 ## Get Deposit Address
 
@@ -112,21 +106,20 @@ None
 COINBTR_TOKEN='your_api_key'
 COIN=btc
 
-curl -X GET \
--H "Authorization: Token $COINBTR_TOKEN" \
-https://coinbtr.com/api/v1/wallet/getdepositaddress?coin=$COIN
+curl -X GET "https://api.coinbtr.com/api/v1/data/getdepositaddress/?coin=$COIN" \
+-H "Authorization: Token $COINBTR_TOKEN"
 ```
 This API call will bring you a deposit address for funding your cryptocurrency wallet.
 
 ### HTTP Request
-`GET /api/v1/wallet/getdepositaddress/?coin=btc`
+`GET /api/v1/data/getdepositaddress/?coin=btc`
 
 > The API call will response this:
 
 ```json
 {
   "success": true,
-  "msg": "",
+  "msg": null,
   "data": {
     "coin":"btc",
     "address": "2NFfxvXpAWjKng7enFougtvtxxCJ2hQEMo4",
@@ -139,31 +132,38 @@ This API call will bring you a deposit address for funding your cryptocurrency w
 |---|---|---|---|---|
 | coin | String | Yes | All | Cryptocurrency symbol (e.g. 'btc'). |
 
+<aside class="warning">
+Extra information is required for certain coins like XEM (Nem) or XLM (Stellar) that need to be included in your transaction for detecting that you're the owner of the funds.
+</aside>
+* XEM requires a `message` field.
+* XLM requires wheter a `memoId` or `memoText`.
+
+Most of exchanges or wallets allows you to include this information in your transaction.
+
 ## Cryptocurrency Withdraw
 
 ```shell
-COINBTR_TOKEN='your_api_key'
-ADDRESS='2N9JiEUYgRwKAw6FfnUca54VUeaSYSL9qqG'
-COIN=btc
-AMOUNT=0.001
+COINBTR_TOKEN="your_api_key"
+ADDRESS="2N9JiEUYgRwKAw6FfnUca54VUeaSYSL9qqG"
+COIN="btc"
+AMOUNT="0.001"
 
-curl -X POST \
+curl -X POST "https://api.coinbtr.com/api/v1/data/withdraw/" \
 -H "Content-Type: application/json" \
 -H "Authorization: Token $COINBTR_TOKEN" \
--d "{ \"coin\": \"$COIN\", \"address\": \"$ADDRESS\", \"amount\": $AMOUNT }" \
-https://coinbtr.com/api/v1/wallet/withdraw
+-d "{\"coin\": \"$COIN\", \"address\": \"$ADDRESS\", \"amount\": \"$AMOUNT\"}"
 ```
 This API call allows you to send cryptocurrency to a given destination address.
 
 ### HTTP Request
-`POST /api/v1/wallet/whithdraw`
+`POST /api/v1/data/whithdraw/`
 
 > The API response will look like this:
 
 ```json
 {
   "success": true,
-  "msg": "",
+  "msg": null,
   "data": {
     "coin":"BTC",
     "txid": "a4b50c3f7fb5dd9273f5be69661b79eed61570421f76ec903ad914d39980549e",
@@ -179,24 +179,25 @@ This API call allows you to send cryptocurrency to a given destination address.
 | coin | String | Yes | All | Cryptocurrency symbol (e.g. 'btc'). |
 | address | String | Yes | All | Destination address. |
 | amount | Float | Yes | All | Amount to send. |
+| message | String | No | XEM | Message attached to the transaction. |
+| memoId | Integer | No | XLM | Memo id attached to the transaction. |
+| memoText | String | No | XLM | Memo text attached to the transaction. |
 
-## MXN Withdraw (SPEI)
+<!-- ## MXN Withdraw (SPEI)
 This API call is used to withdraw MXN to a given clabe, card number.
 
 ### HTTP Request
 
-### Body Parameters
+### Body Parameters -->
 
 ## List Balances
 ```shell
 COINBTR_TOKEN='your_api_key'
 
-curl -X GET \
+curl -X GET "https://api.coinbtr.com/api/v1/data/listbalances/" \
 -H "Content-Type: application/json" \
--H "Authorization: Token $COINBTR_TOKEN" \
-https://coinbtr.com/api/v1/wallet/listbalances
+-H "Authorization: Token $COINBTR_TOKEN"
 ```
-
 This API call is used to retrieve your wallets balances, including their deposit addresses.
 
 ### HTTP Request
@@ -205,7 +206,7 @@ This API call is used to retrieve your wallets balances, including their deposit
 ```json
 {
 	"success": true,
-	"message": "",
+	"message": null,
 	"data": [{
 			"coin": "LTC",
 			"balance": 0.00000000,
@@ -222,49 +223,124 @@ This API call is used to retrieve your wallets balances, including their deposit
 	]
 }
 ```
-`GET /api/v1/wallet/listbalances`
+`GET /api/v1/data/listbalances`
 
 ### Body Parameters
 None
 
 ## Get Balance
-### HTTP Request
-`GET /api/v1/wallet/getbalance`
+Alternatively you can request your balance for a specific coin.
 
-## List Withdraws
-This API call is used to retrieve your withdraws history.
+```shell
+COINBTR_TOKEN='your_api_key'
+
+curl -X GET "https://api.coinbtr.com/api/v1/data/getbalance/?coin=btc" \
+-H "Content-Type: application/json" \
+-H "Authorization: Token $COINBTR_TOKEN"
+```
+
+> The API response will look like this:
+
+```json
+{
+  "success": true,
+  "msg": null,
+  "data": {
+    "coin": "btc",
+    "coin_name": "Bitcoin",
+    "balances": {
+      "available": 0.00033191,
+      "frozen": 0.00134,
+      "pending": 0.0
+    }
+  }
+}
+```
 
 ### HTTP Request
-`GET /api/v1/wallet/listwithdraws`
+`GET /api/v1/data/getbalance/`
 
-## List Deposits
+## List transfers
+```shell
+COINBTR_TOKEN='your_api_key'
+
+curl -X GET "https://api.coinbtr.com/api/v1/data/transfershistory/?coin=btc&type=deposits" \   
+-H "Content-Type: application/json" \
+-H "Authorization: Token $COINBTR_TOKEN"
+```
+
+> The API response will look like this:
+
+```json
+{
+  "success": true,
+  "msg": null,
+  "data": {
+    "transfers": [{
+      "sender": "None",
+      "receiver": "jhon@mail.com",
+      "coin": "btc",
+      "coin_name": "Bitcoin",
+      "txId": "bd8d8dc229ccc4a6f06a41e138eae6e10e44b5deec2ff8bbcc26c0b07fb6a466",
+      "confirmed": true,
+      "created_at": "2019-03-19T20: 11: 37.073628Z",
+      "confirmed_at": "2019-03-19T20: 51: 38.808905Z",
+      "is_innerTransfer": false,
+      "address": "3K4ijxakSQ86Nk26JZuHZa2m7tHjJ3YeSb",
+      "explorer_link": "https://www.blockchain.com/es/btc/tx/bd8d8dc229ccc4a6f06a41e138eae6e10e44b5deec2ff8bbcc26c0b07fb6a466",
+      "amount": 0.00033699,
+      "fee_amount": 0.0,
+      "total_amount": 0.00033699,
+      "type": "deposit"
+    }]
+  }
+}
+```
+This API call is used to retrieve your withdraws and deposits history. These can be filtered by type, which can be `withdrawals` or `deposits`, and/or by `coin`.
+
 ### HTTP Request
-`GET /api/v1/wallet/listdeposits`
+`GET /api/v1/data/transfershistory/`
+
+### Body Parameters
+
+| Parameter | Type | Required |  Description |
+|---|---|---|---|---|
+| coin | String | No | Cryptocurrency symbol (e.g. `btc`). |
+| type | String | No |type of transfer, wich can be `withdrawals` or `deposits` |
 
 #Trading Operations
 <aside class="notice">
 Make sure that your API key has permissions to perform this actions.
 </aside>
-## Place a buy limit order
-### HTTP Request
-`POST /api/v1/trading/place/buylimit`
 
-## Place a sell limit order
+## Place an new order
 ```shell
 COINBTR_TOKEN='your_api_key'
-MKT=BTC-LTC
-AMOUNT=0.0001
+MKT="btc-mxn"
+SIDE="sell"
+TYPE="limit"
+AMOUNT="0.001" # 0.001 BTC
+PRICE="100000" # Means 1 BTC = $100,000.00 MXN
 
-curl -X POST \
+curl -X POST "https://api.coinbtr.com/api/v1/trading/placeorder/" \
 -H "Content-Type: application/json" \
 -H "Authorization: Token $COINBTR_TOKEN" \
--d "{ \"market\": \"$MKT\", \"amount\": \"$AMOUNT\" }" \
-https://coinbtr.com/api/v1/trading/selllimit
+-d "{ \"market\": \"$MKT\", \"amount\": \"$AMOUNT\", \"type\":\"$TYPE\", \"side\": \"$SIDE\", \"price\": \"$PRICE\"}"
 ```
 
 This endpoint is used to place a sell order in a given market.
 ### HTTP Request
-`POST /api/v1/trading/place/selllimit`
+`POST /api/v1/trading/placeorder/`
+
+### Body Parameters
+
+| Parameter | Type | Required |  Description |
+|---|---|---|---|---|
+| market | String | Yes | Market where your order will be placed (e.g. `btc-mxn`). |
+| amount | String | Yes | Amount of coins to trade. |
+| side | String | Yes | `buy` or `sell`. |
+| type | String | Yes | Type of order which can be `market` or `limit`. |
+| price | String | Yes | Order price at which you wish to exchange your coins. |
 
 ## Cancel an open order
 ### HTTP Request
@@ -278,7 +354,7 @@ This endpoint is used to place a sell order in a given market.
 ### HTTP Request
 `POST /api/v1/trading/listopenorders`
 
-## List Trasactions
+## List Transactions
 
 ## Get Transaction
 
