@@ -1,12 +1,13 @@
 # Flow
 
+
 ## User Registration
 
-Users added to an application must have a private key and handle along with KYC information so that we can send them through a KYC verification process.
+Users added to an application must have a private key and handle (along with KYC information so that we can send them through a KYC verification process).
 
 1. Generate a private key for the user. You can have them generate/manage it themselves.
 2. Either randomly generate a handle or allow the user to pick a handle for themselves. The handle should be checked against the [/check_handle](#check_handle) endpoint for availability.
-3. The user must pass in their required *KYC information* and the *address associated with the user's private key* (see [entity message type](#entity_msg)). This information should be used to populate a [/register](#register) request.
+3. The user must pass in their required *KYC information* (see [entity message type](#entity_msg)) and the *address derived from the user's private key*. This information should be used to populate a [/register](#register) request.
 4. It may take some time for the KYC process to complete, and a success response from /register only means that the verification process has started, not that the user has been verified. Subsequent [/check_kyc](#check_kyc) requests are the only way to know whether the person's information has been verified. 
 
 *Note that most of the endpoints require a signature from the user's private key in addition to the developer's private key.*

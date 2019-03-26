@@ -36,7 +36,20 @@ HTTP/1.1 200 OK
 ```
 
 ```python
-# check_handle Python example coming soon
+# Installation:
+pip3 install silasdk
+
+# Usage:
+from silasdk import App
+from silasdk import User
+from silasdk import Transaction
+silaApp = App("SANDBOX", app_private_key, app_handle)
+
+payload = {
+  "user_handle": "user.silamoney.eth" # Required
+}
+
+User.checkHandle(silaApp, payload)
 ```
 
 ```java
@@ -135,7 +148,25 @@ HTTP/1.1 200 OK
 ```
 
 ```python
-# Python register example coming soon
+payload = {
+  "country": "US",
+  "user_handle": 'user.silamoney.eth',    # Required: Must not be already in use
+  "first_name": 'Example',                # Required
+  "last_name": 'User',                    # Required
+  "entity_name": 'Example User',          # Required
+  "identity_value": "123452222",          # Required (SSN)
+  "phone": 1234567890,                    # Required:  Must be a valid phone number (format not enforced)
+  "street_address_1": '123 Main Street',  # Required:  Must be a valid USPS mailing address
+  "city": 'New City',                     # Required:  Must be a valid US City matching the zip
+  "state": 'OR',                          # Required:  Must be a 2 character US State abbr.
+  "postal_code": 97204,                   # Required:  Must be a valid US Postal Code
+  "crypto_address": '0x123...890',        # Required:  Must be a valid ethereum 20 byte address starting with 0x
+  "birthdate": "1990-05-19",              # Required
+}
+
+# See check_handle example for silaApp initialization.
+User.register(silaApp, payload)
+
 ```
 
 ```java
@@ -203,7 +234,12 @@ HTTP/1.1 200 OK
 ```
 
 ```python
-# check_handle Python example coming soon
+payload = {
+  "user_handle": "user.silamoney.eth" # Required
+}
+
+# See check_handle example for silaApp initialization.
+User.requestKyc(silaApp, payload) 
 ```
 
 ```java
@@ -271,7 +307,20 @@ HTTP/1.1 200 OK
 ```
 
 ```python
-# Python example coming soon
+payload = {
+  "user_handle": "user.silamoney.eth" # Required
+}
+
+# See check_handle example for silaApp initialization.
+# user_private_key should be 64 characters long and
+# associated with registered address. (This key is used
+# to sign requests, not sent over any network.)
+User.checkKyc(silaApp, payload, user_private_key)
+
+'''
+***SECURITY ALERT***
+: :***This sdk never transmits private keys over the network; it is advised to use a secure way for managing user private keys.***
+'''
 ```
 
 ```java
@@ -324,7 +373,7 @@ Content-Type: application/json
     "reference": "ref"
   }, 
   "message": "link_account_msg",
-  "public_token": "Plaid token from customer session",
+  "public_token": "public-xxx-xxx",
   "account_name": "Custom Account Name",
   "selected_account_id": "optional_selected_account_id"
 }
@@ -343,7 +392,23 @@ HTTP/1.1 200 OK
 ```
 
 ```python
-# Python example coming soon
+'''
+The Python demo app in the Sila-Python GitHub repository 
+(https://github.com/Sila-Money/Sila-Python) shows how to use the 
+Plaid plugin and get a public token to make this request.
+'''
+
+payload = {
+  "public_token": "public-xxx-xxx",     # Required token from Plaid
+  "user_handle": "user.silamoney.eth"   # Required
+}
+
+# See check_handle example for silaApp initialization.
+# user_private_key should be 64 characters long and
+# associated with registered address. (This key is used
+# to sign requests, not sent over any network.)
+User.linkAccount(silaApp, payload, user_private_key)
+
 ```
 
 ```java
@@ -427,7 +492,15 @@ HTTP/1.1 200 OK
 ```
 
 ```python
-# Python example coming soon
+payload = {
+  "user_handle": "user.silamoney.eth" # Required
+}
+
+# See check_handle example for silaApp initialization.
+# user_private_key should be 64 characters long and
+# associated with registered address. (This key is used
+# to sign requests, not sent over any network.)
+User.getAccounts(silaApp, payload, user_private_key)         
 ```
 
 ```java
@@ -495,7 +568,16 @@ HTTP/1.1 200 OK
 ```
 
 ```python
-# Python example coming soon
+payload = {
+  "amount": 1000,                                        
+  "user_handle": "user.silamoney.eth"
+}
+
+# See check_handle example for silaApp initialization.
+# user_private_key should be 64 characters long and
+# associated with registered address. (This key is used
+# to sign requests, not sent over any network.)
+Transaction.issueSila(silaApp, payload, user_private_key) 
 ```
 
 ```java
@@ -574,7 +656,17 @@ HTTP/1.1 200 OK
 ```
 
 ```python
-# Python example coming soon
+payload = {
+  "amount": 1000,                                        
+  "user_handle": "user.silamoney.eth",
+  "destination": "donald.silamoney.eth"
+}
+
+# See check_handle example for silaApp initialization.
+# user_private_key should be 64 characters long and
+# associated with registered address. (This key is used
+# to sign requests, not sent over any network.)
+Transaction.transferSila(silaApp, payload, user_private_key)
 ```
 
 ```java
@@ -649,7 +741,16 @@ HTTP/1.1 200 OK
 ```
 
 ```python
-# Python example coming soon
+payload = {
+  "amount": 1000,                                        
+  "user_handle": "user.silamoney.eth"
+}
+
+# See check_handle example for silaApp initialization.
+# user_private_key should be 64 characters long and
+# associated with registered address. (This key is used
+# to sign requests, not sent over any network.)
+Transaction.redeemSila(silaApp, payload, user_private_key)
 ```
 
 ```java
@@ -784,7 +885,15 @@ HTTP/1.1 200 OK
 ```
 
 ```python
-# Python example coming soon
+payload = {
+  "user_handle": "user.silamoney.eth" # Required
+}
+
+# See check_handle example for silaApp initialization.
+# user_private_key should be 64 characters long and
+# associated with registered address. (This key is used
+# to sign requests, not sent over any network.)
+User.getTransactions(silaApp, payload, user_private_key)
 ```
 
 ```java
@@ -836,7 +945,8 @@ HTTP/1.1 200 OK
 ```
 
 ```python
-# Python example coming soon
+# See check_handle example for silaApp initialization.
+User.silaBalance(silaApp, address) # address should be a 20 byte valid ethereum address
 ```
 
 ```java
@@ -866,56 +976,3 @@ Success responses at this endpoint are returned in plain text rather than JSON a
 | 200 | (A plaintext numeric value) | Successful request. |
 | 500 | `{"message": "Internal Server Error"}` | The provided address value is not an address. |
 
-## Contract Endpoint: /isBetalisted
-
-```plaintext
-POST /isBetalisted HTTP/1.1
-Host: test.silatokenapi.silamoney.com
-Content-Type: application/json
-
-{
-  "address": "0xabc123abc123abc123"
-}
-
-***
-
-HTTP/1.1 200 OK
-
-true
-```
-
-```javascript
-// JavaScript example coming soon
-```
-
-```python
-# Python example coming soon
-```
-
-```java
-// Java example coming soon
-```
-
-```go
-// Go example coming soon
-```
-
-*Checks that a given blockchain address is added to our temporary whitelist ("betalist").*
-
-This endpoint uses a different host and connects directly to the blockchain to query for a matching address in the contract's betalist.
-
-### Requests
-
-The request body is in JSON and has a single key, `address`. It accepts a string value and expects a correctly-formatted blockchain address.
-
-No signatures are required in the headers of this request.
-
-### Responses
-
-Success responses at this endpoint come back in raw text rather than JSON: `true` or `false`.
-
-| Status Code | Response | Description |
-| :---------: | -------- | ----------- |
-| 200 | `true` | The provided address is betalisted. |
-| 200 | `false` | The provided address is not betalisted. |
-| 500 | `{"message": "Internal Server Error"}` | The provided address value is not an address. |
