@@ -61,16 +61,25 @@ from eth_account import Account
 import sha3
 import json
 
-#Take the keccak256 hash of the message
-k= sha3.keccak_256()
-encoded_message=(json.dumps(msg)).encode("utf-8")
-k.update(encoded_message)
-message_hash=k.hexdigest()
+# Get the message to send in the request body.
+encoded_message = (json.dumps(msg)).encode("utf-8")
 
-#sign the message_hash
-signed_message=Account.signHash(message_hash,key)
-sig_hx=signed_message.signature.hex()
+# Get the private key to use for signing.
+key = 'badba7368134dcd61c60f9b56979c09196d03f5891a20c1557b1afac0202a97c'
+
+# Take the keccak_256 hash of the message.
+k = sha3.keccak_256()
+k.update(encoded_message)
+message_hash = k.hexdigest()
+
+# Sign the message_hash.
+signed_message = Account.signHash(message_hash, key)
+sig_hx = signed_message.signature.hex()
 print(sig_hx)
+
+# Use encoded_message in the request body and sig_hx
+# in the appropriate signature header.
+#...
 ```
 
 ```java
