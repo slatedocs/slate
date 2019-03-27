@@ -11,6 +11,7 @@ includes:
   - administration/service_connections
   - administration/organizations
   - administration/users
+  - administration/roles
   - administration/environments 
   - administration/usage
   - cloudstack
