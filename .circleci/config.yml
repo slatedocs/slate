@@ -105,6 +105,7 @@ jobs:
     steps:
       - checkout
       - install_deps 
+      - setup_remote_docker 
 
       - run:
           name: "Build Container"
