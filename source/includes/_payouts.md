@@ -16,7 +16,8 @@ Just follow these four steps.
 
 * Complete verification – you need to do this before you start your technical integration. Also ensure you’re compliant with our [Terms and Conditions](https://transferwise.com/terms-and-conditions) and [Acceptable Use Policy](https://transferwise.com/acceptable-use-policy-eea). Also make sure two-step log in is set up. 
 
-* Activate currencies and make a transfer – check [our video guide](https://transferwise.com/help/article/1779442/creating-a-transfer/video-guide-make-a-transfer) for step-by-step instructions.
+* Activate at least one currency in your borderless account, deposit small amount (via card or bank transfer) and setup your first payment. 
+This penny-testing is not mandatory of course, but we do recommended it so you will understand how TransferWise payment flow works.   
 
 * Verify that our coverage includes your currency route(s). Check [Supported Currencies](https://transferwise.com/help/article/1569835/basic-information/supported-currencies).
 Please note that there are few restrictions for businesses, please review [Restricted Business Routes](https://transferwise.com/help/article/2319498/business/restricted-business-routes)
