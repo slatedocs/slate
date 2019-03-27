@@ -24,7 +24,7 @@ Coinbtr provides a simple and practical REST API to help you to automatically pe
 Before making API calls consider the following:
 
 * All requests use the `application/json` content type and go over `https`.
-* The base url is `https://api.coinbtr.com/api/v1/`.
+* The base url is `https://api.coinbtr.com/api/v1`.
 * All requests are `GET` and `POST` requests methods and responses come in a default response object with the result in the `data` field.
 * Check the `success` flag to ensure that your API call succeeded.
 * If something goes wrong look at the `msg` field. There you will find the error description.
@@ -96,6 +96,83 @@ This API call will response relevant information about the current session assoc
 `GET /api/v1/user/session`
 ### Body Parameters
 None -->
+# Currencies [PUBLIC]
+<aside class="notice">
+You can access the following endpoints freely, API KEY is not required.
+</aside>
+## List available currencies
+```shell
+curl -X GET "https://api.coinbtr.com/api/v1/data/coins/" \
+```
+> The API call will response this:
+
+```json
+{
+  "success": true,
+  "msg": "",
+  "data": {
+    "crypto": [
+      {
+        "coin": "XEM",
+        "min_withdraw": 15.0,
+        "fee_withdraw": 5.0,
+        "confirmations_required": 10
+      },
+      {
+        "coin": "DASH",
+        "min_withdraw": 0.004,
+        "fee_withdraw": 0.002,
+        "confirmations_required": 6
+      },
+      {
+        "coin": "ZEC",
+        "min_withdraw": 0.085,
+        "fee_withdraw": 0.05,
+        "confirmations_required": 25
+      },
+      {
+        "coin": "LTC",
+        "min_withdraw": 0.002,
+        "fee_withdraw": 0.003,
+        "confirmations_required": 6
+      },
+      {
+        "coin": "BTC",
+        "min_withdraw": 0.0006,
+        "fee_withdraw": 0.0003,
+        "confirmations_required": 4
+      },
+      {
+        "coin": "BCH",
+        "min_withdraw": 0.002,
+        "fee_withdraw": 0.001,
+        "confirmations_required": 6
+      },
+      {
+        "coin": "XLM",
+        "min_withdraw": 20.0,
+        "fee_withdraw": 0.1,
+        "confirmations_required": 10
+      }
+    ],
+    "fiat": [
+      {
+        "coin": "MXN",
+        "min_withdraw": 20.0,
+        "fee_withdraw": 0.0,
+        "country": "Mexico"
+      }
+    ]
+  }
+}
+```
+This endpoint returns all available currencies in Coinbtr, cryptocurrencies as well as fiat currencies.
+
+### HTTP Request
+`GET /data/coins/`
+
+### Query Parameters
+None
 
 # Wallet Operations
 <!-- ====================================================================================================== -->
@@ -112,7 +189,7 @@ curl -X GET "https://api.coinbtr.com/api/v1/data/getdepositaddress/?coin=$COIN" 
 This API call will bring you a deposit address for funding your cryptocurrency wallet.
 
 ### HTTP Request
-`GET /api/v1/data/getdepositaddress/`
+`GET /data/getdepositaddress/`
 
 > The API call will response this:
 
@@ -156,7 +233,7 @@ curl -X POST "https://api.coinbtr.com/api/v1/data/withdraw/" \
 This API call allows you to send cryptocurrency to a given destination address.
 
 ### HTTP Request
-`POST /api/v1/data/whithdraw/`
+`POST /data/whithdraw/`
 
 > The API response will look like this:
 
@@ -205,7 +282,7 @@ curl -X POST "https://api.coinbtr.com/api/v1/data/withdraw/" \
 Funds are transferred instantly with 0 commission fee.
 
 ### HTTP Request
-`POST /api/v1/data/transfer/`
+`POST /data/transfer/`
 
 > The API response will look like this:
 
@@ -251,7 +328,7 @@ curl -X POST "https://api.coinbtr.com/api/v1/data/transfer/" \
 This API call is used to withdraw MXN to a given CLABE.
 
 ### HTTP Request
-`POST /api/v1/data/fiatwithdraw/`
+`POST /data/fiatwithdraw/`
 
 ### Body Parameters
 | Parameter | Type | Required | Coins | Description |
@@ -301,7 +378,7 @@ This API call is used to retrieve your wallets balances, including their deposit
 	]
 }
 ```
-`GET /api/v1/data/listbalances/`
+`GET /data/listbalances/`
 
 ### Body Parameters
 None
@@ -336,7 +413,7 @@ curl -X GET "https://api.coinbtr.com/api/v1/data/getbalance/?coin=btc" \
 ```
 
 ### HTTP Request
-`GET /api/v1/data/getbalance/`
+`GET /data/getbalance/`
 
 ### Body Parameters
 | Parameter | Type | Required |  Description |
@@ -382,7 +459,7 @@ curl -X GET "https://api.coinbtr.com/api/v1/data/transfershistory/?coin=btc&type
 This API call is used to retrieve your withdraws and deposits history. These can be filtered by type, which can be `withdrawals` or `deposits`, and/or by `coin`.
 
 ### HTTP Request
-`GET /api/v1/data/transfershistory/`
+`GET /data/transfershistory/`
 
 ### Body Parameters
 
@@ -413,7 +490,7 @@ curl -X POST "https://api.coinbtr.com/api/v1/trading/placeorder/" \
 ```
 You can place two types of orders: `limit` and `market`. Orders can be placed only if your wallet has enough funds. Once an order is placed, your wallet funds will be frozen. If you cancel your order, the associated funds will be restored. If you cancel an open order that has been partially filled the exchanged funds will not be restored.
 ### HTTP Request
-`POST /api/v1/trading/placeorder/`
+`POST /trading/placeorder/`
 
 ### Body Parameters
 
@@ -422,53 +499,467 @@ You can place two types of orders: `limit` and `market`. Orders can be placed on
 | market | String | Yes | Market where your order will be placed (e.g. `btc-mxn`). |
 | amount | String | Yes | Amount of coins to trade. |
 | side | String | Yes | `buy` or `sell`. |
-| type | String | Yes | Type of order which can be `market` or `limit`. |
+| type | String | Yes | `market` or `limit`. |
 | price | String | Yes | Order price at which you wish to exchange your coins. |
 
-## Cancel an open order
+## List my open orders
+```shell
+COINBTR_API_KEY='your_api_key'
+
+curl -X GET "https://api.coinbtr.com/api/v1/trading/myopenorders/" \
+-H "Authorization: Token $COINBTR_API_KEY"
+```
+
+> The API response will look like this:
+
+```json
+{
+  "success":true,
+  "msg":null,
+  "data":[{
+    "market":"LTC-BTC",
+    "side":"BUY",
+    "amount":0.00033699,
+    "initial_amount":0.00033699,
+    "filled":0.0,
+    "value":0.00000508,
+    "initial_value":0.00000508,
+    "price":0.01508999,
+    "fee_decimal":0.00075,
+    "fee_percent":0.075,
+    "fee_amount_paid":0.0,
+    "created_at":"2019-03-25T18:24:35.862824Z",
+    "is_open":true,
+    "amount_received":0.0,
+    "amount_paid":0.0,
+    "left_coin":"LTC",
+    "right_coin":"BTC",
+    "order_id":13
+  },
+  {
+    "market":"DASH-BTC",
+    "side":"SELL",
+    "amount":0.014,
+    "initial_amount":0.014,
+    "filled":0.0,
+    "value":0.00032204,
+    "initial_value":0.00032204,
+    "price":0.023003,
+    "fee_decimal":0.0,
+    "fee_percent":0.0,
+    "fee_amount_paid":0.0,
+    "created_at":"2019-03-27T18:50:52.119514Z",
+    "is_open":true,
+    "amount_received":0.0,
+    "amount_paid":0.0,
+    "left_coin":"DASH",
+    "right_coin":"BTC",
+    "order_id":14
+  }]
+}
+```
+This endpoint returns your open orders and their status.
 ### HTTP Request
-`POST /api/v1/trading/cancel/buylimit`
+`GET /trading/myopenorders/`
 
-## List open orders
+### Query Parameters
+
+| Parameter | Type | Required |  Description |
+|---|---|---|---|---|
+| market | String | No | List your open orders filtering by `market` (e.g. `btc-mxn`). |
+
+## Close an open order
+
+```shell
+COINBTR_API_KEY='your_api_key'
+ORDER_ID=3453
+
+curl -X POST "https://api.coinbtr.com/api/v1/trading/closeorder/" \
+-H "Content-Type: application/json" \
+-H "Authorization: Token $COINBTR_API_KEY" \
+-d "{\"id\": $ORDER_ID}"
+```
+
+> The API response will look like this:
+
+```json
+{
+  "success":true,
+  "msg":"Order closed"
+}
+```
+This API call allows you to close an open order that you have previously placed. If your order has already been partially filled, that is to say, partially bought or sold, the exchanged funds will not be restored. Full-filled orders will be automatically closed.
+
 ### HTTP Request
-`POST /api/v1/trading/listopenorders`
+`POST /trading/closeorder/`
 
-## Get open order
+### Body Parameters
+| Parameter | Type | Required |  Description |
+|---|---|---|---|---|
+| id | Integer | Yes | Order id |
+
+## List my trading history
+```shell
+COINBTR_API_KEY='your_api_key'
+
+curl -X GET "https://api.coinbtr.com/api/v1/trading/history/" \
+-H "Authorization: Token $COINBTR_API_KEY"
+```
+
+> The API response will look like this:
+
+```json
+{
+  "success":true,
+  "msg":null,
+  "data":{
+    "all":[{
+      "market":"XEM-BTC",
+      "side":"SELL",
+      "amount_paid":4.0,
+      "amount_received":6.82e-05,
+      "price":1.705e-05,
+      "fee_amount":0.0,
+      "created_at":"2019-01-07T20:11:22.820012Z",
+      "left_coin":"XEM",
+      "right_coin":"BTC",
+      "filled_as":"maker",
+      "closed_at":"2019-01-07T20:11:56.457616Z"
+    },
+    {
+      "market":"XEM-BTC",
+      "side":"SELL",
+      "amount_paid":4.0,
+      "amount_received":6.82e-05,
+      "price":1.705e-05,
+      "fee_amount":0.0,
+      "created_at":"2019-01-04T04:06:53.187436Z",
+      "left_coin":"XEM",
+      "right_coin":"BTC",
+      "filled_as":"maker",
+      "closed_at":"2019-01-07T20:11:56.383562Z"
+    }],
+    "taker":[],
+    "maker":[{
+      "market":"XEM-BTC",
+      "side":"SELL",
+      "amount_paid":4.0,
+      "amount_received":6.82e-05,
+      "price":1.705e-05,
+      "fee_amount":0.0,
+      "created_at":"2019-01-04T04:06:53.187436Z",
+      "left_coin":"XEM",
+      "right_coin":"BTC",
+      "filled_as":"maker",
+      "closed_at":"2019-01-07T20:11:56.383562Z"
+    },
+    {
+      "market":"XEM-BTC",
+      "side":"SELL",
+      "amount_paid":4.0,
+      "amount_received":6.82e-05,
+      "price":1.705e-05,
+      "fee_amount":0.0,
+      "created_at":"2019-01-07T20:11:22.820012Z",
+      "left_coin":"XEM",
+      "right_coin":"BTC",
+      "filled_as":"maker",
+      "closed_at":"2019-01-07T20:11:56.457616Z"
+    }]
+  }
+}
+```
+This endpoint retrieves your trading history.
+
+The `all` field contains maker and taker history ordered by most recent. Filtering by `market` is optional.
+
 ### HTTP Request
-`POST /api/v1/trading/listopenorders`
+`GET /trading/history/`
 
-## List Transactions
+### Query Parameters
+| Parameter | Type | Required |  Description |
+|---|---|---|---|---|
+| market | String | No | List your trades filtering by `market` (e.g. `btc-mxn`). |
 
-## Get Transaction
 
-#Market- Public API Methods
+#Market Data [PUBLIC]
+The following API calls retrieve information related to markets.
 
-## List Books
+<aside class="notice">
+You can access the following endpoints freely, API KEY is not required.
+</aside>
 
-This endpoint returns a list of existing exchange order books and their respective order placement limits.
-`GET /market/listbooks`
+## List Markets (Books)
+```shell
+curl -X GET "https://api.coinbtr.com/api/v1/trading/markets/"
+```
+> The API response will look like this:
 
-## Get Order Book
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": 1,
+      "name": "BTC-MXN",
+      "base": "MXN",
+      "quote": "BTC"
+    },
+    {
+      "id": 2,
+      "name": "LTC-MXN",
+      "base": "MXN",
+      "quote": "LTC"
+    },
+    {
+      "id": 3,
+      "name": "DASH-MXN",
+      "base": "MXN",
+      "quote": "DASH"
+    },
+    {
+      "id": 4,
+      "name": "DASH-BTC",
+      "base": "BTC",
+      "quote": "DASH"
+    },
+    {
+      "id": 3,
+      "name": "LTC-BTC",
+      "base": "BTC",
+      "quote": "LTC"
+    },
+    {
+      "id": 5,
+      "name": "ZEC-BTC",
+      "base": "BTC",
+      "quote": "ZEC"
+    }
+  ]
+}
+
+```
+This API call returns all existing markets (also known as "books") in Coinbtr.
+
 ### HTTP Request
-`GET /market/getorderbook`
+`GET /trading/markets/`
 
-## Get tiker
+### Query Parameters
+| Parameter | Type | Required |  Description |
+|---|---|---|---|---|
+| market | String | No | Market name (e.g. `btc-mxn`). |
+
+## List Market Orders (Orderbook)
+
+```shell
+MKT="btc-mxn"
+
+curl -X GET "https://api.coinbtr.com/api/v1/trading/orders/?market=$MKT"
+```
+> The API response will look like this:
+
+```json
+
+  "success": true,
+  "msg": null,
+  "data": {
+    "market": "BTC-MXN",
+    "asks": [
+      {
+        "market": "BTC-MXN",
+        "side": "SELL",
+        "initial_amount": 0.16743,
+        "amount": 0.16743,
+        "filled": 0.0,
+        "value": 12724.68,
+        "initial_value": 12724.68,
+        "price": 76000.0,
+        "left_coin": "BTC",
+        "right_coin": "MXN",
+        "created_at": "2019-03-27T20:40:14.686939Z"
+      },
+      {
+        "market": "BTC-MXN",
+        "side": "SELL",
+        "initial_amount": 0.252654,
+        "amount": 0.252654,
+        "filled": 0.0,
+        "value": 19226.96,
+        "initial_value": 19226.96,
+        "price": 76100.0,
+        "left_coin": "BTC",
+        "right_coin": "MXN",
+        "created_at": "2019-03-27T20:40:33.609201Z"
+      }
+    ],
+    "bids": [
+      {
+        "market": "BTC-MXN",
+        "side": "BUY",
+        "initial_amount": 0.00269,
+        "amount": 0.00269,
+        "filled": 0.0,
+        "value": 200.4,
+        "initial_value": 200.4,
+        "price": 74500.0,
+        "left_coin": "BTC",
+        "right_coin": "MXN",
+        "created_at": "2019-03-27T20:42:09.944029Z"
+      },
+      {
+        "market": "BTC-MXN",
+        "side": "BUY",
+        "initial_amount": 0.002,
+        "amount": 0.002,
+        "filled": 0.0,
+        "value": 148.0,
+        "initial_value": 148.0,
+        "price": 74000.0,
+        "left_coin": "BTC",
+        "right_coin": "MXN",
+        "created_at": "2019-03-27T20:41:09.127862Z"
+      }
+    ]
+  }
+}
+```
+This endpoint retrieves the 50 best sell and buy orders (also known as "orderbook") for a given market.
+
 ### HTTP Request
-`GET /market/gettiker`
+`GET /trading/orders/`
 
-## Get 24H Volume
+### Query Parameters
+| Parameter | Type | Required |  Description |
+|---|---|---|---|---|
+| market | String | Yes | Market name (e.g. `btc-mxn`). |
+
+## List last trades
+```shell
+MKT="ltc-btc"
+
+curl -X GET "https://api.coinbtr.com/api/v1/trading/trades/?market=$MKT"
+```
+> The API response will look like this:
+
+```json
+{
+  "success": true,
+  "msg": null,
+  "data": [
+    {
+      "created_at": "2019-02-20T03:20:53.549954Z",
+      "price": "0.01276979",
+      "amount": 1.0,
+      "value": 0.01278
+    },
+    {
+      "created_at": "2019-02-20T03:20:25.106036Z",
+      "price": "0.01276979",
+      "amount": 1.0,
+      "value": 0.01278
+    },
+    {
+      "created_at": "2019-02-20T03:20:05.758377Z",
+      "price": "0.01276979",
+      "amount": 1.0,
+      "value": 0.01278
+    },
+    {
+      "created_at": "2019-02-20T03:19:41.953355Z",
+      "price": "0.01273489",
+      "amount": 1.0,
+      "value": 0.01277
+    },
+    {
+      "created_at": "2019-02-20T03:07:43.574070Z",
+      "price": "0.01270000",
+      "amount": 1.0,
+      "value": 0.01276979
+    },
+    {
+      "created_at": "2019-02-20T03:05:56.810445Z",
+      "price": "0.00426700",
+      "amount": 0.1,
+      "value": 0.00127697
+    }
+  ]
+}
+```
+This endpoint returns the last 50 trades for a given market.
+
 ### HTTP Request
-`GET /market/get24hvolume`
+`GET /trading/trades/`
 
-## Get Currencies
+### Query Parameters
+| Parameter | Type | Required |  Description |
+|---|---|---|---|---|
+| market | String | No | Market name (e.g. `btc-mxn`). |
+
+## List trading fees
+```shell
+curl -X GET "https://api.coinbtr.com/api/v1/trading/fees/?market=ltc-btc&user_level=1"
+```
+> The API response will look like this:
+
+```json
+[
+  {
+    "market": "LTC-BTC",
+    "taker": "0.00095000",
+    "maker": "0.00075000",
+    "user_level": 1,
+    "lower_amount": 0.0,
+    "upper_amount": 9.99999999
+  },
+  {
+    "market": "LTC-BTC",
+    "taker": "0.00090000",
+    "maker": "0.00070000",
+    "user_level": 1,
+    "lower_amount": 10.0,
+    "upper_amount": 19.99999999
+  },
+  {
+    "market": "LTC-BTC",
+    "taker": "0.00085000",
+    "maker": "0.00065000",
+    "user_level": 1,
+    "lower_amount": 20.0,
+    "upper_amount": 49.99999999
+  },
+  {
+    "market": "LTC-BTC",
+    "taker": "0.00075000",
+    "maker": "0.00060000",
+    "user_level": 1,
+    "lower_amount": 50.0,
+    "upper_amount": 499.99999999
+  },
+  {
+    "market": "LTC-BTC",
+    "taker": "0.00070000",
+    "maker": "0.00055000",
+    "user_level": 1,
+    "lower_amount": 500.0,
+    "upper_amount": 1799.99999999
+  },
+  {
+    "market": "LTC-BTC",
+    "taker": "0.00065000",
+    "maker": "0.00050000",
+    "user_level": 1,
+    "lower_amount": 1800.0,
+    "upper_amount": 10000.0
+  }
+]
+```
+Returns the trading fees. See [Trading fees](https://coinbtr.com/fees).
+
 ### HTTP Request
-`GET /market/getcurrencies`
+`GET /trading/fees/`
 
-#Coin specific implementations
-There are additional data that you most provide for certain cryptocurrencies operations.
-
-## Nem (XEM) withdraws
-
-## Monero (XMR) withdraws
-
-##
+### Query Parameters
+| Parameter | Type | Required |  Description |
+|---|---|---|---|---|
+| market | String | No | Market name (e.g. `btc-mxn`). |
+| user_level | Integer | No | User level (e.g. 1). By default all users are level 1|
