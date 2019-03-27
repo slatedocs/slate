@@ -66,6 +66,9 @@ jobs:
       - image: circleci/ruby:2.6.2-node
 
     steps:
+      - checkout
+      - install_deps
+
       - run:
           name: "Deployment"
           command: |
@@ -101,10 +104,7 @@ jobs:
 
     steps:
       - checkout
-      - install_deps
-      - build_docs
-
-      - setup_remote_docker  
+      - install_deps 
 
       - run:
           name: "Build Container"
