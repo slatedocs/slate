@@ -21,7 +21,10 @@ ingress:
     kubernetes.io/ingress.class: nginx
     #kubernetes.io/tls-acme: "true"
   hosts:
-    - host: docs.tier-ops.com
+    #- host: docs.tier-ops.com
+    #  paths:
+    #    - /
+    - host: docs.tier-staging.io
       paths:
         - /
 
