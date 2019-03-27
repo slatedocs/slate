@@ -255,9 +255,11 @@ wallet = sila.generateWallet()
 ```
 
 ```java
+// Java private key generation example coming soon!
 ```
 
 ```go
+// Go private key generation example coming soon!
 ```
 
 It is critical for users' and apps' private keys to be kept secure. While we *are* able to freeze and restore users with new addresses in case of security crisis or fraud, this is by no means a desirable situation; too many private key hacks and your application could be at risk for having production access revoked or diminished.
