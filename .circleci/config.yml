@@ -7,9 +7,7 @@ commands:
     - run:
         name: "Installing dependencies"
         command: |
-          sudo apt-get update && sudo apt-get install -y python-dev
-          sudo curl -O https://bootstrap.pypa.io/get-pip.py
-          sudo python get-pip.py
+          sudo apt-get update && sudo apt-get install -y python-dev python-pip
           sudo pip install awscli --upgrade
           sudo apt-get install -y dnsutils
           sudo pip install awsebcli --upgrade
@@ -24,15 +22,15 @@ commands:
           bundle exec middleman build --clean
 
 jobs:
-  deploy-to-stage:
+  build-and-upload:
 
     environment:
-      ENVIRONMENT: 'stage'
+      ENVIRONMENT: 'production'
 
     working_directory: ~/repo
 
     docker:
-      - image: circleci/ruby:2.4.2-jessie-node
+      - image: circleci/ruby:2.6.2-node
 
     steps:
       - checkout
@@ -51,14 +49,45 @@ jobs:
             echo "[${ENVIRONMENT}]" > ~/.aws/credentials
             echo "aws_access_key_id = ${AWS_ACCESS_KEY_ID}" >> ~/.aws/credentials
             echo "aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" >> ~/.aws/credentials
-            export ECR=075108987694.dkr.ecr.eu-central-1.amazonaws.com
+            echo "region = eu-central-1" >> ~/.aws/credentials
+            export ECR=373437620866.dkr.ecr.eu-central-1.amazonaws.com
             eval $(aws ecr get-login --region eu-central-1 --no-include-email)
             docker tag tier/documentation ${ECR}/tier/documentation
             docker push ${ECR}/tier/documentation:latest
+
+  deploy-to-stage:
+
+    environment:
+      ENVIRONMENT: 'stage'
+
+    working_directory: ~/repo
+
+    docker:
+      - image: circleci/ruby:2.6.2-node
+
+    steps:
+      - checkout
+      - install_deps
+
       - run:
           name: "Deployment"
           command: |
             eb deploy documentation-stage
+      - run:
+          name: "DeploymentK8s"
+          command: |
+            mkdir -p ~/.aws
+            echo "[${ENVIRONMENT}]" > ~/.aws/credentials
+            echo "aws_access_key_id = ${AWS_ACCESS_KEY_ID}" >> ~/.aws/credentials
+            echo "aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" >> ~/.aws/credentials
+            sudo curl -L https://storage.googleapis.com/kubernetes-release/release/v1.12.1/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl
+            sudo curl -L https://amazon-eks.s3-us-west-2.amazonaws.com/1.11.5/2018-12-06/bin/linux/amd64/aws-iam-authenticator -o /usr/local/bin/aws-iam-authenticator
+            sudo curl -L https://storage.googleapis.com/kubernetes-helm/helm-v2.11.0-linux-amd64.tar.gz | tar xz 
+            sudo mv linux-amd64/helm /usr/local/bin/helm && sudo rm -rf linux-amd64
+            sudo chmod +x /usr/local/bin/kubectl /usr/local/bin/aws-iam-authenticator /usr/local/bin/helm
+            aws --region eu-central-1 eks update-kubeconfig --name tier-k8s-cluster-stage
+            kubectl cluster-info
+            #helm upgrade --namespace documentation --recreate-pods --install documentation ./k8s/documentation
       - run:
           name: "Announce Deployment"
           command: ./.datadog/announce-deployment.sh
@@ -71,14 +100,11 @@ jobs:
     working_directory: ~/repo
 
     docker:
-      - image: circleci/ruby:2.4.2-jessie-node
+      - image: circleci/ruby:2.6.2-node
 
     steps:
       - checkout
-      - install_deps
-      - build_docs
-
-      - setup_remote_docker  
+      - install_deps 
 
       - run:
           name: "Build Container"
@@ -104,18 +130,22 @@ jobs:
             sed -i s/075108987694/373437620866/g Dockerrun.aws.json
             git add Dockerrun.aws.json
             eb deploy documentation-production --staged
-
       - run:
           name: "Announce Deployment"
           command: ./.datadog/announce-deployment.sh
-
 workflows:
   version: 2
   deploy:
     jobs:
+    - build-and-upload:
+        context: global-production
     - deploy-to-stage:
         context: global-staging
+        requires:
+          - build-and-upload
     - deploy-to-production:
         context: global-production
         requires:
+          - build-and-upload
           - deploy-to-stage
+
