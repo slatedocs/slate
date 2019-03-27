@@ -30,7 +30,7 @@ jobs:
     working_directory: ~/repo
 
     docker:
-      - image: circleci/ruby:2.6.2
+      - image: circleci/ruby:2.6.2-node
 
     steps:
       - checkout
@@ -63,7 +63,7 @@ jobs:
     working_directory: ~/repo
 
     docker:
-      - image: circleci/ruby:2.6.2
+      - image: circleci/ruby:2.6.2-node
 
     steps:
       - run:
@@ -97,7 +97,7 @@ jobs:
     working_directory: ~/repo
 
     docker:
-      - image: circleci/ruby:2.62
+      - image: circleci/ruby:2.6.2-node
 
     steps:
       - checkout
