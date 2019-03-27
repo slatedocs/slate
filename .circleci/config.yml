@@ -25,14 +25,6 @@ commands:
 
 jobs:
   build-and-upload:
-    environment:
-      ENVIRONMENT: 'production'
-      MAVEN_OPTS: -Xmx3200m
-
-    docker:
-    - image: circleci/openjdk:8-jdk
-
-    working_directory: ~/repo
 
     environment:
       ENVIRONMENT: 'production'
