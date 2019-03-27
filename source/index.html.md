@@ -96,6 +96,83 @@ This API call will response relevant information about the current session assoc
 `GET /api/v1/user/session`
 ### Body Parameters
 None -->
+# Currencies [PUBLIC]
+<aside class="notice">
+You can access the following endpoints freely, API KEY is not required.
+</aside>
+## List available currencies
+```shell
+curl -X GET "https://api.coinbtr.com/api/v1/data/coins/" \
+```
+> The API call will response this:
+
+```json
+{
+  "success": true,
+  "msg": "",
+  "data": {
+    "crypto": [
+      {
+        "coin": "XEM",
+        "min_withdraw": 15.0,
+        "fee_withdraw": 5.0,
+        "confirmations_required": 10
+      },
+      {
+        "coin": "DASH",
+        "min_withdraw": 0.004,
+        "fee_withdraw": 0.002,
+        "confirmations_required": 6
+      },
+      {
+        "coin": "ZEC",
+        "min_withdraw": 0.085,
+        "fee_withdraw": 0.05,
+        "confirmations_required": 25
+      },
+      {
+        "coin": "LTC",
+        "min_withdraw": 0.002,
+        "fee_withdraw": 0.003,
+        "confirmations_required": 6
+      },
+      {
+        "coin": "BTC",
+        "min_withdraw": 0.0006,
+        "fee_withdraw": 0.0003,
+        "confirmations_required": 4
+      },
+      {
+        "coin": "BCH",
+        "min_withdraw": 0.002,
+        "fee_withdraw": 0.001,
+        "confirmations_required": 6
+      },
+      {
+        "coin": "XLM",
+        "min_withdraw": 20.0,
+        "fee_withdraw": 0.1,
+        "confirmations_required": 10
+      }
+    ],
+    "fiat": [
+      {
+        "coin": "MXN",
+        "min_withdraw": 20.0,
+        "fee_withdraw": 0.0,
+        "country": "Mexico"
+      }
+    ]
+  }
+}
+```
+This endpoint returns all available currencies in Coinbtr, cryptocurrencies as well as fiat currencies.
+
+### HTTP Request
+`GET /data/coins/`
+
+### Query Parameters
+None
 
 # Wallet Operations
 <!-- ====================================================================================================== -->
@@ -885,4 +962,4 @@ Returns the trading fees. See [Trading fees](https://coinbtr.com/fees).
 | Parameter | Type | Required |  Description |
 |---|---|---|---|---|
 | market | String | No | Market name (e.g. `btc-mxn`). |
-| user_level | Integer | No | User level (e.g. 1). |
+| user_level | Integer | No | User level (e.g. 1). By default all users are level 1|
