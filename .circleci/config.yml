@@ -7,9 +7,7 @@ commands:
     - run:
         name: "Installing dependencies"
         command: |
-          sudo apt-get update && sudo apt-get install -y python-dev
-          sudo curl -O https://bootstrap.pypa.io/get-pip.py
-          sudo python get-pip.py
+          sudo apt-get update && sudo apt-get install -y python-dev python-pip
           sudo pip install awscli --upgrade
           sudo apt-get install -y dnsutils
           sudo pip install awsebcli --upgrade
