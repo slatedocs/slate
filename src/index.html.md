@@ -5,7 +5,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - shell
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='mailto:tom@tier.app'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -45,4 +45,4 @@ to <a href='mailto:api@tier.app'>api@tier.app</a>
 You must replace <code>TIER API KEY</code> with your personal API key.
 </aside>
 
-The customer relevant endpoints are using JWT
+Endpoints requiring individual customers to be authenticated are using [JWT](https://jwt.io/)

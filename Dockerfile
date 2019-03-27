@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y nodejs && apt-get clean && rm -rf /var/
 COPY ./Gemfile /app/Gemfile
 COPY ./lib /app/lib/
 COPY ./config.rb /app/config.rb
-COPY ./source /app/source/
+COPY ./src /app/source/
 
 RUN cd /app/ && bundle install
 

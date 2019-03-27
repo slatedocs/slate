@@ -1,7 +1,7 @@
 
 # Zones
 
-## Get All Zones near by
+## Get All Zones nearby a specific location
 
 ```shell
 curl "https://platform.tier-services.io/zone?lat=40&lng=-3"
