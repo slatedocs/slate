@@ -1656,6 +1656,11 @@ X-QP-Delivery: 01074956-543a-4045-ad7c-b39831a45646
 }
 ```
 
+**Ambiente de testes**
+
+É possível simular esse evento no seu ambiente de testes, batendo na rota de [Criação de matriculas](#criacao-de-uma-matricula).
+
+
 ## Matrícula cancelada (enrollment_canceled)
 
 Ocorre quando a [**Matrícula**](#matriculas) do aluno é cancelada.
@@ -1691,6 +1696,19 @@ X-QP-Delivery: cc63acc3-9721-4633-8286-737199c01a75
   "updated_at": "2019-03-20T22:32:32Z"
 }
 ```
+
+**Ambiente de testes**
+
+É possível simular esse evento no seu ambiente de testes, batendo na seguinte rota:
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `PUT` |
+| URL | `https://queropago.com.br/api/v1/test-events/enrollment-canceled/1` |
+
+Passando como parâmetro o Identificador da matrícula Quero Pago que deseja cancelar.
 
 ## Mensalidade criada (bill_created)
 
@@ -1741,6 +1759,10 @@ X-QP-Delivery: 39f196c0-c745-41e9-9e7e-835eb0eb3435
 }
 ```
 
+**Ambiente de testes**
+
+É possível simular esse evento no seu ambiente de testes, batendo na rota de [Criação de matriculas](#criacao-de-uma-matricula), ao criar a matrícula nós criamos automáticamente as mensalidades.
+
 ## Mensalidade paga (bill_paid)
 
 Ocorre quando uma [**Mensalidade**](#mensalidades) é dada como paga.
@@ -1789,6 +1811,19 @@ X-QP-Delivery: 5980475a-c875-4f00-bb9d-d94059b7a4af
   "updated_at": "2018-03-20T22:32:32Z"
 }
 ```
+
+**Ambiente de testes**
+
+É possível simular esse evento no seu ambiente de testes, batendo na seguinte rota:
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `PUT` |
+| URL | `https://queropago.com.br/api/v1/test-events/bill-paid/1` |
+
+Passando como parâmetro o Identificador da mensalidade Quero Pago que deseja marcar como paga.
 
 ## Mensalidade vencida (bill_overdue)
 
@@ -1840,6 +1875,19 @@ X-QP-Delivery: c58812c8-139f-40b0-8aff-2df4845f401f
   "updated_at": "2018-03-20T22:32:32Z"
 }
 ```
+
+**Ambiente de testes**
+
+É possível simular esse evento no seu ambiente de testes, batendo na seguinte rota:
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `PUT` |
+| URL | `https://queropago.com.br/api/v1/test-events/bill-overdue/1` |
+
+Passando como parâmetro o Identificador da mensalidade Quero Pago que deseja marcar como vencida.
 
 ## Vencimento da mensalidade alterado (bill_due_date_changed)
 
@@ -1906,6 +1954,10 @@ X-QP-Delivery: 33940f46-5eb0-4400-812e-1b78018151c8
 }
 ```
 
+**Ambiente de testes**
+
+É possível simular esse evento no seu ambiente de testes, batendo na rota de [Update de matrícula](#update-de-uma-matricula), passando como parâmetro o dia de vencimento (`due_day`).
+
 ## Boleto atualizado (boleto_updated)
 
 Ocorre quando é criado um novo boleto para uma [**Mensalidade**](#mensalidades).
@@ -1970,3 +2022,15 @@ X-QP-Delivery: 33940f46-5eb0-4400-812e-1b78018151c8
   "updated_at": "2018-03-20T22:32:32Z"
 }
 ```
+**Ambiente de testes**
+
+É possível simular esse evento no seu ambiente de testes, batendo na seguinte rota:
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `PUT` |
+| URL | `https://queropago.com.br/api/v1/test-events/boleto-updated/1` |
+
+Passando como parâmetro o Identificador da mensalidade Quero Pago que deseja gerar um novo boleto.
