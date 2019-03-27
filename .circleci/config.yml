@@ -86,7 +86,7 @@ jobs:
             sudo mv linux-amd64/helm /usr/local/bin/helm && sudo rm -rf linux-amd64
             sudo chmod +x /usr/local/bin/kubectl /usr/local/bin/aws-iam-authenticator /usr/local/bin/helm
             aws --region eu-central-1 eks update-kubeconfig --name tier-k8s-cluster-stage
-            kubectl cluster-info
+            #kubectl cluster-info
             #helm upgrade --namespace documentation --recreate-pods --install documentation ./k8s/documentation
       - run:
           name: "Announce Deployment"
