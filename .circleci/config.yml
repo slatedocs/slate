@@ -24,10 +24,18 @@ commands:
           bundle exec middleman build --clean
 
 jobs:
-  deploy-to-stage:
+  build-and-upload:
+    environment:
+      ENVIRONMENT: 'production'
+      MAVEN_OPTS: -Xmx3200m
+
+    docker:
+    - image: circleci/openjdk:8-jdk
+
+    working_directory: ~/repo
 
     environment:
-      ENVIRONMENT: 'stage'
+      ENVIRONMENT: 'production'
 
     working_directory: ~/repo
 
@@ -51,10 +59,23 @@ jobs:
             echo "[${ENVIRONMENT}]" > ~/.aws/credentials
             echo "aws_access_key_id = ${AWS_ACCESS_KEY_ID}" >> ~/.aws/credentials
             echo "aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" >> ~/.aws/credentials
-            export ECR=075108987694.dkr.ecr.eu-central-1.amazonaws.com
+            echo "region = eu-central-1" >> ~/.aws/credentials
+            export ECR=373437620866.dkr.ecr.eu-central-1.amazonaws.com
             eval $(aws ecr get-login --region eu-central-1 --no-include-email)
             docker tag tier/documentation ${ECR}/tier/documentation
             docker push ${ECR}/tier/documentation:latest
+
+  deploy-to-stage:
+
+    environment:
+      ENVIRONMENT: 'stage'
+
+    working_directory: ~/repo
+
+    docker:
+      - image: circleci/ruby:2.4.2-jessie-node
+
+    steps:
       - run:
           name: "Deployment"
           command: |
@@ -66,8 +87,9 @@ jobs:
             echo "[${ENVIRONMENT}]" > ~/.aws/credentials
             echo "aws_access_key_id = ${AWS_ACCESS_KEY_ID}" >> ~/.aws/credentials
             echo "aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" >> ~/.aws/credentials
-            aws eks update-kubeconfig --name tier-k8s-cluster
-            helm upgrade --namespace ${ENVIRONMENT} --recreate-pods --install documentation ./k8s/documentation
+            echo "region = ${ENVIRONMENT}" >> ~/.aws/credentials
+            aws --profile ${ENVIRONMENT} eks update-kubeconfig --name tier-k8s-cluster-stage
+            helm upgrade --namespace documentation --recreate-pods --install documentation ./k8s/documentation
       - run:
           name: "Announce Deployment"
           command: ./.datadog/announce-deployment.sh
@@ -116,14 +138,19 @@ jobs:
       - run:
           name: "Announce Deployment"
           command: ./.datadog/announce-deployment.sh
-
 workflows:
   version: 2
   deploy:
     jobs:
+    - build-and-upload:
+        context: global-production
     - deploy-to-stage:
         context: global-staging
+        requires:
+          - build-and-upload
     - deploy-to-production:
         context: global-production
         requires:
+          - build-and-upload
           - deploy-to-stage
+

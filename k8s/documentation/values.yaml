@@ -21,9 +21,9 @@ ingress:
     kubernetes.io/ingress.class: nginx
     #kubernetes.io/tls-acme: "true"
   hosts:
-    - docs.tier-ops.com
-    #- host: docs.tier-ops.com
-    #  paths: []
+    - host: docs.tier-ops.com
+      paths:
+        - /
 
   tls: []
   #  - secretName: chart-example-tls
