@@ -73,10 +73,10 @@ The `status` attribute is a JSON key sent in the response body.
 
 | Status Code | `status` Attribute | Description |
 | :---------: | :----------------: | ----------- |
-| 200 | `SUCCESS` | Handle sent in `header.user_handle` is available. |
-| 200 | `FAILURE` | Handle sent in `header.user_handle` is taken. |
-| 400 | `FAILURE` | Handle sent in `header.user_handle` is a reserved handle according to our JSON schema. (Or: request body otherwise does not conform to JSON schema.) |
-| 401 | `FAILURE` | Auth signature is absent or derived address does not belong to auth_handle. |
+| 200 | `"SUCCESS"` | Handle sent in `header.user_handle` is available. |
+| 200 | `"FAILURE"` | Handle sent in `header.user_handle` is taken. |
+| 400 | `"FAILURE"` | Handle sent in `header.user_handle` is a reserved handle according to our JSON schema. (Or: request body otherwise does not conform to JSON schema.) |
+| 401 | `"FAILURE"` | Auth signature is absent or derived address does not belong to auth_handle. |
 
 ## /register
 
@@ -202,9 +202,9 @@ An `authsignature` header is required for this request.
 
 | Status Code | `status` Attribute | Description |
 | :---------: | :----------------: | ----------- | 
-| 200 | `SUCCESS` | Handle successfully added to system with KYC data. |
-| 400 | `FAILURE` | Invalid request body format, handle already in use, or blockchain address already in use. |
-| 401 | `FAILURE` | `authsignature` header was absent or incorrect. |
+| 200 | `"SUCCESS"` | Handle successfully added to system with KYC data. |
+| 400 | `"FAILURE"` | Invalid request body format, handle already in use, or blockchain address already in use. |
+| 401 | `"FAILURE"` | `authsignature` header was absent or incorrect. |
 
 ## /request_kyc
 
@@ -292,9 +292,9 @@ An `authsignature` header is required for this request.
 
 | Status Code | `status` Attribute | Description |
 | :---------: | :----------------: | ----------- |
-| 200 | `SUCCESS` | The verification process for the user registered under `header.user_handle` has been successfully started. |
-| 400 | `FAILURE` | Invalid request body format. |
-| 401 | `FAILURE` | `authsignature` or `usersignature` header was absent or incorrect. |
+| 200 | `"SUCCESS"` | The verification process for the user registered under `header.user_handle` has been successfully started. |
+| 400 | `"FAILURE"` | Invalid request body format. |
+| 401 | `"FAILURE"` | `authsignature` or `usersignature` header was absent or incorrect. |
 
 ## /check_kyc
 
@@ -375,10 +375,10 @@ Both `authsignature` and `usersignature` headers are required for this request. 
 
 | Status Code | `status` Attribute | Description |
 | :---------: | :----------------: | ----------- |
-| 200 | `SUCCESS` | The user handle has successfully passed KYC verification. |
-| 200 | `FAILURE` | The user handle has not successfully passed KYC verification (may be pending, not have been registered, or have failed; `message` attribute will contain "pending" or "failed" substring).
-| 400 | `FAILURE` | Invalid request body format. |
-| 401 | `FAILURE` | `authsignature` or `usersignature` header was absent or incorrect. |
+| 200 | `"SUCCESS"` | The user handle has successfully passed KYC verification. |
+| 200 | `"FAILURE"` | The user handle has not successfully passed KYC verification (may be pending, not have been registered, or have failed; `message` attribute will contain "pending" or "failed" substring).
+| 400 | `"FAILURE"` | Invalid request body format. |
+| 401 | `"FAILURE"` | `authsignature` or `usersignature` header was absent or incorrect. |
 
 ## /link_account
 
@@ -479,10 +479,10 @@ Both `authsignature` and `usersignature` headers are required for this request.
 
 | Status Code | `status` Attribute | Description |
 | :---------: | :----------------: | ----------- |
-| 200 | `SUCCESS` | Bank account successfully linked. |
-| 200 | `FAILURE` | Bank account not successfully linked (public token may have expired; tokens expire in 30 minutes after creation).
-| 400 | `FAILURE` | Invalid request body format. |
-| 401 | `FAILURE` | `authsignature` or `usersignature` header was absent or incorrect. |
+| 200 | `"SUCCESS"` | Bank account successfully linked. |
+| 200 | `"FAILURE"` | Bank account not successfully linked (public token may have expired; tokens expire in 30 minutes after creation).
+| 400 | `"FAILURE"` | Invalid request body format. |
+| 401 | `"FAILURE"` | `authsignature` or `usersignature` header was absent or incorrect. |
 
 ## /get_accounts
 
@@ -655,10 +655,10 @@ Both `authsignature` and `usersignature` headers are required for this request.
 
 | Status Code | `status` Attribute | Description |
 | :---------: | :----------------: | ----------- |
-| 200 | `SUCCESS` | Issuance process started. |
-| 200 | `FAILURE` | Issuance process not started; see `message` attribute. |
-| 400 | `FAILURE` | Invalid request body format. |
-| 401 | `FAILURE` | `authsignature` or `usersignature` header was absent or incorrect. |
+| 200 | `"SUCCESS"` | Issuance process started. |
+| 200 | `"FAILURE"` | Issuance process not started; see `message` attribute. |
+| 400 | `"FAILURE"` | Invalid request body format. |
+| 401 | `"FAILURE"` | `authsignature` or `usersignature` header was absent or incorrect. |
 
 ## /transfer_sila
 
@@ -747,10 +747,10 @@ Both `authsignature` and `usersignature` headers are required for this request.
 
 | Status Code | `status` Attribute | Description |
 | :---------: | :----------------: | ----------- |
-| 200 | `SUCCESS` | Transfer process started. |
-| 200 | `FAILURE` | Transfer process not started; see `message` attribute. |
-| 400 | `FAILURE` | Invalid request body format. |
-| 401 | `FAILURE` | `authsignature` or `usersignature` header was absent or incorrect. |
+| 200 | `"SUCCESS"` | Transfer process started. |
+| 200 | `"FAILURE"` | Transfer process not started; see `message` attribute. |
+| 400 | `"FAILURE"` | Invalid request body format. |
+| 401 | `"FAILURE"` | `authsignature` or `usersignature` header was absent or incorrect. |
 
 ## /redeem_sila
 
@@ -835,10 +835,10 @@ Both `authsignature` and `usersignature` headers are required for this request.
 
 | Status Code | `status` Attribute | Description |
 | :---------: | :----------------: | ----------- |
-| 200 | `SUCCESS` | Redemption process started. |
-| 200 | `FAILURE` | Redemption process not started; see `message` attribute. |
-| 400 | `FAILURE` | Invalid request body format. |
-| 401 | `FAILURE` | `authsignature` or `usersignature` header was absent or incorrect. |
+| 200 | `"SUCCESS"` | Redemption process started. |
+| 200 | `"FAILURE"` | Redemption process not started; see `message` attribute. |
+| 400 | `"FAILURE"` | Invalid request body format. |
+| 401 | `"FAILURE"` | `authsignature` or `usersignature` header was absent or incorrect. |
 
 ## /get_transactions
 
@@ -979,9 +979,12 @@ Both `authsignature` and `usersignature` headers are required for this request.
 
 ### Responses
 
-| Status Code | Description |
-| :---------: | ----------- |
-| 200 | Able to return transaction information. |
+| Status Code | `success` Attribute | Description |
+| :---------: | :-----------------: | ----------- |
+| 200 | `true` | Able to return transaction information. |
+| 400 | `false` | Bad request format. |
+| 403 | `false` | Bad/absent signature header. |
+| 500 | `false` | Server-side issue; let us know if you get this status code! |
 
 ## Contract Endpoint: /silaBalance
 
