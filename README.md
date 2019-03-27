@@ -8,3 +8,5 @@ you can run it in docker:
 
   `docker-compose up`
   
+The doumentation is live here:
+http://documentation-production.eu-central-1.elasticbeanstalk.com/
