@@ -223,9 +223,55 @@ id: dataset_id
 }
 ```
 
+## Set Settings
+
+Sets settings to given symbol list.
+
+```APIs
+POST https://dev.zoomsymbols.com/api/marketplace/setSettings
+```
+
+
+> Parameters
+
+```json
+{
+  "symbol_id_list": "68,5,1",
+  "dataset_type": "free"
+}
+```
+
+> Response
+
+```json
+{
+  "result": {
+     "dataset_type": "free"
+     "symbol_value_list": [
+       {
+	 "symbol_id": "1",
+	 "symbol_value": "ABBN",
+         "symbol_name": "ABB Ltd"
+       },
+       {
+	 "symbol_id": "5",
+	 "symbol_value": "AMZN",
+         "symbol_name": "Amazon.com, Inc."
+       }
+       {
+         "symbol_id": "68",
+         "symbol_value": "MSFT",
+         "symbol_name": "Microsoft Corporation"
+       }
+      ],
+      "symbol_ids_list": "1,5,68"
+    }
+}
+```
+
 ## Set Dataset Item
 
-Returns all settings for given dataset.
+Sets settings for given dataset.
 
 ```APIs
 POST https://dev.zoomsymbols.com/api/marketplace/setDatasetItem
@@ -361,7 +407,7 @@ id: dataset_id
 }
 ```
 
-## Subscribe
+## Unsubscribe
 
 Unsubscribes currently authorized user to the given dataset.
 
@@ -382,3 +428,5 @@ id: dataset_id
     "result": "User has unsubscribed to the dataset successfully!"
 }
 ```
+
+
