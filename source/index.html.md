@@ -1100,7 +1100,7 @@ You will see an updated **Snapshot** in your data feed indicating the rollover h
 
 Users should also be able to see the updated contract dates in the `maturationTime` field. 
 
-<aside class="note"> Contracts may share the same <code> interval </code> such as "Quarterly" on Kraken and Bitmex. However, the settlement dates can be different. Thus, the rollover dates will vary. </aside>
+<aside class="note"> Contracts may share the same interval such as "Quarterly" on Kraken and Bitmex. However, the settlement dates of these contracts may differ due to a shorter interval contracts rolling over - such as "Monthly" on Kraken.  Thus, causing the "Quarterly" rollover date to be different on the different exchanges.</aside>
 
 
 ## Tickers
