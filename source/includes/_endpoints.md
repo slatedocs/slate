@@ -32,19 +32,14 @@ HTTP/1.1 200 OK
 ```
 
 ```javascript
-// check_handle JavaScript example coming soon
+var handle = 'user.silamoney.eth';
+
+sila.checkHandle(handle)
+    .then(res => { /* Handle response */ })
+    .catch(err => { /* Handle errors */ });
 ```
 
 ```python
-# Installation:
-pip3 install silasdk
-
-# Usage:
-from silasdk import App
-from silasdk import User
-from silasdk import Transaction
-silaApp = App("SANDBOX", app_private_key, app_handle)
-
 payload = {
   "user_handle": "user.silamoney.eth" # Required
 }
@@ -78,10 +73,10 @@ The `status` attribute is a JSON key sent in the response body.
 
 | Status Code | `status` Attribute | Description |
 | :---------: | :----------------: | ----------- |
-| 200 | `SUCCESS` | Handle sent in `header.user_handle` is available. |
-| 200 | `FAILURE` | Handle sent in `header.user_handle` is taken. |
-| 400 | `FAILURE` | Handle sent in `header.user_handle` is a reserved handle according to our JSON schema. (Or: request body otherwise does not conform to JSON schema.) |
-| 401 | `FAILURE` | Auth signature is absent or derived address does not belong to auth_handle. |
+| 200 | `"SUCCESS"` | Handle sent in `header.user_handle` is available. |
+| 200 | `"FAILURE"` | Handle sent in `header.user_handle` is taken. |
+| 400 | `"FAILURE"` | Handle sent in `header.user_handle` is a reserved handle according to our JSON schema. (Or: request body otherwise does not conform to JSON schema.) |
+| 401 | `"FAILURE"` | Auth signature is absent or derived address does not belong to auth_handle. |
 
 ## /register
 
@@ -144,7 +139,22 @@ HTTP/1.1 200 OK
 ```
 
 ```javascript
-// JavaScript register example coming soon
+var user = {
+  handle: 'user.silamoney.eth', // Required: Must not be already in use
+  first_name: 'Example',        // Required
+  last_name: 'User',            // Required
+  name: 'Example User',         // Optional: defaults to `first_name last_name`
+  address: '123 Main St.',      // Required: must be a valid USPS mailing address
+  address_2: 'Suite 101',       // Optional: required if USPS requires it
+  city: 'New City',             // Required: Must be a valid US City matching the zip
+  state: 'OR',                  // Required: Must be a 2 character US State abbr.
+  zip: '97204-1234',            // Required: Must be a valid US Postal Code
+  phone: '123-456-7890'         // Required: Must be a valid phone number (format not enforced)
+}
+
+sila.register(user)
+    .then(res => { /* Handle response */ })
+    .catch(err => { /* Handle errors */ });
 ```
 
 ```python
@@ -164,9 +174,8 @@ payload = {
   "birthdate": "1990-05-19",              # Required
 }
 
-# See check_handle example for silaApp initialization.
+# See SDK quickstart for silaApp initialization.
 User.register(silaApp, payload)
-
 ```
 
 ```java
@@ -193,9 +202,9 @@ An `authsignature` header is required for this request.
 
 | Status Code | `status` Attribute | Description |
 | :---------: | :----------------: | ----------- | 
-| 200 | `SUCCESS` | Handle successfully added to system with KYC data. |
-| 400 | `FAILURE` | Invalid request body format, handle already in use, or blockchain address already in use. |
-| 401 | `FAILURE` | `authsignature` header was absent or incorrect. |
+| 200 | `"SUCCESS"` | Handle successfully added to system with KYC data. |
+| 400 | `"FAILURE"` | Invalid request body format, handle already in use, or blockchain address already in use. |
+| 401 | `"FAILURE"` | `authsignature` header was absent or incorrect. |
 
 ## /request_kyc
 
@@ -230,7 +239,24 @@ HTTP/1.1 200 OK
 ```
 
 ```javascript
-// check_handle JavaScript example coming soon
+var user = {
+  handle: 'user.silamoney.eth', // Required: Must not be already in use
+  first_name: 'Example',        // Required
+  last_name: 'User',            // Required
+  name: 'Example User',         // Optional: defaults to `first_name last_name`
+  address: '123 Main St.',      // Required: must be a valid USPS mailing address
+  address_2: 'Suite 101',       // Optional: required if USPS requires it
+  city: 'New City',             // Required: Must be a valid US City matching the zip
+  state: 'OR',                  // Required: Must be a 2 character US State abbr.
+  zip: '97204-1234',            // Required: Must be a valid US Postal Code
+  phone: '123-456-7890'         // Required: Must be a valid phone number (format not enforced)
+}
+
+var key = 'badba7368...c0202a97c'; // Use full private key
+
+sila.requestKYC(user, key)
+    .then(res => { /* Handle response */ })
+    .catch(err => { /* Handle errors */ });
 ```
 
 ```python
@@ -238,7 +264,7 @@ payload = {
   "user_handle": "user.silamoney.eth" # Required
 }
 
-# See check_handle example for silaApp initialization.
+# See SDK quickstart for silaApp initialization.
 User.requestKyc(silaApp, payload) 
 ```
 
@@ -266,9 +292,9 @@ An `authsignature` header is required for this request.
 
 | Status Code | `status` Attribute | Description |
 | :---------: | :----------------: | ----------- |
-| 200 | `SUCCESS` | The verification process for the user registered under `header.user_handle` has been successfully started. |
-| 400 | `FAILURE` | Invalid request body format. |
-| 401 | `FAILURE` | `authsignature` or `usersignature` header was absent or incorrect. |
+| 200 | `"SUCCESS"` | The verification process for the user registered under `header.user_handle` has been successfully started. |
+| 400 | `"FAILURE"` | Invalid request body format. |
+| 401 | `"FAILURE"` | `authsignature` or `usersignature` header was absent or incorrect. |
 
 ## /check_kyc
 
@@ -303,7 +329,12 @@ HTTP/1.1 200 OK
 ```
 
 ```javascript
-// JavaScript example coming soon
+var handle = 'user.silamoney.eth';
+var key = 'badba7368...c0202a97c'; // Use full private key
+
+sila.checkKYC(handle, key)
+    .then(res => { /* Handle response */ })
+    .catch(err => { /* Handle errors */ });
 ```
 
 ```python
@@ -311,16 +342,11 @@ payload = {
   "user_handle": "user.silamoney.eth" # Required
 }
 
-# See check_handle example for silaApp initialization.
+# See SDK quickstart for silaApp initialization.
 # user_private_key should be 64 characters long and
 # associated with registered address. (This key is used
 # to sign requests, not sent over any network.)
 User.checkKyc(silaApp, payload, user_private_key)
-
-'''
-***SECURITY ALERT***
-: :***This sdk never transmits private keys over the network; it is advised to use a secure way for managing user private keys.***
-'''
 ```
 
 ```java
@@ -349,10 +375,10 @@ Both `authsignature` and `usersignature` headers are required for this request. 
 
 | Status Code | `status` Attribute | Description |
 | :---------: | :----------------: | ----------- |
-| 200 | `SUCCESS` | The user handle has successfully passed KYC verification. |
-| 200 | `FAILURE` | The user handle has not successfully passed KYC verification (may be pending, not have been registered, or have failed; `message` attribute will contain "pending" or "failed" substring).
-| 400 | `FAILURE` | Invalid request body format. |
-| 401 | `FAILURE` | `authsignature` or `usersignature` header was absent or incorrect. |
+| 200 | `"SUCCESS"` | The user handle has successfully passed KYC verification. |
+| 200 | `"FAILURE"` | The user handle has not successfully passed KYC verification (may be pending, not have been registered, or have failed; `message` attribute will contain "pending" or "failed" substring).
+| 400 | `"FAILURE"` | Invalid request body format. |
+| 401 | `"FAILURE"` | `authsignature` or `usersignature` header was absent or incorrect. |
 
 ## /link_account
 
@@ -388,7 +414,13 @@ HTTP/1.1 200 OK
 ```
 
 ```javascript
-// JavaScript example coming soon
+var key = 'badba7368...c0202a97c'; // Use full private key
+var handle = 'user.silamoney.eth';
+var publicToken = 'public-xxx-xxx'; // Token from Plaid
+
+sila.linkAccount(handle, key, publicToken)
+    .then(res => { /* Handle response res */ })
+    .catch(err => { /* Handle errors err */ });
 ```
 
 ```python
@@ -403,7 +435,7 @@ payload = {
   "user_handle": "user.silamoney.eth"   # Required
 }
 
-# See check_handle example for silaApp initialization.
+# See SDK quickstart for silaApp initialization.
 # user_private_key should be 64 characters long and
 # associated with registered address. (This key is used
 # to sign requests, not sent over any network.)
@@ -447,10 +479,10 @@ Both `authsignature` and `usersignature` headers are required for this request.
 
 | Status Code | `status` Attribute | Description |
 | :---------: | :----------------: | ----------- |
-| 200 | `SUCCESS` | Bank account successfully linked. |
-| 200 | `FAILURE` | Bank account not successfully linked (public token may have expired; tokens expire in 30 minutes after creation).
-| 400 | `FAILURE` | Invalid request body format. |
-| 401 | `FAILURE` | `authsignature` or `usersignature` header was absent or incorrect. |
+| 200 | `"SUCCESS"` | Bank account successfully linked. |
+| 200 | `"FAILURE"` | Bank account not successfully linked (public token may have expired; tokens expire in 30 minutes after creation).
+| 400 | `"FAILURE"` | Invalid request body format. |
+| 401 | `"FAILURE"` | `authsignature` or `usersignature` header was absent or incorrect. |
 
 ## /get_accounts
 
@@ -488,7 +520,12 @@ HTTP/1.1 200 OK
 ```
 
 ```javascript
-// JavaScript example coming soon
+var key = 'badba7368...c0202a97c'; // Use full private key
+var handle = 'user.silamoney.eth';
+
+sila.getAccounts(handle, key)
+    .then((res) => { /* Handle response res */ })
+    .catch((err) => { /* Handle error `err` */ });
 ```
 
 ```python
@@ -496,7 +533,7 @@ payload = {
   "user_handle": "user.silamoney.eth" # Required
 }
 
-# See check_handle example for silaApp initialization.
+# See SDK quickstart for silaApp initialization.
 # user_private_key should be 64 characters long and
 # associated with registered address. (This key is used
 # to sign requests, not sent over any network.)
@@ -564,7 +601,13 @@ HTTP/1.1 200 OK
 ```
 
 ```javascript
-// JavaScript example coming soon
+var key = 'badba7368...c0202a97c'; // Use full private key
+var handle = 'user.silamoney.eth';
+var amount = 1000; // Must be an integer value > 100; this is the SILA amount.
+
+sila.issueSila(amount, handle, key)
+    .then((res) => { /* Handle response res */ })
+    .catch((err) => { /* Handle error `err` */ });
 ```
 
 ```python
@@ -573,7 +616,7 @@ payload = {
   "user_handle": "user.silamoney.eth"
 }
 
-# See check_handle example for silaApp initialization.
+# See SDK quickstart for silaApp initialization.
 # user_private_key should be 64 characters long and
 # associated with registered address. (This key is used
 # to sign requests, not sent over any network.)
@@ -612,10 +655,10 @@ Both `authsignature` and `usersignature` headers are required for this request.
 
 | Status Code | `status` Attribute | Description |
 | :---------: | :----------------: | ----------- |
-| 200 | `SUCCESS` | Issuance process started. |
-| 200 | `FAILURE` | Issuance process not started; see `message` attribute. |
-| 400 | `FAILURE` | Invalid request body format. |
-| 401 | `FAILURE` | `authsignature` or `usersignature` header was absent or incorrect. |
+| 200 | `"SUCCESS"` | Issuance process started. |
+| 200 | `"FAILURE"` | Issuance process not started; see `message` attribute. |
+| 400 | `"FAILURE"` | Invalid request body format. |
+| 401 | `"FAILURE"` | `authsignature` or `usersignature` header was absent or incorrect. |
 
 ## /transfer_sila
 
@@ -652,7 +695,14 @@ HTTP/1.1 200 OK
 ```
 
 ```javascript
-// JavaScript example coming soon
+var key = 'badba7368...c0202a97c'; // Use full private key
+var handle = 'user.silamoney.eth';
+var amount = 1000;
+var destinationHandle = 'user2.silamoney.eth'; // Must be a KYC-verified user.
+
+sila.transferSila(amount, handle, key, destinationHandle)
+    .then((res) => { /* Handle response res */ })
+    .catch((err) => { /* Handle error `err` */ });
 ```
 
 ```python
@@ -662,7 +712,7 @@ payload = {
   "destination": "donald.silamoney.eth"
 }
 
-# See check_handle example for silaApp initialization.
+# See SDK quickstart for silaApp initialization.
 # user_private_key should be 64 characters long and
 # associated with registered address. (This key is used
 # to sign requests, not sent over any network.)
@@ -697,10 +747,10 @@ Both `authsignature` and `usersignature` headers are required for this request.
 
 | Status Code | `status` Attribute | Description |
 | :---------: | :----------------: | ----------- |
-| 200 | `SUCCESS` | Transfer process started. |
-| 200 | `FAILURE` | Transfer process not started; see `message` attribute. |
-| 400 | `FAILURE` | Invalid request body format. |
-| 401 | `FAILURE` | `authsignature` or `usersignature` header was absent or incorrect. |
+| 200 | `"SUCCESS"` | Transfer process started. |
+| 200 | `"FAILURE"` | Transfer process not started; see `message` attribute. |
+| 400 | `"FAILURE"` | Invalid request body format. |
+| 401 | `"FAILURE"` | `authsignature` or `usersignature` header was absent or incorrect. |
 
 ## /redeem_sila
 
@@ -737,7 +787,13 @@ HTTP/1.1 200 OK
 ```
 
 ```javascript
-// JavaScript example coming soon
+var key = 'badba7368...c0202a97c'; // Use full private key
+var handle = 'user.silamoney.eth';
+var amount = 1000; // Must be an integer amount in SILA.
+
+sila.redeemSila(amount, handle, key)
+    .then((res) => { /* Handle response res */ })
+    .catch((err) => { /* Handle error `err` */ });
 ```
 
 ```python
@@ -746,7 +802,7 @@ payload = {
   "user_handle": "user.silamoney.eth"
 }
 
-# See check_handle example for silaApp initialization.
+# See SDK quickstart for silaApp initialization.
 # user_private_key should be 64 characters long and
 # associated with registered address. (This key is used
 # to sign requests, not sent over any network.)
@@ -779,10 +835,10 @@ Both `authsignature` and `usersignature` headers are required for this request.
 
 | Status Code | `status` Attribute | Description |
 | :---------: | :----------------: | ----------- |
-| 200 | `SUCCESS` | Redemption process started. |
-| 200 | `FAILURE` | Redemption process not started; see `message` attribute. |
-| 400 | `FAILURE` | Invalid request body format. |
-| 401 | `FAILURE` | `authsignature` or `usersignature` header was absent or incorrect. |
+| 200 | `"SUCCESS"` | Redemption process started. |
+| 200 | `"FAILURE"` | Redemption process not started; see `message` attribute. |
+| 400 | `"FAILURE"` | Invalid request body format. |
+| 401 | `"FAILURE"` | `authsignature` or `usersignature` header was absent or incorrect. |
 
 ## /get_transactions
 
@@ -881,7 +937,12 @@ HTTP/1.1 200 OK
 ```
 
 ```javascript
-// JavaScript example coming soon
+var key = 'badba7368...c0202a97c'; // Use full private key
+var handle = 'user.silamoney.eth';
+
+sila.getTransactions(handle, key)
+    .then((res) => { /* Handle response res */ })
+    .catch((err) => { /* Handle error `err` */ });
 ```
 
 ```python
@@ -889,7 +950,7 @@ payload = {
   "user_handle": "user.silamoney.eth" # Required
 }
 
-# See check_handle example for silaApp initialization.
+# See SDK quickstart for silaApp initialization.
 # user_private_key should be 64 characters long and
 # associated with registered address. (This key is used
 # to sign requests, not sent over any network.)
@@ -918,15 +979,18 @@ Both `authsignature` and `usersignature` headers are required for this request.
 
 ### Responses
 
-| Status Code | Description |
-| :---------: | ----------- |
-| 200 | Able to return transaction information. |
+| Status Code | `success` Attribute | Description |
+| :---------: | :-----------------: | ----------- |
+| 200 | `true` | Able to return transaction information. |
+| 400 | `false` | Bad request format. |
+| 403 | `false` | Bad/absent signature header. |
+| 500 | `false` | Server-side issue; let us know if you get this status code! |
 
 ## Contract Endpoint: /silaBalance
 
 ```plaintext
 POST /silaBalance HTTP/1.1
-Host: test.silatokenapi.silamoney.com
+Host: sandbox.silatokenapi.silamoney.com
 Content-Type: application/json
 
 {
@@ -945,7 +1009,7 @@ HTTP/1.1 200 OK
 ```
 
 ```python
-# See check_handle example for silaApp initialization.
+# See SDK quickstart for silaApp initialization.
 User.silaBalance(silaApp, address) # address should be a 20 byte valid ethereum address
 ```
 

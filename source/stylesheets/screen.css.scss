@@ -350,7 +350,7 @@ html, body {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     margin-bottom: $h1-margin-bottom;
-    margin-top: 2em;
+    //margin-top: 2em;
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     background-color: #fdfdfd;
@@ -363,8 +363,8 @@ html, body {
 
   h2 {
     @extend %header-font;
-    font-size: 19px;
-    margin-top: 4em;
+    font-size: 20px;
+    //margin-top: 4em;
     margin-bottom: 0;
     border-top: 1px solid #ccc;
     padding-top: 1.2em;
@@ -381,17 +381,17 @@ html, body {
 
   h3, h4, h5, h6 {
     @extend %header-font;
-    font-size: 15px;
-    margin-top: 2.5em;
+    font-size: 16px;
+    //margin-top: 2.5em;
     margin-bottom: 0.8em;
   }
 
   h4, h5, h6 {
-    font-size: 10px;
+    font-size: 12px;
   }
 
   hr {
-    margin: 2em 0;
+    //margin: 2em 0;
     border-top: 2px solid $examples-bg;
     border-bottom: 2px solid $main-bg;
   }
@@ -619,7 +619,7 @@ html, body {
 .toc-wrapper {
   background-image: linear-gradient(-144deg, #3638F7 0%, #9140FF 100%);
   .search {
-    background: #ffffff;
+    //background: #ffffff;
     input {
       background: #ffffff;
       border-radius: 5px;

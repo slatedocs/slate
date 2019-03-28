@@ -19,7 +19,7 @@ Pick a language tab for a signature generation example.
 ```
 
 ```javascript
-// Authentication example:
+// JavaScript authentication example:
 
 // For this example, we will use a library for message signing.
 // See: https://github.com/pubkey/eth-crypto
@@ -28,7 +28,7 @@ const EthCrypto = require('eth-crypto');
 // You will need a message (request body contents) and a private key.
 // This private key will be an Ethereum private key, hex-encoded 
 // and 64 characters in length, omitting any "0x" that might precede it.
-var private_key = 'badba7368134dcd61c60f9b56979c09196d03f5891a20c1557b1afac0202a97c';
+var private_key = 'badba7368...c0202a97c';
 var messageJSON = { test: 'message' };
 
 // Stringify the message. (The string that gets hashed should be
@@ -57,17 +57,28 @@ request_data.body = message;
 ```
 
 ```python
+# Python authentication example:
+
+# For this example, we will use a library for message signing.
+# See: https://github.com/ethereum/eth-account
 from eth_account import Account
 import sha3
 import json
 
-# Get the message to send in the request body.
+# You will need a message (request body contents) and a private key.
+# This private key will be an Ethereum private key, hex-encoded 
+# and 64 characters in length, omitting any "0x" that might precede it.
+key = 'badba7368...c0202a97c'
+msg = {
+	'test': 'message'
+}
+
+# Stringify the message. (The string that gets hashed should be
+# guaranteed to be the same as what is sent in the request.)
+# NOTE: if testing the example strings, you can just declare them as strings.
 encoded_message = (json.dumps(msg)).encode("utf-8")
 
-# Get the private key to use for signing.
-key = 'badba7368134dcd61c60f9b56979c09196d03f5891a20c1557b1afac0202a97c'
-
-# Take the keccak_256 hash of the message.
+# Generate the message hash using the Keccak 256 algorithm.
 k = sha3.keccak_256()
 k.update(encoded_message)
 message_hash = k.hexdigest()
@@ -75,11 +86,19 @@ message_hash = k.hexdigest()
 # Sign the message_hash.
 signed_message = Account.signHash(message_hash, key)
 sig_hx = signed_message.signature.hex()
-print(sig_hx)
 
 # Use encoded_message in the request body and sig_hx
 # in the appropriate signature header.
+print(sig_hx)
+print(encoded_message)
+
 #...
+
+# You can also sign messages with the Sila-Python SDK.
+
+from silasdk import EthWallet
+
+EthWallet.signMessage("my_message", "private_key")
 ```
 
 ```java
@@ -91,13 +110,14 @@ print(sig_hx)
 
 package main
 
-// Imports used:
 import (
 	"encoding/hex"
 	"encoding/json"
 	"log"
 	"math/big"
 
+	// For this example, we will use a library for message signing.
+	// See: https://github.com/ethereum/go-ethereum/crypto
 	"github.com/ethereum/go-ethereum/crypto"
 )
 
@@ -107,7 +127,7 @@ func main() {
 	// This private key will be an ethereum private key. In this 
 	// example, it should be a hex string 64 characters in length,
 	// omitting any "0x" that might precede the number.
-	privateKey := "badba7368134dcd61c60f9b56979c09196d03f5891a20c1557b1afac0202a97c"
+	privateKey := "badba7368...c0202a97c"
 	messageJSON := map[string]interface{}{
 		"test": "message",
 	}
@@ -166,7 +186,7 @@ func main() {
 }
 ```
 
-Where many other API systems may require client IDs and secrets, Sila uses the [Elliptic Curve Digital Signature Algorithm (ECDSA)](https://hackernoon.com/a-closer-look-at-ethereum-signatures-5784c14abecc) to secure and validate requests. Apps and users will have private keys, and Sila will only store addresses, which are directly derived from public keys.
+Where many other API systems may require client IDs and secrets, Sila uses the [Elliptic Curve Digital Signature Algorithm (ECDSA)](https://hackernoon.com/a-closer-look-at-ethereum-signatures-5784c14abecc) to secure and validate requests. Apps and users will have private keys, and Sila will only store addresses, which are directly derived from public keys. Since private keys cannot be derived from addresses or public keys, this can be considered a *zero knowledge proof*.
 
 Here is a rough overview of the whole process:
 
@@ -179,8 +199,6 @@ Here is a rough overview of the whole process:
 7. A valid request to Sila can now be sent. The original "message" is sent in the POST request body, and a hex-encoded signature string is sent in a request header.
 8. When a Sila endpoint receives the request, it will derive a public key from the message and the signature. An address is then derived from that public key.
 9. If the derived address is registered under the handle that is specified in the request body, the request is validated.
-
-During this whole process, Sila never requires knowledge of the app's or user's private key, but can still validate that they have access to it.
 
 ### Implementing Digital Signatures
 
@@ -202,7 +220,11 @@ While digital signatures are generally considered highly secure and require zero
 
 ### Sample Input/Outputs
 
-These are some sample inputs and outputs using a sample private key. ***It is NOT recommended that you use this key for ANYTHING except testing your signature algorithm***.
+These are some sample inputs and outputs using a sample private key. 
+
+<aside class="warning">
+<b>DO NOT USE THIS KEY FOR ANY REASON OTHER THAN TESTING SIGNATURES LOCALLY</b>.<br>Registering a user with this key means that <i>anyone</i> with access to this private key can authenticate requests on the user's behalf. Worse, using the associated address as a wallet to hold digital assets like Ethereum means that anyone with access to the private key <i>owns those assets</i>. <b>Beware!</b>
+</aside>
 
 **Private key**: 	`badba7368134dcd61c60f9b56979c09196d03f5891a20c1557b1afac0202a97c`<br>
 **Address**: 		`0x65a796a4bD3AaF6370791BefFb1A86EAcfdBc3C1`
@@ -213,3 +235,35 @@ These are some sample inputs and outputs using a sample private key. ***It is NO
 | `test` | f9978f3af681d3de06b3bcf5acf2181b5ebf54e0110f1d9d773d691ca2b42bdc39bf478d9ea8287bd15369fa3fd25c09b8c3c02bdbafd19f2aad043e350a037c1b |
 | `{"test":"message"}` | 835e9235dcdc03ed8928df5ace375bc70ea6f41699cd861b8801c9c617b4f2b658ff8e2cda47ea84401cab8019e5bb9daf3c0af2e7d2ab96cba6966a75e017171b |
 | `{"test": "message"}` | 2de2f5d3f778e485f234956679373b9730b717c33e628651c3371e7eb31c4a27738af1a3bf85472a2a7dfc0628ddd21f8611ff0e170ebd24003c2a34b2760d5c1c |
+
+If your signatures look almost the same except for the last few characters, you most likely have an offset issue. The good news is that your offset should be constant across your generated signatures. Some other libraries, such as the one we use in our Go example, also have this issue.
+
+### Generating and Managing User Private Keys
+
+```plaintext
+Select a language tab to see an example of generating a private key.
+```
+
+```python
+from silasdk import EthWallet
+
+EthWallet.create("provide some entropy for randomness")
+```
+
+```javascript
+wallet = sila.generateWallet()
+```
+
+```java
+// Java private key generation example coming soon!
+```
+
+```go
+// Go private key generation example coming soon!
+```
+
+It is critical for users' and apps' private keys to be kept secure. While we *are* able to freeze and restore users with new addresses in case of security crisis or fraud, this is by no means a desirable situation; too many private key hacks and your application could be at risk for having production access revoked or diminished.
+
+Some applications may want to leave it to the user to keep private keys secure and sign requests as needed, but for many use cases, the private key layer may be better left concealed from users. In that case, applications will need to generate private keys for each of their users.
+
+Use HD (hierarchical deterministic) wallets if you are managing users' private keys.
