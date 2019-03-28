@@ -35,12 +35,12 @@ Sila allows you to transfer money among KYC-verified users with an underlying st
 
 By using us for peer-to-peer money transfers, you can:
 
-- decrease your go-to-market time (no regulatory headache or flaky bank partnerships!)
+- decrease your go-to-market time (no regulatory headache or flaky bank partnerships)
 - dramatically decrease your upfront costs
 - easily access KYC ("know your customer") verification tools
 - securely link bank account information using Plaid
 - keep sensitive data off of your servers
-- let us handle ACH transactions (send us JSON, not flat files!)
+- let us handle ACH transactions (send us JSON, not flat files)
 
 ## Getting Started
 
