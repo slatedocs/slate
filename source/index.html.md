@@ -33,6 +33,15 @@ Welcome to the Sila API!
 
 Sila allows you to transfer money among KYC-verified users with an underlying stablecoin. Our aim is to make this process simple and accessible, especially for innovators and disruptors.
 
+By using us for peer-to-peer money transfers, you can:
+
+- decrease your go-to-market time (no regulatory headache or flaky bank partnerships!)
+- dramatically decrease your upfront costs
+- easily access KYC ("know your customer") verification tools
+- securely link bank account information using Plaid
+- keep sensitive data off of your servers
+- let us handle ACH transactions (send us JSON, not flat files!)
+
 ## Getting Started
 
 To use our API endpoints, you will need to get registered on our [Developer Console](https://console.silamoney.com/), which should be available after our open-beta launch. Registration includes a KYC verification process, which should take less than 24 hours.
