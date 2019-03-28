@@ -3,13 +3,8 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
-  - python
-  - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
   - errors
@@ -19,405 +14,414 @@ search: true
 
 # Introduction
 
-The Kardia Pro API is a component of the Kardia Pro suite. It’s intended purpose is to securely transmit ECG recordings captured by Kardia Mobile users to a third party platform or application. ECG recordings can be transmitted in PDF format, or as JSON data files to be aggregated and consumed by the third party. Kardia Pro uses a REST based protocol to connect and exchange information with third party applications.
-
-Features include:
-
-- Participant creation
-- Code generation for participant
-- Callback registration for status changes and events
-- ECG recording retrieval
+The Kardia API is organized around REST. Our API has predictable resource-oriented URLs, accepts form-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs.
 
 # How it Works
 
-Kardia Pro facilitates a connection between a clinician’s Kardia Pro account and their selected patients. Patients are provisioned with a unique code that connects their Kardia application specifically to their clinician or service and allows all ECG recordings captured via Kardia Mobile to be accessible to the clinician via the Kardia Pro application or API. ECGs sent through the API are made available to the clinician within their native application or platform.
+Kardia Pro facilitates a connection between a clinician’s Kardia Pro account and their selected patients. Patients are provisioned with a unique code that connects their Kardia application specifically to their clinician or service and allows all ECG recordings captured via Kardia Mobile to be accessible to the clinician via the Kardia Pro API.
 
 # Authentication
 
+The Kardia API uses API keys to authenticate requests. You can view and manage your keys in the API dash board. APIs within the Kardia platform require the use of HTTP Basic Authentication, constructed from a valid API key as the username and empty password combination.
+
 ```shell
-curl -H 'Authorization=77D8AF75-629C-4A2A-9A08-260D33546ADF' \
-  https://us-kardia-production.alivecor.com/e/v1/recordings/0dc851e0acff
+ curl https://api.kardia.com/v1/patients \
+  -u 7863674b-1919-432b-90d5-838fb8207d3f:
+# The colon prevents curl from asking for a password.
+
 ```
 
-Requests made to the API are protected by sending your API key in the Authorization header. Requests not properly authenticated will return a 401 error code. API keys are delivered after entering an enterprise agreement.
+# Patients
 
-All API requests must be made over HTTPS, or they will fail
+## Patient Object
 
-# Participants
+Name | Type | Description
+--------- | ------- | -----------
+id | string | The patient's unique random ID
+patientMRN | string | The patient's medical record number
+dob | string | The patient's date of birth
+email | string | The patient's email address
+firstname | string | The patient's first name
+lastname | string | The patient's last name
+sex | int | The patient's sex as ISO/IEC5218
 
-## Create Team Participant
 
+## Create Patient
+
+To create a patient, send a `POST` request to `/v1/patients`.
+
+## Arguments
+
+Name       | Type   | Required | Description
+---------  | ------ | ---------| -----------
+patientMRN | string | Yes      | The patient's medical record number
+email      | string | Yes      | The patient's email address
+dob        | string | Yes      | The patient's date of birth as YYYY-MM-DD
+firstname  | string | No       | The patient's first name
+lastname   | string | No       | The patient's last name
+sex        | int    | No       | The patient's sex as ISO/IEC 5218
 
 > Example Request
 
+```shell
+curl https://api.kardia.com/v1/patients \
+  -u 7863674b-1919-432b-90d5-838fb8207d3f: \
+  -d patientMRN=JS-20000721 \
+  -d dob=2000-07-21 \
+  -d email=joe@example.com \
+  -d firstname=Joe \
+  -d lastname=Smith \
+  -d sex=1
+```
+
+> Example Response
+
 ```json
 {
-  "customParticipantID": "AC001",
-  "firstName": "Jon",
-  "lastName": "Snow",
-  "email": "jsnow@example.com",
-  "phone": "555-555-5555",
-  "dob": "1970-07-21",
+  "id": "wNSEDeLOEPQE5rznkJmwbnjpxfdst93i",
+  "patientMRN": "JS-20000721",
+  "dob": "1970-03-12",
+  "email": "joe@example.com",
+  "firstname": "Joe",
+  "lastname": "Smith",
   "sex": 1
 }
 ```
 
-> Example Response
 
-```json
-{
-  "customParticipantID": "AC001",
-  "firstName": "Jon",
-  "lastName": "Snow",
-  "email": "jsnow@example.com",
-  "phone": "555-555-5555",
-  "dob": "1970-07-21",
-  "sex": 1
-}
-```
+## Get Patient
 
-Patients are represented in the Kardia Pro system as team participants. To create a participant send a HTTP POST request to /e/v1/participants.
-
-### Resource
-POST /e/v1/participants
-
-### Authorization
-OAuth 2.0 bearer token.
-
-### Post Parameters
-Name | Type | Description
---------- | ------- | -----------
-customParticipantID | string | **Required** external identifier from outside the AliveCor system
-firstName | string | **Required** participant’s first name
-lastName | string | **Required** participant’s last name
-email | string | **Optional** participant’s email
-phone | string | **Optional** participant’s mobile phone number
-dob | string | **Optional** participant’s date of birth
-sex | int | **Optional** ISO/IEC5218 representation of sex
-
-### Returns
-HTTP Status Code | Reason
-------------- | ------
-200 | Success
-400 | Bad request
-409 | Cannot create a participant with a duplicate `customParticipantId`
-
-# Users
-
-## Create User
+Responds to `GET` requests to `/v1/patients/:id` and returns a single patient object.
 
 > Example Request
 
-```json
-{
-  "connection_code": "string",
-  "country_code": "string",
-  "email": "string",
-  "password": "string"
-}
+```shell
+curl https://api.kardia.com/v1/patients/wNSEDeLOEPQE5rznkJmwbnjpxfdst93i \
+ -u 7863674b-1919-432b-90d5-838fb8207d3f:
 ```
 
 > Example Response
 
-```json
+```shell
 {
-  "user_token": "string"
+  "id": "wNSEDeLOEPQE5rznkJmwbnjpxfdst93i",
+  "patientMRN": "JMJ-19810712",
+  "dob": "1970-03-12",
+  "email": "joe@example.com",
+  "firstname": "Joe",
+  "lastname": "Smith",
+  "sex": 0
 }
 ```
 
-Create a Kardia mobile user.
+## Create Patient Connection Code
 
-### Resource
-POST /e/v1/user
-
-### Authorization
-OAuth 2.0 bearer token.
-
-### Post Parameters
-Name | Type | Description
---------- | ------- | -----------
-connection_code | string | **Optional** generated connection code
-country_code | string | **Required** ISO 3166-1 Alpha-2 country code
-email | string | **Required** user's email
-password | string | **Required** user's password
-
-### Returns
-HTTP Status Code | Reason
-------------- | ------
-201 | User created
-400 | Couldn't create user
-
-# Codes
-
-## Generate Connection Code
+Responds to `GET` requests to `/v1/patients/:id/code` and returns a valid connection code for the given patient.
 
 > Example Request
 
-```json
-{
-  "customParticipantID" : "AC001",
-  "templateID" : "7uhcmvtlb87c4n5nyx1qq9ur7"
-}
+```shell
+curl https://api.kardia.com/v1/patients/wNSEDeLOEPQE5rznkJmwbnjpxfdst93i/code \
+ -u 7863674b-1919-432b-90d5-838fb8207d3f:
 ```
 
 > Example Response
 
-```json
+```shell
 {
-  "code" : "LQYP-MSAK-NPJR"
+  "code": "OEPQE5rz",
+  "status": "connected"
 }
 ```
 
-Generates a new connection code for a given participant. To create a new connection code send a HTTP POST request to /e/v1/code.
 
-### Resource
-POST /e/v1/code
+## Get Patient Recordings
 
-### Authorization
-OAuth 2.0 bearer token.
+Responds to `GET` requests to `/v1/patients/:id/recordings` and returns an array of EKG recordings for the given patient.
 
-### Post Parameters
-Name | Type | Description
---------- | ------- | -----------
-customParticipantID | string | **Required** participant’s external identifier
-templateID | string | **Required** AliveCor supplied connection template identifier
+**Querystring parameters**
 
-### Returns
-HTTP Status Code | Reason
-------------- | ------
-200 | Success
-400 | Bad request
+`limit` A limit on the number of objects to be returned. Limit can range between 1 and 50, and the default is 10.
 
-## Redeem Code
+`start` The cursor used to return patients after the `startCursor` or `endCursor` cursor, and returning at most `limit` recordings.
 
-> Example Request
+## Recordings Object
 
-```json
-{
-  "connection_code" : "AC001",
-  "user_token": ""
-}
-```
-
-Redeems a code and creates a connection between the team and the user.
-
-### Resource
-POST /e/v1/connection
-
-### Authorization
-OAuth 2.0 bearer token.
-
-### Post Parameters
-Name | Type | Description
---------- | ------- | -----------
-connectionCode | string | **Required** generated connection code
-user_token | string | **Required** the token representing the user
-
-### Returns
-HTTP Status Code | Reason
-------------- | ------
-200 | Connection created
-400 | Couldn't create connection
-
-## Disconnect Code
+Name        | Type    | Description
+----------- | ------- | -----------
+totalCount  | int     | The total number of patients
+data        | array   | An array of `Recording` objects
+pageInfo    | object  | Pagination information
+startCursor | string  | The cursor for the first recording in the page
+endCursor   | string  | the cursor for the last recording in the page
+hasNextPage | bool    | True if there is another page of data
 
 > Example Request
 
-```json
-{
-  "customParticipantID" : "AC001"
-}
+```shell
+curl https://api.kardia.com/v1/patients/wNSEDeLOEPQE5rznkJmwbnjpxfdst93i/recordings \
+ -u 7863674b-1919-432b-90d5-838fb8207d3f:
 ```
 
 > Example Response
 
-```json
+```shell
 {
-  "customParticipantID" : "AC001"
+  "totalCount": 200,
+  "data": [
+    {
+      "id": "3wde1eem9vy4y1a0rv3y98u2a",
+      "patientID": "wNSEDeLOEPQE5rznkJmwbnjpxfdst93i",
+      "duration": 30000,
+      "heartRate": 65,  
+      "data": {
+        "frequency": 300,
+        "mains_freq": 60,
+        "samples": {
+          "lead_I": [
+            397,
+            -262,
+            -426,
+            -284,
+            286,
+            391,
+            -45,
+            -249,
+            -30,
+            566,
+            515,
+            204,
+            -138,
+            -30,
+            491,
+            572,
+            103,
+            -187,
+            -62,
+            322,
+            ...     
+          ]
+        }
+      },
+      "recordedAt": "2008-09-15T15:53:00+05:00"
+    }
+  ],
+  "pageInfo": {
+    "startCursor": "c3RhcnRDdXJzb3I=",
+    "endCursor": "ZW5kQ3Vyc29yc2Rh=",
+    "hasNextPage": true
+  }
 }
 ```
 
-Removes a connection for the given participant.
+## Get All Patients
 
-### Resource
-POST /e/v1/disconnection
+Responds to `GET` requests to `/v1/patients` and returns a list of patients with the most recent created patient first.
 
-### Authorization
-OAuth 2.0 bearer token.
+**Querystring parameters**
 
-### Post Parameters
-Name | Type | Description
---------- | ------- | -----------
-customParticipantID | string | **Required** participant’s external identifier
+`limit` A limit on the number of objects to be returned. Limit can range between 1 and 500, and the default is 100.
 
-### Returns
-HTTP Status Code | Reason
-------------- | ------
-200 | Success
-400 | Bad request
+`start` The cursor used to return patients after the `startCursor` or `endCursor` cursor, and returning at most `limit` patients.
 
-# Recordings
+## Patients Object
 
-## Get Recording
+Name        | Type    | Description
+----------- | ------- | -----------
+totalCount  | int     | The total number of patients
+data        | array   | An array of `Patient` objects
+pageInfo    | object  | Pagination information
+startCursor | string  | The cursor for the first patient in the page
+endCursor   | string  | the cursor for the last patient in the page
+hasNextPage | bool    | True if there is another page of data
 
 > Example Request
 
-```json
-{
-  "recording-id": "123123"
-}
+```shell
+curl https://api.kardia.com/v1/patients?limit=50&start=ZW5kQ3Vyc29yc2Rh= \
+  -u 7863674b-1919-432b-90d5-838fb8207d3f:
 ```
 
 > Example Response
 
-```json
+```shell
 {
-  "afibDetected": true,
-  "customParticipantID": "string",
+  "totalCount": 200,
+  "data": [
+    {
+      "id": "wNSEDeLOEPQE5rznkJmwbnjpxfdst93i",
+      "patientMRN": "JS-19810712",
+      "dob": "1970-03-12",
+      "email": "joe@example.com",
+      "firstname": "Joe",
+      "lastname": "Smith",
+      "sex": 0
+    }
+  ],
+  "pageInfo": {
+    "startCursor": "c3RhcnRDdXJzb3I=",
+    "endCursor": "ZW5kQ3Vyc29yc2Rh=",
+    "hasNextPage": true
+	}
+}
+```
+
+# EKG Recordings
+
+## EKG Object
+
+Name       | Type    | Description
+---------- | ------- | -----------
+id         | string  | The patient's unique random ID
+patientID  | string  | The unique patient identifier
+duration   | int     | The duration of the EKG recording in milliseconds
+heartRate  | int     | The average heart rate
+data       | object  | The EKG data samples
+frequency  | int     | The frequency of the EKG recording, i.e. 300Hz
+mains_freq | int     | The mains frequency either 50 (e.g. Europe) or 60 (e.g. America) Hz.
+samples    | object  | The EKG data samples
+lead_I     | array   | The Lead 1 data samples
+recordedAt | string  | The date time the EKG was recorded
+
+## Single EKG
+
+To get a single EKG for a given patient send a `GET` request to `/v1/recordings/:id` 
+
+> Example Request
+
+```shell
+curl https://api.kardia.com/v1/recordings/3wde1eem9vy4y1a0rv3y98u2a \
+  -u 7863674b-1919-432b-90d5-838fb8207d3f:
+```
+
+> Example Response
+
+```shell
+{
+  "id": "3wde1eem9vy4y1a0rv3y98u2a",
+  "patientID": "wNSEDeLOEPQE5rznkJmwbnjpxfdst93i",
+  "duration": 30000,
+  "heartRate": 65,  
   "data": {
-    "frequency": 0,
-    "mains_freq": 0,
+    "frequency": 300,
+    "mains_freq": 60,
     "samples": {
       "lead_I": [
-        0
+        397,
+        -262,
+        -426,
+        -284,
+        286,
+        391,
+        -45,
+        -249,
+        -30,
+        566,
+        515,
+        204,
+        -138,
+        -30,
+        491,
+        572,
+        103,
+        -187,
+        -62,
+        322,
+        ...     
       ]
     }
   },
-  "duration": 0,
-  "heartRate": 0,
-  "id": "string",
-  "noiseDetected": true,
-  "normalDetected": true,
-  "recordedAt": "string"
+  "recordedAt": "2008-09-15T15:53:00+05:00"
 }
 ```
 
-Get the full recording with ECG sample data for any `recordingId`.
+## Single EKG PDF
 
-## Get Recording PDF
+To get a single EKG PDF for a given patient send a `GET` request to `/v1/recordings/:id.pdf` 
 
 > Example Request
 
-```json
-{
-  "recording-id": "123123"
-}
+```shell
+curl https://api.kardia.com/v1/recordings/3wde1eem9vy4y1a0rv3y98u2a.pdf \
+  -u 7863674b-1919-432b-90d5-838fb8207d3f:
 ```
 
-Get the PDF rendering for any `recordingId`.
+## Get All Recortdings
 
-### Post Parameters
-Name | Type | Description
---------- | ------- | -----------
-recording-id | string | **Required** unique id for a recording
+Responds to `GET` requests to `/v1/recordings` and returns an array of EKG's across all patients.
 
-### Returns
-HTTP Status Code | Reason
-------------- | ------
-200 | Success with file
-404 | Failed to find PDF for given `recording-id`
+**Querystring parameters**
 
-# Event Callback
+`limit` A limit on the number of objects to be returned. Limit can range between 1 and 50, and the default is 10.
 
-## GET callback
+`start` The cursor used to return patients after the `startCursor` or `endCursor` cursor, and returning at most `limit` recordings.
 
-> Issue a HTTP GET request to view a previously set callback URL.
+## Recordings Object
+
+Name        | Type    | Description
+----------- | ------- | -----------
+totalCount  | int     | The total number of recordings
+data        | array   | An array of `Recording` objects
+pageInfo    | object  | Pagination information
+startCursor | string  | The cursor for the first recording in the page
+endCursor   | string  | the cursor for the last recording in the page
+hasNextPage | bool    | True if there is another page of data
+
+> Example Request
 
 ```shell
-curl ​-​X GET \
---​header ​'Authorization: Bearer YOUR-ACCESS-TOKEN'​ \
-'https://us-kardia-production.alivecor.com/e/v1/callback'
+curl https://api.kardia.com/v1/recordings \
+ -u 7863674b-1919-432b-90d5-838fb8207d3f:
 ```
 
 > Example Response
 
-```json
-{
-  ​"url"​:​ ​"http://example.com/callback"
-}
-```
-
-Get registered URL for event callbacks
-
-### Returns
-HTTP Status Code | Reason
-------------- | ------
-200 | Success
-400 | Bad request
-
-## PUT callback
-
-> To setup the event callback URL send a PUT request
-
 ```shell
-curl ​-​X PUT \
---​header ​'Authorization: Bearer YOUR-ACCESS-TOKEN'​ \
--​d ​'{ "url": "http://example.com/callback"}'​ \
-'https://us-kardia-production.alivecor.com/e/v1/callback'
-```
-
-> You'll receive a 200 HTTP status code with the following response.
-
-```json
 {
-  ​"url"​:​ ​"http://example.com/callback"
+  "totalCount": 200,
+  "data": [
+    {
+      "id": "3wde1eem9vy4y1a0rv3y98u2a",
+      "patientID": "wNSEDeLOEPQE5rznkJmwbnjpxfdst93i",
+      "duration": 30000,
+      "heartRate": 65,  
+      "data": {
+        "frequency": 300,
+        "mains_freq": 60,
+        "samples": {
+          "lead_I": [
+            397,
+            -262,
+            -426,
+            -284,
+            286,
+            391,
+            -45,
+            -249,
+            -30,
+            566,
+            515,
+            204,
+            -138,
+            -30,
+            491,
+            572,
+            103,
+            -187,
+            -62,
+            322,
+            ...     
+          ]
+        }
+      },
+      "recordedAt": "2008-09-15T15:53:00+05:00"
+    }
+  ],
+  "pageInfo": {
+    "startCursor": "c3RhcnRDdXJzb3I=",
+    "endCursor": "ZW5kQ3Vyc29yc2Rh=",
+    "hasNextPage": true
+  }
 }
 ```
-
-The Kardia Pro API will notify a URL of your choice via HTTP POST with information about events that occur as Kardia Pro processes patient connections and EKG recordings. The event callback can be used to monitor new patient connections and identify when EKG recordings occur.
-
-### Returns
-HTTP Status Code | Reason
-------------- | ------
-200 | Success
-400 | Bad request
-
-<aside class="success">
-Once the <code>/callbackURL</code> is set, the following types of callbacks can happen.
-</aside>
-
-## POST callback
-
-### Connection established
-
-A `POST` is made to the `/callbackURL` with an empty body.
-
-### Participant connected
-
-A participant successfully connected with a code.
-
-A `POST` is made to the `/callbackURL` in the format:
-
-`
-{
-  "eventType": "participantConnected",
-  "customParticipantId": "string"
-}
-`
-
-### Participant disconnected
-
-A participant has disconnected from a code-established connection.
-
-A `POST` is made to the `/callbackURL` in the format:
-
-`
-{
-  "eventType": "participantDisconnected",
-  "customParticipantId": "string"
-}
-`
-
-### New recording created
-
-A participant has created a recording.
-
-A `POST` is made to the `/callbackURL` in the format:
-
-`
-{
-  "eventType": "newRecording",
-  "customParticipantId": "string"
-}
-`
 
