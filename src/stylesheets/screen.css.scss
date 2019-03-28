@@ -61,7 +61,6 @@ html, body {
   background-color: $nav-bg;
   font-size: 13px;
   font-weight: bold;
-
   // language selector for mobile devices
   .lang-selector {
     display: none;
@@ -76,6 +75,7 @@ html, body {
     display: block;
     max-width: 100%;
     margin-bottom: $logo-margin;
+    background-color: #001c6e;
   }
 
   &>.search {
