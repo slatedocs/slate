@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: Kardia API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -33,7 +33,7 @@ The Kardia API uses API keys to authenticate requests. You can view and manage y
 
 # Patients
 
-## Patient Object
+### Patient Object
 
 Name | Type | Description
 --------- | ------- | -----------
@@ -50,7 +50,7 @@ sex | int | The patient's sex as ISO/IEC5218
 
 To create a patient, send a `POST` request to `/v1/patients`.
 
-## Arguments
+### Arguments
 
 Name       | Type   | Required | Description
 ---------  | ------ | ---------| -----------
@@ -114,7 +114,7 @@ curl https://api.kardia.com/v1/patients/wNSEDeLOEPQE5rznkJmwbnjpxfdst93i \
 }
 ```
 
-## Create Patient Connection Code
+## Get Connection Code
 
 Responds to `GET` requests to `/v1/patients/:id/code` and returns a valid connection code for the given patient.
 
@@ -129,7 +129,7 @@ curl https://api.kardia.com/v1/patients/wNSEDeLOEPQE5rznkJmwbnjpxfdst93i/code \
 
 ```shell
 {
-  "code": "OEPQE5rz",
+  "code": ""LQYP-MSAK-NPJR",
   "status": "connected"
 }
 ```
@@ -145,7 +145,7 @@ Responds to `GET` requests to `/v1/patients/:id/recordings` and returns an array
 
 `start` The cursor used to return patients after the `startCursor` or `endCursor` cursor, and returning at most `limit` recordings.
 
-## Recordings Object
+### Recordings Object
 
 Name        | Type    | Description
 ----------- | ------- | -----------
@@ -224,7 +224,7 @@ Responds to `GET` requests to `/v1/patients` and returns a list of patients with
 
 `start` The cursor used to return patients after the `startCursor` or `endCursor` cursor, and returning at most `limit` patients.
 
-## Patients Object
+### Patients Object
 
 Name        | Type    | Description
 ----------- | ------- | -----------
