@@ -1076,6 +1076,7 @@ This is the free version url **wss://test.api.suredbits.com/futures/v0** on test
 
 If no `interval` is requested, it will default to `perpetual` for all trading pairs except `ETHBTC` on the Bitmex exchange. That will default to `quarterly`. 
 
+
 ### Trading Pairs Supported 
 
 **Legend**:
@@ -1089,6 +1090,18 @@ Symbol  | Kraken   | Bitmex |
 `BTCUSD` |  M Q P  | Q P B  |  
 `ETHUSD` |  M Q P  |  P     |
 `ETHBTC` |    N/A  |  Q     |
+
+
+### Contract Rollover 
+
+When a Futures contract ends, we will rollover the data from the now expired contract to the new one.   
+
+You will see an updated **Snapshot** in your data feed indicating the rollover has occurred.  The rollover will be seamless and users should not see any disruption in their data stream. 
+
+Users should also be able to see the updated contract dates in the `maturationTime` field. 
+
+<aside class="note"> Contracts may share the same <code> interval </code> such as "Quarterly" on Kraken and Bitmex. However, the settlement dates can be different. Thus, the rollover dates will vary. </aside>
+
 
 ## Tickers
 
