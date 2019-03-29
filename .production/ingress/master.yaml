@@ -4,7 +4,7 @@ metadata:
   labels:
     io.coinbetter.ingress: master
   name: docs-app
-  namespace: docs-master
+  namespace: default
 spec:
   rules:
   - host: docs.coinbtr.com
