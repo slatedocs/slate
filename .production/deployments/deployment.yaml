@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    io.coinbetter.service: coinbtr-docs
+  name: coinbtr-docs
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.coinbetter.service: coinbtr-docs
+    spec:
+      containers:
+        - image: registry.coinbtr.com/coinbtr-docs:%{{BRANCH}}
+          name: docs-app
+          ports:
+          - containerPort: 4567
+          resources: {}
+          workingDir: /usr/src/app
+      restartPolicy: Always
+      imagePullSecrets:
+      - name: regcred
+status: {}

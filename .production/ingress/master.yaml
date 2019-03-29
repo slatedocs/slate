@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    io.coinbetter.ingress: master
+  name: docs-app
+  namespace: docs-master
+spec:
+  rules:
+  - host: docs.coinbtr.com
+    http:
+      paths:
+      - backend:
+          serviceName: docs
+          servicePort: 4567

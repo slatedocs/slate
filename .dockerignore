@@ -1,0 +1,5 @@
+./production
+./circleci
+./run_build.sh
+./run_deploy.sh
+./run_pre_deploy.sh

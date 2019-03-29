@@ -1,0 +1,50 @@
+version: 2
+
+jobs:
+
+  deploy:
+
+    docker:
+      - image: python:3.6.5
+      - image: docker:17.03.1-ce-git
+
+    working_directory: ~/coinbtr
+
+    steps:
+
+      - checkout
+
+      - setup_remote_docker:
+          reusable: true
+          exclusive: true
+
+      - run:
+          name: Install Docker client
+          command: |
+            set -x
+            VER="17.03.1-ce"
+            curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz
+            tar -xz -C /tmp -f /tmp/docker-$VER.tgz
+            mv /tmp/docker/* /usr/bin
+
+      - run:
+          name: Install Kubectl and rancher
+          command: bash run_pre_deploy.sh
+
+      - run:
+          name: Build
+          command: bash run_build.sh
+
+      - run:
+          name: Deploy
+          command: bash run_deploy.sh
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only:
+               - master
