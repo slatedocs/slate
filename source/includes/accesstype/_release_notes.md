@@ -2,11 +2,17 @@
 
 This section contains important Accestype release notes. For any queries, please write to us at [support@quintype.com](mailto:support@quintype.com).
 
-## 28 Mar Release Note - Accesstype
-1. **CSV reports now include the International Payment column** to help identify those payments that are made using international cards. 
+## 29 Mar 19 Release Note - Accesstype
+1. **CSV reports now include Payment Transaction Date** for better reconciliation of Recurring subscriptions.
+2. **Bug fix:** The Manage Subscription Plan and Group had hidden buttons.
+3. **Bug fix:** Recheck Paytm transaction status when it is in pending state.
+
+## 28 Mar 19 Release Note - Accesstype
+1. **CSV reports now include the International Payment column** to help identify those payments that are made using international cards.
+
 **Note:** This is applicable to Razorpay payment gateway only. 
 
-## 18 Feb 2019 Release Note - Accesstype
+## 18 Feb 19 Release Note - Accesstype
 1. **Juspay integration** - Integration with payment aggregator [Juspay](https://juspay.in) for iframe type of integration. Juspay's algorithms choose the best payment gateways for best success rates and also take into account pre-defined priority logic to offer the most efficient payment option to customers. 
 To create a Merchant account on Juspay write to [support@juspay.in](mailto:support@juspay.in).
 ![Accesstype Juspay](../../images/Accesstype_JuspayPG.png "Accesstype Juspay")
@@ -14,7 +20,7 @@ To create a Merchant account on Juspay write to [support@juspay.in](mailto:suppo
 2. **Analytics Dashboard** - Monthly and daily insights into the total number of subscriptions that are created.
 ![Accesstype Analytics Subscription Count](../../images/Accesstype_Analytics.png "Accesstype Analytics Subscription Count")
 
-## 4 Jan 2019 Release Note - Accesstype
+## 4 Jan 19 Release Note - Accesstype
 1. **Updated Subscription CSV Report** - The subscription CSV Report now contains additional fields for financial related purposes: Base Price, Discount amounts, amount after discount before tax and round-off.
 2. **Subscriber Name** - The Subscriber name is now displayed in Accesstype UI as well as the CSV report by default, for all subscriptions, Pay Per Asset purchases and Campaign Patrons.
 ![Subscriber Name in UI](../../images/Accesstype_Sub_Name_UI.png "Subscriber Name in UI")
@@ -22,7 +28,7 @@ To create a Merchant account on Juspay write to [support@juspay.in](mailto:suppo
 4. **Bug fixes - Subscription CSV Report** - Duplicate entires for recurring subscriptions are elimiated and tax amounts are displayed under the appropriate columns.
 
 
-## 12 Dec 2018 Release Notes - Accesstype
+## 12 Dec 18 Release Notes - Accesstype
 
 ### New Features:
 1. **Invoicing and Taxes** - Set up tax names and rates for generating Invoices. The tax rates set up in this module are applied and tax amounts calculated such that the price of the plan/asset is inclusive of taxes.
@@ -32,7 +38,7 @@ To create a Merchant account on Juspay write to [support@juspay.in](mailto:suppo
 
 3. **API for PDF invoice download** - The API end point to download PDF invoices for a given subscription is available [here](#get-invoice-pdf-download) for those on [Quintype](https://www.quintype.com) platform and [here](#get-invoice-details-for-a-subscription) for those not on the [Quintype](https://www.quintype.com) platform. **Note:** The method to invoke the download Invoice PDF API call can also be made using the AccesstypeJS which is described [here](https://github.com/quintype/subtype/blob/master/frontend/README.md) and [here](https://github.com/quintype/subtype/blob/master/frontend/API.md).
 
-## 11 Oct 2018 Release Notes - Accesstype
+## 11 Oct 18 Release Notes - Accesstype
 
 ### New Features:
 1. **[Paytm Payment Gateway - Auto Debit](https://business.paytm.com/developers-api/integration/auto-debit/overview)** - Accept one-click payments for individual stories using [Paytm](https://business.paytm.com) wallets. Customers can link their wallet and purchase individual stories by just a single click.
@@ -45,7 +51,7 @@ The Paytm Auto Debit option can be used via the Accesstype JS. Documentation ava
 2. URLs of reports generated in Accesstype, are now signed using private URLs and have an expiry for enhanced security.
 
 
-## 24 Sep 2018 Release Notes - Accesstype
+## 24 Sep 18 Release Notes - Accesstype
 
 ### New Features:
 1. **Accesstype Javascript** - Publishers on the [Quintype](https://www.quintype.com) platform can now easily integrate with Payment Gateways/Wallets as well as set up conversations with Accesstype servers, all in one place using methods in accesstype.js
@@ -69,7 +75,7 @@ The Paytm Auto Debit option can be used via the Accesstype JS. Documentation ava
 5. Encryption of Wallet token.
 
 
-## 6 Aug 2018 Release Notes - Accesstype
+## 6 Aug 18 Release Notes - Accesstype
 
 ### Enhancements and bug fixes:
 1. Wallets API - Link wallets of [Simpl](https://getsimpl.com) and [PayTm](https://paytm.com) with publishers. Documentation available [here](#post-subscriber-wallet-token)
@@ -79,7 +85,7 @@ The Paytm Auto Debit option can be used via the Accesstype JS. Documentation ava
 
 
 
-## 10 Jul 2018 Release Notes - Accesstype
+## 10 Jul 18 Release Notes - Accesstype
 
 ### Enhancements and bug fixes:
 1. Updated the Subscriptions Report to include Plan names of the group, Subscription Created Date and Subscription Start Date.
@@ -87,7 +93,7 @@ The Paytm Auto Debit option can be used via the Accesstype JS. Documentation ava
 
 
 
-## 28 Jun 2018 Release Notes - Accesstype
+## 28 Jun 18 Release Notes - Accesstype
 
 ### Enhancements and bug fixes:
 1. Accesstype users will now have their activities within the application, logged in the database.
