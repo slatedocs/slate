@@ -3,7 +3,8 @@
 This section contains important Accestype release notes. For any queries, please write to us at [support@quintype.com](mailto:support@quintype.com).
 
 ## 28 Mar Release Note - Accesstype
-1. **CSV reports now include the International Payment column** to help identify those payments that are made using international cards. This is applicable to Razorpay payment gateway. The value in this column will not be populated for other payment gateways supported by Accesstype such as Paytm Auto Debit, Simpl, Juspay and Android Pay(Now called Google Pay).
+1. **CSV reports now include the International Payment column** to help identify those payments that are made using international cards. 
+**Note:** This is applicable to Razorpay payment gateway only. 
 
 ## 18 Feb 2019 Release Note - Accesstype
 1. **Juspay integration** - Integration with payment aggregator [Juspay](https://juspay.in) for iframe type of integration. Juspay's algorithms choose the best payment gateways for best success rates and also take into account pre-defined priority logic to offer the most efficient payment option to customers. 
