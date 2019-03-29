@@ -1,0 +1,56 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: docker:17.09.0-ce-git
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run: |
+          mkdir -p /tmp/workspace
+          NEW_TAG="$CIRCLE_PROJECT_REPONAME-$CIRCLE_BRANCH-$CIRCLE_BUILD_NUM" && echo $NEW_TAG > /tmp/workspace/docker-tag.txt
+          docker login quay.io/quintype -u $QUAY_USERNAME -p $QUAY_PASSWORD
+          docker build -t quay.io/quintype/$CIRCLE_PROJECT_REPONAME:$NEW_TAG .
+          docker push quay.io/quintype/$CIRCLE_PROJECT_REPONAME:$NEW_TAG
+          docker rmi quay.io/quintype/$CIRCLE_PROJECT_REPONAME:$NEW_TAG
+      - store_artifacts:
+          path: /tmp/workspace/docker-tag.txt
+          destination: docker-tag.txt
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - docker-tag.txt
+
+  deploy_task: &deploy_task
+    machine: true
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+      - run: |
+          docker login quay.io/$CIRCLE_PROJECT_USERNAME -u $QUAY_USERNAME -p $QUAY_PASSWORD
+          docker run --rm --name bk quay.io/quintype/bk-deploy $BK_ENVIRONMENT deployment $(cat /tmp/workspace/docker-tag.txt)
+
+  deploy-prod:
+    <<: *deploy_task
+    environment:
+      BK_ENVIRONMENT: production 97
+
+workflows:
+  version: 2
+  pipeline:
+    jobs:
+      - build:
+          context: quay-login
+      - approve-prod-deploy:
+          filters:
+            branches:
+              only:
+                - master
+          type: approval
+          requires:
+            - build
+      - deploy-prod:
+           context: quay-login
+           requires:
+             - approve-prod-deploy
