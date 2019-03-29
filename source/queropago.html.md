@@ -15,9 +15,9 @@ Bem-vindo à documentação da API de Consultas do Quero Pago. Aqui você encont
 
 Todas as respostas da API são feitas em JSON
 
-Endpoint utilizado
+Endpoint utilizado em ambiente de **produção**: `https://queropago.com.br/api/v1`
 
-`https://queropago.com.br/api/v1`
+Endpoint utilizado em ambiente de **testes**: `https://sandbox.queropago.com.br/api/v1`
 
 # Autenticação
 
@@ -99,11 +99,15 @@ Entidade que representa toda a cobrança de um **Aluno** num **Curso**.
 | -----               | ----     | ---------                                                                                     |
 | id                  | bigint   | Identificador da matrícula no Quero Pago                                                      |
 | external_id         | text     | Identificador da matrícula na instituição de ensino                                           |
-| discount_percentage | float    | Porcentagem de desconto da bolsa adquirida                                                    |
+| value_without_discount | float | Sim | Valor da mensalidade do aluno sem desconto |
+| value_with_discount | float | Valor da mensalidade do aluno com desconto |
+| discount_percentage | float | Valor da porcentagem do desconto |
 | due_day             | int      | Dia de vencimento das mensalidades                                                            |
+| period_installments | int | Quantidade de mensalidades que devem ser geradas para o período atual do aluno. As mensalidades não são geradas todas de uma vez, pois, ao longo de todo o curso, existem prazos de reajuste no valor (nas situações de rematrículas, por exemplo), então elas são geradas por períodos. Ex: Em caso de Graduação, normalmente os períodos são Semestrais, então deve-se passar o número 6, e serão geradas 6 mensalidades. Em caso de Pós-Graduação, normalmente o período é igual a quantidade de meses de duração do curso, então deve-se passar o mesmo número do `duration_in_months`. |
 | start_year          | int      | Ano de início das cobranças                                                                   |
 | start_month         | int      | Mês de início das cobranças. Valores de 1 a 12, sendo 1 Janeiro e 12 Dezembro                 |
-| duration_in_months  | int      | Número total de mensalidades do curso                                                         |
+| duration_in_months  | int      | Número total de mensalidades do curso. Exemplo: no caso de um curso de 2 anos deve-se passar 24 |
+| enrollment_semester | text | Semestre que o aluno ingressou no curso, deve ser enviado no padrão: `YYYY.NN` ou `YYYY.N` onde Y e N são números. `YYYY` representando o ano e `NN` o período. |
 | student | object | Referência a entidade Aluno em que a matrícula pertence |
 | course | object | Referência a entidade Curso em que a matrícula pertence |
 | created_at          | datetime | Momento da criação da matrícula no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) em UTC |
@@ -226,7 +230,7 @@ curl --header "Authorization: Bearer ########" \
 | Header | `"Authorization: Bearer ########"` |
 | Header | `"Content-Type: application/json"` |
 | Método HTTP | `GET` |
-| URL | `https://queropago.com.br/api/v1/enrollments/1234567` |
+| URL | `https://queropago.com.br/api/v1/enrollments/{id}` |
 
 ## Update de uma matrícula
 Faz o update de uma matrícula no sistema do Quero Pago e retorna o objeto atualizado
@@ -276,7 +280,7 @@ curl --header "Authorization: Bearer ########" \
 | Header | `"Authorization: Bearer ########"` |
 | Header | `"Content-Type: application/json"` |
 | Método HTTP | `PUT` |
-| URL | `https://queropago.com.br/api/v1/enrollments/1234567` |
+| URL | `https://queropago.com.br/api/v1/enrollments/{id}` |
 
 ### Possíveis atributos para realizar o update
 
@@ -406,7 +410,7 @@ curl --header "Authorization: Bearer ########" \
 
 | Atributo | Tipo | Obrigatório | Descrição |
 | ---- | ---- | ---- | --------- |
-| student | objeto | Sim | Objeto com os dados do aluno para criarmos a matrícula |
+| student | objeto | Sim | Objeto com os dados do aluno para criarmos a matrícula. Caso já exista um aluno na nossa base com o mesmo CPF, iremos atualizar apenas os dados que não estão presentes do nosso lado. Exemplo: Já existe um aluno com o CPF `012.345.678-90` do nosso lado, mas ele não tem telefone e tem email cadastrado. Caso a IES envie uma notificação para criar uma matrícula para este aluno contendo dados do email e do telefone, nós iremos apenas atualizar os dados do telefone  |
 | enrollment | objeto | Sim | Objeto com os dados da cobrança para criarmos a matrícula |
 
 
@@ -442,7 +446,7 @@ curl --header "Authorization: Bearer ########" \
 | due_day | int | Sim | Dia de vencimento das mensalidades |
 | start_month | int | Sim | Mês de ínicio da cobrança |
 | start_year | int | Sim | Ano de ínicio da cobrança |
-| period_installments | int | Sim | Quantidade de mensalidades que devem ser geradas para o período atual do aluno, as mensalidades não são geradas todas de uma vez pois existem prazos de reajuste no valor, então elas são geradas por períodos. Ex: Em caso de Graduação normalmente os periodos são Semestrais, então deve ser passado o número 6, e serão geradas 6 mensalidades. Em caso de Pós-Graduação normalmente o período é igual a quantidade de meses de duração do curso, então deve ser passado o mesmo numero do `duration_in_months` |
+| period_installments | int | Sim | Quantidade de mensalidades que devem ser geradas para o período atual do aluno. As mensalidades não são geradas todas de uma vez, pois, ao longo de todo o curso, existem prazos de reajuste no valor (nas situações de rematrículas, por exemplo), então elas são geradas por períodos. Ex: Em caso de Graduação, normalmente os períodos são Semestrais, então deve-se passar o número 6, e serão geradas 6 mensalidades. Em caso de Pós-Graduação, normalmente o período é igual a quantidade de meses de duração do curso, então deve-se passar o mesmo número do `duration_in_months`. |
 | enrollment_semester | text | Sim | Semestre que o aluno ingressou no curso |
 | external_id | text | Não | Identificador externo da matrícula na instituição |
 
@@ -487,7 +491,7 @@ Interrompe a matrícula de acordo com os parâmetros passados
 | Header | `"Content-Type: application/json"` |
 | Método HTTP | `POST` |
 | Body | JSON com os parâmetros para a criação |
-| URL | `https://queropago.com.br/api/v1/enrollments/1/interrupt` |
+| URL | `https://queropago.com.br/api/v1/enrollments/{id}/interrupt` |
 
 ### Parâmetros do body da request
 
@@ -495,7 +499,7 @@ Interrompe a matrícula de acordo com os parâmetros passados
 | ---- | ---- | ---- | --------- |
 | interruption_reason | text | Sim | Razão da interrupção da cobrança, podendo ser `cancellation`, `transfer`, `dropout` ou `pause` |
 | remaining_value | float | Não | Valor restante a ser pago, necessário somente se o aluno estiver com saldo devedor |
-| installments | int | Não | Quantidade de mensalidades que o aluno pode dividir o saldo devedor, necessário somente se o aluno estiver com saldo devedor |
+| installments | int | Não | Quantidade de mensalidades em que o aluno pode dividir o saldo devedor, necessário somente se o aluno estiver com saldo devedor |
 | first_due_date | date | Não | Data da primeira mensalidade no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601), necessário somente se o aluno estiver com saldo devedor  |
 
 **Razões de interrupção**
@@ -562,10 +566,10 @@ boleto, mesmo sendo paga com cartão de crédito.
 
 | Status | Descrição |
 | ----- | ---- |
-| waiting_payment | Utilizado quando método de pagamento está aguardando ser pago, ou seja, ainda não foi pago |
-| inactive | Quando o método de pagamento foi inativado, um método de pagamento pode ser inativado quando outro mais atualizado é criado, por exemplo quando tem reajustes no valor da mensalidade e é necessário gerar outro boleto com outro valor |
-| paid | Quando o método de pagamento foi pago por completo, o `full_value` é igual ao `paid_value` |
-| partial | Quando o método de pagamento foi pago parcialmente, o `paid_value` é maior que zero mas é menor que o `full_value` |
+| waiting_payment | Utilizado quando método de pagamento está aguardando ser pago, ou seja, ainda não foi pago. Existirá no máximo 1 método de pagamento com esse status |
+| inactive | Quando o método de pagamento foi inativado. Um método de pagamento pode ser inativado quando outro mais atualizado é criado. Exemplo: reajustes no valor da mensalidade gerando a necessidade de se criar um novo boleto com outro valor. |
+| paid | Quando o método de pagamento foi pago por completo, ou seja, `full_value` é igual ao `paid_value` |
+| partial | Quando o método de pagamento foi pago parcialmente, ou seja, `paid_value` é maior que zero mas é menor que o `full_value` |
 | refused | Quando o método de pagamento é recusado, por exemplo um pagamento em um cartão que não tinha saldo |
 | refunded | Caso um pagamento seja reembolsado por completo, ou seja, o `paid_value` é igual ao `refunded_value` |
 | chargedback | Caso aconteça um Chargeback (aluno sinalizou a operadora que a cobrança foi indevida e negou a cobrança), nesse caso o `paid_value` é atualizado para 0 |
@@ -712,7 +716,7 @@ curl --header "Authorization: Bearer ########" \
 | Header | `"Authorization: Bearer ########"` |
 | Header | `"Content-Type: application/json"` |
 | Método HTTP | `GET` |
-| URL | `https://queropago.com.br/api/v1/bills/1` |
+| URL | `https://queropago.com.br/api/v1/bills/{id}` |
 
 ## Update de uma mensalidade
 Faz o update de uma mensalidade no sistema do Quero Pago e retorna o objeto atualizado
@@ -775,7 +779,7 @@ curl --header "Authorization: Bearer ########" \
 | Header | `"Authorization: Bearer ########"` |
 | Header | `"Content-Type: application/json"` |
 | Método HTTP | `PUT` |
-| URL | `https://queropago.com.br/api/v1/bills/1` |
+| URL | `https://queropago.com.br/api/v1/bills/{id}` |
 
 ### Possíveis atributos para realizar o update
 
@@ -901,7 +905,7 @@ curl --header "Authorization: Bearer ########" \
 | Header | `"Authorization: Bearer ########"` |
 | Header | `"Content-Type: application/json"` |
 | Método HTTP | `GET` |
-| URL | `https://queropago.com.br/api/v1/campuses/1` |
+| URL | `https://queropago.com.br/api/v1/campuses/{id}` |
 
 
 ## Update de um campus
@@ -946,7 +950,7 @@ curl --header "Authorization: Bearer ########" \
 | Header | `"Authorization: Bearer ########"` |
 | Header | `"Content-Type: application/json"` |
 | Método HTTP | `PUT` |
-| URL | `https://queropago.com.br/api/v1/campuses/1` |
+| URL | `https://queropago.com.br/api/v1/campuses/{id}` |
 
 ### Possíveis atributos para realizar o update
 
@@ -1055,7 +1059,7 @@ curl --header "Authorization: Bearer ########" \
 | Header | `"Authorization: Bearer ########"` |
 | Header | `"Content-Type: application/json"` |
 | Método HTTP | `GET` |
-| URL | `https://queropago.com.br/api/v1/cities/1` |
+| URL | `https://queropago.com.br/api/v1/cities/{id}` |
 
 # Estados
 Entidade que representa o **Estado** no sistema do Quero Pago.
@@ -1134,7 +1138,7 @@ curl --header "Authorization: Bearer ########" \
 | Header | `"Authorization: Bearer ########"` |
 | Header | `"Content-Type: application/json"` |
 | Método HTTP | `GET` |
-| URL | `https://queropago.com.br/api/v1/states/1` |
+| URL | `https://queropago.com.br/api/v1/states/{id}` |
 
 # Curso
 Entidade que representa o **Curso** da instituição no sistema do Quero Pago.
@@ -1144,9 +1148,9 @@ Entidade que representa o **Curso** da instituição no sistema do Quero Pago.
 | id | int | Identificador do curso no Quero Pago  |
 | external_id | text | Identificador do curso no na instituição de ensino  |
 | name | text | Nome do curso  |
-| shift | text | Turno do curso |
-| kind | text | Modalidade do curso |
-| level | text | Nível do curso |
+| shift | text | Turno do curso, podendo ser: `Virtual`, `Outro`, `Noite`, `Manhã`, `Integral` ou `Tarde` |
+| kind | text | Modalidade do curso, podendo ser: `EaD`, `Presencial` ou `Semipresencial` |
+| level | text | Nível do curso, podendo ser: `Pós-graduação Lato Sensu`, `Bacharelado (graduação)`, `Técnico`, `Tecnólogo (graduação)`, `Licenciatura (graduação)`, `Profissionalizante`, `Pós Graduação`, `Segunda Graduação`, `Pos-Graduação`, `Graduação`, `Curso Livre` ou `Bootcamp` |
 | campus | object | Referência a entidade Campus em que o curso pertence |
 | created_at | datetime | Momento da criação do curso no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) em UTC |
 | updated_at | datetime | Momento da última atualização do curso no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) em UTC |
@@ -1247,7 +1251,7 @@ curl --header "Authorization: Bearer ########" \
 | Header | `"Authorization: Bearer ########"` |
 | Header | `"Content-Type: application/json"` |
 | Método HTTP | `GET` |
-| URL | `https://queropago.com.br/api/v1/courses/1` |
+| URL | `https://queropago.com.br/api/v1/courses/{id}` |
 
 
 ## Update de um curso
@@ -1290,7 +1294,7 @@ curl --header "Authorization: Bearer ########" \
 | Header | `"Authorization: Bearer ########"` |
 | Header | `"Content-Type: application/json"` |
 | Método HTTP | `PUT` |
-| URL | `https://queropago.com.br/api/v1/courses/1` |
+| URL | `https://queropago.com.br/api/v1/courses/{id}` |
 
 ### Possíveis atributos para realizar o update
 
@@ -1381,6 +1385,12 @@ curl --header "Authorization: Bearer ########" \
 | Método HTTP | `GET` |
 | URL | `https://queropago.com.br/api/v1/students` |
 
+### Filtros
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| cpf | Query | CPF do aluno, contendo apenas números |
+
 ## Busca de um Aluno
 Busca de um Aluno utilizando o ID Quero Pago
 
@@ -1428,7 +1438,7 @@ curl --header "Authorization: Bearer ########" \
 | Header | `"Authorization: Bearer ########"` |
 | Header | `"Content-Type: application/json"` |
 | Método HTTP | `GET` |
-| URL | `https://queropago.com.br/api/v1/students/1` |
+| URL | `https://queropago.com.br/api/v1/students/{id}` |
 
 ## Criação de um aluno
 A criação de um aluno ocorre junto com a criação da **Matrícula**.
@@ -1445,6 +1455,18 @@ A entrega de eventos ocorrerá apenas para endereços https por motivo de segura
 É esperado que toda resposta para um entrega de evento tenha algum código de status de sucesso HTTP 2xx, qualquer código de status diferente desse será considerado como uma falha na entrega. Caso alguma falha de entrega ocorra faremos tentativas de entrega por até 3 dias após a ocorrência do evento em tempos crescentes.
 
 O corpo de toda requisição será sempre no formato JSON (`application/json`).
+
+### Possíveis eventos
+
+| Evento | Descrição |
+| ---- | --------- |
+| enrollment_created | Quando uma matrícula de um aluno é criada, é retornado os dados do aluno, curso, matrícula e mensalidades |
+| enrollment_canceled | Quando uma matrícula de um aluno é cancelada, é retornado a matrícula que foi cancelada |
+| bill_created | Quando uma mensalidade de um aluno é criada, é retornado a mensalidade que foi criada |
+| bill_paid | Quando uma mensalidade de um aluno é paga, é retornado a mensalidade que foi paga |
+| bill_overdue | Quando uma mensalidade de um aluno é marcada como vencida, é retornado a mensalidade que foi vencida |
+| bill_due_date_changed | Quando a data de vencimento de uma mensalidade é alterada, é retornado a mensalidade que teve a data de vencimento alterada |
+| boleto_updated | Quando um novo boleto é gerado, é retornado a mensalidade que teve seu boleto atualizado |
 
 
 ## Verificando autenticidade das entregas
@@ -1495,12 +1517,11 @@ curl --header "Authorization: Bearer ########" \
   "events": [
     "enrollment_created",
     "enrollment_canceled",
-    "enrollment_finished",
     "bill_created",
     "bill_paid",
     "bill_overdue",
     "bill_due_date_changed",
-    "bill_charges_changed"
+    "boleto_updated"
   ]
 }
 ```
@@ -1706,7 +1727,7 @@ X-QP-Delivery: cc63acc3-9721-4633-8286-737199c01a75
 | Header | `"Authorization: Bearer ########"` |
 | Header | `"Content-Type: application/json"` |
 | Método HTTP | `PUT` |
-| URL | `https://queropago.com.br/api/v1/test-events/enrollment-canceled/1` |
+| URL | `https://queropago.com.br/api/v1/test-events/enrollment-canceled/{id}` |
 
 Passando como parâmetro o Identificador da matrícula Quero Pago que deseja cancelar.
 
@@ -1821,7 +1842,7 @@ X-QP-Delivery: 5980475a-c875-4f00-bb9d-d94059b7a4af
 | Header | `"Authorization: Bearer ########"` |
 | Header | `"Content-Type: application/json"` |
 | Método HTTP | `PUT` |
-| URL | `https://queropago.com.br/api/v1/test-events/bill-paid/1` |
+| URL | `https://queropago.com.br/api/v1/test-events/bill-paid/{id}` |
 
 Passando como parâmetro o Identificador da mensalidade Quero Pago que deseja marcar como paga.
 
@@ -1885,7 +1906,7 @@ X-QP-Delivery: c58812c8-139f-40b0-8aff-2df4845f401f
 | Header | `"Authorization: Bearer ########"` |
 | Header | `"Content-Type: application/json"` |
 | Método HTTP | `PUT` |
-| URL | `https://queropago.com.br/api/v1/test-events/bill-overdue/1` |
+| URL | `https://queropago.com.br/api/v1/test-events/bill-overdue/{id}` |
 
 Passando como parâmetro o Identificador da mensalidade Quero Pago que deseja marcar como vencida.
 
@@ -2031,6 +2052,6 @@ X-QP-Delivery: 33940f46-5eb0-4400-812e-1b78018151c8
 | Header | `"Authorization: Bearer ########"` |
 | Header | `"Content-Type: application/json"` |
 | Método HTTP | `PUT` |
-| URL | `https://queropago.com.br/api/v1/test-events/boleto-updated/1` |
+| URL | `https://queropago.com.br/api/v1/test-events/boleto-updated/{id}` |
 
 Passando como parâmetro o Identificador da mensalidade Quero Pago que deseja gerar um novo boleto.
