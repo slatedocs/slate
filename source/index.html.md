@@ -992,7 +992,7 @@ socket.on('message', (msg) => {
 ```
 
 
-Coinbtr implements Web-Sockets in order to provide real-time market data from our exchange engine.
+Coinbtr implements Web-Sockets in order to provide real-time market data from our exchange engine. The websocket API endpoint is `ws.coinbtr.com`.
 
 We recommend to use [socket.io](https://socket.io). Installation:
 
