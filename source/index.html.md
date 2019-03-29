@@ -84,8 +84,8 @@ A successful response is indicated by HTTP status code 200 and may contain an op
 import json, hmac, hashlib, time, requests, base64
 from requests.auth import AuthBase
 
-# Create custom authentication for Exchange
-class FXExchangeAuth(AuthBase):
+# Create custom authentication for Brokerage
+class FXBrokerageAuth(AuthBase):
     def __init__(self, api_key, secret_key, passphrase):
         self.api_key = api_key
         self.secret_key = secret_key
@@ -109,7 +109,7 @@ class FXExchangeAuth(AuthBase):
 
 
 api_url = 'https://api.falconx.io/'
-auth = FXExchangeAuth(API_KEY, API_SECRET, API_PASS)
+auth = FXBrokerageAuth(API_KEY, API_SECRET, API_PASS)
 
 # Place an order
 order = {
