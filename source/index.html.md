@@ -3,7 +3,6 @@ title: Coinbtr API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - python
 
 toc_footers:
   - <a href='https://coinbtr.com/signup'>Sign Up for a Developer Key</a>
@@ -25,13 +24,13 @@ Before making API calls consider the following:
 
 * All requests use the `application/json` content type and go over `https`.
 * The base url is `https://api.coinbtr.com/api/v1`.
-* All requests are `GET` and `POST` requests methods and responses come in a default response object with the result in the `data` field.
+* All requests are `GET` and `POST` requests methods and responses come in a default response json object with the result in the `data` field.
 * Check the `success` flag to ensure that your API call succeeded.
 * If something goes wrong look at the `msg` field. There you will find the error description.
 
 ## HTTP API Responses
 
-Coinbtr REST API calls will always return a JSON Object.
+Coinbtr REST API calls will return a JSON Object.
 
 * A typical successful API call will response a JSON  object that looks like:
 
@@ -54,7 +53,7 @@ Coinbtr REST API calls will always return a JSON Object.
 
 ## API Key
 
-In order to use our platform through API calls you must request and configure as many API keys as you need. You can configure each API key with its own level of permission. To add, delete or modify your API keys please go to your profile `Settings` > `Manage API Keys`.
+In order to use our platform through API calls you must request and configure as many API keys as you need. You can configure each API key with its own level of permission. To add, delete or modify your API keys please go to your profile `Profile` > `API Keys`.
 
 <aside class="notice">
 API key is always needed for accessing private endpoints.
@@ -102,7 +101,7 @@ You can access the following endpoints freely, API KEY is not required.
 </aside>
 ## List available currencies
 ```shell
-curl -X GET "https://api.coinbtr.com/api/v1/data/coins/" \
+curl -X GET "https://api.coinbtr.com/api/v1/data/coins/"
 ```
 > The API call will response this:
 
@@ -963,3 +962,144 @@ Returns the trading fees. See [Trading fees](https://coinbtr.com/fees).
 |---|---|---|---|---|
 | market | String | No | Market name (e.g. `btc-mxn`). |
 | user_level | Integer | No | User level (e.g. 1). By default all users are level 1|
+
+#Websockets [PUBLIC]
+
+
+```javascript
+import io from 'socket.io-client';
+// or
+var io = require('socket.io-client');
+
+
+// connect to the websocket
+const socket = io.connect('wss://ws.coinbtr.com');
+
+// Define a market you want to subscribe
+const market = 'btc-mxn';
+
+// Subscribe to the market
+socket.emit('subscribe', market);
+
+// Read and manage market data as you want
+socket.on('message', (msg) => {
+  console.log(msg)
+  /*
+  your code here
+  */
+});
+
+```
+
+
+Coinbtr implements Web-Sockets in order to provide real-time market data from our exchange engine.
+
+We recommend to use [socket.io](https://socket.io). Installation:
+
+If using yarn:
+
+`yarn add socket.io-client`
+
+If using npm:
+
+`npm install --save socket.io-client`
+
+or CDN:
+
+`<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>`
+
+
+## Order-book Channel
+> Messages on this channel look like this:
+
+```json
+{
+  "channel": "orderbook",
+  "type": "BTC-MXN",
+  "data": {
+    "asks": [
+      {
+        "a": "0.026832",
+        "p": "75000.00",
+        "v": "2012.4",
+        "t": 1553747507445
+      },
+      {
+        "a": "0.031011",
+        "p": "75050.00",
+        "v": "2327.37",
+        "t": 1553747562361
+      }
+    ],
+    "bids": [
+      {
+        "a": "0.00531345",
+        "v": "397.18",
+        "p": "74750.00",
+        "t": 1553747963921
+      },
+      {
+        "a": "0.0034",
+        "v": "253.3",
+        "p": "74500.00",
+        "t": 1553747925659
+      }
+    ]
+  }
+}
+```
+The orderbook channel provides the top ten SELL and BUY limit orders for the orderbook (or market) specified.
+
+### JSON message returned
+
+`asks` field contains **SELL** orders.
+
+`bids` field contains **BUY** orders.
+
+The `data` field contains an array with `asks` and `bids` orders in the following form:
+
+| Field name | Type | Description |
+|---|---|---|---|---|
+| a | String | Order amount. |
+| p | String | Order price. |
+| v | String | Order value. |
+| t | Integer | UTC timestamp with milliseconds precision. |
+
+## Trades Channel
+> Messages on this channel look like this:
+
+```json
+{
+  "channel": "trades",
+  "type": "BTC-MXN",
+  "data": [
+    {
+      "a": "0.0034",
+      "v": "253.3",
+      "p": "74500.00",
+      "s": 1,
+      "t": 1553747925659
+    },
+    {
+      "a": "0.031011",
+      "p": "75050.00",
+      "v": "2327.37",
+      "s": 0,
+      "t": 1553747925659
+    },
+  ]
+}
+```
+The trades channel provides the last ten trades done for the specified market.
+
+### JSON message returned
+
+The `data` field contains an array with the last trades in the following form:
+
+| Field name | Type | Description |
+|---|---|---|---|---|
+| a | String | Order amount. |
+| p | String | Order price. |
+| v | String | Order value. |
+| s | Integer | Taker side. 1 indicates **BUY**, 0 indicates **SELL**. |
+| t | Integer | UTC timestamp with milliseconds precision. |
