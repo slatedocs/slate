@@ -192,7 +192,18 @@ This is the endpoint you will use to create a new user and attach information th
 
 ### Requests
 
-At this endpoint, you will need to complete all fields with user information and include a valid Ethereum address (must not be already used in Sila system and not a smart contract). The private key associated with the `crypto_entry.crypto_address` will be used to generate usersignature headers on some subsequent calls.
+At this endpoint, you will need to complete all fields with user information and include a valid Ethereum address (must not be already used in Sila system and not a smart contract). The private key associated with the `crypto_entry.crypto_address` should be used to generate usersignature headers on some subsequent calls.
+
+In this version of the API, required KYC data includes:
+
+- Full legal name
+- U.S. Social Security Number (SSN)
+- Date of birth
+- A valid street address
+- An email address
+- A phone number
+
+Expect these requirements to change in upcoming versions!
 
 This endpoint's request body is the [entity_msg](#entity_msg) JSON object.
 
