@@ -4634,6 +4634,264 @@ To perform this operation, you must be authenticated by means of one of the foll
 personalAccessToken, oauth2
 </aside>
 
+## Update a portfolio
+
+<a id="opIdupdateportfolio"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X PUT https://app.asana.com/api/{version}/portfolios/{portfolio_gid} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+const inputBody = '{
+  "data": {
+    "color": "light-green",
+    "workspace": {
+      "name": "Bug Task"
+    },
+    "name": "Bug Task"
+  }
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+
+};
+
+fetch('https://app.asana.com/api/{version}/portfolios/{portfolio_gid}',
+{
+  method: 'PUT',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.put('https://app.asana.com/api/{version}/portfolios/{portfolio_gid}', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://app.asana.com/api/{version}/portfolios/{portfolio_gid}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("PUT");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.put 'https://app.asana.com/api/{version}/portfolios/{portfolio_gid}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+        
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("PUT", "https://app.asana.com/api/{version}/portfolios/{portfolio_gid}", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`PUT /portfolios/{portfolio_gid}`
+
+An existing portfolio can be updated by making a PUT request on the URL for
+that portfolio. Only the fields provided in the `data` block will be updated;
+any unspecified fields will remain unchanged.
+
+Returns the complete updated portfolio record.
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "color": "light-green",
+    "workspace": {
+      "name": "Bug Task"
+    },
+    "name": "Bug Task"
+  }
+}
+```
+
+<h3 id="update-a-portfolio-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[PortfolioObject](#schemaportfolioobject)|true|The updated fields for the portfolio.|
+|portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
+|opt_pretty|query|boolean|false|Provides the response in “pretty” output. In the case of JSON this means doing proper line breaking and indentation to make it readable. This will take extra time and increase the response size so it is advisable only to use this during debugging.|
+|opt_fields|query|array[string]|false|Some requests return *compact* representations of objects, to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below.|
+|opt_expand|query|array[string]|false|Query results and sub-objects are returned in compact form by default. This option can be used to expand query results or sub-objects to return more detailed information. Be sure you really need the information in the expanded form, as executing a query with many results in expanded form can be costly and return you a lot of data to consume.|
+|limit|query|integer|false|The number of objects to return per page. The value must be between 1 and 100.|
+|offset|query|string|false|An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results.|
+
+#### Detailed descriptions
+
+**opt_fields**: Some requests return *compact* representations of objects, to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below.
+The id of included objects will always be returned, regardless of the field options.
+
+**opt_expand**: Query results and sub-objects are returned in compact form by default. This option can be used to expand query results or sub-objects to return more detailed information. Be sure you really need the information in the expanded form, as executing a query with many results in expanded form can be costly and return you a lot of data to consume.
+If the fields option is also used, it will take precedence over the expand option and prevent expansion.
+
+**offset**: An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results.
+'Note: You can only pass in an offset that was returned to you via a previously paginated request.'
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "color": "light-green",
+    "custom_field_settings": [
+      {
+        "is_important": false,
+        "parent": {
+          "resource_type": "task",
+          "name": "Bug Task",
+          "id": 12345,
+          "gid": 12345
+        },
+        "project": {
+          "resource_type": "task",
+          "name": "Bug Task",
+          "id": 12345,
+          "gid": 12345
+        },
+        "custom_field": {
+          "description": "Development team priority",
+          "type": "text",
+          "enum_options": [
+            {
+              "name": "Low",
+              "enabled": true,
+              "color": "blue",
+              "id": 12345,
+              "gid": 12345,
+              "resource_type": "task"
+            }
+          ],
+          "precision": 2,
+          "name": "Bug Task",
+          "id": 12345,
+          "gid": 12345,
+          "resource_type": "task",
+          "resource_subtype": "section"
+        },
+        "id": 12345,
+        "gid": 12345,
+        "resource_type": "task",
+        "created_at": "2012-02-22T02:06:58.147Z"
+      }
+    ],
+    "owner": {
+      "id": 12345,
+      "gid": 12345,
+      "resource_type": "task"
+    },
+    "workspace": {
+      "name": "Bug Task",
+      "id": 12345,
+      "gid": 12345,
+      "resource_type": "task"
+    },
+    "name": "Bug Task",
+    "id": 12345,
+    "gid": 12345,
+    "resource_type": "task",
+    "created_at": "2012-02-22T02:06:58.147Z"
+  }
+}
+```
+
+<h3 id="update-a-portfolio-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully updated the portfolio.|[PortfolioObject](#schemaportfolioobject)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|5XX|Unknown|There was a problem on Asana’s end.|[Error](#schemaerror)|
+|default|Default|Sadly, sometimes requests to the API are not successful. Failures can occur for a wide range of reasons. In all cases, the API should return an HTTP Status Code that indicates the nature of the failure, with a response body in JSON format containing additional information.
+In the event of a server error the response body will contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error.|[Error](#schemaerror)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+personalAccessToken, oauth2
+</aside>
+
 ## Delete a portfolio
 
 <a id="opIddeletePortfolio"></a>
@@ -5437,6 +5695,317 @@ If the fields option is also used, it will take precedence over the expand optio
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully added the item to the portfolio.|[EmptyObject](#schemaemptyobject)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|5XX|Unknown|There was a problem on Asana’s end.|[Error](#schemaerror)|
+|default|Default|Sadly, sometimes requests to the API are not successful. Failures can occur for a wide range of reasons. In all cases, the API should return an HTTP Status Code that indicates the nature of the failure, with a response body in JSON format containing additional information.
+In the event of a server error the response body will contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error.|[Error](#schemaerror)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+personalAccessToken, oauth2
+</aside>
+
+## Add a custom field to a portfolio
+
+<a id="opIdportfolio.addCustomFieldSetting"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://app.asana.com/api/{version}/portfolios/{portfolio_gid}/addCustomFieldSetting?custom_field=14916 \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+
+};
+
+fetch('https://app.asana.com/api/{version}/portfolios/{portfolio_gid}/addCustomFieldSetting?custom_field=14916',
+{
+  method: 'POST',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.post('https://app.asana.com/api/{version}/portfolios/{portfolio_gid}/addCustomFieldSetting', params={
+  'custom_field': '14916'
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://app.asana.com/api/{version}/portfolios/{portfolio_gid}/addCustomFieldSetting?custom_field=14916");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("POST");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.post 'https://app.asana.com/api/{version}/portfolios/{portfolio_gid}/addCustomFieldSetting',
+  params: {
+  'custom_field' => 'integer'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+        
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("POST", "https://app.asana.com/api/{version}/portfolios/{portfolio_gid}/addCustomFieldSetting", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`POST /portfolios/{portfolio_gid}/addCustomFieldSetting`
+
+Custom fields are associated with portfolios by way of custom field settings.  This method creates a setting for the portfolio.
+
+<h3 id="add-a-custom-field-to-a-portfolio-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
+|custom_field|query|integer|true|The custom field to associate with this portfolio.|
+|is_important|query|boolean|false|Whether this field should be considered important to this portfolio (for instance, to display in the list view of items in the portfolio).|
+|insert_before|query|integer|false|An id of a Custom Field Setting on this portfolio, before which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
+|insert_after|query|integer|false|An id of a Custom Field Setting on this portfolio, after which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
+|opt_pretty|query|boolean|false|Provides the response in “pretty” output. In the case of JSON this means doing proper line breaking and indentation to make it readable. This will take extra time and increase the response size so it is advisable only to use this during debugging.|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
+```
+
+<h3 id="add-a-custom-field-to-a-portfolio-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully added the custom field to the portfolio.|[EmptyObject](#schemaemptyobject)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|5XX|Unknown|There was a problem on Asana’s end.|[Error](#schemaerror)|
+|default|Default|Sadly, sometimes requests to the API are not successful. Failures can occur for a wide range of reasons. In all cases, the API should return an HTTP Status Code that indicates the nature of the failure, with a response body in JSON format containing additional information.
+In the event of a server error the response body will contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error.|[Error](#schemaerror)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+personalAccessToken, oauth2
+</aside>
+
+## Remove a custom field from a portfolio
+
+<a id="opIdportfolio.removeCustomFieldSetting"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://app.asana.com/api/{version}/portfolios/{portfolio_gid}/removeCustomFieldSetting?custom_field=14916 \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+
+};
+
+fetch('https://app.asana.com/api/{version}/portfolios/{portfolio_gid}/removeCustomFieldSetting?custom_field=14916',
+{
+  method: 'POST',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.post('https://app.asana.com/api/{version}/portfolios/{portfolio_gid}/removeCustomFieldSetting', params={
+  'custom_field': '14916'
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://app.asana.com/api/{version}/portfolios/{portfolio_gid}/removeCustomFieldSetting?custom_field=14916");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("POST");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.post 'https://app.asana.com/api/{version}/portfolios/{portfolio_gid}/removeCustomFieldSetting',
+  params: {
+  'custom_field' => 'integer'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+        
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("POST", "https://app.asana.com/api/{version}/portfolios/{portfolio_gid}/removeCustomFieldSetting", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`POST /portfolios/{portfolio_gid}/removeCustomFieldSetting`
+
+Removes a custom field setting from a portfolio.
+
+<h3 id="remove-a-custom-field-from-a-portfolio-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
+|custom_field|query|integer|true|The custom field to remove from this portfolio.|
+|opt_pretty|query|boolean|false|Provides the response in “pretty” output. In the case of JSON this means doing proper line breaking and indentation to make it readable. This will take extra time and increase the response size so it is advisable only to use this during debugging.|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
+```
+
+<h3 id="remove-a-custom-field-from-a-portfolio-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully removed the custom field from the portfolio.|[EmptyObject](#schemaemptyobject)|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
@@ -22735,6 +23304,684 @@ To perform this operation, you must be authenticated by means of one of the foll
 personalAccessToken, oauth2
 </aside>
 
+<h1 id="asana-user-task-lists">User Task Lists</h1>
+
+A user task list represents the tasks assigned to a particular user.
+
+## Get a user task list
+
+<a id="opIdgetUserTaskList"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://app.asana.com/api/{version}/user_task_list/{user_task_list_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+
+};
+
+fetch('https://app.asana.com/api/{version}/user_task_list/{user_task_list_gid}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://app.asana.com/api/{version}/user_task_list/{user_task_list_gid}', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://app.asana.com/api/{version}/user_task_list/{user_task_list_gid}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://app.asana.com/api/{version}/user_task_list/{user_task_list_gid}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+        
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://app.asana.com/api/{version}/user_task_list/{user_task_list_gid}", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /user_task_list/{user_task_list_gid}`
+
+Returns the full record for a user task list.
+
+<h3 id="get-a-user-task-list-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|user_task_list_gid|path|string|true|Globally unique identifier for the user task list.|
+|opt_pretty|query|boolean|false|Provides the response in “pretty” output. In the case of JSON this means doing proper line breaking and indentation to make it readable. This will take extra time and increase the response size so it is advisable only to use this during debugging.|
+|opt_fields|query|array[string]|false|Some requests return *compact* representations of objects, to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below.|
+|opt_expand|query|array[string]|false|Query results and sub-objects are returned in compact form by default. This option can be used to expand query results or sub-objects to return more detailed information. Be sure you really need the information in the expanded form, as executing a query with many results in expanded form can be costly and return you a lot of data to consume.|
+|limit|query|integer|false|The number of objects to return per page. The value must be between 1 and 100.|
+|offset|query|string|false|An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results.|
+
+#### Detailed descriptions
+
+**opt_fields**: Some requests return *compact* representations of objects, to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below.
+The id of included objects will always be returned, regardless of the field options.
+
+**opt_expand**: Query results and sub-objects are returned in compact form by default. This option can be used to expand query results or sub-objects to return more detailed information. Be sure you really need the information in the expanded form, as executing a query with many results in expanded form can be costly and return you a lot of data to consume.
+If the fields option is also used, it will take precedence over the expand option and prevent expansion.
+
+**offset**: An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results.
+'Note: You can only pass in an offset that was returned to you via a previously paginated request.'
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "owner": {
+      "id": 12345,
+      "gid": 12345,
+      "resource_type": "task"
+    },
+    "workspace": {
+      "name": "Bug Task",
+      "id": 12345,
+      "gid": 12345,
+      "resource_type": "task"
+    },
+    "name": "Bug Task",
+    "id": 12345,
+    "gid": 12345,
+    "resource_type": "task"
+  }
+}
+```
+
+<h3 id="get-a-user-task-list-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the user task list.|[UserTaskListObject](#schemausertasklistobject)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|5XX|Unknown|There was a problem on Asana’s end.|[Error](#schemaerror)|
+|default|Default|Sadly, sometimes requests to the API are not successful. Failures can occur for a wide range of reasons. In all cases, the API should return an HTTP Status Code that indicates the nature of the failure, with a response body in JSON format containing additional information.
+In the event of a server error the response body will contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error.|[Error](#schemaerror)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+personalAccessToken, oauth2
+</aside>
+
+## Get a user's task list
+
+<a id="opIdgetUsersTaskList"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://app.asana.com/api/{version}/users/{user_gid}/user_task_list \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+
+};
+
+fetch('https://app.asana.com/api/{version}/users/{user_gid}/user_task_list',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://app.asana.com/api/{version}/users/{user_gid}/user_task_list', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://app.asana.com/api/{version}/users/{user_gid}/user_task_list");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://app.asana.com/api/{version}/users/{user_gid}/user_task_list',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+        
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://app.asana.com/api/{version}/users/{user_gid}/user_task_list", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /users/{user_gid}/user_task_list`
+
+Returns the full record for a user's task list.
+
+<h3 id="get-a-user's-task-list-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|user_gid|path|string|true|Globally unique identifier for the user.|
+|opt_pretty|query|boolean|false|Provides the response in “pretty” output. In the case of JSON this means doing proper line breaking and indentation to make it readable. This will take extra time and increase the response size so it is advisable only to use this during debugging.|
+|opt_fields|query|array[string]|false|Some requests return *compact* representations of objects, to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below.|
+|opt_expand|query|array[string]|false|Query results and sub-objects are returned in compact form by default. This option can be used to expand query results or sub-objects to return more detailed information. Be sure you really need the information in the expanded form, as executing a query with many results in expanded form can be costly and return you a lot of data to consume.|
+|limit|query|integer|false|The number of objects to return per page. The value must be between 1 and 100.|
+|offset|query|string|false|An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results.|
+
+#### Detailed descriptions
+
+**opt_fields**: Some requests return *compact* representations of objects, to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below.
+The id of included objects will always be returned, regardless of the field options.
+
+**opt_expand**: Query results and sub-objects are returned in compact form by default. This option can be used to expand query results or sub-objects to return more detailed information. Be sure you really need the information in the expanded form, as executing a query with many results in expanded form can be costly and return you a lot of data to consume.
+If the fields option is also used, it will take precedence over the expand option and prevent expansion.
+
+**offset**: An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results.
+'Note: You can only pass in an offset that was returned to you via a previously paginated request.'
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "owner": {
+      "id": 12345,
+      "gid": 12345,
+      "resource_type": "task"
+    },
+    "workspace": {
+      "name": "Bug Task",
+      "id": 12345,
+      "gid": 12345,
+      "resource_type": "task"
+    },
+    "name": "Bug Task",
+    "id": 12345,
+    "gid": 12345,
+    "resource_type": "task"
+  }
+}
+```
+
+<h3 id="get-a-user's-task-list-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the user's task list.|[UserTaskListObject](#schemausertasklistobject)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|5XX|Unknown|There was a problem on Asana’s end.|[Error](#schemaerror)|
+|default|Default|Sadly, sometimes requests to the API are not successful. Failures can occur for a wide range of reasons. In all cases, the API should return an HTTP Status Code that indicates the nature of the failure, with a response body in JSON format containing additional information.
+In the event of a server error the response body will contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error.|[Error](#schemaerror)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+personalAccessToken, oauth2
+</aside>
+
+## Get tasks in a user task list
+
+<a id="opIdgetUserTaskListTasks"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://app.asana.com/api/{version}/user_task_lists/{user_task_list_gid}/tasks \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+
+};
+
+fetch('https://app.asana.com/api/{version}/user_task_lists/{user_task_list_gid}/tasks',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://app.asana.com/api/{version}/user_task_lists/{user_task_list_gid}/tasks', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://app.asana.com/api/{version}/user_task_lists/{user_task_list_gid}/tasks");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://app.asana.com/api/{version}/user_task_lists/{user_task_list_gid}/tasks',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+        "Authorization": []string{"Bearer {access-token}"},
+        
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "https://app.asana.com/api/{version}/user_task_lists/{user_task_list_gid}/tasks", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /user_task_lists/{user_task_list_gid}/tasks`
+
+Returns the compact list of tasks in a user’s My Tasks list. The returned tasks will be in order within each assignee status group of `Inbox`, `Today`, and `Upcoming`.
+**Note:** tasks in `Later` have a different ordering in the Asana web app than the other assignee status groups; this endpoint will still return them in list order in `Later` (differently than they show up in Asana, but the same order as in Asana’s mobile apps).
+**Note:** Access control is enforced for this endpoint as with all Asana API endpoints, meaning a user’s private tasks will be filtered out if the API-authenticated user does not have access to them.
+**Note:** Both complete and incomplete tasks are returned by default unless they are filtered out (for example, setting `completed_since=now` will return only incomplete tasks, which is the default view for “My Tasks” in Asana.)
+
+<h3 id="get-tasks-in-a-user-task-list-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|completed_since|query|string|false|Only return tasks that are either incomplete or that have been completed since this time. Accepts a date-time string or the keyword *now*.|
+|user_task_list_gid|path|string|true|Globally unique identifier for the user task list.|
+|opt_pretty|query|boolean|false|Provides the response in “pretty” output. In the case of JSON this means doing proper line breaking and indentation to make it readable. This will take extra time and increase the response size so it is advisable only to use this during debugging.|
+|opt_fields|query|array[string]|false|Some requests return *compact* representations of objects, to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below.|
+|opt_expand|query|array[string]|false|Query results and sub-objects are returned in compact form by default. This option can be used to expand query results or sub-objects to return more detailed information. Be sure you really need the information in the expanded form, as executing a query with many results in expanded form can be costly and return you a lot of data to consume.|
+|limit|query|integer|false|The number of objects to return per page. The value must be between 1 and 100.|
+|offset|query|string|false|An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results.|
+
+#### Detailed descriptions
+
+**completed_since**: Only return tasks that are either incomplete or that have been completed since this time. Accepts a date-time string or the keyword *now*.
+
+**opt_fields**: Some requests return *compact* representations of objects, to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below.
+The id of included objects will always be returned, regardless of the field options.
+
+**opt_expand**: Query results and sub-objects are returned in compact form by default. This option can be used to expand query results or sub-objects to return more detailed information. Be sure you really need the information in the expanded form, as executing a query with many results in expanded form can be costly and return you a lot of data to consume.
+If the fields option is also used, it will take precedence over the expand option and prevent expansion.
+
+**offset**: An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results.
+'Note: You can only pass in an offset that was returned to you via a previously paginated request.'
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "assignee": {
+        "email": "gsanchez@example.com",
+        "name": "Greg Sanchez",
+        "photo": {
+          "image_21x21": "https://...",
+          "image_27x27": "https://...",
+          "image_36x36": "https://...",
+          "image_60x60": "https://...",
+          "image_128x128": "https://..."
+        },
+        "workspaces": [
+          {
+            "email_domains": [
+              "asana.com"
+            ],
+            "is_organization": false,
+            "name": "Bug Task",
+            "id": 12345,
+            "gid": 12345,
+            "resource_type": "task"
+          }
+        ],
+        "id": 12345,
+        "gid": 12345,
+        "resource_type": "task"
+      },
+      "assignee_status": "upcoming",
+      "completed": false,
+      "completed_at": "2012-02-22T02:06:58.147Z",
+      "custom_fields": [
+        {
+          "id": 1646,
+          "gid": "1646",
+          "name": "Priority",
+          "type": "enum",
+          "enum_value": {
+            "id": 126,
+            "name": "P1"
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "id": 1234,
+          "gid": "1234"
+        },
+        {
+          "id": 4321,
+          "gid": "4321"
+        }
+      ],
+      "dependents": [
+        {
+          "id": 1234,
+          "gid": "1234"
+        },
+        {
+          "id": 4321,
+          "gid": "4321"
+        }
+      ],
+      "due_on": "2012-03-26",
+      "due_at": "2012-02-22T02:06:58.147Z",
+      "external": {
+        "id": "my_id",
+        "data": "A blob of information"
+      },
+      "followers": [
+        {
+          "id": 1234,
+          "name": "Mittens"
+        }
+      ],
+      "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
+      "liked": true,
+      "likes": [
+        {
+          "id": 1234,
+          "name": "Mittens"
+        }
+      ],
+      "memberships": [
+        {
+          "project": {
+            "id": 1331,
+            "gid": "1331",
+            "name": "Bugs"
+          },
+          "section": {
+            "id": 1123,
+            "gid": "1123",
+            "name": "P1:"
+          }
+        }
+      ],
+      "modified_at": "2012-02-22T02:06:58.147Z",
+      "name": "Buy catnip",
+      "notes": "Mittens really likes the stuff from Humboldt.",
+      "num_likes": 5,
+      "num_subtasks": 3,
+      "projects": [
+        {
+          "id": 1331,
+          "gid": "1331",
+          "name": "Stuff to buy"
+        }
+      ],
+      "parent": {
+        "name": "Bug Task",
+        "id": 12345,
+        "gid": 12345,
+        "resource_type": "task"
+      },
+      "start_on": "2012-03-26",
+      "tags": [
+        {
+          "id": 59746,
+          "gid": "59746",
+          "name": "Grade A"
+        }
+      ],
+      "workspace": {
+        "name": "Bug Task",
+        "id": 12345,
+        "gid": 12345,
+        "resource_type": "task"
+      },
+      "id": 12345,
+      "gid": 12345,
+      "resource_type": "task",
+      "created_at": "2012-02-22T02:06:58.147Z",
+      "resource_subtype": "section"
+    }
+  ]
+}
+```
+
+<h3 id="get-tasks-in-a-user-task-list-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the user task list's tasks.|[TaskArray](#schemataskarray)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|5XX|Unknown|There was a problem on Asana’s end.|[Error](#schemaerror)|
+|default|Default|Sadly, sometimes requests to the API are not successful. Failures can occur for a wide range of reasons. In all cases, the API should return an HTTP Status Code that indicates the nature of the failure, with a response body in JSON format containing additional information.
+In the event of a server error the response body will contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error.|[Error](#schemaerror)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+personalAccessToken, oauth2
+</aside>
+
 <h1 id="asana-webhooks">Webhooks</h1>
 
 Webhooks allow an application to be notified of changes in Asana.
@@ -24686,1253 +25933,6 @@ If the fields option is also used, it will take precedence over the expand optio
 In the event of a server error the response body will contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error.|[Error](#schemaerror)|
 
 <h3 id="remove-a-user-from-a-workspace-or-organization-responseschema">Response Schema</h3>
-
-<aside class="warning">
-To perform this operation, you must be authenticated by means of one of the following methods:
-personalAccessToken, oauth2
-</aside>
-
-<h1 id="asana-portfolios">portfolios</h1>
-
-## Update a portfolio
-
-<a id="opIdupdateportfolio"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X PUT https://app.asana.com/api/{version}/portfolios/{portfolio_gid} \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "color": "light-green",
-    "workspace": {
-      "name": "Bug Task"
-    },
-    "name": "Bug Task"
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/{version}/portfolios/{portfolio_gid}',
-{
-  method: 'PUT',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.put('https://app.asana.com/api/{version}/portfolios/{portfolio_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/{version}/portfolios/{portfolio_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("PUT");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.put 'https://app.asana.com/api/{version}/portfolios/{portfolio_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-```go
-package main
-
-import (
-       "bytes"
-       "net/http"
-)
-
-func main() {
-
-    headers := map[string][]string{
-        "Content-Type": []string{"application/json"},
-        "Accept": []string{"application/json"},
-        "Authorization": []string{"Bearer {access-token}"},
-        
-    }
-
-    data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("PUT", "https://app.asana.com/api/{version}/portfolios/{portfolio_gid}", data)
-    req.Header = headers
-
-    client := &http.Client{}
-    resp, err := client.Do(req)
-    // ...
-}
-
-```
-
-`PUT /portfolios/{portfolio_gid}`
-
-An existing portfolio can be updated by making a PUT request on the URL for
-that portfolio. Only the fields provided in the `data` block will be updated;
-any unspecified fields will remain unchanged.
-
-Returns the complete updated portfolio record.
-
-> Body parameter
-
-```json
-{
-  "data": {
-    "color": "light-green",
-    "workspace": {
-      "name": "Bug Task"
-    },
-    "name": "Bug Task"
-  }
-}
-```
-
-<h3 id="update-a-portfolio-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|[PortfolioObject](#schemaportfolioobject)|true|The updated fields for the portfolio.|
-|portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
-|opt_pretty|query|boolean|false|Provides the response in “pretty” output. In the case of JSON this means doing proper line breaking and indentation to make it readable. This will take extra time and increase the response size so it is advisable only to use this during debugging.|
-|opt_fields|query|array[string]|false|Some requests return *compact* representations of objects, to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below.|
-|opt_expand|query|array[string]|false|Query results and sub-objects are returned in compact form by default. This option can be used to expand query results or sub-objects to return more detailed information. Be sure you really need the information in the expanded form, as executing a query with many results in expanded form can be costly and return you a lot of data to consume.|
-|limit|query|integer|false|The number of objects to return per page. The value must be between 1 and 100.|
-|offset|query|string|false|An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results.|
-
-#### Detailed descriptions
-
-**opt_fields**: Some requests return *compact* representations of objects, to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below.
-The id of included objects will always be returned, regardless of the field options.
-
-**opt_expand**: Query results and sub-objects are returned in compact form by default. This option can be used to expand query results or sub-objects to return more detailed information. Be sure you really need the information in the expanded form, as executing a query with many results in expanded form can be costly and return you a lot of data to consume.
-If the fields option is also used, it will take precedence over the expand option and prevent expansion.
-
-**offset**: An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results.
-'Note: You can only pass in an offset that was returned to you via a previously paginated request.'
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "data": {
-    "color": "light-green",
-    "custom_field_settings": [
-      {
-        "is_important": false,
-        "parent": {
-          "resource_type": "task",
-          "name": "Bug Task",
-          "id": 12345,
-          "gid": 12345
-        },
-        "project": {
-          "resource_type": "task",
-          "name": "Bug Task",
-          "id": 12345,
-          "gid": 12345
-        },
-        "custom_field": {
-          "description": "Development team priority",
-          "type": "text",
-          "enum_options": [
-            {
-              "name": "Low",
-              "enabled": true,
-              "color": "blue",
-              "id": 12345,
-              "gid": 12345,
-              "resource_type": "task"
-            }
-          ],
-          "precision": 2,
-          "name": "Bug Task",
-          "id": 12345,
-          "gid": 12345,
-          "resource_type": "task",
-          "resource_subtype": "section"
-        },
-        "id": 12345,
-        "gid": 12345,
-        "resource_type": "task",
-        "created_at": "2012-02-22T02:06:58.147Z"
-      }
-    ],
-    "owner": {
-      "id": 12345,
-      "gid": 12345,
-      "resource_type": "task"
-    },
-    "workspace": {
-      "name": "Bug Task",
-      "id": 12345,
-      "gid": 12345,
-      "resource_type": "task"
-    },
-    "name": "Bug Task",
-    "id": 12345,
-    "gid": 12345,
-    "resource_type": "task",
-    "created_at": "2012-02-22T02:06:58.147Z"
-  }
-}
-```
-
-<h3 id="update-a-portfolio-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully updated the portfolio.|[PortfolioObject](#schemaportfolioobject)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end.|[Error](#schemaerror)|
-|default|Default|Sadly, sometimes requests to the API are not successful. Failures can occur for a wide range of reasons. In all cases, the API should return an HTTP Status Code that indicates the nature of the failure, with a response body in JSON format containing additional information.
-In the event of a server error the response body will contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error.|[Error](#schemaerror)|
-
-<aside class="warning">
-To perform this operation, you must be authenticated by means of one of the following methods:
-personalAccessToken, oauth2
-</aside>
-
-## Add a custom field to a portfolio
-
-<a id="opIdportfolio.addCustomFieldSetting"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X POST https://app.asana.com/api/{version}/portfolios/{portfolio_gid}/addCustomFieldSetting?custom_field=14916 \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/{version}/portfolios/{portfolio_gid}/addCustomFieldSetting?custom_field=14916',
-{
-  method: 'POST',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/{version}/portfolios/{portfolio_gid}/addCustomFieldSetting', params={
-  'custom_field': '14916'
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/{version}/portfolios/{portfolio_gid}/addCustomFieldSetting?custom_field=14916");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/{version}/portfolios/{portfolio_gid}/addCustomFieldSetting',
-  params: {
-  'custom_field' => 'integer'
-}, headers: headers
-
-p JSON.parse(result)
-
-```
-
-```go
-package main
-
-import (
-       "bytes"
-       "net/http"
-)
-
-func main() {
-
-    headers := map[string][]string{
-        "Accept": []string{"application/json"},
-        "Authorization": []string{"Bearer {access-token}"},
-        
-    }
-
-    data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("POST", "https://app.asana.com/api/{version}/portfolios/{portfolio_gid}/addCustomFieldSetting", data)
-    req.Header = headers
-
-    client := &http.Client{}
-    resp, err := client.Do(req)
-    // ...
-}
-
-```
-
-`POST /portfolios/{portfolio_gid}/addCustomFieldSetting`
-
-Custom fields are associated with portfolios by way of custom field settings.  This method creates a setting for the portfolio.
-
-<h3 id="add-a-custom-field-to-a-portfolio-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
-|custom_field|query|integer|true|The custom field to associate with this portfolio.|
-|is_important|query|boolean|false|Whether this field should be considered important to this portfolio (for instance, to display in the list view of items in the portfolio).|
-|insert_before|query|integer|false|An id of a Custom Field Setting on this portfolio, before which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
-|insert_after|query|integer|false|An id of a Custom Field Setting on this portfolio, after which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
-|opt_pretty|query|boolean|false|Provides the response in “pretty” output. In the case of JSON this means doing proper line breaking and indentation to make it readable. This will take extra time and increase the response size so it is advisable only to use this during debugging.|
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
-
-<h3 id="add-a-custom-field-to-a-portfolio-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully added the custom field to the portfolio.|[EmptyObject](#schemaemptyobject)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end.|[Error](#schemaerror)|
-|default|Default|Sadly, sometimes requests to the API are not successful. Failures can occur for a wide range of reasons. In all cases, the API should return an HTTP Status Code that indicates the nature of the failure, with a response body in JSON format containing additional information.
-In the event of a server error the response body will contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error.|[Error](#schemaerror)|
-
-<aside class="warning">
-To perform this operation, you must be authenticated by means of one of the following methods:
-personalAccessToken, oauth2
-</aside>
-
-## Remove a custom field from a portfolio
-
-<a id="opIdportfolio.removeCustomFieldSetting"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X POST https://app.asana.com/api/{version}/portfolios/{portfolio_gid}/removeCustomFieldSetting?custom_field=14916 \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/{version}/portfolios/{portfolio_gid}/removeCustomFieldSetting?custom_field=14916',
-{
-  method: 'POST',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/{version}/portfolios/{portfolio_gid}/removeCustomFieldSetting', params={
-  'custom_field': '14916'
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/{version}/portfolios/{portfolio_gid}/removeCustomFieldSetting?custom_field=14916");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/{version}/portfolios/{portfolio_gid}/removeCustomFieldSetting',
-  params: {
-  'custom_field' => 'integer'
-}, headers: headers
-
-p JSON.parse(result)
-
-```
-
-```go
-package main
-
-import (
-       "bytes"
-       "net/http"
-)
-
-func main() {
-
-    headers := map[string][]string{
-        "Accept": []string{"application/json"},
-        "Authorization": []string{"Bearer {access-token}"},
-        
-    }
-
-    data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("POST", "https://app.asana.com/api/{version}/portfolios/{portfolio_gid}/removeCustomFieldSetting", data)
-    req.Header = headers
-
-    client := &http.Client{}
-    resp, err := client.Do(req)
-    // ...
-}
-
-```
-
-`POST /portfolios/{portfolio_gid}/removeCustomFieldSetting`
-
-Removes a custom field setting from a portfolio.
-
-<h3 id="remove-a-custom-field-from-a-portfolio-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
-|custom_field|query|integer|true|The custom field to remove from this portfolio.|
-|opt_pretty|query|boolean|false|Provides the response in “pretty” output. In the case of JSON this means doing proper line breaking and indentation to make it readable. This will take extra time and increase the response size so it is advisable only to use this during debugging.|
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "data": {}
-}
-```
-
-<h3 id="remove-a-custom-field-from-a-portfolio-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully removed the custom field from the portfolio.|[EmptyObject](#schemaemptyobject)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end.|[Error](#schemaerror)|
-|default|Default|Sadly, sometimes requests to the API are not successful. Failures can occur for a wide range of reasons. In all cases, the API should return an HTTP Status Code that indicates the nature of the failure, with a response body in JSON format containing additional information.
-In the event of a server error the response body will contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error.|[Error](#schemaerror)|
-
-<aside class="warning">
-To perform this operation, you must be authenticated by means of one of the following methods:
-personalAccessToken, oauth2
-</aside>
-
-<h1 id="asana-user-task-lists">User Task Lists</h1>
-
-## Get a user task list
-
-<a id="opIdgetUserTaskList"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X GET https://app.asana.com/api/{version}/user_task_list/{user_task_list_gid} \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/{version}/user_task_list/{user_task_list_gid}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/{version}/user_task_list/{user_task_list_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/{version}/user_task_list/{user_task_list_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/{version}/user_task_list/{user_task_list_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-```go
-package main
-
-import (
-       "bytes"
-       "net/http"
-)
-
-func main() {
-
-    headers := map[string][]string{
-        "Accept": []string{"application/json"},
-        "Authorization": []string{"Bearer {access-token}"},
-        
-    }
-
-    data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("GET", "https://app.asana.com/api/{version}/user_task_list/{user_task_list_gid}", data)
-    req.Header = headers
-
-    client := &http.Client{}
-    resp, err := client.Do(req)
-    // ...
-}
-
-```
-
-`GET /user_task_list/{user_task_list_gid}`
-
-Returns the full record for a user task list.
-
-<h3 id="get-a-user-task-list-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|user_task_list_gid|path|string|true|Globally unique identifier for the user task list.|
-|opt_pretty|query|boolean|false|Provides the response in “pretty” output. In the case of JSON this means doing proper line breaking and indentation to make it readable. This will take extra time and increase the response size so it is advisable only to use this during debugging.|
-|opt_fields|query|array[string]|false|Some requests return *compact* representations of objects, to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below.|
-|opt_expand|query|array[string]|false|Query results and sub-objects are returned in compact form by default. This option can be used to expand query results or sub-objects to return more detailed information. Be sure you really need the information in the expanded form, as executing a query with many results in expanded form can be costly and return you a lot of data to consume.|
-|limit|query|integer|false|The number of objects to return per page. The value must be between 1 and 100.|
-|offset|query|string|false|An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results.|
-
-#### Detailed descriptions
-
-**opt_fields**: Some requests return *compact* representations of objects, to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below.
-The id of included objects will always be returned, regardless of the field options.
-
-**opt_expand**: Query results and sub-objects are returned in compact form by default. This option can be used to expand query results or sub-objects to return more detailed information. Be sure you really need the information in the expanded form, as executing a query with many results in expanded form can be costly and return you a lot of data to consume.
-If the fields option is also used, it will take precedence over the expand option and prevent expansion.
-
-**offset**: An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results.
-'Note: You can only pass in an offset that was returned to you via a previously paginated request.'
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "data": {
-    "owner": {
-      "id": 12345,
-      "gid": 12345,
-      "resource_type": "task"
-    },
-    "workspace": {
-      "name": "Bug Task",
-      "id": 12345,
-      "gid": 12345,
-      "resource_type": "task"
-    },
-    "name": "Bug Task",
-    "id": 12345,
-    "gid": 12345,
-    "resource_type": "task"
-  }
-}
-```
-
-<h3 id="get-a-user-task-list-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the user task list.|[UserTaskListObject](#schemausertasklistobject)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end.|[Error](#schemaerror)|
-|default|Default|Sadly, sometimes requests to the API are not successful. Failures can occur for a wide range of reasons. In all cases, the API should return an HTTP Status Code that indicates the nature of the failure, with a response body in JSON format containing additional information.
-In the event of a server error the response body will contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error.|[Error](#schemaerror)|
-
-<aside class="warning">
-To perform this operation, you must be authenticated by means of one of the following methods:
-personalAccessToken, oauth2
-</aside>
-
-## Get a user's task list
-
-<a id="opIdgetUsersTaskList"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X GET https://app.asana.com/api/{version}/users/{user_gid}/user_task_list \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/{version}/users/{user_gid}/user_task_list',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/{version}/users/{user_gid}/user_task_list', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/{version}/users/{user_gid}/user_task_list");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/{version}/users/{user_gid}/user_task_list',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-```go
-package main
-
-import (
-       "bytes"
-       "net/http"
-)
-
-func main() {
-
-    headers := map[string][]string{
-        "Accept": []string{"application/json"},
-        "Authorization": []string{"Bearer {access-token}"},
-        
-    }
-
-    data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("GET", "https://app.asana.com/api/{version}/users/{user_gid}/user_task_list", data)
-    req.Header = headers
-
-    client := &http.Client{}
-    resp, err := client.Do(req)
-    // ...
-}
-
-```
-
-`GET /users/{user_gid}/user_task_list`
-
-Returns the full record for a user's task list.
-
-<h3 id="get-a-user's-task-list-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|user_gid|path|string|true|Globally unique identifier for the user.|
-|opt_pretty|query|boolean|false|Provides the response in “pretty” output. In the case of JSON this means doing proper line breaking and indentation to make it readable. This will take extra time and increase the response size so it is advisable only to use this during debugging.|
-|opt_fields|query|array[string]|false|Some requests return *compact* representations of objects, to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below.|
-|opt_expand|query|array[string]|false|Query results and sub-objects are returned in compact form by default. This option can be used to expand query results or sub-objects to return more detailed information. Be sure you really need the information in the expanded form, as executing a query with many results in expanded form can be costly and return you a lot of data to consume.|
-|limit|query|integer|false|The number of objects to return per page. The value must be between 1 and 100.|
-|offset|query|string|false|An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results.|
-
-#### Detailed descriptions
-
-**opt_fields**: Some requests return *compact* representations of objects, to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below.
-The id of included objects will always be returned, regardless of the field options.
-
-**opt_expand**: Query results and sub-objects are returned in compact form by default. This option can be used to expand query results or sub-objects to return more detailed information. Be sure you really need the information in the expanded form, as executing a query with many results in expanded form can be costly and return you a lot of data to consume.
-If the fields option is also used, it will take precedence over the expand option and prevent expansion.
-
-**offset**: An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results.
-'Note: You can only pass in an offset that was returned to you via a previously paginated request.'
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "data": {
-    "owner": {
-      "id": 12345,
-      "gid": 12345,
-      "resource_type": "task"
-    },
-    "workspace": {
-      "name": "Bug Task",
-      "id": 12345,
-      "gid": 12345,
-      "resource_type": "task"
-    },
-    "name": "Bug Task",
-    "id": 12345,
-    "gid": 12345,
-    "resource_type": "task"
-  }
-}
-```
-
-<h3 id="get-a-user's-task-list-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the user's task list.|[UserTaskListObject](#schemausertasklistobject)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end.|[Error](#schemaerror)|
-|default|Default|Sadly, sometimes requests to the API are not successful. Failures can occur for a wide range of reasons. In all cases, the API should return an HTTP Status Code that indicates the nature of the failure, with a response body in JSON format containing additional information.
-In the event of a server error the response body will contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error.|[Error](#schemaerror)|
-
-<aside class="warning">
-To perform this operation, you must be authenticated by means of one of the following methods:
-personalAccessToken, oauth2
-</aside>
-
-## Get tasks in a user task list
-
-<a id="opIdgetUserTaskListTasks"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X GET https://app.asana.com/api/{version}/user_task_lists/{user_task_list_gid}/tasks \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/{version}/user_task_lists/{user_task_list_gid}/tasks',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/{version}/user_task_lists/{user_task_list_gid}/tasks', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/{version}/user_task_lists/{user_task_list_gid}/tasks");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/{version}/user_task_lists/{user_task_list_gid}/tasks',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-```go
-package main
-
-import (
-       "bytes"
-       "net/http"
-)
-
-func main() {
-
-    headers := map[string][]string{
-        "Accept": []string{"application/json"},
-        "Authorization": []string{"Bearer {access-token}"},
-        
-    }
-
-    data := bytes.NewBuffer([]byte{jsonReq})
-    req, err := http.NewRequest("GET", "https://app.asana.com/api/{version}/user_task_lists/{user_task_list_gid}/tasks", data)
-    req.Header = headers
-
-    client := &http.Client{}
-    resp, err := client.Do(req)
-    // ...
-}
-
-```
-
-`GET /user_task_lists/{user_task_list_gid}/tasks`
-
-Returns the compact list of tasks in a user’s My Tasks list. The returned tasks will be in order within each assignee status group of `Inbox`, `Today`, and `Upcoming`.
-**Note:** tasks in `Later` have a different ordering in the Asana web app than the other assignee status groups; this endpoint will still return them in list order in `Later` (differently than they show up in Asana, but the same order as in Asana’s mobile apps).
-**Note:** Access control is enforced for this endpoint as with all Asana API endpoints, meaning a user’s private tasks will be filtered out if the API-authenticated user does not have access to them.
-**Note:** Both complete and incomplete tasks are returned by default unless they are filtered out (for example, setting `completed_since=now` will return only incomplete tasks, which is the default view for “My Tasks” in Asana.)
-
-<h3 id="get-tasks-in-a-user-task-list-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|completed_since|query|string|false|Only return tasks that are either incomplete or that have been completed since this time. Accepts a date-time string or the keyword *now*.|
-|user_task_list_gid|path|string|true|Globally unique identifier for the user task list.|
-|opt_pretty|query|boolean|false|Provides the response in “pretty” output. In the case of JSON this means doing proper line breaking and indentation to make it readable. This will take extra time and increase the response size so it is advisable only to use this during debugging.|
-|opt_fields|query|array[string]|false|Some requests return *compact* representations of objects, to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below.|
-|opt_expand|query|array[string]|false|Query results and sub-objects are returned in compact form by default. This option can be used to expand query results or sub-objects to return more detailed information. Be sure you really need the information in the expanded form, as executing a query with many results in expanded form can be costly and return you a lot of data to consume.|
-|limit|query|integer|false|The number of objects to return per page. The value must be between 1 and 100.|
-|offset|query|string|false|An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results.|
-
-#### Detailed descriptions
-
-**completed_since**: Only return tasks that are either incomplete or that have been completed since this time. Accepts a date-time string or the keyword *now*.
-
-**opt_fields**: Some requests return *compact* representations of objects, to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below.
-The id of included objects will always be returned, regardless of the field options.
-
-**opt_expand**: Query results and sub-objects are returned in compact form by default. This option can be used to expand query results or sub-objects to return more detailed information. Be sure you really need the information in the expanded form, as executing a query with many results in expanded form can be costly and return you a lot of data to consume.
-If the fields option is also used, it will take precedence over the expand option and prevent expansion.
-
-**offset**: An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results.
-'Note: You can only pass in an offset that was returned to you via a previously paginated request.'
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "assignee": {
-        "email": "gsanchez@example.com",
-        "name": "Greg Sanchez",
-        "photo": {
-          "image_21x21": "https://...",
-          "image_27x27": "https://...",
-          "image_36x36": "https://...",
-          "image_60x60": "https://...",
-          "image_128x128": "https://..."
-        },
-        "workspaces": [
-          {
-            "email_domains": [
-              "asana.com"
-            ],
-            "is_organization": false,
-            "name": "Bug Task",
-            "id": 12345,
-            "gid": 12345,
-            "resource_type": "task"
-          }
-        ],
-        "id": 12345,
-        "gid": 12345,
-        "resource_type": "task"
-      },
-      "assignee_status": "upcoming",
-      "completed": false,
-      "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        {
-          "id": 1646,
-          "gid": "1646",
-          "name": "Priority",
-          "type": "enum",
-          "enum_value": {
-            "id": 126,
-            "name": "P1"
-          }
-        }
-      ],
-      "dependencies": [
-        {
-          "id": 1234,
-          "gid": "1234"
-        },
-        {
-          "id": 4321,
-          "gid": "4321"
-        }
-      ],
-      "dependents": [
-        {
-          "id": 1234,
-          "gid": "1234"
-        },
-        {
-          "id": 4321,
-          "gid": "4321"
-        }
-      ],
-      "due_on": "2012-03-26",
-      "due_at": "2012-02-22T02:06:58.147Z",
-      "external": {
-        "id": "my_id",
-        "data": "A blob of information"
-      },
-      "followers": [
-        {
-          "id": 1234,
-          "name": "Mittens"
-        }
-      ],
-      "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-      "liked": true,
-      "likes": [
-        {
-          "id": 1234,
-          "name": "Mittens"
-        }
-      ],
-      "memberships": [
-        {
-          "project": {
-            "id": 1331,
-            "gid": "1331",
-            "name": "Bugs"
-          },
-          "section": {
-            "id": 1123,
-            "gid": "1123",
-            "name": "P1:"
-          }
-        }
-      ],
-      "modified_at": "2012-02-22T02:06:58.147Z",
-      "name": "Buy catnip",
-      "notes": "Mittens really likes the stuff from Humboldt.",
-      "num_likes": 5,
-      "num_subtasks": 3,
-      "projects": [
-        {
-          "id": 1331,
-          "gid": "1331",
-          "name": "Stuff to buy"
-        }
-      ],
-      "parent": {
-        "name": "Bug Task",
-        "id": 12345,
-        "gid": 12345,
-        "resource_type": "task"
-      },
-      "start_on": "2012-03-26",
-      "tags": [
-        {
-          "id": 59746,
-          "gid": "59746",
-          "name": "Grade A"
-        }
-      ],
-      "workspace": {
-        "name": "Bug Task",
-        "id": 12345,
-        "gid": 12345,
-        "resource_type": "task"
-      },
-      "id": 12345,
-      "gid": 12345,
-      "resource_type": "task",
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "resource_subtype": "section"
-    }
-  ]
-}
-```
-
-<h3 id="get-tasks-in-a-user-task-list-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the user task list's tasks.|[TaskArray](#schemataskarray)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end.|[Error](#schemaerror)|
-|default|Default|Sadly, sometimes requests to the API are not successful. Failures can occur for a wide range of reasons. In all cases, the API should return an HTTP Status Code that indicates the nature of the failure, with a response body in JSON format containing additional information.
-In the event of a server error the response body will contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error.|[Error](#schemaerror)|
 
 <aside class="warning">
 To perform this operation, you must be authenticated by means of one of the following methods:

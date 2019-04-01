@@ -107,6 +107,10 @@
       "description": "A user object represents an account in Asana that can be given access to various workspaces, projects, and tasks."
     },
     {
+      "name": "User Task Lists",
+      "description": "A user task list represents the tasks assigned to a particular user."
+    },
+    {
       "name": "Webhooks",
       "description": "Webhooks allow an application to be notified of changes in Asana."
     },
@@ -3825,7 +3829,7 @@
         "summary": "Update a portfolio",
         "description": "An existing portfolio can be updated by making a PUT request on the URL for\nthat portfolio. Only the fields provided in the `data` block will be updated;\nany unspecified fields will remain unchanged.\n\nReturns the complete updated portfolio record.",
         "tags": [
-          "portfolios"
+          "Portfolios"
         ],
         "operationId": "updateportfolio",
         "requestBody": {
@@ -4182,7 +4186,7 @@
         "summary": "Add a custom field to a portfolio",
         "description": "Custom fields are associated with portfolios by way of custom field settings.  This method creates a setting for the portfolio.",
         "tags": [
-          "portfolios",
+          "Portfolios",
           "Custom Fields"
         ],
         "operationId": "portfolio.addCustomFieldSetting",
@@ -4241,7 +4245,7 @@
         "summary": "Remove a custom field from a portfolio",
         "description": "Removes a custom field setting from a portfolio.",
         "tags": [
-          "portfolios",
+          "Portfolios",
           "Custom Fields"
         ],
         "operationId": "portfolio.removeCustomFieldSetting",

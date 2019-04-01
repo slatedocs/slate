@@ -1,6 +1,8 @@
 <p align="center">
   <img src="https://luna1.co/984202.png" alt="Asana: API Documentation" width="264">
   <br>
+  <br>
+  <br>
   <a href="https://travis-ci.org/lord/slate"><img src="https://travis-ci.org/lord/slate.svg?branch=master" alt="Build Status"></a>
 </p>
 
