@@ -11,7 +11,6 @@ toc_footers:
 includes:
   - vehicles
   - zones
-  - rental
   - pickup
   - dropoff
   - errors

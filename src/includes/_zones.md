@@ -1,7 +1,7 @@
 
 # Zones
 
-## Get All Zones nearby a specific location
+## Get All Zones near a specific location
 
 ```shell
 curl "https://platform.tier-services.io/zone?lat=40&lng=-3"
@@ -54,11 +54,6 @@ Within a business zone there are constrained zones which limit the capability of
 speed and the capability to park the vehicle. The reduced speed is currently fixed and set to 5km/h.
 
 The provided coordinates describe a polygon.
-
-<aside class="notice">
-There is no additional functionality for the client to implement for the constraint zones. Those constraints are either enforced by endpoints (e.g. parking is rejected)
-or by automatisms. It is yet essential to inform anyone about those areas to provide a good UX.
-</aside>
 
 ### HTTP Request
 
@@ -119,13 +114,8 @@ curl "https://platform.tier-services.io/zone?type=root"
 
 ```
 
-This endpoint retrieves all the zones filtered by type
-
-The provided coordinates describe a polygone.
-
-<aside class="notice">
-Possible 
-</aside>
+This endpoint retrieves all the zones filtered by type.
+The provided coordinates describe a polygon.
 
 ### HTTP Request
 
@@ -136,3 +126,18 @@ Possible
 Parameter  | Description
 --------- | -----------
 type | possible types are root, business, warehouse, constrained
+
+### Types
+Parameter   | Description
+----------- | -----------
+root        | The zone to which all other zone types are attached, e.g. BERLIN
+business    | An area in which customers can rent a vehicle
+warehouse   | An area in which scooters are in MAINTENANCE
+constrained | An area which may only allow reduced speed (may overlap with the business zone)
+
+<aside class="notice">
+Your client does not need to implement additional functionality for the constraint zones. These
+constraints are either enforced by endpoints (e.g. parking is rejected) or by automations
+(e.g. speed is reduced). It is yet essential to inform your users about those areas to provide a
+good user experience.
+</aside>

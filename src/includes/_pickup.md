@@ -14,20 +14,35 @@ curl "https://platform.tier-services.io/pick-up-location?zoneId=BERLIN"
 {
   "data": [
     {
-      "id": "0ad1397b-1c4d-4eca-a363-6f58e87785d3",
-       "vehicleCode": 10008,
-       "state": "TO_PICKUP",
-       "lat": 52.539705,
-       "lng": 13.400786,
-       "resolution": "CLAIMED"
-    },
+      "type": "pick_up_location",
+      "id": "67706356-dfb9-42de-91b3-7596e965f53e",
+      "attributes": {
+        "zoneId": "MALAGA",
+        "resolution": "CLAIMED",
+        "resolvedBy": "KFdtTVSAD7gH3tPsWLHywur01yD3",
+        "resolvedAt": "2019-04-01T08:55:22.876Z",
+        "lat": 36.723758,
+        "lng": -4.419298
+      },
+      "relationships": {
+        "vehicle": {
+          "type": "vehicle",
+          "id": "08118943-8fe3-4b9a-8c1f-eb59de648b59"
+        }
+      }
+  ],
+  "included": [
     {
-        "id": "2e522240-406e-4211-a146-5b252cd05040",
-        "vehicleCode": 10015,
-        "state": "LOW_BATTERY",
-        "lat": 52.526688,
-        "lng": 13.394346
-    }
+      "type": "vehicle",
+      "id": "08118943-8fe3-4b9a-8c1f-eb59de648b59",
+      "attributes": {
+        "lat": 36.723758,
+        "lng": -4.419298,
+        "code": 14234,
+        "zoneId": "MALAGA",
+        "state": "PICKED_UP",
+      }
+    },
   ]
 }
 ```
