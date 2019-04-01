@@ -61,6 +61,7 @@ html, body {
   background-color: $nav-bg;
   font-size: 13px;
   font-weight: bold;
+  border-right: 1px solid #ccc;
 
   // language selector for mobile devices
   .lang-selector {
@@ -73,8 +74,10 @@ html, body {
 
   // This is the logo at the top of the ToC
   .logo {
+    padding: 16px;
     display: block;
     max-width: 100%;
+    box-sizing: border-box;
     margin-bottom: $logo-margin;
   }
 
@@ -177,7 +180,7 @@ html, body {
   .toc-footer {
     padding: 1em 0;
     margin-top: 1em;
-    border-top: 1px dashed $nav-footer-border-color;
+    // border-top: 1px dashed $nav-footer-border-color;
 
     li,a {
       color: $nav-text;
