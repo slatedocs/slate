@@ -5,7 +5,7 @@
 The ScoutAPM API is currently fairly narrow in scope. It is intended to
 support 3rd party dashboards, exporting summary data from your applications.
 
-If you have ideas on API enhancements, please contact us at support@scoutapp.com
+If you have ideas on API enhancements, please contact us at support@scoutapm.com
 
 ## Authorization
 

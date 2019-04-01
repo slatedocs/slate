@@ -2,12 +2,12 @@
 
 We're transparent about our uptime and service issues. If you appear to be experiencing issues with our service:
 
-* [Check out status site](http://status.scoutapp.com). You can subscribe to service incidents.
-* [Email us](mailto:support@scoutapp.com)
+* [Check out status site](http://status.scoutapm.com). You can subscribe to service incidents.
+* [Email us](mailto:support@scoutapm.com)
 
 # Contacting Support
 
-Don't hesitate to contact us at [support@scoutapp.com](mailto:support@scoutapp.com) any issues. We typically respond in a couple of hours during the business day.
+Don't hesitate to contact us at [support@scoutapm.com](mailto:support@scoutapm.com) any issues. We typically respond in a couple of hours during the business day.
 
 # Reference
 
@@ -27,7 +27,7 @@ Our most recent benchmarks (_lower is better_):
 
 ![overhead](overhead.png)
 
-We've [open-sourced our benchmarks](http://blog.scoutapp.com/articles/2016/02/07/overhead-benchmarks-new-relic-vs-scout) so you can test on our own. If your results differ, [reach out to us at support@scoutapp.com](mailto:support@scoutapp.com).
+We've [open-sourced our benchmarks](http://blog.scoutapm.com/articles/2016/02/07/overhead-benchmarks-new-relic-vs-scout) so you can test on our own. If your results differ, [reach out to us at support@scoutapm.com](mailto:support@scoutapm.com).
 
 ### Call Aggregation
 
@@ -145,21 +145,21 @@ __This is the default approach__. You are billed for the number of servers that 
 
 #### Per-Request
 
-If you have a smaller application or have many smaller instances or Docker containers per-request billing may make more sense. Volume discounts are automatically applied as your application handles more throughput. Contact [support@scoutapp.com](mailto:support@scoutapp.com) for pricing options.
+If you have a smaller application or have many smaller instances or Docker containers per-request billing may make more sense. Volume discounts are automatically applied as your application handles more throughput. Contact [support@scoutapm.com](mailto:support@scoutapm.com) for pricing options.
 
 ## Replacing New Relic
 
-Scout is an attractive <a href="https://scoutapp.com/newrelic-alternative" target="_blank">alternative to New Relic</a> for modern dev teams. We provide a laser-focus on getting to slow custom application code fast vs. wide breadth as debugging slow custom application code is typically the most time-intensive performance optimization work.
+Scout is an attractive <a href="https://scoutapm.com/newrelic-alternative" target="_blank">alternative to New Relic</a> for modern dev teams. We provide a laser-focus on getting to slow custom application code fast vs. wide breadth as debugging slow custom application code is typically the most time-intensive performance optimization work.
 
 In many cases, Scout is able to replace New Relic as-is. However, there are cases where your app has specific needs we currently don't provide. Don't fret - here's some of the more common scenarios and our suggestions for building a monitoring stack you'll love:
 
 * __Exception Monitoring__ - Scout doesn't provide exception monitoring, but we do integrate with ([Rollbar](#rollbar) and [Sentry](#sentry)) to provide a side-by-side view of your performance metrics and errors within the Scout UI.
-* __Browser Monitoring (Real User Monitoring)__ - there are a number of dedicated tools for both Real User Monitoring (RUM) and synthetic monitoring. We've [reviewed Raygun Pulse](http://blog.scoutapp.com/articles/2017/12/22/real-user-monitoring-with-raygun), an attractive RUM product. You can also continue to use New Relic for browser monitoring and use Scout for application monitoring.
+* __Browser Monitoring (Real User Monitoring)__ - there are a number of dedicated tools for both Real User Monitoring (RUM) and synthetic monitoring. We've [reviewed Raygun Pulse](http://blog.scoutapm.com/articles/2017/12/22/real-user-monitoring-with-raygun), an attractive RUM product. You can also continue to use New Relic for browser monitoring and use Scout for application monitoring.
 
 ### Our Monitoring Stack
 
-Curious about what a company that lives-and-breathes monitoring (us!) uses to monitor our apps? [We shared our complete monitoring stack on our blog](http://blog.scoutapp.com/articles/2015/12/02/rails-monitoring-stack-2016).
+Curious about what a company that lives-and-breathes monitoring (us!) uses to monitor our apps? [We shared our complete monitoring stack on our blog](http://blog.scoutapm.com/articles/2015/12/02/rails-monitoring-stack-2016).
 
 ### Talk to us about your monitoring stack
 
-Don't hesitate to [email us](mailto:support@scoutapp.com) if you need to talk through your monitoring stack. Monitoring is something we know and love.
+Don't hesitate to [email us](mailto:support@scoutapm.com) if you need to talk through your monitoring stack. Monitoring is something we know and love.

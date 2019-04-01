@@ -6,7 +6,7 @@ Scout's Python agent auto-instruments Django and Flask applications, SQL queries
 
 `scout-apm` requires :
 
-* Python 3.4+ ([request Python 2.7 support](https://github.com/scoutapp/scout_apm_python/issues/45)).
+* Python 2.7+
 * The POSIX, Unix, or OSX operating systems ([Request Windows support](https://github.com/scoutapp/scout_apm_python/issues/101)).
 
 <h2 id="python-instrumented-libraries">Instrumented Libraries</h2>
@@ -44,7 +44,7 @@ You can instrument your own code or other libraries via [custom instrumentation]
 
 ## Django
 
-Scout supports Django 1.10+ (request Django 1.8 and 1.9 support via [this GitHub issue](https://github.com/scoutapp/scout_apm_python/issues/26)).
+Scout supports Django 1.8+.
 
 General instructions for a Django app:
 
@@ -334,7 +334,7 @@ instrument_sqlalchemy(engine)
 
 <h2 id="python-troubleshooting">Troubleshooting</h2>
 
-Not seeing data? Email support@scoutapp.com with:
+Not seeing data? Email support@scoutapm.com with:
 
 * A link to your app within Scout (if applicable)
 * Your Python version

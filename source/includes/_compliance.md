@@ -7,7 +7,7 @@ While Scout itself is not HIPAA compliant, our agent can be installed safely in 
 1. Disable sending HTTP query params if these contain sensitive data via the `uri_reporting` config option.
 2. Do not add custom context (like reporting the current user in the session).
 
-Email support@scoutapp.com with any questions regarding HIPAA.
+Email support@scoutapm.com with any questions regarding HIPAA.
 
 ## GDPR
 

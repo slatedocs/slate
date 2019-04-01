@@ -9,7 +9,7 @@ Our Elixir agent supports Phoenix 1.2.0+ and Elixir 1.4+.
 <h2 id="elixir-install">Installation</h2>
 
 <aside class="notice">
-  A Scout account is required. <a href="https://apm.scoutapp.com/users/sign_up" target: '_blank'>Signup here</a>.
+  A Scout account is required. <a href="https://scoutapm.com/users/sign_up" target: '_blank'>Signup here</a>.
 </aside>
 
 Tailored instructions are provided within our user interface. General instructions for a Phoenix 1.3+ app:
@@ -150,7 +150,7 @@ Not seeing data?
          <ul>
             <li>Increase the log level of <code>scout_apm</code> by setting <code>log_level: "debug"</code> in your <code>config/scout_apm.exs</code> file and restart your app.</li>
             <li>
-              Wait five minutes, then email <a href="mailto:support@scoutapp.com">support@scoutapp.com</a> 
+              Wait five minutes, then email <a href="mailto:support@scoutapm.com">support@scoutapm.com</a> 
               your log output and the application's <code>mix.lock</code> file.</li>
           </ul>
 
@@ -263,7 +263,7 @@ The following configuration settings are available:
         The protocol + domain where the agent should report.
       </td>
       <td>
-        <code>https://apm.scoutapp.com</code>
+        <code>https://scoutapm.com</code>
       </td>
       <td>
         No
@@ -359,7 +359,7 @@ See [instrumenting common libraries](/#instrumenting-common-libraries) for guide
 
 ## Instrumenting Common Libraries
 
-We've collected best practices for instrumenting common transactions and timing functions below. If you have a suggestion, [please share it](mailto:support@scoutapp.com). See our [custom instrumentation quickstart](#elixir-custom-instrumentation) for more details on adding instrumentation.
+We've collected best practices for instrumenting common transactions and timing functions below. If you have a suggestion, [please share it](mailto:support@scoutapm.com). See our [custom instrumentation quickstart](#elixir-custom-instrumentation) for more details on adding instrumentation.
 
 * Transactions
   * [Phoenix Channels](#phoenix-channels)

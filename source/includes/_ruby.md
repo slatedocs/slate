@@ -146,7 +146,7 @@ tail -n1000 log/production.log | grep "Processing"
       </td>
       <td>
         <p>
-          Oops! Looks like messed up. Check out the <a href="https://github.com/scoutapp/scout_apm_ruby/issues">GitHub issues</a> and <a href="mailto:support@scoutapp.com">send us an email</a> with the following:
+          Oops! Looks like messed up. Check out the <a href="https://github.com/scoutapp/scout_apm_ruby/issues">GitHub issues</a> and <a href="mailto:support@scoutapm.com">send us an email</a> with the following:
         </p>
         <ul>
           <li>The last 1000 lines of your <code>log/scout_apm.log</code> file, if the file exists:<br/><code>tail -n1000 log/scout_apm.log</code>.
@@ -350,7 +350,7 @@ The following configuration settings are available:
         The protocol + domain where the agent should report.
       </td>
       <td>
-        <code>https://apm.scoutapp.com</code>
+        <code>https://scoutapm.com</code>
       </td>
       <td>
         No
@@ -671,7 +671,7 @@ end
 ```
 
 If you run into any issues, or want advice on naming or wrapping endpoints, contact us at
-support@scoutapp.com for additional help.
+support@scoutapm.com for additional help.
 
 ## Sinatra
 

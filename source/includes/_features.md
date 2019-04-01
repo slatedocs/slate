@@ -1,6 +1,6 @@
 # Features
 
-Scout is Application Monitoring built for modern development teams. It's built to provide the fastest path to a slow line-of-code. [Signup for a trial](https://apm.scoutapp.com/users/sign_up).
+Scout is Application Monitoring built for modern development teams. It's built to provide the fastest path to a slow line-of-code. [Signup for a trial](https://scoutapm.com/users/sign_up).
 
 ## App Performance Overview
 
@@ -85,7 +85,7 @@ Once the branch is deployed, Scout will record traces in both the existing summa
 * No links to backtraces on the Beta view
 * No support for background jobs
 
-Please report issues to support@scoutapp.com.
+Please report issues to support@scoutapm.com.
 
 ### Downgrade Instructions
 

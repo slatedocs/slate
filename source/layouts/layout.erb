@@ -86,7 +86,7 @@ under the License.
       </span>
     </a>
     <div class="tocify-wrapper">
-      <%= link_to image_tag( "logo.png", id: 'logo'), "https://scoutapp.com", target: '_blank' %>
+      <%= link_to image_tag( "logo.png", id: 'logo'), "https://scoutapm.com", target: '_blank' %>
       <% if language_tabs.any? %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>
@@ -147,7 +147,7 @@ under the License.
     anchors.add('.content > h2, .content > h3, .content > h4, .lookup th');
 
     $.ajax({
-      url: "http://apm.scoutapp.com/latest_gem_version",
+      url: "http://scoutapm.com/latest_gem_version",
       dataType: "jsonp"
     }).success(function(response){
       $("#latest-gem-version").html(response.version)

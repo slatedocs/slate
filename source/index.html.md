@@ -17,9 +17,9 @@ search: true
 
 # Scout Help Docs
 
-Welcome to the help site for __[Scout Application Monitoring](https://scoutapp.com)__. Don't have an account? <a href="https://scoutapp.com/info/pricing" target="_blank">Get started</a>.
+Welcome to the help site for __[Scout Application Monitoring](https://scoutapm.com)__. Don't have an account? <a href="https://scoutapm.com/info/pricing" target="_blank">Get started</a>.
 
-Browse through the sidebar, search, [email us](mailto:support@scoutapp.com), or <a href="http://slack.scoutapp.com" target="_blank">join our Slack community</a>. We're here to help.
+Browse through the sidebar, search, [email us](mailto:support@scoutapm.com), or <a href="http://slack.scoutapm.com" target="_blank">join our Slack community</a>. We're here to help.
 
 
 <div id="overview_container">
