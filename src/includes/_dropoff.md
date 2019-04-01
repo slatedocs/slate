@@ -33,16 +33,18 @@ curl "https://platform.tier-services.io/drop-off-location?zoneId=MALAGA
 }
 ```
 
-This endpoint retrieves all the vehicles, which have to be picked up for charging
-in a 30km radius around a given latitude and longitude.
 
 ### HTTP Request
 
-`GET https://platform.tier-services.io/shift?lat=52.521916&lng=13.410312`
+`GET https://platform.tier-services.io/drop-off-location?zoneId=MALAGA`
+
+<aside class="notice">
+This is the equivalent of the previously available `/shift` endpoint that would take
+`lat` and `lng` parameters to get drop off locations.
+</aside>
 
 ### Query Parameters
 
-Parameter  | Description
+Parameter | Description
 --------- | -----------
-lat | Required: Latitude for specifying center of search radius
-lng | Required: Longitude for specifying center of search radius
+zoneId    | Required: The zone within which to look up vehicles that need to be picked up

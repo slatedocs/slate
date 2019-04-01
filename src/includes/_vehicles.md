@@ -10,6 +10,11 @@ The following endpoints describe the former use case, to see vehicles during ope
 pick-up and drop-off, please see [Pick-Up](#pick-up) and [Drop-Off](#drop-off) 
 
 
+<aside class="notice">
+Note that this endpoint still uses non-json-api compatible layout for backwards compatibility.
+This will be remedied in the next version of the API. 
+</aside>
+
 ## Get All Vehicles in a Zone
 
 ```shell
