@@ -117,7 +117,7 @@ The provided coordinates describe a polygon.
 
 ### HTTP Request
 
-`GET https://platform.tier-services.io/zone?type=root`
+`GET https://platform.tier-services.io/v1/zone?type=root`
 
 ### Query Parameters
 
