@@ -41,6 +41,7 @@ jobs:
       - image: circleci/ruby:2.6.2-node
 
     steps:
+      - install_deps
       - awscli/install
       - awscli/configure
       - checkout
@@ -73,9 +74,9 @@ jobs:
       - image: circleci/ruby:2.6.2-node
 
     steps:
+      - install_deps
       - awscli/install
       - awscli/configure
-      - install_deps
       - setup_k8s
       - checkout
 
@@ -104,9 +105,9 @@ jobs:
       - image: circleci/ruby:2.6.2-node
 
     steps:
+      - install_deps
       - awscli/install
       - awscli/configure
-      - install_deps
       - setup_k8s
       - checkout 
 
