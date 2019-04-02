@@ -4,7 +4,7 @@
 ## Get All Zones near a specific location
 
 ```shell
-curl "https://platform.tier-services.io/zone?lat=40&lng=-3"
+curl "https://platform.tier-services.io/v1/zone?lat=40&lng=-3"
   -H "x-api-key: TIER API KEY"
 ```
 
@@ -14,7 +14,7 @@ curl "https://platform.tier-services.io/zone?lat=40&lng=-3"
 {
   "data": [
     {
-      "type": "zones",
+      "type": "zone",
       "id": "MADRID",
       "attributes": {
         "name": "MADRID",
@@ -38,7 +38,6 @@ curl "https://platform.tier-services.io/zone?lat=40&lng=-3"
             "lat": 40.451744
           }
         ],
-        "country": "SPAIN",
         "zoneType": "root",
         "parentId": "MADRID",
       }
@@ -57,7 +56,7 @@ The provided coordinates describe a polygon.
 
 ### HTTP Request
 
-`GET https://platform.tier-services.io/zone?lat=40&lng=-3`
+`GET https://platform.tier-services.io/v1/zone?lat=40&lng=-3`
 
 ### Query Parameters
 
@@ -70,7 +69,7 @@ lng | Longitude to search for zones nearby
 ## Get All Zones by type
 
 ```shell
-curl "https://platform.tier-services.io/zone?type=root"
+curl "https://platform.tier-services.io/v1/zone?type=root"
   -H "x-api-key: TIER API KEY"
 ```
 
@@ -80,7 +79,7 @@ curl "https://platform.tier-services.io/zone?type=root"
 {
   "data": [
     {
-      "type": "zones",
+      "type": "zone",
       "id": "MADRID",
       "attributes": {
         "name": "MADRID",
@@ -104,7 +103,6 @@ curl "https://platform.tier-services.io/zone?type=root"
             "lat": 40.451744
           }
         ],
-        "country": "SPAIN",
         "zoneType": "root",
         "parentId": "MADRID",
       }

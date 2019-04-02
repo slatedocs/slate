@@ -23,6 +23,24 @@ search: true
 Welcome to the Tier API. It provides the essentials to integrate with Tier's mobility platform.
 We are using the [JSON:API standard](https://jsonapi.org/).
 
+# Versioning
+
+The API is versioned using a prefix in the URL, e.g. `/v1` for the first version. There are
+still some unversioned (deprecated) endpoints. If you are using these, please note that they will stop
+working in future releases of this API. Please always use the newest API version and contact
+us when there is a reason why you cannot switch to a newer version.
+
+## Backwards-Compatible Minor Updates
+
+We will only break backwards compatibility in new API versions, which have their own URL prefix.
+That means that all actions or resources will remain backwards compatible as long as your integration
+allows for the following changes to be made on our side:
+
+ - An endpoint resource might return new fields, e.g. `{"foo": "bar"}` might be `{"foo": "bar", "baz": 123}` tomorrow 
+ - An endpoint might accept new optional data
+ - An endpoint might ignore previously required data while providing same functionality
+  
+
 # Authentication
 
 > To authenticate, use this code:
