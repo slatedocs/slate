@@ -16,6 +16,7 @@ commands:
           sudo pip install awsebcli --upgrade
 
   setup_k8s:
+    description: "Install kubernetes dependencies"
     steps:
       - run:
           name: Setup Kubectl
@@ -49,17 +50,17 @@ jobs:
           name: "Build Container"
           command: docker build -t ${REPOSITORY_NAME} -f docker/Dockerfile .
       - run:
-        name: "Create AWS ECR repository"
-        command: |
-          aws ecr describe-repositories --repository-names ${REPOSITORY_NAME} > /dev/null 2>&1 || \
-          aws ecr create-repository --repository-name ${REPOSITORY_NAME}
+          name: "Create AWS ECR repository"
+          command: |
+            aws ecr describe-repositories --repository-names ${REPOSITORY_NAME} > /dev/null 2>&1 || \
+            aws ecr create-repository --repository-name ${REPOSITORY_NAME}
       - run:
-        name: "Store Container"
-        command: |
-          ACCOUNT=$(aws sts get-caller-identity --region eu-central-1 --output text --query 'Account')
-          eval $(aws ecr get-login --region eu-central-1 --no-include-email)
-          docker tag ${REPOSITORY_NAME} ${ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/${REPOSITORY_NAME}
-          docker push ${ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/${REPOSITORY_NAME}:latest
+          name: "Store Container"
+          command: |
+            ACCOUNT=$(aws sts get-caller-identity --region eu-central-1 --output text --query 'Account')
+            eval $(aws ecr get-login --region eu-central-1 --no-include-email)
+            docker tag ${REPOSITORY_NAME} ${ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/${REPOSITORY_NAME}
+            docker push ${ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/${REPOSITORY_NAME}:latest
 
   deploy-to-stage:
 
