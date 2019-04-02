@@ -51,9 +51,9 @@ By using us for peer-to-peer money transfers, you can:
 
 ## Getting Started
 
-To use our API endpoints, you will need to get registered on our [Developer Console](https://console.silamoney.com/), which should be available after our open-beta launch. Registration includes a KYC verification process, which should take less than 24 hours.
+To use our API endpoints, you will need to get registered on our [Developer Console](https://console.silamoney.com/). Registration includes a KYC verification process, which should take less than 24 hours.
 
-Once you have been verified, you can register apps with us. Each app will have an associated private key and handle. Keep these application keys *secure*; leave them out of your source code and never store them in an unsafe place. If they are ever compromised, please immediately replace your app keys from the Developer Console.
+Once you have been verified, you can register apps with us. Each app will have a public key, an associated private key, and a handle. Keep these application private keys *secure*; leave them out of your source code and never store them in an unsafe place. If they are ever compromised, please immediately replace your app keys from the Developer Console.
 
 ## Endpoint Flow
 
@@ -61,24 +61,24 @@ This section describes a high-level overview of how our API might be used and th
 
 ### User Registration
 
-Users added to an application must have a private key and handle (along with KYC information so that we can send them through a KYC verification process).
+The first step is typically to register a new User. Every user added to an application must have their own public-private key pair and handle (along with KYC information so that we can send them through a KYC verification process).
 
-KYC information sent through this version of the API should include:
+KYC information required to register users in this version of the API:
 
 - Full legal name
-- U.S. Social Security Number (SSN)
+- Full U.S. Social Security Number (SSN)
 - Date of birth
 - A valid street address
 - An email address
 - A phone number
 
 <aside class="notice">
-<b>Important note</b>: Expect KYC requirements to change in future versions. (For instance, we're looking to allow for IDs other than SSNs and allow for business KYC.)
+<b>Important note</b>: Expect KYC requirements to evolve in future versions. (For instance, we're looking to allow for IDs other than SSNs and allow for business KYC.)
 </aside>
 
-1. Generate a private key for the user. You can have them generate/manage it themselves if desired.
-2. Either randomly generate a handle or allow the user to pick a handle for themselves. The handle should be checked against the [/check_handle](#check_handle) endpoint for availability.
-3. The user must pass in their required *KYC information* and the *address derived from the user's private key*. This information should be used to populate a [/register](#register) request.
+1. Generate a private key for the user. You can have them generate/manage it themselves (in a wallet such as Metamask or MyEtherWallet) if desired.
+2. Either randomly generate a handle for the user, or allow the user to pick a handle for themselves. Handles have to be globally unique, so they should be checked against the [/check_handle](#check_handle) endpoint for availability.
+3. The user must pass in their required *KYC information* and the *public key derived from the user's private key*. This information should be used to populate a [/register](#register) request.
 4. It may take some time for the KYC process to complete. A success response from /register only means that the verification process has started, not that the user has been verified. Subsequent [/check_kyc](#check_kyc) requests are the only way to know whether the person's information has been verified. 
 
 ### Bank Account Linking
@@ -89,7 +89,7 @@ On the client side of your application, integrate [Plaid Link](https://plaid.com
 
 In order to make public tokens that we can use, you will need to use our public key in your Plaid calls. You should gain access to this key when you register. Check out our demo app to see what other parameters we use!
 
-As of writing, responses at the /link_account endpoint are synchronous, meaning that a success response indicates a successfully-linked bank account.
+Currently, responses at the /link_account endpoint are synchronous, meaning that a success response indicates a successfully-linked bank account.
 
 ### Token Transfers
 
@@ -98,10 +98,10 @@ The SILA token is used to exchange USD value among users. For example, this woul
 1. Users A and B successfully pass KYC in our system.
 2. Users A and B successfully link their bank accounts.
 3. [/issue_sila](#issue_sila) is called for user A, requesting issuance of 5173 SILA to their Ethereum address.
-4. $51.73 is debited from A's bank account and sent to our backend, where it will be traded for US Treasuries.
+4. $51.73 is debited from A's bank account via ACH and sent to our backend, where it will be traded for US Treasuries.
 5. When the $51.73 transaction is marked as "finally settled," which takes 2-3 business days, 5173 SILA are minted at user A's Ethereum address.
 6. During this process, you can poll [/get_transactions](#get_transactions) to check the status of this transaction.
-7. When user A has 5173 SILA, those SILA can be transferred to user B's address either with the [/transfer_sila](#transfer_sila) endpoint or directly over the blockchain (which will incur variable "gas costs" in Ethereum for which the developer is responsible). The transaction can only be tracked with /get_transactions if the /transfer_sila endpoint was called; otherwise, you can use something like Etherscan to monitor the transaction yourself.
+7. When user A has 5173 SILA, those SILA can be transferred to user B's address either with the [/transfer_sila](#transfer_sila) endpoint or directly on our ERC-20 smart contract(which will incur variable "gas costs" in Ethereum for which the developer is responsible). The transaction can only be tracked with /get_transactions if the /transfer_sila endpoint was called; otherwise, you can use something like Etherscan to monitor the transaction yourself.
 8. When user B has 5173 SILA at their address, they can then have [/redeem_sila](#redeem_sila) called for them, requesting 5173 SILA to be redeemed.
 9. 5173 SILA are immediately burned from B's address and the process of crediting $51.73 to their linked bank account from our backend is started. (If crediting fails, perhaps due to the bank account being closed, the transaction will be rolled back, thus re-minting the SILA at B's address.)
 10. Thus, A has been debited $51.73 and B has been credited $51.73.
