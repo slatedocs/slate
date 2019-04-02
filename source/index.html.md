@@ -31,23 +31,23 @@ Code will be shown in this panel.
 
 Welcome to the Sila API!
 
-Sila allows you to build financial applications quickly and easily. Our APIs enable 
+Sila allows you to build financial applications quickly and easily. Our API endpoints enable:
 
-* **ID Verification** compliant with **US KYC** regulations, 
-* **Secure Account Linking** through our partner **Plaid**, 
+* **ID verification** compliant with **US KYC** regulations, 
+* **secure account linking** through our partner **Plaid**, 
 * **ACH transfers** in the US, and 
-* **Smart Contract** programming on Ethereum with our ERC-20 stablecoin. 
+* **smart contract** programming on Ethereum with our ERC-20 stablecoin. 
 
-We will soon be adding support for **Card payments**, **Business Verification**, and **International payments** systems. 
+We will soon be adding support for **card payments**, **business ID verification**, and **international payments**.
 
 By using us for peer-to-peer money transfers, you can:
 
 - decrease your go-to-market time (no regulatory headache or flaky bank partnerships)
 - dramatically decrease your upfront costs
-- easily access KYC ("know your customer") verification tools
-- securely link bank account information using Plaid
 - keep sensitive data off of your servers
 - let us handle ACH transactions (send us JSON, not flat files)
+- have the option to transfer tokens pegged to the value of $0.01 USD directly on the blockchain
+
 
 ## Getting Started
 
