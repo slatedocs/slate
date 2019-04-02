@@ -81,7 +81,7 @@ We have a public JSON schema here: [https://sandbox.silamoney.com/0.2/getschema?
 | `header` | [object](#header) | This object is required in every call. The information it includes is used to verify the signature. | true |
 | `message` | string | This tag specifies the JSON schema object to validate against. For this call, use `entity_msg`. | true |
 | `address` | [object](#address) | This object specifies the street address of the person being verified. | true |
-| `identity` | [object](#identity) | This is used to specify an ID and what kind of ID is being specified. (As of writing, Sila only accepts social security numbers, but this will expand in the future.) | true |
+| `identity` | [object](#identity) | This is used to specify an ID and what kind of ID is being specified. (As of writing, Sila only accepts U.S. Social Security Numbers, but this will expand in the future.) | true |
 | `contact` | [object](#contact) | This is where the verified person's phone number and email address are sent. | true |
 | `crypto_entry` | [object](#crypto_entry) | Used to specify the blockchain address and network code it runs on. | true |
 | `entity` | [object](#entity) | Includes names, birthdates, and user type. | true |
