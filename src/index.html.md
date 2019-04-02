@@ -21,9 +21,14 @@ search: true
 # Introduction
 
 Welcome to the Tier API. It provides the essentials to integrate with Tier's mobility platform.
+There's different levels of access for mobility and logistics partners.
+Access is limited for different endpoints and zones for each API key individually.
+
+## Format
+
 We are using the [JSON:API standard](https://jsonapi.org/).
 
-# Versioning
+## Versioning
 
 The API is versioned using a prefix in the URL, e.g. `/v1` for the first version. There are
 still some unversioned (deprecated) endpoints. If you are using these, please note that they will stop
