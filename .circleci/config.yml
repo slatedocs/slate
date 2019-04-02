@@ -68,7 +68,7 @@ jobs:
     environment:
       ENVIRONMENT: 'stage'
 
-    working_directory: ~/repo/k8s
+    working_directory: ~/repo
 
     docker:
       - image: circleci/ruby:2.6.2-node
@@ -83,23 +83,23 @@ jobs:
       - run:
           name: "Deployment"
           command: |
-            cd .. && eb deploy documentation-stage
+            eb deploy documentation-stage
       - run:
           name: "Deploy"
           command: |
             aws --region eu-central-1 eks update-kubeconfig --name tier-k8s-cluster-stage
             kubectl cluster-info
-            helmfile sync
+            cd k8s && helmfile sync
       - run:
           name: "Announce Deployment"
-          command: ../.datadog/announce-deployment.sh
+          command: ./.datadog/announce-deployment.sh
 
   deploy-to-production:
 
     environment:
       ENVIRONMENT: 'production'
 
-    working_directory: ~/repo/k8s
+    working_directory: ~/repo
 
     docker:
       - image: circleci/ruby:2.6.2-node
@@ -118,7 +118,6 @@ jobs:
             #   Hack EB Deploy deploys what is checked in to HEAD
             #   We change the organisation ECR and stage it so eb deploy functions
             ### 
-            cd ..
             sed -i s/075108987694/373437620866/g Dockerrun.aws.json
             git add Dockerrun.aws.json
             eb deploy documentation-production --staged
@@ -127,10 +126,10 @@ jobs:
           command: |
             aws --region eu-central-1 eks update-kubeconfig --name tier-k8s-cluster-production
             kubectl cluster-info
-            helmfile sync
+            cd k8s && helmfile sync
       - run:
           name: "Announce Deployment"
-          command: ../.datadog/announce-deployment.sh
+          command: ./.datadog/announce-deployment.sh
 workflows:
   version: 2
   deploy:
