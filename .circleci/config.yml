@@ -12,15 +12,6 @@ commands:
           sudo apt-get install -y dnsutils
           sudo pip install awsebcli --upgrade
 
-  build_docs:
-    description: "Build documentation"
-    steps:
-    - run:
-        name: "Build Docs"
-        command: |
-          bundle install
-          bundle exec middleman build --clean
-
 jobs:
   build-and-upload:
 
@@ -35,7 +26,6 @@ jobs:
     steps:
       - checkout
       - install_deps
-      - build_docs
 
       - setup_remote_docker  
 
