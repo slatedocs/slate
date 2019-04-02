@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  awscli: circleci/aws-cli@0.1.6
+
 commands:
   install_deps:
     description: "Install necessary dependencies"
@@ -12,11 +15,24 @@ commands:
           sudo apt-get install -y dnsutils
           sudo pip install awsebcli --upgrade
 
+  setup_k8s:
+    steps:
+      - run:
+          name: Setup Kubectl
+          command: |
+            sudo curl -L https://storage.googleapis.com/kubernetes-release/release/v1.12.1/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl
+            sudo curl -L https://amazon-eks.s3-us-west-2.amazonaws.com/1.11.5/2018-12-06/bin/linux/amd64/aws-iam-authenticator -o /usr/local/bin/aws-iam-authenticator
+            sudo curl -L https://storage.googleapis.com/kubernetes-helm/helm-v2.11.0-linux-amd64.tar.gz | tar xz 
+            sudo curl -L https://github.com/roboll/helmfile/releases/download/v0.48.0/helmfile_linux_amd64 -o /usr/local/bin/helmfile 
+            sudo mv linux-amd64/helm /usr/local/bin/helm && sudo rm -rf linux-amd64
+            sudo chmod +x /usr/local/bin/kubectl /usr/local/bin/aws-iam-authenticator /usr/local/bin/helm /usr/local/bin/helmfile
+
 jobs:
   build-and-upload:
 
     environment:
       ENVIRONMENT: 'production'
+      REPOSITORY_NAME: 'tier/documentation'
 
     working_directory: ~/repo
 
@@ -24,77 +40,74 @@ jobs:
       - image: circleci/ruby:2.6.2-node
 
     steps:
+      - awscli/install
+      - awscli/configure
       - checkout
-      - install_deps
-
       - setup_remote_docker  
 
       - run:
           name: "Build Container"
-          command: docker build -t tier/documentation -f docker/Dockerfile .
+          command: docker build -t ${REPOSITORY_NAME} -f docker/Dockerfile .
       - run:
-          name: "Push Container"
-          command: |
-            mkdir -p ~/.aws
-            echo "[${ENVIRONMENT}]" > ~/.aws/credentials
-            echo "aws_access_key_id = ${AWS_ACCESS_KEY_ID}" >> ~/.aws/credentials
-            echo "aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" >> ~/.aws/credentials
-            echo "region = eu-central-1" >> ~/.aws/credentials
-            export ECR=373437620866.dkr.ecr.eu-central-1.amazonaws.com
-            eval $(aws ecr get-login --region eu-central-1 --no-include-email)
-            docker tag tier/documentation ${ECR}/tier/documentation
-            docker push ${ECR}/tier/documentation:latest
+        name: "Create AWS ECR repository"
+        command: |
+          aws ecr describe-repositories --repository-names ${REPOSITORY_NAME} > /dev/null 2>&1 || \
+          aws ecr create-repository --repository-name ${REPOSITORY_NAME}
+      - run:
+        name: "Store Container"
+        command: |
+          ACCOUNT=$(aws sts get-caller-identity --region eu-central-1 --output text --query 'Account')
+          eval $(aws ecr get-login --region eu-central-1 --no-include-email)
+          docker tag ${REPOSITORY_NAME} ${ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/${REPOSITORY_NAME}
+          docker push ${ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/${REPOSITORY_NAME}:latest
 
   deploy-to-stage:
 
     environment:
       ENVIRONMENT: 'stage'
 
-    working_directory: ~/repo
+    working_directory: ~/repo/k8s
 
     docker:
       - image: circleci/ruby:2.6.2-node
 
     steps:
-      - checkout
+      - awscli/install
+      - awscli/configure
       - install_deps
+      - setup_k8s
+      - checkout
 
       - run:
           name: "Deployment"
           command: |
-            eb deploy documentation-stage
+            cd .. && eb deploy documentation-stage
       - run:
-          name: "DeploymentK8s"
+          name: "Deploy"
           command: |
-            mkdir -p ~/.aws
-            echo "[${ENVIRONMENT}]" > ~/.aws/credentials
-            echo "aws_access_key_id = ${AWS_ACCESS_KEY_ID}" >> ~/.aws/credentials
-            echo "aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" >> ~/.aws/credentials
-            sudo curl -L https://storage.googleapis.com/kubernetes-release/release/v1.12.1/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl
-            sudo curl -L https://amazon-eks.s3-us-west-2.amazonaws.com/1.11.5/2018-12-06/bin/linux/amd64/aws-iam-authenticator -o /usr/local/bin/aws-iam-authenticator
-            sudo curl -L https://storage.googleapis.com/kubernetes-helm/helm-v2.11.0-linux-amd64.tar.gz | tar xz 
-            sudo mv linux-amd64/helm /usr/local/bin/helm && sudo rm -rf linux-amd64
-            sudo chmod +x /usr/local/bin/kubectl /usr/local/bin/aws-iam-authenticator /usr/local/bin/helm
             aws --region eu-central-1 eks update-kubeconfig --name tier-k8s-cluster-stage
-            #kubectl cluster-info
-            #helm upgrade --namespace documentation --recreate-pods --install documentation ./k8s/documentation
+            kubectl cluster-info
+            helmfile sync
       - run:
           name: "Announce Deployment"
-          command: ./.datadog/announce-deployment.sh
+          command: ../.datadog/announce-deployment.sh
 
   deploy-to-production:
 
     environment:
       ENVIRONMENT: 'production'
 
-    working_directory: ~/repo
+    working_directory: ~/repo/k8s
 
     docker:
       - image: circleci/ruby:2.6.2-node
 
     steps:
-      - checkout
-      - install_deps 
+      - awscli/install
+      - awscli/configure
+      - install_deps
+      - setup_k8s
+      - checkout 
 
       - run:
           name: "Deployment"
@@ -103,12 +116,19 @@ jobs:
             #   Hack EB Deploy deploys what is checked in to HEAD
             #   We change the organisation ECR and stage it so eb deploy functions
             ### 
+            cd ..
             sed -i s/075108987694/373437620866/g Dockerrun.aws.json
             git add Dockerrun.aws.json
             eb deploy documentation-production --staged
       - run:
+          name: "Deploy"
+          command: |
+            aws --region eu-central-1 eks update-kubeconfig --name tier-k8s-cluster-production
+            kubectl cluster-info
+            helmfile sync
+      - run:
           name: "Announce Deployment"
-          command: ./.datadog/announce-deployment.sh
+          command: ../.datadog/announce-deployment.sh
 workflows:
   version: 2
   deploy:
