@@ -67,7 +67,7 @@ Error Code | Meaning
 ## End rentals
 
 ```shell
-curl "https://platform.tier-services.io/rental/some-long-uuid/end"
+curl "https://platform.tier-services.io/v1/rental/some-long-uuid/end"
   -X POST
   -H "x-api-key: TIER API KEY"
   -d '{
@@ -114,4 +114,4 @@ vehicle provided by the code of the vehicle.
 
 ### HTTP Request
 
-`POST https://platform.tier-services.io/rental/<rental-id>/end`
+`POST https://platform.tier-services.io/v1/rental/<rental-id>/end`
