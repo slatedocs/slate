@@ -86,7 +86,11 @@ message_hash = k.hexdigest()
 # Sign the message_hash.
 signed_message = Account.signHash(message_hash, key)
 sig_hx = signed_message.signature.hex()
+<<<<<<< HEAD
 signature=str(sig_hx.replace("0x",""))
+=======
+signature = str(sig_hx.replace("0x","")))
+>>>>>>> 4b588f9cf253a848029d82522855ab94fe3504a5
 
 # Use encoded_message in the request body and sig_hx
 # in the appropriate signature header.
