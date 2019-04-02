@@ -73,10 +73,10 @@ KYC information required to register users in this version of the API:
 - A phone number
 
 <aside class="notice">
-<b>Important note</b>: Expect KYC requirements to evolve in future versions. (For instance, we're looking to allow for IDs other than SSNs and allow for business KYC.)
+<b>Important note</b>: Expect KYC requirements to evolve in future versions. (In future releases, we will allow for IDs other than SSNs and add support for business KYC.)
 </aside>
 
-1. Generate a private key for the user. You can have them generate/manage it themselves (in a wallet such as Metamask or MyEtherWallet) if desired.
+1. Generate a private key for the user. You can have them generate and manage it themselves (in a wallet such as Metamask or MyEtherWallet) if desired.
 2. Either randomly generate a handle for the user, or allow the user to pick a handle for themselves. Handles have to be globally unique, so they should be checked against the [/check_handle](#check_handle) endpoint for availability.
 3. The user must pass in their required *KYC information* and the *public key derived from the user's private key*. This information should be used to populate a [/register](#register) request.
 4. It may take some time for the KYC process to complete. A success response from /register only means that the verification process has started, not that the user has been verified. Subsequent [/check_kyc](#check_kyc) requests are the only way to know whether the person's information has been verified. 
