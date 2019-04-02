@@ -50,7 +50,6 @@ By using us for peer-to-peer money transfers, you can:
 - let us handle ACH transactions (send us JSON, not flat files)
 
 ## Getting Started
->>>>>>> 5749b6d6e76ccfbd74bfa9cf80505611ba60fb4b
 
 To use our API endpoints, you will need to get registered on our [Developer Console](https://console.silamoney.com/), which should be available after our open-beta launch. Registration includes a KYC verification process, which should take less than 24 hours.
 
