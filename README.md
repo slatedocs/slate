@@ -31,3 +31,8 @@ vagrant up
 Make changes in source/stylesheets/**\_variables.scss** because the changes here will be valid with future versions of Slate.
 
 If you need to make more complex css changes, edit **screen.css.scss** or **print.css.scss** but keep in mind that these will need to be merged for new versions of Slate.
+
+### Deploying to github pages
+Run the deploy.sh script. This will use your local git credentials and local /build folder to push a build to a branch named gh-pages (Where the docs are hosted)
+
+Planning to move this to an automated system when things are pushed to master.
