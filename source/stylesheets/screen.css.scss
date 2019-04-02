@@ -149,20 +149,20 @@ html, body {
 
   li {
     color: $nav-text;
-    transition-property: background;
+    transition-property: background, color, border;
     transition-timing-function: linear;
-    transition-duration: 200ms;
+    transition-duration: 1000ms;
   }
 
   // This is the currently selected ToC entry
   .toc-link.active {
-    background-color: $nav-active-bg;
+    border-left: 5px solid $nav-active-bg;
     color: $nav-active-text;
   }
 
   // this is parent links of the currently selected ToC entry
   .toc-link.active-parent {
-    background-color: $nav-active-parent-bg;
+    border-left: 5px solid $nav-active-parent-bg;
     color: $nav-active-parent-text;
   }
 
