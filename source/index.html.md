@@ -40,7 +40,7 @@ Sila allows you to build financial applications quickly and easily. Our APIs ena
 
 We will soon be adding support for **Card payments**, **Business Verification**, and **International payments** systems. 
 
-By using us for peer-to-peer money transfers, you can:
+By using us to build financial applications, you can:
 
 - decrease your go-to-market time (no regulatory headache or flaky bank partnerships)
 - dramatically decrease your upfront costs
@@ -53,7 +53,7 @@ By using us for peer-to-peer money transfers, you can:
 
 To use our API endpoints, you will need to get registered on our [Developer Console](https://console.silamoney.com/). Registration includes a KYC verification process, which should take less than 24 hours.
 
-Once you have been verified, you can register apps with us. Each app will have a public key, an associated private key, and a handle. Keep these application private keys *secure*; leave them out of your source code and never store them in an unsafe place. If they are ever compromised, please immediately replace your app keys from the Developer Console.
+Once you have been verified, you can register apps with us. Each app will have a public key, an associated private key, and a handle. Keys are explained in detail [here](#authentication): they are generated as a public-private key pair; the address generated from the public key is registered on our system; and the private key should be used to sign all calls to the API. Keep these application private keys *secure*; leave them out of your source code and never store them in an unsafe place. If they are ever compromised, please immediately replace your app keys from the Developer Console.
 
 ## Endpoint Flow
 
