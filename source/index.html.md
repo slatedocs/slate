@@ -171,6 +171,7 @@ silaApp = App("SANDBOX", app_private_key, app_handle)
 ```
 
 Version 0.2 requires Python version >= 3.6. This SDK abstracts the signature piece for signing the messages locally using users' private keys.
+[github link] (https://github.com/Sila-Money/Sila-Python)
 
 Initialization sets up the app private key and handle for the SDK to use for signing subsequent requests. *The other SDK functionality will not be available until this configuration is completed.* The SDK does not store this information outside of the instance that is configured. Private keys are never transmitted over the network or stored outside the scope of that instance.
 
