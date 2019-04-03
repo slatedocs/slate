@@ -44,6 +44,7 @@ payload = {
   "user_handle": "user.silamoney.eth" # Required
 }
 
+# Make sure silaApp is initialized with registered app_private_key and app_handle.
 User.checkHandle(silaApp, payload)
 ```
 
@@ -174,7 +175,7 @@ payload = {
   "birthdate": "1990-05-19",              # Required
 }
 
-# See SDK quickstart for silaApp initialization.
+# Make sure silaApp is initialized with registered app_private_key and app_handle.
 User.register(silaApp, payload)
 ```
 
@@ -192,7 +193,18 @@ This is the endpoint you will use to create a new user and attach information th
 
 ### Requests
 
-At this endpoint, you will need to complete all fields with user information and include a valid Ethereum address (must not be already used in Sila system and not a smart contract). The private key associated with the `crypto_entry.crypto_address` will be used to generate usersignature headers on some subsequent calls.
+At this endpoint, you will need to complete all fields with user information and include a valid Ethereum address (must not be already used in Sila system and not a smart contract). The private key associated with the `crypto_entry.crypto_address` should be used to generate usersignature headers on some subsequent calls.
+
+In this version of the API, required KYC data includes:
+
+- Full legal name
+- U.S. Social Security Number (SSN)
+- Date of birth
+- A valid street address
+- An email address
+- A phone number
+
+Expect these requirements to change in upcoming versions!
 
 This endpoint's request body is the [entity_msg](#entity_msg) JSON object.
 
@@ -264,7 +276,7 @@ payload = {
   "user_handle": "user.silamoney.eth" # Required
 }
 
-# See SDK quickstart for silaApp initialization.
+# Make sure silaApp is initialized with registered app_private_key and app_handle.
 User.requestKyc(silaApp, payload) 
 ```
 
@@ -342,7 +354,7 @@ payload = {
   "user_handle": "user.silamoney.eth" # Required
 }
 
-# See SDK quickstart for silaApp initialization.
+# Make sure silaApp is initialized with registered app_private_key and app_handle.
 # user_private_key should be 64 characters long and
 # associated with registered address. (This key is used
 # to sign requests, not sent over any network.)
@@ -435,7 +447,7 @@ payload = {
   "user_handle": "user.silamoney.eth"   # Required
 }
 
-# See SDK quickstart for silaApp initialization.
+# Make sure silaApp is initialized with registered app_private_key and app_handle.
 # user_private_key should be 64 characters long and
 # associated with registered address. (This key is used
 # to sign requests, not sent over any network.)
@@ -533,7 +545,7 @@ payload = {
   "user_handle": "user.silamoney.eth" # Required
 }
 
-# See SDK quickstart for silaApp initialization.
+# Make sure silaApp is initialized with registered app_private_key and app_handle.
 # user_private_key should be 64 characters long and
 # associated with registered address. (This key is used
 # to sign requests, not sent over any network.)
@@ -616,7 +628,7 @@ payload = {
   "user_handle": "user.silamoney.eth"
 }
 
-# See SDK quickstart for silaApp initialization.
+# Make sure silaApp is initialized with registered app_private_key and app_handle.
 # user_private_key should be 64 characters long and
 # associated with registered address. (This key is used
 # to sign requests, not sent over any network.)
@@ -712,7 +724,7 @@ payload = {
   "destination": "donald.silamoney.eth"
 }
 
-# See SDK quickstart for silaApp initialization.
+# Make sure silaApp is initialized with registered app_private_key and app_handle.
 # user_private_key should be 64 characters long and
 # associated with registered address. (This key is used
 # to sign requests, not sent over any network.)
@@ -802,7 +814,7 @@ payload = {
   "user_handle": "user.silamoney.eth"
 }
 
-# See SDK quickstart for silaApp initialization.
+# Make sure silaApp is initialized with registered app_private_key and app_handle.
 # user_private_key should be 64 characters long and
 # associated with registered address. (This key is used
 # to sign requests, not sent over any network.)
@@ -950,7 +962,7 @@ payload = {
   "user_handle": "user.silamoney.eth" # Required
 }
 
-# See SDK quickstart for silaApp initialization.
+# Make sure silaApp is initialized with registered app_private_key and app_handle.
 # user_private_key should be 64 characters long and
 # associated with registered address. (This key is used
 # to sign requests, not sent over any network.)
@@ -1009,7 +1021,7 @@ HTTP/1.1 200 OK
 ```
 
 ```python
-# See SDK quickstart for silaApp initialization.
+# Make sure silaApp is initialized with registered app_private_key and app_handle.
 User.silaBalance(silaApp, address) # address should be a 20 byte valid ethereum address
 ```
 

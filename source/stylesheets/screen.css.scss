@@ -634,7 +634,8 @@ html, body {
     }
   }
   .toc-link.active-parent {
-    background: #3F63F7;
+    //background: #3F63F7;
+    background-color: rgba(0,0,0,0)
   }
   .toc-link.active {
     background: #0CD495;
