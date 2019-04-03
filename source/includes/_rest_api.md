@@ -2247,6 +2247,7 @@ p JSON.parse(result)
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
 |product_id|path|integer|true|none|
+|depth|query|integer|false|number of levels on each side|
 
 > Example responses
 

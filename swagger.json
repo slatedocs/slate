@@ -690,7 +690,12 @@
           "name" : "product_id",
           "type" : "integer",
           "required" : true
-        } ],
+        }, {
+          "in" : "query",
+          "name" : "depth",
+          "description" : "number of levels on each side",
+          "type" : "integer"
+        }],
         "responses" : {
           "200" : {
             "description" : "L2 orderbook for the product",
