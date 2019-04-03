@@ -409,7 +409,7 @@ A successful request will generate a lightning invoice that will look similar to
 
 <span style="color:blue"><code style="word-wrap:break-word;">lnbcrt10n1pd5v2mwpp5ulxpj8ht4gvtqnyl8zuykfk4wcv6sz455ce5dy0e0lqt...</code></span>
 
-# Crypto Exchange API 
+# Crypto Spot Exchange API 
 
 ## Crypto Exchange Websocket Endpoint 
 
@@ -1064,7 +1064,7 @@ Field | Type | Exchanges Supporting
 `quantityChange` | Double | bitstamp, gemini 
 `symbol` | String |  binance, coinbase 
 
-# Crypto Futures API
+# Crypto Futures Exchange API
 
 ## Crypto Futures API Endpoints
 
