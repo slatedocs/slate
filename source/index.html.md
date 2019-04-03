@@ -411,7 +411,7 @@ A successful request will generate a lightning invoice that will look similar to
 
 # Crypto Spot Exchange API 
 
-## Crypto Exchange Websocket Endpoint 
+## Crypto Spot Exchange Websocket Endpoints 
 
 This is the paid service url **wss://api.suredbits.com/exchange/v0** on mainnet.
 
@@ -1066,7 +1066,7 @@ Field | Type | Exchanges Supporting
 
 # Crypto Futures Exchange API
 
-## Crypto Futures API Endpoints
+## Crypto Futures Exchange Endpoints
 
 This is the paid service url **wss://api.suredbits.com/futures/v0** on mainnet.
 
@@ -1395,7 +1395,7 @@ Field | Type | Exchanges Supporting
 
 <h1 id="NFLData"> NFL Data</h1>
 
-## NFL Websocket Endpoint
+## NFL Websocket Endpoints
 
 
 This is the paid service url **wss://api.suredbits.com/nfl/v0** on mainnet.
@@ -2053,7 +2053,7 @@ Field | Type | Example
 
 # NBA Data
 
-## NBA Websocket Endpoint
+## NBA Websocket Endpoints
 
 This is the paid service url **wss://api.suredbits.com/nba/v0** on mainnet.
 
