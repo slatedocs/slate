@@ -1,0 +1,29 @@
+<?php
+
+require 'vendor/autoload.php';
+
+{{?data.allHeaders.length}}
+$headers = array(
+    {{~data.allHeaders :p:index}}'{{=p.name}}' => '{{=p.exampleValues.object}}',
+    {{~}}
+    );{{?}}
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('{{=data.methodUpper}}','{{=data.url}}', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...

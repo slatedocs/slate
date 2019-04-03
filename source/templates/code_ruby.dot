@@ -1,0 +1,14 @@
+require 'rest-client'
+require 'json'
+
+{{?data.allHeaders.length}}headers = {
+{{~data.allHeaders :p:index}}  '{{=p.name}}' => {{=p.exampleValues.json}}{{?index < data.allHeaders.length-1}},{{?}}
+{{~}}}{{?}}
+
+result = RestClient.{{=data.method.verb}} '{{=data.url}}',
+  params: {
+  {{~ data.requiredParameters :p:index}}'{{=p.name}}' => '{{=p.safeType}}'{{? data.requiredParameters.length-1 != index }},{{?}}
+{{~}}}{{? data.allHeaders.length}}, headers: headers
+{{?}}
+
+p JSON.parse(result)

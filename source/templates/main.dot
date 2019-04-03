@@ -1,0 +1,141 @@
+<!-- Generator: Widdershins v{{=data.widdershins.version}} -->
+
+<section>
+<h1 id="{{=data.title_prefix}}">{{=data.api.info && data.api.info.title}} {{=data.version}}</h1>
+
+> Scroll down for {{? data.header.language_tabs.length}}code samples, {{?}}example requests and responses.{{? data.header.language_tabs.length}} Select a language for code samples from the tabs above or the mobile navigation menu.{{?}}
+
+{{? data.api.info && data.api.info.description}}{{=data.api.info.description}}{{?}}
+
+{{? data.api.servers }}
+Base URLs:
+{{~data.api.servers :s}}
+* <a href="{{=s.url}}">{{=s.url}}</a>
+{{ for(var v in s.variables) { }}
+    * **{{=v}}** - {{=s.variables[v].description||''}} Default: {{=s.variables[v].default}}
+{{? s.variables[v].enum}}
+{{~ s.variables[v].enum :e}}
+        * {{= e}}
+{{~}}
+{{?}}
+{{ } }}
+{{~}}
+{{?}}
+
+{{? data.api.info && data.api.info.termsOfService}}<a href="{{=data.api.info.termsOfService}}">Terms of service</a>{{?}}
+{{? data.api.info && data.api.info.contact}}{{? data.api.info.contact.email}}Email: <a href="mailto:{{=data.api.info.contact.email}}">{{=data.api.info.contact.name || 'Support'}}</a> {{?}}{{? data.api.info.contact.url}}Web: <a href="{{=data.api.info.contact.url}}">{{= data.api.info.contact.name || 'Support'}}</a> {{?}}{{?}}
+{{? data.api.info && data.api.info.license}}{{? data.api.info.license.url}}License: <a href="{{=data.api.info.license.url}}">{{=data.api.info.license.name}}</a>{{??}} License: {{=data.api.info.license.name}}{{?}}{{?}}
+</section>
+
+{{? data.api.components && data.api.components.securitySchemes }}
+{{#def.security}}
+{{?}}
+
+{{ for (var r in data.resources) { }}
+{{ data.resource = data.resources[r]; }}
+
+<section>
+<h1 id="{{=data.title_prefix+'-'+data.utils.slugify(r)}}">{{= r}}</h1>
+
+{{? data.resource.description }}{{= data.resource.description}}{{?}}
+
+{{? data.resource.externalDocs}}
+<a href="{{=data.resource.externalDocs.url}}">{{=data.resource.externalDocs.description||'External documentation'}}</a>
+{{?}}
+
+{{ for (var m in data.resource.methods) { }}
+{{ data.operationUniqueName = m; }}
+{{ data.method = data.resource.methods[m]; }}
+{{ data.operationUniqueSlug = data.method.slug; }}
+{{ data.operation = data.method.operation; }}
+{{= data.templates.operation(data) }}
+{{ } /* of methods */ }}
+
+</section>
+{{ } /* of resources */ }}
+
+{{? data.api.components && data.api.components.schemas }}
+<section>
+
+# Schemas
+
+{{ for (var s in data.components.schemas) { }}
+{{ var origSchema = data.components.schemas[s]; }}
+{{ var schema = data.api.components.schemas[s]; }}
+
+<section>
+<h2 id="tocS_{{=s}}">{{=s}}</h2>
+<!-- backwards compatibility -->
+<a id="schema{{=s.toLowerCase()}}"></a>
+<a id="schema_{{=s}}"></a>
+<a id="tocS{{=s.toLowerCase()}}"></a>
+<a id="tocs{{=s.toLowerCase()}}"></a>
+
+{{? data.options.yaml }}
+```yaml
+{{=data.utils.yaml.stringify(data.utils.getSample(schema,data.options,{},data.api))}}
+{{??}}
+```json
+{{=data.utils.safejson(data.utils.getSample(schema,data.options,{},data.api),null,2)}}
+{{?}}
+```
+
+{{ var enums = []; }}
+{{ var blocks = data.utils.schemaToArray(origSchema,-1,{trim:true,join:true},data); }}
+{{ for (var block of blocks) {
+     for (var p of block.rows) {
+       if (p.schema && p.schema.enum) {
+         for (var e of p.schema.enum) {
+           enums.push({name:p.name,value:e});
+         }
+       }
+     }
+   }
+}}
+
+{{~ blocks :block}}
+{{? block.title }}{{= block.title}}{{= '\n\n'}}{{?}}
+{{? block.externalDocs}}
+<a href="{{=block.externalDocs.url}}">{{=block.externalDocs.description||'External documentation'}}</a>
+{{?}}
+
+{{? block===blocks[0] }}
+<section>
+
+### Properties
+{{?}}
+
+{{? block.rows.length}}|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|{{?}}
+{{~ block.rows :p}}|{{=p.displayName}}|{{=p.safeType}}|{{=p.required}}|{{=p.restrictions||'none'}}|{{=p.description||'none'}}|
+{{~}}
+{{~}}
+{{? (blocks[0].rows.length === 0) && (blocks.length === 1) }}
+*None*
+{{?}}
+
+{{? enums.length > 0 }}
+<section>
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+{{~ enums :e}}|{{=e.name}}|{{=data.utils.toPrimitive(e.value)}}|
+{{~}}
+
+</section>
+{{?}}
+
+</section>
+</section>
+
+{{ } /* of schemas */ }}
+
+{{?}}
+
+{{#def.footer}}
+
+{{? data.options.discovery}}
+{{#def.discovery}}
+{{?}}

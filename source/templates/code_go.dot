@@ -1,0 +1,23 @@
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+{{?data.allHeaders.length}}
+    headers := map[string][]string{
+        {{~data.allHeaders :p:index}}"{{=p.name}}": []string{"{{=p.exampleValues.object}}"},
+        {{~}}
+    }{{?}}
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("{{=data.methodUpper}}", "{{=data.url}}", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}

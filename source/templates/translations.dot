@@ -1,0 +1,16 @@
+{{
+data.translations.defaultTag = 'Default';
+data.translations.response = 'Response';
+data.translations.responseDefault = 'Default';
+data.translations.responseUnknown = 'Unknown';
+data.translations.schemaInline = 'Inline';
+data.translations.schemaNone = 'None';
+data.translations.externalDocs = 'External documentation';
+data.translations.secDefNone = 'None';
+data.translations.secDefScopes = 'Scopes';
+data.translations.anonymous = 'anonymous';
+data.translations.continued = 'continued';
+data.translations.indent = '»';
+data.translations.readOnly = 'read-only';
+data.translations.writeOnly = 'write-only';
+}}

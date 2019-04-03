@@ -1,0 +1,11 @@
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@type": "WebAPI",
+  {{? data.api.info.description }}"description": "{{=data.api.info.description}}",{{?}}
+  {{? data.api.externalDocs }}"documentation": "{{=data.api.externalDocs.url}}",{{?}}
+  {{? data.api.info.termsOfService }}"termsOfService": "{{=data.api.info.termsOfService}}",{{?}}
+  {{? data.api.info["x-logo"] && data.api.info["x-logo"].url }}"logo": "{{=data.api.info["x-logo"].url}}",{{?}}
+  "name": "{{=data.api.info.title}}"
+}
+</script>
