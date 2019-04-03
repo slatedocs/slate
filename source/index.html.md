@@ -22,11 +22,11 @@ Kardia Pro facilitates a connection between a clinician’s Kardia Pro account a
 
 # Authentication
 
-The Kardia API uses API keys to authenticate requests. You can view and manage your keys in the API dash board. APIs within the Kardia platform require the use of HTTP Basic Authentication, constructed from a valid API key as the username and empty password combination.
+The Kardia API uses API keys to authenticate requests. Contact Kardia support for obtaining an API key. APIs within the Kardia platform require the use of HTTP Basic Authentication, constructed from a valid API key as the username and empty password combination.
 
 ```shell
  curl https://api.kardia.com/v1/patients \
-  -u 7863674b-1919-432b-90d5-838fb8207d3f:
+  -u YOUR-API-KEY:
 # The colon prevents curl from asking for a password.
 
 ```
@@ -35,15 +35,15 @@ The Kardia API uses API keys to authenticate requests. You can view and manage y
 
 ### Patient Object
 
-Name | Type | Description
---------- | ------- | -----------
-id | string | The patient's unique random ID
-patientMRN | string | The patient's medical record number
-dob | string | The patient's date of birth
-email | string | The patient's email address
-firstname | string | The patient's first name
-lastname | string | The patient's last name
-sex | int | The patient's sex as ISO/IEC5218
+Name       | Type    | Description
+---------- | ------- | -----------
+id         | string  | The patient's unique random ID
+mrn        | string  | The patient's medical record number
+dob        | string  | The patient's date of birth
+email      | string  | The patient's email address
+firstname  | string  | The patient's first name
+lastname   | string  | The patient's last name
+sex        | int     | The patient's sex as ISO/IEC5218
 
 
 ## Create Patient
@@ -54,7 +54,7 @@ To create a patient, send a `POST` request to `/v1/patients`.
 
 Name       | Type   | Required | Description
 ---------  | ------ | ---------| -----------
-patientMRN | string | Yes      | The patient's medical record number
+mrn        | string | Yes      | The patient's medical record number
 email      | string | Yes      | The patient's email address
 dob        | string | Yes      | The patient's date of birth as YYYY-MM-DD
 firstname  | string | No       | The patient's first name
@@ -65,8 +65,8 @@ sex        | int    | No       | The patient's sex as ISO/IEC 5218
 
 ```shell
 curl https://api.kardia.com/v1/patients \
-  -u 7863674b-1919-432b-90d5-838fb8207d3f: \
-  -d patientMRN=JS-20000721 \
+  -u YOUR-API-KEY: \
+  -d mrn=JS-20000721 \
   -d dob=2000-07-21 \
   -d email=joe@example.com \
   -d firstname=Joe \
@@ -79,7 +79,7 @@ curl https://api.kardia.com/v1/patients \
 ```json
 {
   "id": "wNSEDeLOEPQE5rznkJmwbnjpxfdst93i",
-  "patientMRN": "JS-20000721",
+  "mrn": "JS-20000721",
   "dob": "1970-03-12",
   "email": "joe@example.com",
   "firstname": "Joe",
@@ -97,7 +97,7 @@ Responds to `GET` requests to `/v1/patients/:id` and returns a single patient ob
 
 ```shell
 curl https://api.kardia.com/v1/patients/wNSEDeLOEPQE5rznkJmwbnjpxfdst93i \
- -u 7863674b-1919-432b-90d5-838fb8207d3f:
+ -u YOUR-API-KEY:
 ```
 
 > Example Response
@@ -105,7 +105,7 @@ curl https://api.kardia.com/v1/patients/wNSEDeLOEPQE5rznkJmwbnjpxfdst93i \
 ```shell
 {
   "id": "wNSEDeLOEPQE5rznkJmwbnjpxfdst93i",
-  "patientMRN": "JMJ-19810712",
+  "mrn": "JMJ-19810712",
   "dob": "1970-03-12",
   "email": "joe@example.com",
   "firstname": "Joe",
@@ -116,20 +116,20 @@ curl https://api.kardia.com/v1/patients/wNSEDeLOEPQE5rznkJmwbnjpxfdst93i \
 
 ## Get Connection Code
 
-Responds to `GET` requests to `/v1/patients/:id/code` and returns a valid connection code for the given patient.
+Responds to `GET` requests to `/v1/patients/:id/code` and returns a valid connection code for the given patient and the status of the connection, either `connected` or `pending`.
 
 > Example Request
 
 ```shell
 curl https://api.kardia.com/v1/patients/wNSEDeLOEPQE5rznkJmwbnjpxfdst93i/code \
- -u 7863674b-1919-432b-90d5-838fb8207d3f:
+ -u YOUR-API-KEY:
 ```
 
 > Example Response
 
 ```shell
 {
-  "code": ""LQYP-MSAK-NPJR",
+  "code": "LQYP-MSAK-NPJR",
   "status": "connected"
 }
 ```
@@ -137,7 +137,7 @@ curl https://api.kardia.com/v1/patients/wNSEDeLOEPQE5rznkJmwbnjpxfdst93i/code \
 
 ## Get Patient Recordings
 
-Responds to `GET` requests to `/v1/patients/:id/recordings` and returns an array of EKG recordings for the given patient.
+Responds to `GET` requests to `/v1/patients/:id/recordings` and returns an array of ECG recordings for the given patient.
 
 **Querystring parameters**
 
@@ -152,15 +152,21 @@ Name        | Type    | Description
 totalCount  | int     | The total number of patients
 data        | array   | An array of `Recording` objects
 pageInfo    | object  | Pagination information
+
+### Page Info Object
+
+Name        | Type    | Description
+----------- | ------- | -----------
 startCursor | string  | The cursor for the first recording in the page
 endCursor   | string  | the cursor for the last recording in the page
 hasNextPage | bool    | True if there is another page of data
+
 
 > Example Request
 
 ```shell
 curl https://api.kardia.com/v1/patients/wNSEDeLOEPQE5rznkJmwbnjpxfdst93i/recordings \
- -u 7863674b-1919-432b-90d5-838fb8207d3f:
+ -u YOUR-API-KEY:
 ```
 
 > Example Response
@@ -231,6 +237,11 @@ Name        | Type    | Description
 totalCount  | int     | The total number of patients
 data        | array   | An array of `Patient` objects
 pageInfo    | object  | Pagination information
+
+### Page Info Object
+
+Name        | Type    | Description
+----------- | ------- | -----------
 startCursor | string  | The cursor for the first patient in the page
 endCursor   | string  | the cursor for the last patient in the page
 hasNextPage | bool    | True if there is another page of data
@@ -239,7 +250,7 @@ hasNextPage | bool    | True if there is another page of data
 
 ```shell
 curl https://api.kardia.com/v1/patients?limit=50&start=ZW5kQ3Vyc29yc2Rh= \
-  -u 7863674b-1919-432b-90d5-838fb8207d3f:
+  -u YOUR-API-KEY:
 ```
 
 > Example Response
@@ -250,7 +261,7 @@ curl https://api.kardia.com/v1/patients?limit=50&start=ZW5kQ3Vyc29yc2Rh= \
   "data": [
     {
       "id": "wNSEDeLOEPQE5rznkJmwbnjpxfdst93i",
-      "patientMRN": "JS-19810712",
+      "mrn": "JS-19810712",
       "dob": "1970-03-12",
       "email": "joe@example.com",
       "firstname": "Joe",
@@ -266,32 +277,44 @@ curl https://api.kardia.com/v1/patients?limit=50&start=ZW5kQ3Vyc29yc2Rh= \
 }
 ```
 
-# EKG Recordings
+# ECG Recordings
 
-## EKG Object
+## ECG Object
 
-Name       | Type    | Description
----------- | ------- | -----------
-id         | string  | The patient's unique random ID
-patientID  | string  | The unique patient identifier
-duration   | int     | The duration of the EKG recording in milliseconds
-heartRate  | int     | The average heart rate
-data       | object  | The EKG data samples
-frequency  | int     | The frequency of the EKG recording, i.e. 300Hz
-mains_freq | int     | The mains frequency either 50 (e.g. Europe) or 60 (e.g. America) Hz.
-samples    | object  | The EKG data samples
-lead_I     | array   | The Lead 1 data samples
-recordedAt | string  | The date time the EKG was recorded
+Name                   | Type    | Description
+---------------------- | ------- | -----------
+id                     | string  | The patient's unique random ID
+patientID              | string  | The unique patient identifier
+duration               | int     | The duration of the ECG recording in milliseconds
+heartRate              | int     | The average heart rate
+algorithmDetermination | string  | Represents the output of the AliveCor ECG algorithms, the allowable values are `normal`, `afib`, `unclassified`, `bradycardia`, `tachycardia`, `too_short`, `too_long`, `unreadable`, and `no_analysis`
+data                   | object  | The ECG data samples
+recordedAt             | string  | The date time the ECG was recorded
 
-## Single EKG
+## ECG Data Object
 
-To get a single EKG for a given patient send a `GET` request to `/v1/recordings/:id` 
+Name                | Type   | Description
+------------------- | ------ | -----------
+frequency           | int    | The frequency in hertz of the ECG recording, i.e. 300Hz
+mainsFrequency      | int    | The mains frequency either 50 (e.g. Europe) or 60 (e.g. America) Hz.
+amplitudeResolution | int  | The number of nanovolts corresponding to each sample unit. 
+samples             | object | The ECG data samples
+
+## ECG Samples Object
+
+Name      | Type    | Description
+--------- | ------- | -----------
+leadI     | array   | The Lead 1 data samples at the specified sampling frequency, in ADC units. To convert to millivolts, divide these samples by (1e6 / amplitudeResolution).
+
+## Single ECG
+
+To get a single ECG for a given patient send a `GET` request to `/v1/recordings/:id` 
 
 > Example Request
 
 ```shell
 curl https://api.kardia.com/v1/recordings/3wde1eem9vy4y1a0rv3y98u2a \
-  -u 7863674b-1919-432b-90d5-838fb8207d3f:
+  -u YOUR-API-KEY:
 ```
 
 > Example Response
@@ -300,8 +323,10 @@ curl https://api.kardia.com/v1/recordings/3wde1eem9vy4y1a0rv3y98u2a \
 {
   "id": "3wde1eem9vy4y1a0rv3y98u2a",
   "patientID": "wNSEDeLOEPQE5rznkJmwbnjpxfdst93i",
+  "algorithmDetermination": "normal",
   "duration": 30000,
   "heartRate": 65,  
+  "recordedAt": "2008-09-15T15:53:00+05:00"
   "data": {
     "frequency": 300,
     "mains_freq": 60,
@@ -330,14 +355,13 @@ curl https://api.kardia.com/v1/recordings/3wde1eem9vy4y1a0rv3y98u2a \
         ...     
       ]
     }
-  },
-  "recordedAt": "2008-09-15T15:53:00+05:00"
+  }
 }
 ```
 
-## Single EKG PDF
+## Single ECG PDF
 
-To get a single EKG PDF for a given patient send a `GET` request to `/v1/recordings/:id.pdf` 
+To get a single ECG PDF for a given patient send a `GET` request to `/v1/recordings/:id.pdf` 
 
 > Example Request
 
@@ -346,9 +370,9 @@ curl https://api.kardia.com/v1/recordings/3wde1eem9vy4y1a0rv3y98u2a.pdf \
   -u 7863674b-1919-432b-90d5-838fb8207d3f:
 ```
 
-## Get All Recortdings
+## Get All Recordings
 
-Responds to `GET` requests to `/v1/recordings` and returns an array of EKG's across all patients.
+Responds to `GET` requests to `/v1/recordings` and returns an array of ECG's across all patients.
 
 **Querystring parameters**
 
@@ -383,6 +407,7 @@ curl https://api.kardia.com/v1/recordings \
     {
       "id": "3wde1eem9vy4y1a0rv3y98u2a",
       "patientID": "wNSEDeLOEPQE5rznkJmwbnjpxfdst93i",
+      "algorithmDetermination": "normal",
       "duration": 30000,
       "heartRate": 65,  
       "data": {
@@ -424,4 +449,3 @@ curl https://api.kardia.com/v1/recordings \
   }
 }
 ```
-
