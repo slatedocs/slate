@@ -75,10 +75,16 @@ h4, h5, h6 {
 
 .content h4, .content h5, .content h6 {
   font-size: 15px !important;
-  margin-top: 1.2rem !important;
+  margin-top: 1.2rem;
 }
 
 .content h3 {
   font-size: 17.5px !important;
   margin-top: 1.5rem !important;
+}
+
+.dt-section {
+  margin-top: 4em !important;
+  padding-top: 1.2em;
+  clear: both;
 }
