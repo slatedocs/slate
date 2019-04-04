@@ -1,0 +1,8 @@
+releases:
+  - name: documentation
+    chart: documentation
+    namespace: documentation
+    values:
+      - environments/{{ env "ENVIRONMENT" | default "stage" }}/values.yaml
+      - image:
+          tag: latest

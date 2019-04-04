@@ -1,0 +1,29 @@
+ingress:
+  enabled: true
+  hosts:
+    - host: documentation.tier-services.io
+      paths:
+        - /
+  tls:
+    - secretName: documentation-tls-secret
+      hosts:
+      - documentation.tier-services.io
+
+resources:
+  limits:
+    cpu: 1000m
+    memory: 1Gi
+  requests:
+    cpu: 1000m
+    memory: 1Gi
+
+affinity:
+  podAntiAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution: # Distribute redis across different nodes
+      - labelSelector:
+          matchExpressions:
+            - key: "role"
+              operator: In
+              values:
+              - {{ include "documentation.name" . }}-app
+        topologyKey: "kubernetes.io/hostname"

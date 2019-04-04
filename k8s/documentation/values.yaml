@@ -16,19 +16,18 @@ service:
   port: 80
 
 ingress:
-  enabled: true
+  enabled: false
   annotations:
     kubernetes.io/ingress.class: nginx
-    #kubernetes.io/tls-acme: "true"
-  hosts:
-    #- host: docs.tier-ops.com
-    #  paths:
-    #    - /
-    - host: docs.tier-staging.io
-      paths:
-        - /
+  #hosts:
+  #  - host: docs.tier-ops.com
+  #    paths:
+  #      - /
+  #  - host: docs.tier-staging.io
+  #    paths:
+  #      - /
 
-  tls: []
+  #tls: []
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
