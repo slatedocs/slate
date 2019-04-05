@@ -22,6 +22,7 @@ RestClient.post(
           description: "hello",
           budget_id: 1,
           vat: "1.1",
+          tax_rate_id: 1,
           status: "pending",
           quantity: "1.0",
           unit_price: "50"
@@ -46,6 +47,7 @@ curl 'https://app.procurementexpress.com/api/v1/purchase_orders'
   -d "purchase_order[creator_id]=1"
   -d "purchase_order[status]=draft"
   -d "purchase_order[supplier_name]=John Doe"
+  -d "purchase_order[tax_rate_id]=1"
   -d "purchase_order[notes]=Notes"
   -d "purchase_order[company_id]=1"
   -d "purchase_order[currency_id]=1"
@@ -99,6 +101,7 @@ curl 'https://app.procurementexpress.com/api/v1/purchase_orders'
       "budget_summary": "1100044 - Embajadores de marca Google en Retail Chromecast : F 9575 : TELEFONIA Y CELULARES",
       "gross_amount": "50.55",
       "vat": "1.1",
+      "tax_rate_id": 1,
       "net_amount": "50.0",
       "status": "pending",
       "quantity": "1.0",
@@ -110,24 +113,6 @@ curl 'https://app.procurementexpress.com/api/v1/purchase_orders'
       "product_id": null,
       "received_quantity": null,
       "custom_field_values": []
-    }
-  ],
-  "budgets": [
-    {
-      "id": 1,
-      "company_id": 1,
-      "name": "1100044 - Embajadores de marca Google en Retail Chromecast",
-      "amount": "19500.0",
-      "cost_code": "F 9575",
-      "cost_type": "TELEFONIA Y CELULARES",
-      "archived": false,
-      "currency_id": 100,
-      "base_amount": "19500.0",
-      "base_rate": "1.0",
-      "allow_anyone_to_approve_a_po": false,
-      "start_date": null,
-      "end_date": null,
-      "summary": "1100044 - Embajadores de marca Google en Retail Chromecast : F 9575 : TELEFONIA Y CELULARES"
     }
   ],
   "purchase_order_comments": [],
@@ -179,6 +164,7 @@ these values will determine the status of the Purchase Order.
 | purchase_order[purchase_order_items_attributes][][unit_price]                                      | decimal | required                                                           | Unit price                                                 |
 | purchase_order[purchase_order_items_attributes][][budget_id]                                       | integer | required                                                           | Budget ID                                                  |
 | purchase_order[purchase_order_items_attributes][][vat]                                             | decimal | required                                                           | VAT                                                        |
+| purchase_order[purchase_order_items_attributes][][tax_rate_id]                                             | decimal | required                                                           | Tax rate id                                              |
 | purchase_order[purchase_order_items_attributes][][item_number]                                     | string  | required                                                           | Item Number                                                |
 | purchase_order[purchase_order_items_attributes][][purchase_order_id]                               | integer | required                                                           | Purchase Order ID                                          |
 | purchase_order[purchase_order_items_attributes][][_destroy]                                        | boolean | `true` <br/> `false`                                               | set `true` if you want to delete specific row of item      |
@@ -280,6 +266,7 @@ curl 'https://app.procurementexpress.com/api/v1/purchase_orders/1'
       "budget_summary": "1100044 - Embajadores de marca Google en Retail Chromecast : F 9575 : TELEFONIA Y CELULARES",
       "gross_amount": "50.55",
       "vat": "1.1",
+      "tax_rate_id": 1,
       "net_amount": "50.0",
       "status": "pending",
       "quantity": "1.0",
@@ -291,24 +278,6 @@ curl 'https://app.procurementexpress.com/api/v1/purchase_orders/1'
       "product_id": null,
       "received_quantity": null,
       "custom_field_values": []
-    }
-  ],
-  "budgets": [
-    {
-      "id": 1,
-      "company_id": 1,
-      "name": "1100044 - Embajadores de marca Google en Retail Chromecast",
-      "amount": "19500.0",
-      "cost_code": "F 9575",
-      "cost_type": "TELEFONIA Y CELULARES",
-      "archived": false,
-      "currency_id": 100,
-      "base_amount": "19500.0",
-      "base_rate": "1.0",
-      "allow_anyone_to_approve_a_po": false,
-      "start_date": null,
-      "end_date": null,
-      "summary": "1100044 - Embajadores de marca Google en Retail Chromecast : F 9575 : TELEFONIA Y CELULARES"
     }
   ],
   "purchase_order_comments": [],
@@ -358,6 +327,7 @@ In this API endpoint, pass `commit` params with the value of `Send` to send purc
 | purchase_order[purchase_order_items_attributes][][unit_price]                                      | decimal | required                                                           | Unit price                                                 |
 | purchase_order[purchase_order_items_attributes][][budget_id]                                       | integer | required                                                           | Budget ID                                                  |
 | purchase_order[purchase_order_items_attributes][][vat]                                             | decimal | required                                                           | VAT                                                        |
+| purchase_order[purchase_order_items_attributes][][tax_rate_id]                                     | decimal | required                                                           | Tax Rate Id                                                |
 | purchase_order[purchase_order_items_attributes][][item_number]                                     | string  | required                                                           | Item Number                                                |
 | purchase_order[purchase_order_items_attributes][][purchase_order_id]                               | integer | required                                                           | Purchase Order ID                                          |
 | purchase_order[purchase_order_items_attributes][][_destroy]                                        | boolean | `true` <br/> `false`                                               | set `true` if you want to delete specific row of item      |
