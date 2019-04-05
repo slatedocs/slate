@@ -173,6 +173,7 @@ payload = {
   "postal_code": 97204,                   # Required:  Must be a valid US Postal Code
   "crypto_address": '0x123...890',        # Required:  Must be a valid ethereum 20 byte address starting with 0x
   "birthdate": "1990-05-19",              # Required
+  "email"    : "  "                       # Required
 }
 
 # Make sure silaApp is initialized with registered app_private_key and app_handle.
