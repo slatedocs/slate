@@ -40,7 +40,7 @@ Sila allows you to build financial applications quickly and easily. Our API endp
 
 We will soon be adding support for **card payments**, **business ID verification**, and **international payments**.
 
-By using us for peer-to-peer money transfers, you can:
+By using us to build financial applications, you can:
 
 - decrease your go-to-market time (no regulatory headache or flaky bank partnerships)
 - dramatically decrease your upfront costs
@@ -53,7 +53,7 @@ By using us for peer-to-peer money transfers, you can:
 
 To use our API endpoints, you will need to get registered on our [Developer Console](https://console.silamoney.com/). Registration includes a KYC verification process, which should take less than 24 hours.
 
-Once you have been verified, you can register apps with us. Each app will have a public key, an associated private key, and a handle. Keep these application private keys *secure*; leave them out of your source code and never store them in an unsafe place. If they are ever compromised, please immediately replace your app keys from the Developer Console.
+Once you have been verified, you can register apps with us. Each app will have a public key, an associated private key, and a handle. Keys are explained in detail [here](#authentication): they are generated as a public-private key pair; the address generated from the public key is registered on our system; and the private key should be used to sign all calls to the API. Keep these application private keys *secure*; leave them out of your source code and never store them in an unsafe place. If they are ever compromised, please immediately replace your app keys from the Developer Console.
 
 ## Endpoint Flow
 
@@ -73,10 +73,10 @@ KYC information required to register users in this version of the API:
 - A phone number
 
 <aside class="notice">
-<b>Important note</b>: Expect KYC requirements to evolve in future versions. (For instance, we're looking to allow for IDs other than SSNs and allow for business KYC.)
+<b>Important note</b>: Expect KYC requirements to evolve in future versions. (In future releases, we will allow for IDs other than SSNs and add support for business KYC.)
 </aside>
 
-1. Generate a private key for the user. You can have them generate/manage it themselves (in a wallet such as Metamask or MyEtherWallet) if desired.
+1. Generate a private key for the user. You can have them generate and manage it themselves (in a wallet such as Metamask or MyEtherWallet) if desired.
 2. Either randomly generate a handle for the user, or allow the user to pick a handle for themselves. Handles have to be globally unique, so they should be checked against the [/check_handle](#check_handle) endpoint for availability.
 3. The user must pass in their required *KYC information* and the *public key derived from the user's private key*. This information should be used to populate a [/register](#register) request.
 4. It may take some time for the KYC process to complete. A success response from /register only means that the verification process has started, not that the user has been verified. Subsequent [/check_kyc](#check_kyc) requests are the only way to know whether the person's information has been verified. 

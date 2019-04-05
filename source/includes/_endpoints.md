@@ -150,7 +150,8 @@ var user = {
   city: 'New City',             // Required: Must be a valid US City matching the zip
   state: 'OR',                  // Required: Must be a 2 character US State abbr.
   zip: '97204-1234',            // Required: Must be a valid US Postal Code
-  phone: '123-456-7890'         // Required: Must be a valid phone number (format not enforced)
+  phone: '123-456-7890',        // Required: Must be a valid phone number (format not enforced)
+  email: 'fake@email.com'       // Required: Must be a valid email address
 }
 
 sila.register(user)
@@ -167,6 +168,7 @@ payload = {
   "entity_name": 'Example User',          # Required
   "identity_value": "123452222",          # Required (SSN)
   "phone": 1234567890,                    # Required:  Must be a valid phone number (format not enforced)
+  "email": "fake@email.com",              # Required:  Must be a valid email address
   "street_address_1": '123 Main Street',  # Required:  Must be a valid USPS mailing address
   "city": 'New City',                     # Required:  Must be a valid US City matching the zip
   "state": 'OR',                          # Required:  Must be a 2 character US State abbr.
