@@ -123,6 +123,7 @@ data/attributes/automated-execution-output | text output string that will be sho
 data/attributes/custom-fields | a hash of custom-fields with their value | false |
 data/steps/data** | an array of steps override the exit code | false |
 data/files/data*** | an array of files  | false |
+data/steps/data/files/data**** | an array of files | false
 
 
 * Users can update 20 instances (maximum) with results by sending one request. See a curl example in the dark area to the right.
@@ -131,9 +132,11 @@ data/files/data*** | an array of files  | false |
 Status can be one of the following: PASSED, FAILED, BLOCKED, NO RUN, N/A
 When using steps, the exit-code is ignored, and it calculates it according to the steps status.
 
-*** files would be as an attachments in your automated tests. It's a json hash that has two attributes: filename, and content_encoded.
+*** Files would be as attachments in your automated test runs. It's a json hash that has two attributes: filename, and content_encoded.
 We expect to get the file content encoded as BASE64. See code examples: shell with curl to your right, Ruby example <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/ruby/runs.rb" target="blank"> here</a>, Python version 2 example <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/python/create_run_attachments_v2.py" target="blank"> here</a>, Python version 3 example <a
 href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/python/create_run_attachments_v3.py" target="blank"> here</a>, Java example <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/java/src/main/java/com/practitest/examples/RunWithAttachments.java" target="blank"> here</a>, C sharp (.Net) example <a href="https://github.com/PractiTest/pt-api-examples/blob/master/api.v2/csharp/create_run_attachments.cs" target="blank"> here</a>.
+
+**** This parameter allows to attach files to specific step/s.
 
 
 ```shell
@@ -142,6 +145,13 @@ curl -H "Content-Type:application/json" \
    -u test@pt.com:YOUR TOKEN \
    -X POST https://api.practitest.com/api/v2/projects/1/runs.json \
    -d '{"data": { "type": "instances", "attributes": {"instance-id": 3254471, "exit-code": 0 }, "files": {"data": [{"filename": "one.log", "content_encoded": "'"$( base64 /tmp/one.log)"'" }, {"filename": "two.log", "content_encoded": "'"$( base64 /tmp/two.log)"'" }]} }  }'
+
+# upload test results with a file attachment to a specific step
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X POST https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/runs.json \
+-d '{"data": {"type": "instances", "attributes": {"instance-id": 124356}, "steps": {"data": [{"name": "step one", "expected-results": "result", "status": "FAILED", "files": {"data":[{"filename": "log.html", "content_encoded": "'"$(base64 /tmp/log.html) "'" }] }}, {"name": "step two", "expected-results": "result2", "status": "PASSED"} ] }}}'
+
 
 # upload test results with the automated-execution-output
 curl -H "Content-Type:application/json" \
