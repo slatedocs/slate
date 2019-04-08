@@ -256,7 +256,7 @@ elapsed                   | Time taken to deliver notification, in ms     | Inte
   "subscriptionId": "abcde123-abcd-abcd-abcd-abcde1234567",
   "profileId": 123456,
   "resourceId": 1000,
-  "status": "outgoing_payment_sent",
+  "newState": "outgoing_payment_sent",
   "eventTime": 1481713589566
 }
 ```
@@ -270,7 +270,7 @@ Field                     | Description                                   | Form
 subscriptionId            | ID of subscription that triggers this notification | String
 profileId                 | ID of the profile that owns the resource      | Integer
 resourceId                | ID of the resource that got updated           | Integer
-status                    | New status of the resource, possible values are same as [transfer statuses](#payouts-guide-track-transfer-status)               | String
+newState                  | New status of the resource, possible values are same as [transfer statuses](#payouts-guide-track-transfer-status)               | String
 eventTime                 | Timestamp when update happened                | Timestamp
 
 ## Balance deposit event
