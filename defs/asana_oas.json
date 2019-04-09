@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "description": "This is the interface for interacting with the [Asana Platform](https://asana.com/developers/).",
+    "description": "This is the interface for interacting with the [Asana Platform](https://asana.com/developers/). Our API reference is generated from our [OpenAPI spec] (https://github.com/Asana/developer-docs-slate/blob/master/defs/asana_oas.json).",
     "title": "Asana",
     "termsOfService": "https://asana.com/terms",
     "contact": {
@@ -141,7 +141,7 @@
       "fields": {
         "name": "opt_fields",
         "in": "query",
-        "description": "Some requests return *compact* representations of objects, to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below.\nThe id of included objects will always be returned, regardless of the field options.",
+        "description": "Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below.\nThe id of included objects will always be returned, regardless of the field options.",
         "example": [
           "followers",
           "assignee"
@@ -402,19 +402,19 @@
         "type": "object",
         "properties": {
           "id": {
-            "description": "Globally unique ID of the attachment. **Note: This field is under active migration to the gid field\u2014please see our blog post for more information.**\n",
+            "description": "Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field\u2014please see our blog post for more information.**\n",
             "type": "integer",
             "readOnly": true,
             "example": 12345
           },
           "gid": {
-            "description": "Globally unique ID of the object.",
+            "description": "Globally unique ID of the object, as a string.",
             "type": "integer",
             "readOnly": true,
             "example": 12345
           },
           "resource_type": {
-            "description": "The resource type of this resource.",
+            "description": "The base type of this resource.",
             "type": "string",
             "readOnly": true,
             "example": "task"
@@ -727,10 +727,26 @@
         "description": "Custom fields are attached to a particular project with the Custom Field Settings resource. This resource both represents the many-to-many join of the Custom Field and Project as well as stores information that is relevant to that particular pairing; for instance, the `is_important` property determines some possible application-specific handling of that custom field.",
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaObject"
-          },
+            "$ref": "#/components/schemas/CustomFieldSettingsCompact"
+          }
+        ],
+        "properties": {
+          "project": {
+            "description": "**Deprecated: new integrations should prefer the `parent` field.** The id of the project that this custom field settings refers to.",
+            "readOnly": true,
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProjectCompact"
+              }
+            ]
+          }
+        }
+      },
+      "CustomFieldSettingsCompact": {
+        "description": "Custom fields are attached to a particular project with the Custom Field Settings resource. This resource both represents the many-to-many join of the Custom Field and Project as well as stores information that is relevant to that particular pairing; for instance, the is_important property determines some possible application-specific handling of that custom field. The compact version of this object is used when referenced as part of a project, to avoid circular references.",
+        "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaCreatedAt"
+            "$ref": "#/components/schemas/AsanaObject"
           }
         ],
         "properties": {
@@ -742,15 +758,6 @@
           },
           "parent": {
             "description": "The parent to which the custom field is applied. This can be a project or portfolio and indicates that the tasks or projects that the parent contains may be given custom field values for this custom field.",
-            "readOnly": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ProjectCompact"
-              }
-            ]
-          },
-          "project": {
-            "description": "**Deprecated: new integrations should prefer the `parent` field.** The id of the project that this custom field settings refers to.",
             "readOnly": true,
             "allOf": [
               {
@@ -880,6 +887,12 @@
                   "readOnly": true,
                   "description": "Message providing more detail about the error that occurred, if available.",
                   "example": "project: Missing input"
+                },
+                "help": {
+                  "type": "string",
+                  "readOnly": true,
+                  "description": "Additional information directing developers to resources on how to address and fix the problem, if available.",
+                  "example": "For more information on API status codes and how to handle them, read the docs on errors: https://asana.com/developers/documentation/getting-started/errors'"
                 },
                 "phrase": {
                   "type": "string",
@@ -1134,6 +1147,7 @@
           "color": {
             "description": "Color of the project.",
             "type": "string",
+            "nullable": true,
             "enum": [
               "dark-pink",
               "dark-green",
@@ -1199,6 +1213,7 @@
           "due_date": {
             "description": "The day on which this project is due. This takes a date with format YYYY-MM-DD.",
             "type": "string",
+            "nullable": true,
             "format": "date-time",
             "example": "2012-03-26"
           },
@@ -1257,11 +1272,24 @@
             "type": "boolean",
             "example": false
           },
-          "start_on": {
-            "description": "The day on which this project starts. This takes a date with format YYYY-MM-DD.",
+          "section_migration_status": {
+            "description": "**Read-only** The section migration status of this project.",
             "type": "string",
+            "enum": [
+              "not_migrated",
+              "in_progress",
+              "completed"
+            ],
+            "nullable": false,
+            "readOnly": true,
+            "example": "not_migrated"
+          },
+          "start_on": {
+            "description": "The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. **Note:** `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.",
+            "type": "string",
+            "nullable": true,
             "format": "date",
-            "example": "2012-02-22"
+            "example": "2012-03-26"
           },
           "team": {
             "description": "**Create-only**. The team that this project is shared with. This field only exists for projects in organizations.",
@@ -1428,14 +1456,12 @@
             "type": "string",
             "example": "Next Actions"
           },
-          "project": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ProjectCompact"
-              }
-            ],
-            "description": "The project which contains the section.",
-            "readOnly": true
+          "projects": {
+            "description": "The projects which contain the section.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectCompact"
+            }
           }
         }
       },
@@ -1666,7 +1692,8 @@
               "today",
               "upcoming",
               "later",
-              "new"
+              "new",
+              "inbox"
             ],
             "example": "upcoming"
           },
@@ -1684,23 +1711,12 @@
             "example": "2012-02-22T02:06:58.147Z"
           },
           "custom_fields": {
-            "description": "Array of custom fields applied to the task. These custom fields\nrepresent the values recorded on this task for a particular\ncustom field. For example, these fields will contain an\n`enum_value` property for custom fields of type `enum`, a\n`string_value` property for custom fields of type `string`, and\nso on. Please note that the `id` returned on each custom field\nvalue *is identical* to the `id` of the custom field, which\nallows referencing the custom field metadata through the\n`/custom_fields/custom_field_gid` endpoint.",
+            "description": "Array of custom field values applied to the project. These represent\nthe custom field values recorded on this project for a particular\ncustom field. For example, these custom field values will contain\nan `enum_value` property for custom fields of type `enum`, a\n`string_value` property for custom fields of type `string`, and\nso on. Please note that the `id` returned on each custom field\nvalue *is identical* to the `id` of the custom field, which\nallows referencing the custom field metadata through the\n`/custom_fields/custom_field-id` endpoint.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CustomField"
             },
-            "example": [
-              {
-                "id": 1646,
-                "gid": "1646",
-                "name": "Priority",
-                "type": "enum",
-                "enum_value": {
-                  "id": 126,
-                  "name": "P1"
-                }
-              }
-            ]
+            "readOnly": true
           },
           "dependencies": {
             "description": "Array of resources referencing tasks that this task depends on. The objects contain only the ID of the dependency.",
@@ -1808,6 +1824,25 @@
             "type": "string",
             "example": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>"
           },
+          "hearted": {
+            "description": "**Deprecated - please use liked instead** True if the task is hearted by the authorized user, false if not.",
+            "type": "boolean",
+            "example": true
+          },
+          "hearts": {
+            "description": "**Deprecated - please use likes instead** Array of users who have hearted this task.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            },
+            "readOnly": true,
+            "example": [
+              {
+                "id": 1234,
+                "name": "Mittens"
+              }
+            ]
+          },
           "liked": {
             "description": "True if the task is liked by the authorized user, false if not.",
             "type": "boolean",
@@ -1881,6 +1916,12 @@
             "type": "string",
             "example": "Mittens really likes the stuff from Humboldt."
           },
+          "num_hearts": {
+            "description": "**Deprecated - please use likes instead** The number of users who have hearted this task.",
+            "type": "integer",
+            "example": 5,
+            "readOnly": true
+          },
           "num_likes": {
             "description": "The number of users who have liked this task.",
             "type": "integer",
@@ -1916,8 +1957,17 @@
               }
             ]
           },
+          "resource_subtype": {
+            "descriptions": "The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.\nThe resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.\n**The resource_subtype of `section` is under active migration\u2014please see our [forum post](https://forum.asana.com/t/sections-are-dead-long-live-sections) for more information.**",
+            "type": "string",
+            "enum": [
+              "default_task",
+              "milestone",
+              "section"
+            ]
+          },
           "start_on": {
-            "description": "Date on which this task is due, or null if the task has no start\ndate. This field takes a date with `YYYY-MM-DD` format.\n\n**Note:** `due_on` or `due_at` must be present in the request when\nsetting or unsetting the `start_on` parameter.",
+            "description": "The day on which work begins for the task , or null if the task has\nno start date. This takes a date with `YYYY-MM-DD` format.\n\n**Note:** `due_on` or `due_at` must be present in the request when\nsetting or unsetting the `start_on` parameter.",
             "type": "string",
             "nullable": true,
             "format": "date",
@@ -4762,7 +4812,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProjectArray"
+                  "$ref": "#/components/schemas/ProjectObject"
                 }
               }
             }
@@ -5612,6 +5662,84 @@
         "responses": {
           "200": {
             "description": "Successfully deleted the specified section.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmptyObject"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/InternalServerError"
+          },
+          "default": {
+            "$ref": "#/components/responses/GenericErrorResponse"
+          }
+        }
+      }
+    },
+    "/sections/{section_gid}/addTask": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/section_path_gid"
+        }
+      ],
+      "post": {
+        "summary": "Add task to section",
+        "description": "Add a task to a specific, existing section. This is remove the task from other sections of the project.\n\nThe task will be inserted at the top of a section unless an insert_before or insert_after parameter is declared.\n\nThis does not work for separators (tasks with the resource_subtype of section).",
+        "tags": [
+          "Sections"
+        ],
+        "operationId": "addTaskToSection",
+        "requestBody": {
+          "description": "The task and optionally the insert location.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "task": {
+                    "description": "The task to add to this section.",
+                    "type": "string",
+                    "example": 123456
+                  },
+                  "insert_before": {
+                    "description": "An existing task within this section before which the added task should be inserted. Cannot be provided together with insert_after.",
+                    "type": "string",
+                    "example": 86420
+                  },
+                  "insert_after": {
+                    "description": "An existing task within this section after which the added task should be inserted. Cannot be provided together with insert_before.",
+                    "type": "string",
+                    "example": 987654
+                  }
+                },
+                "required": [
+                  "task",
+                  "insert_before",
+                  "insert_after"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully added the task.",
             "content": {
               "application/json": {
                 "schema": {
@@ -8138,7 +8266,7 @@
           "example": 1234
         },
         {
-          "$ref": "#/components/parameters/section_path_gid"
+          "$ref": "#/components/parameters/workspace_path_gid"
         },
         {
           "$ref": "#/components/parameters/pretty"
