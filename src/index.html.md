@@ -12,6 +12,7 @@ includes:
   - vehicles
   - zones
   - pricing
+  - rental
   - pickup
   - dropoff
   - errors
