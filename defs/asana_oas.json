@@ -8282,6 +8282,489 @@
         },
         {
           "$ref": "#/components/parameters/offset"
+        },
+        {
+          "name": "text",
+          "description": "Performs full-text search on both task name and description",
+          "schema": {
+            "type": "string"
+          },
+          "example": "Bug"
+        },
+        {
+          "name": "assignee.any",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          },
+          "example": "12345,23456,34567"
+        },
+        {
+          "name": "assignee.not",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          },
+          "example": "12345,23456,34567"
+        },
+        {
+          "name": "assignee_status",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "enum": [
+              "inbox",
+              "today",
+              "upcoming",
+              "later"
+            ]
+          },
+          "example": "later"
+        },
+        {
+          "name": "projects.any",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          },
+          "example": "12345,23456,34567"
+        },
+        {
+          "name": "projects.not",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          },
+          "example": "12345,23456,34567"
+        },
+        {
+          "name": "projects.all",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          },
+          "example": "12345,23456,34567"
+        },
+        {
+          "name": "sections.any",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          },
+          "example": "12345,23456,34567"
+        },
+        {
+          "name": "sections.not",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          },
+          "example": "12345,23456,34567"
+        },
+        {
+          "name": "sections.all",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          },
+          "example": "12345,23456,34567"
+        },
+        {
+          "name": "tags.any",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          },
+          "example": "12345,23456,34567"
+        },
+        {
+          "name": "tags.not",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          },
+          "example": "12345,23456,34567"
+        },
+        {
+          "name": "tags.all",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          },
+          "example": "12345,23456,34567"
+        },
+        {
+          "name": "teams.any",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          },
+          "example": "12345,23456,34567"
+        },
+        {
+          "name": "followers.any",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          },
+          "example": "12345,23456,34567"
+        },
+        {
+          "name": "followers.not",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          },
+          "example": "12345,23456,34567"
+        },
+        {
+          "name": "created_by.any",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          },
+          "example": "12345,23456,34567"
+        },
+        {
+          "name": "created_by.not",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          },
+          "example": "12345,23456,34567"
+        },
+        {
+          "name": "assigned_by.any",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          },
+          "example": "12345,23456,34567"
+        },
+        {
+          "name": "assigned_by.not",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          },
+          "example": "12345,23456,34567"
+        },
+        {
+          "name": "liked_by.any",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          },
+          "example": "12345,23456,34567"
+        },
+        {
+          "name": "liked_by.not",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          },
+          "example": "12345,23456,34567"
+        },
+        {
+          "name": "commented_on_by.any",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          },
+          "example": "12345,23456,34567"
+        },
+        {
+          "name": "commented_on_by.not",
+          "in": "query",
+          "schema": {
+            "type": "string"
+          },
+          "example": "12345,23456,34567"
+        },
+        {
+          "name": "due_on.before",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "format": "date"
+          },
+          "example": "2019-09-15"
+        },
+        {
+          "name": "due_on.after",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "format": "date"
+          },
+          "example": "2019-09-15"
+        },
+        {
+          "name": "due_on",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "format": "date"
+          },
+          "example": "2019-09-15",
+          "nullable": true
+        },
+        {
+          "name": "due_at.before",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "example": "2019-04-15T01:01:46.055Z"
+        },
+        {
+          "name": "due_at.after",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "example": "2019-04-15T01:01:46.055Z"
+        },
+        {
+          "name": "start_on.before",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "format": "date"
+          },
+          "example": "2019-09-15"
+        },
+        {
+          "name": "start_on.after",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "format": "date"
+          },
+          "example": "2019-09-15"
+        },
+        {
+          "name": "start_on",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "format": "date"
+          },
+          "example": "2019-09-15",
+          "nullable": true
+        },
+        {
+          "name": "created_on.before",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "format": "date"
+          },
+          "example": "2019-09-15"
+        },
+        {
+          "name": "created_on.after",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "format": "date"
+          },
+          "example": "2019-09-15"
+        },
+        {
+          "name": "created_on",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "format": "date"
+          },
+          "example": "2019-09-15",
+          "nullable": true
+        },
+        {
+          "name": "created_at.before",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "example": "2019-04-15T01:01:46.055Z"
+        },
+        {
+          "name": "created_at.after",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "example": "2019-04-15T01:01:46.055Z"
+        },
+        {
+          "name": "completed_on.before",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "format": "date"
+          },
+          "example": "2019-09-15"
+        },
+        {
+          "name": "completed_on.after",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "format": "date"
+          },
+          "example": "2019-09-15"
+        },
+        {
+          "name": "completed_on",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "format": "date"
+          },
+          "example": "2019-09-15",
+          "nullable": true
+        },
+        {
+          "name": "completed_at.before",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "example": "2019-04-15T01:01:46.055Z"
+        },
+        {
+          "name": "completed_at.after",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "example": "2019-04-15T01:01:46.055Z"
+        },
+        {
+          "name": "modified_on.before",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "format": "date"
+          },
+          "example": "2019-09-15"
+        },
+        {
+          "name": "modified_on.after",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "format": "date"
+          },
+          "example": "2019-09-15"
+        },
+        {
+          "name": "modified_on",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "format": "date"
+          },
+          "example": "2019-09-15",
+          "nullable": true
+        },
+        {
+          "name": "modified_at.before",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "example": "2019-04-15T01:01:46.055Z"
+        },
+        {
+          "name": "modified_at.after",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "example": "2019-04-15T01:01:46.055Z"
+        },
+        {
+          "name": "is_blocking",
+          "in": "query",
+          "schema": {
+            "type": "boolean"
+          },
+          "example": false
+        },
+        {
+          "name": "is_blocked",
+          "in": "query",
+          "schema": {
+            "type": "boolean"
+          },
+          "example": false
+        },
+        {
+          "name": "has_attachment",
+          "in": "query",
+          "schema": {
+            "type": "boolean"
+          },
+          "example": false
+        },
+        {
+          "name": "completed",
+          "in": "query",
+          "schema": {
+            "type": "boolean"
+          },
+          "example": false
+        },
+        {
+          "name": "is_subtask",
+          "in": "query",
+          "schema": {
+            "type": "boolean"
+          },
+          "example": false
+        },
+        {
+          "name": "is_subtask",
+          "in": "query",
+          "schema": {
+            "type": "boolean"
+          },
+          "example": false
+        },
+        {
+          "name": "sort_by",
+          "in": "query",
+          "schema": {
+            "type": "string",
+            "enum": [
+              "due_date",
+              "created_at",
+              "completed_at",
+              "likes",
+              "modified_at"
+            ]
+          },
+          "default": "modified_at",
+          "example": "likes"
+        },
+        {
+          "name": "sort_ascending",
+          "in": "query",
+          "schema": {
+            "type": "boolean"
+          },
+          "default": false,
+          "example": true
         }
       ],
       "get": {
