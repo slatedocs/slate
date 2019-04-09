@@ -22,7 +22,7 @@ curl -X GET "https://api.sandbox.transferwise.tech/v1/rates?source=EUR&target=US
         "rate": 1.166,
         "source": "EUR",
         "target": "USD",
-        "time": "2018-08-31T10:43:31+0000"
+        "time": "2018-08-31T10:43:31+00:00"
     }
 ]
 ```
@@ -61,10 +61,10 @@ Field                 | Description                                             
 ---------             | -------                                                            | -----------
 source                | Source(send) currency code.                                        | Text
 target                | Target(receive) currency code.                                     | Text
-time                  | Timestamp to get historic exchange rate for specific time/date.    | Timestamp
-from                  | Period start date to get exchange rate history.                    | Timestamp
-to                    | Period end date to get exchange rate history.                      | Timestamp
-group                 | Interval: day;hour;minute                                          | Text
+time                  | Timestamp to get historic exchange rate.                           | Timestamp
+from                  | Period start date/time to get exchange rate history.               | Timestamp or Date
+to                    | Period end date/time to get exchange rate history.                 | Timestamp or Date
+group                 | Interval: *day* *hour* *minute*                                    | Text
 
 
 
@@ -80,4 +80,23 @@ source                | Source(send) currency code                    | Text
 target                | Target(receive) currency code                 | Text
 time                  | Timestamp for exchange rate.                  | Timestamp
 
+
+
+
+### Additional notes about date/time formatting used above
+
+The request/response field(s) below support both Timestamp (combined date and time) and Date (date only) formats:
+
+Field                  | Sample
+---------              | ---------
+from                   | 2017-03-13T14:53:01 or 2017-03-13
+to                     | 2017-03-13T14:53:01+01:00 or 2017-03-13+01:00
+
+The request/response field(s) below support only Timestamp (combined date and time):
+
+Field                  | Sample
+---------              | ---------
+time                   | 2017-03-13T14:53:01 or 2017-03-13T14:53:01+01:00
+
+Timezone offset is supported but optional.
 
