@@ -11,6 +11,7 @@ toc_footers:
 includes:
   - vehicles
   - zones
+  - pricing
   - pickup
   - dropoff
   - errors
@@ -42,7 +43,7 @@ That means that all actions or resources will remain backwards compatible as lon
 allows for the following changes to be made on our side:
 
  - An endpoint resource might return new fields, e.g. `{"foo": "bar"}` might be `{"foo": "bar", "baz": 123}` tomorrow 
- - An endpoint might accept new optional data
+ - An endpoint might accept new optional data or parameters
  - An endpoint might ignore previously required data while providing same functionality
   
 
