@@ -25,6 +25,12 @@ Welcome to the Tier API. It provides the essentials to integrate with Tier's mob
 There's different levels of access for mobility and logistics partners.
 Access is limited for different endpoints and zones for each API key individually.
 
+The first half of the documentation is tailored to mobility partners wanting to integrate listing of
+rentable vehicles and start and stop rentals on behalf of their own users.
+
+The second half is for logistics providers that need to know where to find scooters that need to
+be picked up and where to drop them off next day.
+
 ## Format
 
 We are using the [JSON:API standard](https://jsonapi.org/).
