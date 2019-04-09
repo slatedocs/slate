@@ -1,4 +1,4 @@
-# ReviewFlow Reports
+# Reputation Manager
 
 ## Add Report
 
@@ -44,7 +44,7 @@ curl -X POST \
 api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 
 var parameters = new api.Parameters();
-parameters.Add("report-name", "Sample Citation Tracking Report");
+parameters.Add("report-name", "Sample Citation Tracker Report");
 parameters.Add("business-name", "Le Bernardin");            
 parameters.Add("contact-telephone", "+1 212-554-1515");
 parameters.Add("address1", "155 Weest 51st Street");
@@ -623,7 +623,7 @@ location-id | Filter the list of reports returned by location ID. This ID must c
 
 <span class="label label-info">Account Method</span>
 
-> Search for a ReviewFlow Report
+> Search for a Reputation Manager Report
 
 ```php
 <?php

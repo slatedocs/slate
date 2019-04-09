@@ -1,4 +1,4 @@
-# Citation Burst
+# Citation Builder
 
 ## Create Campaign
 
@@ -16,7 +16,7 @@ Most recently, the Foundation named Maguy Le Coze as Outstanding.';
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->post('/v2/cb/create', [
-    'campaign_name'              => 'Le Bernardin CItation Burst',
+    'campaign_name'              => 'Le Bernardin Citation Builder',
     'business_name'              => 'Le Bernardin',
     'website_address'            => 'le-bernardin.com',
     'campaign_country'           => 'USA',
@@ -52,7 +52,7 @@ string full_description = "The restaurant has held three stars from the Michelin
 Most recently, the Foundation named Maguy Le Coze as Outstanding.";
 
 var parameters = new api.Parameters();
-parameters.Add("campaign_name", "Sample Citation Burst Campaign");
+parameters.Add("campaign_name", "Sample Citation Builder Campaign");
 parameters.Add("business_name", "Le Bernardin");
 parameters.Add("website_address", "le-bernardin.com");
 parameters.Add("campaign_country", "USA");
@@ -216,7 +216,7 @@ use BrightLocal\Api;
 $campaignId = 1;
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $success = $api->put('/v2/cb/' .$campaignId, [
-    'campaign_name'              => 'Le Bernardin CItation Burst',
+    'campaign_name'              => 'Le Bernardin Citation Builder',
     'business_name'              => 'Le Bernardin',
     'website_address'            => 'le-bernardin.com',
     'campaign_country'           => 'USA',
@@ -244,7 +244,7 @@ api request = new api("<INSERT_API_KEY>", "<INSERT_API_SECRET>");
 var campaignId = 1;
 
 var parameters = new api.Parameters();
-parameters.Add("campaign_name", "Sample Citation Burst Campaign");
+parameters.Add("campaign_name", "Sample Citation Builder Campaign");
 parameters.Add("business_name", "Le Bernardin");
 parameters.Add("website_address", "le-bernardin.com");
 parameters.Add("campaign_country", "USA");
