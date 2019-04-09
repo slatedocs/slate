@@ -11,6 +11,7 @@ toc_footers:
 search: true
 
 includes:
+  - accesstype/accesstype_js
   - accesstype/subscriber-identities
   - accesstype/subscription-groups
   - accesstype/subscriptions
@@ -22,7 +23,7 @@ includes:
   - accesstype/coupon_codes
   - accesstype/invoices
   - accesstype/for-platform-customers
-  - accesstype/_amp
+  - accesstype/amp
   - accesstype/faq
   - accesstype/release_notes
 
