@@ -15,19 +15,6 @@ commands:
           sudo apt-get install -y dnsutils
           sudo pip install awsebcli --upgrade
 
-  setup_k8s:
-    description: "Install kubernetes dependencies"
-    steps:
-      - run:
-          name: Setup Kubectl
-          command: |
-            sudo curl -L https://storage.googleapis.com/kubernetes-release/release/v1.12.1/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl
-            sudo curl -L https://amazon-eks.s3-us-west-2.amazonaws.com/1.11.5/2018-12-06/bin/linux/amd64/aws-iam-authenticator -o /usr/local/bin/aws-iam-authenticator
-            sudo curl -L https://storage.googleapis.com/kubernetes-helm/helm-v2.11.0-linux-amd64.tar.gz | tar xz 
-            sudo curl -L https://github.com/roboll/helmfile/releases/download/v0.48.0/helmfile_linux_amd64 -o /usr/local/bin/helmfile 
-            sudo mv linux-amd64/helm /usr/local/bin/helm && sudo rm -rf linux-amd64
-            sudo chmod +x /usr/local/bin/kubectl /usr/local/bin/aws-iam-authenticator /usr/local/bin/helm /usr/local/bin/helmfile
-
 jobs:
   build-and-upload:
 
@@ -38,10 +25,9 @@ jobs:
     working_directory: ~/repo
 
     docker:
-      - image: circleci/ruby:2.6.2-node
+      - image: tiermobility/buildtools
 
     steps:
-      - install_deps
       - awscli/install
       - awscli/configure
       - checkout
@@ -71,13 +57,11 @@ jobs:
     working_directory: ~/repo
 
     docker:
-      - image: circleci/ruby:2.6.2-node
+      - image: tiermobility/buildtools
 
     steps:
-      - install_deps
       - awscli/install
       - awscli/configure
-      - setup_k8s
       - checkout
 
       - run:
@@ -102,13 +86,12 @@ jobs:
     working_directory: ~/repo
 
     docker:
-      - image: circleci/ruby:2.6.2-node
+      - image: tiermobility/buildtools
 
     steps:
       - install_deps
       - awscli/install
       - awscli/configure
-      - setup_k8s
       - checkout 
 
       - run:
