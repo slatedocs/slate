@@ -514,6 +514,7 @@ curl 'https://app.procurementexpress.com/api/v1/purchase_orders/1'
   "can_receive_item": true,
   "can_cancel_receiving_items": false,
   "can_mark_as_paid": true,
+  "can_override": true,
   "purchase_order_items": [
     {
       "id": 507638,
