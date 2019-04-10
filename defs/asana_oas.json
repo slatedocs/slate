@@ -288,7 +288,10 @@
         "schema": {
           "type": "string"
         },
-        "example": 12345
+        "examples": [
+          "12345",
+          "me"
+        ]
       },
       "user_task_list_path_gid": {
         "name": "user_task_list_gid",
@@ -9666,41 +9669,7 @@
     "/users/{user_gid}": {
       "parameters": [
         {
-          "name": "user_gid",
-          "in": "path",
-          "description": "An identifier for the user. Can be one of an email address, the globally unique identifier for the user, or the keyword `me` to indicate the current user making the request.",
-          "required": true,
-          "schema": {
-            "oneOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "string",
-                "enum": [
-                  "me"
-                ]
-              },
-              {
-                "type": "string",
-                "format": "email"
-              }
-            ]
-          },
-          "examples": {
-            "id": {
-              "summary": "A globally unique identifier for the user",
-              "value": 14641
-            },
-            "me": {
-              "summary": "The keyword 'me' to indicate the current user making the request.",
-              "value": "me"
-            },
-            "email": {
-              "summary": "An email address for a user",
-              "value": "sashimi@asana.com"
-            }
-          }
+          "$ref": "#/components/parameters/user_path_gid"
         },
         {
           "$ref": "#/components/parameters/pretty"
