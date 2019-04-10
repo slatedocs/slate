@@ -26,51 +26,42 @@ Metype lets publishers use their own authentication system to login user to mety
 
 ## Posting user data to metype
 * User data including JWT is sent to metype using callback function provided by metype in metype js.
-* Callback supports the following two actions `publisher_login`, `publisher_logout`.
 
 ```javascript
     {
-      action: 'publisher_login',
-      user: {
-        name: 'batman',
-        avatar: 'https://gothamcity.com/batman-photo.jpg',
-        jwt: 'jwtForTheBAtman'
-      }
+      name: 'batman',
+      avatar: 'https://gothamcity.com/batman-photo.jpg',
+      jwt: 'jwtForTheBAtman'
     }
 ```
 ### User data for login function
-*  To login the user we need to call `updateUserState()` as shown here
+*  To login the user we need to call `accountUserLogin()` as shown here
 
 ```javascript
-    talktype.updateUserState({
-        action: 'publisher_login',
-        user: {
-          name: 'batman',
-          avatar: 'https://gothamcity.com/batman-photo.jpg',
-          jwt: 'jwtForTheBAtman'
-        }
-      });
+    talktype.accountUserLogin({
+      name: 'batman',
+      avatar: 'https://gothamcity.com/batman-photo.jpg',
+      jwt: 'jwtForTheBAtman'
+    });
 ```
 </br>
 </br>
 </br>
 </br>
 ### Login callback
-* `updateUserState()` function is the callback function that can be used to set user on metype.
+* `accountUserLogin()` function is the callback function that can be used to set user on metype.
 
 ```javascript
-  talktype.updateUserState({
-    action: 'publisher_logout'
-  });
+  talktype.accountUserLogout();
 ```
 </br>
 </br>
 ### Logout callback
-* To logout the user we need to call `updateUserState` and data to this function with `publisher_logout` action
+* To logout the user we need to call `accountUserLogout`.
 
 ```javascript
 function listenToLogin(event) {
-      if(event.data.action === "login") {
+      if(event.data.action === "metype_login") {
         login();
       }
     }
@@ -79,5 +70,5 @@ window.addEventListener("message", listenToLogin, false);
 
 ### Listening to metype to initiate login
 * Parent window should have an event listener listening to event message.
-* Metype will post data with `login` action in event's data. This should initiate login
+* Metype will post data with `metype_login` action in event's data. This should initiate login
 * An example is show here.
