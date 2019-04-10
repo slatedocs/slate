@@ -11,6 +11,8 @@ toc_footers:
 includes:
   - vehicles
   - zones
+  - pricing
+  - rental
   - pickup
   - dropoff
   - errors
@@ -23,6 +25,12 @@ search: true
 Welcome to the Tier API. It provides the essentials to integrate with Tier's mobility platform.
 There's different levels of access for mobility and logistics partners.
 Access is limited for different endpoints and zones for each API key individually.
+
+The first half of the documentation is tailored to mobility partners wanting to integrate listing of
+rentable vehicles and start and stop rentals on behalf of their own users.
+
+The second half is for logistics providers that need to know where to find scooters that need to
+be picked up and where to drop them off next day.
 
 ## Format
 
@@ -42,7 +50,7 @@ That means that all actions or resources will remain backwards compatible as lon
 allows for the following changes to be made on our side:
 
  - An endpoint resource might return new fields, e.g. `{"foo": "bar"}` might be `{"foo": "bar", "baz": 123}` tomorrow 
- - An endpoint might accept new optional data
+ - An endpoint might accept new optional data or parameters
  - An endpoint might ignore previously required data while providing same functionality
   
 
