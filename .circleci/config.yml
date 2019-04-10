@@ -13,7 +13,10 @@ jobs:
     working_directory: ~/repo
 
     docker:
-      - image: tiermobility/buildtools
+      - image: 373437620866.dkr.ecr.eu-central-1.amazonaws.com/tier/buildtools:latest
+        aws_auth:
+          aws_access_key_id: $AWS_ACCESS_KEY_ID
+          aws_secret_access_key: $AWS_SECRET_ACCESS_KEY
 
     steps:
       - awscli/configure
@@ -45,7 +48,10 @@ jobs:
     working_directory: ~/repo
 
     docker:
-      - image: tiermobility/buildtools
+      - image: 373437620866.dkr.ecr.eu-central-1.amazonaws.com/tier/buildtools:latest
+        aws_auth:
+          aws_access_key_id: $AWS_ACCESS_KEY_ID
+          aws_secret_access_key: $AWS_SECRET_ACCESS_KEY
 
     steps:
       - awscli/configure
@@ -73,7 +79,10 @@ jobs:
     working_directory: ~/repo
 
     docker:
-      - image: tiermobility/buildtools
+      - image: 373437620866.dkr.ecr.eu-central-1.amazonaws.com/tier/buildtools:latest
+        aws_auth:
+          aws_access_key_id: $AWS_ACCESS_KEY_ID
+          aws_secret_access_key: $AWS_SECRET_ACCESS_KEY
 
     steps:
       - awscli/configure
