@@ -3,18 +3,6 @@ version: 2.1
 orbs:
   awscli: circleci/aws-cli@0.1.6
 
-commands:
-  install_deps:
-    description: "Install necessary dependencies"
-    steps:
-    - run:
-        name: "Installing dependencies"
-        command: |
-          sudo apt-get update && sudo apt-get install -y python-dev python-pip
-          sudo pip install awscli --upgrade
-          sudo apt-get install -y dnsutils
-          sudo pip install awsebcli --upgrade
-
 jobs:
   build-and-upload:
 
@@ -28,7 +16,6 @@ jobs:
       - image: tiermobility/buildtools
 
     steps:
-      - awscli/install
       - awscli/configure
       - checkout
       - setup_remote_docker  
@@ -60,7 +47,6 @@ jobs:
       - image: tiermobility/buildtools
 
     steps:
-      - awscli/install
       - awscli/configure
       - checkout
 
@@ -89,8 +75,6 @@ jobs:
       - image: tiermobility/buildtools
 
     steps:
-      - install_deps
-      - awscli/install
       - awscli/configure
       - checkout 
 
