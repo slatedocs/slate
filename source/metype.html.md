@@ -5,6 +5,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - shell: Scripts
   - shell--request: Request
   - shell--response: Response
+  - javascript
 
 toc_footers:
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
@@ -16,6 +17,7 @@ includes:
   - metype/feed
   - metype/user_generated_content
   - metype/sso
+  - metype/publisher_login
   - metype/wordpress_installation
   - metype/blogger_installation
   - metype/api_documentation

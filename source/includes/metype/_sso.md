@@ -97,7 +97,7 @@ Allows Publishers to integrate sso on their website via an iframe.
         const formContainer = document.getElementById("form-login-container"),
               metypeHost= "https://www.metype.com",
               clientId = "SSO_CLIENT_ID",
-              redirectUri = "REDIRECT_URI", 
+              redirectUri = "REDIRECT_URI",
               source = `https://www.metype.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code` ;
 
         talktype.formLoginIframe(formContainer, source, callback);

@@ -34,7 +34,7 @@ GEM
     hashie (3.5.1)
     i18n (0.7.0)
     kramdown (1.13.2)
-    libv8 (5.9.211.38.1)
+    libv8 (6.7.288.46.1)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -82,8 +82,8 @@ GEM
       middleman-core (>= 3.2)
       rouge (~> 2.0)
     mini_portile2 (2.3.0)
-    mini_racer (0.1.14)
-      libv8 (~> 5.9)
+    mini_racer (0.2.4)
+      libv8 (>= 6.3)
     minitest (5.10.1)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
@@ -134,4 +134,4 @@ RUBY VERSION
    ruby 2.3.3p222
 
 BUNDLED WITH
-   1.15.4
+   1.17.3

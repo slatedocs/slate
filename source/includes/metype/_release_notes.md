@@ -8,7 +8,7 @@
 
 ## 18 Oct 2018 Release Notes - Metype
 
-1. **Top Pages on Commenting and Feed widget:** This section is visible on the Commenting and Feed widgets. 
+1. **Top Pages on Commenting and Feed widget:** This section is visible on the Commenting and Feed widgets.
 Top pages are the ones that have the most engagement with audiences. The set of top pages is refreshed every 4 hours. Also, newly published pages always stand a greater chance of being picked up as a top page.
 ![Comment Top Pages](../../images/Metype_Comment_Top_Pages.png "Comment Top Pages")
 ![Feed Top Pages](../../images/Metype_Feed_Top_Pages.png "Feed Top Pages")
@@ -19,7 +19,7 @@ Check out our blog for more [here.](https://www.quintype.com/blog/tech/control-t
 3. **Performance Optimisations:** Metype widgets are now optimised to load much quicker on your pages.
 
 ## 22 Aug 2018 Release Notes - Metype
-1. **Enhanced Single Sign-On(SSO)** - Metype's SSO has been enhanced so users can sign-in with any email address and password. 
+1. **Enhanced Single Sign-On(SSO)** - Metype's SSO has been enhanced so users can sign-in with any email address and password.
 The feature includes all login related workflows such as Sign-up, Sign-in and Forgot Password along with verification of email with an OTP.
 The SSO login page also displays displays the website's branding.
 
@@ -36,7 +36,7 @@ The SSO login page also displays displays the website's branding.
 
 ## 13 Aug 2018 Release Notes - Metype
 
-1. [Bug fix] Commenting widget was partially loaded on pages part of a set of infinite scroll stories. 
+1. [Bug fix] Commenting widget was partially loaded on pages part of a set of infinite scroll stories.
 
 
 ## 3 Aug 2018 Release Notes - Metype
@@ -73,7 +73,7 @@ The SSO login page also displays displays the website's branding.
   });
 </script>
 ```
-1. Publishers can now embed many conversations on a single page. 
+1. Publishers can now embed many conversations on a single page.
 
 
 **Note to developers:** The commenting widget allows an additional field `data-metype-comment-widget-id` in the `<div>` tag of the commenting widget, and can have any arbitrary value. E.g.,
@@ -84,9 +84,7 @@ The SSO login page also displays displays the website's branding.
 
 1. Notifications for reactions to comments - commenters will now get notified when other users react on their comments.
 ![Comment Reactions Notify](../../images/Comment_Reactions_4Jul18.png "Comment Reactions Notification")
-2. Story Reactions - Publishers can now use Story Reactions to emote and engage with their audience without having to type in anything. 
+2. Story Reactions - Publishers can now use Story Reactions to emote and engage with their audience without having to type in anything.
 ![Story Reactions](../../images/Story_Reactions_4Jul18.png "Story Reactions")
 Write to us at metype@quintype.com to get your own set of story reactions configured for your account.
 3. Bug fixes and loading speed optimisations on the widgets.
-
-
