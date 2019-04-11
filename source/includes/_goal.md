@@ -67,11 +67,13 @@ curl --data-binary '{"id":"3", "method":"goal.FetchAll", "jsonrpc":"2.0"}'
 		"goals": [{
 			"id": "1",
 			"importance": 0.1,
-			"confidence": 0.1
+			"confidence": 0.1,
+			"order": 1
 		}, {
 			"id": "2",
 			"importance": 0.8,
-			"confidence": 0.5
+			"confidence": 0.5,
+			"order":2
 		}]
 	},
 	"id": "3"
