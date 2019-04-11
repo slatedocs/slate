@@ -47,8 +47,10 @@ under the License.
   <body class="<%= page_classes %>" data-languages="<%=h language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>">
     <a href="#" id="nav-button">
       <span>
-        NAV
-        <%= image_tag('navbar.png') %>
+        <svg id="icon--hamburger" role="img" fill="currentColor" preserveAspectRatio="xMinYMin" width="24px" height="24px" viewBox="0 0 34 34">
+          <title>hamburger icon</title>
+          <path d="M1.97 8.746h28.498c1.093 0 1.978-0.886 1.978-1.978s-0.886-1.978-1.978-1.978h-28.498c-1.093 0-1.978 0.886-1.978 1.978s0.886 1.978 1.978 1.978v0z"></path><path d="M1.97 17.978h28.498c1.093 0 1.978-0.886 1.978-1.978s-0.886-1.978-1.978-1.978h-28.498c-1.093 0-1.978 0.886-1.978 1.978s0.886 1.978 1.978 1.978v0z"></path>"<path d="M1.97 27.211h28.498c1.093 0 1.978-0.886 1.978-1.978s-0.886-1.978-1.978-1.978h-28.498c-1.093 0-1.978 0.886-1.978 1.978s0.886 1.978 1.978 1.978v0z"></path>
+        </svg>
       </span>
     </a>
     <div class="toc-wrapper">
