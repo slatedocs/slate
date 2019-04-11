@@ -7,7 +7,9 @@ We're transparent about our uptime and service issues. If you appear to be exper
 
 # Contacting Support
 
-Don't hesitate to contact us at [support@scoutapm.com](mailto:support@scoutapm.com) any issues. We typically respond in a couple of hours during the business day.
+Don't hesitate to contact us at [support@scoutapm.com](mailto:support@scoutapm.com) with any issues. We typically respond in a couple of hours during the business day.
+
+Or, join us on [Slack](http://slack.scoutapm.com/). We are often, but not always, in Slack. 
 
 # Reference
 
