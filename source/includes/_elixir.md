@@ -68,19 +68,24 @@ defmodule YourApp.Web do
             {ScoutApm.Instruments.EctoLogger, :log, []}]</span></pre>
 
 
-    <p class="smaller">Instrument <strong>Ecto 3</strong>. In <code>lib/my_app/repo.ex</code>:</p>
+    <p class="smaller">Instrument <strong>Ecto 3</strong>. In <code>lib/my_app/application.ex</code>:</p>
 <pre class="terminal">
-# lib/my_app/repo.ex
-defmodule MyApp.Repo do
-  use Ecto.Repo,
-    otp_app: :my_app,
-    adapter: Ecto.Adapters.Postgres
+# lib/my_app/application.ex
+defmodule MyApp.Application do
+  use Application
+
+  def start(_type, _args) do
+    import Supervisor.Spec
+    children = [
+        # ...
+    ]
 <span>
-    def init(_, opts) do
-      :ok = ScoutApm.Instruments.EctoTelemetry.attach(__MODULE__)
-      {:ok, opts}
-    end
-</span>end
+    :ok = ScoutApm.Instruments.EctoTelemetry.attach(MyApp.Repo)
+</span>
+    # ...
+    Supervisor.start_link(children, opts)
+  end
+end
 </pre>
 
     <p class="smaller">Instrument Templates. In <code>config/config.exs</code>:
