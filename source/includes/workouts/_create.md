@@ -11,7 +11,7 @@ curl --header "Authorization: Bearer 414c6a44a5f8b918830b370db05"  -X POST
       workout[minutes]=12'  api.lvh.me:3000/v1/workouts
 ```
 
-> The above command returns JSON structured like this:
+> Sample Response:
 
 ``````json
 {
@@ -29,15 +29,16 @@ curl --header "Authorization: Bearer 414c6a44a5f8b918830b370db05"  -X POST
 
 ### HTTP Request
 
-`POST http://api.wahooligan.com/cloud-api/workouts`
+`POST https://api.wahooligan.com/v1/workouts`
 
 ### Parameters
 
 Parameter               | Type   | Required | Default | Description
 ---------               | ----   | -------- | ------- | -----------
 workout[name]           | String | yes      |         | The name of the workout
-workout[workout_token]  | String | yes      |         | Can be used by the application to identify the workout
-workout[workout_type_id]| Number | yes      |         | The type of the workout
+workout[workout_type_id]| Number | yes      |         | The type of the workout - [Workout Types](#workout-types)
 workout[starts]         | Time   | yes      |         | Start time
-workout[minutes]        | Number | yes      |         | Minutes is the duration of the workout
-workout[plan_id]        | Number | no       | null    | Id of the plan option used in this workout
+workout[minutes]        | Number | yes      |         | Duration of the workout in minutes
+workout[workout_token]  | String | no       |         | Can be used by the application to identify the workout
+workout[plan_id]        | Number | no       | null    | Id of the plan used in this workout
+workout[workout_summary]| Object | no       |         | Include summary results - [Workout Summary](#create-a-workout-summary)

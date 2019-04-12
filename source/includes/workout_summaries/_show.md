@@ -3,17 +3,15 @@
 Returns the workout summary object for a workout. When a workout is created, the workout summary will be empty until it is updated.
 
 ```shell
-curl --header "Authorization: Bearer users-token-goes-here" https://api.wahooligan.com/v1/workouts/:id
+curl --header "Authorization: Bearer users-token-goes-here" https://api.wahooligan.com/v1/workouts/:id/workout_summary
 ```
-> The above command returns JSON structured like this:
+> Sample Response:
 
 ``````json
 {
     "id": 8297,
     "heart_rate_avg": null,
     "calories_accum": null,
-    "created_at": "2018-10-23T20:43:50.000Z",
-    "updated_at": "2018-10-23T20:43:50.000Z",
     "power_avg": null,
     "distance_accum": null,
     "cadence_avg": null,
@@ -77,10 +75,12 @@ curl --header "Authorization: Bearer users-token-goes-here" https://api.wahoolig
     "kilo_joules_avg": null,
     "file": {
         "url": "https://wahoo-cloud-web.s3.amazonaws.com/development/uploads/workout_file/file/EjA4DJCoIaG-f2fB2MLLLg/4_Mile_Segment_.fit"
-    }
+    },
+    "created_at": "2018-10-23T20:43:50.000Z",
+    "updated_at": "2018-10-23T20:43:50.000Z"
 }
 ```
 
 ### HTTP Request
 
-`GET http://api.wahooligan.com/v1/workouts/:id`
+`GET https://api.wahooligan.com/v1/workouts/:id/workout_summary`

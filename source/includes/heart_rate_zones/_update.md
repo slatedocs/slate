@@ -1,11 +1,11 @@
-## Update Heart Rate Zone
+## Update Heart Rate Zones
 
 ```shell
 curl --header "Authorization: Bearer users-token-goes-here"
      -X PUT -d heart_rate_zone[resting]=90 https://api.wahooligan.com/v1/heart_rate_zone
 ```
 
-> The above command returns JSON structured like this:
+> Sample Response:
 
 ``````json
 {
@@ -22,11 +22,11 @@ curl --header "Authorization: Bearer users-token-goes-here"
 }
 ```
 
-Updates the heart rate zone of the current authenticated user.
+Updates the heart rate zone record of the authenticated user.
 
 ### HTTP Request
 
-`PUT http://api.wahooligan.com/v1/power_zone`
+`PUT https://api.wahooligan.com/v1/power_zone`
 
 ### Parameters
 

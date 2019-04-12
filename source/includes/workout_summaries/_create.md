@@ -1,13 +1,13 @@
-## Update a Workout Summary
+## Create a Workout Summary
 
-Update a workout summary
+Creates a workout summary and associates it with a workout. If a workout summary already exists for the workout then the workout summary is updated.
 
 ```shell
-curl --header "Authorization: Bearer 414c6a44a5f8b918830b370db05" -X PUT
-  -d workout_summary[data]="Friday afternoon workout" api.lvh.me:3000/v1/workouts/56519/workout_summary
+curl --header "Authorization: Bearer 414c6a44a5f8b918830b370db05" -X POST
+  -d workout_summary[data]="Friday afternoon workout" https://api.wahooligan.com/v1/workouts/56519/workout_summary
 ```
 
-> The above command returns JSON structured like this:
+> Sample Response:
 
 ``````json
 {
@@ -85,7 +85,7 @@ curl --header "Authorization: Bearer 414c6a44a5f8b918830b370db05" -X PUT
 
 ### HTTP Request
 
-`PUT http://api.wahooligan.com/v1/workouts/:id/workout_summary`
+`POST https://api.wahooligan.com/v1/workouts/:id/workout_summary`
 
 ### Parameters
 

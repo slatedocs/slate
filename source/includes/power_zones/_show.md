@@ -1,10 +1,10 @@
-## Get Power Zone
+## Get Power Zones
 
 ```shell
 curl --header "Authorization: Bearer users-token-goes-here" https://api.wahooligan.com/v1/power_zone
 ```
 
-> The above command returns JSON structured like this:
+> Sample Response:
 
 ``````json
 {
@@ -23,10 +23,10 @@ curl --header "Authorization: Bearer users-token-goes-here" https://api.wahoolig
 }
 ```
 
-Returns the power zone for the current authenticated user.
+Returns the power zone record for the authenticated user.
 
 ### HTTP Request
 
-`GET http://api.wahooligan.com/v1/power_zone`
+`GET https://api.wahooligan.com/v1/power_zone`
 
 

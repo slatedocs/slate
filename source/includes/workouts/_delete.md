@@ -8,4 +8,4 @@ curl -X DELETE --header "Authorization: Bearer users-token-goes-here" https://ap
 
 ### HTTP Request
 
-`DELETE http://api.wahooligan.com/v1/workouts/:id`
+`DELETE https://api.wahooligan.com/v1/workouts/:id`

@@ -1,11 +1,11 @@
-## Update Power Zone
+## Update Power Zones
 
 ```shell
 curl --header "Authorization: Bearer users-token-goes-here"
      -X PUT -d power_zone[ftp]=195 https://api.wahooligan.com/v1/power_zone
 ```
 
-> The above command returns JSON structured like this:
+> Sample Response:
 
 ``````json
 {
@@ -24,11 +24,11 @@ curl --header "Authorization: Bearer users-token-goes-here"
 }
 ```
 
-Updates the current authenticated user.
+Updates the power zone record of the authenticated user.
 
 ### HTTP Request
 
-`PUT http://api.wahooligan.com/v1/power_zone`
+`PUT https://api.wahooligan.com/v1/power_zone`
 
 ### Parameters
 

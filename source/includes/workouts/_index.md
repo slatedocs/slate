@@ -9,36 +9,36 @@ In the response the total attribute is the total number of workouts for the curr
 curl --header "Authorization: Bearer users-token-goes-here" https://api.wahooligan.com/v1/workouts
 ```
 
-> The above command returns JSON structured like this:
+> Sample Response:
 
 ``````json
 {
-    "workouts": [
-       {
-           "id": 56519,
-           "starts": "2015-08-12T09:00:00.000Z",
-           "minutes": 12,
-           "name": "Friday afternoon",
-           "created_at": "2018-10-23T20:41:55.000Z",
-           "updated_at": "2018-10-23T20:41:55.000Z",
-           "plan_id": null,
-           "workout_token": "123",
-           "workout_type_id": 40
-       }
-    ],
-    "total": 1,
-    "page": 1,
-    "per_page": 30,
-    "order": "descending",
-    "sort": "starts"
+  "workouts": [
+    {
+      "id": 56519,
+      "starts": "2015-08-12T09:00:00.000Z",
+      "minutes": 12,
+      "name": "Friday afternoon",
+      "plan_id": null,
+      "workout_token": "123",
+      "workout_type_id": 40,
+      "workout_summary": null,
+      "created_at": "2018-10-23T20:41:55.000Z",
+      "updated_at": "2018-10-23T20:41:55.000Z"
+    }
+  ],
+  "total": 1,
+  "page": 1,
+  "per_page": 30,
+  "order": "descending",
+  "sort": "starts"
 }
 ```
 
 
-
 ### HTTP Request
 
-`GET http://api.wahooligan.com/v1/power_zone`
+`GET http://api.wahooligan.com/v1/workouts`
 
 ### Query Parameters
 
