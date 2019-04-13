@@ -17,6 +17,10 @@ resources:
     cpu: 1000m
     memory: 1Gi
 
+env:
+  variables:
+    data: null
+
 affinity:
   podAntiAffinity:
     requiredDuringSchedulingIgnoredDuringExecution: # Distribute redis across different nodes
