@@ -14,9 +14,6 @@ jobs:
 
     docker:
       - image: 373437620866.dkr.ecr.eu-central-1.amazonaws.com/tier/buildtools:latest
-        aws_auth:
-          aws_access_key_id: $AWS_ACCESS_KEY_ID
-          aws_secret_access_key: $AWS_SECRET_ACCESS_KEY
 
     steps:
       - awscli/configure
@@ -49,9 +46,6 @@ jobs:
 
     docker:
       - image: 373437620866.dkr.ecr.eu-central-1.amazonaws.com/tier/buildtools:latest
-        aws_auth:
-          aws_access_key_id: $AWS_ACCESS_KEY_ID
-          aws_secret_access_key: $AWS_SECRET_ACCESS_KEY
 
     steps:
       - awscli/configure
@@ -69,7 +63,7 @@ jobs:
             cd k8s && helmfile sync
       - run:
           name: "Announce Deployment"
-          command: ./.datadog/announce-deployment.sh
+          command: /.datadog/announce-deployment.sh
 
   deploy-to-production:
 
@@ -80,9 +74,6 @@ jobs:
 
     docker:
       - image: 373437620866.dkr.ecr.eu-central-1.amazonaws.com/tier/buildtools:latest
-        aws_auth:
-          aws_access_key_id: $AWS_ACCESS_KEY_ID
-          aws_secret_access_key: $AWS_SECRET_ACCESS_KEY
 
     steps:
       - awscli/configure
@@ -106,7 +97,8 @@ jobs:
             cd k8s && helmfile sync
       - run:
           name: "Announce Deployment"
-          command: ./.datadog/announce-deployment.sh
+          command: /.datadog/announce-deployment.sh
+          
 workflows:
   version: 2
   deploy:
@@ -120,6 +112,8 @@ workflows:
     - deploy-to-production:
         context: global-production
         requires:
-          - build-and-upload
           - deploy-to-stage
+        filters:
+            branches:
+              only: master
 

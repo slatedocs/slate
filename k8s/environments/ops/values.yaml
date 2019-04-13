@@ -4,6 +4,10 @@ ingress:
     - host: documentation.tier-ops.com
       paths:
         - /
+  tls:
+    - secretName: documentation-tls-secret
+      hosts:
+      - documentation.tier-ops.com
 
 resources:
   limits:

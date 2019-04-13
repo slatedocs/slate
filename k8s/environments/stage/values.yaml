@@ -4,6 +4,10 @@ ingress:
     - host: documentation.tier-staging.io
       paths:
         - /
+  tls:
+    - secretName: documentation-tls-secret
+      hosts:
+      - documentation.tier-staging.io
 
 resources:
   limits:
