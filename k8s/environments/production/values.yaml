@@ -20,14 +20,3 @@ resources:
 env:
   variables:
     data: null
-
-affinity:
-  podAntiAffinity:
-    requiredDuringSchedulingIgnoredDuringExecution: # Distribute redis across different nodes
-      - labelSelector:
-          matchExpressions:
-            - key: "role"
-              operator: In
-              values:
-              - {{ include "documentation.name" . }}-app
-        topologyKey: "kubernetes.io/hostname"
