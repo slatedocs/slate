@@ -17,4 +17,4 @@ COPY --from=build /usr/src/app/build /usr/src/app/build
 
 
 USER nobody
-CMD ["yarn", "start"]
+ENTRYPOINT ["/entrypoint.sh"]
