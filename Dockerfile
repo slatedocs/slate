@@ -17,4 +17,5 @@ COPY --from=build /usr/src/app/build /usr/src/app/build
 
 
 USER nobody
+COPY ./docker/entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
