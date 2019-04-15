@@ -11,6 +11,8 @@ FROM opsline/tools:alpine AS tools
 
 FROM node:9.11.1-alpine as app
 
+RUN apk --update --no-cache add ca-certificates
+
 WORKDIR /usr/src/app
 COPY ./yarn.lock .
 COPY ./package.json .
