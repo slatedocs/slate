@@ -1,0 +1,8 @@
+version: '3'
+services:
+  api-docs:
+    build: .
+    ports:
+      - 4567:4567
+    volumes:
+      - ./source:/usr/src/app/source
