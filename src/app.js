@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-const router = require('./routes/index');
 const morgan = require('morgan');
 
 const ENVIRONMENT = require('./common/config').ENVIRONMENT;
@@ -18,7 +17,5 @@ app.use(function(req, res) {
   res.render('404');
 });
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
 
 app.listen(4567, () => console.log(`Quadency API Docs listening in ${ENVIRONMENT} on port 4567!`));
