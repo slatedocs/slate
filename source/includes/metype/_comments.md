@@ -24,7 +24,7 @@ Metype provides a commenting system for your users to engage with your content.
 
 
 ### Javascript
-```shell
+```javascript
 <!-- Initialization Script -->
 <script type='text/javascript'>
   window.talktype = window.talktype || function(f) {
@@ -42,7 +42,7 @@ If you have already done this to integrate other widgets please ignore this step
 Please find the script on the right in the Scripts tab.
 
 
-```shell
+```javascript
 <!-- Commenting Widget embed code. Html Element with the necessary attributes.
 The color and font are configurable according to your liking -->
 <div id='metype-container'
@@ -78,10 +78,10 @@ Please find the script on the right in the Scripts tab.
 * The total comments count can be fetched for a page or multiple pages using the api call on the shell.
 The page ids should be comma seperated and base64 encoded. A maximum of 10 page urls can be passed.
 
-``` shell
+```shell--request
 GET https://www.metype.com/api/v1/accounts/:account_id/pages?page_ids=base_64_enc_string1,base_64_enc_string2
-
-Response:
+```
+```shell--response
 [
     {
         "url": "http://www.example.com/1",

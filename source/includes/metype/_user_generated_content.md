@@ -21,7 +21,7 @@ This person is not known by the property owner. This can be biased or unbiased a
 If you have already done this to integrate other widgets please ignore this step.
 Please find the script in the shell on the right in the shell.
 
-```shell
+```javascript
 <!-- Initialization Script -->
 <script type='text/javascript'>
   window.talktype = window.talktype || function(f) {
@@ -38,7 +38,7 @@ Please find the script in the shell on the right in the shell.
 * Setup the embed code for the UGC widget at the position you need to embed.
 Please find the script with detailed comments on the right in the shell.
 
-```shell
+```javascript
 <div id='contribution-container'
     data-metype-account-id='XXXXX' <!-- Add your account ID here -->
     data-metype-host='https://www.metype.com/'>

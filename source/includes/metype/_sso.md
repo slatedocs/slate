@@ -10,7 +10,7 @@ Currently Metype allows social logins like Facebook, Twitter and Google Plus.
 
 ## SSO - Prerequisites
 
-```shell
+```javascript
 <!-- Initialization Script -->
 <script type='text/javascript'>
   window.talktype = window.talktype || function(f) {
@@ -34,7 +34,7 @@ Currently Metype allows social logins like Facebook, Twitter and Google Plus.
 
 ## Integration - Authorization Code Flow
 
-```shell
+```javascript
 
 http://www.metype.com/oauth/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=REDIRECT_URL&response_type=code
 ```
@@ -42,7 +42,7 @@ http://www.metype.com/oauth/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=REDI
 1) Request for an authorization code by making the following api call.
 Please place the url on the right as the href or src of a HTML tag.
 
-```shell
+```shell--request
 POST https://www.metype.com/oauth/token
 {
     grant_type: authorization_code,
@@ -51,8 +51,8 @@ POST https://www.metype.com/oauth/token
     code: PASS_CODE_PARAM_HERE,
     redirect_uri: YOUR_REDIRECT_URI
 }
-
-Response:
+```
+```shell--response
 {
     "access_token": "TOKEN",
     "token_type": "bearer",
@@ -64,10 +64,10 @@ Response:
 2) After authorization of the user metype will redirect the user back to the properties redirect url with a `code` parameter which is called a authorization code.
 Use this `code` to retrieve a access token to metype api's. The api to retrieve an access token is as on the right.
 
-```shell
+```shell--request
 GET https://www.metype.com/api/v1/current_user.json?access_token=TOKEN
-
-Response:
+```
+```shell-response
 {
     current_user: {
         id: 1,
@@ -89,7 +89,7 @@ The OAuth libraries will handle the rest in the application if you have integrat
 ## Integration - iframe
 Allows Publishers to integrate sso on their website via an iframe.
 
-```shell
+```javascript
 <div class="sso-login-iframe-parent">
 <div id="form-login-container" class="form-login-container"></div>
 <script type="text/javascript">

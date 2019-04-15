@@ -1,19 +1,19 @@
 # Publisher login
 
-Metype lets publishers use their own authentication system to login user to metype. Metype uses shared key authentication method to implement this.
+Metype lets publishers use their own authentication system to login user to Metype. Metype uses shared key authentication method to implement this.
 
 ## Publisher login - Terminology
-* `Shared key` - Shared key is used to generate JWT[https://jwt.io/].
+* `Shared key` - Shared key is used to generate [JWT](https://jwt.io/).
 
 ## Publisher login - Prerequisites
 
-* Sign up for an account @ www.metype.com.
-* You will find all your accounts @ www.metype.com/admin if you are signed in.
-* You will find the `shared key` in the `Embed Metype` tab on your admin panel.
+* Sign up for an account @ [www.metype.com](https://www.metype.com).
+* You will find all your accounts @ [www.metype.com/admin](https://www.metype.com/admin) if you are signed in.
+* You will find the `Shared key` in the `Embed Metype` tab on your admin panel.
 
 ## Generating JWT
 
-* Most of the languages have libraries to generate JWT.
+* Most of the languages have libraries to generate [JWT](https://jwt.io/).
 * Expected user pay load:
   {
     'email': 'bathman@gotham.com',
@@ -22,43 +22,30 @@ Metype lets publishers use their own authentication system to login user to mety
     'member-id': 123345,
   }
 * `member-id` is the unqiue id to idenity member on your system.
-* JWT generator should be used to generate token using `shared key` from metype, `payload` and `SHA-256` as the hashing algorithm.
+* [JWT](https://jwt.io/) generator should be used to generate token using `Shared key` from Metype, `payload` and `SHA-256` as the hashing algorithm.
 
-## Posting user data to metype
-* User data including JWT is sent to metype using callback function provided by metype in metype js.
-
-```javascript
-    {
-      name: 'batman',
-      avatar: 'https://gothamcity.com/batman-photo.jpg',
-      jwt: 'jwtForTheBAtman'
-    }
-```
-### User data for login function
-*  To login the user we need to call `accountUserLogin()` as shown here
+## Posting user data to Metype using login callback
 
 ```javascript
     talktype.accountUserLogin({
       name: 'batman',
       avatar: 'https://gothamcity.com/batman-photo.jpg',
-      jwt: 'jwtForTheBAtman'
+      jwt: 'jwtForTheBatman'
     });
 ```
-</br>
-</br>
-</br>
-</br>
-### Login callback
-* `accountUserLogin()` function is the callback function that can be used to set user on metype.
+* User data including JWT is sent to Metype using callback function provided by Metype in metype js.
+
+*  To login the user we need to call `accountUserLogin()` as shown on the right.
+
+## Logout callback
 
 ```javascript
   talktype.accountUserLogout();
 ```
-</br>
-</br>
-### Logout callback
+
 * To logout the user we need to call `accountUserLogout`.
 
+## Listening to metype to initiate login
 ```javascript
 function listenToLogin(event) {
       if(event.data.action === "metype_login") {
@@ -67,8 +54,6 @@ function listenToLogin(event) {
     }
 window.addEventListener("message", listenToLogin, false);
 ```
-
-### Listening to metype to initiate login
 * Parent window should have an event listener listening to event message.
 * Metype will post data with `metype_login` action in event's data. This should initiate login
-* An example is show here.
+* An example is shown here on the right.

@@ -3,7 +3,7 @@
 ## Metype Comments on Blogger
 
 
-```shell
+```javascript
 <!-- Script for Blogger -->
 <script type='text/javascript'>
   window.talktype = window.talktype || function(f) {
@@ -60,7 +60,7 @@ Follow the steps below to install the Metype Comments widget on your Blogger web
 ## Metype Feed on Blogger
 
 
-```shell
+```javascript
 <!-- Script for Blogger -->
 <script type='text/javascript'>
   window.talktype = window.talktype || function(f) {

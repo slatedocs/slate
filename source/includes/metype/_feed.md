@@ -9,8 +9,8 @@ Metype provides a feed to represent audience activity on your site.
 
 ## Installation - Feed
 ### Prerequisites
-* Sign up for an account @ www.metype.com.
-* You will find all your accounts @ www.metype.com/admin if you are signed in.
+* Sign up for an account @ [www.metype.com](https://www.metype.com).
+* You will find all your accounts @ [www.metype.com/admin](https://www.metype.com/admin) if you are signed in.
 * You can find account specific information in the `Embed Metype` Tab.
 
 
@@ -19,7 +19,7 @@ Metype provides a feed to represent audience activity on your site.
 If you have already done this to integrate other widgets please ignore this step.
 Please find the script in the shell on the right in the shell.
 
-```shell
+```javascript
 <!-- Initialization Script -->
 <script type='text/javascript'>
   window.talktype = window.talktype || function(f) {
@@ -36,7 +36,7 @@ Please find the script in the shell on the right in the shell.
 * Setup the embed code for the feed widget at the position you need to embed.
 Please find the script with detailed comments on the right in the shell.
 
-```shell
+```javascript
 <!-- Feed Widget embed code. Html Element with the necessary attributes.
 The color and font are configurable according to your liking -->
 <div id='feed-metype-container'
