@@ -1,0 +1,281 @@
+extends layouts/layout
+
+block append head
+  link(rel='stylesheet', href='/stylesheets/home.css')
+
+block append scripts
+  script(src="/scripts/vendor/siema.min.js")
+  script(src="/scripts/vendor/typed.min.js")
+  script(src="/scripts/home.js")
+
+block content
+  section.bg-purple-gradient
+    .container
+      .row.justify-content-center
+        .col.col-10.align-self-center.text-center
+          h1.intro-heading Trade on all major crypto exchanges within one platform
+          h3.intro-subheading.intro-subheading-small
+            span#roller
+            span &nbsp;traders use Quadency
+          form.signup-form.form-inline.form.justify-content-center
+            input(placeholder="Enter e-mail" type="email" name="email" data-toggle="tooltip" title="Please input a valid email" data-placement="bottom" data-role="none" required).w-xs-100.w-md-25.mr-2.form-control.input.email-input.email-input-1.red-tooltip
+            button(type="submit" name="emailSignUp").btn.btn-outline-light.signup-btn.mt-3.mt-sm-0 Sign Up
+          p.text-light.intro-subtitle.mt-3 Get started for Free!
+      .row.mt-4
+        .col.col-12
+          #slideshow
+            div
+              img(src="/images/trade.jpg" width="100%" height="100%")
+            div
+              img(src="/images/dashboard.jpg" width="100%" height="100%")
+            div
+              img(src="/images/portfolio.jpg" width="100%" height="100%")
+  section.bg-white
+    .container
+      .row
+        .col-sm-3
+            p.quad-stat 10
+              span supported exchanges
+        .col-sm-3
+            p.quad-stat 887
+              span tradable assets
+        .col-sm-3
+            p.quad-stat 2673
+              span trading pairs
+        .col-sm-3
+            p.quad-stat 2 million+
+              span overall trades
+  section.section-content.bg-purple-gradient
+    .container
+      .row
+        .col-sm-12.col-md-6
+          .section-content
+            p.section-heading-small.text-white.mb-5.text-center.text-lg-left <strong>Simplify advanced trading and analysis of digital assets</strong> - no matter where you trade.
+            p.text-white.mb-5.text-center.text-lg-left Quadency provides a single, secure and easy-to-use experience for trading cryptocurrencies at multiple exchanges.
+            p.text-center.text-lg-left
+              a(href="/signup").btn.btn-outline-light.intro-btn Create your free account
+        .col-sm-12.col-md-6
+          img(src="/images/laptop.png" alt="best exchanges binance coinbase bittrex gemini okex kraken bitfinex" width="100%")
+         
+  section.section-content.bg-purple-gradient-darker
+    div.siema
+      .container
+        .row
+          .col.col-12.col-lg-6.p-5
+            img(src="/images/trade-highlight.png" alt="best digital asset trading investment platform " width="100%")
+          .col.col-12.col-lg-6.text-center.text-lg-left.p-5
+            p.section-heading.mb-4.text-white.pt-md-5 Professional-grade trading tools - for everyone.
+            p.section-text.text-white Trade like a pro with advanced technical analysis charts, intuitive order management and live streaming prices.
+            p.section-text.mb-5.text-white Get the edge you need with additional order types that are not natively supported by exchanges.
+      .container
+        .row
+          .col.col-12.col-lg-6.p-5
+            img(src="/images/dashboard-highlight.png" alt="altcoins icos aggregate portfolio tracking" width="100%")
+          .col.col-12.col-lg-6.text-center.text-md-left.p-5
+            p.section-heading.mb-4.text-white.pt-md-5 Not just another dashboard - It’s the only one you need
+            p.section-text.text-white  Gain deep insights into your holdings with real-time performance monitoring, and asset allocation breakdowns.
+            p.section-text.mb-5.text-white Quadency's robust, personalized dashboard widgets deliver simplicity without compromising accuracy.
+      .container
+        .row
+          .col.col-12.col-lg-6.p-5
+            img(src="/images/portfolio-highlight.png" alt="real time dashboard" width="100%")
+          .col.col-12.col-lg-6.text-center.text-md-left.p-5
+            p.section-heading.mb-4.text-white.pt-md-5 Manage all your accounts and digital assets with ease
+            p.section-text.text-white Built for active traders and long-term investors, Quadency enables you to react quickly to market-moving events.
+            p.section-text.mb-5.text-white Whether you want to dump it all, or add to your positions, you can do it with the click of a button.
+
+  section#features.section-content(style="padding-bottom: 0")
+    .container
+      .row
+        .col-sm-12.text-center
+          h4.title.text-purple Feature Highlights
+  section.section-content
+    .container
+      .row
+        .col-md-12.col-lg-6.text-center.text-sm-center.text-lg-left.vert-align-middle
+          video.align-middle(width="100%" height="300" autoplay loop playsinline muted)
+            source(src="/images/feature-dashboard.mp4" type="video/mp4")
+            img.feature-img(src="/images/feature-dashboard.gif" alt="real time dashboard" width="100%" height="340px")
+        .col-md-12.col-lg-6.text-center.text-sm-center.text-lg-left
+          h4.subtitle.mt-5.mt-lg-0.mb-5.text-purple.ml-md-5 Performance Insights
+          p.section-text.ml-md-5 Real-time and historical view of your asset allocations, portfolio growth and distribution of balances by account - in your native currency!
+          p.section-text.ml-md-5 Whether you have one account or ten, Quadency helps manage them all with ease no matter where you trade.
+
+  section.section-content.bg-platform-dark
+    .container
+      .row
+        .col-md-12.col-lg-6.text-center.text-sm-center.text-lg-left.order-lg-2.vert-align-middle
+          video(width="100%" height="300" autoplay loop playsinline muted)
+            source(src="/images/feature-orders.mp4" type="video/mp4")
+            img.feature-img(src="/images/order-management.jpg" alt="order management, smart order router, iceberg, oco, fill-or-kill" width="100%" height="400px")
+        .col-md-12.col-lg-6.text-center.text-sm-center.text-lg-left
+          h4.subtitle.mt-5.mt-lg-0.mb-5.text-white Intuitive Trading Interface
+          p.section-text.text-offwhite.mr-md-5 Send orders directly to your connected exchange accounts with convenient features like click-to-fill from chart or orderbook.
+          p.section-text.text-offwhite.mr-md-5 Customize the layout and theme to suit your trading style.
+
+  section.section-content.bg-offwhite
+    .container
+      .row
+        .col-md-12.col-lg-6.text-center.text-sm-center.text-lg-left.vert-align-middle
+          video(width="100%" height="300" autoplay loop playsinline muted)
+            source(src="/images/feature-consolidated.mp4" type="video/mp4")
+            img.feature-img(src="/images/feature-orders.jpg" alt="digital asset bloomberg trading terminal, multi exchange platform" width="100%" height="100%")
+        .col-md-12.col-lg-6.text-center.text-sm-center.text-lg-left
+          h4.subtitle.mt-5.mt-lg-0.mb-5.text-purple.ml-md-5 Consolidated Orders and Transactions
+          p.section-text.ml-md-5 Manage your open orders from any account and view your balances and transactions in one place.
+          p.section-text.ml-md-5 Whether you trade manually or use algorithmic bots, Quadency gives you the control you need to act instantly.
+
+  section.section-content.bg-platform-dark
+    .container
+      .row
+        .col-md-12.col-lg-6.text-center.text-sm-center.text-lg-left.order-lg-2.vert-align-middle
+          video(width="100%" height="300" autoplay loop playsinline muted)
+            source(src="/images/tradingview-charts.mp4" type="video/mp4")
+            img.feature-img(src="/images/tradingview-charts.jpg" alt="Trading view charts, margin trading, futures" width="100%" height="400px")
+        .col-md-12.col-lg-6.text-center.text-sm-center.text-lg-left
+          h4.subtitle.mt-5.mt-lg-0.mb-5.text-purple.text-white.mr-md-5 TradingView&trade; Charts
+          p.section-text.text-offwhite.mr-md-5 We know you love them, we do too!
+          p.section-text.text-offwhite.mr-md-5 In addition to candlestick charts, Quadency seamlessly integrates the rich set of technical analysis indicators and tools that make TradingView&trade; the go-to choice for pro traders.
+
+  section.section-content
+    .container
+      .row
+        .col-md-12.col-lg-6.text-center.text-sm-center.text-lg-left.vert-align-middle
+          video(width="100%" height="300" autoplay loop playsinline muted)
+            source(src="/images/feature-portfolio.mp4" type="video/mp4")
+            img.feature-img(src="/images/feature-portfolio.jpg" alt="unified digital asset trading. all exchanges one account." width="100%" height="100%")
+        .col-md-12.col-lg-6.text-center.text-sm-center.text-lg-left
+          h4.subtitle.mt-5.mt-lg-0.mb-5.text-purple.ml-md-5 Live Portfolio with PnL
+          p.section-text.ml-md-5 Aggregated view of all your holdings, updated tick-by-tick with accurate, real-time prices and profit/loss calculations in preferred fiat or BTC.
+          p.section-text.ml-md-5 Select any asset to navigate to the Trade screen where you can manage your orders and view your transaction history.
+
+  section#about.section-content.bg-purple-gradient-lighter
+    .w-100.h-100
+      .container
+        .row
+          .col-sm-12
+            p.section-text.text-white.text-center(style="font-size: 2rem;") Access the world's largest digital asset exchanges with Quadency's professional-grade trading platform.
+  section.section-content.bg-white
+    .container
+      .text-center.mb-5
+        h4.title.text-purple Welcome to a better trading experience
+      .row.text-center
+        .col-sm-12.col-md-4.mt-5
+          img.img-fluid.profile-img(src="/images/icons/investment.svg" alt="digital asset technology and custody solutions" width="80px" )
+          h3.mb-2.mt-4.founder-name-text.text-dark In Your Custody
+          p Your funds remain in your exchange accounts, in your control. Quadency does not require nor recommend enabling withdrawal permissions on API keys used to link accounts.
+        .col-sm-12.col-md-4.mt-5
+          img.img-fluid.profile-img(src="/images/icons/digitalassets.svg" alt="exchange whitelabel solutions" width="80px" )
+          h3.mb-2.mt-4.founder-name-text.text-dark Safe, Secure &amp; Reliable
+          p Financial industry best practices such as end-to-end encryption and 2FA are just part of <a href="https://support.quadency.com/account-and-security/is-quadency-secure" target="_blank">a long list of security measures</a> we take to ensure the safety of your account and funds.
+        .col-sm-12.col-md-4.mt-5
+          img.img-fluid.profile-img(src="/images/icons/teamwork.svg" width="80px" )
+          h3.mb-2.mt-4.founder-name-text.text-dark Unparalleled Support
+          P No support tickets! We believe in conversations, so talk to us via live chat or send us an email if you have a question, complaint or a compliment. Usually it's the latter.
+
+  section#faq.section-content.bg-offwhite
+    .container
+      .row.mb-4
+        .col-sm-12.text-center
+          h4.title.text-purple FAQ
+      .row
+        .col-sm-12
+          #faqAccordian.accordian
+            .card
+              .card-header.px-2
+                h5.mb-0
+                  button(type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1").btn.btn-link.faq-heading.text-dark.d-flex.justify-content-between.align-items-center How does it work?
+                    img(src="/images/shape.png")
+              div(aria-labelledby="heading1" data-parent="#faqAccordian")#collapse1.collapse
+                .card-body
+                  p.faq-text.text-dark.px-3.py-3 Quadency is a unified digital asset management platform. By connecting your existing accounts from popular exchanges such as Binance, Bittrex, and Coinbase Pro, you can enjoy all the benefits our platform has to offer.
+                  p.faq-text.text-dark.px-3.py-3 Accounts can be connected to Quadency using API keys. To learn more about how API keys work, <a href="https://support.quadency.com/setup-and-exchange-linking/what-are-exchange-apis" target="_blank">click here</a>. All information is stored securely and kept in sync as you use the platform.
+            .card
+              .card-header.px-2
+                h5.mb-0
+                  button(type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3").btn.btn-link.collapsed.faq-heading.text-dark.d-flex.justify-content-between.align-items-center Which exchanges are supported?
+                    img(src="/images/shape.png")
+              div(aria-labelledby="heading3" data-parent="#faqAccordian")#collapse3.collapse
+                .card-body
+                  p.faq-text.text-dark.px-3.py-3 As of today, we have integrations with Coinbase Pro (formerly GDAX), Binance, Bittrex, KuCoin, Poloniex, OKEx, Kraken, Bitfinex, and Gemini.
+                  p.faq-text.text-dark.px-3.py-3 Several more are in progress, and new exchanges will continually be added - prioritized by trading volume, growth, liquidity, and of course user feedback. All integrations are thoroughly tested and undergo a rigorous roll-out process to ensure the safety of your funds.
+            .card
+              .card-header.px-2
+                h5.mb-0
+                  button(type="button" data-toggle="collapse" data-target="#collapse4" aria-expanded="false" aria-controls="collapse4").btn.btn-link.faq-heading.text-dark.d-flex.justify-content-between.align-items-center Is it secure?
+                    img(src="/images/shape.png")
+              div(aria-labelledby="heading4" data-parent="#faqAccordian")#collapse4.collapse
+                .card-body
+                  p.faq-text.text-dark.px-3.py-3 Yes! Quadency employs numerous security measures to keep your accounts secure from unauthorized access, including encryption of API keys, passwords, and other sensitive information, SSL over TLS for end-to-end encryption of communication, 2FA for additional security of user accounts, and we follow OWASP top 10 standards and undergo regular penetration testing by third-party security providers. <a href="https://support.quadency.com/account-and-security/is-quadency-secure" target="_blank">You can learn more about our security practices here</a>.
+                  p.faq-text.text-dark.px-3.py-3 Additionally, we encourage users to disable withdrawal permissions from exchange APIs and hold non-traded funds off exchanges and in secure, hardware wallets.
+            .card
+              .card-header.px-2
+                h5.mb-0
+                  button(type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5").btn.btn-link.faq-heading.text-dark.d-flex.justify-content-between.align-items-center How much does it cost?
+                    img(src="/images/shape.png")
+              div(aria-labelledby="heading5" data-parent="#faqAccordian")#collapse5.collapse
+                .card-body
+                  p.faq-text.text-dark.px-3.py-3 Creating an account with Quadency is <strong>free!</strong> Plus, you’ll get 14 days to experience Quadency Pro - which includes all the features mentioned above  - at no cost. When the trial period ends, you can continue using Quadency’s free features like portfolio monitoring across your accounts, or upgrade to Pro to keep unlimited trading, access to real-time PnL insights, and more.
+            .card
+              .card-header.px-2
+                h5.mb-0
+                  button(type="button" data-toggle="collapse" data-target="#collapse6" aria-expanded="false" aria-controls="collapse6").btn.btn-link.faq-heading.text-dark.d-flex.justify-content-between.align-items-center.text-wrap.text-left Are there any per-transaction fees?
+                    img(src="/images/shape.png")
+              div(aria-labelledby="heading6" data-parent="#faqAccordian")#collapse6.collapse
+                .card-body
+                  p.faq-text.text-dark.px-3.py-3 No. Quadency does not charge any transaction fees. Any fees charged by the exchanges where you trade are paid to them directly.
+            .card
+              .card-header.px-2
+                h5.mb-0
+                  button(type="button" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7").btn.btn-link.faq-heading.text-dark.d-flex.justify-content-between.align-items-center.text-wrap.text-left Do you have a referral program?
+                    img(src="/images/shape.png")
+              div(aria-labelledby="heading7" data-parent="#faqAccordian")#collapse7.collapse
+                .card-body
+                  p.faq-text.text-dark.px-3.py-3 Yes, you can earn rewards by referring traders to Quadency. See our <a href="/referrals">Referral Program</a> for more details and to get started.
+  section.section-content.bg-white
+    .container
+      .text-center.mb-5
+        h4.title.text-purple It's easy to get started
+      .row.text-center
+        .col-sm-12.col-md-4.mt-5
+          img.img-fluid.profile-img(src="/images/icons/one.svg" alt="digital asset technology and custody solutions" width="80px" )
+          h3.mb-2.mt-4.founder-name-text.text-dark Sign up
+          p <a href="/signup"><strong>Create your free account</strong></a> and verify your email. Your email is used for communication related to your account, and for important updates and announcements from the Quadency team.
+        .col-sm-12.col-md-4.mt-5
+          img.img-fluid.profile-img(src="/images/icons/two.svg" alt="exchange whitelabel solutions" width="80px" )
+          h3.mb-2.mt-4.founder-name-text.text-dark Connect your accounts
+          p Quadency's setup tour will guide you in linking your exchange accounts using <a href="https://support.quadency.com/setup-and-exchange-linking/what-are-exchange-apis" target="_blank">API keys</a>. This one-time process is simple and takes less than 5 minutes for most people.
+        .col-sm-12.col-md-4.mt-5
+          img.img-fluid.profile-img(src="/images/icons/three.svg" width="80px" )
+          h3.mb-2.mt-4.founder-name-text.text-dark Start trading
+          P You can now see your personalized dashboard, live portfolio listing coins and tokens in your connected accounts and an advanced trading interface to trade - <strong>all in one place</strong>.
+
+  section#blog.section-content.bg-offwhite
+    .container
+      .row
+        .col-sm-12.col-md-6.text-left
+          h4.title.text-purple.mb-4 Blog
+          p.section-text.text-dark Investing is more than charts and technical analysis. We know that insights into market fundamentals help you trade better, so we're developing a digital asset intelligence hub exclusive for Quadency users.
+          p.section-text.text-dark Follow our blog where we regularly publish relevant content each week and updates on new feature releases.
+          p.section-text.text-dark
+            a(href="https://blog.quadency.com" target="_blank") Check out some recent articles!
+        .col-sm-12.col-md-6
+          a.twitter-timeline(data-width="540" data-height="500" data-link-color="#3023ae" href="https://twitter.com/quadency?ref_src=twsrc%5Etfw") Follow us on twitter
+          script(async src="https://platform.twitter.com/widgets.js" charset="utf-8")
+
+  section.section-content.bg-purple-gradient-lighter
+    .container
+      .row
+        .col-sm-12.col-md-6
+          h4.text-white.mb-4.pre-registration-title Bring clarity to your trading:
+      .row
+        .col-md-6
+          ul.text-white.ul.mb-5
+            li Get the edge you need to invest more profitably
+            li Join thousands of traders already using Quadency
+            li Receive updates on new features and announcements
+        .col-sm-12.col-md-6
+          form.signup-form.form-inline.form.justify-content-center.justify-content-md-start.mb-2
+            input(placeholder="Enter e-mail" type="email" name="email" data-toggle="tooltip" title="Please input a valid email" data-placement="bottom" data-role="none" required).w-50.w-md-100.mr-2.form-control.input.email-input.email-input-2.red-tooltip
+            button(type="submit").btn.btn-outline-light.signup-btn Sign Up
+            p.text-light.intro-subtitle.mt-3 It's easy - get started for Free!

@@ -1,0 +1,59 @@
+extends layouts/layout
+
+block title
+  title Quadency - Institutional grade trading tools for professionals
+
+block append head
+  link(rel='stylesheet', href='/stylesheets/about.css')
+
+block content
+  section.bg-purple-gradient
+    .container
+      .row.justify-content-center
+        .col.col-10.align-self-center.text-center
+          h1.intro-heading Institutional-Grade <br> Trading Tools
+          h3.intro-subheading and API solutions for professionals
+      .row.mt-4
+        .col.col-12
+            div
+              img(src="/images/institutional-hero-bg.png" width="100%" height="100%")
+
+  section.section-content.bg-white
+    .container
+      .row.mb-4.justify-content-center
+        .col-sm-12.col-md-8.align-self-center
+          p.section-text.text-center(style="font-size: 2rem;") Trade the world's top cryptocurrency exchanges with your own, private instance of the Quadency trading platform and enterprise APIs.
+      .row.text-center
+        .col-sm-12.col-md-4.mt-5
+          img.img-fluid.profile-img(src="/images/icons/monitor.svg" width="80px" )
+          h3.mb-2.mt-4.founder-name-text.text-dark Modern Platform
+          p Built on a foundation of microservices architecture, the platform boasts fast performance and unlimited scalability combined with low-latency streaming and historical data piped directly from the exchanges.
+        .col-sm-12.col-md-4.mt-5
+          img.img-fluid.profile-img(src="/images/icons/growth.svg" width="80px" )
+          h3.mb-2.mt-4.founder-name-text.text-dark Unified Trading APIs
+          p Feed your algorithmic trading bots with unified, real-time order books and market depth data. Use our consolidated APIs to send orders directly to the exchanges, eliminating the need for custom one-off integrations.
+        .col-sm-12.col-md-4.mt-5
+          img.img-fluid.profile-img(src="/images/icons/decentralized.svg" width="80px" )
+          h3.mb-2.mt-4.founder-name-text.text-dark Market Data
+          p Downloadable historical data for any custom needs - including OHLCV for over 1000 trading pairs, in formats ranging from CSV, SQL dump and more. Real-time streams are available for order books, price tickers and trade history.
+      .row.text-center
+        .col-sm-12.col-md-4.mt-5
+          img.img-fluid.profile-img(src="/images/icons/digitalassets.svg" width="80px" )
+          h3.mb-2.mt-4.founder-name-text.text-dark Safe, Secure & Reliable
+          p With a private deployment that you control, neither Quadency, nor anyone else has access to your account API keys. All communication and sensitive data are encrypted using financial industry best practices.
+        .col-sm-12.col-md-4.mt-5
+          img.img-fluid.profile-img(src="/images/icons/investment.svg" width="80px" )
+          h3.mb-2.mt-4.founder-name-text.text-dark Non-Custodial Model
+          P The Quadency Platform gives you robust and reliable access to your existing, AML/KYC-verified accounts so you remain in control of your portfolio funds at all times. There are no middlemen, and no per-transaction fees.
+        .col-sm-12.col-md-4.mt-5
+          img.img-fluid.profile-img(src="/images/icons/teamwork.svg" width="80px" )
+          h3.mb-2.mt-4.founder-name-text.text-dark Dedicated Support
+          P We are familiar with the challenges of this industry - it can be daunting. Quadency's team of experts will be there through the setup process and provide ongoing engineering support so you can focus on running your operations.
+  section.section-content.bg-white
+    .text-center.mb-4
+      h4.title.text-purple Let's Talk
+    .container
+      .row.text-center.mb-4
+        .col-sm-12
+          p.section-text.text-secondary Interested in our Platform, Market Data or API products?
+          p.section-text.text-secondary Reach us at <a class="sales-email">sales@quadency.com</a>.

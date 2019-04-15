@@ -1,0 +1,15 @@
+{
+  "name": "slate",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:quadency/slate.git",
+  "author": "quadency",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/app.js"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "morgan": "^1.9.1"
+  }
+}

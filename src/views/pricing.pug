@@ -1,0 +1,227 @@
+extends layouts/layout
+block title
+  title Quadency - Pricing
+block append head
+  link(rel="stylesheet" href="/stylesheets/pricing.css")
+  link(rel="stylesheet" href="/stylesheets/faq.css")
+  script(src="/scripts/pricing.js")
+
+block content
+  section.bg-purple-gradient.pb-5.pricing-section
+    .container.mt-5.pb-5
+      .row
+        .col-md-12.text-center
+          h1.mt-5.mb-2.pt-3.text-light Costs less than not having it
+          h5.text-light Plans to suit traders and investors of all levels
+      .row.mt-5
+        .col-md-12.text-center.pt-3
+          button(type="button" data-toggle="button" aria-pressed="false")#monthly.btn.btn-outline-light.mx-1.mx-md-2.px-2.px-sm-4.cadence-toggle-button Monthly
+          button(type="button" data-toggle="button" aria-pressed="false")#sixMonth.btn.btn-outline-light.mx-1.mx-md-2.px-2.px-sm-4.cadence-toggle-button 6 Month
+          button(type="button" data-toggle="button" aria-pressed="true")#annual.btn.btn-outline-light.mx-1.mx-md-2.px-2.px-sm-4.cadence-toggle-button.active Annual
+      .row.mt-5.pt-4.pb-5
+        .col-12.col-md-8.offset-md-2.col-lg-4.offset-lg-0.mb-5.text-center
+          .card
+            .card-header.px-4
+              img(src="/images/pricing/piggy-bank.svg").w-50.my-4
+              h4.plan-title HODLER
+              h2.mt-5.mb-0.price FREE
+              h6.mb-4.text-secondary &nbsp;
+              p.text-left.plan-tagline For beginners or passive investors of digital assets
+            .card-body.my-3.text-left
+              ul.card-body-list
+                li.font-weight-bold.card-body-list-item
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/purple-check.svg").icon.pr-2
+                    span.bullet-text Unlimited Exchange Accounts
+                li.font-weight-bold.card-body-list-item
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/purple-check.svg").icon.pr-2
+                    span.bullet-text Advanced Charting + Indicators
+                li.font-weight-bold.card-body-list-item.text-muted
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/grey-check.svg").icon.pr-2
+                    span.bullet-text Basic Portfilio Monitoring
+                li.font-weight-bold.card-body-list-item.text-muted
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/grey-x.svg").icon.pr-2
+                    span.bullet-text No Dashboard
+                li.font-weight-bold.card-body-list-item.text-muted
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/grey-check.svg").icon.pr-2
+                    span.bullet-text Read-Only Views of Orders, Trades etc.
+                li.font-weight-bold.card-body-list-item.text-muted
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/grey-x.svg").icon.pr-2
+                    span.bullet-text No Saved Charts
+                li.font-weight-bold.card-body-list-item.text-muted
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/grey-check.svg").icon.pr-2
+                    span.bullet-text Default Trade Screen Layout
+                li.font-weight-bold.card-body-list-item
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/purple-check.svg").icon.pr-2
+                    span.bullet-text Curated News Feed
+                li.font-weight-bold.card-body-list-item
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/purple-check.svg").icon.pr-2
+                    span.bullet-text Real-time Market Overview
+                li.font-weight-bold.card-body-list-item
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/purple-check.svg").icon.pr-2
+                    span.bullet-text Native Currency Views
+                li.font-weight-bold.card-body-list-item.text-muted
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/grey-check.svg").icon.pr-2
+                    span.bullet-text Email Support
+            .card-footer.px-5.py-4
+              button#freeButton.btn.btn-outline-dark.btn-lg.btn-block.button.button-black Sign Up
+        .col-12.col-md-8.offset-md-2.col-lg-4.offset-lg-0.mb-5.text-center
+          .card
+            .card-header.px-4
+              img(src="/images/pricing/profits.svg").w-50.my-4
+              h4.plan-title PRO
+              h2.mt-5.mb-0.price <span class="dollar-amount"></span><small class="text-muted cents"><span class="cent-amount"></span>/mo</small>
+              h6.mb-5.mb-md-4.billed-text Billed <span id="billedCadence"></span> <span id="percentSaved" class="text-success"></span>
+              p.text-left.plan-tagline For active traders and personal portfolio managers
+            .card-body.my-3.text-left
+              ul.card-body-list
+                li.font-weight-bold.card-body-list-item
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/purple-check.svg").icon.pr-2
+                    span.bullet-text Unlimited Exchange Accounts
+                li.font-weight-bold.card-body-list-item
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/purple-check.svg").icon.pr-2
+                    span.bullet-text Advanced Charting + Indicators
+                li.font-weight-bold.card-body-list-item
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/purple-check.svg").icon.pr-2
+                    span.bullet-text Enhanced Portfolio Monitoring + PnL
+                li.font-weight-bold.card-body-list-item
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/purple-check.svg").icon.pr-2
+                    span.bullet-text Live Performance Dashboard
+                li.font-weight-bold.card-body-list-item
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/purple-check.svg").icon.pr-2
+                    span.bullet-text Unlimited Trading + Order Management
+                li.font-weight-bold.card-body-list-item
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/purple-check.svg").icon.pr-2
+                    span.bullet-text Unlimited Saved Charts
+                li.font-weight-bold.card-body-list-item
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/purple-check.svg").icon.pr-2
+                    span.bullet-text Customizable Trade Screen Layout
+                li.font-weight-bold.card-body-list-item
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/purple-check.svg").icon.pr-2
+                    span.bullet-text Curated News Feed
+                li.font-weight-bold.card-body-list-item
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/purple-check.svg").icon.pr-2
+                    span.bullet-text Real-time Market Overview
+                li.font-weight-bold.card-body-list-item
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/purple-check.svg").icon.pr-2
+                    span.bullet-text Native Currency Views
+                li.font-weight-bold.card-body-list-item
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/purple-check.svg").icon.pr-2
+                    span.bullet-text Email + Chat Support
+            .card-footer.px-5.py-4
+              button#proButton.btn.btn-info.btn-lg.btn-block.button.button-info Start 14-Day Trial
+        .col-12.col-md-8.offset-md-2.col-lg-4.offset-lg-0.mb-5.text-center
+          .card
+            .card-header.px-4
+              img(src="/images/pricing/bank.svg").w-50.my-4
+              h4.plan-title ENTERPRISE
+              h2(styles="font-size: 30px;").mt-5.mb-0.price.font-weight-normal CONTACT US
+              h6.mb-4.text-secondary &nbsp;
+              p.text-left.plan-tagline For professional portfolio managers and funds etc.
+            .card-body.my-3.text-left
+              ul.card-body-list
+                li.font-weight-bold.card-body-list-item
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/purple-check.svg").icon.pr-2
+                    span.bullet-text Unlimited Exchange Accounts
+                li.font-weight-bold.card-body-list-item
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/purple-check.svg").icon.pr-2
+                    span.bullet-text Advanced Charting + Indicators
+                li.font-weight-bold.card-body-list-item
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/purple-check.svg").icon.pr-2
+                    span.bullet-text Enhanced Portfolio Monitoring + PnL
+                li.font-weight-bold.card-body-list-item
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/purple-check.svg").icon.pr-2
+                    span.bullet-text Live Performance Dashboard
+                li.font-weight-bold.card-body-list-item
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/purple-check.svg").icon.pr-2
+                    span.bullet-text Unlimited Trading + Order Management
+                li.font-weight-bold.card-body-list-item
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/purple-check.svg").icon.pr-2
+                    span.bullet-text Unlimited Saved Charts
+                li.font-weight-bold.card-body-list-item
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/purple-check.svg").icon.pr-2
+                    span.bullet-text Customizable Trade Screen Layout
+                li.font-weight-bold.card-body-list-item
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/purple-check.svg").icon.pr-2
+                    span.bullet-text Curated News Feed
+                li.font-weight-bold.card-body-list-item
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/purple-check.svg").icon.pr-2
+                    span.bullet-text Real-time Market Overview
+                li.font-weight-bold.card-body-list-item
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/purple-check.svg").icon.pr-2
+                    span.bullet-text Native Currency Views
+                li.font-weight-bold.card-body-list-item
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/purple-check.svg").icon.pr-2
+                    span.bullet-text Email, Chat & Phone Support
+                li.font-weight-bold.card-body-list-item
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/purple-check.svg").icon.pr-2
+                    span.bullet-text Unified API Access
+                li.font-weight-bold.card-body-list-item
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/purple-check.svg").icon.pr-2
+                    span.bullet-text Custom Requirements
+                li.font-weight-bold.card-body-list-item
+                  .d-inline-flex.flex-row.justify-content-between
+                    img(src="/images/pricing/purple-check.svg").icon.pr-2
+                    span.bullet-text Enterprise SLA
+            .card-footer.px-5.py-4
+              a(href="/institutional").btn.btn-outline-dark.btn-lg.btn-block.button.button-black Learn More
+  section.section-content.bg-white
+    .container
+      .row.mb-3.mb-md-5
+        .col-md-12.text-center
+          h3.title.text-purple Frequently Asked Questions
+      .row.mb-5
+        .col-md-12
+          h3.font-weight-bold.text-dark.mb-3.pricing-faq-text How can I pay for Quadency Pro?
+        .col-md-12
+          p.pricing-faq-text Payment can be made using all major credit cards. We use Stripe for secure credit card payment processing. The 6 month and annual plans can also be paid with cryptocurrencies including Bitcoin, Bitcoin Cash, Ethereum and Litecoin. All information is submitted securely over SSL.
+      .row.mb-5
+        .col-md-12
+          h3.font-weight-bold.text-dark.mb-3.pricing-faq-text Can I cancel anytime? Is there a cancellation fee?
+        .col-md-12
+          p.pricing-faq-text You can cancel your subscription at any time. If you cancel you will not be billed anymore, and the service will remain active for the time that is paid for. There's no cancellation fee.
+      .row.mb-5
+        .col-md-12
+          h3.font-weight-bold.text-dark.mb-3.pricing-faq-text What is your Refund Policy?
+        .col-md-12
+          p.pricing-faq-text Since we offer a free 14-day trial, we do not provide refunds for initial orders or recurring payments.  Please note that all plans are auto-renewed (except when paid with cryptocurrency). If you purchase an upgraded plan, it's implied that you agree with the above terms and conditions and accept that there are no refunds.
+      .row.mb-5
+        .col-md-12
+          h3.font-weight-bold.text-dark.mb-3.pricing-faq-text How do I contact support?
+        .col-md-12
+          p.pricing-faq-text If you have a question or experience an issue with Quadency, please contact our support team by starting a chat session, or emailing <a href="mailto:support@quadency.com">support@quadency.com</a>.
+      

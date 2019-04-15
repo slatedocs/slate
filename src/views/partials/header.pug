@@ -1,0 +1,46 @@
+header
+  nav.navbar.navbar-expand-lg.fixed-top
+    .container
+      button(type="button").navbar-toggler.navbar-dark.hamburger-button
+        span.navbar-toggler-icon
+        img(src="/images/icon-menu.png").navbar-close-icon.d-none
+      .mx-auto
+        a(href="/" ).navbar-brand#logo
+          img(src="/images/quad-logo-v2.svg" alt="quadency advanced crypto asset trading").logo
+        a(href="/signup").btn.btn-outline-light.intro-btn.d-none#signup Sign Up
+      div.collapse.navbar-collapse#navbarNavDropdown
+        ul.navbar-nav.ml-auto
+          li.nav-item
+            a(href="/platform" target="_blank").nav-link Platform
+          li.nav-item
+            a(href="/#features" ).nav-link Features
+          //- li.nav-item
+          //-   a(href="/pricing" ).nav-link Pricing
+          li.nav-item
+            a(href="/about" ).nav-link About
+          li.nav-item
+            a(href="/#blog" ).nav-link Blog
+          li.nav-item
+            span.nav-link.opacity-50 |
+          li.nav-item
+            a(href="/login" ).nav-link Log In
+          li.nav-item
+            a(href="/signup").btn.btn-outline-light.intro-btn Sign Up
+
+      // mobile menu
+      .mobile-menu.d-none
+        .container.h-100.d-flex.justify-content-center.mt-5
+          ul.list-unstyled.text-center
+            li.nav-item
+              a(href="/platform" target="_blank").nav-link.mobile-link.img-opacity-75 Platform
+            li.nav-item
+              a(href="/#features" ).nav-link.mobile-link.img-opacity-75 Features
+            //- li.nav-item
+            //-   a(href="/pricing" ).nav-link.mobile-link.img-opacity-75 Pricing
+            li.nav-item
+              a(href="/about" ).nav-link.mobile-link.img-opacity-75 About
+            li.nav-item
+              a(href="/#blog" ).nav-link.mobile-link.img-opacity-75 Blog
+            li.nav-item
+              a(href="/login").nav-link.mobile-link Log In
+

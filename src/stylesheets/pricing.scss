@@ -1,0 +1,162 @@
+@import './partials/functions';
+@import './partials/variables';
+@import './partials/breakpoints';
+
+.pricing-section {
+  padding-top: 4.375rem;
+}
+
+// toggle buttons
+.cadence-toggle-button {
+  opacity: 0.5;
+  border: none;
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.1875rem;
+}
+
+.cadence-toggle-button:hover {
+  background-color: initial;
+  color: #f8f9fa;
+}
+
+.cadence-toggle-button:focus {
+  box-shadow: none;
+}
+
+.btn-outline-light:not(:disabled):not(.disabled).active {
+  opacity: 1;
+  background-color: initial;
+  color: #f8f9fa;
+  border: 1px solid #f8f9fa;
+  border-radius: 0.3125rem;
+}
+
+.btn:focus,.btn:active:focus,.btn.active:focus,
+.btn.focus,.btn:active.focus,.btn.active.focus {
+  outline: none;
+  box-shadow: none !important;
+}
+
+// card stuff
+.card {
+  border-radius: 0.625rem;
+  box-shadow: 0.3125rem 0.3125rem 3.125rem 0.25rem rgba(0,0,0,0.5);
+  min-height: 87.125rem;
+}
+
+.card-header, .card-footer {
+  background-color: #EFF3F6;
+}
+
+.card-header:first-child {
+  border-radius: 0.625rem 0.625rem 0 0;
+  min-height: 25.625rem;
+}
+
+.card-footer:last-child {
+  border-radius: 0 0 0.625rem 0.625rem;
+}
+
+.plan-title {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+}
+
+.price {
+  color: #3D4E5D;
+  font-family: futura;
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 2.9375rem;
+  min-height: 3.5rem;
+}
+
+.billed-text {
+  color: #9FA9BA;
+  font-size: 0.875rem;
+}
+
+.dollar-amount {
+  font-size: 2.875rem;
+}
+
+.cents {
+  font-size: 1.375rem;
+}
+
+.plan-tagline {
+  color: #9FA9BA;
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.3125rem;
+}
+
+.card-body-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.card-body-list-item {
+  font-size: 1.125rem;
+  line-height: 2.5rem;
+}
+
+.bullet-text {
+  font-size: 0.938rem;
+}
+
+.button {
+  font-family: futura;
+  font-size: 1.25rem;
+  font-weight: bold;
+  line-height: 1.6875rem;
+}
+
+.button-black {
+  border: 0.125rem solid #1D252C;
+  color: #1D252C;
+}
+
+.button-info {
+  background-color: #52B0B0;
+}
+
+.icon {
+  width: 38px;
+  height: 38px
+}
+
+// faq stuff
+
+
+// media queries
+@include media-breakpoint-down(lg) {
+  .plan-title {
+    font-size: 1.375rem;
+  }
+  .card-body-list-item {
+    font-size: 1rem;
+    line-height: 2.125rem;
+  }
+  .faq-text {
+    font-size: 1.125rem;
+  }
+  .button {
+    font-size: 0.875rem;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .card {
+    // min-height: 66rem;
+    min-height: initial;
+  }
+  .faq-text {
+    font-size: 1rem;
+  }
+  .button {
+    font-size: initial;
+  }
+}
