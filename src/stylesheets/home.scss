@@ -1,0 +1,250 @@
+@import './partials/functions';
+@import './partials/variables';
+@import './partials/breakpoints';
+
+.accordian:first-child {
+  border-top: 0.5px solid #b1b4b7;
+}
+
+.card-header, .card {
+  background-color: transparent;
+  border: 0.5px solid #b1b4b7;
+  border-top: 0.25px solid #b1b4b7;
+}
+
+.card-header {
+  border-radius: 0 !important;
+}
+
+.card {
+  border: none;
+  border-radius: 0;
+}
+
+.card-body {
+  background-color: #eeeff2;
+  border-bottom: 0.25px solid #b1b4b7;
+}
+
+.post-submit {
+  display: none;
+  color: #50E3C2;
+}
+
+
+.faq-heading {
+  font-size: 18px;
+  font-family: ProximaNova;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.23;
+  letter-spacing: normal;
+  width: 100%;
+  background: transparent;
+  white-space: normal;
+  text-align: left;
+}
+
+.faq-heading:hover, .faq-heading:focus {
+  text-decoration: none;
+}
+
+.faq-text {
+  font-size: 18px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.28;
+  letter-spacing: normal;
+}
+
+.vert-align-middle {
+  display: flex;
+  align-items: center;
+}
+
+.email-input {
+  height: 2.5rem;
+}
+
+.signup-btn {
+  border: 0.125rem solid #fff;
+  font-size: 18px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.33;
+}
+
+.intro-subtitle {
+  font-size: 14px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.43;
+  letter-spacing: normal;
+  opacity: 0.61
+}
+// hero slideshow
+#slideshow {
+  background-color: #222;
+  position: relative;
+  width: 300px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+#slideshow > div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+}
+// end hero slideshow
+
+
+.quad-stat {
+  text-align: center;
+  padding: 20px 0;
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: bold;
+  letter-spacing: -0.03125rem;
+  line-height: 1.75rem;
+  color: #6f42c1;
+}
+
+.quad-stat > span {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: normal;
+}
+
+.sub-hero-bar {
+  color: #FFF;
+  font-weight: 500;
+  font-size: 1em;
+  background: linear-gradient(97deg, #5e26fd, #190e7a);
+  box-shadow: -3px 2px 7px 6px rgba(0, 0, 0, 0.2);
+}
+
+.trading-platform-image {
+  width: 317px;
+  height: 217px;
+}
+
+.col-header {
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.14;
+  letter-spacing: normal;
+  color: #444141;
+  text-transform: uppercase;
+}
+
+.pre-registration-title {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 2.48;
+}
+
+.tooltip {
+  .tooltip-inner {
+    background-color: #fff;
+    color: #f00;
+  }
+
+  .arrow:before {
+    border-bottom-color: #fff;
+  }
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  visibility: hidden;
+}
+
+.carousel-indicators li {
+  width: 10px;
+  height: 10px;
+  border-radius: 15px;
+}
+
+
+// Media Queries
+
+@include media-breakpoint-up(sm) {
+
+  #slideshow {
+    position: relative;
+    width: 500px;
+    height: 350px;
+    margin: 0 auto;
+  }
+}
+
+@include media-breakpoint-up(md) {
+
+  .intro-subtitle {
+    font-size: 18px;
+  }
+
+  #slideshow {
+    position: relative;
+    width: 600px;
+    height: 400px;
+    margin: 0 auto;
+  }
+
+  .sub-hero-bar {
+    font-weight: 600;
+    font-size: 1.6em;
+  }
+
+  .pre-registration-title {
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 1;
+    letter-spacing: -0.6px;
+  }
+
+  .icon-wrapper {
+    height: 60px;
+  }
+
+  .bg-watermark {
+    background-size: contain;
+  }
+
+  .faq-heading {
+    font-size: 30px;
+  }
+
+  .faq-text {
+    font-size: 25px;
+  }
+
+  .feature-img{
+    height: 400px
+  }
+
+  .ul {
+    padding-left: 30px;
+    font-size: 18px;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  #slideshow {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    margin: 0 auto;
+  }
+
+  .sub-hero-bar {
+    font-weight: 600;
+    font-size: 2.5em;
+  }
+}

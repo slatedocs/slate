@@ -1,0 +1,24 @@
+@import './partials/functions';
+@import './partials/variables';
+@import './partials/breakpoints';
+
+.pricing-faq-text {
+  font-size: 1.25rem;
+  font-family: futura;
+  letter-spacing: -0.03125rem;
+  line-height: 1.75rem;
+  color: #595F6F;
+}
+
+// media queries
+@include media-breakpoint-down(lg) {
+  .faq-text {
+    font-size: 1.125rem;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .faq-text {
+    font-size: 1rem;
+  }
+}
