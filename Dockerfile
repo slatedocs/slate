@@ -16,6 +16,7 @@ RUN yarn
 COPY --from=build /usr/src/app/build /usr/src/app/build
 
 
-USER nobody
 COPY ./docker/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+USER nobody
 ENTRYPOINT ["/entrypoint.sh"]
