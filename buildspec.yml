@@ -1,0 +1,24 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+      - SHA=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION)
+      - echo $SHA
+  build:
+    commands:
+      - echo Build started on `date`
+      - docker build -t $IMAGE_REPO_NAME .
+      - docker tag $IMAGE_REPO_NAME:latest $IMAGE_REPO_NAME:$SHA
+      - echo Build completed on `date`
+  post_build:
+    commands:
+      - echo Pushing the Docker image...
+      - docker push $IMAGE_REPO_NAME:$SHA
+      - docker push $IMAGE_REPO_NAME:latest
+      - 'if test "$CODEBUILD_BUILD_SUCCEEDING" -eq  0; then $(curl -X POST https://hooks.slack.com/services/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 -H "Content-type: application/json" -d "{\"text\": \"Build failed for $IMAGE_REPO_NAME:$SHA\", \"channel\": \"#GITHUB\", \"username\": \"CODEBUILD\", \"icon_emoji\": \":fire: \"}"); else echo $(curl -X POST https://hooks.slack.com/services/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 -H "Content-type: application/json" -d "{\"text\": \"Successfully built and pushed image $IMAGE_REPO_NAME:$SHA\", \"channel\": \"#GITHUB\", \"username\": \"CODEBUILD\", \"icon_emoji\": \":rocket: \"}"); fi'
+      - printf '[{"name":"app","imageUri":"%s"}]' $IMAGE_REPO_NAME:$SHA > imagedefinitions.json
+artifacts:
+    files: imagedefinitions.json
