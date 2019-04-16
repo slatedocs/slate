@@ -131,7 +131,7 @@ def enable_scoutprof?; true; end
 
 ### Free Trial
 
-We offer a no-risk, free 14-day trial. Delete your monitored apps before the trial concludes and you don't pay.
+We offer a no-risk, fully featured, free 14-day trial. Enter a credit or debit card to begin your subscription.
 
 ### Billing Date
 
