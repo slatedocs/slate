@@ -16,7 +16,8 @@ curl --data-binary '{"id":"5", "method":"goal.Update", "params":{"id":1, "import
 	"result": {
 		"id": 1,
 		"importance": 0.1,
-		"confidence": 0.7
+		"confidence": 0.7,
+		"order": 1
 	},
 	"id": "5"
 }
@@ -118,7 +119,8 @@ curl --data-binary '{"id":"6", "method":"goal.FetchByCompetencyID", "params":{"i
 	"result": {
 		"id": "2",
 		"importance": 0.8,
-		"confidence": 0.5
+		"confidence": 0.5,
+		"order": 1
 	},
 	"id": "6"
 }
