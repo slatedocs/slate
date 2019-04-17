@@ -11,9 +11,9 @@ ingress:
 
 resources:
   limits:
-    memory: 512m
+    memory: 512Mi
   requests:
-    memory: 512m
+    memory: 512Mi
 
 env:
   variables:
