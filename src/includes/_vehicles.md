@@ -66,12 +66,14 @@ Your API key may be limited to accessing certain zones only.
 </aside>
 
 
-## Get All Vehicles Within Range (deprecated)
+## Get All Vehicles within Range
 
-Alternatively you can get vehicles by geolocation (deprecated!)
+This endpoints get vehicles by geolocation (latitude and longitude). Vehicles
+can be from multiple Zones in this mode, so you can also filter by zone
+at the same time (recommended).
 
 ```shell
-curl "https://platform.tier-services.io/v1/vehicle?lat=48.1&lng=16.3&radius=5000"
+curl "https://platform.tier-services.io/v1/vehicle?lat=48.1&lng=16.3&radius=5000&zoneId=VIENNA"
   -H "x-api-key: TIER API KEY"
 ```
 
