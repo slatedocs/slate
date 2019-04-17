@@ -11,19 +11,10 @@ ingress:
 
 resources:
   limits:
-    cpu: 1000m
-    memory: 1Gi
+    memory: 512Mi
   requests:
-    cpu: 1000m
-    memory: 1Gi
+    memory: 512Mi
 
-affinity:
-  podAntiAffinity:
-    requiredDuringSchedulingIgnoredDuringExecution: # Distribute redis across different nodes
-      - labelSelector:
-          matchExpressions:
-            - key: "role"
-              operator: In
-              values:
-              - {{ include "documentation.name" . }}-app
-        topologyKey: "kubernetes.io/hostname"
+env:
+  variables:
+    data: null
