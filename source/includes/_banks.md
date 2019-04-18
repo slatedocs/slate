@@ -95,7 +95,8 @@ The redirect URL should be the address you want the user to return to after the 
 On mobiles apps you should not use `WebView` components to show the authorization page to the users because they are not secure and will not allow users to log in to TransferWise with Google, which is an option used by some of our users. Your app should instead open the device's full browser app.
 
 *Please note that the URL for the authorization page in sandbox is different than URL for API calls.  
-In the live environment the api.transferwise.com URL works for the authorization page as well as API calls.*
+In the live environment the api.transferwise.com URL works for the authorization page as well as API calls.
+Please also note that provided `[CODE]` expires within 30 minutes and is one time use only.*
 
 ### 2. The user logs in to TransferWise
 

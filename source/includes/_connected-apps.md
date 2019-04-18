@@ -69,6 +69,7 @@ Your website or service can then use this code to obtain the access token to act
 
 If you are building your TransferWise integration as a native mobile phone app then the redirect URL should be able to handle returning the user to the correct place in the app.
 
+*Please note that provided `[CODE]` expires within 30 minutes and is one time use only.*
 
 ## Get user tokens
 You can now use authorization code returned to you as a query string parameter to obtain user access and refresh tokens. So that you can make calls on behalf of TransferWise user.
