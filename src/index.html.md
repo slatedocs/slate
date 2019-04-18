@@ -15,6 +15,7 @@ includes:
   - rental
   - pickup
   - dropoff
+  - automations
   - errors
 
 search: true
