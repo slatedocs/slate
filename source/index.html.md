@@ -188,6 +188,7 @@ curl https://api.kardia.com/v1/patients/wNSEDeLOEPQE5rznkJmwbnjpxfdst93i/recordi
       "patientID": "wNSEDeLOEPQE5rznkJmwbnjpxfdst93i",
       "duration": 30000,
       "heartRate": 65,  
+      "note": "Drank coffee, having palpitations."
       "data": {
         "frequency": 300,
         "mains_freq": 60,
@@ -335,6 +336,7 @@ curl https://api.kardia.com/v1/recordings/3wde1eem9vy4y1a0rv3y98u2a \
   "algorithmDetermination": "normal",
   "duration": 30000,
   "heartRate": 65,  
+  "note": "Drank coffee, having palpitations."
   "recordedAt": "2008-09-15T15:53:00+05:00"
   "data": {
     "raw": {
@@ -450,6 +452,7 @@ curl https://api.kardia.com/v1/recordings \
       "algorithmDetermination": "normal",
       "duration": 30000,
       "heartRate": 65,  
+      "note": "Drank coffee, having palpitations."
       "data": {
         "raw": {
           "frequency": 300,
