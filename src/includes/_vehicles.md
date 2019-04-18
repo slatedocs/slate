@@ -133,3 +133,69 @@ curl -X POST "https://platform.tier-services.io/v1/vehicle/<vehicle-id>/flash"
   -H "x-api-key: TIER API KEY"
 ```
 
+
+## Get Vehicles by Code
+
+The vehicle code is the (currently 5-digits) number that is encoded in the vehicle QR-code which is
+attached to the handle bar. Use this endpoint to retrieve a vehicle by it's code.
+
+```shell
+curl "https://platform.tier-services.io/v1/vehicle/code/10050"
+  -H "x-api-key: TIER API KEY"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": [
+    {
+      "type": "vehicle",
+      "id": "0160376e-d00a-4d47-8419-81c47c8855f3",
+      "attributes": {
+        "state": "ACTIVE",
+        "lastLocationUpdate": "2019-04-02T14:23:02Z",
+        "lastStateChange": "2019-04-02T05:20:47Z",
+        "batteryLevel": 95,
+        "lat": 48.213553,
+        "lng": 16.382606,
+        "maxSpeed": 20,
+        "zoneId": "VIENNA",
+        "code": 10050,
+        "isRentable": true
+      }
+    },
+  ]
+}
+```
+ 
+
+### HTTP Request
+
+`GET https://platform.tier-services.io/v1/vehicle/code/<code>`
+
+### Query Parameters
+
+Parameter  | Description
+--------- | -----------
+code | The number that is encoded in the QR-code on the vehicle handle bars 
+
+
+
+## Make vehicle flash
+
+To make the lights of a vehicle flash so you can locate it more easily. You need to know
+the id of the vehicle. Note that you may only flash the lights of vehicles that are in a
+zone that you may access with your API key. 
+
+### HTTP Request
+
+`POST https://platform.tier-services.io/v1/vehicle/<vehicle-id>/flash`
+
+
+
+```shell
+curl -X POST "https://platform.tier-services.io/v1/vehicle/<vehicle-id>/flash"
+  -H "x-api-key: TIER API KEY"
+```
+

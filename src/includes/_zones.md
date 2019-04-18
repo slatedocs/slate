@@ -1,6 +1,44 @@
 
 # Zones
 
+Zones define the locations in which vehicles can operate.
+There are 4 kinds of zones:
+
+  - root zones
+  - business zones
+  - constrained zones
+  - warehouse zones
+
+Each of them have different meanings.
+
+### Root Zone
+
+ - A root zone is a container for zones. A root zone usually created for a single
+   city, e.g. BERLIN.
+ - A root zone has a center (lat/lng), but no shape (polygon).
+ - A root zone has pricing, while the other zones do not. That means that the pricing
+for a certain area have to determined using the root zone.
+
+### Business Zone
+ - A business zone is the zone in which scooters may operate.
+ - A root zone may contain multiple business zones; A business zone is associated
+   with exactly one root zone
+ - Scooters outside a business zone are slowed down to 5 km/h
+
+### Constrained Zone
+ - A root zone may contain multiple constrained zones. A constraint zone must be
+   associated with exactly one root zone
+ - A Constrained zone may overlap with business zone
+ - Scooters inside a constrained zone may have reduced speed and/or it may not
+   be allowed to end the rental inside it
+
+### Warehouse Zone
+ - A root zone may contain multiple warehouse zones; A warehouse zone is associated
+   with exactly one root zone
+ - Warehouse zones and business zones should not overlap
+ - Scooters inside a warehouse zone are automatically transitioned into the
+   `MAINTENANCE` state, in which they cannot be rented.
+
 ## Get All Zones near a specific location
 
 ```shell
