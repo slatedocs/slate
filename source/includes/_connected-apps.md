@@ -44,7 +44,7 @@ https://sandbox.transferwise.tech/oauth/authorize?response_type=code&client_id=<
 ` <br/>
 Live:  
 `
-https://api.transferwise.com/oauth/authorize?response_type=code&client_id=<your api client id>&redirect_uri=https://www.yourapp.com
+https://transferwise.com/oauth/authorize?response_type=code&client_id=<your api client id>&redirect_uri=https://www.yourapp.com
 `
 
 Replace *your-api-client-id* and *redirect-uri* with your specific values. 
