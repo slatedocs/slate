@@ -287,8 +287,9 @@ id                     | string  | The patient's unique random ID
 patientID              | string  | The unique patient identifier
 duration               | int     | The duration of the ECG recording in milliseconds
 heartRate              | int     | The average heart rate
+note                   | string  | The patient supplied note associated with the ECG
 algorithmDetermination | string  | Represents the output of the AliveCor ECG algorithms, the allowable values are `normal`, `afib`, `unclassified`, `bradycardia`, `tachycardia`, `too_short`, `too_long`, `unreadable`, and `no_analysis`
-data                   | object  | The ECG data samples
+data                   | object  | The raw and enhanced filterred ECG data samples
 recordedAt             | string  | The date time the ECG was recorded
 
 ## ECG Data Object
@@ -328,32 +329,63 @@ curl https://api.kardia.com/v1/recordings/3wde1eem9vy4y1a0rv3y98u2a \
   "heartRate": 65,  
   "recordedAt": "2008-09-15T15:53:00+05:00"
   "data": {
-    "frequency": 300,
-    "mains_freq": 60,
-    "samples": {
-      "lead_I": [
-        397,
-        -262,
-        -426,
-        -284,
-        286,
-        391,
-        -45,
-        -249,
-        -30,
-        566,
-        515,
-        204,
-        -138,
-        -30,
-        491,
-        572,
-        103,
-        -187,
-        -62,
-        322,
-        ...     
-      ]
+    "raw": {
+      "frequency": 300,
+      "mains_freq": 60,
+      "samples": {
+        "lead_I": [
+          397,
+          -262,
+          -426,
+          -284,
+          286,
+          391,
+          -45,
+          -249,
+          -30,
+          566,
+          515,
+          204,
+          -138,
+          -30,
+          491,
+          572,
+          103,
+          -187,
+          -62,
+          322,
+          ...     
+        ]
+      }
+    },
+    "enhanced": {
+      "frequency": 300,
+      "mains_freq": 60,
+      "samples": {
+        "lead_I": [
+          397,
+          -262,
+          -426,
+          -284,
+          286,
+          391,
+          -45,
+          -249,
+          -30,
+          566,
+          515,
+          204,
+          -138,
+          -30,
+          491,
+          572,
+          103,
+          -187,
+          -62,
+          322,
+          ...     
+        ]
+      }
     }
   }
 }
@@ -403,7 +435,7 @@ curl https://api.kardia.com/v1/recordings \
 ```shell
 {
   "totalCount": 200,
-  "data": [
+    "data": [
     {
       "id": "3wde1eem9vy4y1a0rv3y98u2a",
       "patientID": "wNSEDeLOEPQE5rznkJmwbnjpxfdst93i",
@@ -411,32 +443,64 @@ curl https://api.kardia.com/v1/recordings \
       "duration": 30000,
       "heartRate": 65,  
       "data": {
-        "frequency": 300,
-        "mains_freq": 60,
-        "samples": {
-          "lead_I": [
-            397,
-            -262,
-            -426,
-            -284,
-            286,
-            391,
-            -45,
-            -249,
-            -30,
-            566,
-            515,
-            204,
-            -138,
-            -30,
-            491,
-            572,
-            103,
-            -187,
-            -62,
-            322,
-            ...     
-          ]
+        "raw": {
+          "frequency": 300,
+          "mains_freq": 60,
+          "samples": {
+            "lead_I": [
+              397,
+              -262,
+              -426,
+              -284,
+              286,
+              391,
+              -45,
+              -249,
+              -30,
+              566,
+              515,
+              204,
+              -138,
+              -30,
+              491,
+              572,
+              103,
+              -187,
+              -62,
+              322,
+              ...     
+            ]
+          }
+        },
+        "enhanced": {
+          "frequency": 300,
+          "mains_freq": 60,
+          "samples": {
+            "lead_I": [
+              397,
+              -262,
+              -426,
+              -284,
+              286,
+              391,
+              -45,
+              -249,
+              -30,
+              566,
+              515,
+              204,
+              -138,
+              -30,
+              491,
+              572,
+              103,
+              -187,
+              -62,
+              322,
+              ...     
+            ]
+          }
+
         }
       },
       "recordedAt": "2008-09-15T15:53:00+05:00"
@@ -447,5 +511,86 @@ curl https://api.kardia.com/v1/recordings \
     "endCursor": "ZW5kQ3Vyc29yc2Rh=",
     "hasNextPage": true
   }
+}
+```
+
+# Kardia Mobile Users
+
+## Create User
+
+The API allows developers to create Kardia Mobile users that will be automatically connected to the Kardia Pro account. To create a Kardia Mobile user, send a `POST` request to `/v1/users`.
+
+### Arguments
+
+Name        | Type   | Required | Description
+----------  | ------ | ---------| -----------
+email       | string | Yes      | The Kardia Mobile user's email address.
+password    | string | Yes      | The Kardia Mobile user's password
+countryCode | string | Yes      | The ISO 3166 Alpha-2 country code
+patientId   | string | Yes      | The patient's unique identifier.
+
+> Example Request
+
+```shell
+curl https://api.kardia.com/v1/users \
+  -u YOUR-API-KEY: \
+  -d email=joe@example.com \
+  -d password=5up3R53Cur3 \
+  -d countryCode=us \
+  -d patientId=wNSEDeLOEPQE5rznkJmwbnjpxfdst93i
+```
+
+> Example Response
+
+```json
+{
+  "requestId": "q1ATFmh7OShS2Dmd1cVAb6boqkrp7gif",
+}
+```
+
+# Webhooks
+
+Webhooks are a system of automated notifications indicating that an event has occurred for your team. Rather than requiring you to pull information via our API, webhooks push information to your destination when important events occur. Webhooks notify the following events.
+
+* New recordings
+* Patient connections
+* Patient disconnects
+
+## Set callback URL
+
+Lets you assign a callback URL for POST notifications. Make sure to assign a publicly accessible URL for your callback service. Responds to `PUT` requests to `/v1/callback`.
+
+> Example Request
+
+```shell
+curl -X PUT https://api.kardia.com/v1/callback \
+  -u YOUR-API-KEY: \
+  -d url=https://www.example.com/webhooks
+```
+
+> Example Response
+
+```json
+{
+  "url": "https://www.example.com/webhooks",
+}
+```
+
+## Get callback URL
+
+Returns the callback URL. Send a `GET` request to `/v1/callback`.
+
+> Example Request
+
+```shell
+curl https://api.kardia.com/v1/callback \
+  -u YOUR-API-KEY:
+```
+
+> Example Response
+
+```json
+{
+  "url": "https://www.example.com/webhooks",
 }
 ```
