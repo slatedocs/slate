@@ -31,6 +31,14 @@ The Kardia API uses API keys to authenticate requests. Contact Kardia support fo
 
 ```
 
+# Base URL
+
+Region | Host
+------ | -----------------------
+US     | https://api.kardia.com
+EU     | https://eu-api.kardia.com
+
+
 # Patients
 
 ### Patient Object
