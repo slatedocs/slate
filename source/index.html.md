@@ -140,24 +140,19 @@ page_size | number | Requested page size. Default: 250.
 
 ## Create Manifest with parameters
 
-Returns back a list of orders that match the specified criteria. All of the available filters are optional. They do not need to be included in the URL. If you do include them, here's what the URL may look like:
+It will create the manifest according to your parameters along with the array of listing.
 
 Url format with filters:
 
-/manifests?name={name}
-&marketplace_account_id={marketplace_account_id}
-&supplier_id={supplier_id}
-&ship_from_address_id={ship_from_address_id}
-&template_id={template_id}
+/manifests
 
 ```shell
 curl --request POST \
-  --url 'https://staging.sellerchamp.com/api/manifests?name={name}&marketplace_account_id={marketplace_account_id}&template_id={template_id}&supplier_id={supplier_id}&ship_from_address_id={ship_from_address_id}' \
+  --url https://staging.sellerchamp.com/api/manifests \
   --header 'Content-Type: application/json' \
-  --header 'Postman-Token: 503de8bf-31f1-4698-b892-3b40ff28261c' \
-  --header 'cache-control: no-cache,no-cache' \
+  --header 'cache-control: no-cache,no-cache,no-cache' \
   --header 'token: YOUR-TOKEN' \
-  --data '{"product_listings_attributes" : [{"asin" : "{asin}", "quantity" : "{quantity}", "item_condition" : "{item_condition}", "upc" : "{upc}", "sku" : "{sku}", "title" : "{title}", "retail_price" : "{retail_price}", "item_location" : "{item_location}", "item_category" : "{item_category}", "item_remarks" : "{item_remarks}", "brand" : "{brand}", "description" : "{description}", "features" : "{features}", "details_html" : "{details_html}", "item_specifics" : "{item_specifics}", "mpn" : "{mpn}", "listing_format" : "{listing_format}", "color" : "{color}", "manufacturer" : "{manufacturer}", "model" : "{model}", "part_number" : "{part_number}", "listing_duration" : "{listing_duration}", "store_category_external_id" : "{store_category_external_id}","store_category_2_external_id" : "{store_category_2_external_id}", "weight_in_pounds" : "{weight_in_pounds}", "package_dimensions_length" : "{package_dimensions_length}", "package_dimensions_width" : "{package_dimensions_width}", "package_dimensions_height" : "{package_dimensions_height}", "item_dimensions_length" : "{item_dimensions_length}", "item_dimensions_width" : "{item_dimensions_width}", "item_dimensions_height" : "{item_dimensions_height}", "handling_time" : "{handling_time}", "shipping_charge_type" : "{shipping_charge_type}", "global_shipping" : "{global_shipping}", "free_shipping" : "{free_shipping}", "shipping_service_code" : "{shipping_service_code}", "shipping_service_cost" : "{shipping_service_cost}", "extra_shipping_service_cost" : "{extra_shipping_service_cost}", "domestic_rate_table" : "{domestic_rate_table}", "international_shipping_service_code" : "{international_shipping_service_code}", "international_shipping_service_cost" : "{international_shipping_service_cost}", "extra_international_shipping_service_cost" : "{extra_international_shipping_service_cost}", "international_ship_to_locations" : "{international_ship_to_locations}", "international_rate_table" : "{international_rate_table}", "return_item_within" : "{return_item_within}", "refund_policy_value" : "{refund_policy_value}", "return_shipping_paid_by_value" : "{return_shipping_paid_by_value}", "qunatity_in_case" : "{qunatity_in_case}", "cost_price" : "{cost_price}", "expiration_date" : "{expiration_date}", "fnsku" : "{fnsku}", "image_urls" : [], "external_ids" : []}, {...}]}\n\n'
+  --data '{ "manifest" : { "name": "{name}", "marketplace_account_id" : "{marketplace_account_id}", "supplier_id" : "{supplier_id}", "ship_from_address_id" : "{ship_from_address_id}", "template_id" : "{template_id}", "product_listings_attributes" : [{"asin" : "{asin}", "quantity" : "{quantity}", "item_condition" : "{item_condition}", "upc" : "{upc}", "sku" : "{sku}", "title" : "{title}", "retail_price" : "{retail_price}", "item_location" : "{item_location}", "item_category" : "{item_category}", "item_category_id" : "{item_category_id}", "item_remarks" : "{item_remarks}", "brand" : "{brand}", "description" : "{description}", "features" : "{features}", "details_html" : "{details_html}", "item_specifics" : "{item_specifics}", "mpn" : "{mpn}", "listing_format" : "{listing_format}", "color" : "{color}", "manufacturer" : "{manufacturer}", "model" : "{model}", "part_number" : "{part_number}", "listing_duration" : "{listing_duration}", "store_category_external_id" : "{store_category_external_id}","store_category_2_external_id" : "{store_category_2_external_id}", "weight_in_pounds" : "{weight_in_pounds}", "package_dimensions_length" : "{package_dimensions_length}", "package_dimensions_width" : "{package_dimensions_width}", "package_dimensions_height" : "{package_dimensions_height}", "item_dimensions_length" : "{item_dimensions_length}", "item_dimensions_width" : "{item_dimensions_width}", "item_dimensions_height" : "{item_dimensions_height}", "handling_time" : "{handling_time}", "shipping_charge_type" : "{shipping_charge_type}", "global_shipping" : "{global_shipping}", "free_shipping" : "{free_shipping}", "shipping_service_code" : "{shipping_service_code}", "shipping_service_cost" : "{shipping_service_cost}", "extra_shipping_service_cost" : "{extra_shipping_service_cost}", "domestic_rate_table" : "{domestic_rate_table}", "international_shipping_service_code" : "{international_shipping_service_code}", "international_shipping_service_cost" : "{international_shipping_service_cost}", "extra_international_shipping_service_cost" : "{extra_international_shipping_service_cost}", "international_ship_to_locations" : "{international_ship_to_locations}", "international_rate_table" : "{international_rate_table}", "return_item_within" : "{return_item_within}", "refund_policy_value" : "{refund_policy_value}", "return_shipping_paid_by_value" : "{return_shipping_paid_by_value}", "qunatity_in_case" : "{qunatity_in_case}", "cost_price" : "{cost_price}", "expiration_date" : "{expiration_date}", "fnsku" : "{fnsku}", "image_urls" : [], "external_ids" : []}] } }'
 ```
 ### URL Parameters
 
@@ -166,10 +161,10 @@ Manifest Parameters
 Name | Data Type(Required) | Description
 -------------- | -------------- | --------------
 name | String(Required) | Name of the Manifest. Example: 04-17-2019.
-supplier_id | String(Optional) | Supplier ID. Example: BSON::ObjectId('59e0f41007b6205968000016').
-ship_from_address_id | String(Optional) | ID of ship from address Example: BSON::ObjectId('59e0d31f07b6204cc8000000').
-marketplace_account_id | String(Required) | ID of Marketplace Account. Example: BSON::ObjectId('5c1902f207b620090a000026').
-template_id | String(Optional) | Template ID. Example: BSON::ObjectId('5c1902f207b620090a00003e')
+supplier_id | String(Optional) | Supplier ID. Example: '59e0f41007b6205968000016'.
+ship_from_address_id | String(Optional) | ID of ship from address Example: '59e0d31f07b6204cc8000000'.
+marketplace_account_id | String(Required) | ID of Marketplace Account. Example: '5c1902f207b620090a000026'.
+template_id | String(Optional) | Template ID. Example: '5c1902f207b620090a00003e'
 
 ProductListing Parameters should be in array for multiple listing creations.
 
@@ -177,7 +172,7 @@ Name | Data Type(Required) | Description
 -------------- | -------------- | --------------
 asin | String(Required) | Listing ASIN. Example: B07G22S48Q.
 quantity | Integer(Optional) | Quantity of the listing. Example: 2.
-item_condition | String(Optional) | Example: [like_new, very_good, good, acceptable, refurbished, salvage] any one.
+item_condition | Integer(Optional) | It is an enum consist of the following values: [:new, :like_new, :very_good, :good, :acceptable, :refurbished, :salvage] any one. Example: :like_new
 upc | String(Optional) | Example: 883929635085
 sku | String(Optional) | SKU of the listing. Example: AB883929635085.
 title | String(Required) | Title of the listing. Example: DCU Justice League: Throne of Atlantis Commemorative Edition (BD) [Blu-ray].
@@ -187,17 +182,18 @@ manufacturer | String(Optional) | Example: Charmed
 model | String(Optional) | Example: P3Q-00001
 part_number | String(Optional) | Example: LE
 listing_duration | String(Optional) | Example: gtc
-item_location | String(Optional) | Listing Location.
-item_category | String(Optional) | item_category if ebay marketplace. Example: DVDs &amp; Blu-ray Discs.
+item_location | String(Optional) | Location of item in your warehouse.
+item_category | String(Optional) | Hierarchy of the item category(parent>child). If ebay marketplace. Example: DVDs &amp; Blu-ray Discs.
+item_category_id | String(Optional) | Id of the item category. Example: 63861
 item_remarks | String(Optional) | Example: Item will come in original packaging and includes all accessories.  Item has been tested and is in full working condition.  Comes with a 30-day warranty..
 brand | String(Optional) | Example: Warner Manufacturing
 description | String(Optional) | Description of the listing
-features | String(Optional) | Features of the product
-details_html | Float(Optional) | Example: <ul><li>Item Weight: 0.0 pounds</li><li>Shipping Weight: 0.0 pounds</li><li>Domestic Shipping: Item can be shipped within U.S.</li></ul>
-item_specifics | String(Optional) | Example: [{"name"=>"Brand", "value"=>"Update International", "source"=>"ItemSpecific"}, {"name"=>"UPC", "value"=>"793842123296", "source"=>"ItemSpecific"}]
+features | Array(Optional) | Features of the product
+details_html | String(Optional) | It is the HTML which contains item details with html tags. Example: ```<ul><li>Item Weight: 0.0 pounds</li><li>Shipping Weight: 0.0 pounds</li><li>Domestic Shipping: Item can be shipped within U.S.</li></ul>```
+item_specifics | Array of JSON objects(Optional) | Example: [{"name"=>"Brand", "value"=>"Update International", "source"=>"ItemSpecific"}, {"name"=>"UPC", "value"=>"793842123296", "source"=>"ItemSpecific"}]
 mpn | String | Example: 90000032507
 listing_format | String(Optional) | Example: fixed_price
-store_category_external_id | Float(Optional) | Example: 64789836013
+store_category_external_id | String(Optional) | Example: 64789836013
 store_category_2_external_id | String(Optional) | Example: 64789836013
 weight_in_pounds | Float(Optional) | Example: 0.0
 package_dimensions_length | Float(Optional) | Example: 0.0
@@ -225,25 +221,25 @@ return_shipping_paid_by_value | String(Optional) | Example: Seller
 cost_price | Float(Optional) | Example: 0.0
 expiration_date | Date(Optional) | Example: 2019-04-27
 fnsku | String(Optional) | Example: 0060011831
-image_urls | Array(Optional) | Array of image urls
-external_ids | String(Optional) | Example: ["B07G22S48Q", "883929635085"]
+image_urls | Array(Optional) | Array of image urls. Example [user.png, user1.png]
+external_ids | Array(Optional) | Example: ["B07G22S48Q", "883929635085"]
 
 > The above command returns JSON structured like this:
 
 ```json
 {
     "manifest": {
-        "id": "5cb6dbe14d003d0ea900001d",
-        "name": "04-17-2019",
+        "id": "5cb96fc707b62026d6000000",
+        "name": "test",
         "supplier_id": "",
         "ship_from_address_id": "59e0d31f07b6204cc8000000",
-        "created_at": "2019-04-17T07:55:14.030Z",
-        "updated_at": "2019-04-17T07:55:14.030Z",
+        "created_at": "2019-04-19T06:50:47.455Z",
+        "updated_at": "2019-04-19T06:50:47.455Z",
         "status": "created",
         "last_valid_status": "created",
         "status_message": null,
         "processing": null,
-        "number": 444,
+        "number": 590,
         "order_number": null,
         "phase": 1,
         "client_paid": false,
@@ -255,7 +251,7 @@ external_ids | String(Optional) | Example: ["B07G22S48Q", "883929635085"]
         "print_all_item_labels": false,
         "convert_images": null,
         "performing_action": null,
-        "sku_prefix": "",
+        "sku_prefix": "AB",
         "auto_location_enabled": false,
         "auto_location_prefix": "",
         "skip_box_content": false,
@@ -265,7 +261,7 @@ external_ids | String(Optional) | Example: ["B07G22S48Q", "883929635085"]
         "product_listings_count": 0,
         "item_present_option": "inc_quantity",
         "multiple_matches_pick_strategy": "none",
-        "manifest_folder_id": "",
+        "manifest_folder_id": "5c6496e307b6205dce000001",
         "processing_company_id": "",
         "marketplace_account_type": "EbayAccount",
         "marketplace_account_id": "5c1902f207b620090a000026",
@@ -280,7 +276,9 @@ external_ids | String(Optional) | Example: ["B07G22S48Q", "883929635085"]
         "manifest_xls_fingerprint": null,
         "version": null,
         "modifier_id": "",
-        "_keywords": ["04", "2019", "17"]
+        "_keywords": [
+            "test"
+        ]
     }
 }
 ```
