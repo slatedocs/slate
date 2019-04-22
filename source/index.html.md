@@ -152,7 +152,7 @@ curl --request POST \
   --header 'Content-Type: application/json' \
   --header 'cache-control: no-cache,no-cache,no-cache' \
   --header 'token: YOUR-TOKEN' \
-  --data '{ "manifest" : { "name": "{name}", "marketplace_account_id" : "{marketplace_account_id}", "supplier_id" : "{supplier_id}", "ship_from_address_id" : "{ship_from_address_id}", "template_id" : "{template_id}", "product_listings_attributes" : [{"asin" : "{asin}", "quantity" : "{quantity}", "item_condition" : "{item_condition}", "upc" : "{upc}", "sku" : "{sku}", "title" : "{title}", "retail_price" : "{retail_price}", "item_location" : "{item_location}", "item_category" : "{item_category}", "item_category_id" : "{item_category_id}", "item_remarks" : "{item_remarks}", "brand" : "{brand}", "description" : "{description}", "features" : "{features}", "details_html" : "{details_html}", "item_specifics" : "{item_specifics}", "mpn" : "{mpn}", "listing_format" : "{listing_format}", "color" : "{color}", "manufacturer" : "{manufacturer}", "model" : "{model}", "part_number" : "{part_number}", "listing_duration" : "{listing_duration}", "store_category_external_id" : "{store_category_external_id}","store_category_2_external_id" : "{store_category_2_external_id}", "weight_in_pounds" : "{weight_in_pounds}", "package_dimensions_length" : "{package_dimensions_length}", "package_dimensions_width" : "{package_dimensions_width}", "package_dimensions_height" : "{package_dimensions_height}", "item_dimensions_length" : "{item_dimensions_length}", "item_dimensions_width" : "{item_dimensions_width}", "item_dimensions_height" : "{item_dimensions_height}", "handling_time" : "{handling_time}", "shipping_charge_type" : "{shipping_charge_type}", "global_shipping" : "{global_shipping}", "free_shipping" : "{free_shipping}", "shipping_service_code" : "{shipping_service_code}", "shipping_service_cost" : "{shipping_service_cost}", "extra_shipping_service_cost" : "{extra_shipping_service_cost}", "domestic_rate_table" : "{domestic_rate_table}", "international_shipping_service_code" : "{international_shipping_service_code}", "international_shipping_service_cost" : "{international_shipping_service_cost}", "extra_international_shipping_service_cost" : "{extra_international_shipping_service_cost}", "international_ship_to_locations" : "{international_ship_to_locations}", "international_rate_table" : "{international_rate_table}", "return_item_within" : "{return_item_within}", "refund_policy_value" : "{refund_policy_value}", "return_shipping_paid_by_value" : "{return_shipping_paid_by_value}", "qunatity_in_case" : "{qunatity_in_case}", "cost_price" : "{cost_price}", "expiration_date" : "{expiration_date}", "fnsku" : "{fnsku}", "image_urls" : [], "external_ids" : []}] } }'
+  --data '{ "manifest" : { "name": "{name}", "marketplace_account_id" : "{marketplace_account_id}", "supplier_id" : "{supplier_id}", "ship_from_address_id" : "{ship_from_address_id}", "template_id" : "{template_id}", "product_listings_attributes" : [{"asin" : "{asin}", "quantity" : "{quantity}", "item_condition" : "{item_condition}", "upc" : "{upc}", "sku" : "{sku}", "title" : "{title}", "retail_price" : "{retail_price}", "item_location" : "{item_location}", "item_category" : "{item_category}", "item_category_id" : "{item_category_id}", "item_remarks" : "{item_remarks}", "brand" : "{brand}", "description" : "{description}", "features" : "{features}", "details_html" : "{details_html}", "item_specifics" : "{item_specifics}", "mpn" : "{mpn}", "listing_format" : "{listing_format}", "color" : "{color}", "manufacturer" : "{manufacturer}", "model" : "{model}", "part_number" : "{part_number}", "listing_duration" : "{listing_duration}", "store_category_external_id" : "{store_category_external_id}","store_category_2_external_id" : "{store_category_2_external_id}", "weight_in_pounds" : "{weight_in_pounds}", "package_dimensions_length" : "{package_dimensions_length}", "package_dimensions_width" : "{package_dimensions_width}", "package_dimensions_height" : "{package_dimensions_height}", "item_dimensions_length" : "{item_dimensions_length}", "item_dimensions_width" : "{item_dimensions_width}", "item_dimensions_height" : "{item_dimensions_height}", "handling_time" : "{handling_time}", "shipping_charge_type" : "{shipping_charge_type}", "global_shipping" : "{global_shipping}", "free_shipping" : "{free_shipping}", "shipping_service_code" : "{shipping_service_code}", "shipping_service_cost" : "{shipping_service_cost}", "extra_shipping_service_cost" : "{extra_shipping_service_cost}", "domestic_rate_table" : "{domestic_rate_table}", "international_shipping_service_code" : "{international_shipping_service_code}", "international_shipping_service_cost" : "{international_shipping_service_cost}", "extra_international_shipping_service_cost" : "{extra_international_shipping_service_cost}", "international_ship_to_locations" : "{international_ship_to_locations}", "international_rate_table" : "{international_rate_table}", "return_in_days_value" : "{return_in_days_value}", "refund_policy_value" : "{refund_policy_value}", "return_shipping_paid_by_value" : "{return_shipping_paid_by_value}", "qunatity_in_case" : "{qunatity_in_case}", "cost_price" : "{cost_price}", "expiration_date" : "{expiration_date}", "fnsku" : "{fnsku}", "image_urls" : [], "external_ids" : []}] } }'
 ```
 ### URL Parameters
 
@@ -172,7 +172,7 @@ Name | Data Type(Required) | Description
 -------------- | -------------- | --------------
 asin | String(Required) | Listing ASIN. Example: B07G22S48Q.
 quantity | Integer(Optional) | Quantity of the listing. Example: 2.
-item_condition | Integer(Optional) | It is an enum consist of the following values: [:new, :like_new, :very_good, :good, :acceptable, :refurbished, :salvage] any one. Example: :like_new
+item_condition | Integer(Optional) | It is an enum consist of the following values: [new, like_new, very_good, good, acceptable, refurbished, salvage] anyone. Example: like_new
 upc | String(Optional) | Example: 883929635085
 sku | String(Optional) | SKU of the listing. Example: AB883929635085.
 title | String(Required) | Title of the listing. Example: DCU Justice League: Throne of Atlantis Commemorative Edition (BD) [Blu-ray].
@@ -181,7 +181,7 @@ color | String(Optional) | Example: Navy
 manufacturer | String(Optional) | Example: Charmed
 model | String(Optional) | Example: P3Q-00001
 part_number | String(Optional) | Example: LE
-listing_duration | String(Optional) | Example: gtc
+listing_duration | String(Optional) | It is an enum consist of the following values: [days_1, days_3, days_5, days_7, days_10, days_30, gtc] anyone. Example: gtc
 item_location | String(Optional) | Location of item in your warehouse.
 item_category | String(Optional) | Hierarchy of the item category(parent>child). If ebay marketplace. Example: DVDs &amp; Blu-ray Discs.
 item_category_id | String(Optional) | Id of the item category. Example: 63861
@@ -192,7 +192,7 @@ features | Array(Optional) | Features of the product
 details_html | String(Optional) | It is the HTML which contains item details with html tags. Example: ```<ul><li>Item Weight: 0.0 pounds</li><li>Shipping Weight: 0.0 pounds</li><li>Domestic Shipping: Item can be shipped within U.S.</li></ul>```
 item_specifics | Array of JSON objects(Optional) | Example: [{"name"=>"Brand", "value"=>"Update International", "source"=>"ItemSpecific"}, {"name"=>"UPC", "value"=>"793842123296", "source"=>"ItemSpecific"}]
 mpn | String | Example: 90000032507
-listing_format | String(Optional) | Example: fixed_price
+listing_format | String(Optional) | It is an enum consist of the following values: [fixed_price, auction] anyone. Example: fixed_price
 store_category_external_id | String(Optional) | Example: 64789836013
 store_category_2_external_id | String(Optional) | Example: 64789836013
 weight_in_pounds | Float(Optional) | Example: 0.0
@@ -203,20 +203,20 @@ item_dimensions_length | Float(Optional) | Example: 0.0
 item_dimensions_width | Float(Optional) | Example: 0.0
 item_dimensions_height | Float(Optional) | Example: 0.0
 handling_time | Integer(Optional) | Example: 1
-shipping_charge_type | String(Optional) | Example: flat
+shipping_charge_type | String(Optional) | It is an enum consist of the following values: [flat, calculated, calculated_domestic_flat_international, flat_domestic_calculated_international, freight, freight_flat not_specified] anyone. Example: freight
 global_shipping | Boolean(Optional) | Example: True
 free_shipping | Boolean(Optional) | Example: True
-shipping_service_code | String(Optional) | Example: ShippingMethodExpress
+shipping_service_code | String(Optional) | It is an enum consist of the following values: [Other, ShippingMethodStandard, ShippingMethodExpress, ShippingMethodOvernight, Pickup, FlatRateFreight, USPSFirstClass, USPSMedia, USPSPriority, USPSPriorityFlatRateEnvelope, USPSPriorityMailSmallFlatRateBox, USPSPriorityFlatRateBox, USPSPriorityMailLargeFlatRateBox, USPSPriorityMailPaddedFlatRateEnvelope, USPSPriorityMailLegalFlatRateEnvelope, USPSExpressMail, USPSExpressFlatRateEnvelope, USPSExpressMailLegalFlatRateEnvelope, UPSNextDayAir, UPSNextDay, UPS2ndDay, UPS3rdDay, UPSGround, FedExHomeDelivery, FedEx2Day, FedExExpressSaver, FedExStandardOvernight, FedExPriorityOvernight] anyone. Example: USPSFirstClass
 shipping_service_cost | Float(Optional) | Example: 0.46
 extra_shipping_service_cost | String(Optional) | Example: 0.3
 domestic_rate_table | Boolean(Optional) | Example: False
-international_shipping_service_code | String(Optional) | Example: US_IntlEconomyShippingFromGC
+international_shipping_service_code | String(Optional) | It is an enum consist of the following values: [US_IntlEconomyShippingFromGC, ExpeditedDeliveryToRussia, US_IntlExpeditedShippingFromGC, OtherInternational, ExpeditedInternational, US_RUTrackedFromChina, StandardInternational, US_IntlStandardShippingFromGC, USPSFirstClassMailInternational, USPSExpressMailInternational, USPSExpressMailInternationalFlatRateEnvelope, USPSExpressMailInternationalLegalFlatRateEnvelope, USPSPriorityMailInternational, USPSPriorityMailInternationalFlatRateEnvelope, USPSPriorityMailInternationalLargeFlatRateBox, USPSPriorityMailInternationalLegalFlatRateEnvelope, USPSPriorityMailInternationalFlatRateBox, USPSPriorityMailInternationalPaddedFlatRateEnvelope, USPSPriorityMailInternationalSmallFlatRateBox, UPSStandardToCanada, UPSWorldWideExpedited, UPSWorldWideExpress, UPSWorldWideExpressPlus, UPSWorldwideSaver, FedExGroundInternationalToCanada, FedExInternationalEconomy, FedExInternationalPriority] anyone. Example: US_IntlEconomyShippingFromGC
 international_shipping_service_cost | Float(Optional) | Example: 0.6
 extra_international_shipping_service_cost | Float(Optional) | Example: 0.3
 international_ship_to_locations | Array(Optional) | Example: ["CN", "CA"]
 international_rate_table | Boolean(Optional) | Example: False
-return_item_within | Integer(Optional) | Example: 7 days
-refund_policy_value | Float(Optional) | Example: Money Back
+return_in_days_value | String(Optional) | It is an enum consist of the following values: [ReturnsNotAccepted, Days_30, Days_60] anyone. Example: Days_30
+refund_policy_value | String(Optional) | It is an enum consist of the following values: [MoneyBack, MoneyBackOrReplacement, MoneyBackOrExchange] anyone. Example: MoneyBack
 return_shipping_paid_by_value | String(Optional) | Example: Seller
 cost_price | Float(Optional) | Example: 0.0
 expiration_date | Date(Optional) | Example: 2019-04-27
