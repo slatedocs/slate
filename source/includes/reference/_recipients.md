@@ -88,7 +88,8 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/accounts \
         "iban": null,
         "bic": null,
         "IBAN": null,
-        "BIC": null
+        "BIC": null,
+        "interacAccount": null
     },
     "user": <your user ID>,
     "active": true,
@@ -261,7 +262,8 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/accounts \
         "iban": null,
         "bic": null,
         "IBAN": null,
-        "BIC": null
+        "BIC": null,
+        "interacAccount": null
     },
     "user": <your user id>,
     "active": true,
@@ -354,7 +356,8 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/accounts/{accountId} \
         "iban": null,
         "bic": null,
         "IBAN": null,
-        "BIC": null
+        "BIC": null,
+        "interacAccount": null
     },
     "user": <your user ID>,
     "active": true,
@@ -442,7 +445,8 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/accounts?profile=<profileId
           "iban": null,
           "bic": null,
           "IBAN": null,
-          "BIC": null
+          "BIC": null,
+          "interacAccount": null
       },
       "user": <your user ID>,
       "active": true,
@@ -509,7 +513,8 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/accounts?profile=<profileId
           "iban": null,
           "bic": null,
           "IBAN": null,
-          "BIC": null
+          "BIC": null,
+          "interacAccount": null
       },
       "user": <your user ID>,
       "active": true,
@@ -1449,6 +1454,38 @@ Private and business recipients are supported.
 Recipient type = *'canadian'*
 
 Required details: institutionNumber, transitNumber, accountNumber, accountType (Checking or Saving)
+
+## Create CAD Interac Recipient
+
+> Example Request (CAD):
+
+```shell
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "CAD",
+          "type": "interac",
+          "details": {
+           "interacAccount": "<recipient email>",
+     }
+  }'
+```
+
+<aside class="warning">
+<b>Sending payments from BRL, AUD, NZD, & SGD is not supported.</b>
+</aside>
+
+Send payments to Canada via Interac. 
+
+Private and business recipients are supported. 10,000 CAD max per payment.
+
+Recipient type = *'interac'*
+
+Required details: interacAccount
+
 
 ## Create CHF Recipient
 
