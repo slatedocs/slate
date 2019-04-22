@@ -230,6 +230,63 @@ curl -H "Content-Type:application/json" \
   }
 }
 ```
+## Update an Issue Status
+
+This endpoint updates an Issue Status.
+
+### HTTP Request
+
+`PUT https://api.practitest.com/api/v2/projects/YOUR_PROJECT_ID/issues/ISSUE_ID/update_status.json`
+
+### Parameters
+
+Parameters | Description | Required?
+--------- | ------- |------- |
+data/attributes/status-name | issue transition status from the Workflow | true |
+data/attributes/user-id* | user id (not Display ID) - [users list](#users)  | true |
+
+* Please note that user-id should be ID of a user who can perform the relevant issue transition according to the Project Workflow.
+
+You can find at the right area an example of the JSON request and response
+
+```shell
+curl -H "Content-Type:application/json" \
+-u YOUR_EMAIL:YOUR_TOKEN \
+-X PUT https://api.practitest.com/api/v2/projects/PROJECT_ID/issues/ISSUE_ID/update_status.json \
+-d '{"data": { "type": "issues", "attributes": {"status-name": "fixed", "user-id": 6519}}}'
+```
+
+```json
+{
+  "data": {
+    "id": "154397",
+    "type": "issues",
+    "attributes": {
+      "project-id": 4803,
+      "display-id": 35,
+      "title": "Picture test",
+      "issue-type": "defect",
+      "description": "new desc",
+      "status-name": "fixed",
+      "status-resolution": null,
+      "author-id": 5380,
+      "assigned-to-id": 6519,
+      "version": null,
+      "priority": "2-high",
+      "closed-at": null,
+      "closed-by-id": null,
+      "cloned-from-id": null,
+      "external-id": null,
+      "custom-fields": {
+        "---f-47543": "bla"
+      },
+      "tags": [],
+      "created-at": "2019-04-16T13:27:07+03:00",
+      "updated-at": "2019-04-22T17:53:04+03:00"
+    }
+  }
+}
+```
 
 ## Delete a specific Issue
 
