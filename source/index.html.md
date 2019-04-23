@@ -2,11 +2,12 @@
 title: Asana
 language_tabs:
   - shell: ' curl'
-  - javascript--nodejs: Node.JS
+  - javascript: 'Javascript'
+  - php: ' PHP'
   - python: Python
   - java: ' Java'
   - ruby: ' Ruby'
-  - go: ' Go'
+  - csharp: ' C#'
 toc_footers: []
 includes:
   - markdown/00-header-examples

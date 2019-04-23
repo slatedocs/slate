@@ -65,6 +65,7 @@ You’re ready to start coding!
 Asana has [client libraries](/#official-client-libraries) in several popular coding languages. Using these libraries has several advantages (like managing authorization and retrying errors) that make them a good place to go from here. Let’s take a look at making the same `/users/me` request in Python, JavaScript, and Ruby (feel free to skip ahead to your favorite of the three languages).
 
 ### Client Examples
+
 **Python** (v2.x)
 
 To get started, run `pip install asana` or follow the detailed installation instructions on the [GitHub page for the Python client library](https://github.com/Asana/python-asana/).  
@@ -165,9 +166,8 @@ All of the built-in methods can be found in the [/resources folder of the client
 
 You can see a variant of this script, and other useful Asana API scripts, in our open-source <a href="https://github.com/Asana/DevRel-Examples/tree/master/ruby" target="_blank">Github examples repository</a>
 
------
+### Congratulations!
 
-Congratulations! You’ve learned three ways to access the Asana API.  If you need inspiration of what to build on the Asana API, take a look at these [common use cases](/#examples-amp-tutorials).  If you get stuck, checkout the [API section of Asana community](https://community.asana.com/c/developersAPI).  Happy coding!
-
+You’ve learned three ways to access the Asana API.  If you need inspiration of what to build on the Asana API, take a look at these [common use cases](/#examples-amp-tutorials).  If you get stuck, checkout the [API section of Asana community](https://community.asana.com/c/developersAPI).  Happy coding!
 
 [^1]: What is a "terminal"? When you double-click an icon on your computer, there is a special application that's in charge of launching other applications. On MacOSX, this program is called "Finder", and on Windows it's called "Windows Explorer". A terminal app is a similar app that launches other applications, but rather than double clicking an icon, you type commands into a text-based window.
