@@ -1,4 +1,4 @@
-## Quick Start
+# Quick Start
 
 If you’re new to developing on APIs, this is a great place to start.  You’ll learn in this guide how to make the simplest Asana API request -- getting your user information. 
 
@@ -16,7 +16,7 @@ Our API is documented for what resources are available and what sort of return d
 
 Now, let’s make the same call to `/users/me` more like software would. Before we do so, we’ll need to get access outside of your web browser to the API.
 
-### Authentication Quick Start
+## Authentication Quick Start
 
 Similarly to entering your username/password into a website or logging into Asana with Google, when you access your Asana data via the API you need to authenticate.  In the above example, you were already logged into Asana in your browser so you were able to authenticate to the API with credentials stored by your browser.
 
@@ -42,7 +42,7 @@ If you want to write a script that interacts with the Asana API, the easiest met
 
 _**Note**: treat your PAT like you would a password. Do not share it or display it online_. 
 
-### Accessing the API in the Terminal
+## Accessing the API in the Terminal
 
 We’ll use cURL, a command line[^1] program to make HTTP requests. MacOS and many Linux distributions have cURL pre-installed, and it’s [available for download](https://curl.haxx.se/dlwiz/?type=bin) on Windows and many other operating systems.  If you’re curious, you can learn more about cURL [in its own documentation](https://curl.haxx.se/docs/httpscripting.html). 
 
@@ -64,7 +64,7 @@ You’re ready to start coding!
 
 Asana has [client libraries](/#official-client-libraries) in several popular coding languages. Using these libraries has several advantages (like managing authorization and retrying errors) that make them a good place to go from here. Let’s take a look at making the same `/users/me` request in Python, JavaScript, and Ruby (feel free to skip ahead to your favorite of the three languages).
 
-### Client Examples
+## Client Examples
 
 **Python** (v2.x)
 
@@ -166,7 +166,7 @@ All of the built-in methods can be found in the [/resources folder of the client
 
 You can see a variant of this script, and other useful Asana API scripts, in our open-source <a href="https://github.com/Asana/DevRel-Examples/tree/master/ruby" target="_blank">Github examples repository</a>
 
-### Congratulations!
+## Congratulations!
 
 You’ve learned three ways to access the Asana API.  If you need inspiration of what to build on the Asana API, take a look at these [common use cases](/#examples-amp-tutorials).  If you get stuck, checkout the [API section of Asana community](https://community.asana.com/c/developersAPI).  Happy coding!
 

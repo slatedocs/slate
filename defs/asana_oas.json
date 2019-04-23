@@ -16,7 +16,7 @@
   },
   "servers": [
     {
-      "url": "https://app.asana.com/api/{version}",
+      "url": "https://app.asana.com/api/1.0",
       "description": "Main endpoint.",
       "variables": {
         "version": {
@@ -44,11 +44,11 @@
     },
     {
       "name": "Batch API",
-      "description": "The Batch API allows for making multiple requests in parallel to Asana's API."
+      "description": "There are many cases where you want to accomplish a variety of work in the Asana API but want to minimize the number of HTTP requests you make. For example:\n* Modern browsers limit the number of requests that a single web page can\n  make at once.\n* Mobile apps will use more battery life to keep the cellular radio on\n  when making a series of requests.\n* There is an overhead cost to developing software that can make multiple\n  requests in parallel.\n* Some cloud platforms handle parallelism poorly, or disallow it\n  entirely.\n* To make development easier in these use cases, Asana provides a **batch\n  API** that enables developers to perform multiple \u201cactions\u201d by making\n  only a single HTTP request.\n\n### Making a Batch Request\nTo make a batch request, send a `POST` request to `/batch`. Like other `POST` endpoints, the body should contain a `data` envelope. Inside this envelope should be a single `actions` field, containing a list of \u201caction\u201d objects.  Each action represents a standard request to an existing endpoint in the Asana API.\n**The maximum number of actions allowed in a single batch request is 10**. Making a batch request with no actions in it will result in a `400 Bad Request`.\nWhen the batch API receives the list of actions to execute, it will dispatch those actions to the already-implemented endpoints specified by the `relative_path` and `method` for each action. This happens in parallel, so all actions in the request will be processed simultaneously. There is no guarantee of the execution order for these actions, nor is there a way to use the output of one action as the input of another action (such as creating a task and then commenting on it).\nThe response to the batch request will contain (within the `data` envelope) a list of result objects, one for each action. The results are guaranteed to be in the same order as the actions in the request, e.g., the first result in the response corresponds to the first action in the request.\nThe batch API will always attempt to return a `200 Success` response with individual result objects for each individual action in the request. Only in certain cases (such as missing authorization or malformed JSON in the body) will the entire request fail with another status code. Even if every individual action in the request fails, the batch API will still return a `200 Success` response, and each result object in the response will contain the errors encountered with each action.\n### Rate Limiting\nThe batch API fully respects all of our rate limiting. This means that a batch request counts against *both* the standard rate limiter and the concurrent request limiter as though you had made a separate HTTP request for every individual action. For example, a batch request with five actions counts as five separate requests in the standard rate limiter, and counts as five concurrent requests in the concurrent request limiter. The batch request itself incurs no cost.\nIf any of the actions in a batch request would exceed any of the enforced limits, the *entire* request will fail with a `429 Too Many Requests` error. This is to prevent the unpredictability of which actions might succeed if not all of them could succeed.\n### Restrictions\nNot every API endpoint can be accessed through the batch API. Specifically, the following actions cannot be taken and will result in a `400 Bad Request` for that action:\n* Uploading attachments * Creating, getting, or deleting organization exports * Any SCIM operations * Nested calls to the batch API"
     },
     {
       "name": "Custom Fields",
-      "description": "Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana."
+      "description": "In the Asana application, Tasks can hold user-specified Custom Fields which provide extra information; for example, a priority value or a number representing the time required to complete a Task. This lets a user define the type of information that each Task within a Project can contain in addition to the built-in fields that Asana provides.\n**Note:** Custom Fields are a premium feature. Integrations which work with Custom Fields need to handle an assortment of use cases for free and premium users in context of free and premium organizations. For a detailed examination of to what data users will have access in different circumstances, read the section below on [access control](#access-control).\nThe characteristics of Custom Fields are:\n* There is metadata that defines the Custom Field. This metadata is shared across an entire organization or workspace. * Projects can have Custom Fields associated with them individually. This is conceptually akin to adding columns in a database or a spreadsheet: every Task (row) in the Project (table) can contain information for that field, including \"blank\" values, i.e. `null` data. * Tasks have Custom Field _values_ assigned to them.\nA brief example: let's imagine that an organization has defined a Custom Field for \"Priority\". This field is of `enum` type and can have user-defined values of `Low`, `Medium`, or `High`. This is the field metadata, and it is visible within, and shared across, the entire organization.\nA Project is then created in the organization, called \"Bugs\", and the \"Priority\" Custom Field is associated with that Project. This will allow all Tasks within the \"Bugs\" Project to have an associated \"Priority\".\nA new Task is created within \"Bugs\". This Task, then, has a field named \"Priority\" which can take on the Custom Field value of one of `[null]`, `Low`, `Medium`, and `High`.\nThese Custom Fields are accessible via the API through a number of endpoints at the top level (e.g. `/custom_fields` and `/custom_field_settings`) and through calls on Workspaces, Projects, and Tasks resources. The API also provides a way to fetch both the metadata and data which define each particular Custom Field, so that a client application may render proper UI to display or edit the values.\nCustom Field aware integrations need to be aware of the basic types that Custom Fields can adopt. These types are:\n* `text` - an arbitrary, relatively short string of text * `number` - a number with a defined level of precision * `enum` - a selection from a defined list of options\nText fields are currently limited to 1024 characters. On Tasks, their Custom Field value will have a `text_value` property to represent this field.\nNumber fields can have an arbitrary `precision` associated with them; for example, a precision of `2` would round its value to the second (hundredths) place, i.e. 1.2345 would round to 1.23. On Tasks, the Custom Field value will have a `number_value` property to represent this field.\nEnum fields represent a selection from a list of options. On the metadata, they will contain all of the options in an array. Each option has 4 properties:\n* `id` - the id of this enum option. Note that this is the id of the _option_ - the Custom Field itself has a separate `id`. * `name` - the name of the option, e.g. \"Choice #1\" * `enabled` - whether this field is enabled. Disabled fields are not available to choose from when disabled, and are visually hidden in the Asana application, but they remain in the metadata for Custom Field values which were set to the option before the option was disabled. * `color` - a color associated with this choice.\nOn the Task's Custom Field value, the enum will have an `enum_value` property which will be the same as one of the choices from the list defined in the Custom Field metadata.\nThe [Custom Field API Reference](/developers/api-reference/custom_fields) contains information about the specifics of how to use Custom Fields in conjunction with Asana's API."
     },
     {
       "name": "Custom Field Settings",
@@ -407,39 +407,45 @@
           "id": {
             "description": "Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field\u2014please see our blog post for more information.**\n",
             "type": "integer",
+            "format": "int64",
             "readOnly": true,
-            "example": 12345
+            "example": 12345,
+            "x-public": true
           },
           "gid": {
             "description": "Globally unique ID of the object, as a string.",
-            "type": "integer",
+            "type": "string",
             "readOnly": true,
-            "example": 12345
+            "example": "12345",
+            "x-public": true
           },
           "resource_type": {
             "description": "The base type of this resource.",
             "type": "string",
             "readOnly": true,
-            "example": "task"
+            "example": "task",
+            "x-public": true
           }
         }
       },
       "AsanaNamedObject": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaObject"
+            "$ref": "#/components/schemas/AsanaObject",
+            "x-public": true
           },
           {
-            "type": "object"
+            "type": "object",
+            "properties": {
+              "name": {
+                "description": "The name of the object.",
+                "type": "string",
+                "example": "Bug Task",
+                "x-public": true
+              }
+            }
           }
-        ],
-        "properties": {
-          "name": {
-            "description": "The name of the object.",
-            "type": "string",
-            "example": "Bug Task"
-          }
-        }
+        ]
       },
       "AsanaObjectArray": {
         "description": "A generic list of objects, such as those returned by the typeahead search endpoint.",
@@ -449,7 +455,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/AsanaNamedObject"
-            }
+            },
+            "x-public": true
           }
         }
       },
@@ -458,7 +465,8 @@
           "resource_subtype": {
             "description": "The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.",
             "type": "string",
-            "example": "section"
+            "example": "milestone",
+            "x-public": true
           }
         }
       },
@@ -469,83 +477,121 @@
             "type": "string",
             "format": "date-time",
             "readOnly": true,
-            "example": "2012-02-22T02:06:58.147Z"
+            "example": "2012-02-22T02:06:58.147Z",
+            "x-public": true
           }
         }
       },
       "AsanaCreatedByAndAt": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaCreatedAt"
-          }
-        ],
-        "properties": {
-          "created_by": {
-            "description": "The user who created this resource.",
-            "nullable": true,
-            "readOnly": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/User"
+            "$ref": "#/components/schemas/AsanaCreatedAt",
+            "x-public": true
+          },
+          {
+            "type": "object",
+            "properties": {
+              "created_by": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/User"
+                  },
+                  {
+                    "type": "object",
+                    "description": "The user who created this resource.",
+                    "nullable": true,
+                    "readOnly": true
+                  }
+                ],
+                "x-public": true
               }
-            ]
+            }
           }
-        }
+        ]
       },
       "Attachment": {
-        "description": "An *attachment* object represents any file attached to a task in Asana, whether it\u2019s an uploaded file or one associated via a third-party service such as Dropbox or Google Drive.",
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaObject"
+            "$ref": "#/components/schemas/AttachmentCompact",
+            "x-public": true
           },
           {
-            "$ref": "#/components/schemas/AsanaCreatedAt"
-          }
-        ],
-        "properties": {
-          "download_url": {
-            "description": "The URL containing the content of the attachment.\n**Note:** May be null if the attachment is hosted by [Box](https://www.box.com/). If present, this URL may only be valid for 1 hour from the time of retrieval. You should avoid persisting this URL somewhere and just refresh it on demand to ensure you do not keep stale URLs.",
-            "type": "string",
-            "nullable": true,
-            "format": "uri",
-            "readOnly": true,
-            "example": "https://www.dropbox.com/s/123/Screenshot.png?dl=1"
+            "$ref": "#/components/schemas/AsanaCreatedAt",
+            "x-public": true
           },
-          "host": {
-            "description": "The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive` and `box`.",
-            "type": "string",
-            "readOnly": true,
-            "example": "dropbox"
-          },
-          "name": {
-            "description": "The name of the file.",
-            "type": "string",
-            "readOnly": true,
-            "example": "Screenshot.png"
-          },
-          "parent": {
-            "description": "The task this attachment is attached to.",
-            "readOnly": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/TaskCompact"
+          {
+            "type": "object",
+            "description": "An *attachment* object represents any file attached to a task in Asana, whether it\u2019s an uploaded file or one associated via a third-party service such as Dropbox or Google Drive.",
+            "properties": {
+              "download_url": {
+                "description": "The URL containing the content of the attachment.\n**Note:** May be null if the attachment is hosted by [Box](https://www.box.com/). If present, this URL may only be valid for 1 hour from the time of retrieval. You should avoid persisting this URL somewhere and just refresh it on demand to ensure you do not keep stale URLs.",
+                "type": "string",
+                "format": "uri",
+                "readOnly": true,
+                "nullable": true,
+                "example": "https://www.dropbox.com/s/123/Screenshot.png?dl=1",
+                "x-public": true
+              },
+              "host": {
+                "description": "The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive` and `box`.",
+                "type": "string",
+                "readOnly": true,
+                "example": "dropbox",
+                "x-public": true
+              },
+              "parent": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/TaskCompact"
+                  },
+                  {
+                    "type": "object",
+                    "description": "The task this attachment is attached to.",
+                    "readOnly": true
+                  }
+                ],
+                "x-public": true
+              },
+              "view_url": {
+                "description": "The URL where the attachment can be viewed, which may be friendlier to users in a browser than just directing them to a raw file. May be null if no view URL exists for the service.",
+                "type": "string",
+                "format": "uri",
+                "readOnly": true,
+                "nullable": true,
+                "example": "https://www.dropbox.com/s/123/Screenshot.png",
+                "x-public": true
               }
-            ]
-          },
-          "view_url": {
-            "description": "The URL where the attachment can be viewed, which may be friendlier to users in a browser than just directing them to a raw file. May be null if no view URL exists for the service.",
-            "type": "string",
-            "readOnly": true,
-            "nullable": true,
-            "example": "https://www.dropbox.com/s/123/Screenshot.png"
+            }
           }
+        ]
+      },
+      "AttachmentCompact": {
+        "type": "object",
+        "properties": {
+          "allOf": [
+            {
+              "$ref": "#/Components/schemas/AsanaObject"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "description": "The name of the file.",
+                  "type": "string",
+                  "readOnly": true,
+                  "example": "Screenshot.png"
+                }
+              }
+            }
+          ]
         }
       },
       "AttachmentObject": {
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/Attachment"
+            "$ref": "#/components/schemas/Attachment",
+            "x-public": true
           }
         }
       },
@@ -555,8 +601,9 @@
           "data": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Attachment"
-            }
+              "$ref": "#/components/schemas/AttachmentCompact"
+            },
+            "x-public": true
           }
         }
       },
@@ -567,7 +614,8 @@
           "relative_path": {
             "description": "The path of the desired endpoint relative to the API\u2019s base URL. Query parameters are not accepted here; put them in `data` instead.",
             "type": "string",
-            "example": "/tasks/123"
+            "example": "/tasks/123",
+            "x-public": true
           },
           "method": {
             "description": "The HTTP method you wish to emulate for the action.",
@@ -580,7 +628,8 @@
               "patch",
               "head"
             ],
-            "example": "get"
+            "example": "get",
+            "x-public": true
           },
           "data": {
             "description": "For `GET` requests, this should be a map of query parameters you would have normally passed in the URL. Options and pagination are not accepted here; put them in `options` instead. For `POST`, `PATCH`, and `PUT` methods, this should be the content you would have normally put in the data field of the body.",
@@ -588,7 +637,8 @@
             "example": {
               "assignee": "me",
               "workspace": 1337
-            }
+            },
+            "x-public": true
           },
           "options": {
             "description": "Pagination (`limit` and `offset`) and output options (`fields` or `expand`) for the action. \u201cPretty\u201d JSON output is not an available option on individual actions; if you want pretty output, specify that option on the parent request.",
@@ -630,7 +680,8 @@
                 "notes",
                 "completed"
               ]
-            }
+            },
+            "x-public": true
           }
         },
         "required": [
@@ -645,14 +696,16 @@
           "status_code": {
             "description": "The HTTP status code that the invoked endpoint returned.",
             "type": "integer",
-            "example": 200
+            "example": 200,
+            "x-public": true
           },
           "headers": {
             "description": "A map of HTTP headers specific to this result. This is primarily used for returning a `Location` header to accompany a `201 Created` result.  The parent HTTP response will contain all common headers.",
             "type": "object",
             "example": {
               "location": "/tasks/1234"
-            }
+            },
+            "x-public": true
           },
           "body": {
             "description": "The JSON body that the invoked endpoint returned.",
@@ -664,54 +717,110 @@
                 "name": "Hello, world!",
                 "notes": "How are you today?"
               }
-            }
+            },
+            "x-public": true
           }
         }
       },
       "CustomField": {
-        "description": "Custom Fields store the metadata that is used in order to\nadd user-specified information to tasks in Asana. Be sure\nto reference the [Custom Fields]\n(https://asana.com/developers/documentation/getting-started/custom-fields)\ndeveloper documentation for more information about how custom fields\nrelate to various resources in Asana.\n\nUsers in Asana can [lock custom fields]\n(https://asana.com/guide/help/premium/custom-fields#gl-lock-fields),\nwhich will make them read-only when accessed by other users.\nAttempting to edit a locked custom field will return HTTP error code\n`403 Forbidden`.",
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaNamedObject"
+            "$ref": "#/components/schemas/CustomFieldCompact",
+            "x-public": true
           },
           {
-            "$ref": "#/components/schemas/AsanaSubtype"
-          }
-        ],
-        "properties": {
-          "description": {
-            "description": "The description of the custom field.",
-            "type": "string",
-            "example": "Development team priority"
-          },
-          "type": {
-            "description": "**Deprecated: new integrations should prefer the resource_subtype field.** The type of the custom field. Must be one of the given values.\n",
-            "type": "string",
-            "enum": [
-              "text",
-              "enum",
-              "number"
-            ]
-          },
-          "enum_options": {
-            "description": "Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://asana.com/developers/api-reference/custom_fields#enum-options).",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EnumOption"
+            "type": "object",
+            "description": "Custom Fields store the metadata that is used in order to\nadd user-specified information to tasks in Asana. Be sure\nto reference the [Custom Fields]\n(https://asana.com/developers/documentation/getting-started/custom-fields)\ndeveloper documentation for more information about how custom fields\nrelate to various resources in Asana.\n\nUsers in Asana can [lock custom fields]\n(https://asana.com/guide/help/premium/custom-fields#gl-lock-fields),\nwhich will make them read-only when accessed by other users.\nAttempting to edit a locked custom field will return HTTP error code\n`403 Forbidden`.",
+            "properties": {
+              "description": {
+                "description": "[Opt In](/developers/documentation/getting-started/input-output-options). The description of the custom field.",
+                "type": "string",
+                "example": "Development team priority",
+                "x-public": true
+              },
+              "enum_options": {
+                "description": "**Conditional**. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://asana.com/developers/api-reference/custom_fields#enum-options).",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/EnumOption"
+                },
+                "x-public": true
+              },
+              "precision": {
+                "description": "Only relevant for custom fields of type \u2018Number\u2019. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.",
+                "type": "integer",
+                "example": 2,
+                "x-public": true
+              }
             }
-          },
-          "precision": {
-            "description": "Only relevant for custom fields of type \u2018Number\u2019. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.",
-            "type": "integer",
-            "example": 2
           }
-        }
+        ]
+      },
+      "CustomFieldCompact": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/AsanaNamedObject",
+            "x-public": true
+          },
+          {
+            "$ref": "#/components/schemas/AsanaSubtype",
+            "x-public": true
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "description": "**Deprecated: new integrations should prefer the resource_subtype field.** The type of the custom field. Must be one of the given values.\n",
+                "type": "string",
+                "enum": [
+                  "text",
+                  "enum",
+                  "number"
+                ],
+                "x-public": true
+              },
+              "enum_options": {
+                "description": "**Conditional**. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://asana.com/developers/api-reference/custom_fields#enum-options).",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/EnumOptionCompact"
+                },
+                "x-public": true
+              },
+              "enum_value": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/EnumOption"
+                  },
+                  {
+                    "type": "object",
+                    "description": "**Conditional**. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field."
+                  }
+                ],
+                "x-public": true
+              },
+              "enabled": {
+                "description": "**Conditional**. Determines if the custom field is enabled or not.",
+                "type": "boolean",
+                "example": true,
+                "x-public": true
+              },
+              "text_value": {
+                "description": "**Conditional**. This string is the value of a text custom field.",
+                "type": "string",
+                "example": "Some Value",
+                "x-public": true
+              }
+            }
+          }
+        ]
       },
       "CustomFieldObject": {
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/CustomField"
+            "$ref": "#/components/schemas/CustomField",
+            "x-public": true
           }
         }
       },
@@ -721,63 +830,78 @@
           "data": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CustomField"
-            }
+              "$ref": "#/components/schemas/CustomFieldCompact"
+            },
+            "x-public": true
           }
         }
       },
       "CustomFieldSettings": {
-        "description": "Custom fields are attached to a particular project with the Custom Field Settings resource. This resource both represents the many-to-many join of the Custom Field and Project as well as stores information that is relevant to that particular pairing; for instance, the `is_important` property determines some possible application-specific handling of that custom field.",
         "allOf": [
           {
-            "$ref": "#/components/schemas/CustomFieldSettingsCompact"
-          }
-        ],
-        "properties": {
-          "project": {
-            "description": "**Deprecated: new integrations should prefer the `parent` field.** The id of the project that this custom field settings refers to.",
-            "readOnly": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ProjectCompact"
+            "$ref": "#/components/schemas/CustomFieldSettingsCompact",
+            "x-public": true
+          },
+          {
+            "type": "object",
+            "description": "Custom fields are attached to a particular project with the Custom Field Settings resource. This resource both represents the many-to-many join of the Custom Field and Project as well as stores information that is relevant to that particular pairing; for instance, the `is_important` property determines some possible application-specific handling of that custom field.",
+            "properties": {
+              "project": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ProjectCompact"
+                  },
+                  {
+                    "type": "object",
+                    "description": "**Deprecated: new integrations should prefer the `parent` field.** The id of the project that this custom field settings refers to.",
+                    "readOnly": true
+                  }
+                ],
+                "x-public": true
+              },
+              "is_important": {
+                "description": "`is_important` is used in the Asana web application to determine if this custom field is displayed in the task list (left pane) of a project. A project can have a maximum of 5 custom field settings marked as `is_important`.",
+                "type": "boolean",
+                "readOnly": true,
+                "example": false,
+                "x-public": true
+              },
+              "parent": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ProjectCompact"
+                  },
+                  {
+                    "type": "object",
+                    "description": "The parent to which the custom field is applied. This can be a project or portfolio and indicates that the tasks or projects that the parent contains may be given custom field values for this custom field.",
+                    "readOnly": true
+                  }
+                ],
+                "x-public": true
+              },
+              "custom_field": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CustomField"
+                  },
+                  {
+                    "type": "object",
+                    "description": "The custom field that is applied to the `parent`. readOnly: true"
+                  }
+                ],
+                "x-public": true
               }
-            ]
+            }
           }
-        }
+        ]
       },
       "CustomFieldSettingsCompact": {
-        "description": "Custom fields are attached to a particular project with the Custom Field Settings resource. This resource both represents the many-to-many join of the Custom Field and Project as well as stores information that is relevant to that particular pairing; for instance, the is_important property determines some possible application-specific handling of that custom field. The compact version of this object is used when referenced as part of a project, to avoid circular references.",
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaObject"
+            "$ref": "#/components/schemas/AsanaObject",
+            "x-public": true
           }
-        ],
-        "properties": {
-          "is_important": {
-            "description": "`is_important` is used in the Asana web application to determine if this custom field is displayed in the task list (left pane) of a project. A project can have a maximum of 5 custom field settings marked as `is_important`.",
-            "type": "boolean",
-            "readOnly": true,
-            "example": false
-          },
-          "parent": {
-            "description": "The parent to which the custom field is applied. This can be a project or portfolio and indicates that the tasks or projects that the parent contains may be given custom field values for this custom field.",
-            "readOnly": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/ProjectCompact"
-              }
-            ]
-          },
-          "custom_field": {
-            "description": "The custom field that is applied to the `parent`.",
-            "readOnly": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/CustomField"
-              }
-            ]
-          }
-        }
+        ]
       },
       "CustomFieldSettingsArray": {
         "type": "object",
@@ -786,7 +910,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CustomFieldSettings"
-            }
+            },
+            "x-public": true
           }
         }
       },
@@ -804,7 +929,8 @@
                   "type": "integer"
                 }
               }
-            }
+            },
+            "x-public": true
           }
         },
         "example": {
@@ -830,7 +956,8 @@
                   "type": "integer"
                 }
               }
-            }
+            },
+            "x-public": true
           }
         },
         "example": {
@@ -847,34 +974,42 @@
         "type": "object",
         "properties": {
           "data": {
-            "type": "object"
+            "type": "object",
+            "x-public": true
           }
         }
       },
       "EnumOption": {
-        "description": "Enum options are the possible values which an enum custom field can\nadopt. An enum custom field must contain at least 1 enum option but no\nmore than 50.\n\nYou can add enum options to a custom field by using the `POST\n/custom_fields/custom_field_gid/enum_options` endpoint.\n\n**It is not possible to remove or delete an enum option**. Instead, enum\noptions can be disabled by updating the `enabled` field to false with the\n`PUT /enum_options/enum_option_gid` endpoint. Other attributes can be\nupdated similarly.\n\nOn creation of an enum option, `enabled` is always set to `true`, meaning\nthe enum option is a selectable value for the custom field. Setting\n`enabled=false` is equivalent to \u201ctrashing\u201d the enum option in the Asana\nweb app within the \u201cEdit Fields\u201d dialog. The enum option will no longer\nbe selectable but, if the enum option value was previously set within a\ntask, the task will retain the value.\n\nEnum options are an ordered list and by default new enum options are\ninserted at the end. Ordering in relation to existing enum options can be\nspecified on creation by using `insert_before` or `insert_after` to\nreference an existing enum option. Only one of `insert_before` and\n`insert_after` can be provided when creating a new enum option.\n\nAn enum options list can be reordered with the `POST\n/custom_fields/custom_field_gid/enum_options/insert` endpoint.",
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaObject"
-          }
-        ],
-        "properties": {
-          "name": {
-            "description": "The name of the enum option.",
-            "type": "string",
-            "example": "Low"
+            "$ref": "#/components/schemas/AsanaObject",
+            "x-public": true
           },
-          "enabled": {
-            "description": "The color of the enum option. Defaults to \u2018none\u2019.",
-            "type": "boolean",
-            "example": true
-          },
-          "color": {
-            "description": "Whether or not the enum option is a selectable value for the custom field.",
-            "type": "string",
-            "example": "blue"
+          {
+            "type": "object",
+            "description": "Enum options are the possible values which an enum custom field can\nadopt. An enum custom field must contain at least 1 enum option but no\nmore than 50.\n\nYou can add enum options to a custom field by using the `POST\n/custom_fields/custom_field_gid/enum_options` endpoint.\n\n**It is not possible to remove or delete an enum option**. Instead, enum\noptions can be disabled by updating the `enabled` field to false with the\n`PUT /enum_options/enum_option_gid` endpoint. Other attributes can be\nupdated similarly.\n\nOn creation of an enum option, `enabled` is always set to `true`, meaning\nthe enum option is a selectable value for the custom field. Setting\n`enabled=false` is equivalent to \u201ctrashing\u201d the enum option in the Asana\nweb app within the \u201cEdit Fields\u201d dialog. The enum option will no longer\nbe selectable but, if the enum option value was previously set within a\ntask, the task will retain the value.\n\nEnum options are an ordered list and by default new enum options are\ninserted at the end. Ordering in relation to existing enum options can be\nspecified on creation by using `insert_before` or `insert_after` to\nreference an existing enum option. Only one of `insert_before` and\n`insert_after` can be provided when creating a new enum option.\n\nAn enum options list can be reordered with the `POST\n/custom_fields/custom_field_gid/enum_options/insert` endpoint.",
+            "properties": {
+              "name": {
+                "description": "The name of the enum option.",
+                "type": "string",
+                "example": "Low",
+                "x-public": true
+              },
+              "enabled": {
+                "description": "The color of the enum option. Defaults to \u2018none\u2019.",
+                "type": "boolean",
+                "example": true,
+                "x-public": true
+              },
+              "color": {
+                "description": "Whether or not the enum option is a selectable value for the custom field.",
+                "type": "string",
+                "example": "blue",
+                "x-public": true
+              }
+            }
           }
-        }
+        ]
       },
       "Error": {
         "description": "Sadly, sometimes requests to the API are not successful. Failures can\noccur for a wide range of reasons. In all cases, the API should return\nan HTTP Status Code that indicates the nature of the failure,\nwith a response body in JSON format containing additional information.\n\nIn the event of a server error the response body will contain an error\nphrase. These phrases are automatically generated using the\n[node-asana-phrase\nlibrary](https://github.com/Asana/node-asana-phrase) and can be used by\nAsana support to quickly look up the incident that caused the server\nerror.",
@@ -904,7 +1039,8 @@
                   "example": "6 sad squid snuggle softly"
                 }
               }
-            }
+            },
+            "x-public": true
           }
         }
       },
@@ -916,11 +1052,15 @@
             "allOf": [
               {
                 "$ref": "#/components/schemas/UserCompact"
+              },
+              {
+                "type": "object",
+                "description": "The user who triggered the event.\n\n**Note**: The event may be triggered by a different user than the\nsubscriber. For example, if user A subscribes to a task and user B\nmodified it, the event\u2019s user will be user B. Note: Some events are\ngenerated by the system, and will have `null` as the user. API\nconsumers should make sure to handle this case.",
+                "readOnly": true,
+                "nullable": true
               }
             ],
-            "description": "The user who triggered the event.\n\n**Note**: The event may be triggered by a different user than the\nsubscriber. For example, if user A subscribes to a task and user B\nmodified it, the event\u2019s user will be user B. Note: Some events are\ngenerated by the system, and will have `null` as the user. API\nconsumers should make sure to handle this case.",
-            "readOnly": true,
-            "nullable": true
+            "x-public": true
           },
           "resource": {
             "description": "The resource the event occurred on.\n\n**Note**: The resource that triggered the event may be different from\nthe one that the events were requested for. For example, a\nsubscription to a project will contain events for tasks contained\nwithin the project.",
@@ -935,36 +1075,44 @@
                 "type": "string",
                 "example": "Bug Task"
               }
-            }
+            },
+            "x-public": true
           },
           "type": {
-            "description": "**Deprecated: Refer to the resource_type of the parent.**\nThe type of the resource that generated the event.\n\n**Note**: Currently, only tasks, projects and stories generate\nevents.",
+            "description": "**Deprecated: Refer to the resource_type of the resource.**\nThe type of the resource that generated the event.\n\n**Note**: Currently, only tasks, projects and stories generate\nevents.",
             "type": "string",
             "readOnly": true,
-            "example": "task"
+            "example": "task",
+            "x-public": true
           },
           "action": {
             "description": "The type of action taken that triggered the event.",
             "type": "string",
             "readOnly": true,
-            "example": "changed"
+            "example": "changed",
+            "x-public": true
           },
           "parent": {
-            "description": "For added/removed events, the parent that resource was added to or removed from. The parent will be `null` for other event types.",
             "allOf": [
               {
                 "$ref": "#/components/schemas/AsanaNamedObject"
+              },
+              {
+                "type": "object",
+                "description": "For added/removed events, the parent that resource was added to or removed from. The parent will be `null` for other event types.",
+                "readOnly": true,
+                "nullable": true
               }
             ],
-            "readOnly": true,
-            "nullable": true
+            "x-public": true
           },
           "created_at": {
             "description": "The timestamp when the event occurred.",
             "type": "string",
             "format": "date-time",
             "readOnly": true,
-            "example": "2012-02-22T02:06:58.147Z"
+            "example": "2012-02-22T02:06:58.147Z",
+            "x-public": true
           }
         }
       },
@@ -976,142 +1124,199 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Event"
-            }
+            },
+            "x-public": true
           },
           "sync": {
             "description": "A sync token to be used with the next call to the events endpoint.",
             "type": "string",
-            "example": "de4774f6915eae04714ca93bb2f5ee81"
+            "example": "de4774f6915eae04714ca93bb2f5ee81",
+            "x-public": true
           }
         }
       },
       "OrganizationExport": {
-        "description": "An *organization_export* object represents a request to export the\ncomplete data of an Organization in JSON format.\n\nTo export an Organization using this API:\n\n* Create an `organization_export`\n  [request](https://asana.com/developers/api-reference/organization_exports#create)\n  and store the id that is returned.\n* Request the `organization_export` every few minutes, until the `state`\n  field contains \u2018finished\u2019.\n* Download the file located at the URL in the `download_url` field.\n* Exports can take a long time, from several minutes to a few hours for\n  large Organizations.\n\n**Note**: These endpoints are only available to [Service\nAccounts](https://asana.com/guide/help/premium/service-accounts) of an\n[Enterprise](https://asana.com/enterprise) Organization.",
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaObject"
+            "$ref": "#/components/schemas/AsanaObject",
+            "x-public": true
           },
           {
-            "$ref": "#/components/schemas/AsanaCreatedAt"
-          }
-        ],
-        "properties": {
-          "download_url": {
-            "description": "Download this URL to retreive the full export of the organization\nin JSON format. It will be compressed in a gzip (.gz) container.\n\n**Note**: May be null if the export is still in progress or\nfailed.  If present, this URL may only be valid for 1 hour from\nthe time of retrieval. You should avoid persisting this URL\nsomewhere and rather refresh on demand to ensure you do not keep\nstale URLs.",
-            "type": "string",
-            "format": "uri",
-            "readOnly": true,
-            "nullable": true,
-            "example": "https://asana-export.s3.amazonaws.com/export-4632784536274-20170127-43246.json.gz?AWSAccessKeyId=xxxxxxxx"
+            "$ref": "#/components/schemas/AsanaCreatedAt",
+            "x-public": true
           },
-          "state": {
-            "description": "The current state of the export.",
-            "type": "string",
-            "enum": [
-              "pending",
-              "started",
-              "finished",
-              "error"
-            ],
-            "readOnly": true,
-            "example": "started"
-          },
-          "organization": {
-            "description": "**Create-only**: The Organization that is being exported. This can only be specified at create time.",
+          {
             "type": "object",
+            "description": "An *organization_export* object represents a request to export the\ncomplete data of an Organization in JSON format.\n\nTo export an Organization using this API:\n\n* Create an `organization_export`\n  [request](https://asana.com/developers/api-reference/organization_exports#create)\n  and store the id that is returned.\n* Request the `organization_export` every few minutes, until the `state`\n  field contains \u2018finished\u2019.\n* Download the file located at the URL in the `download_url` field.\n* Exports can take a long time, from several minutes to a few hours for\n  large Organizations.\n\n**Note**: These endpoints are only available to [Service\nAccounts](https://asana.com/guide/help/premium/service-accounts) of an\n[Enterprise](https://asana.com/enterprise) Organization.",
             "properties": {
-              "id": {
-                "type": "integer",
-                "example": 14916
-              },
-              "gid": {
+              "download_url": {
+                "description": "Download this URL to retreive the full export of the organization\nin JSON format. It will be compressed in a gzip (.gz) container.\n\n**Note**: May be null if the export is still in progress or\nfailed.  If present, this URL may only be valid for 1 hour from\nthe time of retrieval. You should avoid persisting this URL\nsomewhere and rather refresh on demand to ensure you do not keep\nstale URLs.",
                 "type": "string",
-                "example": "14916"
+                "format": "uri",
+                "readOnly": true,
+                "nullable": true,
+                "example": "https://asana-export.s3.amazonaws.com/export-4632784536274-20170127-43246.json.gz?AWSAccessKeyId=xxxxxxxx",
+                "x-public": true
               },
-              "name": {
+              "state": {
+                "description": "The current state of the export.",
                 "type": "string",
-                "example": "My Workspace"
+                "enum": [
+                  "pending",
+                  "started",
+                  "finished",
+                  "error"
+                ],
+                "readOnly": true,
+                "example": "started",
+                "x-public": true
+              },
+              "organization": {
+                "description": "**Create-only**: The Organization that is being exported. This can only be specified at create time.",
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "example": 14916
+                  },
+                  "gid": {
+                    "type": "string",
+                    "example": "14916"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "My Workspace"
+                  }
+                },
+                "x-public": true
               }
             }
           }
-        }
+        ]
       },
       "OrganizationExportObjectResponse": {
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/OrganizationExport"
+            "$ref": "#/components/schemas/OrganizationExport",
+            "x-public": true
           }
         }
       },
       "Portfolio": {
-        "description": "A *portfolio* gives a high-level overview of the status of multiple\ninitiatives in Asana. Portfolios provide a dashboard overview of\nthe state of multiple projects, including a progress report and the\nmost recent [project status](https://asana.com/developers/api-reference/project_statuses)\nupdate.",
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaNamedObject"
+            "$ref": "#/components/schemas/PortfolioCompact",
+            "x-public": true
           },
           {
-            "$ref": "#/components/schemas/AsanaCreatedAt"
-          }
-        ],
-        "properties": {
-          "color": {
-            "description": "Color of the portfolio.",
-            "type": "string",
-            "enum": [
-              "dark-pink",
-              "dark-green",
-              "dark-blue",
-              "dark-red",
-              "dark-teal",
-              "dark-brown",
-              "dark-orange",
-              "dark-purple",
-              "dark-warm-gray",
-              "light-pink",
-              "light-green",
-              "light-blue",
-              "light-red",
-              "light-teal",
-              "light-brown",
-              "light-orange",
-              "light-purple",
-              "light-warm-gray"
-            ],
-            "example": "light-green"
+            "$ref": "#/components/schemas/AsanaCreatedByAndAt",
+            "x-public": true
           },
-          "custom_field_settings": {
-            "description": "Array of custom field settings applied to the portfolio.",
-            "readOnly": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CustomFieldSettings"
+          {
+            "type": "object",
+            "description": "A *portfolio* gives a high-level overview of the status of multiple\ninitiatives in Asana. Portfolios provide a dashboard overview of\nthe state of multiple projects, including a progress report and the\nmost recent [project status](https://asana.com/developers/api-reference/project_statuses)\nupdate.",
+            "properties": {
+              "color": {
+                "description": "Color of the portfolio.",
+                "type": "string",
+                "enum": [
+                  "dark-pink",
+                  "dark-green",
+                  "dark-blue",
+                  "dark-red",
+                  "dark-teal",
+                  "dark-brown",
+                  "dark-orange",
+                  "dark-purple",
+                  "dark-warm-gray",
+                  "light-pink",
+                  "light-green",
+                  "light-blue",
+                  "light-red",
+                  "light-teal",
+                  "light-brown",
+                  "light-orange",
+                  "light-purple",
+                  "light-warm-gray"
+                ],
+                "example": "light-green",
+                "x-public": true
+              },
+              "custom_field_settings": {
+                "description": "Array of custom field settings applied to the portfolio.",
+                "readOnly": true,
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CustomFieldSettings"
+                },
+                "x-public": true
+              },
+              "owner": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/UserCompact"
+                  },
+                  {
+                    "type": "object",
+                    "description": "The current owner of the portfolio.",
+                    "readOnly": true
+                  }
+                ],
+                "x-public": true
+              },
+              "workspace": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/WorkspaceCompact"
+                  },
+                  {
+                    "type": "object",
+                    "description": "**Create-only**. The workspace or organization that the portfolio belongs to."
+                  }
+                ],
+                "x-public": true
+              },
+              "members": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/UserArray"
+                  },
+                  {
+                    "type": "object",
+                    "description": "Members of the portfolio"
+                  }
+                ],
+                "x-public": true
+              }
             }
-          },
-          "owner": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/UserCompact"
-              }
-            ],
-            "description": "The current owner of the portfolio.",
-            "readOnly": true
-          },
-          "workspace": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/WorkspaceCompact"
-              }
-            ],
-            "description": "**Create-only**. The workspace or organization that the portfolio belongs to."
           }
-        }
+        ]
+      },
+      "PortfolioCompact": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/AsanaNamedObject",
+            "x-public": true
+          },
+          {
+            "type": "object",
+            "properties": {
+              "resource_type": {
+                "type": "string",
+                "example": "portfolio",
+                "x-public": true
+              }
+            }
+          }
+        ]
       },
       "PortfolioObject": {
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/Portfolio"
+            "$ref": "#/components/schemas/Portfolio",
+            "x-public": true
           }
         }
       },
@@ -1121,215 +1326,318 @@
           "data": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Portfolio"
-            }
+              "$ref": "#/components/schemas/PortfolioCompact"
+            },
+            "x-public": true
+          }
+        }
+      },
+      "Preview": {
+        "type": "object",
+        "description": "A collection of rich text that will be displayed as a preview to another app.\n\nThis is read-only except for a small group of whitelisted apps.",
+        "readOnly": true,
+        "properties": {
+          "fallback": {
+            "description": "Some fallback text to display if unable to display the full preview.",
+            "type": "string",
+            "example": "Greg: Great! I like this idea.\\n\\nhttps//a_company.slack.com/archives/ABCDEFG/12345678",
+            "x-public": true
+          },
+          "footer": {
+            "description": "Text to display in the footer.",
+            "type": "string",
+            "example": "Mar 17, 2019 1:25 PM",
+            "x-public": true
+          },
+          "header": {
+            "description": "Text to display in the header.",
+            "type": "string",
+            "example": "Asana for Slack",
+            "x-public": true
+          },
+          "header_link": {
+            "description": "Where the header will link to.",
+            "type": "string",
+            "example": "https://asana.comn/apps/slack",
+            "x-public": true
+          },
+          "html_text": {
+            "description": "HTML formatted text for the body of the preview.",
+            "type": "string",
+            "example": "<body>Great! I like this idea.</body>",
+            "x-public": true
+          },
+          "text": {
+            "description": "Text for the body of the preview.",
+            "type": "string",
+            "example": "Great! I like this idea.",
+            "x-public": true
+          },
+          "title": {
+            "description": "Text to display as the title.",
+            "type": "string",
+            "example": "Greg",
+            "x-public": true
+          },
+          "title_link": {
+            "description": "Where to title will link to.",
+            "type": "string",
+            "example": "https://asana.slack.com/archives/ABCDEFG/12345678",
+            "x-public": true
           }
         }
       },
       "Project": {
-        "description": "A *project* represents a prioritized list of tasks in Asana or a board\nwith columns of tasks represented as cards. It exists in a single\nworkspace or organization and is accessible to a subset of users in that\nworkspace or organization, depending on its permissions.\n\nProjects in organizations are shared with a single team. You cannot\ncurrently change the team of a project via the API. Non-organization\nworkspaces do not have teams and so you should not specify the team of\nproject in a regular workspace.\n\nFollowers of a project are a subset of the members of that project.\nFollowers of a project will receive all updates including tasks created,\nadded and removed from that project. Members of the project have access\nto and will receive status updates of the project. Adding followers to a\nproject will add them as members if they are not already, removing\nfollowers from a project will not affect membership.",
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaObject"
+            "$ref": "#/components/schemas/ProjectCompact",
+            "x-public": true
           },
           {
-            "$ref": "#/components/schemas/AsanaCreatedAt"
-          }
-        ],
-        "properties": {
-          "name": {
-            "description": "Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.",
-            "type": "string",
-            "example": "Stuff to buy"
+            "$ref": "#/components/schemas/AsanaCreatedAt",
+            "x-public": true
           },
-          "archived": {
-            "description": "True if the project is archived, false if not. Archived projects do not show in the UI by default and may be treated differently for queries.",
-            "type": "boolean",
-            "example": false
-          },
-          "color": {
-            "description": "Color of the project.",
-            "type": "string",
-            "nullable": true,
-            "enum": [
-              "dark-pink",
-              "dark-green",
-              "dark-blue",
-              "dark-red",
-              "dark-teal",
-              "dark-brown",
-              "dark-orange",
-              "dark-purple",
-              "dark-warm-gray",
-              "light-pink",
-              "light-green",
-              "light-blue",
-              "light-red",
-              "light-teal",
-              "light-brown",
-              "light-orange",
-              "light-purple",
-              "light-warm-gray"
-            ],
-            "example": "light-green"
-          },
-          "current_status": {
-            "description": "The most recently created status update for the project, or `null` if no update exists. See also the documentation for [project status updates](/developers/api-reference/project_statuses).",
+          {
             "type": "object",
-            "nullable": true,
-            "readOnly": true,
+            "description": "A *project* represents a prioritized list of tasks in Asana or a board\nwith columns of tasks represented as cards. It exists in a single\nworkspace or organization and is accessible to a subset of users in that\nworkspace or organization, depending on its permissions.\n\nProjects in organizations are shared with a single team. You cannot\ncurrently change the team of a project via the API. Non-organization\nworkspaces do not have teams and so you should not specify the team of\nproject in a regular workspace.\n\nFollowers of a project are a subset of the members of that project.\nFollowers of a project will receive all updates including tasks created,\nadded and removed from that project. Members of the project have access\nto and will receive status updates of the project. Adding followers to a\nproject will add them as members if they are not already, removing\nfollowers from a project will not affect membership.",
             "properties": {
+              "archived": {
+                "description": "True if the project is archived, false if not. Archived projects do not show in the UI by default and may be treated differently for queries.",
+                "type": "boolean",
+                "example": false,
+                "x-public": true
+              },
               "color": {
+                "description": "Color of the project.",
+                "type": "string",
+                "nullable": true,
+                "enum": [
+                  "dark-pink",
+                  "dark-green",
+                  "dark-blue",
+                  "dark-red",
+                  "dark-teal",
+                  "dark-brown",
+                  "dark-orange",
+                  "dark-purple",
+                  "dark-warm-gray",
+                  "light-pink",
+                  "light-green",
+                  "light-blue",
+                  "light-red",
+                  "light-teal",
+                  "light-brown",
+                  "light-orange",
+                  "light-purple",
+                  "light-warm-gray"
+                ],
+                "example": "light-green",
+                "x-public": true
+              },
+              "current_status": {
+                "description": "The most recently created status update for the project, or `null` if no update exists. See also the documentation for [project status updates](/developers/api-reference/project_statuses).",
+                "type": "object",
+                "nullable": true,
+                "readOnly": true,
+                "properties": {
+                  "color": {
+                    "type": "string",
+                    "enum": [
+                      "green",
+                      "yellow",
+                      "red"
+                    ],
+                    "example": "green"
+                  },
+                  "text": {
+                    "type": "string",
+                    "example": "All gravy!"
+                  },
+                  "author": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                },
+                "example": {
+                  "color": "green",
+                  "text": "Everything is great",
+                  "author": {
+                    "id": 12345,
+                    "name": "Greg Bizarro"
+                  }
+                },
+                "x-public": true
+              },
+              "custom_fields": {
+                "description": "Array of Custom Fields.",
+                "readOnly": true,
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CustomFieldSetting"
+                },
+                "x-public": true
+              },
+              "custom_field_settings": {
+                "description": "Array of Custom Field Settings (in compact form).",
+                "readOnly": true,
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CustomFieldSettings"
+                },
+                "x-public": true
+              },
+              "due_date": {
+                "description": "The day on which this project is due. This takes a date with format YYYY-MM-DD.",
+                "type": "string",
+                "nullable": true,
+                "format": "date-time",
+                "example": "2012-03-26",
+                "x-public": true
+              },
+              "followers": {
+                "description": "Array of users following this project. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "readOnly": true,
+                "x-public": true
+              },
+              "html_notes": {
+                "description": "[Opt In](https://asana.com/developers/documentation/getting-started/input-output-options). The notes of the project with formatting as HTML.\n**Note: This field is under active migration\u2014please see our [blog post] (https://asana.com/developers/news/new-rich-text) for more information.**",
+                "type": "string",
+                "example": "These are things we need to purchase.",
+                "x-public": true
+              },
+              "layout": {
+                "description": "The layout (board or list view) of a project",
                 "type": "string",
                 "enum": [
-                  "green",
-                  "yellow",
-                  "red"
+                  "list",
+                  "board"
                 ],
-                "example": "green"
+                "readOnly": true,
+                "x-public": true
               },
-              "text": {
+              "members": {
+                "description": "Array of users who are members of this project.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "readOnly": true,
+                "x-public": true
+              },
+              "modified_at": {
+                "description": "The time at which this project was last modified.\n**Note**: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.",
                 "type": "string",
-                "example": "All gravy!"
+                "format": "date-time",
+                "example": "2012-02-22T02:06:58.147Z",
+                "x-public": true
               },
-              "author": {
-                "$ref": "#/components/schemas/User"
-              }
-            },
-            "example": {
-              "color": "green",
-              "text": "Everything is great",
-              "author": {
-                "id": 12345,
-                "name": "Greg Bizarro"
+              "notes": {
+                "description": "More detailed, free-form textual information associated with the project.",
+                "type": "string",
+                "example": "These are things we need to purchase.",
+                "x-public": true
+              },
+              "owner": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/UserCompact"
+                  },
+                  {
+                    "type": "object",
+                    "description": "The current owner of the project, may be null.",
+                    "nullable": true
+                  }
+                ],
+                "x-public": true
+              },
+              "public": {
+                "description": "True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.",
+                "type": "boolean",
+                "example": false,
+                "x-public": true
+              },
+              "section_migration_status": {
+                "description": "**Read-only** The section migration status of this project.",
+                "type": "string",
+                "enum": [
+                  "not_migrated",
+                  "in_progress",
+                  "completed"
+                ],
+                "nullable": false,
+                "readOnly": true,
+                "example": "not_migrated",
+                "x-public": true
+              },
+              "start_on": {
+                "description": "The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. **Note:** `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.",
+                "type": "string",
+                "nullable": true,
+                "format": "date",
+                "example": "2012-03-26",
+                "x-public": true
+              },
+              "team": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/TeamCompact"
+                  },
+                  {
+                    "type": "object",
+                    "description": "**Create-only**. The team that this project is shared with. This field only exists for projects in organizations."
+                  }
+                ],
+                "x-public": true
+              },
+              "workspace": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/WorkspaceCompact"
+                  },
+                  {
+                    "type": "object",
+                    "description": "**Create-only**. The workspace or organization this project is associated with. Once created, projects cannot be moved to a different workspace. This attribute can only be specified at creation time."
+                  }
+                ],
+                "x-public": true
               }
             }
-          },
-          "custom_field_settings": {
-            "description": "Array of Custom Field Settings (in compact form).",
-            "readOnly": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CustomFieldSettings"
-            }
-          },
-          "due_date": {
-            "description": "The day on which this project is due. This takes a date with format YYYY-MM-DD.",
-            "type": "string",
-            "nullable": true,
-            "format": "date-time",
-            "example": "2012-03-26"
-          },
-          "followers": {
-            "description": "Array of users following this project. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/User"
-            },
-            "readOnly": true
-          },
-          "html_notes": {
-            "description": "The notes of the project with formatting as HTML.\n**Note: This field is under active migration\u2014please see our [blog post] (https://asana.com/developers/news/new-rich-text) for more information.**",
-            "type": "string",
-            "example": "These are things we need to purchase."
-          },
-          "layout": {
-            "description": "The layout (board or list view) of a project",
-            "type": "string",
-            "enum": [
-              "list",
-              "board"
-            ],
-            "readOnly": true
-          },
-          "members": {
-            "description": "Array of users who are members of this project.",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/User"
-            },
-            "readOnly": true
-          },
-          "modified_at": {
-            "description": "The time at which this project was last modified.\n**Note**: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.",
-            "type": "string",
-            "format": "date-time",
-            "example": "2012-02-22T02:06:58.147Z"
-          },
-          "notes": {
-            "description": "More detailed, free-form textual information associated with the project.",
-            "type": "string",
-            "example": "These are things we need to purchase."
-          },
-          "owner": {
-            "description": "The current owner of the project, may be null.",
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/UserCompact"
-              }
-            ]
-          },
-          "public": {
-            "description": "True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.",
-            "type": "boolean",
-            "example": false
-          },
-          "section_migration_status": {
-            "description": "**Read-only** The section migration status of this project.",
-            "type": "string",
-            "enum": [
-              "not_migrated",
-              "in_progress",
-              "completed"
-            ],
-            "nullable": false,
-            "readOnly": true,
-            "example": "not_migrated"
-          },
-          "start_on": {
-            "description": "The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. **Note:** `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.",
-            "type": "string",
-            "nullable": true,
-            "format": "date",
-            "example": "2012-03-26"
-          },
-          "team": {
-            "description": "**Create-only**. The team that this project is shared with. This field only exists for projects in organizations.",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/TeamCompact"
-              }
-            ]
-          },
-          "workspace": {
-            "description": "**Create-only**. The workspace or organization this project is associated with. Once created, projects cannot be moved to a different workspace. This attribute can only be specified at creation time.",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/WorkspaceCompact"
-              }
-            ]
           }
-        }
+        ]
       },
       "ProjectCompact": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaNamedObject"
+            "$ref": "#/components/schemas/AsanaNamedObject",
+            "x-public": true
+          },
+          {
+            "type": "object",
+            "properties": {
+              "resource_type": {
+                "type": "string",
+                "example": "project",
+                "x-public": true
+              },
+              "name": {
+                "description": "Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.",
+                "type": "string",
+                "example": "Stuff to buy",
+                "x-public": true
+              }
+            }
           }
-        ],
-        "properties": {
-          "resource_type": {
-            "type": "string",
-            "example": "project"
-          }
-        }
+        ]
       },
       "ProjectObject": {
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/Project"
+            "$ref": "#/components/schemas/Project",
+            "x-public": true
           }
         }
       },
@@ -1340,41 +1648,64 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Project"
-            }
+            },
+            "x-public": true
           }
         }
       },
       "ProjectMembership": {
-        "description": "With the introduction of \u201ccomment-only\u201d projects in Asana, a user\u2019s membership in a project comes with associated permissions. These permissions (whether a user has full access to the project or comment-only access) are accessible through the project memberships endpoints described here.",
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaObject"
-          }
-        ],
-        "properties": {
-          "user": {
-            "$ref": "#/components/schemas/UserCompact"
+            "$ref": "#/components/schemas/ProjectMembershipCompact",
+            "x-public": true
           },
-          "project": {
-            "$ref": "#/components/schemas/ProjectCompact"
-          },
-          "write_access": {
-            "description": "Whether the user has full access to the project or has comment-only access.",
-            "type": "string",
-            "enum": [
-              "full_write",
-              "comment_only"
-            ],
-            "readOnly": true,
-            "example": "full_write"
+          {
+            "type": "object",
+            "description": "With the introduction of \u201ccomment-only\u201d projects in Asana, a user\u2019s membership in a project comes with associated permissions. These permissions (whether a user has full access to the project or comment-only access) are accessible through the project memberships endpoints described here.",
+            "properties": {
+              "project": {
+                "description": "[Opt In](https://asana.com/developers/documentation/getting-started/input-output-options). The project the user is a member of.",
+                "$ref": "#/components/schemas/ProjectCompact",
+                "x-public": true
+              },
+              "write_access": {
+                "description": "Whether the user has full access to the project or has comment-only access.",
+                "type": "string",
+                "enum": [
+                  "full_write",
+                  "comment_only"
+                ],
+                "readOnly": true,
+                "example": "full_write",
+                "x-public": true
+              }
+            }
           }
-        }
+        ]
+      },
+      "ProjectMembershipCompact": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/AsanaObject",
+            "x-public": true
+          },
+          {
+            "type": "object",
+            "properties": {
+              "user": {
+                "$ref": "#/components/schemas/UserCompact",
+                "x-public": true
+              }
+            }
+          }
+        ]
       },
       "ProjectMembershipObject": {
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/ProjectMembership"
+            "$ref": "#/components/schemas/ProjectMembership",
+            "x-public": true
           }
         }
       },
@@ -1385,50 +1716,80 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ProjectMembership"
-            }
+            },
+            "x-public": true
           }
         }
       },
       "ProjectStatus": {
-        "description": "A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: \"green\" for projects that are on track, \"yellow\" for projects at risk, and \"red\" for projects that are behind.\nProject statuses can be created and deleted, but not modified.",
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaNamedObject"
+            "$ref": "#/components/schemas/ProjectStatusCompact",
+            "x-public": true
           },
           {
-            "$ref": "#/components/schemas/AsanaCreatedByAndAt"
-          }
-        ],
-        "properties": {
-          "title": {
-            "description": "The title of the project status update.",
-            "readOnly": true,
-            "type": "string",
-            "example": "Status Update - Jun 15"
+            "$ref": "#/components/schemas/AsanaCreatedByAndAt",
+            "x-public": true
           },
-          "text": {
-            "description": "The text content of the status update.",
-            "readOnly": true,
-            "type": "string",
-            "example": "The project is moving forward according to plan..."
-          },
-          "color": {
-            "description": "The color associated with the status update.",
-            "readOnly": true,
-            "type": "string",
-            "enum": [
-              "green",
-              "yellow",
-              "red"
-            ]
+          {
+            "type": "object",
+            "description": "A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: \"green\" for projects that are on track, \"yellow\" for projects at risk, and \"red\" for projects that are behind.\nProject statuses can be created and deleted, but not modified.",
+            "properties": {
+              "text": {
+                "description": "The text content of the status update.",
+                "readOnly": true,
+                "type": "string",
+                "example": "The project is moving forward according to plan...",
+                "x-public": true
+              },
+              "html-text": {
+                "description": "[Opt In](https://asana.com/developers/documentation/getting-started/input-output-options). The text content of the status update with formatting as HTML.",
+                "readOnly": true,
+                "type": "string",
+                "example": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
+                "x-public": true
+              },
+              "color": {
+                "description": "The color associated with the status update.",
+                "readOnly": true,
+                "type": "string",
+                "enum": [
+                  "green",
+                  "yellow",
+                  "red"
+                ],
+                "x-public": true
+              }
+            }
           }
-        }
+        ]
+      },
+      "ProjectStatusCompact": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/AsanaObject",
+            "x-public": true
+          },
+          {
+            "type": "object",
+            "properties": {
+              "title": {
+                "description": "The title of the project status update.",
+                "readOnly": true,
+                "type": "string",
+                "example": "Status Update - Jun 15",
+                "x-public": true
+              }
+            }
+          }
+        ]
       },
       "ProjectStatusObject": {
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/ProjectStatus"
+            "$ref": "#/components/schemas/ProjectStatus",
+            "x-public": true
           }
         }
       },
@@ -1439,39 +1800,49 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ProjectStatus"
-            }
+            },
+            "x-public": true
           }
         }
       },
       "Section": {
-        "description": "A *section* is a subdivision of a project that groups tasks together. It\ncan either be a header above a list of tasks in a list view or a column\nin a board view of a project.\n\nSections are largely a shared idiom in Asana\u2019s API for both list and\nboard views of a project regardless of the project\u2019s layout.\n\nThe \u2018memberships\u2019 property when [getting a\ntask](https://asana.com/developers/api-reference/tasks#get) will return\nthe information for the section or the column under \u2018section\u2019 in the\nresponse.",
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaObject"
+            "$ref": "#/components/schemas/SectionCompact",
+            "x-public": true
           },
           {
-            "$ref": "#/components/schemas/AsanaCreatedAt"
-          }
-        ],
-        "properties": {
-          "name": {
-            "description": "The name of the section (i.e. the text displayed as the section header).",
-            "type": "string",
-            "example": "Next Actions"
+            "$ref": "#/components/schemas/AsanaCreatedAt",
+            "x-public": true
           },
-          "projects": {
-            "description": "The projects which contain the section.",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ProjectCompact"
+          {
+            "type": "object",
+            "description": "A *section* is a subdivision of a project that groups tasks together. It\ncan either be a header above a list of tasks in a list view or a column\nin a board view of a project.\n\nSections are largely a shared idiom in Asana\u2019s API for both list and\nboard views of a project regardless of the project\u2019s layout.\n\nThe \u2018memberships\u2019 property when [getting a\ntask](https://asana.com/developers/api-reference/tasks#get) will return\nthe information for the section or the column under \u2018section\u2019 in the\nresponse.",
+            "properties": {
+              "projects": {
+                "$ref": "#/components/schemas/ProjectArray",
+                "x-public": true
+              }
             }
           }
-        }
+        ]
       },
       "SectionCompact": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaNamedObject"
+            "$ref": "#/components/schemas/AsanaObject",
+            "x-public": true
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "description": "The name of the section (i.e. the text displayed as the section header).",
+                "type": "string",
+                "example": "Next Actions",
+                "x-public": true
+              }
+            }
           }
         ]
       },
@@ -1479,7 +1850,8 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/Section"
+            "$ref": "#/components/schemas/Section",
+            "x-public": true
           }
         }
       },
@@ -1490,96 +1862,321 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Section"
-            }
+            },
+            "x-public": true
           }
         }
       },
       "Story": {
-        "description": "A *story* represents an activity associated with an object in the Asana\nsystem. Stories are generated by the system whenever users take actions\nsuch as creating or assigning tasks, or moving tasks between projects.\n*Comments* are also a form of user-generated story.",
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaObject"
+            "$ref": "#/components/schemas/StoryCompact",
+            "x-public": true
           },
           {
-            "$ref": "#/components/schemas/AsanaSubtype"
-          },
-          {
-            "$ref": "#/components/schemas/AsanaCreatedByAndAt"
-          }
-        ],
-        "properties": {
-          "html_text": {
-            "description": "HTML formatted text for a comment. This will not include the name\nof the creator.\n\n**Note: This field is under active migration\u2014please see our blog\npost for more information.**",
-            "type": "string",
-            "example": "Get whatever Sashimi has."
-          },
-          "is_edited": {
-            "description": "Whether the text of the story has been edited after creation.",
-            "type": "boolean",
-            "example": false
-          },
-          "is_pinned": {
-            "description": "Whether the story should be pinned on the resource.",
-            "type": "boolean",
-            "example": false
-          },
-          "liked": {
-            "description": "True if the story is liked by the authorized user, false if not.\n\n**Note**: This property only exists for stories that provide\nlikes.",
-            "type": "boolean",
-            "readOnly": true,
-            "example": false
-          },
-          "likes": {
-            "description": "Array of users who have liked this story.\n\n**Note**: This property only exists for stories that provide\nlikes.",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/User"
-            },
-            "readOnly": true
-          },
-          "num_likes": {
-            "description": "The number of users who have liked this story.\n\n**Note**: This property only exists for stories that provide\nlikes.",
-            "type": "integer",
-            "readOnly": true,
-            "example": 5
-          },
-          "source": {
-            "description": "The component of the Asana product the user used to trigger the story.",
-            "type": "string",
-            "readOnly": true,
-            "example": "web"
-          },
-          "target": {
-            "description": "The object this story is associated with. Currently may only be a task.",
+            "type": "object",
+            "description": "**See [our forum post](https://forum.asana.com/t/no-more-parsing-story-text-new-fields-on-stories/42924) for\nmore info on when conditional fields are returned.**\nA *story* represents an activity associated with an object in the Asana\nsystem. Stories are generated by the system whenever users take actions\nsuch as creating or assigning tasks, or moving tasks between projects.\n*Comments* are also a form of user-generated story.",
             "properties": {
-              "id": {
-                "type": "integer",
-                "example": 1234
-              },
-              "name": {
+              "html_text": {
+                "description": "[Opt In](https://asana.com/developers/documentation/getting-started/input-output-options).\nHTML formatted text for a comment. This will not include the name\nof the creator.\n\n**Note: This field is under active migration\u2014please see our blog\npost for more information.**",
                 "type": "string",
-                "example": "Bug Task"
+                "example": "Get whatever Sashimi has.",
+                "x-public": true
+              },
+              "is_edited": {
+                "description": "**Conditional**. Whether the text of the story has been edited after creation.",
+                "type": "boolean",
+                "example": false,
+                "x-public": true
+              },
+              "is_pinned": {
+                "description": "**Conditional**. Whether the story should be pinned on the resource.",
+                "type": "boolean",
+                "example": false,
+                "x-public": true
+              },
+              "hearted": {
+                "description": "**Deprecated - please use likes instead**\n\n**Conditional**. True if the story is hearted by the authorized user, false if not.",
+                "type": "boolean",
+                "readOnly": true,
+                "example": false,
+                "x-public": true
+              },
+              "hearts": {
+                "description": "**Deprecated - please use likes instead**\n\n**Conditional**. Array of users who have hearted this story.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "readOnly": true,
+                "x-public": true
+              },
+              "num_hearts": {
+                "description": "**Deprecated - please use likes instead**\n\n**Conditional**. The number of users who have hearted this story.",
+                "type": "integer",
+                "readOnly": true,
+                "example": 5,
+                "x-public": true
+              },
+              "liked": {
+                "description": "**Conditional**. True if the story is liked by the authorized user, false if not.",
+                "type": "boolean",
+                "readOnly": true,
+                "example": false,
+                "x-public": true
+              },
+              "likes": {
+                "description": "**Conditional**. Array of users who have liked this story.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/User"
+                },
+                "readOnly": true,
+                "x-public": true
+              },
+              "num_likes": {
+                "description": "**Conditional**. The number of users who have liked this story.",
+                "type": "integer",
+                "readOnly": true,
+                "example": 5,
+                "x-public": true
+              },
+              "previews": {
+                "description": "**Conditional**. A collection of previews to be displayed in the story.\n\n**Note**: This property only exists for comment stories.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Preview"
+                },
+                "readOnly": true,
+                "x-public": true
+              },
+              "old_name": {
+                "description": "**Conditional**",
+                "type": "string",
+                "example": "This was the Old Name",
+                "x-public": true
+              },
+              "new_name": {
+                "description": "**Conditional**",
+                "type": "string",
+                "example": "This is the New Name",
+                "x-public": true
+              },
+              "old_dates": {
+                "description": "**Conditional**",
+                "type": "object",
+                "properties": {
+                  "start_on": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2019-09-15"
+                  },
+                  "due_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2012-02-22T02:06:58.158Z"
+                  },
+                  "due_on": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2019-09-15"
+                  }
+                },
+                "x-public": true
+              },
+              "new_dates": {
+                "description": "**Conditional**",
+                "type": "object",
+                "properties": {
+                  "start_on": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2019-09-15"
+                  },
+                  "due_at": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2012-02-22T02:06:58.158Z"
+                  },
+                  "due_on": {
+                    "type": "string",
+                    "format": "date",
+                    "example": "2019-09-15"
+                  }
+                },
+                "x-public": true
+              },
+              "old_resource_subtype": {
+                "description": "**Conditional**",
+                "type": "string",
+                "example": "default_task",
+                "x-public": true
+              },
+              "new_resource_subtype": {
+                "description": "**Conditional**",
+                "type": "string",
+                "example": "milestone",
+                "x-public": true
+              },
+              "story": {
+                "description": "**Conditional**",
+                "$ref": "#/components/schemas/StoryCompact",
+                "x-public": true
+              },
+              "assignee": {
+                "description": "**Conditional**",
+                "$ref": "#/components/schemas/UserCompact",
+                "x-public": true
+              },
+              "follower": {
+                "description": "**Conditional**",
+                "$ref": "#/components/schemas/UserCompact",
+                "x-public": true
+              },
+              "old_section": {
+                "description": "**Conditional**",
+                "$ref": "#/components/schemas/SectionCompact",
+                "x-public": true
+              },
+              "new_section": {
+                "description": "**Conditional**",
+                "$ref": "#/components/schemas/SectionCompact",
+                "x-public": true
+              },
+              "task": {
+                "description": "**Conditional**",
+                "$ref": "#/components/schemas/TaskCompact",
+                "x-public": true
+              },
+              "project": {
+                "description": "**Conditional**",
+                "$ref": "#/components/schemas/ProjectCompact",
+                "x-public": true
+              },
+              "tag": {
+                "description": "**Conditional**",
+                "$ref": "#/components/schemas/TagCompact",
+                "x-public": true
+              },
+              "custom_field": {
+                "description": "**Conditional**",
+                "$ref": "#/components/schemas/CustomFieldCompact",
+                "x-public": true
+              },
+              "old_text_value": {
+                "description": "**Conditional**",
+                "type": "string",
+                "example": "This was the Old Text",
+                "x-public": true
+              },
+              "new_text_value": {
+                "description": "**Conditional**",
+                "type": "string",
+                "example": "This is the New Text",
+                "x-public": true
+              },
+              "old_number_value": {
+                "description": "**Conditional**",
+                "type": "integer",
+                "example": 1,
+                "x-public": true
+              },
+              "new_number_value": {
+                "description": "**Conditional**",
+                "type": "integer",
+                "example": 2,
+                "x-public": true
+              },
+              "old_enum_value": {
+                "description": "**Conditional**",
+                "$ref": "#/components/schemas/EnumOptionCompact",
+                "x-public": true
+              },
+              "new_enum_value": {
+                "description": "**Conditional**",
+                "$ref": "#/components/schemas/EnumOptionCompact",
+                "x-public": true
+              },
+              "duplicate_of": {
+                "description": "**Conditional**",
+                "$ref": "#/components/schemas/TaskCompact",
+                "x-public": true
+              },
+              "duplicated_from": {
+                "description": "**Conditional**",
+                "$ref": "#/components/schemas/TaskCompact",
+                "x-public": true
+              },
+              "dependancy": {
+                "description": "**Conditional**",
+                "$ref": "#/components/schemas/TaskCompact",
+                "x-public": true
+              },
+              "source": {
+                "description": "The component of the Asana product the user used to trigger the story.",
+                "type": "string",
+                "readOnly": true,
+                "example": "web",
+                "x-public": true
+              },
+              "target": {
+                "description": "The object this story is associated with. Currently may only be a task.",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "example": 1234
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "Bug Task"
+                  }
+                },
+                "readOnly": true,
+                "x-public": true
               }
-            },
-            "readOnly": true
-          },
-          "text": {
-            "description": "**Create-only**. Human-readable text for the story or comment.\nThis will not include the name of the creator.\n\n**Note:** This is not guaranteed to be stable for a given type of\nstory. For example, text for a reassignment may not always say\n\u201cassigned to \u2026\u201d as the text for a story can both be edited and\nchange based on the language settings of the user making the request.\nUse the `resource_subtype` property to discover the action that\ncreated the story.",
-            "example": "marked today"
-          },
-          "type": {
-            "description": "**Deprecated: new integrations should prefer the `resource_subtype` field.** The type of this story. For more fine-grained inspection of story types, see the [`resource_subtype`] (https://asana.com/developers/api-reference/stories#field-resource_subtype) property.\n",
-            "type": "string",
-            "readOnly": true,
-            "example": "comment"
+            }
           }
-        }
+        ]
+      },
+      "StoryCompact": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/AsanaObject",
+            "x-public": true
+          },
+          {
+            "$ref": "#/components/schemas/AsanaSubtype",
+            "x-public": true
+          },
+          {
+            "$ref": "#/components/schemas/AsanaCreatedByAndAt",
+            "x-public": true
+          },
+          {
+            "type": "object",
+            "properties": {
+              "text": {
+                "description": "**Create-only**. Human-readable text for the story or comment.\nThis will not include the name of the creator.\n\n**Note:** This is not guaranteed to be stable for a given type of\nstory. For example, text for a reassignment may not always say\n\u201cassigned to \u2026\u201d as the text for a story can both be edited and\nchange based on the language settings of the user making the request.\nUse the `resource_subtype` property to discover the action that\ncreated the story.",
+                "example": "marked today",
+                "x-public": true
+              },
+              "type": {
+                "description": "**Deprecated: new integrations should prefer the `resource_subtype` field.** The type of this story. For more fine-grained inspection of story types, see the [`resource_subtype`] (https://asana.com/developers/api-reference/stories#field-resource_subtype) property.\n",
+                "type": "string",
+                "readOnly": true,
+                "example": "comment",
+                "x-public": true
+              }
+            }
+          }
+        ]
       },
       "StoryObject": {
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/Story"
+            "$ref": "#/components/schemas/Story",
+            "x-public": true
           }
         }
       },
@@ -1589,69 +2186,89 @@
           "data": {
             "items": {
               "$ref": "#/components/schemas/Story"
-            }
+            },
+            "x-public": true
           }
         }
       },
       "Tag": {
-        "description": "A *tag* is a label that can be attached to any task in Asana. It exists\nin a single workspace or organization.\n\nTags have some metadata associated with them, but it is possible that we\nwill simplify them in the future so it is not encouraged to rely too\nheavily on it. Unlike projects, tags do not provide any ordering on the\ntasks they are associated with.",
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaObject"
+            "$ref": "#/components/schemas/TagCompact",
+            "x-public": true
           },
           {
-            "$ref": "#/components/schemas/AsanaCreatedAt"
-          }
-        ],
-        "properties": {
-          "followers": {
-            "description": "Array of users following this tag.",
-            "type": "array",
-            "readOnly": true,
-            "items": {
-              "$ref": "#/components/schemas/User"
+            "type": "object",
+            "description": "A *tag* is a label that can be attached to any task in Asana. It exists\nin a single workspace or organization.\n\nTags have some metadata associated with them, but it is possible that we\nwill simplify them in the future so it is not encouraged to rely too\nheavily on it. Unlike projects, tags do not provide any ordering on the\ntasks they are associated with.",
+            "properties": {
+              "followers": {
+                "description": "Array of users following this tag.",
+                "type": "array",
+                "readOnly": true,
+                "items": {
+                  "$ref": "#/components/schemas/UserCompact"
+                },
+                "x-public": true
+              },
+              "color": {
+                "type": "string",
+                "description": "Color of the tag.",
+                "enum": [
+                  "dark-pink",
+                  "dark-green",
+                  "dark-blue",
+                  "dark-red",
+                  "dark-teal",
+                  "dark-brown",
+                  "dark-orange",
+                  "dark-purple",
+                  "dark-warm-gray",
+                  "light-pink",
+                  "light-green",
+                  "light-blue",
+                  "light-red",
+                  "light-teal",
+                  "light-brown",
+                  "light-orange",
+                  "light-purple",
+                  "light-warm-gray"
+                ],
+                "example": "light-green",
+                "x-public": true
+              },
+              "workspace": {
+                "$ref": "#/components/schemas/WorkspaceCompact",
+                "x-public": true
+              }
             }
-          },
-          "name": {
-            "description": "Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.",
-            "type": "string",
-            "example": "Stuff to buy"
-          },
-          "color": {
-            "type": "string",
-            "description": "Color of the tag.",
-            "enum": [
-              "dark-pink",
-              "dark-green",
-              "dark-blue",
-              "dark-red",
-              "dark-teal",
-              "dark-brown",
-              "dark-orange",
-              "dark-purple",
-              "dark-warm-gray",
-              "light-pink",
-              "light-green",
-              "light-blue",
-              "light-red",
-              "light-teal",
-              "light-brown",
-              "light-orange",
-              "light-purple",
-              "light-warm-gray"
-            ],
-            "example": "light-green"
-          },
-          "workspace": {
-            "$ref": "#/components/schemas/WorkspaceCompact"
           }
-        }
+        ]
+      },
+      "TagCompact": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/AsanaObject",
+            "x-public": true
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "description": "Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.",
+                "type": "string",
+                "example": "Stuff to buy",
+                "x-public": true
+              }
+            }
+          }
+        ]
       },
       "TagObject": {
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/Tag"
+            "$ref": "#/components/schemas/Tag",
+            "x-public": true
           }
         }
       },
@@ -1662,348 +2279,352 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Tag"
-            }
+            },
+            "x-public": true
           }
         }
       },
       "Task": {
-        "description": "The *task* is the basic object around which many operations in Asana are\ncentered. In the Asana application, multiple tasks populate the middle\npane according to some view parameters, and the set of selected tasks\ndetermines the more detailed information presented in the details pane.\n\nA *section*, at its core, is a task whose name ends with the colon\ncharacter `:`. Sections are unique in that they will be included in the\n*memberships* field of task objects returned in the API when the task is\nwithin a section. They can also be used to manipulate the ordering of a\ntask within a project.\n\n[Queries](https://asana.com/developers/api-reference/tasks#query) return\na compact representation of each object which is typically the id and\nname fields. Interested in a specific set of fields or all of the fields?\nUse [field\nselectors](https://asana.com/developers/documentation/getting-started/input-output-options)\nto manipulate what data is included in a response.",
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaObject"
+            "$ref": "#/components/schemas/TaskCompact",
+            "x-public": true
           },
           {
-            "$ref": "#/components/schemas/AsanaCreatedAt"
+            "$ref": "#/components/schemas/AsanaCreatedAt",
+            "x-public": true
           },
           {
-            "$ref": "#/components/schemas/AsanaSubtype"
-          }
-        ],
-        "properties": {
-          "assignee": {
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/User"
-              }
-            ]
+            "$ref": "#/components/schemas/AsanaSubtype",
+            "x-public": true
           },
-          "assignee_status": {
-            "description": "Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.",
-            "type": "string",
-            "enum": [
-              "today",
-              "upcoming",
-              "later",
-              "new",
-              "inbox"
-            ],
-            "example": "upcoming"
-          },
-          "completed": {
-            "description": "True if the task is currently marked complete, false if not.",
-            "type": "boolean",
-            "example": false
-          },
-          "completed_at": {
-            "description": "The time at which this task was completed, or null if the task is incomplete.",
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true,
-            "nullable": true,
-            "example": "2012-02-22T02:06:58.147Z"
-          },
-          "custom_fields": {
-            "description": "Array of custom field values applied to the project. These represent\nthe custom field values recorded on this project for a particular\ncustom field. For example, these custom field values will contain\nan `enum_value` property for custom fields of type `enum`, a\n`string_value` property for custom fields of type `string`, and\nso on. Please note that the `id` returned on each custom field\nvalue *is identical* to the `id` of the custom field, which\nallows referencing the custom field metadata through the\n`/custom_fields/custom_field-id` endpoint.",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/CustomField"
-            },
-            "readOnly": true
-          },
-          "dependencies": {
-            "description": "Array of resources referencing tasks that this task depends on. The objects contain only the ID of the dependency.",
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "integer",
-                  "example": 1234
-                },
-                "gid": {
-                  "type": "string",
-                  "example": "1234"
-                }
-              }
-            },
-            "readOnly": true,
-            "example": [
-              {
-                "id": 1234,
-                "gid": "1234"
-              },
-              {
-                "id": 4321,
-                "gid": "4321"
-              }
-            ]
-          },
-          "dependents": {
-            "description": "Array of resources referencing tasks that depend on this task. The objects contain only the ID of the dependent.",
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "integer",
-                  "example": 1234
-                },
-                "gid": {
-                  "type": "string",
-                  "example": "1234"
-                }
-              }
-            },
-            "readOnly": true,
-            "example": [
-              {
-                "id": 1234,
-                "gid": "1234"
-              },
-              {
-                "id": 4321,
-                "gid": "4321"
-              }
-            ]
-          },
-          "due_on": {
-            "description": "Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.",
-            "type": "string",
-            "format": "date",
-            "example": "2012-03-26",
-            "nullable": true
-          },
-          "due_at": {
-            "description": "Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.",
-            "type": "string",
-            "format": "date",
-            "example": "2012-02-22T02:06:58.147Z",
-            "nullable": true
-          },
-          "external": {
-            "description": "**OAuth Required**. The external field allows you to store app-specific metadata on tasks, including an id that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external id is set, you can use the notation `external:custom_id` to reference your object anywhere in the API where you may use the original object id. See the page on Custom External Data for more details.",
+          {
             "type": "object",
+            "description": "The *task* is the basic object around which many operations in Asana are\ncentered. In the Asana application, multiple tasks populate the middle\npane according to some view parameters, and the set of selected tasks\ndetermines the more detailed information presented in the details pane.\n\nA *section*, at its core, is a task whose name ends with the colon\ncharacter `:`. Sections are unique in that they will be included in the\n*memberships* field of task objects returned in the API when the task is\nwithin a section. They can also be used to manipulate the ordering of a\ntask within a project.\n\n[Queries](https://asana.com/developers/api-reference/tasks#query) return\na compact representation of each object which is typically the id and\nname fields. Interested in a specific set of fields or all of the fields?\nUse [field\nselectors](https://asana.com/developers/documentation/getting-started/input-output-options)\nto manipulate what data is included in a response.",
             "properties": {
-              "id": {
-                "type": "integer",
-                "example": "my_id"
+              "assignee": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/UserCompact"
+                  },
+                  {
+                    "type": "object",
+                    "nullable": true
+                  }
+                ],
+                "x-public": true
               },
-              "data": {
+              "assignee_status": {
+                "description": "Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.",
                 "type": "string",
-                "example": "A blob of information."
-              }
-            },
-            "example": {
-              "id": "my_id",
-              "data": "A blob of information"
-            }
-          },
-          "followers": {
-            "description": "Array of users following this task.",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/UserCompact"
-            },
-            "example": [
-              {
-                "id": 1234,
-                "name": "Mittens"
-              }
-            ]
-          },
-          "html_notes": {
-            "description": "The notes of the text with formatting as HTML.\n**Note: This field is under active migration\u2014please see our blog post for more information.**",
-            "type": "string",
-            "example": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>"
-          },
-          "hearted": {
-            "description": "**Deprecated - please use liked instead** True if the task is hearted by the authorized user, false if not.",
-            "type": "boolean",
-            "example": true
-          },
-          "hearts": {
-            "description": "**Deprecated - please use likes instead** Array of users who have hearted this task.",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/User"
-            },
-            "readOnly": true,
-            "example": [
-              {
-                "id": 1234,
-                "name": "Mittens"
-              }
-            ]
-          },
-          "liked": {
-            "description": "True if the task is liked by the authorized user, false if not.",
-            "type": "boolean",
-            "example": true
-          },
-          "likes": {
-            "description": "Array of users who have liked this task.",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/UserCompact"
-            },
-            "readOnly": true,
-            "example": [
-              {
-                "id": 1234,
-                "name": "Mittens"
-              }
-            ]
-          },
-          "memberships": {
-            "description": "**Create-only**. Array of projects this task is associated with and the section it is in. At task creation time, this array can be used to add the task to specific sections. After task creation, these associations can be modified using the `addProject` and `removeProject` endpoints. Note that over time, more types of memberships may be added to this property.",
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "project": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ProjectCompact"
-                    }
-                  ]
+                "enum": [
+                  "today",
+                  "upcoming",
+                  "later",
+                  "new",
+                  "inbox"
+                ],
+                "example": "upcoming",
+                "x-public": true
+              },
+              "completed": {
+                "description": "True if the task is currently marked complete, false if not.",
+                "type": "boolean",
+                "example": false,
+                "x-public": true
+              },
+              "completed_at": {
+                "description": "The time at which this task was completed, or null if the task is incomplete.",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true,
+                "nullable": true,
+                "example": "2012-02-22T02:06:58.147Z",
+                "x-public": true
+              },
+              "custom_fields": {
+                "description": "Array of custom field values applied to the project. These represent\nthe custom field values recorded on this project for a particular\ncustom field. For example, these custom field values will contain\nan `enum_value` property for custom fields of type `enum`, a\n`string_value` property for custom fields of type `string`, and\nso on. Please note that the `id` returned on each custom field\nvalue *is identical* to the `id` of the custom field, which\nallows referencing the custom field metadata through the\n`/custom_fields/custom_field-id` endpoint.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CustomField"
                 },
-                "section": {
-                  "allOf": [
-                    {
+                "readOnly": true,
+                "x-public": true
+              },
+              "dependencies": {
+                "description": "[Opt In](/developers/documentation/getting-started/input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the ID of the dependency.",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 1234
+                    },
+                    "gid": {
+                      "type": "string",
+                      "example": "1234"
+                    }
+                  }
+                },
+                "readOnly": true,
+                "example": [
+                  {
+                    "id": 1234,
+                    "gid": "1234"
+                  },
+                  {
+                    "id": 4321,
+                    "gid": "4321"
+                  }
+                ],
+                "x-public": true
+              },
+              "dependents": {
+                "description": "[Opt In](/developers/documentation/getting-started/input-output-options). Array of resources referencing tasks that depend on this task. The objects contain only the ID of the dependent.",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 1234
+                    },
+                    "gid": {
+                      "type": "string",
+                      "example": "1234"
+                    }
+                  }
+                },
+                "readOnly": true,
+                "example": [
+                  {
+                    "id": 1234,
+                    "gid": "1234"
+                  },
+                  {
+                    "id": 4321,
+                    "gid": "4321"
+                  }
+                ],
+                "x-public": true
+              },
+              "due_at": {
+                "description": "Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.",
+                "type": "string",
+                "format": "date",
+                "example": "2012-02-22T02:06:58.147Z",
+                "nullable": true,
+                "x-public": true
+              },
+              "due_on": {
+                "description": "Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.",
+                "type": "string",
+                "format": "date",
+                "example": "2012-03-26",
+                "nullable": true,
+                "x-public": true
+              },
+              "external": {
+                "description": "**OAuth Required**. **Conditional**. This field is returned only if external values are set or included by using [Opt In] (/developers/documentation/getting-started/input-output-options).\nThe external field allows you to store app-specific metadata on tasks, including an id that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external id is set, you can use the notation `external:custom_id` to reference your object anywhere in the API where you may use the original object id. See the page on Custom External Data for more details.",
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "example": 1234
+                  },
+                  "gid": {
+                    "type": "string",
+                    "example": "1234"
+                  },
+                  "data": {
+                    "type": "string",
+                    "example": "A blob of information."
+                  }
+                },
+                "example": {
+                  "id": "my_id",
+                  "data": "A blob of information"
+                },
+                "x-public": true
+              },
+              "followers": {
+                "description": "Array of users following this task.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/UserCompact"
+                },
+                "x-public": true
+              },
+              "html_notes": {
+                "description": "[Opt In](/developers/documentation/getting-started/input-output-options). The notes of the text with formatting as HTML.\n**Note: This field is under active migration\u2014please see our blog post for more information.**",
+                "type": "string",
+                "example": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
+                "x-public": true
+              },
+              "hearted": {
+                "description": "**Deprecated - please use liked instead** True if the task is hearted by the authorized user, false if not.",
+                "type": "boolean",
+                "example": true,
+                "x-public": true
+              },
+              "hearts": {
+                "description": "**Deprecated - please use likes instead** Array of users who have hearted this task.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/UserCompact"
+                },
+                "readOnly": true,
+                "x-public": true
+              },
+              "liked": {
+                "description": "True if the task is liked by the authorized user, false if not.",
+                "type": "boolean",
+                "example": true,
+                "x-public": true
+              },
+              "likes": {
+                "description": "Array of users who have liked this task.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/UserCompact"
+                },
+                "readOnly": true,
+                "x-public": true
+              },
+              "memberships": {
+                "description": "**Create-only**. Array of projects this task is associated with and the section it is in. At task creation time, this array can be used to add the task to specific sections. After task creation, these associations can be modified using the `addProject` and `removeProject` endpoints. Note that over time, more types of memberships may be added to this property.",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "project": {
+                      "$ref": "#/components/schemas/ProjectCompact"
+                    },
+                    "section": {
                       "$ref": "#/components/schemas/SectionCompact"
                     }
-                  ]
-                }
-              }
-            },
-            "example": [
-              {
-                "project": {
-                  "id": 1331,
-                  "gid": "1331",
-                  "name": "Bugs"
+                  }
                 },
-                "section": {
-                  "id": 1123,
-                  "gid": "1123",
-                  "name": "P1:"
-                }
+                "x-public": true
+              },
+              "modified_at": {
+                "description": "The time at which this task was last modified.\n\n**Note:** This does not currently reflect any changes in\nassociations such as projects or comments that may have been\nadded or removed from the task.",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true,
+                "example": "2012-02-22T02:06:58.147Z",
+                "x-public": true
+              },
+              "name": {
+                "description": "Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.",
+                "type": "string",
+                "example": "Buy catnip",
+                "x-public": true
+              },
+              "notes": {
+                "description": "More detailed, free-form textual information associated with the task.",
+                "type": "string",
+                "example": "Mittens really likes the stuff from Humboldt.",
+                "x-public": true
+              },
+              "num_hearts": {
+                "description": "**Deprecated - please use likes instead** The number of users who have hearted this task.",
+                "type": "integer",
+                "example": 5,
+                "readOnly": true,
+                "x-public": true
+              },
+              "num_likes": {
+                "description": "The number of users who have liked this task.",
+                "type": "integer",
+                "example": 5,
+                "readOnly": true,
+                "x-public": true
+              },
+              "num_subtasks": {
+                "description": "[Opt In](https://asana.com/developers/documentation/getting-started/input-output-options). The number of subtasks on this task.\n",
+                "type": "integer",
+                "example": 3,
+                "readOnly": true,
+                "x-public": true
+              },
+              "parent": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/TaskCompact"
+                  },
+                  {
+                    "type": "object",
+                    "description": "The parent of this task, or `null` if this is not a subtask. This property cannot be modified using a PUT request but you can change it with the `setParent` endpoint. You can create subtasks by using the subtasks endpoint.",
+                    "nullable": true
+                  }
+                ],
+                "x-public": true
+              },
+              "projects": {
+                "description": "**Create-only.** Array of projects this task is associated with. At task creation time, this array can be used to add the task to many projects at once. After task creation, these associations can be modified using the addProject and removeProject endpoints.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ProjectCompact"
+                },
+                "x-public": true
+              },
+              "resource_subtype": {
+                "type": "string",
+                "descriptions": "The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.\nThe resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.\n**The resource_subtype of `section` is under active migration\u2014please see our [forum post](https://forum.asana.com/t/sections-are-dead-long-live-sections) for more information.**",
+                "enum": [
+                  "default_task",
+                  "milestone",
+                  "section"
+                ],
+                "example": "default_task",
+                "x-public": true
+              },
+              "start_on": {
+                "description": "The day on which work begins for the task , or null if the task has\nno start date. This takes a date with `YYYY-MM-DD` format.\n\n**Note:** `due_on` or `due_at` must be present in the request when\nsetting or unsetting the `start_on` parameter.",
+                "type": "string",
+                "nullable": true,
+                "format": "date",
+                "example": "2012-03-26",
+                "x-public": true
+              },
+              "tags": {
+                "description": "**Create-only**. Array of tags associated with this task. This property may be specified on creation using just an array of tag IDs.  In order to change tags on an existing task use `addTag` and `removeTag`.",
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Tag"
+                },
+                "example": [
+                  {
+                    "id": 59746,
+                    "gid": "59746",
+                    "name": "Grade A"
+                  }
+                ],
+                "x-public": true
+              },
+              "workspace": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/WorkspaceCompact"
+                  },
+                  {
+                    "type": "object",
+                    "description": "*Create-only*. The workspace this task is associated with. Once created, task cannot be moved to a different workspace. This attribute can only be specified at creation time."
+                  }
+                ],
+                "x-public": true
               }
-            ]
-          },
-          "modified_at": {
-            "description": "The time at which this task was last modified.\n\n**Note:** This does not currently reflect any changes in\nassociations such as projects or comments that may have been\nadded or removed from the task.",
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true,
-            "example": "2012-02-22T02:06:58.147Z"
-          },
-          "name": {
-            "description": "Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.",
-            "type": "string",
-            "example": "Buy catnip"
-          },
-          "notes": {
-            "description": "More detailed, free-form textual information associated with the task.",
-            "type": "string",
-            "example": "Mittens really likes the stuff from Humboldt."
-          },
-          "num_hearts": {
-            "description": "**Deprecated - please use likes instead** The number of users who have hearted this task.",
-            "type": "integer",
-            "example": 5,
-            "readOnly": true
-          },
-          "num_likes": {
-            "description": "The number of users who have liked this task.",
-            "type": "integer",
-            "example": 5,
-            "readOnly": true
-          },
-          "num_subtasks": {
-            "description": "[Opt In](https://asana.com/developers/documentation/getting-started/input-output-options). The number of subtasks on this task.\n",
-            "type": "integer",
-            "example": 3,
-            "readOnly": true
-          },
-          "projects": {
-            "description": "**Create-only.** Array of projects this task is associated with. At task creation time, this array can be used to add the task to many projects at once. After task creation, these associations can be modified using the addProject and removeProject endpoints.",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ProjectCompact"
-            },
-            "example": [
-              {
-                "id": 1331,
-                "gid": "1331",
-                "name": "Stuff to buy"
-              }
-            ]
-          },
-          "parent": {
-            "description": "The parent of this task, or `null` if this is not a subtask. This property cannot be modified using a PUT request but you can change it with the `setParent` endpoint. You can create subtasks by using the subtasks endpoint.",
-            "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/TaskCompact"
-              }
-            ]
-          },
-          "resource_subtype": {
-            "descriptions": "The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.\nThe resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.\n**The resource_subtype of `section` is under active migration\u2014please see our [forum post](https://forum.asana.com/t/sections-are-dead-long-live-sections) for more information.**",
-            "type": "string",
-            "enum": [
-              "default_task",
-              "milestone",
-              "section"
-            ]
-          },
-          "start_on": {
-            "description": "The day on which work begins for the task , or null if the task has\nno start date. This takes a date with `YYYY-MM-DD` format.\n\n**Note:** `due_on` or `due_at` must be present in the request when\nsetting or unsetting the `start_on` parameter.",
-            "type": "string",
-            "nullable": true,
-            "format": "date",
-            "example": "2012-03-26"
-          },
-          "tags": {
-            "description": "**Create-only**. Array of tags associated with this task. This property may be specified on creation using just an array of tag IDs.  In order to change tags on an existing task use `addTag` and `removeTag`.",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Tag"
-            },
-            "example": [
-              {
-                "id": 59746,
-                "gid": "59746",
-                "name": "Grade A"
-              }
-            ]
-          },
-          "workspace": {
-            "description": "*Create-only*. The workspace this task is associated with. Once created, task cannot be moved to a different workspace. This attribute can only be specified at creation time.",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/WorkspaceCompact"
-              }
-            ]
+            }
           }
-        }
+        ]
       },
       "TaskCompact": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaNamedObject"
+            "$ref": "#/components/schemas/AsanaNamedObject",
+            "x-public": true
           }
         ]
       },
@@ -2011,7 +2632,8 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/Task"
+            "$ref": "#/components/schemas/Task",
+            "x-public": true
           }
         }
       },
@@ -2022,34 +2644,66 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Task"
-            }
+            },
+            "x-public": true
           }
         }
       },
       "Team": {
-        "description": "A *team* is used to group related projects and people together within an\norganization. Each project in an organization is associated with a team.",
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaNamedObject"
-          }
-        ],
-        "properties": {
-          "description": {
-            "description": "The description of the team.",
-            "type": "string",
-            "example": "All developers should be members of this team."
+            "$ref": "#/components/schemas/TeamCompact",
+            "x-public": true
           },
-          "html_description": {
-            "description": "The description of the team with formatting as HTML.\n**Note: This field is under active migration\u2014please see our [blog post](https://asana.com/developers/news/new-rich-text) for more information.**\n",
-            "type": "string",
-            "example": "<body><em>All</em> developers should be members of this team.</body>"
+          {
+            "type": "object",
+            "description": "A *team* is used to group related projects and people together within an\norganization. Each project in an organization is associated with a team.",
+            "properties": {
+              "description": {
+                "description": "[Opt In](/developers/documentation/getting-started/input-output-options). The description of the team.\n",
+                "type": "string",
+                "example": "All developers should be members of this team.",
+                "x-public": true
+              },
+              "html_description": {
+                "description": "[Opt In](/developers/documentation/getting-started/input-output-options). The description of the team with formatting as HTML.\n**Note: This field is under active migration\u2014please see our [blog post](https://asana.com/developers/news/new-rich-text) for more information.**\n",
+                "type": "string",
+                "example": "<body><em>All</em> developers should be members of this team.</body>",
+                "x-public": true
+              },
+              "organization": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/WorkspaceCompact"
+                  },
+                  {
+                    "type": "object",
+                    "description": "The organization/workspace the team belongs to.\n"
+                  }
+                ],
+                "x-public": true
+              },
+              "subscription_plan": {
+                "description": "[Opt In](/developers/documentation/getting-started/input-output-options). The subscription plan of this team.\n",
+                "type": "string",
+                "enum": [
+                  "free",
+                  "premium",
+                  "business",
+                  "enterprise"
+                ],
+                "example": "premium",
+                "x-public": true
+              }
+            }
           }
-        }
+        ]
       },
       "TeamCompact": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaNamedObject"
+            "$ref": "#/components/schemas/AsanaNamedObject",
+            "x-public": true
           }
         ]
       },
@@ -2057,7 +2711,8 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/Team"
+            "$ref": "#/components/schemas/Team",
+            "x-public": true
           }
         }
       },
@@ -2068,79 +2723,94 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Team"
-            }
+            },
+            "x-public": true
           }
         }
       },
       "User": {
-        "description": "A *user* object represents an account in Asana that can be given access\nto various workspaces, projects, and tasks.\n\nLike other objects in the system, users are referred to by numerical\nIDs. However, the special string identifier `me` can be used anywhere a\nuser ID is accepted, to refer to the current authenticated user.",
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaObject"
-          }
-        ],
-        "properties": {
-          "email": {
-            "type": "string",
-            "format": "email",
-            "readOnly": true,
-            "description": "The user\u2019s email address.",
-            "example": "gsanchez@example.com"
+            "$ref": "#/components/schemas/UserCompact",
+            "x-public": true
           },
-          "name": {
-            "type": "string",
-            "description": "**Read-only except when same user as requester**. The user\u2019s name.",
-            "example": "Greg Sanchez"
-          },
-          "photo": {
+          {
             "type": "object",
-            "nullable": true,
+            "description": "A *user* object represents an account in Asana that can be given access\nto various workspaces, projects, and tasks.\n\nLike other objects in the system, users are referred to by numerical\nIDs. However, the special string identifier `me` can be used anywhere a\nuser ID is accepted, to refer to the current authenticated user.",
             "properties": {
-              "image_21x21": {
+              "email": {
                 "type": "string",
-                "format": "uri"
+                "format": "email",
+                "readOnly": true,
+                "description": "The user\u2019s email address.",
+                "example": "gsanchez@example.com",
+                "x-public": true
               },
-              "image_27x27": {
-                "type": "string",
-                "format": "uri"
+              "photo": {
+                "type": "object",
+                "nullable": true,
+                "properties": {
+                  "image_21x21": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "image_27x27": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "image_36x36": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "image_60x60": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "image_128x128": {
+                    "type": "string",
+                    "format": "uri"
+                  }
+                },
+                "readOnly": true,
+                "description": "A map of the user\u2019s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.",
+                "example": {
+                  "image_21x21": "https://...",
+                  "image_27x27": "https://...",
+                  "image_36x36": "https://...",
+                  "image_60x60": "https://...",
+                  "image_128x128": "https://..."
+                },
+                "x-public": true
               },
-              "image_36x36": {
-                "type": "string",
-                "format": "uri"
-              },
-              "image_60x60": {
-                "type": "string",
-                "format": "uri"
-              },
-              "image_128x128": {
-                "type": "string",
-                "format": "uri"
+              "workspaces": {
+                "description": "Workspaces and organizations this user may access.\nNote\\: The API will only return workspaces and organizations that also contain the authenticated user.",
+                "readOnly": true,
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Workspace"
+                },
+                "x-public": true
               }
-            },
-            "readOnly": true,
-            "description": "A map of the user\u2019s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.",
-            "example": {
-              "image_21x21": "https://...",
-              "image_27x27": "https://...",
-              "image_36x36": "https://...",
-              "image_60x60": "https://...",
-              "image_128x128": "https://..."
-            }
-          },
-          "workspaces": {
-            "description": "Workspaces and organizations this user may access.\nNote\\: The API will only return workspaces and organizations that also contain the authenticated user.",
-            "readOnly": true,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Workspace"
             }
           }
-        }
+        ]
       },
       "UserCompact": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaObject"
+            "$ref": "#/components/schemas/AsanaNamedObject",
+            "x-public": true
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "**Read-only except when same user as requester**. The user\u2019s name.",
+                "example": "Greg Sanchez",
+                "x-public": true
+              }
+            }
           }
         ]
       },
@@ -2148,7 +2818,8 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/User"
+            "$ref": "#/components/schemas/User",
+            "x-public": true
           }
         }
       },
@@ -2159,7 +2830,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/User"
-            }
+            },
+            "x-public": true
           }
         }
       },
@@ -2188,98 +2860,126 @@
                 ],
                 "example": 12345
               }
-            }
+            },
+            "x-public": true
           }
         }
       },
       "UserTaskList": {
-        "description": "A user task list represents the tasks assigned to a particular user. It provides API access to a user\u2019s \u201cMy Tasks\u201d view in Asana.\nA user\u2019s \u201cMy Tasks\u201d represent all of the tasks assigned to that user. It is visually divided into regions based on the task\u2019s [`assignee_status`] (https://asana.com/developers/api-reference/tasks#field-assignee_status) for Asana users to triage their tasks based on when they can address them. When building an integration it\u2019s worth noting that tasks with due dates will automatically move through `assignee_status` states as their due dates approach; read up on [task auto-promotion](https://asana.com/guide/help/fundamentals/my-tasks#gl-auto-promote) for more information.",
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaNamedObject"
-          }
-        ],
-        "properties": {
-          "owner": {
-            "description": "The owner of the user task list, i.e. the person whose My Tasks is represented by this resource.",
-            "readOnly": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/UserCompact"
-              }
-            ]
+            "$ref": "#/components/schemas/AsanaNamedObject",
+            "x-public": true
           },
-          "workspace": {
-            "description": "The workspace in which the user task list is located.",
-            "readOnly": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/WorkspaceCompact"
+          {
+            "type": "object",
+            "description": "A user task list represents the tasks assigned to a particular user. It provides API access to a user\u2019s \u201cMy Tasks\u201d view in Asana.\nA user\u2019s \u201cMy Tasks\u201d represent all of the tasks assigned to that user. It is visually divided into regions based on the task\u2019s [`assignee_status`] (https://asana.com/developers/api-reference/tasks#field-assignee_status) for Asana users to triage their tasks based on when they can address them. When building an integration it\u2019s worth noting that tasks with due dates will automatically move through `assignee_status` states as their due dates approach; read up on [task auto-promotion](https://asana.com/guide/help/fundamentals/my-tasks#gl-auto-promote) for more information.",
+            "properties": {
+              "owner": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/UserCompact"
+                  },
+                  {
+                    "type": "object",
+                    "description": "The owner of the user task list, i.e. the person whose My Tasks is represented by this resource.",
+                    "readOnly": true
+                  }
+                ],
+                "x-public": true
+              },
+              "workspace": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/WorkspaceCompact"
+                  },
+                  {
+                    "type": "object",
+                    "description": "The workspace in which the user task list is located.",
+                    "readOnly": true
+                  }
+                ],
+                "x-public": true
               }
-            ]
+            }
           }
-        }
+        ]
       },
       "UserTaskListObject": {
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/UserTaskList"
+            "$ref": "#/components/schemas/UserTaskList",
+            "x-public": true
           }
         }
       },
       "Webhook": {
-        "description": "Webhooks allow an application to be notified of changes. This is in\naddition to the ability to fetch those changes directly as Events - in\nfact, Webhooks are just a way to receive\n[Events](https://asana.com/developers/api-reference/events) via HTTP POST\nat the time they occur instead of polling for them. For services\naccessible via HTTP this is often vastly more convenient, and if events\nare not too frequent can be significantly more efficient.\n\nIn both cases, however, changes are represented as Event objects - refer\nto the [Events\ndocumentation](https://asana.com/developers/api-reference/events) for\nmore information on what data these events contain.\n\n**Note**: While Webhooks send arrays of Event objects to their target,\nthe Event objects themselves contain *only IDs*, rather than the actual\nresource they are referencing. Webhooks themselves contain only the\ninformation necessary to deliver the events to the desired target as they\nare generated.",
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaObject"
+            "$ref": "#/components/schemas/AsanaObject",
+            "x-public": true
           },
           {
-            "$ref": "#/components/schemas/AsanaCreatedAt"
-          }
-        ],
-        "properties": {
-          "active": {
-            "description": "If true, the webhook will send events - if false it is considered inactive and will not generate events.",
-            "type": "boolean",
-            "example": false
+            "$ref": "#/components/schemas/AsanaCreatedAt",
+            "x-public": true
           },
-          "last_failure_at": {
-            "description": "The timestamp when the webhook last received an error when sending an event to the target.",
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true,
-            "example": "2012-02-22T02:06:58.147Z"
-          },
-          "last_failure_content": {
-            "description": "The contents of the last error response sent to the webhook when attempting to deliver events to the target.",
-            "type": "string",
-            "readOnly": true,
-            "example": "500 Server Error\\n\\nCould not complete the request"
-          },
-          "last_success_at": {
-            "description": "The timestamp when the webhook last successfully sent an event to the target.",
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true,
-            "example": "2012-02-22T02:06:58.147Z"
-          },
-          "resource": {
-            "description": "The resource the webhook is subscribed to.",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AsanaNamedObject"
+          {
+            "type": "object",
+            "description": "Webhooks allow an application to be notified of changes. This is in\naddition to the ability to fetch those changes directly as Events - in\nfact, Webhooks are just a way to receive\n[Events](https://asana.com/developers/api-reference/events) via HTTP POST\nat the time they occur instead of polling for them. For services\naccessible via HTTP this is often vastly more convenient, and if events\nare not too frequent can be significantly more efficient.\n\nIn both cases, however, changes are represented as Event objects - refer\nto the [Events\ndocumentation](https://asana.com/developers/api-reference/events) for\nmore information on what data these events contain.\n\n**Note**: While Webhooks send arrays of Event objects to their target,\nthe Event objects themselves contain *only IDs*, rather than the actual\nresource they are referencing. Webhooks themselves contain only the\ninformation necessary to deliver the events to the desired target as they\nare generated.",
+            "properties": {
+              "active": {
+                "description": "If true, the webhook will send events - if false it is considered inactive and will not generate events.",
+                "type": "boolean",
+                "example": false,
+                "x-public": true
+              },
+              "last_failure_at": {
+                "description": "The timestamp when the webhook last received an error when sending an event to the target.",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true,
+                "example": "2012-02-22T02:06:58.147Z",
+                "x-public": true
+              },
+              "last_failure_content": {
+                "description": "The contents of the last error response sent to the webhook when attempting to deliver events to the target.",
+                "type": "string",
+                "readOnly": true,
+                "example": "500 Server Error\\n\\nCould not complete the request",
+                "x-public": true
+              },
+              "last_success_at": {
+                "description": "The timestamp when the webhook last successfully sent an event to the target.",
+                "type": "string",
+                "format": "date-time",
+                "readOnly": true,
+                "example": "2012-02-22T02:06:58.147Z",
+                "x-public": true
+              },
+              "resource": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/AsanaNamedObject"
+                  },
+                  {
+                    "type": "object",
+                    "description": "The resource the webhook is subscribed to."
+                  }
+                ],
+                "x-public": true
+              },
+              "target": {
+                "description": "The URL to receive the HTTP POST.",
+                "type": "string",
+                "format": "uri",
+                "readOnly": true,
+                "example": "https://example.com/receive-webhook/7654",
+                "x-public": true
               }
-            ]
-          },
-          "target": {
-            "description": "The URL to receive the HTTP POST.",
-            "type": "string",
-            "format": "uri",
-            "readOnly": true,
-            "example": "https://example.com/receive-webhook/7654"
+            }
           }
-        }
+        ]
       },
       "WebhookEvent": {
         "type": "object",
@@ -2288,40 +2988,46 @@
             "description": "The type of action taken that triggered the event.",
             "type": "string",
             "readOnly": true,
-            "example": "changed"
+            "example": "changed",
+            "x-public": true
           },
           "created_at": {
             "description": "The timestamp when the event occurred.",
             "type": "string",
             "format": "date-time",
             "readOnly": true,
-            "example": "2012-02-22T02:06:58.147Z"
+            "example": "2012-02-22T02:06:58.147Z",
+            "x-public": true
           },
           "parent": {
             "description": "For added/removed events, the parent ID that resource was added to or removed from. The parent will be `null` for other event types.",
             "type": "integer",
             "readOnly": true,
             "nullable": true,
-            "example": 12345
+            "example": 12345,
+            "x-public": true
           },
           "resource": {
             "description": "The resource ID the event occurred on.\n\n**Note**: The resource that triggered the event may be different from\nthe one that the events were requested for. For example, a\nsubscription to a project will contain events for tasks contained\nwithin the project.",
             "type": "integer",
             "readOnly": true,
-            "example": 32154
+            "example": 32154,
+            "x-public": true
           },
           "type": {
             "description": "The type of the resource that generated the event.\n\n**Note**: Currently, only tasks, projects and stories generate\nevents.",
             "type": "string",
             "readOnly": true,
-            "example": "task"
+            "example": "task",
+            "x-public": true
           },
           "user": {
             "description": "The ID of the user who triggered the event.\n\n**Note**: The event may be triggered by a different user than the\nsubscriber. For example, if user A subscribes to a task and user B\nmodified it, the event\u2019s user will be user B. Note: Some events are\ngenerated by the system, and will have `null` as the user. API\nconsumers should make sure to handle this case.",
             "type": "integer",
             "readOnly": true,
             "nullable": true,
-            "example": 321654987
+            "example": 321654987,
+            "x-public": true
           }
         }
       },
@@ -2329,7 +3035,8 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/Webhook"
+            "$ref": "#/components/schemas/Webhook",
+            "x-public": true
           }
         }
       },
@@ -2340,40 +3047,60 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Webhook"
-            }
+            },
+            "x-public": true
           }
         }
       },
       "Workspace": {
-        "description": "A *workspace* is the highest-level organizational unit in Asana. All\nprojects and tasks have an associated workspace.\n\nAn *organization* is a special kind of workspace that represents a\ncompany. In an organization, you can group your projects into teams.\nYou can read more about how organizations work on the Asana Guide. To\ntell if your workspace is an organization or not, check its\n`is_organization` property.\n\nOver time, we intend to migrate most workspaces into organizations and\nto release more organization-specific functionality. We may eventually\ndeprecate using workspace-based APIs for organizations. Currently, and\nuntil after some reasonable grace period following any further\nannouncements, you can still reference organizations in any `workspace`\nparameter.",
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaNamedObject"
-          }
-        ],
-        "properties": {
-          "email_domains": {
-            "description": "The email domains that are associated with this workspace.",
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "uri"
-            },
-            "example": [
-              "asana.com"
-            ]
+            "$ref": "#/components/schemas/AsanaNamedObject",
+            "x-public": true
           },
-          "is_organization": {
-            "description": "Whether the workspace is an *organization*.",
-            "type": "boolean",
-            "example": false
+          {
+            "type": "object",
+            "description": "A *workspace* is the highest-level organizational unit in Asana. All\nprojects and tasks have an associated workspace.\n\nAn *organization* is a special kind of workspace that represents a\ncompany. In an organization, you can group your projects into teams.\nYou can read more about how organizations work on the Asana Guide. To\ntell if your workspace is an organization or not, check its\n`is_organization` property.\n\nOver time, we intend to migrate most workspaces into organizations and\nto release more organization-specific functionality. We may eventually\ndeprecate using workspace-based APIs for organizations. Currently, and\nuntil after some reasonable grace period following any further\nannouncements, you can still reference organizations in any `workspace`\nparameter.",
+            "properties": {
+              "email_domains": {
+                "description": "The email domains that are associated with this workspace.",
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "example": [
+                  "asana.com"
+                ],
+                "x-public": true
+              },
+              "is_organization": {
+                "description": "Whether the workspace is an *organization*.",
+                "type": "boolean",
+                "example": false,
+                "x-public": true
+              },
+              "subscription_plan": {
+                "description": "[Opt In](/developers/documentation/getting-started/input-output-options). The subscription plan of this organization.\n",
+                "type": "string",
+                "enum": [
+                  "free",
+                  "premium",
+                  "business",
+                  "enterprise"
+                ],
+                "example": "enterprise",
+                "x-public": true
+              }
+            }
           }
-        }
+        ]
       },
       "WorkspaceCompact": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaNamedObject"
+            "$ref": "#/components/schemas/AsanaNamedObject",
+            "x-public": true
           }
         ]
       },
@@ -2381,7 +3108,8 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/Workspace"
+            "$ref": "#/components/schemas/Workspace",
+            "x-public": true
           }
         }
       },
@@ -2392,7 +3120,8 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Workspace"
-            }
+            },
+            "x-public": true
           }
         }
       }
@@ -2630,7 +3359,7 @@
       ],
       "post": {
         "summary": "Submit parallel requests",
-        "description": "There are many cases where you want to accomplish a variety of work in\nthe Asana API but want to minimize the number of HTTP requests you make.\nFor example:\n\n* Modern browsers limit the number of requests that a single web page can\n  make at once.\n* Mobile apps will use more battery life to keep the cellular radio on\n  when making a series of requests.\n* There is an overhead cost to developing software that can make multiple\n  requests in parallel.\n* Some cloud platforms handle parallelism poorly, or disallow it\n  entirely.\n* To make development easier in these use cases, Asana provides a **batch\n  API** that enables developers to perform multiple \u201cactions\u201d by making\n  only a single HTTP request.\n\n**Making a Batch Request**\n\nTo make a batch request, send a `POST` request to `/batch`. Like other\n`POST` endpoints, the body should contain a `data` envelope. Inside this\nenvelope should be a single `actions` field, containing a list of\n\u201caction\u201d objects.  Each action represents a standard request to an\nexisting endpoint in the Asana API.\n\n**The maximum number of actions allowed in a single batch request is 10**.\nMaking a batch request with no actions in it will result in a `400 Bad\nRequest`.\n\nWhen the batch API receives the list of actions to execute, it will\ndispatch those actions to the already-implemented endpoints specified by\nthe `relative_path` and `method` for each action. This happens in\nparallel, so all actions in the request will be processed simultaneously.\nThere is no guarantee of the execution order for these actions, nor is\nthere a way to use the output of one action as the input of another\naction (such as creating a task and then commenting on it).\n\nThe response to the batch request will contain (within the `data`\nenvelope) a list of result objects, one for each action. The results are\nguaranteed to be in the same order as the actions in the request, e.g.,\nthe first result in the response corresponds to the first action in the\nrequest.\n\nThe batch API will always attempt to return a `200 Success` response with\nindividual result objects for each individual action in the request. Only\nin certain cases (such as missing authorization or malformed JSON in the\nbody) will the entire request fail with another status code. Even if\nevery individual action in the request fails, the batch API will still\nreturn a `200 Success` response, and each result object in the response\nwill contain the errors encountered with each action.\n\n**Rate Limiting**\n\nThe batch API fully respects all of our rate limiting. This means that a\nbatch request counts against *both* the standard rate limiter and the\nconcurrent request limiter as though you had made a separate HTTP request\nfor every individual action. For example, a batch request with five\nactions counts as five separate requests in the standard rate limiter,\nand counts as five concurrent requests in the concurrent request limiter.\nThe batch request itself incurs no cost.\n\nIf any of the actions in a batch request would exceed any of the enforced\nlimits, the *entire* request will fail with a `429 Too Many Requests`\nerror. This is to prevent the unpredictability of which actions might\nsucceed if not all of them could succeed.\n\n**Restrictions**\n\nNot every API endpoint can be accessed through the batch API.\nSpecifically, the following actions cannot be taken and will result in a\n`400 Bad Request` for that action:\n\n* Uploading attachments\n* Creating, getting, or deleting organization exports\n* Any SCIM operations\n* Nested calls to the batch API",
+        "description": "Make multiple requests in parallel to Asana's API.",
         "tags": [
           "Batch API"
         ],
@@ -6725,7 +7454,7 @@
       },
       "post": {
         "summary": "Create a task",
-        "description": "Creating a new task is as easy as POSTing to the `/tasks` endpoint with a\ndata block containing the fields you\u2019d like to set on the task. Any\nunspecified fields will take on default values.\n\nEvery task is required to be created in a specific workspace, and this\nworkspace cannot be changed once set. The workspace need not be set\nexplicitly if you specify `projects` or a `parent` task instead.\n\n`projects` can be a comma separated list of projects, or just a single\nproject the task should belong to.",
+        "description": "Creating a new task is as easy as POSTing to the `/tasks` endpoint with a\ndata block containing the fields you\u2019d like to set on the task. Any\nunspecified fields will take on default values.\n\nEvery task is required to be created in a specific workspace, and this\nworkspace cannot be changed once set. The workspace need not be set\nexplicitly if you specify `projects` or a `parent` task instead.",
         "tags": [
           "Tasks"
         ],
@@ -6736,7 +7465,11 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TaskObject"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/TaskObject"
+                  }
+                ]
               }
             }
           }
@@ -8259,16 +8992,6 @@
     "/workspaces/{workspace_gid}/tasks/search": {
       "parameters": [
         {
-          "name": "workspace_gid",
-          "in": "path",
-          "required": true,
-          "description": "The globally unique identifier for the workspace.",
-          "schema": {
-            "type": "integer"
-          },
-          "example": 1234
-        },
-        {
           "$ref": "#/components/parameters/workspace_path_gid"
         },
         {
@@ -8293,6 +9016,18 @@
             "type": "string"
           },
           "example": "Bug"
+        },
+        {
+          "name": "resource_subtype",
+          "description": "Filters results by the task's resource_subtype",
+          "schema": {
+            "type": "string",
+            "enum": [
+              "default_task",
+              "milestone"
+            ]
+          },
+          "example": "milestone"
         },
         {
           "name": "assignee.any",
@@ -8772,7 +9507,7 @@
       ],
       "get": {
         "summary": "Query for tasks in a workspace",
-        "description": "The search endpoint allows you to build complex queries to find and fetch exactly the data you need from Asana. For a more comprehensive description of all the query parameters and limitations of this endpoint, see our [long-form documentation](/developers/documentation/getting-started/search-api) for this feature.",
+        "description": "To mirror the functionality of the Asana web app's advanced search feature, the Asana API has a task search endpoint that allows you to build complex filters to find and retrieve the exact data you need.\n#### Custom fields\n| Parameter name | Custom field type | Accepted type | |---|---|---| | `custom_fields.<id>.is_set` | All | Boolean | | `custom_fields.<id>.value` | Text | String | | `custom_fields.<id>.value` | Number | Number | | `custom_fields.<id>.value` | Enum | Enum option ID | | `custom_fields.<id>.starts_with` | Text only | String | | `custom_fields.<id>.ends_with` | Text only | String | | `custom_fields.<id>.contains` | Text only | String | | `custom_fields.<id>.less_than` | Number only | Number | | `custom_fields.<id>.greater_than` | Number only | Number |\nFor example, if the ID of the custom field is 12345, these query parameter to find tasks where it is set would be `custom_fields.12345.is_set=true`. To match an exact value for an enum custom field, use the ID of the desired enum option and not the name of the enum option: `custom_fields.12345.value=67890`.\nSearching for multiple exact matches of a custom field is not supported.\n#### Premium access\nLike the Asana web product's advance search feature, this search endpoint will only be available to premium Asana users. A user is premium if any of the following is true:\n- The workspace in which the search is being performed is a premium workspace - The user is a member of a premium team inside the workspace\nEven if a user is only a member of a premium team inside a non-premium workspace, search will allow them to find data anywhere in the workspace, not just inside the premium team. Making a search request using credentials of a non-premium user will result in a `402 Payment Required` error.\n#### Pagination\nSearch results are not stable; repeating the same query multiple times may return the data in a different order, even if the data do not change. Because of this, the traditional [pagination](/developers/documentation/getting-started/pagination) available elsewhere in the Asana API is not available here. However, you can paginate manually by sorting the search results by their creation time and then modifying each subsequent query to exclude data you have already seen. Page sizes are limited to a maximum of 100 items, and can be specified by the `limit` query parameter.\n#### Eventual consistency\nChanges in Asana (regardless of whether they\u2019re made though the web product or the API) are forwarded to our search infrastructure to be indexed. This process can take between 10 and 60 seconds to complete under normal operation, and longer during some production incidents. Making a change to a task that would alter its presence in a particular search query will not be reflected immediately. This is also true of the advanced search feature in the web product.\n#### Rate limits\nYou may receive a `429 Too Many Requests` response if you hit any of our [rate limits](/developers/documentation/getting-started/rate-limits).",
         "tags": [
           "Sections",
           "Tasks"
@@ -9320,7 +10055,7 @@
           "$ref": "#/components/parameters/workspace_path_gid"
         },
         {
-          "name": "type",
+          "name": "resource_type",
           "in": "query",
           "description": "The type of values the typeahead should return. You can choose from one of the following: `custom_field`, `project`, `tag`, `task`, and `user`. Note that unlike in the names of endpoints, the types listed here are in singular form (e.g. `task`). Using multiple types is not yet supported.",
           "required": true,
@@ -9328,6 +10063,25 @@
             "type": "string",
             "enum": [
               "custom_field",
+              "portfolio",
+              "project",
+              "tag",
+              "task",
+              "user"
+            ]
+          },
+          "example": "user"
+        },
+        {
+          "name": "type",
+          "in": "query",
+          "description": "**Deprecated: new integrations should prefer the resource_type field.**",
+          "required": false,
+          "schema": {
+            "type": "string",
+            "enum": [
+              "custom_field",
+              "portfolio",
               "project",
               "tag",
               "task",
@@ -9701,6 +10455,91 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/UserObject"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/InternalServerError"
+          },
+          "default": {
+            "$ref": "#/components/responses/GenericErrorResponse"
+          }
+        }
+      }
+    },
+    "/users/{user_gid}/favorites": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/user_path_gid"
+        },
+        {
+          "$ref": "#/components/parameters/pretty"
+        },
+        {
+          "$ref": "#/components/parameters/fields"
+        },
+        {
+          "$ref": "#/components/parameters/expand"
+        },
+        {
+          "$ref": "#/components/parameters/limit"
+        },
+        {
+          "$ref": "#/components/parameters/offset"
+        },
+        {
+          "name": "resource_type",
+          "in": "query",
+          "description": "The resource type of favorites to be returned.",
+          "schema": {
+            "type": "string",
+            "enum": [
+              "portfolio",
+              "project",
+              "tag",
+              "task",
+              "user"
+            ]
+          },
+          "example": "project"
+        },
+        {
+          "name": "workspace",
+          "in": "query",
+          "description": "The workspace in which to get favorites.",
+          "schema": {
+            "type": "string"
+          },
+          "example": 1234
+        }
+      ],
+      "get": {
+        "summary": "Get a user's favorites",
+        "description": "Returns all of a user's favorites in the given workspace, of the given type.\nResults are given in order (The same order as Asana's sidebar).",
+        "tags": [
+          "Users"
+        ],
+        "operationId": "getUserFavorites",
+        "responses": {
+          "200": {
+            "description": "Returns the specified user's favorites.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AsanaObject"
                 }
               }
             }

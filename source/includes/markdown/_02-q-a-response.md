@@ -1,8 +1,8 @@
-## Q&A Response
+### Q&A Response
 
 Asana's API enables customization and automation of your organization’s workflow through scripts built to specialize your use of Asana. Using Asana to track your work and leveraging Asana’s API to automate your processes is a powerful combination which can make your team much more efficient. Here's one example of how we do it at Asana.
 
-## Tracking timely responses to support questions
+### Tracking timely responses to support questions
 
 Asana’s developer relations team manages technical support for our API through a number of channels: support tickets, questions about our API and integrations forwarded on from our colleagues, the [Asana Community's Developer category](https://community.asana.com/c/developersAPI "Asana Developer Community"), Stack Overflow, pull requests and bug reports from open-source GitHub projects like our [client libraries](/developers/documentation/getting-started/client-libraries "Official Asana client libraries"), and more. Staying on top of all of these channels can be daunting, but we want our users to reach us however works best for them. At the same time, we want to isolate the noisiness of incoming requests for our colleagues at Asana who are involved with only one channel.
 
@@ -27,21 +27,21 @@ The script we built does the following for us:
 3. Acknowledge a question has been received and begin tracking response times.
 4. Upon first response, complete a task to signal relevant followers that we've reached out.
 
-## Maintain focus
+### Maintain focus
 
 We use [webhooks](/developers/api-reference/webhooks "Webhooks documentation") to get notified in near-real time when new tasks are created in any of several Asana projects, one per incoming channel. Some of these projects are automatically synced with outside sources, others are available for our coworkers to create tasks in. Keeping tasks in their source channel helps keep us organized for where to go to respond. These projects are what our colleagues follow in order to remain focused on their own channels. 
 
 Our script responds to these webhook notifications from each project by adding these tasks into a single "Developer Questions" project. Our developer relations team can then see all outstanding questions about our API in a single place. This is a key part of hitting our service level agreement (SLA) goals: not having to cycle through many projects and channels to see how we're progressing.
 
-## Ensure timely responses
+### Ensure timely responses
 
 Once a question gets added to our Developer Questions project, our integration creates a subtask on it. This signals to our colleagues that we have received the question and will begin to triage and investigate. The subtask is completed when we first respond to our users to inform them that we're investigating. Completion of the question task itself signals that we've achieved a resolution for the person who reached out to us.
 
-## Track progress
+### Track progress
 
 Our script can generate a simple report to see which questions are still open, how long they’ve been open, and how much time we have left to answer before we miss our service level agreement limits. A simple webpage that the integration creates enables a high level view of what's still in progress and how timely we've been in the past.
 
-## Keep the process moving, automatically
+### Keep the process moving, automatically
 
 Our integration also helps automate some of the routine steps to ensure questions get answered. After a task gets triaged for priority, our integration sets an appropriate due date. It can also set an assignee and followers based on current workload and by matching certain keywords in the task description. If the task approaches its due date and it has not received a response, the script comments on the task to alert us that the question is about to reach our SLA limit. This helps us keep the right people in the loop with minimal overhead and maximum clarity of what needs to be done by when.
 
