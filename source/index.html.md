@@ -122,6 +122,28 @@ curl https://api.kardia.com/v1/patients/wNSEDeLOEPQE5rznkJmwbnjpxfdst93i \
 }
 ```
 
+## Delete Patient
+
+Responds to `DELETE` requests to `/v1/patients/:id`. Successful requests return an HTTP status `202 Accepted`. Developers must request Data Controller access for this functionality.
+
+> Example Request
+
+```shell
+curl -X DELETE https://api.kardia.com/v1/patients/wNSEDeLOEPQE5rznkJmwbnjpxfdst93i \
+ -u YOUR-API-KEY:
+```
+
+## Export Patient
+
+Responds to `GET` requests to `/v1/patients/:id/export`. Exports are queued and email sent to the API key owner once the export is ready for download. Returns an HTTP `202 Accepted`on success. Developers must request Data Controller access for this functionality.
+
+> Example Request
+
+```shell
+curl https://api.kardia.com/v1/patients/wNSEDeLOEPQE5rznkJmwbnjpxfdst93i/export \
+ -u YOUR-API-KEY:
+```
+
 ## Get Connection Code
 
 Responds to `GET` requests to `/v1/patients/:id/code` and returns a valid connection code for the given patient and the status of the connection, either `connected` or `pending`.
