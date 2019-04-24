@@ -181,7 +181,7 @@ good user experience.
 ## Validate constraints given a point
 
 ```shell
-curl "https://platform.tier-services.io/v1/zone/validateConstraint?lat=52.453505&lng=13.384821"
+curl "https://platform.tier-services.io/v1/zone/validate-constraint?lat=52.453505&lng=13.384821"
   -H "x-api-key: TIER API KEY"
 ```
 
@@ -206,7 +206,7 @@ This endpoint validates constraints at a geography point.
 
 ### HTTP Request
 
-`GET https://platform.tier-services.io/v1/zone?type=root`
+`GET https://platform.tier-services.io/v1/zone/validate-constraint?lat=52.453505&lng=13.384821`
 
 ### Query Parameters
 
