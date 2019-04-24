@@ -177,3 +177,40 @@ constraints are either enforced by endpoints (e.g. parking is rejected) or by au
 (e.g. speed is reduced). It is yet essential to inform your users about those areas to provide a
 good user experience.
 </aside>
+
+## Validate constraints given a point
+
+```shell
+curl "https://platform.tier-services.io/v1/zone/validateConstraint?lat=52.453505&lng=13.384821"
+  -H "x-api-key: TIER API KEY"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": {
+    "attributes": {
+      "type": "constraintValidation",
+      "attributes": {
+        "acceptableLocation": false,
+        "failedConstraints": ["outsideBusinessZone", "insideNoParkingZone"]
+      },
+    }
+  }
+}
+
+```
+
+This endpoint validates constraints at a geography point.
+
+### HTTP Request
+
+`GET https://platform.tier-services.io/v1/zone?type=root`
+
+### Query Parameters
+
+Parameter  | Description
+--------- | -----------
+lat | Latitude of point to check
+lng | Longitude of point to check
