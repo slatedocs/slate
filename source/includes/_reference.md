@@ -131,23 +131,16 @@ def enable_scoutprof?; true; end
 
 ### Free Trial
 
-We offer a no-risk, fully featured, free 14-day trial. Enter a credit or debit card to begin your subscription.
+We offer a no risk, fully featured, free trial. Enter a credit or debit card anytime to continue using Scout APM after the end of your trial.
 
 ### Billing Date
 
 Your first bill is 30 days after your signup date.
 
 ### Subscription Style
-
-You can choose the subscription style that makes sense for your organization. We offer two subscription styles:
-
-#### Per-Server
-
-__This is the default approach__. You are billed for the number of servers that are actively reporting on your billing date.
-
 #### Per-Request
 
-If you have a smaller application or have many smaller instances or Docker containers per-request billing may make more sense. Volume discounts are automatically applied as your application handles more throughput. Contact [support@scoutapm.com](mailto:support@scoutapm.com) for pricing options.
+We currently offer three transaction-based [pricing plans](https://scoutapm.com/info/pricing). Custom plans are available for higher transaction volume. Contact [support@scoutapm.com](mailto:support@scoutapm.com) for pricing options.
 
 ## Replacing New Relic
 
