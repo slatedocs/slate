@@ -79,6 +79,7 @@ Field     | Content | Note
 vehicle   | {"vehicleId": UUID} | The vehicle that shall be rented
 customerStartLocation | { "lat": 52, "lng": 13 } | The location of the customer as reported by their mobile phone
 customerInfo | {"extenalCustomerId": "your unique customer id"} | Your id of the customer on whos behalf the rental is started
+pricing | {"id": pricingId} | Optional. The assumed pricing to start this rental with. If the pricing has changed, the rental start will be rejected
     
 
 ### Errors
