@@ -11,8 +11,7 @@ Access to the test environment can be granted by signing up at [sandbox.rotessa.
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "<rotessa_endpoint>/customers.json" 
-  -H "Authorization: Token token=\"<your_api_key>\""
+curl "<rotessa_endpoint>/customers.json" -H "Authorization: Token token=\"<your_api_key>\""
 ```
 
 > Make sure to replace `your_api_key` with your API key.

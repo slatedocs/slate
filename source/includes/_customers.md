@@ -12,8 +12,9 @@ Customers represent individual customer accounts from which you which to withdra
  home_phone  | Home phone number.
  cell_phone  | Cell phone number.
  bank_name  | Bank name.
- institution_number  | Bank institution number.
- transit_number  | Bank transit number.
+ institution_number  | Bank institution number for Canadian customers.
+ transit_number  | Bank transit number for Canadian customers.
+ routing_number | Bank routing number for American customers.
  account_number  | Bank account number.
  address  | Customer address.
  transaction_schedules  | A list of transaction schedule objects describing the customer’s payment schedules.
@@ -22,8 +23,7 @@ Customers represent individual customer accounts from which you which to withdra
 ## Get All Customers
 
 ```shell
-curl "<rotessa_endpoint>/customers.json" 
-  -H "Authorization: Token token=\"<api_key>\""
+curl "<rotessa_endpoint>/customers.json" -H "Authorization: Token token=\"<api_key>\""
 ```
 
 > The above command returns JSON structured like this:
@@ -48,13 +48,13 @@ curl "<rotessa_endpoint>/customers.json"
         "active": true,
         "bank_name": "Royal Bank",
         "created_at": "2015-02-10T23:50:45.000-06:00",
-        "custom_identifier": "Susan Johnson",
+        "custom_identifier": "Suze-44",
         "customer_type": "Business",
         "email": "susan@test.com",
         "home_phone": "(204) 111 4321",
         "id": 2,
         "identifier": "SUSANJO0002",
-        "name": "Second Customer",
+        "name": "Susan Johnson",
         "phone": "(204) 111 1234",
         "updated_at": "2015-02-10T23:50:45.000-06:00"
     }
@@ -75,13 +75,12 @@ Remember — a happy customer is an authenticated customer!
 ## Get a Specific Customer Based on Rotessa ID
 
 ```shell
-curl "<rotessa_endpoint>/customers/<id>" 
-  -H "Authorization: Token token=\"<api_key>\""
+curl "<rotessa_endpoint>/customers/<id>" -H "Authorization: Token token=\"<api_key>\""
 ```
 
 > The above command returns JSON structured like this:
 
-```json
+```canadian
 {
     "active": true,
     "address": {
@@ -96,16 +95,20 @@ curl "<rotessa_endpoint>/customers/<id>"
     "created_at": "2015-02-10T23:50:45.000-06:00",
     "custom_identifier": "Mikey",
     "customer_type": "Personal",
-    "email": "test@rotessa.com",
+    "email": "mikesmith@test.com",
     "financial_transactions": [],
     "home_phone": "(204) 555 5555",
     "id": 1,
-    "identifier": "MikeSmith0001",
+    "identifier": "Mikey",
     "name": "Mike Smith",
     "phone": "(204) 555 4444",
     "transaction_schedules": [],
     "updated_at": "2015-02-10T23:50:45.000-06:00"
 }
+```
+
+```united_states
+
 ```
 
 This endpoint retrieves a specific customer.
@@ -128,15 +131,12 @@ ID  | The ID of the customer to retrieve.
 ## Get a Specific Customer Based on Custom Identifier
 
 ```shell
-curl -H 'Content-Type: application/json' 
-  -H "Authorization: Token token=\"<api_key>\"" 
-  -d '{"custom_identifier": "MIKEY"}' 
-  <rotessa_endpoint>/customers/show_with_custom_identifier.json
+curl -H 'Content-Type: application/json' -H "Authorization: Token token=\"<api_key>\"" -d '{"custom_identifier": "MIKEY"}' <rotessa_endpoint>/customers/show_with_custom_identifier.json
 ```
 
 > The above command returns JSON structured like this:
 
-```json
+```canadian
 {
     "active": true,
     "address": {
@@ -151,7 +151,7 @@ curl -H 'Content-Type: application/json'
     "created_at": "2015-02-10T23:50:45.000-06:00",
     "custom_identifier": "Mikey",
     "customer_type": "Personal",
-    "email": "test@rotessa.com",
+    "email": "mikesmith@test.com",
     "financial_transactions": [],
     "home_phone": "(204) 555 5555",
     "id": 1,
@@ -161,6 +161,10 @@ curl -H 'Content-Type: application/json'
     "transaction_schedules": [],
     "updated_at": "2015-02-10T23:50:45.000-06:00"
 }
+```
+
+```united_states
+
 ```
 
 This endpoint retrieves a specific customer based on a pre-assigned custom_identifier.
@@ -181,16 +185,44 @@ custom_identifier | The ID of the customer to retrieve.
 
 ## Create A Customer
 
-```shell
-curl -X POST -H 'Content-Type: application/json' 
-  -H "Authorization: Token token=\"<api_key>\"" 
-  -d '{"custom_identifier": "test api", "email": "test@rotessa.com", "name": "Mike Smith", "bank_name": "Scotiabank", "transit_number": "11111", "institution_number": "111", "account_number": "11111111", "address": { "address_1": "123 Main Street", "address_2": "Unit 4", "city": "Toronto", "province_code": "ON", "postal_code": "M1B 0B7" }}' 
-  <rotessa_endpoint>/customers.json
+```canadian
+curl -X POST -H 'Content-Type: application/json' -H "Authorization: Token token=\"<api_key>\"" -d '{"custom_identifier": "mike api test", "email": "mikesmith@test.com", "name": "Mike Smith", "bank_name": "Scotiabank", "transit_number": "11111", "institution_number": "111", "account_number": "11111111", "address": { "address_1": "123 Main Street", "address_2": "Unit 4", "city": "Toronto", "province_code": "ON", "postal_code": "M1B 0B7" }}' <rotessa_endpoint>/customers.json
+```
+
+```united_states
+curl -X POST -H 'Content-Type: application/json' -H "Authorization: Token token=\"<api_key>\"" -d '{"custom_identifier": "test api", "email": "test@rotessa.com", "name": "Mike Smith", "bank_name": "Scotiabank", "routing_number": "111111111", "account_number": "11111111", "address": { "address_1": "123 Main Street", "address_2": "Unit 4", "city": "Alabama", "state_code": "AL", "zip_code": "36016" }}' <rotessa_endpoint>/customers.json
 ```
 
 > The above command returns JSON structured like this:
 
-```json
+```canadian
+{
+    "active": true,
+    "address": {
+        "address_1": "123 Main Street",
+        "address_2": "Unit 4",
+        "city": "Toronto",
+        "id": 114397,
+        "postal_code": "M1B 0B7",
+        "province_code": "ON"
+    },
+    "bank_name": "Scotiabank",
+    "created_at": "2015-05-18T12:23:58.739-05:00",
+    "custom_identifier": "mike api test",
+    "customer_type": "Personal",
+    "email": "mikesmith@test.com",
+    "financial_transactions": [],
+    "home_phone": null,
+    "id": 1,
+    "identifier": "MIKESMIT0001",
+    "name": "Mike Smith",
+    "phone": null,
+    "transaction_schedules": [],
+    "updated_at": "2015-05-18T12:23:58.739-05:00"
+}
+```
+
+```united_states
 
 ```
 
@@ -209,21 +241,53 @@ email | - | Email address
 home_phone | - | Home phone number
 cell_phone | - | Cell phone number
 bank_name | - | Bank name of customer
-institution_number | - | Bank institution number
-transit_number | - | Bank transit number
+institution_number | - | Bank institution number for Canadian customers
+transit_number | - | Bank transit number for Canadian customers
+routing_number | - | Routing number for American customers
 account_number | - | Bank account number
 address | - | Customer address parameters.
 customer_type | - | Personal or Business
 
 ## Update A Customer
 
-```shell
+```canadian
+curl -X PATCH -H 'Content-Type: application/json' -H "Authorization: Token token=\"<api_key>\"" -d '{"custom_identifier": "MIKEY", "email": "test@rotessa.com", "name": "Mike Smith", "bank_name": "Scotiabank", "transit_number": "11111", "institution_number": "333", "account_number": "23123132", "customer_type": "Personal", "address": { "address_1": "123 Main Street", "address_2": "Unit 4", "city": "Toronto", "province_code": "QC", "postal_code": "M1B 0B7" }}' <rotessa_endpoint>/customers/<id>.json
+```
+
+```united_states
 
 ```
 
 > The above command returns JSON structured like this:
 
-```json
+```canadian
+{
+    "active": true,
+    "address": {
+        "address_1": "123 Main Street",
+        "address_2": "Unit 4",
+        "city": "Toronto",
+        "id": 114392,
+        "postal_code": "M1B 0B7",
+        "province_code": "QC"
+    },
+    "bank_name": "Scotiabank",
+    "created_at": "2015-05-18T12:23:58.739-05:00",
+    "custom_identifier": "MIKEY",
+    "customer_type": "Personal",
+    "email": "test@rotessa.com",
+    "financial_transactions": [],
+    "home_phone": null,
+    "id": 1,
+    "identifier": "MIKESMIT0001",
+    "name": "Mike Smith",
+    "phone": null,
+    "transaction_schedules": [],
+    "updated_at": "2015-05-18T12:23:58.739-05:00"
+}
+```
+
+```united_states
 
 ```
 
@@ -231,7 +295,7 @@ This endpoint creates a new customer
 
 ### HTTP REQUEST
 
-`GET https://api.rotessa.com/v1/customers/show_with_custom_identifier.json`
+`POST https://api.rotessa.com/v1/customers`
 
 ### URL PARAMETERS
 
