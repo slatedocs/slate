@@ -33,14 +33,9 @@ Currently Metype allows social logins like Facebook, Twitter and Google Plus.
 
 
 ## Integration - Authorization Code Flow
-
-```javascript
-
+```shell--request
 http://www.metype.com/oauth/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=REDIRECT_URL&response_type=code
 ```
-
-1) Request for an authorization code by making the following api call.
-Please place the url on the right as the href or src of a HTML tag.
 
 ```shell--request
 POST https://www.metype.com/oauth/token
@@ -61,13 +56,10 @@ POST https://www.metype.com/oauth/token
 }
 ```
 
-2) After authorization of the user metype will redirect the user back to the properties redirect url with a `code` parameter which is called a authorization code.
-Use this `code` to retrieve a access token to metype api's. The api to retrieve an access token is as on the right.
-
 ```shell--request
 GET https://www.metype.com/api/v1/current_user.json?access_token=TOKEN
 ```
-```shell-response
+```shell--response
 {
     current_user: {
         id: 1,
@@ -78,16 +70,18 @@ GET https://www.metype.com/api/v1/current_user.json?access_token=TOKEN
     }
 }
 ```
+* Request for an authorization code by making the following api call. Please place the url on the right as the href or src of a HTML tag.
 
-3) Using the above token, the property owner can get the user data by accessing the current user api on metype.
+* After authorization of the user metype will redirect the user back to the properties redirect url with a `code` parameter which is called a authorization code.
+Use this `code` to retrieve a access token to metype api's. The api to retrieve an access token is as on the right.
 
+* Using the above token, the property owner can get the user data by accessing the current user api on metype.
 
-This user can be hashed and maintained in a session cookie or repeated requests to metype can be made to get the user details.
+This user can be hashed and maintained in a session cookie or repeated requests to Metype can be made to get the user details.
 The OAuth libraries will handle the rest in the application if you have integrated with one.
 
 
 ## Integration - iframe
-Allows Publishers to integrate sso on their website via an iframe.
 
 ```javascript
 <div class="sso-login-iframe-parent">
@@ -106,12 +100,13 @@ Allows Publishers to integrate sso on their website via an iframe.
 </div>
 ```
 
+Allows Publishers to integrate sso on their website via an iframe.
+
 |Parameter|Type|Mandatory|Description|
 | ------------------- |---  |---    |---    |
 |SSO_CLIENT_ID|string|Yes|The SSO client identifier which can be found in Embed Codes page on Metype Admin.|
 |REDIRECT_URI|string|Yes|The redirect URI(s) which are under **Valid Redirect URIs for Sign-In** in the Settings page on Metype Admin.|
 |callback|function|No|A function the client can execute after a successful SSO Login.|
-
 
 
 Use the script on the right hand side to load SSO in an iframe.
