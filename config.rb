@@ -1,5 +1,6 @@
 # Unique header generation
 require './lib/unique_head.rb'
+require File.expand_path('../shell_lexer', __FILE__)
 
 # Markdown
 set :markdown_engine, :redcarpet
