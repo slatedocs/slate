@@ -1,11 +1,11 @@
-# Publisher login
+# Third party login
 
-Metype lets publishers use their own authentication system to login user to Metype. Metype uses shared key authentication method to implement this.
+Metype lets you any third party authentication system to login users to Metype on your website. Metype uses shared key authentication method to implement this.
 
-## Publisher login - Terminology
+## Third party login - Terminology
 * `Shared key` - Shared key is used to generate [JWT](https://jwt.io/).
 
-## Publisher login - Prerequisites
+## Third party login - Prerequisites
 
 * Sign up for an account @ [www.metype.com](https://www.metype.com).
 * You will find all your accounts @ [www.metype.com/admin](https://www.metype.com/admin) if you are signed in.
@@ -33,7 +33,7 @@ Metype lets publishers use their own authentication system to login user to Mety
       jwt: 'jwtForTheBatman'
     });
 ```
-* User data including JWT is sent to Metype using callback function provided by Metype in metype js.
+* User data including JWT is sent to Metype using callback function provided by Metype in Metype javascript.
 
 *  To login the user we need to call `accountUserLogin()` as shown on the right.
 
