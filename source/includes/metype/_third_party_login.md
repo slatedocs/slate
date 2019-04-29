@@ -45,7 +45,7 @@ Metype lets you any third party authentication system to login users to Metype o
 
 * To logout the user we need to call `accountUserLogout`.
 
-## Listening to metype to initiate login
+## Listening to Metype to initiate login
 ```javascript
 function listenToLogin(event) {
       if(event.data.action === "metype_login") {

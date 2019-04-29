@@ -1,5 +1,12 @@
 # Release Notes
 
+## 22 Apr 2019 Release Note - Metype
+1. **Third party login with Metype:** Publishers and bloggers can use their own user login system to allow their audience to login and comment.
+
+The developer documentation to implement this is available [here.](#third-party-login)
+
+![Config - Third Party Login](../../images/Metype_ThirdPartyLogin.png "Config - Third Party Login") 
+
 ## 22 Oct 2018 Release Notes - Metype
 
 1. Toggle to control display of Top Stories on Commenting Widget.
@@ -23,7 +30,7 @@ Check out our blog for more [here.](https://www.quintype.com/blog/tech/control-t
 The feature includes all login related workflows such as Sign-up, Sign-in and Forgot Password along with verification of email with an OTP.
 The SSO login page also displays displays the website's branding.
 
-[Click here](#user-identity-management-single-sign-on-sso) to know how to integrate SSO on your website.
+[Click here](#single-sign-on-sso) to know how to integrate SSO on your website.
 
 ![Metype SSO Form Login](../../images/Metype_SSO_Form_Login.png "Metype SSO Form Login")
 ![Metype SSO Form Sign Up](../../images/Metype_SSO_Form_Signup.png "Metype SSO Form Sign Up")
