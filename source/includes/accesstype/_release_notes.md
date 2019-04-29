@@ -2,6 +2,18 @@
 
 This section contains important Accestype release notes. For any queries, please write to us at [support@quintype.com](mailto:support@quintype.com).
 
+## 17 Apr 19 Release Note - Accesstype
+1. **Consolidated Daily Subscription Report:** This daily subscription report contains Subscription details, payment information, tax invoice data and subscriber information for Plan based subscriptions, PPA purchases and Campaign subscriptions, all in one file.
+
+This CSV report is generated daily for the previous day and is available at 
+
+Accesstype > Analytics > Reports 
+
+![Accesstype Consolidated Daily Subscription Report](../../images/Accesstype_ConsldtdDailySubRep.png "Accesstype Consolidated Daily Subscription Report")
+
+## 11 Apr 19 Release Note - Accesstype
+1. Accesstype now uses serverless computing technology for increased efficiency in performance, scalability and resilience.
+
 ## 29 Mar 19 Release Note - Accesstype
 1. **CSV reports now include Payment Transaction Date** for better reconciliation of Recurring subscriptions.
 2. **Bug fix:** The Manage Subscription Plan and Group had hidden buttons.
