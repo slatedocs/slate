@@ -2,7 +2,7 @@
 title: Rotessa API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - canadian: Canadian
+  - canadian: Canada
   - united_states: United States
 
 toc_footers:

@@ -80,6 +80,7 @@ html, body {
 
   &>.search {
     position: relative;
+    background: $nav-bg;
 
     input {
       background: $nav-bg;
@@ -177,7 +178,7 @@ html, body {
   .toc-footer {
     padding: 1em 0;
     margin-top: 1em;
-    border-top: 1px dashed $nav-footer-border-color;
+    border-top: 2px solid $nav-footer-border-color;
 
     li,a {
       color: $nav-text;
@@ -345,6 +346,7 @@ html, body {
   }
 
   h1 {
+    color: #0075F2;
     @extend %header-font;
     font-size: 25px;
     padding-top: 0.5em;
@@ -353,7 +355,7 @@ html, body {
     margin-top: 2em;
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
-    background-color: #fdfdfd;
+    /*background-color: #fdfdfd;*/
   }
 
   h1:first-child, div:first-child + h1 {

@@ -4,16 +4,16 @@ Financial transactions are are a history of the payments made for a customer. Fi
 
 Field  | Description 
  ------------- | ------------- 
-id | ID of the financial transaction.
-amount | Transaction amount.
-process_date | The scheduled process date of the transaction.
-status | The current status of the transaction.
-status_reason | The reason for the `Declined` or `Chargeback` status of a transactions.
-transaction_schedule_id | ID of the transction schedule that created this financial transaction.
-bank_name | Bank name.
-institution_number | Bank institution number.
-transit_number | Bank transit number.
-account_number | Bank account number.
+id | ID of the financial transaction
+amount | Transaction amount
+process_date | The scheduled process date of the transaction
+status | The current status of the transaction
+status_reason | The reason for the `Declined` or `Chargeback` status of a transactions
+transaction_schedule_id | ID of the transction schedule that created this financial transaction
+bank_name | Bank name
+institution_number | Bank institution number
+transit_number | Bank transit number
+account_number | Bank account number
 
 ## Status
 
@@ -21,10 +21,10 @@ Financial transactions can be in one of the following statuses.
 
 Status | Description 
  ------------- | ------------- 
-Future | The financial transaction has not yet been scheduled.
-Pending | The financial transaction is being processed.
-Approved | The financial transaction was successful.
-Declined | The financial transaction was declined for the reason specified in status_reason.
+Future | The financial transaction has not yet been scheduled
+Pending | The financial transaction is being processed
+Approved | The financial transaction was successful
+Declined | The financial transaction was declined for the reason specified in status_reason
 
 ## Status Reasons
 
