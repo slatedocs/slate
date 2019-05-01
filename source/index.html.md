@@ -180,7 +180,7 @@ Responds to `GET` requests to `/v1/patients/:id/recordings` and returns an array
 Name        | Type    | Description
 ----------- | ------- | -----------
 totalCount  | int     | The total number of patients
-data        | array   | An array of `Recording` objects
+recordings  | array   | An array of recording data
 pageInfo    | object  | Pagination information
 
 ### Page Info Object
@@ -204,42 +204,13 @@ curl https://api.kardia.com/v1/patients/wNSEDeLOEPQE5rznkJmwbnjpxfdst93i/recordi
 ```shell
 {
   "totalCount": 200,
-  "data": [
+  "recordings": [
     {
       "id": "3wde1eem9vy4y1a0rv3y98u2a",
       "patientID": "wNSEDeLOEPQE5rznkJmwbnjpxfdst93i",
       "duration": 30000,
       "heartRate": 65,  
       "note": "Drank coffee, having palpitations."
-      "data": {
-        "frequency": 300,
-        "mains_freq": 60,
-        "samples": {
-          "lead_I": [
-            397,
-            -262,
-            -426,
-            -284,
-            286,
-            391,
-            -45,
-            -249,
-            -30,
-            566,
-            515,
-            204,
-            -138,
-            -30,
-            491,
-            572,
-            103,
-            -187,
-            -62,
-            322,
-            ...     
-          ]
-        }
-      },
       "recordedAt": "2008-09-15T15:53:00+05:00"
     }
   ],
@@ -266,7 +237,7 @@ Responds to `GET` requests to `/v1/patients` and returns a list of patients with
 Name        | Type    | Description
 ----------- | ------- | -----------
 totalCount  | int     | The total number of patients
-data        | array   | An array of `Patient` objects
+patients    | array   | An array of `Patient` objects
 pageInfo    | object  | Pagination information
 
 ### Page Info Object
@@ -289,24 +260,20 @@ curl https://api.kardia.com/v1/patients?limit=50&start=ZW5kQ3Vyc29yc2Rh= \
 ```shell
 {
   "totalCount": 200,
-  "data": {
-    "patients": [
-      {
-        "id": "wNSEDeLOEPQE5rznkJmwbnjpxfdst93i",
-        "mrn": "JS-19810712",
-        "dob": "1970-03-12",
-        "email": "joe@example.com",
-        "firstname": "Joe",
-        "lastname": "Smith",
-        "sex": 0
-      }
-    ]
-  },
-  "pageInfo": {
-    "startCursor": "c3RhcnRDdXJzb3I=",
-    "endCursor": "ZW5kQ3Vyc29yc2Rh=",
-    "hasNextPage": true
-	}
+    "patients": [{
+      "id": "wNSEDeLOEPQE5rznkJmwbnjpxfdst93i",
+      "mrn": "JS-19810712",
+      "dob": "1970-03-12",
+      "email": "joe@example.com",
+      "firstname": "Joe",
+      "lastname": "Smith",
+      "sex": 0
+    }],
+    "pageInfo": {
+      "startCursor": "c3RhcnRDdXJzb3I=",
+      "endCursor": "ZW5kQ3Vyc29yc2Rh=",
+      "hasNextPage": true
+    }
 }
 ```
 
@@ -451,7 +418,7 @@ Responds to `GET` requests to `/v1/recordings` and returns an array of ECG's acr
 Name        | Type    | Description
 ----------- | ------- | -----------
 totalCount  | int     | The total number of recordings
-data        | array   | An array of `Recording` objects
+recordings  | array   | An array of recording data
 pageInfo    | object  | Pagination information
 startCursor | string  | The cursor for the first recording in the page
 endCursor   | string  | the cursor for the last recording in the page
@@ -469,80 +436,15 @@ curl https://api.kardia.com/v1/recordings \
 ```shell
 {
   "totalCount": 200,
-    "data": {
-      "recordings": [
-      {
-        "id": "3wde1eem9vy4y1a0rv3y98u2a",
-        "patientID": "wNSEDeLOEPQE5rznkJmwbnjpxfdst93i",
-        "algorithmDetermination": "normal",
-        "duration": 30000,
-        "heartRate": 65,  
-        "note": "Drank coffee, having palpitations."
-        "data": {
-          "raw": {
-            "frequency": 300,
-            "mains_freq": 60,
-            "samples": {
-              "lead_I": [
-                397,
-                -262,
-                -426,
-                -284,
-                286,
-                391,
-                -45,
-                -249,
-                -30,
-                566,
-                515,
-                204,
-                -138,
-                -30,
-                491,
-                572,
-                103,
-                -187,
-                -62,
-                322,
-                ...     
-              ]
-            }
-          },
-          "enhanced": {
-            "frequency": 300,
-            "mains_freq": 60,
-            "samples": {
-              "lead_I": [
-                397,
-                -262,
-                -426,
-                -284,
-                286,
-                391,
-                -45,
-                -249,
-                -30,
-                566,
-                515,
-                204,
-                -138,
-                -30,
-                491,
-                572,
-                103,
-                -187,
-                -62,
-                322,
-                ...     
-              ]
-            }
-
-          }
-        },
-        "recordedAt": "2008-09-15T15:53:00+05:00"
-      }
-    ]
-  },
+   "recordings": [{
+      "id": "3wde1eem9vy4y1a0rv3y98u2a",
+      "patientID": "wNSEDeLOEPQE5rznkJmwbnjpxfdst93i",
+      "algorithmDetermination": "normal",
+      "duration": 30000,
+      "heartRate": 65,  
+      "note": "Drank coffee, having palpitations."
+      "recordedAt": "2008-09-15T15:53:00+05:00"
+  }],
   "pageInfo": {
     "startCursor": "c3RhcnRDdXJzb3I=",
     "endCursor": "ZW5kQ3Vyc29yc2Rh=",
