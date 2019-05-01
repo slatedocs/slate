@@ -194,7 +194,7 @@ If the fields option is also used, it will take precedence over the expand optio
 ```json
 {
   "data": {
-    "allOf": null,
+    "name": "Screenshot.png",
     "created_at": "2012-02-22T02:06:58.147Z",
     "download_url": "https://www.dropbox.com/s/123/Screenshot.png?dl=1",
     "host": "dropbox",
@@ -380,7 +380,7 @@ If the fields option is also used, it will take precedence over the expand optio
 {
   "data": [
     {
-      "allOf": null
+      "name": "Screenshot.png"
     }
   ]
 }
@@ -619,7 +619,7 @@ If the fields option is also used, it will take precedence over the expand optio
 ```json
 {
   "data": {
-    "allOf": null,
+    "name": "Screenshot.png",
     "created_at": "2012-02-22T02:06:58.147Z",
     "download_url": "https://www.dropbox.com/s/123/Screenshot.png?dl=1",
     "host": "dropbox",
@@ -677,7 +677,7 @@ The batch API will always attempt to return a `200 Success` response with indivi
 The batch API fully respects all of our rate limiting. This means that a batch request counts against *both* the standard rate limiter and the concurrent request limiter as though you had made a separate HTTP request for every individual action. For example, a batch request with five actions counts as five separate requests in the standard rate limiter, and counts as five concurrent requests in the concurrent request limiter. The batch request itself incurs no cost.
 If any of the actions in a batch request would exceed any of the enforced limits, the *entire* request will fail with a `429 Too Many Requests` error. This is to prevent the unpredictability of which actions might succeed if not all of them could succeed.
 ### Restrictions
-Not every API endpoint can be accessed through the batch API. Specifically, the following actions cannot be taken and will result in a `400 Bad Request` for that action:
+Not every endpoint can be accessed through the batch API. Specifically, the following actions cannot be taken and will result in a `400 Bad Request` for that action:
 * Uploading attachments * Creating, getting, or deleting organization exports * Any SCIM operations * Nested calls to the batch API
 
 ## Submit parallel requests
@@ -3733,6 +3733,203 @@ To perform this operation, you must be authenticated by means of one of the foll
 personalAccessToken, oauth2
 </aside>
 
+<h1 id="asana-jobs">Jobs</h1>
+
+Jobs represent processes that handle asynchronous work.
+Jobs are created when an endpoint requests an action that will be handled asynchronously. Such as project or task duplication.
+Only the creator of the duplication process can access the duplication status of the new object.
+
+## Get a job by id
+
+<a id="opIdgetJob"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/jobs/{job_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+
+};
+
+fetch('https://app.asana.com/api/1.0/jobs/{job_gid}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+    
+    );
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://app.asana.com/api/1.0/jobs/{job_gid}', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://app.asana.com/api/1.0/jobs/{job_gid}', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://app.asana.com/api/1.0/jobs/{job_gid}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://app.asana.com/api/1.0/jobs/{job_gid}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /jobs/{job_gid}`
+
+Returns the full record for a job.
+
+<h3 id="get-a-job-by-id-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|job_gid|path|string|true|Globally unique identifier for the job.|
+|opt_pretty|query|boolean|false|Provides the response in “pretty” output. In the case of JSON this means doing proper line breaking and indentation to make it readable. This will take extra time and increase the response size so it is advisable only to use this during debugging.|
+|opt_fields|query|array[string]|false|Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below.|
+|opt_expand|query|array[string]|false|Query results and sub-objects are returned in compact form by default. This option can be used to expand query results or sub-objects to return more detailed information. Be sure you really need the information in the expanded form, as executing a query with many results in expanded form can be costly and return you a lot of data to consume.|
+|limit|query|integer|false|The number of objects to return per page. The value must be between 1 and 100.|
+|offset|query|string|false|An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results.|
+
+#### Detailed descriptions
+
+**opt_fields**: Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below.
+The id of included objects will always be returned, regardless of the field options.
+
+**opt_expand**: Query results and sub-objects are returned in compact form by default. This option can be used to expand query results or sub-objects to return more detailed information. Be sure you really need the information in the expanded form, as executing a query with many results in expanded form can be costly and return you a lot of data to consume.
+If the fields option is also used, it will take precedence over the expand option and prevent expansion.
+
+**offset**: An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results.
+'Note: You can only pass in an offset that was returned to you via a previously paginated request.'
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "id": 12345,
+    "gid": "12345",
+    "resource_type": "task",
+    "resource_subtype": "milestone",
+    "status": "in_progress",
+    "new_project": {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "project",
+      "name": "Stuff to buy"
+    },
+    "new_task": {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "task",
+      "name": "Bug Task"
+    }
+  }
+}
+```
+
+<h3 id="get-a-job-by-id-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved Job.|[JobObject](#schemajobobject)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|5XX|Unknown|There was a problem on Asana’s end.|[Error](#schemaerror)|
+|default|Default|Sadly, sometimes requests to the API are not successful. Failures can occur for a wide range of reasons. In all cases, the API should return an HTTP Status Code that indicates the nature of the failure, with a response body in JSON format containing additional information.
+In the event of a server error the response body will contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error.|[Error](#schemaerror)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+personalAccessToken, oauth2
+</aside>
+
 <h1 id="asana-organization-exports">Organization Exports</h1>
 
 An *organization_export* object represents a request to export the complete data of an Organization in JSON format.
@@ -4716,8 +4913,7 @@ If the fields option is also used, it will take precedence over the expand optio
           "email_domains": [
             "asana.com"
           ],
-          "is_organization": false,
-          "subscription_plan": "enterprise"
+          "is_organization": false
         }
       ]
     },
@@ -4808,8 +5004,7 @@ If the fields option is also used, it will take precedence over the expand optio
               "email_domains": [
                 "asana.com"
               ],
-              "is_organization": false,
-              "subscription_plan": "enterprise"
+              "is_organization": false
             }
           ]
         }
@@ -5064,8 +5259,7 @@ If the fields option is also used, it will take precedence over the expand optio
           "email_domains": [
             "asana.com"
           ],
-          "is_organization": false,
-          "subscription_plan": "enterprise"
+          "is_organization": false
         }
       ]
     },
@@ -5156,8 +5350,7 @@ If the fields option is also used, it will take precedence over the expand optio
               "email_domains": [
                 "asana.com"
               ],
-              "is_organization": false,
-              "subscription_plan": "enterprise"
+              "is_organization": false
             }
           ]
         }
@@ -5516,147 +5709,147 @@ If the fields option is also used, it will take precedence over the expand optio
     {
       "id": 12345,
       "gid": "12345",
-      "resource_type": "task",
-      "name": "Buy catnip",
+      "resource_type": "project",
+      "name": "Stuff to buy",
       "created_at": "2012-02-22T02:06:58.147Z",
-      "resource_subtype": "default_task",
-      "assignee": {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "task",
-        "name": "Greg Sanchez"
+      "archived": false,
+      "color": "light-green",
+      "current_status": {
+        "color": "green",
+        "text": "Everything is great",
+        "author": {
+          "id": 12345,
+          "name": "Greg Bizarro"
+        }
       },
-      "assignee_status": "upcoming",
-      "completed": false,
-      "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
+      "custom_fields": [],
+      "custom_field_settings": [
         {
           "id": 12345,
           "gid": "12345",
           "resource_type": "task",
-          "name": "Bug Task",
-          "resource_subtype": "milestone",
-          "type": "text",
-          "enum_options": [
-            {
-              "id": 12345,
-              "gid": "12345",
-              "resource_type": "task",
-              "name": "Low",
-              "enabled": true,
-              "color": "blue"
-            }
-          ],
-          "enum_value": {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "task",
-            "name": "Low",
-            "enabled": true,
-            "color": "blue"
-          },
-          "enabled": true,
-          "text_value": "Some Value",
-          "description": "Development team priority",
-          "precision": 2
-        }
-      ],
-      "dependencies": [
-        {
-          "id": 1234,
-          "gid": "1234"
-        },
-        {
-          "id": 4321,
-          "gid": "4321"
-        }
-      ],
-      "dependents": [
-        {
-          "id": 1234,
-          "gid": "1234"
-        },
-        {
-          "id": 4321,
-          "gid": "4321"
-        }
-      ],
-      "due_at": "2012-02-22T02:06:58.147Z",
-      "due_on": "2012-03-26",
-      "external": {
-        "id": "my_id",
-        "data": "A blob of information"
-      },
-      "followers": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "task",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-      "hearted": true,
-      "hearts": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "task",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "liked": true,
-      "likes": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "task",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "memberships": [
-        {
           "project": {
             "id": 12345,
             "gid": "12345",
             "resource_type": "project",
             "name": "Stuff to buy"
           },
-          "section": {
+          "is_important": false,
+          "parent": {
+            "id": 12345,
+            "gid": "12345",
+            "resource_type": "project",
+            "name": "Stuff to buy"
+          },
+          "custom_field": {
             "id": 12345,
             "gid": "12345",
             "resource_type": "task",
-            "name": "Next Actions"
+            "name": "Bug Task",
+            "resource_subtype": "milestone",
+            "type": "text",
+            "enum_options": [
+              {
+                "id": 12345,
+                "gid": "12345",
+                "resource_type": "task",
+                "name": "Low",
+                "enabled": true,
+                "color": "blue"
+              }
+            ],
+            "enum_value": {
+              "id": 12345,
+              "gid": "12345",
+              "resource_type": "task",
+              "name": "Low",
+              "enabled": true,
+              "color": "blue"
+            },
+            "enabled": true,
+            "text_value": "Some Value",
+            "description": "Development team priority",
+            "precision": 2
           }
         }
       ],
+      "due_date": "2012-03-26",
+      "followers": [
+        {
+          "id": 12345,
+          "gid": "12345",
+          "resource_type": "task",
+          "name": "Greg Sanchez",
+          "email": "gsanchez@example.com",
+          "photo": {
+            "image_21x21": "https://...",
+            "image_27x27": "https://...",
+            "image_36x36": "https://...",
+            "image_60x60": "https://...",
+            "image_128x128": "https://..."
+          },
+          "workspaces": [
+            {
+              "id": 12345,
+              "gid": "12345",
+              "resource_type": "task",
+              "name": "Bug Task",
+              "email_domains": [
+                "asana.com"
+              ],
+              "is_organization": false
+            }
+          ]
+        }
+      ],
+      "html_notes": "These are things we need to purchase.",
+      "is_template": false,
+      "layout": "list",
+      "members": [
+        {
+          "id": 12345,
+          "gid": "12345",
+          "resource_type": "task",
+          "name": "Greg Sanchez",
+          "email": "gsanchez@example.com",
+          "photo": {
+            "image_21x21": "https://...",
+            "image_27x27": "https://...",
+            "image_36x36": "https://...",
+            "image_60x60": "https://...",
+            "image_128x128": "https://..."
+          },
+          "workspaces": [
+            {
+              "id": 12345,
+              "gid": "12345",
+              "resource_type": "task",
+              "name": "Bug Task",
+              "email_domains": [
+                "asana.com"
+              ],
+              "is_organization": false
+            }
+          ]
+        }
+      ],
       "modified_at": "2012-02-22T02:06:58.147Z",
-      "notes": "Mittens really likes the stuff from Humboldt.",
-      "num_hearts": 5,
-      "num_likes": 5,
-      "num_subtasks": 3,
-      "parent": {
+      "notes": "These are things we need to purchase.",
+      "owner": {
+        "id": 12345,
+        "gid": "12345",
+        "resource_type": "task",
+        "name": "Greg Sanchez"
+      },
+      "public": false,
+      "section_migration_status": "not_migrated",
+      "start_on": "2012-03-26",
+      "team": {
         "id": 12345,
         "gid": "12345",
         "resource_type": "task",
         "name": "Bug Task"
       },
-      "projects": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
-        }
-      ],
-      "start_on": "2012-03-26",
-      "tags": [
-        {
-          "id": 59746,
-          "gid": "59746",
-          "name": "Grade A"
-        }
-      ],
       "workspace": {
         "id": 12345,
         "gid": "12345",
@@ -5672,7 +5865,7 @@ If the fields option is also used, it will take precedence over the expand optio
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested portfolio's items.|[TaskArray](#schemataskarray)|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested portfolio's items.|[ProjectArray](#schemaprojectarray)|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
@@ -6533,8 +6726,7 @@ Returns the compact project status update records for all updates on the project
             "email_domains": [
               "asana.com"
             ],
-            "is_organization": false,
-            "subscription_plan": "enterprise"
+            "is_organization": false
           }
         ]
       },
@@ -6759,8 +6951,7 @@ Returns the full record of the newly created project status update.
           "email_domains": [
             "asana.com"
           ],
-          "is_organization": false,
-          "subscription_plan": "enterprise"
+          "is_organization": false
         }
       ]
     },
@@ -7034,13 +7225,13 @@ If the fields option is also used, it will take precedence over the expand optio
               "email_domains": [
                 "asana.com"
               ],
-              "is_organization": false,
-              "subscription_plan": "enterprise"
+              "is_organization": false
             }
           ]
         }
       ],
       "html_notes": "These are things we need to purchase.",
+      "is_template": false,
       "layout": "list",
       "members": [
         {
@@ -7065,8 +7256,7 @@ If the fields option is also used, it will take precedence over the expand optio
               "email_domains": [
                 "asana.com"
               ],
-              "is_organization": false,
-              "subscription_plan": "enterprise"
+              "is_organization": false
             }
           ]
         }
@@ -7399,13 +7589,13 @@ If the fields option is also used, it will take precedence over the expand optio
             "email_domains": [
               "asana.com"
             ],
-            "is_organization": false,
-            "subscription_plan": "enterprise"
+            "is_organization": false
           }
         ]
       }
     ],
     "html_notes": "These are things we need to purchase.",
+    "is_template": false,
     "layout": "list",
     "members": [
       {
@@ -7430,8 +7620,7 @@ If the fields option is also used, it will take precedence over the expand optio
             "email_domains": [
               "asana.com"
             ],
-            "is_organization": false,
-            "subscription_plan": "enterprise"
+            "is_organization": false
           }
         ]
       }
@@ -7723,13 +7912,13 @@ If the fields option is also used, it will take precedence over the expand optio
             "email_domains": [
               "asana.com"
             ],
-            "is_organization": false,
-            "subscription_plan": "enterprise"
+            "is_organization": false
           }
         ]
       }
     ],
     "html_notes": "These are things we need to purchase.",
+    "is_template": false,
     "layout": "list",
     "members": [
       {
@@ -7754,8 +7943,7 @@ If the fields option is also used, it will take precedence over the expand optio
             "email_domains": [
               "asana.com"
             ],
-            "is_organization": false,
-            "subscription_plan": "enterprise"
+            "is_organization": false
           }
         ]
       }
@@ -7830,6 +8018,7 @@ const inputBody = '{
     "color": "light-green",
     "due_date": "2012-03-26",
     "html_notes": "These are things we need to purchase.",
+    "is_template": false,
     "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "These are things we need to purchase.",
     "owner": {
@@ -7974,6 +8163,7 @@ Returns the complete updated project record.
     "color": "light-green",
     "due_date": "2012-03-26",
     "html_notes": "These are things we need to purchase.",
+    "is_template": false,
     "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "These are things we need to purchase.",
     "owner": {
@@ -8111,13 +8301,13 @@ If the fields option is also used, it will take precedence over the expand optio
             "email_domains": [
               "asana.com"
             ],
-            "is_organization": false,
-            "subscription_plan": "enterprise"
+            "is_organization": false
           }
         ]
       }
     ],
     "html_notes": "These are things we need to purchase.",
+    "is_template": false,
     "layout": "list",
     "members": [
       {
@@ -8142,8 +8332,7 @@ If the fields option is also used, it will take precedence over the expand optio
             "email_domains": [
               "asana.com"
             ],
-            "is_organization": false,
-            "subscription_plan": "enterprise"
+            "is_organization": false
           }
         ]
       }
@@ -8356,6 +8545,246 @@ If the fields option is also used, it will take precedence over the expand optio
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully deleted the specified project.|[EmptyObject](#schemaemptyobject)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|5XX|Unknown|There was a problem on Asana’s end.|[Error](#schemaerror)|
+|default|Default|Sadly, sometimes requests to the API are not successful. Failures can occur for a wide range of reasons. In all cases, the API should return an HTTP Status Code that indicates the nature of the failure, with a response body in JSON format containing additional information.
+In the event of a server error the response body will contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error.|[Error](#schemaerror)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+personalAccessToken, oauth2
+</aside>
+
+## Duplicate a project
+
+<a id="opIdduplicateProject"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/duplicate \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+const inputBody = '{
+  "data": {
+    "name": "New Project Name",
+    "team": "12345",
+    "include": [
+      "members",
+      "task_notes"
+    ]
+  }
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+
+};
+
+fetch('https://app.asana.com/api/1.0/projects/{project_gid}/duplicate',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Content-Type' => 'application/json',
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+    
+    );
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('POST','https://app.asana.com/api/1.0/projects/{project_gid}/duplicate', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.post('https://app.asana.com/api/1.0/projects/{project_gid}/duplicate', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://app.asana.com/api/1.0/projects/{project_gid}/duplicate");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("POST");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.post 'https://app.asana.com/api/1.0/projects/{project_gid}/duplicate',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`POST /projects/{project_gid}/duplicate`
+
+Creates and returns a job that will asynchronously handle the duplication.
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "name": "New Project Name",
+    "team": "12345",
+    "include": [
+      "members",
+      "task_notes"
+    ]
+  }
+}
+```
+
+<h3 id="duplicate-a-project-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|Describes the duplicate's name and the elements that will be duplicated.|
+|» data|body|object|false|none|
+|»» name|body|string|false|The name of the new project.|
+|»» team|body|string|false|Required if duplicating within an organization.|
+|»» include|body|string|false|The elements that will be duplicated to the new project. Tasks and project notes are always included.|
+|project_gid|path|string|true|Globally unique identifier for the project.|
+|opt_pretty|query|boolean|false|Provides the response in “pretty” output. In the case of JSON this means doing proper line breaking and indentation to make it readable. This will take extra time and increase the response size so it is advisable only to use this during debugging.|
+|opt_fields|query|array[string]|false|Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below.|
+|opt_expand|query|array[string]|false|Query results and sub-objects are returned in compact form by default. This option can be used to expand query results or sub-objects to return more detailed information. Be sure you really need the information in the expanded form, as executing a query with many results in expanded form can be costly and return you a lot of data to consume.|
+|limit|query|integer|false|The number of objects to return per page. The value must be between 1 and 100.|
+|offset|query|string|false|An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results.|
+
+#### Detailed descriptions
+
+**opt_fields**: Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below.
+The id of included objects will always be returned, regardless of the field options.
+
+**opt_expand**: Query results and sub-objects are returned in compact form by default. This option can be used to expand query results or sub-objects to return more detailed information. Be sure you really need the information in the expanded form, as executing a query with many results in expanded form can be costly and return you a lot of data to consume.
+If the fields option is also used, it will take precedence over the expand option and prevent expansion.
+
+**offset**: An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results.
+'Note: You can only pass in an offset that was returned to you via a previously paginated request.'
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+|»» include|members|
+|»» include|task_notes|
+|»» include|task_assignee|
+|»» include|task_subtasks|
+|»» include|task_attachments|
+|»» include|task_dates|
+|»» include|task_dependencies|
+|»» include|task_followers|
+|»» include|task_tags|
+|»» include|task_projects|
+
+> Example responses
+
+> 201 Response
+
+```json
+{
+  "data": {
+    "id": 12345,
+    "gid": "12345",
+    "resource_type": "task",
+    "resource_subtype": "milestone",
+    "status": "in_progress",
+    "new_project": {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "project",
+      "name": "Stuff to buy"
+    },
+    "new_task": {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "task",
+      "name": "Bug Task"
+    }
+  }
+}
+```
+
+<h3 id="duplicate-a-project-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Successfully created the job to handle duplication.|[JobObject](#schemajobobject)|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
@@ -9261,13 +9690,13 @@ If the fields option is also used, it will take precedence over the expand optio
               "email_domains": [
                 "asana.com"
               ],
-              "is_organization": false,
-              "subscription_plan": "enterprise"
+              "is_organization": false
             }
           ]
         }
       ],
       "html_notes": "These are things we need to purchase.",
+      "is_template": false,
       "layout": "list",
       "members": [
         {
@@ -9292,8 +9721,7 @@ If the fields option is also used, it will take precedence over the expand optio
               "email_domains": [
                 "asana.com"
               ],
-              "is_organization": false,
-              "subscription_plan": "enterprise"
+              "is_organization": false
             }
           ]
         }
@@ -9369,6 +9797,7 @@ const inputBody = '{
     "color": "light-green",
     "due_date": "2012-03-26",
     "html_notes": "These are things we need to purchase.",
+    "is_template": false,
     "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "These are things we need to purchase.",
     "owner": {
@@ -9507,6 +9936,7 @@ Returns the full record of the newly created project.
     "color": "light-green",
     "due_date": "2012-03-26",
     "html_notes": "These are things we need to purchase.",
+    "is_template": false,
     "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "These are things we need to purchase.",
     "owner": {
@@ -9644,13 +10074,13 @@ If the fields option is also used, it will take precedence over the expand optio
             "email_domains": [
               "asana.com"
             ],
-            "is_organization": false,
-            "subscription_plan": "enterprise"
+            "is_organization": false
           }
         ]
       }
     ],
     "html_notes": "These are things we need to purchase.",
+    "is_template": false,
     "layout": "list",
     "members": [
       {
@@ -9675,8 +10105,7 @@ If the fields option is also used, it will take precedence over the expand optio
             "email_domains": [
               "asana.com"
             ],
-            "is_organization": false,
-            "subscription_plan": "enterprise"
+            "is_organization": false
           }
         ]
       }
@@ -9970,13 +10399,13 @@ If the fields option is also used, it will take precedence over the expand optio
               "email_domains": [
                 "asana.com"
               ],
-              "is_organization": false,
-              "subscription_plan": "enterprise"
+              "is_organization": false
             }
           ]
         }
       ],
       "html_notes": "These are things we need to purchase.",
+      "is_template": false,
       "layout": "list",
       "members": [
         {
@@ -10001,8 +10430,7 @@ If the fields option is also used, it will take precedence over the expand optio
               "email_domains": [
                 "asana.com"
               ],
-              "is_organization": false,
-              "subscription_plan": "enterprise"
+              "is_organization": false
             }
           ]
         }
@@ -10078,6 +10506,7 @@ const inputBody = '{
     "color": "light-green",
     "due_date": "2012-03-26",
     "html_notes": "These are things we need to purchase.",
+    "is_template": false,
     "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "These are things we need to purchase.",
     "owner": {
@@ -10219,6 +10648,7 @@ Returns the full record of the newly created project.
     "color": "light-green",
     "due_date": "2012-03-26",
     "html_notes": "These are things we need to purchase.",
+    "is_template": false,
     "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "These are things we need to purchase.",
     "owner": {
@@ -10356,13 +10786,13 @@ If the fields option is also used, it will take precedence over the expand optio
             "email_domains": [
               "asana.com"
             ],
-            "is_organization": false,
-            "subscription_plan": "enterprise"
+            "is_organization": false
           }
         ]
       }
     ],
     "html_notes": "These are things we need to purchase.",
+    "is_template": false,
     "layout": "list",
     "members": [
       {
@@ -10387,8 +10817,7 @@ If the fields option is also used, it will take precedence over the expand optio
             "email_domains": [
               "asana.com"
             ],
-            "is_organization": false,
-            "subscription_plan": "enterprise"
+            "is_organization": false
           }
         ]
       }
@@ -10993,8 +11422,7 @@ Returns the complete record for a single status update.
           "email_domains": [
             "asana.com"
           ],
-          "is_organization": false,
-          "subscription_plan": "enterprise"
+          "is_organization": false
         }
       ]
     },
@@ -11429,13 +11857,13 @@ If the fields option is also used, it will take precedence over the expand optio
                     "resource_type": "task",
                     "name": "Bug Task",
                     "email_domains": [],
-                    "is_organization": false,
-                    "subscription_plan": "enterprise"
+                    "is_organization": false
                   }
                 ]
               }
             ],
             "html_notes": "These are things we need to purchase.",
+            "is_template": false,
             "layout": "list",
             "members": [
               {
@@ -11458,8 +11886,7 @@ If the fields option is also used, it will take precedence over the expand optio
                     "resource_type": "task",
                     "name": "Bug Task",
                     "email_domains": [],
-                    "is_organization": false,
-                    "subscription_plan": "enterprise"
+                    "is_organization": false
                   }
                 ]
               }
@@ -11784,13 +12211,13 @@ If the fields option is also used, it will take precedence over the expand optio
                   "email_domains": [
                     "asana.com"
                   ],
-                  "is_organization": false,
-                  "subscription_plan": "enterprise"
+                  "is_organization": false
                 }
               ]
             }
           ],
           "html_notes": "These are things we need to purchase.",
+          "is_template": false,
           "layout": "list",
           "members": [
             {
@@ -11815,8 +12242,7 @@ If the fields option is also used, it will take precedence over the expand optio
                   "email_domains": [
                     "asana.com"
                   ],
-                  "is_organization": false,
-                  "subscription_plan": "enterprise"
+                  "is_organization": false
                 }
               ]
             }
@@ -12119,13 +12545,13 @@ If the fields option is also used, it will take precedence over the expand optio
                   "email_domains": [
                     "asana.com"
                   ],
-                  "is_organization": false,
-                  "subscription_plan": "enterprise"
+                  "is_organization": false
                 }
               ]
             }
           ],
           "html_notes": "These are things we need to purchase.",
+          "is_template": false,
           "layout": "list",
           "members": [
             {
@@ -12150,8 +12576,7 @@ If the fields option is also used, it will take precedence over the expand optio
                   "email_domains": [
                     "asana.com"
                   ],
-                  "is_organization": false,
-                  "subscription_plan": "enterprise"
+                  "is_organization": false
                 }
               ]
             }
@@ -12233,6 +12658,7 @@ const inputBody = '{
           "color": "light-green",
           "due_date": "2012-03-26",
           "html_notes": "These are things we need to purchase.",
+          "is_template": false,
           "modified_at": "2012-02-22T02:06:58.147Z",
           "notes": "These are things we need to purchase.",
           "owner": {
@@ -12385,6 +12811,7 @@ Returns the complete updated section record.
           "color": "light-green",
           "due_date": "2012-03-26",
           "html_notes": "These are things we need to purchase.",
+          "is_template": false,
           "modified_at": "2012-02-22T02:06:58.147Z",
           "notes": "These are things we need to purchase.",
           "owner": {
@@ -12533,13 +12960,13 @@ If the fields option is also used, it will take precedence over the expand optio
                   "email_domains": [
                     "asana.com"
                   ],
-                  "is_organization": false,
-                  "subscription_plan": "enterprise"
+                  "is_organization": false
                 }
               ]
             }
           ],
           "html_notes": "These are things we need to purchase.",
+          "is_template": false,
           "layout": "list",
           "members": [
             {
@@ -12564,8 +12991,7 @@ If the fields option is also used, it will take precedence over the expand optio
                   "email_domains": [
                     "asana.com"
                   ],
-                  "is_organization": false,
-                  "subscription_plan": "enterprise"
+                  "is_organization": false
                 }
               ]
             }
@@ -14108,8 +14534,7 @@ If the fields option is also used, it will take precedence over the expand optio
             "email_domains": [
               "asana.com"
             ],
-            "is_organization": false,
-            "subscription_plan": "enterprise"
+            "is_organization": false
           }
         ]
       },
@@ -14142,8 +14567,7 @@ If the fields option is also used, it will take precedence over the expand optio
               "email_domains": [
                 "asana.com"
               ],
-              "is_organization": false,
-              "subscription_plan": "enterprise"
+              "is_organization": false
             }
           ]
         }
@@ -14173,8 +14597,7 @@ If the fields option is also used, it will take precedence over the expand optio
               "email_domains": [
                 "asana.com"
               ],
-              "is_organization": false,
-              "subscription_plan": "enterprise"
+              "is_organization": false
             }
           ]
         }
@@ -14234,8 +14657,7 @@ If the fields option is also used, it will take precedence over the expand optio
               "email_domains": [
                 "asana.com"
               ],
-              "is_organization": false,
-              "subscription_plan": "enterprise"
+              "is_organization": false
             }
           ]
         },
@@ -14558,8 +14980,7 @@ If the fields option is also used, it will take precedence over the expand optio
           "email_domains": [
             "asana.com"
           ],
-          "is_organization": false,
-          "subscription_plan": "enterprise"
+          "is_organization": false
         }
       ]
     },
@@ -14592,8 +15013,7 @@ If the fields option is also used, it will take precedence over the expand optio
             "email_domains": [
               "asana.com"
             ],
-            "is_organization": false,
-            "subscription_plan": "enterprise"
+            "is_organization": false
           }
         ]
       }
@@ -14623,8 +15043,7 @@ If the fields option is also used, it will take precedence over the expand optio
             "email_domains": [
               "asana.com"
             ],
-            "is_organization": false,
-            "subscription_plan": "enterprise"
+            "is_organization": false
           }
         ]
       }
@@ -14684,8 +15103,7 @@ If the fields option is also used, it will take precedence over the expand optio
             "email_domains": [
               "asana.com"
             ],
-            "is_organization": false,
-            "subscription_plan": "enterprise"
+            "is_organization": false
           }
         ]
       },
@@ -14983,8 +15401,7 @@ If the fields option is also used, it will take precedence over the expand optio
           "email_domains": [
             "asana.com"
           ],
-          "is_organization": false,
-          "subscription_plan": "enterprise"
+          "is_organization": false
         }
       ]
     },
@@ -15017,8 +15434,7 @@ If the fields option is also used, it will take precedence over the expand optio
             "email_domains": [
               "asana.com"
             ],
-            "is_organization": false,
-            "subscription_plan": "enterprise"
+            "is_organization": false
           }
         ]
       }
@@ -15048,8 +15464,7 @@ If the fields option is also used, it will take precedence over the expand optio
             "email_domains": [
               "asana.com"
             ],
-            "is_organization": false,
-            "subscription_plan": "enterprise"
+            "is_organization": false
           }
         ]
       }
@@ -15109,8 +15524,7 @@ If the fields option is also used, it will take precedence over the expand optio
             "email_domains": [
               "asana.com"
             ],
-            "is_organization": false,
-            "subscription_plan": "enterprise"
+            "is_organization": false
           }
         ]
       },
@@ -15572,8 +15986,7 @@ If the fields option is also used, it will take precedence over the expand optio
           "email_domains": [
             "asana.com"
           ],
-          "is_organization": false,
-          "subscription_plan": "enterprise"
+          "is_organization": false
         }
       ]
     },
@@ -15606,8 +16019,7 @@ If the fields option is also used, it will take precedence over the expand optio
             "email_domains": [
               "asana.com"
             ],
-            "is_organization": false,
-            "subscription_plan": "enterprise"
+            "is_organization": false
           }
         ]
       }
@@ -15637,8 +16049,7 @@ If the fields option is also used, it will take precedence over the expand optio
             "email_domains": [
               "asana.com"
             ],
-            "is_organization": false,
-            "subscription_plan": "enterprise"
+            "is_organization": false
           }
         ]
       }
@@ -15698,8 +16109,7 @@ If the fields option is also used, it will take precedence over the expand optio
             "email_domains": [
               "asana.com"
             ],
-            "is_organization": false,
-            "subscription_plan": "enterprise"
+            "is_organization": false
           }
         ]
       },
@@ -19323,6 +19733,243 @@ To perform this operation, you must be authenticated by means of one of the foll
 personalAccessToken, oauth2
 </aside>
 
+## Duplicate a task
+
+<a id="opIdduplicateTask"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/duplicate \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+const inputBody = '{
+  "data": {
+    "name": "New Task Name",
+    "include": [
+      "notes",
+      "assignee"
+    ]
+  }
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+
+};
+
+fetch('https://app.asana.com/api/1.0/tasks/{task_gid}/duplicate',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Content-Type' => 'application/json',
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+    
+    );
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('POST','https://app.asana.com/api/1.0/tasks/{task_gid}/duplicate', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.post('https://app.asana.com/api/1.0/tasks/{task_gid}/duplicate', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://app.asana.com/api/1.0/tasks/{task_gid}/duplicate");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("POST");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.post 'https://app.asana.com/api/1.0/tasks/{task_gid}/duplicate',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`POST /tasks/{task_gid}/duplicate`
+
+Creates and returns a job that will asynchronously handle the duplication.
+
+> Body parameter
+
+```json
+{
+  "data": {
+    "name": "New Task Name",
+    "include": [
+      "notes",
+      "assignee"
+    ]
+  }
+}
+```
+
+<h3 id="duplicate-a-task-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|Describes the duplicate's name and the fields that will be duplicated.|
+|» data|body|object|false|none|
+|»» name|body|string|false|The name of the new task.|
+|»» include|body|string|false|The fields that will be duplicated to the new task.|
+|task_gid|path|string|true|The task to operate on.|
+|opt_pretty|query|boolean|false|Provides the response in “pretty” output. In the case of JSON this means doing proper line breaking and indentation to make it readable. This will take extra time and increase the response size so it is advisable only to use this during debugging.|
+|opt_fields|query|array[string]|false|Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below.|
+|opt_expand|query|array[string]|false|Query results and sub-objects are returned in compact form by default. This option can be used to expand query results or sub-objects to return more detailed information. Be sure you really need the information in the expanded form, as executing a query with many results in expanded form can be costly and return you a lot of data to consume.|
+|limit|query|integer|false|The number of objects to return per page. The value must be between 1 and 100.|
+|offset|query|string|false|An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results.|
+
+#### Detailed descriptions
+
+**opt_fields**: Some requests return *compact* representations of objects in order to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as paths, described below.
+The id of included objects will always be returned, regardless of the field options.
+
+**opt_expand**: Query results and sub-objects are returned in compact form by default. This option can be used to expand query results or sub-objects to return more detailed information. Be sure you really need the information in the expanded form, as executing a query with many results in expanded form can be costly and return you a lot of data to consume.
+If the fields option is also used, it will take precedence over the expand option and prevent expansion.
+
+**offset**: An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results.
+'Note: You can only pass in an offset that was returned to you via a previously paginated request.'
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+|»» include|notes|
+|»» include|assignee|
+|»» include|subtasks|
+|»» include|attachments|
+|»» include|tags|
+|»» include|followers|
+|»» include|projects|
+|»» include|dates|
+|»» include|dependencies|
+|»» include|parent|
+
+> Example responses
+
+> 201 Response
+
+```json
+{
+  "data": {
+    "id": 12345,
+    "gid": "12345",
+    "resource_type": "task",
+    "resource_subtype": "milestone",
+    "status": "in_progress",
+    "new_project": {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "project",
+      "name": "Stuff to buy"
+    },
+    "new_task": {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "task",
+      "name": "Bug Task"
+    }
+  }
+}
+```
+
+<h3 id="duplicate-a-task-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Successfully created the job to handle duplication.|[JobObject](#schemajobobject)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|5XX|Unknown|There was a problem on Asana’s end.|[Error](#schemaerror)|
+|default|Default|Sadly, sometimes requests to the API are not successful. Failures can occur for a wide range of reasons. In all cases, the API should return an HTTP Status Code that indicates the nature of the failure, with a response body in JSON format containing additional information.
+In the event of a server error the response body will contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error.|[Error](#schemaerror)|
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+personalAccessToken, oauth2
+</aside>
+
 ## Get a subtask
 
 <a id="opIdgetSubTasks"></a>
@@ -22743,13 +23390,13 @@ If the fields option is also used, it will take precedence over the expand optio
               "email_domains": [
                 "asana.com"
               ],
-              "is_organization": false,
-              "subscription_plan": "enterprise"
+              "is_organization": false
             }
           ]
         }
       ],
       "html_notes": "These are things we need to purchase.",
+      "is_template": false,
       "layout": "list",
       "members": [
         {
@@ -22774,8 +23421,7 @@ If the fields option is also used, it will take precedence over the expand optio
               "email_domains": [
                 "asana.com"
               ],
-              "is_organization": false,
-              "subscription_plan": "enterprise"
+              "is_organization": false
             }
           ]
         }
@@ -24397,8 +25043,7 @@ If the fields option is also used, it will take precedence over the expand optio
       "gid": "12345",
       "resource_type": "task",
       "name": "Bug Task"
-    },
-    "subscription_plan": "premium"
+    }
   }
 }
 ```
@@ -24585,8 +25230,7 @@ If the fields option is also used, it will take precedence over the expand optio
         "gid": "12345",
         "resource_type": "task",
         "name": "Bug Task"
-      },
-      "subscription_plan": "premium"
+      }
     }
   ]
 }
@@ -24776,8 +25420,7 @@ If the fields option is also used, it will take precedence over the expand optio
         "gid": "12345",
         "resource_type": "task",
         "name": "Bug Task"
-      },
-      "subscription_plan": "premium"
+      }
     }
   ]
 }
@@ -24975,8 +25618,7 @@ If the fields option is also used, it will take precedence over the expand optio
           "email_domains": [
             "asana.com"
           ],
-          "is_organization": false,
-          "subscription_plan": "enterprise"
+          "is_organization": false
         }
       ]
     }
@@ -25192,8 +25834,7 @@ If the fields option is also used, it will take precedence over the expand optio
           "email_domains": [
             "asana.com"
           ],
-          "is_organization": false,
-          "subscription_plan": "enterprise"
+          "is_organization": false
         }
       ]
     }
@@ -25409,8 +26050,7 @@ If the fields option is also used, it will take precedence over the expand optio
           "email_domains": [
             "asana.com"
           ],
-          "is_organization": false,
-          "subscription_plan": "enterprise"
+          "is_organization": false
         }
       ]
     }
@@ -25615,8 +26255,7 @@ If the fields option is also used, it will take precedence over the expand optio
           "email_domains": [
             "asana.com"
           ],
-          "is_organization": false,
-          "subscription_plan": "enterprise"
+          "is_organization": false
         }
       ]
     }
@@ -25816,8 +26455,7 @@ If the fields option is also used, it will take precedence over the expand optio
         "email_domains": [
           "asana.com"
         ],
-        "is_organization": false,
-        "subscription_plan": "enterprise"
+        "is_organization": false
       }
     ]
   }
@@ -26205,8 +26843,7 @@ If the fields option is also used, it will take precedence over the expand optio
           "email_domains": [
             "asana.com"
           ],
-          "is_organization": false,
-          "subscription_plan": "enterprise"
+          "is_organization": false
         }
       ]
     }
@@ -28148,8 +28785,7 @@ If the fields option is also used, it will take precedence over the expand optio
       "email_domains": [
         "asana.com"
       ],
-      "is_organization": false,
-      "subscription_plan": "enterprise"
+      "is_organization": false
     }
   ]
 }
@@ -28332,8 +28968,7 @@ If the fields option is also used, it will take precedence over the expand optio
     "email_domains": [
       "asana.com"
     ],
-    "is_organization": false,
-    "subscription_plan": "enterprise"
+    "is_organization": false
   }
 }
 ```
@@ -28379,8 +29014,7 @@ const inputBody = '{
     "email_domains": [
       "asana.com"
     ],
-    "is_organization": false,
-    "subscription_plan": "enterprise"
+    "is_organization": false
   }
 }';
 const headers = {
@@ -28504,8 +29138,7 @@ Returns the complete, updated workspace record.
     "email_domains": [
       "asana.com"
     ],
-    "is_organization": false,
-    "subscription_plan": "enterprise"
+    "is_organization": false
   }
 }
 ```
@@ -28547,8 +29180,7 @@ If the fields option is also used, it will take precedence over the expand optio
     "email_domains": [
       "asana.com"
     ],
-    "is_organization": false,
-    "subscription_plan": "enterprise"
+    "is_organization": false
   }
 }
 ```
@@ -28761,8 +29393,7 @@ If the fields option is also used, it will take precedence over the expand optio
         "email_domains": [
           "asana.com"
         ],
-        "is_organization": false,
-        "subscription_plan": "enterprise"
+        "is_organization": false
       }
     ]
   }
@@ -29145,8 +29776,7 @@ A generic list of objects, such as those returned by the typeahead search endpoi
         "email_domains": [
           "asana.com"
         ],
-        "is_organization": false,
-        "subscription_plan": "enterprise"
+        "is_organization": false
       }
     ]
   }
@@ -29191,7 +29821,7 @@ and
 
 ```json
 {
-  "allOf": null,
+  "name": "Screenshot.png",
   "created_at": "2012-02-22T02:06:58.147Z",
   "download_url": "https://www.dropbox.com/s/123/Screenshot.png?dl=1",
   "host": "dropbox",
@@ -29257,16 +29887,25 @@ continued
 
 ```json
 {
-  "allOf": null
+  "name": "Screenshot.png"
 }
 
 ```
 
 ### Properties
 
+allOf
+
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|allOf|any|false|none|none|
+|*anonymous*|[#/Components/schemas/AsanaObject](#schema#/components/schemas/asanaobject)|false|none|none|
+
+and
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|object|false|none|none|
+|» name|string|false|read-only|The name of the file.|
 
 <!-- backwards compatibility -->
 
@@ -29279,7 +29918,7 @@ continued
 ```json
 {
   "data": {
-    "allOf": null,
+    "name": "Screenshot.png",
     "created_at": "2012-02-22T02:06:58.147Z",
     "download_url": "https://www.dropbox.com/s/123/Screenshot.png?dl=1",
     "host": "dropbox",
@@ -29313,7 +29952,7 @@ continued
 {
   "data": [
     {
-      "allOf": null
+      "name": "Screenshot.png"
     }
   ]
 }
@@ -30177,6 +30816,106 @@ The full record for all events that have occurred since the sync token was creat
 
 <!-- backwards compatibility -->
 
+<h2 id="tocS_Job">Job</h2>
+<a id="schemajob"></a>
+<a id="schema_Job"></a>
+<a id="tocSjob"></a>
+<a id="tocsjob"></a>
+
+```json
+{
+  "id": 12345,
+  "gid": "12345",
+  "resource_type": "task",
+  "resource_subtype": "milestone",
+  "status": "in_progress",
+  "new_project": {
+    "id": 12345,
+    "gid": "12345",
+    "resource_type": "project",
+    "name": "Stuff to buy"
+  },
+  "new_task": {
+    "id": 12345,
+    "gid": "12345",
+    "resource_type": "task",
+    "name": "Bug Task"
+  }
+}
+
+```
+
+### Properties
+
+allOf
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[AsanaObject](#schemaasanaobject)|false|none|A generic Asana Object, containing a globally unique identifier.|
+
+and
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[AsanaSubtype](#schemaasanasubtype)|false|none|none|
+
+and
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|object|false|none|A *job* is an object representing a process that handles asynchronous work.|
+|» status|string|false|read-only|none|
+|» new_project|[ProjectCompact](#schemaprojectcompact)|false|none|none|
+|» new_task|[TaskCompact](#schemataskcompact)|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|status|in_progress|
+|status|completed|
+
+<!-- backwards compatibility -->
+
+<h2 id="tocS_JobObject">JobObject</h2>
+<a id="schemajobobject"></a>
+<a id="schema_JobObject"></a>
+<a id="tocSjobobject"></a>
+<a id="tocsjobobject"></a>
+
+```json
+{
+  "data": {
+    "id": 12345,
+    "gid": "12345",
+    "resource_type": "task",
+    "resource_subtype": "milestone",
+    "status": "in_progress",
+    "new_project": {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "project",
+      "name": "Stuff to buy"
+    },
+    "new_task": {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "task",
+      "name": "Bug Task"
+    }
+  }
+}
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|data|[Job](#schemajob)|false|none|none|
+
+<!-- backwards compatibility -->
+
 <h2 id="tocS_OrganizationExport">OrganizationExport</h2>
 <a id="schemaorganizationexport"></a>
 <a id="schema_OrganizationExport"></a>
@@ -30305,8 +31044,7 @@ and
         "email_domains": [
           "asana.com"
         ],
-        "is_organization": false,
-        "subscription_plan": "enterprise"
+        "is_organization": false
       }
     ]
   },
@@ -30397,8 +31135,7 @@ and
             "email_domains": [
               "asana.com"
             ],
-            "is_organization": false,
-            "subscription_plan": "enterprise"
+            "is_organization": false
           }
         ]
       }
@@ -30573,8 +31310,7 @@ and
           "email_domains": [
             "asana.com"
           ],
-          "is_organization": false,
-          "subscription_plan": "enterprise"
+          "is_organization": false
         }
       ]
     },
@@ -30665,8 +31401,7 @@ and
               "email_domains": [
                 "asana.com"
               ],
-              "is_organization": false,
-              "subscription_plan": "enterprise"
+              "is_organization": false
             }
           ]
         }
@@ -30850,13 +31585,13 @@ This is read-only except for a small group of whitelisted apps.
           "email_domains": [
             "asana.com"
           ],
-          "is_organization": false,
-          "subscription_plan": "enterprise"
+          "is_organization": false
         }
       ]
     }
   ],
   "html_notes": "These are things we need to purchase.",
+  "is_template": false,
   "layout": "list",
   "members": [
     {
@@ -30881,8 +31616,7 @@ This is read-only except for a small group of whitelisted apps.
           "email_domains": [
             "asana.com"
           ],
-          "is_organization": false,
-          "subscription_plan": "enterprise"
+          "is_organization": false
         }
       ]
     }
@@ -30944,6 +31678,7 @@ and
 |» due_date|string(date-time)¦null|false|none|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
 |» followers|[[User](#schemauser)]|false|read-only|Array of users following this project. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
 |» html_notes|string|false|none|[Opt In](https://asana.com/developers/documentation/getting-started/input-output-options). The notes of the project with formatting as HTML.<br>**Note: This field is under active migration—please see our [blog post] (https://asana.com/developers/news/new-rich-text) for more information.**|
+|» is_template|boolean|false|none|[Opt In](/developers/documentation/getting-started/input-output-options). Determines if the project is a template.|
 |» layout|string|false|read-only|The layout (board or list view) of a project|
 |» members|[[User](#schemauser)]|false|read-only|Array of users who are members of this project.|
 |» modified_at|string(date-time)|false|none|The time at which this project was last modified.<br>**Note**: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.|
@@ -31167,13 +31902,13 @@ and
             "email_domains": [
               "asana.com"
             ],
-            "is_organization": false,
-            "subscription_plan": "enterprise"
+            "is_organization": false
           }
         ]
       }
     ],
     "html_notes": "These are things we need to purchase.",
+    "is_template": false,
     "layout": "list",
     "members": [
       {
@@ -31198,8 +31933,7 @@ and
             "email_domains": [
               "asana.com"
             ],
-            "is_organization": false,
-            "subscription_plan": "enterprise"
+            "is_organization": false
           }
         ]
       }
@@ -31340,13 +32074,13 @@ and
               "email_domains": [
                 "asana.com"
               ],
-              "is_organization": false,
-              "subscription_plan": "enterprise"
+              "is_organization": false
             }
           ]
         }
       ],
       "html_notes": "These are things we need to purchase.",
+      "is_template": false,
       "layout": "list",
       "members": [
         {
@@ -31371,8 +32105,7 @@ and
               "email_domains": [
                 "asana.com"
               ],
-              "is_organization": false,
-              "subscription_plan": "enterprise"
+              "is_organization": false
             }
           ]
         }
@@ -31618,8 +32351,7 @@ and
         "email_domains": [
           "asana.com"
         ],
-        "is_organization": false,
-        "subscription_plan": "enterprise"
+        "is_organization": false
       }
     ]
   },
@@ -31732,8 +32464,7 @@ and
           "email_domains": [
             "asana.com"
           ],
-          "is_organization": false,
-          "subscription_plan": "enterprise"
+          "is_organization": false
         }
       ]
     },
@@ -31790,8 +32521,7 @@ and
             "email_domains": [
               "asana.com"
             ],
-            "is_organization": false,
-            "subscription_plan": "enterprise"
+            "is_organization": false
           }
         ]
       },
@@ -31918,13 +32648,13 @@ and
                 "email_domains": [
                   "asana.com"
                 ],
-                "is_organization": false,
-                "subscription_plan": "enterprise"
+                "is_organization": false
               }
             ]
           }
         ],
         "html_notes": "These are things we need to purchase.",
+        "is_template": false,
         "layout": "list",
         "members": [
           {
@@ -31949,8 +32679,7 @@ and
                 "email_domains": [
                   "asana.com"
                 ],
-                "is_organization": false,
-                "subscription_plan": "enterprise"
+                "is_organization": false
               }
             ]
           }
@@ -32148,13 +32877,13 @@ and
                   "email_domains": [
                     "asana.com"
                   ],
-                  "is_organization": false,
-                  "subscription_plan": "enterprise"
+                  "is_organization": false
                 }
               ]
             }
           ],
           "html_notes": "These are things we need to purchase.",
+          "is_template": false,
           "layout": "list",
           "members": [
             {
@@ -32179,8 +32908,7 @@ and
                   "email_domains": [
                     "asana.com"
                   ],
-                  "is_organization": false,
-                  "subscription_plan": "enterprise"
+                  "is_organization": false
                 }
               ]
             }
@@ -32323,13 +33051,13 @@ and
                     "resource_type": "task",
                     "name": "Bug Task",
                     "email_domains": [],
-                    "is_organization": false,
-                    "subscription_plan": "enterprise"
+                    "is_organization": false
                   }
                 ]
               }
             ],
             "html_notes": "These are things we need to purchase.",
+            "is_template": false,
             "layout": "list",
             "members": [
               {
@@ -32352,8 +33080,7 @@ and
                     "resource_type": "task",
                     "name": "Bug Task",
                     "email_domains": [],
-                    "is_organization": false,
-                    "subscription_plan": "enterprise"
+                    "is_organization": false
                   }
                 ]
               }
@@ -32433,8 +33160,7 @@ and
         "email_domains": [
           "asana.com"
         ],
-        "is_organization": false,
-        "subscription_plan": "enterprise"
+        "is_organization": false
       }
     ]
   },
@@ -32467,8 +33193,7 @@ and
           "email_domains": [
             "asana.com"
           ],
-          "is_organization": false,
-          "subscription_plan": "enterprise"
+          "is_organization": false
         }
       ]
     }
@@ -32498,8 +33223,7 @@ and
           "email_domains": [
             "asana.com"
           ],
-          "is_organization": false,
-          "subscription_plan": "enterprise"
+          "is_organization": false
         }
       ]
     }
@@ -32559,8 +33283,7 @@ and
           "email_domains": [
             "asana.com"
           ],
-          "is_organization": false,
-          "subscription_plan": "enterprise"
+          "is_organization": false
         }
       ]
     },
@@ -32756,8 +33479,7 @@ and
         "email_domains": [
           "asana.com"
         ],
-        "is_organization": false,
-        "subscription_plan": "enterprise"
+        "is_organization": false
       }
     ]
   },
@@ -32833,8 +33555,7 @@ and
           "email_domains": [
             "asana.com"
           ],
-          "is_organization": false,
-          "subscription_plan": "enterprise"
+          "is_organization": false
         }
       ]
     },
@@ -32867,8 +33588,7 @@ and
             "email_domains": [
               "asana.com"
             ],
-            "is_organization": false,
-            "subscription_plan": "enterprise"
+            "is_organization": false
           }
         ]
       }
@@ -32898,8 +33618,7 @@ and
             "email_domains": [
               "asana.com"
             ],
-            "is_organization": false,
-            "subscription_plan": "enterprise"
+            "is_organization": false
           }
         ]
       }
@@ -32959,8 +33678,7 @@ and
             "email_domains": [
               "asana.com"
             ],
-            "is_organization": false,
-            "subscription_plan": "enterprise"
+            "is_organization": false
           }
         ]
       },
@@ -33107,8 +33825,7 @@ and
             "email_domains": [
               "asana.com"
             ],
-            "is_organization": false,
-            "subscription_plan": "enterprise"
+            "is_organization": false
           }
         ]
       },
@@ -33141,8 +33858,7 @@ and
               "email_domains": [
                 "asana.com"
               ],
-              "is_organization": false,
-              "subscription_plan": "enterprise"
+              "is_organization": false
             }
           ]
         }
@@ -33172,8 +33888,7 @@ and
               "email_domains": [
                 "asana.com"
               ],
-              "is_organization": false,
-              "subscription_plan": "enterprise"
+              "is_organization": false
             }
           ]
         }
@@ -33233,8 +33948,7 @@ and
               "email_domains": [
                 "asana.com"
               ],
-              "is_organization": false,
-              "subscription_plan": "enterprise"
+              "is_organization": false
             }
           ]
         },
@@ -34206,8 +34920,7 @@ and
     "gid": "12345",
     "resource_type": "task",
     "name": "Bug Task"
-  },
-  "subscription_plan": "premium"
+  }
 }
 
 ```
@@ -34240,21 +34953,6 @@ and
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |»» *anonymous*|object|false|none|The organization/workspace the team belongs to.|
-
-continued
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» subscription_plan|string|false|none|[Opt In](/developers/documentation/getting-started/input-output-options). The subscription plan of this team.|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|subscription_plan|free|
-|subscription_plan|premium|
-|subscription_plan|business|
-|subscription_plan|enterprise|
 
 <!-- backwards compatibility -->
 
@@ -34300,8 +34998,7 @@ continued
       "gid": "12345",
       "resource_type": "task",
       "name": "Bug Task"
-    },
-    "subscription_plan": "premium"
+    }
   }
 }
 
@@ -34336,8 +35033,7 @@ continued
         "gid": "12345",
         "resource_type": "task",
         "name": "Bug Task"
-      },
-      "subscription_plan": "premium"
+      }
     }
   ]
 }
@@ -34381,8 +35077,7 @@ continued
       "email_domains": [
         "asana.com"
       ],
-      "is_organization": false,
-      "subscription_plan": "enterprise"
+      "is_organization": false
     }
   ]
 }
@@ -34476,8 +35171,7 @@ and
         "email_domains": [
           "asana.com"
         ],
-        "is_organization": false,
-        "subscription_plan": "enterprise"
+        "is_organization": false
       }
     ]
   }
@@ -34524,8 +35218,7 @@ and
           "email_domains": [
             "asana.com"
           ],
-          "is_organization": false,
-          "subscription_plan": "enterprise"
+          "is_organization": false
         }
       ]
     }
@@ -34899,8 +35592,7 @@ continued
   "email_domains": [
     "asana.com"
   ],
-  "is_organization": false,
-  "subscription_plan": "enterprise"
+  "is_organization": false
 }
 
 ```
@@ -34920,16 +35612,6 @@ and
 |*anonymous*|object|false|none|A *workspace* is the highest-level organizational unit in Asana. All<br>projects and tasks have an associated workspace.<br><br>An *organization* is a special kind of workspace that represents a<br>company. In an organization, you can group your projects into teams.<br>You can read more about how organizations work on the Asana Guide. To<br>tell if your workspace is an organization or not, check its<br>`is_organization` property.<br><br>Over time, we intend to migrate most workspaces into organizations and<br>to release more organization-specific functionality. We may eventually<br>deprecate using workspace-based APIs for organizations. Currently, and<br>until after some reasonable grace period following any further<br>announcements, you can still reference organizations in any `workspace`<br>parameter.|
 |» email_domains|[string]|false|none|The email domains that are associated with this workspace.|
 |» is_organization|boolean|false|none|Whether the workspace is an *organization*.|
-|» subscription_plan|string|false|none|[Opt In](/developers/documentation/getting-started/input-output-options). The subscription plan of this organization.|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|subscription_plan|free|
-|subscription_plan|premium|
-|subscription_plan|business|
-|subscription_plan|enterprise|
 
 <!-- backwards compatibility -->
 
@@ -34971,8 +35653,7 @@ and
     "email_domains": [
       "asana.com"
     ],
-    "is_organization": false,
-    "subscription_plan": "enterprise"
+    "is_organization": false
   }
 }
 
@@ -35003,8 +35684,7 @@ and
       "email_domains": [
         "asana.com"
       ],
-      "is_organization": false,
-      "subscription_plan": "enterprise"
+      "is_organization": false
     }
   ]
 }

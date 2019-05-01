@@ -14,7 +14,7 @@ The OpenAPI spec is located at /defs/asana_oas.json
 
 To generate the markdown from the spec use [widdershins](https://github.com/mermade/widdershins)
 ```shell
-widdershins --search false --language_tabs 'shell: curl' 'javascript--nodejs:Node.JS' 'python:Python' 'java: Java' 'ruby: Ruby' 'go: Go' --summary defs/asana_oas.json -o source/index.html.md
+widdershins --search true --language_tabs 'shell: curl' 'javascript--nodejs:Node.JS' 'php:PHP' 'python:Python' 'java: Java' 'ruby:Ruby' 'csharp:C#' --omitHeader true --includes markdown/* --summary defs/asana_oas.json -o source/includes/api-reference/_index.html.md
 ```
 
 Then to generate the html from the markdown, use [slate](https://github.com/lord/slate)

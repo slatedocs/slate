@@ -75,6 +75,9 @@ under the License.
       <ul id="toc" class="toc-list-h1">
         <% toc_data(page_content).each do |h1| %>
           <li>
+            <% if h1[:title].start_with?("Asana") %>
+              <hr>
+            <% end %>
             <a href="#<%= h1[:id] %>" class="toc-h1 toc-link" data-title="<%= h1[:title] %>"><%= h1[:content] %></a>
             <% if h1[:children].length > 0 %>
               <ul class="toc-list-h2">

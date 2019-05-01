@@ -1116,6 +1116,14 @@
           }
         ]
       },
+      "JobObject": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Job"
+          }
+        }
+      },
       "OrganizationExport": {
         "allOf": [
           {
@@ -4074,9 +4082,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "data": {
-                    "$ref": "#/components/schemas/Job"
-                  }
+                  "$ref": "#/components/schemas/JobObject"
                 }
               }
             }
@@ -5573,31 +5579,42 @@
           "content": {
             "application/json": {
               "schema": {
-                "data": {
-                  "name": {
-                    "description": "The name of the new project.",
-                    "type": "string",
-                    "example": "New Project Name"
-                  },
-                  "include": {
-                    "description": "The elements that will be duplicated to the new project. Tasks and project notes are always included.",
-                    "type": "string",
-                    "enum": [
-                      "members",
-                      "task_notes",
-                      "task_assignee",
-                      "task_subtasks",
-                      "task_attachments",
-                      "task_dates",
-                      "task_dependencies",
-                      "task_followers",
-                      "task_tags",
-                      "task_projects"
-                    ],
-                    "example": [
-                      "members",
-                      "task_notes"
-                    ]
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "description": "The name of the new project.",
+                        "type": "string",
+                        "example": "New Project Name"
+                      },
+                      "team": {
+                        "description": "Required if duplicating within an organization.",
+                        "type": "string",
+                        "example": "12345"
+                      },
+                      "include": {
+                        "description": "The elements that will be duplicated to the new project. Tasks and project notes are always included.",
+                        "type": "string",
+                        "enum": [
+                          "members",
+                          "task_notes",
+                          "task_assignee",
+                          "task_subtasks",
+                          "task_attachments",
+                          "task_dates",
+                          "task_dependencies",
+                          "task_followers",
+                          "task_tags",
+                          "task_projects"
+                        ],
+                        "example": [
+                          "members",
+                          "task_notes"
+                        ]
+                      }
+                    }
                   }
                 }
               }
@@ -5610,9 +5627,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "data": {
-                    "$ref": "#/components/schemas/Job"
-                  }
+                  "$ref": "#/components/schemas/JobObject"
                 }
               }
             }
@@ -7608,31 +7623,37 @@
           "content": {
             "application/json": {
               "schema": {
-                "data": {
-                  "name": {
-                    "description": "The name of the new task.",
-                    "type": "string",
-                    "example": "New Task Name"
-                  },
-                  "include": {
-                    "description": "The fields that will be duplicated to the new task.",
-                    "type": "string",
-                    "enum": [
-                      "notes",
-                      "assignee",
-                      "subtasks",
-                      "attachments",
-                      "tags",
-                      "followers",
-                      "projects",
-                      "dates",
-                      "dependencies",
-                      "parent"
-                    ],
-                    "example": [
-                      "notes",
-                      "assignee"
-                    ]
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "description": "The name of the new task.",
+                        "type": "string",
+                        "example": "New Task Name"
+                      },
+                      "include": {
+                        "description": "The fields that will be duplicated to the new task.",
+                        "type": "string",
+                        "enum": [
+                          "notes",
+                          "assignee",
+                          "subtasks",
+                          "attachments",
+                          "tags",
+                          "followers",
+                          "projects",
+                          "dates",
+                          "dependencies",
+                          "parent"
+                        ],
+                        "example": [
+                          "notes",
+                          "assignee"
+                        ]
+                      }
+                    }
                   }
                 }
               }
@@ -7645,9 +7666,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "data": {
-                    "$ref": "#/components/schemas/Job"
-                  }
+                  "$ref": "#/components/schemas/JobObject"
                 }
               }
             }
