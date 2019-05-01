@@ -44,7 +44,7 @@
     },
     {
       "name": "Batch API",
-      "description": "There are many cases where you want to accomplish a variety of work in the Asana API but want to minimize the number of HTTP requests you make. For example:\n* Modern browsers limit the number of requests that a single web page can\n  make at once.\n* Mobile apps will use more battery life to keep the cellular radio on\n  when making a series of requests.\n* There is an overhead cost to developing software that can make multiple\n  requests in parallel.\n* Some cloud platforms handle parallelism poorly, or disallow it\n  entirely.\n* To make development easier in these use cases, Asana provides a **batch\n  API** that enables developers to perform multiple \u201cactions\u201d by making\n  only a single HTTP request.\n\n### Making a Batch Request\nTo make a batch request, send a `POST` request to `/batch`. Like other `POST` endpoints, the body should contain a `data` envelope. Inside this envelope should be a single `actions` field, containing a list of \u201caction\u201d objects.  Each action represents a standard request to an existing endpoint in the Asana API.\n**The maximum number of actions allowed in a single batch request is 10**. Making a batch request with no actions in it will result in a `400 Bad Request`.\nWhen the batch API receives the list of actions to execute, it will dispatch those actions to the already-implemented endpoints specified by the `relative_path` and `method` for each action. This happens in parallel, so all actions in the request will be processed simultaneously. There is no guarantee of the execution order for these actions, nor is there a way to use the output of one action as the input of another action (such as creating a task and then commenting on it).\nThe response to the batch request will contain (within the `data` envelope) a list of result objects, one for each action. The results are guaranteed to be in the same order as the actions in the request, e.g., the first result in the response corresponds to the first action in the request.\nThe batch API will always attempt to return a `200 Success` response with individual result objects for each individual action in the request. Only in certain cases (such as missing authorization or malformed JSON in the body) will the entire request fail with another status code. Even if every individual action in the request fails, the batch API will still return a `200 Success` response, and each result object in the response will contain the errors encountered with each action.\n### Rate Limiting\nThe batch API fully respects all of our rate limiting. This means that a batch request counts against *both* the standard rate limiter and the concurrent request limiter as though you had made a separate HTTP request for every individual action. For example, a batch request with five actions counts as five separate requests in the standard rate limiter, and counts as five concurrent requests in the concurrent request limiter. The batch request itself incurs no cost.\nIf any of the actions in a batch request would exceed any of the enforced limits, the *entire* request will fail with a `429 Too Many Requests` error. This is to prevent the unpredictability of which actions might succeed if not all of them could succeed.\n### Restrictions\nNot every API endpoint can be accessed through the batch API. Specifically, the following actions cannot be taken and will result in a `400 Bad Request` for that action:\n* Uploading attachments * Creating, getting, or deleting organization exports * Any SCIM operations * Nested calls to the batch API"
+      "description": "There are many cases where you want to accomplish a variety of work in the Asana API but want to minimize the number of HTTP requests you make. For example:\n* Modern browsers limit the number of requests that a single web page can\n  make at once.\n* Mobile apps will use more battery life to keep the cellular radio on\n  when making a series of requests.\n* There is an overhead cost to developing software that can make multiple\n  requests in parallel.\n* Some cloud platforms handle parallelism poorly, or disallow it\n  entirely.\n* To make development easier in these use cases, Asana provides a **batch\n  API** that enables developers to perform multiple \u201cactions\u201d by making\n  only a single HTTP request.\n\n### Making a Batch Request\nTo make a batch request, send a `POST` request to `/batch`. Like other `POST` endpoints, the body should contain a `data` envelope. Inside this envelope should be a single `actions` field, containing a list of \u201caction\u201d objects.  Each action represents a standard request to an existing endpoint in the Asana API.\n**The maximum number of actions allowed in a single batch request is 10**. Making a batch request with no actions in it will result in a `400 Bad Request`.\nWhen the batch API receives the list of actions to execute, it will dispatch those actions to the already-implemented endpoints specified by the `relative_path` and `method` for each action. This happens in parallel, so all actions in the request will be processed simultaneously. There is no guarantee of the execution order for these actions, nor is there a way to use the output of one action as the input of another action (such as creating a task and then commenting on it).\nThe response to the batch request will contain (within the `data` envelope) a list of result objects, one for each action. The results are guaranteed to be in the same order as the actions in the request, e.g., the first result in the response corresponds to the first action in the request.\nThe batch API will always attempt to return a `200 Success` response with individual result objects for each individual action in the request. Only in certain cases (such as missing authorization or malformed JSON in the body) will the entire request fail with another status code. Even if every individual action in the request fails, the batch API will still return a `200 Success` response, and each result object in the response will contain the errors encountered with each action.\n### Rate Limiting\nThe batch API fully respects all of our rate limiting. This means that a batch request counts against *both* the standard rate limiter and the concurrent request limiter as though you had made a separate HTTP request for every individual action. For example, a batch request with five actions counts as five separate requests in the standard rate limiter, and counts as five concurrent requests in the concurrent request limiter. The batch request itself incurs no cost.\nIf any of the actions in a batch request would exceed any of the enforced limits, the *entire* request will fail with a `429 Too Many Requests` error. This is to prevent the unpredictability of which actions might succeed if not all of them could succeed.\n### Restrictions\nNot every endpoint can be accessed through the batch API. Specifically, the following actions cannot be taken and will result in a `400 Bad Request` for that action:\n* Uploading attachments * Creating, getting, or deleting organization exports * Any SCIM operations * Nested calls to the batch API"
     },
     {
       "name": "Custom Fields",
@@ -57,6 +57,10 @@
     {
       "name": "Events",
       "description": "An event is an object representing a change to a resource that was observed by an event subscription."
+    },
+    {
+      "name": "Jobs",
+      "description": "Jobs represent processes that handle asynchronous work.\nJobs are created when an endpoint requests an action that will be handled asynchronously. Such as project or task duplication.\nOnly the creator of the duplication process can access the duplication status of the new object."
     },
     {
       "name": "Organization Exports",
@@ -193,6 +197,16 @@
           "type": "boolean"
         },
         "example": false
+      },
+      "job_path_gid": {
+        "name": "job_gid",
+        "in": "path",
+        "description": "Globally unique identifier for the job.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "example": 12345
       },
       "project_path_gid": {
         "name": "project_gid",
@@ -409,30 +423,26 @@
             "type": "integer",
             "format": "int64",
             "readOnly": true,
-            "example": 12345,
-            "x-public": true
+            "example": 12345
           },
           "gid": {
             "description": "Globally unique ID of the object, as a string.",
             "type": "string",
             "readOnly": true,
-            "example": "12345",
-            "x-public": true
+            "example": "12345"
           },
           "resource_type": {
             "description": "The base type of this resource.",
             "type": "string",
             "readOnly": true,
-            "example": "task",
-            "x-public": true
+            "example": "task"
           }
         }
       },
       "AsanaNamedObject": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaObject",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaObject"
           },
           {
             "type": "object",
@@ -440,8 +450,7 @@
               "name": {
                 "description": "The name of the object.",
                 "type": "string",
-                "example": "Bug Task",
-                "x-public": true
+                "example": "Bug Task"
               }
             }
           }
@@ -455,8 +464,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/AsanaNamedObject"
-            },
-            "x-public": true
+            }
           }
         }
       },
@@ -465,8 +473,7 @@
           "resource_subtype": {
             "description": "The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.",
             "type": "string",
-            "example": "milestone",
-            "x-public": true
+            "example": "milestone"
           }
         }
       },
@@ -477,16 +484,14 @@
             "type": "string",
             "format": "date-time",
             "readOnly": true,
-            "example": "2012-02-22T02:06:58.147Z",
-            "x-public": true
+            "example": "2012-02-22T02:06:58.147Z"
           }
         }
       },
       "AsanaCreatedByAndAt": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaCreatedAt",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaCreatedAt"
           },
           {
             "type": "object",
@@ -502,8 +507,7 @@
                     "nullable": true,
                     "readOnly": true
                   }
-                ],
-                "x-public": true
+                ]
               }
             }
           }
@@ -512,12 +516,10 @@
       "Attachment": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/AttachmentCompact",
-            "x-public": true
+            "$ref": "#/components/schemas/AttachmentCompact"
           },
           {
-            "$ref": "#/components/schemas/AsanaCreatedAt",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaCreatedAt"
           },
           {
             "type": "object",
@@ -529,15 +531,13 @@
                 "format": "uri",
                 "readOnly": true,
                 "nullable": true,
-                "example": "https://www.dropbox.com/s/123/Screenshot.png?dl=1",
-                "x-public": true
+                "example": "https://www.dropbox.com/s/123/Screenshot.png?dl=1"
               },
               "host": {
                 "description": "The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive` and `box`.",
                 "type": "string",
                 "readOnly": true,
-                "example": "dropbox",
-                "x-public": true
+                "example": "dropbox"
               },
               "parent": {
                 "allOf": [
@@ -549,8 +549,7 @@
                     "description": "The task this attachment is attached to.",
                     "readOnly": true
                   }
-                ],
-                "x-public": true
+                ]
               },
               "view_url": {
                 "description": "The URL where the attachment can be viewed, which may be friendlier to users in a browser than just directing them to a raw file. May be null if no view URL exists for the service.",
@@ -558,40 +557,35 @@
                 "format": "uri",
                 "readOnly": true,
                 "nullable": true,
-                "example": "https://www.dropbox.com/s/123/Screenshot.png",
-                "x-public": true
+                "example": "https://www.dropbox.com/s/123/Screenshot.png"
               }
             }
           }
         ]
       },
       "AttachmentCompact": {
-        "type": "object",
-        "properties": {
-          "allOf": [
-            {
-              "$ref": "#/Components/schemas/AsanaObject"
-            },
-            {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "description": "The name of the file.",
-                  "type": "string",
-                  "readOnly": true,
-                  "example": "Screenshot.png"
-                }
+        "allOf": [
+          {
+            "$ref": "#/Components/schemas/AsanaObject"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "description": "The name of the file.",
+                "type": "string",
+                "readOnly": true,
+                "example": "Screenshot.png"
               }
             }
-          ]
-        }
+          }
+        ]
       },
       "AttachmentObject": {
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/Attachment",
-            "x-public": true
+            "$ref": "#/components/schemas/Attachment"
           }
         }
       },
@@ -602,8 +596,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/AttachmentCompact"
-            },
-            "x-public": true
+            }
           }
         }
       },
@@ -614,8 +607,7 @@
           "relative_path": {
             "description": "The path of the desired endpoint relative to the API\u2019s base URL. Query parameters are not accepted here; put them in `data` instead.",
             "type": "string",
-            "example": "/tasks/123",
-            "x-public": true
+            "example": "/tasks/123"
           },
           "method": {
             "description": "The HTTP method you wish to emulate for the action.",
@@ -628,8 +620,7 @@
               "patch",
               "head"
             ],
-            "example": "get",
-            "x-public": true
+            "example": "get"
           },
           "data": {
             "description": "For `GET` requests, this should be a map of query parameters you would have normally passed in the URL. Options and pagination are not accepted here; put them in `options` instead. For `POST`, `PATCH`, and `PUT` methods, this should be the content you would have normally put in the data field of the body.",
@@ -637,8 +628,7 @@
             "example": {
               "assignee": "me",
               "workspace": 1337
-            },
-            "x-public": true
+            }
           },
           "options": {
             "description": "Pagination (`limit` and `offset`) and output options (`fields` or `expand`) for the action. \u201cPretty\u201d JSON output is not an available option on individual actions; if you want pretty output, specify that option on the parent request.",
@@ -680,8 +670,7 @@
                 "notes",
                 "completed"
               ]
-            },
-            "x-public": true
+            }
           }
         },
         "required": [
@@ -696,16 +685,14 @@
           "status_code": {
             "description": "The HTTP status code that the invoked endpoint returned.",
             "type": "integer",
-            "example": 200,
-            "x-public": true
+            "example": 200
           },
           "headers": {
             "description": "A map of HTTP headers specific to this result. This is primarily used for returning a `Location` header to accompany a `201 Created` result.  The parent HTTP response will contain all common headers.",
             "type": "object",
             "example": {
               "location": "/tasks/1234"
-            },
-            "x-public": true
+            }
           },
           "body": {
             "description": "The JSON body that the invoked endpoint returned.",
@@ -717,16 +704,14 @@
                 "name": "Hello, world!",
                 "notes": "How are you today?"
               }
-            },
-            "x-public": true
+            }
           }
         }
       },
       "CustomField": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/CustomFieldCompact",
-            "x-public": true
+            "$ref": "#/components/schemas/CustomFieldCompact"
           },
           {
             "type": "object",
@@ -735,22 +720,19 @@
               "description": {
                 "description": "[Opt In](/developers/documentation/getting-started/input-output-options). The description of the custom field.",
                 "type": "string",
-                "example": "Development team priority",
-                "x-public": true
+                "example": "Development team priority"
               },
               "enum_options": {
                 "description": "**Conditional**. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://asana.com/developers/api-reference/custom_fields#enum-options).",
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/EnumOption"
-                },
-                "x-public": true
+                }
               },
               "precision": {
                 "description": "Only relevant for custom fields of type \u2018Number\u2019. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.",
                 "type": "integer",
-                "example": 2,
-                "x-public": true
+                "example": 2
               }
             }
           }
@@ -759,12 +741,10 @@
       "CustomFieldCompact": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaNamedObject",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaNamedObject"
           },
           {
-            "$ref": "#/components/schemas/AsanaSubtype",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaSubtype"
           },
           {
             "type": "object",
@@ -776,16 +756,14 @@
                   "text",
                   "enum",
                   "number"
-                ],
-                "x-public": true
+                ]
               },
               "enum_options": {
                 "description": "**Conditional**. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://asana.com/developers/api-reference/custom_fields#enum-options).",
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/EnumOptionCompact"
-                },
-                "x-public": true
+                }
               },
               "enum_value": {
                 "allOf": [
@@ -796,20 +774,17 @@
                     "type": "object",
                     "description": "**Conditional**. Only relevant for custom fields of type `enum`. This object is the chosen value of an enum custom field."
                   }
-                ],
-                "x-public": true
+                ]
               },
               "enabled": {
                 "description": "**Conditional**. Determines if the custom field is enabled or not.",
                 "type": "boolean",
-                "example": true,
-                "x-public": true
+                "example": true
               },
               "text_value": {
                 "description": "**Conditional**. This string is the value of a text custom field.",
                 "type": "string",
-                "example": "Some Value",
-                "x-public": true
+                "example": "Some Value"
               }
             }
           }
@@ -819,8 +794,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/CustomField",
-            "x-public": true
+            "$ref": "#/components/schemas/CustomField"
           }
         }
       },
@@ -831,16 +805,14 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CustomFieldCompact"
-            },
-            "x-public": true
+            }
           }
         }
       },
       "CustomFieldSettings": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/CustomFieldSettingsCompact",
-            "x-public": true
+            "$ref": "#/components/schemas/CustomFieldSettingsCompact"
           },
           {
             "type": "object",
@@ -856,15 +828,13 @@
                     "description": "**Deprecated: new integrations should prefer the `parent` field.** The id of the project that this custom field settings refers to.",
                     "readOnly": true
                   }
-                ],
-                "x-public": true
+                ]
               },
               "is_important": {
                 "description": "`is_important` is used in the Asana web application to determine if this custom field is displayed in the task list (left pane) of a project. A project can have a maximum of 5 custom field settings marked as `is_important`.",
                 "type": "boolean",
                 "readOnly": true,
-                "example": false,
-                "x-public": true
+                "example": false
               },
               "parent": {
                 "allOf": [
@@ -876,8 +846,7 @@
                     "description": "The parent to which the custom field is applied. This can be a project or portfolio and indicates that the tasks or projects that the parent contains may be given custom field values for this custom field.",
                     "readOnly": true
                   }
-                ],
-                "x-public": true
+                ]
               },
               "custom_field": {
                 "allOf": [
@@ -888,8 +857,7 @@
                     "type": "object",
                     "description": "The custom field that is applied to the `parent`. readOnly: true"
                   }
-                ],
-                "x-public": true
+                ]
               }
             }
           }
@@ -898,8 +866,7 @@
       "CustomFieldSettingsCompact": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaObject",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaObject"
           }
         ]
       },
@@ -910,8 +877,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/CustomFieldSettings"
-            },
-            "x-public": true
+            }
           }
         }
       },
@@ -929,8 +895,7 @@
                   "type": "integer"
                 }
               }
-            },
-            "x-public": true
+            }
           }
         },
         "example": {
@@ -956,8 +921,7 @@
                   "type": "integer"
                 }
               }
-            },
-            "x-public": true
+            }
           }
         },
         "example": {
@@ -974,16 +938,14 @@
         "type": "object",
         "properties": {
           "data": {
-            "type": "object",
-            "x-public": true
+            "type": "object"
           }
         }
       },
       "EnumOption": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaObject",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaObject"
           },
           {
             "type": "object",
@@ -992,20 +954,17 @@
               "name": {
                 "description": "The name of the enum option.",
                 "type": "string",
-                "example": "Low",
-                "x-public": true
+                "example": "Low"
               },
               "enabled": {
                 "description": "The color of the enum option. Defaults to \u2018none\u2019.",
                 "type": "boolean",
-                "example": true,
-                "x-public": true
+                "example": true
               },
               "color": {
                 "description": "Whether or not the enum option is a selectable value for the custom field.",
                 "type": "string",
-                "example": "blue",
-                "x-public": true
+                "example": "blue"
               }
             }
           }
@@ -1039,8 +998,7 @@
                   "example": "6 sad squid snuggle softly"
                 }
               }
-            },
-            "x-public": true
+            }
           }
         }
       },
@@ -1059,8 +1017,7 @@
                 "readOnly": true,
                 "nullable": true
               }
-            ],
-            "x-public": true
+            ]
           },
           "resource": {
             "description": "The resource the event occurred on.\n\n**Note**: The resource that triggered the event may be different from\nthe one that the events were requested for. For example, a\nsubscription to a project will contain events for tasks contained\nwithin the project.",
@@ -1075,22 +1032,19 @@
                 "type": "string",
                 "example": "Bug Task"
               }
-            },
-            "x-public": true
+            }
           },
           "type": {
             "description": "**Deprecated: Refer to the resource_type of the resource.**\nThe type of the resource that generated the event.\n\n**Note**: Currently, only tasks, projects and stories generate\nevents.",
             "type": "string",
             "readOnly": true,
-            "example": "task",
-            "x-public": true
+            "example": "task"
           },
           "action": {
             "description": "The type of action taken that triggered the event.",
             "type": "string",
             "readOnly": true,
-            "example": "changed",
-            "x-public": true
+            "example": "changed"
           },
           "parent": {
             "allOf": [
@@ -1103,16 +1057,14 @@
                 "readOnly": true,
                 "nullable": true
               }
-            ],
-            "x-public": true
+            ]
           },
           "created_at": {
             "description": "The timestamp when the event occurred.",
             "type": "string",
             "format": "date-time",
             "readOnly": true,
-            "example": "2012-02-22T02:06:58.147Z",
-            "x-public": true
+            "example": "2012-02-22T02:06:58.147Z"
           }
         }
       },
@@ -1124,26 +1076,53 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Event"
-            },
-            "x-public": true
+            }
           },
           "sync": {
             "description": "A sync token to be used with the next call to the events endpoint.",
             "type": "string",
-            "example": "de4774f6915eae04714ca93bb2f5ee81",
-            "x-public": true
+            "example": "de4774f6915eae04714ca93bb2f5ee81"
           }
         }
+      },
+      "Job": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/AsanaObject"
+          },
+          {
+            "$ref": "#/components/schemas/AsanaSubtype"
+          },
+          {
+            "type": "object",
+            "description": "A *job* is an object representing a process that handles asynchronous work.",
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": [
+                  "in_progress",
+                  "completed"
+                ],
+                "readOnly": true,
+                "example": "in_progress"
+              },
+              "new_project": {
+                "$ref": "#/components/schemas/ProjectCompact"
+              },
+              "new_task": {
+                "$ref": "#/components/schemas/TaskCompact"
+              }
+            }
+          }
+        ]
       },
       "OrganizationExport": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaObject",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaObject"
           },
           {
-            "$ref": "#/components/schemas/AsanaCreatedAt",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaCreatedAt"
           },
           {
             "type": "object",
@@ -1155,8 +1134,7 @@
                 "format": "uri",
                 "readOnly": true,
                 "nullable": true,
-                "example": "https://asana-export.s3.amazonaws.com/export-4632784536274-20170127-43246.json.gz?AWSAccessKeyId=xxxxxxxx",
-                "x-public": true
+                "example": "https://asana-export.s3.amazonaws.com/export-4632784536274-20170127-43246.json.gz?AWSAccessKeyId=xxxxxxxx"
               },
               "state": {
                 "description": "The current state of the export.",
@@ -1168,8 +1146,7 @@
                   "error"
                 ],
                 "readOnly": true,
-                "example": "started",
-                "x-public": true
+                "example": "started"
               },
               "organization": {
                 "description": "**Create-only**: The Organization that is being exported. This can only be specified at create time.",
@@ -1187,8 +1164,7 @@
                     "type": "string",
                     "example": "My Workspace"
                   }
-                },
-                "x-public": true
+                }
               }
             }
           }
@@ -1198,20 +1174,17 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/OrganizationExport",
-            "x-public": true
+            "$ref": "#/components/schemas/OrganizationExport"
           }
         }
       },
       "Portfolio": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/PortfolioCompact",
-            "x-public": true
+            "$ref": "#/components/schemas/PortfolioCompact"
           },
           {
-            "$ref": "#/components/schemas/AsanaCreatedByAndAt",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaCreatedByAndAt"
           },
           {
             "type": "object",
@@ -1240,8 +1213,7 @@
                   "light-purple",
                   "light-warm-gray"
                 ],
-                "example": "light-green",
-                "x-public": true
+                "example": "light-green"
               },
               "custom_field_settings": {
                 "description": "Array of custom field settings applied to the portfolio.",
@@ -1249,8 +1221,7 @@
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/CustomFieldSettings"
-                },
-                "x-public": true
+                }
               },
               "owner": {
                 "allOf": [
@@ -1262,8 +1233,7 @@
                     "description": "The current owner of the portfolio.",
                     "readOnly": true
                   }
-                ],
-                "x-public": true
+                ]
               },
               "workspace": {
                 "allOf": [
@@ -1274,8 +1244,7 @@
                     "type": "object",
                     "description": "**Create-only**. The workspace or organization that the portfolio belongs to."
                   }
-                ],
-                "x-public": true
+                ]
               },
               "members": {
                 "allOf": [
@@ -1286,8 +1255,7 @@
                     "type": "object",
                     "description": "Members of the portfolio"
                   }
-                ],
-                "x-public": true
+                ]
               }
             }
           }
@@ -1296,16 +1264,14 @@
       "PortfolioCompact": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaNamedObject",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaNamedObject"
           },
           {
             "type": "object",
             "properties": {
               "resource_type": {
                 "type": "string",
-                "example": "portfolio",
-                "x-public": true
+                "example": "portfolio"
               }
             }
           }
@@ -1315,8 +1281,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/Portfolio",
-            "x-public": true
+            "$ref": "#/components/schemas/Portfolio"
           }
         }
       },
@@ -1327,8 +1292,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PortfolioCompact"
-            },
-            "x-public": true
+            }
           }
         }
       },
@@ -1340,62 +1304,52 @@
           "fallback": {
             "description": "Some fallback text to display if unable to display the full preview.",
             "type": "string",
-            "example": "Greg: Great! I like this idea.\\n\\nhttps//a_company.slack.com/archives/ABCDEFG/12345678",
-            "x-public": true
+            "example": "Greg: Great! I like this idea.\\n\\nhttps//a_company.slack.com/archives/ABCDEFG/12345678"
           },
           "footer": {
             "description": "Text to display in the footer.",
             "type": "string",
-            "example": "Mar 17, 2019 1:25 PM",
-            "x-public": true
+            "example": "Mar 17, 2019 1:25 PM"
           },
           "header": {
             "description": "Text to display in the header.",
             "type": "string",
-            "example": "Asana for Slack",
-            "x-public": true
+            "example": "Asana for Slack"
           },
           "header_link": {
             "description": "Where the header will link to.",
             "type": "string",
-            "example": "https://asana.comn/apps/slack",
-            "x-public": true
+            "example": "https://asana.comn/apps/slack"
           },
           "html_text": {
             "description": "HTML formatted text for the body of the preview.",
             "type": "string",
-            "example": "<body>Great! I like this idea.</body>",
-            "x-public": true
+            "example": "<body>Great! I like this idea.</body>"
           },
           "text": {
             "description": "Text for the body of the preview.",
             "type": "string",
-            "example": "Great! I like this idea.",
-            "x-public": true
+            "example": "Great! I like this idea."
           },
           "title": {
             "description": "Text to display as the title.",
             "type": "string",
-            "example": "Greg",
-            "x-public": true
+            "example": "Greg"
           },
           "title_link": {
             "description": "Where to title will link to.",
             "type": "string",
-            "example": "https://asana.slack.com/archives/ABCDEFG/12345678",
-            "x-public": true
+            "example": "https://asana.slack.com/archives/ABCDEFG/12345678"
           }
         }
       },
       "Project": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/ProjectCompact",
-            "x-public": true
+            "$ref": "#/components/schemas/ProjectCompact"
           },
           {
-            "$ref": "#/components/schemas/AsanaCreatedAt",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaCreatedAt"
           },
           {
             "type": "object",
@@ -1404,8 +1358,7 @@
               "archived": {
                 "description": "True if the project is archived, false if not. Archived projects do not show in the UI by default and may be treated differently for queries.",
                 "type": "boolean",
-                "example": false,
-                "x-public": true
+                "example": false
               },
               "color": {
                 "description": "Color of the project.",
@@ -1431,8 +1384,7 @@
                   "light-purple",
                   "light-warm-gray"
                 ],
-                "example": "light-green",
-                "x-public": true
+                "example": "light-green"
               },
               "current_status": {
                 "description": "The most recently created status update for the project, or `null` if no update exists. See also the documentation for [project status updates](/developers/api-reference/project_statuses).",
@@ -1464,8 +1416,7 @@
                     "id": 12345,
                     "name": "Greg Bizarro"
                   }
-                },
-                "x-public": true
+                }
               },
               "custom_fields": {
                 "description": "Array of Custom Fields.",
@@ -1473,8 +1424,7 @@
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/CustomFieldSetting"
-                },
-                "x-public": true
+                }
               },
               "custom_field_settings": {
                 "description": "Array of Custom Field Settings (in compact form).",
@@ -1482,16 +1432,14 @@
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/CustomFieldSettings"
-                },
-                "x-public": true
+                }
               },
               "due_date": {
                 "description": "The day on which this project is due. This takes a date with format YYYY-MM-DD.",
                 "type": "string",
                 "nullable": true,
                 "format": "date-time",
-                "example": "2012-03-26",
-                "x-public": true
+                "example": "2012-03-26"
               },
               "followers": {
                 "description": "Array of users following this project. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.",
@@ -1499,14 +1447,17 @@
                 "items": {
                   "$ref": "#/components/schemas/User"
                 },
-                "readOnly": true,
-                "x-public": true
+                "readOnly": true
               },
               "html_notes": {
                 "description": "[Opt In](https://asana.com/developers/documentation/getting-started/input-output-options). The notes of the project with formatting as HTML.\n**Note: This field is under active migration\u2014please see our [blog post] (https://asana.com/developers/news/new-rich-text) for more information.**",
                 "type": "string",
-                "example": "These are things we need to purchase.",
-                "x-public": true
+                "example": "These are things we need to purchase."
+              },
+              "is_template": {
+                "description": "[Opt In](/developers/documentation/getting-started/input-output-options). Determines if the project is a template.",
+                "type": "boolean",
+                "example": false
               },
               "layout": {
                 "description": "The layout (board or list view) of a project",
@@ -1515,8 +1466,7 @@
                   "list",
                   "board"
                 ],
-                "readOnly": true,
-                "x-public": true
+                "readOnly": true
               },
               "members": {
                 "description": "Array of users who are members of this project.",
@@ -1524,21 +1474,18 @@
                 "items": {
                   "$ref": "#/components/schemas/User"
                 },
-                "readOnly": true,
-                "x-public": true
+                "readOnly": true
               },
               "modified_at": {
                 "description": "The time at which this project was last modified.\n**Note**: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.",
                 "type": "string",
                 "format": "date-time",
-                "example": "2012-02-22T02:06:58.147Z",
-                "x-public": true
+                "example": "2012-02-22T02:06:58.147Z"
               },
               "notes": {
                 "description": "More detailed, free-form textual information associated with the project.",
                 "type": "string",
-                "example": "These are things we need to purchase.",
-                "x-public": true
+                "example": "These are things we need to purchase."
               },
               "owner": {
                 "allOf": [
@@ -1550,14 +1497,12 @@
                     "description": "The current owner of the project, may be null.",
                     "nullable": true
                   }
-                ],
-                "x-public": true
+                ]
               },
               "public": {
                 "description": "True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.",
                 "type": "boolean",
-                "example": false,
-                "x-public": true
+                "example": false
               },
               "section_migration_status": {
                 "description": "**Read-only** The section migration status of this project.",
@@ -1569,16 +1514,14 @@
                 ],
                 "nullable": false,
                 "readOnly": true,
-                "example": "not_migrated",
-                "x-public": true
+                "example": "not_migrated"
               },
               "start_on": {
                 "description": "The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. **Note:** `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.",
                 "type": "string",
                 "nullable": true,
                 "format": "date",
-                "example": "2012-03-26",
-                "x-public": true
+                "example": "2012-03-26"
               },
               "team": {
                 "allOf": [
@@ -1589,8 +1532,7 @@
                     "type": "object",
                     "description": "**Create-only**. The team that this project is shared with. This field only exists for projects in organizations."
                   }
-                ],
-                "x-public": true
+                ]
               },
               "workspace": {
                 "allOf": [
@@ -1601,8 +1543,7 @@
                     "type": "object",
                     "description": "**Create-only**. The workspace or organization this project is associated with. Once created, projects cannot be moved to a different workspace. This attribute can only be specified at creation time."
                   }
-                ],
-                "x-public": true
+                ]
               }
             }
           }
@@ -1611,22 +1552,19 @@
       "ProjectCompact": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaNamedObject",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaNamedObject"
           },
           {
             "type": "object",
             "properties": {
               "resource_type": {
                 "type": "string",
-                "example": "project",
-                "x-public": true
+                "example": "project"
               },
               "name": {
                 "description": "Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.",
                 "type": "string",
-                "example": "Stuff to buy",
-                "x-public": true
+                "example": "Stuff to buy"
               }
             }
           }
@@ -1636,8 +1574,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/Project",
-            "x-public": true
+            "$ref": "#/components/schemas/Project"
           }
         }
       },
@@ -1648,16 +1585,14 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Project"
-            },
-            "x-public": true
+            }
           }
         }
       },
       "ProjectMembership": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/ProjectMembershipCompact",
-            "x-public": true
+            "$ref": "#/components/schemas/ProjectMembershipCompact"
           },
           {
             "type": "object",
@@ -1665,8 +1600,7 @@
             "properties": {
               "project": {
                 "description": "[Opt In](https://asana.com/developers/documentation/getting-started/input-output-options). The project the user is a member of.",
-                "$ref": "#/components/schemas/ProjectCompact",
-                "x-public": true
+                "$ref": "#/components/schemas/ProjectCompact"
               },
               "write_access": {
                 "description": "Whether the user has full access to the project or has comment-only access.",
@@ -1676,8 +1610,7 @@
                   "comment_only"
                 ],
                 "readOnly": true,
-                "example": "full_write",
-                "x-public": true
+                "example": "full_write"
               }
             }
           }
@@ -1686,15 +1619,13 @@
       "ProjectMembershipCompact": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaObject",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaObject"
           },
           {
             "type": "object",
             "properties": {
               "user": {
-                "$ref": "#/components/schemas/UserCompact",
-                "x-public": true
+                "$ref": "#/components/schemas/UserCompact"
               }
             }
           }
@@ -1704,8 +1635,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/ProjectMembership",
-            "x-public": true
+            "$ref": "#/components/schemas/ProjectMembership"
           }
         }
       },
@@ -1716,20 +1646,17 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ProjectMembership"
-            },
-            "x-public": true
+            }
           }
         }
       },
       "ProjectStatus": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/ProjectStatusCompact",
-            "x-public": true
+            "$ref": "#/components/schemas/ProjectStatusCompact"
           },
           {
-            "$ref": "#/components/schemas/AsanaCreatedByAndAt",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaCreatedByAndAt"
           },
           {
             "type": "object",
@@ -1739,15 +1666,13 @@
                 "description": "The text content of the status update.",
                 "readOnly": true,
                 "type": "string",
-                "example": "The project is moving forward according to plan...",
-                "x-public": true
+                "example": "The project is moving forward according to plan..."
               },
               "html-text": {
                 "description": "[Opt In](https://asana.com/developers/documentation/getting-started/input-output-options). The text content of the status update with formatting as HTML.",
                 "readOnly": true,
                 "type": "string",
-                "example": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
-                "x-public": true
+                "example": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'"
               },
               "color": {
                 "description": "The color associated with the status update.",
@@ -1757,8 +1682,7 @@
                   "green",
                   "yellow",
                   "red"
-                ],
-                "x-public": true
+                ]
               }
             }
           }
@@ -1767,8 +1691,7 @@
       "ProjectStatusCompact": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaObject",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaObject"
           },
           {
             "type": "object",
@@ -1777,8 +1700,7 @@
                 "description": "The title of the project status update.",
                 "readOnly": true,
                 "type": "string",
-                "example": "Status Update - Jun 15",
-                "x-public": true
+                "example": "Status Update - Jun 15"
               }
             }
           }
@@ -1788,8 +1710,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/ProjectStatus",
-            "x-public": true
+            "$ref": "#/components/schemas/ProjectStatus"
           }
         }
       },
@@ -1800,28 +1721,24 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ProjectStatus"
-            },
-            "x-public": true
+            }
           }
         }
       },
       "Section": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/SectionCompact",
-            "x-public": true
+            "$ref": "#/components/schemas/SectionCompact"
           },
           {
-            "$ref": "#/components/schemas/AsanaCreatedAt",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaCreatedAt"
           },
           {
             "type": "object",
             "description": "A *section* is a subdivision of a project that groups tasks together. It\ncan either be a header above a list of tasks in a list view or a column\nin a board view of a project.\n\nSections are largely a shared idiom in Asana\u2019s API for both list and\nboard views of a project regardless of the project\u2019s layout.\n\nThe \u2018memberships\u2019 property when [getting a\ntask](https://asana.com/developers/api-reference/tasks#get) will return\nthe information for the section or the column under \u2018section\u2019 in the\nresponse.",
             "properties": {
               "projects": {
-                "$ref": "#/components/schemas/ProjectArray",
-                "x-public": true
+                "$ref": "#/components/schemas/ProjectArray"
               }
             }
           }
@@ -1830,8 +1747,7 @@
       "SectionCompact": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaObject",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaObject"
           },
           {
             "type": "object",
@@ -1839,8 +1755,7 @@
               "name": {
                 "description": "The name of the section (i.e. the text displayed as the section header).",
                 "type": "string",
-                "example": "Next Actions",
-                "x-public": true
+                "example": "Next Actions"
               }
             }
           }
@@ -1850,8 +1765,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/Section",
-            "x-public": true
+            "$ref": "#/components/schemas/Section"
           }
         }
       },
@@ -1862,16 +1776,14 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Section"
-            },
-            "x-public": true
+            }
           }
         }
       },
       "Story": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/StoryCompact",
-            "x-public": true
+            "$ref": "#/components/schemas/StoryCompact"
           },
           {
             "type": "object",
@@ -1880,27 +1792,23 @@
               "html_text": {
                 "description": "[Opt In](https://asana.com/developers/documentation/getting-started/input-output-options).\nHTML formatted text for a comment. This will not include the name\nof the creator.\n\n**Note: This field is under active migration\u2014please see our blog\npost for more information.**",
                 "type": "string",
-                "example": "Get whatever Sashimi has.",
-                "x-public": true
+                "example": "Get whatever Sashimi has."
               },
               "is_edited": {
                 "description": "**Conditional**. Whether the text of the story has been edited after creation.",
                 "type": "boolean",
-                "example": false,
-                "x-public": true
+                "example": false
               },
               "is_pinned": {
                 "description": "**Conditional**. Whether the story should be pinned on the resource.",
                 "type": "boolean",
-                "example": false,
-                "x-public": true
+                "example": false
               },
               "hearted": {
                 "description": "**Deprecated - please use likes instead**\n\n**Conditional**. True if the story is hearted by the authorized user, false if not.",
                 "type": "boolean",
                 "readOnly": true,
-                "example": false,
-                "x-public": true
+                "example": false
               },
               "hearts": {
                 "description": "**Deprecated - please use likes instead**\n\n**Conditional**. Array of users who have hearted this story.",
@@ -1908,22 +1816,19 @@
                 "items": {
                   "$ref": "#/components/schemas/User"
                 },
-                "readOnly": true,
-                "x-public": true
+                "readOnly": true
               },
               "num_hearts": {
                 "description": "**Deprecated - please use likes instead**\n\n**Conditional**. The number of users who have hearted this story.",
                 "type": "integer",
                 "readOnly": true,
-                "example": 5,
-                "x-public": true
+                "example": 5
               },
               "liked": {
                 "description": "**Conditional**. True if the story is liked by the authorized user, false if not.",
                 "type": "boolean",
                 "readOnly": true,
-                "example": false,
-                "x-public": true
+                "example": false
               },
               "likes": {
                 "description": "**Conditional**. Array of users who have liked this story.",
@@ -1931,15 +1836,13 @@
                 "items": {
                   "$ref": "#/components/schemas/User"
                 },
-                "readOnly": true,
-                "x-public": true
+                "readOnly": true
               },
               "num_likes": {
                 "description": "**Conditional**. The number of users who have liked this story.",
                 "type": "integer",
                 "readOnly": true,
-                "example": 5,
-                "x-public": true
+                "example": 5
               },
               "previews": {
                 "description": "**Conditional**. A collection of previews to be displayed in the story.\n\n**Note**: This property only exists for comment stories.",
@@ -1947,20 +1850,17 @@
                 "items": {
                   "$ref": "#/components/schemas/Preview"
                 },
-                "readOnly": true,
-                "x-public": true
+                "readOnly": true
               },
               "old_name": {
                 "description": "**Conditional**",
                 "type": "string",
-                "example": "This was the Old Name",
-                "x-public": true
+                "example": "This was the Old Name"
               },
               "new_name": {
                 "description": "**Conditional**",
                 "type": "string",
-                "example": "This is the New Name",
-                "x-public": true
+                "example": "This is the New Name"
               },
               "old_dates": {
                 "description": "**Conditional**",
@@ -1981,8 +1881,7 @@
                     "format": "date",
                     "example": "2019-09-15"
                   }
-                },
-                "x-public": true
+                }
               },
               "new_dates": {
                 "description": "**Conditional**",
@@ -2003,121 +1902,99 @@
                     "format": "date",
                     "example": "2019-09-15"
                   }
-                },
-                "x-public": true
+                }
               },
               "old_resource_subtype": {
                 "description": "**Conditional**",
                 "type": "string",
-                "example": "default_task",
-                "x-public": true
+                "example": "default_task"
               },
               "new_resource_subtype": {
                 "description": "**Conditional**",
                 "type": "string",
-                "example": "milestone",
-                "x-public": true
+                "example": "milestone"
               },
               "story": {
                 "description": "**Conditional**",
-                "$ref": "#/components/schemas/StoryCompact",
-                "x-public": true
+                "$ref": "#/components/schemas/StoryCompact"
               },
               "assignee": {
                 "description": "**Conditional**",
-                "$ref": "#/components/schemas/UserCompact",
-                "x-public": true
+                "$ref": "#/components/schemas/UserCompact"
               },
               "follower": {
                 "description": "**Conditional**",
-                "$ref": "#/components/schemas/UserCompact",
-                "x-public": true
+                "$ref": "#/components/schemas/UserCompact"
               },
               "old_section": {
                 "description": "**Conditional**",
-                "$ref": "#/components/schemas/SectionCompact",
-                "x-public": true
+                "$ref": "#/components/schemas/SectionCompact"
               },
               "new_section": {
                 "description": "**Conditional**",
-                "$ref": "#/components/schemas/SectionCompact",
-                "x-public": true
+                "$ref": "#/components/schemas/SectionCompact"
               },
               "task": {
                 "description": "**Conditional**",
-                "$ref": "#/components/schemas/TaskCompact",
-                "x-public": true
+                "$ref": "#/components/schemas/TaskCompact"
               },
               "project": {
                 "description": "**Conditional**",
-                "$ref": "#/components/schemas/ProjectCompact",
-                "x-public": true
+                "$ref": "#/components/schemas/ProjectCompact"
               },
               "tag": {
                 "description": "**Conditional**",
-                "$ref": "#/components/schemas/TagCompact",
-                "x-public": true
+                "$ref": "#/components/schemas/TagCompact"
               },
               "custom_field": {
                 "description": "**Conditional**",
-                "$ref": "#/components/schemas/CustomFieldCompact",
-                "x-public": true
+                "$ref": "#/components/schemas/CustomFieldCompact"
               },
               "old_text_value": {
                 "description": "**Conditional**",
                 "type": "string",
-                "example": "This was the Old Text",
-                "x-public": true
+                "example": "This was the Old Text"
               },
               "new_text_value": {
                 "description": "**Conditional**",
                 "type": "string",
-                "example": "This is the New Text",
-                "x-public": true
+                "example": "This is the New Text"
               },
               "old_number_value": {
                 "description": "**Conditional**",
                 "type": "integer",
-                "example": 1,
-                "x-public": true
+                "example": 1
               },
               "new_number_value": {
                 "description": "**Conditional**",
                 "type": "integer",
-                "example": 2,
-                "x-public": true
+                "example": 2
               },
               "old_enum_value": {
                 "description": "**Conditional**",
-                "$ref": "#/components/schemas/EnumOptionCompact",
-                "x-public": true
+                "$ref": "#/components/schemas/EnumOptionCompact"
               },
               "new_enum_value": {
                 "description": "**Conditional**",
-                "$ref": "#/components/schemas/EnumOptionCompact",
-                "x-public": true
+                "$ref": "#/components/schemas/EnumOptionCompact"
               },
               "duplicate_of": {
                 "description": "**Conditional**",
-                "$ref": "#/components/schemas/TaskCompact",
-                "x-public": true
+                "$ref": "#/components/schemas/TaskCompact"
               },
               "duplicated_from": {
                 "description": "**Conditional**",
-                "$ref": "#/components/schemas/TaskCompact",
-                "x-public": true
+                "$ref": "#/components/schemas/TaskCompact"
               },
               "dependancy": {
                 "description": "**Conditional**",
-                "$ref": "#/components/schemas/TaskCompact",
-                "x-public": true
+                "$ref": "#/components/schemas/TaskCompact"
               },
               "source": {
                 "description": "The component of the Asana product the user used to trigger the story.",
                 "type": "string",
                 "readOnly": true,
-                "example": "web",
-                "x-public": true
+                "example": "web"
               },
               "target": {
                 "description": "The object this story is associated with. Currently may only be a task.",
@@ -2131,8 +2008,7 @@
                     "example": "Bug Task"
                   }
                 },
-                "readOnly": true,
-                "x-public": true
+                "readOnly": true
               }
             }
           }
@@ -2141,31 +2017,26 @@
       "StoryCompact": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaObject",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaObject"
           },
           {
-            "$ref": "#/components/schemas/AsanaSubtype",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaSubtype"
           },
           {
-            "$ref": "#/components/schemas/AsanaCreatedByAndAt",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaCreatedByAndAt"
           },
           {
             "type": "object",
             "properties": {
               "text": {
                 "description": "**Create-only**. Human-readable text for the story or comment.\nThis will not include the name of the creator.\n\n**Note:** This is not guaranteed to be stable for a given type of\nstory. For example, text for a reassignment may not always say\n\u201cassigned to \u2026\u201d as the text for a story can both be edited and\nchange based on the language settings of the user making the request.\nUse the `resource_subtype` property to discover the action that\ncreated the story.",
-                "example": "marked today",
-                "x-public": true
+                "example": "marked today"
               },
               "type": {
                 "description": "**Deprecated: new integrations should prefer the `resource_subtype` field.** The type of this story. For more fine-grained inspection of story types, see the [`resource_subtype`] (https://asana.com/developers/api-reference/stories#field-resource_subtype) property.\n",
                 "type": "string",
                 "readOnly": true,
-                "example": "comment",
-                "x-public": true
+                "example": "comment"
               }
             }
           }
@@ -2175,8 +2046,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/Story",
-            "x-public": true
+            "$ref": "#/components/schemas/Story"
           }
         }
       },
@@ -2186,16 +2056,14 @@
           "data": {
             "items": {
               "$ref": "#/components/schemas/Story"
-            },
-            "x-public": true
+            }
           }
         }
       },
       "Tag": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/TagCompact",
-            "x-public": true
+            "$ref": "#/components/schemas/TagCompact"
           },
           {
             "type": "object",
@@ -2207,8 +2075,7 @@
                 "readOnly": true,
                 "items": {
                   "$ref": "#/components/schemas/UserCompact"
-                },
-                "x-public": true
+                }
               },
               "color": {
                 "type": "string",
@@ -2233,12 +2100,10 @@
                   "light-purple",
                   "light-warm-gray"
                 ],
-                "example": "light-green",
-                "x-public": true
+                "example": "light-green"
               },
               "workspace": {
-                "$ref": "#/components/schemas/WorkspaceCompact",
-                "x-public": true
+                "$ref": "#/components/schemas/WorkspaceCompact"
               }
             }
           }
@@ -2247,8 +2112,7 @@
       "TagCompact": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaObject",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaObject"
           },
           {
             "type": "object",
@@ -2256,8 +2120,7 @@
               "name": {
                 "description": "Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.",
                 "type": "string",
-                "example": "Stuff to buy",
-                "x-public": true
+                "example": "Stuff to buy"
               }
             }
           }
@@ -2267,8 +2130,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/Tag",
-            "x-public": true
+            "$ref": "#/components/schemas/Tag"
           }
         }
       },
@@ -2279,24 +2141,20 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Tag"
-            },
-            "x-public": true
+            }
           }
         }
       },
       "Task": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/TaskCompact",
-            "x-public": true
+            "$ref": "#/components/schemas/TaskCompact"
           },
           {
-            "$ref": "#/components/schemas/AsanaCreatedAt",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaCreatedAt"
           },
           {
-            "$ref": "#/components/schemas/AsanaSubtype",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaSubtype"
           },
           {
             "type": "object",
@@ -2311,8 +2169,7 @@
                     "type": "object",
                     "nullable": true
                   }
-                ],
-                "x-public": true
+                ]
               },
               "assignee_status": {
                 "description": "Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.",
@@ -2324,14 +2181,12 @@
                   "new",
                   "inbox"
                 ],
-                "example": "upcoming",
-                "x-public": true
+                "example": "upcoming"
               },
               "completed": {
                 "description": "True if the task is currently marked complete, false if not.",
                 "type": "boolean",
-                "example": false,
-                "x-public": true
+                "example": false
               },
               "completed_at": {
                 "description": "The time at which this task was completed, or null if the task is incomplete.",
@@ -2339,8 +2194,7 @@
                 "format": "date-time",
                 "readOnly": true,
                 "nullable": true,
-                "example": "2012-02-22T02:06:58.147Z",
-                "x-public": true
+                "example": "2012-02-22T02:06:58.147Z"
               },
               "custom_fields": {
                 "description": "Array of custom field values applied to the project. These represent\nthe custom field values recorded on this project for a particular\ncustom field. For example, these custom field values will contain\nan `enum_value` property for custom fields of type `enum`, a\n`string_value` property for custom fields of type `string`, and\nso on. Please note that the `id` returned on each custom field\nvalue *is identical* to the `id` of the custom field, which\nallows referencing the custom field metadata through the\n`/custom_fields/custom_field-id` endpoint.",
@@ -2348,8 +2202,7 @@
                 "items": {
                   "$ref": "#/components/schemas/CustomField"
                 },
-                "readOnly": true,
-                "x-public": true
+                "readOnly": true
               },
               "dependencies": {
                 "description": "[Opt In](/developers/documentation/getting-started/input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the ID of the dependency.",
@@ -2377,8 +2230,7 @@
                     "id": 4321,
                     "gid": "4321"
                   }
-                ],
-                "x-public": true
+                ]
               },
               "dependents": {
                 "description": "[Opt In](/developers/documentation/getting-started/input-output-options). Array of resources referencing tasks that depend on this task. The objects contain only the ID of the dependent.",
@@ -2406,24 +2258,21 @@
                     "id": 4321,
                     "gid": "4321"
                   }
-                ],
-                "x-public": true
+                ]
               },
               "due_at": {
                 "description": "Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.",
                 "type": "string",
                 "format": "date",
                 "example": "2012-02-22T02:06:58.147Z",
-                "nullable": true,
-                "x-public": true
+                "nullable": true
               },
               "due_on": {
                 "description": "Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.",
                 "type": "string",
                 "format": "date",
                 "example": "2012-03-26",
-                "nullable": true,
-                "x-public": true
+                "nullable": true
               },
               "external": {
                 "description": "**OAuth Required**. **Conditional**. This field is returned only if external values are set or included by using [Opt In] (/developers/documentation/getting-started/input-output-options).\nThe external field allows you to store app-specific metadata on tasks, including an id that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external id is set, you can use the notation `external:custom_id` to reference your object anywhere in the API where you may use the original object id. See the page on Custom External Data for more details.",
@@ -2445,28 +2294,24 @@
                 "example": {
                   "id": "my_id",
                   "data": "A blob of information"
-                },
-                "x-public": true
+                }
               },
               "followers": {
                 "description": "Array of users following this task.",
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/UserCompact"
-                },
-                "x-public": true
+                }
               },
               "html_notes": {
                 "description": "[Opt In](/developers/documentation/getting-started/input-output-options). The notes of the text with formatting as HTML.\n**Note: This field is under active migration\u2014please see our blog post for more information.**",
                 "type": "string",
-                "example": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-                "x-public": true
+                "example": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>"
               },
               "hearted": {
                 "description": "**Deprecated - please use liked instead** True if the task is hearted by the authorized user, false if not.",
                 "type": "boolean",
-                "example": true,
-                "x-public": true
+                "example": true
               },
               "hearts": {
                 "description": "**Deprecated - please use likes instead** Array of users who have hearted this task.",
@@ -2474,14 +2319,12 @@
                 "items": {
                   "$ref": "#/components/schemas/UserCompact"
                 },
-                "readOnly": true,
-                "x-public": true
+                "readOnly": true
               },
               "liked": {
                 "description": "True if the task is liked by the authorized user, false if not.",
                 "type": "boolean",
-                "example": true,
-                "x-public": true
+                "example": true
               },
               "likes": {
                 "description": "Array of users who have liked this task.",
@@ -2489,8 +2332,7 @@
                 "items": {
                   "$ref": "#/components/schemas/UserCompact"
                 },
-                "readOnly": true,
-                "x-public": true
+                "readOnly": true
               },
               "memberships": {
                 "description": "**Create-only**. Array of projects this task is associated with and the section it is in. At task creation time, this array can be used to add the task to specific sections. After task creation, these associations can be modified using the `addProject` and `removeProject` endpoints. Note that over time, more types of memberships may be added to this property.",
@@ -2505,49 +2347,42 @@
                       "$ref": "#/components/schemas/SectionCompact"
                     }
                   }
-                },
-                "x-public": true
+                }
               },
               "modified_at": {
                 "description": "The time at which this task was last modified.\n\n**Note:** This does not currently reflect any changes in\nassociations such as projects or comments that may have been\nadded or removed from the task.",
                 "type": "string",
                 "format": "date-time",
                 "readOnly": true,
-                "example": "2012-02-22T02:06:58.147Z",
-                "x-public": true
+                "example": "2012-02-22T02:06:58.147Z"
               },
               "name": {
                 "description": "Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.",
                 "type": "string",
-                "example": "Buy catnip",
-                "x-public": true
+                "example": "Buy catnip"
               },
               "notes": {
                 "description": "More detailed, free-form textual information associated with the task.",
                 "type": "string",
-                "example": "Mittens really likes the stuff from Humboldt.",
-                "x-public": true
+                "example": "Mittens really likes the stuff from Humboldt."
               },
               "num_hearts": {
                 "description": "**Deprecated - please use likes instead** The number of users who have hearted this task.",
                 "type": "integer",
                 "example": 5,
-                "readOnly": true,
-                "x-public": true
+                "readOnly": true
               },
               "num_likes": {
                 "description": "The number of users who have liked this task.",
                 "type": "integer",
                 "example": 5,
-                "readOnly": true,
-                "x-public": true
+                "readOnly": true
               },
               "num_subtasks": {
                 "description": "[Opt In](https://asana.com/developers/documentation/getting-started/input-output-options). The number of subtasks on this task.\n",
                 "type": "integer",
                 "example": 3,
-                "readOnly": true,
-                "x-public": true
+                "readOnly": true
               },
               "parent": {
                 "allOf": [
@@ -2559,16 +2394,14 @@
                     "description": "The parent of this task, or `null` if this is not a subtask. This property cannot be modified using a PUT request but you can change it with the `setParent` endpoint. You can create subtasks by using the subtasks endpoint.",
                     "nullable": true
                   }
-                ],
-                "x-public": true
+                ]
               },
               "projects": {
                 "description": "**Create-only.** Array of projects this task is associated with. At task creation time, this array can be used to add the task to many projects at once. After task creation, these associations can be modified using the addProject and removeProject endpoints.",
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/ProjectCompact"
-                },
-                "x-public": true
+                }
               },
               "resource_subtype": {
                 "type": "string",
@@ -2578,16 +2411,14 @@
                   "milestone",
                   "section"
                 ],
-                "example": "default_task",
-                "x-public": true
+                "example": "default_task"
               },
               "start_on": {
                 "description": "The day on which work begins for the task , or null if the task has\nno start date. This takes a date with `YYYY-MM-DD` format.\n\n**Note:** `due_on` or `due_at` must be present in the request when\nsetting or unsetting the `start_on` parameter.",
                 "type": "string",
                 "nullable": true,
                 "format": "date",
-                "example": "2012-03-26",
-                "x-public": true
+                "example": "2012-03-26"
               },
               "tags": {
                 "description": "**Create-only**. Array of tags associated with this task. This property may be specified on creation using just an array of tag IDs.  In order to change tags on an existing task use `addTag` and `removeTag`.",
@@ -2601,8 +2432,7 @@
                     "gid": "59746",
                     "name": "Grade A"
                   }
-                ],
-                "x-public": true
+                ]
               },
               "workspace": {
                 "allOf": [
@@ -2613,8 +2443,7 @@
                     "type": "object",
                     "description": "*Create-only*. The workspace this task is associated with. Once created, task cannot be moved to a different workspace. This attribute can only be specified at creation time."
                   }
-                ],
-                "x-public": true
+                ]
               }
             }
           }
@@ -2623,8 +2452,7 @@
       "TaskCompact": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaNamedObject",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaNamedObject"
           }
         ]
       },
@@ -2632,8 +2460,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/Task",
-            "x-public": true
+            "$ref": "#/components/schemas/Task"
           }
         }
       },
@@ -2644,16 +2471,14 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Task"
-            },
-            "x-public": true
+            }
           }
         }
       },
       "Team": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/TeamCompact",
-            "x-public": true
+            "$ref": "#/components/schemas/TeamCompact"
           },
           {
             "type": "object",
@@ -2662,14 +2487,12 @@
               "description": {
                 "description": "[Opt In](/developers/documentation/getting-started/input-output-options). The description of the team.\n",
                 "type": "string",
-                "example": "All developers should be members of this team.",
-                "x-public": true
+                "example": "All developers should be members of this team."
               },
               "html_description": {
                 "description": "[Opt In](/developers/documentation/getting-started/input-output-options). The description of the team with formatting as HTML.\n**Note: This field is under active migration\u2014please see our [blog post](https://asana.com/developers/news/new-rich-text) for more information.**\n",
                 "type": "string",
-                "example": "<body><em>All</em> developers should be members of this team.</body>",
-                "x-public": true
+                "example": "<body><em>All</em> developers should be members of this team.</body>"
               },
               "organization": {
                 "allOf": [
@@ -2680,20 +2503,7 @@
                     "type": "object",
                     "description": "The organization/workspace the team belongs to.\n"
                   }
-                ],
-                "x-public": true
-              },
-              "subscription_plan": {
-                "description": "[Opt In](/developers/documentation/getting-started/input-output-options). The subscription plan of this team.\n",
-                "type": "string",
-                "enum": [
-                  "free",
-                  "premium",
-                  "business",
-                  "enterprise"
-                ],
-                "example": "premium",
-                "x-public": true
+                ]
               }
             }
           }
@@ -2702,8 +2512,7 @@
       "TeamCompact": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaNamedObject",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaNamedObject"
           }
         ]
       },
@@ -2711,8 +2520,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/Team",
-            "x-public": true
+            "$ref": "#/components/schemas/Team"
           }
         }
       },
@@ -2723,16 +2531,14 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Team"
-            },
-            "x-public": true
+            }
           }
         }
       },
       "User": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/UserCompact",
-            "x-public": true
+            "$ref": "#/components/schemas/UserCompact"
           },
           {
             "type": "object",
@@ -2743,8 +2549,7 @@
                 "format": "email",
                 "readOnly": true,
                 "description": "The user\u2019s email address.",
-                "example": "gsanchez@example.com",
-                "x-public": true
+                "example": "gsanchez@example.com"
               },
               "photo": {
                 "type": "object",
@@ -2779,8 +2584,7 @@
                   "image_36x36": "https://...",
                   "image_60x60": "https://...",
                   "image_128x128": "https://..."
-                },
-                "x-public": true
+                }
               },
               "workspaces": {
                 "description": "Workspaces and organizations this user may access.\nNote\\: The API will only return workspaces and organizations that also contain the authenticated user.",
@@ -2788,8 +2592,7 @@
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/Workspace"
-                },
-                "x-public": true
+                }
               }
             }
           }
@@ -2798,8 +2601,7 @@
       "UserCompact": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaNamedObject",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaNamedObject"
           },
           {
             "type": "object",
@@ -2807,8 +2609,7 @@
               "name": {
                 "type": "string",
                 "description": "**Read-only except when same user as requester**. The user\u2019s name.",
-                "example": "Greg Sanchez",
-                "x-public": true
+                "example": "Greg Sanchez"
               }
             }
           }
@@ -2818,8 +2619,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/User",
-            "x-public": true
+            "$ref": "#/components/schemas/User"
           }
         }
       },
@@ -2830,8 +2630,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/User"
-            },
-            "x-public": true
+            }
           }
         }
       },
@@ -2860,16 +2659,14 @@
                 ],
                 "example": 12345
               }
-            },
-            "x-public": true
+            }
           }
         }
       },
       "UserTaskList": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaNamedObject",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaNamedObject"
           },
           {
             "type": "object",
@@ -2885,8 +2682,7 @@
                     "description": "The owner of the user task list, i.e. the person whose My Tasks is represented by this resource.",
                     "readOnly": true
                   }
-                ],
-                "x-public": true
+                ]
               },
               "workspace": {
                 "allOf": [
@@ -2898,8 +2694,7 @@
                     "description": "The workspace in which the user task list is located.",
                     "readOnly": true
                   }
-                ],
-                "x-public": true
+                ]
               }
             }
           }
@@ -2909,20 +2704,17 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/UserTaskList",
-            "x-public": true
+            "$ref": "#/components/schemas/UserTaskList"
           }
         }
       },
       "Webhook": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaObject",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaObject"
           },
           {
-            "$ref": "#/components/schemas/AsanaCreatedAt",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaCreatedAt"
           },
           {
             "type": "object",
@@ -2931,31 +2723,27 @@
               "active": {
                 "description": "If true, the webhook will send events - if false it is considered inactive and will not generate events.",
                 "type": "boolean",
-                "example": false,
-                "x-public": true
+                "example": false
               },
               "last_failure_at": {
                 "description": "The timestamp when the webhook last received an error when sending an event to the target.",
                 "type": "string",
                 "format": "date-time",
                 "readOnly": true,
-                "example": "2012-02-22T02:06:58.147Z",
-                "x-public": true
+                "example": "2012-02-22T02:06:58.147Z"
               },
               "last_failure_content": {
                 "description": "The contents of the last error response sent to the webhook when attempting to deliver events to the target.",
                 "type": "string",
                 "readOnly": true,
-                "example": "500 Server Error\\n\\nCould not complete the request",
-                "x-public": true
+                "example": "500 Server Error\\n\\nCould not complete the request"
               },
               "last_success_at": {
                 "description": "The timestamp when the webhook last successfully sent an event to the target.",
                 "type": "string",
                 "format": "date-time",
                 "readOnly": true,
-                "example": "2012-02-22T02:06:58.147Z",
-                "x-public": true
+                "example": "2012-02-22T02:06:58.147Z"
               },
               "resource": {
                 "allOf": [
@@ -2966,16 +2754,14 @@
                     "type": "object",
                     "description": "The resource the webhook is subscribed to."
                   }
-                ],
-                "x-public": true
+                ]
               },
               "target": {
                 "description": "The URL to receive the HTTP POST.",
                 "type": "string",
                 "format": "uri",
                 "readOnly": true,
-                "example": "https://example.com/receive-webhook/7654",
-                "x-public": true
+                "example": "https://example.com/receive-webhook/7654"
               }
             }
           }
@@ -2988,46 +2774,40 @@
             "description": "The type of action taken that triggered the event.",
             "type": "string",
             "readOnly": true,
-            "example": "changed",
-            "x-public": true
+            "example": "changed"
           },
           "created_at": {
             "description": "The timestamp when the event occurred.",
             "type": "string",
             "format": "date-time",
             "readOnly": true,
-            "example": "2012-02-22T02:06:58.147Z",
-            "x-public": true
+            "example": "2012-02-22T02:06:58.147Z"
           },
           "parent": {
             "description": "For added/removed events, the parent ID that resource was added to or removed from. The parent will be `null` for other event types.",
             "type": "integer",
             "readOnly": true,
             "nullable": true,
-            "example": 12345,
-            "x-public": true
+            "example": 12345
           },
           "resource": {
             "description": "The resource ID the event occurred on.\n\n**Note**: The resource that triggered the event may be different from\nthe one that the events were requested for. For example, a\nsubscription to a project will contain events for tasks contained\nwithin the project.",
             "type": "integer",
             "readOnly": true,
-            "example": 32154,
-            "x-public": true
+            "example": 32154
           },
           "type": {
             "description": "The type of the resource that generated the event.\n\n**Note**: Currently, only tasks, projects and stories generate\nevents.",
             "type": "string",
             "readOnly": true,
-            "example": "task",
-            "x-public": true
+            "example": "task"
           },
           "user": {
             "description": "The ID of the user who triggered the event.\n\n**Note**: The event may be triggered by a different user than the\nsubscriber. For example, if user A subscribes to a task and user B\nmodified it, the event\u2019s user will be user B. Note: Some events are\ngenerated by the system, and will have `null` as the user. API\nconsumers should make sure to handle this case.",
             "type": "integer",
             "readOnly": true,
             "nullable": true,
-            "example": 321654987,
-            "x-public": true
+            "example": 321654987
           }
         }
       },
@@ -3035,8 +2815,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/Webhook",
-            "x-public": true
+            "$ref": "#/components/schemas/Webhook"
           }
         }
       },
@@ -3047,16 +2826,14 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Webhook"
-            },
-            "x-public": true
+            }
           }
         }
       },
       "Workspace": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaNamedObject",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaNamedObject"
           },
           {
             "type": "object",
@@ -3071,26 +2848,12 @@
                 },
                 "example": [
                   "asana.com"
-                ],
-                "x-public": true
+                ]
               },
               "is_organization": {
                 "description": "Whether the workspace is an *organization*.",
                 "type": "boolean",
-                "example": false,
-                "x-public": true
-              },
-              "subscription_plan": {
-                "description": "[Opt In](/developers/documentation/getting-started/input-output-options). The subscription plan of this organization.\n",
-                "type": "string",
-                "enum": [
-                  "free",
-                  "premium",
-                  "business",
-                  "enterprise"
-                ],
-                "example": "enterprise",
-                "x-public": true
+                "example": false
               }
             }
           }
@@ -3099,8 +2862,7 @@
       "WorkspaceCompact": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/AsanaNamedObject",
-            "x-public": true
+            "$ref": "#/components/schemas/AsanaNamedObject"
           }
         ]
       },
@@ -3108,8 +2870,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "$ref": "#/components/schemas/Workspace",
-            "x-public": true
+            "$ref": "#/components/schemas/Workspace"
           }
         }
       },
@@ -3120,8 +2881,7 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Workspace"
-            },
-            "x-public": true
+            }
           }
         }
       }
@@ -4280,6 +4040,68 @@
         }
       }
     },
+    "/jobs/{job_gid}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/job_path_gid"
+        },
+        {
+          "$ref": "#/components/parameters/pretty"
+        },
+        {
+          "$ref": "#/components/parameters/fields"
+        },
+        {
+          "$ref": "#/components/parameters/expand"
+        },
+        {
+          "$ref": "#/components/parameters/limit"
+        },
+        {
+          "$ref": "#/components/parameters/offset"
+        }
+      ],
+      "get": {
+        "summary": "Get a job by id",
+        "description": "Returns the full record for a job.",
+        "tags": [
+          "Jobs"
+        ],
+        "operationId": "getJob",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved Job.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "data": {
+                    "$ref": "#/components/schemas/Job"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/InternalServerError"
+          },
+          "default": {
+            "$ref": "#/components/responses/GenericErrorResponse"
+          }
+        }
+      }
+    },
     "/organization_exports": {
       "parameters": [
         {
@@ -4730,7 +4552,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TaskArray"
+                  "$ref": "#/components/schemas/ProjectArray"
                 }
               }
             }
@@ -5692,6 +5514,105 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/EmptyObject"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/InternalServerError"
+          },
+          "default": {
+            "$ref": "#/components/responses/GenericErrorResponse"
+          }
+        }
+      }
+    },
+    "/projects/{project_gid}/duplicate": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/project_path_gid"
+        },
+        {
+          "$ref": "#/components/parameters/pretty"
+        },
+        {
+          "$ref": "#/components/parameters/fields"
+        },
+        {
+          "$ref": "#/components/parameters/expand"
+        },
+        {
+          "$ref": "#/components/parameters/limit"
+        },
+        {
+          "$ref": "#/components/parameters/offset"
+        }
+      ],
+      "post": {
+        "summary": "Duplicate a project",
+        "description": "Creates and returns a job that will asynchronously handle the duplication.",
+        "tags": [
+          "Projects"
+        ],
+        "operationId": "duplicateProject",
+        "requestBody": {
+          "description": "Describes the duplicate's name and the elements that will be duplicated.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "data": {
+                  "name": {
+                    "description": "The name of the new project.",
+                    "type": "string",
+                    "example": "New Project Name"
+                  },
+                  "include": {
+                    "description": "The elements that will be duplicated to the new project. Tasks and project notes are always included.",
+                    "type": "string",
+                    "enum": [
+                      "members",
+                      "task_notes",
+                      "task_assignee",
+                      "task_subtasks",
+                      "task_attachments",
+                      "task_dates",
+                      "task_dependencies",
+                      "task_followers",
+                      "task_tags",
+                      "task_projects"
+                    ],
+                    "example": [
+                      "members",
+                      "task_notes"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully created the job to handle duplication.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "data": {
+                    "$ref": "#/components/schemas/Job"
+                  }
                 }
               }
             }
@@ -7628,6 +7549,105 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/EmptyObject"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "5XX": {
+            "$ref": "#/components/responses/InternalServerError"
+          },
+          "default": {
+            "$ref": "#/components/responses/GenericErrorResponse"
+          }
+        }
+      }
+    },
+    "/tasks/{task_gid}/duplicate": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/task_path_gid"
+        },
+        {
+          "$ref": "#/components/parameters/pretty"
+        },
+        {
+          "$ref": "#/components/parameters/fields"
+        },
+        {
+          "$ref": "#/components/parameters/expand"
+        },
+        {
+          "$ref": "#/components/parameters/limit"
+        },
+        {
+          "$ref": "#/components/parameters/offset"
+        }
+      ],
+      "post": {
+        "summary": "Duplicate a task",
+        "description": "Creates and returns a job that will asynchronously handle the duplication.",
+        "tags": [
+          "Tasks"
+        ],
+        "operationId": "duplicateTask",
+        "requestBody": {
+          "description": "Describes the duplicate's name and the fields that will be duplicated.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "data": {
+                  "name": {
+                    "description": "The name of the new task.",
+                    "type": "string",
+                    "example": "New Task Name"
+                  },
+                  "include": {
+                    "description": "The fields that will be duplicated to the new task.",
+                    "type": "string",
+                    "enum": [
+                      "notes",
+                      "assignee",
+                      "subtasks",
+                      "attachments",
+                      "tags",
+                      "followers",
+                      "projects",
+                      "dates",
+                      "dependencies",
+                      "parent"
+                    ],
+                    "example": [
+                      "notes",
+                      "assignee"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully created the job to handle duplication.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "data": {
+                    "$ref": "#/components/schemas/Job"
+                  }
                 }
               }
             }
