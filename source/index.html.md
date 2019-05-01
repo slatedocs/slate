@@ -289,17 +289,19 @@ curl https://api.kardia.com/v1/patients?limit=50&start=ZW5kQ3Vyc29yc2Rh= \
 ```shell
 {
   "totalCount": 200,
-  "data": [
-    {
-      "id": "wNSEDeLOEPQE5rznkJmwbnjpxfdst93i",
-      "mrn": "JS-19810712",
-      "dob": "1970-03-12",
-      "email": "joe@example.com",
-      "firstname": "Joe",
-      "lastname": "Smith",
-      "sex": 0
-    }
-  ],
+  "data": {
+    "patients": [
+      {
+        "id": "wNSEDeLOEPQE5rznkJmwbnjpxfdst93i",
+        "mrn": "JS-19810712",
+        "dob": "1970-03-12",
+        "email": "joe@example.com",
+        "firstname": "Joe",
+        "lastname": "Smith",
+        "sex": 0
+      }
+    ]
+  },
   "pageInfo": {
     "startCursor": "c3RhcnRDdXJzb3I=",
     "endCursor": "ZW5kQ3Vyc29yc2Rh=",
@@ -467,78 +469,80 @@ curl https://api.kardia.com/v1/recordings \
 ```shell
 {
   "totalCount": 200,
-    "data": [
-    {
-      "id": "3wde1eem9vy4y1a0rv3y98u2a",
-      "patientID": "wNSEDeLOEPQE5rznkJmwbnjpxfdst93i",
-      "algorithmDetermination": "normal",
-      "duration": 30000,
-      "heartRate": 65,  
-      "note": "Drank coffee, having palpitations."
-      "data": {
-        "raw": {
-          "frequency": 300,
-          "mains_freq": 60,
-          "samples": {
-            "lead_I": [
-              397,
-              -262,
-              -426,
-              -284,
-              286,
-              391,
-              -45,
-              -249,
-              -30,
-              566,
-              515,
-              204,
-              -138,
-              -30,
-              491,
-              572,
-              103,
-              -187,
-              -62,
-              322,
-              ...     
-            ]
+    "data": {
+      "recordings": [
+      {
+        "id": "3wde1eem9vy4y1a0rv3y98u2a",
+        "patientID": "wNSEDeLOEPQE5rznkJmwbnjpxfdst93i",
+        "algorithmDetermination": "normal",
+        "duration": 30000,
+        "heartRate": 65,  
+        "note": "Drank coffee, having palpitations."
+        "data": {
+          "raw": {
+            "frequency": 300,
+            "mains_freq": 60,
+            "samples": {
+              "lead_I": [
+                397,
+                -262,
+                -426,
+                -284,
+                286,
+                391,
+                -45,
+                -249,
+                -30,
+                566,
+                515,
+                204,
+                -138,
+                -30,
+                491,
+                572,
+                103,
+                -187,
+                -62,
+                322,
+                ...     
+              ]
+            }
+          },
+          "enhanced": {
+            "frequency": 300,
+            "mains_freq": 60,
+            "samples": {
+              "lead_I": [
+                397,
+                -262,
+                -426,
+                -284,
+                286,
+                391,
+                -45,
+                -249,
+                -30,
+                566,
+                515,
+                204,
+                -138,
+                -30,
+                491,
+                572,
+                103,
+                -187,
+                -62,
+                322,
+                ...     
+              ]
+            }
+
           }
         },
-        "enhanced": {
-          "frequency": 300,
-          "mains_freq": 60,
-          "samples": {
-            "lead_I": [
-              397,
-              -262,
-              -426,
-              -284,
-              286,
-              391,
-              -45,
-              -249,
-              -30,
-              566,
-              515,
-              204,
-              -138,
-              -30,
-              491,
-              572,
-              103,
-              -187,
-              -62,
-              322,
-              ...     
-            ]
-          }
-
-        }
-      },
-      "recordedAt": "2008-09-15T15:53:00+05:00"
-    }
-  ],
+        "recordedAt": "2008-09-15T15:53:00+05:00"
+      }
+    ]
+  },
   "pageInfo": {
     "startCursor": "c3RhcnRDdXJzb3I=",
     "endCursor": "ZW5kQ3Vyc29yc2Rh=",
