@@ -2,7 +2,7 @@
 
 <!-------------------- LIST USAGE SUMMARY -------------------->
 
-### List usage summary
+### List organization usage summary
 
 `GET /usage_summary/organizations/:id`
 
@@ -140,6 +140,6 @@ Query Parameters | &nbsp;
 `include_sub_orgs`<br/>*boolean* | Include usage summary of all its sub-organizations. Defaults to false.
 `include_cost`<br/>*boolean* | Include the utility cost and service connection pricing id fields. Defaults to true.
 `include_free_usage`<br/>*boolean* | Include all summary records that has no cost associated to it (i.e. utilityCost == 0). Defaults to true.
-`combine_usage_types`<br/>*boolean* | Sums up all the utility cost per organization and service connection. The following fields are removed from the output: `serviceConnectionPricingId`, `usageType`, `secondaryType`, `utilityUsage` 
+`combine_usage_types`<br/>*boolean* | Sums up the utility cost per organization and service connection. The following fields are removed from the output: `serviceConnectionPricingId`, `usageType`, `secondaryType`, `utilityUsage`
 `period`<br/>*String* | The period on which the aggregation is made. HOUR, DAY or PERIOD. The default is HOUR.
-`format`<br/>*String* | JSON or CSV. Defaults to JSON.
+`include_deleted`<br/>*boolean* | Will find usage of an organization that may have been deleted
