@@ -459,8 +459,8 @@ Field                 | Description                                   | Format
 id                    | recipientAccountId                            | Integer
 profile               | Personal or business profile id               | Integer
 acccountHolderName    | Recipient full name                           | Text
-currency              | 2 character country code                      | Text
-country               | 3 character currency code                     | Text
+currency              | 3 character country code                      | Text
+country               | 2 character currency code                     | Text
 type                  | Recipient type                                | Text
 details               | Currency specific fields   | Group 
 details.sortCode      | Recipient bank sort code (GBP example)        | Text
