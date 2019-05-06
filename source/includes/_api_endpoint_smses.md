@@ -257,7 +257,7 @@ Send a predefined sms to existing contact.
 
 #### HTTP Request
 
-`DELETE /smses/ID/send/contact/CONTACT_ID`
+`GET /smses/ID/contact/CONTACT_ID/send`
 
 #### Response
 
