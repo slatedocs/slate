@@ -19,7 +19,8 @@ curl "https://platform.tier-services.io/v1/pricing/?zoneId=BERLIN"
       "currency": "EUR",
       "rentalStartPrice": "1.00",
       "rentalRunningPricePerMinute": "1.00",
-      "rentalPausedPricePerMinute": "1.00"
+      "rentalPausedPricePerMinute": "1.00",
+      "uuid": "d62ee238-6fe3-4a9a-9db7-7f235e39e1fc",
     }
   }
 }

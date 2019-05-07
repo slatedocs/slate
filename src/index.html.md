@@ -13,6 +13,7 @@ includes:
   - zones
   - pricing
   - rental
+  - invoice
   - pickup
   - dropoff
   - automations
