@@ -66,7 +66,7 @@ curl "api_endpoint_here"
   -H "x-api-key: TIER API KEY"
 ```
 
-> Make sure to replace `TIER API KEY` with your API key.
+> Please make sure to replace `TIER API KEY` with your API key.
 
 Tier is using an API Keys based authentication. To register for an access key send an email
 to <a href='mailto:api@tier.app'>api@tier.app</a>. Each API key is bound to certain permissions
