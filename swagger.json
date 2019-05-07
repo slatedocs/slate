@@ -262,6 +262,54 @@
         }
       }
     },
+    "/orders/all" : {
+      "delete" : {
+        "tags" : [ "Orders" ],
+        "summary" : "Cancel all open orders",
+        "operationId" : "cancelAllOrders",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "security" : [ {
+          "api-key" : [ ],
+          "signature" : [ ],
+          "timestamp" : [ ]
+        } ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "filters",
+          "description" : "Filters for selecting orders that needs to be cancelled",
+          "required" : false,
+          "schema" : {
+            "type": "array",
+            "$ref" : "#/definitions/CancelAllFilterObject"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "returns back success response",
+            "schema" : {
+              "type" : "object"
+            }
+          },
+          "400" : {
+            "description" : "Returns error if orders could not be cancelled",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "error" : {
+                  "type" : "string",
+                  "enum" : [ "InvalidProduct" ]
+                },
+                "message" : {
+                  "type" : "string",
+                  "description" : "A more verbose error message"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/orders/bracket":{
       "post" : {
         "tags" : [ "Orders" ],
@@ -1059,7 +1107,7 @@
       "type": "object",
       "description": "edit order object",
       "properties": {
-        "order_id": {
+        "id": {
           "type": "integer"
         },
         "product_id": {
@@ -1089,6 +1137,29 @@
         },
         "product_id": {
           "type": "integer" 
+        }
+      }
+    },
+    "CancelAllFilterObject":{
+      "type": "object",
+      "description": "Cancel all request filter object",
+      "properties": {
+        "product_id": {
+          "type": "integer",
+          "description": "cancel all orders for particular product, cancels orders for all products if not provided",
+          "required": false
+        },
+        "cancel_stop_orders": {
+          "type": "string",
+          "description": "set as true to cancel stop orders",
+          "enum": [ "true", "false" ],
+          "required": false
+        },
+        "cancel_bracket_orders": {
+          "type": "string",
+          "description": "set as true to cancel bracket orders, only works if cancel_stop_orders=true",
+          "enum": [ "true", "false" ],
+          "required": false
         }
       }
     },

@@ -10,6 +10,7 @@ includes:
   - rate_limits
   - rest_api
   - errors
+  - rest_clients
   - websocket_api
 search: true
 highlight_theme: darkula

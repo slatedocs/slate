@@ -706,7 +706,7 @@ p JSON.parse(result)
 
 ```json
 {
-  "order_id": 0,
+  "id": 0,
   "product_id": 0,
   "limit_price": "string",
   "unfilled_size": 0
@@ -800,6 +800,113 @@ Status Code **400**
 |error|LowerthanBankruptcy|
 |error|SelfMatchingPostOnlyMode|
 |error|ImmediateExecutionPostOnlyOrder|
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
+## Cancel all open orders
+
+<a id="opIdcancelAllOrders"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.delete('https://api.delta.exchange/orders/all', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X DELETE https://api.delta.exchange/orders/all \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.delete 'https://api.delta.exchange/orders/all',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`DELETE /orders/all`
+
+> Body parameter
+
+```json
+{
+  "product_id": 0,
+  "cancel_stop_orders": "true",
+  "cancel_bracket_orders": "true"
+}
+```
+
+<h3 id="cancel-all-open-orders-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[CancelAllFilterObject](#schemacancelallfilterobject)|false|Filters for selecting orders that needs to be cancelled|
+
+> Example responses
+
+> 200 Response
+
+```json
+{}
+```
+
+<h3 id="cancel-all-open-orders-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|returns back success response|Inline|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns error if orders could not be cancelled|Inline|
+
+<h3 id="cancel-all-open-orders-responseschema">Response Schema</h3>
+
+Status Code **400**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» error|string|false|none|none|
+|» message|string|false|none|A more verbose error message|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|error|InvalidProduct|
 
 <aside class="warning">
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
@@ -3127,7 +3234,7 @@ This operation does not require authentication.
 
 ```json
 {
-  "order_id": 0,
+  "id": 0,
   "product_id": 0,
   "limit_price": "string",
   "unfilled_size": 0
@@ -3141,7 +3248,7 @@ This operation does not require authentication.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|order_id|integer|false|none|none|
+|id|integer|false|none|none|
 |product_id|integer|false|none|none|
 |limit_price|string|false|none|none|
 |unfilled_size|integer|false|none|Remaining total unfilled size after editing order|
@@ -3153,7 +3260,7 @@ This operation does not require authentication.
 ```json
 [
   {
-    "order_id": 0,
+    "id": 0,
     "product_id": 0,
     "limit_price": "string",
     "unfilled_size": 0
@@ -3188,6 +3295,38 @@ This operation does not require authentication.
 |---|---|---|---|---|
 |id|integer|false|none|none|
 |product_id|integer|false|none|none|
+
+<h2 id="tocScancelallfilterobject">CancelAllFilterObject</h2>
+
+<a id="schemacancelallfilterobject"></a>
+
+```json
+{
+  "product_id": 0,
+  "cancel_stop_orders": "true",
+  "cancel_bracket_orders": "true"
+}
+
+```
+
+*Cancel all request filter object*
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|product_id|integer|false|none|cancel all orders for particular product, cancels orders for all products if not provided|
+|cancel_stop_orders|string|false|none|set as true to cancel stop orders|
+|cancel_bracket_orders|string|false|none|set as true to cancel bracket orders, only works if cancel_stop_orders=true|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|cancel_stop_orders|true|
+|cancel_stop_orders|false|
+|cancel_bracket_orders|true|
+|cancel_bracket_orders|false|
 
 <h2 id="tocSarrayofdeleteorderrequest">ArrayOfDeleteOrderRequest</h2>
 
