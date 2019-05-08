@@ -152,7 +152,7 @@ If your app uses `flask-sqlalchemy`, [see our instructions below](#flask-sqlalch
 
 ## Flask SQLAlchemy
 
-Instrument [`flask-sqlalchemy`](http://flask-sqlalchemy.pocoo.org/) queries:
+Instrument [`flask-sqlalchemy`](https://flask-sqlalchemy.palletsprojects.com/) queries:
 
 ```py
 from scout_apm.flask.sqlalchemy import instrument_sqlalchemy
@@ -655,7 +655,7 @@ scout_apm.api.install(config=config)
 
 # Will appear under Background jobs in the Scout UI
 with scout_apm.api.BackgroundTransaction('Foo'):
-  r = requests.get('http://httpbin.org/status/418')
+  r = requests.get('https://httpbin.org/status/418')
   print(r.text)
 ```
 
