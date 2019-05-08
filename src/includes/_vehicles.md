@@ -39,7 +39,8 @@ curl "https://platform.tier-services.io/v1/vehicle?zoneId=BERLIN"
         "maxSpeed": 20,
         "zoneId": "VIENNA",
         "code": 10050,
-        "isRentable": true
+        "isRentable": true,
+        "iotVendor": "okai"
       }
     },
   ]
@@ -95,7 +96,8 @@ curl "https://platform.tier-services.io/v1/vehicle?lat=48.1&lng=16.3&radius=5000
         "maxSpeed": 20,
         "zoneId": "VIENNA",
         "code": 10050,
-        "isRentable": true
+        "isRentable": true,
+        "iotVendor": "okai"
       }
     },
   ]
@@ -162,7 +164,8 @@ curl "https://platform.tier-services.io/v1/vehicle/code/10050"
         "maxSpeed": 20,
         "zoneId": "VIENNA",
         "code": 10050,
-        "isRentable": true
+        "isRentable": true,
+        "iotVendor": "okai"
       }
     },
   ]
