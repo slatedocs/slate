@@ -147,13 +147,19 @@ curl "https://platform.tier-services.io/v1/rental/4a35a1bd-fa1a-4b56-ab8d-4b93a2
 
 ### HTTP Request
 
-`POST https://platform.tier-services.io/v1/rental/<rental-id>/end`
+`PATCH https://platform.tier-services.io/v1/rental/<rental-id>/`
 
 ### Required Post Data
 
 Field     | Content | Note 
 --------- | ------- | ---------
 customerEndLocation | { "lat": 52, "lng": 13 } | The location of the customer as reported by their mobile phone
+state | ENDED
+force | true | optional
+
+The force switch can be used to override ending the rental, even when the vehicle
+is outside the business area or cannot be reached. This should only be used
+for integration in a customer support tool and not be allowed for the user
     
 
 ```shell
@@ -166,6 +172,7 @@ curl "https://platform.tier-services.io/v1/rental/4a35a1bd-fa1a-4b56-ab8d-4b93a2
         "lat": 52,
         "lng": 13,
       },
+      "state": "ENDED"
     }
   }'
 ```
