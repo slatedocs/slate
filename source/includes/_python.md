@@ -40,7 +40,7 @@ The libraries below are automatically detected by the agent during the startup p
 * ElasticSearch
 * Jinja2
 
-You can instrument your own code or other libraries via [custom instrumentation](#python-custom-instrumentation). You can suggest additonal libraries you'd like Scout to instrument [on GitHub](https://github.com/scoutapp/scout_apm_python/issues).  
+You can instrument your own code or other libraries via [custom instrumentation](#python-custom-instrumentation). You can suggest additional libraries you'd like Scout to instrument [on GitHub](https://github.com/scoutapp/scout_apm_python/issues).
 
 ## Django
 
@@ -69,15 +69,15 @@ pip install scout-apm
         <p>Configure Scout in your <code>settings.py</code> file:</p>
 <pre style="width:500px">
 # settings.py
-INSTALLED_APPS = (
-  'scout_apm.django', # should be listed first
-  # ... other apps ...
-)
+INSTALLED_APPS = [
+    "scout_apm.django",  # should be listed first
+    # ... other apps ...
+]
 
 # Scout settings
 SCOUT_MONITOR = True
-SCOUT_KEY     = "SCOUT_KEY"
-SCOUT_NAME    = "A FRIENDLY NAME FOR YOUR APP"
+SCOUT_KEY = "[AVAILABLE IN THE SCOUT UI]"
+SCOUT_NAME = "A FRIENDLY NAME FOR YOUR APP"
 </pre>
 
 <p>If you wish to configure Scout via environment variables, use <code>SCOUT_MONITOR</code>, <code>SCOUT_NAME</code> and <code>SCOUT_KEY</code> instead of providing these settings in <code>settings.py</code>.</p>
@@ -125,13 +125,13 @@ from scout_apm.flask import ScoutApm
 
 # Setup a flask 'app' as normal
 
-# Attaches ScoutApm to the Flask App
+# Attach ScoutApm to the Flask App
 ScoutApm(app)
 
 # Scout settings
-app.config['SCOUT_MONITOR'] = True
-app.config['SCOUT_KEY']     = "SCOUT_KEY"
-app.config['SCOUT_NAME']    = "A FRIENDLY NAME FOR YOUR APP"
+app.config["SCOUT_MONITOR"] = True
+app.config["SCOUT_KEY"] = "[AVAILABLE IN THE SCOUT UI]"
+app.config["SCOUT_NAME"] = "A FRIENDLY NAME FOR YOUR APP"
 </pre>
 
 <p>If you wish to configure Scout via environment variables, use <code>SCOUT_MONITOR</code>, <code>SCOUT_NAME</code> and <code>SCOUT_KEY</code> and remove the calls to <code>app.config</code>.</p>
@@ -194,10 +194,10 @@ from celery import Celery
 app = Celery('tasks', backend='redis://localhost', broker='redis://localhost')
 <span>
 Config.set(
-        key = 'SCOUT_KEY',
-        name = 'Same as Web App Name',
-        monitor = True
-        )
+    key="SCOUT_KEY",
+    name="Same as Web App Name",
+    monitor=True,
+)
 </span>
 <span>scout_apm.celery.install()</span>
 </pre>
@@ -245,14 +245,16 @@ pip install scout-apm
 <pre style="width:initial">
 import scout_apm.pyramid
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     with Configurator() as config:
         config.add_settings(
-            SCOUT_KEY = 'SCOUT_KEY',
-            SCOUT_MONITOR = True,
-            SCOUT_NAME = 'My Pyramid App'
+            SCOUT_KEY="...",
+            SCOUT_MONITOR=True,
+            SCOUT_NAME="My Pyramid App"
         )
-        config.include('scout_apm.pyramid')
+        config.include("scout_apm.pyramid")
+
+        # Rest of your config...
 </pre>
 
 <p>If you wish to configure Scout via environment variables, use <code>SCOUT_MONITOR</code>, <code>SCOUT_NAME</code> and <code>SCOUT_KEY</code> and remove the call to <code>config.add_settings</code>.</p>
@@ -297,9 +299,11 @@ pip install scout-apm
 from scout_apm.bottle import ScoutPlugin
 
 app = bottle.default_app()
-app.config.update({'scout.name': "YOUR_APP_NAME",
-                   'scout.monitor': "true",
-                   'scout.key': "SCOUT_KEY"})
+app.config.update({
+    "scout.name": "YOUR_APP_NAME",
+    "scout.key": "YOUR_KEY",
+    "scout.monitor": "true",
+})
 
 scout = ScoutPlugin()
 bottle.install(scout)
@@ -338,7 +342,7 @@ Not seeing data? Email support@scoutapm.com with:
 
 * A link to your app within Scout (if applicable)
 * Your Python version
-* The name of the framework and version you are trying to instrument (ie - Flask 0.10).
+* The name of the framework and version you are trying to instrument (i.e. - Flask 0.10).
 
 We typically respond within a couple of hours during the business day.
 
@@ -585,7 +589,7 @@ A transaction groups a sequence of work under in the Scout UI. These are used to
 
 <h4 id="python-transaction-limits">Limits</h4>
 
-We limit the number of unique transactions that can be instrumented. Tracking too many unique transactions can impact the performance of our UI. Do not dynamically generate transaction names in your instrumentation (ie `with scout_apm.api.WebTransaction('update_user_"+user.id')`) as this can quickly exceed our rate limits. Use [context](#python-custom-context) to add high-dimesionality information instead.
+We limit the number of unique transactions that can be instrumented. Tracking too many unique transactions can impact the performance of our UI. Do not dynamically generate transaction names in your instrumentation (ie `with scout_apm.api.WebTransaction('update_user_"+user.id')`) as this can quickly exceed our rate limits. Use [context](#python-custom-context) to add high-dimensionality information instead.
 
 #### Getting Started
 
@@ -596,12 +600,14 @@ import scout_apm.api
 
 # A dict containing the configuration for APM.
 # See our Python help docs for all configuration options.
-config = {'name': 'My App Name',
-          'key': 'APM_Key',
-          'monitor': True}
+config = {
+    "name": "My App Name",
+    "key": "APM_Key",
+    "monitor": True,
+}
 
 # The `install()` method must be called early on within your app code in order
-# to install the APM agent code and instrumntation.
+# to install the APM agent code and instrumentation.
 scout_apm.api.install(config=config)
 ```
 
@@ -615,7 +621,7 @@ Scout distinguishes between two types of transactions:
 <h4 id="python-transaction-explicit">Explicit</h4>
 
 ```py
-scout_apm.api.WebTransaction.start('Foo') # or BackgroundTransaction.start()
+scout_apm.api.WebTransaction.start("Foo")  # or BackgroundTransaction.start()
 # do some app work
 scout_apm.api.WebTransaction.stop()
 ```
@@ -623,14 +629,14 @@ scout_apm.api.WebTransaction.stop()
 <h4 id="python-transaction-context-manager">As a context manager</h4>
 
 ```py
-with scout_apm.api.WebTransaction('Foo'): # or BackgroundTransaction()
+with scout_apm.api.WebTransaction("Foo"):  # or BackgroundTransaction()
     # do some app work
 ```
 
 <h4 id="python-transaction-decorator">As a decorator</h4>
 
 ```py
-@scout_apm.api.WebTransaction('Foo') # or BackgroundTransaction()
+@scout_apm.api.WebTransaction("Foo")  # or BackgroundTransaction()
 def my_foo_action(path):
     # do some app work
 ```
@@ -645,18 +651,20 @@ import scout_apm.api
 
 # A dict containing the configuration for APM.
 # See our Python help docs for all configuration options.
-config = {'name': 'My App Name',
-          'key': 'YOUR_SCOUT_KEY',
-          'monitor': True}
+config = {
+    "name": "My App Name",
+    "key": "YOUR_SCOUT_KEY",
+    "monitor": True,
+}
 
 # The `install()` method must be called early on within your app code in order
-# to install the APM agent code and instrumntation.
+# to install the APM agent code and instrumentation.
 scout_apm.api.install(config=config)
 
 # Will appear under Background jobs in the Scout UI
-with scout_apm.api.BackgroundTransaction('Foo'):
-  r = requests.get('http://httpbin.org/status/418')
-  print(r.text)
+with scout_apm.api.BackgroundTransaction("Foo"):
+    r = requests.get("https://httpbin.org/status/418")
+    print(r.text)
 ```
 
 #### Falcon Example
@@ -671,19 +679,24 @@ from scout_apm.api import Context
 # Must call scout_apm.api.install() early to set up
 # instrumentation and the core agent.
 # Create a dict of configuration options for Scout
-config = {'name': 'My App Name',
-          'key': 'APM_KEY',
-          'monitor': True}
+config = {
+    "name": "My App Name",
+    "key": "APM_KEY",
+    "monitor": True,
+}
 scout_apm.api.install(config=config)
 
+
 class WorkResource:
-    @scout_apm.api.WebTransaction('Work/Get')
+    @scout_apm.api.WebTransaction("Work/Get")
     def on_get(self, req, resp):
-        Context.add('path', req.path)
+        Context.add("path", req.path)
         resp.media = some_work()
+
 
 api = falcon.API()
 api.add_route('/work', WorkResource())
+
 
 def some_work():
     # ... Do some real work ...
@@ -708,7 +721,7 @@ Import the API module:
 import scout_apm.api
 
 # or to not use the whole prefix on each call:
-import instrument from scout_apm.api
+from scout_apm.api import instrument
 ```
 
 ```python
@@ -727,12 +740,12 @@ The yielded object can be used to add additional tags individually.
 
 ```python
 def foo():
-  with scout_apm.api.instrument("Computation 1") as instrument:
-    instrument.tag("record_count", 100)
-    # Work
+    with scout_apm.api.instrument("Computation 1") as instrument:
+        instrument.tag("record_count", 100)
+        # Work
 
-  with scout_apm.api.instrument("Computation 2", tags={ 'filtered_record_count': 50 } ) ) as instrument:  
-    # Work
+    with scout_apm.api.instrument("Computation 2", tags={"filtered_record_count": 50}) as instrument:
+        # Work
 ```
 
 <h4 id="python-span-decorator">As a decorator</h4>
@@ -742,7 +755,7 @@ Wraps a whole function, timing the execution of specified function within a tran
 ```python
 @scout_apm.api.instrument("Computation")
 def bar():
-  # Work
+    # Work
 ```
 
 <h2 id="python-custom-context">Custom Context</h2>
@@ -757,8 +770,8 @@ It's simple to add [custom context](#context) to your app:
 
 ```python
 import scout_apm.api
-# scout_apm.api.Context.add(key,value)
-scout_apm.api.Context.add("user_email",request.user.email)
+# scout_apm.api.Context.add(key, value)
+scout_apm.api.Context.add("user_email", request.user.email)
 ```
 
 ### Context Key Restrictions
@@ -777,7 +790,7 @@ Context values can be any json-serializable type. Examples:
 
 <h2 id="python-upgrade">Updating to the Newest Version</h2>
 
-```python
+```sh
 pip install scout-apm --upgrade
 ```
 
@@ -793,7 +806,7 @@ Scout identifies deploys via the following approaches:
 
 ```python
 from scout_apm.api import Config
-Config.set(revision_sha = os.popen("git rev-parse HEAD").read()) # if the app directory is a git repo
+Config.set(revision_sha=os.popen("git rev-parse HEAD").read().strip())  # if the app directory is a git repo
 ```
 
 * Setting a `SCOUT_REVISION_SHA` environment variable equal to the SHA of your latest release.
