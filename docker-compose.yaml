@@ -1,8 +1,13 @@
-app:
-  build: .
-  ports:
-    - 4567:4567
-  volumes:
-    - ./source:/app/source
-    - ./build:/app/build
+version: "3.0"
+
+services:
+  app:
+    build:
+      context: ./docker
+      dockerfile: Dockerfile
+    ports:
+      - 4567:4567
+    volumes:
+      - ./source:/app/source
+      - ./build:/app/build
 
