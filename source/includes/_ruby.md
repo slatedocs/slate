@@ -111,7 +111,7 @@ bundle list scout_apm
       </td>
       <td>
         <p>
-          Did you restart the app?
+          Did you restart the app and let it run for a while?
         </p>
       </td>
     </tr>
