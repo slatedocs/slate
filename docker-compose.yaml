@@ -1,5 +1,7 @@
 app:
-  build: .
+  build:
+    context: .
+    dockerfile: "./docker/Dockerfile"
   ports:
     - 4567:4567
   volumes:
