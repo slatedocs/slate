@@ -36,7 +36,7 @@ be picked up and where to drop them off next day.
 
 ## Format
 
-We are using the [JSON:API standard](https://jsonapi.org/).
+The Tier API is using the [JSON:API standard](https://jsonapi.org/).
 
 ## Versioning
 
