@@ -211,11 +211,21 @@ Events describe payload that will be sent to your server in a form of a `POST` r
 
 ### Signature header
 
-Each outgoing webhook request is signed. Whilst event payloads do not contain any sensitive information, you may want to verify if the request is coming from TransferWise (however this is optional). We advise you not to process any requests where signature appears to be forged.
-
-Each `POST` request includes `X-Signature` header, which contains a signature. To verify it, we offer an example (in Java):
+> TransferWise public key for production environment:
 
 ```
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvO8vXV+JksBzZAY6GhSO
+XdoTCfhXaaiZ+qAbtaDBiu2AGkGVpmEygFmWP4Li9m5+Ni85BhVvZOodM9epgW3F
+bA5Q1SexvAF1PPjX4JpMstak/QhAgl1qMSqEevL8cmUeTgcMuVWCJmlge9h7B1CS
+D4rtlimGZozG39rUBDg6Qt2K+P4wBfLblL0k4C4YUdLnpGYEDIth+i8XsRpFlogx
+CAFyH9+knYsDbR43UJ9shtc42Ybd40Afihj8KnYKXzchyQ42aC8aZ/h5hyZ28yVy
+Oj3Vos0VdBIs/gAyJ/4yyQFCXYte64I7ssrlbGRaco4nKF3HmaNhxwyKyJafz19e
+HwIDAQAB
+```
+
+> How to verify signature (in Java):
+
+```java
 public boolean verifySignature(String publicKey, String signature, String payload) {
   X509EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(Base64.decode(pubicKey));
   KeyFactory keyFactory = KeyFactory.getInstance("RSA");
@@ -232,6 +242,11 @@ public boolean verifySignature(String publicKey, String signature, String payloa
   return sign.verify(signatureBytes);
 }
 ```
+
+Each outgoing webhook request is signed. Whilst event payloads do not contain any sensitive information, you may want to verify if the request is coming from TransferWise (however this is optional). We advise you not to process any requests where signature appears to be forged.
+
+Each `POST` request includes `X-Signature` header, which contains a signature.
+
 
 ## Test event
 
