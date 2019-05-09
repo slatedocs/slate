@@ -213,8 +213,9 @@ Events describe payload that will be sent to your server in a form of a `POST` r
 
 Each outgoing webhook request is signed. Whilst event payloads do not contain any sensitive information, you may want to verify if the request is coming from TransferWise (however this is optional). We advise you not to process any requests where signature appears to be forged.
 
-Each `POST` request includes `X-Signature` header, which contains a signature. To verify it, we offer an exemplary code snippet (in Java):
-```java
+Each `POST` request includes `X-Signature` header, which contains a signature. To verify it, we offer an example (in Java):
+
+```
 public boolean verifySignature(String publicKey, String signature, String payload) {
   X509EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(Base64.decode(pubicKey));
   KeyFactory keyFactory = KeyFactory.getInstance("RSA");
