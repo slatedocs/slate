@@ -11,6 +11,7 @@ toc_footers:
 includes:
   - vehicles
   - zones
+  - customers
   - pricing
   - rental
   - invoice

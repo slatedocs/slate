@@ -41,6 +41,13 @@ for a certain area have to determined using the root zone.
 
 ## Get All Zones near a specific location
 
+This endpoint retrieves all the zones that limits the range of the scooter. Outside of a business zone
+the speed will automatically be reduced and will only be restored once entering the business zone again.
+Within a business zone there are constrained zones which limit the capability of the vehicle like maximum
+speed and the capability to park the vehicle. The reduced speed is currently fixed and set to 5km/h.
+
+The provided coordinates describe a polygon.
+
 ```shell
 curl "https://platform.tier-services.io/v1/zone?lat=40&lng=-3"
   -H "x-api-key: TIER API KEY"
@@ -85,13 +92,6 @@ curl "https://platform.tier-services.io/v1/zone?lat=40&lng=-3"
 
 ```
 
-This endpoint retrieves all the zones that limits the range of the scooter. Outside of a business zone
-the speed will automatically be reduced and will only be restored once entering the business zone again.
-Within a business zone there are constrained zones which limit the capability of the vehicle like maximum
-speed and the capability to park the vehicle. The reduced speed is currently fixed and set to 5km/h.
-
-The provided coordinates describe a polygon.
-
 ### HTTP Request
 
 `GET https://platform.tier-services.io/v1/zone?lat=40&lng=-3`
@@ -105,6 +105,9 @@ lng | Longitude to search for zones nearby
 
 
 ## Get All Zones by type
+
+This endpoint retrieves all the zones filtered by type.
+The provided coordinates describe a polygon.
 
 ```shell
 curl "https://platform.tier-services.io/v1/zone?type=root"
@@ -147,11 +150,7 @@ curl "https://platform.tier-services.io/v1/zone?type=root"
     }
   ]
 }
-
 ```
-
-This endpoint retrieves all the zones filtered by type.
-The provided coordinates describe a polygon.
 
 ### HTTP Request
 
@@ -180,6 +179,8 @@ good user experience.
 
 ## Validate constraints given a point
 
+This endpoint validates constraints at a geography point.
+
 ```shell
 curl "https://platform.tier-services.io/v1/zone/validate-constraint?lat=52.453505&lng=13.384821"
   -H "x-api-key: TIER API KEY"
@@ -201,8 +202,6 @@ curl "https://platform.tier-services.io/v1/zone/validate-constraint?lat=52.45350
 }
 
 ```
-
-This endpoint validates constraints at a geography point.
 
 ### HTTP Request
 

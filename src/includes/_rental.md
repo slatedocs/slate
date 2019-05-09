@@ -82,22 +82,9 @@ customerInfo | {"extenalCustomerId": "your unique customer id"} | Your id of the
 pricing | {"id": pricingId} | Optional. The assumed pricing to start this rental with. If the pricing has changed, the rental start will be rejected
     
 
-### Errors
-
-The Tier API uses the following error codes:
-
-Error Code | Meaning
----------- | -------
-404 | Not Found -- the vehicle code provided could not be found
-409 | Conflict -- the vehicle cannot be rented, possibly taken or damaged
-
 ## Get rentals
 
 Retrieve an active of past rental by the rental id (UUID)
-
-### HTTP Request
-
-`GET https://platform.tier-services.io/v1/rental/<rental-id>`
 
 ```shell
 curl "https://platform.tier-services.io/v1/rental/4a35a1bd-fa1a-4b56-ab8d-4b93a2f7534b"
@@ -143,19 +130,11 @@ curl "https://platform.tier-services.io/v1/rental/4a35a1bd-fa1a-4b56-ab8d-4b93a2
 }
 ```
 
-## End rentals
-
 ### HTTP Request
 
-`POST https://platform.tier-services.io/v1/rental/<rental-id>/end`
+`GET https://platform.tier-services.io/v1/rental/<rental-id>`
 
-### Required Post Data
-
-Field     | Content | Note 
---------- | ------- | ---------
-customerEndLocation | { "lat": 52, "lng": 13 } | The location of the customer as reported by their mobile phone
-    
-
+## End rentals
 ```shell
 curl "https://platform.tier-services.io/v1/rental/4a35a1bd-fa1a-4b56-ab8d-4b93a2f7534b/end"
   -X POST
@@ -235,4 +214,233 @@ curl "https://platform.tier-services.io/v1/rental/4a35a1bd-fa1a-4b56-ab8d-4b93a2
   }
 }
 ```
+### HTTP Request
 
+`POST https://platform.tier-services.io/v1/rental/<rental-id>/end`
+
+### Required Post Data
+
+Field     | Content | Note 
+--------- | ------- | ---------
+customerEndLocation | { "lat": 52, "lng": 13 } | The location of the customer as reported by their mobile phone
+state | ENDED
+force | true | optional
+
+The force switch can be used to override ending the rental, even when the vehicle is outside the business area or cannot be reached. This should only be used for integration in a customer support tool and not be allowed for the user
+
+
+
+##Rental-specific error codes
+
+>The command to start a rental
+
+```json
+{
+  "method": "POST",
+  "path": "/api/rental",
+  "headers": {
+    "Authorization": "Token samson",
+    "Content-Type": "application/json"
+  },
+  "body": {
+    "firebaseId": "abcdefg123456",
+    "customerStartLocation": {
+      "lng": 53.3,
+      "lat": 13.2
+    },
+    "vehicle": {
+      "vehicleCode": 123456
+    }
+  }
+}
+```
+> returns a JSON structured like this if **the customer is blocked**:
+
+```json
+  "body": {
+    "errors": [
+      {
+        "code": "CustomerBlocked",
+        "title": "Customer is blocked",
+        "status": "403"
+      }
+    ]
+  }
+}
+```
+
+> returns a JSON structured like this if **no running rental exists for this customer**:
+
+```json
+  "body": {
+    "errors": [
+      {
+        "code": "RentalNotFound",
+        "title": "No running rental found",
+        "status": "404"
+      }
+    ]
+  }
+}
+```
+
+> returns a JSON structured like this if **the customer does not exist**:
+
+```json
+  "body": {
+    "errors": [
+      {
+        "code": "CustomerNotFound",
+        "title": "Customer not found",
+        "status": "404"
+      }
+    ]
+  }
+}
+```
+
+> returns a JSON structured like this if **no vehicle with this code exists**:
+
+```json
+  "body": {
+    "errors": [
+      {
+        "code": "VehicleNotFound",
+        "title": "Vehicle not found",
+        "status": "404"
+      }
+    ]
+  }
+}
+```
+
+> returns a JSON structured like this if **the vehicle is not reachable**:
+
+```json
+  "body": {
+    "errors": [
+      {
+        "code": "VehicleNotReachable",
+        "title": "Vehicle is not reachable",
+        "status": "409"
+      }
+    ]
+  }
+}
+```
+
+> returns a JSON structured like this if **the customer already has a running rental**:
+
+```json
+  "body": {
+    "errors": [
+      {
+        "code": "AlreadyRunningRentalExists",
+        "title": "User has already a running rental",
+        "status": "409"
+      }
+    ]
+  }
+}
+```
+
+> returns a JSON structured like this if **the vehicle with this code is not available**:
+
+```json
+  "body": {
+    "errors": [
+      {
+        "code": "VehicleNotAvailable",
+        "title": "Vehicle is not available",
+        "status": "409"
+      }
+    ]
+  }
+}
+```
+
+> returns a JSON structured like this if **the customer has no valid payment method**:
+
+```json
+  "body": {
+    "errors": [
+      {
+        "code": "NoValidPaymentMethod",
+        "title": "User does not have a valid payment method",
+        "status": "409"
+      }
+    ]
+  }
+}
+```
+
+The Tier API can respond with the following vehicle specific error codes when **starting** a rental:
+
+Error Code | Meaning
+---------- | -------
+403 | Customer is blocked
+404 | No running rental exists for this customer
+404 | Customer does not exist
+404 | No vehicle with this code exists
+409 | Vehicle is not reachable
+409 | Customer already has a running rental
+409 | Vehicle with this code is not available
+409 | Customer has no valid payment method
+
+>The PATCH call to end a rental
+
+```json
+{
+  "method": "PATCH",
+  "path": "/api/rental/ee3a0c6c-9cc5-4bf1-8fb3-b3428b8bc1ce",
+  "headers": {
+    "Authorization": "Token samson",
+    "Content-Type": "application/json"
+  },
+  "body": {
+    "state": "ENDED",
+    "customerEndLocation": {
+      "lng": 53.3,
+      "lat": 13.2
+    }
+  }
+}
+
+```
+
+> returns a JSON structured like this if the vehicle is **outside of the business area**:
+
+```json
+  "body": {
+    "errors": [
+      {
+        "code": "VehicleOutOfBusinessZone",
+        "title": "Outside of business zone",
+        "status": "409"
+      }
+    ]
+  }
+}
+```
+
+> returns a returns JSON structured like this if the vehicle is **inside a no parking zone**:
+
+```json
+  "body": {
+    "errors": [
+      {
+        "code": "VehicleInNoParkingZone",
+        "title": "Inside of no parking zone",
+        "status": "409"
+      }
+    ]
+  }
+}
+```
+
+The Tier API can respond with the following vehicle specific error codes when **ending** a rental:
+
+Error Code | Meaning
+---------- | -------
+409 | Vehicle is located outside of the business area
+409 | Vehicle is located inside of a no parking zone

@@ -16,6 +16,9 @@ This will be remedied in the next version of the API.
 
 ## Get All Vehicles in a Zone
 
+This endpoint retrieves all the vehicles, which are currently available for rent. You must provide a
+`zoneId` to retrieve vehicles.
+
 ```shell
 curl "https://platform.tier-services.io/v1/vehicle?zoneId=BERLIN"
   -H "x-api-key: TIER API KEY"
@@ -45,10 +48,6 @@ curl "https://platform.tier-services.io/v1/vehicle?zoneId=BERLIN"
   ]
 }
 ```
-
-
-This endpoint retrieves all the vehicles, which are currently available for rent. You must provide a
-`zoneId` to retrieve vehicles.
 
 ### HTTP Request
 
@@ -116,24 +115,6 @@ lng | Longitude to search for vehicles within a given radius
 radius | Radius in meter
 
 
-## Make vehicle flash
-
-To make the lights of a vehicle flash so you can locate it more easily. You need to know
-the id of the vehicle. Note that you may only flash the lights of vehicles that are in a
-zone that you may access with your API key. 
-
-### HTTP Request
-
-`POST https://platform.tier-services.io/v1/vehicle/<vehicle-id>/flash`
-
-
-
-```shell
-curl -X POST "https://platform.tier-services.io/v1/vehicle/<vehicle-id>/flash"
-  -H "x-api-key: TIER API KEY"
-```
-
-
 ## Get Vehicles by Code
 
 The vehicle code is the (currently 5-digits) number that is encoded in the vehicle QR-code which is
@@ -181,115 +162,19 @@ Parameter  | Description
 code | The number that is encoded in the QR-code on the vehicle handle bars 
 
 
-
 ## Make vehicle flash
 
 To make the lights of a vehicle flash so you can locate it more easily. You need to know
 the id of the vehicle. Note that you may only flash the lights of vehicles that are in a
 zone that you may access with your API key. 
 
-### HTTP Request
-
-`POST https://platform.tier-services.io/v1/vehicle/<vehicle-id>/flash`
-
-
-
 ```shell
 curl -X POST "https://platform.tier-services.io/v1/vehicle/<vehicle-id>/flash"
   -H "x-api-key: TIER API KEY"
 ```
 
-## Vehicle-specific error codes
+### HTTP Request
 
+`POST https://platform.tier-services.io/v1/vehicle/<vehicle-id>/flash`
 
-> If the vehicle is located outside of the business zone, the above command returns JSON structured like this:
-
-```json
-  "body": {
-    "errors": [
-      {
-        "code": "VehicleOutOfBusinessZone",
-        "title": "Outside of business zone",
-        "status": "409"
-```
-
-> Vehicle is located inside of a no parking zone :
-
-```json
-  "body": {
-    "errors": [
-      {
-        "code": "VehicleInNoParkingZone",
-        "title": "Inside of no parking zone",
-        "status": "409"
-
-```
-
-> Vehicle is not reachable :
-
-```json
-  "body": {
-    "errors": [
-      {
-        "code": "VehicleNotReachable",
-        "title": "Vehicle is not reachable",
-        "status": "409"
-
-```
-
-> No vehicle with this code exists :
-
-```json
-  "body": {
-    "errors": [
-      {
-        "code": "VehicleNotFound",
-        "title": "Vehicle not found",
-        "status": "404"
-```
-
-> If the vehicle is not available, the command
-
-```json
-{
-  "method": "POST",
-  "path": "/api/rental",
-  "headers": {
-    "Authorization": "Token samson",
-    "Content-Type": "application/json"
-  },
-  "body": {
-    "firebaseId": "abcdefg123456",
-    "customerStartLocation": {
-      "lng": 53.3,
-      "lat": 13.2
-    },
-    "vehicle": {
-      "vehicleCode": 123456
-    }
-  }
-}
-```
-
-> returns JSON structured like this:
-
-```json
-  "body": {
-    "errors": [
-      {
-        "code": "VehicleNotAvailable",
-        "title": "Vehicle is not available",
-        "status": "409"
-```
-
-
-The Tier API can respond with the following vehicle specific error codes:
-
-Given | Trigger  | Error
---- | -------- | ---------------------------------------
-running rental | vehicle is located outside of the business zone | 409
-running rental | vehicle is located inside of a no parking zone | 409
-vehicle is not reachable | rental creation request | 409
-no vehicle with this code exists | rental creation request | 404
-Vehicle with this code is not available | rental creation request | 409
 
