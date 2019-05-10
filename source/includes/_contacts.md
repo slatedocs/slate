@@ -165,7 +165,7 @@ curl "https://getquipu.com/contacts/45923" \
 > Example request
 
 ```shell
-curl "https://getquipu.com/contacts" \
+curl "https://getquipu.com/SUBDOMAIN/contacts" \
   -H "Authorization: Bearer be32259bd1d0f4d3d02bcc0771b1b507e2b666ba9e9ba3d7c5639e853f722eb4" \
   -H "Accept: application/vnd.quipu.v1+json" \
   -H "Content-Type: application/vnd.quipu.v1+json" \
@@ -185,7 +185,7 @@ curl "https://getquipu.com/contacts" \
             "supplier_number": null,
             "is_supplier_of_direct_goods": false,
             "bank_account_number": "ES92 3821 0601 2314 3339 5656",
-            "bank_account_swift_bic": "",
+            "bank_account_swift_bic": ""
           }
         }
       }'
