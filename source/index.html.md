@@ -56,6 +56,8 @@ includes:
   - openstack/sshKeys
   - openstack/volumes
   - openstack/snapshots
+  - gcp
+  - gcp/instances
 
 search: true
 ---
