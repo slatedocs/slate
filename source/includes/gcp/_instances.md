@@ -94,6 +94,7 @@ curl -X GET \
       "name": "i-test-kkn",
       "shortZone": "northamerica-northeast1-a",
       "shortRegion": "northamerica-northeast1"
+    }
   ],
   "metadata": {
     "recordCount": 1
