@@ -23,13 +23,38 @@ Kardia Pro facilitates a connection between a clinician’s Kardia Pro account a
 # Authentication
 
 ```shell
- curl https://api.kardia.com/v1/patients \
+curl https://api.kardia.com/v1/patients \
   -u YOUR-API-KEY:
 # The colon prevents curl from asking for a password.
 
 ```
+The Kardia API uses API keys to authenticate requests. APIs within the Kardia platform require the use of HTTP Basic Authentication, constructed from a valid API key as the username and empty password combination.
 
-The Kardia API uses API keys to authenticate requests. Contact Kardia support for obtaining an API key. APIs within the Kardia platform require the use of HTTP Basic Authentication, constructed from a valid API key as the username and empty password combination.
+
+> Example Requests 
+
+```shell
+# Get your API Key
+curl -X POST https://api.kardia.com/v1/apikey \
+  -d email=YOUR_EMAIL \
+  -d password=YOUR_PASSWORD
+```
+To access your API Key, send a `POST` request with your Kardia Pro `email` and `password` as url encoded form params to `/v1/apikey`.
+
+
+```shell
+# Generate a new API Key
+curl -X POST https://api.kardia.com/v1/apikey/new \
+  -u YOUR-API-KEY:
+```
+> Example Response
+
+```json
+{
+    "apiKey": "3test974-cd11-48c3-a0dd-621test8test"
+}
+```
+To generate a new API Key, send a `POST` request to `/v1/apikey/new` using your current API Key.
 
 # Base URL
 
@@ -201,9 +226,9 @@ Responds to `GET` requests to `/v1/patients/:id/recordings` and returns an array
 
 **Querystring parameters**
 
-`limit` A limit on the number of objects to be returned. Limit can range between 1 and 50, and the default is 10.
+`limit` A limit on the number of objects to be returned. Limit can range between 1 and 500, and the default is 100.
 
-`start` The cursor used to return patients after the `startCursor` or `endCursor` cursor, and returning at most `limit` recordings.
+`start` The cursor used to return recordings after the `startCursor` or `endCursor` cursor, and returning at most `limit` recordings.
 
 ### Recordings Object
 
@@ -437,9 +462,9 @@ Responds to `GET` requests to `/v1/recordings` and returns an array of ECG's acr
 
 **Querystring parameters**
 
-`limit` A limit on the number of objects to be returned. Limit can range between 1 and 50, and the default is 10.
+`limit` A limit on the number of objects to be returned. Limit can range between 1 and 500, and the default is 100.
 
-`start` The cursor used to return patients after the `startCursor` or `endCursor` cursor, and returning at most `limit` recordings.
+`start` The cursor used to return recordings after the `startCursor` or `endCursor` cursor, and returning at most `limit` recordings.
 
 ## Recordings Object
 
@@ -532,4 +557,45 @@ curl https://api.kardia.com/v1/callback \
 }
 ```
 
-Returns the callback URL. Send a `GET` request to `/v1/callback`.
+## Get callback logs
+
+> Example Request
+
+```shell
+curl https://api.kardia.com/v1/logs \
+  -u YOUR-API-KEY:
+```
+
+> Example Response
+
+```json
+{
+    "totalCount": 2,
+    "logs": [
+        {
+            "statusCode": "500",
+            "eventType": "newRecording",
+            "createdAt": "2019-05-13T00:00:01Z",
+            "error": "Failed to send new recording to callback url"
+        },
+        {
+            "statusCode": "200",
+            "eventType": "newRecording",
+            "createdAt": "2019-05-13T00:00:00Z"
+        }
+    ],
+    "pageInfo": {
+        "startCursor": "Y3Vyc29yMjAxOS0wNS0xM1QwMDowMDowMVo=",
+        "endCursor": "Y3Vyc29yMjAxOS0wNS0xM1QwMDowMDowMFo=",
+        "hasNextPage": false
+    }
+}
+```
+
+Returns a paged list of logs. Send a `GET` request to `/v1/logs`.
+
+**Querystring parameters**
+
+`limit` A limit on the number of objects to be returned. Limit can range between 1 and 500, and the default is 100.
+
+`start` The cursor used to return logs after the `startCursor` or `endCursor` cursor, and returning at most `limit` logs..
