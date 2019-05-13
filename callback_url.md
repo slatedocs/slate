@@ -29,6 +29,27 @@ The post params posted at any update in a particular leads are as follows
         "end_time": 1540968534,
         "event_type": "followup"
      },
+     "event_details":[
+        {
+            "event_id":1323528,
+            "start_time":1557399873,
+            "end_time":1557519873,
+            "event_type":"followup",
+            "event_status":"new",
+            "event_created_at":1557398678,
+            "event_updated_at":1557398678,
+            "notes":[]
+        },{
+            "event_id":1323537,
+            "start_time":1557398700,
+            "end_time":1557398754,
+            "event_type":"sv",
+            "event_status":"done",
+            "event_created_at":1557398754,
+            "event_updated_at":1557398754,
+            "notes":[]
+        }
+     ],
      "notes": [
         {
           "note_type": "text",
