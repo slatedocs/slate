@@ -227,7 +227,7 @@ HwIDAQAB
 
 ```java
 public boolean verifySignature(String publicKey, String signature, String payload) {
-  X509EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(Base64.decode(pubicKey));
+  X509EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(Base64.decode(publicKey));
   KeyFactory keyFactory = KeyFactory.getInstance("RSA");
   PublicKey publicKey = keyFactory.generatePublic(publicKeySpec);
   
