@@ -1,10 +1,10 @@
 ---
 title: مستندات سیبچه
 
-language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - javascript
-  - objective_c
+# language_tabs: # must be one of https://git.io/vQNgJ
+#   - shell
+#   - javascript
+#   - objective_c
 
 toc_footers:
   - <a href='https://sibche.com/developer'>پنل توسعه‌دهندگان/a>
@@ -18,7 +18,6 @@ search: true
 ---
 
 # کیت توسعه‌دهندگان
-
 ## نیازمندی‌ها
 
 1. بارگزاری اپلیکیشن در [پنل توسعه‌دهندگان سیبچه](https://sibche.com/developer)
@@ -26,7 +25,6 @@ search: true
 1. آخرین نسخه‌ی XCode
 
 ## نصب کیت توسعه‌دهندگان
-
 ### نصب از طریق Cocoapods
 
 برای نصب از طریق cocoapods باید پیش از نصب کیت فایل pod ساخته شده باشد.
