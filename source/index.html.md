@@ -1,15 +1,15 @@
 ---
-title: API Reference
+title: مستندات سیبچه
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
-  - python
   - javascript
+  - objective_c
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+  - <a href='https://sibche.com/developer'>پنل توسعه‌دهندگان/a>
+  - <a href='https://github.com/sibche/docs/issues'>اعلام مشکل در مستندات</a>
+  - <a href='https://github.com/lord/slate'>قدرت‌گرفته از Slate</a>
 
 includes:
   - errors
@@ -17,40 +17,33 @@ includes:
 search: true
 ---
 
-# Introduction
+# کیت توسعه‌دهندگان
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+## نیازمندی‌ها
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+1. بارگزاری اپلیکیشن در [پنل توسعه‌دهندگان سیبچه](https://sibche.com/developer)
+1. دریافت API Key عمومی برنامه از پنل توسعه‌دهندگان
+1. آخرین نسخه‌ی XCode
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+## نصب کیت توسعه‌دهندگان
 
-# Authentication
+### نصب از طریق Cocoapods
 
-> To authorize, use this code:
+برای نصب از طریق cocoapods باید پیش از نصب کیت فایل pod ساخته شده باشد.
 
-```ruby
-require 'kittn'
+#### نصب و تنظیم Cocoapods
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+> نصب cocoapods در سیستم
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+sudo gem install cocoapods
 ```
 
-```javascript
-const kittn = require('kittn');
+> برای ساخت فایل pod، در دایرکتوری پروژه دستور زیر را اجرا کنید 
 
-let api = kittn.authorize('meowmeowmeow');
+```shell
+pod init
 ```
 
 > Make sure to replace `meowmeowmeow` with your API key.
