@@ -1,7 +1,7 @@
+[![Build Status](https://travis-ci.com/sibche/docs.svg?branch=master)](https://travis-ci.com/sibche/docs)
 <p align="center">
   <img src="https://raw.githubusercontent.com/lord/img/master/logo-slate.png" alt="Slate: API Documentation Generator" width="226">
   <br>
-  [![Build Status](https://travis-ci.com/sibche/docs.svg?branch=master)](https://travis-ci.com/sibche/docs)
 </p>
 
 <p align="center">Slate helps you create beautiful, intelligent, responsive API documentation.</p>
