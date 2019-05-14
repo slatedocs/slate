@@ -862,6 +862,13 @@ The properties in the response are:
 
 This API is safe to call from the front end JS, where it will read session-cookie to determine the current user and thin-mint cookie for determining meter identity.
 
+| Element|Occurrence|Data Type| Description |
+|-|-|-|-|
+|granted|Mandatory|boolean| `true`, `false` Indicates that the user is granted access to the content or not.|
+|grantReason|Mandatory when `granted`=`true`|enum|The reason why access is granted to the user. `METERING` : The user was granted access as the paywall meter was consumed.`SUBSCRIBER` : The user was granted access as the user was identified as an active subscriber. |
+|data.numberRemaining|optional|integer|The number of articles/stories remaining for the user to be granted access to because of the paywall meter. Appears when granted=`true` and `grantReason` = `METERING` when the paywall meter for the user was consumed.|
+|data.isLoggedIn|optional|boolean|Indicates if the user was logged in or not. |
+
 *Note* An additional query param `disable-meter=true` needs to be sent for stories behind hard paywall. Such stories will not be metered and access will be granted only to subscribers.
 
 ## POST Pingback and update meter
@@ -903,7 +910,7 @@ This API is used by publishers on the Quintype platform, to download the invoice
 The below format considers the price inclusive of taxes.
 
 | Name| Description |
-|----------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|-|-|
 | user_name                        | Name of the user in the accesstype who purchased the subscription                                                                                                                                                                                                                                                           |
 | invoice_number                   | The sequence of invoice number for that account. Example: publisher_name/1, publiser_name/2                                                                                                                                                                                                                                 |
 | user_email                       | Email of the user in the accesstype who purchased the subscription                                                                                                                                                                                                                                                          |
