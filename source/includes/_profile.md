@@ -4,7 +4,7 @@
 
 ```shell
 curl --data-binary '{"id":"10", "method":"profile.Update", "params":{"function":5, "sector":8, "seniority":1}, "jsonrpc":"2.0"}'
-  -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
+  -H 'Authorization: Bearer jwt_access_token'
   -H 'content-type:application/json;'
 ```
 
@@ -22,7 +22,7 @@ curl --data-binary '{"id":"10", "method":"profile.Update", "params":{"function":
 }
 ```
 
-Updates the user’s profile data. Creates a new user if there is no data associated with the user.
+Updates the user’s profile data.
 
 ### HTTP Request
 
@@ -60,7 +60,7 @@ Error Code | Meaning
 
 ```shell
 curl --data-binary '{"id":"5", "method":"profile.Get", "jsonrpc":"2.0"}'
-  -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
+  -H 'Authorization: Bearer jwt_access_token'
   -H 'content-type:application/json;'
 ```
 
@@ -106,7 +106,7 @@ Error Code | Meaning
 
 ```shell
 curl --data-binary '{"id":"3", "method":"profile.GetInputOptions", "jsonrpc":"2.0"}'
-  -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
+  -H 'Authorization: Bearer jwt_access_token'
   -H 'content-type:application/json;'
 ```
 
@@ -198,7 +198,7 @@ Error Code | Meaning
 
 ```shell
 curl --data-binary '{"id":"3", "method":"profile.SetFavouriteAsset", "params":{"id":1, "saved":true, "playlist": {"id":"132", "type":"auto"}}, "jsonrpc":"2.0"}'
-  -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
+  -H 'Authorization: Bearer jwt_access_token'
   -H 'content-type:application/json;'
 ```
 
@@ -243,7 +243,7 @@ Error Code | Meaning
 
 ```shell
 curl --data-binary '{"id":"3", "method":"profile.SetCompleteAsset", "params":{"id":1, "completedStatus":"useful", "playlist": {"id":"132", "type":"auto"}}, "jsonrpc":"2.0"}'
-  -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
+  -H 'Authorization: Bearer jwt_access_token'
   -H 'content-type:application/json;'
 ```
 
@@ -289,7 +289,7 @@ Error Code | Meaning
 
 ```shell
 curl --data-binary '{"id":"7","method":"profile.FetchCompetencies","jsonrpc": "2.0"}'
-  -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
+  -H 'Authorization: Bearer jwt_access_token'
   -H 'content-type:application/json;'
 ```
 

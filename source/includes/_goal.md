@@ -4,7 +4,7 @@
 
 ```shell
 curl --data-binary '{"id":"5", "method":"goal.Update", "params":{"id":1, "importance":0.1, "confidence":0.7}, "jsonrpc":"2.0"}'
-  -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
+  -H 'Authorization: Bearer jwt_access_token'
   -H 'content-type:application/json;'
 ```
 
@@ -55,7 +55,7 @@ Error Code | Meaning
 
 ```shell
 curl --data-binary '{"id":"3", "method":"goal.FetchAll", "jsonrpc":"2.0"}'
-  -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
+  -H 'Authorization: Bearer jwt_access_token'
   -H 'content-type:application/json;'
 ```
 
@@ -107,7 +107,7 @@ Error Code | Meaning
 
 ```shell
 curl --data-binary '{"id":"6", "method":"goal.FetchByCompetencyID", "params":{"id":2}, "jsonrpc":"2.0"}'
-  -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
+  -H 'Authorization: Bearer jwt_access_token'
   -H 'content-type:application/json;'
 ```
 

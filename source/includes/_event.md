@@ -4,7 +4,7 @@
 
 ```shell
 curl --data-binary '{"id":"7", "method":"event.Create", "params":{"data":{}, "name":"asset_launch"}, "jsonrpc":"2.0"}'
-  -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
+  -H 'Authorization: Bearer jwt_access_token'
   -H 'content-type:application/json;'
 ```
 
