@@ -197,7 +197,7 @@ Error Code | Meaning
 ## SetFavouriteAsset
 
 ```shell
-curl --data-binary '{"id":"3", "method":"profile.SetFavouriteAsset", "params":{"id":1, "saved":true}, "jsonrpc":"2.0"}'
+curl --data-binary '{"id":"3", "method":"profile.SetFavouriteAsset", "params":{"id":1, "saved":true, "playlist": {"id":"132", "type":"auto"}}, "jsonrpc":"2.0"}'
   -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
   -H 'content-type:application/json;'
 ```
@@ -224,6 +224,7 @@ Parameter | Type | Description
 --------- | ------- | -----------
 id | integer | the asset to be favourited's id
 saved | boolean | the true/false status
+playlist (optional) | object | playlist where the action was triggered from
 
 <aside class="success">
 Returns — Message - a success message
@@ -241,7 +242,7 @@ Error Code | Meaning
 ## SetCompleteAsset
 
 ```shell
-curl --data-binary '{"id":"3", "method":"profile.SetCompleteAsset", "params":{"id":1, "completedStatus":"useful"}, "jsonrpc":"2.0"}'
+curl --data-binary '{"id":"3", "method":"profile.SetCompleteAsset", "params":{"id":1, "completedStatus":"useful", "playlist": {"id":"132", "type":"auto"}}, "jsonrpc":"2.0"}'
   -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
   -H 'content-type:application/json;'
 ```
@@ -268,6 +269,7 @@ Parameter | Type | Description
 --------- | ------- | -----------
 id | integer | the asset to be completed id
 completedStatus | string | Completed status must be equal to one of: "already_know", "useful", "not_relevant"
+playlist (optional) | object | playlist where the action was triggered from
 
 <aside class="success">
 Returns — Message - a success message
