@@ -4,7 +4,7 @@
 
 ```shell
 curl --data-binary '{"id":"5", "method":"playlist.FetchAllPlaylists", "jsonrpc":"2.0"}'
-  -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
+  -H 'Authorization: Bearer jwt_access_token'
   -H 'content-type:application/json;'
 ```
 
@@ -159,7 +159,7 @@ Error Code | Meaning
 
 ```shell
 curl --data-binary '{"id":"5","method":"playlist.FetchFavouritePlaylist","jsonrpc": "2.0"}'
-  -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
+  -H 'Authorization: Bearer jwt_access_token'
   -H 'content-type:application/json;'
 ```
 
@@ -249,7 +249,7 @@ Error Code | Meaning
 
 ```shell
 curl --data-binary '{"id":"5", "method":"playlist.FetchCompetencyPlaylists", "jsonrpc":"2.0"}'
-  -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
+  -H 'Authorization: Bearer jwt_access_token'
   -H 'content-type:application/json;'
 ```
 
@@ -404,7 +404,7 @@ Error Code | Meaning
 
 ```shell
 curl --data-binary '{"id":"5", "method":"playlist.FetchCompetencyPlaylists", "params":{"id":"1"}, "jsonrpc":"2.0"}'
-  -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
+  -H 'Authorization: Bearer jwt_access_token'
   -H 'content-type:application/json;'
 ```
 
@@ -524,7 +524,7 @@ Error Code | Meaning
 
 ```shell
 curl --data-binary '{"id":"5", "method":"playlist.FetchGroupPlaylists", "jsonrpc":"2.0"}'
-  -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
+  -H 'Authorization: Bearer jwt_access_token'
   -H 'content-type:application/json;'
 ```
 
@@ -679,7 +679,7 @@ Error Code | Meaning
 
 ```shell
 curl --data-binary '{"id":"5", "method":"playlist.FetchBifrostPlaylists", "jsonrpc":"2.0"}'
-  -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
+  -H 'Authorization: Bearer jwt_access_token'
   -H 'content-type:application/json;'
 ```
 
@@ -835,7 +835,7 @@ Error Code | Meaning
 
 ```shell
 curl --data-binary '{"id":"5", "method":"playlist.FetchPlaylistsByTypes", "params":{"types":["competency", "group"]}, "jsonrpc":"2.0"}'
-  -H 'Authorization: Bearer 5dc78bab-4988-4a15-96a2-9eb084fba6f6 genrated.jwt.token'
+  -H 'Authorization: Bearer jwt_access_token'
   -H 'content-type:application/json;'
 ```
 

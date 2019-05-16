@@ -2,6 +2,26 @@
 
 The following are the JSON data models referenced through the API documentation.
 
+## Access Token Model
+
+> Acces token model:
+
+```json
+{
+	"jwt_access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiJiYmJuN2x2YXRhYWcwMjZpdjJtZyIsIk9yZ0lEIjoiZmlsdGVyZWQiLCJHcm91cElEIjoiZmlsdGVyZWQtZ2xvYmFsZmlsdGVyIn0.e7A_2EQLwS3v7dOVTq0I5afjnmSWYfqmBngFOlRsaJI",
+	"refresh_token": "wZk2AnHuCuMplJ2P52a3hK0nZ2CfnQEWH1jLR7Nk"
+}
+```
+
+<aside class="note">
+An access token model is composed of server generated JWT and refresh tokens
+</aside>
+
+Name | Type | Definition
+--------- | ------- | -------
+jwt_access_token | string | Server generate JWT token used in API requests
+refresh_token | string | Token used to generate a new JWT token
+
 ## Learning Asset Model
 
 > Learning asset model:
