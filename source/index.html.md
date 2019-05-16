@@ -26,7 +26,7 @@ search: true
 # Introduction 
 
 ```
-Code will be shown in this panel.
+Code will be shown here in this panel.
 ```
 
 Welcome to the Sila API!
