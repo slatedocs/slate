@@ -295,7 +295,7 @@ elapsed                   | Time taken to deliver notification, in ms     | Inte
 {
   "subscriptionId": "abcde123-abcd-abcd-abcd-abcde1234567",
   "profileId": 123456,
-  "resourceId": 1000,
+  "resourceId": {transferId},
   "newState": "outgoing_payment_sent",
   "eventTime": 1481713589566
 }
