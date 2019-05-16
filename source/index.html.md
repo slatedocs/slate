@@ -42,11 +42,11 @@ We will soon be adding support for **card payments**, **business ID verification
 
 By using us to build financial applications, you can:
 
-- decrease your go-to-market time (no regulatory headache or flaky bank partnerships)
-- dramatically decrease your upfront costs
-- keep sensitive data off of your servers
-- let us handle ACH transactions (send us JSON, not flat files)
-- have the option to transfer tokens pegged to the value of $0.01 USD directly on the blockchain
+- decrease your go-to-market time (no regulatory headache or flaky bank partnerships),
+- dramatically decrease your upfront costs,
+- keep sensitive data off of your servers,
+- let us handle ACH transactions (send us JSON, not flat files), and
+- have the option to transfer tokens pegged to the value of $0.01 USD directly on the blockchain.
 
 
 ## Getting Started
