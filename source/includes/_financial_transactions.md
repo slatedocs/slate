@@ -1,6 +1,6 @@
 # Financial Transactions
 
-Financial transactions are are a history of the payments made for a customer. Financial transactions are created as a result of Transaction Schedules, and typcially move from a status of `Pending` -> `Approved` or `Pending` -> `Declined`. If a later chargeback occurs after a successful payment has been reported, financial transactions will be moved to a status of `Chargeback`.
+Financial transactions are a history of the payments made for a customer. Financial transactions are created as a result of Transaction Schedules, and typcially move from a status of `Pending` -> `Approved` or `Pending` -> `Declined`. If a later chargeback occurs after a successful payment has been reported, financial transactions will be moved to a status of `Chargeback`.
 
 Field  | Description 
  ------------- | ------------- 
@@ -8,7 +8,7 @@ id | ID of the financial transaction
 amount | Transaction amount
 process_date | The scheduled process date of the transaction
 status | The current status of the transaction
-status_reason | The reason for the `Declined` or `Chargeback` status of a transactions
+status_reason | The reason for the `Declined` or `Chargeback` status of a transaction
 transaction_schedule_id | ID of the transction schedule that created this financial transaction
 bank_name | Bank name
 institution_number | Bank institution number

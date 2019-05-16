@@ -7,7 +7,7 @@ Parameter  | Description
 ID | ID of the transaction schedule. 
 process_date | The initial date to begin withdrawing funds. (e.g. November 20, 2016)
 installments | The number of installments. Leave blank to continue withdrawing funds indefinitely.
-comment | A places to enter notes for the transaction schedule.
+comment | A place to enter notes for the transaction schedule.
 next_process_date | The next date that funds will be withdrawn.
 financial_transactions | A list of financial transactions generated as a result of the payment schedule specified.
 

@@ -1,6 +1,6 @@
 # Customers
 
-Customers represent individual customer accounts from which you which to withdraw funds.
+Customers represent individual customer accounts from which you wish to withdraw funds.
 
  Field  | Description 
  ------------- | ------------- 

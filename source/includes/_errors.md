@@ -19,7 +19,7 @@
 
 ### ERROR FORMAT
 
-Errors are returned from Rotessa in the for of a list of values in the `errors` key of response. Each error has an `error_code` and `error_message`, corresponding to the type of error that has occurred.
+Errors are returned from Rotessa in the form of a list of values in the `errors` key of response. Each error has an `error_code` and `error_message`, corresponding to the type of error that has occurred.
 
 ### HTTP RESPONSE CODES
 
