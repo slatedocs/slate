@@ -139,10 +139,10 @@ During this phase the client can give commands to the server. The server will re
 {
  "media": "digital",
  "languageId": 1,
- "action:4028,
+ "action":4028,
  "order": {
    "externalId" : "T004-126572",
-   "posId" :744,
+   "posId" :5,
    "totalProduct" : 39.98,
    "subTotalProduct" : 39.98,
    "totalTax" : 0.00,
