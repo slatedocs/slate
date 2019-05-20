@@ -34,3 +34,4 @@ The below format considers the price inclusive of taxes.
 | dynamic_assets                   | This is applicable for pay per asset type of subscriptions. Suppose if user purchases a storytitle, slug will be available in this field  Example: [{id: "some_asset_id", title: "Some title", slug: "/some-slug"}]                                                                                                         |
 | amount_after_discount_before_tax | This amount is arrived at, when discount is applied on the base price and does not include the tax amounts.|
 |round_off|The amount that was rounded off in calculating the amount paid by the subscriber from the calculated base price, price after discount and taxes. Unit: Rupee for INR and dollar for USD.|
+|benefit_product| This is the title of the befefit product that is added to referree, because he/she used a coupon code which has discount type `unit`
