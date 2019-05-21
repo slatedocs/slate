@@ -71,7 +71,11 @@ curl "https://platform.tier-services.io/v1/invoice/4a35a1bd-fa1a-4b56-ab8d-4b93a
 
 ### Errors
 
+<<<<<<< Updated upstream
 The Tier API uses the following error codes:
+=======
+The TIER API uses the following invoice-specific error codes:
+>>>>>>> Stashed changes
 
 Error Code | Meaning
 ---------- | -------

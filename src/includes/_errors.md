@@ -1,6 +1,6 @@
 # Default Errors
 
-The Tier API uses the following error codes:
+The TIER API uses the following error codes:
 
 Error Code | Meaning
 ---------- | -------

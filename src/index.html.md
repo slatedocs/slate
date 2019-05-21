@@ -24,7 +24,7 @@ search: true
 
 # Introduction
 
-Welcome to the Tier API. It provides the essentials to integrate with Tier's mobility platform.
+Welcome to the TIER API. It provides the essentials to integrate with TIER's mobility platform.
 There's different levels of access for mobility and logistics partners.
 Access is limited for different endpoints and zones for each API key individually.
 
@@ -36,7 +36,7 @@ be picked up and where to drop them off next day.
 
 ## Format
 
-The Tier API is using the [JSON:API standard](https://jsonapi.org/).
+The TIER API is using the [JSON:API standard](https://jsonapi.org/).
 
 ## Versioning
 
@@ -68,7 +68,7 @@ curl "api_endpoint_here"
 
 > Please make sure to replace `TIER API KEY` with your API key.
 
-Tier is using an API Keys based authentication. To register for an access key send an email
+TIER is using an API Keys based authentication. To register for an access key send an email
 to <a href='mailto:api@tier.app'>api@tier.app</a>. Each API key is bound to certain permissions
 that determine which zones and endpoints you can access.
 
