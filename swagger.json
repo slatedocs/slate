@@ -574,6 +574,24 @@
         } ],
         "parameters" : [ {
           "in" : "query",
+          "name" : "product_id",
+          "description" : "product id for fill query",
+          "type" : "integer",
+          "required": false
+        }, {
+          "in" : "query",
+          "name" : "start_time",
+          "description" : "Start time for the fill query",
+          "type" : "integer",
+          "required": false
+        }, {
+          "in" : "query",
+          "name" : "end_time",
+          "description" : "End time for the fill query",
+          "type" : "integer",
+          "required": false
+        }, {
+          "in" : "query",
           "name" : "page_num",
           "description" : "page number for pagination",
           "type" : "integer",
@@ -792,6 +810,30 @@
           "name" : "asset_id",
           "description" : "asset_id for that particular Wallet",
           "type" : "integer"
+        }, {
+          "in" : "query",
+          "name" : "product_id",
+          "description" : "product_id filter for the transaction query",
+          "type" : "integer",
+          "required": false
+        }, {
+          "in" : "query",
+          "name" : "transaction_type",
+          "description" : "transaction_type filter for the transaction query",
+          "type" : "integer",
+          "required": false
+        }, {
+          "in" : "query",
+          "name" : "start_time",
+          "description" : "Start time for the transaction query",
+          "type" : "integer",
+          "required": false
+        }, {
+          "in" : "query",
+          "name" : "end_time",
+          "description" : "End time for the transaction query",
+          "type" : "integer",
+          "required": false
         }, {
           "in" : "query",
           "name" : "page_num",
@@ -1149,15 +1191,15 @@
           "description": "cancel all orders for particular product, cancels orders for all products if not provided",
           "required": false
         },
-        "cancel_stop_orders": {
+        "cancel_limit_orders": {
           "type": "string",
-          "description": "set as true to cancel stop orders",
+          "description": "set as true to cancel open limit orders",
           "enum": [ "true", "false" ],
           "required": false
         },
-        "cancel_bracket_orders": {
+        "cancel_stop_orders": {
           "type": "string",
-          "description": "set as true to cancel bracket orders, only works if cancel_stop_orders=true",
+          "description": "set as true to cancel stop orders",
           "enum": [ "true", "false" ],
           "required": false
         }

@@ -867,8 +867,8 @@ p JSON.parse(result)
 ```json
 {
   "product_id": 0,
-  "cancel_stop_orders": "true",
-  "cancel_bracket_orders": "true"
+  "cancel_limit_orders": "true",
+  "cancel_stop_orders": "true"
 }
 ```
 
@@ -2238,6 +2238,9 @@ p JSON.parse(result)
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
+|product_id|query|integer|false|product id for fill query|
+|start_time|query|integer|false|Start time for the fill query|
+|end_time|query|integer|false|End time for the fill query|
 |page_num|query|integer|false|page number for pagination|
 |page_size|query|integer|false|page size for pagination|
 
@@ -2546,6 +2549,10 @@ p JSON.parse(result)
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
 |asset_id|query|integer|false|asset_id for that particular Wallet|
+|product_id|query|integer|false|product_id filter for the transaction query|
+|transaction_type|query|integer|false|transaction_type filter for the transaction query|
+|start_time|query|integer|false|Start time for the transaction query|
+|end_time|query|integer|false|End time for the transaction query|
 |page_num|query|integer|false|page number for pagination|
 |page_size|query|integer|false|page size for pagination|
 
@@ -3303,8 +3310,8 @@ This operation does not require authentication.
 ```json
 {
   "product_id": 0,
-  "cancel_stop_orders": "true",
-  "cancel_bracket_orders": "true"
+  "cancel_limit_orders": "true",
+  "cancel_stop_orders": "true"
 }
 
 ```
@@ -3316,17 +3323,17 @@ This operation does not require authentication.
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
 |product_id|integer|false|none|cancel all orders for particular product, cancels orders for all products if not provided|
+|cancel_limit_orders|string|false|none|set as true to cancel open limit orders|
 |cancel_stop_orders|string|false|none|set as true to cancel stop orders|
-|cancel_bracket_orders|string|false|none|set as true to cancel bracket orders, only works if cancel_stop_orders=true|
 
 #### Enumerated Values
 
 |Property|Value|
 |---|---|
+|cancel_limit_orders|true|
+|cancel_limit_orders|false|
 |cancel_stop_orders|true|
 |cancel_stop_orders|false|
-|cancel_bracket_orders|true|
-|cancel_bracket_orders|false|
 
 <h2 id="tocSarrayofdeleteorderrequest">ArrayOfDeleteOrderRequest</h2>
 
