@@ -25,7 +25,7 @@ search: true
 # Introduction
 
 Welcome to the TIER API. It provides the essentials to integrate with TIER's mobility platform.
-There's different levels of access for mobility and logistics partners.
+There are different levels of access for mobility partners and logistics partners.
 Access is limited for different endpoints and zones for each API key individually.
 
 The first half of the documentation is tailored to mobility partners wanting to integrate listing of
