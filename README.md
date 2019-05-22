@@ -50,17 +50,46 @@ First, edit rest-service/app.js and add the following code at the end of the fil
 let routes = [];
 function searchRoutes(stack, root, routes) {
 	stack.forEach(item => {
-		if(item.route){ 
+		if(item.route){
 			const methods = Object.keys(item.route.methods).filter(m => ['get','post','put','delete'].includes(m));
 			methods.forEach(m => routes.push(`${(root || '/')}${item.route.path.substr(1)} ${m.toUpperCase()}`));
-		} else if(item.name === 'router' && item.regexp && item.regexp.source){ 
+		} else if(item.name === 'router' && item.regexp && item.regexp.source){
 			let subpath = item.regexp.source.substr(3).replace(/[?].*/g,'').replace(/\\/g,'').replace(/\/\//g,'/');
 			searchRoutes(item.handle.stack, (root || '/') + subpath, routes);
 		}
 	});
 }
 searchRoutes(app._router.stack, null, routes);
-console.log(routes.sort().join("\n"));
+routes = routes.sort();
+let output = '';
+let ln = "\n";
+let lastHeader1 = '';
+let lastHeader2 = '';
+let lastHeader3 = '';
+for (let route of routes) {
+	let pathMethod = route.split(' ');
+	let method = pathMethod[1];
+	parts = pathMethod[0].split('/').filter(p => !!p);
+	if (parts && parts.length >= 2) {
+		let header1 = parts[1];
+		let header2 = parts[2];
+		let header3 = parts.slice(3).join('/');
+		if (header1 && header1 !== lastHeader1) {
+			output += `# ${header1}${ln}${ln}`
+		}
+		if (header2 && header2 !== lastHeader2) {
+			output += `## ${header2}${ln}${ln}`
+		}
+		if (header3 && header3 !== lastHeader3) {
+			output += `### ${header3}${ln}${ln}`
+		}
+		output += `${pathMethod[1]} ${pathMethod[0]}${ln}${ln}`;
+		lastHeader1 = header1 || lastHeader1;
+		lastHeader2 = header2 || lastHeader2;
+		lastHeader3 = header3 || lastHeader3;
+	}
+}
+console.log(output);
 ```
 
 Then, edit /source/index.html.md with the list of APIs printed on the console by the code above.
@@ -71,7 +100,9 @@ cd /path/to/rest-service-docs/
 bundle exec middleman build --clean
 ```
 
-The script `deploy.sh` may push the generated `dist` folder to the `gh-pages` branch. That branch may be used to publish a Gihub Page with the docs. That branch may also be included as a submodule inside `rest-service`, in a subfolder named `docs` (for instance):
+The command above generate the static docs in the `dist` folder, in case you want to manually upload it somewhere.
+
+The script `deploy.sh` will build the static docs and push them to the `gh-pages` branch. That branch may be used to publish a Gihub Page with the docs. That branch may also be included as a submodule inside `rest-service`, in a subfolder named `docs` (for instance):
 ```
 cd /path/to/rest-service
 git submodule add -b gh-pages git@github.com:lumahealthhq/rest-service-docs.git
