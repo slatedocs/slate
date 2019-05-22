@@ -100,7 +100,7 @@ cd /path/to/rest-service-docs/
 bundle exec middleman build --clean
 ```
 
-The command above generate the static docs in the `dist` folder, in case you want to manually upload it somewhere.
+The command above generates the static docs in the `dist` folder, in case you want to manually upload it somewhere.
 
 The script `deploy.sh` will build the static docs and push them to the `gh-pages` branch. That branch may be used to publish a Gihub Page with the docs. That branch may also be included as a submodule inside `rest-service`, in a subfolder named `docs` (for instance):
 ```
@@ -167,7 +167,7 @@ Troubleshooting
 
 ### `gem install` not responding
 
-This may be becayse wget prioritizes ipv6, but repo requires IPv4.
+This may be because wget prioritizes ipv6, but repo requires IPv4.
 Solution: edit /etc/gai.conf and add:
 ```
 precedence 2a04:4e42::0/32 5
