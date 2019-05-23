@@ -23,7 +23,7 @@ Welcome to the Factmata API!
 
 # Authorization
 
-Factmata API is authorized using API Key( Add link to obtain key).
+Factmata API is authorized using API Key. If you don't have a key please contact info@factmata.com to get one set up.
 
 The API_KEY is accepted as a request header `x-api-key`.
 
