@@ -27,21 +27,83 @@ This example API documentation page was created with [Slate](https://github.com/
 
 # Root API
 
-DELETE /api/*
+`DELETE` /api/*
 
-GET /api/*
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-POST /api/*
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-PUT /api/*
+`GET` /api/*
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`POST` /api/*
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`PUT` /api/*
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # activities
 
-GET /api/activities/
+`GET` /api/activities/
 
-## :id
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-PUT /api/activities/:id
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`PUT` /api/activities/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # admin
 
@@ -49,209 +111,805 @@ PUT /api/activities/:id
 
 ### facility
 
-POST /api/admin/dedupe/facility
+`POST` /api/admin/dedupe/facility
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### patient
 
-POST /api/admin/dedupe/patient
+`POST` /api/admin/dedupe/patient
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### provider
 
-POST /api/admin/dedupe/provider
+`POST` /api/admin/dedupe/provider
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## reload-patients
 
-POST /api/admin/reload-patients
+`POST` /api/admin/reload-patients
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## shorten
 
-POST /api/admin/shorten
+`POST` /api/admin/shorten
 
-# appointmentTypes
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-GET /api/appointmentTypes/
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
 
-POST /api/appointmentTypes/
-
-## :id
-
-DELETE /api/appointmentTypes/:id
-
-GET /api/appointmentTypes/:id
-
-PUT /api/appointmentTypes/:id
-
-## crudList
-
-GET /api/appointmentTypes/crudList
-
-## hidden
-
-GET /api/appointmentTypes/hidden
-
-## search
-
-GET /api/appointmentTypes/search
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # appointments
 
-GET /api/appointments/
+`GET` /api/appointments/
 
-POST /api/appointments/
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-## :id
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-DELETE /api/appointments/:id
+`POST` /api/appointments/
 
-GET /api/appointments/:id
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-PUT /api/appointments/:id
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`PUT` /api/appointments/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`GET` /api/appointments/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`DELETE` /api/appointments/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### cancel
 
-PUT /api/appointments/:id/cancel
+`PUT` /api/appointments/:id/cancel
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### confirm
 
-PUT /api/appointments/:id/confirm
+`PUT` /api/appointments/:id/confirm
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## crudList
 
-GET /api/appointments/crudList
+`GET` /api/appointments/crudList
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## getByPatientId
 
-### :id
+`GET` /api/appointments/getByPatientId/:id
 
-GET /api/appointments/getByPatientId/:id
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## reports
 
 ### find
 
-GET /api/appointments/reports/find
+`GET` /api/appointments/reports/find
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### summary
 
-GET /api/appointments/reports/summary
+`GET` /api/appointments/reports/summary
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### xls
 
-GET /api/appointments/reports/xls
+`GET` /api/appointments/reports/xls
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## summary
 
-GET /api/appointments/summary
+`GET` /api/appointments/summary
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## upload
 
 ### dentrix
 
-POST /api/appointments/upload/dentrix
+`POST` /api/appointments/upload/dentrix
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### referral
 
-POST /api/appointments/upload/referral
+`POST` /api/appointments/upload/referral
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### successehs
 
-POST /api/appointments/upload/successehs
+`POST` /api/appointments/upload/successehs
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### theraoffice
 
-POST /api/appointments/upload/theraoffice
+`POST` /api/appointments/upload/theraoffice
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+# appointmentTypes
+
+`GET` /api/appointmentTypes/
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`POST` /api/appointmentTypes/
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`PUT` /api/appointmentTypes/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`GET` /api/appointmentTypes/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`DELETE` /api/appointmentTypes/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## crudList
+
+`GET` /api/appointmentTypes/crudList
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## hidden
+
+`GET` /api/appointmentTypes/hidden
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## search
+
+`GET` /api/appointmentTypes/search
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # availabilities
 
-GET /api/availabilities/
+`POST` /api/availabilities/
 
-POST /api/availabilities/
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-PUT /api/availabilities/
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
 
-## :id
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-GET /api/availabilities/:id
+`GET` /api/availabilities/
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`PUT` /api/availabilities/
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`GET` /api/availabilities/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### book
 
-PUT /api/availabilities/:id/book
+`PUT` /api/availabilities/:id/book
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## book
 
-### :id
+`POST` /api/availabilities/book/:id
 
-POST /api/availabilities/book/:id
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## freebusy
 
-GET /api/availabilities/freebusy
+`GET` /api/availabilities/freebusy
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # billing
 
-GET /api/billing/
+`GET` /api/billing/
 
-POST /api/billing/
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-PUT /api/billing/
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-## :id
+`POST` /api/billing/
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`PUT` /api/billing/
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### subscriptions
 
-GET /api/billing/:id/subscriptions
+`GET` /api/billing/:id/subscriptions
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## charges
 
 ### last-status
 
-GET /api/billing/charges/last-status
+`GET` /api/billing/charges/last-status
 
-### last-status/:id
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-GET /api/billing/charges/last-status/:id
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`GET` /api/billing/charges/last-status/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### success-count
 
-GET /api/billing/charges/success-count
+`GET` /api/billing/charges/success-count
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## subscriptions
 
-DELETE /api/billing/subscriptions
+`DELETE` /api/billing/subscriptions
 
-POST /api/billing/subscriptions
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`POST` /api/billing/subscriptions
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # broadcasts
 
-GET /api/broadcasts/
+`GET` /api/broadcasts/
 
-POST /api/broadcasts/
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-## :id
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-DELETE /api/broadcasts/:id
+`POST` /api/broadcasts/
 
-GET /api/broadcasts/:id
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-PUT /api/broadcasts/:id
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`PUT` /api/broadcasts/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`GET` /api/broadcasts/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`DELETE` /api/broadcasts/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### xls
 
-GET /api/broadcasts/:id/xls
+`GET` /api/broadcasts/:id/xls
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## bulk
 
 ### action
 
-POST /api/broadcasts/bulk/action
+`POST` /api/broadcasts/bulk/action
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## count
 
-GET /api/broadcasts/count
+`GET` /api/broadcasts/count
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## patients
 
-GET /api/broadcasts/patients
+`GET` /api/broadcasts/patients
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # callback
 
@@ -259,1132 +917,4476 @@ GET /api/broadcasts/patients
 
 ### offers
 
-GET /api/callback/email/offers
+`GET` /api/callback/email/offers
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### reminders
 
-GET /api/callback/email/reminders
+`GET` /api/callback/email/reminders
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### sendgrid
 
-POST /api/callback/email/sendgrid
+`POST` /api/callback/email/sendgrid
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## integrators
 
-### :integrator/auth/:userId/:secret/:integratorId?
+#### auth
 
-POST /api/callback/integrators/:integrator/auth/:userId/:secret/:integratorId?
+`POST` /api/callback/integrators/:integrator/auth/:userId/:secret/:integratorId?
+
+Path parameter | Description 
+-------------- | ----------- 
+:integrator | xxx
+:userId | xxx
+:secret | xxx
+:integratorId? | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:integrator | xxx
+:userId | xxx
+:secret | xxx
+:integratorId? | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## mi7
 
-### ack/:apikey/:systemid/:messageid
+### ack
 
-POST /api/callback/mi7/ack/:apikey/:systemid/:messageid
+`POST` /api/callback/mi7/ack/:apikey/:systemid/:messageid
 
-### from/:apikey/:systemid
+Path parameter | Description 
+-------------- | ----------- 
+:apikey | xxx
+:systemid | xxx
+:messageid | xxx
 
-POST /api/callback/mi7/from/:apikey/:systemid
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-### to/:apikey/:systemid
+Request body param | Description 
+-------------- | ----------- 
+:apikey | xxx
+:systemid | xxx
+:messageid | xxx
 
-GET /api/callback/mi7/to/:apikey/:systemid
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+### from
+
+`POST` /api/callback/mi7/from/:apikey/:systemid
+
+Path parameter | Description 
+-------------- | ----------- 
+:apikey | xxx
+:systemid | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:apikey | xxx
+:systemid | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+### to
+
+`GET` /api/callback/mi7/to/:apikey/:systemid
+
+Path parameter | Description 
+-------------- | ----------- 
+:apikey | xxx
+:systemid | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## plivo
 
-### sms/reminders
+### sms
 
-GET /api/callback/plivo/sms/reminders
+#### reminders
+
+`GET` /api/callback/plivo/sms/reminders
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## practicefusion
 
-### auth/:userId/:secret
+### auth
 
-POST /api/callback/practicefusion/auth/:userId/:secret
+`POST` /api/callback/practicefusion/auth/:userId/:secret
+
+Path parameter | Description 
+-------------- | ----------- 
+:userId | xxx
+:secret | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:userId | xxx
+:secret | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### textcode
 
-GET /api/callback/practicefusion/textcode
+`GET` /api/callback/practicefusion/textcode
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## slack
 
-POST /api/callback/slack/
+`POST` /api/callback/slack/
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## sms
 
 ### offers
 
-GET /api/callback/sms/offers
+`GET` /api/callback/sms/offers
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### referrals
 
-GET /api/callback/sms/referrals
+`GET` /api/callback/sms/referrals
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### reminders
 
-GET /api/callback/sms/reminders
+`GET` /api/callback/sms/reminders
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## status
 
-### :vendor
+`POST` /api/callback/status/:vendor
 
-POST /api/callback/status/:vendor
+Path parameter | Description 
+-------------- | ----------- 
+:vendor | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:vendor | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## stripe
 
 ### charges
 
-POST /api/callback/stripe/charges
+`POST` /api/callback/stripe/charges
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## twilio
 
-### :id
+`POST` /api/callback/twilio/:id
 
-POST /api/callback/twilio/:id
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## voice
 
 ### offers
 
-GET /api/callback/voice/offers
+`GET` /api/callback/voice/offers
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### referrals
 
-GET /api/callback/voice/referrals
+`POST` /api/callback/voice/referrals
 
-POST /api/callback/voice/referrals
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`GET` /api/callback/voice/referrals
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### reminders
 
-GET /api/callback/voice/reminders
+`GET` /api/callback/voice/reminders
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # chatActivities
 
-GET /api/chatActivities/
+`GET` /api/chatActivities/
 
-## :id
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### assign
 
-PUT /api/chatActivities/:id/assign
+`PUT` /api/chatActivities/:id/assign
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### clear
 
-PUT /api/chatActivities/:id/clear
+`PUT` /api/chatActivities/:id/clear
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### close
 
-PUT /api/chatActivities/:id/close
+`PUT` /api/chatActivities/:id/close
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## all
 
-GET /api/chatActivities/all
+`GET` /api/chatActivities/all
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## mentions
 
-GET /api/chatActivities/mentions
+`GET` /api/chatActivities/mentions
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## presence
 
-GET /api/chatActivities/presence
+`GET` /api/chatActivities/presence
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## unread
 
-GET /api/chatActivities/unread
+`GET` /api/chatActivities/unread
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### patients
 
-GET /api/chatActivities/unread/patients
+`GET` /api/chatActivities/unread/patients
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # contexts
 
-## :refId
+`GET` /api/contexts/:refId
 
-GET /api/contexts/:refId
+Path parameter | Description 
+-------------- | ----------- 
+:refId | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # demoUsers
 
-POST /api/demoUsers/
+`POST` /api/demoUsers/
 
-## :salesforceId
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-### messages/:messageTemplate
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
 
-POST /api/demoUsers/:salesforceId/messages/:messageTemplate
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+### messages
+
+`POST` /api/demoUsers/:salesforceId/messages/:messageTemplate
+
+Path parameter | Description 
+-------------- | ----------- 
+:salesforceId | xxx
+:messageTemplate | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:salesforceId | xxx
+:messageTemplate | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # deploymentWebhooks
 
 ## circle
 
-### :repoName/:branch
+`GET` /api/deploymentWebhooks/circle/:repoName/:branch
 
-GET /api/deploymentWebhooks/circle/:repoName/:branch
+Path parameter | Description 
+-------------- | ----------- 
+:repoName | xxx
+:branch | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## github
 
-POST /api/deploymentWebhooks/github
+`POST` /api/deploymentWebhooks/github
 
-### :username/reviews
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-GET /api/deploymentWebhooks/github/:username/reviews
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+#### reviews
+
+`GET` /api/deploymentWebhooks/github/:username/reviews
+
+Path parameter | Description 
+-------------- | ----------- 
+:username | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # diagnoses
 
-GET /api/diagnoses/
+`GET` /api/diagnoses/
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # downtimeMessage
 
-GET /api/downtimeMessage/
+`GET` /api/downtimeMessage/
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # facilities
 
-GET /api/facilities/
+`GET` /api/facilities/
 
-POST /api/facilities/
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-## :id
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-DELETE /api/facilities/:id
+`POST` /api/facilities/
 
-GET /api/facilities/:id
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-PUT /api/facilities/:id
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`PUT` /api/facilities/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`GET` /api/facilities/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`DELETE` /api/facilities/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## hidden
 
-GET /api/facilities/hidden
+`GET` /api/facilities/hidden
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## search
 
-GET /api/facilities/search
+`GET` /api/facilities/search
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # feedbackResponses
 
-GET /api/feedbackResponses/
+`GET` /api/feedbackResponses/
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## negative
 
-POST /api/feedbackResponses/negative
+`POST` /api/feedbackResponses/negative
 
-### :id
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-GET /api/feedbackResponses/negative/:id
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`GET` /api/feedbackResponses/negative/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## positive
 
-POST /api/feedbackResponses/positive
+`POST` /api/feedbackResponses/positive
 
-GET /api/feedbackResponses/positive/:id
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`GET` /api/feedbackResponses/positive/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## promoters|detractors
 
-GET /api/feedbackResponses/promoters|detractors
+`GET` /api/feedbackResponses/promoters|detractors
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## reports
 
 ### clicks
 
-GET /api/feedbackResponses/reports/clicks
+`GET` /api/feedbackResponses/reports/clicks
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### detractors
 
-GET /api/feedbackResponses/reports/detractors
+`GET` /api/feedbackResponses/reports/detractors
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### find
 
-GET /api/feedbackResponses/reports/find
+`GET` /api/feedbackResponses/reports/find
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### findAll
 
-GET /api/feedbackResponses/reports/findAll
+`GET` /api/feedbackResponses/reports/findAll
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### npsscore
 
-GET /api/feedbackResponses/reports/npsscore
+`GET` /api/feedbackResponses/reports/npsscore
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### npsscores
 
-GET /api/feedbackResponses/reports/npsscores
+`GET` /api/feedbackResponses/reports/npsscores
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### promoters
 
-GET /api/feedbackResponses/reports/promoters
+`GET` /api/feedbackResponses/reports/promoters
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### summary
 
-GET /api/feedbackResponses/reports/summary
+`GET` /api/feedbackResponses/reports/summary
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### xls
 
-GET /api/feedbackResponses/reports/xls
+`GET` /api/feedbackResponses/reports/xls
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## score
 
-POST /api/feedbackResponses/score
+`POST` /api/feedbackResponses/score
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # fileMappings
 
-GET /api/fileMappings/
+`GET` /api/fileMappings/
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # fileUploads
 
-POST /api/fileUploads/
+`POST` /api/fileUploads/
 
-## :id
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-DELETE /api/fileUploads/:id
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
 
-GET /api/fileUploads/:id
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-PUT /api/fileUploads/:id
+`GET` /api/fileUploads/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`PUT` /api/fileUploads/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`DELETE` /api/fileUploads/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### binary
 
-DELETE /api/fileUploads/:id/binary
+`GET` /api/fileUploads/:id/binary
 
-GET /api/fileUploads/:id/binary
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
 
-PUT /api/fileUploads/:id/binary
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`PUT` /api/fileUploads/:id/binary
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`DELETE` /api/fileUploads/:id/binary
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### file
 
-GET /api/fileUploads/:id/file
+`GET` /api/fileUploads/:id/file
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### thumbnail
 
-GET /api/fileUploads/:id/thumbnail
+`GET` /api/fileUploads/:id/thumbnail
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## binary
 
-POST /api/fileUploads/binary
+`POST` /api/fileUploads/binary
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # followups
 
-GET /api/followups/
+`GET` /api/followups/
 
-POST /api/followups/
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-## :id
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-DELETE /api/followups/:id
+`POST` /api/followups/
 
-GET /api/followups/:id
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-PUT /api/followups/:id
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`GET` /api/followups/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`PUT` /api/followups/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`DELETE` /api/followups/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## bulk
 
-POST /api/followups/bulk
+`POST` /api/followups/bulk
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## groups
 
-GET /api/followups/groups
+`GET` /api/followups/groups
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # groupInvites
 
-GET /api/groupInvites/
+`GET` /api/groupInvites/
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # groups
 
-GET /api/groups/
+`GET` /api/groups/
 
-POST /api/groups/
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-## :id
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-DELETE /api/groups/:id
+`POST` /api/groups/
 
-GET /api/groups/:id
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-PUT /api/groups/:id
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
 
-### :user
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-DELETE /api/groups/:id/:user
+`GET` /api/groups/:id
 
-POST /api/groups/:id/:user
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`PUT` /api/groups/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`DELETE` /api/groups/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`DELETE` /api/groups/:id/:user
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+:user | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`POST` /api/groups/:id/:user
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+:user | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+:user | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### accept-invitation
 
-POST /api/groups/:id/accept-invitation
+`POST` /api/groups/:id/accept-invitation
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### invite-user
 
-POST /api/groups/:id/invite-user
+`POST` /api/groups/:id/invite-user
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### invites
 
-GET /api/groups/:id/invites
+`GET` /api/groups/:id/invites
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## accept-pending-invites
 
-PUT /api/groups/accept-pending-invites
+`PUT` /api/groups/accept-pending-invites
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## public
 
 ### get-invite
 
-GET /api/groups/public/get-invite
+`GET` /api/groups/public/get-invite
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## users
 
-### :id
+`GET` /api/groups/users/:id
 
-GET /api/groups/users/:id
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # hl7messages
 
-POST /api/hl7messages/
+`POST` /api/hl7messages/
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # insurances
 
-GET /api/insurances/
+`POST` /api/insurances/
 
-POST /api/insurances/
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-## :id
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
 
-DELETE /api/insurances/:id
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-GET /api/insurances/:id
+`GET` /api/insurances/
 
-PUT /api/insurances/:id
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`GET` /api/insurances/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`PUT` /api/insurances/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`DELETE` /api/insurances/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### binary
 
-POST /api/insurances/:id/binary
+`POST` /api/insurances/:id/binary
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### coverage
 
-GET /api/insurances/:id/coverage
+`GET` /api/insurances/:id/coverage
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## binary
 
-POST /api/insurances/binary
+`POST` /api/insurances/binary
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## payers
 
-GET /api/insurances/payers
+`GET` /api/insurances/payers
 
-### :id
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-GET /api/insurances/payers/:id
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`GET` /api/insurances/payers/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # integratorClients
 
-GET /api/integratorClients/
+`GET` /api/integratorClients/
 
-POST /api/integratorClients/
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-## :id
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-DELETE /api/integratorClients/:id
+`POST` /api/integratorClients/
 
-GET /api/integratorClients/:id
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-PUT /api/integratorClients/:id
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`GET` /api/integratorClients/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`DELETE` /api/integratorClients/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`PUT` /api/integratorClients/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## login
 
-POST /api/integratorClients/login
+`POST` /api/integratorClients/login
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # integrators
 
-GET /api/integrators/
+`GET` /api/integrators/
 
-POST /api/integrators/
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-## :id
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-DELETE /api/integrators/:id
+`POST` /api/integrators/
 
-GET /api/integrators/:id
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-PUT /api/integrators/:id
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`PUT` /api/integrators/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`GET` /api/integrators/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`DELETE` /api/integrators/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## admin
 
-GET /api/integrators/admin
+`GET` /api/integrators/admin
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## configuration
 
-GET /api/integrators/configuration
+`GET` /api/integrators/configuration
 
-### :integrator
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-GET /api/integrators/configuration/:integrator
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-# messageTemplates
+`GET` /api/integrators/configuration/:integrator
 
-POST /api/messageTemplates/
+Path parameter | Description 
+-------------- | ----------- 
+:integrator | xxx
 
-## :id
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-DELETE /api/messageTemplates/:id
-
-## :key
-
-POST /api/messageTemplates/:key
-
-### resolve
-
-GET /api/messageTemplates/:key/resolve
-
-## :key?
-
-GET /api/messageTemplates/:key?
-
-## list
-
-GET /api/messageTemplates/list
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # messages-errors
 
-GET /api/messages-errors/
+`GET` /api/messages-errors/
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## reports
 
 ### xls
 
-GET /api/messages-errors/reports/xls
+`GET` /api/messages-errors/reports/xls
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # messages
 
-GET /api/messages/
+`POST` /api/messages/
 
-POST /api/messages/
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-## :id
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
 
-GET /api/messages/:id
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`GET` /api/messages/
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`GET` /api/messages/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## crudList
 
-GET /api/messages/crudList
+`GET` /api/messages/crudList
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+# messageTemplates
+
+`POST` /api/messageTemplates/
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`DELETE` /api/messageTemplates/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`POST` /api/messageTemplates/:key
+
+Path parameter | Description 
+-------------- | ----------- 
+:key | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:key | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`GET` /api/messageTemplates/:key?
+
+Path parameter | Description 
+-------------- | ----------- 
+:key? | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+### resolve
+
+`GET` /api/messageTemplates/:key/resolve
+
+Path parameter | Description 
+-------------- | ----------- 
+:key | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## list
+
+`GET` /api/messageTemplates/list
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # notifications
 
-GET /api/notifications/
+`GET` /api/notifications/
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## clear
 
-PUT /api/notifications/clear
+`PUT` /api/notifications/clear
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # offers
 
-GET /api/offers/
+`POST` /api/offers/
 
-POST /api/offers/
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-## :id
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
 
-GET /api/offers/:id
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-PUT /api/offers/:id
+`GET` /api/offers/
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`GET` /api/offers/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`PUT` /api/offers/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### cancel
 
-POST /api/offers/:id/cancel
+`POST` /api/offers/:id/cancel
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### waitlists
 
-GET /api/offers/:id/waitlists
+`GET` /api/offers/:id/waitlists
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## crudList
 
-GET /api/offers/crudList
+`GET` /api/offers/crudList
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## findByPatientId
 
-### :id
+`GET` /api/offers/findByPatientId/:id
 
-GET /api/offers/findByPatientId/:id
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## reports
 
 ### find
 
-GET /api/offers/reports/find
+`GET` /api/offers/reports/find
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### summary
 
-GET /api/offers/reports/summary
+`GET` /api/offers/reports/summary
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # organizations
 
-GET /api/organizations/
+`GET` /api/organizations/
 
-POST /api/organizations/
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-## :id
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-DELETE /api/organizations/:id
+`POST` /api/organizations/
 
-GET /api/organizations/:id
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-PUT /api/organizations/:id
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`PUT` /api/organizations/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`GET` /api/organizations/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`DELETE` /api/organizations/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### access
 
-GET /api/organizations/:id/access
+`GET` /api/organizations/:id/access
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### users
 
-GET /api/organizations/:id/users
+`GET` /api/organizations/:id/users
 
-### users/:invitedUserId/invite
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
 
-POST /api/organizations/:id/users/:invitedUserId/invite
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-### users/:organizationUser/switch
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-POST /api/organizations/:id/users/:organizationUser/switch
+##### invite
 
-### users/:userId
+`POST` /api/organizations/:id/users/:invitedUserId/invite
 
-PUT /api/organizations/:id/users/:userId
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+:invitedUserId | xxx
 
-# patientFormTemplates
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-GET /api/patientFormTemplates/
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+:invitedUserId | xxx
 
-POST /api/patientFormTemplates/
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-DELETE /api/patientFormTemplates/:id
+##### switch
 
-GET /api/patientFormTemplates/:id
+`POST` /api/organizations/:id/users/:organizationUser/switch
 
-PUT /api/patientFormTemplates/:id
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+:organizationUser | xxx
 
-## callback
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-### updated
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+:organizationUser | xxx
 
-POST /api/patientFormTemplates/callback/updated
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`PUT` /api/organizations/:id/users/:userId
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+:userId | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+:userId | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # patientForms
 
-GET /api/patientForms/
+`GET` /api/patientForms/
 
-## *
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-POST /api/patientForms/*
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-## :id
+`GET` /api/patientForms/:id
 
-GET /api/patientForms/:id
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### pdf
 
-GET /api/patientForms/:id/pdf
+`GET` /api/patientForms/:id/pdf
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## *
+
+`POST` /api/patientForms/*
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## callback
 
 ### completed
 
-POST /api/patientForms/callback/completed
+`POST` /api/patientForms/callback/completed
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### created
 
-POST /api/patientForms/callback/created
+`POST` /api/patientForms/callback/created
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+# patientFormTemplates
+
+`POST` /api/patientFormTemplates/
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`GET` /api/patientFormTemplates/
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`GET` /api/patientFormTemplates/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`PUT` /api/patientFormTemplates/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`DELETE` /api/patientFormTemplates/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+### updated
+
+`POST` /api/patientFormTemplates/callback/updated
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # patientMessageTemplates
 
-GET /api/patientMessageTemplates/
+`POST` /api/patientMessageTemplates/
 
-POST /api/patientMessageTemplates/
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-## :id
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
 
-DELETE /api/patientMessageTemplates/:id
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-GET /api/patientMessageTemplates/:id
+`GET` /api/patientMessageTemplates/
 
-PUT /api/patientMessageTemplates/:id
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-# patientSubscribers
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-GET /api/patientSubscribers/
+`DELETE` /api/patientMessageTemplates/:id
 
-### follow
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
 
-POST /api/patientSubscribers/:id/follow
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-### unfollow
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-POST /api/patientSubscribers/:id/unfollow
+`GET` /api/patientMessageTemplates/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`PUT` /api/patientMessageTemplates/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # patients
 
-GET /api/patients/
+`POST` /api/patients/
 
-POST /api/patients/
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-DELETE /api/patients/:id
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
 
-GET /api/patients/:id
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-PUT /api/patients/:id
+`GET` /api/patients/
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`PUT` /api/patients/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`GET` /api/patients/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`DELETE` /api/patients/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### doNotContact
 
-GET /api/patients/:id/doNotContact
+`GET` /api/patients/:id/doNotContact
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### follow
 
-POST /api/patients/:id/follow
+`POST` /api/patients/:id/follow
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### journey
 
-GET /api/patients/:id/journey
+`GET` /api/patients/:id/journey
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### provider
 
-GET /api/patients/:id/provider
+`GET` /api/patients/:id/provider
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### reload
 
-POST /api/patients/:id/reload
+`POST` /api/patients/:id/reload
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### unfollow
 
-POST /api/patients/:id/unfollow
+`POST` /api/patients/:id/unfollow
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### verify
 
-POST /api/patients/:id/verify
+`POST` /api/patients/:id/verify
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## crudList
 
-GET /api/patients/crudList
+`GET` /api/patients/crudList
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## login
 
-POST /api/patients/login
+`POST` /api/patients/login
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## merge
 
-POST /api/patients/merge
+`POST` /api/patients/merge
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## recent
 
-GET /api/patients/recent
+`POST` /api/patients/recent
 
-POST /api/patients/recent
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`GET` /api/patients/recent
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## reports
 
-GET /api/patients/reports
+`GET` /api/patients/reports
 
-### do-not-contact/xls
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-GET /api/patients/reports/do-not-contact/xls
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+### do-not-contact
+
+#### xls
+
+`GET` /api/patients/reports/do-not-contact/xls
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## search
 
-GET /api/patients/search
+`GET` /api/patients/search
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## upload
 
-### :integrator
+`POST` /api/patients/upload/:integrator
 
-POST /api/patients/upload/:integrator
+Path parameter | Description 
+-------------- | ----------- 
+:integrator | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:integrator | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+# patientSubscribers
+
+`GET` /api/patientSubscribers/
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+### follow
+
+`POST` /api/patientSubscribers/:id/follow
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+### unfollow
+
+`POST` /api/patientSubscribers/:id/unfollow
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # phoneNumbers
 
-## :phone
+`GET` /api/phoneNumbers/:phone
 
-GET /api/phoneNumbers/:phone
+Path parameter | Description 
+-------------- | ----------- 
+:phone | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # procedures
 
-GET /api/procedures/
+`GET` /api/procedures/
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # providers
 
-GET /api/providers/
+`POST` /api/providers/
 
-POST /api/providers/
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-## :id
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
 
-DELETE /api/providers/:id
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-GET /api/providers/:id
+`GET` /api/providers/
 
-PUT /api/providers/:id
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`PUT` /api/providers/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`GET` /api/providers/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`DELETE` /api/providers/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### availabilities
 
-GET /api/providers/:id/availabilities
+`GET` /api/providers/:id/availabilities
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### waitlists
 
-GET /api/providers/:id/waitlists
+`GET` /api/providers/:id/waitlists
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## crudList
 
-GET /api/providers/crudList
+`GET` /api/providers/crudList
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## hidden
 
-GET /api/providers/hidden
+`GET` /api/providers/hidden
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## login
 
-POST /api/providers/login
+`POST` /api/providers/login
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## npi
 
 ### search
 
-GET /api/providers/npi/search
+`GET` /api/providers/npi/search
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## referring
 
-GET /api/providers/referring
+`GET` /api/providers/referring
 
-### :id/activate
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-PUT /api/providers/referring/:id/activate
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-### :id/deactivate
+#### activate
 
-PUT /api/providers/referring/:id/deactivate
+`PUT` /api/providers/referring/:id/activate
 
-### :id/referrals
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
 
-GET /api/providers/referring/:id/referrals
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-### :id/share
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
 
-POST /api/providers/referring/:id/share
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+#### deactivate
+
+`PUT` /api/providers/referring/:id/deactivate
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+#### referrals
+
+`GET` /api/providers/referring/:id/referrals
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+#### share
+
+`POST` /api/providers/referring/:id/share
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## search
 
-GET /api/providers/search
+`GET` /api/providers/search
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # recalls
 
-GET /api/recalls/
+`GET` /api/recalls/
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # referrals
 
-GET /api/referrals/
+`POST` /api/referrals/
 
-POST /api/referrals/
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-## :id
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
 
-DELETE /api/referrals/:id
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-GET /api/referrals/:id
+`GET` /api/referrals/
 
-PUT /api/referrals/:id
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`PUT` /api/referrals/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`GET` /api/referrals/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`DELETE` /api/referrals/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### approve
 
-POST /api/referrals/:id/approve
+`POST` /api/referrals/:id/approve
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### reject
 
-POST /api/referrals/:id/reject
+`POST` /api/referrals/:id/reject
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## batch
 
-DELETE /api/referrals/batch
+`PUT` /api/referrals/batch
 
-PUT /api/referrals/batch
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`DELETE` /api/referrals/batch
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## count
 
-GET /api/referrals/count
+`GET` /api/referrals/count
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## crudList
 
-GET /api/referrals/crudList
+`GET` /api/referrals/crudList
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## reports
 
 ### find
 
-GET /api/referrals/reports/find
+`GET` /api/referrals/reports/find
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### summary
 
-GET /api/referrals/reports/summary
+`GET` /api/referrals/reports/summary
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### xls
 
-GET /api/referrals/reports/xls
+`GET` /api/referrals/reports/xls
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## search
 
-GET /api/referrals/search
+`GET` /api/referrals/search
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # reminders
 
-GET /api/reminders/
+`GET` /api/reminders/
 
-POST /api/reminders/
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-## :id
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-DELETE /api/reminders/:id
+`POST` /api/reminders/
 
-GET /api/reminders/:id
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-PUT /api/reminders/:id
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`PUT` /api/reminders/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`GET` /api/reminders/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`DELETE` /api/reminders/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## crudList
 
-GET /api/reminders/crudList
+`GET` /api/reminders/crudList
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## findByApptId
 
-### :id
+`GET` /api/reminders/findByApptId/:id
 
-GET /api/reminders/findByApptId/:id
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## findByPatientId
 
-GET /api/reminders/findByPatientId/:id
+`GET` /api/reminders/findByPatientId/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## reports
 
 ### find
 
-GET /api/reminders/reports/find
+`GET` /api/reminders/reports/find
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### summary
 
-GET /api/reminders/reports/summary
+`GET` /api/reminders/reports/summary
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### xls
 
-GET /api/reminders/reports/xls
+`GET` /api/reminders/reports/xls
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # reports
 
 ## periscope
 
-### :dashboard
+`GET` /api/reports/periscope/:dashboard
 
-GET /api/reports/periscope/:dashboard
+Path parameter | Description 
+-------------- | ----------- 
+:dashboard | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### dashboards
 
-GET /api/reports/periscope/dashboards
+`GET` /api/reports/periscope/dashboards
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # scheduler
 
 ## availabilities
 
-GET /api/scheduler/availabilities
+`GET` /api/scheduler/availabilities
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### count
 
-GET /api/scheduler/availabilities/count
+`GET` /api/scheduler/availabilities/count
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # settings
 
-GET /api/settings/
+`GET` /api/settings/
 
-POST /api/settings/
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-## :id
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-DELETE /api/settings/:id
+`POST` /api/settings/
 
-GET /api/settings/:id
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-PUT /api/settings/:id
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
 
-### subscribe/:messageKey
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-PUT /api/settings/:id/subscribe/:messageKey
+`PUT` /api/settings/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`GET` /api/settings/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`DELETE` /api/settings/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+### subscribe
+
+`PUT` /api/settings/:id/subscribe/:messageKey
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+:messageKey | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+:messageKey | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### unsubscribe
 
-PUT /api/settings/:id/unsubscribe
+`PUT` /api/settings/:id/unsubscribe
 
-### unsubscribe/:messageKey
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
 
-PUT /api/settings/:id/unsubscribe/:messageKey
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`PUT` /api/settings/:id/unsubscribe/:messageKey
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+:messageKey | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+:messageKey | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # status
 
-GET /api/status/
+`GET` /api/status/
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## services
 
-### :serviceName
+`GET` /api/status/services/:serviceName
 
-GET /api/status/services/:serviceName
+Path parameter | Description 
+-------------- | ----------- 
+:serviceName | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # tokens
 
 ## validate
 
-GET /api/tokens/validate
+`POST` /api/tokens/validate
 
-POST /api/tokens/validate
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`GET` /api/tokens/validate
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## zendesk
 
-POST /api/tokens/zendesk
+`POST` /api/tokens/zendesk
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # uploads
 
-GET /api/uploads/
+`GET` /api/uploads/
 
-POST /api/uploads/
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-## :id
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-GET /api/uploads/:id
+`POST` /api/uploads/
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`GET` /api/uploads/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### mapping
 
-PUT /api/uploads/:id/mapping
+`PUT` /api/uploads/:id/mapping
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # users
 
-GET /api/users/
+`GET` /api/users/
 
-POST /api/users/
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-GET /api/users/:id
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-PUT /api/users/:id
+`POST` /api/users/
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`GET` /api/users/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`PUT` /api/users/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### activate
 
-PUT /api/users/:id/activate
+`PUT` /api/users/:id/activate
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### groupInvites
 
-GET /api/users/:id/groupInvites
+`GET` /api/users/:id/groupInvites
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### resetPasswordLink
 
-GET /api/users/:id/resetPasswordLink
+`GET` /api/users/:id/resetPasswordLink
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ### upload
 
-PUT /api/users/:id/upload
+`PUT` /api/users/:id/upload
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## admin
 
-POST /api/users/admin
+`POST` /api/users/admin
 
-### :id
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-POST /api/users/admin/:id
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`POST` /api/users/admin/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## decommission
 
-POST /api/users/decommission/:id
+`POST` /api/users/decommission/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## forgot-password
 
-POST /api/users/forgot-password
+`POST` /api/users/forgot-password
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## login
 
-POST /api/users/login
+`POST` /api/users/login
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## reset-password
 
-### :token
+`GET` /api/users/reset-password/:token
 
-GET /api/users/reset-password/:token
+Path parameter | Description 
+-------------- | ----------- 
+:token | xxx
 
-POST /api/users/reset-password/:token
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`POST` /api/users/reset-password/:token
+
+Path parameter | Description 
+-------------- | ----------- 
+:token | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:token | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## signup
 
-POST /api/users/signup
+`POST` /api/users/signup
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## transfer
 
-PUT /api/users/transfer
+`PUT` /api/users/transfer
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## unsubscribe
 
-PUT /api/users/unsubscribe
+`PUT` /api/users/unsubscribe
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # waitlists
 
-GET /api/waitlists/
+`GET` /api/waitlists/
 
-POST /api/waitlists/
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-## :id
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
-DELETE /api/waitlists/:id
+`POST` /api/waitlists/
 
-GET /api/waitlists/:id
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
-PUT /api/waitlists/:id
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`PUT` /api/waitlists/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`GET` /api/waitlists/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+`DELETE` /api/waitlists/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## bulk
 
 ### action
 
-POST /api/waitlists/bulk/action
+`POST` /api/waitlists/bulk/action
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## cancelOffer
 
-### :id
+`GET` /api/waitlists/cancelOffer/:id
 
-GET /api/waitlists/cancelOffer/:id
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## candidates
 
-POST /api/waitlists/candidates
+`POST` /api/waitlists/candidates
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## confirmOffer
 
-GET /api/waitlists/confirmOffer/:id
+`GET` /api/waitlists/confirmOffer/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## count
 
-GET /api/waitlists/count
+`GET` /api/waitlists/count
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## crudList
 
-GET /api/waitlists/crudList
+`GET` /api/waitlists/crudList
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## declineOffer
 
-GET /api/waitlists/declineOffer/:id
+`GET` /api/waitlists/declineOffer/:id
+
+Path parameter | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## filter
 
-GET /api/waitlists/filter
+`GET` /api/waitlists/filter
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## find
 
 ### count
 
-POST /api/waitlists/find/count
+`POST` /api/waitlists/find/count
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## move
 
-### update-position/:providerId/:id/:replacedId
+### update-position
 
-POST /api/waitlists/move/update-position/:providerId/:id/:replacedId
+`POST` /api/waitlists/move/update-position/:providerId/:id/:replacedId
+
+Path parameter | Description 
+-------------- | ----------- 
+:providerId | xxx
+:id | xxx
+:replacedId | xxx
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:providerId | xxx
+:id | xxx
+:replacedId | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## search
 
-GET /api/waitlists/search
+`GET` /api/waitlists/search
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 # widgets
 
 ## login
 
-POST /api/widgets/login
+`POST` /api/widgets/login
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
 
 ## user
 
-GET /api/widgets/user
+`GET` /api/widgets/user
+
+Request header | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
