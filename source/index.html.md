@@ -27,9 +27,31 @@ This example API documentation page was created with [Slate](https://github.com/
 
 # Root API
 
-`DELETE` /api/*
+# *
 
-Request header | Description 
+/api/*
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -37,9 +59,31 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/*
+## `Delete` *
 
-Request header | Description 
+/api/*
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -47,29 +91,255 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`POST` /api/*
+## `List` *
 
-Request header | Description 
+/api/*
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`PUT` /api/*
+## `Create` *
 
-Request header | Description 
+/api/*
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
 -------------- | ----------- 
- | xxx
+xxx | yyy
+
+## `Update` *
+
+/api/*
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/*
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Delete` *
+
+/api/*
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` *
+
+/api/*
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` *
+
+/api/*
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` *
+
+/api/*
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
 Response body param | Description 
 -------------- | ----------- 
@@ -77,9 +347,29 @@ xxx | yyy
 
 # activities
 
-`GET` /api/activities/
+/api/activities/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -87,19 +377,103 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`PUT` /api/activities/:id
+## `List` activities
 
-Path parameter | Description 
--------------- | ----------- 
-:id | xxx
+/api/activities/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/activities/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` activities with params
+
+/api/activities/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
 Response body param | Description 
 -------------- | ----------- 
@@ -107,83 +481,311 @@ xxx | yyy
 
 # admin
 
-## dedupe
+/api/admin/dedupe/facility
 
-### facility
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-`POST` /api/admin/dedupe/facility
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-### patient
+## `Create` dedupe/facility
 
-`POST` /api/admin/dedupe/patient
+/api/admin/dedupe/facility
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-### provider
+/api/admin/dedupe/patient
 
-`POST` /api/admin/dedupe/provider
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## reload-patients
+## `Create` dedupe/patient
 
-`POST` /api/admin/reload-patients
+/api/admin/dedupe/patient
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## shorten
+/api/admin/dedupe/provider
 
-`POST` /api/admin/shorten
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
 -------------- | ----------- 
- | xxx
+xxx | yyy
+
+## `Create` dedupe/provider
+
+/api/admin/dedupe/provider
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/admin/reload-patients
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` reload-patients
+
+/api/admin/reload-patients
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/admin/shorten
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` shorten
+
+/api/admin/shorten
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
 Response body param | Description 
 -------------- | ----------- 
@@ -191,9 +793,29 @@ xxx | yyy
 
 # appointments
 
-`GET` /api/appointments/
+/api/appointments/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -201,45 +823,169 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`POST` /api/appointments/
+## `List` appointments
 
-Request header | Description 
+/api/appointments/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`PUT` /api/appointments/:id
+## `Create` appointments
 
-Path parameter | Description 
+/api/appointments/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/appointments/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` appointments with params
+
+/api/appointments/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/appointments/:id
+## `List` appointments with params
 
-Path parameter | Description 
+/api/appointments/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -247,13 +993,35 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`DELETE` /api/appointments/:id
+## `Delete` appointments with params
 
-Path parameter | Description 
+/api/appointments/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -261,51 +1029,139 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### cancel
+/api/appointments/:id/cancel
 
-`PUT` /api/appointments/:id/cancel
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Path parameter | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` cancel
+
+/api/appointments/:id/cancel
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-### confirm
+/api/appointments/:id/confirm
 
-`PUT` /api/appointments/:id/confirm
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Path parameter | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` confirm
+
+/api/appointments/:id/confirm
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## crudList
-
-`GET` /api/appointments/crudList
-
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -313,15 +1169,95 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## getByPatientId
+/api/appointments/crudList
 
-`GET` /api/appointments/getByPatientId/:id
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Path parameter | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` crudList
+
+/api/appointments/crudList
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/appointments/getByPatientId/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -329,13 +1265,35 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## reports
+## `List` getByPatientId
 
-### find
+/api/appointments/getByPatientId/:id
 
-`GET` /api/appointments/reports/find
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -343,11 +1301,29 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### summary
+/api/appointments/reports/find
 
-`GET` /api/appointments/reports/summary
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -355,11 +1331,31 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### xls
+## `List` reports/find
 
-`GET` /api/appointments/reports/xls
+/api/appointments/reports/find
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -367,11 +1363,29 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## summary
+/api/appointments/reports/summary
 
-`GET` /api/appointments/summary
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -379,67 +1393,405 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## upload
+## `List` reports/summary
 
-### dentrix
+/api/appointments/reports/summary
 
-`POST` /api/appointments/upload/dentrix
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-### referral
+/api/appointments/reports/xls
 
-`POST` /api/appointments/upload/referral
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-### successehs
+## `List` reports/xls
 
-`POST` /api/appointments/upload/successehs
+/api/appointments/reports/xls
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-### theraoffice
+/api/appointments/summary
 
-`POST` /api/appointments/upload/theraoffice
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
 -------------- | ----------- 
- | xxx
+xxx | yyy
+
+## `List` summary
+
+/api/appointments/summary
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/appointments/upload/dentrix
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` upload/dentrix
+
+/api/appointments/upload/dentrix
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/appointments/upload/referral
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` upload/referral
+
+/api/appointments/upload/referral
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/appointments/upload/successehs
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` upload/successehs
+
+/api/appointments/upload/successehs
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/appointments/upload/theraoffice
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` upload/theraoffice
+
+/api/appointments/upload/theraoffice
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
 Response body param | Description 
 -------------- | ----------- 
@@ -447,9 +1799,29 @@ xxx | yyy
 
 # appointmentTypes
 
-`GET` /api/appointmentTypes/
+/api/appointmentTypes/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -457,45 +1829,169 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`POST` /api/appointmentTypes/
+## `List` appointmentTypes
 
-Request header | Description 
+/api/appointmentTypes/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`PUT` /api/appointmentTypes/:id
+## `Create` appointmentTypes
 
-Path parameter | Description 
+/api/appointmentTypes/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/appointmentTypes/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` appointmentTypes with params
+
+/api/appointmentTypes/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/appointmentTypes/:id
+## `List` appointmentTypes with params
 
-Path parameter | Description 
+/api/appointmentTypes/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -503,13 +1999,35 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`DELETE` /api/appointmentTypes/:id
+## `Delete` appointmentTypes with params
 
-Path parameter | Description 
+/api/appointmentTypes/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -517,11 +2035,29 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## crudList
+/api/appointmentTypes/crudList
 
-`GET` /api/appointmentTypes/crudList
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -529,11 +2065,31 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## hidden
+## `List` crudList
 
-`GET` /api/appointmentTypes/hidden
+/api/appointmentTypes/crudList
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -541,11 +2097,123 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## search
+/api/appointmentTypes/hidden
 
-`GET` /api/appointmentTypes/search
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` hidden
+
+/api/appointmentTypes/hidden
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/appointmentTypes/search
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` search
+
+/api/appointmentTypes/search
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -555,23 +2223,61 @@ xxx | yyy
 
 # availabilities
 
-`POST` /api/availabilities/
+/api/availabilities/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/availabilities/
+## `Create` availabilities
 
-Request header | Description 
+/api/availabilities/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -579,27 +2285,97 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`PUT` /api/availabilities/
+## `List` availabilities
 
-Request header | Description 
+/api/availabilities/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/availabilities/:id
+## `Update` availabilities
 
-Path parameter | Description 
+/api/availabilities/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/availabilities/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -607,51 +2383,237 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### book
+## `List` availabilities with params
 
-`PUT` /api/availabilities/:id/book
+/api/availabilities/:id
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
-:id | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## book
+/api/availabilities/:id/book
 
-`POST` /api/availabilities/book/:id
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Path parameter | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
-:id | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## freebusy
+## `Update` book
 
-`GET` /api/availabilities/freebusy
+/api/availabilities/:id/book
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/availabilities/book/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` book
+
+/api/availabilities/book/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/availabilities/freebusy
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` freebusy
+
+/api/availabilities/freebusy
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -661,9 +2623,29 @@ xxx | yyy
 
 # billing
 
-`GET` /api/billing/
+/api/billing/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -671,43 +2653,129 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`POST` /api/billing/
+## `List` billing
 
-Request header | Description 
+/api/billing/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`PUT` /api/billing/
+## `Create` billing
 
-Request header | Description 
+/api/billing/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-### subscriptions
+## `Update` billing
 
-`GET` /api/billing/:id/subscriptions
+/api/billing/
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/billing/:id/subscriptions
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -715,27 +2783,35 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## charges
+## `List` subscriptions
 
-### last-status
+/api/billing/:id/subscriptions
 
-`GET` /api/billing/charges/last-status
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-`GET` /api/billing/charges/last-status/:id
+Authorization: No Auth / x-access-token
 
-Path parameter | Description 
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -743,11 +2819,29 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### success-count
+/api/billing/charges/last-status
 
-`GET` /api/billing/charges/success-count
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -755,11 +2849,31 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## subscriptions
+## `List` charges/last-status
 
-`DELETE` /api/billing/subscriptions
+/api/billing/charges/last-status
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -767,15 +2881,227 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`POST` /api/billing/subscriptions
+/api/billing/charges/last-status/:id
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
 -------------- | ----------- 
- | xxx
+xxx | yyy
+
+## `List` charges/last-status
+
+/api/billing/charges/last-status/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/billing/charges/success-count
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` charges/success-count
+
+/api/billing/charges/success-count
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/billing/subscriptions
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Delete` subscriptions
+
+/api/billing/subscriptions
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` subscriptions
+
+/api/billing/subscriptions
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
 Response body param | Description 
 -------------- | ----------- 
@@ -783,9 +3109,29 @@ xxx | yyy
 
 # broadcasts
 
-`GET` /api/broadcasts/
+/api/broadcasts/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -793,45 +3139,169 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`POST` /api/broadcasts/
+## `List` broadcasts
 
-Request header | Description 
+/api/broadcasts/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`PUT` /api/broadcasts/:id
+## `Create` broadcasts
 
-Path parameter | Description 
+/api/broadcasts/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/broadcasts/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` broadcasts with params
+
+/api/broadcasts/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/broadcasts/:id
+## `List` broadcasts with params
 
-Path parameter | Description 
+/api/broadcasts/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -839,13 +3309,35 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`DELETE` /api/broadcasts/:id
+## `Delete` broadcasts with params
 
-Path parameter | Description 
+/api/broadcasts/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -853,15 +3345,33 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### xls
+/api/broadcasts/:id/xls
 
-`GET` /api/broadcasts/:id/xls
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Path parameter | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -869,29 +3379,65 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## bulk
+## `List` xls
 
-### action
+/api/broadcasts/:id/xls
 
-`POST` /api/broadcasts/bulk/action
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## count
+/api/broadcasts/bulk/action
 
-`GET` /api/broadcasts/count
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -899,11 +3445,155 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## patients
+## `Create` bulk/action
 
-`GET` /api/broadcasts/patients
+/api/broadcasts/bulk/action
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/broadcasts/count
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` count
+
+/api/broadcasts/count
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/broadcasts/patients
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` patients
+
+/api/broadcasts/patients
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -913,13 +3603,29 @@ xxx | yyy
 
 # callback
 
-## email
+/api/callback/email/offers
 
-### offers
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-`GET` /api/callback/email/offers
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -927,11 +3633,31 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### reminders
+## `List` email/offers
 
-`GET` /api/callback/email/reminders
+/api/callback/email/offers
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -939,108 +3665,273 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### sendgrid
+/api/callback/email/reminders
 
-`POST` /api/callback/email/sendgrid
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## integrators
+## `List` email/reminders
 
-#### auth
+/api/callback/email/reminders
 
-`POST` /api/callback/integrators/:integrator/auth/:userId/:secret/:integratorId?
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Path parameter | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/callback/email/sendgrid
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` email/sendgrid
+
+/api/callback/email/sendgrid
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/callback/integrators/:integrator/auth/:userId/:secret/:integratorId?
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :integrator | xxx
 :userId | xxx
 :secret | xxx
 :integratorId? | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` integrators/auth
+
+/api/callback/integrators/:integrator/auth/:userId/:secret/:integratorId?
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :integrator | xxx
 :userId | xxx
 :secret | xxx
 :integratorId? | xxx
 
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## mi7
+/api/callback/mi7/ack/:apikey/:systemid/:messageid
 
-### ack
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-`POST` /api/callback/mi7/ack/:apikey/:systemid/:messageid
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :apikey | xxx
 :systemid | xxx
 :messageid | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` mi7/ack
+
+/api/callback/mi7/ack/:apikey/:systemid/:messageid
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :apikey | xxx
 :systemid | xxx
 :messageid | xxx
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-### from
-
-`POST` /api/callback/mi7/from/:apikey/:systemid
-
-Path parameter | Description 
--------------- | ----------- 
-:apikey | xxx
-:systemid | xxx
-
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
-:apikey | xxx
-:systemid | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-### to
-
-`GET` /api/callback/mi7/to/:apikey/:systemid
-
-Path parameter | Description 
--------------- | ----------- 
-:apikey | xxx
-:systemid | xxx
-
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1048,15 +3939,34 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## plivo
+/api/callback/mi7/from/:apikey/:systemid
 
-### sms
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-#### reminders
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
 
-`GET` /api/callback/plivo/sms/reminders
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:apikey | xxx
+:systemid | xxx
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1064,35 +3974,242 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## practicefusion
+## `Create` mi7/from
 
-### auth
+/api/callback/mi7/from/:apikey/:systemid
 
-`POST` /api/callback/practicefusion/auth/:userId/:secret
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Path parameter | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:apikey | xxx
+:systemid | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/callback/mi7/to/:apikey/:systemid
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:apikey | xxx
+:systemid | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` mi7/to
+
+/api/callback/mi7/to/:apikey/:systemid
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:apikey | xxx
+:systemid | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/callback/plivo/sms/reminders
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` plivo/sms/reminders
+
+/api/callback/plivo/sms/reminders
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/callback/practicefusion/auth/:userId/:secret
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :userId | xxx
 :secret | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` practicefusion/auth
+
+/api/callback/practicefusion/auth/:userId/:secret
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :userId | xxx
 :secret | xxx
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-### textcode
-
-`GET` /api/callback/practicefusion/textcode
-
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1100,41 +4217,29 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## slack
+/api/callback/practicefusion/textcode
 
-`POST` /api/callback/slack/
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
 
-Request body param | Description 
--------------- | ----------- 
- | xxx
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+Authorization: No Auth / x-access-token
 
-## sms
-
-### offers
-
-`GET` /api/callback/sms/offers
-
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-### referrals
-
-`GET` /api/callback/sms/referrals
-
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1142,11 +4247,31 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### reminders
+## `List` practicefusion/textcode
 
-`GET` /api/callback/sms/reminders
+/api/callback/practicefusion/textcode
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1154,71 +4279,449 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## status
+/api/callback/slack/
 
-`POST` /api/callback/status/:vendor
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Path parameter | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` slack
+
+/api/callback/slack/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/callback/sms/offers
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` sms/offers
+
+/api/callback/sms/offers
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/callback/sms/referrals
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` sms/referrals
+
+/api/callback/sms/referrals
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/callback/sms/reminders
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` sms/reminders
+
+/api/callback/sms/reminders
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/callback/status/:vendor
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :vendor | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` status
+
+/api/callback/status/:vendor
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :vendor | xxx
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## stripe
-
-### charges
-
-`POST` /api/callback/stripe/charges
-
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
 -------------- | ----------- 
- | xxx
+xxx | yyy
+
+/api/callback/stripe/charges
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## twilio
+## `Create` stripe/charges
 
-`POST` /api/callback/twilio/:id
+/api/callback/stripe/charges
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/callback/twilio/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` twilio
+
+/api/callback/twilio/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## voice
-
-### offers
-
-`GET` /api/callback/voice/offers
-
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1226,25 +4729,61 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### referrals
+/api/callback/voice/offers
 
-`POST` /api/callback/voice/referrals
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/callback/voice/referrals
+## `List` voice/offers
 
-Request header | Description 
+/api/callback/voice/offers
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1252,11 +4791,155 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### reminders
+/api/callback/voice/referrals
 
-`GET` /api/callback/voice/reminders
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` voice/referrals
+
+/api/callback/voice/referrals
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` voice/referrals
+
+/api/callback/voice/referrals
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/callback/voice/reminders
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` voice/reminders
+
+/api/callback/voice/reminders
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1266,9 +4949,29 @@ xxx | yyy
 
 # chatActivities
 
-`GET` /api/chatActivities/
+/api/chatActivities/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1276,71 +4979,241 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### assign
+## `List` chatActivities
 
-`PUT` /api/chatActivities/:id/assign
+/api/chatActivities/
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/chatActivities/:id/assign
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` assign
+
+/api/chatActivities/:id/assign
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-### clear
+/api/chatActivities/:id/clear
 
-`PUT` /api/chatActivities/:id/clear
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Path parameter | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` clear
+
+/api/chatActivities/:id/clear
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-### close
+/api/chatActivities/:id/close
 
-`PUT` /api/chatActivities/:id/close
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Path parameter | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` close
+
+/api/chatActivities/:id/close
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## all
-
-`GET` /api/chatActivities/all
-
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1348,11 +5221,29 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## mentions
+/api/chatActivities/all
 
-`GET` /api/chatActivities/mentions
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1360,11 +5251,31 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## presence
+## `List` all
 
-`GET` /api/chatActivities/presence
+/api/chatActivities/all
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1372,11 +5283,29 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## unread
+/api/chatActivities/mentions
 
-`GET` /api/chatActivities/unread
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1384,11 +5313,217 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### patients
+## `List` mentions
 
-`GET` /api/chatActivities/unread/patients
+/api/chatActivities/mentions
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/chatActivities/presence
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` presence
+
+/api/chatActivities/presence
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/chatActivities/unread
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` unread
+
+/api/chatActivities/unread
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/chatActivities/unread/patients
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` unread/patients
+
+/api/chatActivities/unread/patients
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1398,13 +5533,69 @@ xxx | yyy
 
 # contexts
 
-`GET` /api/contexts/:refId
+/api/contexts/:refId
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :refId | xxx
 
-Request header | Description 
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` contexts with params
+
+/api/contexts/:refId
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:refId | xxx
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1414,37 +5605,135 @@ xxx | yyy
 
 # demoUsers
 
-`POST` /api/demoUsers/
+/api/demoUsers/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-### messages
+## `Create` demoUsers
 
-`POST` /api/demoUsers/:salesforceId/messages/:messageTemplate
+/api/demoUsers/
 
-Path parameter | Description 
--------------- | ----------- 
-:salesforceId | xxx
-:messageTemplate | xxx
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/demoUsers/:salesforceId/messages/:messageTemplate
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :salesforceId | xxx
 :messageTemplate | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` messages
+
+/api/demoUsers/:salesforceId/messages/:messageTemplate
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:salesforceId | xxx
+:messageTemplate | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
 Response body param | Description 
 -------------- | ----------- 
@@ -1452,16 +5741,34 @@ xxx | yyy
 
 # deploymentWebhooks
 
-## circle
+/api/deploymentWebhooks/circle/:repoName/:branch
 
-`GET` /api/deploymentWebhooks/circle/:repoName/:branch
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Path parameter | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :repoName | xxx
 :branch | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1469,31 +5776,168 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## github
+## `List` circle
 
-`POST` /api/deploymentWebhooks/github
+/api/deploymentWebhooks/circle/:repoName/:branch
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:repoName | xxx
+:branch | xxx
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-#### reviews
+/api/deploymentWebhooks/github
 
-`GET` /api/deploymentWebhooks/github/:username/reviews
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Path parameter | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` github
+
+/api/deploymentWebhooks/github
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/deploymentWebhooks/github/:username/reviews
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :username | xxx
 
-Request header | Description 
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` github/reviews
+
+/api/deploymentWebhooks/github/:username/reviews
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:username | xxx
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1503,9 +5947,61 @@ xxx | yyy
 
 # diagnoses
 
-`GET` /api/diagnoses/
+/api/diagnoses/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` diagnoses
+
+/api/diagnoses/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1515,9 +6011,61 @@ xxx | yyy
 
 # downtimeMessage
 
-`GET` /api/downtimeMessage/
+/api/downtimeMessage/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` downtimeMessage
+
+/api/downtimeMessage/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1527,9 +6075,29 @@ xxx | yyy
 
 # facilities
 
-`GET` /api/facilities/
+/api/facilities/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1537,45 +6105,169 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`POST` /api/facilities/
+## `List` facilities
 
-Request header | Description 
+/api/facilities/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`PUT` /api/facilities/:id
+## `Create` facilities
 
-Path parameter | Description 
+/api/facilities/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/facilities/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` facilities with params
+
+/api/facilities/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/facilities/:id
+## `List` facilities with params
 
-Path parameter | Description 
+/api/facilities/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1583,13 +6275,35 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`DELETE` /api/facilities/:id
+## `Delete` facilities with params
 
-Path parameter | Description 
+/api/facilities/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1597,11 +6311,29 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## hidden
+/api/facilities/hidden
 
-`GET` /api/facilities/hidden
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1609,11 +6341,93 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## search
+## `List` hidden
 
-`GET` /api/facilities/search
+/api/facilities/hidden
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/facilities/search
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` search
+
+/api/facilities/search
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1623,9 +6437,29 @@ xxx | yyy
 
 # feedbackResponses
 
-`GET` /api/feedbackResponses/
+/api/feedbackResponses/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1633,29 +6467,127 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## negative
+## `List` feedbackResponses
 
-`POST` /api/feedbackResponses/negative
+/api/feedbackResponses/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/feedbackResponses/negative/:id
+/api/feedbackResponses/negative
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` negative
+
+/api/feedbackResponses/negative
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/feedbackResponses/negative/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1663,29 +6595,35 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## positive
+## `List` negative
 
-`POST` /api/feedbackResponses/positive
+/api/feedbackResponses/negative/:id
 
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request body param | Description 
--------------- | ----------- 
- | xxx
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-`GET` /api/feedbackResponses/positive/:id
+Authorization: No Auth / x-access-token
 
-Path parameter | Description 
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1693,11 +6631,29 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## promoters|detractors
+/api/feedbackResponses/positive
 
-`GET` /api/feedbackResponses/promoters|detractors
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1705,13 +6661,31 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## reports
+## `Create` positive
 
-### clicks
+/api/feedbackResponses/positive
 
-`GET` /api/feedbackResponses/reports/clicks
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1719,11 +6693,33 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### detractors
+/api/feedbackResponses/positive/:id
 
-`GET` /api/feedbackResponses/reports/detractors
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1731,11 +6727,35 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### find
+## `List` positive
 
-`GET` /api/feedbackResponses/reports/find
+/api/feedbackResponses/positive/:id
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1743,11 +6763,29 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### findAll
+/api/feedbackResponses/promoters|detractors
 
-`GET` /api/feedbackResponses/reports/findAll
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1755,11 +6793,31 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### npsscore
+## `List` promoters|detractors
 
-`GET` /api/feedbackResponses/reports/npsscore
+/api/feedbackResponses/promoters|detractors
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1767,11 +6825,29 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### npsscores
+/api/feedbackResponses/reports/clicks
 
-`GET` /api/feedbackResponses/reports/npsscores
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1779,11 +6855,31 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### promoters
+## `List` reports/clicks
 
-`GET` /api/feedbackResponses/reports/promoters
+/api/feedbackResponses/reports/clicks
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1791,11 +6887,29 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### summary
+/api/feedbackResponses/reports/detractors
 
-`GET` /api/feedbackResponses/reports/summary
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1803,11 +6917,31 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### xls
+## `List` reports/detractors
 
-`GET` /api/feedbackResponses/reports/xls
+/api/feedbackResponses/reports/detractors
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1815,17 +6949,497 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## score
+/api/feedbackResponses/reports/find
 
-`POST` /api/feedbackResponses/score
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
 -------------- | ----------- 
- | xxx
+xxx | yyy
+
+## `List` reports/find
+
+/api/feedbackResponses/reports/find
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/feedbackResponses/reports/findAll
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` reports/findAll
+
+/api/feedbackResponses/reports/findAll
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/feedbackResponses/reports/npsscore
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` reports/npsscore
+
+/api/feedbackResponses/reports/npsscore
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/feedbackResponses/reports/npsscores
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` reports/npsscores
+
+/api/feedbackResponses/reports/npsscores
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/feedbackResponses/reports/promoters
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` reports/promoters
+
+/api/feedbackResponses/reports/promoters
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/feedbackResponses/reports/summary
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` reports/summary
+
+/api/feedbackResponses/reports/summary
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/feedbackResponses/reports/xls
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` reports/xls
+
+/api/feedbackResponses/reports/xls
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/feedbackResponses/score
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` score
+
+/api/feedbackResponses/score
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
 Response body param | Description 
 -------------- | ----------- 
@@ -1833,9 +7447,61 @@ xxx | yyy
 
 # fileMappings
 
-`GET` /api/fileMappings/
+/api/fileMappings/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` fileMappings
+
+/api/fileMappings/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1845,59 +7511,29 @@ xxx | yyy
 
 # fileUploads
 
-`POST` /api/fileUploads/
+/api/fileUploads/
 
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request body param | Description 
--------------- | ----------- 
- | xxx
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-`GET` /api/fileUploads/:id
+Authorization: No Auth / x-access-token
 
-Path parameter | Description 
--------------- | ----------- 
-:id | xxx
-
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-`PUT` /api/fileUploads/:id
-
-Path parameter | Description 
--------------- | ----------- 
-:id | xxx
-
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
-:id | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-`DELETE` /api/fileUploads/:id
-
-Path parameter | Description 
--------------- | ----------- 
-:id | xxx
-
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1905,47 +7541,31 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### binary
+## `Create` fileUploads
 
-`GET` /api/fileUploads/:id/binary
+/api/fileUploads/
 
-Path parameter | Description 
--------------- | ----------- 
-:id | xxx
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-`PUT` /api/fileUploads/:id/binary
+Authorization: No Auth / x-access-token
 
-Path parameter | Description 
--------------- | ----------- 
-:id | xxx
-
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
-:id | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-`DELETE` /api/fileUploads/:id/binary
-
-Path parameter | Description 
--------------- | ----------- 
-:id | xxx
-
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1953,15 +7573,33 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### file
+/api/fileUploads/:id
 
-`GET` /api/fileUploads/:id/file
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Path parameter | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1969,15 +7607,35 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### thumbnail
+## `List` fileUploads with params
 
-`GET` /api/fileUploads/:id/thumbnail
+/api/fileUploads/:id
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -1985,17 +7643,417 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## binary
+## `Update` fileUploads with params
 
-`POST` /api/fileUploads/binary
+/api/fileUploads/:id
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
 -------------- | ----------- 
- | xxx
+xxx | yyy
+
+## `Delete` fileUploads with params
+
+/api/fileUploads/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/fileUploads/:id/binary
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` binary
+
+/api/fileUploads/:id/binary
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` binary
+
+/api/fileUploads/:id/binary
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Delete` binary
+
+/api/fileUploads/:id/binary
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/fileUploads/:id/file
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` file
+
+/api/fileUploads/:id/file
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/fileUploads/:id/thumbnail
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` thumbnail
+
+/api/fileUploads/:id/thumbnail
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/fileUploads/binary
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` binary
+
+/api/fileUploads/binary
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
 Response body param | Description 
 -------------- | ----------- 
@@ -2003,9 +8061,29 @@ xxx | yyy
 
 # followups
 
-`GET` /api/followups/
+/api/followups/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2013,27 +8091,97 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`POST` /api/followups/
+## `List` followups
 
-Request header | Description 
+/api/followups/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/followups/:id
+## `Create` followups
 
-Path parameter | Description 
+/api/followups/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/followups/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2041,31 +8189,107 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`PUT` /api/followups/:id
+## `List` followups with params
 
-Path parameter | Description 
+/api/followups/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` followups with params
+
+/api/followups/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`DELETE` /api/followups/:id
+## `Delete` followups with params
 
-Path parameter | Description 
+/api/followups/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2073,27 +8297,123 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## bulk
+/api/followups/bulk
 
-`POST` /api/followups/bulk
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## groups
+## `Create` bulk
 
-`GET` /api/followups/groups
+/api/followups/bulk
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/followups/groups
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` groups
+
+/api/followups/groups
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2103,9 +8423,61 @@ xxx | yyy
 
 # groupInvites
 
-`GET` /api/groupInvites/
+/api/groupInvites/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` groupInvites
+
+/api/groupInvites/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2115,9 +8487,29 @@ xxx | yyy
 
 # groups
 
-`GET` /api/groups/
+/api/groups/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2125,27 +8517,97 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`POST` /api/groups/
+## `List` groups
 
-Request header | Description 
+/api/groups/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/groups/:id
+## `Create` groups
 
-Path parameter | Description 
+/api/groups/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/groups/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2153,31 +8615,71 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`PUT` /api/groups/:id
+## `List` groups with params
 
-Path parameter | Description 
+/api/groups/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
-:id | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`DELETE` /api/groups/:id
+## `Update` groups with params
 
-Path parameter | Description 
+/api/groups/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2185,14 +8687,70 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`DELETE` /api/groups/:id/:user
+## `Delete` groups with params
 
-Path parameter | Description 
+/api/groups/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/groups/:id/:user
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 :user | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2200,75 +8758,71 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`POST` /api/groups/:id/:user
+## `Delete` groups with params
 
-Path parameter | Description 
+/api/groups/:id/:user
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 :user | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/groups/:id/:user
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 :user | xxx
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-### accept-invitation
-
-`POST` /api/groups/:id/accept-invitation
-
-Path parameter | Description 
--------------- | ----------- 
-:id | xxx
-
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
-:id | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-### invite-user
-
-`POST` /api/groups/:id/invite-user
-
-Path parameter | Description 
--------------- | ----------- 
-:id | xxx
-
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
-:id | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-### invites
-
-`GET` /api/groups/:id/invites
-
-Path parameter | Description 
--------------- | ----------- 
-:id | xxx
-
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2276,45 +8830,440 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## accept-pending-invites
+## `Create` groups with params
 
-`PUT` /api/groups/accept-pending-invites
+/api/groups/:id/:user
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+:user | xxx
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## public
+/api/groups/:id/accept-invitation
 
-### get-invite
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-`GET` /api/groups/public/get-invite
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
 
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+Authorization: No Auth / x-access-token
 
-## users
-
-`GET` /api/groups/users/:id
-
-Path parameter | Description 
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` accept-invitation
+
+/api/groups/:id/accept-invitation
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/groups/:id/invite-user
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` invite-user
+
+/api/groups/:id/invite-user
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/groups/:id/invites
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` invites
+
+/api/groups/:id/invites
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/groups/accept-pending-invites
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` accept-pending-invites
+
+/api/groups/accept-pending-invites
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/groups/public/get-invite
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` public/get-invite
+
+/api/groups/public/get-invite
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/groups/users/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` users
+
+/api/groups/users/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2324,15 +9273,63 @@ xxx | yyy
 
 # hl7messages
 
-`POST` /api/hl7messages/
+/api/hl7messages/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
 -------------- | ----------- 
- | xxx
+xxx | yyy
+
+## `Create` hl7messages
+
+/api/hl7messages/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
 Response body param | Description 
 -------------- | ----------- 
@@ -2340,23 +9337,61 @@ xxx | yyy
 
 # insurances
 
-`POST` /api/insurances/
+/api/insurances/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/insurances/
+## `Create` insurances
 
-Request header | Description 
+/api/insurances/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2364,13 +9399,65 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/insurances/:id
+## `List` insurances
 
-Path parameter | Description 
+/api/insurances/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/insurances/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2378,67 +9465,35 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`PUT` /api/insurances/:id
+## `List` insurances with params
 
-Path parameter | Description 
+/api/insurances/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
-:id | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-`DELETE` /api/insurances/:id
-
-Path parameter | Description 
--------------- | ----------- 
-:id | xxx
-
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-### binary
-
-`POST` /api/insurances/:id/binary
-
-Path parameter | Description 
--------------- | ----------- 
-:id | xxx
-
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
-:id | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-### coverage
-
-`GET` /api/insurances/:id/coverage
-
-Path parameter | Description 
--------------- | ----------- 
-:id | xxx
-
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2446,41 +9501,405 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## binary
+## `Update` insurances with params
 
-`POST` /api/insurances/binary
+/api/insurances/:id
 
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request body param | Description 
--------------- | ----------- 
- | xxx
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-## payers
+Authorization: No Auth / x-access-token
 
-`GET` /api/insurances/payers
-
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-`GET` /api/insurances/payers/:id
-
-Path parameter | Description 
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Delete` insurances with params
+
+/api/insurances/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/insurances/:id/binary
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` binary
+
+/api/insurances/:id/binary
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/insurances/:id/coverage
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` coverage
+
+/api/insurances/:id/coverage
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/insurances/binary
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` binary
+
+/api/insurances/binary
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/insurances/payers
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` payers
+
+/api/insurances/payers
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/insurances/payers/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` payers
+
+/api/insurances/payers/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2490,9 +9909,29 @@ xxx | yyy
 
 # integratorClients
 
-`GET` /api/integratorClients/
+/api/integratorClients/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2500,27 +9939,97 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`POST` /api/integratorClients/
+## `List` integratorClients
 
-Request header | Description 
+/api/integratorClients/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/integratorClients/:id
+## `Create` integratorClients
 
-Path parameter | Description 
+/api/integratorClients/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/integratorClients/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2528,13 +10037,35 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`DELETE` /api/integratorClients/:id
+## `List` integratorClients with params
 
-Path parameter | Description 
+/api/integratorClients/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2542,35 +10073,135 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`PUT` /api/integratorClients/:id
+## `Delete` integratorClients with params
 
-Path parameter | Description 
+/api/integratorClients/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
-:id | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## login
+## `Update` integratorClients with params
 
-`POST` /api/integratorClients/login
+/api/integratorClients/:id
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
 -------------- | ----------- 
- | xxx
+xxx | yyy
+
+/api/integratorClients/login
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` login
+
+/api/integratorClients/login
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
 Response body param | Description 
 -------------- | ----------- 
@@ -2578,9 +10209,29 @@ xxx | yyy
 
 # integrators
 
-`GET` /api/integrators/
+/api/integrators/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2588,45 +10239,169 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`POST` /api/integrators/
+## `List` integrators
 
-Request header | Description 
+/api/integrators/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`PUT` /api/integrators/:id
+## `Create` integrators
 
-Path parameter | Description 
+/api/integrators/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/integrators/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` integrators with params
+
+/api/integrators/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/integrators/:id
+## `List` integrators with params
 
-Path parameter | Description 
+/api/integrators/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2634,13 +10409,35 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`DELETE` /api/integrators/:id
+## `Delete` integrators with params
 
-Path parameter | Description 
+/api/integrators/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2648,11 +10445,29 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## admin
+/api/integrators/admin
 
-`GET` /api/integrators/admin
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2660,11 +10475,31 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## configuration
+## `List` admin
 
-`GET` /api/integrators/configuration
+/api/integrators/admin
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2672,13 +10507,131 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/integrators/configuration/:integrator
+/api/integrators/configuration
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` configuration
+
+/api/integrators/configuration
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/integrators/configuration/:integrator
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :integrator | xxx
 
-Request header | Description 
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` configuration
+
+/api/integrators/configuration/:integrator
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:integrator | xxx
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2688,9 +10641,29 @@ xxx | yyy
 
 # messages-errors
 
-`GET` /api/messages-errors/
+/api/messages-errors/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2698,13 +10671,93 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## reports
+## `List` messages-errors
 
-### xls
+/api/messages-errors/
 
-`GET` /api/messages-errors/reports/xls
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/messages-errors/reports/xls
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` reports/xls
+
+/api/messages-errors/reports/xls
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2714,23 +10767,61 @@ xxx | yyy
 
 # messages
 
-`POST` /api/messages/
+/api/messages/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/messages/
+## `Create` messages
 
-Request header | Description 
+/api/messages/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2738,13 +10829,65 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/messages/:id
+## `List` messages
 
-Path parameter | Description 
+/api/messages/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/messages/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2752,11 +10895,97 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## crudList
+## `List` messages with params
 
-`GET` /api/messages/crudList
+/api/messages/:id
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/messages/crudList
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` crudList
+
+/api/messages/crudList
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2766,27 +10995,95 @@ xxx | yyy
 
 # messageTemplates
 
-`POST` /api/messageTemplates/
+/api/messageTemplates/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`DELETE` /api/messageTemplates/:id
+## `Create` messageTemplates
 
-Path parameter | Description 
+/api/messageTemplates/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/messageTemplates/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2794,31 +11091,139 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`POST` /api/messageTemplates/:key
+## `Delete` messageTemplates with params
 
-Path parameter | Description 
+/api/messageTemplates/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
-:key | xxx
+:id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
-:key | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/messageTemplates/:key?
+/api/messageTemplates/:key
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:key | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` messageTemplates with params
+
+/api/messageTemplates/:key
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:key | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/messageTemplates/:key?
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :key? | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2826,15 +11231,69 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### resolve
+## `List` messageTemplates with params
 
-`GET` /api/messageTemplates/:key/resolve
+/api/messageTemplates/:key?
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:key? | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/messageTemplates/:key/resolve
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :key | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2842,11 +11301,97 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## list
+## `List` resolve
 
-`GET` /api/messageTemplates/list
+/api/messageTemplates/:key/resolve
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:key | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/messageTemplates/list
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` list
+
+/api/messageTemplates/list
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2856,9 +11401,29 @@ xxx | yyy
 
 # notifications
 
-`GET` /api/notifications/
+/api/notifications/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2866,17 +11431,95 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## clear
+## `List` notifications
 
-`PUT` /api/notifications/clear
+/api/notifications/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
 -------------- | ----------- 
- | xxx
+xxx | yyy
+
+/api/notifications/clear
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` clear
+
+/api/notifications/clear
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
 Response body param | Description 
 -------------- | ----------- 
@@ -2884,23 +11527,61 @@ xxx | yyy
 
 # offers
 
-`POST` /api/offers/
+/api/offers/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/offers/
+## `Create` offers
 
-Request header | Description 
+/api/offers/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2908,13 +11589,95 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/offers/:id
+/api/offers/
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` offers
+
+/api/offers/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/offers/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2922,53 +11685,175 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`PUT` /api/offers/:id
+## `List` offers with params
 
-Path parameter | Description 
+/api/offers/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` offers with params
+
+/api/offers/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-### cancel
+/api/offers/:id/cancel
 
-`POST` /api/offers/:id/cancel
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Path parameter | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` cancel
+
+/api/offers/:id/cancel
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-### waitlists
+/api/offers/:id/waitlists
 
-`GET` /api/offers/:id/waitlists
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Path parameter | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -2976,27 +11861,35 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## crudList
+## `List` waitlists
 
-`GET` /api/offers/crudList
+/api/offers/:id/waitlists
 
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
 
-## findByPatientId
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-`GET` /api/offers/findByPatientId/:id
+Authorization: No Auth / x-access-token
 
-Path parameter | Description 
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3004,13 +11897,29 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## reports
+/api/offers/crudList
 
-### find
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-`GET` /api/offers/reports/find
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3018,11 +11927,225 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### summary
+## `List` crudList
 
-`GET` /api/offers/reports/summary
+/api/offers/crudList
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/offers/findByPatientId/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` findByPatientId
+
+/api/offers/findByPatientId/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/offers/reports/find
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` reports/find
+
+/api/offers/reports/find
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/offers/reports/summary
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` reports/summary
+
+/api/offers/reports/summary
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3032,9 +12155,29 @@ xxx | yyy
 
 # organizations
 
-`GET` /api/organizations/
+/api/organizations/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3042,45 +12185,97 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`POST` /api/organizations/
+## `List` organizations
 
-Request header | Description 
+/api/organizations/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`PUT` /api/organizations/:id
+## `Create` organizations
 
-Path parameter | Description 
+/api/organizations/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/organizations/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
-:id | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-`GET` /api/organizations/:id
-
-Path parameter | Description 
--------------- | ----------- 
-:id | xxx
-
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3088,13 +12283,35 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`DELETE` /api/organizations/:id
+## `Update` organizations with params
 
-Path parameter | Description 
+/api/organizations/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3102,15 +12319,35 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### access
+## `List` organizations with params
 
-`GET` /api/organizations/:id/access
+/api/organizations/:id
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3118,15 +12355,35 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### users
+## `Delete` organizations with params
 
-`GET` /api/organizations/:id/users
+/api/organizations/:id
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3134,65 +12391,357 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-##### invite
+/api/organizations/:id/access
 
-`POST` /api/organizations/:id/users/:invitedUserId/invite
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Path parameter | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` access
+
+/api/organizations/:id/access
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/organizations/:id/users
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` users
+
+/api/organizations/:id/users
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/organizations/:id/users/:invitedUserId/invite
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 :invitedUserId | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` users/invite
+
+/api/organizations/:id/users/:invitedUserId/invite
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 :invitedUserId | xxx
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-##### switch
-
-`POST` /api/organizations/:id/users/:organizationUser/switch
-
-Path parameter | Description 
--------------- | ----------- 
-:id | xxx
-:organizationUser | xxx
-
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
-:id | xxx
-:organizationUser | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`PUT` /api/organizations/:id/users/:userId
+/api/organizations/:id/users/:organizationUser/switch
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
-:userId | xxx
+:organizationUser | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` users/switch
+
+/api/organizations/:id/users/:organizationUser/switch
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+:organizationUser | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/organizations/:id/users/:userId
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 :userId | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` users
+
+/api/organizations/:id/users/:userId
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+:userId | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
 Response body param | Description 
 -------------- | ----------- 
@@ -3200,9 +12749,29 @@ xxx | yyy
 
 # patientForms
 
-`GET` /api/patientForms/
+/api/patientForms/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3210,13 +12779,65 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/patientForms/:id
+## `List` patientForms
 
-Path parameter | Description 
+/api/patientForms/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/patientForms/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3224,15 +12845,35 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### pdf
+## `List` patientForms with params
 
-`GET` /api/patientForms/:id/pdf
+/api/patientForms/:id
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3240,51 +12881,257 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## *
+/api/patientForms/:id/pdf
 
-`POST` /api/patientForms/*
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## callback
+## `List` pdf
 
-### completed
+/api/patientForms/:id/pdf
 
-`POST` /api/patientForms/callback/completed
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-### created
+/api/patientForms/*
 
-`POST` /api/patientForms/callback/created
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
 -------------- | ----------- 
- | xxx
+xxx | yyy
+
+## `Create` *
+
+/api/patientForms/*
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/patientForms/callback/completed
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` callback/completed
+
+/api/patientForms/callback/completed
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/patientForms/callback/created
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` callback/created
+
+/api/patientForms/callback/created
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
 Response body param | Description 
 -------------- | ----------- 
@@ -3292,23 +13139,61 @@ xxx | yyy
 
 # patientFormTemplates
 
-`POST` /api/patientFormTemplates/
+/api/patientFormTemplates/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/patientFormTemplates/
+## `Create` patientFormTemplates
 
-Request header | Description 
+/api/patientFormTemplates/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3316,13 +13201,65 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/patientFormTemplates/:id
+## `List` patientFormTemplates
 
-Path parameter | Description 
+/api/patientFormTemplates/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/patientFormTemplates/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3330,31 +13267,71 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`PUT` /api/patientFormTemplates/:id
+## `List` patientFormTemplates with params
 
-Path parameter | Description 
+/api/patientFormTemplates/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
-:id | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`DELETE` /api/patientFormTemplates/:id
+## `Update` patientFormTemplates with params
 
-Path parameter | Description 
+/api/patientFormTemplates/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3362,17 +13339,99 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### updated
+## `Delete` patientFormTemplates with params
 
-`POST` /api/patientFormTemplates/callback/updated
+/api/patientFormTemplates/:id
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
 -------------- | ----------- 
- | xxx
+xxx | yyy
+
+/api/patientFormTemplates/callback/updated
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` callback/updated
+
+/api/patientFormTemplates/callback/updated
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
 Response body param | Description 
 -------------- | ----------- 
@@ -3380,37 +13439,29 @@ xxx | yyy
 
 # patientMessageTemplates
 
-`POST` /api/patientMessageTemplates/
+/api/patientMessageTemplates/
 
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request body param | Description 
--------------- | ----------- 
- | xxx
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-`GET` /api/patientMessageTemplates/
+Authorization: No Auth / x-access-token
 
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-`DELETE` /api/patientMessageTemplates/:id
-
-Path parameter | Description 
--------------- | ----------- 
-:id | xxx
-
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3418,13 +13469,31 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/patientMessageTemplates/:id
+## `Create` patientMessageTemplates
 
-Path parameter | Description 
--------------- | ----------- 
-:id | xxx
+/api/patientMessageTemplates/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3432,19 +13501,209 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`PUT` /api/patientMessageTemplates/:id
+## `List` patientMessageTemplates
 
-Path parameter | Description 
--------------- | ----------- 
-:id | xxx
+/api/patientMessageTemplates/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/patientMessageTemplates/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Delete` patientMessageTemplates with params
+
+/api/patientMessageTemplates/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/patientMessageTemplates/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` patientMessageTemplates with params
+
+/api/patientMessageTemplates/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` patientMessageTemplates with params
+
+/api/patientMessageTemplates/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
 Response body param | Description 
 -------------- | ----------- 
@@ -3452,23 +13711,61 @@ xxx | yyy
 
 # patients
 
-`POST` /api/patients/
+/api/patients/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/patients/
+## `Create` patients
 
-Request header | Description 
+/api/patients/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3476,31 +13773,137 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`PUT` /api/patients/:id
+## `List` patients
 
-Path parameter | Description 
+/api/patients/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/patients/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` patients with params
+
+/api/patients/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/patients/:id
+## `List` patients with params
 
-Path parameter | Description 
+/api/patients/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3508,13 +13911,35 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`DELETE` /api/patients/:id
+## `Delete` patients with params
 
-Path parameter | Description 
+/api/patients/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3522,15 +13947,33 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### doNotContact
+/api/patients/:id/doNotContact
 
-`GET` /api/patients/:id/doNotContact
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Path parameter | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3538,35 +13981,105 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### follow
+## `List` doNotContact
 
-`POST` /api/patients/:id/follow
+/api/patients/:id/doNotContact
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/patients/:id/follow
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-### journey
+## `Create` follow
 
-`GET` /api/patients/:id/journey
+/api/patients/:id/follow
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3574,15 +14087,33 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### provider
+/api/patients/:id/journey
 
-`GET` /api/patients/:id/provider
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Path parameter | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3590,71 +14121,209 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### reload
+## `List` journey
 
-`POST` /api/patients/:id/reload
+/api/patients/:id/journey
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/patients/:id/provider
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-### unfollow
+## `List` provider
 
-`POST` /api/patients/:id/unfollow
+/api/patients/:id/provider
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/patients/:id/reload
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-### verify
+## `Create` reload
 
-`POST` /api/patients/:id/verify
+/api/patients/:id/reload
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/patients/:id/unfollow
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## crudList
-
-`GET` /api/patients/crudList
-
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3662,57 +14331,35 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## login
+## `Create` unfollow
 
-`POST` /api/patients/login
+/api/patients/:id/unfollow
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
-x-access-token | JWT auth access token
+:id | xxx
 
-Request body param | Description 
--------------- | ----------- 
- | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## merge
-
-`POST` /api/patients/merge
-
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## recent
-
-`POST` /api/patients/recent
-
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-`GET` /api/patients/recent
-
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3720,11 +14367,33 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## reports
+/api/patients/:id/verify
 
-`GET` /api/patients/reports
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3732,13 +14401,35 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### do-not-contact
+## `Create` verify
 
-#### xls
+/api/patients/:id/verify
 
-`GET` /api/patients/reports/do-not-contact/xls
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3746,11 +14437,29 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## search
+/api/patients/crudList
 
-`GET` /api/patients/search
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3758,21 +14467,537 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## upload
+## `List` crudList
 
-`POST` /api/patients/upload/:integrator
+/api/patients/crudList
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/patients/login
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` login
+
+/api/patients/login
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/patients/merge
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` merge
+
+/api/patients/merge
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/patients/recent
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` recent
+
+/api/patients/recent
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/patients/recent
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` recent
+
+/api/patients/recent
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/patients/reports
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` reports
+
+/api/patients/reports
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/patients/reports/do-not-contact/xls
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` reports/do-not-contact/xls
+
+/api/patients/reports/do-not-contact/xls
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/patients/search
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` search
+
+/api/patients/search
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/patients/upload/:integrator
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :integrator | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` upload
+
+/api/patients/upload/:integrator
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :integrator | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
 Response body param | Description 
 -------------- | ----------- 
@@ -3780,9 +15005,29 @@ xxx | yyy
 
 # patientSubscribers
 
-`GET` /api/patientSubscribers/
+/api/patientSubscribers/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3790,41 +15035,173 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### follow
+## `List` patientSubscribers
 
-`POST` /api/patientSubscribers/:id/follow
+/api/patientSubscribers/
 
-Path parameter | Description 
--------------- | ----------- 
-:id | xxx
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
-:id | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-### unfollow
+/api/patientSubscribers/:id/follow
 
-`POST` /api/patientSubscribers/:id/unfollow
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Path parameter | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` follow
+
+/api/patientSubscribers/:id/follow
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/patientSubscribers/:id/unfollow
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` unfollow
+
+/api/patientSubscribers/:id/unfollow
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
 Response body param | Description 
 -------------- | ----------- 
@@ -3832,13 +15209,69 @@ xxx | yyy
 
 # phoneNumbers
 
-`GET` /api/phoneNumbers/:phone
+/api/phoneNumbers/:phone
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :phone | xxx
 
-Request header | Description 
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` phoneNumbers with params
+
+/api/phoneNumbers/:phone
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:phone | xxx
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3848,9 +15281,61 @@ xxx | yyy
 
 # procedures
 
-`GET` /api/procedures/
+/api/procedures/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` procedures
+
+/api/procedures/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3860,23 +15345,61 @@ xxx | yyy
 
 # providers
 
-`POST` /api/providers/
+/api/providers/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/providers/
+## `Create` providers
 
-Request header | Description 
+/api/providers/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3884,31 +15407,137 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`PUT` /api/providers/:id
+## `List` providers
 
-Path parameter | Description 
+/api/providers/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/providers/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` providers with params
+
+/api/providers/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/providers/:id
+## `List` providers with params
 
-Path parameter | Description 
+/api/providers/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3916,13 +15545,35 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`DELETE` /api/providers/:id
+## `Delete` providers with params
 
-Path parameter | Description 
+/api/providers/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3930,15 +15581,33 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### availabilities
+/api/providers/:id/availabilities
 
-`GET` /api/providers/:id/availabilities
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Path parameter | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3946,15 +15615,35 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### waitlists
+## `List` availabilities
 
-`GET` /api/providers/:id/waitlists
+/api/providers/:id/availabilities
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -3962,121 +15651,33 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## crudList
+/api/providers/:id/waitlists
 
-`GET` /api/providers/crudList
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-## hidden
+Authorization: No Auth / x-access-token
 
-`GET` /api/providers/hidden
-
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## login
-
-`POST` /api/providers/login
-
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## npi
-
-### search
-
-`GET` /api/providers/npi/search
-
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## referring
-
-`GET` /api/providers/referring
-
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-#### activate
-
-`PUT` /api/providers/referring/:id/activate
-
-Path parameter | Description 
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
-:id | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-#### deactivate
-
-`PUT` /api/providers/referring/:id/deactivate
-
-Path parameter | Description 
--------------- | ----------- 
-:id | xxx
-
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
-:id | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-#### referrals
-
-`GET` /api/providers/referring/:id/referrals
-
-Path parameter | Description 
--------------- | ----------- 
-:id | xxx
-
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4084,31 +15685,687 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-#### share
+## `List` waitlists
 
-`POST` /api/providers/referring/:id/share
+/api/providers/:id/waitlists
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
-:id | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## search
+/api/providers/crudList
 
-`GET` /api/providers/search
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` crudList
+
+/api/providers/crudList
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/providers/hidden
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` hidden
+
+/api/providers/hidden
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/providers/login
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` login
+
+/api/providers/login
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/providers/npi/search
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` npi/search
+
+/api/providers/npi/search
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/providers/referring
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` referring
+
+/api/providers/referring
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/providers/referring/:id/activate
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` referring/activate
+
+/api/providers/referring/:id/activate
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/providers/referring/:id/deactivate
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` referring/deactivate
+
+/api/providers/referring/:id/deactivate
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/providers/referring/:id/referrals
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` referring/referrals
+
+/api/providers/referring/:id/referrals
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/providers/referring/:id/share
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` referring/share
+
+/api/providers/referring/:id/share
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/providers/search
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` search
+
+/api/providers/search
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4118,9 +16375,61 @@ xxx | yyy
 
 # recalls
 
-`GET` /api/recalls/
+/api/recalls/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` recalls
+
+/api/recalls/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4130,23 +16439,61 @@ xxx | yyy
 
 # referrals
 
-`POST` /api/referrals/
+/api/referrals/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/referrals/
+## `Create` referrals
 
-Request header | Description 
+/api/referrals/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4154,31 +16501,137 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`PUT` /api/referrals/:id
+## `List` referrals
 
-Path parameter | Description 
+/api/referrals/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/referrals/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` referrals with params
+
+/api/referrals/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/referrals/:id
+## `List` referrals with params
 
-Path parameter | Description 
+/api/referrals/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4186,13 +16639,35 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`DELETE` /api/referrals/:id
+## `Delete` referrals with params
 
-Path parameter | Description 
+/api/referrals/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4200,65 +16675,139 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### approve
+/api/referrals/:id/approve
 
-`POST` /api/referrals/:id/approve
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Path parameter | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` approve
+
+/api/referrals/:id/approve
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-### reject
+/api/referrals/:id/reject
 
-`POST` /api/referrals/:id/reject
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Path parameter | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` reject
+
+/api/referrals/:id/reject
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## batch
-
-`PUT` /api/referrals/batch
-
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-`DELETE` /api/referrals/batch
-
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4266,11 +16815,29 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## count
+/api/referrals/batch
 
-`GET` /api/referrals/count
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4278,11 +16845,31 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## crudList
+## `Update` batch
 
-`GET` /api/referrals/crudList
+/api/referrals/batch
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4290,13 +16877,31 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## reports
+## `Delete` batch
 
-### find
+/api/referrals/batch
 
-`GET` /api/referrals/reports/find
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4304,11 +16909,29 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### summary
+/api/referrals/count
 
-`GET` /api/referrals/reports/summary
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4316,11 +16939,31 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### xls
+## `List` count
 
-`GET` /api/referrals/reports/xls
+/api/referrals/count
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4328,11 +16971,309 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## search
+/api/referrals/crudList
 
-`GET` /api/referrals/search
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` crudList
+
+/api/referrals/crudList
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/referrals/reports/find
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` reports/find
+
+/api/referrals/reports/find
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/referrals/reports/summary
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` reports/summary
+
+/api/referrals/reports/summary
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/referrals/reports/xls
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` reports/xls
+
+/api/referrals/reports/xls
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/referrals/search
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` search
+
+/api/referrals/search
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4342,9 +17283,29 @@ xxx | yyy
 
 # reminders
 
-`GET` /api/reminders/
+/api/reminders/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4352,45 +17313,169 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`POST` /api/reminders/
+## `List` reminders
 
-Request header | Description 
+/api/reminders/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`PUT` /api/reminders/:id
+## `Create` reminders
 
-Path parameter | Description 
+/api/reminders/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/reminders/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` reminders with params
+
+/api/reminders/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/reminders/:id
+## `List` reminders with params
 
-Path parameter | Description 
+/api/reminders/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4398,13 +17483,35 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`DELETE` /api/reminders/:id
+## `Delete` reminders with params
 
-Path parameter | Description 
+/api/reminders/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4412,11 +17519,29 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## crudList
+/api/reminders/crudList
 
-`GET` /api/reminders/crudList
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4424,15 +17549,65 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## findByApptId
+## `List` crudList
 
-`GET` /api/reminders/findByApptId/:id
+/api/reminders/crudList
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/reminders/findByApptId/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4440,15 +17615,35 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## findByPatientId
+## `List` findByApptId
 
-`GET` /api/reminders/findByPatientId/:id
+/api/reminders/findByApptId/:id
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4456,13 +17651,33 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## reports
+/api/reminders/findByPatientId/:id
 
-### find
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-`GET` /api/reminders/reports/find
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4470,11 +17685,35 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### summary
+## `List` findByPatientId
 
-`GET` /api/reminders/reports/summary
+/api/reminders/findByPatientId/:id
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4482,11 +17721,185 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### xls
+/api/reminders/reports/find
 
-`GET` /api/reminders/reports/xls
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` reports/find
+
+/api/reminders/reports/find
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/reminders/reports/summary
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` reports/summary
+
+/api/reminders/reports/summary
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/reminders/reports/xls
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` reports/xls
+
+/api/reminders/reports/xls
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4496,15 +17909,33 @@ xxx | yyy
 
 # reports
 
-## periscope
+/api/reports/periscope/:dashboard
 
-`GET` /api/reports/periscope/:dashboard
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Path parameter | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :dashboard | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4512,11 +17943,97 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### dashboards
+## `List` periscope
 
-`GET` /api/reports/periscope/dashboards
+/api/reports/periscope/:dashboard
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:dashboard | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/reports/periscope/dashboards
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` periscope/dashboards
+
+/api/reports/periscope/dashboards
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4526,11 +18043,29 @@ xxx | yyy
 
 # scheduler
 
-## availabilities
+/api/scheduler/availabilities
 
-`GET` /api/scheduler/availabilities
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4538,11 +18073,93 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### count
+## `List` availabilities
 
-`GET` /api/scheduler/availabilities/count
+/api/scheduler/availabilities
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/scheduler/availabilities/count
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` availabilities/count
+
+/api/scheduler/availabilities/count
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4552,9 +18169,29 @@ xxx | yyy
 
 # settings
 
-`GET` /api/settings/
+/api/settings/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4562,45 +18199,97 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`POST` /api/settings/
+## `List` settings
 
-Request header | Description 
+/api/settings/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`PUT` /api/settings/:id
+## `Create` settings
 
-Path parameter | Description 
+/api/settings/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/settings/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
-:id | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-`GET` /api/settings/:id
-
-Path parameter | Description 
--------------- | ----------- 
-:id | xxx
-
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4608,13 +18297,35 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`DELETE` /api/settings/:id
+## `Update` settings with params
 
-Path parameter | Description 
+/api/settings/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4622,63 +18333,287 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### subscribe
+## `List` settings with params
 
-`PUT` /api/settings/:id/subscribe/:messageKey
+/api/settings/:id
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Delete` settings with params
+
+/api/settings/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/settings/:id/subscribe/:messageKey
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 :messageKey | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
-:id | xxx
-:messageKey | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-### unsubscribe
+## `Update` subscribe
 
-`PUT` /api/settings/:id/unsubscribe
+/api/settings/:id/subscribe/:messageKey
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
+:messageKey | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
-:id | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`PUT` /api/settings/:id/unsubscribe/:messageKey
+/api/settings/:id/unsubscribe
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
-:messageKey | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` unsubscribe
+
+/api/settings/:id/unsubscribe
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/settings/:id/unsubscribe/:messageKey
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 :messageKey | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` unsubscribe
+
+/api/settings/:id/unsubscribe/:messageKey
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+:messageKey | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
 Response body param | Description 
 -------------- | ----------- 
@@ -4686,9 +18621,29 @@ xxx | yyy
 
 # status
 
-`GET` /api/status/
+/api/status/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4696,15 +18651,101 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## services
+## `List` status
 
-`GET` /api/status/services/:serviceName
+/api/status/
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/status/services/:serviceName
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :serviceName | xxx
 
-Request header | Description 
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` services
+
+/api/status/services/:serviceName
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:serviceName | xxx
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4714,25 +18755,61 @@ xxx | yyy
 
 # tokens
 
-## validate
+/api/tokens/validate
 
-`POST` /api/tokens/validate
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/tokens/validate
+## `Create` validate
 
-Request header | Description 
+/api/tokens/validate
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4740,17 +18817,95 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## zendesk
+## `List` validate
 
-`POST` /api/tokens/zendesk
+/api/tokens/validate
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
 -------------- | ----------- 
- | xxx
+xxx | yyy
+
+/api/tokens/zendesk
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` zendesk
+
+/api/tokens/zendesk
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
 Response body param | Description 
 -------------- | ----------- 
@@ -4758,9 +18913,29 @@ xxx | yyy
 
 # uploads
 
-`GET` /api/uploads/
+/api/uploads/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4768,27 +18943,63 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`POST` /api/uploads/
+## `List` uploads
 
-Request header | Description 
+/api/uploads/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/uploads/:id
+## `Create` uploads
 
-Path parameter | Description 
--------------- | ----------- 
-:id | xxx
+/api/uploads/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4796,21 +19007,141 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### mapping
+/api/uploads/:id
 
-`PUT` /api/uploads/:id/mapping
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Path parameter | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` uploads with params
+
+/api/uploads/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/uploads/:id/mapping
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` mapping
+
+/api/uploads/:id/mapping
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
 Response body param | Description 
 -------------- | ----------- 
@@ -4818,9 +19149,29 @@ xxx | yyy
 
 # users
 
-`GET` /api/users/
+/api/users/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4828,81 +19179,31 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`POST` /api/users/
+## `List` users
 
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
+/api/users/
 
-Request body param | Description 
--------------- | ----------- 
- | xxx
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
 
-`GET` /api/users/:id
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Path parameter | Description 
--------------- | ----------- 
-:id | xxx
+Authorization: No Auth / x-access-token
 
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-`PUT` /api/users/:id
-
-Path parameter | Description 
--------------- | ----------- 
-:id | xxx
-
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
-:id | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-### activate
-
-`PUT` /api/users/:id/activate
-
-Path parameter | Description 
--------------- | ----------- 
-:id | xxx
-
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
-:id | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-### groupInvites
-
-`GET` /api/users/:id/groupInvites
-
-Path parameter | Description 
--------------- | ----------- 
-:id | xxx
-
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4910,15 +19211,31 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### resetPasswordLink
+## `Create` users
 
-`GET` /api/users/:id/resetPasswordLink
+/api/users/
 
-Path parameter | Description 
--------------- | ----------- 
-:id | xxx
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -4926,121 +19243,745 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-### upload
+/api/users/:id
 
-`PUT` /api/users/:id/upload
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Path parameter | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
-:id | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## admin
+## `List` users with params
 
-`POST` /api/users/admin
+/api/users/:id
 
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request body param | Description 
--------------- | ----------- 
- | xxx
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-`POST` /api/users/admin/:id
+Authorization: No Auth / x-access-token
 
-Path parameter | Description 
--------------- | ----------- 
-:id | xxx
-
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## decommission
+## `Update` users with params
 
-`POST` /api/users/decommission/:id
+/api/users/:id
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/users/:id/activate
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## forgot-password
-
-`POST` /api/users/forgot-password
-
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
--------------- | ----------- 
- | xxx
-
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## login
+## `Update` activate
 
-`POST` /api/users/login
+/api/users/:id/activate
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
 -------------- | ----------- 
- | xxx
+xxx | yyy
+
+/api/users/:id/groupInvites
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## reset-password
+## `List` groupInvites
 
-`GET` /api/users/reset-password/:token
+/api/users/:id/groupInvites
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/users/:id/resetPasswordLink
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` resetPasswordLink
+
+/api/users/:id/resetPasswordLink
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/users/:id/upload
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` upload
+
+/api/users/:id/upload
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/users/admin
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` admin
+
+/api/users/admin
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/users/admin/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` admin
+
+/api/users/admin/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/users/decommission/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` decommission
+
+/api/users/decommission/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/users/forgot-password
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` forgot-password
+
+/api/users/forgot-password
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/users/login
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` login
+
+/api/users/login
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/users/reset-password/:token
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :token | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -5048,67 +19989,259 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`POST` /api/users/reset-password/:token
+## `List` reset-password
 
-Path parameter | Description 
+/api/users/reset-password/:token
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :token | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` reset-password
+
+/api/users/reset-password/:token
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :token | xxx
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## signup
-
-`POST` /api/users/signup
-
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## transfer
+/api/users/signup
 
-`PUT` /api/users/transfer
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## unsubscribe
+## `Create` signup
 
-`PUT` /api/users/unsubscribe
+/api/users/signup
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
 -------------- | ----------- 
- | xxx
+xxx | yyy
+
+/api/users/transfer
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` transfer
+
+/api/users/transfer
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/users/unsubscribe
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` unsubscribe
+
+/api/users/unsubscribe
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
 Response body param | Description 
 -------------- | ----------- 
@@ -5116,9 +20249,29 @@ xxx | yyy
 
 # waitlists
 
-`GET` /api/waitlists/
+/api/waitlists/
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -5126,45 +20279,169 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`POST` /api/waitlists/
+## `List` waitlists
 
-Request header | Description 
+/api/waitlists/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`PUT` /api/waitlists/:id
+## `Create` waitlists
 
-Path parameter | Description 
+/api/waitlists/
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/waitlists/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Update` waitlists with params
+
+/api/waitlists/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-`GET` /api/waitlists/:id
+## `List` waitlists with params
 
-Path parameter | Description 
+/api/waitlists/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -5172,13 +20449,35 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-`DELETE` /api/waitlists/:id
+## `Delete` waitlists with params
 
-Path parameter | Description 
+/api/waitlists/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -5186,33 +20485,95 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## bulk
+/api/waitlists/bulk/action
 
-### action
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-`POST` /api/waitlists/bulk/action
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## cancelOffer
+## `Create` bulk/action
 
-`GET` /api/waitlists/cancelOffer/:id
+/api/waitlists/bulk/action
 
-Path parameter | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/waitlists/cancelOffer/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -5220,31 +20581,35 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## candidates
+## `List` cancelOffer
 
-`POST` /api/waitlists/candidates
+/api/waitlists/cancelOffer/:id
 
-Request header | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request body param | Description 
--------------- | ----------- 
- | xxx
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-## confirmOffer
+Authorization: No Auth / x-access-token
 
-`GET` /api/waitlists/confirmOffer/:id
-
-Path parameter | Description 
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -5252,11 +20617,29 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## count
+/api/waitlists/candidates
 
-`GET` /api/waitlists/count
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -5264,11 +20647,31 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## crudList
+## `Create` candidates
 
-`GET` /api/waitlists/crudList
+/api/waitlists/candidates
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -5276,15 +20679,33 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## declineOffer
+/api/waitlists/confirmOffer/:id
 
-`GET` /api/waitlists/declineOffer/:id
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Path parameter | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :id | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -5292,11 +20713,35 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## filter
+## `List` confirmOffer
 
-`GET` /api/waitlists/filter
+/api/waitlists/confirmOffer/:id
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -5304,55 +20749,453 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## find
+/api/waitlists/count
 
-### count
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-`POST` /api/waitlists/find/count
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## move
+## `List` count
 
-### update-position
+/api/waitlists/count
 
-`POST` /api/waitlists/move/update-position/:providerId/:id/:replacedId
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Path parameter | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/waitlists/crudList
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` crudList
+
+/api/waitlists/crudList
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/waitlists/declineOffer/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` declineOffer
+
+/api/waitlists/declineOffer/:id
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/waitlists/filter
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` filter
+
+/api/waitlists/filter
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/waitlists/find/count
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `Create` find/count
+
+/api/waitlists/find/count
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/waitlists/move/update-position/:providerId/:id/:replacedId
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
 -------------- | ----------- 
 :providerId | xxx
 :id | xxx
 :replacedId | xxx
 
-Request header | Description 
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
-:providerId | xxx
-:id | xxx
-:replacedId | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## search
+## `Create` move/update-position
 
-`GET` /api/waitlists/search
+/api/waitlists/move/update-position/:providerId/:id/:replacedId
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:providerId | xxx
+:id | xxx
+:replacedId | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/waitlists/search
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` search
+
+/api/waitlists/search
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
@@ -5362,27 +21205,187 @@ xxx | yyy
 
 # widgets
 
-## login
+/api/widgets/login
 
-`POST` /api/widgets/login
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
 
-Request header | Description 
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
 
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## user
+## `Create` login
 
-`GET` /api/widgets/user
+/api/widgets/login
 
-Request header | Description 
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+/api/widgets/user
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` user
+
+/api/widgets/user
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+# healthcheck
+
+/healthcheck
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## `List` healthcheck
+
+/healthcheck
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
