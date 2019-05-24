@@ -464,3 +464,24 @@ Send a segment email to linked segment(s).
     "failedCount": 0
 }
 ```
+
+### Create a reply to a send email send row
+
+This enpoint can create a record that a specific email stat row received a reply. It will also mark an email send stat as read.
+
+#### HTTP Request
+
+`POST /emails/reply/TRACKING_HASH`
+
+Tracking hash is created as unique hash for each email send stat record.
+
+#### Response
+
+`Expected Response Code: 200`
+
+**Properties**
+```json
+{
+    "success": 1,
+}
+```
