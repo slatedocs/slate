@@ -234,7 +234,29 @@ The post params posted at any update in a particular leads are as follows
       "to":"+919999999988",
       "updated_at":1558080727
     }
-  ]
+  ],
+  "extra_details": {
+    "duplicate_lead_id": 906498,
+     "gender": "male",
+     "is_nri": true,
+     "address": "vb",
+     "max_age": 45,
+     "min_age": 40,
+     "industry": "Government and Public Administration",
+     "ethnicity": "Bengali",
+     "occupation": "Professional",
+     "designation": "G",
+     "company_name": "J",
+     "possession_in": [1, 2, 3, 4, 5, 6],
+     "referral_data": {"name": "Vb", "phone": "99999999999"},
+     "office_city_id": 326,
+     "mode_of_payment": "Loan",
+     "annual_income_max": 30000000,
+     "annual_income_min": 20000000,
+     "purpose_of_purchase": "Self Use",
+     "current_apartment_type": 1,
+     "current_residence_type": "Family Owned"
+  }
 }
 ```
 
