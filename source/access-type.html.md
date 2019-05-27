@@ -22,6 +22,7 @@ includes:
   - accesstype/wallets
   - accesstype/coupon_codes
   - accesstype/invoices
+  - accesstype/referral_voucher
   - accesstype/for-platform-customers
   - accesstype/amp
   - accesstype/faq
