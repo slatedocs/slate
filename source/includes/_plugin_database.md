@@ -254,6 +254,17 @@ When an plugin is installed or updated, the bundle's onInstall or onUpgrade func
 #### Table Prefix
 Mautic allows custom table prefixes.  If using ORM, there is no need to include the prefix as Mautic will automatically handle it.  However, if there is a need to use Doctrine's DBAL layer directly, the contstant `MAUTIC_TABLE_PREFIX` can be used in conjuction with the table name.
 
+#### Description of tables
+
+This is not yet a comprehensive list of all database tables.  Contributions are [very welcome](https://github.com/mautic/developer-documentation/blob/master/CONTRIBUTING.md).
+
+- `leads`: contacts
+- `lead_lists`: segments
+- `lead_lists_leads`: membership of contacts within segments
+- `lead_tags`: tags
+- `lead_tags_xrefs`: associations of tags with contacts
+- `migrations`: tracks which [database migrations](https://github.com/mautic/mautic/tree/staging/app/migrations) have been applied
+
 #### ORM Arrays and DateTime 
 
 When using ORM, Mautic will automatically convert DateTime properties to UTC and to the system/user's profile timezone on retrieval.  However, if using DBAL, DateTime strings must be converted to UTC before persisting and to the local timezone on retrieval.  See [Date/Time Helper](#date/time-helper) to assist with conversions.
