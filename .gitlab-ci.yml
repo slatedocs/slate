@@ -1,0 +1,16 @@
+#Deploy en produccion WDEV con rama master
+Deploy_dev_Wdev:
+  stage: deploy
+  only: ['master']
+  tags:
+    - wdev # Deploy a produccion 
+  before_script:
+    - Mic="api_doc_develops_dev" #cambiar por el nombre del  job del microservicio
+  script: 
+    - echo "Prod - api_doc_develops_dev"
+    - echo "*---------------------------------------------*"
+    - echo $env_ftp_pass
+    - pwd
+    - sudo bundle exec middleman build
+    - sudo cp -rp build/* /var/www/html/cubobit/developers
+    - sudo /gitlabCI/ok.sh "$Mic"
