@@ -1,181 +1,37 @@
 ---
 title: LumahealthHQ API Reference
 
-language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
-
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
-
-includes:
-  - errors
 
 search: true
 ---
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to Lumahealth's REST Service API!
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
-
-# Root API
-
-# *
-
-`PUT` /api/*
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## Delete *
-
-`DELETE` /api/*
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## Get *
-
-`GET` /api/*
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## Post *
-
-`POST` /api/*
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+# Root path (/)
 
 ## Put *
 
 `PUT` /api/*
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/*?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -203,15 +59,21 @@ xxx | yyy
 
 `DELETE` /api/*
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X DELETE \
+http://localhost:8002/api/*?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -227,6 +89,10 @@ Request headers | Description
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
@@ -235,15 +101,15 @@ xxx | yyy
 
 `GET` /api/*
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/*?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -267,15 +133,21 @@ xxx | yyy
 
 `POST` /api/*
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/*?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -301,17 +173,19 @@ xxx | yyy
 
 # activities
 
+## Get activities
+
 `GET` /api/activities/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/activities/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -331,19 +205,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Put by params
+## Put by id
 
 `PUT` /api/activities/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/activities/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -371,19 +251,27 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
+# admin
+
 ## Post dedupe/facility
 
 `POST` /api/admin/dedupe/facility
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/admin/dedupe/facility?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -411,15 +299,21 @@ xxx | yyy
 
 `POST` /api/admin/dedupe/patient
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/admin/dedupe/patient?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -447,15 +341,21 @@ xxx | yyy
 
 `POST` /api/admin/dedupe/provider
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/admin/dedupe/provider?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -483,15 +383,21 @@ xxx | yyy
 
 `POST` /api/admin/reload-patients
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/admin/reload-patients?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -519,15 +425,21 @@ xxx | yyy
 
 `POST` /api/admin/shorten
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/admin/shorten?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -553,17 +465,19 @@ xxx | yyy
 
 # appointments
 
+## Get appointments
+
 `GET` /api/appointments/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/appointments/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -583,19 +497,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Post appointments
+## Post appointment
 
 `POST` /api/appointments/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/appointments/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -619,19 +539,19 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Get by params
+## Get by id
 
 `GET` /api/appointments/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/appointments/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -655,19 +575,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Put by params
+## Put by id
 
 `PUT` /api/appointments/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/appointments/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -695,19 +621,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Delete by params
+## Delete by id
 
 `DELETE` /api/appointments/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X DELETE \
+http://localhost:8002/api/appointments/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -727,6 +659,10 @@ Request headers | Description
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
@@ -735,15 +671,21 @@ xxx | yyy
 
 `PUT` /api/appointments/:id/cancel
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/appointments/:id/cancel?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -775,15 +717,21 @@ xxx | yyy
 
 `PUT` /api/appointments/:id/confirm
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/appointments/:id/confirm?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -815,15 +763,15 @@ xxx | yyy
 
 `GET` /api/appointments/crudList
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/appointments/crudList?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -847,15 +795,15 @@ xxx | yyy
 
 `GET` /api/appointments/getByPatientId/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/appointments/getByPatientId/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -883,15 +831,15 @@ xxx | yyy
 
 `GET` /api/appointments/reports/find
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/appointments/reports/find?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -915,15 +863,15 @@ xxx | yyy
 
 `GET` /api/appointments/reports/summary
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/appointments/reports/summary?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -947,15 +895,15 @@ xxx | yyy
 
 `GET` /api/appointments/reports/xls
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/appointments/reports/xls?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -979,15 +927,15 @@ xxx | yyy
 
 `GET` /api/appointments/summary
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/appointments/summary?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -1011,15 +959,21 @@ xxx | yyy
 
 `POST` /api/appointments/upload/dentrix
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/appointments/upload/dentrix?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -1047,15 +1001,21 @@ xxx | yyy
 
 `POST` /api/appointments/upload/referral
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/appointments/upload/referral?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -1083,15 +1043,21 @@ xxx | yyy
 
 `POST` /api/appointments/upload/successehs
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/appointments/upload/successehs?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -1119,15 +1085,21 @@ xxx | yyy
 
 `POST` /api/appointments/upload/theraoffice
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/appointments/upload/theraoffice?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -1153,17 +1125,19 @@ xxx | yyy
 
 # appointmentTypes
 
+## Get appointmentTypes
+
 `GET` /api/appointmentTypes/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/appointmentTypes/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -1183,19 +1157,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Post appointmentTypes
+## Post appointmentType
 
 `POST` /api/appointmentTypes/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/appointmentTypes/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -1219,19 +1199,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Put by params
+## Put by id
 
 `PUT` /api/appointmentTypes/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/appointmentTypes/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -1259,19 +1245,19 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Get by params
+## Get by id
 
 `GET` /api/appointmentTypes/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/appointmentTypes/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -1295,19 +1281,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Delete by params
+## Delete by id
 
 `DELETE` /api/appointmentTypes/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X DELETE \
+http://localhost:8002/api/appointmentTypes/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -1326,6 +1318,10 @@ Path parameters | Description
 Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
 
 Response body param | Description 
 -------------- | ----------- 
@@ -1335,15 +1331,15 @@ xxx | yyy
 
 `GET` /api/appointmentTypes/crudList
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/appointmentTypes/crudList?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -1367,15 +1363,15 @@ xxx | yyy
 
 `GET` /api/appointmentTypes/hidden
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/appointmentTypes/hidden?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -1399,15 +1395,15 @@ xxx | yyy
 
 `GET` /api/appointmentTypes/search
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/appointmentTypes/search?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -1429,17 +1425,25 @@ xxx | yyy
 
 # availabilities
 
+## Put availability
+
 `PUT` /api/availabilities/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/availabilities/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -1463,19 +1467,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Post availabilities
+## Post availability
 
 `POST` /api/availabilities/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/availabilities/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -1503,15 +1513,15 @@ xxx | yyy
 
 `GET` /api/availabilities/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/availabilities/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -1531,19 +1541,19 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Get by params
+## Get by id
 
 `GET` /api/availabilities/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/availabilities/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -1571,15 +1581,21 @@ xxx | yyy
 
 `PUT` /api/availabilities/:id/book
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/availabilities/:id/book?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -1611,15 +1627,21 @@ xxx | yyy
 
 `POST` /api/availabilities/book/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/availabilities/book/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -1651,15 +1673,15 @@ xxx | yyy
 
 `GET` /api/availabilities/freebusy
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/availabilities/freebusy?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -1681,17 +1703,19 @@ xxx | yyy
 
 # billing
 
+## Get billing
+
 `GET` /api/billing/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/billing/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -1715,15 +1739,21 @@ xxx | yyy
 
 `POST` /api/billing/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/billing/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -1751,15 +1781,21 @@ xxx | yyy
 
 `PUT` /api/billing/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/billing/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -1787,15 +1823,15 @@ xxx | yyy
 
 `GET` /api/billing/:id/subscriptions
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/billing/:id/subscriptions?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -1823,15 +1859,15 @@ xxx | yyy
 
 `GET` /api/billing/charges/last-status
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/billing/charges/last-status?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -1855,15 +1891,15 @@ xxx | yyy
 
 `GET` /api/billing/charges/last-status/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/billing/charges/last-status/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -1891,15 +1927,15 @@ xxx | yyy
 
 `GET` /api/billing/charges/success-count
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/billing/charges/success-count?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -1923,15 +1959,21 @@ xxx | yyy
 
 `DELETE` /api/billing/subscriptions
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X DELETE \
+http://localhost:8002/api/billing/subscriptions?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -1947,6 +1989,10 @@ Request headers | Description
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
@@ -1955,15 +2001,21 @@ xxx | yyy
 
 `POST` /api/billing/subscriptions
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/billing/subscriptions?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -1989,17 +2041,19 @@ xxx | yyy
 
 # broadcasts
 
+## Get broadcasts
+
 `GET` /api/broadcasts/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/broadcasts/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -2019,19 +2073,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Post broadcasts
+## Post broadcast
 
 `POST` /api/broadcasts/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/broadcasts/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -2055,55 +2115,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Delete by params
+## Delete by id
 
 `DELETE` /api/broadcasts/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X DELETE \
+http://localhost:8002/api/broadcasts/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Path parameters | Description 
--------------- | ----------- 
-:id | xxx
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## Put by params
-
-`PUT` /api/broadcasts/:id
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -2131,9 +2161,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Get by params
+## Put by id
 
-`GET` /api/broadcasts/:id
+`PUT` /api/broadcasts/:id
+
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/broadcasts/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
+```
+
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -2143,7 +2189,37 @@ xxx | yyy
 	}
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## Get by id
+
+`GET` /api/broadcasts/:id
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/broadcasts/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -2171,15 +2247,15 @@ xxx | yyy
 
 `GET` /api/broadcasts/:id/xls
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/broadcasts/:id/xls?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -2207,15 +2283,21 @@ xxx | yyy
 
 `POST` /api/broadcasts/bulk/action
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/broadcasts/bulk/action?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -2243,15 +2325,15 @@ xxx | yyy
 
 `GET` /api/broadcasts/count
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/broadcasts/count?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -2275,15 +2357,15 @@ xxx | yyy
 
 `GET` /api/broadcasts/patients
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/broadcasts/patients?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -2303,19 +2385,21 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
+# callback
+
 ## Get email/offers
 
 `GET` /api/callback/email/offers
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/callback/email/offers?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -2339,15 +2423,15 @@ xxx | yyy
 
 `GET` /api/callback/email/reminders
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/callback/email/reminders?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -2371,15 +2455,21 @@ xxx | yyy
 
 `POST` /api/callback/email/sendgrid
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/callback/email/sendgrid?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -2407,15 +2497,21 @@ xxx | yyy
 
 `POST` /api/callback/integrators/:integrator/auth/:userId/:secret/:integratorId?
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/callback/integrators/:integrator/auth/:userId/:secret/:integratorId??q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -2453,15 +2549,21 @@ xxx | yyy
 
 `POST` /api/callback/mi7/ack/:apikey/:systemid/:messageid
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/callback/mi7/ack/:apikey/:systemid/:messageid?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -2497,15 +2599,21 @@ xxx | yyy
 
 `POST` /api/callback/mi7/from/:apikey/:systemid
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/callback/mi7/from/:apikey/:systemid?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -2539,15 +2647,15 @@ xxx | yyy
 
 `GET` /api/callback/mi7/to/:apikey/:systemid
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/callback/mi7/to/:apikey/:systemid?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -2576,15 +2684,15 @@ xxx | yyy
 
 `GET` /api/callback/plivo/sms/reminders
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/callback/plivo/sms/reminders?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -2608,15 +2716,21 @@ xxx | yyy
 
 `POST` /api/callback/practicefusion/auth/:userId/:secret
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/callback/practicefusion/auth/:userId/:secret?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -2650,15 +2764,15 @@ xxx | yyy
 
 `GET` /api/callback/practicefusion/textcode
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/callback/practicefusion/textcode?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -2682,15 +2796,21 @@ xxx | yyy
 
 `POST` /api/callback/slack/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/callback/slack/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -2718,15 +2838,15 @@ xxx | yyy
 
 `GET` /api/callback/sms/offers
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/callback/sms/offers?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -2750,15 +2870,15 @@ xxx | yyy
 
 `GET` /api/callback/sms/referrals
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/callback/sms/referrals?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -2782,15 +2902,15 @@ xxx | yyy
 
 `GET` /api/callback/sms/reminders
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/callback/sms/reminders?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -2814,15 +2934,21 @@ xxx | yyy
 
 `POST` /api/callback/status/:vendor
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/callback/status/:vendor?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -2854,15 +2980,21 @@ xxx | yyy
 
 `POST` /api/callback/stripe/charges
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/callback/stripe/charges?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -2890,15 +3022,21 @@ xxx | yyy
 
 `POST` /api/callback/twilio/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/callback/twilio/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -2930,15 +3068,15 @@ xxx | yyy
 
 `GET` /api/callback/voice/offers
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/callback/voice/offers?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -2962,15 +3100,15 @@ xxx | yyy
 
 `GET` /api/callback/voice/referrals
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/callback/voice/referrals?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -2994,15 +3132,21 @@ xxx | yyy
 
 `POST` /api/callback/voice/referrals
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/callback/voice/referrals?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -3030,15 +3174,15 @@ xxx | yyy
 
 `GET` /api/callback/voice/reminders
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/callback/voice/reminders?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -3060,17 +3204,19 @@ xxx | yyy
 
 # chatActivities
 
+## Get chatActivities
+
 `GET` /api/chatActivities/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/chatActivities/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -3094,15 +3240,21 @@ xxx | yyy
 
 `PUT` /api/chatActivities/:id/assign
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/chatActivities/:id/assign?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -3134,15 +3286,21 @@ xxx | yyy
 
 `PUT` /api/chatActivities/:id/clear
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/chatActivities/:id/clear?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -3174,15 +3332,21 @@ xxx | yyy
 
 `PUT` /api/chatActivities/:id/close
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/chatActivities/:id/close?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -3214,15 +3378,15 @@ xxx | yyy
 
 `GET` /api/chatActivities/all
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/chatActivities/all?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -3246,15 +3410,15 @@ xxx | yyy
 
 `GET` /api/chatActivities/mentions
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/chatActivities/mentions?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -3278,15 +3442,15 @@ xxx | yyy
 
 `GET` /api/chatActivities/presence
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/chatActivities/presence?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -3310,15 +3474,15 @@ xxx | yyy
 
 `GET` /api/chatActivities/unread
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/chatActivities/unread?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -3342,15 +3506,15 @@ xxx | yyy
 
 `GET` /api/chatActivities/unread/patients
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/chatActivities/unread/patients?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -3370,19 +3534,21 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Get by params
+# contexts
+
+## Get by refId
 
 `GET` /api/contexts/:refId
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/contexts/:refId?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -3408,17 +3574,25 @@ xxx | yyy
 
 # demoUsers
 
+## Post demoUser
+
 `POST` /api/demoUsers/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/demoUsers/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -3446,15 +3620,21 @@ xxx | yyy
 
 `POST` /api/demoUsers/:salesforceId/messages/:messageTemplate
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/demoUsers/:salesforceId/messages/:messageTemplate?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -3484,19 +3664,21 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
+# deploymentWebhooks
+
 ## Get circle
 
 `GET` /api/deploymentWebhooks/circle/:repoName/:branch
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/deploymentWebhooks/circle/:repoName/:branch?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -3525,15 +3707,21 @@ xxx | yyy
 
 `POST` /api/deploymentWebhooks/github
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/deploymentWebhooks/github?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -3561,15 +3749,15 @@ xxx | yyy
 
 `GET` /api/deploymentWebhooks/github/:username/reviews
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/deploymentWebhooks/github/:username/reviews?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -3595,17 +3783,19 @@ xxx | yyy
 
 # diagnoses
 
+## Get diagnoses
+
 `GET` /api/diagnoses/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/diagnoses/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -3627,17 +3817,19 @@ xxx | yyy
 
 # downtimeMessage
 
+## Get downtimeMessage
+
 `GET` /api/downtimeMessage/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/downtimeMessage/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -3659,17 +3851,19 @@ xxx | yyy
 
 # facilities
 
+## Get facilities
+
 `GET` /api/facilities/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/facilities/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -3689,19 +3883,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Post facilities
+## Post facility
 
 `POST` /api/facilities/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/facilities/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -3725,19 +3925,19 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Get by params
+## Get by id
 
 `GET` /api/facilities/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/facilities/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -3761,19 +3961,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Delete by params
+## Delete by id
 
 `DELETE` /api/facilities/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X DELETE \
+http://localhost:8002/api/facilities/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -3793,23 +3999,33 @@ Request headers | Description
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## Put by params
+## Put by id
 
 `PUT` /api/facilities/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/facilities/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -3841,15 +4057,15 @@ xxx | yyy
 
 `GET` /api/facilities/hidden
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/facilities/hidden?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -3873,15 +4089,15 @@ xxx | yyy
 
 `GET` /api/facilities/search
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/facilities/search?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -3903,17 +4119,19 @@ xxx | yyy
 
 # feedbackResponses
 
+## Get feedbackResponses
+
 `GET` /api/feedbackResponses/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/feedbackResponses/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -3937,15 +4155,21 @@ xxx | yyy
 
 `POST` /api/feedbackResponses/negative
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/feedbackResponses/negative?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -3973,15 +4197,15 @@ xxx | yyy
 
 `GET` /api/feedbackResponses/negative/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/feedbackResponses/negative/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -4009,15 +4233,21 @@ xxx | yyy
 
 `POST` /api/feedbackResponses/positive
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/feedbackResponses/positive?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -4045,15 +4275,15 @@ xxx | yyy
 
 `GET` /api/feedbackResponses/positive/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/feedbackResponses/positive/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -4081,15 +4311,15 @@ xxx | yyy
 
 `GET` /api/feedbackResponses/promoters|detractors
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/feedbackResponses/promoters|detractors?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -4113,15 +4343,15 @@ xxx | yyy
 
 `GET` /api/feedbackResponses/reports/clicks
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/feedbackResponses/reports/clicks?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -4145,15 +4375,15 @@ xxx | yyy
 
 `GET` /api/feedbackResponses/reports/detractors
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/feedbackResponses/reports/detractors?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -4177,15 +4407,15 @@ xxx | yyy
 
 `GET` /api/feedbackResponses/reports/find
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/feedbackResponses/reports/find?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -4209,15 +4439,15 @@ xxx | yyy
 
 `GET` /api/feedbackResponses/reports/findAll
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/feedbackResponses/reports/findAll?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -4241,15 +4471,15 @@ xxx | yyy
 
 `GET` /api/feedbackResponses/reports/npsscore
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/feedbackResponses/reports/npsscore?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -4273,15 +4503,15 @@ xxx | yyy
 
 `GET` /api/feedbackResponses/reports/npsscores
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/feedbackResponses/reports/npsscores?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -4305,15 +4535,15 @@ xxx | yyy
 
 `GET` /api/feedbackResponses/reports/promoters
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/feedbackResponses/reports/promoters?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -4337,15 +4567,15 @@ xxx | yyy
 
 `GET` /api/feedbackResponses/reports/summary
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/feedbackResponses/reports/summary?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -4369,15 +4599,15 @@ xxx | yyy
 
 `GET` /api/feedbackResponses/reports/xls
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/feedbackResponses/reports/xls?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -4401,15 +4631,21 @@ xxx | yyy
 
 `POST` /api/feedbackResponses/score
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/feedbackResponses/score?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -4435,17 +4671,19 @@ xxx | yyy
 
 # fileMappings
 
+## Get fileMappings
+
 `GET` /api/fileMappings/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/fileMappings/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -4467,17 +4705,25 @@ xxx | yyy
 
 # fileUploads
 
+## Post fileUpload
+
 `POST` /api/fileUploads/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/fileUploads/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -4501,19 +4747,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Put by params
+## Put by id
 
 `PUT` /api/fileUploads/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/fileUploads/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -4541,19 +4793,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Delete by params
+## Delete by id
 
 `DELETE` /api/fileUploads/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X DELETE \
+http://localhost:8002/api/fileUploads/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -4573,23 +4831,27 @@ Request headers | Description
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## Get by params
+## Get by id
 
 `GET` /api/fileUploads/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/fileUploads/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -4617,15 +4879,21 @@ xxx | yyy
 
 `PUT` /api/fileUploads/:id/binary
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/fileUploads/:id/binary?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -4657,15 +4925,21 @@ xxx | yyy
 
 `DELETE` /api/fileUploads/:id/binary
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X DELETE \
+http://localhost:8002/api/fileUploads/:id/binary?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -4685,6 +4959,10 @@ Request headers | Description
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
@@ -4693,15 +4971,15 @@ xxx | yyy
 
 `GET` /api/fileUploads/:id/binary
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/fileUploads/:id/binary?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -4729,15 +5007,15 @@ xxx | yyy
 
 `GET` /api/fileUploads/:id/file
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/fileUploads/:id/file?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -4765,15 +5043,15 @@ xxx | yyy
 
 `GET` /api/fileUploads/:id/thumbnail
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/fileUploads/:id/thumbnail?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -4801,15 +5079,21 @@ xxx | yyy
 
 `POST` /api/fileUploads/binary
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/fileUploads/binary?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -4835,17 +5119,25 @@ xxx | yyy
 
 # followups
 
+## Post followup
+
 `POST` /api/followups/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/followups/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -4873,15 +5165,15 @@ xxx | yyy
 
 `GET` /api/followups/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/followups/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -4901,55 +5193,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Delete by params
+## Delete by id
 
 `DELETE` /api/followups/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X DELETE \
+http://localhost:8002/api/followups/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Path parameters | Description 
--------------- | ----------- 
-:id | xxx
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## Put by params
-
-`PUT` /api/followups/:id
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -4977,9 +5239,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Get by params
+## Put by id
 
-`GET` /api/followups/:id
+`PUT` /api/followups/:id
+
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/followups/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
+```
+
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -4989,7 +5267,37 @@ xxx | yyy
 	}
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## Get by id
+
+`GET` /api/followups/:id
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/followups/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -5017,15 +5325,21 @@ xxx | yyy
 
 `POST` /api/followups/bulk
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/followups/bulk?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -5053,15 +5367,15 @@ xxx | yyy
 
 `GET` /api/followups/groups
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/followups/groups?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -5083,17 +5397,19 @@ xxx | yyy
 
 # groupInvites
 
+## Get groupInvites
+
 `GET` /api/groupInvites/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/groupInvites/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -5115,17 +5431,19 @@ xxx | yyy
 
 # groups
 
+## Get groups
+
 `GET` /api/groups/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/groups/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -5145,19 +5463,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Post groups
+## Post group
 
 `POST` /api/groups/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/groups/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -5181,19 +5505,19 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Get by params
+## Get by id
 
 `GET` /api/groups/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/groups/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -5217,19 +5541,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Put by params
+## Put by id
 
 `PUT` /api/groups/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/groups/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -5257,19 +5587,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Delete by params
+## Delete by id
 
 `DELETE` /api/groups/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X DELETE \
+http://localhost:8002/api/groups/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -5289,23 +5625,33 @@ Request headers | Description
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## Delete by params
+## Delete by id/user
 
 `DELETE` /api/groups/:id/:user
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X DELETE \
+http://localhost:8002/api/groups/:id/:user?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -5326,23 +5672,34 @@ Request headers | Description
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+:user | xxx
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## Post by params
+## Post by id/user
 
 `POST` /api/groups/:id/:user
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/groups/:id/:user?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -5376,15 +5733,21 @@ xxx | yyy
 
 `POST` /api/groups/:id/accept-invitation
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/groups/:id/accept-invitation?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -5416,15 +5779,21 @@ xxx | yyy
 
 `POST` /api/groups/:id/invite-user
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/groups/:id/invite-user?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -5456,15 +5825,15 @@ xxx | yyy
 
 `GET` /api/groups/:id/invites
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/groups/:id/invites?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -5492,15 +5861,21 @@ xxx | yyy
 
 `PUT` /api/groups/accept-pending-invites
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/groups/accept-pending-invites?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -5528,15 +5903,15 @@ xxx | yyy
 
 `GET` /api/groups/public/get-invite
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/groups/public/get-invite?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -5560,15 +5935,15 @@ xxx | yyy
 
 `GET` /api/groups/users/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/groups/users/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -5594,17 +5969,25 @@ xxx | yyy
 
 # hl7messages
 
+## Post hl7message
+
 `POST` /api/hl7messages/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/hl7messages/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -5630,17 +6013,19 @@ xxx | yyy
 
 # insurances
 
+## Get insurances
+
 `GET` /api/insurances/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/insurances/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -5660,19 +6045,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Post insurances
+## Post insurance
 
 `POST` /api/insurances/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/insurances/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -5696,19 +6087,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Put by params
+## Put by id
 
 `PUT` /api/insurances/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/insurances/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -5736,19 +6133,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Delete by params
+## Delete by id
 
 `DELETE` /api/insurances/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X DELETE \
+http://localhost:8002/api/insurances/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -5768,23 +6171,27 @@ Request headers | Description
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## Get by params
+## Get by id
 
 `GET` /api/insurances/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/insurances/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -5812,15 +6219,21 @@ xxx | yyy
 
 `POST` /api/insurances/:id/binary
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/insurances/:id/binary?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -5852,15 +6265,15 @@ xxx | yyy
 
 `GET` /api/insurances/:id/coverage
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/insurances/:id/coverage?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -5888,15 +6301,21 @@ xxx | yyy
 
 `POST` /api/insurances/binary
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/insurances/binary?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -5924,15 +6343,15 @@ xxx | yyy
 
 `GET` /api/insurances/payers
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/insurances/payers?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -5956,15 +6375,15 @@ xxx | yyy
 
 `GET` /api/insurances/payers/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/insurances/payers/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -5990,17 +6409,19 @@ xxx | yyy
 
 # integratorClients
 
+## Get integratorClients
+
 `GET` /api/integratorClients/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/integratorClients/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -6020,19 +6441,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Post integratorClients
+## Post integratorClient
 
 `POST` /api/integratorClients/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/integratorClients/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -6056,19 +6483,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Delete by params
+## Delete by id
 
 `DELETE` /api/integratorClients/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X DELETE \
+http://localhost:8002/api/integratorClients/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -6088,23 +6521,27 @@ Request headers | Description
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## Get by params
+## Get by id
 
 `GET` /api/integratorClients/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/integratorClients/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -6128,19 +6565,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Put by params
+## Put by id
 
 `PUT` /api/integratorClients/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/integratorClients/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -6172,15 +6615,21 @@ xxx | yyy
 
 `POST` /api/integratorClients/login
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/integratorClients/login?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -6206,17 +6655,25 @@ xxx | yyy
 
 # integrators
 
+## Post integrator
+
 `POST` /api/integrators/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/integrators/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -6244,15 +6701,15 @@ xxx | yyy
 
 `GET` /api/integrators/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/integrators/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -6272,19 +6729,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Put by params
+## Put by id
 
 `PUT` /api/integrators/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/integrators/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -6312,19 +6775,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Delete by params
+## Delete by id
 
 `DELETE` /api/integrators/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X DELETE \
+http://localhost:8002/api/integrators/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -6344,23 +6813,27 @@ Request headers | Description
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## Get by params
+## Get by id
 
 `GET` /api/integrators/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/integrators/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -6388,15 +6861,15 @@ xxx | yyy
 
 `GET` /api/integrators/admin
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/integrators/admin?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -6420,15 +6893,15 @@ xxx | yyy
 
 `GET` /api/integrators/configuration
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/integrators/configuration?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -6452,15 +6925,15 @@ xxx | yyy
 
 `GET` /api/integrators/configuration/:integrator
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/integrators/configuration/:integrator?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -6486,17 +6959,19 @@ xxx | yyy
 
 # messages-errors
 
+## Get messages-errors
+
 `GET` /api/messages-errors/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/messages-errors/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -6520,15 +6995,15 @@ xxx | yyy
 
 `GET` /api/messages-errors/reports/xls
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/messages-errors/reports/xls?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -6550,17 +7025,19 @@ xxx | yyy
 
 # messages
 
+## Get messages
+
 `GET` /api/messages/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/messages/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -6580,19 +7057,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Post messages
+## Post message
 
 `POST` /api/messages/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/messages/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -6616,19 +7099,19 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Get by params
+## Get by id
 
 `GET` /api/messages/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/messages/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -6656,15 +7139,15 @@ xxx | yyy
 
 `GET` /api/messages/crudList
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/messages/crudList?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -6686,17 +7169,25 @@ xxx | yyy
 
 # messageTemplates
 
+## Post messageTemplate
+
 `POST` /api/messageTemplates/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/messageTemplates/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -6720,19 +7211,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Delete by params
+## Delete by id
 
 `DELETE` /api/messageTemplates/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X DELETE \
+http://localhost:8002/api/messageTemplates/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -6752,23 +7249,33 @@ Request headers | Description
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## Post by params
+## Post by key
 
 `POST` /api/messageTemplates/:key
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/messageTemplates/:key?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -6796,19 +7303,19 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Get by params
+## Get by key?
 
 `GET` /api/messageTemplates/:key?
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/messageTemplates/:key??q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -6836,15 +7343,15 @@ xxx | yyy
 
 `GET` /api/messageTemplates/:key/resolve
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/messageTemplates/:key/resolve?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -6872,15 +7379,15 @@ xxx | yyy
 
 `GET` /api/messageTemplates/list
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/messageTemplates/list?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -6902,17 +7409,19 @@ xxx | yyy
 
 # notifications
 
+## Get notifications
+
 `GET` /api/notifications/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/notifications/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -6936,15 +7445,21 @@ xxx | yyy
 
 `PUT` /api/notifications/clear
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/notifications/clear?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -6970,17 +7485,25 @@ xxx | yyy
 
 # offers
 
+## Post offer
+
 `POST` /api/offers/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/offers/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -7008,15 +7531,15 @@ xxx | yyy
 
 `GET` /api/offers/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/offers/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -7036,19 +7559,19 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Get by params
+## Get by id
 
 `GET` /api/offers/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/offers/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -7072,19 +7595,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Put by params
+## Put by id
 
 `PUT` /api/offers/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/offers/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -7116,15 +7645,21 @@ xxx | yyy
 
 `POST` /api/offers/:id/cancel
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/offers/:id/cancel?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -7156,15 +7691,15 @@ xxx | yyy
 
 `GET` /api/offers/:id/waitlists
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/offers/:id/waitlists?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -7192,15 +7727,15 @@ xxx | yyy
 
 `GET` /api/offers/crudList
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/offers/crudList?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -7224,15 +7759,15 @@ xxx | yyy
 
 `GET` /api/offers/findByPatientId/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/offers/findByPatientId/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -7260,15 +7795,15 @@ xxx | yyy
 
 `GET` /api/offers/reports/find
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/offers/reports/find?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -7292,15 +7827,15 @@ xxx | yyy
 
 `GET` /api/offers/reports/summary
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/offers/reports/summary?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -7322,17 +7857,19 @@ xxx | yyy
 
 # organizations
 
+## Get organizations
+
 `GET` /api/organizations/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/organizations/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -7352,19 +7889,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Post organizations
+## Post organization
 
 `POST` /api/organizations/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/organizations/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -7388,19 +7931,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Put by params
+## Put by id
 
 `PUT` /api/organizations/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/organizations/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -7428,19 +7977,19 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Get by params
+## Get by id
 
 `GET` /api/organizations/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/organizations/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -7464,19 +8013,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Delete by params
+## Delete by id
 
 `DELETE` /api/organizations/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X DELETE \
+http://localhost:8002/api/organizations/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -7495,6 +8050,10 @@ Path parameters | Description
 Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
 
 Response body param | Description 
 -------------- | ----------- 
@@ -7504,15 +8063,15 @@ xxx | yyy
 
 `GET` /api/organizations/:id/access
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/organizations/:id/access?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -7540,15 +8099,15 @@ xxx | yyy
 
 `GET` /api/organizations/:id/users
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/organizations/:id/users?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -7576,15 +8135,21 @@ xxx | yyy
 
 `POST` /api/organizations/:id/users/:invitedUserId/invite
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/organizations/:id/users/:invitedUserId/invite?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -7618,15 +8183,21 @@ xxx | yyy
 
 `POST` /api/organizations/:id/users/:organizationUser/switch
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/organizations/:id/users/:organizationUser/switch?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -7660,15 +8231,21 @@ xxx | yyy
 
 `PUT` /api/organizations/:id/users/:userId
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/organizations/:id/users/:userId?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -7700,17 +8277,19 @@ xxx | yyy
 
 # patientForms
 
+## Get patientForms
+
 `GET` /api/patientForms/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/patientForms/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -7730,19 +8309,19 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Get by params
+## Get by id
 
 `GET` /api/patientForms/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/patientForms/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -7770,15 +8349,15 @@ xxx | yyy
 
 `GET` /api/patientForms/:id/pdf
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/patientForms/:id/pdf?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -7806,15 +8385,21 @@ xxx | yyy
 
 `POST` /api/patientForms/*
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/patientForms/*?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -7842,15 +8427,21 @@ xxx | yyy
 
 `POST` /api/patientForms/callback/completed
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/patientForms/callback/completed?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -7878,15 +8469,21 @@ xxx | yyy
 
 `POST` /api/patientForms/callback/created
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/patientForms/callback/created?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -7912,17 +8509,19 @@ xxx | yyy
 
 # patientFormTemplates
 
+## Get patientFormTemplates
+
 `GET` /api/patientFormTemplates/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/patientFormTemplates/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -7942,19 +8541,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Post patientFormTemplates
+## Post patientFormTemplate
 
 `POST` /api/patientFormTemplates/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/patientFormTemplates/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -7978,55 +8583,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Delete by params
+## Delete by id
 
 `DELETE` /api/patientFormTemplates/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X DELETE \
+http://localhost:8002/api/patientFormTemplates/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Path parameters | Description 
--------------- | ----------- 
-:id | xxx
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## Put by params
-
-`PUT` /api/patientFormTemplates/:id
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -8054,9 +8629,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Get by params
+## Put by id
 
-`GET` /api/patientFormTemplates/:id
+`PUT` /api/patientFormTemplates/:id
+
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/patientFormTemplates/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
+```
+
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -8066,7 +8657,37 @@ xxx | yyy
 	}
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## Get by id
+
+`GET` /api/patientFormTemplates/:id
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/patientFormTemplates/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -8094,15 +8715,21 @@ xxx | yyy
 
 `POST` /api/patientFormTemplates/callback/updated
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/patientFormTemplates/callback/updated?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -8128,17 +8755,25 @@ xxx | yyy
 
 # patientMessageTemplates
 
+## Post patientMessageTemplate
+
 `POST` /api/patientMessageTemplates/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/patientMessageTemplates/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -8166,15 +8801,15 @@ xxx | yyy
 
 `GET` /api/patientMessageTemplates/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/patientMessageTemplates/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -8194,55 +8829,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Delete by params
+## Delete by id
 
 `DELETE` /api/patientMessageTemplates/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X DELETE \
+http://localhost:8002/api/patientMessageTemplates/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Path parameters | Description 
--------------- | ----------- 
-:id | xxx
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## Put by params
-
-`PUT` /api/patientMessageTemplates/:id
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -8270,9 +8875,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Get by params
+## Put by id
 
-`GET` /api/patientMessageTemplates/:id
+`PUT` /api/patientMessageTemplates/:id
+
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/patientMessageTemplates/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
+```
+
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -8282,7 +8903,37 @@ xxx | yyy
 	}
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## Get by id
+
+`GET` /api/patientMessageTemplates/:id
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/patientMessageTemplates/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -8308,17 +8959,25 @@ xxx | yyy
 
 # patients
 
+## Post patient
+
 `POST` /api/patients/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/patients/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -8346,15 +9005,15 @@ xxx | yyy
 
 `GET` /api/patients/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/patients/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -8374,19 +9033,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Put by params
+## Put by id
 
 `PUT` /api/patients/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/patients/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -8414,19 +9079,19 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Get by params
+## Get by id
 
 `GET` /api/patients/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/patients/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -8450,19 +9115,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Delete by params
+## Delete by id
 
 `DELETE` /api/patients/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X DELETE \
+http://localhost:8002/api/patients/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -8481,6 +9152,10 @@ Path parameters | Description
 Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
 
 Response body param | Description 
 -------------- | ----------- 
@@ -8490,15 +9165,15 @@ xxx | yyy
 
 `GET` /api/patients/:id/doNotContact
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/patients/:id/doNotContact?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -8526,15 +9201,21 @@ xxx | yyy
 
 `POST` /api/patients/:id/follow
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/patients/:id/follow?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -8566,15 +9247,15 @@ xxx | yyy
 
 `GET` /api/patients/:id/journey
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/patients/:id/journey?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -8602,15 +9283,15 @@ xxx | yyy
 
 `GET` /api/patients/:id/provider
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/patients/:id/provider?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -8638,15 +9319,21 @@ xxx | yyy
 
 `POST` /api/patients/:id/reload
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/patients/:id/reload?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -8678,15 +9365,21 @@ xxx | yyy
 
 `POST` /api/patients/:id/unfollow
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/patients/:id/unfollow?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -8718,15 +9411,21 @@ xxx | yyy
 
 `POST` /api/patients/:id/verify
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/patients/:id/verify?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -8758,15 +9457,15 @@ xxx | yyy
 
 `GET` /api/patients/crudList
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/patients/crudList?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -8790,15 +9489,21 @@ xxx | yyy
 
 `POST` /api/patients/login
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/patients/login?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -8826,15 +9531,21 @@ xxx | yyy
 
 `POST` /api/patients/merge
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/patients/merge?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -8862,15 +9573,21 @@ xxx | yyy
 
 `POST` /api/patients/recent
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/patients/recent?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -8898,15 +9615,15 @@ xxx | yyy
 
 `GET` /api/patients/recent
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/patients/recent?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -8930,15 +9647,15 @@ xxx | yyy
 
 `GET` /api/patients/reports
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/patients/reports?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -8962,15 +9679,15 @@ xxx | yyy
 
 `GET` /api/patients/reports/do-not-contact/xls
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/patients/reports/do-not-contact/xls?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -8994,15 +9711,15 @@ xxx | yyy
 
 `GET` /api/patients/search
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/patients/search?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -9026,15 +9743,21 @@ xxx | yyy
 
 `POST` /api/patients/upload/:integrator
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/patients/upload/:integrator?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -9064,17 +9787,19 @@ xxx | yyy
 
 # patientSubscribers
 
+## Get patientSubscribers
+
 `GET` /api/patientSubscribers/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/patientSubscribers/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -9098,15 +9823,21 @@ xxx | yyy
 
 `POST` /api/patientSubscribers/:id/follow
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/patientSubscribers/:id/follow?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -9138,15 +9869,21 @@ xxx | yyy
 
 `POST` /api/patientSubscribers/:id/unfollow
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/patientSubscribers/:id/unfollow?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -9174,19 +9911,21 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Get by params
+# phoneNumbers
+
+## Get by phone
 
 `GET` /api/phoneNumbers/:phone
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/phoneNumbers/:phone?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -9212,17 +9951,19 @@ xxx | yyy
 
 # procedures
 
+## Get procedures
+
 `GET` /api/procedures/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/procedures/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -9244,17 +9985,25 @@ xxx | yyy
 
 # providers
 
+## Post provider
+
 `POST` /api/providers/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/providers/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -9282,15 +10031,15 @@ xxx | yyy
 
 `GET` /api/providers/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/providers/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -9310,19 +10059,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Delete by params
+## Delete by id
 
 `DELETE` /api/providers/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X DELETE \
+http://localhost:8002/api/providers/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -9342,23 +10097,27 @@ Request headers | Description
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## Get by params
+## Get by id
 
 `GET` /api/providers/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/providers/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -9382,19 +10141,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Put by params
+## Put by id
 
 `PUT` /api/providers/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/providers/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -9426,15 +10191,15 @@ xxx | yyy
 
 `GET` /api/providers/:id/availabilities
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/providers/:id/availabilities?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -9462,15 +10227,15 @@ xxx | yyy
 
 `GET` /api/providers/:id/waitlists
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/providers/:id/waitlists?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -9498,15 +10263,15 @@ xxx | yyy
 
 `GET` /api/providers/crudList
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/providers/crudList?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -9530,15 +10295,15 @@ xxx | yyy
 
 `GET` /api/providers/hidden
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/providers/hidden?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -9562,15 +10327,21 @@ xxx | yyy
 
 `POST` /api/providers/login
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/providers/login?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -9598,15 +10369,15 @@ xxx | yyy
 
 `GET` /api/providers/npi/search
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/providers/npi/search?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -9630,15 +10401,15 @@ xxx | yyy
 
 `GET` /api/providers/referring
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/providers/referring?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -9662,15 +10433,21 @@ xxx | yyy
 
 `PUT` /api/providers/referring/:id/activate
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/providers/referring/:id/activate?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -9702,15 +10479,21 @@ xxx | yyy
 
 `PUT` /api/providers/referring/:id/deactivate
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/providers/referring/:id/deactivate?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -9742,15 +10525,15 @@ xxx | yyy
 
 `GET` /api/providers/referring/:id/referrals
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/providers/referring/:id/referrals?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -9778,15 +10561,21 @@ xxx | yyy
 
 `POST` /api/providers/referring/:id/share
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/providers/referring/:id/share?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -9818,15 +10607,15 @@ xxx | yyy
 
 `GET` /api/providers/search
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/providers/search?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -9848,17 +10637,19 @@ xxx | yyy
 
 # recalls
 
+## Get recalls
+
 `GET` /api/recalls/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/recalls/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -9880,17 +10671,19 @@ xxx | yyy
 
 # referrals
 
+## Get referrals
+
 `GET` /api/referrals/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/referrals/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -9910,19 +10703,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Post referrals
+## Post referral
 
 `POST` /api/referrals/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/referrals/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -9946,19 +10745,19 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Get by params
+## Get by id
 
 `GET` /api/referrals/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/referrals/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -9982,19 +10781,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Delete by params
+## Delete by id
 
 `DELETE` /api/referrals/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X DELETE \
+http://localhost:8002/api/referrals/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -10014,23 +10819,33 @@ Request headers | Description
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## Put by params
+## Put by id
 
 `PUT` /api/referrals/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/referrals/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -10062,15 +10877,21 @@ xxx | yyy
 
 `POST` /api/referrals/:id/approve
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/referrals/:id/approve?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -10102,15 +10923,21 @@ xxx | yyy
 
 `POST` /api/referrals/:id/reject
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/referrals/:id/reject?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -10142,15 +10969,21 @@ xxx | yyy
 
 `PUT` /api/referrals/batch
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/referrals/batch?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -10178,271 +11011,21 @@ xxx | yyy
 
 `DELETE` /api/referrals/batch
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X DELETE \
+http://localhost:8002/api/referrals/batch?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## Get count
-
-`GET` /api/referrals/count
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## Get crudList
-
-`GET` /api/referrals/crudList
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## Get reports/find
-
-`GET` /api/referrals/reports/find
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## Get reports/summary
-
-`GET` /api/referrals/reports/summary
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## Get reports/xls
-
-`GET` /api/referrals/reports/xls
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## Get search
-
-`GET` /api/referrals/search
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-# reminders
-
-`GET` /api/reminders/
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## Post reminders
-
-`POST` /api/reminders/
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -10466,19 +11049,287 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Get by params
+## Get count
+
+`GET` /api/referrals/count
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/referrals/count?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns JSON structured like this: 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## Get crudList
+
+`GET` /api/referrals/crudList
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/referrals/crudList?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns JSON structured like this: 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## Get reports/find
+
+`GET` /api/referrals/reports/find
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/referrals/reports/find?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns JSON structured like this: 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## Get reports/summary
+
+`GET` /api/referrals/reports/summary
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/referrals/reports/summary?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns JSON structured like this: 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## Get reports/xls
+
+`GET` /api/referrals/reports/xls
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/referrals/reports/xls?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns JSON structured like this: 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## Get search
+
+`GET` /api/referrals/search
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/referrals/search?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns JSON structured like this: 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+# reminders
+
+## Get reminders
+
+`GET` /api/reminders/
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/reminders/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns JSON structured like this: 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## Post reminder
+
+`POST` /api/reminders/
+
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/reminders/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
+```
+
+> The above command returns JSON structured like this: 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## Get by id
 
 `GET` /api/reminders/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/reminders/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -10502,19 +11353,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Delete by params
+## Delete by id
 
 `DELETE` /api/reminders/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X DELETE \
+http://localhost:8002/api/reminders/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -10534,23 +11391,33 @@ Request headers | Description
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
 
-## Put by params
+## Put by id
 
 `PUT` /api/reminders/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/reminders/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -10582,15 +11449,15 @@ xxx | yyy
 
 `GET` /api/reminders/crudList
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/reminders/crudList?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -10614,15 +11481,15 @@ xxx | yyy
 
 `GET` /api/reminders/findByApptId/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/reminders/findByApptId/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -10650,15 +11517,15 @@ xxx | yyy
 
 `GET` /api/reminders/findByPatientId/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/reminders/findByPatientId/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -10686,15 +11553,15 @@ xxx | yyy
 
 `GET` /api/reminders/reports/find
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/reminders/reports/find?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -10718,15 +11585,15 @@ xxx | yyy
 
 `GET` /api/reminders/reports/summary
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/reminders/reports/summary?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -10750,15 +11617,15 @@ xxx | yyy
 
 `GET` /api/reminders/reports/xls
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/reminders/reports/xls?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -10778,19 +11645,21 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
+# reports
+
 ## Get periscope
 
 `GET` /api/reports/periscope/:dashboard
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/reports/periscope/:dashboard?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -10818,15 +11687,15 @@ xxx | yyy
 
 `GET` /api/reports/periscope/dashboards
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/reports/periscope/dashboards?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -10846,19 +11715,21 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
+# scheduler
+
 ## Get availabilities
 
 `GET` /api/scheduler/availabilities
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/scheduler/availabilities?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -10882,15 +11753,15 @@ xxx | yyy
 
 `GET` /api/scheduler/availabilities/count
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/scheduler/availabilities/count?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -10912,17 +11783,19 @@ xxx | yyy
 
 # settings
 
+## Get settings
+
 `GET` /api/settings/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/settings/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -10942,19 +11815,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Post settings
+## Post setting
 
 `POST` /api/settings/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/settings/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -10978,55 +11857,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Delete by params
+## Delete by id
 
 `DELETE` /api/settings/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X DELETE \
+http://localhost:8002/api/settings/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Path parameters | Description 
--------------- | ----------- 
-:id | xxx
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## Put by params
-
-`PUT` /api/settings/:id
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -11054,9 +11903,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Get by params
+## Put by id
 
-`GET` /api/settings/:id
+`PUT` /api/settings/:id
+
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/settings/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
+```
+
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -11066,7 +11931,37 @@ xxx | yyy
 	}
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## Get by id
+
+`GET` /api/settings/:id
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/settings/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -11094,15 +11989,21 @@ xxx | yyy
 
 `PUT` /api/settings/:id/subscribe/:messageKey
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/settings/:id/subscribe/:messageKey?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -11136,15 +12037,21 @@ xxx | yyy
 
 `PUT` /api/settings/:id/unsubscribe
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/settings/:id/unsubscribe?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -11176,15 +12083,21 @@ xxx | yyy
 
 `PUT` /api/settings/:id/unsubscribe/:messageKey
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/settings/:id/unsubscribe/:messageKey?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -11216,17 +12129,19 @@ xxx | yyy
 
 # status
 
+## Get status
+
 `GET` /api/status/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/status/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -11250,15 +12165,15 @@ xxx | yyy
 
 `GET` /api/status/services/:serviceName
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/status/services/:serviceName?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -11282,19 +12197,21 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
+# tokens
+
 ## Get validate
 
 `GET` /api/tokens/validate
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/tokens/validate?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -11318,15 +12235,21 @@ xxx | yyy
 
 `POST` /api/tokens/validate
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/tokens/validate?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -11354,15 +12277,21 @@ xxx | yyy
 
 `POST` /api/tokens/zendesk
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/tokens/zendesk?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -11388,17 +12317,25 @@ xxx | yyy
 
 # uploads
 
+## Post upload
+
 `POST` /api/uploads/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/uploads/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -11426,15 +12363,15 @@ xxx | yyy
 
 `GET` /api/uploads/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/uploads/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -11454,19 +12391,19 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Get by params
+## Get by id
 
 `GET` /api/uploads/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/uploads/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -11494,15 +12431,21 @@ xxx | yyy
 
 `PUT` /api/uploads/:id/mapping
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/uploads/:id/mapping?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -11532,17 +12475,25 @@ xxx | yyy
 
 # users
 
+## Post user
+
 `POST` /api/users/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/users/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -11570,15 +12521,15 @@ xxx | yyy
 
 `GET` /api/users/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/users/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -11598,19 +12549,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Put by params
+## Put by id
 
 `PUT` /api/users/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/users/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -11638,19 +12595,19 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Get by params
+## Get by id
 
 `GET` /api/users/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/users/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -11678,15 +12635,21 @@ xxx | yyy
 
 `PUT` /api/users/:id/activate
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/users/:id/activate?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -11718,15 +12681,15 @@ xxx | yyy
 
 `GET` /api/users/:id/groupInvites
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/users/:id/groupInvites?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -11754,15 +12717,15 @@ xxx | yyy
 
 `GET` /api/users/:id/resetPasswordLink
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/users/:id/resetPasswordLink?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -11790,15 +12753,21 @@ xxx | yyy
 
 `PUT` /api/users/:id/upload
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/users/:id/upload?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -11830,15 +12799,21 @@ xxx | yyy
 
 `POST` /api/users/admin
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/users/admin?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -11866,15 +12841,21 @@ xxx | yyy
 
 `POST` /api/users/admin/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/users/admin/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -11906,15 +12887,21 @@ xxx | yyy
 
 `POST` /api/users/decommission/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/users/decommission/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -11946,15 +12933,21 @@ xxx | yyy
 
 `POST` /api/users/forgot-password
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/users/forgot-password?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -11982,15 +12975,21 @@ xxx | yyy
 
 `POST` /api/users/login
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/users/login?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -12018,15 +13017,21 @@ xxx | yyy
 
 `POST` /api/users/reset-password/:token
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/users/reset-password/:token?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -12058,15 +13063,15 @@ xxx | yyy
 
 `GET` /api/users/reset-password/:token
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/users/reset-password/:token?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -12094,15 +13099,21 @@ xxx | yyy
 
 `POST` /api/users/signup
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/users/signup?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -12130,15 +13141,21 @@ xxx | yyy
 
 `PUT` /api/users/transfer
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/users/transfer?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -12166,15 +13183,21 @@ xxx | yyy
 
 `PUT` /api/users/unsubscribe
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/users/unsubscribe?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -12200,17 +13223,19 @@ xxx | yyy
 
 # waitlists
 
+## Get waitlists
+
 `GET` /api/waitlists/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/waitlists/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -12230,19 +13255,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Post waitlists
+## Post waitlist
 
 `POST` /api/waitlists/
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/waitlists/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -12266,19 +13297,19 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Get by params
+## Get by id
 
 `GET` /api/waitlists/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/waitlists/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -12302,19 +13333,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Put by params
+## Put by id
 
 `PUT` /api/waitlists/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/waitlists/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -12342,19 +13379,25 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Delete by params
+## Delete by id
 
 `DELETE` /api/waitlists/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X DELETE \
+http://localhost:8002/api/waitlists/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -12374,6 +13417,10 @@ Request headers | Description
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
@@ -12382,15 +13429,21 @@ xxx | yyy
 
 `POST` /api/waitlists/bulk/action
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/waitlists/bulk/action?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -12418,15 +13471,15 @@ xxx | yyy
 
 `GET` /api/waitlists/cancelOffer/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/waitlists/cancelOffer/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -12454,15 +13507,21 @@ xxx | yyy
 
 `POST` /api/waitlists/candidates
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/waitlists/candidates?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -12490,15 +13549,15 @@ xxx | yyy
 
 `GET` /api/waitlists/confirmOffer/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/waitlists/confirmOffer/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -12526,15 +13585,15 @@ xxx | yyy
 
 `GET` /api/waitlists/count
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/waitlists/count?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -12558,15 +13617,15 @@ xxx | yyy
 
 `GET` /api/waitlists/crudList
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/waitlists/crudList?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -12590,15 +13649,15 @@ xxx | yyy
 
 `GET` /api/waitlists/declineOffer/:id
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/waitlists/declineOffer/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -12626,15 +13685,15 @@ xxx | yyy
 
 `GET` /api/waitlists/filter
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/waitlists/filter?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -12658,15 +13717,21 @@ xxx | yyy
 
 `POST` /api/waitlists/find/count
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/waitlists/find/count?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -12694,15 +13759,21 @@ xxx | yyy
 
 `POST` /api/waitlists/move/update-position/:providerId/:id/:replacedId
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/waitlists/move/update-position/:providerId/:id/:replacedId?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -12738,15 +13809,15 @@ xxx | yyy
 
 `GET` /api/waitlists/search
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/waitlists/search?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -12766,19 +13837,27 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
+# widgets
+
 ## Post login
 
 `POST` /api/widgets/login
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/widgets/login?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -12806,15 +13885,15 @@ xxx | yyy
 
 `GET` /api/widgets/user
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/widgets/user?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{
@@ -12836,17 +13915,19 @@ xxx | yyy
 
 # healthcheck
 
+## Get healthcheck
+
 `GET` /healthcheck
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#shell command:
+curl \
+http://localhost:8002/healthcheck?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
 ```
 
-> This is a code annotation. It will appear in the area to the right, next to the code samples. 
+> The above command returns JSON structured like this: 
 
 ```json-doc
 	{

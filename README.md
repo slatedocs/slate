@@ -47,47 +47,106 @@ If you'd prefer to use Docker, instructions are available [in the wiki](https://
 
 First, edit rest-service/app.js and add the following code at the end of the file:
 ```
-let routes = [];
 function searchRoutes(stack, root, routes) {
 	stack.forEach(item => {
 		if(item.route){
+			const path = `${(root || '/')}${item.route.path.substr(1)}`;
 			const methods = Object.keys(item.route.methods).filter(m => ['get','post','put','delete'].includes(m));
-			methods.forEach(m => routes.push(`${(root || '/')}${item.route.path.substr(1)} ${m.toUpperCase()}`));
+			const params = path.split('/').filter(part => part.substr(0,1) === ':');
+			methods.forEach(method => {
+				let obj = { path, method, params };
+				routes.push(obj);
+			})
 		} else if(item.name === 'router' && item.regexp && item.regexp.source){
 			let subpath = item.regexp.source.substr(3).replace(/[?].*/g,'').replace(/\\/g,'').replace(/\/\//g,'/');
 			searchRoutes(item.handle.stack, (root || '/') + subpath, routes);
 		}
 	});
 }
+let routes = [];
 searchRoutes(app._router.stack, null, routes);
-routes = routes.sort();
+routes = routes.sort((a , b) => a.path.localeCompare(b.path));
 let output = '';
 let ln = "\n";
-let lastHeader1 = '';
-let lastHeader2 = '';
-let lastHeader3 = '';
+let lastRootEntry = '';
 for (let route of routes) {
-	let pathMethod = route.split(' ');
-	let method = pathMethod[1];
-	parts = pathMethod[0].split('/').filter(p => !!p);
-	if (parts && parts.length >= 2) {
-		let header1 = parts[1];
-		let header2 = parts[2];
-		let header3 = parts.slice(3).join('/');
-		if (header1 && header1 !== lastHeader1) {
-			output += `# ${header1}${ln}${ln}`
+	let entry;
+	let partsDirty = route.path.split('/').filter(p => !!p && p !== 'api');
+	let parts = partsDirty.filter(p => p.trim().substr(0,1) !== ':');
+	if (parts && parts.length >= 1) {
+		if (partsDirty.length >= 2) {
+			if (parts.length >= 2) {
+				entry = `${beautifyMethod(route.method)} ${parts.slice(1).join('/')}`;
+			} else {
+				entry = `${beautifyMethod(route.method)} by ${route.params.map(p=>p.replace(':','')).join('/')}`;
+			}
+			output += `## ${entry}${ln}${ln}`;
+			printMethod(route);
+		} else {
+			entry = parts[0];
+			if (entry !== lastRootEntry) {
+				output += `# ${entry}${ln}${ln}`;
+			}
+			if (route.method === 'get') {
+				output += `## ${beautifyMethod(route.method)} ${entry}${ln}${ln}`;
+			} else {
+				output += `## ${beautifyMethod(route.method)} ${entry.replace(/ies$/g,'y').replace(/s$/g,'')}${ln}${ln}`;
+			}
+			printMethod(route);
+			lastRootEntry = entry;
 		}
-		if (header2 && header2 !== lastHeader2) {
-			output += `## ${header2}${ln}${ln}`
-		}
-		if (header3 && header3 !== lastHeader3) {
-			output += `### ${header3}${ln}${ln}`
-		}
-		output += `${pathMethod[1]} ${pathMethod[0]}${ln}${ln}`;
-		lastHeader1 = header1 || lastHeader1;
-		lastHeader2 = header2 || lastHeader2;
-		lastHeader3 = header3 || lastHeader3;
+
 	}
+}
+function beautifyMethod(method) {
+	let map = {
+		get: 'Get',
+		post: 'Post',
+		put: 'Put',
+		delete: 'Delete'
+	}
+	return map[method];
+}
+function printMethod(route) {
+	output += `\`${route.method.toUpperCase()}\` ${route.path}${ln}`;
+	output +=`${ln}\`\`\`shell${ln}#shell command:${ln}`;
+	output += `curl${route.method !== 'get' ? ' -X ' + route.method.toUpperCase() : ''} \\${ln}`;
+	output += `http://localhost:8002${route.path}?q=xyz \\${ln}`;
+	output += `-H 'Content-Type: application/json' \\${ln}`;
+	output += `-H 'x-access-token: '"$TOKEN"`;
+	const body = route.method === 'get' ? '' : ` \\${ln} -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'`;
+	output += body;
+	output += `${ln}\`\`\`${ln}`;
+	output +=`${ln}> The above command returns JSON structured like this: ${ln}`;
+	output +=`${ln}\`\`\`json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}${ln}\`\`\`${ln}`;
+	output += `${ln}Authorization: No Auth / x-access-token${ln}`;
+	if (route.params.length > 0) {
+		output += `${ln}Path parameters | Description ${ln}`;
+		output += `-------------- | ----------- ${ln}`;
+		output += `${route.params.join(` | xxx${ln}`)} | xxx${ln}`;
+	}
+	output += `${ln}Request headers | Description ${ln}`;
+	output += `-------------- | ----------- ${ln}`;
+	output += `x-access-token | JWT auth access token${ln}`;
+	if (['post', 'put', 'delete'].includes(route.method)) {
+		output += `${ln}Request body param | Description ${ln}`;
+		output += `-------------- | ----------- ${ln}`;
+		output += `${route.params.join(` | xxx${ln}`)} | xxx${ln}`;
+	}
+	output += `${ln}Response body param | Description ${ln}`;
+	output += `-------------- | ----------- ${ln}`;
+	output += `xxx | yyy${ln}`;
+	output += `${ln}`;
 }
 console.log(output);
 ```
