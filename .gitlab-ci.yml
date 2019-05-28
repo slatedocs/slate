@@ -11,7 +11,7 @@ Deploy_dev_Wdev:
     - echo "*---------------------------------------------*"
     - echo $env_ftp_pass
     - pwd
-    - sudo bundle exec middleman build
+    - bundle exec middleman build
     - sudo cp -rp build/* /var/www/html/cubobit/developers
     - sudo cp -rp build/* /var/www/html/devcubobit/developers
     - sudo /gitlabCI/ok.sh "$Mic"
@@ -29,7 +29,7 @@ Deploy_Produccio_S1:
     - echo "*---------------------------------------------*"
     - echo $env_ftp_pass
     - pwd
-    - sudo bundle exec middleman build
+    - bundle exec middleman build
     - sudo cp -rp build/* /var/www/html/cubobit/developers
     - sudo /gitlabCI/ok.sh "$Mic"
     
@@ -46,23 +46,7 @@ Deploy_Produccio_S2:
     - echo "*---------------------------------------------*"
     - echo $env_ftp_pass
     - pwd
-    - sudo bundle exec middleman build
+    - bundle exec middleman build
     - sudo cp -rp build/* /var/www/html/cubobit/developers
     - sudo /gitlabCI/ok.sh "$Mic"
     
-    #Deploy en produccion prod con rama master
-Deploy_Produccio_LB:
-  stage: test
-  only: ['master']
-  tags:
-    - lbal # Deploy a produccion 
-  before_script:
-    - Mic="api_doc_develops" #cambiar por el nombre del  job del microservicio
-  script: 
-    - echo "Prod - api_doc_develops"
-    - echo "*---------------------------------------------*"
-    - echo $env_ftp_pass
-    - pwd
-    - sudo bundle exec middleman build
-    - sudo cp -rp build/* /var/www/html/cubobit/developers
-    - sudo /gitlabCI/ok.sh "$Mic"
