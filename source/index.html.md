@@ -11,16 +11,28 @@ search: true
 
 Welcome to Lumahealth's REST Service API!
 
-# Root path (/)
+# Authentication
 
-## Put *
+## Signup
 
-`PUT` /api/*
+See [users > signup](#post-signup)
+
+## Login
+
+See [users > login](#post-login-4)
+
+# Paging and sorting
+
+`GET/POST/PUT/DELETE` /api/*
+
+<aside class="notice">
+The query parameters bellow apply to all endpoints and all HTTP Methods.
+</aside>
 
 ```shell
 #shell command:
 curl -X PUT \
-http://localhost:8002/api/*?q=xyz \
+http://localhost:8002/api/*?page=0&limit=10&lastId=XYZ \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN" \
  -d '{
@@ -31,145 +43,12 @@ http://localhost:8002/api/*?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Request headers | Description 
+Query params | Description 
 -------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## Delete *
-
-`DELETE` /api/*
-
-```shell
-#shell command:
-curl -X DELETE \
-http://localhost:8002/api/*?q=xyz \
--H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN" \
- -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
-```
-
-> The above command returns JSON structured like this: 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## Get *
-
-`GET` /api/*
-
-```shell
-#shell command:
-curl \
-http://localhost:8002/api/*?q=xyz \
--H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN"
-```
-
-> The above command returns JSON structured like this: 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## Post *
-
-`POST` /api/*
-
-```shell
-#shell command:
-curl -X POST \
-http://localhost:8002/api/*?q=xyz \
--H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN" \
- -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
-```
-
-> The above command returns JSON structured like this: 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+page | The 1-based page number to fetch
+limit | Number of items in the response
+lastId | The last id to be returned
+sort | The attribute by which the results will be sorted
 
 # activities
 
@@ -12978,19 +12857,14 @@ xxx | yyy
 ```shell
 #shell command:
 curl -X POST \
-http://localhost:8002/api/users/login?q=xyz \
+http://localhost:8002/api/users/login \
 -H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN" \
  -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
+    "email": "example@lumahealth.io",
+    "password": "123456"
 	}'
 ```
-
 > The above command returns JSON structured like this: 
-
 ```json-doc
 	{
 		"x": "y",
@@ -12998,6 +12872,14 @@ http://localhost:8002/api/users/login?q=xyz \
 		"z": 1
 	}
 ```
+> Export the token returned: 
+```shell
+export TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1YzkyYjU1Zjg3MTAwNjQ5YWMxOTE0MGQiLCJleHAiOjE1NTk2ODM5ODczNDQsInR5cGUiOiJzdGFmZiJ9.JtAgCfMBQ_MCJRizDD2DeEn1IaFZCZwGQDsnH7fh0II
+```
+
+<aside class="notice">
+After you run the curl command, make sure to export the returned token, as exemplified by the last command in this section. It will be used by most curl commands listed in these docs.
+</aside>
 
 Authorization: No Auth / x-access-token
 
