@@ -1,7 +1,7 @@
 #Deploy en produccion WDEV con rama master
 Deploy_dev_Wdev:
   stage: deploy
-  only: ['master']
+  only: ['desarrollo']
   tags:
     - wdev # Deploy a produccion 
   before_script:
