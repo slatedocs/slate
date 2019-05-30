@@ -25,7 +25,7 @@ Authenticates the user and generates an access token and a refresh token.
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
+`POST https://api.test.filtered.com/v2/jsonrpc/auth`
 
 <aside class="success">
 Returns — Access Token Model — structure containing the JWT access token and refresh token
@@ -64,7 +64,7 @@ Regenerates a new JWT access token for the client.
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
+`POST https://api.test.filtered.com/v2/jsonrpc/auth`
 
 <aside class="success">
 Returns — Access Token Model — structure containing the JWT access token and refresh token
