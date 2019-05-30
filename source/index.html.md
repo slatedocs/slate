@@ -21,26 +21,19 @@ See [users > signup](#post-signup)
 
 See [users > login](#post-login-4)
 
-# Paging and sorting
-
-`GET/POST/PUT/DELETE` /api/*
+# Paginating and sorting
 
 <aside class="notice">
 The query parameters bellow apply to all endpoints and all HTTP Methods.
 </aside>
 
+`GET/POST/PUT/DELETE` /api/*
+
+In order to paginate and sort the results, you can use query parameters bellow.
+
 ```shell
 #shell command:
-curl -X PUT \
-http://localhost:8002/api/*?page=0&limit=10&lastId=XYZ \
--H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN" \
- -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
+curl http://localhost:8002/api/*?page=1&limit=10&lastId=XYZ&sort=lastName&sortBy=asc
 ```
 
 Query params | Description 
@@ -49,6 +42,7 @@ page | The 1-based page number to fetch
 limit | Number of items in the response
 lastId | The last id to be returned
 sort | The attribute by which the results will be sorted
+sortBy | Sort direction: either `asc` or `desc`
 
 # activities
 
@@ -12864,36 +12858,37 @@ http://localhost:8002/api/users/login \
     "password": "123456"
 	}'
 ```
-> The above command returns JSON structured like this: 
+
+> The above command returns JSON of a [User type](#user), containing the access token: 
+
 ```json-doc
 	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+    ...,
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1YzkyYjU1Zjg3MTAwNjQ5YWMxOTE0MGQiLCJleHAiOjE1NTk2ODM5ODczNDQsInR5cGUiOiJzdGFmZiJ9.JtVgCfAbQ_McBRi2XD2CeR31IaDZCZw4EDsnKFfh05I",
+    ...
+}
 ```
+
 > Export the token returned: 
+
 ```shell
-export TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1YzkyYjU1Zjg3MTAwNjQ5YWMxOTE0MGQiLCJleHAiOjE1NTk2ODM5ODczNDQsInR5cGUiOiJzdGFmZiJ9.JtAgCfMBQ_MCJRizDD2DeEn1IaFZCZwGQDsnH7fh0II
+export TOKEN=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI1YzkyYjU1Zjg3MTAwNjQ5YWMxOTE0MGQiLCJleHAiOjE1NTk2ODM5ODczNDQsInR5cGUiOiJzdGFmZiJ9.JtVgCfAbQ_McBRi2XD2CeR31IaDZCZw4EDsnKFfh05I
 ```
 
 <aside class="notice">
 After you run the curl command, make sure to export the returned token, as exemplified by the last command in this section. It will be used by most curl commands listed in these docs.
 </aside>
 
-Authorization: No Auth / x-access-token
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
+Authorization: No Auth (public endpoint)
 
 Request body param | Description 
 -------------- | ----------- 
- | xxx
+email | User email associated with his account
+password | User password
 
-Response body param | Description 
+Response param | Description 
 -------------- | ----------- 
-xxx | yyy
+token | Access token to be sent by authenticated users on requests to the API as the request header `x-access-token`.
 
 ## Post reset-password
 
@@ -13828,4 +13823,1735 @@ x-access-token | JWT auth access token
 Response body param | Description 
 -------------- | ----------- 
 xxx | yyy
+
+# Types
+
+## AppointmentType
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+name|Type: String, Required: yes
+description|Type: String, Required: no
+duration|Type: Number, Required: no
+externalId.source|Type: String, Required: no, Possible values: ["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner"]
+externalId.value|Type: String, Required: no
+visible|Type: Boolean, Required: yes
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+deleted|Type: Number, Required: yes
+setting|Type: ObjectID, Required: no, Referencing: [Setting](#setting)
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## Appointment
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+provider|Type: ObjectID, Required: no, Referencing: [User](#user)
+facility|Type: ObjectID, Required: no, Referencing: [Facility](#facility)
+type|Type: ObjectID, Required: no, Referencing: [AppointmentType](#appointmenttype)
+patient|Type: ObjectID, Required: yes, Referencing: [User](#user)
+source|Type: String, Required: yes, Possible values: ["sync","manual"]
+statusSource|Type: String, Required: no, Possible values: ["integrator","reminder","ui","waitlist"]
+externalId.source|Type: String, Required: no, Possible values: ["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner"]
+externalId.value|Type: String, Required: no
+secondaryExternalId.source|Type: String, Required: no, Possible values: ["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner"]
+secondaryExternalId.value|Type: String, Required: no
+status|Type: String, Required: yes, Possible values: ["unconfirmed","confirmed","cancelled"]
+statusReason|Type: String, Required: no, Possible values: [null,"noshow","arrived","by-offer"]
+notes|Type: String, Required: no
+date|Type: Date, Required: yes
+endDate|Type: Date, Required: no
+duration|Type: Number, Required: no
+stats.counters.remindersSent|Type: Number, Required: no
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: yes
+integratorUpdateResults.status|Type: String, Required: no, Possible values: ["success","failure","pending"]
+integratorUpdateResults.error|Type: String, Required: no
+external.createdAt|Type: Date, Required: no
+external.updatedAt|Type: Date, Required: no
+cancelledAt|Type: Date, Required: no
+confirmedAt|Type: Date, Required: no
+createdFromReferral|Type: ObjectID, Required: no, Referencing: [Referral](#referral)
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## Appointment
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+provider|Type: ObjectID, Required: no, Referencing: [User](#user)
+facility|Type: ObjectID, Required: no, Referencing: [Facility](#facility)
+type|Type: ObjectID, Required: no, Referencing: [AppointmentType](#appointmenttype)
+patient|Type: ObjectID, Required: yes, Referencing: [User](#user)
+source|Type: String, Required: yes, Possible values: ["sync","manual"]
+statusSource|Type: String, Required: no, Possible values: ["integrator","reminder","ui","waitlist"]
+externalId.source|Type: String, Required: no, Possible values: ["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner"]
+externalId.value|Type: String, Required: no
+secondaryExternalId.source|Type: String, Required: no, Possible values: ["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner"]
+secondaryExternalId.value|Type: String, Required: no
+status|Type: String, Required: yes, Possible values: ["unconfirmed","confirmed","cancelled"]
+statusReason|Type: String, Required: no, Possible values: [null,"noshow","arrived","by-offer"]
+notes|Type: String, Required: no
+date|Type: Date, Required: yes
+endDate|Type: Date, Required: no
+duration|Type: Number, Required: no
+stats.counters.remindersSent|Type: Number, Required: no
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: yes
+integratorUpdateResults.status|Type: String, Required: no, Possible values: ["success","failure","pending"]
+integratorUpdateResults.error|Type: String, Required: no
+external.createdAt|Type: Date, Required: no
+external.updatedAt|Type: Date, Required: no
+cancelledAt|Type: Date, Required: no
+confirmedAt|Type: Date, Required: no
+createdFromReferral|Type: ObjectID, Required: no, Referencing: [Referral](#referral)
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## Availability
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+date|Type: Date, Required: yes
+endDate|Type: Date, Required: no
+duration|Type: Number, Required: yes
+status|Type: String, Required: yes, Possible values: ["available","booked-pending","offered","booked","booked-by-integrator","booked-by-offer","expired"]
+source|Type: String, Required: yes, Possible values: ["appointment-cancellation","ui","referral","integrator"]
+createdFromAppointment|Type: ObjectID, Required: no, Referencing: [Appointment](#appointment)
+usedForAppointment|Type: ObjectID, Required: no, Referencing: [Appointment](#appointment)
+filters.appointmentTypes|Type: Array, Required: no
+filters.facilities|Type: Array, Required: no
+filters.providers|Type: Array, Required: no
+appointmentType|Type: ObjectID, Required: no, Referencing: [AppointmentType](#appointmenttype)
+facility|Type: ObjectID, Required: no, Referencing: [Facility](#facility)
+provider|Type: ObjectID, Required: no, Referencing: [Provider](#provider)
+externalId.source|Type: String, Required: no, Possible values: ["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner"]
+externalId.value|Type: String, Required: no
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: yes
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## Broadcast
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+message|Type: String, Required: yes
+patients|Type: Array, Required: no
+filterResults|Type: undefined, Required: no
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+approvedBy|Type: ObjectID, Required: no, Referencing: [User](#user)
+declinedBy|Type: ObjectID, Required: no, Referencing: [User](#user)
+sentAt|Type: Date, Required: no
+sendAt|Type: Date, Required: no
+status|Type: String, Required: no, Possible values: ["pending","scheduled","accepted","declined","expired","failed","skipped"]
+declinedReason|Type: String, Required: no
+deleted|Type: Number, Required: yes
+upload|Type: ObjectID, Required: no, Referencing: [Upload](#upload)
+title|Type: String, Required: no
+filters|Type: Mixed, Required: no
+createdFromBroadcast|Type: ObjectID, Required: no, Referencing: [Broadcast](#broadcast)
+patientMessageTemplate|Type: ObjectID, Required: no, Referencing: [PatientMessageTemplate](#patientmessagetemplate)
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## Broadcast
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+message|Type: String, Required: yes
+patients|Type: Array, Required: no
+filterResults|Type: undefined, Required: no
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+approvedBy|Type: ObjectID, Required: no, Referencing: [User](#user)
+declinedBy|Type: ObjectID, Required: no, Referencing: [User](#user)
+sentAt|Type: Date, Required: no
+sendAt|Type: Date, Required: no
+status|Type: String, Required: no, Possible values: ["pending","scheduled","accepted","declined","expired","failed","skipped"]
+declinedReason|Type: String, Required: no
+deleted|Type: Number, Required: yes
+upload|Type: ObjectID, Required: no, Referencing: [Upload](#upload)
+title|Type: String, Required: no
+filters|Type: Mixed, Required: no
+createdFromBroadcast|Type: ObjectID, Required: no, Referencing: [Broadcast](#broadcast)
+patientMessageTemplate|Type: ObjectID, Required: no, Referencing: [PatientMessageTemplate](#patientmessagetemplate)
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## ChatActivity
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: yes
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes
+updatedBy|Type: ObjectID, Required: yes
+to|Type: ObjectID, Required: no, Referencing: [User](#user)
+patient|Type: ObjectID, Required: yes, Referencing: [Patient](#patient)
+lastMessage|Type: ObjectID, Required: yes, Referencing: [Message](#message)
+unreadMessages|Type: Number, Required: yes
+status|Type: String, Required: no, Possible values: ["pending","closed","assigned"]
+assignee|Type: ObjectID, Required: no, Referencing: [User](#user)
+previousAssignee|Type: ObjectID, Required: no, Referencing: [User](#user)
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## Diagnosis
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: yes
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes
+updatedBy|Type: ObjectID, Required: yes
+patient|Type: ObjectID, Required: yes, Referencing: [Patient](#patient)
+icd10|Type: String, Required: no
+icd9|Type: String, Required: no
+description|Type: String, Required: no
+date|Type: Date, Required: no
+endDate|Type: Date, Required: no
+appointment|Type: Mixed, Required: no, Referencing: [Appointment](#appointment)
+externalId.source|Type: String, Required: no, Possible values: ["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner"]
+externalId.value|Type: String, Required: no
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## Diagnosis
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: yes
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes
+updatedBy|Type: ObjectID, Required: yes
+patient|Type: ObjectID, Required: yes, Referencing: [Patient](#patient)
+icd10|Type: String, Required: no
+icd9|Type: String, Required: no
+description|Type: String, Required: no
+date|Type: Date, Required: no
+endDate|Type: Date, Required: no
+appointment|Type: Mixed, Required: no, Referencing: [Appointment](#appointment)
+externalId.source|Type: String, Required: no, Possible values: ["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner"]
+externalId.value|Type: String, Required: no
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## Facility
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+name|Type: String, Required: yes
+alternativeName|Type: String, Required: no
+phonetic|Type: String, Required: no
+address|Type: String, Required: yes
+city|Type: String, Required: yes
+state|Type: String, Required: yes
+country|Type: String, Required: yes
+postcode|Type: String, Required: yes
+phone|Type: String, Required: no
+alternativePhone|Type: String, Required: no
+visible|Type: Boolean, Required: yes
+integrator|Type: String, Required: no, Possible values: ["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner"]
+externalId.source|Type: String, Required: no, Possible values: ["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner","sms","voice","email","none"]
+externalId.value|Type: String, Required: no
+setting|Type: ObjectID, Required: no, Referencing: [Setting](#setting)
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+deleted|Type: Number, Required: yes
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## FeedbackResponse
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+patient|Type: ObjectID, Required: yes, Referencing: [Patient](#patient)
+provider|Type: ObjectID, Required: no, Referencing: [Provider](#provider)
+facility|Type: ObjectID, Required: no, Referencing: [Facility](#facility)
+appointment|Type: ObjectID, Required: no, Referencing: [Appointment](#appointment)
+response.type|Type: String, Required: yes, Possible values: ["npsscore","positive-click","negative-click"]
+response.value|Type: Mixed, Required: no
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: yes
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## FeedbackResponse
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+patient|Type: ObjectID, Required: yes, Referencing: [Patient](#patient)
+provider|Type: ObjectID, Required: no, Referencing: [Provider](#provider)
+facility|Type: ObjectID, Required: no, Referencing: [Facility](#facility)
+appointment|Type: ObjectID, Required: no, Referencing: [Appointment](#appointment)
+response.type|Type: String, Required: yes, Possible values: ["npsscore","positive-click","negative-click"]
+response.value|Type: Mixed, Required: no
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: yes
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## FileMapping
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+integrator|Type: String, Required: yes, Possible values: ["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner"]
+type|Type: String, Required: yes, Possible values: ["appointment","patient","referral"]
+mapping|Type: Mixed, Required: yes
+deleted|Type: Number, Required: yes
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## FileUpload
+
+Attribute|Description
+----|----
+bucket|Type: String, Required: no
+awsId|Type: String, Required: no
+name|Type: String, Required: yes
+extension|Type: String, Required: yes
+contentType|Type: String, Required: yes
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: yes
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes
+updatedBy|Type: ObjectID, Required: yes
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## Followup
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+title|Type: String, Required: no
+model|Type: String, Required: yes, Possible values: ["recall","appointment","referral","message","offer","waitlist","feedbackResponse","diagnosis","procedure"]
+operation|Type: String, Required: yes, Possible values: ["created","deleted","updated"]
+filters|Type: undefined, Required: no
+action|Type: String, Required: yes, Possible values: ["send-message","alert-staff","start-bot","https-webhook"]
+actionAt|Type: Number, Required: yes
+actionAtAnchor|Type: String, Required: yes, Possible values: ["operation","object-date"]
+webhook|Type: String, Required: no
+bot|Type: String, Required: no, Possible values: ["bot:followup","bot:referral","bot:jenna"]
+template|Type: String, Required: yes
+type|Type: String, Required: yes
+group|Type: String, Required: no
+secure|Type: Boolean, Required: yes
+forceCommunicationAs|Type: String, Required: no, Possible values: ["none","sms","voice"]
+delay|Type: Number, Required: no
+stats.counters.actionMatched|Type: Number, Required: no
+enabled|Type: Boolean, Required: yes
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: yes
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## GroupInvite
+
+Attribute|Description
+----|----
+group|Type: ObjectID, Required: yes, Referencing: [Group](#group)
+invitedUser|Type: ObjectID, Required: no, Referencing: [User](#user)
+userId|Type: ObjectID, Required: no, Referencing: [User](#user)
+email|Type: String, Required: yes
+url|Type: String, Required: no
+roles|Type: Array, Required: no
+user|Type: ObjectID, Required: no, Referencing: [User](#user)
+status|Type: String, Required: yes, Possible values: ["pending","accepted","declined","expired"]
+invitesSent|Type: Number, Required: no
+sentAt|Type: Date, Required: no
+token|Type: String, Required: yes
+expiresAt|Type: Date, Required: no
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: no, Referencing: [User](#user)
+deleted|Type: Number, Required: no
+updatedBy|Type: ObjectID, Required: no, Referencing: [User](#user)
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## Group
+
+Attribute|Description
+----|----
+name|Type: String, Required: yes
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+type|Type: String, Required: no, Possible values: ["user","system"]
+users|Type: Array, Required: no
+facilities|Type: Array, Required: no
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+deleted|Type: Number, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## Group
+
+Attribute|Description
+----|----
+name|Type: String, Required: yes
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+type|Type: String, Required: no, Possible values: ["user","system"]
+users|Type: Array, Required: no
+facilities|Type: Array, Required: no
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+deleted|Type: Number, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## hl7messages
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+integratorRef|Type: ObjectID, Required: yes, Referencing: [Integrator](#integrator)
+integrator|Type: String, Required: yes, Possible values: ["mi7","hl7"]
+direction|Type: String, Required: yes, Possible values: ["inbound","outbound"]
+content|Type: Mixed, Required: no
+status|Type: String, Required: yes, Possible values: ["pending","processing","completed","failed"]
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: no
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## InboundMessageRequest
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+sender|Type: String, Required: no
+senderName|Type: String, Required: no
+patient|Type: ObjectID, Required: no, Referencing: [User](#user)
+recipient|Type: ObjectID, Required: yes, Referencing: [User](#user)
+recipientType|Type: String, Required: yes, Possible values: ["staff","patient","doctor"]
+channel|Type: String, Required: yes, Possible values: ["sms","email","voice","chat","fax"]
+contact|Type: String, Required: no
+template|Type: String, Required: yes
+context|Type: Mixed, Required: no
+callbackQueue|Type: String, Required: no
+status|Type: String, Required: no, Possible values: ["sent","received","delivered","undelivered"]
+statusReason|Type: String, Required: no
+ref|Type: String, Required: yes, Possible values: ["reminder","appointment-offer","waitlist","waitlist-offer","generic","feedback-reminder","feedback","stop","referral-reminder","referral-followup","broadcast","chat","chat-notification","pin-verification","followup","bot:followup","referral-redirect","form-reminder"]
+refId|Type: ObjectID, Required: no
+cbUrl|Type: String, Required: no
+secure|Type: Boolean, Required: no
+visibility|Type: String, Required: yes, Possible values: ["public","private","internal"]
+text|Type: String, Required: no
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## Insurance
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: yes
+planName|Type: String, Required: no
+memberName|Type: String, Required: yes
+memberNumber|Type: String, Required: no
+insuranceGroupName|Type: String, Required: no
+url|Type: String, Required: no
+urlBack|Type: String, Required: no
+fileUpload|Type: ObjectID, Required: no, Referencing: [FileUpload](#fileupload)
+fileUploadBack|Type: ObjectID, Required: no, Referencing: [FileUpload](#fileupload)
+active|Type: Boolean, Required: yes
+status|Type: String, Required: no, Possible values: ["archived","active"]
+patient|Type: ObjectID, Required: yes, Referencing: [User](#user)
+externalId.source|Type: String, Required: no, Possible values: ["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner"]
+externalId.value|Type: String, Required: no
+payerId|Type: String, Required: no
+verification.status|Type: String, Required: no, Possible values: ["unknown","active","inactive"]
+verification.updatedAt|Type: Date, Required: no
+verification.requestedBy|Type: ObjectID, Required: no, Referencing: [User](#user)
+verification.lookupResults|Type: Mixed, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## IntegratorClient
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+name|Type: String, Required: yes
+version|Type: String, Required: no
+secret|Type: String, Required: yes
+enabled|Type: Boolean, Required: yes
+status|Type: String, Required: yes, Possible values: ["connected","disconnected","needs-heartbeat"]
+state|Type: String, Required: yes, Possible values: ["uninstalled","installed","updating"]
+lastHeartbeat|Type: Date, Required: no
+lastRecycleAttempt|Type: Date, Required: no
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: yes
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## integrator
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+type|Type: String, Required: no, Possible values: ["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner"]
+credentials|Type: Mixed, Required: no
+lastSync|Type: Date, Required: no
+lastSyncStatus|Type: String, Required: no, Possible values: ["success","failure","needs-sync","in-progress"]
+lastSuccessfulSync|Type: Date, Required: yes
+enabled|Type: Boolean, Required: yes
+deleted|Type: Number, Required: yes
+integratorClient|Type: ObjectID, Required: no, Referencing: [IntegratorClient](#integratorclient)
+setting|Type: ObjectID, Required: no, Referencing: [Setting](#setting)
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## Logins
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: yes
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes
+updatedBy|Type: ObjectID, Required: yes
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## MessageError
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+type|Type: String, Required: yes, Possible values: ["reminder","appointment-offer","waitlist","waitlist-offer","generic","feedback-reminder","feedback","stop","referral-reminder","referral-followup","broadcast","chat","chat-notification","pin-verification","followup","bot:followup","referral-redirect","form-reminder"]
+message|Type: ObjectID, Required: no, Referencing: [Message](#message)
+error|Type: String, Required: yes
+appointment|Type: ObjectID, Required: no, Referencing: [Appointment](#appointment)
+patient|Type: ObjectID, Required: no, Referencing: [User](#user)
+waitlist|Type: ObjectID, Required: no, Referencing: [Waitlist](#waitlist)
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: no
+channel|Type: String, Required: no, Possible values: ["sms","email","voice","inapp","chat","fax"]
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## MessageRequest
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+sender|Type: String, Required: no
+senderName|Type: String, Required: no
+patient|Type: ObjectID, Required: no, Referencing: [User](#user)
+recipient|Type: ObjectID, Required: yes, Referencing: [User](#user)
+recipientType|Type: String, Required: yes, Possible values: ["staff","patient","doctor"]
+channel|Type: String, Required: no, Possible values: ["sms","email","voice","inapp","chat","fax"]
+contact|Type: String, Required: no
+template|Type: String, Required: yes
+context|Type: Mixed, Required: no
+callbackQueue|Type: String, Required: no
+status|Type: String, Required: no, Possible values: ["sent","received","delivered","undelivered"]
+statusReason|Type: String, Required: no
+ref|Type: String, Required: yes, Possible values: ["reminder","appointment-offer","waitlist","waitlist-offer","generic","feedback-reminder","feedback","stop","referral-reminder","referral-followup","broadcast","chat","chat-notification","pin-verification","followup","bot:followup","referral-redirect","form-reminder"]
+refId|Type: ObjectID, Required: no
+cbUrl|Type: String, Required: no
+secure|Type: Boolean, Required: no
+visibility|Type: String, Required: yes, Possible values: ["public","private","internal"]
+text|Type: String, Required: no
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## MessageTemplate
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+key|Type: String, Required: yes
+language|Type: String, Required: yes, Possible values: ["es","en","vi","am","fa","ko","ru","zh-t","zh-s","zh","pt","ar"]
+template|Type: String, Required: yes
+layout|Type: String, Required: no
+subject|Type: String, Required: no
+title|Type: String, Required: no
+type|Type: Array, Required: no
+answers|Type: undefined, Required: no
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: no
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## Message
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+patient|Type: ObjectID, Required: no, Referencing: [User](#user)
+key|Type: String, Required: no
+from|Type: String, Required: no
+to|Type: String, Required: no
+type|Type: String, Required: yes, Possible values: ["inbound","outbound"]
+ref|Type: String, Required: yes, Possible values: ["reminder","appointment-offer","waitlist","waitlist-offer","generic","feedback-reminder","feedback","stop","referral-reminder","referral-followup","broadcast","chat","chat-notification","pin-verification","followup","bot:followup","referral-redirect","form-reminder"]
+refId|Type: ObjectID, Required: no
+status|Type: String, Required: no, Possible values: ["sent","delivered","undelivered","pending","received"]
+statusReason|Type: String, Required: no
+channel|Type: String, Required: yes, Possible values: ["sms","email","voice","inapp","chat","fax"]
+text|Type: String, Required: yes
+classification|Type: String, Required: no, Possible values: ["positive","negative","irregular","recognized-keywords","unclassified"]
+externalId.source|Type: String, Required: no, Possible values: ["mandrill","twilio","nexmo","sendgrid","plivo","bandwidth"]
+externalId.value|Type: String, Required: no
+secure|Type: Boolean, Required: yes
+visibility|Type: String, Required: yes, Possible values: ["public","private","internal"]
+file|Type: ObjectID, Required: no, Referencing: [FileUpload](#fileupload)
+media.url|Type: String, Required: no
+media.contentType|Type: String, Required: no
+stats.timers.elapsedReplyTime|Type: Number, Required: no
+retry.from|Type: ObjectID, Required: no, Referencing: [Message](#message)
+retry.count|Type: Number, Required: no
+retry.required|Type: Mixed, Required: no
+deleted|Type: Number, Required: no
+createdAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+mentions|Type: undefined, Required: no
+recipient|Type: ObjectID, Required: no, Referencing: [User](#user)
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## Message
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+patient|Type: ObjectID, Required: no, Referencing: [User](#user)
+key|Type: String, Required: no
+from|Type: String, Required: no
+to|Type: String, Required: no
+type|Type: String, Required: yes, Possible values: ["inbound","outbound"]
+ref|Type: String, Required: yes, Possible values: ["reminder","appointment-offer","waitlist","waitlist-offer","generic","feedback-reminder","feedback","stop","referral-reminder","referral-followup","broadcast","chat","chat-notification","pin-verification","followup","bot:followup","referral-redirect","form-reminder"]
+refId|Type: ObjectID, Required: no
+status|Type: String, Required: no, Possible values: ["sent","delivered","undelivered","pending","received"]
+statusReason|Type: String, Required: no
+channel|Type: String, Required: yes, Possible values: ["sms","email","voice","inapp","chat","fax"]
+text|Type: String, Required: yes
+classification|Type: String, Required: no, Possible values: ["positive","negative","irregular","recognized-keywords","unclassified"]
+externalId.source|Type: String, Required: no, Possible values: ["mandrill","twilio","nexmo","sendgrid","plivo","bandwidth"]
+externalId.value|Type: String, Required: no
+secure|Type: Boolean, Required: yes
+visibility|Type: String, Required: yes, Possible values: ["public","private","internal"]
+file|Type: ObjectID, Required: no, Referencing: [FileUpload](#fileupload)
+media.url|Type: String, Required: no
+media.contentType|Type: String, Required: no
+stats.timers.elapsedReplyTime|Type: Number, Required: no
+retry.from|Type: ObjectID, Required: no, Referencing: [Message](#message)
+retry.count|Type: Number, Required: no
+retry.required|Type: Mixed, Required: no
+deleted|Type: Number, Required: no
+createdAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+mentions|Type: undefined, Required: no
+recipient|Type: ObjectID, Required: no, Referencing: [User](#user)
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## Notification
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+to|Type: ObjectID, Required: no, Referencing: [User](#user)
+message|Type: String, Required: yes
+read|Type: Number, Required: yes
+data.patient|Type: ObjectID, Required: no, Referencing: [User](#user)
+data.appointment|Type: ObjectID, Required: no, Referencing: [Appointment](#appointment)
+data.offer|Type: ObjectID, Required: no, Referencing: [Offer](#offer)
+data.referral|Type: ObjectID, Required: no, Referencing: [Referral](#referral)
+data.broadcast|Type: ObjectID, Required: no, Referencing: [Broadcast](#broadcast)
+template|Type: String, Required: no
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: yes
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## Offer
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+provider|Type: ObjectID, Required: no, Referencing: [User](#user)
+facility|Type: ObjectID, Required: no, Referencing: [Facility](#facility)
+date|Type: Date, Required: no
+duration|Type: Number, Required: no
+waitlists|Type: Array, Required: no
+appointmentType|Type: Array, Required: no
+source|Type: String, Required: yes, Possible values: ["cancellation","manual","find-open-spots","self-scheduling","reschedule"]
+status|Type: String, Required: yes, Possible values: ["in-progress","patient-found","patient-not-found","cancelled"]
+integratorCreationResults.status|Type: String, Required: no, Possible values: ["success","failure","pending"]
+integratorCreationResults.errors|Type: String, Required: no
+approvedBy|Type: ObjectID, Required: no, Referencing: [User](#user)
+declinedBy|Type: ObjectID, Required: no, Referencing: [User](#user)
+currentWaitlist|Type: Number, Required: yes
+expireAt|Type: Date, Required: no
+patientFoundAt|Type: Date, Required: no
+patientFound|Type: ObjectID, Required: no, Referencing: [Patient](#patient)
+estimatedCompletionAt|Type: Date, Required: no
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+shadowAppointment|Type: String, Required: no
+availability|Type: ObjectID, Required: no, Referencing: [Availability](#availability)
+protocol|Type: String, Required: no, Possible values: ["serial","parallel"]
+deleted|Type: Number, Required: no
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## Offer
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+provider|Type: ObjectID, Required: no, Referencing: [User](#user)
+facility|Type: ObjectID, Required: no, Referencing: [Facility](#facility)
+date|Type: Date, Required: no
+duration|Type: Number, Required: no
+waitlists|Type: Array, Required: no
+appointmentType|Type: Array, Required: no
+source|Type: String, Required: yes, Possible values: ["cancellation","manual","find-open-spots","self-scheduling","reschedule"]
+status|Type: String, Required: yes, Possible values: ["in-progress","patient-found","patient-not-found","cancelled"]
+integratorCreationResults.status|Type: String, Required: no, Possible values: ["success","failure","pending"]
+integratorCreationResults.errors|Type: String, Required: no
+approvedBy|Type: ObjectID, Required: no, Referencing: [User](#user)
+declinedBy|Type: ObjectID, Required: no, Referencing: [User](#user)
+currentWaitlist|Type: Number, Required: yes
+expireAt|Type: Date, Required: no
+patientFoundAt|Type: Date, Required: no
+patientFound|Type: ObjectID, Required: no, Referencing: [Patient](#patient)
+estimatedCompletionAt|Type: Date, Required: no
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+shadowAppointment|Type: String, Required: no
+availability|Type: ObjectID, Required: no, Referencing: [Availability](#availability)
+protocol|Type: String, Required: no, Possible values: ["serial","parallel"]
+deleted|Type: Number, Required: no
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## OrganizationUsers
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+organization|Type: ObjectID, Required: yes, Referencing: [Organization](#organization)
+organizationUser|Type: ObjectID, Required: yes, Referencing: [User](#user)
+invitedUser|Type: ObjectID, Required: yes, Referencing: [User](#user)
+impersonatedUser|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: yes
+createdAt|Type: Date, Required: yes
+updatedAt|Type: Date, Required: yes
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## Organization
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+name|Type: String, Required: yes
+description|Type: String, Required: no
+users|Type: Array, Required: no
+deleted|Type: Number, Required: yes
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## OutboundMessageRequest
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+sender|Type: String, Required: no
+senderName|Type: String, Required: no
+patient|Type: ObjectID, Required: no, Referencing: [User](#user)
+recipient|Type: ObjectID, Required: yes, Referencing: [User](#user)
+recipientType|Type: String, Required: yes, Possible values: ["staff","patient","doctor"]
+channel|Type: String, Required: yes, Possible values: ["sms","email","voice","inapp","chat","fax"]
+contact|Type: String, Required: no
+template|Type: String, Required: yes
+context|Type: Mixed, Required: no
+callbackQueue|Type: String, Required: no
+status|Type: String, Required: no, Possible values: ["sent","received","delivered","undelivered"]
+statusReason|Type: String, Required: no
+ref|Type: String, Required: yes, Possible values: ["reminder","appointment-offer","waitlist","waitlist-offer","generic","feedback-reminder","feedback","stop","referral-reminder","referral-followup","broadcast","chat","chat-notification","pin-verification","followup","bot:followup","referral-redirect","form-reminder"]
+refId|Type: ObjectID, Required: no
+cbUrl|Type: String, Required: no
+secure|Type: Boolean, Required: no
+visibility|Type: String, Required: yes, Possible values: ["public","private","internal"]
+text|Type: String, Required: no
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## PatientFormTemplate
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: yes
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes
+updatedBy|Type: ObjectID, Required: yes
+externalId.source|Type: String, Required: no, Possible values: ["docusign","hellosign","surveymonkey","luma"]
+externalId.value|Type: String, Required: no
+title|Type: String, Required: no
+insurance.enabled|Type: Boolean, Required: no
+insurance.required|Type: Mixed, Required: no
+reminder.enabled|Type: Boolean, Required: no
+reminder.required|Type: Mixed, Required: no
+active|Type: Boolean, Required: no
+url|Type: String, Required: no
+tag|Type: String, Required: no
+template|Type: Mixed, Required: no
+integratorMapping|Type: undefined, Required: no
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## PatientForm
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: yes
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes
+updatedBy|Type: ObjectID, Required: yes
+patient|Type: ObjectID, Required: yes, Referencing: [User](#user)
+fileUpload|Type: ObjectID, Required: no, Referencing: [FileUpload](#fileupload)
+patientFormTemplate|Type: ObjectID, Required: yes, Referencing: [PatientFormTemplate](#patientformtemplate)
+responses|Type: Mixed, Required: no
+answers|Type: Mixed, Required: no
+status|Type: String, Required: no, Possible values: ["started","completed"]
+duration|Type: Number, Required: no
+url|Type: String, Required: no
+integratorUpdateResults.status|Type: String, Required: no, Possible values: ["success","failure","pending"]
+integratorUpdateResults.error|Type: String, Required: no
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## patientMessageTemplate
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+language|Type: String, Required: yes, Possible values: ["es","en","vi","am","fa","ko","ru","zh-t","zh-s","zh","pt","ar"]
+message|Type: String, Required: yes
+name|Type: String, Required: yes
+type|Type: String, Required: yes, Possible values: ["chat","broadcast"]
+channel|Type: String, Required: no, Possible values: ["sms","email","voice"]
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: no
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## PatientSubscriber
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: yes
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes
+updatedBy|Type: ObjectID, Required: yes
+isSubscribed|Type: Boolean, Required: no
+subscriber|Type: ObjectID, Required: yes, Referencing: [User](#user)
+patient|Type: ObjectID, Required: yes, Referencing: [Patient](#patient)
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## Patient
+
+Attribute|Description
+----|----
+preferedLanguage|Type: String, Required: no
+stats.counters.messagesSentToPatient|Type: Number, Required: no
+stats.counters.confirmedAppointments|Type: Number, Required: no
+stats.counters.cancelledAppointments|Type: Number, Required: no
+stats.counters.offersSent|Type: Number, Required: no
+stats.counters.offersAccepted|Type: Number, Required: no
+stats.counters.appointmentOffersReplied|Type: Number, Required: no
+stats.average.appointmentOfferReplyTime|Type: Number, Required: no
+lastProcessedAt|Type: Date, Required: no
+source|Type: String, Required: no, Possible values: ["widget","integrator","ui","referring-provider"]
+mergedInto|Type: ObjectID, Required: no, Referencing: [Patient](#patient)
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+subscribers|Type: undefined, Required: no
+outboundContact|Type: undefined, Required: no
+_id|Type: ObjectID, Required: no
+name|Type: String, Required: no
+firstname|Type: String, Required: no
+lastname|Type: String, Required: no
+middlename|Type: String, Required: no
+email|Type: String, Required: no
+password|Type: String, Required: no
+passwordHashAlgorithm|Type: String, Required: no, Possible values: ["md5","sha256","sha512","bcrypt"]
+passwordUpdatedAt|Type: Date, Required: no
+safeId|Type: String, Required: no
+resetPasswordToken|Type: String, Required: no
+resetPasswordExpires|Type: Date, Required: no
+type|Type: String, Required: yes, Possible values: ["doctor","staff","patient"]
+roles|Type: Array, Required: no
+organization|Type: ObjectID, Required: no, Referencing: [Organization](#organization)
+contact|Type: undefined, Required: no
+doNotContact|Type: Boolean, Required: yes
+doNotContactMessage|Type: ObjectID, Required: no, Referencing: [Message](#message)
+groups|Type: Array, Required: no
+stripeCustomerId|Type: String, Required: no
+stripeSubscriptionId|Type: String, Required: no
+salesforceId|Type: String, Required: no
+salesforceData.provisioning|Type: Array, Required: no
+salesforceData.respectProvisioning|Type: Boolean, Required: no
+salesforceData.lifeline|Type: String, Required: no, Possible values: ["trial","converted","active","churn"]
+salesforceData.mrr|Type: Number, Required: no
+salesforceData.renewalDate|Type: Date, Required: no
+salesforceData.providers|Type: Number, Required: no
+salesforceData.specialty|Type: String, Required: no
+salesforceData.referralTrialLimit|Type: Number, Required: no
+salesforceData.recordType|Type: String, Required: no
+deleted|Type: Number, Required: yes
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+lastLogin|Type: Date, Required: no
+token|Type: String, Required: yes
+active|Type: Number, Required: yes
+master|Type: Boolean, Required: no
+language|Type: String, Required: no
+user|Type: ObjectID, Required: no, Referencing: [User](#user)
+setting|Type: ObjectID, Required: no, Referencing: [Setting](#setting)
+externalId.source|Type: String, Required: no, Possible values: ["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner","sms","voice","email","none"]
+externalId.value|Type: String, Required: no
+secondaryExternalId.source|Type: String, Required: no, Possible values: ["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner","sms","voice","email","none"]
+secondaryExternalId.value|Type: String, Required: no
+dateOfBirth.year|Type: Number, Required: no
+dateOfBirth.month|Type: Number, Required: no
+dateOfBirth.day|Type: Number, Required: no
+dateOfBirth.required|Type: Mixed, Required: no
+address|Type: String, Required: no
+city|Type: String, Required: no
+state|Type: String, Required: no
+country|Type: String, Required: yes
+postcode|Type: String, Required: no
+gender|Type: String, Required: yes, Possible values: ["male","female","unknown","nonbinary"]
+passwordResetRequired|Type: Boolean, Required: no
+twoFactorAuthSecret.key|Type: String, Required: no
+twoFactorAuthSecret.period|Type: Number, Required: no
+twoFactorAuthSecret.enabled|Type: Boolean, Required: no
+twoFactorAuthSecret.backupCodes|Type: Array, Required: no
+twoFactorAuthSecret.required|Type: Mixed, Required: no
+allowedIps|Type: Array, Required: no
+stats.oldestAppointment|Type: Date, Required: no
+avatar|Type: ObjectID, Required: no, Referencing: [FileUpload](#fileupload)
+__v|Type: Number, Required: no
+__t|Type: String, Required: no
+
+## Procedures
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: yes
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes
+updatedBy|Type: ObjectID, Required: yes
+patient|Type: ObjectID, Required: yes, Referencing: [Patient](#patient)
+cpt|Type: String, Required: yes
+date|Type: Date, Required: no
+appointment|Type: ObjectID, Required: no, Referencing: [Appointment](#appointment)
+externalId.source|Type: String, Required: no, Possible values: ["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner"]
+externalId.value|Type: String, Required: no
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## Procedures
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: yes
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes
+updatedBy|Type: ObjectID, Required: yes
+patient|Type: ObjectID, Required: yes, Referencing: [Patient](#patient)
+cpt|Type: String, Required: yes
+date|Type: Date, Required: no
+appointment|Type: ObjectID, Required: no, Referencing: [Appointment](#appointment)
+externalId.source|Type: String, Required: no, Possible values: ["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner"]
+externalId.value|Type: String, Required: no
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## Provider
+
+Attribute|Description
+----|----
+deptCode|Type: String, Required: no
+phonetic|Type: String, Required: no
+isReferringProvider|Type: Boolean, Required: no
+visible|Type: Boolean, Required: yes
+npi|Type: Number, Required: no
+source|Type: String, Required: no, Possible values: ["upload","patient-referral-form","ui","integrator"]
+createdBy|Type: ObjectID, Required: no, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: no, Referencing: [User](#user)
+biography|Type: String, Required: no
+biographyUrl|Type: String, Required: no
+headshot|Type: ObjectID, Required: no, Referencing: [FileUpload](#fileupload)
+_id|Type: ObjectID, Required: no
+name|Type: String, Required: no
+firstname|Type: String, Required: no
+lastname|Type: String, Required: no
+middlename|Type: String, Required: no
+email|Type: String, Required: no
+password|Type: String, Required: no
+passwordHashAlgorithm|Type: String, Required: no, Possible values: ["md5","sha256","sha512","bcrypt"]
+passwordUpdatedAt|Type: Date, Required: no
+safeId|Type: String, Required: no
+resetPasswordToken|Type: String, Required: no
+resetPasswordExpires|Type: Date, Required: no
+type|Type: String, Required: yes, Possible values: ["doctor","staff","patient"]
+roles|Type: Array, Required: no
+organization|Type: ObjectID, Required: no, Referencing: [Organization](#organization)
+contact|Type: undefined, Required: no
+doNotContact|Type: Boolean, Required: yes
+doNotContactMessage|Type: ObjectID, Required: no, Referencing: [Message](#message)
+groups|Type: Array, Required: no
+stripeCustomerId|Type: String, Required: no
+stripeSubscriptionId|Type: String, Required: no
+salesforceId|Type: String, Required: no
+salesforceData.provisioning|Type: Array, Required: no
+salesforceData.respectProvisioning|Type: Boolean, Required: no
+salesforceData.lifeline|Type: String, Required: no, Possible values: ["trial","converted","active","churn"]
+salesforceData.mrr|Type: Number, Required: no
+salesforceData.renewalDate|Type: Date, Required: no
+salesforceData.providers|Type: Number, Required: no
+salesforceData.specialty|Type: String, Required: no
+salesforceData.referralTrialLimit|Type: Number, Required: no
+salesforceData.recordType|Type: String, Required: no
+deleted|Type: Number, Required: yes
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+lastLogin|Type: Date, Required: no
+token|Type: String, Required: yes
+active|Type: Number, Required: yes
+master|Type: Boolean, Required: no
+language|Type: String, Required: no
+user|Type: ObjectID, Required: no, Referencing: [User](#user)
+setting|Type: ObjectID, Required: no, Referencing: [Setting](#setting)
+externalId.source|Type: String, Required: no, Possible values: ["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner","sms","voice","email","none"]
+externalId.value|Type: String, Required: no
+secondaryExternalId.source|Type: String, Required: no, Possible values: ["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner","sms","voice","email","none"]
+secondaryExternalId.value|Type: String, Required: no
+dateOfBirth.year|Type: Number, Required: no
+dateOfBirth.month|Type: Number, Required: no
+dateOfBirth.day|Type: Number, Required: no
+dateOfBirth.required|Type: Mixed, Required: no
+address|Type: String, Required: no
+city|Type: String, Required: no
+state|Type: String, Required: no
+country|Type: String, Required: yes
+postcode|Type: String, Required: no
+gender|Type: String, Required: yes, Possible values: ["male","female","unknown","nonbinary"]
+passwordResetRequired|Type: Boolean, Required: no
+twoFactorAuthSecret.key|Type: String, Required: no
+twoFactorAuthSecret.period|Type: Number, Required: no
+twoFactorAuthSecret.enabled|Type: Boolean, Required: no
+twoFactorAuthSecret.backupCodes|Type: Array, Required: no
+twoFactorAuthSecret.required|Type: Mixed, Required: no
+allowedIps|Type: Array, Required: no
+stats.oldestAppointment|Type: Date, Required: no
+avatar|Type: ObjectID, Required: no, Referencing: [FileUpload](#fileupload)
+__v|Type: Number, Required: no
+__t|Type: String, Required: no
+
+## Provider
+
+Attribute|Description
+----|----
+deptCode|Type: String, Required: no
+phonetic|Type: String, Required: no
+isReferringProvider|Type: Boolean, Required: no
+visible|Type: Boolean, Required: yes
+npi|Type: Number, Required: no
+source|Type: String, Required: no, Possible values: ["upload","patient-referral-form","ui","integrator"]
+createdBy|Type: ObjectID, Required: no, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: no, Referencing: [User](#user)
+biography|Type: String, Required: no
+biographyUrl|Type: String, Required: no
+headshot|Type: ObjectID, Required: no, Referencing: [FileUpload](#fileupload)
+_id|Type: ObjectID, Required: no
+name|Type: String, Required: no
+firstname|Type: String, Required: no
+lastname|Type: String, Required: no
+middlename|Type: String, Required: no
+email|Type: String, Required: no
+password|Type: String, Required: no
+passwordHashAlgorithm|Type: String, Required: no, Possible values: ["md5","sha256","sha512","bcrypt"]
+passwordUpdatedAt|Type: Date, Required: no
+safeId|Type: String, Required: no
+resetPasswordToken|Type: String, Required: no
+resetPasswordExpires|Type: Date, Required: no
+type|Type: String, Required: yes, Possible values: ["doctor","staff","patient"]
+roles|Type: Array, Required: no
+organization|Type: ObjectID, Required: no, Referencing: [Organization](#organization)
+contact|Type: undefined, Required: no
+doNotContact|Type: Boolean, Required: yes
+doNotContactMessage|Type: ObjectID, Required: no, Referencing: [Message](#message)
+groups|Type: Array, Required: no
+stripeCustomerId|Type: String, Required: no
+stripeSubscriptionId|Type: String, Required: no
+salesforceId|Type: String, Required: no
+salesforceData.provisioning|Type: Array, Required: no
+salesforceData.respectProvisioning|Type: Boolean, Required: no
+salesforceData.lifeline|Type: String, Required: no, Possible values: ["trial","converted","active","churn"]
+salesforceData.mrr|Type: Number, Required: no
+salesforceData.renewalDate|Type: Date, Required: no
+salesforceData.providers|Type: Number, Required: no
+salesforceData.specialty|Type: String, Required: no
+salesforceData.referralTrialLimit|Type: Number, Required: no
+salesforceData.recordType|Type: String, Required: no
+deleted|Type: Number, Required: yes
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+lastLogin|Type: Date, Required: no
+token|Type: String, Required: yes
+active|Type: Number, Required: yes
+master|Type: Boolean, Required: no
+language|Type: String, Required: no
+user|Type: ObjectID, Required: no, Referencing: [User](#user)
+setting|Type: ObjectID, Required: no, Referencing: [Setting](#setting)
+externalId.source|Type: String, Required: no, Possible values: ["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner","sms","voice","email","none"]
+externalId.value|Type: String, Required: no
+secondaryExternalId.source|Type: String, Required: no, Possible values: ["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner","sms","voice","email","none"]
+secondaryExternalId.value|Type: String, Required: no
+dateOfBirth.year|Type: Number, Required: no
+dateOfBirth.month|Type: Number, Required: no
+dateOfBirth.day|Type: Number, Required: no
+dateOfBirth.required|Type: Mixed, Required: no
+address|Type: String, Required: no
+city|Type: String, Required: no
+state|Type: String, Required: no
+country|Type: String, Required: yes
+postcode|Type: String, Required: no
+gender|Type: String, Required: yes, Possible values: ["male","female","unknown","nonbinary"]
+passwordResetRequired|Type: Boolean, Required: no
+twoFactorAuthSecret.key|Type: String, Required: no
+twoFactorAuthSecret.period|Type: Number, Required: no
+twoFactorAuthSecret.enabled|Type: Boolean, Required: no
+twoFactorAuthSecret.backupCodes|Type: Array, Required: no
+twoFactorAuthSecret.required|Type: Mixed, Required: no
+allowedIps|Type: Array, Required: no
+stats.oldestAppointment|Type: Date, Required: no
+avatar|Type: ObjectID, Required: no, Referencing: [FileUpload](#fileupload)
+__v|Type: Number, Required: no
+__t|Type: String, Required: no
+
+## Recalls
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: yes
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes
+updatedBy|Type: ObjectID, Required: yes
+patient|Type: ObjectID, Required: yes, Referencing: [Patient](#patient)
+provider|Type: ObjectID, Required: no, Referencing: [Provider](#provider)
+facility|Type: ObjectID, Required: no, Referencing: [Facility](#facility)
+appointment|Type: ObjectID, Required: no, Referencing: [Appointment](#appointment)
+type|Type: ObjectID, Required: no, Referencing: [AppointmentType](#appointmenttype)
+date|Type: Date, Required: yes
+externalId.source|Type: String, Required: no, Possible values: ["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner"]
+externalId.value|Type: String, Required: no
+status|Type: String, Required: yes, Possible values: ["pending","scheduled"]
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## Recalls
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: yes
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes
+updatedBy|Type: ObjectID, Required: yes
+patient|Type: ObjectID, Required: yes, Referencing: [Patient](#patient)
+provider|Type: ObjectID, Required: no, Referencing: [Provider](#provider)
+facility|Type: ObjectID, Required: no, Referencing: [Facility](#facility)
+appointment|Type: ObjectID, Required: no, Referencing: [Appointment](#appointment)
+type|Type: ObjectID, Required: no, Referencing: [AppointmentType](#appointmenttype)
+date|Type: Date, Required: yes
+externalId.source|Type: String, Required: no, Possible values: ["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner"]
+externalId.value|Type: String, Required: no
+status|Type: String, Required: yes, Possible values: ["pending","scheduled"]
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## Referral
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+facility|Type: ObjectID, Required: no, Referencing: [Facility](#facility)
+provider|Type: ObjectID, Required: no, Referencing: [Provider](#provider)
+referringProviderId|Type: ObjectID, Required: no, Referencing: [Provider](#provider)
+referringProvider|Type: String, Required: no
+patient|Type: ObjectID, Required: yes, Referencing: [User](#user)
+source|Type: String, Required: no, Possible values: ["upload","patient-referral-form","ui","integrator"]
+status|Type: String, Required: yes, Possible values: ["active","called","called-late","scheduled","scheduled-late","incomplete","expired","cancelled","pending","closed"]
+fileUploads|Type: Array, Required: no
+startOn|Type: Date, Required: yes
+expireAt|Type: Date, Required: yes
+attempt|Type: Number, Required: yes
+lastAttemptSentAt|Type: Date, Required: no
+calledAt|Type: Date, Required: no
+acceptedAt|Type: Date, Required: no
+scheduledAt|Type: Date, Required: no
+notes|Type: String, Required: no
+externalId.source|Type: String, Required: no, Possible values: ["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner"]
+externalId.value|Type: String, Required: no
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: yes
+customerNotes|Type: String, Required: no
+reason|Type: String, Required: no
+scheduledByAppointment|Type: ObjectID, Required: no, Referencing: [Appointment](#appointment)
+scheduledByOffer|Type: ObjectID, Required: no, Referencing: [Offer](#offer)
+processedReferralFollowup|Type: String, Required: no, Possible values: ["pending","skipped","failed","success"]
+upload|Type: ObjectID, Required: no, Referencing: [Upload](#upload)
+faxUrl|Type: String, Required: no
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## Referral
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+facility|Type: ObjectID, Required: no, Referencing: [Facility](#facility)
+provider|Type: ObjectID, Required: no, Referencing: [Provider](#provider)
+referringProviderId|Type: ObjectID, Required: no, Referencing: [Provider](#provider)
+referringProvider|Type: String, Required: no
+patient|Type: ObjectID, Required: yes, Referencing: [User](#user)
+source|Type: String, Required: no, Possible values: ["upload","patient-referral-form","ui","integrator"]
+status|Type: String, Required: yes, Possible values: ["active","called","called-late","scheduled","scheduled-late","incomplete","expired","cancelled","pending","closed"]
+fileUploads|Type: Array, Required: no
+startOn|Type: Date, Required: yes
+expireAt|Type: Date, Required: yes
+attempt|Type: Number, Required: yes
+lastAttemptSentAt|Type: Date, Required: no
+calledAt|Type: Date, Required: no
+acceptedAt|Type: Date, Required: no
+scheduledAt|Type: Date, Required: no
+notes|Type: String, Required: no
+externalId.source|Type: String, Required: no, Possible values: ["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner"]
+externalId.value|Type: String, Required: no
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: yes
+customerNotes|Type: String, Required: no
+reason|Type: String, Required: no
+scheduledByAppointment|Type: ObjectID, Required: no, Referencing: [Appointment](#appointment)
+scheduledByOffer|Type: ObjectID, Required: no, Referencing: [Offer](#offer)
+processedReferralFollowup|Type: String, Required: no, Possible values: ["pending","skipped","failed","success"]
+upload|Type: ObjectID, Required: no, Referencing: [Upload](#upload)
+faxUrl|Type: String, Required: no
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## Reminder
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+provider|Type: ObjectID, Required: no, Referencing: [User](#user)
+appointment|Type: ObjectID, Required: no, Referencing: [Appointment](#appointment)
+referral|Type: ObjectID, Required: no, Referencing: [Referral](#referral)
+recall|Type: ObjectID, Required: no, Referencing: [Recall](#recall)
+followup|Type: ObjectID, Required: no, Referencing: [Followup](#followup)
+followupOperation|Type: String, Required: no, Possible values: ["created","deleted","updated"]
+facility|Type: ObjectID, Required: no, Referencing: [Facility](#facility)
+patient|Type: ObjectID, Required: yes, Referencing: [User](#user)
+patientForm|Type: ObjectID, Required: no, Referencing: [PatientForm](#patientform)
+message|Type: Mixed, Required: no
+type|Type: String, Required: yes, Possible values: ["appointment","feedback","referral","followup","patient-form"]
+externalId.source|Type: String, Required: no, Possible values: ["mandrill","twilio","nexmo","sendgrid","plivo"]
+externalId.value|Type: String, Required: no
+sendAt|Type: Date, Required: yes
+sentAt|Type: Date, Required: no
+contact|Type: Array, Required: no
+messageTemplate|Type: String, Required: no
+status|Type: String, Required: yes, Possible values: ["scheduled","pending","queued","sent","confirmed","emailOpened","skipped","failed","delivered"]
+statusReason|Type: String, Required: no
+replied|Type: Number, Required: no
+repliedMessage|Type: String, Required: no
+originalRepliedMessage|Type: String, Required: no
+repliedTime|Type: Date, Required: no
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+deleted|Type: Number, Required: yes
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## Reminder
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+provider|Type: ObjectID, Required: no, Referencing: [User](#user)
+appointment|Type: ObjectID, Required: no, Referencing: [Appointment](#appointment)
+referral|Type: ObjectID, Required: no, Referencing: [Referral](#referral)
+recall|Type: ObjectID, Required: no, Referencing: [Recall](#recall)
+followup|Type: ObjectID, Required: no, Referencing: [Followup](#followup)
+followupOperation|Type: String, Required: no, Possible values: ["created","deleted","updated"]
+facility|Type: ObjectID, Required: no, Referencing: [Facility](#facility)
+patient|Type: ObjectID, Required: yes, Referencing: [User](#user)
+patientForm|Type: ObjectID, Required: no, Referencing: [PatientForm](#patientform)
+message|Type: Mixed, Required: no
+type|Type: String, Required: yes, Possible values: ["appointment","feedback","referral","followup","patient-form"]
+externalId.source|Type: String, Required: no, Possible values: ["mandrill","twilio","nexmo","sendgrid","plivo"]
+externalId.value|Type: String, Required: no
+sendAt|Type: Date, Required: yes
+sentAt|Type: Date, Required: no
+contact|Type: Array, Required: no
+messageTemplate|Type: String, Required: no
+status|Type: String, Required: yes, Possible values: ["scheduled","pending","queued","sent","confirmed","emailOpened","skipped","failed","delivered"]
+statusReason|Type: String, Required: no
+replied|Type: Number, Required: no
+repliedMessage|Type: String, Required: no
+originalRepliedMessage|Type: String, Required: no
+repliedTime|Type: Date, Required: no
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+deleted|Type: Number, Required: yes
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## Setting
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+refId|Type: ObjectID, Required: no
+ref|Type: String, Required: yes, Possible values: ["user","provider","facility","appointment-type","integrator"]
+settings.welcome.currentStep|Type: Number, Required: no
+settings.welcome.termsAgreementDate|Type: Date, Required: no
+settings.labs.enabled|Type: Boolean, Required: no
+settings.communication.useFacilityPhoneAsFromNumber|Type: Boolean, Required: no
+settings.communication.useFacilityAlternativePhoneAsFromNumber|Type: Boolean, Required: no
+settings.communication.unsubscribedMessages|Type: Array, Required: no
+settings.communication.blockedContacts|Type: Array, Required: no
+settings.communication.limitedContacts|Type: Array, Required: no
+settings.communication.expirePatientData.enabled|Type: Boolean, Required: no
+settings.communication.expirePatientData.maxAgeInDays|Type: Number, Required: no
+settings.communication.urlReplacers|Type: undefined, Required: no
+settings.timezone|Type: String, Required: yes
+settings.scheduler.enabled|Type: Boolean, Required: no
+settings.scheduler.daysAheadToShowAvailability|Type: Number, Required: no
+settings.scheduler.maxDaysToShow|Type: Number, Required: no
+settings.scheduler.providerAvailabilityFilter|Type: undefined, Required: no
+settings.scheduler.maxAvailablitiesToRender|Type: Number, Required: no
+settings.scheduler.patientAddress.required|Type: Boolean, Required: no
+settings.scheduler.patientAddress.visible|Type: Boolean, Required: yes
+settings.scheduler.reschedulerRespectsSchedulerRules|Type: Boolean, Required: no
+settings.referral.enabled|Type: Boolean, Required: no
+settings.referral.attempts|Type: Number, Required: no
+settings.referral.interval|Type: Number, Required: no
+settings.referral.schedulableWindow.earliest|Type: Number, Required: no
+settings.referral.schedulableWindow.latest|Type: Number, Required: no
+settings.referral.sendReferralFax|Type: Boolean, Required: no
+settings.referral.sendReferralFaxStatus.scheduled|Type: Boolean, Required: no
+settings.referral.sendReferralFaxStatus.cancelled|Type: Boolean, Required: no
+settings.referral.sendReferralFaxStatus.incomplete|Type: Boolean, Required: no
+settings.referral.sendReferralEmail|Type: Boolean, Required: no
+settings.reminder.multipleRemindersPerDay|Type: String, Required: no, Possible values: ["onlySendEarliest","multipleRemindersPerDay"]
+settings.reminder.schedule|Type: Array, Required: no
+settings.reminder.enabled|Type: Boolean, Required: no
+settings.reminder.onConfirmation|Type: String, Required: no, Possible values: ["skipFurtherReminders","keepLastReminder"]
+settings.reminder.repliesForLastReminder|Type: String, Required: yes, Possible values: ["allowed","confirmationOnly","none"]
+settings.reminder.replies|Type: String, Required: yes, Possible values: ["allowed","confirmationOnly","none"]
+settings.reminder.enabledChannels|Type: Array, Required: no
+settings.reminder.treatCancellationsAsNoShows|Type: Number, Required: yes
+settings.reminder.offerToJoinWaitlistOnCancellation|Type: String, Required: yes, Possible values: ["disabled","from-reminder","from-integrator","from-both"]
+settings.reminder.schedulableWindow.earliest|Type: Number, Required: no
+settings.reminder.schedulableWindow.latest|Type: Number, Required: no
+settings.reminder.allowSelfSchedule|Type: Boolean, Required: no
+settings.reminder.rescheduleSundayToSaturday|Type: Boolean, Required: no
+settings.reminder.forceVoiceCallsForSmsNonResponders|Type: Boolean, Required: no
+settings.reminder.cancelOrConfirmAllAppointmentsInDay|Type: Boolean, Required: no
+settings.reminder.allowConfirmAfterCancel|Type: Boolean, Required: no
+settings.reminder.allowCancelAfterConfirm|Type: Boolean, Required: no
+settings.reminder.strictConfirmCancelTextHandling|Type: Boolean, Required: no
+settings.reminder.disableCatchupReminders|Type: Boolean, Required: no
+settings.cancellation.enabled|Type: Boolean, Required: no
+settings.cancellation.expiration|Type: Number, Required: no
+settings.cancellation.processAppointmentTypes|Type: Boolean, Required: no
+settings.cancellation.requireFrontOfficeAcceptance|Type: Boolean, Required: no
+settings.cancellation.shadowAppointment.enabled|Type: Boolean, Required: no
+settings.cancellation.allowDoubleBooks|Type: Boolean, Required: no
+settings.cancellation.maxDaysAheadsToProcessCancellation|Type: Number, Required: no
+settings.cancellation.minMinutesAheadsToProcessCancellation|Type: Number, Required: no
+settings.cancellation.spotsDiscovery.enabled|Type: Boolean, Required: no
+settings.cancellation.spotsDiscovery.maxSpots|Type: Number, Required: no
+settings.cancellation.spotsDiscovery.hoursAhead|Type: Number, Required: no
+settings.cancellation.autoAddToWaitlist.enabled|Type: Boolean, Required: no
+settings.cancellation.autoAddToWaitlist.daysAhead|Type: Number, Required: no
+settings.cancellation.sendYouveBeenAddedMessage|Type: Boolean, Required: no
+settings.cancellation.skipOfferBasedOnLastSentOffer|Type: Boolean, Required: no
+settings.cancellation.maxOffersPerWaitlist|Type: Number, Required: no
+settings.cancellation.protocol|Type: String, Required: no, Possible values: ["serial","parallel"]
+settings.cancellation.offerToJoinDuration|Type: Number, Required: no
+settings.cancellation.autoCreateWaitlists|Type: Boolean, Required: yes
+settings.cancellation.delayOffers.enabled|Type: Boolean, Required: no
+settings.cancellation.delayOffers.until|Type: String, Required: no
+settings.cancellation.cancelFutureAppointment|Type: Boolean, Required: no
+settings.cancellation.requireFutureAppointment|Type: Boolean, Required: no
+settings.appointment.duration|Type: Number, Required: no
+settings.feedback.multipleRemindersPerDay|Type: String, Required: no, Possible values: ["onlySendEarliest","multipleRemindersPerDay"]
+settings.feedback.enabled|Type: Boolean, Required: no
+settings.feedback.promoter.type|Type: String, Required: no, Possible values: ["facebook","yelp","patientfusion","betterdoctor","zocdoc","google","generic","healthgrades","ratemds"]
+settings.feedback.promoter.url|Type: String, Required: no
+settings.feedback.promoterUrls|Type: undefined, Required: no
+settings.feedback.detractor.type|Type: String, Required: no, Possible values: ["google"]
+settings.feedback.detractor.url|Type: String, Required: no
+settings.feedback.detractorUrls|Type: undefined, Required: no
+settings.feedback.schedule|Type: Number, Required: no
+settings.feedback.interval.enabled|Type: Boolean, Required: no
+settings.feedback.interval.value|Type: Number, Required: no
+settings.feedback.limit.enabled|Type: Boolean, Required: no
+settings.feedback.limit.value|Type: Number, Required: no
+settings.feedback.allowFeedbackForPastAppointments|Type: Boolean, Required: yes
+settings.feedback.forceMessageTime.enabled|Type: Boolean, Required: no
+settings.feedback.forceMessageTime.until|Type: String, Required: no
+settings.followup.enabled|Type: Boolean, Required: no
+settings.integrator.requireLock|Type: Boolean, Required: no
+settings.integrator.syncWindow.earliest|Type: Number, Required: yes
+settings.integrator.syncWindow.latest|Type: Number, Required: yes
+settings.integrator.writeDataToIntegrator.createAppointments|Type: Boolean, Required: no
+settings.integrator.writeDataToIntegrator.updateStatus|Type: Boolean, Required: no
+settings.integrator.writeDataToIntegrator.updatePatientDemographics|Type: Boolean, Required: no
+settings.integrator.writeDataToIntegrator.flushPatientMessageHistory|Type: Boolean, Required: no
+settings.integrator.frequency|Type: Number, Required: yes
+settings.integrator.enforceProviderDeltaCheck|Type: Boolean, Required: no
+settings.integrator.enforceAppointmentDeltaCheck|Type: Boolean, Required: no
+settings.integrator.syncProcedures|Type: Boolean, Required: no
+settings.integrator.syncDiagnoses|Type: Boolean, Required: no
+settings.integrator.syncReferrals|Type: Boolean, Required: no
+settings.integrator.verifySlotIsOpenBeforeAppointmentCreation|Type: Boolean, Required: no
+settings.integrator.verifyWhitespaceIsOpenBeforeAppointmentCreation|Type: Boolean, Required: no
+settings.patients.maxTokenAge|Type: Number, Required: no
+settings.patients.loginLookupInIntegrator|Type: Boolean, Required: no
+deleted|Type: Number, Required: yes
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## Upload
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+integrator|Type: String, Required: yes, Possible values: ["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner"]
+type|Type: String, Required: yes, Possible values: ["appointment","patient","referral"]
+mapping|Type: ObjectID, Required: no, Referencing: [FileMapping](#filemapping)
+content|Type: Mixed, Required: no
+status|Type: String, Required: yes, Possible values: ["unmapped","pending","processing","completed","failed"]
+results.noContactPatients|Type: Array, Required: no
+results.recordsSkipped|Type: Number, Required: no
+results.patientsSkipped|Type: Number, Required: no
+results.patientsCreated|Type: Array, Required: no
+results.patientsUpdated|Type: Array, Required: no
+results.facilitiesCreated|Type: Array, Required: no
+results.errors|Type: undefined, Required: no
+resultsDescription|Type: String, Required: no
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: no
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## User
+
+Attribute|Description
+----|----
+_id|Type: ObjectID, Required: no
+name|Type: String, Required: no
+firstname|Type: String, Required: no
+lastname|Type: String, Required: no
+middlename|Type: String, Required: no
+email|Type: String, Required: no
+password|Type: String, Required: no
+passwordHashAlgorithm|Type: String, Required: no, Possible values: ["md5","sha256","sha512","bcrypt"]
+passwordUpdatedAt|Type: Date, Required: no
+safeId|Type: String, Required: no
+resetPasswordToken|Type: String, Required: no
+resetPasswordExpires|Type: Date, Required: no
+type|Type: String, Required: yes, Possible values: ["doctor","staff","patient"]
+roles|Type: Array, Required: no
+organization|Type: ObjectID, Required: no, Referencing: [Organization](#organization)
+contact|Type: undefined, Required: no
+doNotContact|Type: Boolean, Required: yes
+doNotContactMessage|Type: ObjectID, Required: no, Referencing: [Message](#message)
+groups|Type: Array, Required: no
+stripeCustomerId|Type: String, Required: no
+stripeSubscriptionId|Type: String, Required: no
+salesforceId|Type: String, Required: no
+salesforceData.provisioning|Type: Array, Required: no
+salesforceData.respectProvisioning|Type: Boolean, Required: no
+salesforceData.lifeline|Type: String, Required: no, Possible values: ["trial","converted","active","churn"]
+salesforceData.mrr|Type: Number, Required: no
+salesforceData.renewalDate|Type: Date, Required: no
+salesforceData.providers|Type: Number, Required: no
+salesforceData.specialty|Type: String, Required: no
+salesforceData.referralTrialLimit|Type: Number, Required: no
+salesforceData.recordType|Type: String, Required: no
+deleted|Type: Number, Required: yes
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+lastLogin|Type: Date, Required: no
+token|Type: String, Required: yes
+active|Type: Number, Required: yes
+master|Type: Boolean, Required: no
+language|Type: String, Required: no
+user|Type: ObjectID, Required: no, Referencing: [User](#user)
+setting|Type: ObjectID, Required: no, Referencing: [Setting](#setting)
+externalId.source|Type: String, Required: no, Possible values: ["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner","sms","voice","email","none"]
+externalId.value|Type: String, Required: no
+secondaryExternalId.source|Type: String, Required: no, Possible values: ["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner","sms","voice","email","none"]
+secondaryExternalId.value|Type: String, Required: no
+dateOfBirth.year|Type: Number, Required: no
+dateOfBirth.month|Type: Number, Required: no
+dateOfBirth.day|Type: Number, Required: no
+dateOfBirth.required|Type: Mixed, Required: no
+address|Type: String, Required: no
+city|Type: String, Required: no
+state|Type: String, Required: no
+country|Type: String, Required: yes
+postcode|Type: String, Required: no
+gender|Type: String, Required: yes, Possible values: ["male","female","unknown","nonbinary"]
+passwordResetRequired|Type: Boolean, Required: no
+twoFactorAuthSecret.key|Type: String, Required: no
+twoFactorAuthSecret.period|Type: Number, Required: no
+twoFactorAuthSecret.enabled|Type: Boolean, Required: no
+twoFactorAuthSecret.backupCodes|Type: Array, Required: no
+twoFactorAuthSecret.required|Type: Mixed, Required: no
+allowedIps|Type: Array, Required: no
+stats.oldestAppointment|Type: Date, Required: no
+avatar|Type: ObjectID, Required: no, Referencing: [FileUpload](#fileupload)
+__v|Type: Number, Required: no
+__t|Type: String, Required: no
+
+## User
+
+Attribute|Description
+----|----
+_id|Type: ObjectID, Required: no
+name|Type: String, Required: no
+firstname|Type: String, Required: no
+lastname|Type: String, Required: no
+middlename|Type: String, Required: no
+email|Type: String, Required: no
+password|Type: String, Required: no
+passwordHashAlgorithm|Type: String, Required: no, Possible values: ["md5","sha256","sha512","bcrypt"]
+passwordUpdatedAt|Type: Date, Required: no
+safeId|Type: String, Required: no
+resetPasswordToken|Type: String, Required: no
+resetPasswordExpires|Type: Date, Required: no
+type|Type: String, Required: yes, Possible values: ["doctor","staff","patient"]
+roles|Type: Array, Required: no
+organization|Type: ObjectID, Required: no, Referencing: [Organization](#organization)
+contact|Type: undefined, Required: no
+doNotContact|Type: Boolean, Required: yes
+doNotContactMessage|Type: ObjectID, Required: no, Referencing: [Message](#message)
+groups|Type: Array, Required: no
+stripeCustomerId|Type: String, Required: no
+stripeSubscriptionId|Type: String, Required: no
+salesforceId|Type: String, Required: no
+salesforceData.provisioning|Type: Array, Required: no
+salesforceData.respectProvisioning|Type: Boolean, Required: no
+salesforceData.lifeline|Type: String, Required: no, Possible values: ["trial","converted","active","churn"]
+salesforceData.mrr|Type: Number, Required: no
+salesforceData.renewalDate|Type: Date, Required: no
+salesforceData.providers|Type: Number, Required: no
+salesforceData.specialty|Type: String, Required: no
+salesforceData.referralTrialLimit|Type: Number, Required: no
+salesforceData.recordType|Type: String, Required: no
+deleted|Type: Number, Required: yes
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+lastLogin|Type: Date, Required: no
+token|Type: String, Required: yes
+active|Type: Number, Required: yes
+master|Type: Boolean, Required: no
+language|Type: String, Required: no
+user|Type: ObjectID, Required: no, Referencing: [User](#user)
+setting|Type: ObjectID, Required: no, Referencing: [Setting](#setting)
+externalId.source|Type: String, Required: no, Possible values: ["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner","sms","voice","email","none"]
+externalId.value|Type: String, Required: no
+secondaryExternalId.source|Type: String, Required: no, Possible values: ["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner","sms","voice","email","none"]
+secondaryExternalId.value|Type: String, Required: no
+dateOfBirth.year|Type: Number, Required: no
+dateOfBirth.month|Type: Number, Required: no
+dateOfBirth.day|Type: Number, Required: no
+dateOfBirth.required|Type: Mixed, Required: no
+address|Type: String, Required: no
+city|Type: String, Required: no
+state|Type: String, Required: no
+country|Type: String, Required: yes
+postcode|Type: String, Required: no
+gender|Type: String, Required: yes, Possible values: ["male","female","unknown","nonbinary"]
+passwordResetRequired|Type: Boolean, Required: no
+twoFactorAuthSecret.key|Type: String, Required: no
+twoFactorAuthSecret.period|Type: Number, Required: no
+twoFactorAuthSecret.enabled|Type: Boolean, Required: no
+twoFactorAuthSecret.backupCodes|Type: Array, Required: no
+twoFactorAuthSecret.required|Type: Mixed, Required: no
+allowedIps|Type: Array, Required: no
+stats.oldestAppointment|Type: Date, Required: no
+avatar|Type: ObjectID, Required: no, Referencing: [FileUpload](#fileupload)
+__v|Type: Number, Required: no
+__t|Type: String, Required: no
+
+## Waitlist
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+patient|Type: ObjectID, Required: yes, Referencing: [User](#user)
+provider|Type: Array, Required: no
+facility|Type: ObjectID, Required: no, Referencing: [Facility](#facility)
+appointmentType|Type: Array, Required: no
+offer|Type: ObjectID, Required: no, Referencing: [Offer](#offer)
+department|Type: String, Required: no
+status|Type: String, Required: yes, Possible values: ["waiting","in-flight","offered","confirming","accepted","pending","declined"]
+bookedBy|Type: String, Required: yes, Possible values: ["provider","department","patient","auto"]
+createdFromAppointment|Type: ObjectID, Required: no, Referencing: [Appointment](#appointment)
+futureAppointment|Type: ObjectID, Required: no, Referencing: [Appointment](#appointment)
+futureAppointmentBestMatch|Type: Boolean, Required: no
+duration|Type: Number, Required: no
+holdUntil|Type: Date, Required: no
+expireAt|Type: Date, Required: no
+createdAt|Type: Date, Required: no
+notes|Type: String, Required: no
+preferredDays|Type: Array, Required: no
+preferredTime|Type: String, Required: no, Possible values: ["before-lunch","after-lunch","anytime"]
+stats.counters.offersSent|Type: Number, Required: no
+updatedAt|Type: Date, Required: no
+deleted|Type: Number, Required: yes
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+approvedBy|Type: ObjectID, Required: no, Referencing: [User](#user)
+declinedBy|Type: ObjectID, Required: no, Referencing: [User](#user)
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
 
