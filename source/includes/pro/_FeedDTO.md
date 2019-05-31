@@ -2,7 +2,7 @@
 
 ```xml
 <feeds type="FeedDTO">
-  <id>feed_id</id>
+  <id>amount_id</id>
   <title>% по депозиту</title>
   <type>DEPOSIT_PRODUCT</type>
 </feeds>
@@ -21,3 +21,5 @@ key | comment
 --- | ---:
 LOAN_PRODUCT | график погашения кредита
 DEPOSIT_PRODUCT | график начисления процентов по депозиту
+TRANSPORT_CARD | ???
+CREDIT_PLAN | ???

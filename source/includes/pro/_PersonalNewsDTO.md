@@ -42,5 +42,12 @@ preview | string | 0..1 | укороченная версия новости
 isRead | bool | 0..1 | признак прочитанности
 url | string | 0..1 | ссылка на новость в интернет
 details | string | 0..1 | тело сообщения после открытия, функционал аналогичен ключами и структурой [pushDetails](https://doc.idamob.ru/pigeon#pushdetails)
+type | string | 0..1 | ???
+place | string | 0..1 | ???
+contentType | string | 0..1 | ???
+content | string | 0..1 | ???
+sortOrder | int | 0..1 | ???
+bgColor | string | 0..1 | ???
+actions | [PersonalNewsActionDTO](#personalnewsactiondto) | 0..1 | ???
 
-<aside class="error">используется что-то одно, либо url и details</aside>
+<aside class="error">используется что-то одно: либо url, либо details</aside>
