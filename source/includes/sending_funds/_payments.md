@@ -67,7 +67,7 @@ remote_transaction_id | string | The transaction id provided by the mobile netwo
 send_sms_message | boolean | Defaults to False. Indicates whether we should send the description as a separate sms message to the consumer. Additional SMS fees apply. See https://beyonic.com/pricing for fees information. When SMS is enabled, can use the following placeholders in the description for personalization: {firstname}, {fullname}, {phone}, {amount}
 charged_fee | decimal | The fee that was charged. It is only available for completed payments.
 
-## Creating a single Payment
+## Creating a new Payment
 
 > Sample Request:
 
@@ -270,7 +270,7 @@ callback_url | No | String | https://my.website/payments/callback | Callback URL
 metadata | No | JSON-formatted string or dictionary | "{'id':'1234','name':'Lucy'}" | Metadata allows you to add custom attributes to your payments. E.g. You can include a unique ID to identify each payment. Attributes must be key-value pairs. Both the keys and values must be strings. You can add up to 10 attributes. This data will be returned when you retrieve a payment.
 first_name | No | String | John | If this payment is to a new contact, you can include their first name. This name will only be used if the phone number is new.
 last_name | No | String | Doe | If this payment is to a new contact, you can include their last name. This name will only be used if the phone number is new.
-recipient_data | No | Dict List | [{..}, ..] | Used to send multiple payments in one request. See the section: ["Creating Multiple Payments"](#create-multiple-payments) Below for more details
+recipient_data | No | JSON-formatted list of dictionaries | [{'phonenumber': '+256712321232', 'amount': 500},...] | Used to send multiple payments in one request. See the section: ["Creating multiple Payments"](#create-multiple-payments) Below for more details
 
 **Responses**
 
@@ -284,7 +284,7 @@ recipient_data | No | Dict List | [{..}, ..] | Used to send multiple payments in
     * rejected – for payments that were rejected during the approval process. The following fields will have more information: rejected_reason, rejected_by and rejected_time
     * cancelled – for payments that were cancelled. The following fields will have more information: cancelled_reason, cancelled_by and cancelled_time
 
-## Creating Multiple Payments
+## Creating multiple Payments
 
 > Below is a sample request where each recipient has a unique amount value:
 
@@ -312,8 +312,8 @@ recipient_data | No | Dict List | [{..}, ..] | Used to send multiple payments in
     "metadata": {"id": 1234, "name": "Lucy"},
     "description": "Per diem payment",
     "recipient_data" : [
-      {"phonenumber":"+254727447101", "first_name":"Jerry", "last_name":"Shikanga", },
-      {"phonenumber":"+254739936708",}
+      {"phonenumber":"+254727447101", "first_name":"Jerry", "last_name":"Shikanga" },
+      {"phonenumber":"+254739936708" }
     ]
 }
 ```
