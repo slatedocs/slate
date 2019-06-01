@@ -66,8 +66,9 @@ updated_by | string | The ID of the user who last updated the payment
 remote_transaction_id | string | The transaction id provided by the mobile network operator. This will only be available once the payment is completed.
 send_sms_message | boolean | Defaults to False. Indicates whether we should send the description as a separate sms message to the consumer. Additional SMS fees apply. See https://beyonic.com/pricing for fees information. When SMS is enabled, can use the following placeholders in the description for personalization: {firstname}, {fullname}, {phone}, {amount}
 charged_fee | decimal | The fee that was charged. It is only available for completed payments.
+recipient_data | JSON | See the section [link Creating Multiple Payments](#create-multiple-payments) Below for more details
 
-## Creating a new Payment
+## Creating a single Payment
 
 > Sample Request:
 
@@ -282,6 +283,44 @@ last_name | No | String | Doe | If this payment is to a new contact, you can inc
     * processed_with_errors – for payments that didn’t complete successfully. The last_error field with have more information.
     * rejected – for payments that were rejected during the approval process. The following fields will have more information: rejected_reason, rejected_by and rejected_time
     * cancelled – for payments that were cancelled. The following fields will have more information: cancelled_reason, cancelled_by and cancelled_time
+
+## Creating Multiple Payments
+Beyonic now supports creation of multiple payments via API. When multiple payments are created via one API call, they are in one BatchPaymentSchedule making it easier for you to perform bulk operations such as approval. To create a bulk payment, you have to include an
+extra field recipient_data in the request payload. recipient_data is of type json list of json dictionaries each containing the following fields :
+first_name, last_name, phonenumber, amount and description. Phonenumber is a mandatory field. Amount can be nullable, but if missing then it must be set in the main payload. In this case each user will be paid the same amount in the payload. If provided in the recipient_data dictionaries then each user will be paid the amounts specified in the recipient_data.
+
+
+> Below is a sample request where each recipient has a unique amount value:
+
+```json
+{
+    "currency": "KES",
+    "account": "1",
+    "payment_type": "money",
+    "metadata": {"id": 1234, "name": "Lucy"},
+    "recipient_data" : "[
+      {"phonenumber":"+254727447101", "first_name":"Jerry", "last_name":"Shikanga", "amount":500, "description":"Per diem payment"},
+      {"phonenumber":"+254739936708", "amount":30000, "description":"Salary for January"}
+    ]"
+}
+```
+
+> Below is a sample request where a single amount value is to be applied to each recipient:
+
+```json
+{
+    "amount":500,
+    "currency": "KES",
+    "account": "1",
+    "payment_type": "money",
+    "metadata": {"id": 1234, "name": "Lucy"},
+    "description": "Per diem payment",
+    "recipient_data" : "[
+      {"phonenumber":"+254727447101", "first_name":"Jerry", "last_name":"Shikanga", },
+      {"phonenumber":"+254739936708",}
+    ]"
+}
+```
 
 ## Retrieving a single Payment
 
