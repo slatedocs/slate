@@ -62,7 +62,8 @@ Including this SDK exposes `window.createForm` function which takes in below par
 | CHANNEL_NAME | string | null | true | CHANNEL NAME given by anarock team |
 | CAMPAIGN_ID | string | null | true | CAMPAIGN ID given by anarock team |
 | ENVIRONMENT | string | 'staging' | true | possible values are `staging` or `production` |
-| options | object | null | - | possible keys are `showRemarks` or `remarksTitle`, `show_label`, `show_placeholder`, `contacting_authority`, `show_thankyou`, `dnc_checked`, `projects`, `skipMandatoryEmail` , `selectedProject`,  `default_country`|
+| requireOTP | boolean | false | - | possible values are `true` or `false` |
+| options | object | null | - | possible keys are `showRemarks` or `remarksTitle`, `show_label`, `show_placeholder`, `contacting_authority`, `show_thankyou`, `dnc_checked`, `projects`, `skipMandatoryEmail` , `selectedProject`,  `default_country`, `host`|
 
 
 In the `options` object 
@@ -82,6 +83,8 @@ In the `options` object
 `show_thankyou` is a boolean to check if after success thank you screen to be shown or not. default value is `true`
 
 `dnc_checked` is a boolean to autocheck the DNC checkbox. default value is `false`
+
+`host` is a string of your own domain if anarock system is deployed at your end locally. 
 
  `projects` is an array of Objects of the following signature `[{name: '', campaign_id: ''}]` pass this to show project dropdown in the form.
  
@@ -133,6 +136,49 @@ You can pass `dnc_checked` as `true` in the options to set the checkbox by defau
     }]
  </script>
 ```
+
+### Custom host 
+
+By default request are made to anarock database only. in case you have anarock setup deployed locally then you can change your host by passing it in the options as 
+
+```html
+<script>
+    var form_container = document.getElementById('anarock-form')
+    window.anarockForms = [{
+      container: form_container,
+      key: "API_KEY",
+      channel_name: "CHANNEL_NAME",
+      campaign_id: "CAMPAIGN_ID",
+      env: ENVIRONMENT,
+      options:  { host: 'yourdomain.com' } // options as described below
+    }]
+ </script>
+```
+
+### Submitting Leads with OTP only support
+
+By default leads are submitted without OTP via the form, to enable OTP on particular campaign form, you need to pass the parameter `requireOTP` as true while defining the form. 
+
+Once this option is set to true, you need to make sure that all campaign ids are marked as OTP verified campaigns only. Confirm this with your IT team or Anarock Team before making this live. 
+
+```html
+<script>
+    var form_container = document.getElementById('anarock-form')
+    window.anarockForms = [{
+      container: form_container,
+      key: "API_KEY",
+      requireOTP: true,
+      channel_name: "CHANNEL_NAME",
+      campaign_id: "CAMPAIGN_ID",
+      env: ENVIRONMENT,
+      options:  { host: 'yourdomain.com' } // options as described below
+    }]
+ </script>
+```
+
+
+
+
 
 ### Adding Projects Dropdown
 
