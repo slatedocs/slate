@@ -223,13 +223,7 @@ When you have passed `projects` in options, you may also pass `selectedProject` 
 
 ### Change Projects DropDown Options and Selected Project in Dropdown dynamically
 
-To cater to use cases where you might have to change selected project based on utm parameters, two objects are exposed
-
-`window.createdAnarockForms` this is an Object with keys as `id` of the containers. If id is not present `class_` index of the form in the anarockForms array is used as key e.g. `class_0` , `class_1`
-
-`window.createdAnarockForms` contains key `form` against each entry and methods `setProjects` or `setSelectedProject`
- can be used.
- 
+To cater to use cases where you might have to change selected project or list of projects. 
  if below is your code
  
  ```html
@@ -249,25 +243,7 @@ To cater to use cases where you might have to change selected project based on u
  </script>
 ```
 
-and now you want to change the selected project. You can do as below
-
-```js
-window.createdAnarockForms['anarock-form'].form.setSelectedProject({name: 'Project2', campaign_id: 'project-2'})
-```
-the campaign_id in the selectedProjet object will superceed the default campaign_id for submission of lead.
-
-of you can change the options in this form as 
-
-```js
-window.createdAnarockForms['anarock-form'].form.setProjects([{name: 'Project3', campaign_id: 'project-3'}, {name: 'Project4', campaign_id: 'project-4'}])
-```
-
-This way you can control what is default selected value show in project selection in form and also you can control that using the above methods
-
-If you want to remove the projects dropdown just call 
-```js
-window.createdAnarockForms['anarock-form'].form.setProjects(null)
-```
+and now you want to change the selected project. You can modify the value in `window.anarockForms` and call `window.initAnarockForms()`. You can use this method to refresh any property.
 
 ### Thank you page redirection
 
