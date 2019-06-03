@@ -245,6 +245,15 @@ To cater to use cases where you might have to change selected project or list of
 
 and now you want to change the selected project. You can modify the value in `window.anarockForms` and call `window.initAnarockForms()`. You can use this method to refresh any property.
 
+e.g. 
+```
+  window.anarockForms[0].options.selectedProject = {
+    name: "Project2",
+    campaign_id: "project-2"
+  };
+  window.initAnarockForms()
+```
+
 ### Thank you page redirection
 
 `show_thankyou` flag in options can be used to show a thank you message in place of form.
