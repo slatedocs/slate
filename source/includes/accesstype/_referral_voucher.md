@@ -22,4 +22,4 @@ $ curl -H "X-SUBAUTH: <auth-token>" https://www.accesstype.com/api/v1/subscriber
 
 This API will return the referral voucher code for a user.
 
-It will accept the primary identity via URL parameters, and will also accept query parameters `alternate_provider`, `alternate_identitiy` and `name`.
+It will accept the primary identity via URL parameters, and will also accept query parameters `alternate_provider`, `alternate_identity` and `name`.

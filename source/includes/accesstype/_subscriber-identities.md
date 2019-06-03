@@ -2,7 +2,7 @@
 
 A subscriber is identified by a pair of a provider and an identity (such as [email,dev@quintype.com], or [facebook, fb-id]). A subscriber can have many identities. A provider is an external system. It can be one of [email, quintype, facebook, twitter].
 
-Most APIs will accept the primary identity via URL parameters, and will also accept query parameters `alternate_provider` and `alternate_identitiy`, which will be used in case the user is not found at the primary identity.
+Most APIs will accept the primary identity via URL parameters, and will also accept query parameters `alternate_provider` and `alternate_identity`, which will be used in case the user is not found at the primary identity.
 
 ## LIST Subscriber Identities for a user
 
