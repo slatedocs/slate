@@ -123,6 +123,8 @@ Attributes | &nbsp;
 `optional`<br/>*boolean* | Specifies if the policy section is required or not.
 `entity`<br/> *Object* | The service connection entity which includes a string to string map of the ServiceConnectionPolicy::name to ServiceConnectionPolicy::value
 
+<!-------------------- UPDATE CONNECTION POLICIES -------------------->
+
 ### Update connection policies
 
 `PUT /services/connections/:id/policies`
