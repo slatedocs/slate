@@ -3445,6 +3445,200 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
+# customWebStyles
+
+## Post customWebStyle
+
+`POST` /api/customWebStyles/
+
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/customWebStyles/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
+```
+
+> The above command returns JSON structured like this: 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## Get customWebStyles
+
+`GET` /api/customWebStyles/
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/customWebStyles/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns JSON structured like this: 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## Delete by id
+
+`DELETE` /api/customWebStyles/:id
+
+```shell
+#shell command:
+curl -X DELETE \
+http://localhost:8002/api/customWebStyles/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
+```
+
+> The above command returns JSON structured like this: 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## Get by id
+
+`GET` /api/customWebStyles/:id
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/customWebStyles/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns JSON structured like this: 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## Get publish
+
+`GET` /api/customWebStyles/:id/publish
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/customWebStyles/:id/publish?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns JSON structured like this: 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
 # demoUsers
 
 ## Post demoUser
@@ -3664,6 +3858,82 @@ xxx | yyy
 #shell command:
 curl \
 http://localhost:8002/api/diagnoses/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns JSON structured like this: 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+# docs
+
+## Post doc
+
+`POST` /api/docs/
+
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/docs/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
+```
+
+> The above command returns JSON structured like this: 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## Get docs
+
+`GET` /api/docs/
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/docs/?q=xyz \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN"
 ```
