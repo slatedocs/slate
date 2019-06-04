@@ -42,10 +42,10 @@ You can now see the docs at http://localhost:4567.
 
 If you'd prefer to use Docker, instructions are available [in the wiki](https://github.com/lord/slate/wiki/Docker).
 
-### Document the APIs
+### Locally make changes to the documentation
 
 1. Make sure  you're running the docs locally (see previous section) and it is available at http://localhost:4567/ .
-2. Make a GET request to `rest-service/api/docs`.
+2. Make a GET request to `rest-service/api/docs`. It should output the newly created endpoints and models only.
 3. Edit /source/index.html.md with the output returned by that endpoint.
 4. Commit the changes above.
 5. Run 
@@ -53,10 +53,15 @@ If you'd prefer to use Docker, instructions are available [in the wiki](https://
 cd /path/to/rest-service-docs/
 bundle exec middleman build --clean
 ```
-
 The command above generates the static docs in the `dist` folder, in case you want to manually upload it somewhere.
 
-6. Run the script `deploy.sh` to build the static docs and push them to the `gh-pages` branch. That branch may be used to publish a Gihub Page with the docs. That branch may also be included as a submodule inside `rest-service`, in a subfolder named `docs` (for instance):
+### Generate and commit the documentation
+
+Run the script `deploy.sh` to build the static docs and push them to the `gh-pages` branch.
+
+That branch may be used to publish a Gihub Page with the docs. 
+
+It may also be included as a submodule inside `rest-service`, in a subfolder named `docs` (for instance):
 ```
 cd /path/to/rest-service
 git submodule add -b gh-pages git@github.com:lumahealthhq/rest-service-docs.git
@@ -64,6 +69,14 @@ git push
 ```
 
 The `dist` folder should not be committed to the repository.
+
+### Deploy the documentation to AWS
+
+Upload the `dist` folder (or the contents of the `gh-pages` branch) generated above to AWS S3.
+
+### Access the documentation
+
+https://api-docs.lumahealth.io/
 
 Troubleshooting
 --------------------
