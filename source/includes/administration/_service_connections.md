@@ -72,6 +72,10 @@ curl "https://cloudmc_endpoint/v1/services/connections/03bc22bd-adc4-46b8-988d-a
    -H "MC-Api-Key: your_api_key"
 ```
 
+Query Parameters | &nbsp;
+---------- | -----
+`section`<br/>*string* | The name of the policy section to load. Only the policy section matching the section name provided will return all required FormElements and the connection entity.
+
 ```json
 {
   "data":[{
@@ -122,6 +126,7 @@ Attributes | &nbsp;
 `formElements`<br/>*Array* | The FormElements returned by the policy section. Form elements are only returned for a given section if the query param `section` matches the name of a policy section.  
 `optional`<br/>*boolean* | Specifies if the policy section is required or not.
 `entity`<br/> *Object* | The service connection entity which includes a string to string map of the ServiceConnectionPolicy::name to ServiceConnectionPolicy::value
+
 
 <!-------------------- UPDATE CONNECTION POLICIES -------------------->
 
