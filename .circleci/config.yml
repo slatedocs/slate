@@ -4,4 +4,5 @@ jobs:
     machine: true
     steps:
       - checkout
+      - run: bundle install
       - run: ./deploy.sh
