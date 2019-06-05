@@ -3,4 +3,5 @@ jobs:
   build:
     machine: true
     steps:
+      - checkout
       - run: ./deploy.sh
