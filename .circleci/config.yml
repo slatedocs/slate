@@ -1,0 +1,5 @@
+version: 2
+jobs:
+  build:
+    steps:
+      - ./deploy.sh
