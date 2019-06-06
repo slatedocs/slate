@@ -10,7 +10,7 @@ Resource commitments allow you to set specific commitment levels on cloud resour
 
 ```shell
 # Retrieve visible environments
-curl "https://cloudmc_endpoint/v1/resource_commitments" \
+curl "https://cloudmc_endpoint/v2/resource_commitments" \
    -H "MC-Api-Key: your_api_key"
 
 # Response body example
@@ -102,7 +102,7 @@ Attributes | &nbsp;
 ```shell
 # Retrieve visible environment
 
-curl "https://cloudmc_endpoint/v1/resource_commitments/[resource_commitments-id]" \
+curl "https://cloudmc_endpoint/v2/resource_commitments/[resource_commitments-id]" \
    -H "MC-Api-Key: your_api_key"
 
 # Response body example
@@ -188,7 +188,7 @@ Attributes | &nbsp;
 ```shell
 # Create an environment
 
-curl -X POST "https://cloudmc_endpoint/v1/resource_commitments" \
+curl -X POST "https://cloudmc_endpoint/v2/resource_commitments" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "[request_body]"
@@ -259,7 +259,7 @@ The responses' `data` field contains the created [resource-commitment](#administ
 
 ```shell
 # Update an environment
-curl -X PUT "https://cloudmc_endpoint/v1/resource_commitments/[resource_commitments-id]" \
+curl -X PUT "https://cloudmc_endpoint/v2/resource_commitments/[resource_commitments-id]" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "[request_body]"
@@ -335,7 +335,7 @@ The responses' `data` field contains the created [resource-commitment](#administ
 ```shell
 # Delete an environment
 
-curl "https://cloudmc_endpoint/v1/resource_commitments/[resource_commitments-id]" \
+curl "https://cloudmc_endpoint/v2/resource_commitments/[resource_commitments-id]" \
    -X DELETE -H "MC-Api-Key: your_api_key"
 
 ```
