@@ -59,6 +59,8 @@ includes:
   - gcp
   - gcp/instances
   - gcp/disks
+  - masterportal
+  - masterportal/applications
 
 search: true
 ---
