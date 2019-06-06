@@ -28,7 +28,7 @@ jobs:
     working_directory: ~/lumahealthhq/rest-service-docs
     steps:
     - checkout
-    - run: sudo apt-get install nodejs
+    - run: sudo apt-get install -y nodejs awscli
     - run: sudo gem install bundler -v 1.15.4
     - run: bundle install
     - run: bundle exec middleman build --clean
