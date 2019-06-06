@@ -334,7 +334,7 @@ Destroy an existing instance.
 #### Change machine type
 A machine type determine the number of vCPUs and the size of the memory allocated to new [instances](#gcp-instances).
 
-```
+```shell
 curl -X POST \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
@@ -349,15 +349,7 @@ curl -X POST \
    "memoryInGB": "4.5"
 }
 ```
-```
-# Response body example
-```
-```json
-{
-  "taskId": "c92b6fa5-d32a-4484-a433-31ca90c2ed8b",
-  "taskStatus": "PENDING"
-}
-```
+
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=resize</code>
 
 Updates the number of vCPUs and memory of an existing instance.
@@ -380,3 +372,34 @@ Optional | &nbsp;
 ------ | -----------
 `cpuCount`<br/>*string* | Updated number of vCPUs of instance
 `memoryInGB`<br/>*string* | Updated memory of instance
+
+<!-------------------- START AN INSTANCE -------------------->
+
+#### Start an instance
+
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/instances/6564997542943928188?operation=start"
+
+```
+
+ <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=start</code>
+
+Start an existing instance. The instance must be in the *TERMINATED* status for this operation to work.
+
+<!-------------------- STOP AN INSTANCE -------------------->
+
+#### Stop an instance
+
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/instances/6564997542943928188?operation=stop"
+```
+
+ <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=stop</code>
+
+ Stop an existing instance. The instance must be in either the *RUNNING* or *STOPPING* status for this operation to work. The default behavior is that the instance (denote by **id**) will be stopped gracefully.

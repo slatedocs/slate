@@ -118,7 +118,7 @@ Response body:
 ```
 ```json
 {
-   "data":     {
+   "data": {
       "archiveSizeBytes": "16469314560",
       "creationTimestamp": "2019-05-15T19:01:21.060-07:00",
       "description": "CentOS, CentOS, 7, x86_64 built on 20190515",
