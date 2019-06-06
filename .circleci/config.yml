@@ -1,5 +1,4 @@
-version: 2
-# See https://circleci.com/docs/2.0/deployment-integrations/#aws-s3-orb
+version: 2.1
 orbs:
   aws-s3: circleci/aws-s3@1.0.10
 jobs:
@@ -55,7 +54,7 @@ jobs:
           --cache-control "max-age=86400"
         overwrite: true
 workflows:
-  version: 2
+  version: 2.1
   main:
     jobs:
       - check_dev_master_pr
