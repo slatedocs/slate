@@ -3070,6 +3070,51 @@ Required details:
 
 
 
+## Create Global USD Recipient (SWIFT)
+
+> Example Request (USD):
+
+```shell
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "USD",
+          "type": "swift_code",
+          "details": {
+           "legalType": "PRIVATE",
+           "swiftCode" : "BUKBGB22",
+           "accountNumber": "12345678",
+           "address" : {
+              "country": "GB",
+              "city": "London",
+              "postCode": "10025",
+              "firstLine": "50 Branson Ave"
+             }
+           }
+        }'
+```
+
+
+Send USD payments globally via SWIFT. 
+
+Private and business recipients are supported. Max 1.6 Million USD per payment.
+
+
+Recipient type = *'swift_code'*
+
+Required details: 
+
+* swiftCode     = SWIFT code (or BIC) used to identify banks and financial institutions globally
+* accountNumber = Recipient bank account number
+* address       = Recipient address
+
+
+
+
+
 
 ## Create VND Recipient
 
