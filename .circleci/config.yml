@@ -32,7 +32,7 @@ jobs:
     - run: sudo gem install bundler -v 1.15.4
     - run: bundle install
     - run: bundle exec middleman build --clean
-    - run: aws s3 sync dist/ s3://lumahealth-api-docs --acl public-read
+    - run: aws s3 sync build/ s3://lumahealth-api-docs --acl public-read
   deploy-s3:
     docker:
       - image: circleci/node:10-stretch-browsers

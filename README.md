@@ -53,7 +53,7 @@ If you'd prefer to use Docker, instructions are available [in the wiki](https://
 cd /path/to/rest-service-docs/
 bundle exec middleman build --clean
 ```
-The command above generates the static docs in the `dist` folder, in case you want to manually upload it somewhere.
+The command above generates the static docs in the `build` folder, in case you want to manually upload it somewhere.
 
 ### Generate and commit the documentation
 
@@ -68,11 +68,11 @@ git submodule add -b gh-pages git@github.com:lumahealthhq/rest-service-docs.git
 git push
 ```
 
-The `dist` folder should not be committed to the repository.
+The `build` folder should not be committed to the repository.
 
 ### Deploy the documentation to AWS
 
-Upload the `dist` folder (or the contents of the `gh-pages` branch) generated above to AWS S3.
+Upload the `build` folder (or the contents of the `gh-pages` branch) generated above to AWS S3.
 
 ### Access the documentation
 
