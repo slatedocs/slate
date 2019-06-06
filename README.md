@@ -10,27 +10,6 @@
 
 <p align="center"><em>The example above was created with Slate. Check it out at <a href="https://lord.github.io/slate">lord.github.io/slate</a>.</em></p>
 
-Features
-------------
-
-* **Clean, intuitive design** — With Slate, the description of your API is on the left side of your documentation, and all the code examples are on the right side. Inspired by [Stripe's](https://stripe.com/docs/api) and [PayPal's](https://developer.paypal.com/webapps/developer/docs/api/) API docs. Slate is responsive, so it looks great on tablets, phones, and even in print.
-
-* **Everything on a single page** — Gone are the days when your users had to search through a million pages to find what they wanted. Slate puts the entire documentation on a single page. We haven't sacrificed linkability, though. As you scroll, your browser's hash will update to the nearest header, so linking to a particular point in the documentation is still natural and easy.
-
-* **Slate is just Markdown** — When you write docs with Slate, you're just writing Markdown, which makes it simple to edit and understand. Everything is written in Markdown — even the code samples are just Markdown code blocks.
-
-* **Write code samples in multiple languages** — If your API has bindings in multiple programming languages, you can easily put in tabs to switch between them. In your document, you'll distinguish different languages by specifying the language name at the top of each code block, just like with GitHub Flavored Markdown.
-
-* **Out-of-the-box syntax highlighting** for [over 100 languages](https://github.com/jneen/rouge/wiki/List-of-supported-languages-and-lexers), no configuration required.
-
-* **Automatic, smoothly scrolling table of contents** on the far left of the page. As you scroll, it displays your current position in the document. It's fast, too. We're using Slate at TripIt to build documentation for our new API, where our table of contents has over 180 entries. We've made sure that the performance remains excellent, even for larger documents.
-
-* **Let your users update your documentation for you** — By default, your Slate-generated documentation is hosted in a public GitHub repository. Not only does this mean you get free hosting for your docs with GitHub Pages, but it also makes it simple for other developers to make pull requests to your docs if they find typos or other problems. Of course, if you don't want to use GitHub, you're also welcome to host your docs elsewhere.
-
-* **RTL Support** Full right-to-left layout for RTL languages such as Arabic, Persian (Farsi), Hebrew etc.
-
-Getting started with Slate is super easy! Simply fork this repository and follow the instructions below. Or, if you'd like to check out what Slate is capable of, take a look at the [sample docs](http://lord.github.io/slate).
-
 Getting Started with Slate
 ------------------------------
 
@@ -42,11 +21,12 @@ You're going to need:
  - **Ruby, version 2.3.1 or newer**
  - **Bundler** — If Ruby is already installed, but the `bundle` command doesn't work, just run `gem install bundler` in a terminal.
 
-### Getting Set Up
+### Run the docs locally
 
-1. Fork this repository on GitHub.
-2. Clone *your forked repository* (not our original one) to your hard drive with `git clone https://github.com/YOURUSERNAME/slate.git`
-3. `cd slate`
+This is a Forked repository from Slate's GitHub repo.
+1. Clone *this repository* to your hard drive
+2. `cd /path/to/rest-service-docs/`
+3. Checkout the master branch (important!)
 4. Initialize and start Slate. You can either do this locally, or with Vagrant:
 
 ```shell
@@ -58,58 +38,63 @@ bundle exec middleman server
 vagrant up
 ```
 
-You can now see the docs at http://localhost:4567. Whoa! That was fast!
-
-Now that Slate is all set up on your machine, you'll probably want to learn more about [editing Slate markdown](https://github.com/lord/slate/wiki/Markdown-Syntax), or [how to publish your docs](https://github.com/lord/slate/wiki/Deploying-Slate).
+You can now see the docs at http://localhost:4567.
 
 If you'd prefer to use Docker, instructions are available [in the wiki](https://github.com/lord/slate/wiki/Docker).
 
-### Note on JavaScript Runtime
+### Locally make changes to the documentation
 
-For those who don't have JavaScript runtime or are experiencing JavaScript runtime issues with ExecJS, it is recommended to add the [rubyracer gem](https://github.com/cowboyd/therubyracer) to your gemfile and run `bundle` again.
+1. Make sure  you're running the docs locally (see previous section) and it is available at http://localhost:4567/ .
+2. Make a GET request to `rest-service/api/docs`. It should output the newly created endpoints and models only.
+3. Edit /source/index.html.md with the output returned by that endpoint.
+4. Commit the changes above.
+5. Run 
+```
+cd /path/to/rest-service-docs/
+bundle exec middleman build --clean
+```
+The command above generates the static docs in the `dist` folder, in case you want to manually upload it somewhere.
 
-Companies Using Slate
----------------------------------
+### Generate and commit the documentation
 
-* [NASA](https://api.nasa.gov)
-* [Sony](http://developers.cimediacloud.com)
-* [Best Buy](https://bestbuyapis.github.io/api-documentation/)
-* [Travis-CI](https://docs.travis-ci.com/api/)
-* [Greenhouse](https://developers.greenhouse.io/harvest.html)
-* [Woocommerce](http://woocommerce.github.io/woocommerce-rest-api-docs/)
-* [Dwolla](https://docs.dwolla.com/)
-* [Clearbit](https://clearbit.com/docs)
-* [Coinbase](https://developers.coinbase.com/api)
-* [Parrot Drones](http://developer.parrot.com/docs/bebop/)
-* [Scale](https://docs.scaleapi.com/)
+Run the script `deploy.sh` to build the static docs and push them to the `gh-pages` branch.
 
-You can view more in [the list on the wiki](https://github.com/lord/slate/wiki/Slate-in-the-Wild).
+That branch may be used to publish a Gihub Page with the docs. 
 
-Questions? Need Help? Found a bug?
+It may also be included as a submodule inside `rest-service`, in a subfolder named `docs` (for instance):
+```
+cd /path/to/rest-service
+git submodule add -b gh-pages git@github.com:lumahealthhq/rest-service-docs.git
+git push
+```
+
+The `dist` folder should not be committed to the repository.
+
+### Deploy the documentation to AWS
+
+Upload the `dist` folder (or the contents of the `gh-pages` branch) generated above to AWS S3.
+
+### Access the documentation
+
+https://api-docs.lumahealth.io/
+
+Troubleshooting
 --------------------
 
-If you've got questions about setup, deploying, special feature implementation in your fork, or just want to chat with the developer, please feel free to [start a thread in our Spectrum community](https://spectrum.chat/slate)!
+### `gem install` not responding
 
-Found a bug with upstream Slate? Go ahead and [submit an issue](https://github.com/lord/slate/issues). And, of course, feel free to submit pull requests with bug fixes or changes to the `dev` branch.
+This may be because wget prioritizes ipv6, but repo requires IPv4.
+Solution: edit /etc/gai.conf and add:
+```
+precedence 2a04:4e42::0/32 5
+```
 
-Contributors
---------------------
+### Fix "can't find header files for ruby"
 
-Slate was built by [Robert Lord](https://lord.io) while interning at [TripIt](https://www.tripit.com/).
+* Linux: sudo apt-get install ruby2.5-dev
 
-Thanks to the following people who have submitted major pull requests:
+### Fix "can't find gem bundler (>= 0.a)"
 
-- [@chrissrogers](https://github.com/chrissrogers)
-- [@bootstraponline](https://github.com/bootstraponline)
-- [@realityking](https://github.com/realityking)
-- [@cvkef](https://github.com/cvkef)
+Open Gemfile.lock, check which version it was BUNDLED WITH (ex.: 1.15.4) and run:
+* gem install bundler -v 1.15.4
 
-Also, thanks to [Sauce Labs](http://saucelabs.com) for sponsoring the development of the responsive styles.
-
-Special Thanks
---------------------
-- [Middleman](https://github.com/middleman/middleman)
-- [jquery.tocify.js](https://github.com/gfranko/jquery.tocify.js)
-- [middleman-syntax](https://github.com/middleman/middleman-syntax)
-- [middleman-gh-pages](https://github.com/edgecase/middleman-gh-pages)
-- [Font Awesome](http://fortawesome.github.io/Font-Awesome/)

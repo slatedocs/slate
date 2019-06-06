@@ -1,0 +1,61 @@
+version: 2.1
+orbs:
+  aws-s3: circleci/aws-s3@1.0.10
+jobs:
+  check_dev_master_pr:
+    docker:
+      - image: circleci/node:10-stretch-browsers
+    working_directory: ~/lumahealthhq/rest-service-docs
+    environment:
+      CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
+      CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
+      NODE_ENV: default
+    steps:
+    - run: |
+        if [ $(echo "$CIRCLE_BRANCH" | grep -c "initial-docs") -gt 0 ] || [ $(echo "$CIRCLE_BRANCH" | grep -c "master") -gt 0 ] || [ $(echo "$CI_PULL_REQUEST" | grep -c "pull") -gt 0 ]; then
+          curl --user $CIRCLE_API_PROJECT_TOKEN: \
+            --data build_parameters[CIRCLE_JOB]=build-deploy-s3 \
+            --data revision=$CIRCLE_SHA1 \
+            https://circleci.com/api/v1.1/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/tree/$CIRCLE_BRANCH
+        elif [ $(echo "$CIRCLE_BRANCH" | grep -c "gh-pages") -gt 0 ]; then
+            --data build_parameters[CIRCLE_JOB]=deploy-s3 \
+            --data revision=$CIRCLE_SHA1 \
+            https://circleci.com/api/v1.1/project/github/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/tree/$CIRCLE_BRANCH
+        else
+          exit 0;
+        fi
+  build-deploy-s3:
+    docker:
+      - image: circleci/ruby:2.6-stretch
+    working_directory: ~/lumahealthhq/rest-service-docs
+    steps:
+    - checkout
+    - run: sudo gem install bundler -v 1.15.4
+    - run: bundle install
+    - run: bundle exec middleman build --clean
+    - aws-s3/sync:
+        from: dist
+        to: 's3://lumahealth-api-docs/'
+        arguments: |
+          --acl public-read \
+          --cache-control "max-age=86400"
+        overwrite: true
+  deploy-s3:
+    docker:
+      - image: circleci/node:10-stretch-browsers
+    working_directory: ~/lumahealthhq/rest-service-docs
+    steps:
+    - checkout
+    - aws-s3/sync:
+        from: .
+        to: 's3://lumahealth-api-docs/'
+        arguments: |
+          --acl public-read \
+          --cache-control "max-age=86400"
+        overwrite: true
+workflows:
+  version: 2.1
+  main:
+    jobs:
+      - check_dev_master_pr
+
