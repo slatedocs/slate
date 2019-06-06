@@ -1,6 +1,4 @@
-version: 2.1
-orbs:
-  aws-s3: circleci/aws-s3@1.0.10
+version: 2
 jobs:
   check_dev_master_pr:
     docker:
@@ -33,26 +31,14 @@ jobs:
     - run: sudo gem install bundler -v 1.15.4
     - run: bundle install
     - run: bundle exec middleman build --clean
-    - aws-s3/sync:
-        from: dist
-        to: 's3://lumahealth-api-docs/'
-        arguments: |
-          --acl public-read \
-          --cache-control "max-age=86400"
-        overwrite: true
+    - run: aws s3 sync dist/ s3://lumahealth-api-docs --acl public-read
   deploy-s3:
     docker:
       - image: circleci/node:10-stretch-browsers
     working_directory: ~/lumahealthhq/rest-service-docs
     steps:
     - checkout
-    - aws-s3/sync:
-        from: .
-        to: 's3://lumahealth-api-docs/'
-        arguments: |
-          --acl public-read \
-          --cache-control "max-age=86400"
-        overwrite: true
+    - run: aws s3 sync ./ s3://lumahealth-api-docs --acl public-read
 workflows:
   version: 2
   main:
