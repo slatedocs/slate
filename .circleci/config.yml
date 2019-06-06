@@ -10,7 +10,7 @@ jobs:
       NODE_ENV: default
     steps:
     - run: |
-        if [ $(echo "$CIRCLE_BRANCH" | grep -c "initial-docs") -gt 0 ] || [ $(echo "$CIRCLE_BRANCH" | grep -c "master") -gt 0 ] || [ $(echo "$CI_PULL_REQUEST" | grep -c "pull") -gt 0 ]; then
+        if [ $(echo "$CIRCLE_BRANCH" | grep -c "dev") -gt 0 ] || [ $(echo "$CIRCLE_BRANCH" | grep -c "master") -gt 0 ] || [ $(echo "$CI_PULL_REQUEST" | grep -c "pull") -gt 0 ]; then
           curl --user $CIRCLE_API_PROJECT_TOKEN: \
             --data build_parameters[CIRCLE_JOB]=build-deploy-s3 \
             --data revision=$CIRCLE_SHA1 \
