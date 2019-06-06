@@ -285,7 +285,7 @@ curl -X POST \
    -d "request_body" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/instances"
 
-# Request should look like this
+# Request example:
 ```
 ```json
 {
@@ -302,7 +302,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances</code>
 
-Creates a new instance
+Create a new instance
 
 Required | &nbsp;
 ------- | -----------
@@ -352,7 +352,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=resize</code>
 
-Updates the number of vCPUs and memory of an existing instance.
+Update the number of vCPUs and memory of an existing instance.
 
 <aside class="notice">
 The maximum number of vCPUs allowed for a machine type is determined by the zone where the instance will be hosted.
