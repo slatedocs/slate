@@ -20,7 +20,7 @@ GLOBAL | Applies role on all organizations | &nbsp;
 `GET /users/:id/additional_roles`
 
 ```shell
-# Update an environment
+# Get additional role of user
 curl -X GET "https://cloudmc_endpoint/v2/users/:id/additional_roles" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json"
@@ -72,7 +72,7 @@ Attributes | &nbsp;
 `POST /users/:id/additional_roles`
 
 ```shell
-# Update an environment
+# Assign an additional role to user
 curl -X POST "https://cloudmc_endpoint/v2/users/:id/additional_roles" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json"
@@ -105,7 +105,7 @@ You will need to have `Admin users` permission to execute this operation.
 `DELETE /users/:user_id/additional_roles/:id`
 
 ```shell
-# Update an environment
+# Remove an additional role from user
 curl -X DELETE "https://cloudmc_endpoint/v2/users/:user_id/additional_roles/:id" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json"

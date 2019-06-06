@@ -292,7 +292,7 @@ You will need to either be owner on the environment or have the `Admin environme
 `POST /environments/:id/members`
 
 ```shell
-# Update an environment
+# Add an environment member
 curl -X POST "https://cloudmc_endpoint/v2/environments/[environment-id]/members" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
@@ -323,7 +323,7 @@ You will need to either be owner on the environment or have the `Admin environme
 `PUT /environments/:env_id/members/:user_id`
 
 ```shell
-# Update an environment
+# Update an environment member
 curl -X PUT "https://cloudmc_endpoint/v2/environments/[environment-id]/members/[user-id]" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
@@ -351,7 +351,7 @@ You will need to either be owner on the environment or have the `Admin environme
 `DELETE /environments/:env_id/members/:user_id`
 
 ```shell
-# Update an environment
+# Remove a member from an environment
 curl -X DELETE "https://cloudmc_endpoint/v2/environments/[environment-id]/members/[user-id]" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" 
@@ -365,8 +365,8 @@ You will need to either be owner on the environment or have the `Admin environme
 `PUT /environments/:id/membership`
 
 ```shell
-# Update an environment
-curl -X POST "https://cloudmc_endpoint/v2/environments/[environment-id]/membership" \
+# Update default environment membership
+curl -X PUT "https://cloudmc_endpoint/v2/environments/[environment-id]/membership" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "[request_body]"
