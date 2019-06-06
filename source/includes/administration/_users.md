@@ -11,7 +11,7 @@ A user account allows users to authenticate to an [organization](#administration
 ```shell
 # Retrieve visible users
 
-curl "https://cloudmc_endpoint/v1/users" \
+curl "https://cloudmc_endpoint/v2/users" \
    -H "MC-Api-Key: your_api_key"
 
 # Response body example
@@ -71,7 +71,7 @@ Attributes | &nbsp;
 ```shell
 # Retrieve visible user
 
-curl "https://cloudmc_endpoint/v1/users/[user-id]" \
+curl "https://cloudmc_endpoint/v2/users/[user-id]" \
    -H "MC-Api-Key: your_api_key"
 
 # Response body example
@@ -145,7 +145,7 @@ Attributes | &nbsp;
 ```shell
 # Create a user
 
-curl -X POST "https://cloudmc_endpoint/v1/users" \
+curl -X POST "https://cloudmc_endpoint/v2/users" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "[request-body]"
@@ -204,7 +204,7 @@ The responses' `data` field contains the created [user](#administration-users) w
 ```shell
 # Create a user
 
-curl -X PUT "https://cloudmc_endpoint/v1/users/[user-id]" \
+curl -X PUT "https://cloudmc_endpoint/v2/users/[user-id]" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "[request-body]"
@@ -256,7 +256,7 @@ The responses' `data` field contains the updated [user](#administration-users).
 ```shell
 # Delete a user
 
-curl "https://cloudmc_endpoint/v1/users/[user-id]" \
+curl "https://cloudmc_endpoint/v2/users/[user-id]" \
    -X DELETE -H "MC-Api-Key: your_api_key"
 
 ```
@@ -275,7 +275,7 @@ Delete a specific user. You will need the `Delete an existing user` permission t
 ```shell
 # Unlock a user that was locked from the system
 
-curl "https://cloudmc_endpoint/v1/users/[user-id]/unlock" \
+curl "https://cloudmc_endpoint/v2/users/[user-id]/unlock" \
    -X POST -H "MC-Api-Key: your_api_key"
 
 ```
