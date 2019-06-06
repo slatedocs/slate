@@ -3279,6 +3279,38 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
+## Get notifications
+
+`GET` /api/chatActivities/notifications
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/chatActivities/notifications?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns JSON structured like this: 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
 ## Get mentions
 
 `GET` /api/chatActivities/mentions
@@ -3639,6 +3671,52 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
+## Put upload
+
+`PUT` /api/customWebStyles/:id/upload
+
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/customWebStyles/:id/upload?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
+```
+
+> The above command returns JSON structured like this: 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
 # demoUsers
 
 ## Post demoUser
@@ -3678,6 +3756,43 @@ x-access-token | JWT auth access token
 Request body param | Description 
 -------------- | ----------- 
  | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## Get messages
+
+`GET` /api/demoUsers/:salesforceId/messages/:messageTemplate
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/demoUsers/:salesforceId/messages/:messageTemplate?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns JSON structured like this: 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:salesforceId | xxx
+:messageTemplate | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
 
 Response body param | Description 
 -------------- | ----------- 
@@ -8645,6 +8760,94 @@ x-access-token | JWT auth access token
 Request body param | Description 
 -------------- | ----------- 
  | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## Post patientForm
+
+`POST` /api/patientForms/
+
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/patientForms/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
+```
+
+> The above command returns JSON structured like this: 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+ | xxx
+
+Response body param | Description 
+-------------- | ----------- 
+xxx | yyy
+
+## Put by id
+
+`PUT` /api/patientForms/:id
+
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/patientForms/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+		"field1": "test",
+		"field2": {
+			"foo": "bar"
+		}
+	}'
+```
+
+> The above command returns JSON structured like this: 
+
+```json-doc
+	{
+		"x": "y",
+		"y", true,
+		"z": 1
+	}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | xxx
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+:id | xxx
 
 Response body param | Description 
 -------------- | ----------- 
