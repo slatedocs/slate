@@ -54,6 +54,7 @@ jobs:
           --cache-control "max-age=86400"
         overwrite: true
 workflows:
+  version: 2
   main:
     jobs:
       - check_dev_master_pr
