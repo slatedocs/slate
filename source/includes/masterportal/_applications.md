@@ -73,7 +73,7 @@ Required | &nbsp;
 ```shell
 Example Request: 
 curl --request POST \
-  --url 'https://cloudmc_endpoint/rest/services/mp-devel/test-applications/apps/d5484354-28a3-45be-a536-0b02ef3c8e23?operation=login' \
+  --url 'https://cloudmc_endpoint/services/mp-devel/test-applications/apps/d5484354-28a3-45be-a536-0b02ef3c8e23?operation=login' \
   --header 'mc-api-key: your_api_key' 
 ```
 
