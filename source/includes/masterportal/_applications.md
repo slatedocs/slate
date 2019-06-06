@@ -35,7 +35,7 @@ Required | &nbsp;
 ```shell
 Example Request: 
 curl --request POST \
-  --url 'https://devteam.cloudmc-dev.cloudops-devteam.com/rest/services/mp-devel/test-applications/appUser/1a578977-5744-4832-bae3-d91ad2939adf:b6c4ca5b-e85a-41d3-80b2-5d21d6ce7060?operation=addUserCredentials' \
+  --url 'https://cloudmc_endpoint/services/mp-devel/test-applications/appUser/1a578977-5744-4832-bae3-d91ad2939adf:b6c4ca5b-e85a-41d3-80b2-5d21d6ce7060?operation=addUserCredentials' \
   --header 'content-type: application/json' \
   --header 'mc-api-key: your_api_key' \
   --data '{
@@ -73,14 +73,14 @@ Required | &nbsp;
 ```shell
 Example Request: 
 curl --request POST \
-  --url 'https://devteam.cloudmc-dev.cloudops-devteam.com/rest/services/mp-devel/test-applications/apps/d5484354-28a3-45be-a536-0b02ef3c8e23?operation=login' \
+  --url 'https://cloudmc_endpoint/rest/services/mp-devel/test-applications/apps/d5484354-28a3-45be-a536-0b02ef3c8e23?operation=login' \
   --header 'mc-api-key: your_api_key' 
 ```
 
 ```json
 Example Response: 
 {    
-  "data": "https://proxy.mp-dev.rancher-qc.cloudops-devteam.com/portal/login-path/427f5873-7edf-4bba-ba65-8c927776da81/d5484354-28a3-45be-a536-0b02ef3c8e23/datadog-ukqrqhie/f59139e1-82e5-4526-bd5d-04c777a55f2a/b7f0bdd5-b544-d07e-ee56-4ee0d1a8a9c3",
+  "data": "https://mp_proxy_endpoint/portal/login-path/427f5873-7edf-4bba-ba65-8c927776da81/d5484354-28a3-45be-a536-0b02ef3c8e23/datadog-ukqrqhie/f59139e1-82e5-4526-bd5d-04c777a55f2a/b7f0bdd5-b544-d07e-ee56-4ee0d1a8a9c3",
   "taskId": "38805aa4-0a30-4197-8ce9-f79872080773",
   "taskStatus": "SUCCESS"
 }
