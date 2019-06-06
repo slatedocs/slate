@@ -58,6 +58,7 @@ includes:
   - openstack/snapshots
   - gcp
   - gcp/instances
+  - gcp/disks
 
 search: true
 ---
