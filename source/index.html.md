@@ -13,6 +13,7 @@ includes:
   - administration/users
   - administration/roles
   - administration/environments 
+  - administration/resource_commitments 
   - administration/usage
   - cloudstack
   - cloudstack/compute # Compute section
