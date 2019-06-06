@@ -1,7 +1,7 @@
 version: 2
 # See https://circleci.com/docs/2.0/deployment-integrations/#aws-s3-orb
 orbs:
-  aws-s3: circleci/aws-s3@1.0.0
+  aws-s3: circleci/aws-s3@1.0.10
 jobs:
   check_dev_master_pr:
     docker:
