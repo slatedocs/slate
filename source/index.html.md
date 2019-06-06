@@ -59,6 +59,8 @@ includes:
   - gcp
   - gcp/instances
   - gcp/disks
+  - gcp/images
+  - gcp/regions
 
 search: true
 ---
