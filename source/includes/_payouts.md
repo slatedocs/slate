@@ -14,7 +14,7 @@ Just follow these four steps.
 
 * Sign up for your TransferWise account [https://transferwise.com/gb/borderless](https://transferwise.com/gb/borderless). 
 
-* Complete verification – you need to do this before you start your technical integration. Also ensure you’re compliant with our [Terms and Conditions](https://transferwise.com/terms-and-conditions) and [Acceptable Use Policy](https://transferwise.com/acceptable-use-policy-eea). Also make sure two-step log in is set up. 
+* Complete verification – you need to do this before you start your technical integration. Also ensure you’re compliant with our [Terms and Conditions](https://transferwise.com/terms-and-conditions) and [Acceptable Use Policy](https://transferwise.com/acceptable-use-policy-eea). Also make sure two-step log in is set up.
 
 * Activate currencies and make a transfer – check [our video guide](https://transferwise.com/help/article/1779442/creating-a-transfer/video-guide-make-a-transfer) for step-by-step instructions.
 
@@ -32,12 +32,14 @@ You don’t necessarily need to integrate with the API to make a large number of
 * *API integration.* Completely automate your payment process by sending payment orders via the TransferWise API.  
 
 ## API access
+
 ```shell
 curl -X GET https://api.sandbox.transferwise.tech/v1/profiles \
      -H "Authorization: Bearer xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx"
 ```
 
 ### Authentication
+
 Sign up for a developer account and get your personal API token for our sandbox. [https://sandbox.transferwise.tech/register](https://sandbox.transferwise.tech/register)
 
 NB! Two factor authentication (2FA) code for sandbox login is `111111`.
@@ -55,8 +57,8 @@ By default, you have no active tokens. You can issue new tokens after enabling 2
 
 We support tokens of two permission levels:
 
-- **Read only** - List and show transfers, recipients and balances
-- **Full access** - Create, manage and fund transfers
+* **Read only** - List and show transfers, recipients and balances
+* **Full access** - Create, manage and fund transfers
 
 Issue a Read only token unless you specifically need the capabilities of Full access. Token permission level
 can be changed after issuance. The lifetime of the token is 10 years.
@@ -169,7 +171,7 @@ Do not store the token in user-accessible code such as browser-side JavaScript o
 The token should always live server-side, exposing domain-logic via API-s.
 
 If you need to pass the token around via HTTP requests, use HTTP headers or POST body - do not store the token in URI
-or query parameters. Webservers usually log the URL and browsers pass it between websites via the Referer header.
+or query parameters. Web servers usually log the URL and browsers pass it between websites via the Referrer header.
 
 ### Limiting token access by IP
 
@@ -754,7 +756,7 @@ For example "Completed" on our website means "outgoing_payment_sent" in the API.
 
 We don't send out email notifications about payment status changes in sandbox.
 
-We don't process payments in sandbox, which means that created payments remain in their first state. You can use [Simulation](#simulation) endpoints to change transfer statuses in sandbox.   
+We don't process payments in sandbox, which means that created payments remain in their first state. You can use [Simulation](#simulation) endpoints to change transfer statuses in sandbox.
 
 ## Check account balance
 
@@ -815,7 +817,7 @@ Get available balances for all activated currencies in your account.
 
 **`GET https://api.sandbox.transferwise.tech/v1/borderless-accounts?profileId={profileId}`**
 
-Use profile id obtained earlier to make this call.   
+Use profile id obtained earlier to make this call.
 
 ### Response
 
@@ -834,7 +836,7 @@ balances[n].amount.value             | Available balance in specified currency  
 balances[n].amount.currency          | Currency code       | Text
 balances[n].reservedAmount.value     | Reserved amount from your balance | Decimal
 balances[n].reservedAmount.currency  | Reserved amount currency code       | Text
-balances[n].bankDetails              | Your borderless account bank details       | Group 
+balances[n].bankDetails              | Your borderless account bank details       | Group
 
 ## Get account statement
 
@@ -1191,6 +1193,6 @@ All done.
   * Make few small value test payments via LIVE API before you start executing larger transfers.
   * All set. Switch it on.
 
-### 5. Signup for API status notifications.
+### 5. Sign up for API status notifications.
   * You can always track our API status [here](https://status.transferwise.com/).
-  * Also you can [signup](http://eepurl.com/geU_O2) for API status notifications.
+  * Also you can [sign up](http://eepurl.com/geU_O2) for API status notifications.
