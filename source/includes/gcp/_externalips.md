@@ -63,21 +63,21 @@ Attributes | &nbsp;
 `description`<br/>*string* | An optional description of the address.
 `address`<br/>*string* | The IP address.
 `prefixLength`<br/>*number* | The prefix length if the resource reprensents an IP range.
-`status`<br/>*string* | The status of the external IP address. One of the following values: IN_USE, RESERVED, RESERVING.
+`status`<br/>*string* | The status of the external IP address. One of the following: IN_USE, RESERVED, RESERVING.
 `region`<br/>*string* | The URL of the region where the regional address resides.
 `selfLink`<br/>*string* | Server-defined URL for this resource.
-`users`<br/>*Array[string] | Links to the instances the disk is attached to.
+`users`<br/>*Array[string]* | Links to the instances the IP address is attached to.
 `networkTier`<br/>*string | Network tier used to configure that address. One of PREMIUM or STANDARD. Defaulted to PREMIER.
 `addressType`<br/>*string* | The type of address to reserve, either INTERNAL or EXTERNAL. We only list EXTERNAL addresses.
 `kind`<br/>*string* | Type of the resource. Always compute#address for addresses.
-`shortUsers`<br/>*Array [String]* | The names of the instances the disk is attached to.
+`shortUsers`<br/>*Array[string]* | The names of the instances the IP address is attached to.
 `shortRegion`<br/>*string* | A short version of the region name
-`type`<br/>*string* | One of EPHEMERAL or STATIC. EPHEMERAL are linked to an instance and are released when an instance is deleted.
+`type`<br/>*string* | One of EPHEMERAL or STATIC. EPHEMERAL are linked to an instance and are released automatically when an instance is deleted.
 
 
 <!-------------------- RETRIEVE AN EXTERNAL IP -------------------->
 
-#### Retrieve a disk
+#### Retrieve a static IP address
 
 ```shell
 curl -X GET \
@@ -124,13 +124,13 @@ Attributes | &nbsp;
 `description`<br/>*string* | An optional description of the address.
 `address`<br/>*string* | The IP address.
 `prefixLength`<br/>*number* | The prefix length if the resource reprensents an IP range.
-`status`<br/>*string* | The status of the external IP address. One of the following values: IN_USE, RESERVED, RESERVING.
+`status`<br/>*string* | The status of the external IP address. One of the following: IN_USE, RESERVED, RESERVING.
 `region`<br/>*string* | The URL of the region where the regional address resides.
 `selfLink`<br/>*string* | Server-defined URL for this resource.
-`users`<br/>*Array[string] | Links to the instances the disk is attached to.
-`networkTier`<br/>*String | Network tier used to configure that address. One of PREMIUM or STANDARD. Defaulted to PREMIER.
+`users`<br/>*Array[string]* | Links to the instances the IP address is attached to.
+`networkTier`<br/>*string* | Network tier used to configure that address. One of PREMIUM or STANDARD. Defaulted to PREMIER.
 `addressType`<br/>*string* | The type of address to reserve, either INTERNAL or EXTERNAL. We only list EXTERNAL addresses.
 `kind`<br/>*string* | Type of the resource. Always compute#address for addresses.
-`shortUsers`<br/>*Array [String]* | The names of the instances the disk is attached to.
+`shortUsers`<br/>*Array[string]* | The names of the instances the IP address is attached to.
 `shortRegion`<br/>*string* | A short version of the region name
-`type`<br/>*string* | One of EPHEMERAL or STATIC. EPHEMERAL are linked to an instance and are released when an instance is deleted.
+`type`<br/>*string* | One of EPHEMERAL or STATIC. EPHEMERAL are linked to an instance and are released automatically when an instance is deleted.
