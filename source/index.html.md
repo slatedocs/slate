@@ -61,6 +61,8 @@ includes:
   - gcp/disks
   - gcp/images
   - gcp/regions
+  - gcp/ssh_keys
+  - gcp/networks
 
 search: true
 ---
