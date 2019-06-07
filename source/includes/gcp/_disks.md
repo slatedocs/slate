@@ -57,7 +57,7 @@ Attributes | &nbsp;
 `selfLink`<br/>*string* | Server-defined URL for this resource
 `type`<br/>*string* | URL of the disk type resource describing which disk type to use to create the disk. Choices are ':url/pd-standard' or ':url/pd-ssd'.
 `lastAttachTimestamp`<br/>*string* | Timestamp representing the last time the disk was attached.
-`users`<br/>*Array[String] | Links to the instances the disk is attached to.
+`users`<br/>*Array[string]* | Links to the instances the disk is attached to.
 `labelFingerprint`<br/>*string* | A base64-encoded string. A hash of the label's contents and used for optimistic locking
 `physicalBlockSizeBytes`<br/>*string* | Physical block size of the persistent disk, in bytes. Currently supported sizes are 4096 and 16384.
 `kind`<br/>*string* | Type of the resource.
@@ -121,7 +121,7 @@ Attributes | &nbsp;
 `selfLink`<br/>*string* | Server-defined URL for this resource
 `type`<br/>*string* | URL of the disk type resource describing which disk type to use to create the disk. Choices are ':url/pd-standard' or ':url/pd-ssd'.
 `lastAttachTimestamp`<br/>*string* | Timestamp representing the last time the disk was attached.
-`users`<br/>*Array[String] | Links to the instances the disk is attached to.
+`users`<br/>*Array[string]* | Links to the instances the disk is attached to.
 `labelFingerprint`<br/>*string* | A base64-encoded string. A hash of the label's contents and used for optimistic locking
 `physicalBlockSizeBytes`<br/>*string* | Physical block size of the persistent disk, in bytes. Currently supported sizes are 4096 and 16384.
 `kind`<br/>*string* | Type of the resource.

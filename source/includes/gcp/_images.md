@@ -1,6 +1,6 @@
 ### Images
 
-Images are virtual machine images that have a virtual disk that contains a bootable operating system.
+Images are virtual machine images that have a virtual disk which contains a bootable operating system.
 
 <!-------------------- LIST IMAGES -------------------->
 
@@ -94,8 +94,8 @@ Attributes | &nbsp;
 `family`<br/>*string* | The name of the image family to which this image belongs
 `kind`<br/>*string* | Type of the resource
 `labelFingerprint`<br/>*string* | A base64-encoded string. A hash of the label's contents and used for optimistic locking
-`licenseCodes`<br/>*Array* | Integer license codes indicating which licenses are attached to this image.
-`licenses`<br/>*Array* | Any applicable license URI
+`licenseCodes`<br/>*Array[integer]* | License codes indicating which licenses are attached to this image.
+`licenses`<br/>*Array[URI]* | Any applicable license URI
 `rawDisk`<br/>*Object* | The parameters of the raw disk image
 `selfLink`<br/>*string* | Server-defined URL for this resource
 `sourceType`<br/>*string* | The type of the image used to create this disk. The default and only value is RAW
@@ -161,8 +161,8 @@ Attributes | &nbsp;
 `family`<br/>*string* | The name of the image family to which this image belongs
 `kind`<br/>*string* | Type of the resource
 `labelFingerprint`<br/>*string* | A base64-encoded string. A hash of the label's contents and used for optimistic locking
-`licenseCodes`<br/>*Array* | Integer license codes indicating which licenses are attached to this image.
-`licenses`<br/>*Array* | Any applicable license URI
+`licenseCodes`<br/>*Array[integer]* | License codes indicating which licenses are attached to this image.
+`licenses`<br/>*Array[URI]* | Any applicable license URI
 `rawDisk`<br/>*Object* | The parameters of the raw disk image
 `selfLink`<br/>*string* | Server-defined URL for this resource
 `sourceType`<br/>*string* | The type of the image used to create this disk. The default and only value is RAW

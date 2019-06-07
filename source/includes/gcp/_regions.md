@@ -59,10 +59,10 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The region's id
 `kind`<br/>*string* | Type of the resource
 `name`<br/>*string* | The region's name
-`quotas`<br/>*Array* | Quotas assigned to this region
+`quotas`<br/>*Array[object]* | Quotas assigned to this region
 `selfLink`<br/>*string* | Server-defined URL for this resource
 `status`<br/>*string* | tatus of the region, either UP or DOWN
-`zones`<br/>*Array* | A list of zones available in this region, in the form of resource URLs
+`zones`<br/>*Array[URL]* | A list of zones available in this region, in the form of resource URLs
 
 <!-------------------- RETRIEVE A REGION -------------------->
 
@@ -116,7 +116,7 @@ Attributes | &nbsp;
 `id`<br/>*UUID* | The region's id
 `kind`<br/>*string* | Type of the resource
 `name`<br/>*string* | The region's name
-`quotas`<br/>*Array* | Quotas assigned to this region
+`quotas`<br/>*Array[object]* | Quotas assigned to this region
 `selfLink`<br/>*string* | Server-defined URL for this resource
 `status`<br/>*string* | tatus of the region, either UP or DOWN
-`zones`<br/>*Array* | A list of zones available in this region, in the form of resource URLs
+`zones`<br/>*Array[URL]* | A list of zones available in this region, in the form of resource URLs
