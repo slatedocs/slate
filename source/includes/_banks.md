@@ -259,9 +259,9 @@ If the previously stored token fails with an error code 400 and error:
 In this case you can assume the user has reclaimed the account and push them through the [get user authorization for existing accounts](#bank-integrations-guide-get-user-authorization-for-existing-accounts) flow.
 
 ## Create personal user profile
-When you first get access to a user's TransferWise user account you will cannot predict if they already have submitted their profile data or not.
+When you first get access to a user's TransferWise user account you cannot predict if they already have submitted their profile data or not.
 
-[User Profiles.List](#user-profiles-list) endpoint will give you data for both personal and business profiles, if it exists. This makes it easy to
+The [User Profiles.List](#user-profiles-list) endpoint will give you data for both personal and business profiles, if they exist. This makes it easy to
 figure out if a user has already set up this data with TransferWise or not. If the user already has a personal profile set up, then you can skip this creation step.
 
 If you are using the [sign up new users via API](#bank-integrations-guide-sign-up-new-users-via-api) feature then you absolutely need to create personal profile for the user, however it is possible you will also need to do it when getting access to an existing user account.
