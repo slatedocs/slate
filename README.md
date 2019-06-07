@@ -35,16 +35,16 @@ bundle exec middleman server
 # OR run this to run with vagrant
 vagrant up
 ```
-You can now see the docs at http://localhost:4567.
+You can now see the docs at http://localhost:3001.
 If you'd prefer to use Docker, instructions are available [in the wiki](https://github.com/lord/slate/wiki/Docker).
 
 ### Locally make changes to the documentation
 
-1. Make sure  you're running the docs locally (see previous section) and it is available at http://localhost:4567/ .
+1. Make sure  you're running the docs locally (see previous section) and it is available at http://localhost:3001/ .
 2. Also make sure you're running rest-service locally.
 3. Make a GET request to `rest-service/api/docs`. It should output the newly created endpoints and models only.
 4. Edit /source/index.html.md with the output returned by that endpoint.
-5. Refresh http://localhost:4567/ .
+5. Refresh http://localhost:3001/ .
 
 ### Deploy the documentation to AWS
 
