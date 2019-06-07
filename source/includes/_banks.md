@@ -42,7 +42,7 @@ You need to go through this flow only once for each customer before they can set
 * [Get user authorization for existing accounts ](#bank-integrations-guide-get-user-authorization-for-existing-accounts) or  [sign up a new user via API](#bank-integrations-guide-sign-up-new-users-via-api)
 * [Get user tokens](#bank-integrations-guide-get-user-tokens)
 * [Create personal user profile](#bank-integrations-guide-create-personal-user-profile)
-* [Create business user profile](#bank-integrations-guide-create-business-user-profile) - this is an optional step only to be used if your bank is providing business customers access to TransferWise. Currently business onboarding still involves some manual step, we are working to fuly automate this.
+* [Create business user profile](#bank-integrations-guide-create-business-user-profile) - this is an optional step only to be used if your bank is providing business customers access to TransferWise.
 
 ### Transfer flow 
 To create transfers on behalf of users you need these building blocks:
