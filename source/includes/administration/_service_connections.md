@@ -64,12 +64,12 @@ Attributes | &nbsp;
 
 ### Retrieve API credentials
 
-`GET /{serviceConnectionId}/apiInfo`
+`GET /services/connections/:id/apiInfo`
 
 ```shell
 # Retrieve your API credentials
 curl -X GET \
-  "https://system.cloudmc-dev.cloudops-devteam.com/rest/services/connections/5b0172cf-00bd-43de-b2e8-9aaf217c8c35/apiInfo?environmentId=ce3b76e6-c4e1-4e11-850d-e31a3055dc8e" \
+  "https://system.cloudmc-dev.cloudops-devteam.com/rest/services/connections/[id]/apiInfo?environmentId=[id]" \
   -H "MC-Api-Key: your_api_key" \
 # Response body example
 ```
@@ -98,7 +98,7 @@ curl -X GET \
 }
 ```
 
-Retrieve your API keys for some environment within a service. A user can only access their own API keys, and only for environments where they are a member.
+Retrieve your API keys for some environment within a service. A user can only access their own API keys and only for environments where they are a member.
 
 Query Parameters (*required*) | &nbsp;
 ---------- | -----
@@ -108,18 +108,18 @@ Query Parameters (*required*) | &nbsp;
 Attributes | &nbsp;
 ---- | -----------
 `canRegenerateCredentials`<br/>*boolean* | True if the user can regenerate their API keys for the service.
-`fields`<br/>*Array[object]* | An array of key-value pairs describing the users' API keys for the service.<br/>*includes*: `key`, `value` and `sensitive`
+`fields`<br/>*Array[object]* | An array of objects that describe the different parameters (*e.g. endpoint, api_key, secret_key, project_id*) comprised in the users' API credentials.<br/>*includes*: `key`, `value` and `sensitive`
 
 <!-------------------- GET PARAMETERS -------------------->
 
 ### Retrieve connection parameters
 
-`GET /{serviceConnectionId}/parameters`
+`GET /services/connections/:id/parameters`
 
 ```shell
 # Retrieve the connection parameters
 curl -X GET \
-  "https://system.cloudmc-dev.cloudops-devteam.com/rest/services/connections/5b0172cf-00bd-43de-b2e8-9aaf217c8c35/parameters" \
+  "https://system.cloudmc-dev.cloudops-devteam.com/rest/services/connections/[id]/parameters" \
   -H "MC-Api-key: your_api_key" \
 # Response body example
 ```
@@ -143,8 +143,8 @@ curl -X GET \
 }
 ```
 
-Retrieve a service connection's parameters, used to create and manage connections to services. To retrieve the parameters, you need to be an operator or be granted permissions to manage service connections.
+Retrieve a service connection's parameters, used to create and manage connections to services. You can retreive these parameteres only if you are assigned a role that has the `Manage Service connections` permission granted to it.
 
 Attributes | &nbsp;
 ---- | -----------
-`data`<br/>*Array[object]* | An array of objects describing the service connection's parameters.<br/>*includes*: `parameter`, `id`, `value` and `serviceConnection.id`
+`data`<br/>*Array[object]* | An array of objects that describe the service connection parameters.<br/>*includes*: `parameter`, `id`, `value` and `serviceConnection.id`
