@@ -45,22 +45,15 @@ If you'd prefer to use Docker, instructions are available [in the wiki](https://
 ### Locally make changes to the documentation
 
 1. Make sure  you're running the docs locally (see previous section) and it is available at http://localhost:4567/ .
-2. Make a GET request to `rest-service/api/docs`. It should output the newly created endpoints and models only.
-3. Edit /source/index.html.md with the output returned by that endpoint.
-4. Commit the changes above.
-5. Run 
-```
-cd /path/to/rest-service-docs/
-bundle exec middleman build --clean
-```
-The command above generates the static docs in the `build` folder, in case you want to manually upload it somewhere.
+2. Also make sure you're running rest-service locally.
+3. Make a GET request to `rest-service/api/docs`. It should output the newly created endpoints and models only.
+4. Edit /source/index.html.md with the output returned by that endpoint.
+5. Commit the changes above to a new branch, push it .
 
 ### Generate and commit the documentation
 
 Run the script `deploy.sh` to build the static docs and push them to the `gh-pages` branch.
-
 That branch may be used to publish a Gihub Page with the docs. 
-
 It may also be included as a submodule inside `rest-service`, in a subfolder named `docs` (for instance):
 ```
 cd /path/to/rest-service
@@ -68,11 +61,20 @@ git submodule add -b gh-pages git@github.com:lumahealthhq/rest-service-docs.git
 git push
 ```
 
+Alternativelly, run :
+```
+cd /path/to/rest-service-docs/
+bundle exec middleman build --clean
+```
+The command above generates the static docs in the `build` folder, in case you want to manually upload it somewhere.
 The `build` folder should not be committed to the repository.
 
 ### Deploy the documentation to AWS
 
-Upload the `build` folder (or the contents of the `gh-pages` branch) generated above to AWS S3.
+1. Locally make changes to the documentation (there's a dedicated section for that).
+2. Create a PR with those changes with the target branch being either `master` or `dev`.
+3. Merge the PR.
+4. CircleCI will automatically deploy to AWS S3.
 
 ### Access the documentation
 
