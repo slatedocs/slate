@@ -35,16 +35,19 @@ We have plenty of examples to show you how this has been done by our current par
  We have a dedicated team focusing on bank partnerships who will help you along the way, sharing knowledge and experience from previous integrations to help you build a robust and highly available system.
 
 ## Your TransferWise  user experience
+
 ### User onboarding flow
+
 The user onboarding flow consists of these building blocks.  
 You need to go through this flow only once for each customer before they can set up their first transfer.
 
-* [Get user authorization for existing accounts ](#bank-integrations-guide-get-user-authorization-for-existing-accounts) or  [sign up a new user via API](#bank-integrations-guide-sign-up-new-users-via-api)
+* [Get user authorization for existing accounts](#bank-integrations-guide-get-user-authorization-for-existing-accounts) or  [sign up a new user via API](#bank-integrations-guide-sign-up-new-users-via-api)
 * [Get user tokens](#bank-integrations-guide-get-user-tokens)
 * [Create personal user profile](#bank-integrations-guide-create-personal-user-profile)
-* [Create business user profile](#bank-integrations-guide-create-business-user-profile) - this is an optional step only to be used if your bank is providing business customers access to TransferWise. Currently business onboarding still involves some manual step, we are working to fuly automate this.
+* [Create business user profile](#bank-integrations-guide-create-business-user-profile) - this is an optional step only to be used if your bank is providing business customers access to TransferWise.
 
-### Transfer flow 
+### Transfer flow
+
 To create transfers on behalf of users you need these building blocks:
 
 * [Refresh user's access token](#bank-integrations-guide-refresh-user-access-token)
@@ -54,6 +57,7 @@ To create transfers on behalf of users you need these building blocks:
 * [Fund transfer](#bank-integrations-guide-fund-transfer)
 
 ### Transfer update polling
+
 To keep your users informed of the status and estimated time of arrival of their transfer:
 
 * [Transfer status](#bank-integrations-guide-track-transfer-status)
@@ -66,7 +70,7 @@ At a high level there are three steps to gaining access to an existing TransferW
   <li>Your app redirects the user to TransferWise authorization webpage, which prompts them to login if necessary.<br/>
   </li>
   <li>The user logs in to TransferWise.</li>
-  <li> The user agrees to provide access, the TransferWise authorization page then redirects user back to your preconfigured url, including a code you can use to geneate user tokens. e.g.
+  <li> The user agrees to provide access, the TransferWise authorization page then redirects user back to your pre-configured url, including a code you can use to generate user tokens. e.g.
 
   `
   https://www.yourbank.com/?code=[CODE]
@@ -90,7 +94,7 @@ https://transferwise.com/oauth/authorize?response_type=code&client_id=<your api 
 `
 
 Replace *your-api-client-id* and *redirect-uri* with your specific values. 
-The redirect URL should be the address you want the user to return to after the authorization flow, which will have been preconfigured when you requested your API access tokens. This can be different across the sandbox and production environments and we can update it for you upon request.
+The redirect URL should be the address you want the user to return to after the authorization flow, which will have been pre-configured when you requested your API access tokens. This can be different across the sandbox and production environments and we can update it for you upon request.
 
 On mobiles apps you should not use `WebView` components to show the authorization page to the users because they are not secure and will not allow users to log in to TransferWise with Google, which is an option used by some of our users. Your app should instead open the device's full browser app.
 
@@ -116,7 +120,7 @@ At the point you gain access to a user account you should double check it is the
 
 ## Sign up new users via API
 
-If the user doesn't already have a TransferWise account then you can create one for them. The [signup with registration code](#users-sign-up-with-registration-code) feature lets you create new users directly via an API call, without the need to redirect new users to the TransferWise authorization page. This way new users can complete everything without ever leaving your banking app, making a very streamlined flow.
+If the user doesn't already have a TransferWise account then you can create one for them. The [sign up with registration code](#users-sign-up-with-registration-code) feature lets you create new users directly via an API call, without the need to redirect new users to the TransferWise authorization page. This way new users can complete everything without ever leaving your banking app, making a very streamlined flow.
 
 We can provide this option to banks where we can create a trusted reliance model on your KYC processes. Please discuss this option with the team supporting your integration.
 
@@ -260,9 +264,9 @@ If the previously stored token fails with an error code 400 and error:
 In this case you can assume the user has reclaimed the account and push them through the [get user authorization for existing accounts](#bank-integrations-guide-get-user-authorization-for-existing-accounts) flow.
 
 ## Create personal user profile
-When you first get access to a user's TransferWise user account you will cannot predict if they already have submitted their profile data or not.
+When you first get access to a user's TransferWise user account you cannot predict if they already have submitted their profile data or not.
 
-[User Profiles.List](#user-profiles-list) endpoint will give you data for both personal and business profiles, if it exists. This makes it easy to
+The [User Profiles.List](#user-profiles-list) endpoint will give you data for both personal and business profiles, if they exist. This makes it easy to
 figure out if a user has already set up this data with TransferWise or not. If the user already has a personal profile set up, then you can skip this creation step.
 
 If you are using the [sign up new users via API](#bank-integrations-guide-sign-up-new-users-via-api) feature then you absolutely need to create personal profile for the user, however it is possible you will also need to do it when getting access to an existing user account.
@@ -354,7 +358,7 @@ When business data changes the business profile information must be updated.
 This section discusses some edge cases that you should test and handle before going live with your integration.
 
 ### Email address considerations
-Due to how getting access to user accounts works the TransferWise platform relies on user email addresses matching between the bank and ourselves. At the point the bank attempts to create a user we check and see if an account already exists for that email address, if so we retun a 409 response and the client application forwards the user to login to TransferWise to do the OAuth grant flow.
+Due to how getting access to user accounts works the TransferWise platform relies on user email addresses matching between the bank and ourselves. At the point the bank attempts to create a user we check and see if an account already exists for that email address, if so we return a 409 response and the client application forwards the user to login to TransferWise to do the OAuth grant flow.
 
 This works well when the email addresses match in the first place and aren't updated on either side after the link is established. Of course, this is not always going to be the case so we must consider what happens in either eventuality.
 
@@ -375,9 +379,9 @@ In this case, if the user has changed their email address at TransferWise, it is
 ### Email changed at the bank
 In this case the tokens will remain valid for the TransferWise account, however, depending on how the user originally linked the account, different things can happen when/if that token expires.
 
-If the bank created the account originally they will be unable to generate tokens using the registration_code they have as the endpoint requires the email address which will now no longer match. To mitigate this it is recommended that the bank store the email that was originally used for signup alongside the registration code and use this rather than the most up to date email address they store for the user.
+If the bank created the account originally they will be unable to generate tokens using the registration_code they have as the endpoint requires the email address which will now no longer match. To mitigate this it is recommended that the bank store the email that was originally used for sign up alongside the registration code and use this rather than the most up to date email address they store for the user.
 
-If the token expires for a user not created by the bank and the user has a new email address at the bank then they can be pushed through the signup flow with this new email address and either have a new account created or link an existing against the new email, as described in [token expiry](#bank-integrations-guide-token-expiry).
+If the token expires for a user not created by the bank and the user has a new email address at the bank then they can be pushed through the sign up flow with this new email address and either have a new account created or link an existing against the new email, as described in [token expiry](#bank-integrations-guide-token-expiry).
 
 The result of many of these flows is that the user may end up with more than one TransferWise account, which is undesirable. Currently we monitor this behaviour for abuse but we are working on a more robust user creation scenario to prevent this occurring.
 
@@ -407,6 +411,6 @@ In the event a user is not happy at losing access to their older data or having 
   * Test successful flow and bounce back flow (where funds cannot be delivered). 
   * All set. Switch it on.
 
-### 4. Signup for API status notifications.
+### 4. Sign up for API status notifications.
   * You can always track our API status [here](https://status.transferwise.com/).
-  * Also you can [signup](http://eepurl.com/geU_O2) for API status notifications.
+  * Also you can [sign up](http://eepurl.com/geU_O2) for API status notifications.
