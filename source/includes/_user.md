@@ -42,7 +42,7 @@ Error Code | Meaning
 ## Refresh
 
 ```shell
-curl --data-binary '{"id":"1", "method":"user.Refresh", "jsonrpc":"2.0"}'
+curl --data-binary '{"id":"1", "method":"user.Refresh", "params":"boBCItwS5gvkXgmdJ0vJm7qs2EEgqNV7LVzrY13A", "jsonrpc":"2.0"}'
   -H 'Authorization: Bearer refresh_token'
   -H 'content-type:application/json;'
 ```
@@ -66,6 +66,12 @@ Regenerates a new JWT access token for the client.
 
 `POST https://api.test.filtered.com/v2/jsonrpc/auth`
 
+### Parameters
+
+Type | Description
+------- | -----------
+ string | the refresh_token which was issued by `user.Refresh` method
+
 <aside class="success">
 Returns — Access Token Model — structure containing the JWT access token and refresh token
 </aside>
@@ -74,5 +80,10 @@ Returns — Access Token Model — structure containing the JWT access token and
 
 Error Code | Meaning
 ---------- | -------
--32603 | Internal Server Error
+-32003 | Mandatory JWT Claim missing
+-32019 | Token has expired
+-32020 | Refresh token has expired
+-32606 | Invalid arguments
 -32600 | The JSON sent is not a valid Request object
+-32603 | Internal Server Error
+
