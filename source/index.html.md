@@ -59,6 +59,10 @@ includes:
   - gcp
   - gcp/instances
   - gcp/disks
+  - gcp/images
+  - gcp/regions
+  - gcp/ssh_keys
+  - gcp/networks
   - gcp/externalips
 
 search: true
