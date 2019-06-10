@@ -1,13 +1,13 @@
 ### Applications
 
-Application's login can be automated by MasterPortal. It has an entrypoint that points to the MasterPortal proxy and can have credentials added to it. 
+Applications' login can be automated by MasterPortal. It has an entrypoint that points to the MasterPortal proxy and can have credentials added to it. 
 
 #### Add Credentials
 
 ```shell
 Example Request: 
 curl --request POST \
-  --url 'https://cloudmc_endpoint/rest/services/mp-devel/test-applications/apps/b6c4ca5b-e85a-41d3-80b2-5d21d6ce7060?operation=addCredentials' \
+  --url 'https://cloudmc_endpoint/v2/services/mp-devel/test-applications/apps/b6c4ca5b-e85a-41d3-80b2-5d21d6ce7060?operation=addCredentials' \
   --header 'mc-api-key: your_api_key' \
   --data '{
 	"username": "sample_username",
@@ -35,7 +35,7 @@ Required | &nbsp;
 ```shell
 Example Request: 
 curl --request POST \
-  --url 'https://cloudmc_endpoint/services/mp-devel/test-applications/appUser/1a578977-5744-4832-bae3-d91ad2939adf:b6c4ca5b-e85a-41d3-80b2-5d21d6ce7060?operation=addUserCredentials' \
+  --url 'https://cloudmc_endpoint/v2/services/mp-devel/test-applications/appUser/1a578977-5744-4832-bae3-d91ad2939adf:b6c4ca5b-e85a-41d3-80b2-5d21d6ce7060?operation=addUserCredentials' \
   --header 'content-type: application/json' \
   --header 'mc-api-key: your_api_key' \
   --data '{
@@ -58,8 +58,8 @@ Example Response:
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/appUser/:id</code>
 
-Add credentials to another user for the given applications. Note the appUser's id
-is their [CloudMC user id](#administration-users) and [application](#masterportal-applications) id concatenated like such `cloudmc_user_id:application_user`.
+Add credentials to another user for the given application. Note the appUser's id
+is their [CloudMC user](#administration-users) id and [application](#masterportal-applications) id concatenated like `<cloudMcUserId>:<appId>`.
 
 Required | &nbsp;
 ---------- | -----
@@ -73,7 +73,7 @@ Required | &nbsp;
 ```shell
 Example Request: 
 curl --request POST \
-  --url 'https://cloudmc_endpoint/services/mp-devel/test-applications/apps/d5484354-28a3-45be-a536-0b02ef3c8e23?operation=login' \
+  --url 'https://cloudmc_endpoint/v2/services/mp-devel/test-applications/apps/d5484354-28a3-45be-a536-0b02ef3c8e23?operation=login' \
   --header 'mc-api-key: your_api_key' 
 ```
 
@@ -88,5 +88,5 @@ Example Response:
 
   <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/apps/:id?operation=login</code>
 
-  Login to the provided application. You can only be logged on if you have credentials set on your own user and you can only login as your own user.
+  Login to the provided application. You can only login as your own user. Thus, you must have credentials set on your own user for the specific application.
 
