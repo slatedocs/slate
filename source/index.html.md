@@ -63,6 +63,7 @@ includes:
   - gcp/regions
   - gcp/ssh_keys
   - gcp/networks
+  - gcp/externalips
 
 search: true
 ---
