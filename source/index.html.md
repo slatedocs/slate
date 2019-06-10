@@ -59,6 +59,7 @@ includes:
   - gcp
   - gcp/instances
   - gcp/disks
+  - gcp/externalips
 
 search: true
 ---
