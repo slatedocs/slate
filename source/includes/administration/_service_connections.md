@@ -67,7 +67,7 @@ Attributes | &nbsp;
 `GET /services/connections/:id/policies/descriptors`
 
 ```shell
-# Retrieve usage summary in CSV
+# Retrieve connection descriptors
 curl "https://cloudmc_endpoint/v1/services/connections/03bc22bd-adc4-46b8-988d-afddc24c0cb5/policies/descriptors?section=trials" \
    -H "MC-Api-Key: your_api_key"
 ```
@@ -139,7 +139,7 @@ curl -X PUT \
    -H "Content-Type: application/json" \
    -H "MC-Api-Key: your_api_key" \
    -d "[{"name": "serviceVersion", "value": "1.1"}, {"name": "cacheEnabled", "value": "true"}]" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/ingressrules"
+   "https://cloudmc_endpoint/v1/services/connections/03bc22bd-adc4-46b8-988d-afddc24c0cb5/policies"
 ```
 
 ```json
@@ -165,6 +165,5 @@ curl -X PUT \
 
 Attributes | &nbsp;
 ---- | -----------
-`id`<br/>*UUID* | The id of the ServiceConnectionPolicy
 `name`<br/>*string* | The name of the policy.
 `value`<br/>*string* | The policy value.
