@@ -1,8 +1,46 @@
 # Quick Start
 
+> Request
+
+```
+https://app.asana.com/api/1.0/users/me
+```
+
 If you’re new to developing on APIs, this is a great place to start.  You’ll learn in this guide how to make the simplest Asana API request -- getting your user information. 
 
 To get started, be sure you are [logged into Asana](https://app.asana.com).  Next, go to this URL: <a href="https://app.asana.com/api/1.0/users/me?opt_pretty&opt_client_name=hello_world_browser" target="_blank">https://app.asana.com/api/1.0/users/me</a>
+
+> Response
+
+```json
+{
+  data: {
+    gid: "12e345a67b8910c11",
+    email: "jonsnow@example.com",
+    name: "Jon Snow",
+    photo: {
+      image_21x21: "https://s3.amazonaws.com/profile_photos/121110987654321.hJGlskahcKA5hdslf4FS_21x21.png",
+      image_27x27: "https://s3.amazonaws.com/profile_photos/121110987654321.hJGlskahcKA5hdslf4FS_27x27.png",
+      image_36x36: "https://s3.amazonaws.com/profile_photos/121110987654321.hJGlskahcKA5hdslf4FS_36x36.png",
+      image_60x60: "https://s3.amazonaws.com/profile_photos/121110987654321.hJGlskahcKA5hdslf4FS_60x60.png",
+      image_128x128: "https://s3.amazonaws.com/profile_photos/121110987654321.hJGlskahcKA5hdslf4FS_128x128.png"
+    },
+    resource_type: "user",
+    workspaces: [
+      {
+        gid: "15c43287b6a8",
+        name: "Castle Black",
+        resource_type: "workspace"
+      },
+      {
+        gid: "a1432e1987654d",
+        name: "Jon's Personal",
+        resource_type: "workspace"
+      },
+    ]
+  }
+}
+```
 
 Congratulations! You’ve just made your first Asana API request.  
 
@@ -16,13 +54,24 @@ Our API is documented for what resources are available and what sort of return d
 
 Now, let’s make the same call to `/users/me` more like software would. Before we do so, we’ll need to get access outside of your web browser to the API.
 
+
 ## Authentication Quick Start
 
 Similarly to entering your username/password into a website or logging into Asana with Google, when you access your Asana data via the API you need to authenticate.  In the above example, you were already logged into Asana in your browser so you were able to authenticate to the API with credentials stored by your browser.
 
 If you want to write a script that interacts with the Asana API, the easiest method is to get a Personal Access Token (PAT), which you can think of as your unique password for accessing the API.
 
+### App or PAT?
+
+If your app needs to perform actions on behalf of users, you should use [OAuth](https://asana.com/developers/documentation/getting-started/auth).
+
 **Getting a Personal Access Token (PAT)**
+
+> Example PAT
+
+```
+0/68a9e79b868c6789e79a124c30b0
+```
 
 1. Open the Developer App Management page by [using this permalink](https://app.asana.com/-/developer_console) or following these steps:
 
@@ -44,15 +93,32 @@ _**Note**: treat your PAT like you would a password. Do not share it or display 
 
 ## Accessing the API in the Terminal
 
+> curl Request
+
+```
+curl -H "Authorization: Bearer 0/123456789abcdef" https://app.asana.com/api/1.0/users/me`
+```
+
 We’ll use cURL, a command line[^1] program to make HTTP requests. MacOS and many Linux distributions have cURL pre-installed, and it’s [available for download](https://curl.haxx.se/dlwiz/?type=bin) on Windows and many other operating systems.  If you’re curious, you can learn more about cURL [in its own documentation](https://curl.haxx.se/docs/httpscripting.html). 
 
 **Let’s do this:**
 
+> Response
+
+```json
+{
+  data: {
+    gid: "<your id>",
+    email: "<your email>"
+    name: "<your name>",
+    ...
+  }
+}
+```
+
 1. Open a terminal (instructions for [Mac](https://www.wikihow.com/Open-a-Terminal-Window-in-Mac) and [Windows](https://www.wikihow.com/Open-the-Command-Prompt-in-Windows))
 
-2. Copy/paste the following cURL request (make sure to enter your personal access token instead of the placeholder after the word "Bearer" below, or else you'll get a "Not Authorized" message):
-
-      `curl -H "Authorization: Bearer 0/123456789abcdef" https://app.asana.com/api/1.0/users/me`
+2. Copy/paste the cURL request on the right (make sure to enter your personal access token instead of the placeholder after the word "Bearer", or else you'll get a "Not Authorized" message):
 
 3. Press Enter
 
@@ -65,14 +131,8 @@ You’re ready to start coding!
 Asana has [client libraries](/#official-client-libraries) in several popular coding languages. Using these libraries has several advantages (like managing authorization and retrying errors) that make them a good place to go from here. Let’s take a look at making the same `/users/me` request in Python, JavaScript, and Ruby (feel free to skip ahead to your favorite of the three languages).
 
 ## Client Examples
-
-**Python** (v2.x)
-
-To get started, run `pip install asana` or follow the detailed installation instructions on the [GitHub page for the Python client library](https://github.com/Asana/python-asana/).  
-
-Once it’s installed, open your favorite text editor and we’ll code a GET request to `/users/me` - the same request as above, but in Python.
-
 ```python
+!
 import asana
 
 # replace with your personal access token. 
@@ -90,6 +150,12 @@ me = client.users.me()
 print "Hello world! " + "My name is " + me['name'] + " and I my primary Asana workspace is " + me['workspaces'][0]['name'] + "."
 
 ```
+**Python** (v2.x)
+
+To get started, run `pip install asana` or follow the detailed installation instructions on the [GitHub page for the Python client library](https://github.com/Asana/python-asana/).  
+
+Once it’s installed, open your favorite text editor and we’ll code a GET request to `/users/me` - the same request as above, but in Python.
+
 
 Save this file as something descriptive like "hello_world.py"
 
@@ -101,14 +167,12 @@ All of the built-in functions can be found in the [/gen folder of the client lib
 
 You can see a variant of this script, and other useful Asana API scripts, in our open-source <a href="https://github.com/Asana/DevRel-Examples/tree/master/python" target="_blank">Github examples repository</a>
 
-
-**JavaScript**
-
-To get started, `npm install asana` or follow the detailed installation instructions on the [GitHub page for the Node client library](https://github.com/Asana/node-asana/).  
-
-Once it’s installed, open your favorite text editor and we’ll code a GET request to `/users/me`. - the same request as above, but in JavaScript.
+<br></br>
+<br></br>
+<br></br>
 
 ```javascript
+!
 var asana = require('asana');
 
 // replace with your personal access token. 
@@ -124,6 +188,11 @@ client.users.me()
     console.log('Hello world! ' + 'My name is ' + me.name + ' and my primary Asana workspace is ' + me.workspaces[0].name + '.');
 });
 ```
+**JavaScript**
+
+To get started, `npm install asana` or follow the detailed installation instructions on the [GitHub page for the Node client library](https://github.com/Asana/node-asana/).  
+
+Once it’s installed, open your favorite text editor and we’ll code a GET request to `/users/me`. - the same request as above, but in JavaScript.
 
 Save this file as something descriptive like "hello_world.js"
 
@@ -133,14 +202,12 @@ All of the built-in functions can be found in the [/gen folder of the client lib
 
 You can see a variant of this script, and other useful Asana API scripts, in our open-source <a href="https://github.com/Asana/DevRel-Examples/tree/master/javascript" target="_blank">Github examples repository</a>
 
-
-**Ruby**
-
-To get started, `gem install asana` or follow the detailed installation instructions on the [GitHub page for the Ruby client library](https://github.com/Asana/ruby-asana/).  
-
-Once it’s installed, open your favorite text editor and we’ll code a GET request to `/users/me`.
+<br></br>
+<br></br>
+<br></br>
 
 ```ruby
+!
 require 'asana'
 
 # replace with your personal access token. 
@@ -157,6 +224,11 @@ me = client.users.me
 
 puts "Hello world! " + "My name is " + me.name + " and I my primary Asana workspace is " + me.workspaces[0].name + "."
 ```
+**Ruby**
+
+To get started, `gem install asana` or follow the detailed installation instructions on the [GitHub page for the Ruby client library](https://github.com/Asana/ruby-asana/).  
+
+Once it’s installed, open your favorite text editor and we’ll code a GET request to `/users/me`.
 
 Save this file as something descriptive like "hello_world.rb"
 
@@ -166,8 +238,12 @@ All of the built-in methods can be found in the [/resources folder of the client
 
 You can see a variant of this script, and other useful Asana API scripts, in our open-source <a href="https://github.com/Asana/DevRel-Examples/tree/master/ruby" target="_blank">Github examples repository</a>
 
+
+<br></br>
+<br></br>
+
 ## Congratulations!
 
 You’ve learned three ways to access the Asana API.  If you need inspiration of what to build on the Asana API, take a look at these [common use cases](/#examples-amp-tutorials).  If you get stuck, checkout the [API section of Asana community](https://community.asana.com/c/developersAPI).  Happy coding!
 
-[^1]: What is a "terminal"? When you double-click an icon on your computer, there is a special application that's in charge of launching other applications. On MacOSX, this program is called "Finder", and on Windows it's called "Windows Explorer". A terminal app is a similar app that launches other applications, but rather than double clicking an icon, you type commands into a text-based window.
+<br></br>

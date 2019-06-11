@@ -1,5 +1,21 @@
 ## Errors
 
+> Missing authorization header
+
+```http
+GET https://app.asana.com/api/1.0/users/me HTTP/1.1
+```
+```http
+HTTP/1.1 401 Not Authorized
+{
+  "errors": [
+  {
+    "message": "Not Authorized"
+  }
+  ]
+}
+```
+
 Sadly, sometimes requests to the API are not successful. Failures can occur for a wide range of reasons. In all cases,
 the API should return an HTTP Status Code that indicates the nature of the failure (below), with a response body in
 JSON format containing additional information.
@@ -7,6 +23,42 @@ JSON format containing additional information.
 In the event of a server error the response body will contain an error phrase. These phrases are automatically generated
 using the [node-asana-phrase](https://github.com/Asana/node-asana-phrase) library and can be used by Asana support to
 quickly look up the incident that caused the server error.
+
+> Bad request parameters
+
+```http
+GET https://app.asana.com/api/1.0/tasks HTTP/1.1
+Authorization: Bearer <personal_access_token>
+```
+```http
+HTTP/1.1 400 Bad Request
+{
+  "errors": [
+  {
+    "message": "workspace: Missing input"
+  }
+  ]
+}
+```
+
+> Asana had a problem
+
+```http
+GET https://app.asana.com/api/1.0/users/me HTTP/1.1
+Authorization: Bearer <personal_access_token>
+```
+```http
+HTTP/1.1 500 Server Error
+{
+  "errors": [
+  {
+    "message": "Server Error",
+    "phrase": "6 sad squid snuggle softly"
+  }
+  ]
+}
+```
+<br></br>
 
 | Code | Meaning | Description |
 |---|---|---|
@@ -20,6 +72,8 @@ quickly look up the incident that caused the server error.
 | 429 | **Too Many Requests** | You have exceeded one of the enforced rate limits in the API. See the [documentation on rate limiting](/developers/documentation/getting-started/rate-limits) for more information. |
 | 500 | **Internal Server Error** | There was a problem on Asana's end. |
 
+<br></br>
+
 In the event of an error, the response body will contain an errors field at the top level. This contains an array of at
 least one error object, described below:
 
@@ -27,51 +81,3 @@ least one error object, described below:
 |---|---|
 | Message: | <code class="table-example">project: Missing input</code> Message providing more detail about the error that occurred, if available. |
 | Phrase: | <code class="table-example">6 sad squid snuggle softly</code> **500 errors only**. A unique error phrase which can be used when contacting developer support to help identify the exact occurrence of the problem in Asana's logs. |
-
-Some examples.
-
-**Missing authorization header**
-
-    # Request
-    curl https://app.asana.com/api/1.0/users/me
-
-    # Response
-    HTTP/1.1 401
-    {
-      "errors": [
-      {
-        "message": "Not Authorized"
-      }
-      ]
-    }
-
-**Bad request parameters**
-
-    # Request
-    curl -H "Authorization: Bearer <personal_access_token>" https://app.asana.com/api/1.0/tasks
-
-    # Response
-    HTTP/1.1 400
-    {
-      "errors": [
-      {
-        "message": "workspace: Missing input"
-      }
-      ]
-    }
-
-**Asana had a problem**
-
-    # Request
-    curl -H "Authorization: Bearer <personal_access_token>" https://app.asana.com/api/1.0/users/me
-
-    # Response
-    HTTP/1.1 500
-    {
-      "errors": [
-      {
-        "message": "Server Error",
-        "phrase": "6 sad squid snuggle softly"
-      }
-      ]
-    }

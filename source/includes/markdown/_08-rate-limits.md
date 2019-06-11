@@ -9,6 +9,29 @@ The [client libraries](/developers/documentation/getting-started/client-librarie
 <a name="standard"></a>
 ### Standard Rate Limits
 
+> Request
+
+```http
+GET https://app.asana.com/api/1.0/users/me HTTP/1.1
+Authorization: Bearer <personal_access_token>
+```
+
+> Response
+
+```http
+HTTP/1.1 429 Too Many Requests
+Content-Type: application/json
+Retry-After: 30
+
+{
+  "errors": [
+  {
+    "message": "You've made too many requests and hit a rate limit. Please retry after the given amount of time."
+  }
+  ]
+}
+```
+
 Our standard rate limiter imposes a quota on how many requests can be made in a given window of time. Our limits are based on minute-long windows, and differ depending on whether the domain is premium or not. We may change these quotas or add new quotas (such as maximum requests per hour) in the future.
 
 | Domain type | Maximum requests per minute |

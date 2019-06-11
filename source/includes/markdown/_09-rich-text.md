@@ -1,5 +1,12 @@
 ## Rich Text
 
+> Example Rich Text
+
+```html
+~
+<body>All these new tasks are <em>really</em> getting disorganized, so <a data-asana-gid="4168112"/> just made the new <a data-asana-gid="5732985"/> project to help keep them organized. <strong>Everyone</strong> should start using the <a data-asana-gid="6489418" data-asana-project="5732985"/> when adding new tasks there.</body>
+```
+
 **Note: In preparation for our [upcoming migration to string IDs](https://community.asana.com/t/new-rich-text-and-mentions/28362) (referred to as `gid`s in the API) this new feature uses only `gid`s and not `id`s. Read more about it in our [community post](https://community.asana.com/t/new-rich-text-and-mentions/28362).**
 
 The web product offers a number of rich formatting features when writing task notes, comments, project descriptions, and project status updates. These features include bold, italic, underlined, and monospaced text, as well as bulleted and numbered lists. Additionally, users can "@-mention" other users, tasks, projects, and many other objects within Asana to create links.
@@ -16,6 +23,50 @@ The rich text field name for an object is equivalent to it's plain text field na
 
 <a id="reading"></a>
 ### Reading rich text
+
+> Python
+
+```python
+!
+from lxml import etree
+
+html_text = "<body>...</body>"
+root = etree.HTML(html_text)
+user_ids = root.xpath('//a[@data-asana-type="user"]/@data-asana-gid')
+for user_id in user_ids:
+    print(user_id)
+```
+
+> Java
+
+```java
+!
+import com.jcabi.xml.XML;
+import com.jcabi.xml.XMLDocument;
+import java.util.List;
+
+XML root = new XMLDocument("<body>...</body>");
+List<String> userIds = root.xpath("//a[@data-asana-type=\"user\"]/@data-asana-gid");
+for (String userId : userIds) {
+    System.out.println(userId);
+}
+```
+
+> Javascript
+
+```javascript
+!
+var htmlText = '<body>...</body>'
+var parser = new DOMParser()
+var doc = parser.parseFromString(htmlText, "text/html")
+var iterator = doc.evaluate(
+    '//a[@data-asana-type="user"]/@data-asana-gid', doc, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE)
+var node = iterator.iterateNext()
+while (node) {
+    console.log(node.nodeValue);
+    node = iterator.iterateNext();
+}
+```
 
 Rich text in the API is formatted as an HTML fragment, which is wrapped in a root `<body>` tag. Rich text is guaranteed to be valid XML; there will always be a root element, all tags will be closed, balanced, and case-sensitive, and all attribute values will be quoted. The following is a list of all the tags that are currently returned by the API:
 
@@ -60,9 +111,10 @@ Here are some examples of how this behavior manifests:
   
 Here's an example of what a complete rich comment might look like in the API:
 
-```
+
+`
 <body>All these new tasks are <em>really</em> getting disorganized, so <a href="https://app.asana.com/0/4168466/list" data-asana-accessible="true" data-asana-type="user" data-asana-gid="4168112">Tim Bizzaro</a> just made the new <a href="https://app.asana.com/0/5732985/list" data-asana-accessible="true" data-asana-type="project" data-asana-gid="5732985">Work Requests</a> project to help keep them organized. <strong>Everyone</strong> should start using the <a href="https://app.asana.com/0/5732985/6489418" data-asana-accessible="true" data-asana-type="task" data-asana-gid="6489418" data-asana-project="5732985">Request template</a> when adding new tasks there.</body>
-```
+`
 
 <a name="writing"></a>
 ### Writing rich text
@@ -75,49 +127,6 @@ If you do not have access to the referenced object when you try to create a link
 
 Here's an example of what you'd send to the API when creating a comment to generate the rich text shown at the end of the previous section:
 
-```
+`
 <body>All these new tasks are <em>really</em> getting disorganized, so <a data-asana-gid="4168112"/> just made the new <a data-asana-gid="5732985"/> project to help keep them organized. <strong>Everyone</strong> should start using the <a data-asana-gid="6489418" data-asana-project="5732985"/> when adding new tasks there.</body>
-```
-
-<a name="examples"></a>
-### Parsing examples
-
-Here are some examples in various languages of how, given some rich text, you can extract the GIDs of all the users referenced in that text using an [XPath query](https://en.wikipedia.org/wiki/XPath):
-
-```
-# Python
-from lxml import etree
-
-html_text = "<body>...</body>"
-root = etree.HTML(html_text)
-user_ids = root.xpath('//a[@data-asana-type="user"]/@data-asana-gid')
-for user_id in user_ids:
-    print(user_id)
-```
-
-```
-// Java
-import com.jcabi.xml.XML;
-import com.jcabi.xml.XMLDocument;
-import java.util.List;
-
-XML root = new XMLDocument("<body>...</body>");
-List<String> userIds = root.xpath("//a[@data-asana-type=\"user\"]/@data-asana-gid");
-for (String userId : userIds) {
-    System.out.println(userId);
-}
-```
-
-```
-// JavaScript
-var htmlText = '<body>...</body>'
-var parser = new DOMParser()
-var doc = parser.parseFromString(htmlText, "text/html")
-var iterator = doc.evaluate(
-    '//a[@data-asana-type="user"]/@data-asana-gid', doc, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE)
-var node = iterator.iterateNext()
-while (node) {
-    console.log(node.nodeValue);
-    node = iterator.iterateNext();
-}
-```
+`
