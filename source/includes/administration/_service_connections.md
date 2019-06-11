@@ -69,7 +69,7 @@ Attributes | &nbsp;
 ```shell
 # Retrieve your API credentials
 curl -X GET \
-  "https://cloudmc_endpoint/v1/services/connections/[id]/apiInfo?environmentId=[id]" \
+  "https://cloudmc_endpoint/v1/services/connections/378442e0-d9a4-4e55-83e3-220ba1f909a8/apiInfo?environmentId=c880f6b2-f52e-40d5-b289-7211c0319ebc" \
   -H "MC-Api-Key: your_api_key" \
 # Response body example
 ```
@@ -119,7 +119,7 @@ Attributes | &nbsp;
 ```shell
 # Retrieve the connection parameters
 curl -X GET \
-  "https://cloudmc_endpoint/v1/services/connections/[id]/parameters" \
+  "https://cloudmc_endpoint/v1/services/connections/378442e0-d9a4-4e55-83e3-220ba1f909a8/parameters" \
   -H "MC-Api-key: your_api_key" \
 # Response body example
 ```

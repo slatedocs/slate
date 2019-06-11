@@ -80,7 +80,7 @@ Retrieve an organization's details
 
 ```shell
 # Retrieve an organization
-curl "https://cloudmc_endpoint/v1/organizations/[id]" \
+curl "https://cloudmc_endpoint/v1/organizations/03bc22bd-adc4-46b8-988d-afddc24c0cb5" \
    -H "MC-Api-Key: your_api_key"
 
 # Response body example
@@ -190,7 +190,7 @@ Update an organization. It's parent organization cannot be changed. It can be as
 
 ```shell
 # Update an organization
-curl -X PUT "https://cloudmc_endpoint/v1/organizations/[id]" \
+curl -X PUT "https://cloudmc_endpoint/v1/organizations/3f913132-d479-4332-8fee-9a8c0c01328a" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "[request_body]"
@@ -228,7 +228,7 @@ Delete an organization. The caller may not delete his own organization. Also, an
 
 ```shell
 # Delete an organization
-curl -X DELETE "https://cloudmc_endpoint/v1/organizations/[id]" \
+curl -X DELETE "https://cloudmc_endpoint/v1/organizations/3f913132-d479-4332-8fee-9a8c0c01328a" \
    -H "MC-Api-Key: your_api_key"
 ```
 
