@@ -53,7 +53,7 @@ sortBy | Sort direction: either `asc` or `desc`
 ```shell
 #shell command:
 curl \
-http://localhost:8002/api/activities/?q=xyz \
+http://localhost:8002/api/activities/?patient=X&type=Y&date=Z \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN"
 ```
@@ -61,38 +61,65 @@ http://localhost:8002/api/activities/?q=xyz \
 > The above command returns JSON structured like this: 
 
 ```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+	[{
+    "namespace":	"api:insurances:create",
+    "action":	null,
+    "patient": [{
+      "id": "5d001ac40bb38f3585626b69",
+      "name": "Test Test",
+      "firstname": "Test",
+      "lastname": "Test",
+      "contact": [{ _id, active, value, type}, ...]
+    }, ...],
+    "facility":	null,
+    "provider":	null,
+    "activityContext"		[{}, ...],
+    "timestamp":	"15602880255182019-06-11T21:20:25.518Z",
+    "createdBy":	"5d001ac40bb38f3585626b69",
+    "updatedBy":	"5d001ac40bb38f3585626b69",
+    "user":	"5d001ac40bb38f3585626b69"
+	}, ...]
 ```
 
-Authorization: No Auth / x-access-token
+Lists activities from redis.
+
+Authorization: x-access-token
 
 Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
+Query params | Description 
+-------------- | ----------- 
+patient | (optional) ID of the patient whose activities should be listed. Default: session user's ID.
+type | (optional) Type of the activities. Accepted types: ['appointments','availabilities','insurances', ...]
+date | (optional) Date of the activities to be listed
+
 Response body param | Description 
 -------------- | ----------- 
-xxx | yyy
+namespace | A string used to organize the activities in redis. Accepted values: ["luma:activity:list:${userId}", "luma:activity:instance:${activityId}"]
+action | Describes the action taken during the activity. Only suitable for some cases, such as `api:feedbackResponses:create`, whose `action` may be `positive` or `negative`.
+patient | Patient info such as id, name, and contact.
+facility | Facility info.
+provider | Provider info.
+acivityContext | Object containing any kind of relevant information for the activity.
+timestamp | Time and date when the activity was created/updated.
+createdBy | User id of the user who created the activity.
+updatedBy | User id of the user who updated the activity.
+user | User id of the owner account.
 
-## Put by id
+## Put by timestamp
 
-`PUT` /api/activities/:id
+`PUT` /api/activities/:timestamp
 
 ```shell
 #shell command:
 curl -X PUT \
-http://localhost:8002/api/activities/:id?q=xyz \
+http://localhost:8002/api/activities/:timestamp \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN" \
  -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
+		"actionTaken": true
 	}'
 ```
 
@@ -100,17 +127,47 @@ http://localhost:8002/api/activities/:id?q=xyz \
 
 ```json-doc
 	{
-		"x": "y",
-		"y", true,
-		"z": 1
+    "actionTaken": true,
+    "namespace":	"api:insurances:create",
+    "action":	null,
+    "patient": [{
+      "id": "5d001ac40bb38f3585626b69",
+      "name": "Test Test",
+      "firstname": "Test",
+      "lastname": "Test",
+      "contact": [{ _id, active, value, type}, ...]
+    }, ...],
+    "facility":	null,
+    "provider":	null,
+    "activityContext"		[{}, ...],
+    "timestamp":	"15602880255182019-06-11T21:20:25.518Z",
+    "createdBy":	"5d001ac40bb38f3585626b69",
+    "updatedBy":	"5d001ac40bb38f3585626b69",
+    "user":	"5d001ac40bb38f3585626b69"
 	}
 ```
 
-Authorization: No Auth / x-access-token
+Flags as handled the activity whose ID is the given timestamp, for the logged user.
+
+> In redis, to see the available timestamps, run:
+
+```
+zrange "luma:activity:list:5d001ac40bb38f3585626b69" 0 -1 WITHSCORES
+```
+
+> The command above also returns many 128-bit activity IDs, which may be used again in redis:
+
+```
+get "luma:activity:instance:a17558d8ea1c39dbc0c5c78f53238faa569723aa4e7a87fbdf7c594d55bb6db50588445b886d7753262173449b1a95830ba506e0"
+```
+
+That command will output the activity, just like the REST API.
+
+Authorization: x-access-token
 
 Path parameters | Description 
 -------------- | ----------- 
-:id | xxx
+:timestamp | Date and time when the activity happened for the logged user.
 
 Request headers | Description 
 -------------- | ----------- 
@@ -118,11 +175,21 @@ x-access-token | JWT auth access token
 
 Request body param | Description 
 -------------- | ----------- 
-:id | xxx
+actionTaken | true. Flags the activity as handled.
 
 Response body param | Description 
 -------------- | ----------- 
-xxx | yyy
+actionTaken | Flag indicating that the activity was handled.
+namespace | A string used to organize the activities in redis. Accepted values: ["luma:activity:list:${userId}", "luma:activity:instance:${activityId}"]
+action | Describes the action taken during the activity. Only suitable for some cases, such as `api:feedbackResponses:create`, whose `action` may be `positive` or `negative`.
+patient | Patient info such as id, name, and contact.
+facility | Facility info.
+provider | Provider info.
+acivityContext | Object containing any kind of relevant information for the activity.
+timestamp | Time and date when the activity was created/updated.
+createdBy | User id of the user who created the activity.
+updatedBy | User id of the user who updated the activity.
+user | User id of the owner account.
 
 # admin
 
