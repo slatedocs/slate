@@ -24,7 +24,7 @@ We have language bindings in Http! You can view code examples in the dark area t
 
 ## Environment
 
-* Production base url: **https://pages.fm/api/v1**
+* Production base url: **https://pos.pages.fm/api/v1**
 
 
 # Authentication
