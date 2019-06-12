@@ -81,9 +81,9 @@ http://localhost:8002/api/activities/?patient=X&type=Y&date=Z \
 	}, ...]
 ```
 
-Lists activities from redis.
+Lists activities from redis. 
 
-Authorization: x-access-token
+Authorization: x-access-token. Roles allowed: patient
 
 Request headers | Description 
 -------------- | ----------- 
@@ -868,7 +868,9 @@ http://localhost:8002/api/appointmentTypes/?name=x&description=x \
 > The above command returns JSON of an [AppointmentType](#appointmenttype)
 ```
 
-Authorization: x-access-token
+Lists appointmentTypes.
+
+Authorization: x-access-token, Roles allowed: patient and widget
 
 Request headers | Description 
 -------------- | ----------- 
@@ -885,40 +887,40 @@ Response body: see [AppointmentType](#appointmenttype).
 ```shell
 #shell command:
 curl -X POST \
-http://localhost:8002/api/appointmentTypes/?q=xyz \
+http://localhost:8002/api/appointmentTypes/ \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN" \
  -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
+  "name": "Checkup",
+  "description": "Checkup",
+  "createdBy": "5d001ac40bb38f3585626b69",
+  "updatedBy": "5d001ac40bb38f3585626b69",
+  "user": "5d001ac40bb38f3585626b69",
+  "deleted": 0,
+  "updatedAt": "2019-06-11T21:19:12.570Z",
+  "createdAt": "2019-06-11T21:19:02.461Z",
+  "visible": true,
+  "externalId": {
+    "source": "lumamock",
+    "value": "1560287942461"
+  },
+  "setting": "5d001ac9f0587535a858244a"
+}'
 ```
 
-> The above command returns JSON structured like this: 
+> The above command returns JSON of an [AppointmentType](#appointmenttype), with the `settings` field fetched and expanded based on the `setting` foreign key.
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
+Creates an appointmentType.
 
-Authorization: No Auth / x-access-token
+Authorization: x-access-token
 
 Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
--------------- | ----------- 
- | xxx
+Request body param: JSON of an [AppointmentType](#appointmenttype).
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+Response body:  JSON of an [AppointmentType](#appointmenttype), with the `settings` field fetched and expanded based on the `setting` foreign key.
 
 ## Put by id
 
