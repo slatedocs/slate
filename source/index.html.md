@@ -865,7 +865,7 @@ http://localhost:8002/api/appointmentTypes/?name=x&description=x \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON of an [AppointmentType](#appointmenttype)
+> The above command returns an array of JSONs of [AppointmentTypes](#appointmenttype)
 ```
 
 Lists appointmentTypes.
@@ -878,7 +878,7 @@ name | JWT auth access token
 
 Query.params.: all the fields of [AppointmentType](#appointmenttype). Ex.: ?externalId.value=1560287942461&name=Checkup
 
-Response body: see [AppointmentType](#appointmenttype).
+Response body: array of [AppointmentTypes](#appointmenttype).
 
 ## Post appointmentType
 
@@ -933,12 +933,20 @@ http://localhost:8002/api/appointmentTypes/5d001ac6f0587535a85823d3 \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN" \
  -d '{
-  "name": "Checkup4",
-  "description": "Checkup3",
-  "visible": false,
+  "name": "Checkup1",
+  "description": "Checkup1",
+  "createdBy": "5d001ac40bb38f3585626b69",
+  "updatedBy": "5d001ac40bb38f3585626b69",
+  "user": "5d001ac40bb38f3585626b69",
+  "deleted": 0,
+  "updatedAt": "2019-06-11T21:19:12.570Z",
+  "createdAt": "2019-06-11T21:19:02.461Z",
+  "visible": true,
   "externalId": {
-  	"value": "1111111111111"
-  }
+    "source": "lumamock",
+    "value": "1111111111111"
+  },
+  "setting": "5d001ac9f0587535a858244a"
 }'
 ```
 
@@ -963,34 +971,22 @@ Response body: JSON of an [AppointmentType](#appointmenttype), with the `setting
 ```shell
 #shell command:
 curl \
-http://localhost:8002/api/appointmentTypes/:id?q=xyz \
+http://localhost:8002/api/appointmentTypes/5d001ac6f0587535a85823d3 \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The above command returns JSON of an [AppointmentType](#appointmenttype), with the `settings` field fetched and expanded based on the `setting` foreign key.
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
+Returns the JSON of one specific [AppointmentType](#appointmenttype) fetched by the `id` path parameter in the request URL. 
 
-Authorization: No Auth / x-access-token
-
-Path parameters | Description 
--------------- | ----------- 
-:id | xxx
+Authorization: x-access-token
 
 Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+Response body: JSON of an [AppointmentType](#appointmenttype), with the `settings` field fetched and expanded based on the `setting` foreign key.
 
 ## Delete by id
 
@@ -999,44 +995,34 @@ xxx | yyy
 ```shell
 #shell command:
 curl -X DELETE \
-http://localhost:8002/api/appointmentTypes/:id?q=xyz \
+http://localhost:8002/api/appointmentTypes/5d001ac6f0587535a85823d3 \
 -H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN" \
- -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
+-H 'x-access-token: '"$TOKEN"'
 ```
 
 > The above command returns JSON structured like this: 
 
 ```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+{
+    "_id": "5d001ac6f0587535a85823d3",
+    "deleted": 1
+}
 ```
 
-Authorization: No Auth / x-access-token
+Authorization: x-access-token
 
 Path parameters | Description 
 -------------- | ----------- 
-:id | xxx
+:id | The ObjectID of an AppointmentType to be deleted.
 
 Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
--------------- | ----------- 
-:id | xxx
-
 Response body param | Description 
 -------------- | ----------- 
-xxx | yyy
+_id | The ObjectID of an AppointmentType to be deleted.
+deleted | Value 1 indicates that it was successfully deleted.
 
 ## Get crudList
 
@@ -15866,3 +15852,6 @@ declinedBy|ObjectID, optional, ref: [User](#user)
 _id|ObjectID, optional
 __v|Number, optional
 
+# Errors
+
+To be documented.
