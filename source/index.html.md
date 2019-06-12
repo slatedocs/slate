@@ -13,6 +13,7 @@ includes:
   - administration/users
   - administration/roles
   - administration/environments 
+  - administration/resource_commitments 
   - administration/usage
   - cloudstack
   - cloudstack/compute # Compute section
@@ -58,6 +59,7 @@ includes:
   - openstack/snapshots
   - gcp
   - gcp/instances
+  - gcp/disks
 
 search: true
 ---
