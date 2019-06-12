@@ -86,7 +86,7 @@ curl -X GET \
       "subnetworkName": "default",
       "iconUrl": "/rest/services/assets/gcp/os_logo/debian.png",
       "osImageName": "debian-9-stretch",
-      "osImageUrl": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514",
+      "osImageSelfLink": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514",
       "osImageSizeInGb": 0,
       "bootDiskSizeInGb": 0,
       "cpuCount": 2,
@@ -130,7 +130,7 @@ Attributes | &nbsp;
 `subnetworkName`<br/>*string* | The sub-network within the network the instance is connected to
 `iconUrl`<br/>*string* | Icon representing the OS installed on the instance's boot disk
 `osImageName`<br/>*string* | The name of the OS image installed on the instance's boot disk
-`osImageUrl`<br/>*string* | The full URL to the OS image
+`osImageSelfLink`<br/>*string* | The full URL to the OS image
 `osImageSizeInGb`<br/>*string* | The size of the OS image
 `bootDiskSizeInGb`<br/>*string* | The size of the instance's boot disk
 `cpuCount`<br/>*string* | The number of vCPUs for the machine type
@@ -224,7 +224,7 @@ curl -X GET \
     "subnetworkName": "default",
     "iconUrl": "/rest/services/assets/gcp/os_logo/debian.png",
     "osImageName": "debian-9-stretch",
-    "osImageUrl": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514",
+    "osImageSelfLink": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514",
     "osImageSizeInGb": 0,
     "bootDiskSizeInGb": 0,
     "cpuCount": 2,
@@ -264,7 +264,7 @@ Attributes | &nbsp;
 `subnetworkName`<br/>*string* | The sub-network within the network the instance is connected to
 `iconUrl`<br/>*string* | Icon representing the OS installed on the instance's boot disk
 `osImageName`<br/>*string* | The name of the OS image installed on the instance's boot disk
-`osImageUrl`<br/>*string* | The full URL to the OS image
+`osImageSelfLink`<br/>*string* | The full URL to the OS image
 `osImageSizeInGb`<br/>*string* | The size of the OS image
 `bootDiskSizeInGb`<br/>*string* | The size of the instance's boot disk
 `cpuCount`<br/>*string* | The number of vCPUs for the machine type
@@ -296,7 +296,7 @@ curl -X POST \
   "bootDiskSizeInGb": "10",
   "cpuCount": "2",
   "memoryInGB": "4.5",
-  "osImageUrl": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514"
+  "osImageSelfLink": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514"
 }
 ```
 
@@ -313,7 +313,7 @@ Required | &nbsp;
 `bootDiskSizeInGb` <br/>*string* | The size of the boot disk in GB. Acceptable values are 1 to 2000, inclusive
 `cpuCount`<br/>*string* | Updated number of vCPUs of instance
 `memoryInGB`<br/>*string* | Updated memory of instance
-`osImageUrl`<br/>*string* | The full URL to the OS image
+`osImageSelfLink`<br/>*string* | The full URL to the OS image
 
 <!-------------------- DELETE AN INSTANCE -------------------->
 
