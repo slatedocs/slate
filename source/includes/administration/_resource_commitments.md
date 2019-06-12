@@ -1,6 +1,6 @@
 ## Resource commitments
 
-Resource commitments allow you to set specific commitment levels on cloud resources `(compute, network & storage)` avaialble on a [service-connection](#administration-service-connections). This assures commitment to a specific set of resources on a fixed monthly price. Any additional resource usage will be billed on the utility price defined by the CMC [pricing](#administration-pricing). Commitments can either be restricted to a specific date range or be un-restricted with no end date. Whilst the commitment price is decided by the pre-defined [pricing](#administration-pricing), various discounts can be given on the resource utility price. Resource commitments allow Cloud-MC users to receive services at fixed discounted rates whilst enabling additional usage at utility cost.
+Resource commitments allow you to set specific commitment levels on cloud resources available on a [service-connection](#administration-service-connections). This assures commitment to a specific set of resources on a fixed monthly price. Any additional resource usage will be billed on the utility price defined by the CMC [pricing](#administration-pricing). Commitments can either be restricted to a specific date range or be un-restricted with no end date. Whilst the commitment price is decided by the pre-defined [pricing](#administration-pricing), various discounts can be given on the resource utility price. Resource commitments allow CloudMC users to receive services at fixed discounted rates whilst enabling additional usage at utility cost.
 
 <!-------------------- LIST RESOURCE COMMITMENTS -------------------->
 
@@ -11,7 +11,7 @@ Resource commitments allow you to set specific commitment levels on cloud resour
 ```shell
 # Retrieve visible environments
 curl "https://cloudmc_endpoint/v1/resource_commitments" \
-   -H "MC-Api-Key: your_api_key"
+   -H "MC-Api-Key: b8oa9XlEQbb19qshabirg=="
 
 # Response body example
 ```
@@ -71,7 +71,7 @@ curl "https://cloudmc_endpoint/v1/resource_commitments" \
   }]
 }
 ```
-List all the resource commitments that you have access to. You can only view resource commitments if you have been assingned either the `View usage` or the `Manage commitments` permission. If you have `View usage` access then you will only be able to see the commitments specific to your organization. Having the `Manage commitments` permission lets you see all resource commitments in the system.
+List all the resource commitments that you have access to. You can only view resource commitments if you have been assigned either the `Usage: View` or the `Commitments: Manage` permission. If you have `Usage: View` access then you will only be able to see the commitments specific to your organization. Having the `Commitments: Manage` permission lets you see all resource commitments in the system.
 
 An array of resource commitments with the following attributes are returned.
 
@@ -85,7 +85,7 @@ Attributes | &nbsp;
 `pricingMethod`<br/>*string* | One of the two following options that define how the effective price for the resource commitment is calculated<br/>*FIXED_MONTHLY*: `a fixed price per billing cycle`<br/>*VARIABLE_UTILITY_DISCOUNT*: `pricing with custom discount on specific resources`
 `currency`<br/>*string* | The currency type based on which the pricing is defined
 `monthlyPrice`<br/>*number* | The effective monthly price for this resource commitment
-`effectiveDiscount`<br/>*number* | The effective discount on this resource commitment
+`effectiveDiscount`<br/>*number* | The effective discount percentage (%) on this resource commitment
 `billableHoursPerMonth`<br/>*number* | The number hours per month based on which the monthly price is calculated<br/>*optional*: `not present if the pricing method is FIXED_MONTHLY`
 `billingDay`<br/>*number* | The day of the month based on which the billing cycle is calculated
 `resourceCommitmentDetails`<br/>*Array [Commitment detail]* | The resources on which different commitment levels _(and discounts)_ have been set.<br/>*includes*: `id`, `name`, `primaryType`, `secondaryType`, `commitment`, `discountPercent`, `unit`, `labelKey`
@@ -102,8 +102,8 @@ Attributes | &nbsp;
 ```shell
 # Retrieve visible environment
 
-curl "https://cloudmc_endpoint/v1/resource_commitments/[resource_commitments-id]" \
-   -H "MC-Api-Key: your_api_key"
+curl "https://cloudmc_endpoint/v1/resource_commitments/fbgc7647-71e6-w69b-998a-c02rf58bf2e6" \
+   -H "MC-Api-Key: b8oa9XlEQbb19qshabirg=="
 
 # Response body example
 ```
@@ -159,7 +159,7 @@ curl "https://cloudmc_endpoint/v1/resource_commitments/[resource_commitments-id]
 }
 ```
 
-Retrieve a specific resource commitment you have access to. You can only retrieve the resource commitment if you have either the `View usage` permission on the organization in which the commitment is defined or the `Manage commitments` permission.
+Retrieve a specific resource commitment you have access to. You can only retrieve the resource commitment if you have either the `Usage: View` permission on the organization in which the commitment is defined or the `Commitments: Manage` permission.
 
 Attributes | &nbsp;
 ---------- | -----------
@@ -189,7 +189,7 @@ Attributes | &nbsp;
 # Create an environment
 
 curl -X POST "https://cloudmc_endpoint/v1/resource_commitments" \
-   -H "MC-Api-Key: your_api_key" \
+   -H "MC-Api-Key: b8oa9XlEQbb19qshabirg==" \
    -H "Content-Type: application/json" \
    -d "[request_body]"
 
@@ -230,7 +230,7 @@ curl -X POST "https://cloudmc_endpoint/v1/resource_commitments" \
 }
 ```
 
-Create a new resource commitment defined on a service connection. You will need the `Manage commitments` permission to execute this operation.
+Create a new resource commitment defined on a service connection. You will need the `Commitments: Manage` permission to execute this operation.
 
 Required | &nbsp;
 -------- | -----------
@@ -259,8 +259,8 @@ The responses' `data` field contains the created [resource-commitment](#administ
 
 ```shell
 # Update an environment
-curl -X PUT "https://cloudmc_endpoint/v1/resource_commitments/[resource_commitments-id]" \
-   -H "MC-Api-Key: your_api_key" \
+curl -X PUT "https://cloudmc_endpoint/v1/resource_commitments/fbgc7647-71e6-w69b-998a-c02rf58bf2e6" \
+   -H "MC-Api-Key: b8oa9XlEQbb19qshabirg==" \
    -H "Content-Type: application/json" \
    -d "[request_body]"
 
@@ -323,7 +323,7 @@ Attributes | &nbsp;
 `serviceConnection`<br/>*[ServiceConnection](#administration-service-connections)* | The service connection on which the resource commitment to be edited is defined<br/>*includes*: `id`
 
 
-The responses' `data` field contains the created [resource-commitment](#administration-retrieve-a-resource-commitment). You will need the `Manage commitments` permission to execute this operation.
+The responses' `data` field contains the created [resource-commitment](#administration-retrieve-a-resource-commitment). You will need the `Commitments: Manage` permission to execute this operation.
 
 <!-------------------- DELETE A RESOURCE COMMITMENT -------------------->
 
@@ -335,9 +335,9 @@ The responses' `data` field contains the created [resource-commitment](#administ
 ```shell
 # Delete an environment
 
-curl "https://cloudmc_endpoint/v1/resource_commitments/[resource_commitments-id]" \
-   -X DELETE -H "MC-Api-Key: your_api_key"
+curl "https://cloudmc_endpoint/v1/resource_commitments/fbgc7647-71e6-w69b-998a-c02rf58bf2e6" \
+   -X DELETE -H "MC-Api-Key: b8oa9XlEQbb19qshabirg=="
 
 ```
 
-Delete a specific resource commitment. You will need a [role](#administration-roles) with the `Manage commitments` permission to execute this operation.
+Delete a specific resource commitment. You will need a [role](#administration-roles) with the `Commitments: Manage` permission to execute this operation.
