@@ -929,44 +929,32 @@ Response body:  JSON of an [AppointmentType](#appointmenttype), with the `settin
 ```shell
 #shell command:
 curl -X PUT \
-http://localhost:8002/api/appointmentTypes/:id?q=xyz \
+http://localhost:8002/api/appointmentTypes/5d001ac6f0587535a85823d3 \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN" \
  -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
+  "name": "Checkup4",
+  "description": "Checkup3",
+  "visible": false,
+  "externalId": {
+  	"value": "1111111111111"
+  }
+}'
 ```
 
-> The above command returns JSON structured like this: 
+> The above command returns JSON of an [AppointmentType](#appointmenttype), with the `settings` field fetched and expanded based on the `setting` foreign key.
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
+Updates the given fields of an appointmentType.
 
-Authorization: No Auth / x-access-token
-
-Path parameters | Description 
--------------- | ----------- 
-:id | xxx
+Authorization: x-access-token, Roles allowed: admin
 
 Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
--------------- | ----------- 
-:id | xxx
+Request body: any subset of attributes of an [AppointmentType](#appointmenttype).
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+Response body: JSON of an [AppointmentType](#appointmenttype), with the `settings` field fetched and expanded based on the `setting` foreign key.
 
 ## Get by id
 
