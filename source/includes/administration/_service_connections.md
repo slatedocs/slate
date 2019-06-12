@@ -67,7 +67,7 @@ Attributes | &nbsp;
 `GET /services/connections/:id/policies/descriptors`
 
 ```shell
-# Retrieve connection descriptors
+# Retrieve connection policy descriptors
 curl "https://cloudmc_endpoint/v1/services/connections/03bc22bd-adc4-46b8-988d-afddc24c0cb5/policies/descriptors?section=trials" \
    -H "MC-Api-Key: your_api_key"
 ```
