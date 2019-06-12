@@ -3,7 +3,7 @@
 ## Refresh
 
 ```shell
-curl --data-binary '{"id":"1", "method":"token.Refresh", "params":"boBCItwS5gvkXgmdJ0vJm7qs2EEgqNV7LVzrY13A", "jsonrpc":"2.0"}'
+curl --data-binary '{"id":1, "method":"token.Refresh", "params":"boBCItwS5gvkXgmdJ0vJm7qs2EEgqNV7LVzrY13A", "jsonrpc":"2.0"}'
   -H 'Authorization: Bearer refresh_token'
   -H 'content-type:application/json;'
 ```
@@ -17,7 +17,7 @@ curl --data-binary '{"id":"1", "method":"token.Refresh", "params":"boBCItwS5gvkX
 		"jwt_access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySUQiOiJiYmJuN2x2YXRhYWcwMjZpdjJtZyIsIk9yZ0lEIjoiZmlsdGVyZWQiLCJHcm91cElEIjoiZmlsdGVyZWQtZ2xvYmFsZmlsdGVyIn0.e7A_2EQLwS3v7dOVTq0I5afjnmSWYfqmBngFOlRsaJI",
 		"refresh_token": "wZk2AnHuCuMplJ2P52a3hK0nZ2CfnQEWH1jLR7Nk"
 	},
-	"id": "5"
+	"id": 1
 }
 ```
 
