@@ -229,6 +229,7 @@ playlist (optional) | object | playlist where the action was triggered from
 <aside class="success">
 Returns — Message - a success message
 </aside>
+<aside class="notice"><code>It is highly suggested that the client uses the optional parameter for better reporting.</code></aside>
 
 ### Errors
 
@@ -274,6 +275,7 @@ playlist (optional) | object | playlist where the action was triggered from
 <aside class="success">
 Returns — Message - a success message
 </aside>
+<aside class="notice"><code>It is highly suggested that the client uses the optional parameter for better reporting.</code></aside>
 
 ### Errors
 
