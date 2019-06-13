@@ -58,7 +58,7 @@ http://localhost:8002/api/activities/?patient=X&type=Y&date=Z \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	[{
@@ -108,7 +108,7 @@ createdBy | User id of the user who created the activity.
 updatedBy | User id of the user who updated the activity.
 user | User id of the owner account.
 
-## Put by timestamp
+## Update by timestamp
 
 `PUT` /api/activities/:timestamp
 
@@ -123,7 +123,7 @@ http://localhost:8002/api/activities/:timestamp \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -200,72 +200,121 @@ user | User id of the owner account.
 ```shell
 #shell command:
 curl \
-http://localhost:8002/api/appointments/?q=xyz \
+http://localhost:8002/api/appointments/?status=unconfirmed \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
-		"x": "y",
-		"y", true,
-		"z": 1
+		"size": 1,
+		"response": [
+      {
+        "_id": "5d001ad3f0587535a8582486",
+        "patient": "5d001ac6f0587535a85823f4",
+        "date": "2019-06-18T15:45:00.000Z",
+        "duration": 15,
+        "source": "manual",
+        "status": "unconfirmed",
+        "provider": "5d001ac8f0587535a8582442",
+        "type": "5d001ac6f0587535a85823ce",
+        "facility": "5d001ac8f0587535a8582439",
+        "user": "5d001ac40bb38f3585626b69",
+        "createdBy": "5d001ac40bb38f3585626b69",
+        "updatedBy": "5d001ac40bb38f3585626b69",
+        "endDate": "2019-06-18T16:00:00.000Z",
+        "integratorUpdateResults": {
+            "status": "pending"
+        },
+        "deleted": 0,
+        "updatedAt": "2019-06-11T21:19:15.308Z",
+        "createdAt": "2019-06-11T21:19:15.308Z",
+        "stats": {
+            "counters": {
+                "remindersSent": 0
+            }
+        },
+        "statusReason": null,
+        "externalId": {
+            "source": "lumamock",
+            "value": "1560287955308"
+        },
+        "__v": 0
+      }
+    ],
+		"page": 1,
+    "totalSize": 1
 	}
 ```
 
-Authorization: No Auth / x-access-token
+Authorization: x-access-token
 
 Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
+Request query Params | Example
+-------------- | ----------- 
+Any property of an [Appointment](#appointment) | ex.: ?status=unconfirmed&source=manual
+
 Response body param | Description 
 -------------- | ----------- 
-xxx | yyy
+size | Size of the current page of results.
+response | Array of [Appointments](#appointment).
+page | The number of the current page of results.
+totalSize | Total amount of results in all pages.
 
-## Post appointment
+## Create appointment
 
 `POST` /api/appointments/
 
 ```shell
 #shell command:
 curl -X POST \
-http://localhost:8002/api/appointments/?q=xyz \
+http://localhost:8002/api/appointments/ \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN" \
  -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
+        "patient": "5d001ac6f0587535a85823f4",
+        "date": "2019-06-18T15:45:00.000Z",
+        "duration": 15,
+        "source": "manual",
+        "status": "unconfirmed",
+        "provider": "5d001ac8f0587535a8582442",
+        "type": "5d001ac6f0587535a85823ce",
+        "facility": "5d001ac8f0587535a8582439",
+        "endDate": "2019-06-18T16:00:00.000Z",
+        "integratorUpdateResults": {
+            "status": "pending"
+        },
+        "stats": {
+            "counters": {
+                "remindersSent": 0
+            }
+        },
+        "statusReason": null,
+        "externalId": {
+            "source": "lumamock",
+            "value": "1560287955308"
+        }
+    }'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns JSON of an [Appointment](#appointment).
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
+Creates a new appointment.
 
-Authorization: No Auth / x-access-token
+Authorization: x-access-token
 
 Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
--------------- | ----------- 
- | xxx
+Request body: JSON of an [Appointment](#appointment).
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+Response body: JSON of the [Appointment](#appointment) which as created..
 
 ## Get by id
 
@@ -274,160 +323,151 @@ xxx | yyy
 ```shell
 #shell command:
 curl \
-http://localhost:8002/api/appointments/:id?q=xyz \
+http://localhost:8002/api/appointments/5d001ad3f0587535a8582486 \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a single JSON of an [Appointment](#appointment).
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
+Fetches one appointment by its ObjectId.
 
-Authorization: No Auth / x-access-token
+Authorization: x-access-token
 
 Path parameters | Description 
 -------------- | ----------- 
-:id | xxx
+:id | The ObjectID of the desired appointment in the database.
 
 Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+Response body: a single JSON of an [Appointment](#appointment).
 
-## Put by id
+## Update appointment
 
 `PUT` /api/appointments/:id
 
 ```shell
 #shell command:
 curl -X PUT \
-http://localhost:8002/api/appointments/:id?q=xyz \
+http://localhost:8002/api/appointments/5d001ad3f0587535a8582486 \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN" \
  -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
+    "_id": "5d001ad3f0587535a8582486",
+    "patient": "5d001ac6f0587535a85823f4",
+    "date": "2019-06-18T15:45:00.000Z",
+    "duration": 15,
+    "source": "manual",
+    "status": "unconfirmed",
+    "provider": "5d001ac8f0587535a8582442",
+    "type": "5d001ac6f0587535a85823ce",
+    "facility": "5d001ac8f0587535a8582439",
+    "user": "5d001ac40bb38f3585626b69",
+    "createdBy": "5d001ac40bb38f3585626b69",
+    "updatedBy": "5d001ac40bb38f3585626b69",
+    "endDate": "2019-06-18T16:00:00.000Z",
+    "__v": 0,
+    "integratorUpdateResults": {
+        "status": "pending"
+    },
+    "updatedAt": "2019-06-11T21:19:15.308Z",
+    "createdAt": "2019-06-11T21:19:15.308Z",
+    "stats": {
+        "counters": {
+            "remindersSent": 0
+        }
+    },
+    "statusReason": null,
+    "externalId": {
+        "source": "lumamock",
+        "value": "1560287955308"
+    }
+}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON of an [Appointment](#appointment).
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
+Updates a single appointment by ID. The request body may include only a subset of the attributes of an [Appointment](#appointment).
 
-Authorization: No Auth / x-access-token
+Authorization: x-access-token
 
 Path parameters | Description 
 -------------- | ----------- 
-:id | xxx
+:id | The ObjectID of the desired appointment in the database.
 
 Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
--------------- | ----------- 
-:id | xxx
+Request body: JSON containing any subset of the attributes of an [Appointment](#appointment).
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+Response body: the updated [Appointment](#appointment).
 
 ## Delete by id
 
 `DELETE` /api/appointments/:id
 
+Soft deletes an appointment from the database.
+
 ```shell
 #shell command:
 curl -X DELETE \
-http://localhost:8002/api/appointments/:id?q=xyz \
+http://localhost:8002/api/appointments/5d001ad3f0587535a8582486 \
 -H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN" \
- -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
+-H 'x-access-token: '"$TOKEN"'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+{
+  "_id": "5d001ad3f0587535a8582486",
+  "deleted": 1
+}
 ```
 
-Authorization: No Auth / x-access-token
+Authorization: x-access-token
 
 Path parameters | Description 
 -------------- | ----------- 
-:id | xxx
+:id | The ObjectID of the appointment to be deleted from the database.
 
 Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Request body param | Description 
--------------- | ----------- 
-:id | xxx
-
 Response body param | Description 
 -------------- | ----------- 
-xxx | yyy
+_id | The ObjectID of the appointment deleted from the database.
+deleted | Flag indicating if the object was really deleted.
 
-## Put cancel
+## Cancel appointment
 
 `PUT` /api/appointments/:id/cancel
 
 ```shell
 #shell command:
 curl -X PUT \
-http://localhost:8002/api/appointments/:id/cancel?q=xyz \
+http://localhost:8002/api/appointments/5d001ad3f0587535a8582486/cancel \
 -H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN" \
- -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
+-H 'x-access-token: '"$TOKEN"'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON of the cancelled [Appointment](#appointment).
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
+Cancels an appointment, setting its `cancelledAt` attribute to the current date, `statusSource` to `ui`, `status` to `cancelled`.
 
-Authorization: No Auth / x-access-token
+The old `status` has to be either `confirmed` or `unconfirmed`, otherwise the operation will fail.
+
+It clears out the integration update results by updating `integratorUpdateResults` to `pending`, so that integrator doesn't drop this status change.
+
+Authorization: x-access-token
 
 Path parameters | Description 
 -------------- | ----------- 
-:id | xxx
+:id | The ObjectID of the appointment to be cancelled.
 
 Request headers | Description 
 -------------- | ----------- 
@@ -435,45 +475,35 @@ x-access-token | JWT auth access token
 
 Request body param | Description 
 -------------- | ----------- 
-:id | xxx
+:id | The ObjectID of the appointment to be cancelled.
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+Response body: JSON of the cancelled [Appointment](#appointment).
 
-## Put confirm
+## Confirm appointment
 
 `PUT` /api/appointments/:id/confirm
 
 ```shell
 #shell command:
 curl -X PUT \
-http://localhost:8002/api/appointments/:id/confirm?q=xyz \
+http://localhost:8002/api/appointments/5d001ad3f0587535a8582486/confirm \
 -H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN" \
- -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
+-H 'x-access-token: '"$TOKEN"'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON of the confirmed [Appointment](#appointment).
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
+Cancels an appointment, setting its `confirmedAt` attribute to the current date, `statusSource` to `ui`, `status` to `confirmed`.
 
-Authorization: No Auth / x-access-token
+The old `status` has to be either `cancelled` or `unconfirmed`, otherwise the operation will fail.
+
+It clears out the integration update results by updating `integratorUpdateResults` to `pending`, so that integrator doesn't drop this status change.
+
+Authorization: x-access-token
 
 Path parameters | Description 
 -------------- | ----------- 
-:id | xxx
+:id | The ObjectID of the appointment to be confirmed.
 
 Request headers | Description 
 -------------- | ----------- 
@@ -481,79 +511,43 @@ x-access-token | JWT auth access token
 
 Request body param | Description 
 -------------- | ----------- 
-:id | xxx
+:id | The ObjectID of the appointment to be confirmed.
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+Response body: JSON of the confirmed [Appointment](#appointment).
 
 ## Get crudList
 
 `GET` /api/appointments/crudList
 
-```shell
-#shell command:
-curl \
-http://localhost:8002/api/appointments/crudList?q=xyz \
--H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN"
-```
+Same as [Get appointments](#get-appointments).
 
-> The above command returns JSON structured like this: 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## Get getByPatientId
+## Get by patient
 
 `GET` /api/appointments/getByPatientId/:id
 
 ```shell
 #shell command:
 curl \
-http://localhost:8002/api/appointments/getByPatientId/:id?q=xyz \
+http://localhost:8002/api/appointments/getByPatientId/5d001ac6f0587535a85823f6 \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns an array of [Appointments](#appointment).
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
+Fetches all the appointments of a given patient.
 
-Authorization: No Auth / x-access-token
+Authorization: x-access-token
 
 Path parameters | Description 
 -------------- | ----------- 
-:id | xxx
+:id | The patient's ObjectID whose appointments will be fetched
 
 Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+Response body: an array of [Appointments](#appointment).
 
 ## Get reports/find
 
@@ -562,30 +556,83 @@ xxx | yyy
 ```shell
 #shell command:
 curl \
-http://localhost:8002/api/appointments/reports/find?q=xyz \
+http://localhost:8002/api/appointments/reports/find?patient=5d001ac8f0587535a8582436 \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+{
+    "data": [
+        {
+            "_id": "5d001ad3f0587535a85824d7",
+            "patient": {
+                "_id": "5d001ac6f0587535a8582410",
+                "name": "Harmony Rippin",
+                "__t": "Patient",
+                "dateOfBirth": {
+                    "year": 1992,
+                    "month": 7,
+                    "day": 8
+                },
+                "contact": [
+                    {
+                        "_id": "5d001ac6f0587535a8582411",
+                        "active": true,
+                        "value": "Mark_Weissnat.hotmail.com@example.com",
+                        "type": "email"
+                    }
+                ]
+            },
+            "date": "2019-06-13T23:15:00.000Z",
+            "status": "unconfirmed",
+            "provider": {
+                "_id": "5d001ac8f0587535a858243f",
+                "name": "Joseph Runte",
+                "__t": "Provider"
+            },
+            "type": {
+                "_id": "5d001ac6f0587535a85823cf",
+                "name": "Imaging - CT Angio Vascular"
+            },
+            "facility": {
+                "_id": "5d001ac8f0587535a8582439",
+                "name": "Embarcadero Wellness"
+            },
+            "updatedAt": "2019-06-11T21:19:15.885Z",
+            "stats": {
+                "counters": {
+                    "remindersSent": 0
+                }
+            }
+        }
+    ],
+    "paging": {
+        "totalCount": 1
+    }
+}
 ```
 
-Authorization: No Auth / x-access-token
+Searches for [appointments](#appointment) on PostgreSQL, falling back to MongoDB, and expanding all the ObjectIDs referencing foreign models to their full objects.
+
+As to the [patient](#patient) expanded object, this endpoint includes the `contact` attribute, which is an array of the patient's active contacts. The array only includes contact channels which are enabled for the logged user (ex.: phone, email, etc).
+
+Authorization: x-access-token
 
 Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
+Request query Params | Example
+-------------- | ----------- 
+Any property of an [Appointment](#appointment) | ex.: ?status=unconfirmed&source=manual
+
 Response body param | Description 
 -------------- | ----------- 
-xxx | yyy
+data | Array of [Appointments](#appointment).
+paging | An object containing the property `totalCount` which brings the total amount of results in all pages.
 
 ## Get reports/summary
 
@@ -594,30 +641,47 @@ xxx | yyy
 ```shell
 #shell command:
 curl \
-http://localhost:8002/api/appointments/reports/summary?q=xyz \
+http://localhost:8002/api/appointments/reports/summary?provider=5d001ac8f0587535a8582443 \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+{
+    "status": [
+        {
+            "_id": "unconfirmed",
+            "count": 3
+        },
+        {
+            "_id": "confirmed",
+            "count": 1
+        },
+        {
+            "_id": "cancelled",
+            "count": 4
+        }
+    ]
+}
 ```
 
-Authorization: No Auth / x-access-token
+Groups appointments by status, including [confirmed, unconfirmed, cancelled]. Includes, by default, appointments of the last 7 days.
+
+Authorization: x-access-token
 
 Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Response body param | Description 
+Query params | Description 
 -------------- | ----------- 
-xxx | yyy
+facility | Facility's ObjectID
+provider | Provider's ObjectID
+statusSource | Possible values: ["integrator", "reminder", "ui", "waitlist"]
+
+Response body: array containing objects, each with a status `_id` (which may be `confirmed`, `unconfirmed` or `cancelled`) and a `count` containing the amount of appointments in such status.
 
 ## Get reports/xls
 
@@ -626,230 +690,53 @@ xxx | yyy
 ```shell
 #shell command:
 curl \
-http://localhost:8002/api/appointments/reports/xls?q=xyz \
+http://localhost:8002/api/appointments/reports/xls?provider=5d001ac8f0587535a8582443 \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a XLS spreadsheet as described.
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
+Returns a XLS spreadsheet with the following columns:
 
-Authorization: No Auth / x-access-token
+Name | Description
+-------- | --------
+Date | Appointment date
+Facility | Facility where it's scheduled to happen
+Provider | Provider assigned
+Patient | Patient
+Status | May be `confirmed`, `unconfirmed` or `cancelled`
+Source | Possible values: ["integrator", "reminder", "ui", "waitlist"]
+Appointment Type | See [Appointment](#appointment)
+Last Updated | Date when the appointment was last updated
+Reminders Sent | Number of appointment reminders sent
+DOB | Date of Birth of the patient
+Contact | Contact channel and info
+Future Appointment | Future appointment info.
+
+Authorization: x-access-token
 
 Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Response body param | Description 
+Request query Params | Example
 -------------- | ----------- 
-xxx | yyy
+Any property of an [Appointment](#appointment) | ex.: ?status=unconfirmed&source=manual
 
-## Get summary
-
-`GET` /api/appointments/summary
-
-```shell
-#shell command:
-curl \
-http://localhost:8002/api/appointments/summary?q=xyz \
--H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN"
-```
-
-> The above command returns JSON structured like this: 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+Response: XLS spreadsheet file.
 
 ## Post upload/dentrix
 
-`POST` /api/appointments/upload/dentrix
-
-```shell
-#shell command:
-curl -X POST \
-http://localhost:8002/api/appointments/upload/dentrix?q=xyz \
--H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN" \
- -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
-```
-
-> The above command returns JSON structured like this: 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
 
 ## Post upload/referral
 
-`POST` /api/appointments/upload/referral
-
-```shell
-#shell command:
-curl -X POST \
-http://localhost:8002/api/appointments/upload/referral?q=xyz \
--H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN" \
- -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
-```
-
-> The above command returns JSON structured like this: 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
 
 ## Post upload/successehs
 
-`POST` /api/appointments/upload/successehs
-
-```shell
-#shell command:
-curl -X POST \
-http://localhost:8002/api/appointments/upload/successehs?q=xyz \
--H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN" \
- -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
-```
-
-> The above command returns JSON structured like this: 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
 
 ## Post upload/theraoffice
 
-`POST` /api/appointments/upload/theraoffice
-
-```shell
-#shell command:
-curl -X POST \
-http://localhost:8002/api/appointments/upload/theraoffice?q=xyz \
--H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN" \
- -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
-```
-
-> The above command returns JSON structured like this: 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
 
 # appointmentTypes
 
@@ -865,7 +752,7 @@ http://localhost:8002/api/appointmentTypes/?name=x&description=x \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns an array of JSONs of [AppointmentTypes](#appointmenttype)
+> The command above returns an array of JSONs of [AppointmentTypes](#appointmenttype)
 
 Lists appointmentTypes which are `visible`, sorted by `name`. Does not support paging options.
 
@@ -891,7 +778,7 @@ http://localhost:8002/api/appointmentTypes/crudList?page=1&limit=10&name=x&descr
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns an array of JSONs of [AppointmentTypes](#appointmenttype)
+> The command above returns an array of JSONs of [AppointmentTypes](#appointmenttype)
 
 Lists appointmentTypes which are `visible`, sorted by `name`. Supports paging options (page and limit query params).
 
@@ -917,7 +804,7 @@ http://localhost:8002/api/appointmentTypes/hidden \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns an array of JSONs of [AppointmentTypes](#appointmenttype)
+> The command above returns an array of JSONs of [AppointmentTypes](#appointmenttype)
 
 Lists appointmentTypes which are *NOT* `visible`. Supports paging options and defaults to page=1 and limit=500.
 
@@ -944,7 +831,7 @@ http://localhost:8002/api/appointmentTypes/search?name=xyz&description=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns an array of JSONs of [AppointmentTypes](#appointmenttype)
+> The command above returns an array of JSONs of [AppointmentTypes](#appointmenttype)
 
 Searches for appointmentTypes which are `visible` on elasticSearch, falling back to MongoDB in case of failure.
 
@@ -986,7 +873,7 @@ http://localhost:8002/api/appointmentTypes/ \
 }'
 ```
 
-> The above command returns JSON of an [AppointmentType](#appointmenttype), with the `settings` field fetched and expanded based on the `setting` foreign key.
+> The command above returns JSON of an [AppointmentType](#appointmenttype), with the `settings` field fetched and expanded based on the `setting` foreign key.
 
 Creates an appointmentType.
 
@@ -1028,7 +915,7 @@ http://localhost:8002/api/appointmentTypes/5d001ac6f0587535a85823d3 \
 }'
 ```
 
-> The above command returns JSON of an [AppointmentType](#appointmenttype), with the `settings` field fetched and expanded based on the `setting` foreign key.
+> The command above returns JSON of an [AppointmentType](#appointmenttype), with the `settings` field fetched and expanded based on the `setting` foreign key.
 
 Updates the given fields of an appointmentType.
 
@@ -1054,7 +941,7 @@ http://localhost:8002/api/appointmentTypes/5d001ac6f0587535a85823d3 \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON of an [AppointmentType](#appointmenttype), with the `settings` field fetched and expanded based on the `setting` foreign key.
+> The command above returns JSON of an [AppointmentType](#appointmenttype), with the `settings` field fetched and expanded based on the `setting` foreign key.
 
 Returns the JSON of one specific [AppointmentType](#appointmenttype) which is `visible`, fetched by the `id` path parameter. 
 
@@ -1078,7 +965,7 @@ http://localhost:8002/api/appointmentTypes/5d001ac6f0587535a85823d3 \
 -H 'x-access-token: '"$TOKEN"'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 {
@@ -1122,7 +1009,7 @@ http://localhost:8002/api/availabilities/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -1164,7 +1051,7 @@ http://localhost:8002/api/availabilities/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -1200,7 +1087,7 @@ http://localhost:8002/api/availabilities/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -1232,7 +1119,7 @@ http://localhost:8002/api/availabilities/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -1274,7 +1161,7 @@ http://localhost:8002/api/availabilities/:id/book?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -1320,7 +1207,7 @@ http://localhost:8002/api/availabilities/book/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -1360,7 +1247,7 @@ http://localhost:8002/api/availabilities/freebusy?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -1394,7 +1281,7 @@ http://localhost:8002/api/billing/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -1432,7 +1319,7 @@ http://localhost:8002/api/billing/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -1474,7 +1361,7 @@ http://localhost:8002/api/billing/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -1510,7 +1397,7 @@ http://localhost:8002/api/billing/:id/subscriptions?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -1546,7 +1433,7 @@ http://localhost:8002/api/billing/charges/last-status?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -1578,7 +1465,7 @@ http://localhost:8002/api/billing/charges/last-status/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -1614,7 +1501,7 @@ http://localhost:8002/api/billing/charges/success-count?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -1652,7 +1539,7 @@ http://localhost:8002/api/billing/subscriptions?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -1694,7 +1581,7 @@ http://localhost:8002/api/billing/subscriptions?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -1732,7 +1619,7 @@ http://localhost:8002/api/broadcasts/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -1770,7 +1657,7 @@ http://localhost:8002/api/broadcasts/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -1812,7 +1699,7 @@ http://localhost:8002/api/broadcasts/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -1858,7 +1745,7 @@ http://localhost:8002/api/broadcasts/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -1898,7 +1785,7 @@ http://localhost:8002/api/broadcasts/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -1934,7 +1821,7 @@ http://localhost:8002/api/broadcasts/:id/xls?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -1976,7 +1863,7 @@ http://localhost:8002/api/broadcasts/bulk/action?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -2012,7 +1899,7 @@ http://localhost:8002/api/broadcasts/count?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -2044,7 +1931,7 @@ http://localhost:8002/api/broadcasts/patients?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -2078,7 +1965,7 @@ http://localhost:8002/api/callback/email/offers?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -2110,7 +1997,7 @@ http://localhost:8002/api/callback/email/reminders?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -2148,7 +2035,7 @@ http://localhost:8002/api/callback/email/sendgrid?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -2190,7 +2077,7 @@ http://localhost:8002/api/callback/integrators/:integrator/auth/:userId/:secret/
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -2242,7 +2129,7 @@ http://localhost:8002/api/callback/mi7/ack/:apikey/:systemid/:messageid?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -2292,7 +2179,7 @@ http://localhost:8002/api/callback/mi7/from/:apikey/:systemid?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -2334,7 +2221,7 @@ http://localhost:8002/api/callback/mi7/to/:apikey/:systemid?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -2371,7 +2258,7 @@ http://localhost:8002/api/callback/plivo/sms/reminders?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -2409,7 +2296,7 @@ http://localhost:8002/api/callback/practicefusion/auth/:userId/:secret?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -2451,7 +2338,7 @@ http://localhost:8002/api/callback/practicefusion/textcode?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -2489,7 +2376,7 @@ http://localhost:8002/api/callback/slack/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -2525,7 +2412,7 @@ http://localhost:8002/api/callback/sms/offers?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -2557,7 +2444,7 @@ http://localhost:8002/api/callback/sms/referrals?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -2589,7 +2476,7 @@ http://localhost:8002/api/callback/sms/reminders?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -2627,7 +2514,7 @@ http://localhost:8002/api/callback/status/:vendor?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -2673,7 +2560,7 @@ http://localhost:8002/api/callback/stripe/charges?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -2715,7 +2602,7 @@ http://localhost:8002/api/callback/twilio/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -2755,7 +2642,7 @@ http://localhost:8002/api/callback/voice/offers?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -2787,7 +2674,7 @@ http://localhost:8002/api/callback/voice/referrals?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -2825,7 +2712,7 @@ http://localhost:8002/api/callback/voice/referrals?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -2861,7 +2748,7 @@ http://localhost:8002/api/callback/voice/reminders?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -2895,7 +2782,7 @@ http://localhost:8002/api/chatActivities/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -2933,7 +2820,7 @@ http://localhost:8002/api/chatActivities/:id/assign?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -2979,7 +2866,7 @@ http://localhost:8002/api/chatActivities/:id/clear?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -3025,7 +2912,7 @@ http://localhost:8002/api/chatActivities/:id/close?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -3065,7 +2952,7 @@ http://localhost:8002/api/chatActivities/all?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -3097,7 +2984,7 @@ http://localhost:8002/api/chatActivities/notifications?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -3129,7 +3016,7 @@ http://localhost:8002/api/chatActivities/mentions?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -3161,7 +3048,7 @@ http://localhost:8002/api/chatActivities/presence?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -3193,7 +3080,7 @@ http://localhost:8002/api/chatActivities/unread?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -3225,7 +3112,7 @@ http://localhost:8002/api/chatActivities/unread/patients?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -3259,7 +3146,7 @@ http://localhost:8002/api/contexts/:refId?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -3303,7 +3190,7 @@ http://localhost:8002/api/customWebStyles/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -3339,7 +3226,7 @@ http://localhost:8002/api/customWebStyles/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -3377,7 +3264,7 @@ http://localhost:8002/api/customWebStyles/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -3417,7 +3304,7 @@ http://localhost:8002/api/customWebStyles/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -3453,7 +3340,7 @@ http://localhost:8002/api/customWebStyles/:id/publish?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -3495,7 +3382,7 @@ http://localhost:8002/api/customWebStyles/:id/upload?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -3543,7 +3430,7 @@ http://localhost:8002/api/demoUsers/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -3579,7 +3466,7 @@ http://localhost:8002/api/demoUsers/:salesforceId/messages/:messageTemplate?q=xy
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -3622,7 +3509,7 @@ http://localhost:8002/api/demoUsers/:salesforceId/messages/:messageTemplate?q=xy
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -3666,7 +3553,7 @@ http://localhost:8002/api/deploymentWebhooks/circle/:repoName/:branch?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -3709,7 +3596,7 @@ http://localhost:8002/api/deploymentWebhooks/github?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -3745,7 +3632,7 @@ http://localhost:8002/api/deploymentWebhooks/github/:username/reviews?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -3783,7 +3670,7 @@ http://localhost:8002/api/diagnoses/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -3823,7 +3710,7 @@ http://localhost:8002/api/docs/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -3859,7 +3746,7 @@ http://localhost:8002/api/docs/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -3893,7 +3780,7 @@ http://localhost:8002/api/downtimeMessage/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -3927,7 +3814,7 @@ http://localhost:8002/api/facilities/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -3965,7 +3852,7 @@ http://localhost:8002/api/facilities/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -4001,7 +3888,7 @@ http://localhost:8002/api/facilities/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -4043,7 +3930,7 @@ http://localhost:8002/api/facilities/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -4089,7 +3976,7 @@ http://localhost:8002/api/facilities/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -4129,7 +4016,7 @@ http://localhost:8002/api/facilities/hidden?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -4161,7 +4048,7 @@ http://localhost:8002/api/facilities/search?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -4195,7 +4082,7 @@ http://localhost:8002/api/feedbackResponses/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -4233,7 +4120,7 @@ http://localhost:8002/api/feedbackResponses/negative?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -4269,7 +4156,7 @@ http://localhost:8002/api/feedbackResponses/negative/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -4311,7 +4198,7 @@ http://localhost:8002/api/feedbackResponses/positive?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -4347,7 +4234,7 @@ http://localhost:8002/api/feedbackResponses/positive/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -4383,7 +4270,7 @@ http://localhost:8002/api/feedbackResponses/promoters|detractors?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -4415,7 +4302,7 @@ http://localhost:8002/api/feedbackResponses/reports/clicks?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -4447,7 +4334,7 @@ http://localhost:8002/api/feedbackResponses/reports/detractors?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -4479,7 +4366,7 @@ http://localhost:8002/api/feedbackResponses/reports/find?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -4511,7 +4398,7 @@ http://localhost:8002/api/feedbackResponses/reports/findAll?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -4543,7 +4430,7 @@ http://localhost:8002/api/feedbackResponses/reports/npsscore?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -4575,7 +4462,7 @@ http://localhost:8002/api/feedbackResponses/reports/npsscores?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -4607,7 +4494,7 @@ http://localhost:8002/api/feedbackResponses/reports/promoters?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -4639,7 +4526,7 @@ http://localhost:8002/api/feedbackResponses/reports/summary?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -4671,7 +4558,7 @@ http://localhost:8002/api/feedbackResponses/reports/xls?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -4709,7 +4596,7 @@ http://localhost:8002/api/feedbackResponses/score?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -4747,7 +4634,7 @@ http://localhost:8002/api/fileMappings/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -4787,7 +4674,7 @@ http://localhost:8002/api/fileUploads/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -4829,7 +4716,7 @@ http://localhost:8002/api/fileUploads/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -4875,7 +4762,7 @@ http://localhost:8002/api/fileUploads/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -4915,7 +4802,7 @@ http://localhost:8002/api/fileUploads/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -4957,7 +4844,7 @@ http://localhost:8002/api/fileUploads/:id/binary?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -5003,7 +4890,7 @@ http://localhost:8002/api/fileUploads/:id/binary?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -5043,7 +4930,7 @@ http://localhost:8002/api/fileUploads/:id/binary?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -5079,7 +4966,7 @@ http://localhost:8002/api/fileUploads/:id/file?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -5115,7 +5002,7 @@ http://localhost:8002/api/fileUploads/:id/thumbnail?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -5157,7 +5044,7 @@ http://localhost:8002/api/fileUploads/binary?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -5201,7 +5088,7 @@ http://localhost:8002/api/followups/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -5237,7 +5124,7 @@ http://localhost:8002/api/followups/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -5275,7 +5162,7 @@ http://localhost:8002/api/followups/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -5321,7 +5208,7 @@ http://localhost:8002/api/followups/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -5361,7 +5248,7 @@ http://localhost:8002/api/followups/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -5403,7 +5290,7 @@ http://localhost:8002/api/followups/bulk?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -5439,7 +5326,7 @@ http://localhost:8002/api/followups/groups?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -5473,7 +5360,7 @@ http://localhost:8002/api/groupInvites/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -5507,7 +5394,7 @@ http://localhost:8002/api/groups/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -5545,7 +5432,7 @@ http://localhost:8002/api/groups/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -5581,7 +5468,7 @@ http://localhost:8002/api/groups/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -5623,7 +5510,7 @@ http://localhost:8002/api/groups/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -5669,7 +5556,7 @@ http://localhost:8002/api/groups/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -5715,7 +5602,7 @@ http://localhost:8002/api/groups/:id/:user?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -5763,7 +5650,7 @@ http://localhost:8002/api/groups/:id/:user?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -5811,7 +5698,7 @@ http://localhost:8002/api/groups/:id/accept-invitation?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -5857,7 +5744,7 @@ http://localhost:8002/api/groups/:id/invite-user?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -5897,7 +5784,7 @@ http://localhost:8002/api/groups/:id/invites?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -5939,7 +5826,7 @@ http://localhost:8002/api/groups/accept-pending-invites?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -5975,7 +5862,7 @@ http://localhost:8002/api/groups/public/get-invite?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -6007,7 +5894,7 @@ http://localhost:8002/api/groups/users/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -6051,7 +5938,7 @@ http://localhost:8002/api/hl7messages/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -6089,7 +5976,7 @@ http://localhost:8002/api/insurances/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -6127,7 +6014,7 @@ http://localhost:8002/api/insurances/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -6169,7 +6056,7 @@ http://localhost:8002/api/insurances/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -6215,7 +6102,7 @@ http://localhost:8002/api/insurances/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -6255,7 +6142,7 @@ http://localhost:8002/api/insurances/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -6297,7 +6184,7 @@ http://localhost:8002/api/insurances/:id/binary?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -6337,7 +6224,7 @@ http://localhost:8002/api/insurances/:id/coverage?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -6379,7 +6266,7 @@ http://localhost:8002/api/insurances/binary?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -6415,7 +6302,7 @@ http://localhost:8002/api/insurances/payers?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -6447,7 +6334,7 @@ http://localhost:8002/api/insurances/payers/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -6485,7 +6372,7 @@ http://localhost:8002/api/integratorClients/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -6523,7 +6410,7 @@ http://localhost:8002/api/integratorClients/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -6565,7 +6452,7 @@ http://localhost:8002/api/integratorClients/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -6605,7 +6492,7 @@ http://localhost:8002/api/integratorClients/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -6647,7 +6534,7 @@ http://localhost:8002/api/integratorClients/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -6693,7 +6580,7 @@ http://localhost:8002/api/integratorClients/login?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -6737,7 +6624,7 @@ http://localhost:8002/api/integrators/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -6773,7 +6660,7 @@ http://localhost:8002/api/integrators/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -6811,7 +6698,7 @@ http://localhost:8002/api/integrators/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -6857,7 +6744,7 @@ http://localhost:8002/api/integrators/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -6897,7 +6784,7 @@ http://localhost:8002/api/integrators/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -6933,7 +6820,7 @@ http://localhost:8002/api/integrators/admin?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -6965,7 +6852,7 @@ http://localhost:8002/api/integrators/configuration?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -6997,7 +6884,7 @@ http://localhost:8002/api/integrators/configuration/:integrator?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -7035,7 +6922,7 @@ http://localhost:8002/api/messages-errors/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -7067,7 +6954,7 @@ http://localhost:8002/api/messages-errors/reports/xls?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -7101,7 +6988,7 @@ http://localhost:8002/api/messages/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -7139,7 +7026,7 @@ http://localhost:8002/api/messages/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -7175,7 +7062,7 @@ http://localhost:8002/api/messages/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -7211,7 +7098,7 @@ http://localhost:8002/api/messages/crudList?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -7251,7 +7138,7 @@ http://localhost:8002/api/messageTemplates/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -7293,7 +7180,7 @@ http://localhost:8002/api/messageTemplates/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -7339,7 +7226,7 @@ http://localhost:8002/api/messageTemplates/:key?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -7379,7 +7266,7 @@ http://localhost:8002/api/messageTemplates/:key??q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -7415,7 +7302,7 @@ http://localhost:8002/api/messageTemplates/:key/resolve?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -7451,7 +7338,7 @@ http://localhost:8002/api/messageTemplates/list?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -7485,7 +7372,7 @@ http://localhost:8002/api/notifications/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -7523,7 +7410,7 @@ http://localhost:8002/api/notifications/clear?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -7567,7 +7454,7 @@ http://localhost:8002/api/offers/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -7603,7 +7490,7 @@ http://localhost:8002/api/offers/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -7635,7 +7522,7 @@ http://localhost:8002/api/offers/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -7677,7 +7564,7 @@ http://localhost:8002/api/offers/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -7723,7 +7610,7 @@ http://localhost:8002/api/offers/:id/cancel?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -7763,7 +7650,7 @@ http://localhost:8002/api/offers/:id/waitlists?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -7799,7 +7686,7 @@ http://localhost:8002/api/offers/crudList?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -7831,7 +7718,7 @@ http://localhost:8002/api/offers/findByPatientId/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -7867,7 +7754,7 @@ http://localhost:8002/api/offers/reports/find?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -7899,7 +7786,7 @@ http://localhost:8002/api/offers/reports/summary?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -7933,7 +7820,7 @@ http://localhost:8002/api/organizations/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -7971,7 +7858,7 @@ http://localhost:8002/api/organizations/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -8013,7 +7900,7 @@ http://localhost:8002/api/organizations/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -8053,7 +7940,7 @@ http://localhost:8002/api/organizations/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -8095,7 +7982,7 @@ http://localhost:8002/api/organizations/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -8135,7 +8022,7 @@ http://localhost:8002/api/organizations/:id/access?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -8171,7 +8058,7 @@ http://localhost:8002/api/organizations/:id/users?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -8213,7 +8100,7 @@ http://localhost:8002/api/organizations/:id/users/:invitedUserId/invite?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -8261,7 +8148,7 @@ http://localhost:8002/api/organizations/:id/users/:organizationUser/switch?q=xyz
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -8309,7 +8196,7 @@ http://localhost:8002/api/organizations/:id/users/:userId?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -8353,7 +8240,7 @@ http://localhost:8002/api/patientForms/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -8385,7 +8272,7 @@ http://localhost:8002/api/patientForms/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -8421,7 +8308,7 @@ http://localhost:8002/api/patientForms/:id/pdf?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -8463,7 +8350,7 @@ http://localhost:8002/api/patientForms/*?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -8505,7 +8392,7 @@ http://localhost:8002/api/patientForms/callback/completed?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -8547,7 +8434,7 @@ http://localhost:8002/api/patientForms/callback/created?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -8589,7 +8476,7 @@ http://localhost:8002/api/patientForms/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -8631,7 +8518,7 @@ http://localhost:8002/api/patientForms/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -8673,7 +8560,7 @@ http://localhost:8002/api/patientFormTemplates/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -8711,7 +8598,7 @@ http://localhost:8002/api/patientFormTemplates/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -8753,7 +8640,7 @@ http://localhost:8002/api/patientFormTemplates/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -8799,7 +8686,7 @@ http://localhost:8002/api/patientFormTemplates/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -8839,7 +8726,7 @@ http://localhost:8002/api/patientFormTemplates/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -8881,7 +8768,7 @@ http://localhost:8002/api/patientFormTemplates/callback/updated?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -8925,7 +8812,7 @@ http://localhost:8002/api/patientMessageTemplates/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -8961,7 +8848,7 @@ http://localhost:8002/api/patientMessageTemplates/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -8999,7 +8886,7 @@ http://localhost:8002/api/patientMessageTemplates/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -9045,7 +8932,7 @@ http://localhost:8002/api/patientMessageTemplates/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -9085,7 +8972,7 @@ http://localhost:8002/api/patientMessageTemplates/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -9129,7 +9016,7 @@ http://localhost:8002/api/patients/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -9165,7 +9052,7 @@ http://localhost:8002/api/patients/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -9203,7 +9090,7 @@ http://localhost:8002/api/patients/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -9243,7 +9130,7 @@ http://localhost:8002/api/patients/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -9285,7 +9172,7 @@ http://localhost:8002/api/patients/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -9325,7 +9212,7 @@ http://localhost:8002/api/patients/:id/doNotContact?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -9367,7 +9254,7 @@ http://localhost:8002/api/patients/:id/follow?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -9407,7 +9294,7 @@ http://localhost:8002/api/patients/:id/journey?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -9443,7 +9330,7 @@ http://localhost:8002/api/patients/:id/provider?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -9485,7 +9372,7 @@ http://localhost:8002/api/patients/:id/reload?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -9531,7 +9418,7 @@ http://localhost:8002/api/patients/:id/unfollow?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -9577,7 +9464,7 @@ http://localhost:8002/api/patients/:id/verify?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -9617,7 +9504,7 @@ http://localhost:8002/api/patients/crudList?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -9655,7 +9542,7 @@ http://localhost:8002/api/patients/login?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -9697,7 +9584,7 @@ http://localhost:8002/api/patients/merge?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -9739,7 +9626,7 @@ http://localhost:8002/api/patients/recent?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -9775,7 +9662,7 @@ http://localhost:8002/api/patients/recent?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -9807,7 +9694,7 @@ http://localhost:8002/api/patients/reports?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -9839,7 +9726,7 @@ http://localhost:8002/api/patients/reports/do-not-contact/xls?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -9871,7 +9758,7 @@ http://localhost:8002/api/patients/search?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -9909,7 +9796,7 @@ http://localhost:8002/api/patients/upload/:integrator?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -9951,7 +9838,7 @@ http://localhost:8002/api/patientSubscribers/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -9989,7 +9876,7 @@ http://localhost:8002/api/patientSubscribers/:id/follow?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -10035,7 +9922,7 @@ http://localhost:8002/api/patientSubscribers/:id/unfollow?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -10077,7 +9964,7 @@ http://localhost:8002/api/phoneNumbers/:phone?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -10115,7 +10002,7 @@ http://localhost:8002/api/procedures/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -10155,7 +10042,7 @@ http://localhost:8002/api/providers/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -10191,7 +10078,7 @@ http://localhost:8002/api/providers/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -10229,7 +10116,7 @@ http://localhost:8002/api/providers/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -10269,7 +10156,7 @@ http://localhost:8002/api/providers/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -10311,7 +10198,7 @@ http://localhost:8002/api/providers/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -10351,7 +10238,7 @@ http://localhost:8002/api/providers/:id/availabilities?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -10387,7 +10274,7 @@ http://localhost:8002/api/providers/:id/waitlists?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -10423,7 +10310,7 @@ http://localhost:8002/api/providers/crudList?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -10455,7 +10342,7 @@ http://localhost:8002/api/providers/hidden?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -10493,7 +10380,7 @@ http://localhost:8002/api/providers/login?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -10529,7 +10416,7 @@ http://localhost:8002/api/providers/npi/search?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -10561,7 +10448,7 @@ http://localhost:8002/api/providers/referring?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -10599,7 +10486,7 @@ http://localhost:8002/api/providers/referring/:id/activate?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -10645,7 +10532,7 @@ http://localhost:8002/api/providers/referring/:id/deactivate?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -10685,7 +10572,7 @@ http://localhost:8002/api/providers/referring/:id/referrals?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -10727,7 +10614,7 @@ http://localhost:8002/api/providers/referring/:id/share?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -10767,7 +10654,7 @@ http://localhost:8002/api/providers/search?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -10801,7 +10688,7 @@ http://localhost:8002/api/recalls/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -10835,7 +10722,7 @@ http://localhost:8002/api/referrals/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -10873,7 +10760,7 @@ http://localhost:8002/api/referrals/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -10909,7 +10796,7 @@ http://localhost:8002/api/referrals/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -10951,7 +10838,7 @@ http://localhost:8002/api/referrals/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -10997,7 +10884,7 @@ http://localhost:8002/api/referrals/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -11043,7 +10930,7 @@ http://localhost:8002/api/referrals/:id/approve?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -11089,7 +10976,7 @@ http://localhost:8002/api/referrals/:id/reject?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -11135,7 +11022,7 @@ http://localhost:8002/api/referrals/batch?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -11177,7 +11064,7 @@ http://localhost:8002/api/referrals/batch?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -11213,7 +11100,7 @@ http://localhost:8002/api/referrals/count?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -11245,7 +11132,7 @@ http://localhost:8002/api/referrals/crudList?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -11277,7 +11164,7 @@ http://localhost:8002/api/referrals/reports/find?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -11309,7 +11196,7 @@ http://localhost:8002/api/referrals/reports/summary?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -11341,7 +11228,7 @@ http://localhost:8002/api/referrals/reports/xls?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -11373,7 +11260,7 @@ http://localhost:8002/api/referrals/search?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -11407,7 +11294,7 @@ http://localhost:8002/api/reminders/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -11445,7 +11332,7 @@ http://localhost:8002/api/reminders/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -11481,7 +11368,7 @@ http://localhost:8002/api/reminders/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -11523,7 +11410,7 @@ http://localhost:8002/api/reminders/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -11569,7 +11456,7 @@ http://localhost:8002/api/reminders/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -11609,7 +11496,7 @@ http://localhost:8002/api/reminders/crudList?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -11641,7 +11528,7 @@ http://localhost:8002/api/reminders/findByApptId/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -11677,7 +11564,7 @@ http://localhost:8002/api/reminders/findByPatientId/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -11713,7 +11600,7 @@ http://localhost:8002/api/reminders/reports/find?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -11745,7 +11632,7 @@ http://localhost:8002/api/reminders/reports/summary?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -11777,7 +11664,7 @@ http://localhost:8002/api/reminders/reports/xls?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -11811,7 +11698,7 @@ http://localhost:8002/api/reports/periscope/:dashboard?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -11847,7 +11734,7 @@ http://localhost:8002/api/reports/periscope/dashboards?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -11881,7 +11768,7 @@ http://localhost:8002/api/scheduler/availabilities?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -11913,7 +11800,7 @@ http://localhost:8002/api/scheduler/availabilities/count?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -11947,7 +11834,7 @@ http://localhost:8002/api/settings/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -11985,7 +11872,7 @@ http://localhost:8002/api/settings/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -12027,7 +11914,7 @@ http://localhost:8002/api/settings/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -12073,7 +11960,7 @@ http://localhost:8002/api/settings/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -12113,7 +12000,7 @@ http://localhost:8002/api/settings/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -12155,7 +12042,7 @@ http://localhost:8002/api/settings/:id/subscribe/:messageKey?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -12203,7 +12090,7 @@ http://localhost:8002/api/settings/:id/unsubscribe?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -12249,7 +12136,7 @@ http://localhost:8002/api/settings/:id/unsubscribe/:messageKey?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -12293,7 +12180,7 @@ http://localhost:8002/api/status/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -12325,7 +12212,7 @@ http://localhost:8002/api/status/services/:serviceName?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -12363,7 +12250,7 @@ http://localhost:8002/api/tokens/validate?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -12401,7 +12288,7 @@ http://localhost:8002/api/tokens/validate?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -12443,7 +12330,7 @@ http://localhost:8002/api/tokens/zendesk?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -12487,7 +12374,7 @@ http://localhost:8002/api/uploads/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -12523,7 +12410,7 @@ http://localhost:8002/api/uploads/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -12555,7 +12442,7 @@ http://localhost:8002/api/uploads/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -12597,7 +12484,7 @@ http://localhost:8002/api/uploads/:id/mapping?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -12645,7 +12532,7 @@ http://localhost:8002/api/users/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -12681,7 +12568,7 @@ http://localhost:8002/api/users/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -12719,7 +12606,7 @@ http://localhost:8002/api/users/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -12759,7 +12646,7 @@ http://localhost:8002/api/users/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -12801,7 +12688,7 @@ http://localhost:8002/api/users/:id/activate?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -12841,7 +12728,7 @@ http://localhost:8002/api/users/:id/groupInvites?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -12877,7 +12764,7 @@ http://localhost:8002/api/users/:id/resetPasswordLink?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -12919,7 +12806,7 @@ http://localhost:8002/api/users/:id/upload?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -12965,7 +12852,7 @@ http://localhost:8002/api/users/admin?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -13007,7 +12894,7 @@ http://localhost:8002/api/users/admin/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -13053,7 +12940,7 @@ http://localhost:8002/api/users/decommission/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -13099,7 +12986,7 @@ http://localhost:8002/api/users/forgot-password?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -13138,7 +13025,7 @@ http://localhost:8002/api/users/login \
 	}'
 ```
 
-> The above command returns JSON of a [User type](#user), containing the access token: 
+> The command above returns JSON of a [User type](#user), containing the access token: 
 
 ```json-doc
 	{
@@ -13187,7 +13074,7 @@ http://localhost:8002/api/users/reset-password/:token?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -13227,7 +13114,7 @@ http://localhost:8002/api/users/reset-password/:token?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -13269,7 +13156,7 @@ http://localhost:8002/api/users/signup?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -13311,7 +13198,7 @@ http://localhost:8002/api/users/transfer?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -13353,7 +13240,7 @@ http://localhost:8002/api/users/unsubscribe?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -13391,7 +13278,7 @@ http://localhost:8002/api/waitlists/?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -13429,7 +13316,7 @@ http://localhost:8002/api/waitlists/?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -13465,7 +13352,7 @@ http://localhost:8002/api/waitlists/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -13507,7 +13394,7 @@ http://localhost:8002/api/waitlists/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -13553,7 +13440,7 @@ http://localhost:8002/api/waitlists/:id?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -13599,7 +13486,7 @@ http://localhost:8002/api/waitlists/bulk/action?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -13635,7 +13522,7 @@ http://localhost:8002/api/waitlists/cancelOffer/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -13677,7 +13564,7 @@ http://localhost:8002/api/waitlists/candidates?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -13713,7 +13600,7 @@ http://localhost:8002/api/waitlists/confirmOffer/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -13749,7 +13636,7 @@ http://localhost:8002/api/waitlists/count?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -13781,7 +13668,7 @@ http://localhost:8002/api/waitlists/crudList?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -13813,7 +13700,7 @@ http://localhost:8002/api/waitlists/declineOffer/:id?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -13849,7 +13736,7 @@ http://localhost:8002/api/waitlists/filter?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -13887,7 +13774,7 @@ http://localhost:8002/api/waitlists/find/count?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -13929,7 +13816,7 @@ http://localhost:8002/api/waitlists/move/update-position/:providerId/:id/:replac
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -13973,7 +13860,7 @@ http://localhost:8002/api/waitlists/search?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -14013,7 +13900,7 @@ http://localhost:8002/api/widgets/login?q=xyz \
 	}'
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -14049,7 +13936,7 @@ http://localhost:8002/api/widgets/user?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -14083,7 +13970,7 @@ http://localhost:8002/healthcheck?q=xyz \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The above command returns JSON structured like this: 
+> The command above returns a JSON structured like this: 
 
 ```json-doc
 	{
@@ -14126,6 +14013,43 @@ _id|ObjectID, optional
 __v|Number, optional
 
 ## Appointment
+
+> Example
+
+```
+{
+    "_id": "5d001ad3f0587535a8582486",
+    "patient": "5d001ac6f0587535a85823f4",
+    "date": "2019-06-18T15:45:00.000Z",
+    "duration": 15,
+    "source": "manual",
+    "status": "unconfirmed",
+    "provider": "5d001ac8f0587535a8582442",
+    "type": "5d001ac6f0587535a85823ce",
+    "facility": "5d001ac8f0587535a8582439",
+    "user": "5d001ac40bb38f3585626b69",
+    "createdBy": "5d001ac40bb38f3585626b69",
+    "updatedBy": "5d001ac40bb38f3585626b69",
+    "endDate": "2019-06-18T16:00:00.000Z",
+    "integratorUpdateResults": {
+        "status": "pending"
+    },
+    "deleted": 0,
+    "updatedAt": "2019-06-11T21:19:15.308Z",
+    "createdAt": "2019-06-11T21:19:15.308Z",
+    "stats": {
+        "counters": {
+            "remindersSent": 0
+        }
+    },
+    "statusReason": null,
+    "externalId": {
+        "source": "lumamock",
+        "value": "1560287955308"
+    },
+    "__v": 0
+}
+```
 
 Attribute|Description
 ----|----
