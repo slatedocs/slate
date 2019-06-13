@@ -71,7 +71,7 @@ Attributes | &nbsp;
 ```shell
 # Retrieve visible user
 
-curl "https://cloudmc_endpoint/v1/users/[user-id]" \
+curl "https://cloudmc_endpoint/v1/users/fdf60a19-980d-4380-acab-914485111305" \
    -H "MC-Api-Key: your_api_key"
 
 # Response body example
@@ -188,9 +188,9 @@ The responses' `data` field contains the created [user](#administration-users) w
 `PUT /users/:id`
 
 ```shell
-# Create a user
+# Update a user
 
-curl -X PUT "https://cloudmc_endpoint/v1/users/[user-id]" \
+curl -X PUT "https://cloudmc_endpoint/v1/users/dd01c908-371c-4ec5-9fd7-80b1bfac8975" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "[request-body]"
@@ -236,7 +236,7 @@ The responses' `data` field contains the updated [user](#administration-users).
 ```shell
 # Delete a user
 
-curl "https://cloudmc_endpoint/v1/users/[user-id]" \
+curl "https://cloudmc_endpoint/v1/users/dd01c908-371c-4ec5-9fd7-80b1bfac8975" \
    -X DELETE -H "MC-Api-Key: your_api_key"
 
 ```
@@ -255,7 +255,7 @@ Delete a specific user. You will need the `Delete an existing user` permission t
 ```shell
 # Unlock a user that was locked from the system
 
-curl "https://cloudmc_endpoint/v1/users/[user-id]/unlock" \
+curl "https://cloudmc_endpoint/v1/users/dd01c908-371c-4ec5-9fd7-80b1bfac8975/unlock" \
    -X POST -H "MC-Api-Key: your_api_key"
 
 ```
