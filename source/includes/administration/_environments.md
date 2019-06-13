@@ -316,7 +316,7 @@ Required | &nbsp;
 `user.id`<br/>*UUID* | The user that will be added to the environment.
 `role.id`<br/>*UUID* | The role that the user will have in the environment.
 
-You will need to either be owner on the environment or have the `Admin environments` permission to execute this operation.
+You will need to either be owner on the environment or have the `Environments: Own All` permission to execute this operation.
 
 ### Update member
 
@@ -344,7 +344,7 @@ Required | &nbsp;
 `role.id`<br/>*UUID* | The new role that the user will have in the environment.
 
 
-You will need to either be owner on the environment or have the `Admin environments` permission to execute this operation.
+You will need to either be owner on the environment or have the `Environments: Own All` permission to execute this operation.
 
 ### Remove member
 
@@ -358,7 +358,7 @@ curl -X DELETE "https://cloudmc_endpoint/v2/environments/[environment-id]/member
 
 ```
 
-You will need to either be owner on the environment or have the `Admin environments` permission to execute this operation.
+You will need to either be owner on the environment or have the `Environments: Own All` permission to execute this operation.
 
 ### Default environment membership
 
@@ -387,4 +387,4 @@ Optional | &nbsp;
 `membership`<br/>*string* | ALL_ORG_USERS if you want all users of the organization to be member of the environment. MANY_USERS if you want to manually manage members of the environment.
 `defaultRole.id`<br/>*UUID* | The default role to give to a user that was added to the environment.
 
-You will need to either be owner on the environment or have the `Admin environments` permission to execute this operation.
+You will need to either be owner on the environment or have the `Environments: Own All` permission to execute this operation.

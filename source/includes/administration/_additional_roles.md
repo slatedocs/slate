@@ -4,7 +4,7 @@ With additional roles, you can allow users access to other organizations. You ca
 
 ### Scoping
 
-There are different types of scope that you can use depending on your use case. This scope must be provided when assigning an additional role to a user. You cannot give a scope/role combination to another user if you don't have a higher or equivalent additional role.
+There are different types of scopes that you can use depending on your use case. This scope must be provided when assigning an additional role to a user. You cannot give a scope/role combination to another user if you don't have a higher or equivalent additional role.
 
 Scope | Description | Required fields
 ---------- | ----------- | -----------
@@ -99,7 +99,7 @@ Required | &nbsp;
 `organization.id`<br/>*UUID* | The id of the target organization of the scope. Only required when using a scope qualifier that targets an organization.
 `tags`<br/>*UUID* | The organization tags of the scope. Only required when using the TAGS_ANYMATCH scope.
 
-You will need to have `Admin users` permission to execute this operation.
+You will need to have `Users: Manage` permission to execute this operation.
 
 ### Remove additional role from user
 `DELETE /users/:user_id/additional_roles/:id`
@@ -112,4 +112,4 @@ curl -X DELETE "https://cloudmc_endpoint/v2/users/:user_id/additional_roles/:id"
 
 ```
 
-You will need to have `Admin users` permission to execute this operation.
+You will need to have `Users: Manage` permission to execute this operation.
