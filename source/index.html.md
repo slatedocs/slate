@@ -9,6 +9,7 @@ toc_footers:
 
 includes:
   - user
+  - token
   - models
   - profile
   - playlist
