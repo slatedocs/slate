@@ -21,7 +21,7 @@ See [users > signup](#post-signup)
 
 See [users > login](#post-login-4)
 
-# Paginating and sorting
+# Paging and sorting
 
 <aside class="notice">
 The query parameters bellow apply to all endpoints and all HTTP Methods.
@@ -866,9 +866,8 @@ http://localhost:8002/api/appointmentTypes/?name=x&description=x \
 ```
 
 > The above command returns an array of JSONs of [AppointmentTypes](#appointmenttype)
-```
 
-Lists appointmentTypes.
+Lists appointmentTypes which are `visible`, sorted by `name`. Does not support paging options.
 
 Authorization: x-access-token, Roles allowed: patient and widget
 
@@ -877,6 +876,85 @@ Request headers | Description
 name | JWT auth access token
 
 Query.params.: all the fields of [AppointmentType](#appointmenttype). Ex.: ?externalId.value=1560287942461&name=Checkup
+
+Response body: array of [AppointmentTypes](#appointmenttype), sorted by `name`.
+
+## Get crudList
+
+`GET` /api/appointmentTypes/crudList
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/appointmentTypes/crudList?page=1&limit=10&name=x&description=x \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns an array of JSONs of [AppointmentTypes](#appointmenttype)
+
+Lists appointmentTypes which are `visible`, sorted by `name`. Supports paging options (page and limit query params).
+
+Authorization: x-access-token, Roles allowed: patient and widget
+
+Request headers | Description 
+-------------- | ----------- 
+name | JWT auth access token
+
+Query.params.: page, limit, and all the fields of [AppointmentType](#appointmenttype). Ex.: ?externalId.value=1560287942461&name=Checkup
+
+Response body: array of [AppointmentTypes](#appointmenttype), sorted by `name`.
+
+## Get hidden
+
+`GET` /api/appointmentTypes/hidden
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/appointmentTypes/hidden \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns an array of JSONs of [AppointmentTypes](#appointmenttype)
+
+Lists appointmentTypes which are *NOT* `visible`. Supports paging options and defaults to page=1 and limit=500.
+
+Authorization: x-access-token, Roles allowed: patient and widget
+
+Request headers | Description 
+-------------- | ----------- 
+name | JWT auth access token
+
+Query.params.: page, limit and all the fields of [AppointmentType](#appointmenttype). Ex.: ?externalId.value=1560287942461&name=Checkup
+
+Response body: array of [AppointmentTypes](#appointmenttype) which are *NOT* `visible`.
+
+
+## Get search
+
+`GET` /api/appointmentTypes/search
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/appointmentTypes/search?name=xyz&description=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns an array of JSONs of [AppointmentTypes](#appointmenttype)
+
+Searches for appointmentTypes which are `visible` on elasticSearch, falling back to MongoDB in case of failure.
+
+Authorization: x-access-token, Roles allowed: patient and widget
+
+Request headers | Description 
+-------------- | ----------- 
+name | JWT auth access token
+
+Query.params.: page, limit, and all the fields of [AppointmentType](#appointmenttype). Ex.: ?externalId.value=1560287942461&name=Checkup
 
 Response body: array of [AppointmentTypes](#appointmenttype).
 
@@ -978,7 +1056,7 @@ http://localhost:8002/api/appointmentTypes/5d001ac6f0587535a85823d3 \
 
 > The above command returns JSON of an [AppointmentType](#appointmenttype), with the `settings` field fetched and expanded based on the `setting` foreign key.
 
-Returns the JSON of one specific [AppointmentType](#appointmenttype) fetched by the `id` path parameter in the request URL. 
+Returns the JSON of one specific [AppointmentType](#appointmenttype) which is `visible`, fetched by the `id` path parameter. 
 
 Authorization: x-access-token
 
@@ -1023,102 +1101,6 @@ Response body param | Description
 -------------- | ----------- 
 _id | The ObjectID of an AppointmentType to be deleted.
 deleted | Value 1 indicates that it was successfully deleted.
-
-## Get crudList
-
-`GET` /api/appointmentTypes/crudList
-
-```shell
-#shell command:
-curl \
-http://localhost:8002/api/appointmentTypes/crudList?q=xyz \
--H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN"
-```
-
-> The above command returns JSON structured like this: 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## Get hidden
-
-`GET` /api/appointmentTypes/hidden
-
-```shell
-#shell command:
-curl \
-http://localhost:8002/api/appointmentTypes/hidden?q=xyz \
--H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN"
-```
-
-> The above command returns JSON structured like this: 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## Get search
-
-`GET` /api/appointmentTypes/search
-
-```shell
-#shell command:
-curl \
-http://localhost:8002/api/appointmentTypes/search?q=xyz \
--H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN"
-```
-
-> The above command returns JSON structured like this: 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
 
 # availabilities
 
