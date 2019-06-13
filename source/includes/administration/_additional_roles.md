@@ -4,7 +4,7 @@ With additional roles, you can allow users access to other organizations. You ca
 
 ### Scoping
 
-There are different types of scopes that you can use depending on your use case. This scope must be provided when assigning an additional role to a user. You cannot give a scope/role combination to another user if you don't have a higher or equivalent additional role.
+There are different types of scope that you can use depending on your use case. This scope must be provided when assigning an additional role to a user. You can only give a scope/role combination to another user if you have a higher or equivalent additional role.
 
 Scope | Description | Required fields
 ---------- | ----------- | -----------

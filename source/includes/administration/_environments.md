@@ -285,7 +285,7 @@ Attributes | &nbsp;
 `user`<br/>*[User](#administration-users)* | A member of the environmment<br/>*includes*: `id`, `firstName`, `lastName`, `userName` and `email`
 `metadata.membership`<br/>*UUID* | "All" if automatically added from the ALL_ORG_USERS membership. "Many" if added manually to the org.
 
-You will need to either be owner on the environment or have the `Admin environments` permission to execute this operation.
+You will need to either be owner on the environment or have the `Environments: Own All` permission to execute this operation.
 
 ### Add member
 
