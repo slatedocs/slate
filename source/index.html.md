@@ -993,90 +993,6 @@ deleted | Value 1 indicates that it was successfully deleted.
 
 # availabilities
 
-## Put availability
-
-`PUT` /api/availabilities/
-
-```shell
-#shell command:
-curl -X PUT \
-http://localhost:8002/api/availabilities/?q=xyz \
--H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN" \
- -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
-```
-
-> The command above returns a JSON structured like this: 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## Post availability
-
-`POST` /api/availabilities/
-
-```shell
-#shell command:
-curl -X POST \
-http://localhost:8002/api/availabilities/?q=xyz \
--H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN" \
- -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
-```
-
-> The command above returns a JSON structured like this: 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
 ## Get availabilities
 
 `GET` /api/availabilities/
@@ -1084,30 +1000,47 @@ xxx | yyy
 ```shell
 #shell command:
 curl \
-http://localhost:8002/api/availabilities/?q=xyz \
+http://localhost:8002/api/availabilities?provider=5d001ac8f0587535a858243f&facility=5d001ac8f0587535a858243c&appointmentType=5d001ac6f0587535a85823ca&source=ui \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The command above returns a JSON structured like this: 
+> The command above returns a JSON like this
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```json
+{
+    "size": 1,
+    "response": [
+        { ...[Availability](#availability) },
+        { ...[Availability](#availability) },
+        { ...[Availability](#availability) }
+    ],
+    "page": 1
+}
 ```
 
-Authorization: No Auth / x-access-token
+Lists appointment availabilities.
+
+Authorization: x-access-token
 
 Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Response body param | Description 
+Query params | Description 
 -------------- | ----------- 
-xxx | yyy
+Any property of an [Availability](#availability) | ex.: ?source=ui
+provider | ObjectID of a provider
+facility | ObjectID of a facility
+appointmentType | ObjectID of an appointmentType
+source | ui
+
+Response params | Description 
+-------------- | ----------- 
+size | Number of entries in the response.
+response | Array of [Availabilities](#availability).
+page | Page number.
+
 
 ## Get by id
 
@@ -1116,126 +1049,245 @@ xxx | yyy
 ```shell
 #shell command:
 curl \
-http://localhost:8002/api/availabilities/:id?q=xyz \
+http://localhost:8002/api/availabilities/5d001af6f0587535a85825ac \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN"
 ```
 
-> The command above returns a JSON structured like this: 
+> The command above returns a JSON of an [Availability](#availability).
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
+Lists appointment availabilities.
 
-Authorization: No Auth / x-access-token
-
-Path parameters | Description 
--------------- | ----------- 
-:id | xxx
+Authorization: x-access-token
 
 Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Response body param | Description 
+Query params | Description 
 -------------- | ----------- 
-xxx | yyy
+Any property of an [Availability](#availability) | ex.: ?source=ui
+provider | ObjectID of a provider
+facility | ObjectID of a facility
+appointmentType | ObjectID of an appointmentType
+source | ui
 
-## Put book
+Response body: JSON of an [Availability](#availability).
+
+## Create availability
+
+`POST` /api/availabilities/
+
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/availabilities/ \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+    "date": "2019-06-13T15:00:00.000Z",
+    "duration": 25,
+    "user": "5d001ac40bb38f3585626b69",
+    "source": "ui",
+    "createdBy": "5d001ac40bb38f3585626b69",
+    "updatedBy": "5d001ac40bb38f3585626b69",
+    "endDate": "2019-06-13T15:15:00.000Z",
+    "facility": "5d001ac8f0587535a858243c",
+    "provider": "5d001ac8f0587535a858243f",
+    "appointmentType": "5d001ac6f0587535a85823ca",
+    "__v": 0,
+    "usedForAppointment": "5d001ad3f0587535a8582477",
+    "deleted": 0,
+    "updatedAt": "2019-06-11T21:20:12.480Z",
+    "createdAt": "2019-06-11T21:19:50.848Z",
+    "externalId": {
+        "source": "lumamock",
+        "value": "1560287990847"
+    },
+    "filters": {
+        "providers": [
+            "5d001ac8f0587535a858243f"
+        ],
+        "facilities": [
+            "5d001ac8f0587535a858243c"
+        ],
+        "appointmentTypes": [
+            "5d001ac6f0587535a85823ca"
+        ]
+    },
+    "status": "offered"
+}'
+```
+
+> The command above returns a JSON of the created [Availability](#availability).
+
+Creates an availability.
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body: JSON of an [Availability](#availability) to created.
+
+Response body: JSON of the created [Availability](#availability).
+
+## Update availability
+
+`PUT` /api/availabilities/?id=5d001af6f0587535a85825ac
+
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/availabilities/?id=5d001af6f0587535a85825ac \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+    "date": "2019-06-13T15:00:00.000Z",
+    "duration": 25,
+    "user": "5d001ac40bb38f3585626b69",
+    "source": "ui",
+    "createdBy": "5d001ac40bb38f3585626b69",
+    "updatedBy": "5d001ac40bb38f3585626b69",
+    "endDate": "2019-06-13T15:15:00.000Z",
+    "facility": "5d001ac8f0587535a858243c",
+    "provider": "5d001ac8f0587535a858243f",
+    "appointmentType": "5d001ac6f0587535a85823ca",
+    "__v": 0,
+    "usedForAppointment": "5d001ad3f0587535a8582477",
+    "deleted": 0,
+    "updatedAt": "2019-06-11T21:20:12.480Z",
+    "createdAt": "2019-06-11T21:19:50.848Z",
+    "externalId": {
+        "source": "lumamock",
+        "value": "1560287990847"
+    },
+    "filters": {
+        "providers": [
+            "5d001ac8f0587535a858243f"
+        ],
+        "facilities": [
+            "5d001ac8f0587535a858243c"
+        ],
+        "appointmentTypes": [
+            "5d001ac6f0587535a85823ca"
+        ]
+    },
+    "status": "offered"
+}'
+```
+
+> The command above returns a JSON of the updated [Availability](#availability).
+
+Updates an availability.
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Query param | Description
+----------- | -----------
+id | ObjectID of the availability to update.
+
+Request body: JSON of an [Availability](#availability) to updated.
+
+Response body: JSON of the updated [Availability](#availability).
+
+## Book
 
 `PUT` /api/availabilities/:id/book
 
 ```shell
 #shell command:
 curl -X PUT \
-http://localhost:8002/api/availabilities/:id/book?q=xyz \
+http://localhost:8002/api/availabilities/5d001af6f0587535a85825af/book?source=self-scheduling&type=5d001af6f0587535a85823aa&appointment=5d001af6f0587535a85824ab \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN" \
  -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
+    "patient": "5d001ac6f0587535a85823f6",
+    "notes": "lorem ipsum",
+    "filter": {
+    	"appointmentType": "5d017b520bb38f3585626b73"
+    }
+}'
 ```
 
-> The command above returns a JSON structured like this: 
+> The command above returns a JSON of an [Appointment](#appointment).
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
+Books an appointment for the given availability. If an appointmentType is passed, then the availability's appointmentType will only be overriden if the user scheduler setting "forceAppointmentTypeDuration" is true. Otherwise, the operation will fail. The appointmentType defines the appointment duration. If there's a waitlist for this availability, it will be updated accordingly.
 
-Authorization: No Auth / x-access-token
+
+Authorization: x-access-token
 
 Path parameters | Description 
 -------------- | ----------- 
-:id | xxx
+:id | ObjectID of an availability being taken.
 
 Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
+Query params | Description
+------------ | -----------
+source | Can be "self-scheduling", "appointment-cancellation", "ui", "referral", "integrator". See [Availability's](#availability) sources.
+type | (optional) ObjectID of an appointmentType. The request body param takes precedence over this one.
+appointment | (optional) ObjectID of the appointment being rescheduled.
+waitlist | ObjectID of a waitlist to be updated.
+
 Request body param | Description 
 -------------- | ----------- 
-:id | xxx
+patient | ObjectID of the patient booking the appointment.
+notes | Appointment notes to be passed on.
+filter | Object cotaining an `appointmentType`. Takes precedence over the query param.
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+Response body: JSON of an [Appointment](#appointment).
 
-## Post book
+## Book (deprecated)
 
 `POST` /api/availabilities/book/:id
 
 ```shell
 #shell command:
 curl -X POST \
-http://localhost:8002/api/availabilities/book/:id?q=xyz \
+http://localhost:8002/api/availabilities/book/5d001af6f0587535a85825af?patient=5d001ac6f0587535a85823f6&source=self-scheduling&type=5d001af6f0587535a85823aa&appointment=5d001af6f0587535a85824ab \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN" \
  -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
+    "notes": "lorem ipsum",
+}'
 ```
 
-> The command above returns a JSON structured like this: 
+> The command above returns a JSON of an [Appointment](#appointment).
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
+Books an appointment for the given availability. If an appointmentType is passed, then the availability's appointmentType will only be overriden if the user scheduler setting "forceAppointmentTypeDuration" is true. Otherwise, the operation will fail. The appointmentType defines the appointment duration. If there's a waitlist for this availability, it will be updated accordingly.
 
-Authorization: No Auth / x-access-token
+
+Authorization: x-access-token
 
 Path parameters | Description 
 -------------- | ----------- 
-:id | xxx
+:id | ObjectID of an availability being taken.
 
 Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
+Query params | Description
+------------ | -----------
+patient | ObjectID of the patient booking the appointment.
+source | Can be "self-scheduling", "appointment-cancellation", "ui", "referral", "integrator". See [Availability's](#availability) sources.
+appointmentType | (optional) ObjectID of an appointmentType. The param in the body takes precedence over this one.
+appointment | (optional) ObjectID of the appointment being rescheduled.
+waitlist | ObjectID of a waitlist to be updated.
+
 Request body param | Description 
 -------------- | ----------- 
-:id | xxx
+notes | Appointment notes to be passed on.
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+Response body: JSON of an [Appointment](#appointment).
 
 ## Get freebusy
 
@@ -1244,7 +1296,7 @@ xxx | yyy
 ```shell
 #shell command:
 curl \
-http://localhost:8002/api/availabilities/freebusy?q=xyz \
+http://localhost:8002/api/availabilities/freebusy \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN"
 ```
@@ -1252,22 +1304,62 @@ http://localhost:8002/api/availabilities/freebusy?q=xyz \
 > The command above returns a JSON structured like this: 
 
 ```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+{
+    "size": 100,
+    "page": 1,
+    "response": [
+        {
+            "appointment": "5d001ad3f0587535a85824b5",
+            "facility": "5d001ac8f0587535a8582439",
+            "provider": "5d001ac8f0587535a8582441",
+            "date": "2019-06-17T17:45:00.000Z",
+            "duration": 15,
+            "appointmentType": "5d001ac6f0587535a85823d4",
+            "patients": [
+                {
+                    "status": "unconfirmed",
+                    "_id": "5d001ac6f0587535a8582404"
+                }
+            ],
+            "status": "unconfirmed",
+            "freebusy": "busy"
+        }
+    ]
+}
 ```
 
-Authorization: No Auth / x-access-token
+Fetches all availabilities, as well as all confirmed and unconfirmed appointments, match them together and displays which availabilities are busy by appointments and which ones are free.
+
+Authorization: -access-token
 
 Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
+Query params | Description
+------------ | -----------
+Any property of an [Appointment](#appointment) | ex.: ?source=sync
+
 Response body param | Description 
 -------------- | ----------- 
-xxx | yyy
+size | Number of items in the current page of the response
+page | Current page.
+response | An array of "free/busy" objects.
+
+The `free/busy` has the following attributes:
+
+Attribute | Description
+--------- | -----------
+appointment | ObjectID of the appointment which took the availability.
+facility | ObjectID of the facility.
+provider | ObjectID of the provider.
+date | Date and time of the availability/appointment.
+duration | Duration (in minutes) of the availability/appointment.
+appointmentType | ObjectID of the appointmentType.
+patients | List of patients with appointments for that availability date and time, showing the appointment ObjectID and status for each patient in the array.
+status | Confirmed if any patient has a confirmed appointment.
+freebusy | If the patients list is empty, `free`. Otherwise, `busy`.
+
 
 # billing
 
