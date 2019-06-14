@@ -974,6 +974,8 @@ http://localhost:8002/api/appointmentTypes/5d001ac6f0587535a85823d3 \
 }
 ```
 
+Deletes an appointmentType by its ObjectID.
+
 Authorization: x-access-token
 
 Path parameters | Description 
