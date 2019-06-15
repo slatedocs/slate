@@ -19,7 +19,15 @@ under the License.
 // CUSTOMIZE SLATE
 ////////////////////////////////////////////////////////////////////////////////
 // Use these settings to help adjust the appearance of Slate
-
+@font-face {
+  font-family: Vazir;
+  src: font-url('Vazir.eot');
+  src: font-url('Vazir.eot?#iefix') format('embedded-opentype'),
+  font-url('Vazir.woff2') format('woff2'),
+  font-url('Vazir.woff') format('woff'),
+  font-url('Vazir.ttf') format('truetype');
+  font-weight: normal;
+}
 
 // BACKGROUND COLORS
 ////////////////////
@@ -70,7 +78,7 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 // FONTS
 ////////////////////
 %default-font {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: Vazir, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 14px;
 }
 
