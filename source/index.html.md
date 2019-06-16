@@ -1305,7 +1305,7 @@ http://localhost:8002/api/availabilities/freebusy \
 
 ```json-doc
 {
-    "size": 100,
+    "size": 1,
     "page": 1,
     "response": [
         {
@@ -1328,7 +1328,7 @@ http://localhost:8002/api/availabilities/freebusy \
 }
 ```
 
-Fetches all availabilities, as well as all confirmed and unconfirmed appointments, match them together and displays which availabilities are busy by appointments and which ones are free.
+Fetches all availabilities, as well as all confirmed and unconfirmed appointments, match them together and displays which availabilities are busy (with appointments) and which ones are free (without appointments).
 
 Authorization: -access-token
 
@@ -1346,7 +1346,7 @@ size | Number of items in the current page of the response
 page | Current page.
 response | An array of "free/busy" objects.
 
-The `free/busy` has the following attributes:
+The `free/busy` object has the following attributes:
 
 Attribute | Description
 --------- | -----------
@@ -1370,7 +1370,7 @@ freebusy | If the patients list is empty, `free`. Otherwise, `busy`.
 ```shell
 #shell command:
 curl \
-http://localhost:8002/api/billing/?q=xyz \
+http://localhost:8002/api/billing/ \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN"
 ```
@@ -1708,7 +1708,7 @@ xxx | yyy
 ```shell
 #shell command:
 curl \
-http://localhost:8002/api/broadcasts/?q=xyz \
+http://localhost:8002/api/broadcasts/ \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN"
 ```
@@ -1716,156 +1716,51 @@ http://localhost:8002/api/broadcasts/?q=xyz \
 > The command above returns a JSON structured like this: 
 
 ```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+{
+    "size": 1,
+    "response": [
+        {
+            "_id": "5c4a104bd516aa5448cd400d",
+            "user": "5c4a1036f5317251070843a6",
+            "title": "Broadcast Message",
+            "message": "We apologize for the inconvenience. Dr. John Doe will be out of the office and we will need to reschedule you appointment for 01/30/2019. Please call out office at at your earliest convenience.",
+            "createdBy": "5c4a1036f5317251070843a6",
+            "updatedBy": "5c4a1036f5317251070843a6",
+            "deleted": 0,
+            "status": "accepted",
+            "updatedAt": "2019-01-24T19:21:47.998Z",
+            "createdAt": "2019-01-24T19:21:47.998Z",
+            "filterResults": [],
+            "patients": [
+                "5c4a1038d516aa5448cd3dba",
+                "5c4a1038d516aa5448cd3dca",
+                "5c4a1038d516aa5448cd3dda",
+                "5c4a1038d516aa5448cd3de6",
+                "5c4a1038d516aa5448cd3de6",
+                "5c4a1038d516aa5448cd3dea"
+            ],
+            "__v": 0
+        }
+    ],
+    "page": 1
+}
 ```
 
-Authorization: No Auth / x-access-token
+Authorization: x-access-token
 
 Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## Post broadcast
-
-`POST` /api/broadcasts/
-
-```shell
-#shell command:
-curl -X POST \
-http://localhost:8002/api/broadcasts/?q=xyz \
--H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN" \
- -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
-```
-
-> The command above returns a JSON structured like this: 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
- | xxx
+Query params | Description
+------------ | -----------
+Any attributes of a [Broadcast](#broadcast) | ex.: ?title=Broadcast%20Message
 
 Response body param | Description 
 -------------- | ----------- 
-xxx | yyy
-
-## Delete by id
-
-`DELETE` /api/broadcasts/:id
-
-```shell
-#shell command:
-curl -X DELETE \
-http://localhost:8002/api/broadcasts/:id?q=xyz \
--H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN" \
- -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
-```
-
-> The command above returns a JSON structured like this: 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Path parameters | Description 
--------------- | ----------- 
-:id | xxx
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
-:id | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
-
-## Put by id
-
-`PUT` /api/broadcasts/:id
-
-```shell
-#shell command:
-curl -X PUT \
-http://localhost:8002/api/broadcasts/:id?q=xyz \
--H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN" \
- -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
-```
-
-> The command above returns a JSON structured like this: 
-
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
-
-Authorization: No Auth / x-access-token
-
-Path parameters | Description 
--------------- | ----------- 
-:id | xxx
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
-:id | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+size | Size of the current page of results.
+response | Array of [Broadcast](#broadcast).
+page | The number of the current page of results.
 
 ## Get by id
 
@@ -1903,58 +1798,79 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Get xls
+## Create broadcast
 
-`GET` /api/broadcasts/:id/xls
+`POST` /api/broadcasts/
 
 ```shell
 #shell command:
-curl \
-http://localhost:8002/api/broadcasts/:id/xls?q=xyz \
+curl -X POST \
+http://localhost:8002/api/broadcasts/ \
 -H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN"
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+	"facility": "5d001ac8f0587535a8582439",
+	"provider": "5d001ac8f0587535a8582442",
+    "appointmentType": "5d017b520bb38f3585626b73",
+    "date": "2019-06-16",
+    "appointments": [{
+    	"appointment": "5d001ad3f0587535a858248d",
+    	"patient": "5d001ac6f0587535a85823f6"
+    }],
+    "title": "test title",
+    "upload": null,
+    "message": "broadcast message",
+    "patients": ["5d001ac6f0587535a85823f6"],
+    "patientMessageTemplate": null,
+}'
 ```
 
-> The command above returns a JSON structured like this: 
+> The command above returns a JSON of a [Broadcast](#broadcast).
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
+Creates a broadcast to be sent.
 
-Authorization: No Auth / x-access-token
-
-Path parameters | Description 
--------------- | ----------- 
-:id | xxx
+Authorization: x-access-token
 
 Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Response body param | Description 
+Request body param | Description 
 -------------- | ----------- 
-xxx | yyy
+message | Broadcast message.
+patientMessageTemplate | (optional) ObjectID of a saved message template.
+title | (optional) Broadcast message title.
+upload | (optional) Upload whose patients (created or updated) will receive the broadcast message.
+appointments | (optional) Array of {appointment ObjectIDs and patient's ObjectIDs} whose patients will receive a broadcast message.
+facility | (optional) ObjectID of the facility to which the broadcast message will be sent.
+provider | (optional) Provider's ObjectID whose patients will receive a broadcast message.
+appointmentType | (optional) ObjectID of the appointmentType whose patients will receive a broadcast message.
+date | (optional) Appointment date whose patients will receive a broadcast message.
 
-## Post bulk/action
+Response body: JSON of a [Broadcast](#broadcast).
+
+## Create bulk broadcast
 
 `POST` /api/broadcasts/bulk/action
 
 ```shell
 #shell command:
 curl -X POST \
-http://localhost:8002/api/broadcasts/bulk/action?q=xyz \
+http://localhost:8002/api/broadcasts/bulk/action \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN" \
  -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
+	"facility": "5d001ac8f0587535a8582439",
+	"provider": "5d001ac8f0587535a8582442",
+  "appointmentType": "5d017b520bb38f3585626b73",
+  "date": "2019-06-16 08:00:00",
+  "title": "test title",
+  "message": "broadcast message",
+  "status": "pending",
+  "count": "2",
+  "sendAt": "2019-06-18 08:00:00",
+  "patientMessageTemplate": null
+}'
 ```
 
 > The command above returns a JSON structured like this: 
@@ -1967,7 +1883,9 @@ http://localhost:8002/api/broadcasts/bulk/action?q=xyz \
 	}
 ```
 
-Authorization: No Auth / x-access-token
+Creates bulk broadcast messages for all the patients with appointments on a certain facility, provider, appointmentType and date. It also prevents the same message from being sent twice today (regardless of the given sendAt date).
+
+Authorization: x-access-token
 
 Request headers | Description 
 -------------- | ----------- 
@@ -1981,14 +1899,63 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Get count
+## Update broadcast
 
-`GET` /api/broadcasts/count
+`PUT` /api/broadcasts/:id
 
 ```shell
 #shell command:
-curl \
-http://localhost:8002/api/broadcasts/count?q=xyz \
+curl -X PUT \
+http://localhost:8002/api/broadcasts/5d001af9f0587535a858264d \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+ -d '{
+    "title": "Broadcast Message",
+    "message": "We apologize for the inconvenience. Dr. Joseph Runte will be out of the office and we will need to reschedule you appointment for 06/13/2019. Please call out office at at your earliest convenience.",
+    "createdBy": "5d001ac40bb38f3585626b68",
+    "deleted": 0,
+    "status": "accepted",
+    "createdAt": "2019-06-11T21:19:52.387Z",
+    "filterResults": [],
+    "patients": [
+        "5d001ac6f0587535a85823f1",
+        "5d001ac6f0587535a85823f6",
+        "5d001ac6f0587535a85823f6",
+        "5d001ac6f0587535a8582400",
+        "5d001ac6f0587535a8582410",
+        "5d001ac6f0587535a8582420"
+    ]
+}'
+```
+
+> The command above returns a JSON of a [Broadcast](#broadcast).
+
+Updates a broadcast.
+
+Authorization: x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | ObjectID of the broadcast to be updated.
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Request body param | Description 
+-------------- | ----------- 
+Any attributes of a [Broadcast](#broadcast) | ex.: ?title=Broadcast%20Message
+
+Response body: JSON of a [Broadcast](#broadcast).
+
+## Delete broadcast
+
+`DELETE` /api/broadcasts/:id
+
+```shell
+#shell command:
+curl -X DELETE \
+http://localhost:8002/api/broadcasts/5d068c2d0e9a2a14543190df \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN"
 ```
@@ -1996,14 +1963,19 @@ http://localhost:8002/api/broadcasts/count?q=xyz \
 > The command above returns a JSON structured like this: 
 
 ```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+{
+    "_id": "5d068c2d0e9a2a14543190df",
+    "deleted": 1
+}
 ```
 
-Authorization: No Auth / x-access-token
+Deletes a broadcast by id.
+
+Authorization: x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | ObjectID of the broadcast to be deleted.
 
 Request headers | Description 
 -------------- | ----------- 
@@ -2011,7 +1983,70 @@ x-access-token | JWT auth access token
 
 Response body param | Description 
 -------------- | ----------- 
-xxx | yyy
+_id | ObjectID of the deleted broadcast.
+deleted | Flag indicating if the broadcast has been sucessfully deleted (1) or not (0).
+
+## XLS of broadcast
+
+`GET` /api/broadcasts/:id/xls
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/broadcasts/5d001af9f0587535a858264d/xls \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The command above returns a XLS spreadsheet.
+
+Returns a XLS spreadsheet file detailing all the patients of a single broadcast message. In case a patient has more than one active contact info, the system will choose the best, preferring first sms, then e-mail and lastly, voice. It searches for those info on PostgreSQL database but falls back to mongo in case of failure. The file comes with the following columns:
+
+XLS Column | Description 
+-------------- | ----------- 
+Name | Patient name
+Contact | Contact info (sms, email or voice).
+Date of Birthiday | Self explanatory.
+Next/Last Appointment	| (not used)
+Appointments | Number of confirmed appointments
+Cancelled Appointmentx | Number of confirmed appointments
+Messages | Number of messages sent to patient
+
+Authorization: x-access-token
+
+Path parameters | Description 
+-------------- | ----------- 
+:id | ObjectID of the broadcast whose XLS will be generated.
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+## Get count
+
+`GET` /api/broadcasts/count
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/broadcasts/count?provider=5d001ac8f0587535a858243f \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The command above returns a an integer number.
+
+Returns the count of broadcasts based on the given query params of the URL, or all the broadcasts to which the user has access, in case no params are given. In only includes the non-deleted broadcasts.
+
+Authorization: x-access-token
+
+Request headers | Description 
+-------------- | ----------- 
+x-access-token | JWT auth access token
+
+Query Params | Example
+-------------- | ----------- 
+Any property of a [Broadcast](#broadcast) | ex.: ?provider=5d001ac8f0587535a858243f
 
 ## Get patients
 
@@ -2020,7 +2055,7 @@ xxx | yyy
 ```shell
 #shell command:
 curl \
-http://localhost:8002/api/broadcasts/patients?q=xyz \
+http://localhost:8002/api/broadcasts/patients?status=confirmed \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN"
 ```
@@ -2028,22 +2063,144 @@ http://localhost:8002/api/broadcasts/patients?q=xyz \
 > The command above returns a JSON structured like this: 
 
 ```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+// The safeId, token and passwword fields have been changed for security reasons.
+{
+    "count": 1,
+    "patients": [
+        {
+            "_id": "5d001ac6f0587535a8582414",
+            "firstname": "Shania",
+            "lastname": "Dicki",
+            "safeId": "7f2d3e60b3935400356577e5c4198fa325d74173b3209dda",
+            "token": "eyJ0eAiOiJKV1QihbGciOiIUzI1NiJ9.eyJpcMiOiIZDAwMWFjNmYwTg3NTM1YTgODI0MTQiLCleHAOjE1NjAOTI3DI4ODYsIR5cGUiOiwYXRpZ50In0.eoP2jTa5nRMbj8aAB7AuX56kBM_DlnmLwr0d2U",
+            "user": "5d001ac40bb38f3585626b69",
+            "password": "$2b12$sACZSPMKZonVcr5.eweoosQ15GPmyGDvsYkpXBm",
+            "name": "Shania Dicki",
+            "type": "patient",
+            "createdBy": "5d001ac40bb38f3585626b69",
+            "updatedBy": "5d001ac40bb38f3585626b69",
+            "__t": "Patient",
+            "ldapUser": false,
+            "allowedIps": [],
+            "twoFactorAuthSecret": {
+                "backupCodes": []
+            },
+            "passwordResetRequired": false,
+            "gender": "unknown",
+            "country": "US",
+            "dateOfBirth": {
+                "year": 1957,
+                "month": 6,
+                "day": 24
+            },
+            "externalId": {
+                "source": "lumamock",
+                "value": "1560287942880"
+            },
+            "language": "en",
+            "master": false,
+            "active": 0,
+            "lastLogin": "2019-06-11T21:19:02.882Z",
+            "updatedAt": "2019-06-11T21:19:02.886Z",
+            "createdAt": "2019-06-11T21:19:02.882Z",
+            "deleted": 0,
+            "salesforceData": {
+                "lifeline": "trial",
+                "respectProvisioning": false,
+                "provisioning": []
+            },
+            "groups": [],
+            "doNotContact": false,
+            "contact": [
+                {
+                    "_id": "5d001ac6f0587535a8582415",
+                    "active": true,
+                    "value": "Roel98.yahoo.com@example.com",
+                    "type": "email"
+                }
+            ],
+            "roles": [
+                "patient"
+            ],
+            "passwordUpdatedAt": "2019-06-11T21:19:02.882Z",
+            "passwordHashAlgorithm": "bcrypt",
+            "outboundContact": [],
+            "subscribers": [],
+            "lastProcessedAt": "2019-06-11T21:12:07.899Z",
+            "stats": {
+                "oldestAppointment": "2019-06-11T21:12:07.922Z",
+                "average": {
+                    "appointmentOfferReplyTime": 0
+                },
+                "counters": {
+                    "appointmentOffersReplied": 0,
+                    "offersAccepted": 0,
+                    "offersSent": 0,
+                    "cancelledAppointments": 0,
+                    "confirmedAppointments": 0,
+                    "messagesSentToPatient": 0
+                }
+            },
+            "__v": 0,
+            "appointment": {
+                "_id": "5d001ad3f0587535a85824e3",
+                "patient": "5d001ac6f0587535a8582414",
+                "date": "2019-06-20T23:45:00.000Z",
+                "duration": 15,
+                "source": "manual",
+                "status": "unconfirmed",
+                "provider": "5d001ac8f0587535a858243f",
+                "type": "5d001ac6f0587535a85823d1",
+                "facility": "5d001ac8f0587535a8582439",
+                "user": "5d001ac40bb38f3585626b69",
+                "createdBy": "5d001ac40bb38f3585626b69",
+                "updatedBy": "5d001ac40bb38f3585626b69",
+                "endDate": "2019-06-21T00:00:00.000Z",
+                "integratorUpdateResults": {
+                    "status": "pending"
+                },
+                "deleted": 0,
+                "updatedAt": "2019-06-11T21:19:15.958Z",
+                "createdAt": "2019-06-11T21:19:15.958Z",
+                "stats": {
+                    "counters": {
+                        "remindersSent": 0
+                    }
+                },
+                "statusReason": null,
+                "externalId": {
+                    "source": "lumamock",
+                    "value": "1560287955958"
+                },
+                "__v": 0
+            }
+        }
+    ]
+}
 ```
 
-Authorization: No Auth / x-access-token
+First, it counts appointments grouped by patient, matching the given query params, sorted by date, returning an array structured like this `[{ count: X, patient: {...} }]`, where X is the number of appointments for that given patient. Then, the patient objects are extracted from the previous search result and their non-deleted appointments for the last 7 days are searched and the first one is inserted into the patient object as the `appointment` field. Lastly, it returns an object with a `count` property with the amount of different patients with appointments (not the amount of appointments), and a `patients` property, containing the array of patients, each one containing his first `appointment` details. The query params are used for the first part, in order to find patients with appointments matching the params. But on the second part, those params are not considered, and the first appointment from the appointments of the last 7 days is returned.
+
+If no query params are given, then it uses the following defaults:
+- appointment `date = {$gt: new Date(moment().startOf('day'))}`
+- `status: {$ne: 'cancelled'}`.
+
+There are no default `page` and `limit` and if none are given, all the patients are returned.
+
+Authorization: x-access-token
 
 Request headers | Description 
 -------------- | ----------- 
 x-access-token | JWT auth access token
 
-Response body param | Description 
+Query param | Description 
 -------------- | ----------- 
-xxx | yyy
+Any property of an [Appointment](#appointment) | ex.: ?status=confirmed
+
+The values of the query params accept objects containing one of these three operators: `$in`, `$ne` and `$nin`.
+
+`$in` and `$nin` accept an array of ObjectIDs referring to any [Type ref'd by an Appointment](#appointment). Ex.: `provider: { $in: [5d001ac8f0587535a858243f, 5d001ac8f0587535a858243c] }`
+
 
 # callback
 
