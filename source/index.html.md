@@ -60,6 +60,8 @@ includes:
   - gcp
   - gcp/instances
   - gcp/disks
+  - masterportal
+  - masterportal/applications
   - gcp/images
   - gcp/regions
   - gcp/ssh_keys
