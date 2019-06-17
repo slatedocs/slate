@@ -13,6 +13,7 @@ includes:
   - administration/users
   - administration/roles
   - administration/environments 
+  - administration/resource_commitments
   - administration/usage
   - cloudstack
   - cloudstack/compute # Compute section
@@ -61,6 +62,11 @@ includes:
   - gcp/disks
   - masterportal
   - masterportal/applications
+  - gcp/images
+  - gcp/regions
+  - gcp/ssh_keys
+  - gcp/networks
+  - gcp/externalips
 
 search: true
 ---
