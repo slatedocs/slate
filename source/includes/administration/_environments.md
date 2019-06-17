@@ -70,7 +70,7 @@ Attributes | &nbsp;
 ```shell
 # Retrieve visible environment
 
-curl "https://cloudmc_endpoint/v1/environment/[environment-id]" \
+curl "https://cloudmc_endpoint/v1/environment/487a2745-bb8a-44bc-adb1-e3b048f6def2" \
    -H "MC-Api-Key: your_api_key"
 
 # Response body example
@@ -188,7 +188,7 @@ The responses' `data` field contains the updated [environment](#administration-e
 
 ```shell
 # Update an environment
-curl -X POST "https://cloudmc_endpoint/v1/environments/[environment-id]" \
+curl -X POST "https://cloudmc_endpoint/v1/environments/11b6dc20-484c-4142-b440-22ba003caecc" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "[request_body]"
@@ -229,7 +229,7 @@ You will need the `Environments update` permission to execute this operation.
 ```shell
 # Delete an environment
 
-curl "https://cloudmc_endpoint/v1/environments/[environment-id]" \
+curl "https://cloudmc_endpoint/v1/environments/11b6dc20-484c-4142-b440-22ba003caecc" \
    -X DELETE -H "MC-Api-Key: your_api_key"
 
 ```

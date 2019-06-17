@@ -57,7 +57,7 @@ Query Parameters | &nbsp;
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/networkacls/:id"
+   "https://cloudmc_endpoint/v1/services/compute-on/test_area/networkacls/736d0c2e-d6b5-43fc-bcf0-732fce9a509e"
 ```
 ```json
 {

@@ -18,7 +18,6 @@ curl "https://cloudmc_endpoint/rest/roles?v=v2&environment_id=4865a023-1dd5-45a3
 ```
 ```json
 {
-{
    "data":[
       {
          "creationDate":"2019-03-11T22:16:15.000Z",
