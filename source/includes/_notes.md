@@ -74,7 +74,7 @@ Returns all field values attached to a `person`, `organization`, `opportunity`.
 
 Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------
-person_id | integer | false | A unique identifier that reperesents a Person that was tagged in the retrieved notes.
+person_id | integer | false | A unique identifier that represents a Person that was tagged in the retrieved notes.
 organization_id | integer | false | A unique identifier that represents an Organization that was tagged in the retrieved notes.
 opportunity_id | integer | false | A unique identifier that represents an Opportunity that was tagged in the retrieved notes.
 creator_id | integer | false | A unique identifier that represents an Affinity user whose created notes should be retrieved.

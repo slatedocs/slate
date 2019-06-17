@@ -90,6 +90,9 @@ though its presence does not necessarily indicate that there are _more_ resource
 fetched. The next page may be empty (but then `next_page_token` would be `null` to
 confirm that there are no more resources).
 
+Can optionally be filtered to return only entity files associated with a specific `person`,
+`organization`, or `opportunity`.
+
 
 ### Query Parameters
 
@@ -97,6 +100,9 @@ Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------
 page_size | number | false | How many results to return per page. (Default is the maximum value of 500.)
 page_token | string | false | The `next_page_token` from the previous response required to retrieve the next page of results.
+person_id | integer | false | A unique id that represents a Person whose associated files should be retrieved.
+organization_id | integer | false | A unique id that represents an Organization whose associated files should be retrieved.
+opportunity_id | integer | false | A unique id that represents an Opportunity whose associated files should be retrieved.
 
 ### Returns
 An object with two fields: `entity_files` and `next_page_token`. `entity_files ` maps to an
