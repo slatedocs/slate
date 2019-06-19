@@ -171,7 +171,7 @@ Required | &nbsp;
 
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/compute-on/test_area/nics"
+   "https://cloudmc_endpoint/v1/services/compute-on/test_area/nics/63ef1efe-225f-4e05-bc79-b3e457a041e2"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/nics/:id</code>
