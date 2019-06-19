@@ -41,7 +41,7 @@ curl -X GET \
 }
 ```
 
-<code>GET <a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/portforwardingrules</code>
+<code>GET <a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/nics</code>
 
 Retrieve a list of all NICs.
 

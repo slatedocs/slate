@@ -154,7 +154,7 @@ curl -X DELETE \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/volumes/e922e5fc-8fee-4688-ad93-c9ef5d7eb685"
 ```
 
-<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/vpcs/:id</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/volumes/:id</code>
 
 Destroy an existing data volume. A volume can only be deleted if it's not attached to an [instance](#cloudstack-instances).
 

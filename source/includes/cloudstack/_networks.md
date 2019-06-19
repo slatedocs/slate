@@ -207,7 +207,7 @@ curl -X PUT \
 }
 ```
 
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networks/9572d2ea-a60d-478a-a75e-8ed31f2641f1</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networks/:id</code>
 
 Update an existing network in an [environment](#administration-environments)
 
@@ -232,7 +232,7 @@ curl -X DELETE \
    "https://cloudmc_endpoint/v1/services/compute-on/test_area/networks/9572d2ea-a60d-478a-a75e-8ed31f2641f1"
 ```
 
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networks/9572d2ea-a60d-478a-a75e-8ed31f2641f1</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networks/:id</code>
 
 Delete an existing network in an [environment](#administration-environments) To delete a network, you must first delete all the [instances](#cloudstack-instances) in the network.
 
@@ -262,7 +262,7 @@ curl -X POST \
 }
 ```
 
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networks/9572d2ea-a60d-478a-a75e-8ed31f2641f1?operation=replace</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/networks/:id?operation=replace</code>
 
 Replace the [network ACL](#cloudstack-network-acls) for a VPC subnet.
 <aside class="caution">
