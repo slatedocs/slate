@@ -105,6 +105,6 @@ curl -X DELETE \
     "https://api.your.cloudmc/v1/services/compute-os/devel/sshkeys/ssh-key-c"
 ```
 
-<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sshkeys/:id</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sshkeys/:name</code>
 
 Delete a SSH key.

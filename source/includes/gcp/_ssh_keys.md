@@ -107,6 +107,6 @@ curl -X DELETE \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/sshkeys/user1"
 ```
 
-<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sshkeys/:id</code>
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sshkeys/:name</code>
 
 Destroy an existing SSH key from the [environment](#administration-environments)
