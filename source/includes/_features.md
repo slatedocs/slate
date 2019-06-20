@@ -51,8 +51,6 @@ If you don't enable the GitHub integration, you'll see a backtrace.
 
 ## Timeline Transaction Trace
 
-<aside class="notice">The Timeline view of a transaction trace is in BETA. Share your feedback via <a href="https://github.com/scoutapp/roadmap/issues/33" target="_blank">this GitHub issue</a>.</aside>
-
 ![trace timeline](trace_timeline.png)
 
 Scout now provides more details on the execution order of your code by presenting traces in a timeline format in addtion to the existing summary view. 
@@ -63,14 +61,9 @@ This is helpful for situations like:
 * Understanding the timing of distinct SQL queries. Is one instance of many nearly identical queries slow or all of them?
 * Getting the complete picture of parent method calls and exclusive versus total call time in each method. How many SQL calls are being triggered by view partial?
 
-### Upgrade instructions
+### Timeline Trace Upgrade instructions
 
-1. Modify your `Gemfile` entry for `scout_apm`, changing it to:
-```
-gem 'scout_apm', git: 'https://github.com/scoutapp/scout_apm_ruby.git', branch: 'detailed-traces'
-```
-2. `bundle update scout_apm`
-3. Deploy.
+[Follow our Ruby agent upgrade instructions](#updating-to-the-newest-version) to update to the latest agent, which supports sending the timeline trace format.
 
 ### Toggling between summary and timeline traces
 
@@ -78,25 +71,14 @@ Once the branch is deployed, Scout will record traces in both the existing summa
 
 ![image](https://user-images.githubusercontent.com/7880/52580818-60b95f00-2de6-11e9-870d-668b2afe194c.png)
 
-### Beta limitations
+### Current limitations
 
 * Ruby-only
 * No ScoutProf support
-* No links to backtraces on the Beta view
 * No support for background jobs
+* No DevTrace support
 
 Please report issues to support@scoutapm.com.
-
-### Downgrade Instructions
-
-1. Revert your `Gemfile` entry for `scout_apm`:
-
-```
-- gem 'scout_apm', git: 'https://github.com/scoutapp/scout_apm_ruby.git', branch: 'scoutprof-detailed-traces'
-+ gem 'scout_apm'
-```
-2. `bundle update scout_apm`
-3. Deploy.
 
 ## Trace Explorer
 

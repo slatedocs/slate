@@ -465,6 +465,16 @@ The following configuration settings are available:
        </td>
       <td>No</td>
     </tr>
+    <tr>
+      <th>timeline_traces</th>
+      <td>
+        Send traces in both the summary and <a href="#timeline-transaction-trace">timeline</a> formats.
+      </td>
+       <td>
+         <code>true</code>
+       </td>
+      <td>No</td>
+    </tr>
   </tbody>
 </table>
 
