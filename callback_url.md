@@ -6,17 +6,17 @@ The post params posted at any update in a particular leads are as follows
 
 ```json
  {
-  "channel_name":"agent_app",
-  "country_code":"+91",
-  "email":null,
-  "is_duplicate":null,
-  "lead_id":1402361,
-  "lead_status":"Final negotiation",
-  "name":"History ",
-  "phone":"+919999999988",
-  "placement":null,
-  "project_name":"santacruz",
-  "cp_data":{
+  "channel_name":"agent_app", // present always
+  "country_code":"+91", // present always
+  "email":null, // present always
+  "is_duplicate":null, // present always
+  "lead_id":1402361, // present always
+  "lead_status":"Final negotiation", // present always
+  "name":"History ", // present always
+  "phone":"+919999999988", // present always
+  "placement":null, // present always
+  "project_name":"santacruz", // present always
+  "cp_data":{  // only if lead was created with CP as source
     "id":5649,
     "name":"Bb",
     "email":null,
@@ -36,17 +36,17 @@ The post params posted at any update in a particular leads are as follows
     "phone":"+919988555566",
     "country_id":49
   },
-  "rating":null,
-  "min_budget":null,
-  "max_budget":null,
-  "lead_status_reasons":null,
-  "extra_details":{
+  "rating":null, // key present always
+  "min_budget":null, // key present always
+  "max_budget":null, // key present always
+  "lead_status_reasons":null, // key present always
+  "extra_details":{ 
     "cp_id":5649,
     "referral_data":{
 
     }
   },
-  "booking_details":{
+  "booking_details":{ // only when lead is moved to booking done
     "area":"5",
     "unit_no":"5",
     "base_price":"5",
@@ -56,7 +56,7 @@ The post params posted at any update in a particular leads are as follows
     "floor_rise_price":"8",
     "apartment_type_id":1
   },
-  "booking_docs":[
+  "booking_docs":[ // only when lead is moved to booking done
     {
       "id":1127,
       "lead_id":1402447,
@@ -78,17 +78,17 @@ The post params posted at any update in a particular leads are as follows
       "updated_at":"2019-05-21T17:15:27.621+05:30"
     }
   ],
-  "project_id":1046,
-  "created_at":1558080407,
-  "claimed_at":1554524295,
-  "agent_email":"tanvi.tyagi@anarock.com",
-  "latest_event_details":{
+  "project_id":1046, // always present
+  "created_at":1558080407, // always present
+  "claimed_at":1554524295, // always present
+  "agent_email":"tanvi.tyagi@anarock.com", // only if agent is attached .. can be null if lead is with call center
+  "latest_event_details":{ // can be null if no event has been planned or done so far
     "event_id":1225388,
     "start_time":1558091400,
     "end_time":1558092300,
     "event_type":"f2f"
   },
-  "event_details":[
+  "event_details":[ // can be empty if no event has been planned or done so far , key will always be present with empty array as default
     {
       "event_id":1225388,
       "start_time":1558091400,
@@ -140,7 +140,7 @@ The post params posted at any update in a particular leads are as follows
       ]
     }
   ],
-  "notes":[
+  "notes":[ // can be empty if no note has been added so far , key will always be present with empty array as default
     {
       "note_type":"text",
       "data":"revisit done",
@@ -212,7 +212,7 @@ The post params posted at any update in a particular leads are as follows
       }
     }
   ],
-  "calls":[
+  "calls":[ // can be empty if no calls have been done so far , key will always be present with empty array as default
     {
       "action":"incoming",
       "agent_details":{
@@ -235,8 +235,8 @@ The post params posted at any update in a particular leads are as follows
       "updated_at":1558080727
     }
   ],
-  "extra_details": {
-    "duplicate_lead_id": 906498,
+  "extra_details": { //  keys will only come if value exists
+    "duplicate_lead_id": 906498, 
      "gender": "male",
      "is_nri": true,
      "address": "vb",
