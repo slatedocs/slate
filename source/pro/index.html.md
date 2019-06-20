@@ -11,61 +11,61 @@ toc_footers:
 includes:
   - pro/requestStructs
   - pro/login
-  - pro/requestHashedPassword
-  - pro/getClientInfo
-  - pro/getProducts
-  - pro/getTransactionsByFilter
-  - pro/getTransactionsByDateRange
-  - pro/getStandardForms
-  - pro/getPaymentForm
-  - pro/haveUpdates
-  - pro/blockCard
-  - pro/getNextForm
-  - pro/getCurrentForm
-  - pro/makeTransfer
-  - pro/requestCommission
-  - pro/confirmTransfer
-  - pro/getAdditonalProductDetails
-  - pro/getAccountRequisites
-  - pro/getTemplates
-  - pro/getBills
-  - pro/getBeneficiaryCategories
-  - pro/getPersonalNews
-  - pro/markPersonalNewsRead
-  - pro/changePassword
-  - pro/checkClient
-  - pro/removeTemplate
-  - pro/getAvailableContacts
-  - pro/getDynamicFieldValues
-  - pro/getEvents
-  - pro/getVersion
-  - pro/dataStructs
-  - pro/LogoResource
+  - pro/AmountDTO
   - pro/BankClientDTO
-  - pro/CurrentAccountDTO
-  - pro/CreditAccountDTO
-  - pro/CardAccountDTO
-  - pro/CardDTO
-  - pro/DepositDTO
-  - pro/LoanDTO
-  - pro/BonusPointsDTO
-  - pro/MultiCurrencyAccountsDTO
-  - pro/TransactionDTO
-  - pro/CreditPlanDTO
-  - pro/FormDTO
-  - pro/FormFieldDTO
-  - pro/TemplateDTO
-  - pro/BillDTO
   - pro/BeneficiaryCategoryDTO
   - pro/BeneficiaryDTO
-  - pro/PersonalNewsDTO
-  - pro/AmountDTO
-  - pro/FilledFormDTO
+  - pro/BillDTO
+  - pro/blockCard
+  - pro/BonusPointsDTO
+  - pro/CardAccountDTO
+  - pro/CardDTO
+  - pro/changePassword
+  - pro/checkClient
   - pro/ComboBoxValueDTO
-  - pro/MarkerDTO
+  - pro/confirmTransfer
+  - pro/CreditAccountDTO
+  - pro/CreditPlanDTO
+  - pro/CurrentAccountDTO
+  - pro/dataStructs
+  - pro/DepositDTO
+  - pro/DeviceInfoDTO
   - pro/FeedDTO
   - pro/FeedEventDTO
-  - pro/DeviceInfoDTO
+  - pro/FilledFormDTO
+  - pro/FormDTO
+  - pro/FormFieldDTO
+  - pro/getAccountRequisites
+  - pro/getAdditonalProductDetails
+  - pro/getAvailableContacts
+  - pro/getBills
+  - pro/getBeneficiaryCategories
+  - pro/getClientInfo
+  - pro/getCurrentForm
+  - pro/getDynamicFieldValues
+  - pro/getEvents
+  - pro/getNextForm
+  - pro/getPaymentForm
+  - pro/getPersonalNews
+  - pro/getProducts
+  - pro/getStandardForms
+  - pro/getTemplates
+  - pro/getTransactionsByDateRange
+  - pro/getTransactionsByFilter
+  - pro/getVersion
+  - pro/haveUpdates
+  - pro/LoanDTO
+  - pro/LogoResource
+  - pro/makeTransfer
+  - pro/MarkerDTO
+  - pro/markPersonalNewsRead
+  - pro/MultiCurrencyAccountsDTO
+  - pro/PersonalNewsDTO
+  - pro/removeTemplate
+  - pro/requestCommission
+  - pro/requestHashedPassword  
+  - pro/TemplateDTO
+  - pro/TransactionDTO
   - pro/sysReq
   - pro/faq
 
