@@ -13,6 +13,11 @@ Welcome to Lumahealth's REST Service API!
 
 # Authentication
 
+TODO: comment about:
+- public-methods.js
+- resource-authorization.js
+- default-roles.js
+
 ## Signup
 
 See [users > signup](#post-signup)
@@ -2211,30 +2216,54 @@ The values of the query params accept objects containing one of these three oper
 ```shell
 #shell command:
 curl \
-http://localhost:8002/api/callback/email/offers?q=xyz \
--H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN"
+http://localhost:8002/api/callback/email/offers?MessageSid=123&From=foobar@mail.com&id=johndoe@lumahealth.io&text=yes&waitlistId=5d001ad8f0587535a858255a&userId=5d001ac40bb38f3585626b69 \
+-H 'Content-Type: application/json'
 ```
 
-> The command above returns a JSON structured like this: 
+> The command above returns a JSON of a [waitlist](#waitlist): 
 
 ```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+{
+    "_id": "5d001ad8f0587535a858255a",
+    "patient": "5d001ad4f0587535a8582526",
+    "user": "5d001ac40bb38f3585626b69",
+    "bookedBy": "department",
+    "createdBy": "5d001ac40bb38f3585626b69",
+    "updatedBy": "5d001ac40bb38f3585626b69",
+    "__v": 0,
+    "updatedAt": "2019-06-11T21:19:20.348Z",
+    "stats": {
+        "counters": {
+            "offersSent": 0
+        }
+    },
+    "preferredTime": "anytime",
+    "preferredDays": [],
+    "createdAt": "2019-06-11T21:19:20.348Z",
+    "futureAppointmentBestMatch": false,
+    "status": "waiting",
+    "appointmentType": [],
+    "facility": "5d001ac8f0587535a8582439",
+    "provider": [
+        "5d001ac8f0587535a858243f"
+    ]
+}
 ```
 
-Authorization: No Auth / x-access-token
+Callback channel invoked by twillio when an email reply is received regarding an `appointment-offer`. It publishes the message to notificationCallbackQueue (to be consumed by notification-service).
 
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
+Authorization: No Auth (public method)
 
-Response body param | Description 
+Query params | Description 
 -------------- | ----------- 
-xxx | yyy
+MessageSid | Twillio SID.
+From | Patient's e-mail address.
+id | Sender's e-mail address.
+text | Email text body. Accepted values: `yes` or `no`
+waitlistId | ObjectID of the patient's [waitlist](#waitlist) position.
+userId | OjectID of the sender [user](#user).
+
+Response body: JSON of a [waitlist](#waitlist)
 
 ## Get email/reminders
 
@@ -2243,30 +2272,40 @@ xxx | yyy
 ```shell
 #shell command:
 curl \
-http://localhost:8002/api/callback/email/reminders?q=xyz \
--H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN"
+http://localhost:8002/api/callback/email/reminders?id=johndoe@lumahealth.io&text=yes \
+-H 'Content-Type: application/json'
 ```
 
 > The command above returns a JSON structured like this: 
 
 ```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+{
+    "message": "success"
+}
 ```
 
-Authorization: No Auth / x-access-token
+Publishes a message like the one bellow to notificationCallbackQueue to be consumed by notification-service:
 
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
+```json-doc
+{
+  "from": "johndoe@lumahealth.io",
+  "ref": "reminder",
+  "channel": "email",
+  "text": "yes",
+  "externalId": {
+    "source": "sendgrid",
+    "value": ""
+  },
+  "callbackCalledAt": 1561054414328
+}
+```
 
-Response body param | Description 
+Authorization: No Auth 
+
+Query params | Description 
 -------------- | ----------- 
-xxx | yyy
+id | Sender's e-mail address.
+text | Email text body. Accepted values: `yes` or `no`
 
 ## Post email/sendgrid
 
@@ -2275,92 +2314,110 @@ xxx | yyy
 ```shell
 #shell command:
 curl -X POST \
-http://localhost:8002/api/callback/email/sendgrid?q=xyz \
+http://localhost:8002/api/callback/email/sendgrid \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN" \
- -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
+ -d '[
+    {
+        "uuid": "1560287991204",
+        "event": "open"
+    }
+]'
 ```
 
 > The command above returns a JSON structured like this: 
 
 ```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+{
+    "message": "ok"
+}
 ```
 
-Authorization: No Auth / x-access-token
+Updates status of many reminders whose externalId's source is `sendgrid` and value is the given UUID. Their `updatedAt` field is also updated with the current date.
 
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
+Accepts an array of `{ UUID, event }`.
+
+The `event` may be `open`, `click`, `bounce`, `dropped`, `deferred` or `delivered`, and the reminder's status will be updated according to the following table:
+
+event | status
+----- | ------
+`open` | emailOpened
+`click` | emailOpened
+`bounce` | failed
+`dropped` | failed
+`deferred` | failed
+`delivered` | delivered
+
+Authorization: No Auth
 
 Request body param | Description 
 -------------- | ----------- 
- | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+uuid | Reminder external ID value.
+event | Accepted values: `open`, `click`, `bounce`, `dropped`, `deferred` or `delivered`.
 
 ## Post integrators/auth
 
-`POST` /api/callback/integrators/:integrator/auth/:userId/:secret/:integratorId?
+`POST` /api/callback/integrators/:integratorType/auth/:userId/:secret/:integratorId
 
 ```shell
 #shell command:
 curl -X POST \
-http://localhost:8002/api/callback/integrators/:integrator/auth/:userId/:secret/:integratorId??q=xyz \
+http://localhost:8002/api/callback/integrators/webpt/auth/5c4a1036f5317251070843a6/123456 \
 -H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN" \
+-H 'hmacheadername: d5c5537e434ada12f0ad553571799894227d5f5e8d6748f0782c4e9c1ebd5800' \
  -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
+		"authtoken": "123456"
 	}'
+
+curl -X POST \
+http://localhost:8002/api/callback/integrators/epic/auth/5c4a1036f5317251070843a6/123456 \
+-H 'Content-Type: application/json' \
+-H 'hmacheadername: d5c5537e434ada12f0ad553571799894227d5f5e8d6748f0782c4e9c1ebd5800' \
+ -d '{
+    "type": "referral",
+    "PatientID": "1",
+    "PatientIDType": "2"
+}'
 ```
 
-> The command above returns a JSON structured like this: 
+> The command above returns an empty response with HTTP Status 200 (OK).
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
+Updates an [integrator](#integrator)  based on the given `integratorType`, `userId` and `secret`. 
 
-Authorization: No Auth / x-access-token
+In case there is a `credentials.hmacHeader` and `credentials.hmacSecret` in the integrator's credentials, then a HMAC signature is required by integration, and a request header with the same name as what is stored in  `credentials.hmacHeader` must be passed, containing the SHA256 hash of the HMAC secret required by integraion.
+
+If the integrator type is `webpt`, then it updated such integrator with a new auth token, by creating the following entry in redis:
+- key: `webpt:credential:{{integratorId}}:cookie}`
+- value: `authtoken` passed in request body.
+- expiration: 120 minutes
+
+If the integrator type is `epic` (specific to UCSF) and the request body contains a `type` param set to `referral`, a `PatientID` and `PatientIDType`, then it creates the following entry in redis:
+- key: `epic:credential:{{integratorId}}:incomingreferrals`
+- value: JSON string of the request body.
+
+If the integrator type is something else, nothing is done.
+
+Authorization: No Auth
 
 Path parameters | Description 
 -------------- | ----------- 
-:integrator | xxx
-:userId | xxx
-:secret | xxx
-:integratorId? | xxx
+:integratorType | Either `webpt` or `epic`.
+:userId | ObjectID of the owner [user](#user) of an [Integrator](#integrator).
+:secret | [Integrator](#integrator)'s `credentials.sharedSecret`.
+:integratorId | Not used.
 
 Request headers | Description 
 -------------- | ----------- 
-x-access-token | JWT auth access token
+`{{integrator.credentials.hmacHeader}}` | (optional) sha256 of an HMAC signature if required by integraion.
 
 Request body param | Description 
 -------------- | ----------- 
-:integrator | xxx
-:userId | xxx
-:secret | xxx
-:integratorId? | xxx
+authtoken | Authentication token. Required if integratorType is `webpt`. Otherwise not needed.
+type | Must be `referral` when integratorType is `epic`. Otherwise, not needed.
+PatientID | Required when integratorType is `epic`. Otherwise, not needed.
+PatientIDType | Required when integratorType is `epic`. Otherwise, not needed.
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+Response: empty response with HTTP Status 200 (OK).
 
 ## Post mi7/ack
 
@@ -2369,48 +2426,28 @@ xxx | yyy
 ```shell
 #shell command:
 curl -X POST \
-http://localhost:8002/api/callback/mi7/ack/:apikey/:systemid/:messageid?q=xyz \
+http://localhost:8002/api/callback/mi7/ack/:apikey/:systemid/:messageid \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN" \
- -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
 ```
 
 > The command above returns a JSON structured like this: 
 
 ```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+{
+    "result": "success"
+}
 ```
 
-Authorization: No Auth / x-access-token
+Updates an [hl7message](#hl7messages-2) with `{ status: 'completed' }`. The `:systemId` of an integrator whose type is `mi7` is needed because its owner [user](#user) will be used to update the [hl7message](#hl7messages-2).
+
+Authorization: No Auth
 
 Path parameters | Description 
 -------------- | ----------- 
-:apikey | xxx
-:systemid | xxx
-:messageid | xxx
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
-:apikey | xxx
-:systemid | xxx
-:messageid | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+:apikey | Secret API key which must be passed by caller.
+:systemid | MI7 Integrator's `credentials.systemId`.
+:messageid | ObjectID of an [hl7message](#hl7messages-2) to be updated.
 
 ## Post mi7/from
 
