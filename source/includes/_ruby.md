@@ -135,7 +135,7 @@ tail -n1000 log/production.log | grep "Processing"
         <p>
           Using Unicorn?
         </p>
-        <p>Add the <code>preload_app true</code> directive to your Unicorn config file. <a href="http://unicorn.bogomips.org/Unicorn/Configurator.html#method-i-preload_app">Read more</a> in the Unicorn docs.
+        <p>Add the <code>preload_app true</code> directive to your Unicorn config file. <a href="https://unicorn.bogomips.org/Unicorn/Configurator.html#method-i-preload_app">Read more</a> in the Unicorn docs.
         </p>
       </td>
     </tr>
