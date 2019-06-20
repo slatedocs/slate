@@ -2,7 +2,7 @@
 
 We're transparent about our uptime and service issues. If you appear to be experiencing issues with our service:
 
-* [Check out status site](http://status.scoutapm.com). You can subscribe to service incidents.
+* [Check out status site](https://status.scoutapm.com). You can subscribe to service incidents.
 * [Email us](mailto:support@scoutapm.com)
 
 # Contacting Support
@@ -156,6 +156,7 @@ Scout is an attractive <a href="https://scoutapm.com/newrelic-alternative" targe
 In many cases, Scout is able to replace New Relic as-is. However, there are cases where your app has specific needs we currently don't provide. Don't fret - here's some of the more common scenarios and our suggestions for building a monitoring stack you'll love:
 
 * __Exception Monitoring__ - Scout doesn't provide exception monitoring, but we do integrate with ([Rollbar](#rollbar) and [Sentry](#sentry)) to provide a side-by-side view of your performance metrics and errors within the Scout UI.
+
 * __Browser Monitoring (Real User Monitoring)__ - there are a number of dedicated tools for both Real User Monitoring (RUM) and synthetic monitoring. We've [reviewed Raygun Pulse](https://scoutapm.com/blog/real-user-monitoring-with-raygun), an attractive RUM product. You can also continue to use New Relic for browser monitoring and use Scout for application monitoring.
 
 ### Our Monitoring Stack

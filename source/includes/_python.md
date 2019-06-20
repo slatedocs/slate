@@ -152,7 +152,7 @@ If your app uses `flask-sqlalchemy`, [see our instructions below](#flask-sqlalch
 
 ## Flask SQLAlchemy
 
-Instrument [`flask-sqlalchemy`](http://flask-sqlalchemy.pocoo.org/) queries:
+Instrument [`flask-sqlalchemy`](https://flask-sqlalchemy.palletsprojects.com/) queries:
 
 ```py
 from scout_apm.flask.sqlalchemy import instrument_sqlalchemy
