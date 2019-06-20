@@ -40,6 +40,9 @@ logoResource | [LogoResource](#logoresource) | 0..1 | url для доступа 
 position | [FormPosition](#formposition) | 0..1 | расположение формы для ряда уникальных кейсов
 showConfirmation | bool | 0..1 | показ экрана подтверждения
 formUrl | [FormURL](#formurl) | 0..1 | параметры webView
+continueLabel | string | 0..1 | надпись на кнопке "Продолжить"
+autoContinueAfter | int | 0..1 | количество секунд, после которых будет нажата кнопка "Продолжить"
+continueAction | string | 0..1 |  действие, выполняемое по нажатии на кнопку "Продолжить" (SUBMIT - отправка данных на сервер, CLOSE - закрытие формы)
 
 ### FormType
 key | comment
