@@ -14,9 +14,9 @@ includes:
   - pro/requestHashedPassword
   - pro/getClientInfo
   - pro/getProducts
-  - pro/getTransactionsByFilter
-  - pro/getTransactionsByDateRange
   - pro/getStandardForms
+  - pro/getTransactionsByDateRange
+  - pro/getTransactionsByFilter
   - pro/getPaymentForm
   - pro/haveUpdates
   - pro/blockCard
