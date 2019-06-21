@@ -17,6 +17,9 @@ TODO: comment about:
 - public-methods.js
 - resource-authorization.js
 - default-roles.js
+- owner user
+- groups
+- roles
 
 ## Signup
 
@@ -2456,46 +2459,28 @@ Path parameters | Description
 ```shell
 #shell command:
 curl -X POST \
-http://localhost:8002/api/callback/mi7/from/:apikey/:systemid?q=xyz \
+http://localhost:8002/api/callback/mi7/from/FEKiaoE58HVtBYDprkYW9iBiSAmISfVsCAgoZnq7xntKZb3LnCoPxTIsKuFuJKdh/123456 \
 -H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN" \
- -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
+-H 'x-access-token: '"$TOKEN"
 ```
 
 > The command above returns a JSON structured like this: 
 
 ```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+{
+    "result": "success"
+}
 ```
 
-Authorization: No Auth / x-access-token
+Creates an inbound [hl7message](#hl7message) with `{ status: 'pending' }`. The `:systemId` of an integrator whose type is `mi7` is needed because its owner [user](#user) will be used to create the [hl7message](#hl7message).
+
+
+Authorization: No Auth
 
 Path parameters | Description 
 -------------- | ----------- 
-:apikey | xxx
-:systemid | xxx
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
-
-Request body param | Description 
--------------- | ----------- 
-:apikey | xxx
-:systemid | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+:apikey | Secret API key which must be passed by caller.
+:systemid | MI7 Integrator's `credentials.systemId`.
 
 ## Get mi7/to
 
@@ -2504,7 +2489,7 @@ xxx | yyy
 ```shell
 #shell command:
 curl \
-http://localhost:8002/api/callback/mi7/to/:apikey/:systemid?q=xyz \
+http://localhost:8002/api/callback/mi7/to/:apikey/:systemid \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN"
 ```
@@ -2512,27 +2497,30 @@ http://localhost:8002/api/callback/mi7/to/:apikey/:systemid?q=xyz \
 > The command above returns a JSON structured like this: 
 
 ```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+{
+    "result": "success",
+    "messages": [
+        {
+            "hello": "world",
+            "MessageID": "5d0c1724347d583498998b8f"
+        }
+    ]
+}
 ```
 
-Authorization: No Auth / x-access-token
+Updates all `pending` outbound messages to `processing`, so that they might get sent to the desired MI7 Integrator (system ID).
+
+Authorization: No Auth
 
 Path parameters | Description 
 -------------- | ----------- 
-:apikey | xxx
-:systemid | xxx
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
+:apikey | Secret API key which must be passed by caller.
+:systemid | MI7 Integrator's `credentials.systemId`.
 
 Response body param | Description 
 -------------- | ----------- 
-xxx | yyy
+result | May be either `error` or `success`.
+messages | array containing [HL7 Message's contents](#hl7message).
 
 ## Get plivo/sms/reminders
 
@@ -2541,7 +2529,7 @@ xxx | yyy
 ```shell
 #shell command:
 curl \
-http://localhost:8002/api/callback/plivo/sms/reminders?q=xyz \
+http://localhost:8002/api/callback/plivo/sms/reminders?Text=test&MessageUUID=270c0b1a-617f-40ec-a761-312296426f1b&From=555&To=666&MediaUrl0=http://www.lumahealth.io \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN"
 ```
@@ -2549,22 +2537,26 @@ http://localhost:8002/api/callback/plivo/sms/reminders?q=xyz \
 > The command above returns a JSON structured like this: 
 
 ```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+{
+    "status": "ok"
+}
 ```
 
-Authorization: No Auth / x-access-token
+Allows plivio to notify luma of a reminder reply. If it finds a corresponding outbound message in luma (with To and From numbers switched), then it publishes the reply to `notificationCallbackQueue`, to be processed by another service such as notification-service or reminder-service.
 
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
+In case the reply is an MMS message, it is posted to luma's slack channel `#devops-inbound-mms`.
 
-Response body param | Description 
+If the same message UUID is requested twice in a window of 24h, the second request will be declined.
+
+Authorization: No Auth
+
+Query param | Description 
 -------------- | ----------- 
-xxx | yyy
+Text | The user's reply text.
+MessageUUID | Plivio's unique ID for the message.
+From | The user's phone number.
+To | Luma/Plivio's reply-to number.
+MediaUrl0 | Media URL in case of a MMS message.
 
 ## Post practicefusion/auth
 
