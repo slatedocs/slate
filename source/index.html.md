@@ -6215,28 +6215,26 @@ xxx | yyy
 ```shell
 #shell command:
 curl -X POST \
-http://localhost:8002/api/hl7messages/?q=xyz \
+http://localhost:8002/api/hl7messages/ \
 -H 'Content-Type: application/json' \
 -H 'x-access-token: '"$TOKEN" \
  -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
+	"integrator": "5c4a1054d516aa5448cd412e",
+	"message": "{ \"must be\": \"a JSON string\"}"
+}'
 ```
 
 > The command above returns a JSON structured like this: 
 
 ```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+{
+    "result": "success"
+}
 ```
 
-Authorization: No Auth / x-access-token
+Creates a message for an HL7 Integrator, with `direction` being `inbound` (facility to luma), `integratorRef` pointing to the given `integrator` param in the request body, `content` being the request `message` param in the request body, and `status`: `pending`.
+
+Authorization: x-access-token
 
 Request headers | Description 
 -------------- | ----------- 
@@ -6244,11 +6242,8 @@ x-access-token | JWT auth access token
 
 Request body param | Description 
 -------------- | ----------- 
- | xxx
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+integrator | HL7 Integrator's ObjectID.
+message | JSON string containing a message object.
 
 # insurances
 
@@ -14749,10 +14744,10 @@ Attribute|Description
 ----|----
 user|ObjectID, required, ref: [User](#user)
 integratorRef|ObjectID, required, ref: [Integrator](#integrator)
-integrator|String, required, Possible values: ["mi7", "hl7"]
+integrator|String, required, Possible values:`mi7` (our third party vendor) or `hl7` (luma link based)
 direction|String, required, Possible values: ["inbound", "outbound"]
 content|Mixed, optional
-status|String, required, Possible values: ["pending", "processing", "completed", "failed"]
+status|String, required, Possible values: "pending" (the message has been accepted), "processing" (the message is being worked on), "completed" (the message was successfully completed), "failed" (the message failed to process)], default: "pending".
 createdAt|Date, optional
 updatedAt|Date, optional
 createdBy|ObjectID, required, ref: [User](#user)
