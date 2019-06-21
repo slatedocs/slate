@@ -2426,9 +2426,9 @@ Response: empty response with HTTP Status 200 (OK).
 ```shell
 #shell command:
 curl -X POST \
-http://localhost:8002/api/callback/mi7/ack/:apikey/:systemid/:messageid \
+http://localhost:8002/api/callback/mi7/ack/FEKiaoE58HVtBYDprkYW9iBiSAmISfVsCAgoZnq7xntKZb3LnCoPxTIsKuFuJKdh/123456/5d0c1724347d583498998b8f \
 -H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN" \
+-H 'x-access-token: '"$TOKEN"
 ```
 
 > The command above returns a JSON structured like this: 
@@ -2439,7 +2439,7 @@ http://localhost:8002/api/callback/mi7/ack/:apikey/:systemid/:messageid \
 }
 ```
 
-Updates an [hl7message](#hl7messages-2) with `{ status: 'completed' }`. The `:systemId` of an integrator whose type is `mi7` is needed because its owner [user](#user) will be used to update the [hl7message](#hl7messages-2).
+Updates an [hl7message](#hl7message) with `{ status: 'completed' }`. The `:systemId` of an integrator whose type is `mi7` is needed because its owner [user](#user) will be used to update the [hl7message](#hl7message).
 
 Authorization: No Auth
 
@@ -2447,7 +2447,7 @@ Path parameters | Description
 -------------- | ----------- 
 :apikey | Secret API key which must be passed by caller.
 :systemid | MI7 Integrator's `credentials.systemId`.
-:messageid | ObjectID of an [hl7message](#hl7messages-2) to be updated.
+:messageid | ObjectID of an [hl7message](#hl7message) to be updated.
 
 ## Post mi7/from
 
@@ -14738,7 +14738,7 @@ updatedBy|ObjectID, required, ref: [User](#user)
 _id|ObjectID, optional
 __v|Number, optional
 
-## hl7messages
+## hl7message
 
 Attribute|Description
 ----|----
