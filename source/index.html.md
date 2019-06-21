@@ -2319,7 +2319,6 @@ text | Email text body. Accepted values: `yes` or `no`
 curl -X POST \
 http://localhost:8002/api/callback/email/sendgrid \
 -H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN" \
  -d '[
     {
         "uuid": "1560287991204",
@@ -2431,7 +2430,6 @@ Response: empty response with HTTP Status 200 (OK).
 curl -X POST \
 http://localhost:8002/api/callback/mi7/ack/FEKiaoE58HVtBYDprkYW9iBiSAmISfVsCAgoZnq7xntKZb3LnCoPxTIsKuFuJKdh/123456/5d0c1724347d583498998b8f \
 -H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN"
 ```
 
 > The command above returns a JSON structured like this: 
@@ -2461,7 +2459,6 @@ Path parameters | Description
 curl -X POST \
 http://localhost:8002/api/callback/mi7/from/FEKiaoE58HVtBYDprkYW9iBiSAmISfVsCAgoZnq7xntKZb3LnCoPxTIsKuFuJKdh/123456 \
 -H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN"
 ```
 
 > The command above returns a JSON structured like this: 
@@ -2491,7 +2488,6 @@ Path parameters | Description
 curl \
 http://localhost:8002/api/callback/mi7/to/:apikey/:systemid \
 -H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN"
 ```
 
 > The command above returns a JSON structured like this: 
@@ -2531,7 +2527,6 @@ messages | array containing [HL7 Message's contents](#hl7message).
 curl \
 http://localhost:8002/api/callback/plivo/sms/reminders?Text=test&MessageUUID=270c0b1a-617f-40ec-a761-312296426f1b&From=555&To=666&MediaUrl0=http://www.lumahealth.io \
 -H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN"
 ```
 
 > The command above returns a JSON structured like this: 
@@ -2544,7 +2539,7 @@ http://localhost:8002/api/callback/plivo/sms/reminders?Text=test&MessageUUID=270
 
 Allows plivio to notify luma of a reminder reply. If it finds a corresponding outbound message in luma (with To and From numbers switched), then it publishes the reply to `notificationCallbackQueue`, to be processed by another service such as notification-service or reminder-service.
 
-In case the reply is an MMS message, it is posted to luma's slack channel `#devops-inbound-mms`.
+In case the reply is an MMS message (contains a `MediaUrl0`), it is posted to luma's slack channel `#devops-inbound-mms`.
 
 If the same message UUID is requested twice in a window of 24h, the second request will be declined.
 
@@ -2565,46 +2560,29 @@ MediaUrl0 | Media URL in case of a MMS message.
 ```shell
 #shell command:
 curl -X POST \
-http://localhost:8002/api/callback/practicefusion/auth/:userId/:secret?q=xyz \
+http://localhost:8002/api/callback/practicefusion/auth/5d001ac40bb38f3585626b69/123 \
 -H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN" \
  -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
+	"authtoken": "123"
+}'
 ```
 
-> The command above returns a JSON structured like this: 
+> The command above returns an empty response with HTTP Status 200 (OK).
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
+Sets or updates the `credentials.authToken` of a practicefusion integrator.
 
-Authorization: No Auth / x-access-token
+Authorization: No Auth
 
 Path parameters | Description 
 -------------- | ----------- 
-:userId | xxx
-:secret | xxx
-
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
+:userId | ObjectID of the owner [User](#user) of a practicefusion integrator.
+:secret | Credential's shared secret of the practicefusion integrator.
 
 Request body param | Description 
 -------------- | ----------- 
-:userId | xxx
-:secret | xxx
+authtoken | Authentication token of a practicefusion integrator.
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+Response: empty with HTTP Status 200 (OK).
 
 ## Get practicefusion/textcode
 
@@ -2613,30 +2591,22 @@ xxx | yyy
 ```shell
 #shell command:
 curl \
-http://localhost:8002/api/callback/practicefusion/textcode?q=xyz \
+http://localhost:8002/api/callback/practicefusion/textcode?Body=123 \
 -H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN"
 ```
 
-> The command above returns a JSON structured like this: 
+> The command above returns an empty response with HTTP Status 200 (OK).
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
+Updates the `textcodeKey` in redis, for the practicefusion integrator, with the numeric textcode in the request query param named `Body`.
 
-Authorization: No Auth / x-access-token
+Authorization: No Auth
 
-Request headers | Description 
+Request query param | Description 
 -------------- | ----------- 
-x-access-token | JWT auth access token
+Body | Practicefusion's numeric textcode to be set or updated in redis.
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+Response: empty with HTTP Status 200 (OK).
+
 
 ## Post slack
 
@@ -2645,40 +2615,33 @@ xxx | yyy
 ```shell
 #shell command:
 curl -X POST \
-http://localhost:8002/api/callback/slack/?q=xyz \
--H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN" \
- -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
+  http://localhost:8002/api/callback/slack \
+  -H 'Content-Type: application/json' \
+  -H 'x-slack-request-timestamp: 1561149636348' \
+  -H 'x-slack-signature: v0=nbo765wzkx2to8tzktf69wobujavurdnsd5xttv8c7wsxe4kkp3nrjnq46u4he2s' \
+  -d '{
+    "payload": "{ \"user\": { \"name\": \"marcelo\" }, \"actions\": [ { \"value\": \"dump\" } ], \"callback_id\":\"queue:actions:testQueueName\" }"
+}'
 ```
 
-> The command above returns a JSON structured like this: 
+> The command above returns an empty response with HTTP Status 200 (OK).
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
+Dumps an action queue from ActiveMQ and sends a message to slack channel `#devops-queues` in case there is an error.
 
-Authorization: No Auth / x-access-token
+Authorization: No Auth
 
 Request headers | Description 
 -------------- | ----------- 
-x-access-token | JWT auth access token
+x-slack-request-timestamp | Slack request timestamp
+x-slack-signature | SHA256 HMAC signature of `v0:${slackRequestTimestamp}:${req.rawBody}` using Badbot's signing secret.
 
 Request body param | Description 
 -------------- | ----------- 
- | xxx
+payload.user.name | User name of a luma administrator.
+actions | A length-1 array containing one object with a `value` property set to `dump`.
+callback_id | ActiveMQ's actions queue `name` to be dumped, in the format `queue:actions:{{name}}`.
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+Response: empty response with HTTP Status 200 (OK).
 
 ## Get sms/offers
 
@@ -2687,30 +2650,26 @@ xxx | yyy
 ```shell
 #shell command:
 curl \
-http://localhost:8002/api/callback/sms/offers?q=xyz \
+http://localhost:8002/api/callback/sms/offers?Body=yes \
 -H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN"
 ```
 
-> The command above returns a JSON structured like this: 
+Allows twilio to notify luma of an SMS offer reply. If it finds a corresponding outbound message in luma (with To and From numbers switched), then it publishes the reply to `notificationCallbackQueue`, to be processed by another service such as notification-service or reminder-service.
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
+In case the reply is an MMS message (contains a `MediaUrl0`), it is posted to luma's slack channel `#devops-inbound-mms`.
 
-Authorization: No Auth / x-access-token
+If the same SmsMessageSid is requested twice in a window of 24h, the second request will be declined.
 
-Request headers | Description 
+Authorization: No Auth
+
+Query param | Description 
 -------------- | ----------- 
-x-access-token | JWT auth access token
-
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+Body | The user's reply text.
+SmsMessageSid | Twilio's unique ID for the message.
+From | The user's phone number.
+To | Luma/Twilio's reply-to number.
+MediaUrl0 | (optional) Media URL in case of a MMS message.
+SmsStatus | (optional) Delivery (DLR) status. May be , `failed`, `undelivered`, `pending`.
 
 ## Get sms/referrals
 
@@ -2719,30 +2678,40 @@ xxx | yyy
 ```shell
 #shell command:
 curl \
-http://localhost:8002/api/callback/sms/referrals?q=xyz \
--H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN"
+http://localhost:8002/api/callback/sms/referrals?Body=test&SmsMessageSid=46777491-031a-4cca-8219-e34257faedab&From=5551037&To=5551111&SmsStatus=dlrStatus&MediaUrl0= \
+-H 'Content-Type: application/json'
 ```
 
-> The command above returns a JSON structured like this: 
+> The command above returns an XML structured like this: 
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<Response></Response>
 ```
 
-Authorization: No Auth / x-access-token
+Allows twilio to notify luma of a referral-reminder reply. If it finds a corresponding outbound message in luma (with To and From numbers switched), then it publishes the reply with `ref: referral-reminder` to `notificationCallbackQueue`, to be processed by another service such as notification-service or reminder-service.
 
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
+In case the reply is an MMS message (contains a `MediaUrl0`), it is posted to luma's slack channel `#devops-inbound-mms`.
 
-Response body param | Description 
+If the same message UUID is requested twice in a window of 24h, the second request will be declined.
+
+Authorization: No Auth
+
+Query param | Description 
 -------------- | ----------- 
-xxx | yyy
+Body | The user's reply text.
+SmsMessageSid | Twilio's unique ID for the message.
+From | The user's phone number.
+To | Luma/Twilio's reply-to number.
+MediaUrl0 | (optional) Media URL in case of a MMS message.
+SmsStatus | (optional) Delivery (DLR) status. May be , `failed`, `undelivered`, `pending`.
+
+Response body:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<Response></Response>
+```
 
 ## Get sms/reminders
 
@@ -2751,30 +2720,36 @@ xxx | yyy
 ```shell
 #shell command:
 curl \
-http://localhost:8002/api/callback/sms/reminders?q=xyz \
+http://localhost:8002/api/callback/sms/reminders?Body=test&SmsMessageSid=270c0b1a-617f-40ec-a761-312296426f1b&From=555&To=666&MediaUrl0=http://www.lumahealth.io \
 -H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN"
 ```
 
 > The command above returns a JSON structured like this: 
 
 ```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+{
+    "status": "ok"
+}
 ```
 
-Authorization: No Auth / x-access-token
+Allows twilio to notify luma of a reminder reply. If it finds a corresponding outbound message in luma (with To and From numbers switched), then it publishes the reply to `notificationCallbackQueue`, to be processed by another service such as notification-service or reminder-service.
 
-Request headers | Description 
--------------- | ----------- 
-x-access-token | JWT auth access token
+In case the reply is an MMS message (contains a `MediaUrl0`), it is posted to luma's slack channel `#devops-inbound-mms`.
 
-Response body param | Description 
+If the same SmsMessageSid is requested twice in a window of 24h, the second request will be declined.
+
+If an `SmsStatus` is given, then the existing [reminder](#reminder) whose `externalId.value` is the same as `SmsMessageSid` and `externalId.source` is `twilio` is updated with status `delivered` (DLR).
+
+Authorization: No Auth
+
+Query param | Description 
 -------------- | ----------- 
-xxx | yyy
+Body | The user's reply text.
+SmsMessageSid | Twilio's unique ID for the message.
+From | The user's phone number.
+To | Luma/Twilio's reply-to number.
+MediaUrl0 | (optional) Media URL in case of a MMS message.
+SmsStatus | (optional) Delivery (DLR) status. May be `delivered`, `failed`, `undelivered`, `pending`.
 
 ## Post status
 
@@ -2783,44 +2758,49 @@ xxx | yyy
 ```shell
 #shell command:
 curl -X POST \
-http://localhost:8002/api/callback/status/:vendor?q=xyz \
--H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN" \
- -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
+  http://localhost:8002/api/callback/status/twilio \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "MessageStatus": "failed",
+    "MessageSid": "5d001b1bf0587535a85827be",
+    "ErrorCode": "1"
+}'
 ```
 
-> The command above returns a JSON structured like this: 
+> The command above returns `OK`.
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
+```shell
+#redis-cli
+set luma:sid:twilio:5d001b1bf0587535a85827be "{\"message\":\"5d001b1bf0587535a85827be\", \"user\":\"5d001ac40bb38f3585626b69\"}"
 ```
+
+> The comand above artificially creates the redis cache for testing purposes.
+
+Updates a [message](#message)'s `status` and `statusReason` on mongo and redis cache for `plivo` or `twilio`.
 
 Authorization: No Auth / x-access-token
 
 Path parameters | Description 
 -------------- | ----------- 
-:vendor | xxx
+:vendor | Either `twilio` or `plivo`.
 
-Request headers | Description 
+Request body from twilio | Description 
 -------------- | ----------- 
-x-access-token | JWT auth access token
+MessageSid | Twilio's unique ID for the message (ObjectID).
+MessageStatus | Twilio's delivery (DLR) status. May be `delivered`, `failed`, `undelivered`, `pending`.
+ErrorCode | Twilio's error code which will become `statusReason`.
 
-Request body param | Description 
+Request body from plivo | Description 
 -------------- | ----------- 
-:vendor | xxx
+message_uuid | Plivo's unique ID for the message (ObjectID).
+message_state | Plivo's delivery (DLR) status. May be `delivered`, `failed`, `undelivered`, `pending`.
+error_code | Plivo's error code which will become `statusReason`.
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+Response body | Response code | Reason
+------------- | ------------- | ------
+OK | 200 | Success.
+Not Acceptable | 406 | Error retrieving, updating or removing message from mongo or redis.
+Bad Request | 400 | No unique identifier provided and other errors.
 
 ## Post stripe/charges
 
@@ -2829,26 +2809,33 @@ xxx | yyy
 ```shell
 #shell command:
 curl -X POST \
-http://localhost:8002/api/callback/stripe/charges?q=xyz \
--H 'Content-Type: application/json' \
--H 'x-access-token: '"$TOKEN" \
- -d '{
-		"field1": "test",
-		"field2": {
-			"foo": "bar"
-		}
-	}'
+  http://localhost:8002/api/callback/stripe/charges \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "data": {
+    	"object": {
+    		"id": "ch_1Erm7m2eZvKYlo2CLY8OqU7C",
+    		"customer": "cus_FMV3IG3IH4viwW",
+        "time": "1562074462",
+        "amount": 100,
+        "source": {
+          "id": "src_1Ermup2eZvKYlo2CQmJ6FCxS"
+        }
+    	}
+    },
+    "type": "charge.succeeded"
+}'
 ```
 
-> The command above returns a JSON structured like this: 
+> The command above returns an empty response with HTTP status 200 (OK).
 
-```json-doc
-	{
-		"x": "y",
-		"y", true,
-		"z": 1
-	}
-```
+Stripe webhook endpoint to allow Luma to be notified about events that happen in its Stripe account. Most transactions (creating charge or refunds, for instance) don't need webhooks because they happen synchronously, but the [Payment Intents API](https://stripe.com/docs/payments/payment-intents) with automatic confirmation and most payment methods using [Sources](https://stripe.com/docs/sources) require using webhooks, so that Luma can be notified about asynchronous changes to the status of PaymentIntent and Source objects.
+
+Luma currently expects "charge.failed" and "charge.succeeded" events.
+
+For "charge.succeeded" events, the system clears whatever "failed charges record" that may exist in redis for one specific payer. It also increments the "charge has happened" flag in redis.
+
+For "charge.failed" events, the system logs the failed charge data and increments the failed charge count in redis.
 
 Authorization: No Auth / x-access-token
 
@@ -2858,11 +2845,10 @@ x-access-token | JWT auth access token
 
 Request body param | Description 
 -------------- | ----------- 
- | xxx
+data.object | Stripe's [charge object](https://stripe.com/docs/api/charges/object).
+data.object.source | Stripe's [source object](https://stripe.com/docs/api/sources/object).
 
-Response body param | Description 
--------------- | ----------- 
-xxx | yyy
+Response: empty with HTTP status 200 (OK).
 
 ## Post twilio
 
