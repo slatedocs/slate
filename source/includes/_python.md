@@ -302,7 +302,7 @@ app = bottle.default_app()
 app.config.update({
     "scout.name": "YOUR_APP_NAME",
     "scout.key": "YOUR_KEY",
-    "scout.monitor": "true",
+    "scout.monitor": True,
 })
 
 scout = ScoutPlugin()
