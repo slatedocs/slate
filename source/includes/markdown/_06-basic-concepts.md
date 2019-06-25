@@ -1,4 +1,33 @@
-## Introduction
+# Introduction
+
+## API Reference
+
+> Helpful code snippets will show up in this column. You can choose your language in the navigation above!
+
+```shell
+curl -H "Authorization: Bearer 0/a7f89e98g007e0s07da763a" https://app.asana.com/api/1.0/users/me`
+```
+
+```javascript--nodejs
+const asana = require('asana');
+```
+
+```php
+<?php
+require 'php-asana/vendor/autoload.php';
+```
+
+```python
+import asana
+```
+
+```java
+import com.asana.*;
+```
+
+```ruby
+require 'asana'
+```
 
 The Asana API is a <a href="http://en.wikipedia.org/wiki/Representational_State_Transfer" target="_blank" rel="noopener noreferrer">REST</a>ful
 interface, providing programmatic access to much of the data in the system. It provides predictable URLs for accessing
@@ -16,3 +45,5 @@ with queries for multiple objects. Requests with large result sets may timeout o
 pagination is strongly encouraged to ensure both you and your users have the best experience when using the Asana API.
 
 Happy coding!
+
+

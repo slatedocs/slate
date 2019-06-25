@@ -17,7 +17,7 @@ For use in the Node server-side JavaScript runtime.
 <a name="BrowserJS"></a>
 ## JavaScript (Browser)
 ```html
-<script src="myscripts.js"></script>
+<script src="asana-min.js"></script>
 ```
 
 This is built from the Node library above, so you get the exact same interface.

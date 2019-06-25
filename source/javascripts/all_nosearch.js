@@ -19,16 +19,28 @@ $(function() {
       if ($(this).hasClass("expanded")) {
         $(this).removeClass("expanded");
         var arr = Array.apply(null, {length: thisLevel + 1}).map(Number.call, Number);
-        console.log(arr);
         $(this).nextUntil('.c'+thisLevel, ':not(.c' + arr.join(',.') + ')').addClass("hidden-row").removeClass("expanded");
       } else {
         $(this).addClass("expanded");
         $(this).nextUntil('.c'+thisLevel, '.c' + (thisLevel + 1)).removeClass("hidden-row");
       }
+
+      window.recacheHeights();
+      window.refreshToc();
+
+      return;
     }
 
-    window.recacheHeights();
-    window.refreshToc();
+    // Check if this row is the common expander
+    if ($(this).hasClass("common-items-toggle")) {
+      if ($(this).hasClass("expanded")) {
+        $(this).removeClass("expanded");
+        $(this).prevUntil(':not(.common-item)').addClass("hidden-row");
+      } else {
+        $(this).addClass("expanded");
+        $(this).prevUntil(':not(.common-item)').removeClass("hidden-row");
+      }
+    }
   });
 });
 

@@ -2,21 +2,13 @@
 title: Asana
 language_tabs:
   - shell: ' curl'
-  - javascript: 'Javascript'
+  - javascript--nodejs: ' Node'
   - php: ' PHP'
-  - python: Python
+  - python: ' Python'
   - java: ' Java'
   - ruby: ' Ruby'
-  - csharp: ' C#'
 toc_footers: []
 includes:
-  - markdown/00-getting-started
-  - markdown/01-overview
-  - markdown/02-q-a-response
-  - markdown/03-reminder-bot
-  - markdown/04-quick-start
-  - markdown/05-client-libraries
-  - markdown/05_header-getting-started
   - markdown/06-basic-concepts
   - markdown/07-auth
   - markdown/07-errors
@@ -26,6 +18,9 @@ includes:
   - markdown/11-input-output-options
   - markdown/12-custom-external-data
   - markdown/13-deprecations
+  - markdown/13-why-use-asanas-api
+  - markdown/14-how-to-use
+  - markdown/15-quick-start
   - api-reference/index.html.md
 search: true
 highlight_theme: darkula

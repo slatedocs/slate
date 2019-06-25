@@ -1,4 +1,4 @@
-# Quick Start
+# How to use the API
 
 > Request
 
@@ -6,9 +6,16 @@
 https://app.asana.com/api/1.0/users/me
 ```
 
+*If you're familiar with building against APIs, you can jump to our [Quick Start](#quick-start).*
+
+<br></br>
+
 If you’re new to developing on APIs, this is a great place to start.  You’ll learn in this guide how to make the simplest Asana API request -- getting your user information. 
 
-To get started, be sure you are [logged into Asana](https://app.asana.com).  Next, go to this URL: <a href="https://app.asana.com/api/1.0/users/me?opt_pretty&opt_client_name=hello_world_browser" target="_blank">https://app.asana.com/api/1.0/users/me</a>
+To get started
+
+1. Be [logged into Asana](https://app.asana.com).  
+2. Go to this URL: <a href="https://app.asana.com/api/1.0/users/me?opt_pretty&opt_client_name=hello_world_browser" target="_blank">https://app.asana.com/api/1.0/users/me</a>
 
 > Response
 
@@ -42,7 +49,9 @@ To get started, be sure you are [logged into Asana](https://app.asana.com).  Nex
 }
 ```
 
-Congratulations! You’ve just made your first Asana API request.  
+And Congratulations! You’ve just made your first Asana API request.  
+
+<br></br>
 
 Let’s unpack what just happened. The base URL for all requests to the Asana API is `https://app.asana.com/api/1.0`. We want information about users, so we go down a level to the `https://app.asana.com/api/1.0/users` resource.  Within the set of all users in Asana, We’re specifically looking to get information about our own account, so we get more specific by adding `/me` to get `https://app.asana.com/api/1.0/users/me`. The `/me` part would ordinarily be an identifier (a long number) or email address of the user, but we've created this shorthand for getting the current user of Asana's API, whomever that may be.  Put it together and you have the above path to get your user information from Asana.
 
@@ -130,7 +139,7 @@ You’re ready to start coding!
 
 Asana has [client libraries](/#official-client-libraries) in several popular coding languages. Using these libraries has several advantages (like managing authorization and retrying errors) that make them a good place to go from here. Let’s take a look at making the same `/users/me` request in Python, JavaScript, and Ruby (feel free to skip ahead to your favorite of the three languages).
 
-## Client Examples
+# Quick Start
 ```python
 !
 import asana
@@ -150,7 +159,7 @@ me = client.users.me()
 print "Hello world! " + "My name is " + me['name'] + " and I my primary Asana workspace is " + me['workspaces'][0]['name'] + "."
 
 ```
-**Python** (v2.x)
+### Python Hello World
 
 To get started, run `pip install asana` or follow the detailed installation instructions on the [GitHub page for the Python client library](https://github.com/Asana/python-asana/).  
 
@@ -188,7 +197,7 @@ client.users.me()
     console.log('Hello world! ' + 'My name is ' + me.name + ' and my primary Asana workspace is ' + me.workspaces[0].name + '.');
 });
 ```
-**JavaScript**
+### Node Hello World
 
 To get started, `npm install asana` or follow the detailed installation instructions on the [GitHub page for the Node client library](https://github.com/Asana/node-asana/).  
 
@@ -224,7 +233,7 @@ me = client.users.me
 
 puts "Hello world! " + "My name is " + me.name + " and I my primary Asana workspace is " + me.workspaces[0].name + "."
 ```
-**Ruby**
+### Ruby Hello World
 
 To get started, `gem install asana` or follow the detailed installation instructions on the [GitHub page for the Ruby client library](https://github.com/Asana/ruby-asana/).  
 
@@ -240,10 +249,4 @@ You can see a variant of this script, and other useful Asana API scripts, in our
 
 
 <br></br>
-<br></br>
-
-## Congratulations!
-
-You’ve learned three ways to access the Asana API.  If you need inspiration of what to build on the Asana API, take a look at these [common use cases](/#examples-amp-tutorials).  If you get stuck, checkout the [API section of Asana community](https://community.asana.com/c/developersAPI).  Happy coding!
-
 <br></br>

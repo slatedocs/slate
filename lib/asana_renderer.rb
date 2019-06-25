@@ -5,6 +5,7 @@ class AsanaRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
     super
     @head_count = {}
   end
+
   def header(text, header_level)
     friendly_text = text.gsub(/<[^>]*>/,"").parameterize
     if friendly_text.strip.length == 0
@@ -30,6 +31,9 @@ class AsanaRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
     result_classes = Array.new(rows.length)
     result_rows  = Array.new(rows.length)
 
+    has_common_params = false
+    num_common_responses = 0
+
     while i < rows.length do
       content = rows[i][0..rows[i].length].strip
 
@@ -42,10 +46,21 @@ class AsanaRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
       classes += " hidden-row".to_s if chevrons > 0
 
       result_classes[i] = classes
+
       result_rows[i] = "<tr class=''><td><div class='chevron'>&rarr;</div></td>" + content + "</tr>"
 
       if previous_depth < chevrons && i > 0
         result_classes[i-1] += " has-children"
+      end
+
+      if chevrons == 0
+        if content.index("opt_pretty") == 4 || content.index("opt_fields") == 4 || content.index("opt_expand") == 4 || content.index("limit") == 4 || content.index("offset") == 4
+          result_classes[i] += " hidden-row common-item"
+          has_common_params = true
+        elsif content.index("400") == 4 || content.index("401") == 4 || content.index("403") == 4 || content.index("404") == 4 || content.index("5XX") == 4 || content.index("default") == 4
+          result_classes[i] += " hidden-row common-item"
+          num_common_responses += 1
+        end
       end
 
       previous_depth = chevrons
@@ -60,7 +75,13 @@ class AsanaRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
 
     header.insert(4, "<td></td>")
 
-    return "<table class='asana-table'><thead>"+header+"</thead><tbody>"+result_rows.join('')+"</tbody></table>"
+    common_expander = ""
+    if has_common_params
+      common_expander = "<tr class='common-items-toggle'><td class='show-common-items' colspan=6>&darr; Show Common Parameters &darr;</td><td class='hide-common-items' colspan=6>&uarr; Hide Common Parameters &uarr;</td></tr>"
+    elsif num_common_responses > 1
+      common_expander = "<tr class='common-items-toggle'><td class='show-common-items' colspan=6>&darr; Show Common Responses &darr;</td><td class='hide-common-items' colspan=6>&uarr; Hide Common Responses &uarr;</td></tr>"
+    end
+    return "<table class='asana-table'><thead>"+header+"</thead><tbody>"+result_rows.join('')+common_expander+"</tbody></table>"
   end
 
   def table_cell(content, alignment)

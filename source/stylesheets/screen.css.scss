@@ -514,8 +514,8 @@ html, body {
     background-color: $code-bg;
     color: #fff;
 
-    margin: 0;
-    width: $examples-width;
+    margin: 0 $table-padding;
+    width: $examples-width - $table-padding - $table-padding;
 
     float:right;
     clear:right;
@@ -625,18 +625,46 @@ html, body {
 }
 
 .content {
+
+  #asana ~ h3 {
+    margin-top: 64px;
+  }
+
+  blockquote {
+    background-color: transparent;
+
+    p {
+      background-color: transparent;
+      padding-left: 8px;
+    }
+  }
+
+  pre + pre {
+    margin-top: 8px;
+  }
+
+  pre,table {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 5px;
+  }
+
   table {
     display: table;
-    width: 50%;
+    width: 50% - $table-padding - $table-padding;
     padding: 0;
+    margin-left: $table-padding;
+    margin-right: $table-padding;
     background-color: white;
 
     thead {
       width: 100%;
 
       td:nth-child(2) {
-        padding-left: 0px;
+        padding-left: 0;
       }
+
+      font-weight: 500;
+      color: #777777;
     }
 
     tbody {
@@ -660,6 +688,41 @@ html, body {
 
       .hidden-row {
         display: none;
+      }
+
+      .common-item {
+        background-color: #f3f3f3;
+      }
+
+      .common-items-toggle {
+        cursor: pointer;
+
+        td {
+          padding: 8px 32px;
+          text-align: center;
+        }
+      }
+
+      .hide-common-items {
+        display: none;
+      }
+
+      .show-common-items {
+        display: table-cell;
+      }
+
+      .has-children {
+        cursor: pointer;
+      }
+
+      .expanded {
+        .hide-common-items {
+          display: table-cell;
+        }
+
+        .show-common-items {
+          display: none;
+        }
       }
 
       .c0 {
@@ -745,8 +808,8 @@ html, body {
       tr {
         border-bottom: 1px solid #e0e6e8;
 
-        td:first-child, th:first-child {
-          padding-left: 32px;
+        td:nth-child(2) {
+          font-weight: 500;
         }
 
         td:last-child, th:last-child {
