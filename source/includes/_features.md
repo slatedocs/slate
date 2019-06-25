@@ -19,15 +19,9 @@ You can sort traces by response time, object allocations, date, and more.
 
 ## Transaction Traces
 
-Scout collects detailed transactions across your endpoints automatically. The transaction traces provide a number of visual queues to direct you to hotspots. Dig into bottlenecks - down to the line-of-code, author, commit date, and deploy time - from this view. 
+Scout collects detailed transactions across your web endpoints and background jobs automatically. The transaction traces provide a number of visual queues to direct you to hotspots. Dig into bottlenecks - down to the line-of-code, author, commit date, and deploy time - from this view. 
 
-![transaction traces](transaction_traces.png)
-
-### Call Breakdown
-
-Method calls are aggregated together and listed from most expensive to least expensive. The time displayed is the total time across all calls (not the time per-call).
-
-![stream show breakdown](stream_show_call_breakdown.png)
+![transaction traces](trace_timeline.png)
 
 ### SQL Queries
 
@@ -35,7 +29,7 @@ Scout captures a sanitized version of SQL queries. Click the "SQL" button next t
 
 ![stream show sql](stream_show_sql_annotated.png)
 
-#### Don't an SQL query next to an SQL call?
+#### Don't see an SQL button next to a database query?
 
 Scout collects a sanitized version of SQL queries and displays these in transaction traces. To limit agent overhead sanitizing queries, we do not collect query statements with more than 16k characters.
 
@@ -49,36 +43,41 @@ You'll see "CODE" buttons next to method calls that are >= 500 ms. [If you've en
 
 If you don't enable the GitHub integration, you'll see a backtrace.
 
-## Timeline Transaction Trace
+### Trace Views
 
-![trace timeline](trace_timeline.png)
+There are two displays for showing the details of a transaction trace:
 
-Scout now provides more details on the execution order of your code by presenting traces in a timeline format in addtion to the existing summary view. 
+* __Summary View__ - Method calls are aggregated together and ordered from most to least expensive.
+* __Timeline View__ - Shows the execution order of calls as they occur during the transaction.
 
-This is helpful for situations like:
+#### Summary View
 
-* Understanding the distribution of `Controller` time across a request. Is there a lot of time spent in your custom code at the beginning of a request? Is it spread out? Is it at the end of a request?
-* Understanding the timing of distinct SQL queries. Is one instance of many nearly identical queries slow or all of them?
-* Getting the complete picture of parent method calls and exclusive versus total call time in each method. How many SQL calls are being triggered by view partial?
+Method calls are aggregated together and listed from most expensive to least expensive. The time displayed is the total time across all calls (not the time per-call).
 
-### Timeline Trace Upgrade instructions
+![stream show breakdown](stream_show_call_breakdown.png)
 
-[Follow our Ruby agent upgrade instructions](#updating-to-the-newest-version) to update to the latest agent, which supports sending the timeline trace format.
+#### Timeline View
 
-### Toggling between summary and timeline traces
+See the execution order of your code. 
 
-Once the branch is deployed, Scout will record traces in both the existing summary format and the new timeline format. When looking at a list of traces, traces with the timeline format available are labeled with a "v2" indicator. You can toggle between the summary and timeline format when viewing a trace:
+![trace timeline](trace_timeline_annotated.png)
 
-![image](https://user-images.githubusercontent.com/7880/52580818-60b95f00-2de6-11e9-870d-668b2afe194c.png)
+The timeline view is especially helpful for:
 
-### Current limitations
+* understanding the distribution of `Controller` time across a request. Is there a lot of time spent in your custom code at the beginning of a request? Is it spread out? Is it at the end of a request?
+* understanding the timing of distinct SQL queries. Is one instance of many nearly identical queries slow or all of them?
+* getting the complete picture of parent and children method calls. How many SQL calls are being triggered by the same view partial?
+
+##### Upgrading to the timeline view
+
+If you see a message in the UI prompting you to upgrade, [follow our Ruby agent upgrade instructions](#updating-to-the-newest-version) to update to the latest agent, which supports sending the timeline trace format.
+
+##### Timeline view limitations
 
 * Ruby-only
 * No ScoutProf support
 * No support for background jobs
 * No DevTrace support
-
-Please report issues to support@scoutapm.com.
 
 ## Trace Explorer
 
