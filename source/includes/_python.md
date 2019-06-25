@@ -22,6 +22,7 @@ The libraries below require a small number of configuration updates. Click on th
     * Templates (compiling & rendering)
     * Template blocks
     * SQL queries
+* [Falcon](#falcon)
 * [Flask](#flask)
 * [Flask SQLAlchemy](#flask-sqlalchemy)
 * [Celery](#celery)
@@ -81,6 +82,60 @@ SCOUT_NAME = "A FRIENDLY NAME FOR YOUR APP"
 </pre>
 
 <p>If you wish to configure Scout via environment variables, use <code>SCOUT_MONITOR</code>, <code>SCOUT_NAME</code> and <code>SCOUT_KEY</code> instead of providing these settings in <code>settings.py</code>.</p>
+
+<p>
+If you've installed Scout via the Heroku Addon, the provisioning process automatically sets <code>SCOUT_MONITOR</code> and <code>SCOUT_KEY</code> via <a href="https://devcenter.heroku.com/articles/config-vars">config vars</a>. Only <code>SCOUT_NAME</code> is required.
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="step">3</span></td>
+      <td style="padding-top: 15px"><p>Deploy.</p></td>
+    </tr>
+  </tbody>
+</table>
+
+## Falcon
+
+Scout supports Falcon 2.0+.
+
+General instructions for a Falcon app:
+
+<table class="help install install_ruby">
+  <tbody>
+    <tr>
+      <td>
+        <span class="step">1</span>
+      </td>
+      <td style="padding-top: 15px">
+        <p>Install the <code>scout-apm</code> package:</p>
+<pre style="width:500px">
+pip install scout-apm
+</pre>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="step">2</span>
+      </td>
+      <td style="padding-top: 15px">
+        <p>Configure Scout inside your Flask app:</p>
+
+<pre style="width:initial">
+import falcon
+from scout_apm.falcon import ScoutMiddleware
+
+scout_middleware = ScoutMiddleware(config={
+    "key": "[AVAILABLE IN THE SCOUT UI]",
+    "monitor": True,
+    "name": "A FRIENDLY NAME FOR YOUR APP",
+})
+api = falcon.API(middleware=[ScoutMiddleware()])
+# Required for accessing extra per-request information
+scout_middleware.set_api(api)
+</pre>
+
+<p>If you wish to configure Scout via environment variables, use <code>SCOUT_MONITOR</code>, <code>SCOUT_NAME</code> and <code>SCOUT_KEY</code> and remove the calls to <code>app.config</code>.</p>
 
 <p>
 If you've installed Scout via the Heroku Addon, the provisioning process automatically sets <code>SCOUT_MONITOR</code> and <code>SCOUT_KEY</code> via <a href="https://devcenter.heroku.com/articles/config-vars">config vars</a>. Only <code>SCOUT_NAME</code> is required.
@@ -665,42 +720,6 @@ scout_apm.api.install(config=config)
 with scout_apm.api.BackgroundTransaction("Foo"):
     r = requests.get("https://httpbin.org/status/418")
     print(r.text)
-```
-
-#### Falcon Example
-
-The example below instruments a [Falcon](https://falconframework.org/) web app:
-
-```python
-import falcon
-import scout_apm.api
-from scout_apm.api import Context
-
-# Must call scout_apm.api.install() early to set up
-# instrumentation and the core agent.
-# Create a dict of configuration options for Scout
-config = {
-    "name": "My App Name",
-    "key": "APM_KEY",
-    "monitor": True,
-}
-scout_apm.api.install(config=config)
-
-
-class WorkResource:
-    @scout_apm.api.WebTransaction("Work/Get")
-    def on_get(self, req, resp):
-        Context.add("path", req.path)
-        resp.media = some_work()
-
-
-api = falcon.API()
-api.add_route('/work', WorkResource())
-
-
-def some_work():
-    # ... Do some real work ...
-    return "Did some work"
 ```
 
 ### Timing functions and blocks of code
