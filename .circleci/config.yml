@@ -5,6 +5,9 @@ jobs:
     steps:
       - checkout
       - run: git clone git@github.com:rossgrambo/widdershins
+      - run: cd widdershins
+      - run: npm install
+      - run: cd ..
       - run: "node widdershins/widdershins.js --search true --language_tabs 'shell: curl' 'javascript--nodejs: Node.JS' 'php: PHP' 'python: Python' 'java: Java' 'ruby: Ruby' --omitHeader true --resolve --includes markdown/* --summary defs/asana_oas.yaml --maxDepth 3 -o source/includes/api-reference/_index.html.md"
       - run: bundle install
       - run: ./deploy.sh
