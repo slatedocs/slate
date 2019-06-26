@@ -75,7 +75,8 @@ firstName | String, Optional | Max ? chars.
 lastName | String, Optional | Max ? chars.
 
 <aside class="notice">
-Token will be encrypted with the secret authentication key.
+Token will be signed by cryptographic hashing function with the secret authentication key.
+
 </aside>
 
 <aside class="warning">
