@@ -182,7 +182,7 @@ On subscribing to **ticker** channel, socket server will emit messages with type
     "symbol": "BNBBTC_30Nov",
     "product_id": 7,
     "type": "ticker",
-    "timestamp": 1542108684,
+    "timestamp": 1561634049751430,
     "open": 0.0014622,
     "high": 0.0014622,
     "low": 0.0014622,
@@ -198,14 +198,14 @@ On subscribing to **ticker** channel, socket server will emit messages with type
 > L2 Orderbook Sample
 
 ```
-// Snapshot Response
+// l2 orderbook Response
 {
     "symbol": "BTCUSD_28Dec",
     "product_id": 3,
-    "type": "snapshot",
-    "timestamp": 1542108684,
-    "buy": [{"price":"0.0014577","size":62},{"price":"0.0014571","size":28},{"price":"0.0014562","size":54},{"price":"0.001455","size":34}],
-    "sell": [{"price":"6229.0","size":15964},{"price":"6229.5","size":3504},{"price":"6230.0","size":15964},{"price":"6231.0","size":15957}]
+    "type": "l2_orderbook",
+    "timestamp": 1561634049751430,
+    "buy": [{"limit_price":"0.0014577","size":62},{"limit_price":"0.0014571","size":28}],
+    "sell": [{"limit_price":"6229.0","size":15964},{"limit_price":"6229.5","size":3504},{"limit_price":"6230.0","size":15964},{"limit_price":"6231.0","size":15957}]
 }
 ```
 
@@ -219,9 +219,10 @@ On subscribing to **ticker** channel, socket server will emit messages with type
     symbol: "BNBBTC_30Nov",
     price: "0.0014579",
     size: 100,
+    "type": "recent_trade",
     buyer_role: "maker",
     seller_role: "taker",
-    timestamp: 1542108684
+    timestamp: 1561634049751430
 }
 ```
 
@@ -239,7 +240,7 @@ Please note that the product symbol is prepended with a "MARK:" to subscribe for
     type: "mark_price",
     price: "0.00401010",
     annualized_basis: 25.12,    // in %
-    timestamp: 1542108684
+    timestamp: 1561634049751430
 }
 ```
 
@@ -252,7 +253,86 @@ Please note that the product symbol is prepended with a "MARK:" to subscribe for
 {
     symbol: "BNB/BTC",
     price: "0.0014579",
-    type: "spot_price
+    type: "spot_price,
+    timestamp: 1561634049751430
+}
+```
+
+## product_updates
+This channel provides updates when markets are disrupted and resumed. On opening, we conduct a single price auction and auction starting and finish events are also published on this channel. To subscribe, you dont need to pass the symbol list. This channel automatically subscribes to all markets by default.
+
+>  Product Updates Sample
+
+```
+// Market Disruption Response
+{
+    "type":"product_updates",
+    "event":"market_disruption",
+    "product":{
+        "id":17,
+        "symbol":"NEOUSDQ",
+        "trading_status":"disrupted_cancel_only",
+    },
+    "timestamp": 1561634049751430,
+}
+
+// Auction Started Response
+{
+    "type":"product_updates",
+    "event":"start_auction",
+    "product":{
+        "id":17,
+        "symbol":"NEOUSDQ",
+        "trading_status":"disrupted_post_only",
+    },
+    "timestamp": 1561634049751430,
+}
+
+// Auction Finished Response
+{
+    "type":"product_updates",
+    "event":"finish_auction",
+    "product":{
+        "id":17,
+        "symbol":"NEOUSDQ",
+        "trading_status":"operational",
+    },
+    "timestamp": 1561634049751430,
+}
+```
+### Market Disruption
+When markets are disrupted, orderbook enters into cancel only mode. You can refer to "trading_status" field in product info to determine this. In cancel only mode, you can only cancel your orders. No matching happens in this mode.
+
+### Auction Started
+When markets need to come up, we conduct a single price auction. In this case, orderbook enters into post only mode. In post only mode, you can post new orders, cancel exisiting orders, add more margin to open positions. No matching happens in this mode. It is possible to see an overlap between asks and bids during this time.
+
+
+### Auction Finished
+When auction finishes, markets enter into operational mode and trading continues as usual. 
+
+You can read more about the single price auction here
+https://www.delta.exchange/blog/bootstrapping-liquidity-using-auctions/
+
+
+## announcements
+This channel provides updates on system wide announcements like scheduled maintenance, new contract launches etc. No need to pass any symbols while subscribing to this channel.
+
+> Announcements Sample
+
+```
+// Maintenance Started Response
+{
+    "type":"announcements",
+    "event":"maintenance_started",
+    "maintenance_finish_time": 1561638049751430,
+    "timestamp": 1561634049751430,
+}
+
+// Maintenance Finished Response
+{
+    "type":"announcements",
+    "event":"maintenance_finished",
+    "timestamp": 1561634049751430,
 }
 ```
 
