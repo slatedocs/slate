@@ -100,7 +100,7 @@ e.g if you want the default selected country to be U.A.E. then pass `{default_co
   {
     "show": true,
     "multi_select": true,
-    "options": [{ id: 1, name: "1 RK" }, { id: 2, name: "1 BHK" }],
+    "options": [{ "id": 1, "name": "1 RK" }, { "id": 2, "name": "1 BHK" }],
     "title": "Select Interested BHK types",
     "mandatory": true,
     "error": "Select interested BHK type to proceed"
@@ -111,19 +111,19 @@ Options for are possible values can be taken from this
 
 ```json
   [
-    { id: 1, name: "1 RK" },
-    { id: 2, name: "1 BHK" },
-    { id: 3, name: "2 BHK" },
-    { id: 4, name: "3 BHK" },
-    { id: 5, name: "3+ BHK" },
-    { id: 6, name: "2.5 BHK" },
-    { id: 8, name: "3.5 BHK" },
-    { id: 9, name: "4 BHK" },
-    { id: 10, name: "5 BHK" },
-    { id: 11, name: "Studio" },
-    { id: 12, name: "Duplex" },
-    { id: 13, name: "Penthouse" },
-    { id: 7, name: "1.5 BHK" }
+    { "id": 1, "name": "1 RK" },
+    { "id": 2, "name": "1 BHK" },
+    { "id": 3, "name": "2 BHK" },
+    { "id": 4, "name": "3 BHK" },
+    { "id": 5, "name": "3+ BHK" },
+    { "id": 6, "name": "2.5 BHK" },
+    { "id": 8, "name": "3.5 BHK" },
+    { "id": 9, "name": "4 BHK" },
+    { "id": 10, "name": "5 BHK" },
+    { "id": 11, "name": "Studio" },
+    { "id": 12, "name": "Duplex" },
+    { "id": 13, "name": "Penthouse" },
+    { "id": 7, "name": "1.5 BHK" }
   ]
 ```
 
