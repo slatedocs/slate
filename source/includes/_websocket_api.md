@@ -310,8 +310,7 @@ When markets need to come up, we conduct a single price auction. In this case, o
 ### Auction Finished
 When auction finishes, markets enter into operational mode and trading continues as usual. 
 
-You can read more about the single price auction here
-https://www.delta.exchange/blog/bootstrapping-liquidity-using-auctions/
+You can read more about the single price auction [here](https://www.delta.exchange/blog/bootstrapping-liquidity-using-auctions/)
 
 
 ## announcements
