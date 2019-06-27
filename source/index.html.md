@@ -58,7 +58,7 @@ lEIjoiZmlsdGVyZWQiLCJHcm91cElEIjoiZmlsdGVyZWQtZ2xvYmFsZmlsdGVyIn0.-r1E5oojKbvSaS
 ```
 
 Authentication will be initiated on the client side using the **User.Authenticate** method. This method will either authenticate an existing user in our
-system or, in case the user does not exist, create one. We will need in this initial call a user identifier that will be used to link data to said user. Optionally, meta data about the user can be provided. The user information will be stored in a JWT token, encrypted with a secret authentication key.
+system or, in case the user does not exist, create one. We will need in this initial call a user identifier that will be used to link data to said user. Optionally, meta data about the user can be provided. The user information will be stored in a JWT token, signed with a secret authentication key.
 
 The system will return a structure containing an access token and a refresh token. The access token will be used in subsequent API requests until it expires.
 On expiration, through the **User.Refresh** method, a new access token will be provided.
