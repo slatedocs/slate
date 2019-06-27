@@ -98,12 +98,12 @@ e.g if you want the default selected country to be U.A.E. then pass `{default_co
 
 ```json
   {
-    show: true,
-    multi_select: true,
-    options: [{ id: 1, name: "1 RK" }, { id: 2, name: "1 BHK" }],
-    title: "Select Interested BHK types",
-    mandatory: true,
-    error: "Select interested BHK type to proceed"
+    "show": true,
+    "multi_select": true,
+    "options": [{ id: 1, name: "1 RK" }, { id: 2, name: "1 BHK" }],
+    "title": "Select Interested BHK types",
+    "mandatory": true,
+    "error": "Select interested BHK type to proceed"
   }
 ```
 
@@ -131,10 +131,10 @@ Options for are possible values can be taken from this
 
 ```json
   {
-    show: true,
-    title: "City of residence",
-    mandatory: false,
-    error: "City of residence is mandatory to proceed"
+    "show": true,
+    "title": "City of residence",
+    "mandatory": false,
+    "error": "City of residence is mandatory to proceed"
   }
 ```
 
