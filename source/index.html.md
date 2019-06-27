@@ -69,7 +69,7 @@ Api and secret authentication keys will be provided and used only during the aut
 
 Name | Type | Notes
 --------- | ------- | -----------
-id | String | Max ? chars. Any format. No personal information.
+userID | String | Max ? chars. Any format. No personal information.
 email | String, Optional | Max ? chars.
 firstName | String, Optional | Max ? chars.
 lastName | String, Optional | Max ? chars.
