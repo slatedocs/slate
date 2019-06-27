@@ -63,7 +63,7 @@ Including this SDK exposes `window.createForm` function which takes in below par
 | CAMPAIGN_ID | string | null | true | CAMPAIGN ID given by anarock team |
 | ENVIRONMENT | string | 'staging' | true | possible values are `staging` or `production` |
 | requireOTP | boolean | false | - | possible values are `true` or `false` |
-| options | object | null | - | possible keys are `showRemarks` or `remarksTitle`, `show_label`, `show_placeholder`, `contacting_authority`, `show_thankyou`, `dnc_checked`, `projects`, `skipMandatoryEmail` , `selectedProject`,  `default_country`, `host`|
+| options | object | null | - | possible keys are `showRemarks` or `remarksTitle`, `show_label`, `show_placeholder`, `contacting_authority`, `show_thankyou`, `dnc_checked`, `projects`, `skipMandatoryEmail` , `selectedProject`,  `default_country`, `host`, `apartment_type_options`, `city_options`|
 
 
 In the `options` object 
@@ -93,6 +93,83 @@ In the `options` object
 ` default_country` is a string, that will define the default country selected in the dropdown.
 List of all countries is given here https://s3.console.aws.amazon.com/s3/object/anarock.misc/countryCode.js. Use the url_name to pass. 
 e.g if you want the default selected country to be U.A.E. then pass `{default_country: ae}` as options
+
+`apartment_type_options` is a object with follow signature 
+
+```json
+  {
+    show: true,
+    multi_select: true,
+    options: [{ id: 1, name: "1 RK" }, { id: 2, name: "1 BHK" }],
+    title: "Select Interested BHK types",
+    mandatory: true,
+    error: "Select interested BHK type to proceed"
+  }
+```
+
+Options for are possible values can be taken from this
+
+```json
+  [
+    { id: 1, name: "1 RK" },
+    { id: 2, name: "1 BHK" },
+    { id: 3, name: "2 BHK" },
+    { id: 4, name: "3 BHK" },
+    { id: 5, name: "3+ BHK" },
+    { id: 6, name: "2.5 BHK" },
+    { id: 8, name: "3.5 BHK" },
+    { id: 9, name: "4 BHK" },
+    { id: 10, name: "5 BHK" },
+    { id: 11, name: "Studio" },
+    { id: 12, name: "Duplex" },
+    { id: 13, name: "Penthouse" },
+    { id: 7, name: "1.5 BHK" }
+  ]
+```
+
+`city_options` is a object with follow signature 
+
+```json
+  {
+    show: true,
+    title: "City of residence",
+    mandatory: false,
+    error: "City of residence is mandatory to proceed"
+  }
+```
+
+Exmaple with both of these options active would look like 
+
+```html
+<script>
+    var form_container = document.getElementById('anarock-form')
+    window.anarockForms = [{
+      container: form_container,
+      key: "API_KEY",
+      channel_name: "CHANNEL_NAME",
+      campaign_id: "CAMPAIGN_ID",
+      env: ENVIRONMENT,
+      options:  {
+        dnc_checked: true,
+        skipMandatoryEmail:true,
+        apartment_type_options: {
+          show: true,
+          multi_select: true,
+          options: [{ id: 1, name: "1 RK" }, { id: 2, name: "1 BHK" }],
+          title: "Select Interested BHK types",
+          mandatory: true,
+          error: "Select interested BHK type to proceed"
+        },
+        city_options: {
+          show: true,
+          title: "City of residence",
+          mandatory: false,
+          error: "City of residence is mandatory to proceed"
+        }
+      } // options as described below
+    }]
+ </script>
+```
  
 Working example can be seen here. https://marketing.anarock.com/static/test.html
 
