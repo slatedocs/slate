@@ -59,7 +59,7 @@ html, body {
   bottom: 0;
   width: $nav-width;
   background-color: $nav-bg;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: bold;
 
   // language selector for mobile devices
@@ -74,8 +74,11 @@ html, body {
   // This is the logo at the top of the ToC
   .logo {
     display: block;
-    max-width: 100%;
-    margin-bottom: $logo-margin;
+    max-width: 60%;
+    margin-bottom: $logo-margin-bottom;
+    margin-left: $logo-margin-left;
+    margin-top: $logo-margin-top;
+
   }
 
   &>.search {
@@ -171,7 +174,7 @@ html, body {
 
   .toc-h2 {
     padding-left: $nav-padding + $nav-indent;
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .toc-footer {
