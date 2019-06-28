@@ -51,13 +51,34 @@ Coinbtr REST API calls will return a JSON Object.
 
 # Authentication
 
-## API Key
+## Create an API Key
 
-In order to use our platform through API calls you must request and configure as many API keys as you need. You can configure each API key with its own level of permission. To add, delete or modify your API keys please go to your profile `Profile` > `API Keys`.
+In order to use our platform through API calls you must request and configure as many API keys as you need. You can configure each API key with its own level of permissions. To add, delete or modify your API keys please go to your profile `Profile` > `API Keys`.
 
 <aside class="notice">
 API key is always needed for accessing private endpoints.
 </aside>
+
+## Login without 2FA
+```shell
+curl -X POST https://api.coinbtr.com/api/v1/login/ \
+-H 'Content-Type: application/json' \
+-d '{"email": "example@mail.com", "password": "secure_pass"}'
+```
+API key can be obtained by log in to coinbtr if not 2FA enabled.
+
+> The API call will response this:
+
+```json
+{
+    "success": true,
+    "data": {
+      "token": "3feeac2b57a40c68cc1643b84f848588cb272f7f",
+      "email": "example@mail.com",
+    }
+}
+```
+
 <!-- # Session
 
 ## Session information
