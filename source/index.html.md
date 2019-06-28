@@ -143,6 +143,8 @@ Get the list of all trading pairs currently supported
 
 ### HTTP Request
 
+> Request Sample
+
 ```shell
 # pass in the correct authorization headers
 curl "https://api.falconx.io/v1/pairs"
