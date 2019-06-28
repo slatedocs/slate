@@ -1128,3 +1128,89 @@ page, the users who are able to receive items can also cancel them. so please ma
 | -------------------- | ------ | -------------------- |
 | authentication_token | header | Authentication token |
 | app_company_id       | header | Company ID           |
+
+## Delete
+
+```ruby
+require 'rest-client'
+
+RestClient.post(
+  'https://app.procurementexpress.com/api/v1/purchase_orders/1/delete',
+  headers = {
+    authentication_token: 'your token',
+    app_company_id: 1
+  }
+)
+```
+
+```shell
+curl 'https://app.procurementexpress.com/api/v1/purchase_orders/1/delete'
+  -X DELETE
+  -H "Content-Type: application/json"
+  -H "authentication_token: your token"
+  -H "app_company_id: 1"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": true
+}
+```
+
+Ability to delete purchase order [Purchase Order Details](/slate/#get-purchase-order-details)
+
+### HTTP Request
+
+`DELETE https://app.procurementexpress.com/api/v1/purchase_orders/:id/delete`
+
+### URL Parameters
+
+| Params               | Type   | Description          |
+| -------------------- | ------ | -------------------- |
+| authentication_token | header | Authentication token |
+| app_company_id       | header | Company ID           |
+
+## Generate PDF
+
+```ruby
+require 'rest-client'
+
+RestClient.post(
+  'https://app.procurementexpress.com/api/v1/purchase_orders/1/generate_pdf',
+  headers = {
+    authentication_token: 'your token',
+    app_company_id: 1
+  }
+)
+```
+
+```shell
+curl 'https://app.procurementexpress.com/api/v1/purchase_orders/1/generate_pdf'
+  -X GET
+  -H "Content-Type: application/json"
+  -H "authentication_token: your token"
+  -H "app_company_id: 1"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "pdf_link": "https://rubberstamp-exports.s3.amazonaws.com/PO-Pending-28062019164608-tech%20test.pdf"
+}
+```
+
+Ability to generate purchase order pdf [Purchase Order Details](/slate/#get-purchase-order-details)
+
+### HTTP Request
+
+`GET https://app.procurementexpress.com/api/v1/purchase_orders/:id/generate_pdf`
+
+### URL Parameters
+
+| Params               | Type   | Description          |
+| -------------------- | ------ | -------------------- |
+| authentication_token | header | Authentication token |
+| app_company_id       | header | Company ID           |
