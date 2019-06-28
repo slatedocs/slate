@@ -15,7 +15,6 @@ includes:
   - playlist
   - goal
   - event
-  - event_list
 
 search: true
 ---
