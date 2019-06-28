@@ -137,6 +137,46 @@ The **FX-ACCESS-TIMESTAMP** header MUST be number of seconds since Unix Epoch in
 Your timestamp must be within 30 seconds of the api service time or your request will be considered expired and rejected.
 
 
+## Get Trading Pairs
+
+Get the list of all trading pairs currently supported
+
+### HTTP Request
+
+```shell
+# pass in the correct authorization headers
+curl "https://api.falconx.io/v1/pairs"
+```
+
+`GET https://api.falconx.io/v1/pairs`
+
+
+
+### Response Parameters
+
+> Response Sample
+
+```json
+[
+  {
+    "base_token": "BTC",
+    "quote_token": "USD"
+  }, 
+  {
+    "base_token": "ETH",
+    "quote_token": "USD"
+  }
+]
+```
+
+API will return a list of the following structure
+
+| Parameter     | Type                              | Description |
+| ---------     | ------------------------------    | ------------|
+| **base_token**        | STRING                            | Base Token 
+| **quote_token**   | STRING                            |  Quote Token
+
+
 ## Get Quote
 
 Client sends request to get quotes to this endpoint.  The response contains the timestamp until which the quotes are valid.  Only a valid quote can be used to place an order
@@ -184,13 +224,18 @@ Client sends request to get quotes to this endpoint.  The response contains the 
     "base_token": "BTC",
     "quote_token": "USD"
   },
-  "quantity": {
+  "quantity_requested": {
     "token": "BTC",
     "value": "10"
   },
-  "side": "buy",
+  "side_requested": "buy",
   "t_quote": "2019-06-27T11:59:21.875725+00:00",
-  "t_expiry": "2019-06-27T11:59:22.875725+00:00"
+  "t_expiry": "2019-06-27T11:59:22.875725+00:00",
+  
+  "is_filled": false, 
+  "side_executed": null, 
+  "price_executed": null, 
+  "t_execute": null
 }
 ```
 
@@ -198,14 +243,18 @@ Client sends request to get quotes to this endpoint.  The response contains the 
 | Parameter     | Type                              | Description |
 | ---------     | ------------------------------    | ------------|
 | **status**        | STRING                            | Status of the response. It will be one of: (`success` / `failure`)|
-| **fx_quote_id**   | STRING                            | FalconX Quote ID. Use this when executing quote
-| **buy_price**   | Decimal                            | Buy price in quote token. Will be `null` if requested side is `sell`
-| **sell_price**   | Decimal                            | Sell price in quote token. Will be `null` if requested side is `buy`
+| **fx_quote_id**   | STRING                            | FalconX Quote ID. Use this when executing 
+| **buy_price**   | Decimal                            | Buy price in quote token.
+| **sell_price**   | Decimal                            | Sell price in quote token.
 | **token_pair**    | JSON                              | The market for which the client is requesting quote |
-| **quantity**      | JSON                              | Requested quantity |
-| **side**       | STRING                              | Side of quote. It should be one of: (`buy` / `sell` / `two_way`)
+| **quantity_requested**      | JSON                              | Requested quantity |
+| **side_requested**       | STRING                              | Side of quote. It will be one of: (`buy` / `sell` / `two_way`)
 | **t_quote**       | STRING                            | Quote time in ISO8601 date format
 | **t_expiry**      | STRING                            | Quote expiry time in ISO8601 date format
+| **is_filled**      | BOOLEAN                          | True if quote has been executed successfully else False
+| **side_executed**       | STRING                              | Side of quote executed. `null` for quote request
+| **price_executed**   | Decimal                            | Execution price in quote token. `null` for quote request
+| **t_execute**       | STRING                            | Execution time in ISO8601 date format. `null` for quote request
 
 
 ## Execute Quote
@@ -240,16 +289,23 @@ Execute quote fetched in the `Get Quote` API call. Note that the trade side is r
 {
   "status": "success",
   "fx_quote_id": "00c884b056f949338788dfb59e495377",
-  "price": 12650,
+  "buy_price": 12650,
+  "sell_price": null,
   "token_pair": {
     "base_token": "BTC",
     "quote_token": "USD"
   },
-  "quantity": {
+  "quantity_requested": {
     "token": "BTC",
     "value": "10"
   },
-  "side": "buy",
+  "side_requested": "buy",
+  "t_quote": "2019-06-27T11:59:21.875725+00:00",
+  "t_expiry": "2019-06-27T11:59:22.875725+00:00",
+  
+  "is_filled": true, 
+  "side_executed": "buy", 
+  "price_executed": 12650, 
   "t_execute": "2019-06-27T11:59:22.175725+00:00"
 }
 ```
@@ -258,12 +314,18 @@ Execute quote fetched in the `Get Quote` API call. Note that the trade side is r
 | Parameter     | Type                              | Description |
 | ---------     | ------------------------------    | ------------|
 | **status**        | STRING                            | Status of the response. It will be one of: (`success` / `failure`)|
-| **fx_quote_id**   | STRING                            | FalconX Quote ID. Use this when executing quote
-| **price**   | Decimal                            | Execution price in quote token.
+| **fx_quote_id**   | STRING                            | FalconX Quote ID. 
+| **buy_price**   | Decimal                            | Buy price in quote token.
+| **sell_price**   | Decimal                            | Sell price in quote token.
 | **token_pair**    | JSON                              | The market for which the client is requesting quote |
-| **quantity**      | JSON                              | Requested quantity |
-| **side**       | STRING                              | Side of quote. It should be one of: (`buy` / `sell`)
-| **t_execute**       | STRING                            | Execution time in ISO8601 date format
+| **quantity_requested**      | JSON                              | Requested quantity |
+| **side_requested**       | STRING                              | Side of quote. It will be one of: (`buy` / `sell` / `two_way`)
+| **t_quote**       | STRING                            | Quote time in ISO8601 date format
+| **t_expiry**      | STRING                            | Quote expiry time in ISO8601 date format
+| **is_filled**      | BOOLEAN | true if quote has been executed successfully else false
+| **side_executed**       | STRING                              | Side of quote executed. 
+| **price_executed**   | Decimal                            | Execution price in quote token.
+| **t_execute**       | STRING                            | Execution time in ISO8601 date format.
 
 
 ## Quote Status
@@ -271,9 +333,17 @@ Execute quote fetched in the `Get Quote` API call. Note that the trade side is r
 Get status of a quote by ID. 
 
 ### HTTP Request
-`GET https://api.falconx.io/v1/quotes?fx_quote_id=00c884b056f949338788dfb59e495377`
+`GET https://api.falconx.io/v1/quotes/<fx_quote_id>`
 
-### Query Parameters
+### Path Parameters
+
+> Request Sample
+
+```shell
+# pass in the correct authorization headers
+curl "https://api.falconx.io/v1/quotes/00c884b056f949338788dfb59e495377"
+```
+
 
 | Parameter         | Type                                | Description 
 | ---------         | ----------------------------------- | ------------
@@ -281,7 +351,123 @@ Get status of a quote by ID.
 
 
 ### Response Parameters
-### TODO
+
+> Response Sample
+
+```json
+{
+  "status": "success",
+  "fx_quote_id": "00c884b056f949338788dfb59e495377",
+  "buy_price": 12650,
+  "sell_price": null,
+  "token_pair": {
+    "base_token": "BTC",
+    "quote_token": "USD"
+  },
+  "quantity_requested": {
+    "token": "BTC",
+    "value": "10"
+  },
+  "side_requested": "buy",
+  "t_quote": "2019-06-27T11:59:21.875725+00:00",
+  "t_expiry": "2019-06-27T11:59:22.875725+00:00",
+  
+  "is_filled": true, 
+  "side_executed": "buy", 
+  "price_executed": 12650, 
+  "t_execute": "2019-06-27T11:59:22.175725+00:00"
+}
+```
+
+| Parameter     | Type                              | Description |
+| ---------     | ------------------------------    | ------------|
+| **status**        | STRING                            | Status of the response. It will be one of: (`success` / `failure`)|
+| **fx_quote_id**   | STRING                            | FalconX Quote ID. 
+| **buy_price**   | Decimal                            | Buy price in quote token.
+| **sell_price**   | Decimal                            | Sell price in quote token.
+| **token_pair**    | JSON                              | The market for which the client is requesting quote |
+| **quantity_requested**      | JSON                              | Requested quantity |
+| **side_requested**       | STRING                              | Side of quote. It will be one of: (`buy` / `sell` / `two_way`)
+| **t_quote**       | STRING                            | Quote time in ISO8601 date format
+| **t_expiry**      | STRING                            | Quote expiry time in ISO8601 date format
+| **is_filled**      | BOOLEAN | True if quote has been executed successfully else False
+| **side_executed**       | STRING                              | Side of quote executed. `null` if not executed 
+| **price_executed**   | Decimal                            | Execution price in quote token. `null` if not executed
+| **t_execute**       | STRING                            | Execution time in ISO8601 date format. `null` if not executed
+
 
 ## Get Executed Quotes
+
+Get executed quotes between the given time range. Time range should be provided in ISO8601 date format.
+
+
+### HTTP Request
+`GET https://api.falconx.io/v1/quotes`
+
+### Query Parameters
+
+> Request Sample
+
+```shell
+# pass in the correct authorization headers
+curl "https://api.falconx.io/v1/quotes?t_start=2019-06-20T00:00:00+00:00&t_end=2019-06-28T00:00:00+00:00"
+```
+
+
+| Parameter         | Type                                | Description 
+| ---------         | ----------------------------------- | ------------
+| **t_start**   | STRING                         | Start of time range in ISO8601 date format 
+| **t_end**   | STRING                         | End of time range in ISO8601 date format 
+
+
+### Response Parameters
+
+> Response Sample
+
+```json
+[
+  {
+    "status": "success",
+    "fx_quote_id": "00c884b056f949338788dfb59e495377",
+    "buy_price": 12650,
+    "sell_price": null,
+    "token_pair": {
+      "base_token": "BTC",
+      "quote_token": "USD"
+    },
+    "quantity_requested": {
+      "token": "BTC",
+      "value": "10"
+    },
+    "side_requested": "buy",
+    "t_quote": "2019-06-27T11:59:21.875725+00:00",
+    "t_expiry": "2019-06-27T11:59:22.875725+00:00",
+    
+    "is_filled": true, 
+    "side_executed": "buy", 
+    "price_executed": 12650, 
+    "t_execute": "2019-06-27T11:59:22.175725+00:00"
+  }
+]
+```
+API will return a list of the following structure:
+
+| Parameter     | Type                              | Description |
+| ---------     | ------------------------------    | ------------|
+| **status**        | STRING                            | Status of the response. It will be one of: (`success` / `failure`)|
+| **fx_quote_id**   | STRING                            | FalconX Quote ID
+| **buy_price**   | Decimal                            | Buy price in quote token.
+| **sell_price**   | Decimal                            | Sell price in quote token.
+| **token_pair**    | JSON                              | The market for which the client is requesting quote |
+| **quantity_requested**      | JSON                              | Requested quantity |
+| **side_requested**       | STRING                              | Side of quote. It will be one of: (`buy` / `sell` / `two_way`)
+| **t_quote**       | STRING                            | Quote time in ISO8601 date format
+| **t_expiry**      | STRING                            | Quote expiry time in ISO8601 date format
+| **is_filled**      | BOOLEAN | True if quote has been executed successfully else False
+| **side_executed**       | STRING                              | Side of quote executed. 
+| **price_executed**   | Decimal                            | Execution price in quote token. 
+| **t_execute**       | STRING                            | Execution time in ISO8601 date format. 
+
+
+
 ## Get Balances
