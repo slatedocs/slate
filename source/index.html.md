@@ -473,3 +473,43 @@ API will return a list of the following structure:
 
 
 ## Get Balances
+
+
+> Request Sample
+
+```shell
+# pass in the correct authorization headers
+curl "https://api.falconx.io/v1/balances"
+```
+Fetches balances for all tokens. 
+
+### HTTP Request
+
+`GET https://api.falconx.io/v1/balances`
+
+> Response Sample
+
+```json
+[
+  {
+    "token": "BTC", 
+    "balance": 10
+  }, 
+  {
+    "token": "ETH", 
+    "balance": 100
+  }
+]
+
+```
+
+
+### Response Parameters
+
+
+API will return a list of the following structure:
+
+| Parameter     | Type                              | Description |
+| ---------     | ------------------------------    | ------------|
+| **token**     | String                            | Currency  
+| **balance**   | Decimal                           | Balance for that currency
