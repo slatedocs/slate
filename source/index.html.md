@@ -14,8 +14,6 @@ includes:
   - profile
   - playlist
   - goal
-  - event
-  - event_list
 
 search: true
 ---
