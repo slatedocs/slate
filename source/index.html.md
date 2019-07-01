@@ -11,229 +11,126 @@ toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
-includes:
-  - errors
+<!-- includes:
+  - errors -->
 
 search: true
 ---
 
-# Introduction
+# App Companies
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
-
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
-
-# Authentication
-
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
+## Create App Company
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+curl -X POST http://localhost:300/app_companies -H "Content-Type:application/json" -H "Authentication:jsonwebtoken"
 ```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
+> Request body
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "business_name" : "VTCS",
+  "industry_type" : "Pools",
+  "website_address" : "https://VTCS.com",
+  "address1" : "Headquarters 1120 N Street Sacramento",
+  "address2" : "P.O. Box 942873 Sacramento",
+  "city" : "Sacramento",
+  "state" : "CA",
+  "zip" : "94273-0001",
+  "res_annual_sales" : "$1M - $3M",
+  "res_finance_volume" : "$3M - $5M",
+  "res_avg_project_size" : "$15,000 - $25,000",
+  "com_annual_sales" : "$5M - $10M",
+  "com_finance_volume" : "$25M - $50M",
+  "com_avg_project_size" : "$100,000 - $300,000",
+  "who_using_for_financing" : "Wells Fargo",
+  "company_number_of_employees" : "201-500 employees",
+  "where_did_you_hear_about_us" : "Twitter",
+  "app_company_users_attributes" :  [
+    {
+      "first_name" : "vikas",
+      "primary_phone" : "(123) 456 - 7890",
+      "email" : "vikas@gmail.com"
+    }
+  ]
 }
 ```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+```sh
+  HTTP Response code ** 201 Created **
+```
+Creates a new app company.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`POST http://localhost:3000/app_companies`
 
-### URL Parameters
+### Validations
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+Parameter | Validation | Description
+--------- | ---------- | -----------
+app_company | Required | must be JSON object
+business_name | Required | must be string
+industry_type | Required | must be string
+website_address | Required | must be string
+address1 | Required | must be string
+address2 | Required | must be string
+city | Required | must be string
+state | Required | must be string
+zip | Required | must be string
+res_annual_sales | Required | must be string
+res_finance_volume | Required | must be string
+res_avg_project_size | Required | must be string
+com_annual_sales | Required | must be string
+com_finance_volume | Required | must be string
+com_avg_project_size | Required | must be string
+who_using_for_financing | Required | must be string
+company_number_of_employees | Required | must be string
+where_did_you_hear_about_us | Required | must be string
+first_name | Required | must be string
+primary_phone | Required | must be string
+email | Required | must be String
 
-## Delete a Specific Kitten
+# App Company User
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
+## Create App Company User
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
+curl -X POST http://localhost:300/app_company_users -H "Content-Type:application/json" -H "Authentication:jsonwebtoken"
 ```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
+> Request body
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+  "enrollment_date" : "7/1/18",
+  "dealer_id" : "808438889test",
+  "kind" : "Rep1",
+  "active" : true,
+  "hubspot_contact_vid" : 21851,
+  "first_name" : "Jeremy",
+  "last_name" : "Sanchez",
+  "primary_phone" : "650-787-9595",
+  "email" : "giri@headwaysales.com",
+  "manager_first_name" : "Rick",
+  "manager_last_name" : "Musto",
+  "manager_email" : "rick@rfmcinc.com",
+  "manager_send_emails" : true,
+  "apply_url" : "https://www.acornfinance.com/apply?d=giri",
+  "original_url" : "https://apply.headwaysales.com/borrower-info?dealerid=giri",
+  "hubspot_contact_exists" : true,
+  "email_sent" : true,
+  "headway_dealer_id" : 14,
+  "prs_assigned" : true,
+  "source" : "Dealer Master List",
+  "app_company_id" : 1858
 }
 ```
-
-This endpoint deletes a specific kitten.
+```sh
+  HTTP Response code ** 201 Created **
+```
+Creates a new app company user.
 
 ### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+`POST http://localhost:3000/app_company_users`
 
