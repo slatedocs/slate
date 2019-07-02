@@ -20,10 +20,9 @@ search: true
 
 # Introduction
 
-Welcome to the magpie API V2! You can use our API to incorporate user specific learning recommendations in your application, based on various inputs. You will be able to generate recommendations from content in an instance of magpie, retrieve information on your organisation, a user's profile and asset metadata.
+Welcome to the magpie API V2! You can use this API to incorporate user specific learning recommendations in your application based on various inputs. You will be able to generate recommendations from content in an instance of magpie and retrieve asset metadata, information on the configuration for your organisation and information in a user's profile.
 
-Requests are made in the context of a user taking actions that trigger the API calls and not at an administrator level.
-The API uses the JSON-RPC protocol (jsonrpc2). There is a client-side library available too as a way to speed up and simplify integration.
+Requests are made in the context of a user taking actions that trigger the API calls and not at an administrator level. The API uses the JSON-RPC protocol (jsonrpc2).
 
 
 # Authentication
@@ -56,10 +55,10 @@ lEIjoiZmlsdGVyZWQiLCJHcm91cElEIjoiZmlsdGVyZWQtZ2xvYmFsZmlsdGVyIn0.-r1E5oojKbvSaS
 ```
 
 Authentication will be initiated on the client side using the **User.Authenticate** method. This method will either authenticate an existing user in our
-system or, in case the user does not exist, create one. We will need in this initial call a user identifier that will be used to link data to said user. Optionally, meta data about the user can be provided. The user information will be stored in a JWT token, signed with a secret authentication key.
+system or, in case the user does not yet exist in our system, create one. We will need in this initial call a user identifier that will be used to link data to said user. Optionally, meta data about the user can be provided. The user information will be stored in a JWT token, signed with a secret authentication key.
 
 The system will return a structure containing an access token and a refresh token. The access token will be used in subsequent API requests until it expires.
-On expiration, through the **User.Refresh** method, a new access token will be provided.
+On expiration a new access token will be provided through the **Token.Refresh** method.
 
 Api and secret authentication keys will be provided and used only during the authentication request. All future requests will use the server generated access token.
 

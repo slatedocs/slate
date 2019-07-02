@@ -3,8 +3,8 @@
 ## Refresh
 
 ```shell
-curl --data-binary '{"id":1, "method":"token.Refresh", "params":"boBCItwS5gvkXgmdJ0vJm7qs2EEgqNV7LVzrY13A", "jsonrpc":"2.0"}'
-  -H 'Authorization: Bearer refresh_token'
+curl --data-binary '{"id":1, "method":"token.Refresh", "params":"refresh_token", "jsonrpc":"2.0"}'
+  -H 'Authorization: Bearer jwt_access_token'
   -H 'content-type:application/json;'
 ```
 
@@ -23,6 +23,10 @@ curl --data-binary '{"id":1, "method":"token.Refresh", "params":"boBCItwS5gvkXgm
 
 Regenerates a new JWT access token for the client.
 
+<aside class="notice">
+When a new JWT access token is generated, previous tokens get invalidated.
+</aside>
+
 ### HTTP Request
 
 `POST https://api.test.filtered.com/v2/jsonrpc/mgp`
@@ -31,7 +35,7 @@ Regenerates a new JWT access token for the client.
 
 Type | Description
 ------- | -----------
- string | the refresh_token which was issued by `token.Refresh` method
+ string | the refresh_token extractable from the JWT access token
 
 <aside class="success">
 Returns — Access Token Model — structure containing the JWT access token and refresh token
@@ -45,4 +49,3 @@ Error Code | Meaning
 -32020 | Refresh token has expired
 -32606 | Invalid arguments
 -32603 | Internal Server Error
-

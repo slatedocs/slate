@@ -133,7 +133,7 @@ Returns a user’s playlists (competency, group, favourite, bifrost) in order.
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/jwt`
+`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 
@@ -143,7 +143,7 @@ limit (optional) | integer | number of playlists (default limit is 10| maximum l
 offset (optional) | integer | starting from
 
 <aside class="success">
-Returns — Matrix of Playlist Models - all playlists belonging to a user’s grouped by types
+Returns — Matrix of Playlist Models - all playlists belonging to a user grouped by types
 </aside>
 
 ### Errors
@@ -222,11 +222,11 @@ curl --data-binary '{"id":"5","method":"playlist.FetchFavouritePlaylist","jsonrp
 }
 ```
 
-Retrieve a user’s favourite playlist.
+Retrieve the user’s favourite assets playlist.
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/jwt`
+`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 
@@ -378,7 +378,7 @@ Retrieve a user’s list of competency playlists.
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/jwt`
+`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 
@@ -498,7 +498,7 @@ Returns a specific competency playlist for a user.
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/jwt`
+`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 
@@ -653,7 +653,7 @@ Retrieve a user’s list of group playlists.
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/jwt`
+`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 
@@ -809,7 +809,7 @@ Retrieve a user’s list of bifrost playlists.
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/jwt`
+`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 
@@ -962,7 +962,7 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchPlaylistsByTypes", "param
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/jwt`
+`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 
@@ -1004,7 +1004,7 @@ Method not yet implemented
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/jwt`
+`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 
@@ -1034,7 +1034,7 @@ Method not yet implemented
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/jwt`
+`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 
