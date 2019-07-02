@@ -26,7 +26,7 @@ Updates the user’s profile data.
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/jwt`
+`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 
@@ -80,12 +80,16 @@ curl --data-binary '{"id":"5", "method":"profile.Get", "jsonrpc":"2.0"}'
 
 Retrieves a user’s profile information.
 
+<aside class="warning">
+This method will return a "The requested user profile does not exist" if the Profile.Update method is not
+previously called (which generates a new profile if one doesn't already exists).
+</aside>
+
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/jwt`
+`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
-
 <aside class="notice"><code>No parameters</code></aside>
 
 <aside class="success">
@@ -176,7 +180,7 @@ Retrieves available inputs available to an organisation.
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/jwt`
+`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 
@@ -216,7 +220,7 @@ Mark an asset as <code>favourite</code> for a user.
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/jwt`
+`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 
@@ -225,6 +229,10 @@ Parameter | Type | Description
 id | integer | the asset to be favourited's id
 saved | boolean | the true/false status
 playlist (optional) | object | playlist where the action was triggered from
+
+<aside class="notice">
+The playlist optional object contains an `id` and a `type` parameter, both of type **string**.
+</aside>
 
 <aside class="success">
 Returns — Message - a success message
@@ -262,7 +270,7 @@ Mark an asset as <code>completed</code> for a user.
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/jwt`
+`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 
@@ -271,6 +279,10 @@ Parameter | Type | Description
 id | integer | the asset to be completed id
 completedStatus | string | Completed status must be equal to one of: "already_know", "useful", "not_relevant"
 playlist (optional) | object | playlist where the action was triggered from
+
+<aside class="notice">
+The playlist optional object contains an `id` and a `type` parameter, both of type **string**.
+</aside>
 
 <aside class="success">
 Returns — Message - a success message
@@ -377,7 +389,7 @@ Retrieve an organisation's available competencies
 
 ### HTTP Request
 
-`POST https://api.test.filtered.com/v2/jsonrpc/jwt`
+`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
 
 ### Parameters
 

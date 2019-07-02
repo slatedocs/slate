@@ -23,6 +23,10 @@ curl --data-binary '{"id":"1", "method":"user.Authenticate", "jsonrpc":"2.0"}'
 
 Authenticates the user and generates an access token and a refresh token.
 
+<aside class="notice">
+The access token has a validity of 15 minutes; the refresh token has a validity of 7 days.
+</aside>
+
 ### HTTP Request
 
 `POST https://api.test.filtered.com/v2/jsonrpc/auth`
@@ -38,4 +42,3 @@ Error Code | Meaning
 -32603 | Internal Server Error
 -32003 | Mandatory JWT Claim missing
 -32600 | The JSON sent is not a valid Request object
-
