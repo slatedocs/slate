@@ -14,6 +14,8 @@ The post params posted at any update in a particular leads are as follows
   "lead_status":"Final negotiation", // present always
   "name":"History ", // present always
   "phone":"+919999999988", // present always
+  "source": "facebook",
+  "sub_source": "leadgen",
   "placement":null, // present always
   "project_name":"santacruz", // present always
   "cp_data":{  // only if lead was created with CP as source
