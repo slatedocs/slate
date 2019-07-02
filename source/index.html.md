@@ -13,20 +13,14 @@ search: true
 
 # Introduction
 
-This is initial go.screver.com API documentation for Alturos. 
+This is initial go.screver.com API documentation. 
 
 # Authentication
 
 > To get an access token, send the following request:
 
-```http
-POST /oauth/v2/token HTTP/1.1
-Content-Type: multipart/form-data
-Host: https://go.screver.com
-
-client_id: "clientid"
-client_secret: "clientsecret"
-grant_type: "client_credentials"
+```shell
+curl --insecure --user 'clientid:clientsecret' 'https://go.screver.com/oauth/token' --data 'grant_type=client_credentials'
 ```
 
 > Make sure to replace `clientid` and `clientsecret` with your OAuth client id and secret.
@@ -41,15 +35,14 @@ Content-Type: application/json
 ```json
 {
   "token_type": "Bearer",
-  "access_token": "u8ptxAd2hJ3aRjtgwwmUqqkNpcMOYxf3",
-  "expires_in": 3600
+  "access_token": "u8ptxAd2hJ3aRjtgwwmUqqkNpcMOYxf3"
 }
 ```
 
 To allow access to the API use access token.
 An OAuth client credentials request is used to obtain a token. 
 To get your OAuth `client id` and `client secret` please contact us. 
-The token can be used for the number of seconds returned in the `expires_in` field.
+The token can be used 24h.
 
 `Authorization: Bearer u8ptxAd2hJ3aRjtgwwmUqqkNpcMOYxf3`
 
@@ -59,8 +52,7 @@ You must replace <code>u8ptxAd2hJ3aRjtgwwmUqqkNpcMOYxf3</code> with the access t
 
 # Surveys
 
-## Get list of surveys
-> Return list of surveys with base data.
+## Get list of surveys with base data.
 
 ```http
 GET /api/v2/surveys?limit=5 HTTP/1.1
@@ -181,8 +173,7 @@ Parameter | Type | Description | Default | Required
 skip |number| Count of skipped items for pagination.| 10 | No |
 limit|number| Count of returned items in response.| 10 | Yes |
 
-## Get specific survey
-> Return specific survey by ID with all related data.
+## Get specific survey by ID with all related data.
 
 ```http
 GET /api/v2/surveys/5d0b985960a1da78cf8f4a57 HTTP/1.1
@@ -269,8 +260,7 @@ Parameter | Type | Description | Required |
 id |objectId| ObjectId of specific survey.| Yes |
 
 # Questions
-## Get specific question
-> Return specific question by ID.
+## Get specific question by ID.
 
 ```http
 GET /api/v2/questions/5d0b985960a1da78cf8f4a57 HTTP/1.1
@@ -302,8 +292,7 @@ Content-Type: application/json
 ```
 
 # Survey Results
-## Delete specific survey result
-> Delete specific survey result by ID or contact email.
+## Delete specific survey result by ID or contact email.
 
 ```http
 DELETE /api/v2/survey-results/5d10840f5b4ca0038509890c HTTP/1.1
