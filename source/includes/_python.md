@@ -1,13 +1,15 @@
 # Python Agent
 
-Scout's Python agent auto-instruments Django and Flask applications, SQL queries, and more. Source code and issues can be found on the [scout_apm_python](https://github.com/scoutapp/scout_apm_python) GitHub repository.
+Scout's Python agent supports many popular libraries to instrument template rendering, SQL queries, template rendering, and more.
+The package is called `scout-apm` [on PyPI](https://pypi.org/project/scout-apm).
+Source code and issues can be found on our [scout_apm_python](https://github.com/scoutapp/scout_apm_python) GitHub repository.
 
 <h2 id="python-requirements">Requirements</h2>
 
 `scout-apm` requires :
 
-* Python 2.7+
-* The POSIX, Unix, or OSX operating systems ([Request Windows support](https://github.com/scoutapp/scout_apm_python/issues/101)).
+* Python 2.7 or 3.4+
+* A POSIX operating system, such as Linux or macOS ([Request Windows support](https://github.com/scoutapp/scout_apm_python/issues/101)).
 
 <h2 id="python-instrumented-libraries">Instrumented Libraries</h2>
 
@@ -17,6 +19,8 @@ Scout provides instrument for most of the popular Python libraries. Instrumentat
 
 The libraries below require a small number of configuration updates. Click on the respective library for instructions.
 
+* [Bottle](#bottle)
+* [Celery](#celery)
 * [Django](#django)
     * Middleware
     * Templates (compiling & rendering)
@@ -25,23 +29,135 @@ The libraries below require a small number of configuration updates. Click on th
 * [Falcon](#falcon)
 * [Flask](#flask)
 * [Flask SQLAlchemy](#flask-sqlalchemy)
-* [Celery](#celery)
 * [Pyramid](#pyramid)
-* [Bottle](#bottle)
 * [SQLAlchemy](#sqlalchemy)
 
 ### Automatically applied
 
 The libraries below are automatically detected by the agent during the startup process and do not require explicit configuration to add instrumentation.
 
-* PyMongo
-* Requests
-* UrlLib3
-* Redis
 * ElasticSearch
 * Jinja2
+* PyMongo
+* Redis
+* Requests
+* UrlLib3
 
 You can instrument your own code or other libraries via [custom instrumentation](#python-custom-instrumentation). You can suggest additional libraries you'd like Scout to instrument [on GitHub](https://github.com/scoutapp/scout_apm_python/issues).
+
+## Bottle
+
+General instructions for a Bottle app:
+
+<table class="help install install_ruby">
+  <tbody>
+    <tr>
+      <td>
+        <span class="step">1</span>
+      </td>
+      <td style="padding-top: 15px">
+        <p>Install the <code>scout-apm</code> package:</p>
+<pre style="width:500px">
+pip install scout-apm
+</pre>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="step">2</span>
+      </td>
+      <td style="padding-top: 15px">
+        <p>Add Scout to your Bottle config:</p>
+
+<pre style="width:initial">
+from scout_apm.bottle import ScoutPlugin
+
+app = bottle.default_app()
+app.config.update({
+    "scout.name": "YOUR_APP_NAME",
+    "scout.key": "YOUR_KEY",
+    "scout.monitor": True,
+})
+
+scout = ScoutPlugin()
+bottle.install(scout)
+</pre>
+
+<p>If you wish to configure Scout via environment variables, use <code>SCOUT_MONITOR</code>, <code>SCOUT_NAME</code> and <code>SCOUT_KEY</code> and remove the call to <code>app.config.update</code>.</p>
+
+<p>
+If you've installed Scout via the Heroku Addon, the provisioning process automatically sets <code>SCOUT_MONITOR</code> and <code>SCOUT_KEY</code> via <a href="https://devcenter.heroku.com/articles/config-vars">config vars</a>. Only <code>SCOUT_NAME</code> is required.
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="step">3</span></td>
+      <td style="padding-top: 15px">
+        <p>Deploy.</p>
+        <p>It takes approximatively five minutes for your data to first appear within the Scout UI.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Celery
+
+Scout supports Celery 3.1+.
+
+Add the following to instrument Celery workers:
+
+<table class="help install install_ruby">
+  <tbody>
+    <tr>
+      <td>
+        <span class="step">1</span>
+      </td>
+      <td style="padding-top: 15px">
+        <p>Install the <code>scout-apm</code> package:</p>
+<pre style="width:500px">
+pip install scout-apm
+</pre>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="step">2</span>
+      </td>
+      <td style="padding-top: 15px">
+        <p>Configure Scout in your <code>settings.py</code> file:</p>
+<pre class="terminal" style="width: initial">
+<span>import scout_apm.celery</span>
+<span>from scout_apm.api import Config</span>
+from celery import Celery
+
+app = Celery('tasks', backend='redis://localhost', broker='redis://localhost')
+<span>
+Config.set(
+    key="SCOUT_KEY",
+    name="Same as Web App Name",
+    monitor=True,
+)
+</span>
+<span>scout_apm.celery.install()</span>
+</pre>
+
+<p>If you wish to configure Scout via environment variables, use <code>SCOUT_MONITOR</code>, <code>SCOUT_NAME</code> and <code>SCOUT_KEY</code> instead of calling <code>Config.set</code>.</p>
+
+<p>
+If you've installed Scout via the Heroku Addon, the provisioning process automatically sets <code>SCOUT_MONITOR</code> and <code>SCOUT_KEY</code> via <a href="https://devcenter.heroku.com/articles/config-vars">config vars</a>. Only <code>SCOUT_NAME</code> is required.
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="step">3</span></td>
+      <td style="padding-top: 15px">
+        <p>Deploy.</p>
+        <p>It takes approximatively five minutes for your data to first appear within the Scout UI.</p>
+        <p>Tasks will appear in the "Background Jobs" area of the Scout UI.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ## Django
 
@@ -90,7 +206,10 @@ If you've installed Scout via the Heroku Addon, the provisioning process automat
     </tr>
     <tr>
       <td><span class="step">3</span></td>
-      <td style="padding-top: 15px"><p>Deploy.</p></td>
+      <td style="padding-top: 15px">
+        <p>Deploy.</p>
+        <p>It takes approximatively five minutes for your data to first appear within the Scout UI.</p>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -135,7 +254,7 @@ api = falcon.API(middleware=[ScoutMiddleware()])
 scout_middleware.set_api(api)
 </pre>
 
-<p>If you wish to configure Scout via environment variables, use <code>SCOUT_MONITOR</code>, <code>SCOUT_NAME</code> and <code>SCOUT_KEY</code> and remove the calls to <code>app.config</code>.</p>
+<p>If you wish to configure Scout via environment variables, use <code>SCOUT_MONITOR</code>, <code>SCOUT_NAME</code> and <code>SCOUT_KEY</code> and pass an empty dictionary to <code>config</code>.</p>
 
 <p>
 If you've installed Scout via the Heroku Addon, the provisioning process automatically sets <code>SCOUT_MONITOR</code> and <code>SCOUT_KEY</code> via <a href="https://devcenter.heroku.com/articles/config-vars">config vars</a>. Only <code>SCOUT_NAME</code> is required.
@@ -144,7 +263,10 @@ If you've installed Scout via the Heroku Addon, the provisioning process automat
     </tr>
     <tr>
       <td><span class="step">3</span></td>
-      <td style="padding-top: 15px"><p>Deploy.</p></td>
+      <td style="padding-top: 15px">
+        <p>Deploy.</p>
+        <p>It takes approximatively five minutes for your data to first appear within the Scout UI.</p>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -198,12 +320,15 @@ If you've installed Scout via the Heroku Addon, the provisioning process automat
     </tr>
     <tr>
       <td><span class="step">3</span></td>
-      <td style="padding-top: 15px"><p>Deploy.</p></td>
+      <td style="padding-top: 15px">
+        <p>Deploy.</p>
+        <p>It takes approximatively five minutes for your data to first appear within the Scout UI.</p>
+      </td>
     </tr>
   </tbody>
 </table>
 
-If your app uses `flask-sqlalchemy`, [see our instructions below](#flask-sqlalchemy) for additional instrumentation instructions.
+If your app uses `flask-sqlalchemy`, [see below](#flask-sqlalchemy) for additional instrumentation instructions.
 
 ## Flask SQLAlchemy
 
@@ -215,63 +340,6 @@ from scout_apm.flask.sqlalchemy import instrument_sqlalchemy
 # Assuming something like engine = create_engine('sqlite:///:memory:', echo=True)
 instrument_sqlalchemy(engine)
 ```
-
-## Celery
-
-Scout supports Celery 3.1+.
-
-Add the following to instrument Celery workers:
-
-<table class="help install install_ruby">
-  <tbody>
-    <tr>
-      <td>
-        <span class="step">1</span>
-      </td>
-      <td style="padding-top: 15px">
-        <p>Install the <code>scout-apm</code> package:</p>
-<pre style="width:500px">
-pip install scout-apm
-</pre>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <span class="step">2</span>
-      </td>
-      <td style="padding-top: 15px">
-        <p>Configure Scout in your <code>settings.py</code> file:</p>
-<pre class="terminal" style="width: initial">
-<span>import scout_apm.celery</span>
-<span>from scout_apm.api import Config</span>
-from celery import Celery
-
-app = Celery('tasks', backend='redis://localhost', broker='redis://localhost')
-<span>
-Config.set(
-    key="SCOUT_KEY",
-    name="Same as Web App Name",
-    monitor=True,
-)
-</span>
-<span>scout_apm.celery.install()</span>
-</pre>
-
-<p>If you wish to configure Scout via environment variables, use <code>SCOUT_MONITOR</code>, <code>SCOUT_NAME</code> and <code>SCOUT_KEY</code>. Remove the call to <code>ScoutConfig.set</code>.</p>
-
-<p>
-If you've installed Scout via the Heroku Addon, the provisioning process automatically sets <code>SCOUT_MONITOR</code> and <code>SCOUT_KEY</code> via <a href="https://devcenter.heroku.com/articles/config-vars">config vars</a>. Only <code>SCOUT_NAME</code> is required.
-</p>
-      </td>
-    </tr>
-    <tr>
-      <td><span class="step">3</span></td>
-      <td style="padding-top: 15px"><p>Deploy.</p></td>
-    </tr>
-  </tbody>
-</table>
-
-Tasks will appear in the "Background Jobs" area of the Scout UI.
 
 ## Pyramid
 
@@ -321,64 +389,13 @@ If you've installed Scout via the Heroku Addon, the provisioning process automat
     </tr>
     <tr>
       <td><span class="step">3</span></td>
-      <td style="padding-top: 15px"><p>Deploy.</p></td>
+      <td style="padding-top: 15px">
+        <p>Deploy.</p>
+        <p>It takes approximatively five minutes for your data to first appear within the Scout UI.</p>
+      </td>
     </tr>
   </tbody>
 </table>
-
-## Bottle
-
-General instructions for a Bottle app:
-
-<table class="help install install_ruby">
-  <tbody>
-    <tr>
-      <td>
-        <span class="step">1</span>
-      </td>
-      <td style="padding-top: 15px">
-        <p>Install the <code>scout-apm</code> package:</p>
-<pre style="width:500px">
-pip install scout-apm
-</pre>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <span class="step">2</span>
-      </td>
-      <td style="padding-top: 15px">
-        <p>Add Scout to your Bottle config:</p>
-
-<pre style="width:initial">
-from scout_apm.bottle import ScoutPlugin
-
-app = bottle.default_app()
-app.config.update({
-    "scout.name": "YOUR_APP_NAME",
-    "scout.key": "YOUR_KEY",
-    "scout.monitor": True,
-})
-
-scout = ScoutPlugin()
-bottle.install(scout)
-</pre>
-
-<p>If you wish to configure Scout via environment variables, use <code>SCOUT_MONITOR</code>, <code>SCOUT_NAME</code> and <code>SCOUT_KEY</code> and remove the call to <code>app.config.update</code>.</p>
-
-<p>
-If you've installed Scout via the Heroku Addon, the provisioning process automatically sets <code>SCOUT_MONITOR</code> and <code>SCOUT_KEY</code> via <a href="https://devcenter.heroku.com/articles/config-vars">config vars</a>. Only <code>SCOUT_NAME</code> is required.
-</p>
-      </td>
-    </tr>
-    <tr>
-      <td><span class="step">3</span></td>
-      <td style="padding-top: 15px"><p>Deploy.</p></td>
-    </tr>
-  </tbody>
-</table>
-
-It takes approximatively five minutes for your data to first appear within the Scout UI.
 
 ## SQLAlchemy
 
@@ -397,7 +414,7 @@ Not seeing data? Email support@scoutapm.com with:
 
 * A link to your app within Scout (if applicable)
 * Your Python version
-* The name of the framework and version you are trying to instrument (i.e. - Flask 0.10).
+* The name of the framework and version you are trying to instrument, e.g. Flask 0.10.
 
 We typically respond within a couple of hours during the business day.
 
@@ -494,7 +511,7 @@ We typically respond within a couple of hours during the business day.
 
 <h3 id="python-env-vars">Environment Variables</h3>
 
-You can also configure Scout APM via environment variables. _Environment variables override settings provided in your `settings.py` file._
+You can also configure Scout APM via environment variables. _Environment variables override settings provided from within Python._
 
 To configure Scout via environment variables, uppercase the config key and prefix it with `SCOUT`. For example, to set the key via environment variables:
 
@@ -620,7 +637,7 @@ logging.basicConfig(level='DEBUG')
 
 ### Custom Instrumentation logging
 
-If you've [added Scout's instrumentation to an unsupported framework or script](#python-custom-instrumentation), add the following to record the agent logs:
+If you've [custom Scout instrumentation](#python-custom-instrumentation), add the following to record the agent logs:
 
 ```
 import logging
@@ -629,7 +646,7 @@ logging.basicConfig(level='DEBUG')
 
 <h2 id="python-custom-instrumentation">Custom Instrumentation</h2>
 
-You can extend Scout to trace transactions outside our officially supported frameworks (ex: Cron jobs and micro web frameworks) and time the execution of code that fall outside our auto instrumentation.
+You can extend Scout to trace transactions outside our officially supported frameworks (e.g. Cron jobs and micro web frameworks) and time the execution of code that falls outside our auto instrumentation.
 
 ### Transactions & Timing
 
@@ -644,7 +661,7 @@ A transaction groups a sequence of work under in the Scout UI. These are used to
 
 <h4 id="python-transaction-limits">Limits</h4>
 
-We limit the number of unique transactions that can be instrumented. Tracking too many unique transactions can impact the performance of our UI. Do not dynamically generate transaction names in your instrumentation (ie `with scout_apm.api.WebTransaction('update_user_"+user.id')`) as this can quickly exceed our rate limits. Use [context](#python-custom-context) to add high-dimensionality information instead.
+We limit the number of unique transactions that can be instrumented. Tracking too many unique transactions can impact the performance of our UI. Do not dynamically generate transaction names in your instrumentation (i.e. `with scout_apm.api.WebTransaction('update_user_"+user.id')`) as this can quickly exceed our rate limits. Use [context](#python-custom-context) to add high-dimensionality information instead.
 
 #### Getting Started
 
@@ -718,8 +735,8 @@ scout_apm.api.install(config=config)
 
 # Will appear under Background jobs in the Scout UI
 with scout_apm.api.BackgroundTransaction("Foo"):
-    r = requests.get("https://httpbin.org/status/418")
-    print(r.text)
+    response = requests.get("https://httpbin.org/status/418")
+    print(response.text)
 ```
 
 ### Timing functions and blocks of code
@@ -728,9 +745,9 @@ Traces that allocate significant amount of time to `View`, `Job`, or `Template` 
 
 <h4 id="python-span-limits">Limits</h4>
 
-We limit the number of metrics that can be instrumented. Tracking too many unique metrics can impact the performance of our UI. Do not dynamically generate metric types in your instrumentation (ie `with scout_apm.api.instrument("Computation_for_user_"+user.email)`) as this can quickly exceed our rate limits. 
+We limit the number of metrics that can be instrumented. Tracking too many unique metrics can impact the performance of our UI. Do not dynamically generate metric types in your instrumentation (ie `with scout_apm.api.instrument("Computation_for_user_" + user.email)`) as this can quickly exceed our rate limits. 
 
-For high-cardinality details, use tags: `with scout_apm.api.instrument("Computation", tags={ 'user': user.email})`.
+For high-cardinality details, use tags: `with scout_apm.api.instrument("Computation", tags={"user": user.email})`.
 
 <h4 id="python-span-getting-started">Getting Started</h4>
 
@@ -747,9 +764,9 @@ from scout_apm.api import instrument
 scout_apm.api.instrument(name, tags={}, kind="Custom")
 ```
 
-* `name` - A semi-detailed version of what the section of code is. It should be static between different invocations of the method. Individual details like `user id`, or counts or other data points can be added as tags. Names like `retreive_from_api` or `GET` are good names.
+* `name` - A semi-detailed version of what the section of code is. It should be static between different invocations of the method. Individual details like a user ID, or counts or other data points can be added as tags. Names like `retreive_from_api` or `GET` are good names.
 * `kind` - A high level area of the application. This defaults to `Custom`. Your whole application should have a very low number of unique strings here. In our built-in instruments, this is things like `Template` and `SQL`. For custom instrumentation, it can be strings like `MongoDB` or `HTTP` or similar. This should not change based on input or state of the application.
-* `tags` - A dictionary of key/value pairs. Key should be a string, but value can be any json-able structure. High-cardinality fields like `user id` are permitted.
+* `tags` - A dictionary of key/value pairs. Key should be a string, but value can be any json-able structure. High-cardinality fields like a user ID are permitted.
 
 <h4 id="python-span-context-manager">As a context manager</h4>
 
@@ -813,7 +830,7 @@ Context values can be any json-serializable type. Examples:
 pip install scout-apm --upgrade
 ```
 
-The package changelog is [available here](https://github.com/scoutapp/scout_apm_python/blob/master/CHANGELOG.md).  
+The package changelog is [available here](https://github.com/scoutapp/scout_apm_python/blob/master/CHANGELOG.md).
 
 <h2 id="python-deploy-tracking-config">Deploy Tracking Config</h2>
 
