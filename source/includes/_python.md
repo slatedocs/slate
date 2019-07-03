@@ -214,6 +214,45 @@ If you've installed Scout via the Heroku Addon, the provisioning process automat
   </tbody>
 </table>
 
+### Middleware
+
+Scout automatically inserts its middleware into your settings on Django startup in its [`AppConfig.ready()`](https://docs.djangoproject.com/en/dev/ref/applications/#django.apps.AppConfig.ready).
+It adds one at the very start of the middleware stack, and one at the end, allowing it to profile your middleware and views.
+
+This normally works just fine.
+However, if you need to customize the middleware order or prevent your settings being changed, you can include the Scout middleware classes in your settings yourself.
+Scout will detect this and not automatically insert its middleware.
+
+If you do customize, your metrics will be affected.
+Anything included before the first *middleware timing* middleware will not be profiled by Scout at all (unless you add custom instrumentation).
+Anything included after the *view* middleware will be profiled as part of your view, rather than as middleware.
+
+To add the middleware if you're using new-style Django middleware in the [`MIDDLEWARE` setting](https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-MIDDLEWARE), which was added in Django 1.10:
+
+<pre style="width:500px">
+# settings.py
+MIDDLEWARE = [
+    # ... any middleware to run first ...
+    "scout_apm.django.middleware.MiddlewareTimingMiddleware",
+    # ... your normal middleware stack ...
+    "scout_apm.django.middleware.ViewTimingMiddleware",
+    # ... any middleware to run last ...
+]
+</pre>
+
+To add the middleware if you're using old-style Django middleware in the [`MIDDLEWARE_SETTINGS` setting](https://docs.djangoproject.com/en/1.8/ref/settings/#std:setting-MIDDLEWARE_CLASSES), which was removed in Django 2.0:
+
+<pre style="width:500px">
+# settings.py
+MIDDLEWARE_CLASSES = [
+    # ... any middleware to run first ...
+    "scout_apm.django.middleware.OldStyleMiddlewareTimingMiddleware",
+    # ... your normal middleware stack ...
+    "scout_apm.django.middleware.OldStyleViewMiddleware",
+    # ... any middleware to run last ...
+]
+</pre>
+
 ## Falcon
 
 Scout supports Falcon 2.0+.
