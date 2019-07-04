@@ -11,7 +11,7 @@ A user account allows users to authenticate to an [organization](#administration
 ```shell
 # Retrieve visible users
 
-curl "https://cloudmc_endpoint/v1/users" \
+curl "https://cloudmc_endpoint/v2/users" \
    -H "MC-Api-Key: your_api_key"
 
 # Response body example
@@ -71,7 +71,7 @@ Attributes | &nbsp;
 ```shell
 # Retrieve visible user
 
-curl "https://cloudmc_endpoint/v1/users/fdf60a19-980d-4380-acab-914485111305" \
+curl "https://cloudmc_endpoint/v2/users/fdf60a19-980d-4380-acab-914485111305" \
    -H "MC-Api-Key: your_api_key"
 
 # Response body example
@@ -86,6 +86,13 @@ curl "https://cloudmc_endpoint/v1/users/fdf60a19-980d-4380-acab-914485111305" \
     "email": "frodo@cloud.mc",
     "creationDate": "2017-08-15T12:00:00.000Z",
     "status": "ACTIVE",
+    "primaryRoleBinding": {
+      "id": "36d347e3-e3fa-4e6b-be4d-a12c4dec5b1c",
+      "role": {
+        "id": "4a1a44f3-ea74-4952-b9ef-ff3163c329d9",
+        "name": "admin",
+      },
+    },
     "organization": {
       "id": "c64dcd1d-9123-45e5-ad00-5d635c49176b",
       "name": "The Shire"
@@ -122,6 +129,7 @@ Attributes | &nbsp;
 `email`<br/>*string* | The email of the user
 `creationDate`<br/>*string* | The date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) that the user was created
 `status`<br/>*string* | The current status of the user.
+`primaryRoleBinding`<br/>*RoleBinding* | The primary role assigned to this user. This role will always be a fixed role.
 `organization`<br/>*[Organization](#administration-organization)* | The organization to which the user belongs
 `environments`<br/>*Array[[Environment](#administration-environments)]* | The environments the user is member of<br/>*includes*: `id`, `name`
 `roles`<br/>*Array[[Role](#administration-roles)]* | The system and environments roles that are assigned to the user<br/>*includes*: `id`, `name` and `environment.id`
@@ -137,7 +145,7 @@ Attributes | &nbsp;
 ```shell
 # Create a user
 
-curl -X POST "https://cloudmc_endpoint/v1/users" \
+curl -X POST "https://cloudmc_endpoint/v2/users" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "[request-body]"
@@ -150,6 +158,11 @@ curl -X POST "https://cloudmc_endpoint/v1/users" \
   "firstName": "Anakin",
   "lastName": "Skywalker",
   "email": "vader42@cloud.mc",
+  "primaryRoleBinding": {
+    "role": {
+      "id": "4a1a44f3-ea74-4952-b9ef-ff3163c329d9",
+    },
+  },
   "organization": {
     "id": "645cf4ce-3699-40c5-a1a8-0b3e945f49ee"
   },
@@ -169,6 +182,7 @@ Required | &nbsp;
 `firstName`<br/>*string* | First name of the user
 `lastName`<br/>*string* | Last name of the user
 `email`<br/>*string* | Email of the user. Should be unique across the organization.
+`primaryRoleBinding.role.id`<br/>*UUID* | The id of the primary role to assign to this user
 
 Optional | &nbsp;
 -------- | -----------
@@ -190,7 +204,7 @@ The responses' `data` field contains the created [user](#administration-users) w
 ```shell
 # Update a user
 
-curl -X PUT "https://cloudmc_endpoint/v1/users/dd01c908-371c-4ec5-9fd7-80b1bfac8975" \
+curl -X PUT "https://cloudmc_endpoint/v2/users/dd01c908-371c-4ec5-9fd7-80b1bfac8975" \
    -H "MC-Api-Key: your_api_key" \
    -H "Content-Type: application/json" \
    -d "[request-body]"
@@ -203,6 +217,11 @@ curl -X PUT "https://cloudmc_endpoint/v1/users/dd01c908-371c-4ec5-9fd7-80b1bfac8
   "firstName": "Peter",
   "lastName": "Parker",
   "email": "spidey1@cloud.mc",
+  "primaryRoleBinding": {
+    "role": {
+      "id": "4a1a44f3-ea74-4952-b9ef-ff3163c329d9",
+    },
+  },
   "roles": [
     {
       "id": "dd01c908-371c-4ec5-9fd7-80b1bfac8975"
@@ -218,6 +237,7 @@ Optional | &nbsp;
 `userName`<br/>*string* | The new username of the user. Should be unique across the organization.
 `firstName`<br/>*string* | The new first name of the user
 `lastName`<br/>*string* | The new last name of the user
+`primaryRoleBinding.role.id`<br/>*UUID* | The id of the primary role to assign to this user
 `email`<br/>*string* | The new email of the user. Should be unique across the organization.
 `roles`<br/>*Array[[Role](#administration-roles)]* | The new list of system or environment roles to give to the user. This will override the previous list of roles.<br/>*required*: `id`
 
@@ -235,8 +255,7 @@ The responses' `data` field contains the updated [user](#administration-users).
 
 ```shell
 # Delete a user
-
-curl "https://cloudmc_endpoint/v1/users/dd01c908-371c-4ec5-9fd7-80b1bfac8975" \
+curl "https://cloudmc_endpoint/v2/users/dd01c908-371c-4ec5-9fd7-80b1bfac8975" \
    -X DELETE -H "MC-Api-Key: your_api_key"
 
 ```
@@ -255,7 +274,7 @@ Delete a specific user. You will need the `Delete an existing user` permission t
 ```shell
 # Unlock a user that was locked from the system
 
-curl "https://cloudmc_endpoint/v1/users/dd01c908-371c-4ec5-9fd7-80b1bfac8975/unlock" \
+curl "https://cloudmc_endpoint/v2/users/dd01c908-371c-4ec5-9fd7-80b1bfac8975/unlock" \
    -X POST -H "MC-Api-Key: your_api_key"
 
 ```

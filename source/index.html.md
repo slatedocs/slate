@@ -12,6 +12,7 @@ includes:
   - administration/organizations
   - administration/users
   - administration/roles
+  - administration/additional_roles
   - administration/environments 
   - administration/resource_commitments 
   - administration/usage

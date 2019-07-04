@@ -239,3 +239,152 @@ Delete a specific environment. You will need a [role](#administration-roles) wit
 <aside class="warning">
   <strong>Be careful:</strong> This will destroy all the resources in your environment.
 </aside>
+
+### List members
+
+`GET /environments/:id/members`
+
+```shell
+# Retrieve visible user
+
+curl "https://cloudmc_endpoint/v2/environments/[env-id]/members" \
+   -H "MC-Api-Key: your_api_key"
+
+# Response body example
+```
+```json
+{
+  "data": [
+    {
+      "id": "00977373-3eae-4d26-84df-68817f97b072",
+      "creationDate": "2019-05-16T20:39:28.000Z",
+      "role": {
+        "id": "46fb36d8-6888-48ed-ab13-711fd19f0873",
+        "name": "viewer",
+      },
+      "user": {
+        "id": "ae3f1a72-e2b6-4865-856b-b3cf47ab8eb7",
+        "firstName": "patatat",
+        "lastName": "patatat",
+        "userName": "patatat",
+        "email": "pdube@cloudops.com"
+      },
+      "metadata": {
+        "membership": "All"
+      },
+    },
+  ]
+}
+```
+
+Attributes | &nbsp;
+---------- | -----------
+`id`<br/>*UUID* | The id of the binding between the user and the environment
+`creationDate`<br/>*string* | The date the user membership was either created or updated.
+`role`<br/>*[Role](#administration-roles)* | The role of the user in the environment<br/>*includes*: `id` and `name`
+`user`<br/>*[User](#administration-users)* | A member of the environmment<br/>*includes*: `id`, `firstName`, `lastName`, `userName` and `email`
+`metadata.membership`<br/>*UUID* | "All" if automatically added from the ALL_ORG_USERS membership. "Many" if added manually to the org.
+
+You will need to either be owner on the environment or have the `Environments: Own All` permission to execute this operation.
+
+### Add member
+
+`POST /environments/:id/members`
+
+```shell
+# Add an environment member
+curl -X POST "https://cloudmc_endpoint/v2/environments/[environment-id]/members" \
+   -H "MC-Api-Key: your_api_key" \
+   -H "Content-Type: application/json" \
+   -d "[request_body]"
+
+# Request body example
+```
+```json
+{
+  "user": {
+    "id": "e3f01d38-c9e7-4959-9580-a8e84af2add1"
+  },
+  "role": {
+    "id": "9ffd4630-4e2b-4c84-b200-3240d7c26dc6"
+  }
+}
+```
+
+Required | &nbsp;
+-------- | -----------
+`user.id`<br/>*UUID* | The user that will be added to the environment.
+`role.id`<br/>*UUID* | The role that the user will have in the environment.
+
+You will need to either be owner on the environment or have the `Environments: Own All` permission to execute this operation.
+
+### Update member
+
+`PUT /environments/:env_id/members/:user_id`
+
+```shell
+# Update an environment member
+curl -X PUT "https://cloudmc_endpoint/v2/environments/[environment-id]/members/[user-id]" \
+   -H "MC-Api-Key: your_api_key" \
+   -H "Content-Type: application/json" \
+   -d "[request_body]"
+
+# Request body example
+```
+```json
+{
+  "role": {
+    "id": "9ffd4630-4e2b-4c84-b200-3240d7c26dc6"
+  }
+}
+```
+
+Required | &nbsp;
+-------- | -----------
+`role.id`<br/>*UUID* | The new role that the user will have in the environment.
+
+
+You will need to either be owner on the environment or have the `Environments: Own All` permission to execute this operation.
+
+### Remove member
+
+`DELETE /environments/:env_id/members/:user_id`
+
+```shell
+# Remove a member from an environment
+curl -X DELETE "https://cloudmc_endpoint/v2/environments/[environment-id]/members/[user-id]" \
+   -H "MC-Api-Key: your_api_key" \
+   -H "Content-Type: application/json" 
+
+```
+
+You will need to either be owner on the environment or have the `Environments: Own All` permission to execute this operation.
+
+### Default environment membership
+
+`PUT /environments/:id/membership`
+
+```shell
+# Update default environment membership
+curl -X PUT "https://cloudmc_endpoint/v2/environments/[environment-id]/membership" \
+   -H "MC-Api-Key: your_api_key" \
+   -H "Content-Type: application/json" \
+   -d "[request_body]"
+
+# Request body example
+```
+```json
+{
+  "membership": "ALL_ORG_USERS",
+  "defaultRole": {
+    "id": "f05ff413-0d6d-4054-bbee-a720de5f1a4c"
+  }
+}
+```
+
+Optional | &nbsp;
+-------- | -----------
+`membership`<br/>*string* | ALL_ORG_USERS if you want all users of the organization to be member of the environment. MANY_USERS if you want to manually manage members of the environment.
+`defaultRole.id`<br/>*UUID* | The default role to give to a user that was added to the environment.
+
+You will need to either be owner on the environment or have the `Environments: Own All` permission to execute this operation.
