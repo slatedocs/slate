@@ -508,6 +508,17 @@ curl -X POST "https://api.coinbtr.com/api/v1/trading/placeorder/" \
 -H "Authorization: Token $COINBTR_API_KEY" \
 -d "{ \"market\": \"$MKT\", \"amount\": \"$AMOUNT\", \"type\":\"$TYPE\", \"side\": \"$SIDE\", \"price\": \"$PRICE\"}"
 ```
+> The API response will look like this:
+
+```json
+{
+  "success": true,
+  "msg": "Order successfully placed in orderbook",
+  "data": {
+    "id": 123456790
+  }
+}
+```
 You can place two types of orders: `limit` and `market`. Orders can be placed only if your wallet has enough funds. Once an order is placed, your wallet funds will be frozen. If you cancel your order, the associated funds will be restored. If you cancel an open order that has been partially filled the exchanged funds will not be restored.
 ### HTTP Request
 `POST /trading/placeorder/`
@@ -999,16 +1010,22 @@ const socket = io.connect('wss://ws.coinbtr.com');
 // Define a market you want to subscribe
 const market = 'btc-mxn';
 
-// Subscribe to the market
-socket.emit('subscribe', market);
+socket.on('connect', () => {
+  // Subscribe to the market
+  socket.emit('subscribe', market);
+});
+
 
 // Read and manage market data as you want
 socket.on('message', (msg) => {
-  console.log(msg)
+  console.log(msg);
   /*
   your code here
   */
 });
+
+// For unsubscribing
+socket.emit('unsubscribe', market);
 
 ```
 
