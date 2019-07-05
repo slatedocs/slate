@@ -28,6 +28,7 @@ under the License.
 ////////////////////////////////////////////////////////////////////////////////
 $blue-gray-04: rgba(119,137,162,.4);
 $blue-gray-03: rgba(119,137,162,.3);
+$blue-gray-01: rgba(119,137,162,.1);
 $card-dark: #0c1222;
 $blue-gray: #7789a2;
 $table-head-bg: $blue-gray-04;
@@ -285,7 +286,6 @@ body {
   // half of the content always this background color.
   .dark-box {
     width: $examples-width;
-    background-color: $examples-bg;
     position: absolute;
     right: 0;
     top: 0;
@@ -688,4 +688,20 @@ h2,
 h3 {
   text-transform: uppercase;
   letter-spacing: 0.3px;
+}
+
+.toc-wrapper {
+  background: $card-dark;
+}
+
+.search {
+  background: $card-dark !important;
+}
+
+.search-results {
+  background: $blue-gray-01 !important;
+}
+
+.dark-box {
+  background: #0c1222;
 }
