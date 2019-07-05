@@ -73,91 +73,51 @@ Content-Type: application/json
   "resources": [
     { 
       "_id": "5d0b985960a1da78cf8f4a57",
-      "translation": 
-        { 
-          "en": true, 
-          "de": false, 
-          "ru": false
-        },
-      "active": false,
       "name": { "en": "repellat" },
       "description": { "en": "consequuntur" },
       "urlName": "repellat",
       "startDate": "2019-06-20T14:29:45.524Z",
       "endDate": "2019-06-30T14:29:45.525Z",
-      "completeMsg": { "en": "quasi" },
       "createdAt": "2019-06-20T14:29:45.538Z",
       "updatedAt": "2019-06-20T14:29:45.538Z"
     },
     { 
        "_id": "5d0b9859a1da78cf8f4a58",
-       "translation": 
-         { 
-           "en": true, 
-           "de": false, 
-           "ru": false
-         },
-       "active": false,
        "name": { "en": "qwerty" },
        "description": { "en": "sdf32324324" },
        "urlName": "qwerty",
        "startDate": "2019-06-20T14:29:45.524Z",
        "endDate": "2019-06-30T14:29:45.525Z",
-       "completeMsg": { "en": "quasi" },
        "createdAt": "2019-06-20T14:29:45.538Z",
        "updatedAt": "2019-06-20T14:29:45.538Z"
     },
     {
       "_id": "5d0b985960a1da78cf8f4a59",
-      "translation": 
-       { 
-         "en": true, 
-         "de": false, 
-         "ru": false
-       },
-      "active": false,
       "name": { "en": "testname" },
       "description": { "en": "consequuntur324" },
       "urlName": "testname",
       "startDate": "2019-06-20T14:29:45.524Z",
       "endDate": "2019-06-30T14:29:45.525Z",
-      "completeMsg": { "en": "quasi" },
       "createdAt": "2019-06-20T14:29:45.538Z",
       "updatedAt": "2019-06-20T14:29:45.538Z"
     },
     { 
       "_id": "5d0b985960a1da78cf8f4a60",
-      "translation": 
-       { 
-         "en": true, 
-         "de": false, 
-         "ru": false
-       },
-      "active": false,
       "name": { "en": "bar" },
       "description": { "en": "bar" },
       "urlName": "bar desc",
       "startDate": "2019-06-20T14:29:45.524Z",
       "endDate": "2019-06-30T14:29:45.525Z",
-      "completeMsg": { "en": "quasi" },
       "createdAt": "2019-06-20T14:29:45.538Z",
       "updatedAt": "2019-06-20T14:29:45.538Z"
     },
     { 
       "_id": "5d0b985960a1da78cf8f4a61",
-      "translation": 
-       { 
-         "en": true, 
-         "de": false, 
-         "ru": false
-       },
-      "active": false,
       "name": { "en": "foo" },
       "description": { "en": "foo desc" },
       "urlName": "foo",
       "startDate": "2019-06-20T14:29:45.524Z",
       "endDate": "2019-06-30T14:29:45.525Z",
-      "completeMsg": { "en": "quasi" },
       "createdAt": "2019-06-20T14:29:45.538Z",
       "updatedAt": "2019-06-20T14:29:45.538Z"
     }
@@ -172,6 +132,7 @@ Parameter | Type | Description | Default | Required
 --------- | ------- | ----------- | ----- | -------- |
 skip |number| Count of skipped items for pagination.| 10 | No |
 limit|number| Count of returned items in response.| 10 | Yes |
+sort|string| Sort parameter - name, createdAt, updatedAt | createdAt | No|
 
 ## Get specific survey by ID with all related data.
 
@@ -192,32 +153,19 @@ Content-Type: application/json
 ```json
 { 
   "_id": "5d0b985960a1da78cf8f4a57",
-  "translation": 
-    { 
-      "en": true, 
-      "de": false, 
-      "ru": false
-    },
-  "active": false,
   "name": { "en": "repellat" },
   "description": { "en": "consequuntur" },
   "urlName": "repellat",
   "startDate": "2019-06-20T14:29:45.524Z",
   "endDate": "2019-06-30T14:29:45.525Z",
-  "completeMsg": { "en": "quasi" },
   "createdAt": "2019-06-20T14:29:45.538Z",
   "updatedAt": "2019-06-20T14:29:45.538Z",
   "surveySections": 
     [
       {
         "_id":"5d1086759513bd03ca00a579",
-        "translationLockName": { "en":false, "de":false, "ru":false },
-        "translationLockDescription": { "en":false, "de":false, "ru":false },
-        "sortableId": 0, "displaySingle": false,
         "name": { "en": "fugiat" }, 
         "survey": "5d1086759513bd03ca00a578", 
-        "company": "5d1086749513bd03ca00a55c",
-        "team": "5d1086759513bd03ca00a55d", 
         "createdBy": "5d1086759513bd03ca00a575", 
         "updatedBy":"5d1086759513bd03ca00a575",
         "surveyItems": [
@@ -225,24 +173,13 @@ Content-Type: application/json
             "_id": "5d1086759513bd03ca00a57a",
             "type": "question",
             "required": false, 
-            "sortableId": 0, 
             "survey": "5d1086759513bd03ca00a578",
             "surveySection": "5d1086759513bd03ca00a579", 
-            "company": "5d1086749513bd03ca00a55c", 
-            "team": "5d1086759513bd03ca00a55d", 
             "question": {
               "_id": "5d1086759513bd03ca00a57b",
-              "linearScale": { "from": 1, "to": 5, "icon": "smile" },
-              "configuration": { "multiple": false, "align": "center" },
-              "translation": { "en": true,"de": false,"ru": false},
-              "translationLockName":{ "en": false,"de": false, "ru": false },
-              "translationLockDescription":{"en": false,"de": false,"ru": false },
-              "general": false,
-              "trend": false, 
+              "linearScale": { "from": 1, "to": 5, "icon": "smiley" },
               "type": "linearScale",
               "name": { "en": "cupiditate" },
-              "company": "5d1086749513bd03ca00a55c", 
-              "team": "5d1086759513bd03ca00a55d",
               "createdBy": "5d1086759513bd03ca00a575",
               "updatedBy": "5d1086759513bd03ca00a575"
             }
@@ -279,26 +216,28 @@ Content-Type: application/json
 ```json
 { 
   "_id": "5d10840f5b4ca0038509890c",
-  "translation": 
-    { 
-      "en": true, 
-      "de": false, 
-      "ru": false
-     },
   "name": { "en": "iste" },
+  "linearScale": { "from":  1, "to":  5 },
   "createdAt": "2019-06-24T08:04:31.303Z",
   "updatedAt": "2019-06-24T08:04:31.303Z"
 }
 ```
 
 # Survey Results
-## Delete specific survey result by ID or contact email.
+## Delete specific survey result.
+> Delete survey result by user ID or contact email which stored in survey result meta data.
 
 ```http
-DELETE /api/v2/survey-results/5d10840f5b4ca0038509890c HTTP/1.1
+DELETE /api/v2/survey-results/remove-one HTTP/1.1
 Authorization: Bearer u8ptxAd2hJ3aRjtgwwmUqqkNpcMOYxf3
 Content-Type: application/json
 Host: https://go.screver.com
+```
+
+```json
+{
+  "userId": "123123"
+}
 ```
 
 > The above request returns the following response:
@@ -311,5 +250,5 @@ HTTP/1.1 204 No content
 
 Parameter | Type | Description | Required |
 --------- | ------- | ----------- | -------- |
-id |objectId| ObjectId of specific survey.| No |
+userId |objectId| ObjectId of specific survey.| No |
 email |string| Email of contact.| No |
