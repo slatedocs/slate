@@ -206,11 +206,13 @@ Deactivate a subscription.
 
 ## Events
 
-Events describe payload that will be sent to your server in a form of a `POST` request.
+Events are messages that will be sent to your server as HTTP `POST` requests.
 They will not contain any personally identifiable information.
-To acknowledge successfully processed event, make sure your server answers with a status code `200` within 5s.
-Otherwise, we will try to resend the notification.
-We will attempt to deliver notifications at increasing intervals over a two week period.
+
+To acknowledge that you have successfully processed an event, make sure your server answers with the HTTP status code `200`
+within 5s. Otherwise, we will consider the delivery attempt as having failed and will later try to resend the message.
+
+We will attempt to redeliver messages at increasing intervals over a two week period. We will try at most 25 times to do this.
 
 
 ### Signature header
