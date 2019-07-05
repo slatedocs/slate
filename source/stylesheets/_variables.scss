@@ -40,7 +40,7 @@ $search-notice-bg: #c97a7e !default;
 
 // TEXT COLORS
 ////////////////////
-$main-text: rgba(227, 232, 238, 0.9) !default; // main content text color
+$main-text: white !default; // main content text color
 $nav-text: #fff !default;
 $nav-active-text: #fff !default;
 $nav-active-parent-text: #fff !default; // parent links of the current section
@@ -67,12 +67,12 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 // FONTS
 ////////////////////
 %default-font {
-  font-family: "Chakra Petch", -apple-system, Roboto, Helvetica;
+  font-family: "Open Sans", -apple-system, Roboto, Helvetica;
   font-size: 14px;
 }
 
 %header-font {
-  @extend %default-font;
+  font-family: "Chakra Petch", -apple-system, Roboto, Helvetica;
   font-weight: bold;
 }
 

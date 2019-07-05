@@ -4,6 +4,7 @@
 @import "icon-font";
 @import url("https://fonts.googleapis.com/css?family=Chakra+Petch");
 @import url("https://fonts.googleapis.com/css?family=Fira+Mono");
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 // @import 'rtl'; // uncomment to switch to RTL format
 
 /*
@@ -23,8 +24,19 @@ under the License.
 */
 
 ////////////////////////////////////////////////////////////////////////////////
+// VARIABLES
+////////////////////////////////////////////////////////////////////////////////
+$blue-gray-04: rgba(119,137,162,.4);
+$blue-gray-03: rgba(119,137,162,.3);
+$card-dark: #0c1222;
+$blue-gray: #7789a2;
+$table-head-bg: $blue-gray-04;
+$border-main: $blue-gray-03;
+
+////////////////////////////////////////////////////////////////////////////////
 // GENERAL STUFF
 ////////////////////////////////////////////////////////////////////////////////
+
 
 html,
 body {
@@ -430,6 +442,12 @@ body {
   table {
     margin-bottom: 1em;
     overflow: auto;
+
+    thead,
+    tbody {
+      background: $card-dark;
+    }
+
     th,
     td {
       text-align: left;
@@ -438,28 +456,20 @@ body {
       code {
         white-space: nowrap;
       }
+      font-size: 12px;
     }
 
     th {
-      padding: 5px 10px;
-      border-bottom: 1px solid #ccc;
+      padding: 8px 10px;
       vertical-align: bottom;
+      background: $table-head-bg;
+      opacity: 0.5;
+      letter-spacing: 0.3px;
     }
 
     td {
       padding: 10px;
-    }
-
-    tr:last-child {
-      border-bottom: 1px solid #ccc;
-    }
-
-    tr:nth-child(odd) > td {
-      background-color: lighten($main-bg, 4.2%);
-    }
-
-    tr:nth-child(even) > td {
-      background-color: lighten($main-bg, 2.4%);
+      border-top: 1px solid $border-main;
     }
   }
 
@@ -654,4 +664,28 @@ body {
 .highlight,
 .highlight .w {
   background-color: $code-bg;
+}
+
+blockquote {
+  border-bottom: 1px solid $border-main;
+  border-top: 1px solid $border-main;
+
+  p {
+    background-color: $card-dark !important;
+    padding-bottom: 10px !important;
+    padding-top: 10px !important;
+    font-family: "Chakra Petch";
+    color: #7789a2 !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    font-size: 12px;
+  }
+}
+
+h1,
+h2,
+h3 {
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
 }
