@@ -32,6 +32,8 @@ includes:
   - sending_funds
   - sending_funds/payments
   - methods
+  - methods/currencies
+  - methods/networks
   - methods/accounts
   - methods/transactions
   - methods/contacts
