@@ -381,6 +381,13 @@ body {
     background-color: #0c1222;
   }
 
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: $section-heading-text;
+  }
+
   h1:first-child,
   div:first-child + h1 {
     border-top-width: 0;
@@ -444,6 +451,7 @@ body {
       padding: 5px 10px;
       border-bottom: 1px solid #ccc;
       vertical-align: bottom;
+      color: $section-heading-text;
     }
 
     td {
