@@ -206,7 +206,11 @@ Deactivate a subscription.
 
 ## Events
 
-Events describe payload that will be sent to your server in a form of a `POST` request. They will not contain any personally identifiable information. To acknowledge succesfully processed event, make sure your server answers with a status code `200` within 5s. Otherwise, we will try to resend the notification 3 times consequently.
+Events describe payload that will be sent to your server in a form of a `POST` request.
+They will not contain any personally identifiable information.
+To acknowledge successfully processed event, make sure your server answers with a status code `200` within 5s.
+Otherwise, we will try to resend the notification.
+We will attempt to deliver notifications at increasing intervals over a two week period.
 
 
 ### Signature header
@@ -223,7 +227,7 @@ Oj3Vos0VdBIs/gAyJ/4yyQFCXYte64I7ssrlbGRaco4nKF3HmaNhxwyKyJafz19e
 HwIDAQAB
 ```
 
-> How to verify signature (in Java):
+> How to verify signatures (in Java):
 
 ```java
 public boolean verifySignature(String encodedPublicKey, String signature, String payload) {
