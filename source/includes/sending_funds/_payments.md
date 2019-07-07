@@ -77,7 +77,6 @@ curl https://app.beyonic.com/api/payments -H "Authorization: Token ab594c1498661
 -d first_name=Kennedy\
 -d last_name=Amani\
 -d currency=BXC \
--d account=1 \
 -d amount=30 \
 -d description="Per diem payment" \
 -d callback_url="https://my.website/payments/callback" \
@@ -94,11 +93,10 @@ payment = Beyonic::Payment.create(
     last_name: "Amani",
     amount: "100.2",
     currency: "BXC",
-    account: "1",
     description: "Per diem payment",
     payment_type: "money",
     callback_url: "https://my.website/payments/callback",
-    metadata: {"id": "1234", "name": "Lucy"}
+    metadata: {id: "1234", name: "Lucy"}
 )
 
 p payment  # Examine the returned object
@@ -115,7 +113,6 @@ $payment = Beyonic_Payment::create(array(
   "last_name" => "Kennedy",
   "amount" => "100.2",
   "currency" => "BXC",
-  "account" => "1",
   "description" => "Per diem payment",
   "payment_type" => "money",
   "callback_url" => "https://my.website/payments/callback",
@@ -135,7 +132,6 @@ payment = beyonic.Payment.create(phonenumber='+80000000001',
                        last_name='Amani',
                        amount='1200',
                        currency='BXC',
-                       account='1',
                        description='Per diem',
                        callback_url='https://my.website/payments/callback',
                        metadata={'id': '1234', 'name': 'Lucy'}
@@ -307,7 +303,6 @@ recipient_data | No | JSON-formatted list of dictionaries | [{'phonenumber': '+2
 {
     "amount":500,
     "currency": "KES",
-    "account": "1",
     "payment_type": "money",
     "metadata": {"id": 1234, "name": "Lucy"},
     "description": "Per diem payment",

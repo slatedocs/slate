@@ -25,7 +25,7 @@ payment = Beyonic::Payment.create(
     description: "Per diem payment",
     payment_type: "money",
     callback_url: "https://my.website/payments/callback",
-    metadata: {"id": "1234", "name": "Lucy"}
+    metadata: {id: "1234", name: "Lucy"}
 )
 ```
 

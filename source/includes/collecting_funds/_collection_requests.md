@@ -56,7 +56,6 @@ The collection requests api endpoint is:
     "send_instructions": false,
     "status": "pending",
     "error_message": null,
-    "error_details": null,
     "expiry_date": "2018-05-26 19:06:51.300273+00:00"
 }
 ```
@@ -80,8 +79,7 @@ success_message | string or null | The confirmation message delivered to the cus
 send_instructions | boolean | Defaults to False (but you probably want to set this to True). Indicates whether we should send payment instructions to the subscriber via SMS. Note that this field defaults to False, so if you want the collection request to actually notify the customer (with a USSD popup and an SMS), you must set this field to True. Omitting the field will prevent collection requests from being sent out to the customer.
 instructions | string or null | Allows overriding of the default instructions sent to the subscriber. If omitted, default network-specific instructions will be sent to the subscriber via SMS. If you want to skip sending ANY sms instructions and turn off even the default instructions, set this parameter to "skip" (instructions = "skip")
 status | string | This is the status of the collection request. Possible values are: pending, successful, failed, expired or reversed
-error_message | string | This will contain a short description in case of an error
-error_details | string | This will contain an detailed description in case of an error
+error_message | string | This will contain an error description in case an error occurs
 expiry_date | string or null | Defaults to "24 hours". Specifies the date and time when this collection request will be marked as expired. Examples of valid values for this field include strings such as "tomorrow", "24 hours", "2 minutes", or %d/%m/%Y format e.g 24/05/2019 or %d/%m/%Y %H:%M:%S format e.g 24/05/2019 13:24:12
 
 
@@ -270,7 +268,6 @@ public class CreateCollectionRequestExample {
     "send_instructions": false,
     "status": "pending",
     "error_message": null,
-    "error_details": null,
     "expiry_date": "2018-05-26 19:06:51.300273+00:00"
 }
 ```
@@ -423,7 +420,6 @@ public class SingleCollectionRequestExample {
     "send_instructions": false,
     "status": "pending",
     "error_message": null,
-    "error_details": null,
     "expiry_date": "2018-05-26 19:06:51.300273+00:00"
 }
 ```
@@ -569,7 +565,6 @@ public class ListAllCollectionRequestsExample {
         "send_instructions": false,
         "status": "pending",
         "error_message": null,
-        "error_details": null,
         "expiry_date": "2018-05-26 19:06:51.300273+00:00"
     }, {
         "id": 427028,
@@ -613,7 +608,6 @@ public class ListAllCollectionRequestsExample {
         "send_instructions": true,
         "status": "pending",
         "error_message": null,
-        "error_details": null,
         "expiry_date": "2018-05-26 14:56:55.917817+00:00"
     }, ... ]
 }
