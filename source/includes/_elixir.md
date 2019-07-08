@@ -2,7 +2,7 @@
 
 <h2 id="elixir-requirements">Requirements</h2>
 
-Our Elixir agent supports Phoenix 1.2.0+ and Elixir 1.4+.
+Our Elixir agent supports Phoenix 1.2.0+, Ecto 2.0+, and Elixir 1.4+.
 
 <!-- old unique-ified anchor link -->
 <a name="installation22"></a>
@@ -11,7 +11,6 @@ Our Elixir agent supports Phoenix 1.2.0+ and Elixir 1.4+.
 Tailored instructions are provided within our user interface. General instructions for a Phoenix 1.3+ app:
 
 <div class="install">
-
  <p class="instruct">
       <span class="step">A</span>Add the <code>scout_apm</code> dependency.
     </p>
@@ -19,22 +18,25 @@ Tailored instructions are provided within our user interface. General instructio
     </p>
     <pre class="terminal"># mix.exs
 
- def application do
-   [mod: {YourApp, []},
-    applications: [..., <span>:scout_apm</span>]]
- end
-
  def deps do
    [{:phoenix, "~> 1.2.0"},
     ...
     <span>{:scout_apm, "~> 0.0"}</span>]
  end</pre>
+    <p class="smaller">If your Mixfile manually specifies <code>applications</code>, <code>:scout_apm</code> must be added:</p>
+    <pre class="terminal"># mix.exs
+ def application do
+   [mod: {YourApp, []},
+    applications: [..., <span>:scout_apm</span>]]
+ end
+ </pre>
     <p class="smaller">
       Shell:
     </p>
     <div class="terminal">
       mix deps.get
     </div>
+
     <p class="instruct">
       <span class="step">B</span><span class="glyphicon glyphicon-download"></span> Download your customized config file, placing it at <code>config/scout_apm.exs</code>.
     </p>
@@ -54,7 +56,20 @@ defmodule YourApp.Web do
       <span>use ScoutApm.Instrumentation</span>
       ...</pre>
 
-    <p class="smaller">Instrument <strong>Ecto 2</strong>. In <code>config/config.exs</code>:</p>
+    <p class="smaller">Instrument Templates. In <code>config/config.exs</code>:
+    </p>
+<pre class="terminal">
+# config/config.exs
+<span>config :phoenix, :template_engines,
+  eex: ScoutApm.Instruments.EExEngine,
+  exs: ScoutApm.Instruments.ExsEngine</span>
+</pre>
+
+<p class="instruct">
+  <span class="step">D</span>Integrate Ecto
+</p>
+
+    <p class="smaller">Using <strong>Ecto 2.x?</strong>. In <code>config/config.exs</code>:</p>
     <pre class="terminal">
 # config/config.exs
 <span>import_config "scout_apm.exs"</span>
@@ -64,7 +79,7 @@ defmodule YourApp.Web do
             {ScoutApm.Instruments.EctoLogger, :log, []}]</span></pre>
 
 
-    <p class="smaller">Instrument <strong>Ecto 3</strong>. In <code>lib/my_app/application.ex</code>:</p>
+    <p class="smaller">Using <strong>Ecto 3.x?</strong>. In <code>lib/my_app/application.ex</code>:</p>
 <pre class="terminal">
 # lib/my_app/application.ex
 defmodule MyApp.Application do
@@ -84,17 +99,9 @@ defmodule MyApp.Application do
 end
 </pre>
 
-    <p class="smaller">Instrument Templates. In <code>config/config.exs</code>:
-    </p>
-<pre class="terminal">
-# config/config.exs
-<span>config :phoenix, :template_engines,
-  eex: ScoutApm.Instruments.EExEngine,
-  exs: ScoutApm.Instruments.ExsEngine</span>
-</pre>
 
     <p class="instruct">
-      <span class="step">D</span>Restart your app.
+      <span class="step">E</span>Restart your app.
       <div class="terminal">
         mix phoenix.server
       </div>
@@ -124,7 +131,7 @@ Not seeing data?
 [info] Setup ScoutApm.Watcher on ScoutApm.Supervisor</pre>
 
         <p>
-          If none of the above appears, ensure <code>scout_apm</code> was added as a dependency and to your list of applications. See the first step in the <a href="#elixir-install">Elixir install instructions</a>.
+          If none of the above appears, ensure <code>scout_apm</code> was added as a dependency. See the first step in the <a href="#elixir-install">Elixir install instructions</a>.
         </p>
       </td>
     </tr>
@@ -353,7 +360,7 @@ Our [install instructions](#elixir-install) walk through instrumenting the follo
   * controllers
   * views
   * templates
-* Ecto 2.0
+* Ecto 2.0/3.0
 * Slime Templates
 
 See [instrumenting common libraries](/#instrumenting-common-libraries) for guides on instrumenting other Elixir libraries.
