@@ -388,7 +388,7 @@ POST /snappy/businesses/address/create?access_token=<access_token> HTTP/1.1
 }
 ```
 
-This endpoint create a address into your business.
+This endpoint create an address into your business.
 
 ### HTTP Request
 
@@ -400,6 +400,88 @@ Parameter | Required | Type    | Default | Description
 --------- | ------- | ------- | ------- | -----------
 access_token | true | string | | Your personal acess_token
 business_id | true | integer | | Id of a business in list businesses. Get in api [GET /user/me](#get-all-businesses)
+name | true | string | | Name of business address
+phone_number | true | string | | Phone number of business address
+address | true | string | | Address of business address
+province_id | true | string | | Id of business address's province. Get in api [GET /geo/provinces](#get-provinces)
+district_id | true | string | | Id of business address's district. Get in api [GET /geo/districts](#get-districts)
+commune_id | false | string | | Id of business address's commune. Get in api [GET /geo/communes](#get-communes)
+is_default | false | boolean | false | If `true` this business address will set to default business address
+
+## Update Business Address
+
+```http
+POST /snappy/businesses/address/update?access_token=<access_token> HTTP/1.1
+```
+> Sample params
+
+```json
+{
+    "business_address_id": "27d22b0e-0153-4830-8632-38645ab2a642",
+    "business_id": 63,
+    "name": "Kho hàng Thái Hà",
+    "phone_number": "0999999999",
+    "address": "123 Thái Hà",
+    "province_id": "101",
+    "district_id": "10109",
+    "commune_id": "1010939",
+    "is_default": true
+}
+```
+
+> Response if success
+
+```json
+{
+    "business": {
+        "addresses": [
+            {
+                "address": "123 Thái Hà",
+                "commune_id": "1010101",
+                "district_id": "10101",
+                "full_address": "Kho hàng Thái Hà - 123 Thái Hà Phường Láng Hạ, Quận Đống Đa, Hà Nội",
+                "id": "6c5d5327-5e1d-4a01-9022-d4f3c5fa229e",
+                "is_default": true,
+                "phone_number": "+84999999999",
+                "province_id": "101",
+                "zipcode": null
+            }
+        ],
+        "business_payments": [],
+        "hotlines": null,
+        "id": 63,
+        "inserted_at": "2018-03-17T15:07:49",
+        "is_default": true,
+        "is_owner": true,
+        "last_payment_at": "2018-04-19T15:34:27",
+        "name": "SG1",
+        "owner_id": "14d4a1a1-ea42-4164-805d-e240f2561f71",
+        "owner_name": "SG1",
+        "packages": [],
+        "payment_methods": [],
+        "phone_number": "0888888888",
+        "tracking_count": 6,
+        "unique_name": "S63",
+        "updated_at": "2018-12-10T10:28:12"
+    },
+    "message": "Bạn đã cập nhật kho hàng thành công",
+    "success": true
+}
+```
+
+This endpoint update an address into your business.
+
+### HTTP Request
+
+`POST /snappy/businesses/address/update`
+
+### URL Parameters
+
+Parameter | Required | Type    | Default | Description
+--------- | ------- | ------- | ------- | -----------
+access_token | true | string | | Your personal acess_token
+business_id | true | integer | | Id of a business in list businesses. Get in api [GET /user/me](#get-all-businesses)
+business_address_id | true | string | | Id `UUID` of one of business address. Get in api [GET /businesses/<ID>](#get-a-specific-business)
 name | true | string | | Name of business address
 phone_number | true | string | | Phone number of business address
 address | true | string | | Address of business address
