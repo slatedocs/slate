@@ -30,6 +30,12 @@ import beyonic
 beyonic.api_version = 'v1'
 ```
 
+```java
+import com.beyonic.Beyonic;
+
+Beyonic.API_VERSION = "v1";
+```
+
 New API versions are released only when we make backward incompatible changes to the API. We define these as changes that will prevent our official clients from working on old versions. Some changes DO NOT result in a new version, including: Adding new API methods, adding optional parameters to existing API methods or adding new fields to responses.
 
 You don't need to specify a version in your request. The first time an API request is made for your organization, the version is saved, and will be used on subsequent API requests unless it is changed in the organization settings, or overridden as below. This allows your client applications to continue working even if newer API versions are released.

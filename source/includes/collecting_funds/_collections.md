@@ -165,52 +165,21 @@ collection = beyonic.Collection.get(131820)
 ```
 
 ```java
-package com.beyonic.examples.collections;
+package com.beyonic.examples;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import com.beyonic.models.Collection;
+import com.beyonic.exceptions.BeyonicException;
 
+Beyonic.API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
 
-public class SingleCollectionExample {
+String response = null;
 
-    private static final String API_ENDPOINT = "https://app.beyonic.com/api/collections";
-    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
-    private static final String CHARSET = "UTF-8";
-
-    public static void main(String[] args){
-        URL url = null;
-        try {
-            url = new URL(API_ENDPOINT + "/131820");
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestProperty("charset", CHARSET);
-            conn.setRequestProperty("Authorization", "Token " + API_KEY);
-
-            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
-
-            try {
-                if (conn.getResponseCode() == 200) {
-                    InputStream inputStream = conn.getInputStream();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                    String response = reader.readLine();
-                    reader.close();
-
-                    System.out.println(response);
-                }
-            } finally {
-                conn.disconnect();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
+try{
+    response = new Collection().get(123);
+    System.out.println(response);
+}
+catch (BeyonicException e){
+    e.printStackTrace();
 }
 ```
 
@@ -293,51 +262,22 @@ collection = beyonic.Collection.list()
 ```
 
 ```java
-package com.beyonic.examples.collections;
+package com.beyonic.examples;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import com.beyonic.models.Collection;
+import com.beyonic.exceptions.BeyonicException;
 
-public class ListAllCollectionsExample {
+Beyonic.API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
 
-    private static final String API_ENDPOINT = "https://app.beyonic.com/api/collections";
-    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
-    private static final String CHARSET = "UTF-8";
+String response = null;
 
-    public static void main(String[] args){
-        URL url = null;
-        try {
-            url = new URL(API_ENDPOINT);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestProperty("charset", CHARSET);
-            conn.setRequestProperty("Authorization", "Token " + API_KEY);
-
-            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
-
-            try {
-                if (conn.getResponseCode() == 200) {
-                    InputStream inputStream = conn.getInputStream();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                    String response = reader.readLine();
-                    reader.close();
-
-                    System.out.println(response);
-                }
-            } finally {
-                conn.disconnect();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
+try{
+    // Pass any extra filter options and headers
+    response = new Collection().list(null, null);
+    System.out.println(response);
+}
+catch (BeyonicException e){
+    e.printStackTrace();
 }
 ```
 
@@ -441,51 +381,24 @@ collections = beyonic.Collection.list(phonenumber='+80000000001',
 ```
 
 ```java
-package com.beyonic.examples.collections;
+package com.beyonic.examples;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import com.beyonic.models.Collection;
+import com.beyonic.exceptions.BeyonicException;
 
-public class FilterCollectionsExample {
+Beyonic.API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
 
-    private static final String API_ENDPOINT = "https://app.beyonic.com/api/collections";
-    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
-    private static final String CHARSET = "UTF-8";
+String response = null;
 
-    public static void main(String[] args){
-        URL url = null;
-        try {
-            url = new URL(API_ENDPOINT + "?remote_transaction_id=SS12312");
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestProperty("charset", CHARSET);
-            conn.setRequestProperty("Authorization", "Token " + API_KEY);
-
-            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
-
-            try {
-                if (conn.getResponseCode() == 200) {
-                    InputStream inputStream = conn.getInputStream();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                    String response = reader.readLine();
-                    reader.close();
-
-                    System.out.println(response);
-                }
-            } finally {
-                conn.disconnect();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
+try{
+    HashMap<String, String> filterValues = new HashMap<>();
+    filterValues.put("currency", "KES");
+    filterValues.put("amount", "1000");
+    response = new Collection().filter(filterValues, null);
+    System.out.println(response);
+}
+catch (BeyonicException e){
+    e.printStackTrace();
 }
 ```
 
@@ -568,51 +481,25 @@ collections = beyonic.Collection.list(phonenumber='+80000000001',
 ```
 
 ```java
-package com.beyonic.examples.collections;
+package com.beyonic.examples;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import com.beyonic.models.Collection;
+import com.beyonic.exceptions.BeyonicException;
 
-public class ClaimUnmatchedCollectionExample {
+Beyonic.API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
 
-    private static final String API_ENDPOINT = "https://app.beyonic.com/api/collections";
-    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
-    private static final String CHARSET = "UTF-8";
+String response = null;
 
-    public static void main(String[] args){
-        URL url = null;
-        try {
-            url = new URL(API_ENDPOINT + "?phonenumber=%2B80000000001&remote_transaction_id=SS12312&amount=200&claim=True");
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestProperty("charset", CHARSET);
-            conn.setRequestProperty("Authorization", "Token " + API_KEY);
-
-            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
-
-            try {
-                if (conn.getResponseCode() == 200) {
-                    InputStream inputStream = conn.getInputStream();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                    String response = reader.readLine();
-                    reader.close();
-
-                    System.out.println(response);
-                }
-            } finally {
-                conn.disconnect();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
+try{
+    HashMap<String, String> filterValues = new HashMap<>();
+    filterValues.put("currency", "KES");
+    filterValues.put("amount", "1000");
+    filterValues.put("claim", true);
+    response = new Collection().filter(filterValues, null);
+    System.out.println(response);
+}
+catch (BeyonicException e){
+    e.printStackTrace();
 }
 ```
 

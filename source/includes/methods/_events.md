@@ -97,52 +97,21 @@ event = beyonic.Event.get(12)
 ```
 
 ```java
-package com.beyonic.examples.events;
+package com.beyonic.samples;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import com.beyonic.exceptions.BeyonicException;
+import com.beyonic.models.*;
 
+Beyonic.API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
 
-public class SingleEventExample {
+String response = null;
 
-    private static final String API_ENDPOINT = "https://app.beyonic.com/api/events";
-    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
-    private static final String CHARSET = "UTF-8";
-
-    public static void main(String[] args){
-        URL url = null;
-        try {
-            url = new URL(API_ENDPOINT + "/12");
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestProperty("charset", CHARSET);
-            conn.setRequestProperty("Authorization", "Token " + API_KEY);
-
-            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
-
-            try {
-                if (conn.getResponseCode() == 200) {
-                    InputStream inputStream = conn.getInputStream();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                    String response = reader.readLine();
-                    reader.close();
-
-                    System.out.println(response);
-                }
-            } finally {
-                conn.disconnect();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
+try{
+    response = new Event().get(123);
+    System.out.println(response);
+}
+catch (Exception e){
+    e.printStackTrace();
 }
 ```
 
@@ -214,51 +183,21 @@ events = beyonic.Event.list()
 ```
 
 ```java
-package com.beyonic.examples.events;
+package com.beyonic.samples;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import com.beyonic.exceptions.BeyonicException;
+import com.beyonic.models.*;
 
-public class ListAllEventsExample {
+Beyonic.API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
 
-    private static final String API_ENDPOINT = "https://app.beyonic.com/api/events";
-    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
-    private static final String CHARSET = "UTF-8";
+String response = null;
 
-    public static void main(String[] args){
-        URL url = null;
-        try {
-            url = new URL(API_ENDPOINT);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestProperty("charset", CHARSET);
-            conn.setRequestProperty("Authorization", "Token " + API_KEY);
-
-            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
-
-            try {
-                if (conn.getResponseCode() == 200) {
-                    InputStream inputStream = conn.getInputStream();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                    String response = reader.readLine();
-                    reader.close();
-
-                    System.out.println(response);
-                }
-            } finally {
-                conn.disconnect();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
+try{
+    response = new Event().list(null, null);
+    System.out.println(response);
+}
+catch (Exception e){
+    e.printStackTrace();
 }
 ```
 
@@ -333,51 +272,23 @@ events = beyonic.Event.list(type='contact.created')
 ```
 
 ```java
-package com.beyonic.examples.events;
+package com.beyonic.samples;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import com.beyonic.exceptions.BeyonicException;
+import com.beyonic.models.*;
 
-public class FilterEventsExample {
+Beyonic.API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
 
-    private static final String API_ENDPOINT = "https://app.beyonic.com/api/events";
-    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
-    private static final String CHARSET = "UTF-8";
+String response = null;
 
-    public static void main(String[] args){
-        URL url = null;
-        try {
-            url = new URL(API_ENDPOINT + "?type=contact.created");
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestProperty("charset", CHARSET);
-            conn.setRequestProperty("Authorization", "Token " + API_KEY);
-
-            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
-
-            try {
-                if (conn.getResponseCode() == 200) {
-                    InputStream inputStream = conn.getInputStream();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                    String response = reader.readLine();
-                    reader.close();
-
-                    System.out.println(response);
-                }
-            } finally {
-                conn.disconnect();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
+try{
+    HashMap<String, String> filterValues = new HashMap<>();
+    filterValues.put("type", "contact.created");
+    response = new Event().filter(filterValues, null);
+    System.out.println(response);
+}
+catch (Exception e){
+    e.printStackTrace();
 }
 ```
 

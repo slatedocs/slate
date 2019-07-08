@@ -32,7 +32,17 @@ beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
 
 contacts = beyonic.Contact.list(ordering='-created')
 
+```
 
+```java
+package com.beyonic.examples;
+
+import com.beyonic.models.Contact;
+
+HashMap<String, String> orderingDetails = new HashMap<>();
+orderingDetails.put("ordering", "-created");
+response = new Contact().filter(orderingDetails, null);
+System.out.println(response);
 ```
 
 Most Beyonic API methods support a way to retrieve a list of records. For example, you can retrieve a list of contacts.

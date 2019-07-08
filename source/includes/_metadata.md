@@ -59,6 +59,31 @@ beyonic.Payment.create(phonenumber='+256778122118',
                        )
 ```
 
+```java
+package com.beyonic.examples;
+
+import com.beyonic.models.Payment;
+
+HashMap<String, Object> paymentCreate = new HashMap<>();
+paymentCreate.put("phonenumber", "+80000000001");
+paymentCreate.put("first_name", "Kennedy");
+paymentCreate.put("last_name", "Amani");
+paymentCreate.put("currency", "BXC");
+paymentCreate.put("amount", "30");
+paymentCreate.put("description", "Per diem payment");
+paymentCreate.put("payment_type", "money");
+
+JSONObject metadataObj = new JSONObject();
+metadataObj.put("id", 1234);
+metadataObj.put("name", "Lucy");
+
+paymentCreate.put("metadata", metadataObj.toString());
+
+response = new Payment().create(paymentCreate, null);
+System.out.println(response);
+
+```
+
 Beyonic supports Metadata on the contact, payment and collection request APIs. 
 
 Metadata allows you to add custom key-value attributes when creating objects. You can use metadata to track any 

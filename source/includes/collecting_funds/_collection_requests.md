@@ -146,81 +146,29 @@ print collection_request  # Examine the returned object
 ```
 
 ```java
-package com.beyonic.examples.collectionrequests;
+package com.beyonic.examples;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.beyonic.models.CollectionRequest;
 
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
+Beyonic.API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
 
-public class CreateCollectionRequestExample {
+String response = null;
 
-    private static final String API_ENDPOINT = "https://app.beyonic.com/api/collectionrequests";
-    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
-    private static final String CHARSET = "UTF-8";
-    private static final String PHONE_NUMBER = "+80000000001";
-    private static final String CURRENCY = "BXC";
-    private static final String DESCRIPTION = "Per Diem";
-    private static final String AMOUNT = "1200";
-    private static final String CALLBACK_URL = "https://my.website/payments/callback";
-    private static final String SEND_INSTRUCTIONS = "True";
+try{
+    HashMap<String, Object> crCreateData = new HashMap<>();
+    crCreateData.put("amount", "1200");
+    crCreateData.put("currency", "KES");
+    crCreateData.put("description", "Test  Java Client");
+    crCreateData.put("phonenumber", "+254727447101");
+    response = new CollectionRequest().create(crCreateData, null);
 
-    public static void main(String[] args){
-        URL url = null;
-        try {
-            url = new URL(API_ENDPOINT);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestProperty("charset", CHARSET);
-            conn.setRequestProperty("Authorization", "Token " + API_KEY);
-            conn.setRequestMethod("POST");
-            conn.setDoOutput(true);
-            conn.setDoInput(true);
-
-            JSONObject collectionRequestObject = createCollectionRequestObject();
-
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
-            out.write(collectionRequestObject.toString());
-            out.close();
-
-            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
-
-            int beyID = 0;
-            try {
-                if (conn.getResponseCode() == 201) {
-                    InputStream inputStream = conn.getInputStream();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                    String response = reader.readLine();
-                    reader.close();
-
-                    JSONObject obj = new JSONObject(response);
-                    beyID = obj.getInt("id");
-                    System.out.println("ID of created Collection Request: " + beyID);
-                }
-            } finally {
-                conn.disconnect();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static JSONObject createCollectionRequestObject() throws JSONException {
-        JSONObject collectionRequest = new JSONObject();
-        collectionRequest.put("phonenumber", PHONE_NUMBER);
-        collectionRequest.put("amount", AMOUNT);
-        collectionRequest.put("currency", CURRENCY);
-        collectionRequest.put("description", DESCRIPTION);
-        collectionRequest.put("callback_url", CALLBACK_URL);
-        collectionRequest.put("send_instructions", SEND_INSTRUCTIONS);
-        return collectionRequest;
-    }
+    System.out.println(response);
 }
+catch (BeyonicException e){
+    e.printStackTrace();
+}
+
+
 ```
 
 > Sample Response (JSON) - if you use one of the development libraries, this is automatically converted into a native object for you:
@@ -326,52 +274,20 @@ print collection_request  # Examine the returned object
 ```
 
 ```java
-package com.beyonic.examples.collectionrequests;
+package com.beyonic.examples;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import com.beyonic.models.CollectionRequest;
 
+Beyonic.API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
 
-public class SingleCollectionRequestExample {
+String response = null;
 
-    private static final String API_ENDPOINT = "https://app.beyonic.com/api/collectionrequests";
-    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
-    private static final String CHARSET = "UTF-8";
-
-    public static void main(String[] args){
-        URL url = null;
-        try {
-            url = new URL(API_ENDPOINT + "/427737");
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestProperty("charset", CHARSET);
-            conn.setRequestProperty("Authorization", "Token " + API_KEY);
-
-            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
-
-            try {
-                if (conn.getResponseCode() == 200) {
-                    InputStream inputStream = conn.getInputStream();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                    String response = reader.readLine();
-                    reader.close();
-
-                    System.out.println(response);
-                }
-            } finally {
-                conn.disconnect();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
+try{
+    response = new CollectionRequest().get(123);
+    System.out.println(response);
+}
+catch (BeyonicException e){
+    e.printStackTrace();
 }
 ```
 
@@ -468,51 +384,22 @@ print collection_requests  # Examine the returned objects
 ```
 
 ```java
-package com.beyonic.examples.collectionrequests;
+package com.beyonic.examples;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import com.beyonic.models.CollectionRequest;
+import com.beyonic.exceptions.BeyonicException;
 
-public class ListAllCollectionRequestsExample {
+Beyonic.API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
 
-    private static final String API_ENDPOINT = "https://app.beyonic.com/api/collectionrequests";
-    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
-    private static final String CHARSET = "UTF-8";
+String response = null;
 
-    public static void main(String[] args){
-        URL url = null;
-        try {
-            url = new URL(API_ENDPOINT);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestProperty("charset", CHARSET);
-            conn.setRequestProperty("Authorization", "Token " + API_KEY);
-
-            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
-
-            try {
-                if (conn.getResponseCode() == 200) {
-                    InputStream inputStream = conn.getInputStream();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                    String response = reader.readLine();
-                    reader.close();
-
-                    System.out.println(response);
-                }
-            } finally {
-                conn.disconnect();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
+try{
+    // Pass any extra filter options and headers
+    response = new CollectionRequest().list(null, null);
+    System.out.println(response);
+}
+catch (BeyonicException e){
+    e.printStackTrace();
 }
 ```
 
@@ -659,51 +546,23 @@ print collection_requests  # Examine the returned objects
 ```
 
 ```java
-package com.beyonic.examples.collectionrequests;
+package com.beyonic.examples;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import com.beyonic.models.CollectionRequest;
+import com.beyonic.exceptions.BeyonicException;
 
-public class FilterCollectionRequestsExample {
+Beyonic.API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
 
-    private static final String API_ENDPOINT = "https://app.beyonic.com/api/collections";
-    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
-    private static final String CHARSET = "UTF-8";
+String response = null;
 
-    public static void main(String[] args){
-        URL url = null;
-        try {
-            url = new URL(API_ENDPOINT + "?remote_transaction_id=SS12312&amount=500");
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestProperty("charset", CHARSET);
-            conn.setRequestProperty("Authorization", "Token " + API_KEY);
-
-            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
-
-            try {
-                if (conn.getResponseCode() == 200) {
-                    InputStream inputStream = conn.getInputStream();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                    String response = reader.readLine();
-                    reader.close();
-
-                    System.out.println(response);
-                }
-            } finally {
-                conn.disconnect();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
+try{
+    HashMap<String, String> crFilter = new HashMap<>();
+    crFilter.put("amount", "155");
+    response = new CollectionRequest().filter(crFilter, null);
+    System.out.println(response);
+}
+catch (BeyonicException e){
+    e.printStackTrace();
 }
 ```
 

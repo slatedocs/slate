@@ -141,76 +141,29 @@ print payment  # Examine the returned object
 ```
 
 ```java
-package com.beyonic.examples.payments;
+package com.beyonic.examples;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import com.beyonic.models.Collection;
+import com.beyonic.exceptions.BeyonicException;
 
-public class CreatePayment {
+Beyonic.API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
 
-    private static final String API_ENDPOINT = "https://app.beyonic.com/api/payments";
-    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
-    private static final String CHARSET = "UTF-8";
-    private static final String PHONE_NUMBER = "+80000000001";
-    private static final String CURRENCY = "BXC";
-    private static final String DESCRIPTION = "Per Diem";
-    private static final String AMOUNT = "1200";
-    private static final String CALLBACK_URL = "https://my.website/payments/callback";
+String response = null;
 
-    public static void main(String[] args){
-        URL url = null;
-        try {
-            url = new URL(API_ENDPOINT);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestProperty("charset", CHARSET);
-            conn.setRequestProperty("Authorization", "Token " + API_KEY);
-            conn.setRequestMethod("POST");
-            conn.setDoOutput(true);
-            conn.setDoInput(true);
-
-            JSONObject paymentObject = createPaymentObject();
-
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
-            out.write(paymentObject.toString());
-            out.close();
-
-            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
-
-            try {
-                if (conn.getResponseCode() == 201) {
-                    InputStream inputStream = conn.getInputStream();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                    String response = reader.readLine();
-                    reader.close();
-
-                    JSONObject obj = new JSONObject(response);
-                    int paymentID = obj.getInt("id");
-                    System.out.println("ID of created Payment: " + paymentID);
-                }
-            } finally {
-                conn.disconnect();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static JSONObject createPaymentObject() throws JSONException {
-        JSONObject payment = new JSONObject();
-        payment.put("phonenumber", PHONE_NUMBER);
-        payment.put("amount", AMOUNT);
-        payment.put("currency", CURRENCY);
-        payment.put("description", DESCRIPTION);
-        payment.put("callback_url", CALLBACK_URL);
-        return payment;
-    }
+try{
+    HashMap<String, Object> paymentCreate = new HashMap<>();
+    paymentCreate.put("phonenumber", "+80000000001");
+    paymentCreate.put("first_name", "Kennedy");
+    paymentCreate.put("last_name", "Amani");
+    paymentCreate.put("currency", "BXC");
+    paymentCreate.put("amount", "30");
+    paymentCreate.put("description", "Per diem payment");
+    paymentCreate.put("payment_type", "money");
+    response = new Payment().create(paymentCreate, null);
+    System.out.println(response);
+}
+catch (BeyonicException e){
+    e.printStackTrace();
 }
 ```
 
@@ -366,53 +319,18 @@ print payment  # Examine the returned object
 ```
 
 ```java
-package com.beyonic.examples.payments;
+package com.beyonic;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import com.beyonic.exceptions.BeyonicException;
+import com.beyonic.models.*;
 
+Beyonic.API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
 
-public class SinglePaymentExample {
+String response = null;
 
-    private static final String API_ENDPOINT = "https://app.beyonic.com/api/payments";
-    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
-    private static final String CHARSET = "UTF-8";
+response = new Payment().get(123);
+System.out.println(response);
 
-    public static void main(String[] args){
-        URL url = null;
-        try {
-            url = new URL(API_ENDPOINT + "/22744");
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestProperty("charset", CHARSET);
-            conn.setRequestProperty("Authorization", "Token " + API_KEY);
-
-            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
-
-            try {
-                if (conn.getResponseCode() == 200) {
-                    InputStream inputStream = conn.getInputStream();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                    String response = reader.readLine();
-                    reader.close();
-
-                    System.out.println(response);
-                }
-            } finally {
-                conn.disconnect();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-}
 ```
 
 > Sample Response (JSON) - if you use one of the development libraries, this is automatically converted into a native object for you:
@@ -489,51 +407,24 @@ print payments  # Examine the returned objects
 ```
 
 ```java
-package com.beyonic.examples.payments;
+package com.beyonic.examples;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
-public class ListAllPaymentsExample {
+import com.beyonic.Beyonic;
+import com.beyonic.models.Payment;
+import com.beyonic.exceptions.BeyonicException;
 
-    private static final String API_ENDPOINT = "https://app.beyonic.com/api/payments";
-    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
-    private static final String CHARSET = "UTF-8";
+Beyonic.API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
 
-    public static void main(String[] args){
-        URL url = null;
-        try {
-            url = new URL(API_ENDPOINT);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+String response = null;
 
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestProperty("charset", CHARSET);
-            conn.setRequestProperty("Authorization", "Token " + API_KEY);
-
-            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
-
-            try {
-                if (conn.getResponseCode() == 200) {
-                    InputStream inputStream = conn.getInputStream();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                    String response = reader.readLine();
-                    reader.close();
-
-                    System.out.println(response);
-                }
-            } finally {
-                conn.disconnect();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
+try{
+    // Pass any extra filter options and headers
+    response = new Payment().list(null, null);
+    System.out.println(response);
+}
+catch (BeyonicException e){
+    e.printStackTrace();
 }
 ```
 
@@ -648,51 +539,26 @@ print payments  # Examine the returned objects
 ```
 
 ```java
-package com.beyonic.examples.payments;
+package com.beyonic.examples;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
-public class FilterPaymentsExample {
+import com.beyonic.Beyonic;
+import com.beyonic.models.Payment;
+import com.beyonic.exceptions.BeyonicException;
 
-    private static final String API_ENDPOINT = "https://app.beyonic.com/api/payments";
-    private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
-    private static final String CHARSET = "UTF-8";
+Beyonic.API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
 
-    public static void main(String[] args){
-        URL url = null;
-        try {
-            url = new URL(API_ENDPOINT + "?amount=500");
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+String response = null;
 
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestProperty("charset", CHARSET);
-            conn.setRequestProperty("Authorization", "Token " + API_KEY);
-
-            System.out.println(conn.getResponseCode() + " // " + conn.getResponseMessage());
-
-            try {
-                if (conn.getResponseCode() == 200) {
-                    InputStream inputStream = conn.getInputStream();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                    String response = reader.readLine();
-                    reader.close();
-
-                    System.out.println(response);
-                }
-            } finally {
-                conn.disconnect();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
+try{
+    HashMap<String, String> paymentFilters = new HashMap<>();
+    paymentFilters.put("currency", "KES");
+    paymentFilters.put("amount", "1000");
+    response = new Payment().filter(paymentFilters, null);
+    System.out.println(response);
+}
+catch (BeyonicException e){
+    e.printStackTrace();
 }
 ```
 
