@@ -492,7 +492,7 @@ is_default | false | boolean | false | If `true` this business address will set 
 
 # Trackings
 
-## Get Services
+<!-- ## Get Services
 
 ```http
 GET /snappy/trackings/get_services HTTP/1.1
@@ -546,7 +546,7 @@ Parameter | Required | Type    | Default | Description
 --------- | ------- | ------- | ------- | -----------
 sender_district_id | true | string | | Id of sender's district
 receiver_district_id | true | string | | Id of receiver's district
-receiver_commune_id | false | string | | Id of receiver's commune
+receiver_commune_id | false | string | | Id of receiver's commune -->
 
 ## Get Trackings
 
@@ -732,7 +732,7 @@ Content-Type: application/json
             "quantity": 2
         }
     ],
-    "service_name": "expedited",
+    <!-- "service_name": "expedited", -->
     "cod": 500000
 }
 ```
