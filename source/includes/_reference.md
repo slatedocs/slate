@@ -152,7 +152,7 @@ In many cases, Scout is able to replace New Relic as-is. However, there are case
 
 * __Browser Monitoring (Real User Monitoring)__ - there are a number of dedicated tools for both Real User Monitoring (RUM) and synthetic monitoring. We've [reviewed Raygun Pulse](https://scoutapm.com/blog/real-user-monitoring-with-raygun), an attractive RUM product. You can also continue to use New Relic for browser monitoring and use Scout for application monitoring.
 
-### Our Monitoring Stack
+## Our Monitoring Stack
 
 Curious about what a company that lives-and-breathes monitoring (us!) uses to monitor our apps? [We shared our complete monitoring stack on our blog](https://scoutapm.com/blog/rails-monitoring-stack-2016).
 
