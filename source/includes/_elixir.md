@@ -8,10 +8,6 @@ Our Elixir agent supports Phoenix 1.2.0+ and Elixir 1.4+.
 <a name="installation22"></a>
 <h2 id="elixir-install">Installation</h2>
 
-<aside class="notice">
-  A Scout account is required. <a href="https://scoutapm.com/users/sign_up" target: '_blank'>Signup here</a>.
-</aside>
-
 Tailored instructions are provided within our user interface. General instructions for a Phoenix 1.3+ app:
 
 <div class="install">
