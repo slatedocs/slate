@@ -223,12 +223,143 @@ Content-Type: application/json
 }
 ```
 
+## Generate smiley answers links
+> Generate specific links from answering to smiley-type question from email
+
+```http
+POST /api/v2/surveys/5d10840f5b4ca0038509890c/generate-links HTTP/1.1
+Authorization: Bearer u8ptxAd2hJ3aRjtgwwmUqqkNpcMOYxf3
+Content-Type: application/json
+Host: https://go.screver.com
+```
+
+```json
+{
+    "questionId": "5d10840f5b4ca0038509890c",
+    "emailsArray": [
+      "example1@email.com",
+      "example2@email.com",
+      "example3@email.com"
+    ]
+}
+```
+
+> The above request returns the following response:
+
+```http
+HTTP/1.1 200 OK
+```
+
+```json
+[ { "email": "example1@email.com",
+    "links":
+     [ "http://go.screver.com/survey?token=4f207be5-a00b-4493-bb39-873db282c614?questionId=5d43dc66faa7521f1730ee7e?value=1",
+       "http://go.screver.com/survey?token=4f207be5-a00b-4493-bb39-873db282c614?questionId=5d43dc66faa7521f1730ee7e?value=2",
+       "http://go.screver.com/survey?token=4f207be5-a00b-4493-bb39-873db282c614?questionId=5d43dc66faa7521f1730ee7e?value=3",
+       "http://go.screver.com/survey?token=4f207be5-a00b-4493-bb39-873db282c614?questionId=5d43dc66faa7521f1730ee7e?value=4",
+       "http://go.screver.com/survey?token=4f207be5-a00b-4493-bb39-873db282c614?questionId=5d43dc66faa7521f1730ee7e?value=5" ] },
+  { "email": "example2@email.com",
+    "links":
+     [ "http://go.screver.com/survey?token=2b69e181-3a16-415a-94f4-0aaa2544cd2e?questionId=5d43dc66faa7521f1730ee7e?value=1",
+       "http://go.screver.com/survey?token=2b69e181-3a16-415a-94f4-0aaa2544cd2e?questionId=5d43dc66faa7521f1730ee7e?value=2",
+       "http://go.screver.com/survey?token=2b69e181-3a16-415a-94f4-0aaa2544cd2e?questionId=5d43dc66faa7521f1730ee7e?value=3",
+       "http://go.screver.com/survey?token=2b69e181-3a16-415a-94f4-0aaa2544cd2e?questionId=5d43dc66faa7521f1730ee7e?value=4",
+       "http://go.screver.com/survey?token=2b69e181-3a16-415a-94f4-0aaa2544cd2e?questionId=5d43dc66faa7521f1730ee7e?value=5" ] },
+  { "email": "example3@email.com",
+    "links":
+     [ "http://go.screver.com/survey?token=92bf5361-90ae-47f9-bc67-66d0af776f5a?questionId=5d43dc66faa7521f1730ee7e?value=1",
+       "http://go.screver.com/survey?token=92bf5361-90ae-47f9-bc67-66d0af776f5a?questionId=5d43dc66faa7521f1730ee7e?value=2",
+       "http://go.screver.com/survey?token=92bf5361-90ae-47f9-bc67-66d0af776f5a?questionId=5d43dc66faa7521f1730ee7e?value=3",
+       "http://go.screver.com/survey?token=92bf5361-90ae-47f9-bc67-66d0af776f5a?questionId=5d43dc66faa7521f1730ee7e?value=4",
+       "http://go.screver.com/survey?token=92bf5361-90ae-47f9-bc67-66d0af776f5a?questionId=5d43dc66faa7521f1730ee7e?value=5" ] } ]
+```
+
+### Query Parameters
+
+Parameter | Type | Description | Required |
+--------- | ------- | ----------- | -------- |
+questionId |objectId| ObjectId of specific smiley question in survey.| Yes |
+emailsArray |array| Array of emails of contact.| Yes |
+
 # Survey Results
 ## Delete specific survey result.
 > Delete survey result by user ID or contact email which stored in survey result meta data.
 
 ```http
 DELETE /api/v2/survey-results/remove-one HTTP/1.1
+Authorization: Bearer u8ptxAd2hJ3aRjtgwwmUqqkNpcMOYxf3
+Content-Type: application/json
+Host: https://go.screver.com
+```
+
+```json
+{
+  "userId": "123123"
+}
+```
+
+> The above request returns the following response:
+
+```http
+HTTP/1.1 204 No content
+```
+
+### Query Parameters
+
+Parameter | Type | Description | Required |
+--------- | ------- | ----------- | -------- |
+userId |objectId| ObjectId of specific survey.| No |
+email |string| Email of contact.| No |
+
+## Delete survey result by id
+> Delete survey result by ID
+
+```http
+DELETE /api/v2/survey-results/5d10840f5b4ca0038509890c HTTP/1.1
+Authorization: Bearer u8ptxAd2hJ3aRjtgwwmUqqkNpcMOYxf3
+Content-Type: application/json
+Host: https://go.screver.com
+```
+
+> The above request returns the following response:
+
+```http
+HTTP/1.1 204 No content
+```
+
+## Delete survey results by array of ids
+> Delete survey results by array of ids
+
+```http
+DELETE /api/v2/survey-results/remove-array HTTP/1.1
+Authorization: Bearer u8ptxAd2hJ3aRjtgwwmUqqkNpcMOYxf3
+Content-Type: application/json
+Host: https://go.screver.com
+```
+
+```json
+{
+  "idsArray": [ "5d10840f5b4ca0038509890c", "5d10840f5b4ca0038509465r", "5d10840f5b4ca0038509978x" ]
+}
+```
+
+> The above request returns the following response:
+
+```http
+HTTP/1.1 204 No content
+```
+
+### Query Parameters
+
+Parameter | Type | Description | Required |
+--------- | ------- | ----------- | -------- |
+idsArray |array| Array of ObjectIds.| Yes |
+
+## Delete survey results by meta
+> Delete survey results by user ID or contact email which stored in survey result meta data.
+
+```http
+DELETE /api/v2/survey-results/remove-by-meta HTTP/1.1
 Authorization: Bearer u8ptxAd2hJ3aRjtgwwmUqqkNpcMOYxf3
 Content-Type: application/json
 Host: https://go.screver.com
