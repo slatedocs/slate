@@ -30,7 +30,7 @@ $nav-active-bg: #0f75d4 !default;
 $nav-active-parent-bg: #0c1222 !default; // parent links of the current section
 $lang-select-border: #000 !default;
 $lang-select-bg: #0c1222 !default;
-$lang-select-active-bg: $examples-bg !default; // feel free to change this to blue or something
+$lang-select-active-bg: rgba(119,137,162,.1) !default; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111 !default; // color of language tab bg when mouse is pressed
 $main-bg: #102840 !default;
 $aside-notice-bg: #8fbcd4 !default;
@@ -40,8 +40,7 @@ $search-notice-bg: #c97a7e !default;
 
 // TEXT COLORS
 ////////////////////
-$main-text: rgba(227, 232, 238, 0.9) !default; // main content text color
-$section-heading-text: #e29800;
+$main-text: white !default; // main content text color
 $nav-text: #fff !default;
 $nav-active-text: #fff !default;
 $nav-active-parent-text: #fff !default; // parent links of the current section
@@ -68,12 +67,12 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 // FONTS
 ////////////////////
 %default-font {
-  font-family: "Chakra Petch", -apple-system, Roboto, Helvetica;
+  font-family: "Open Sans", -apple-system, Roboto, Helvetica;
   font-size: 14px;
 }
 
 %header-font {
-  @extend %default-font;
+  font-family: "Chakra Petch", -apple-system, Roboto, Helvetica;
   font-weight: bold;
 }
 
