@@ -20,8 +20,7 @@ License: <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a>
 
 # Authentication
 
-* API Key (personalAccessToken)
-    - Parameter Name: **api_key**, in: header. A personal access token allows access to the api for the user who created it. This should be kept a secret and be treated like a password.
+- HTTP Authentication, scheme: bearer A personal access token allows access to the api for the user who created it. This should be kept a secret and be treated like a password.
 
 - oAuth2 authentication. We require that applications designed to access the Asana API on behalf of multiple users implement OAuth 2.0.
 Asana supports both the Authorization Code Grant flow, and the Implicit Grant flows.
@@ -47,7 +46,7 @@ An *attachment* object represents any file attached to a task in Asana, whether 
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/attachments/{attachment_gid} \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -56,7 +55,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -81,7 +80,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -111,7 +110,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/attachments/{attachment_gid}', params={
@@ -145,7 +144,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/attachments/{attachment_gid}',
@@ -211,7 +210,7 @@ Get the full record for a single attachment.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/attachments \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -220,7 +219,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -245,7 +244,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -275,7 +274,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/tasks/{task_gid}/attachments', params={
@@ -309,7 +308,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/tasks/{task_gid}/attachments',
@@ -373,7 +372,7 @@ Returns the compact records for all attachments on the task.
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/attachments \
   -H 'Content-Type: multipart/form-data' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -385,7 +384,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'multipart/form-data',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -411,7 +410,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'multipart/form-data',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -442,7 +441,7 @@ import requests
 headers = {
   'Content-Type': 'multipart/form-data',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/tasks/{task_gid}/attachments', params={
@@ -477,7 +476,7 @@ require 'json'
 headers = {
   'Content-Type' => 'multipart/form-data',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/tasks/{task_gid}/attachments',
@@ -630,7 +629,7 @@ Not every endpoint can be accessed through the batch API. Specifically, the foll
 curl -X POST https://app.asana.com/api/1.0/batch \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -646,7 +645,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -672,7 +671,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -703,7 +702,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/batch', params={
@@ -738,7 +737,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/batch',
@@ -864,7 +863,7 @@ The [Custom Field API Reference](/developers/api-reference/custom_fields) contai
 curl -X POST https://app.asana.com/api/1.0/custom_fields \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -889,7 +888,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -915,7 +914,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -946,7 +945,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/custom_fields', params={
@@ -981,7 +980,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/custom_fields',
@@ -1126,7 +1125,7 @@ Attempting to edit a locked custom field will return HTTP error code
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -1135,7 +1134,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -1160,7 +1159,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -1190,7 +1189,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}', params={
@@ -1224,7 +1223,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}',
@@ -1393,7 +1392,7 @@ HTTP/1.1 200
 curl -X PUT https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -1417,7 +1416,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -1443,7 +1442,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -1474,7 +1473,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.put('https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}', params={
@@ -1509,7 +1508,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.put 'https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}',
@@ -1606,7 +1605,7 @@ Returns the complete updated custom field record.
 # You can also use wget
 curl -X DELETE https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -1615,7 +1614,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -1640,7 +1639,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -1670,7 +1669,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.delete('https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}', params={
@@ -1704,7 +1703,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.delete 'https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}',
@@ -1763,7 +1762,7 @@ Returns an empty data record.
 curl -X POST https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum_options \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -1780,7 +1779,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -1806,7 +1805,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -1837,7 +1836,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum_options', params={
@@ -1872,7 +1871,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum_options',
@@ -2009,7 +2008,7 @@ Status Code **201**
 curl -X POST https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum_options/insert \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -2027,7 +2026,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -2053,7 +2052,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -2084,7 +2083,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum_options/insert', params={
@@ -2119,7 +2118,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum_options/insert',
@@ -2258,7 +2257,7 @@ Status Code **200**
 curl -X PUT https://app.asana.com/api/1.0/enum_options/{enum_option_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -2274,7 +2273,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -2300,7 +2299,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -2331,7 +2330,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.put('https://app.asana.com/api/1.0/enum_options/{enum_option_gid}', params={
@@ -2366,7 +2365,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.put 'https://app.asana.com/api/1.0/enum_options/{enum_option_gid}',
@@ -2495,7 +2494,7 @@ Status Code **200**
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/custom_fields \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -2504,7 +2503,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -2529,7 +2528,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -2559,7 +2558,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/workspaces/{workspace_gid}/custom_fields', params={
@@ -2593,7 +2592,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/workspaces/{workspace_gid}/custom_fields',
@@ -2666,7 +2665,7 @@ Custom Fields Settings objects represent the many-to-many join of the Custom Fie
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/projects/{project-id}/custom_field_settings \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -2675,7 +2674,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -2700,7 +2699,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -2730,7 +2729,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/projects/{project-id}/custom_field_settings', params={
@@ -2764,7 +2763,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/projects/{project-id}/custom_field_settings',
@@ -2830,7 +2829,7 @@ Returns a list of all of the custom fields settings on a project, in compact for
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/custom_field_settings \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -2839,7 +2838,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -2864,7 +2863,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -2894,7 +2893,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/projects/{project_gid}/custom_field_settings', params={
@@ -2928,7 +2927,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/projects/{project_gid}/custom_field_settings',
@@ -2994,7 +2993,7 @@ Returns a list of all of the custom fields settings on a project, in compact for
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/custom_field_settings \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -3003,7 +3002,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -3028,7 +3027,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -3058,7 +3057,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/custom_field_settings', params={
@@ -3092,7 +3091,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/custom_field_settings',
@@ -3162,7 +3161,7 @@ An event is an object representing a change to a resource that was observed by a
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/events?resource=12345 \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -3171,7 +3170,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -3196,7 +3195,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -3226,7 +3225,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/events', params={
@@ -3260,7 +3259,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/events',
@@ -3343,7 +3342,7 @@ Only the creator of the duplication process can access the duplication status of
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/jobs/{job_gid} \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -3352,7 +3351,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -3377,7 +3376,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -3407,7 +3406,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/jobs/{job_gid}', params={
@@ -3441,7 +3440,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/jobs/{job_gid}',
@@ -3520,7 +3519,7 @@ An *organization_export* object represents a request to export the complete data
 curl -X POST https://app.asana.com/api/1.0/organization_exports \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -3532,7 +3531,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -3558,7 +3557,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -3589,7 +3588,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/organization_exports', params={
@@ -3624,7 +3623,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/organization_exports',
@@ -3701,7 +3700,7 @@ This method creates a request to export an Organization. Asana will complete the
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/organization_exports/{organization_export_gid} \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -3710,7 +3709,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -3735,7 +3734,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -3765,7 +3764,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/organization_exports/{organization_export_gid}', params={
@@ -3799,7 +3798,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/organization_exports/{organization_export_gid}',
@@ -3872,7 +3871,7 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/portfolios \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -3881,7 +3880,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -3906,7 +3905,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -3936,7 +3935,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/portfolios', params={
@@ -3970,7 +3969,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/portfolios',
@@ -4035,7 +4034,7 @@ Returns a list of the portfolios in compact representation that are owned by the
 curl -X POST https://app.asana.com/api/1.0/portfolios \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -4054,7 +4053,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -4080,7 +4079,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -4111,7 +4110,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/portfolios', params={
@@ -4146,7 +4145,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/portfolios',
@@ -4230,7 +4229,7 @@ integrations to create their own starting state on a portfolio.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -4239,7 +4238,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -4264,7 +4263,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -4294,7 +4293,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}', params={
@@ -4328,7 +4327,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/portfolios/{portfolio_gid}',
@@ -4399,7 +4398,7 @@ Returns the complete portfolio record for a single portfolio.
 curl -X PUT https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -4418,7 +4417,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -4444,7 +4443,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -4475,7 +4474,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.put('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}', params={
@@ -4510,7 +4509,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.put 'https://app.asana.com/api/1.0/portfolios/{portfolio_gid}',
@@ -4600,7 +4599,7 @@ Returns the complete updated portfolio record.
 # You can also use wget
 curl -X DELETE https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -4609,7 +4608,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -4634,7 +4633,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -4664,7 +4663,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.delete('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}', params={
@@ -4698,7 +4697,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.delete 'https://app.asana.com/api/1.0/portfolios/{portfolio_gid}',
@@ -4757,7 +4756,7 @@ Returns an empty data record.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/items \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -4766,7 +4765,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -4791,7 +4790,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -4821,7 +4820,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/items', params={
@@ -4855,7 +4854,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/items',
@@ -4939,7 +4938,7 @@ Get a list of the items in compact form in a portfolio.
 # You can also use wget
 curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addItem?item=1331&insert_before=1331&insert_after=1331 \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -4948,7 +4947,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -4973,7 +4972,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -5003,7 +5002,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addItem', params={
@@ -5037,7 +5036,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addItem',
@@ -5100,7 +5099,7 @@ Returns an empty data block.
 # You can also use wget
 curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeItem?item=1331 \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -5109,7 +5108,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -5134,7 +5133,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -5164,7 +5163,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeItem', params={
@@ -5198,7 +5197,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeItem',
@@ -5257,7 +5256,7 @@ Returns an empty data block.
 # You can also use wget
 curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addCustomFieldSetting?custom_field=14916 \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -5266,7 +5265,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -5291,7 +5290,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -5321,7 +5320,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addCustomFieldSetting', params={
@@ -5355,7 +5354,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addCustomFieldSetting',
@@ -5412,7 +5411,7 @@ Custom fields are associated with portfolios by way of custom field settings.  T
 # You can also use wget
 curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeCustomFieldSetting?custom_field=14916 \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -5421,7 +5420,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -5446,7 +5445,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -5476,7 +5475,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeCustomFieldSetting', params={
@@ -5510,7 +5509,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeCustomFieldSetting',
@@ -5568,7 +5567,7 @@ A `project` represents a prioritized list of tasks in Asana or a board with colu
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/project_statuses \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -5577,7 +5576,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -5602,7 +5601,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -5632,7 +5631,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/projects/{project_gid}/project_statuses', params={
@@ -5666,7 +5665,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/projects/{project_gid}/project_statuses',
@@ -5730,7 +5729,7 @@ Returns the compact project status update records for all updates on the project
 curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/project_statuses \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -5744,7 +5743,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -5770,7 +5769,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -5801,7 +5800,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/projects/{project_gid}/project_statuses', params={
@@ -5836,7 +5835,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/projects/{project_gid}/project_statuses',
@@ -5920,7 +5919,7 @@ Returns the full record of the newly created project status update.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/projects \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -5929,7 +5928,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -5954,7 +5953,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -5984,7 +5983,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/projects', params={
@@ -6018,7 +6017,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/projects',
@@ -6105,7 +6104,7 @@ Returns the compact project records for some filtered set of projects. Use one o
 curl -X POST https://app.asana.com/api/1.0/projects \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -6122,7 +6121,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -6148,7 +6147,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -6179,7 +6178,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/projects', params={
@@ -6214,7 +6213,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/projects',
@@ -6336,7 +6335,7 @@ Returns the full record of the newly created project.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/projects/{project_gid} \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -6345,7 +6344,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -6370,7 +6369,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -6400,7 +6399,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/projects/{project_gid}', params={
@@ -6434,7 +6433,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/projects/{project_gid}',
@@ -6529,7 +6528,7 @@ Returns the complete project record for a single project.
 curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -6556,7 +6555,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -6582,7 +6581,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -6613,7 +6612,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.put('https://app.asana.com/api/1.0/projects/{project_gid}', params={
@@ -6648,7 +6647,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.put 'https://app.asana.com/api/1.0/projects/{project_gid}',
@@ -6774,7 +6773,7 @@ Returns the complete updated project record.
 # You can also use wget
 curl -X DELETE https://app.asana.com/api/1.0/projects/{project_gid} \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -6783,7 +6782,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -6808,7 +6807,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -6838,7 +6837,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.delete('https://app.asana.com/api/1.0/projects/{project_gid}', params={
@@ -6872,7 +6871,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.delete 'https://app.asana.com/api/1.0/projects/{project_gid}',
@@ -6932,7 +6931,7 @@ Returns an empty data record.
 curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/duplicate \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -6956,7 +6955,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -6982,7 +6981,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -7013,7 +7012,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/projects/{project_gid}/duplicate', params={
@@ -7048,7 +7047,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/projects/{project_gid}/duplicate',
@@ -7166,7 +7165,7 @@ Creates and returns a job that will asynchronously handle the duplication.
 # You can also use wget
 curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/addCustomFieldSetting?custom_field=14916 \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -7175,7 +7174,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -7200,7 +7199,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -7230,7 +7229,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/projects/{project_gid}/addCustomFieldSetting', params={
@@ -7264,7 +7263,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/projects/{project_gid}/addCustomFieldSetting',
@@ -7321,7 +7320,7 @@ Custom fields are associated with projects by way of custom field settings.  Thi
 # You can also use wget
 curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/removeCustomFieldSetting?custom_field=14916 \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -7330,7 +7329,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -7355,7 +7354,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -7385,7 +7384,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/projects/{project_gid}/removeCustomFieldSetting', params={
@@ -7419,7 +7418,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/projects/{project_gid}/removeCustomFieldSetting',
@@ -7473,7 +7472,7 @@ Removes a custom field setting from a project.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/teams/{team_gid}/projects \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -7482,7 +7481,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -7507,7 +7506,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -7537,7 +7536,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/teams/{team_gid}/projects', params={
@@ -7571,7 +7570,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/teams/{team_gid}/projects',
@@ -7657,7 +7656,7 @@ Returns the compact project records for all projects in the team.
 curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -7684,7 +7683,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -7710,7 +7709,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -7741,7 +7740,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/teams/{team_gid}/projects', params={
@@ -7776,7 +7775,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/teams/{team_gid}/projects',
@@ -7896,7 +7895,7 @@ Returns the full record of the newly created project.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -7905,7 +7904,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -7930,7 +7929,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -7960,7 +7959,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects', params={
@@ -7994,7 +7993,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects',
@@ -8080,7 +8079,7 @@ Returns the compact project records for all projects in the workspace.
 curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -8107,7 +8106,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -8133,7 +8132,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -8164,7 +8163,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects', params={
@@ -8199,7 +8198,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects',
@@ -8326,7 +8325,7 @@ With the introduction of “comment-only” projects in Asana, a user’s member
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/project_memberships \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -8335,7 +8334,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -8360,7 +8359,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -8390,7 +8389,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/projects/{project_gid}/project_memberships', params={
@@ -8424,7 +8423,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/projects/{project_gid}/project_memberships',
@@ -8490,7 +8489,7 @@ Returns the compact project membership records for the project.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/project_memberships/{project_gid} \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -8499,7 +8498,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -8524,7 +8523,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -8554,7 +8553,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/project_memberships/{project_gid}', params={
@@ -8588,7 +8587,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/project_memberships/{project_gid}',
@@ -8665,7 +8664,7 @@ A *project status* is an update on the progress of a particular project, and is 
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/project_statuses/{project_status_gid} \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -8674,7 +8673,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -8699,7 +8698,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -8729,7 +8728,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/project_statuses/{project_status_gid}', params={
@@ -8763,7 +8762,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/project_statuses/{project_status_gid}',
@@ -8825,7 +8824,7 @@ Returns the complete record for a single status update.
 # You can also use wget
 curl -X DELETE https://app.asana.com/api/1.0/project_statuses/{project_status_gid} \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -8834,7 +8833,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -8859,7 +8858,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -8889,7 +8888,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.delete('https://app.asana.com/api/1.0/project_statuses/{project_status_gid}', params={
@@ -8923,7 +8922,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.delete 'https://app.asana.com/api/1.0/project_statuses/{project_status_gid}',
@@ -8981,7 +8980,7 @@ A *section* is a subdivision of a project that groups tasks together.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/sections \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -8990,7 +8989,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -9015,7 +9014,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -9045,7 +9044,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/projects/{project_gid}/sections', params={
@@ -9079,7 +9078,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/projects/{project_gid}/sections',
@@ -9145,7 +9144,7 @@ Returns the compact records for all sections in the specified project.
 curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/sections \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -9158,7 +9157,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -9184,7 +9183,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -9215,7 +9214,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/projects/{project_gid}/sections', params={
@@ -9250,7 +9249,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/projects/{project_gid}/sections',
@@ -9328,7 +9327,7 @@ Returns the full record of the newly created section.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/sections/{section_gid} \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -9337,7 +9336,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -9362,7 +9361,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -9392,7 +9391,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/sections/{section_gid}', params={
@@ -9426,7 +9425,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/sections/{section_gid}',
@@ -9492,7 +9491,7 @@ Returns the complete record for a single section.
 curl -X PUT https://app.asana.com/api/1.0/sections/{section_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -9509,7 +9508,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -9535,7 +9534,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -9566,7 +9565,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.put('https://app.asana.com/api/1.0/sections/{section_gid}', params={
@@ -9601,7 +9600,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.put 'https://app.asana.com/api/1.0/sections/{section_gid}',
@@ -9689,7 +9688,7 @@ Returns the complete updated section record.
 # You can also use wget
 curl -X DELETE https://app.asana.com/api/1.0/sections/{section_gid} \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -9698,7 +9697,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -9723,7 +9722,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -9753,7 +9752,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.delete('https://app.asana.com/api/1.0/sections/{section_gid}', params={
@@ -9787,7 +9786,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.delete 'https://app.asana.com/api/1.0/sections/{section_gid}',
@@ -9851,7 +9850,7 @@ Returns an empty data block.
 curl -X POST https://app.asana.com/api/1.0/sections/{section_gid}/addTask \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -9865,7 +9864,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -9891,7 +9890,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -9922,7 +9921,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/sections/{section_gid}/addTask', params={
@@ -9957,7 +9956,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/sections/{section_gid}/addTask',
@@ -10027,7 +10026,7 @@ This does not work for separators (tasks with the resource_subtype of section).
 curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/sections/insert \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -10042,7 +10041,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -10068,7 +10067,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -10099,7 +10098,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/projects/{project_gid}/sections/insert', params={
@@ -10134,7 +10133,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/projects/{project_gid}/sections/insert',
@@ -10214,7 +10213,7 @@ Returns an empty data block.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/sections/{section_gid}/tasks \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -10223,7 +10222,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -10248,7 +10247,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -10278,7 +10277,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/sections/{section_gid}/tasks', params={
@@ -10312,7 +10311,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/sections/{section_gid}/tasks',
@@ -10404,7 +10403,7 @@ p JSON.parse(result)
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tasks/search \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -10413,7 +10412,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -10438,7 +10437,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -10468,7 +10467,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tasks/search', params={
@@ -10502,7 +10501,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tasks/search',
@@ -10683,7 +10682,7 @@ A story represents an activity associated with an object in the Asana system.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -10692,7 +10691,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -10717,7 +10716,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -10747,7 +10746,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/tasks/{task_gid}/stories', params={
@@ -10781,7 +10780,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/tasks/{task_gid}/stories',
@@ -10885,7 +10884,7 @@ Returns the compact records for all stories on the task.
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -10898,7 +10897,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -10924,7 +10923,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -10955,7 +10954,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/tasks/{task_gid}/stories', params={
@@ -10990,7 +10989,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/tasks/{task_gid}/stories',
@@ -11208,7 +11207,7 @@ Returns the full record for the new story added to the task.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/stories/{story_gid} \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -11217,7 +11216,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -11242,7 +11241,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -11272,7 +11271,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/stories/{story_gid}', params={
@@ -11306,7 +11305,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/stories/{story_gid}',
@@ -11509,7 +11508,7 @@ Returns the full record for a single story.
 curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -11600,7 +11599,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -11626,7 +11625,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -11657,7 +11656,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.put('https://app.asana.com/api/1.0/stories/{story_gid}', params={
@@ -11692,7 +11691,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.put 'https://app.asana.com/api/1.0/stories/{story_gid}',
@@ -11982,7 +11981,7 @@ Updates the story and returns the full record for the updated story. Only commen
 # You can also use wget
 curl -X DELETE https://app.asana.com/api/1.0/stories/{story_gid} \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -11991,7 +11990,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -12016,7 +12015,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -12046,7 +12045,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.delete('https://app.asana.com/api/1.0/stories/{story_gid}', params={
@@ -12080,7 +12079,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.delete 'https://app.asana.com/api/1.0/stories/{story_gid}',
@@ -12142,7 +12141,7 @@ A tag is a label that can be attached to any task in Asana. It exists in a singl
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/tags \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -12151,7 +12150,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -12176,7 +12175,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -12206,7 +12205,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/tags', params={
@@ -12240,7 +12239,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/tags',
@@ -12308,7 +12307,7 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
 curl -X POST https://app.asana.com/api/1.0/tags \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -12326,7 +12325,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -12352,7 +12351,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -12383,7 +12382,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/tags', params={
@@ -12418,7 +12417,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/tags',
@@ -12510,7 +12509,7 @@ Returns the full record of the newly created tag.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/tags/{tag_gid} \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -12519,7 +12518,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -12544,7 +12543,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -12574,7 +12573,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/tags/{tag_gid}', params={
@@ -12608,7 +12607,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/tags/{tag_gid}',
@@ -12679,7 +12678,7 @@ Returns the complete tag record for a single tag.
 # You can also use wget
 curl -X PUT https://app.asana.com/api/1.0/tags/{tag_gid} \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -12688,7 +12687,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -12713,7 +12712,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -12743,7 +12742,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.put('https://app.asana.com/api/1.0/tags/{tag_gid}', params={
@@ -12777,7 +12776,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.put 'https://app.asana.com/api/1.0/tags/{tag_gid}',
@@ -12855,7 +12854,7 @@ Returns the complete updated tag record.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/tags/{tag_gid}/tasks \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -12864,7 +12863,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -12889,7 +12888,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -12919,7 +12918,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/tags/{tag_gid}/tasks', params={
@@ -12953,7 +12952,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/tags/{tag_gid}/tasks',
@@ -13045,7 +13044,7 @@ Returns the compact task records for all tasks with the given tag. Tasks can hav
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -13054,7 +13053,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -13079,7 +13078,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -13109,7 +13108,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags', params={
@@ -13143,7 +13142,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags',
@@ -13210,7 +13209,7 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
 curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -13228,7 +13227,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -13254,7 +13253,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -13285,7 +13284,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags', params={
@@ -13320,7 +13319,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags',
@@ -13412,7 +13411,7 @@ The task is the basic object around which many operations in Asana are centered.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/tasks \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -13421,7 +13420,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -13446,7 +13445,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -13476,7 +13475,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/projects/{project_gid}/tasks', params={
@@ -13510,7 +13509,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/projects/{project_gid}/tasks',
@@ -13602,7 +13601,7 @@ Returns the compact task records for all tasks within the given project, ordered
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/tasks \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -13611,7 +13610,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -13636,7 +13635,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -13666,7 +13665,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/tasks', params={
@@ -13700,7 +13699,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/tasks',
@@ -13818,7 +13817,7 @@ include assigning, renaming, completing, and adding stories.
 curl -X POST https://app.asana.com/api/1.0/tasks \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -13859,7 +13858,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -13885,7 +13884,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -13916,7 +13915,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/tasks', params={
@@ -13951,7 +13950,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/tasks',
@@ -14107,7 +14106,7 @@ explicitly if you specify `projects` or a `parent` task instead.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid} \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -14116,7 +14115,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -14141,7 +14140,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -14171,7 +14170,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/tasks/{task_gid}', params={
@@ -14205,7 +14204,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/tasks/{task_gid}',
@@ -14319,7 +14318,7 @@ Returns the complete task record for a single task.
 curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -14360,7 +14359,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -14386,7 +14385,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -14417,7 +14416,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.put('https://app.asana.com/api/1.0/tasks/{task_gid}', params={
@@ -14452,7 +14451,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.put 'https://app.asana.com/api/1.0/tasks/{task_gid}',
@@ -14611,7 +14610,7 @@ Returns the complete updated task record.
 # You can also use wget
 curl -X DELETE https://app.asana.com/api/1.0/tasks/{task_gid} \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -14620,7 +14619,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -14645,7 +14644,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -14675,7 +14674,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.delete('https://app.asana.com/api/1.0/tasks/{task_gid}', params={
@@ -14709,7 +14708,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.delete 'https://app.asana.com/api/1.0/tasks/{task_gid}',
@@ -14771,7 +14770,7 @@ Returns an empty data record.
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/duplicate \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -14789,7 +14788,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -14815,7 +14814,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -14846,7 +14845,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/tasks/{task_gid}/duplicate', params={
@@ -14881,7 +14880,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/tasks/{task_gid}/duplicate',
@@ -14988,7 +14987,7 @@ Creates and returns a job that will asynchronously handle the duplication.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -14997,7 +14996,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -15022,7 +15021,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -15052,7 +15051,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks', params={
@@ -15086,7 +15085,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks',
@@ -15179,7 +15178,7 @@ Returns a compact representation of all of the subtasks of a task.
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -15220,7 +15219,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -15246,7 +15245,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -15277,7 +15276,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks', params={
@@ -15312,7 +15311,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks',
@@ -15464,7 +15463,7 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/setParent \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -15480,7 +15479,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -15506,7 +15505,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -15537,7 +15536,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/tasks/{task_gid}/setParent', params={
@@ -15572,7 +15571,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/tasks/{task_gid}/setParent',
@@ -15702,7 +15701,7 @@ parent, or no parent task at all. Returns an empty data block. When using `inser
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/dependencies \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -15711,7 +15710,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -15736,7 +15735,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -15766,7 +15765,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/tasks/{task_gid}/dependencies', params={
@@ -15800,7 +15799,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/tasks/{task_gid}/dependencies',
@@ -15893,7 +15892,7 @@ Returns the compact representations of all of the dependencies of a task.
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addDependencies \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -15910,7 +15909,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -15936,7 +15935,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -15967,7 +15966,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/tasks/{task_gid}/addDependencies', params={
@@ -16002,7 +16001,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/tasks/{task_gid}/addDependencies',
@@ -16109,7 +16108,7 @@ Marks a set of tasks as dependencies of this task, if they are not already depen
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependencies \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -16126,7 +16125,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -16152,7 +16151,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -16183,7 +16182,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependencies', params={
@@ -16218,7 +16217,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependencies',
@@ -16324,7 +16323,7 @@ Unlinks a set of dependencies from this task.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/dependents \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -16333,7 +16332,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -16358,7 +16357,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -16388,7 +16387,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/tasks/{task_gid}/dependents', params={
@@ -16422,7 +16421,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/tasks/{task_gid}/dependents',
@@ -16515,7 +16514,7 @@ Returns the compact representations of all of the dependents of a task.
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addDependents \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -16532,7 +16531,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -16558,7 +16557,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -16589,7 +16588,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/tasks/{task_gid}/addDependents', params={
@@ -16624,7 +16623,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/tasks/{task_gid}/addDependents',
@@ -16731,7 +16730,7 @@ Marks a set of tasks as dependents of this task, if they are not already depende
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependents \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -16748,7 +16747,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -16774,7 +16773,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -16805,7 +16804,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependents', params={
@@ -16840,7 +16839,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependents',
@@ -16946,7 +16945,7 @@ Unlinks a set of dependents from this task.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/projects \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -16955,7 +16954,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -16980,7 +16979,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -17010,7 +17009,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/tasks/{task_gid}/projects', params={
@@ -17044,7 +17043,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/tasks/{task_gid}/projects',
@@ -17129,7 +17128,7 @@ Returns a compact representation of all of the projects the task is in.
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addProject \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -17146,7 +17145,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -17172,7 +17171,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -17203,7 +17202,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/tasks/{task_gid}/addProject', params={
@@ -17238,7 +17237,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/tasks/{task_gid}/addProject',
@@ -17327,7 +17326,7 @@ Returns an empty data block.
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeProject \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -17341,7 +17340,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -17367,7 +17366,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -17398,7 +17397,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/tasks/{task_gid}/removeProject', params={
@@ -17433,7 +17432,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/tasks/{task_gid}/removeProject',
@@ -17505,7 +17504,7 @@ Returns an empty data block.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/tags \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -17514,7 +17513,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -17539,7 +17538,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -17569,7 +17568,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/tasks/{task_gid}/tags', params={
@@ -17603,7 +17602,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/tasks/{task_gid}/tags',
@@ -17670,7 +17669,7 @@ Get a compact representation of all of the tags the task has.
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addTag \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -17684,7 +17683,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -17710,7 +17709,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -17741,7 +17740,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/tasks/{task_gid}/addTag', params={
@@ -17776,7 +17775,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/tasks/{task_gid}/addTag',
@@ -17846,7 +17845,7 @@ Adds a tag to a task. Returns an empty data block.
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeTag \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -17860,7 +17859,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -17886,7 +17885,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -17917,7 +17916,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/tasks/{task_gid}/removeTag', params={
@@ -17952,7 +17951,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/tasks/{task_gid}/removeTag',
@@ -18022,7 +18021,7 @@ Removes a tag from a task. Returns an empty data block.
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addFollowers \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -18039,7 +18038,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -18065,7 +18064,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -18096,7 +18095,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/tasks/{task_gid}/addFollowers', params={
@@ -18131,7 +18130,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/tasks/{task_gid}/addFollowers',
@@ -18206,7 +18205,7 @@ Requests to add/remove followers, if successful, will return the complete update
 curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeFollowers \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -18223,7 +18222,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -18249,7 +18248,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -18280,7 +18279,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/tasks/{task_gid}/removeFollowers', params={
@@ -18315,7 +18314,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/tasks/{task_gid}/removeFollowers',
@@ -18391,7 +18390,7 @@ A *team* is used to group related projects and people together within an organiz
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/teams/{team_gid} \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -18400,7 +18399,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -18425,7 +18424,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -18455,7 +18454,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/teams/{team_gid}', params={
@@ -18489,7 +18488,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/teams/{team_gid}',
@@ -18553,7 +18552,7 @@ Returns the full record for a single team.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/organizations/{organization_gid}/teams \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -18562,7 +18561,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -18587,7 +18586,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -18617,7 +18616,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/organizations/{organization_gid}/teams', params={
@@ -18651,7 +18650,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/organizations/{organization_gid}/teams',
@@ -18717,7 +18716,7 @@ Returns the compact records for all teams in the organization visible to the aut
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/teams?organization_gid=1331 \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -18726,7 +18725,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -18751,7 +18750,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -18781,7 +18780,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/users/{user_gid}/teams', params={
@@ -18815,7 +18814,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/users/{user_gid}/teams',
@@ -18883,7 +18882,7 @@ Returns the compact records for all teams to which the given user is assigned.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/teams/{team_gid}/users \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -18892,7 +18891,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -18917,7 +18916,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -18947,7 +18946,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/teams/{team_gid}/users', params={
@@ -18981,7 +18980,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/teams/{team_gid}/users',
@@ -19048,7 +19047,7 @@ Returns the compact records for all users that are members of the team.
 curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/addUser \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -19060,7 +19059,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -19086,7 +19085,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -19117,7 +19116,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/teams/{team_gid}/addUser', params={
@@ -19152,7 +19151,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/teams/{team_gid}/addUser',
@@ -19228,7 +19227,7 @@ The user making this call must be a member of the team in order to add others. T
 curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/removeUser \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -19240,7 +19239,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -19266,7 +19265,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -19297,7 +19296,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/teams/{team_gid}/removeUser', params={
@@ -19332,7 +19331,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/teams/{team_gid}/removeUser',
@@ -19411,7 +19410,7 @@ A user object represents an account in Asana that can be given access to various
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/users \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -19420,7 +19419,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -19445,7 +19444,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -19475,7 +19474,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/users', params={
@@ -19509,7 +19508,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/users',
@@ -19576,7 +19575,7 @@ Results are sorted by user ID.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/users/{user_gid} \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -19585,7 +19584,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -19610,7 +19609,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -19640,7 +19639,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/users/{user_gid}', params={
@@ -19674,7 +19673,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/users/{user_gid}',
@@ -19747,7 +19746,7 @@ Results are sorted by user ID.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/favorites?resource_type=project&workspace=1234 \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -19756,7 +19755,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -19781,7 +19780,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -19811,7 +19810,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/users/{user_gid}/favorites', params={
@@ -19845,7 +19844,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/users/{user_gid}/favorites',
@@ -19918,7 +19917,7 @@ Results are given in order (The same order as Asana's sidebar).
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/users \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -19927,7 +19926,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -19952,7 +19951,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -19982,7 +19981,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/workspaces/{workspace_gid}/users', params={
@@ -20016,7 +20015,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/workspaces/{workspace_gid}/users',
@@ -20087,7 +20086,7 @@ A user task list represents the tasks assigned to a particular user.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/user_task_list/{user_task_list_gid} \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -20096,7 +20095,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -20121,7 +20120,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -20151,7 +20150,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/user_task_list/{user_task_list_gid}', params={
@@ -20185,7 +20184,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/user_task_list/{user_task_list_gid}',
@@ -20248,7 +20247,7 @@ Returns the full record for a user task list.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/user_task_list \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -20257,7 +20256,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -20282,7 +20281,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -20312,7 +20311,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/users/{user_gid}/user_task_list', params={
@@ -20346,7 +20345,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/users/{user_gid}/user_task_list',
@@ -20409,7 +20408,7 @@ Returns the full record for a user's task list.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/user_task_lists/{user_task_list_gid}/tasks \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -20418,7 +20417,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -20443,7 +20442,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -20473,7 +20472,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/user_task_lists/{user_task_list_gid}/tasks', params={
@@ -20507,7 +20506,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/user_task_lists/{user_task_list_gid}/tasks',
@@ -20611,7 +20610,7 @@ Webhooks allow an application to be notified of changes in Asana.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/webhooks?workspace=1331 \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -20620,7 +20619,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -20645,7 +20644,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -20675,7 +20674,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/webhooks', params={
@@ -20709,7 +20708,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/webhooks',
@@ -20781,7 +20780,7 @@ Get the compact representation of all webhooks your app has registered for the a
 curl -X POST https://app.asana.com/api/1.0/webhooks \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -20794,7 +20793,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -20820,7 +20819,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -20851,7 +20850,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/webhooks', params={
@@ -20886,7 +20885,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/webhooks',
@@ -21017,7 +21016,7 @@ HTTP/1.1 201
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/webhooks/{webhook_gid} \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -21026,7 +21025,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -21051,7 +21050,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -21081,7 +21080,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/webhooks/{webhook_gid}', params={
@@ -21115,7 +21114,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/webhooks/{webhook_gid}',
@@ -21182,7 +21181,7 @@ Returns the full record for the given webhook.
 # You can also use wget
 curl -X DELETE https://app.asana.com/api/1.0/webhooks/{webhook_gid} \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -21191,7 +21190,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -21216,7 +21215,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -21246,7 +21245,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.delete('https://app.asana.com/api/1.0/webhooks/{webhook_gid}', params={
@@ -21280,7 +21279,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.delete 'https://app.asana.com/api/1.0/webhooks/{webhook_gid}',
@@ -21340,7 +21339,7 @@ A workspace is the highest-level organizational unit in Asana. An organization i
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/typeahead?resource_type=user \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -21349,7 +21348,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -21374,7 +21373,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -21404,7 +21403,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/workspaces/{workspace_gid}/typeahead', params={
@@ -21438,7 +21437,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/workspaces/{workspace_gid}/typeahead',
@@ -21539,7 +21538,7 @@ data is included in a response.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/workspaces \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -21548,7 +21547,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -21573,7 +21572,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -21603,7 +21602,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/workspaces', params={
@@ -21637,7 +21636,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/workspaces',
@@ -21701,7 +21700,7 @@ Returns the compact records for all workspaces visible to the authorized user.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid} \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -21710,7 +21709,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -21735,7 +21734,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -21765,7 +21764,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/workspaces/{workspace_gid}', params={
@@ -21799,7 +21798,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/workspaces/{workspace_gid}',
@@ -21865,7 +21864,7 @@ Returns the full workspace record for a single workspace.
 curl -X PUT https://app.asana.com/api/1.0/workspaces/{workspace_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -21883,7 +21882,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -21909,7 +21908,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -21940,7 +21939,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.put('https://app.asana.com/api/1.0/workspaces/{workspace_gid}', params={
@@ -21975,7 +21974,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.put 'https://app.asana.com/api/1.0/workspaces/{workspace_gid}',
@@ -22058,7 +22057,7 @@ Returns the complete, updated workspace record.
 curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/addUser \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -22070,7 +22069,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -22096,7 +22095,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -22127,7 +22126,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/workspaces/{workspace_gid}/addUser', params={
@@ -22162,7 +22161,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/workspaces/{workspace_gid}/addUser',
@@ -22245,7 +22244,7 @@ The user can be referenced by their globally unique user ID or their email addre
 curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/removeUser \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -22257,7 +22256,7 @@ const inputBody = '{
 const headers = {
   'Content-Type':'application/json',
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -22283,7 +22282,7 @@ require 'vendor/autoload.php';
 $headers = array(
     'Content-Type' => 'application/json',
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -22314,7 +22313,7 @@ import requests
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.post('https://app.asana.com/api/1.0/workspaces/{workspace_gid}/removeUser', params={
@@ -22349,7 +22348,7 @@ require 'json'
 headers = {
   'Content-Type' => 'application/json',
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.post 'https://app.asana.com/api/1.0/workspaces/{workspace_gid}/removeUser',
@@ -22418,7 +22417,7 @@ Returns an empty data record.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/portfolio_memberships \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -22427,7 +22426,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -22452,7 +22451,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -22482,7 +22481,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/portfolio_memberships', params={
@@ -22516,7 +22515,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/portfolio_memberships',
@@ -22581,7 +22580,7 @@ Returns a list of portfolio memberships in compact representation. You must spec
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/portfolio_memberships \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -22590,7 +22589,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -22615,7 +22614,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -22645,7 +22644,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/portfolio_memberships', params={
@@ -22679,7 +22678,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/portfolio_memberships',
@@ -22743,7 +22742,7 @@ Returns the compact portfolio membership records for the portfolio.
 # You can also use wget
 curl -X GET https://app.asana.com/api/1.0/portfolio_memberships/{portfolio_gid} \
   -H 'Accept: application/json' \
-  -H 'api_key: API_KEY'
+  -H 'Authorization: Bearer {access-token}'
 
 ```
 
@@ -22752,7 +22751,7 @@ const fetch = require('node-fetch');
 
 const headers = {
   'Accept':'application/json',
-  'api_key':'API_KEY'
+  'Authorization':'Bearer {access-token}'
 
 };
 
@@ -22777,7 +22776,7 @@ require 'vendor/autoload.php';
 
 $headers = array(
     'Accept' => 'application/json',
-    'api_key' => 'API_KEY',
+    'Authorization' => 'Bearer {access-token}',
     
     );
 
@@ -22807,7 +22806,7 @@ try {
 import requests
 headers = {
   'Accept': 'application/json',
-  'api_key': 'API_KEY'
+  'Authorization': 'Bearer {access-token}'
 }
 
 r = requests.get('https://app.asana.com/api/1.0/portfolio_memberships/{portfolio_gid}', params={
@@ -22841,7 +22840,7 @@ require 'json'
 
 headers = {
   'Accept' => 'application/json',
-  'api_key' => 'API_KEY'
+  'Authorization' => 'Bearer {access-token}'
 }
 
 result = RestClient.get 'https://app.asana.com/api/1.0/portfolio_memberships/{portfolio_gid}',

@@ -3111,12 +3111,12 @@ components:
             $ref: '#/components/schemas/Workspace'
   securitySchemes:
     personalAccessToken:
-      type: apiKey
+      type: http
       description: >-
         A personal access token allows access to the api for the user who
         created it. This should be kept a secret and be treated like a
         password.
-      name: api_key
+      name: Authorization
       in: header
       scheme: bearer
     oauth2:
