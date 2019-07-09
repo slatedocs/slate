@@ -631,6 +631,7 @@ components:
             same fields and behavior, but may render differently in Asana or
             represent resources with different semantic meaning.
           type: string
+          readOnly: true
           example: milestone
     AsanaCreatedAt:
       properties:
@@ -650,8 +651,8 @@ components:
                 - $ref: '#/components/schemas/User'
                 - type: object
                   description: The user who created this resource.
-                  nullable: true
                   readOnly: true
+                  nullable: true
     Attachment:
       allOf:
         - $ref: '#/components/schemas/AttachmentCompact'
@@ -1996,6 +1997,7 @@ components:
                 **Conditional**. Whether the text of the story has been edited
                 after creation.
               type: boolean
+              readOnly: true
               example: false
             is_pinned:
               description: >-
@@ -2071,10 +2073,12 @@ components:
                 **Conditional**
               type: string
               example: This is the New Name
+              readOnly: true
             old_dates:
               description: >-
                 **Conditional**
               type: object
+              readOnly: true
               properties:
                 start_on:
                   type: string
@@ -2092,6 +2096,7 @@ components:
               description: >-
                 **Conditional**
               type: object
+              readOnly: true
               properties:
                 start_on:
                   type: string
@@ -2109,87 +2114,107 @@ components:
               description: >-
                 **Conditional**
               type: string
+              readOnly: true
               example: default_task
             new_resource_subtype:
               description: >-
                 **Conditional**
               type: string
+              readOnly: true
               example: milestone
             story:
               description: >-
                 **Conditional**
               $ref: '#/components/schemas/StoryCompact'
+              readOnly: true
             assignee:
               description: >-
                 **Conditional**
+              readOnly: true
               $ref: '#/components/schemas/UserCompact'
             follower:
               description: >-
                 **Conditional**
+              readOnly: true
               $ref: '#/components/schemas/UserCompact'
             old_section:
               description: >-
                 **Conditional**
+              readOnly: true
               $ref: '#/components/schemas/SectionCompact'
             new_section:
               description: >-
                 **Conditional**
+              readOnly: true
               $ref: '#/components/schemas/SectionCompact'
             task:
               description: >-
                 **Conditional**
+              readOnly: true
               $ref: '#/components/schemas/TaskCompact'
             project:
               description: >-
                 **Conditional**
+              readOnly: true
               $ref: '#/components/schemas/ProjectCompact'
             tag:
               description: >-
                 **Conditional**
+              readOnly: true
               $ref: '#/components/schemas/TagCompact'
             custom_field:
               description: >-
                 **Conditional**
+              readOnly: true
               $ref: '#/components/schemas/CustomFieldCompact'
             old_text_value:
               description: >-
                 **Conditional**
+              readOnly: true
               type: string
               example: This was the Old Text
             new_text_value:
               description: >-
                 **Conditional**
+              readOnly: true
               type: string
               example: This is the New Text
             old_number_value:
               description: >-
                 **Conditional**
+              readOnly: true
               type: integer
               example: 1
             new_number_value:
               description: >-
                 **Conditional**
+              readOnly: true
               type: integer
               example: 2
             old_enum_value:
               description: >-
                 **Conditional**
+              readOnly: true
               $ref: '#/components/schemas/EnumOptionCompact'
             new_enum_value:
               description: >-
                 **Conditional**
+              readOnly: true
               $ref: '#/components/schemas/EnumOptionCompact'
             duplicate_of:
               description: >-
                 **Conditional**
+              readOnly: true
               $ref: '#/components/schemas/TaskCompact'
             duplicated_from:
               description: >-
                 **Conditional**
+              readOnly: true
               $ref: '#/components/schemas/TaskCompact'
-            dependancy:
+            dependency:
               description: >-
                 **Conditional**
+              readOnly: true
               $ref: '#/components/schemas/TaskCompact'
             source:
               description: >-
@@ -2202,6 +2227,7 @@ components:
               description: >-
                 The object this story is associated with. Currently may only be a
                 task.
+              readOnly: true
               properties:
                 id:
                   type: integer
@@ -2209,7 +2235,6 @@ components:
                 name:
                   type: string
                   example: Bug Task
-              readOnly: true
     StoryCompact:
       allOf:
         - $ref: '#/components/schemas/AsanaObject'
@@ -2655,6 +2680,7 @@ components:
                 $ref: '#/components/schemas/ProjectCompact'
             resource_subtype:
               type: string
+              readOnly: true
               descriptions: >-
                 The subtype of this resource. Different subtypes retain many of
                 the same fields and behavior, but may render differently in Asana
@@ -2708,6 +2734,7 @@ components:
                     *Create-only*. The workspace this task is associated with.
                     Once created, task cannot be moved to a different workspace.
                     This attribute can only be specified at creation time.
+                  readOnly: true
     TaskCompact:
       allOf:
         - $ref: '#/components/schemas/AsanaNamedObject'
