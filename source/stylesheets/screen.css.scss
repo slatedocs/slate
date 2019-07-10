@@ -4,7 +4,7 @@
 @import "icon-font";
 @import url("https://fonts.googleapis.com/css?family=Chakra+Petch");
 @import url("https://fonts.googleapis.com/css?family=Fira+Mono");
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
 // @import 'rtl'; // uncomment to switch to RTL format
 
 /*
@@ -26,9 +26,9 @@ under the License.
 ////////////////////////////////////////////////////////////////////////////////
 // VARIABLES
 ////////////////////////////////////////////////////////////////////////////////
-$blue-gray-04: rgba(119,137,162,.4);
-$blue-gray-03: rgba(119,137,162,.3);
-$blue-gray-01: rgba(119,137,162,.1);
+$blue-gray-04: rgba(119, 137, 162, 0.4);
+$blue-gray-03: rgba(119, 137, 162, 0.3);
+$blue-gray-01: rgba(119, 137, 162, 0.1);
 $card-dark: #0c1222;
 $blue-gray: #7789a2;
 $table-head-bg: $blue-gray-04;
@@ -37,7 +37,6 @@ $border-main: $blue-gray-03;
 ////////////////////////////////////////////////////////////////////////////////
 // GENERAL STUFF
 ////////////////////////////////////////////////////////////////////////////////
-
 
 html,
 body {
@@ -554,6 +553,16 @@ body {
     border-radius: 4px;
     border: 1px solid #f7e633;
     background: linear-gradient(to top left, #f7e633 0%, #f1d32f 100%);
+  }
+
+  a {
+    text-decoration: none;
+    color: $section-heading-text;
+    font-weight: bold;
+
+    &:visited {
+      color: darken($section-heading-text, 10%);
+    }
   }
 }
 
