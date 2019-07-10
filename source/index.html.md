@@ -8,42 +8,49 @@ search: true
 ---
 
 # Introduction
-Welcome to the FalconX trading API documentation. The APIs provide developers programmatic access to FalconX services.
+Welcome to the FalconX trading API documentation. The APIs provide developers programmatic access to FalconX services. In case of any questions please contact `support@falconx.io` 
 
 # Request For Quote (RFQ)
-The RFQ process involves the client sending details about the market pair they want to trade including the quantity. The side can be revealed later when they actually execute the trade. The FalconX API returns the price at which the client can buy or sell the request quantity in the requested market pair. The quote is valid only for a short period of time.  If the client accepts the quote before it expires (by revealing the side) and FalconX sends a confirmation then the trade is considered closed.
+The RFQ process involves the client sending details about the market pair they want to trade including the quantity. The FalconX API returns the price at which the client can buy or sell the request quantity in the requested market pair. The quote is valid only for a short period of time.  If the client accepts the quote before it expires and FalconX sends a confirmation then the trade is considered closed.
 
 # Requests
-All requests and responses are application/json content type and follow typical HTTP response status codes for success and failure.
+All requests and responses are `application/json` content type and follow typical HTTP response status codes for success and failure.
 
 ## API Endpoint
-* `https://api.falconx.io/v1`
+* All HTTP requests must be sent to: `https://api.falconx.io/v1`
 
 ### Success
 A successful response is indicated by HTTP status code 200 and may contain an optional body. If the response has a body it will be documented under each resource below.
 
-
-### HTTP Error Codes
-Unless otherwise stated, errors to bad requests will respond with HTTP 4xx or status codes. The body will also contain a message parameter indicating the cause. Your language’s http library should be configured to provide message bodies for non-2xx requests so that you can read the message field from the body.
-
-### Common error codes:
+### Common HTTP error codes
 
 | Status Code | Reason |
 | ----------- | ------ |
 | 400         | Bad Request – Invalid request format|
 | 401         | Unauthorized – Invalid API Key|
 | 403         | Forbidden – You do not have access to the requested resource|
-| 404         | Not Found|
+| 404         | Resource Not Found|
 | 500         | Internal Server Error – We had a problem with our server|
 
 
-## Success
-A successful response is indicated by HTTP status code 200 and may contain an optional body. If the response has a body it will be documented under each resource below.
-
-## Authentication
+# Authentication
 
 ## Generating an API Key
+
+Once you are signed up on FalconX, our customer success team will generate an API key for you. After generating the key you will have the following information which will be required for making any API request:
+
+* `key`
+* `secret`
+* `passphrase`
+
+<!-- FalconX generates `key` and `secret` for you but you'll need to choose `passphrase` to further secure your API calls. FalconX only stores the salted hash of your passphrase for
+verification. We won't be able to recover your passphrase if lost. -->
+
+## Creating a Request
+
 ``` python
+# python version: v3.6.7
+#
 # Requires python-requests. Install with pip:
 #
 #   pip install requests
@@ -100,23 +107,14 @@ r = requests.post(api_url + 'quotes', json=params, auth=auth)
 print r.json()
 # {"status": "success", "fx_quote_id": "00c884b056f949338788dfb59e495377"...}
 ```
-Once you are signed up on FalconX, our customer success team will generate an API key for you. After generating the key you will have the following information which will be required for making any API request:
 
-* `key`
-* `secret`
-* `passphrase`
-
-<!-- FalconX generates `key` and `secret` for you but you'll need to choose `passphrase` to further secure your API calls. FalconX only stores the salted hash of your passphrase for
-verification. We won't be able to receover your passphrase if lost. -->
-
-## Creating a Request
 All REST API requests must contain the following headers:
 
-* **FX-ACCESS-KEY** The api key as a string.
-* **FX-ACCESS-SIGN** The base64-encoded signature (see `Signing a Message` section).
-* **FX-ACCESS-TIMESTAMP** A timestamp for your request.
-* **FX-ACCESS-PASSPHRASE** The passphrase you specified when creating the API key.
-All request bodies should have content type application/json and be valid JSON.
+* **FX-ACCESS-KEY** The API key as a string
+* **FX-ACCESS-SIGN** The base64-encoded signature (see [Signing a Message](https://docs.falconx.io/#signing-a-message))
+* **FX-ACCESS-TIMESTAMP** The timestamp in seconds from epoch
+* **FX-ACCESS-PASSPHRASE** The passphrase given to you
+All request bodies should have content type `application/json` and should be a valid JSON
 
 ## Signing a Message
 The **FX-ACCESS-SIGN** header is generated by creating a sha256 HMAC using the base64-decoded secret key on the prehash string **timestamp + method + requestPath + body** (where + represents string concatenation) and base64-encode the output. The timestamp value is the same as the **FX-ACCESS-TIMESTAMP** header.
@@ -131,12 +129,12 @@ Remember to first base64-decode the alphanumeric secret string (resulting in 64 
 ## Selecting a Timestamp
 The **FX-ACCESS-TIMESTAMP** header MUST be number of seconds since Unix Epoch in UTC. Decimal values are allowed.
 
-Your timestamp must be within 30 seconds of the api service time or your request will be considered expired and rejected.
+Your timestamp must be within 30 seconds of the API service time or your request will be considered expired and rejected.
 
 
 # Get Trading Pairs
 
-Get the list of all trading pairs currently supported
+Get the list of all trading pairs currently supported.
 
 ## HTTP Request
 
@@ -206,7 +204,7 @@ Client sends request to get quotes to this endpoint.  The response contains the 
 | ---------  | ----------------------------------- | ------------|
 | **token_pair** | JSON                                | The market for which the client is requesting quote |
 | **quantity**   | JSON                                | Requested quantity |
-| **side**       | STRING                              | Side of quote. It should be one of: (`buy` / `sell` / `two_way`)
+| **side**       | STRING                              | Side of quote. Accepted values: `buy`, `sell` or `two_way`
 
 
 ## Response Parameters
@@ -234,32 +232,32 @@ Client sends request to get quotes to this endpoint.  The response contains the 
   "side_executed": null, 
   "price_executed": null, 
   "t_execute": null, 
-  "erorr": null
+  "error": null
 }
 ```
 
 
 | Parameter     | Type                              | Description |
 | ---------     | ------------------------------    | ------------|
-| **status**        | STRING                            | Status of the response. It will be one of: (`success` / `failure`)|
+| **status**        | STRING                            | Status of the response. Accepted values: `success` or `failure`|
 | **fx_quote_id**   | STRING                            | FalconX Quote ID. Use this when executing 
-| **buy_price**   | DECIMAL                            | Buy price in quote token.
-| **sell_price**   | DECIMAL                            | Sell price in quote token.
+| **buy_price**   | DECIMAL                            | Buy price in quote token
+| **sell_price**   | DECIMAL                            | Sell price in quote token
 | **token_pair**    | JSON                              | The market for which the client is requesting quote |
 | **quantity_requested**      | JSON                              | Requested quantity |
-| **side_requested**       | STRING                              | Side of quote. It will be one of: (`buy` / `sell` / `two_way`)
+| **side_requested**       | STRING                              | Side of quote. Accepted values: `buy`, `sell` or `two_way`
 | **t_quote**       | STRING                            | Quote time in ISO 8601 date format
 | **t_expiry**      | STRING                            | Quote expiry time in ISO 8601 date format
 | **is_filled**      | BOOLEAN                          | true if quote has been executed successfully else false. `false` for quote request
 | **side_executed**       | STRING                              | Side of quote executed. `null` for quote request
 | **price_executed**   | DECIMAL                            | Execution price in quote token. `null` for quote request
 | **t_execute**       | STRING                            | Execution time in ISO 8601 date format. `null` for quote request
-| **error**       | JSON                                | Error info. `null` if no error
+| **error**       | JSON                                | Error info. `null` if no error (see [Error Response](https://docs.falconx.io/#error-response) for JSON structure)
 
 
 # Execute Quote
 
-Execute quote fetched in the `Get Quote` API call. Note that the trade side is revealed now.
+Execute quote fetched in the `Get Quote` API call.
 
 ## HTTP Request
 `POST https://api.falconx.io/v1/quotes/execute`
@@ -278,7 +276,7 @@ Execute quote fetched in the `Get Quote` API call. Note that the trade side is r
 | Parameter  | Type                                | Description
 | ---------  | ----------------------------------- | ------------
 | **fx_quote_id** | STRING                                 | FalconX Quote ID fetched in the `Get Quote` API call
-| **side**       | STRING                              | Side of quote. It should be one of: (`buy` / `sell`)
+| **side**       | STRING                              | Side of quote. Accepted values: `buy` or `sell`
 
 
 ## Response Parameters
@@ -313,20 +311,20 @@ Execute quote fetched in the `Get Quote` API call. Note that the trade side is r
 
 | Parameter     | Type                              | Description |
 | ---------     | ------------------------------    | ------------|
-| **status**        | STRING                            | Status of the response. It will be one of: (`success` / `failure`)|
-| **fx_quote_id**   | STRING                            | FalconX Quote ID. 
-| **buy_price**   | DECIMAL                            | Buy price in quote token.
-| **sell_price**   | DECIMAL                            | Sell price in quote token.
+| **status**        | STRING                            | Status of the response. Accepted values: `success` or `failure`|
+| **fx_quote_id**   | STRING                            | FalconX Quote ID 
+| **buy_price**   | DECIMAL                            | Buy price in quote token
+| **sell_price**   | DECIMAL                            | Sell price in quote token
 | **token_pair**    | JSON                              | The market for which the client is requesting quote |
 | **quantity_requested**      | JSON                              | Requested quantity |
-| **side_requested**       | STRING                              | Side of quote. It will be one of: (`buy` / `sell` / `two_way`)
+| **side_requested**       | STRING                              | Side of quote. Accepted values: `buy`, `sell` or `two_way`
 | **t_quote**       | STRING                            | Quote time in ISO 8601 date format
 | **t_expiry**      | STRING                            | Quote expiry time in ISO 8601 date format
 | **is_filled**      | BOOLEAN | true if quote has been executed successfully else false
-| **side_executed**       | STRING                              | Side of quote executed. 
-| **price_executed**   | DECIMAL                            | Execution price in quote token.
-| **t_execute**       | STRING                            | Execution time in ISO 8601 date format.
-| **error**       | JSON                                | Error info. `null` if no error
+| **side_executed**       | STRING                              | Side of quote executed 
+| **price_executed**   | DECIMAL                            | Execution price in quote token
+| **t_execute**       | STRING                            | Execution time in ISO 8601 date format
+| **error**       | JSON                                | Error info. `null` if no error (see [Error Response](https://docs.falconx.io/#error-response) for JSON structure)
 
 
 # Quote Status
@@ -382,20 +380,20 @@ curl "https://api.falconx.io/v1/quotes/00c884b056f949338788dfb59e495377"
 
 | Parameter     | Type                              | Description |
 | ---------     | ------------------------------    | ------------|
-| **status**        | STRING                            | Status of the response. It will be one of: (`success` / `failure`)|
-| **fx_quote_id**   | STRING                            | FalconX Quote ID. 
-| **buy_price**   | DECIMAL                            | Buy price in quote token.
-| **sell_price**   | DECIMAL                            | Sell price in quote token.
+| **status**        | STRING                            | Status of the response. Accepted values: `success` or `failure`|
+| **fx_quote_id**   | STRING                            | FalconX Quote ID 
+| **buy_price**   | DECIMAL                            | Buy price in quote token
+| **sell_price**   | DECIMAL                            | Sell price in quote token
 | **token_pair**    | JSON                              | The market for which the client is requesting quote |
 | **quantity_requested**      | JSON                              | Requested quantity |
-| **side_requested**       | STRING                              | Side of quote. It will be one of: (`buy` / `sell` / `two_way`)
+| **side_requested**       | STRING                              | Side of quote. Accepted values: `buy`, `sell` or `two_way`
 | **t_quote**       | STRING                            | Quote time in ISO 8601 date format
 | **t_expiry**      | STRING                            | Quote expiry time in ISO 8601 date format
 | **is_filled**      | BOOLEAN | True if quote has been executed successfully else False
 | **side_executed**       | STRING                              | Side of quote executed. `null` if not executed 
 | **price_executed**   | DECIMAL                            | Execution price in quote token. `null` if not executed
 | **t_execute**       | STRING                            | Execution time in ISO 8601 date format. `null` if not executed
-| **error**       | JSON                                | Error info. `null` if no error
+| **error**       | JSON                                | Error info. `null` if no error (see [Error Response](https://docs.falconx.io/#error-response) for JSON structure)
 
 
 # Get Executed Quotes
@@ -456,20 +454,20 @@ API will return a list of the following structure:
 
 | Parameter     | Type                              | Description |
 | ---------     | ------------------------------    | ------------|
-| **status**        | STRING                            | Status of the response. It will be one of: (`success` / `failure`)|
+| **status**        | STRING                            | Status of the response. Accepted values: `success` or `failure`|
 | **fx_quote_id**   | STRING                            | FalconX Quote ID
-| **buy_price**   | DECIMAL                            | Buy price in quote token.
-| **sell_price**   | DECIMAL                            | Sell price in quote token.
+| **buy_price**   | DECIMAL                            | Buy price in quote token
+| **sell_price**   | DECIMAL                            | Sell price in quote token
 | **token_pair**    | JSON                              | The market for which the client is requesting quote |
 | **quantity_requested**      | JSON                              | Requested quantity |
-| **side_requested**       | STRING                              | Side of quote. It will be one of: (`buy` / `sell` / `two_way`)
+| **side_requested**       | STRING                              | Side of quote. Accepted values: `buy`, `sell` or `two_way`
 | **t_quote**       | STRING                            | Quote time in ISO 8601 date format
 | **t_expiry**      | STRING                            | Quote expiry time in ISO 8601 date format
 | **is_filled**      | BOOLEAN | True if quote has been executed successfully else False
-| **side_executed**       | STRING                              | Side of quote executed. 
-| **price_executed**   | DECIMAL                            | Execution price in quote token. 
-| **t_execute**       | STRING                            | Execution time in ISO 8601 date format. 
-| **error**       | JSON                                | Error info. `null` if no error
+| **side_executed**       | STRING                              | Side of quote executed 
+| **price_executed**   | DECIMAL                            | Execution price in quote token 
+| **t_execute**       | STRING                            | Execution time in ISO 8601 date format 
+| **error**       | JSON                                | Error info. `null` if no error (see [Error Response](https://docs.falconx.io/#error-response) for JSON structure)
 
 
 # Get Balances
@@ -477,15 +475,20 @@ API will return a list of the following structure:
 
 > Request Sample
 
-```shell
-# pass in the correct authorization headers
-curl "https://api.falconx.io/v1/balances"
-```
+
 Fetches balances for all tokens.
 
 ## HTTP Request
 
+```shell
+# pass in the correct authorization headers
+curl "https://api.falconx.io/v1/balances"
+```
+
 `GET https://api.falconx.io/v1/balances`
+
+
+## Response Parameters
 
 > Response Sample
 
@@ -504,12 +507,26 @@ Fetches balances for all tokens.
 ```
 
 
-## Response Parameters
-
-
 API will return a list of the following structure:
 
 | Parameter     | Type                              | Description |
 | ---------     | ------------------------------    | ------------|
 | **token**     | String                            | Currency  
 | **balance**   | DECIMAL                           | Balance for that currency
+
+
+# Error Response
+The error structure returned by our API will be in the following format
+
+| Parameter     | Type                              | Description |
+| ---------     | ------------------------------    | ------------|
+| **code**     | String                            | Error code  
+| **reason**   | String                           | Reason for the error
+
+
+<!-- The following error codes are supported at the moment:
+
+| Parameter     | Description| 
+| ---------     | -----------|
+| **ERR_1**     | Error due to error 1  
+| **ERR_2**     | Error due to error 2      -->       
