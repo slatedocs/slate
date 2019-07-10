@@ -638,22 +638,7 @@ const fetch = require('node-fetch');
 const inputBody = '{
   "data": {
     "actions": [
-      {
-        "relative_path": "/tasks/123",
-        "method": "get",
-        "data": {
-          "assignee": "me",
-          "workspace": 1337
-        },
-        "options": {
-          "limit": 3,
-          "fields": [
-            "name",
-            "notes",
-            "completed"
-          ]
-        }
-      }
+      {}
     ]
   }
 }';
@@ -773,22 +758,7 @@ Make multiple requests in parallel to Asana's API.
 {
   "data": {
     "actions": [
-      {
-        "relative_path": "/tasks/123",
-        "method": "get",
-        "data": {
-          "assignee": "me",
-          "workspace": 1337
-        },
-        "options": {
-          "limit": 3,
-          "fields": [
-            "name",
-            "notes",
-            "completed"
-          ]
-        }
-      }
+      {}
     ]
   }
 }
@@ -833,17 +803,8 @@ Make multiple requests in parallel to Asana's API.
   "data": [
     {
       "status_code": 200,
-      "headers": {
-        "location": "/tasks/1234"
-      },
-      "body": {
-        "data": {
-          "id": 1967,
-          "completed": false,
-          "name": "Hello, world!",
-          "notes": "How are you today?"
-        }
-      }
+      "headers": {},
+      "body": {}
     }
   ]
 }
@@ -911,14 +872,9 @@ const fetch = require('node-fetch');
 const inputBody = '{
   "data": {
     "name": "Bug Task",
-    "resource_subtype": "milestone",
     "type": "text",
     "enum_options": [
-      {
-        "name": "Low",
-        "enabled": true,
-        "color": "blue"
-      }
+      {}
     ],
     "enum_value": null,
     "enabled": true,
@@ -1052,14 +1008,9 @@ Returns the full record of the newly created custom field.
 {
   "data": {
     "name": "Bug Task",
-    "resource_subtype": "milestone",
     "type": "text",
     "enum_options": [
-      {
-        "name": "Low",
-        "enabled": true,
-        "color": "blue"
-      }
+      {}
     ],
     "enum_value": null,
     "enabled": true,
@@ -1139,14 +1090,7 @@ Attempting to edit a locked custom field will return HTTP error code
     "resource_subtype": "milestone",
     "type": "text",
     "enum_options": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "enum_option",
-        "name": "Low",
-        "enabled": true,
-        "color": "blue"
-      }
+      {}
     ],
     "enum_value": null,
     "enabled": true,
@@ -1412,14 +1356,7 @@ HTTP/1.1 200
     "resource_subtype": "milestone",
     "type": "text",
     "enum_options": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "enum_option",
-        "name": "Low",
-        "enabled": true,
-        "color": "blue"
-      }
+      {}
     ],
     "enum_value": null,
     "enabled": true,
@@ -1462,14 +1399,9 @@ const fetch = require('node-fetch');
 const inputBody = '{
   "data": {
     "name": "Bug Task",
-    "resource_subtype": "milestone",
     "type": "text",
     "enum_options": [
-      {
-        "name": "Low",
-        "enabled": true,
-        "color": "blue"
-      }
+      {}
     ],
     "enum_value": null,
     "enabled": true,
@@ -1599,14 +1531,9 @@ Returns the complete updated custom field record.
 {
   "data": {
     "name": "Bug Task",
-    "resource_subtype": "milestone",
     "type": "text",
     "enum_options": [
-      {
-        "name": "Low",
-        "enabled": true,
-        "color": "blue"
-      }
+      {}
     ],
     "enum_value": null,
     "enabled": true,
@@ -1641,14 +1568,7 @@ Returns the complete updated custom field record.
     "resource_subtype": "milestone",
     "type": "text",
     "enum_options": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "enum_option",
-        "name": "Low",
-        "enabled": true,
-        "color": "blue"
-      }
+      {}
     ],
     "enum_value": null,
     "enabled": true,
@@ -2706,16 +2626,7 @@ Returns a list of the compact representation of all of the custom fields in a wo
       "name": "Bug Task",
       "resource_subtype": "milestone",
       "type": "text",
-      "enum_options": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "enum_option",
-          "name": "Low",
-          "enabled": true,
-          "color": "blue"
-        }
-      ],
+      "enum_options": [],
       "enum_value": null,
       "enabled": true,
       "text_value": "Some Value"
@@ -3387,24 +3298,11 @@ lieu of including the resource ID in the data for the request.
 {
   "data": [
     {
-      "user": {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
-      "resource": {
-        "id": 12345,
-        "name": "Bug Task"
-      },
+      "user": {},
+      "resource": {},
       "type": "task",
       "action": "changed",
-      "parent": {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "task",
-        "name": "Bug Task"
-      },
+      "parent": {},
       "created_at": "2012-02-22T02:06:58.147Z"
     }
   ],
@@ -4464,15 +4362,7 @@ Returns the complete portfolio record for a single portfolio.
     "created_by": null,
     "color": "light-green",
     "custom_field_settings": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "custom_field_setting",
-        "project": null,
-        "is_important": false,
-        "parent": null,
-        "custom_field": null
-      }
+      {}
     ],
     "owner": null,
     "workspace": null,
@@ -4674,15 +4564,7 @@ Returns the complete updated portfolio record.
     "created_by": null,
     "color": "light-green",
     "custom_field_settings": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "custom_field_setting",
-        "project": null,
-        "is_important": false,
-        "parent": null,
-        "custom_field": null
-      }
+      {}
     ],
     "owner": null,
     "workspace": null,
@@ -5007,97 +4889,16 @@ Get a list of the items in compact form in a portfolio.
       "created_at": "2012-02-22T02:06:58.147Z",
       "archived": false,
       "color": "light-green",
-      "current_status": {
-        "color": "green",
-        "text": "Everything is great",
-        "author": {
-          "id": 12345,
-          "name": "Greg Bizarro"
-        }
-      },
-      "custom_fields": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "custom_field_setting",
-          "project": null,
-          "is_important": false,
-          "parent": null,
-          "custom_field": null
-        }
-      ],
-      "custom_field_settings": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "custom_field_setting",
-          "project": null,
-          "is_important": false,
-          "parent": null,
-          "custom_field": null
-        }
-      ],
+      "current_status": {},
+      "custom_fields": [],
+      "custom_field_settings": [],
       "due_date": "2012-03-26",
       "due_on": "2012-03-26",
-      "followers": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez",
-          "email": "gsanchez@example.com",
-          "photo": {
-            "image_21x21": "https://...",
-            "image_27x27": "https://...",
-            "image_36x36": "https://...",
-            "image_60x60": "https://...",
-            "image_128x128": "https://..."
-          },
-          "workspaces": [
-            {
-              "id": 12345,
-              "gid": "12345",
-              "resource_type": "task",
-              "name": "Bug Task",
-              "email_domains": [
-                "asana.com"
-              ],
-              "is_organization": false
-            }
-          ]
-        }
-      ],
+      "followers": [],
       "html_notes": "These are things we need to purchase.",
       "is_template": false,
       "layout": "list",
-      "members": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez",
-          "email": "gsanchez@example.com",
-          "photo": {
-            "image_21x21": "https://...",
-            "image_27x27": "https://...",
-            "image_36x36": "https://...",
-            "image_60x60": "https://...",
-            "image_128x128": "https://..."
-          },
-          "workspaces": [
-            {
-              "id": 12345,
-              "gid": "12345",
-              "resource_type": "task",
-              "name": "Bug Task",
-              "email_domains": [
-                "asana.com"
-              ],
-              "is_organization": false
-            }
-          ]
-        }
-      ],
+      "members": [],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "These are things we need to purchase.",
       "owner": null,
@@ -6253,97 +6054,16 @@ Returns the compact project records for some filtered set of projects. Use one o
       "created_at": "2012-02-22T02:06:58.147Z",
       "archived": false,
       "color": "light-green",
-      "current_status": {
-        "color": "green",
-        "text": "Everything is great",
-        "author": {
-          "id": 12345,
-          "name": "Greg Bizarro"
-        }
-      },
-      "custom_fields": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "custom_field_setting",
-          "project": null,
-          "is_important": false,
-          "parent": null,
-          "custom_field": null
-        }
-      ],
-      "custom_field_settings": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "custom_field_setting",
-          "project": null,
-          "is_important": false,
-          "parent": null,
-          "custom_field": null
-        }
-      ],
+      "current_status": {},
+      "custom_fields": [],
+      "custom_field_settings": [],
       "due_date": "2012-03-26",
       "due_on": "2012-03-26",
-      "followers": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez",
-          "email": "gsanchez@example.com",
-          "photo": {
-            "image_21x21": "https://...",
-            "image_27x27": "https://...",
-            "image_36x36": "https://...",
-            "image_60x60": "https://...",
-            "image_128x128": "https://..."
-          },
-          "workspaces": [
-            {
-              "id": 12345,
-              "gid": "12345",
-              "resource_type": "task",
-              "name": "Bug Task",
-              "email_domains": [
-                "asana.com"
-              ],
-              "is_organization": false
-            }
-          ]
-        }
-      ],
+      "followers": [],
       "html_notes": "These are things we need to purchase.",
       "is_template": false,
       "layout": "list",
-      "members": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez",
-          "email": "gsanchez@example.com",
-          "photo": {
-            "image_21x21": "https://...",
-            "image_27x27": "https://...",
-            "image_36x36": "https://...",
-            "image_60x60": "https://...",
-            "image_128x128": "https://..."
-          },
-          "workspaces": [
-            {
-              "id": 12345,
-              "gid": "12345",
-              "resource_type": "task",
-              "name": "Bug Task",
-              "email_domains": [
-                "asana.com"
-              ],
-              "is_organization": false
-            }
-          ]
-        }
-      ],
+      "members": [],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "These are things we need to purchase.",
       "owner": null,
@@ -6558,93 +6278,24 @@ Returns the full record of the newly created project.
     "current_status": {
       "color": "green",
       "text": "Everything is great",
-      "author": {
-        "id": 12345,
-        "name": "Greg Bizarro"
-      }
+      "author": {}
     },
     "custom_fields": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "custom_field_setting",
-        "project": null,
-        "is_important": false,
-        "parent": null,
-        "custom_field": null
-      }
+      {}
     ],
     "custom_field_settings": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "custom_field_setting",
-        "project": null,
-        "is_important": false,
-        "parent": null,
-        "custom_field": null
-      }
+      {}
     ],
     "due_date": "2012-03-26",
     "due_on": "2012-03-26",
     "followers": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez",
-        "email": "gsanchez@example.com",
-        "photo": {
-          "image_21x21": "https://...",
-          "image_27x27": "https://...",
-          "image_36x36": "https://...",
-          "image_60x60": "https://...",
-          "image_128x128": "https://..."
-        },
-        "workspaces": [
-          {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "task",
-            "name": "Bug Task",
-            "email_domains": [
-              "asana.com"
-            ],
-            "is_organization": false
-          }
-        ]
-      }
+      {}
     ],
     "html_notes": "These are things we need to purchase.",
     "is_template": false,
     "layout": "list",
     "members": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez",
-        "email": "gsanchez@example.com",
-        "photo": {
-          "image_21x21": "https://...",
-          "image_27x27": "https://...",
-          "image_36x36": "https://...",
-          "image_60x60": "https://...",
-          "image_128x128": "https://..."
-        },
-        "workspaces": [
-          {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "task",
-            "name": "Bug Task",
-            "email_domains": [
-              "asana.com"
-            ],
-            "is_organization": false
-          }
-        ]
-      }
+      {}
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "These are things we need to purchase.",
@@ -6819,93 +6470,24 @@ Returns the complete project record for a single project.
     "current_status": {
       "color": "green",
       "text": "Everything is great",
-      "author": {
-        "id": 12345,
-        "name": "Greg Bizarro"
-      }
+      "author": {}
     },
     "custom_fields": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "custom_field_setting",
-        "project": null,
-        "is_important": false,
-        "parent": null,
-        "custom_field": null
-      }
+      {}
     ],
     "custom_field_settings": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "custom_field_setting",
-        "project": null,
-        "is_important": false,
-        "parent": null,
-        "custom_field": null
-      }
+      {}
     ],
     "due_date": "2012-03-26",
     "due_on": "2012-03-26",
     "followers": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez",
-        "email": "gsanchez@example.com",
-        "photo": {
-          "image_21x21": "https://...",
-          "image_27x27": "https://...",
-          "image_36x36": "https://...",
-          "image_60x60": "https://...",
-          "image_128x128": "https://..."
-        },
-        "workspaces": [
-          {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "task",
-            "name": "Bug Task",
-            "email_domains": [
-              "asana.com"
-            ],
-            "is_organization": false
-          }
-        ]
-      }
+      {}
     ],
     "html_notes": "These are things we need to purchase.",
     "is_template": false,
     "layout": "list",
     "members": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez",
-        "email": "gsanchez@example.com",
-        "photo": {
-          "image_21x21": "https://...",
-          "image_27x27": "https://...",
-          "image_36x36": "https://...",
-          "image_60x60": "https://...",
-          "image_128x128": "https://..."
-        },
-        "workspaces": [
-          {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "task",
-            "name": "Bug Task",
-            "email_domains": [
-              "asana.com"
-            ],
-            "is_organization": false
-          }
-        ]
-      }
+      {}
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "These are things we need to purchase.",
@@ -7134,93 +6716,24 @@ Returns the complete updated project record.
     "current_status": {
       "color": "green",
       "text": "Everything is great",
-      "author": {
-        "id": 12345,
-        "name": "Greg Bizarro"
-      }
+      "author": {}
     },
     "custom_fields": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "custom_field_setting",
-        "project": null,
-        "is_important": false,
-        "parent": null,
-        "custom_field": null
-      }
+      {}
     ],
     "custom_field_settings": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "custom_field_setting",
-        "project": null,
-        "is_important": false,
-        "parent": null,
-        "custom_field": null
-      }
+      {}
     ],
     "due_date": "2012-03-26",
     "due_on": "2012-03-26",
     "followers": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez",
-        "email": "gsanchez@example.com",
-        "photo": {
-          "image_21x21": "https://...",
-          "image_27x27": "https://...",
-          "image_36x36": "https://...",
-          "image_60x60": "https://...",
-          "image_128x128": "https://..."
-        },
-        "workspaces": [
-          {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "task",
-            "name": "Bug Task",
-            "email_domains": [
-              "asana.com"
-            ],
-            "is_organization": false
-          }
-        ]
-      }
+      {}
     ],
     "html_notes": "These are things we need to purchase.",
     "is_template": false,
     "layout": "list",
     "members": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez",
-        "email": "gsanchez@example.com",
-        "photo": {
-          "image_21x21": "https://...",
-          "image_27x27": "https://...",
-          "image_36x36": "https://...",
-          "image_60x60": "https://...",
-          "image_128x128": "https://..."
-        },
-        "workspaces": [
-          {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "task",
-            "name": "Bug Task",
-            "email_domains": [
-              "asana.com"
-            ],
-            "is_organization": false
-          }
-        ]
-      }
+      {}
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "These are things we need to purchase.",
@@ -8093,97 +7606,16 @@ Returns the compact project records for all projects in the team.
       "created_at": "2012-02-22T02:06:58.147Z",
       "archived": false,
       "color": "light-green",
-      "current_status": {
-        "color": "green",
-        "text": "Everything is great",
-        "author": {
-          "id": 12345,
-          "name": "Greg Bizarro"
-        }
-      },
-      "custom_fields": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "custom_field_setting",
-          "project": null,
-          "is_important": false,
-          "parent": null,
-          "custom_field": null
-        }
-      ],
-      "custom_field_settings": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "custom_field_setting",
-          "project": null,
-          "is_important": false,
-          "parent": null,
-          "custom_field": null
-        }
-      ],
+      "current_status": {},
+      "custom_fields": [],
+      "custom_field_settings": [],
       "due_date": "2012-03-26",
       "due_on": "2012-03-26",
-      "followers": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez",
-          "email": "gsanchez@example.com",
-          "photo": {
-            "image_21x21": "https://...",
-            "image_27x27": "https://...",
-            "image_36x36": "https://...",
-            "image_60x60": "https://...",
-            "image_128x128": "https://..."
-          },
-          "workspaces": [
-            {
-              "id": 12345,
-              "gid": "12345",
-              "resource_type": "task",
-              "name": "Bug Task",
-              "email_domains": [
-                "asana.com"
-              ],
-              "is_organization": false
-            }
-          ]
-        }
-      ],
+      "followers": [],
       "html_notes": "These are things we need to purchase.",
       "is_template": false,
       "layout": "list",
-      "members": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez",
-          "email": "gsanchez@example.com",
-          "photo": {
-            "image_21x21": "https://...",
-            "image_27x27": "https://...",
-            "image_36x36": "https://...",
-            "image_60x60": "https://...",
-            "image_128x128": "https://..."
-          },
-          "workspaces": [
-            {
-              "id": 12345,
-              "gid": "12345",
-              "resource_type": "task",
-              "name": "Bug Task",
-              "email_domains": [
-                "asana.com"
-              ],
-              "is_organization": false
-            }
-          ]
-        }
-      ],
+      "members": [],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "These are things we need to purchase.",
       "owner": null,
@@ -8406,93 +7838,24 @@ Returns the full record of the newly created project.
     "current_status": {
       "color": "green",
       "text": "Everything is great",
-      "author": {
-        "id": 12345,
-        "name": "Greg Bizarro"
-      }
+      "author": {}
     },
     "custom_fields": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "custom_field_setting",
-        "project": null,
-        "is_important": false,
-        "parent": null,
-        "custom_field": null
-      }
+      {}
     ],
     "custom_field_settings": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "custom_field_setting",
-        "project": null,
-        "is_important": false,
-        "parent": null,
-        "custom_field": null
-      }
+      {}
     ],
     "due_date": "2012-03-26",
     "due_on": "2012-03-26",
     "followers": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez",
-        "email": "gsanchez@example.com",
-        "photo": {
-          "image_21x21": "https://...",
-          "image_27x27": "https://...",
-          "image_36x36": "https://...",
-          "image_60x60": "https://...",
-          "image_128x128": "https://..."
-        },
-        "workspaces": [
-          {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "task",
-            "name": "Bug Task",
-            "email_domains": [
-              "asana.com"
-            ],
-            "is_organization": false
-          }
-        ]
-      }
+      {}
     ],
     "html_notes": "These are things we need to purchase.",
     "is_template": false,
     "layout": "list",
     "members": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez",
-        "email": "gsanchez@example.com",
-        "photo": {
-          "image_21x21": "https://...",
-          "image_27x27": "https://...",
-          "image_36x36": "https://...",
-          "image_60x60": "https://...",
-          "image_128x128": "https://..."
-        },
-        "workspaces": [
-          {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "task",
-            "name": "Bug Task",
-            "email_domains": [
-              "asana.com"
-            ],
-            "is_organization": false
-          }
-        ]
-      }
+      {}
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "These are things we need to purchase.",
@@ -8666,97 +8029,16 @@ Returns the compact project records for all projects in the workspace.
       "created_at": "2012-02-22T02:06:58.147Z",
       "archived": false,
       "color": "light-green",
-      "current_status": {
-        "color": "green",
-        "text": "Everything is great",
-        "author": {
-          "id": 12345,
-          "name": "Greg Bizarro"
-        }
-      },
-      "custom_fields": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "custom_field_setting",
-          "project": null,
-          "is_important": false,
-          "parent": null,
-          "custom_field": null
-        }
-      ],
-      "custom_field_settings": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "custom_field_setting",
-          "project": null,
-          "is_important": false,
-          "parent": null,
-          "custom_field": null
-        }
-      ],
+      "current_status": {},
+      "custom_fields": [],
+      "custom_field_settings": [],
       "due_date": "2012-03-26",
       "due_on": "2012-03-26",
-      "followers": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez",
-          "email": "gsanchez@example.com",
-          "photo": {
-            "image_21x21": "https://...",
-            "image_27x27": "https://...",
-            "image_36x36": "https://...",
-            "image_60x60": "https://...",
-            "image_128x128": "https://..."
-          },
-          "workspaces": [
-            {
-              "id": 12345,
-              "gid": "12345",
-              "resource_type": "task",
-              "name": "Bug Task",
-              "email_domains": [
-                "asana.com"
-              ],
-              "is_organization": false
-            }
-          ]
-        }
-      ],
+      "followers": [],
       "html_notes": "These are things we need to purchase.",
       "is_template": false,
       "layout": "list",
-      "members": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez",
-          "email": "gsanchez@example.com",
-          "photo": {
-            "image_21x21": "https://...",
-            "image_27x27": "https://...",
-            "image_36x36": "https://...",
-            "image_60x60": "https://...",
-            "image_128x128": "https://..."
-          },
-          "workspaces": [
-            {
-              "id": 12345,
-              "gid": "12345",
-              "resource_type": "task",
-              "name": "Bug Task",
-              "email_domains": [
-                "asana.com"
-              ],
-              "is_organization": false
-            }
-          ]
-        }
-      ],
+      "members": [],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "These are things we need to purchase.",
       "owner": null,
@@ -8982,93 +8264,24 @@ Returns the full record of the newly created project.
     "current_status": {
       "color": "green",
       "text": "Everything is great",
-      "author": {
-        "id": 12345,
-        "name": "Greg Bizarro"
-      }
+      "author": {}
     },
     "custom_fields": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "custom_field_setting",
-        "project": null,
-        "is_important": false,
-        "parent": null,
-        "custom_field": null
-      }
+      {}
     ],
     "custom_field_settings": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "custom_field_setting",
-        "project": null,
-        "is_important": false,
-        "parent": null,
-        "custom_field": null
-      }
+      {}
     ],
     "due_date": "2012-03-26",
     "due_on": "2012-03-26",
     "followers": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez",
-        "email": "gsanchez@example.com",
-        "photo": {
-          "image_21x21": "https://...",
-          "image_27x27": "https://...",
-          "image_36x36": "https://...",
-          "image_60x60": "https://...",
-          "image_128x128": "https://..."
-        },
-        "workspaces": [
-          {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "task",
-            "name": "Bug Task",
-            "email_domains": [
-              "asana.com"
-            ],
-            "is_organization": false
-          }
-        ]
-      }
+      {}
     ],
     "html_notes": "These are things we need to purchase.",
     "is_template": false,
     "layout": "list",
     "members": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez",
-        "email": "gsanchez@example.com",
-        "photo": {
-          "image_21x21": "https://...",
-          "image_27x27": "https://...",
-          "image_36x36": "https://...",
-          "image_60x60": "https://...",
-          "image_128x128": "https://..."
-        },
-        "workspaces": [
-          {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "task",
-            "name": "Bug Task",
-            "email_domains": [
-              "asana.com"
-            ],
-            "is_organization": false
-          }
-        ]
-      }
+      {}
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "These are things we need to purchase.",
@@ -9242,18 +8455,8 @@ Returns the compact project membership records for the project.
       "id": 12345,
       "gid": "12345",
       "resource_type": "project_membership",
-      "user": {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
-      "project": {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "project",
-        "name": "Stuff to buy"
-      },
+      "user": {},
+      "project": {},
       "write_access": "full_write"
     }
   ]
@@ -9908,14 +9111,7 @@ Returns the compact records for all sections in the specified project.
       "resource_type": "section",
       "name": "Next Actions",
       "created_at": "2012-02-22T02:06:58.147Z",
-      "projects": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
-        }
-      ]
+      "projects": []
     }
   ]
 }
@@ -10099,12 +9295,7 @@ Returns the full record of the newly created section.
     "name": "Next Actions",
     "created_at": "2012-02-22T02:06:58.147Z",
     "projects": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "project",
-        "name": "Stuff to buy"
-      }
+      {}
     ]
   }
 }
@@ -10267,12 +9458,7 @@ Returns the complete record for a single section.
     "name": "Next Actions",
     "created_at": "2012-02-22T02:06:58.147Z",
     "projects": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "project",
-        "name": "Stuff to buy"
-      }
+      {}
     ]
   }
 }
@@ -10311,9 +9497,7 @@ const inputBody = '{
   "data": {
     "name": "Next Actions",
     "projects": [
-      {
-        "name": "Stuff to buy"
-      }
+      {}
     ]
   }
 }';
@@ -10443,9 +9627,7 @@ Returns the complete updated section record.
   "data": {
     "name": "Next Actions",
     "projects": [
-      {
-        "name": "Stuff to buy"
-      }
+      {}
     ]
   }
 }
@@ -10474,12 +9656,7 @@ Returns the complete updated section record.
     "name": "Next Actions",
     "created_at": "2012-02-22T02:06:58.147Z",
     "projects": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "project",
-        "name": "Stuff to buy"
-      }
+      {}
     ]
   }
 }
@@ -11172,122 +10349,28 @@ p JSON.parse(result)
       "assignee_status": "upcoming",
       "completed": false,
       "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "custom_field",
-          "name": "Bug Task",
-          "resource_subtype": "milestone",
-          "type": "text",
-          "enum_options": [
-            {
-              "id": 12345,
-              "gid": "12345",
-              "resource_type": "enum_option",
-              "name": "Low",
-              "enabled": true,
-              "color": "blue"
-            }
-          ],
-          "enum_value": null,
-          "enabled": true,
-          "text_value": "Some Value",
-          "description": "Development team priority",
-          "precision": 2
-        }
-      ],
-      "dependencies": [
-        {
-          "id": 1234,
-          "gid": "1234"
-        },
-        {
-          "id": 4321,
-          "gid": "4321"
-        }
-      ],
-      "dependents": [
-        {
-          "id": 1234,
-          "gid": "1234"
-        },
-        {
-          "id": 4321,
-          "gid": "4321"
-        }
-      ],
+      "custom_fields": [],
+      "dependencies": [],
+      "dependents": [],
       "due_at": "2012-02-22T02:06:58.147Z",
       "due_on": "2012-03-26",
-      "external": {
-        "id": "my_id",
-        "data": "A blob of information"
-      },
-      "followers": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
+      "external": {},
+      "followers": [],
       "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
       "hearted": true,
-      "hearts": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
+      "hearts": [],
       "liked": true,
-      "likes": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "memberships": [
-        {
-          "project": {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "project",
-            "name": "Stuff to buy"
-          },
-          "section": {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "section",
-            "name": "Next Actions"
-          }
-        }
-      ],
+      "likes": [],
+      "memberships": [],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "Mittens really likes the stuff from Humboldt.",
       "num_hearts": 5,
       "num_likes": 5,
       "num_subtasks": 3,
       "parent": null,
-      "projects": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
-        }
-      ],
+      "projects": [],
       "start_on": "2012-03-26",
-      "tags": [
-        {
-          "id": 59746,
-          "gid": "59746",
-          "name": "Grade A"
-        }
-      ],
+      "tags": [],
       "workspace": null
     }
   ]
@@ -11541,122 +10624,28 @@ You may receive a `429 Too Many Requests` response if you hit any of our [rate l
       "assignee_status": "upcoming",
       "completed": false,
       "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "custom_field",
-          "name": "Bug Task",
-          "resource_subtype": "milestone",
-          "type": "text",
-          "enum_options": [
-            {
-              "id": 12345,
-              "gid": "12345",
-              "resource_type": "enum_option",
-              "name": "Low",
-              "enabled": true,
-              "color": "blue"
-            }
-          ],
-          "enum_value": null,
-          "enabled": true,
-          "text_value": "Some Value",
-          "description": "Development team priority",
-          "precision": 2
-        }
-      ],
-      "dependencies": [
-        {
-          "id": 1234,
-          "gid": "1234"
-        },
-        {
-          "id": 4321,
-          "gid": "4321"
-        }
-      ],
-      "dependents": [
-        {
-          "id": 1234,
-          "gid": "1234"
-        },
-        {
-          "id": 4321,
-          "gid": "4321"
-        }
-      ],
+      "custom_fields": [],
+      "dependencies": [],
+      "dependents": [],
       "due_at": "2012-02-22T02:06:58.147Z",
       "due_on": "2012-03-26",
-      "external": {
-        "id": "my_id",
-        "data": "A blob of information"
-      },
-      "followers": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
+      "external": {},
+      "followers": [],
       "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
       "hearted": true,
-      "hearts": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
+      "hearts": [],
       "liked": true,
-      "likes": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "memberships": [
-        {
-          "project": {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "project",
-            "name": "Stuff to buy"
-          },
-          "section": {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "section",
-            "name": "Next Actions"
-          }
-        }
-      ],
+      "likes": [],
+      "memberships": [],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "Mittens really likes the stuff from Humboldt.",
       "num_hearts": 5,
       "num_likes": 5,
       "num_subtasks": 3,
       "parent": null,
-      "projects": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
-        }
-      ],
+      "projects": [],
       "start_on": "2012-03-26",
-      "tags": [
-        {
-          "id": 59746,
-          "gid": "59746",
-          "name": "Grade A"
-        }
-      ],
+      "tags": [],
       "workspace": null
     }
   ]
@@ -11831,207 +10820,38 @@ Returns the compact records for all stories on the task.
       "is_edited": false,
       "is_pinned": false,
       "hearted": false,
-      "hearts": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez",
-          "email": "gsanchez@example.com",
-          "photo": {
-            "image_21x21": "https://...",
-            "image_27x27": "https://...",
-            "image_36x36": "https://...",
-            "image_60x60": "https://...",
-            "image_128x128": "https://..."
-          },
-          "workspaces": [
-            {
-              "id": 12345,
-              "gid": "12345",
-              "resource_type": "task",
-              "name": "Bug Task",
-              "email_domains": [
-                "asana.com"
-              ],
-              "is_organization": false
-            }
-          ]
-        }
-      ],
+      "hearts": [],
       "num_hearts": 5,
       "liked": false,
-      "likes": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez",
-          "email": "gsanchez@example.com",
-          "photo": {
-            "image_21x21": "https://...",
-            "image_27x27": "https://...",
-            "image_36x36": "https://...",
-            "image_60x60": "https://...",
-            "image_128x128": "https://..."
-          },
-          "workspaces": [
-            {
-              "id": 12345,
-              "gid": "12345",
-              "resource_type": "task",
-              "name": "Bug Task",
-              "email_domains": [
-                "asana.com"
-              ],
-              "is_organization": false
-            }
-          ]
-        }
-      ],
+      "likes": [],
       "num_likes": 5,
-      "previews": [
-        {
-          "fallback": "Greg: Great! I like this idea.\\n\\nhttps//a_company.slack.com/archives/ABCDEFG/12345678",
-          "footer": "Mar 17, 2019 1:25 PM",
-          "header": "Asana for Slack",
-          "header_link": "https://asana.comn/apps/slack",
-          "html_text": "<body>Great! I like this idea.</body>",
-          "text": "Great! I like this idea.",
-          "title": "Greg",
-          "title_link": "https://asana.slack.com/archives/ABCDEFG/12345678"
-        }
-      ],
+      "previews": [],
       "old_name": "This was the Old Name",
       "new_name": "This is the New Name",
-      "old_dates": {
-        "start_on": "2019-09-15",
-        "due_at": "2012-02-22T02:06:58.158Z",
-        "due_on": "2019-09-15"
-      },
-      "new_dates": {
-        "start_on": "2019-09-15",
-        "due_at": "2012-02-22T02:06:58.158Z",
-        "due_on": "2019-09-15"
-      },
+      "old_dates": {},
+      "new_dates": {},
       "old_resource_subtype": "default_task",
       "new_resource_subtype": "milestone",
-      "story": {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "story",
-        "resource_subtype": "milestone",
-        "created_at": "2012-02-22T02:06:58.147Z",
-        "created_by": null,
-        "text": "marked today",
-        "type": "comment"
-      },
-      "assignee": {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
-      "follower": {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      },
-      "old_section": {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "section",
-        "name": "Next Actions"
-      },
-      "new_section": {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "section",
-        "name": "Next Actions"
-      },
-      "task": {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "task",
-        "name": "Bug Task"
-      },
-      "project": {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "project",
-        "name": "Stuff to buy"
-      },
-      "tag": {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "tag",
-        "name": "Stuff to buy"
-      },
-      "custom_field": {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "custom_field",
-        "name": "Bug Task",
-        "resource_subtype": "milestone",
-        "type": "text",
-        "enum_options": [
-          {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "name": "Low",
-            "enabled": true,
-            "color": "blue"
-          }
-        ],
-        "enum_value": null,
-        "enabled": true,
-        "text_value": "Some Value"
-      },
+      "story": {},
+      "assignee": {},
+      "follower": {},
+      "old_section": {},
+      "new_section": {},
+      "task": {},
+      "project": {},
+      "tag": {},
+      "custom_field": {},
       "old_text_value": "This was the Old Text",
       "new_text_value": "This is the New Text",
       "old_number_value": 1,
       "new_number_value": 2,
-      "old_enum_value": {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "enum_option",
-        "name": "Low",
-        "enabled": true,
-        "color": "blue"
-      },
-      "new_enum_value": {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "enum_option",
-        "name": "Low",
-        "enabled": true,
-        "color": "blue"
-      },
-      "duplicate_of": {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "task",
-        "name": "Bug Task"
-      },
-      "duplicated_from": {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "task",
-        "name": "Bug Task"
-      },
-      "dependancy": {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "task",
-        "name": "Bug Task"
-      },
+      "old_enum_value": {},
+      "new_enum_value": {},
+      "duplicate_of": {},
+      "duplicated_from": {},
+      "dependency": {},
       "source": "web",
-      "target": {
-        "id": 1234,
-        "name": "Bug Task"
-      }
+      "target": {}
     }
   ]
 }
@@ -12225,75 +11045,16 @@ Returns the full record for the new story added to the task.
     "is_pinned": false,
     "hearted": false,
     "hearts": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez",
-        "email": "gsanchez@example.com",
-        "photo": {
-          "image_21x21": "https://...",
-          "image_27x27": "https://...",
-          "image_36x36": "https://...",
-          "image_60x60": "https://...",
-          "image_128x128": "https://..."
-        },
-        "workspaces": [
-          {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "task",
-            "name": "Bug Task",
-            "email_domains": [
-              "asana.com"
-            ],
-            "is_organization": false
-          }
-        ]
-      }
+      {}
     ],
     "num_hearts": 5,
     "liked": false,
     "likes": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez",
-        "email": "gsanchez@example.com",
-        "photo": {
-          "image_21x21": "https://...",
-          "image_27x27": "https://...",
-          "image_36x36": "https://...",
-          "image_60x60": "https://...",
-          "image_128x128": "https://..."
-        },
-        "workspaces": [
-          {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "task",
-            "name": "Bug Task",
-            "email_domains": [
-              "asana.com"
-            ],
-            "is_organization": false
-          }
-        ]
-      }
+      {}
     ],
     "num_likes": 5,
     "previews": [
-      {
-        "fallback": "Greg: Great! I like this idea.\\n\\nhttps//a_company.slack.com/archives/ABCDEFG/12345678",
-        "footer": "Mar 17, 2019 1:25 PM",
-        "header": "Asana for Slack",
-        "header_link": "https://asana.comn/apps/slack",
-        "html_text": "<body>Great! I like this idea.</body>",
-        "text": "Great! I like this idea.",
-        "title": "Greg",
-        "title_link": "https://asana.slack.com/archives/ABCDEFG/12345678"
-      }
+      {}
     ],
     "old_name": "This was the Old Name",
     "new_name": "This is the New Name",
@@ -12368,16 +11129,7 @@ Returns the full record for the new story added to the task.
       "name": "Bug Task",
       "resource_subtype": "milestone",
       "type": "text",
-      "enum_options": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "enum_option",
-          "name": "Low",
-          "enabled": true,
-          "color": "blue"
-        }
-      ],
+      "enum_options": [],
       "enum_value": null,
       "enabled": true,
       "text_value": "Some Value"
@@ -12414,7 +11166,7 @@ Returns the full record for the new story added to the task.
       "resource_type": "task",
       "name": "Bug Task"
     },
-    "dependancy": {
+    "dependency": {
       "id": 12345,
       "gid": "12345",
       "resource_type": "task",
@@ -12593,75 +11345,16 @@ Returns the full record for a single story.
     "is_pinned": false,
     "hearted": false,
     "hearts": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez",
-        "email": "gsanchez@example.com",
-        "photo": {
-          "image_21x21": "https://...",
-          "image_27x27": "https://...",
-          "image_36x36": "https://...",
-          "image_60x60": "https://...",
-          "image_128x128": "https://..."
-        },
-        "workspaces": [
-          {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "task",
-            "name": "Bug Task",
-            "email_domains": [
-              "asana.com"
-            ],
-            "is_organization": false
-          }
-        ]
-      }
+      {}
     ],
     "num_hearts": 5,
     "liked": false,
     "likes": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez",
-        "email": "gsanchez@example.com",
-        "photo": {
-          "image_21x21": "https://...",
-          "image_27x27": "https://...",
-          "image_36x36": "https://...",
-          "image_60x60": "https://...",
-          "image_128x128": "https://..."
-        },
-        "workspaces": [
-          {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "task",
-            "name": "Bug Task",
-            "email_domains": [
-              "asana.com"
-            ],
-            "is_organization": false
-          }
-        ]
-      }
+      {}
     ],
     "num_likes": 5,
     "previews": [
-      {
-        "fallback": "Greg: Great! I like this idea.\\n\\nhttps//a_company.slack.com/archives/ABCDEFG/12345678",
-        "footer": "Mar 17, 2019 1:25 PM",
-        "header": "Asana for Slack",
-        "header_link": "https://asana.comn/apps/slack",
-        "html_text": "<body>Great! I like this idea.</body>",
-        "text": "Great! I like this idea.",
-        "title": "Greg",
-        "title_link": "https://asana.slack.com/archives/ABCDEFG/12345678"
-      }
+      {}
     ],
     "old_name": "This was the Old Name",
     "new_name": "This is the New Name",
@@ -12736,16 +11429,7 @@ Returns the full record for a single story.
       "name": "Bug Task",
       "resource_subtype": "milestone",
       "type": "text",
-      "enum_options": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "enum_option",
-          "name": "Low",
-          "enabled": true,
-          "color": "blue"
-        }
-      ],
+      "enum_options": [],
       "enum_value": null,
       "enabled": true,
       "text_value": "Some Value"
@@ -12782,7 +11466,7 @@ Returns the full record for a single story.
       "resource_type": "task",
       "name": "Bug Task"
     },
-    "dependancy": {
+    "dependency": {
       "id": 12345,
       "gid": "12345",
       "resource_type": "task",
@@ -12828,28 +11512,12 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
 const fetch = require('node-fetch');
 const inputBody = '{
   "data": {
-    "resource_subtype": "milestone",
     "created_by": null,
     "text": "marked today",
     "html_text": "Get whatever Sashimi has.",
-    "is_edited": false,
     "is_pinned": false,
     "old_name": "This was the Old Name",
-    "new_name": "This is the New Name",
-    "old_dates": {
-      "start_on": "2019-09-15",
-      "due_at": "2012-02-22T02:06:58.158Z",
-      "due_on": "2019-09-15"
-    },
-    "new_dates": {
-      "start_on": "2019-09-15",
-      "due_at": "2012-02-22T02:06:58.158Z",
-      "due_on": "2019-09-15"
-    },
-    "old_resource_subtype": "default_task",
-    "new_resource_subtype": "milestone",
     "story": {
-      "resource_subtype": "milestone",
       "created_by": null,
       "text": "marked today"
     },
@@ -12876,23 +11544,12 @@ const inputBody = '{
     },
     "custom_field": {
       "name": "Bug Task",
-      "resource_subtype": "milestone",
       "type": "text",
-      "enum_options": [
-        {
-          "name": "Low",
-          "enabled": true,
-          "color": "blue"
-        }
-      ],
+      "enum_options": [],
       "enum_value": null,
       "enabled": true,
       "text_value": "Some Value"
     },
-    "old_text_value": "This was the Old Text",
-    "new_text_value": "This is the New Text",
-    "old_number_value": 1,
-    "new_number_value": 2,
     "old_enum_value": {
       "name": "Low",
       "enabled": true,
@@ -12909,7 +11566,7 @@ const inputBody = '{
     "duplicated_from": {
       "name": "Bug Task"
     },
-    "dependancy": {
+    "dependency": {
       "name": "Bug Task"
     }
   }
@@ -13029,28 +11686,12 @@ Updates the story and returns the full record for the updated story. Only commen
 ```json
 {
   "data": {
-    "resource_subtype": "milestone",
     "created_by": null,
     "text": "marked today",
     "html_text": "Get whatever Sashimi has.",
-    "is_edited": false,
     "is_pinned": false,
     "old_name": "This was the Old Name",
-    "new_name": "This is the New Name",
-    "old_dates": {
-      "start_on": "2019-09-15",
-      "due_at": "2012-02-22T02:06:58.158Z",
-      "due_on": "2019-09-15"
-    },
-    "new_dates": {
-      "start_on": "2019-09-15",
-      "due_at": "2012-02-22T02:06:58.158Z",
-      "due_on": "2019-09-15"
-    },
-    "old_resource_subtype": "default_task",
-    "new_resource_subtype": "milestone",
     "story": {
-      "resource_subtype": "milestone",
       "created_by": null,
       "text": "marked today"
     },
@@ -13077,23 +11718,12 @@ Updates the story and returns the full record for the updated story. Only commen
     },
     "custom_field": {
       "name": "Bug Task",
-      "resource_subtype": "milestone",
       "type": "text",
-      "enum_options": [
-        {
-          "name": "Low",
-          "enabled": true,
-          "color": "blue"
-        }
-      ],
+      "enum_options": [],
       "enum_value": null,
       "enabled": true,
       "text_value": "Some Value"
     },
-    "old_text_value": "This was the Old Text",
-    "new_text_value": "This is the New Text",
-    "old_number_value": 1,
-    "new_number_value": 2,
     "old_enum_value": {
       "name": "Low",
       "enabled": true,
@@ -13110,7 +11740,7 @@ Updates the story and returns the full record for the updated story. Only commen
     "duplicated_from": {
       "name": "Bug Task"
     },
-    "dependancy": {
+    "dependency": {
       "name": "Bug Task"
     }
   }
@@ -13147,75 +11777,16 @@ Updates the story and returns the full record for the updated story. Only commen
     "is_pinned": false,
     "hearted": false,
     "hearts": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez",
-        "email": "gsanchez@example.com",
-        "photo": {
-          "image_21x21": "https://...",
-          "image_27x27": "https://...",
-          "image_36x36": "https://...",
-          "image_60x60": "https://...",
-          "image_128x128": "https://..."
-        },
-        "workspaces": [
-          {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "task",
-            "name": "Bug Task",
-            "email_domains": [
-              "asana.com"
-            ],
-            "is_organization": false
-          }
-        ]
-      }
+      {}
     ],
     "num_hearts": 5,
     "liked": false,
     "likes": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez",
-        "email": "gsanchez@example.com",
-        "photo": {
-          "image_21x21": "https://...",
-          "image_27x27": "https://...",
-          "image_36x36": "https://...",
-          "image_60x60": "https://...",
-          "image_128x128": "https://..."
-        },
-        "workspaces": [
-          {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "task",
-            "name": "Bug Task",
-            "email_domains": [
-              "asana.com"
-            ],
-            "is_organization": false
-          }
-        ]
-      }
+      {}
     ],
     "num_likes": 5,
     "previews": [
-      {
-        "fallback": "Greg: Great! I like this idea.\\n\\nhttps//a_company.slack.com/archives/ABCDEFG/12345678",
-        "footer": "Mar 17, 2019 1:25 PM",
-        "header": "Asana for Slack",
-        "header_link": "https://asana.comn/apps/slack",
-        "html_text": "<body>Great! I like this idea.</body>",
-        "text": "Great! I like this idea.",
-        "title": "Greg",
-        "title_link": "https://asana.slack.com/archives/ABCDEFG/12345678"
-      }
+      {}
     ],
     "old_name": "This was the Old Name",
     "new_name": "This is the New Name",
@@ -13290,16 +11861,7 @@ Updates the story and returns the full record for the updated story. Only commen
       "name": "Bug Task",
       "resource_subtype": "milestone",
       "type": "text",
-      "enum_options": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "enum_option",
-          "name": "Low",
-          "enabled": true,
-          "color": "blue"
-        }
-      ],
+      "enum_options": [],
       "enum_value": null,
       "enabled": true,
       "text_value": "Some Value"
@@ -13336,7 +11898,7 @@ Updates the story and returns the full record for the updated story. Only commen
       "resource_type": "task",
       "name": "Bug Task"
     },
-    "dependancy": {
+    "dependency": {
       "id": 12345,
       "gid": "12345",
       "resource_type": "task",
@@ -13668,21 +12230,9 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
       "gid": "12345",
       "resource_type": "tag",
       "name": "Stuff to buy",
-      "followers": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
+      "followers": [],
       "color": "light-green",
-      "workspace": {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "workspace",
-        "name": "Bug Task"
-      }
+      "workspace": {}
     }
   ]
 }
@@ -13878,12 +12428,7 @@ Returns the full record of the newly created tag.
     "resource_type": "tag",
     "name": "Stuff to buy",
     "followers": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
+      {}
     ],
     "color": "light-green",
     "workspace": {
@@ -14052,12 +12597,7 @@ Returns the complete tag record for a single tag.
     "resource_type": "tag",
     "name": "Stuff to buy",
     "followers": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
+      {}
     ],
     "color": "light-green",
     "workspace": {
@@ -14233,12 +12773,7 @@ Returns the complete updated tag record.
     "resource_type": "tag",
     "name": "Stuff to buy",
     "followers": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
+      {}
     ],
     "color": "light-green",
     "workspace": {
@@ -14413,122 +12948,28 @@ Returns the compact task records for all tasks with the given tag. Tasks can hav
       "assignee_status": "upcoming",
       "completed": false,
       "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "custom_field",
-          "name": "Bug Task",
-          "resource_subtype": "milestone",
-          "type": "text",
-          "enum_options": [
-            {
-              "id": 12345,
-              "gid": "12345",
-              "resource_type": "enum_option",
-              "name": "Low",
-              "enabled": true,
-              "color": "blue"
-            }
-          ],
-          "enum_value": null,
-          "enabled": true,
-          "text_value": "Some Value",
-          "description": "Development team priority",
-          "precision": 2
-        }
-      ],
-      "dependencies": [
-        {
-          "id": 1234,
-          "gid": "1234"
-        },
-        {
-          "id": 4321,
-          "gid": "4321"
-        }
-      ],
-      "dependents": [
-        {
-          "id": 1234,
-          "gid": "1234"
-        },
-        {
-          "id": 4321,
-          "gid": "4321"
-        }
-      ],
+      "custom_fields": [],
+      "dependencies": [],
+      "dependents": [],
       "due_at": "2012-02-22T02:06:58.147Z",
       "due_on": "2012-03-26",
-      "external": {
-        "id": "my_id",
-        "data": "A blob of information"
-      },
-      "followers": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
+      "external": {},
+      "followers": [],
       "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
       "hearted": true,
-      "hearts": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
+      "hearts": [],
       "liked": true,
-      "likes": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "memberships": [
-        {
-          "project": {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "project",
-            "name": "Stuff to buy"
-          },
-          "section": {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "section",
-            "name": "Next Actions"
-          }
-        }
-      ],
+      "likes": [],
+      "memberships": [],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "Mittens really likes the stuff from Humboldt.",
       "num_hearts": 5,
       "num_likes": 5,
       "num_subtasks": 3,
       "parent": null,
-      "projects": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
-        }
-      ],
+      "projects": [],
       "start_on": "2012-03-26",
-      "tags": [
-        {
-          "id": 59746,
-          "gid": "59746",
-          "name": "Grade A"
-        }
-      ],
+      "tags": [],
       "workspace": null
     }
   ]
@@ -14691,21 +13132,9 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
       "gid": "12345",
       "resource_type": "tag",
       "name": "Stuff to buy",
-      "followers": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
+      "followers": [],
       "color": "light-green",
-      "workspace": {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "workspace",
-        "name": "Bug Task"
-      }
+      "workspace": {}
     }
   ]
 }
@@ -14902,21 +13331,9 @@ Returns the full record of the newly created tag.
       "gid": "12345",
       "resource_type": "tag",
       "name": "Stuff to buy",
-      "followers": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
+      "followers": [],
       "color": "light-green",
-      "workspace": {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "workspace",
-        "name": "Bug Task"
-      }
+      "workspace": {}
     }
   ]
 }
@@ -15088,122 +13505,28 @@ Returns the compact task records for all tasks within the given project, ordered
       "assignee_status": "upcoming",
       "completed": false,
       "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "custom_field",
-          "name": "Bug Task",
-          "resource_subtype": "milestone",
-          "type": "text",
-          "enum_options": [
-            {
-              "id": 12345,
-              "gid": "12345",
-              "resource_type": "enum_option",
-              "name": "Low",
-              "enabled": true,
-              "color": "blue"
-            }
-          ],
-          "enum_value": null,
-          "enabled": true,
-          "text_value": "Some Value",
-          "description": "Development team priority",
-          "precision": 2
-        }
-      ],
-      "dependencies": [
-        {
-          "id": 1234,
-          "gid": "1234"
-        },
-        {
-          "id": 4321,
-          "gid": "4321"
-        }
-      ],
-      "dependents": [
-        {
-          "id": 1234,
-          "gid": "1234"
-        },
-        {
-          "id": 4321,
-          "gid": "4321"
-        }
-      ],
+      "custom_fields": [],
+      "dependencies": [],
+      "dependents": [],
       "due_at": "2012-02-22T02:06:58.147Z",
       "due_on": "2012-03-26",
-      "external": {
-        "id": "my_id",
-        "data": "A blob of information"
-      },
-      "followers": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
+      "external": {},
+      "followers": [],
       "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
       "hearted": true,
-      "hearts": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
+      "hearts": [],
       "liked": true,
-      "likes": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "memberships": [
-        {
-          "project": {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "project",
-            "name": "Stuff to buy"
-          },
-          "section": {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "section",
-            "name": "Next Actions"
-          }
-        }
-      ],
+      "likes": [],
+      "memberships": [],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "Mittens really likes the stuff from Humboldt.",
       "num_hearts": 5,
       "num_likes": 5,
       "num_subtasks": 3,
       "parent": null,
-      "projects": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
-        }
-      ],
+      "projects": [],
       "start_on": "2012-03-26",
-      "tags": [
-        {
-          "id": 59746,
-          "gid": "59746",
-          "name": "Grade A"
-        }
-      ],
+      "tags": [],
       "workspace": null
     }
   ]
@@ -15397,122 +13720,28 @@ include assigning, renaming, completing, and adding stories.
       "assignee_status": "upcoming",
       "completed": false,
       "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "custom_field",
-          "name": "Bug Task",
-          "resource_subtype": "milestone",
-          "type": "text",
-          "enum_options": [
-            {
-              "id": 12345,
-              "gid": "12345",
-              "resource_type": "enum_option",
-              "name": "Low",
-              "enabled": true,
-              "color": "blue"
-            }
-          ],
-          "enum_value": null,
-          "enabled": true,
-          "text_value": "Some Value",
-          "description": "Development team priority",
-          "precision": 2
-        }
-      ],
-      "dependencies": [
-        {
-          "id": 1234,
-          "gid": "1234"
-        },
-        {
-          "id": 4321,
-          "gid": "4321"
-        }
-      ],
-      "dependents": [
-        {
-          "id": 1234,
-          "gid": "1234"
-        },
-        {
-          "id": 4321,
-          "gid": "4321"
-        }
-      ],
+      "custom_fields": [],
+      "dependencies": [],
+      "dependents": [],
       "due_at": "2012-02-22T02:06:58.147Z",
       "due_on": "2012-03-26",
-      "external": {
-        "id": "my_id",
-        "data": "A blob of information"
-      },
-      "followers": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
+      "external": {},
+      "followers": [],
       "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
       "hearted": true,
-      "hearts": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
+      "hearts": [],
       "liked": true,
-      "likes": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "memberships": [
-        {
-          "project": {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "project",
-            "name": "Stuff to buy"
-          },
-          "section": {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "section",
-            "name": "Next Actions"
-          }
-        }
-      ],
+      "likes": [],
+      "memberships": [],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "Mittens really likes the stuff from Humboldt.",
       "num_hearts": 5,
       "num_likes": 5,
       "num_subtasks": 3,
       "parent": null,
-      "projects": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
-        }
-      ],
+      "projects": [],
       "start_on": "2012-03-26",
-      "tags": [
-        {
-          "id": 59746,
-          "gid": "59746",
-          "name": "Grade A"
-        }
-      ],
+      "tags": [],
       "workspace": null
     }
   ]
@@ -15551,7 +13780,6 @@ const fetch = require('node-fetch');
 const inputBody = '{
   "data": {
     "name": "Buy catnip",
-    "resource_subtype": "default_task",
     "assignee": null,
     "assignee_status": "upcoming",
     "completed": false,
@@ -15562,35 +13790,20 @@ const inputBody = '{
       "data": "A blob of information"
     },
     "followers": [
-      {
-        "name": "Greg Sanchez"
-      }
+      {}
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "memberships": [
-      {
-        "project": {
-          "name": "Stuff to buy"
-        },
-        "section": {
-          "name": "Next Actions"
-        }
-      }
+      {}
     ],
     "notes": "Mittens really likes the stuff from Humboldt.",
     "parent": null,
     "projects": [
-      {
-        "name": "Stuff to buy"
-      }
+      {}
     ],
     "start_on": "2012-03-26",
     "tags": [
-      {
-        "id": 59746,
-        "gid": "59746",
-        "name": "Grade A"
-      }
+      {}
     ],
     "workspace": null
   }
@@ -15717,7 +13930,6 @@ explicitly if you specify `projects` or a `parent` task instead.
 {
   "data": {
     "name": "Buy catnip",
-    "resource_subtype": "default_task",
     "assignee": null,
     "assignee_status": "upcoming",
     "completed": false,
@@ -15728,35 +13940,20 @@ explicitly if you specify `projects` or a `parent` task instead.
       "data": "A blob of information"
     },
     "followers": [
-      {
-        "name": "Greg Sanchez"
-      }
+      {}
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "memberships": [
-      {
-        "project": {
-          "name": "Stuff to buy"
-        },
-        "section": {
-          "name": "Next Actions"
-        }
-      }
+      {}
     ],
     "notes": "Mittens really likes the stuff from Humboldt.",
     "parent": null,
     "projects": [
-      {
-        "name": "Stuff to buy"
-      }
+      {}
     ],
     "start_on": "2012-03-26",
     "tags": [
-      {
-        "id": 59746,
-        "gid": "59746",
-        "name": "Grade A"
-      }
+      {}
     ],
     "workspace": null
   }
@@ -15790,49 +13987,15 @@ explicitly if you specify `projects` or a `parent` task instead.
     "completed": false,
     "completed_at": "2012-02-22T02:06:58.147Z",
     "custom_fields": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "custom_field",
-        "name": "Bug Task",
-        "resource_subtype": "milestone",
-        "type": "text",
-        "enum_options": [
-          {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "name": "Low",
-            "enabled": true,
-            "color": "blue"
-          }
-        ],
-        "enum_value": null,
-        "enabled": true,
-        "text_value": "Some Value",
-        "description": "Development team priority",
-        "precision": 2
-      }
+      {}
     ],
     "dependencies": [
-      {
-        "id": 1234,
-        "gid": "1234"
-      },
-      {
-        "id": 4321,
-        "gid": "4321"
-      }
+      {},
+      {}
     ],
     "dependents": [
-      {
-        "id": 1234,
-        "gid": "1234"
-      },
-      {
-        "id": 4321,
-        "gid": "4321"
-      }
+      {},
+      {}
     ],
     "due_at": "2012-02-22T02:06:58.147Z",
     "due_on": "2012-03-26",
@@ -15841,47 +14004,19 @@ explicitly if you specify `projects` or a `parent` task instead.
       "data": "A blob of information"
     },
     "followers": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
+      {}
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "hearted": true,
     "hearts": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
+      {}
     ],
     "liked": true,
     "likes": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
+      {}
     ],
     "memberships": [
-      {
-        "project": {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
-        },
-        "section": {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "section",
-          "name": "Next Actions"
-        }
-      }
+      {}
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "Mittens really likes the stuff from Humboldt.",
@@ -15890,20 +14025,11 @@ explicitly if you specify `projects` or a `parent` task instead.
     "num_subtasks": 3,
     "parent": null,
     "projects": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "project",
-        "name": "Stuff to buy"
-      }
+      {}
     ],
     "start_on": "2012-03-26",
     "tags": [
-      {
-        "id": 59746,
-        "gid": "59746",
-        "name": "Grade A"
-      }
+      {}
     ],
     "workspace": null
   }
@@ -16072,49 +14198,15 @@ Returns the complete task record for a single task.
     "completed": false,
     "completed_at": "2012-02-22T02:06:58.147Z",
     "custom_fields": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "custom_field",
-        "name": "Bug Task",
-        "resource_subtype": "milestone",
-        "type": "text",
-        "enum_options": [
-          {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "name": "Low",
-            "enabled": true,
-            "color": "blue"
-          }
-        ],
-        "enum_value": null,
-        "enabled": true,
-        "text_value": "Some Value",
-        "description": "Development team priority",
-        "precision": 2
-      }
+      {}
     ],
     "dependencies": [
-      {
-        "id": 1234,
-        "gid": "1234"
-      },
-      {
-        "id": 4321,
-        "gid": "4321"
-      }
+      {},
+      {}
     ],
     "dependents": [
-      {
-        "id": 1234,
-        "gid": "1234"
-      },
-      {
-        "id": 4321,
-        "gid": "4321"
-      }
+      {},
+      {}
     ],
     "due_at": "2012-02-22T02:06:58.147Z",
     "due_on": "2012-03-26",
@@ -16123,47 +14215,19 @@ Returns the complete task record for a single task.
       "data": "A blob of information"
     },
     "followers": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
+      {}
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "hearted": true,
     "hearts": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
+      {}
     ],
     "liked": true,
     "likes": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
+      {}
     ],
     "memberships": [
-      {
-        "project": {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
-        },
-        "section": {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "section",
-          "name": "Next Actions"
-        }
-      }
+      {}
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "Mittens really likes the stuff from Humboldt.",
@@ -16172,20 +14236,11 @@ Returns the complete task record for a single task.
     "num_subtasks": 3,
     "parent": null,
     "projects": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "project",
-        "name": "Stuff to buy"
-      }
+      {}
     ],
     "start_on": "2012-03-26",
     "tags": [
-      {
-        "id": 59746,
-        "gid": "59746",
-        "name": "Grade A"
-      }
+      {}
     ],
     "workspace": null
   }
@@ -16224,7 +14279,6 @@ const fetch = require('node-fetch');
 const inputBody = '{
   "data": {
     "name": "Buy catnip",
-    "resource_subtype": "default_task",
     "assignee": null,
     "assignee_status": "upcoming",
     "completed": false,
@@ -16235,35 +14289,20 @@ const inputBody = '{
       "data": "A blob of information"
     },
     "followers": [
-      {
-        "name": "Greg Sanchez"
-      }
+      {}
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "memberships": [
-      {
-        "project": {
-          "name": "Stuff to buy"
-        },
-        "section": {
-          "name": "Next Actions"
-        }
-      }
+      {}
     ],
     "notes": "Mittens really likes the stuff from Humboldt.",
     "parent": null,
     "projects": [
-      {
-        "name": "Stuff to buy"
-      }
+      {}
     ],
     "start_on": "2012-03-26",
     "tags": [
-      {
-        "id": 59746,
-        "gid": "59746",
-        "name": "Grade A"
-      }
+      {}
     ],
     "workspace": null
   }
@@ -16392,7 +14431,6 @@ Returns the complete updated task record.
 {
   "data": {
     "name": "Buy catnip",
-    "resource_subtype": "default_task",
     "assignee": null,
     "assignee_status": "upcoming",
     "completed": false,
@@ -16403,35 +14441,20 @@ Returns the complete updated task record.
       "data": "A blob of information"
     },
     "followers": [
-      {
-        "name": "Greg Sanchez"
-      }
+      {}
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "memberships": [
-      {
-        "project": {
-          "name": "Stuff to buy"
-        },
-        "section": {
-          "name": "Next Actions"
-        }
-      }
+      {}
     ],
     "notes": "Mittens really likes the stuff from Humboldt.",
     "parent": null,
     "projects": [
-      {
-        "name": "Stuff to buy"
-      }
+      {}
     ],
     "start_on": "2012-03-26",
     "tags": [
-      {
-        "id": 59746,
-        "gid": "59746",
-        "name": "Grade A"
-      }
+      {}
     ],
     "workspace": null
   }
@@ -16466,49 +14489,15 @@ Returns the complete updated task record.
     "completed": false,
     "completed_at": "2012-02-22T02:06:58.147Z",
     "custom_fields": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "custom_field",
-        "name": "Bug Task",
-        "resource_subtype": "milestone",
-        "type": "text",
-        "enum_options": [
-          {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "name": "Low",
-            "enabled": true,
-            "color": "blue"
-          }
-        ],
-        "enum_value": null,
-        "enabled": true,
-        "text_value": "Some Value",
-        "description": "Development team priority",
-        "precision": 2
-      }
+      {}
     ],
     "dependencies": [
-      {
-        "id": 1234,
-        "gid": "1234"
-      },
-      {
-        "id": 4321,
-        "gid": "4321"
-      }
+      {},
+      {}
     ],
     "dependents": [
-      {
-        "id": 1234,
-        "gid": "1234"
-      },
-      {
-        "id": 4321,
-        "gid": "4321"
-      }
+      {},
+      {}
     ],
     "due_at": "2012-02-22T02:06:58.147Z",
     "due_on": "2012-03-26",
@@ -16517,47 +14506,19 @@ Returns the complete updated task record.
       "data": "A blob of information"
     },
     "followers": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
+      {}
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "hearted": true,
     "hearts": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
+      {}
     ],
     "liked": true,
     "likes": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
+      {}
     ],
     "memberships": [
-      {
-        "project": {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
-        },
-        "section": {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "section",
-          "name": "Next Actions"
-        }
-      }
+      {}
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "Mittens really likes the stuff from Humboldt.",
@@ -16566,20 +14527,11 @@ Returns the complete updated task record.
     "num_subtasks": 3,
     "parent": null,
     "projects": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "project",
-        "name": "Stuff to buy"
-      }
+      {}
     ],
     "start_on": "2012-03-26",
     "tags": [
-      {
-        "id": 59746,
-        "gid": "59746",
-        "name": "Grade A"
-      }
+      {}
     ],
     "workspace": null
   }
@@ -17125,122 +15077,28 @@ Returns a compact representation of all of the subtasks of a task.
       "assignee_status": "upcoming",
       "completed": false,
       "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "custom_field",
-          "name": "Bug Task",
-          "resource_subtype": "milestone",
-          "type": "text",
-          "enum_options": [
-            {
-              "id": 12345,
-              "gid": "12345",
-              "resource_type": "enum_option",
-              "name": "Low",
-              "enabled": true,
-              "color": "blue"
-            }
-          ],
-          "enum_value": null,
-          "enabled": true,
-          "text_value": "Some Value",
-          "description": "Development team priority",
-          "precision": 2
-        }
-      ],
-      "dependencies": [
-        {
-          "id": 1234,
-          "gid": "1234"
-        },
-        {
-          "id": 4321,
-          "gid": "4321"
-        }
-      ],
-      "dependents": [
-        {
-          "id": 1234,
-          "gid": "1234"
-        },
-        {
-          "id": 4321,
-          "gid": "4321"
-        }
-      ],
+      "custom_fields": [],
+      "dependencies": [],
+      "dependents": [],
       "due_at": "2012-02-22T02:06:58.147Z",
       "due_on": "2012-03-26",
-      "external": {
-        "id": "my_id",
-        "data": "A blob of information"
-      },
-      "followers": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
+      "external": {},
+      "followers": [],
       "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
       "hearted": true,
-      "hearts": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
+      "hearts": [],
       "liked": true,
-      "likes": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "memberships": [
-        {
-          "project": {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "project",
-            "name": "Stuff to buy"
-          },
-          "section": {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "section",
-            "name": "Next Actions"
-          }
-        }
-      ],
+      "likes": [],
+      "memberships": [],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "Mittens really likes the stuff from Humboldt.",
       "num_hearts": 5,
       "num_likes": 5,
       "num_subtasks": 3,
       "parent": null,
-      "projects": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
-        }
-      ],
+      "projects": [],
       "start_on": "2012-03-26",
-      "tags": [
-        {
-          "id": 59746,
-          "gid": "59746",
-          "name": "Grade A"
-        }
-      ],
+      "tags": [],
       "workspace": null
     }
   ]
@@ -17279,7 +15137,6 @@ const fetch = require('node-fetch');
 const inputBody = '{
   "data": {
     "name": "Buy catnip",
-    "resource_subtype": "default_task",
     "assignee": null,
     "assignee_status": "upcoming",
     "completed": false,
@@ -17290,35 +15147,20 @@ const inputBody = '{
       "data": "A blob of information"
     },
     "followers": [
-      {
-        "name": "Greg Sanchez"
-      }
+      {}
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "memberships": [
-      {
-        "project": {
-          "name": "Stuff to buy"
-        },
-        "section": {
-          "name": "Next Actions"
-        }
-      }
+      {}
     ],
     "notes": "Mittens really likes the stuff from Humboldt.",
     "parent": null,
     "projects": [
-      {
-        "name": "Stuff to buy"
-      }
+      {}
     ],
     "start_on": "2012-03-26",
     "tags": [
-      {
-        "id": 59746,
-        "gid": "59746",
-        "name": "Grade A"
-      }
+      {}
     ],
     "workspace": null
   }
@@ -17439,7 +15281,6 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 {
   "data": {
     "name": "Buy catnip",
-    "resource_subtype": "default_task",
     "assignee": null,
     "assignee_status": "upcoming",
     "completed": false,
@@ -17450,35 +15291,20 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
       "data": "A blob of information"
     },
     "followers": [
-      {
-        "name": "Greg Sanchez"
-      }
+      {}
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "memberships": [
-      {
-        "project": {
-          "name": "Stuff to buy"
-        },
-        "section": {
-          "name": "Next Actions"
-        }
-      }
+      {}
     ],
     "notes": "Mittens really likes the stuff from Humboldt.",
     "parent": null,
     "projects": [
-      {
-        "name": "Stuff to buy"
-      }
+      {}
     ],
     "start_on": "2012-03-26",
     "tags": [
-      {
-        "id": 59746,
-        "gid": "59746",
-        "name": "Grade A"
-      }
+      {}
     ],
     "workspace": null
   }
@@ -17513,49 +15339,15 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
     "completed": false,
     "completed_at": "2012-02-22T02:06:58.147Z",
     "custom_fields": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "custom_field",
-        "name": "Bug Task",
-        "resource_subtype": "milestone",
-        "type": "text",
-        "enum_options": [
-          {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "name": "Low",
-            "enabled": true,
-            "color": "blue"
-          }
-        ],
-        "enum_value": null,
-        "enabled": true,
-        "text_value": "Some Value",
-        "description": "Development team priority",
-        "precision": 2
-      }
+      {}
     ],
     "dependencies": [
-      {
-        "id": 1234,
-        "gid": "1234"
-      },
-      {
-        "id": 4321,
-        "gid": "4321"
-      }
+      {},
+      {}
     ],
     "dependents": [
-      {
-        "id": 1234,
-        "gid": "1234"
-      },
-      {
-        "id": 4321,
-        "gid": "4321"
-      }
+      {},
+      {}
     ],
     "due_at": "2012-02-22T02:06:58.147Z",
     "due_on": "2012-03-26",
@@ -17564,47 +15356,19 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
       "data": "A blob of information"
     },
     "followers": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
+      {}
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "hearted": true,
     "hearts": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
+      {}
     ],
     "liked": true,
     "likes": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
+      {}
     ],
     "memberships": [
-      {
-        "project": {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
-        },
-        "section": {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "section",
-          "name": "Next Actions"
-        }
-      }
+      {}
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "Mittens really likes the stuff from Humboldt.",
@@ -17613,20 +15377,11 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
     "num_subtasks": 3,
     "parent": null,
     "projects": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "project",
-        "name": "Stuff to buy"
-      }
+      {}
     ],
     "start_on": "2012-03-26",
     "tags": [
-      {
-        "id": 59746,
-        "gid": "59746",
-        "name": "Grade A"
-      }
+      {}
     ],
     "workspace": null
   }
@@ -17823,49 +15578,15 @@ parent, or no parent task at all. Returns an empty data block. When using `inser
     "completed": false,
     "completed_at": "2012-02-22T02:06:58.147Z",
     "custom_fields": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "custom_field",
-        "name": "Bug Task",
-        "resource_subtype": "milestone",
-        "type": "text",
-        "enum_options": [
-          {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "enum_option",
-            "name": "Low",
-            "enabled": true,
-            "color": "blue"
-          }
-        ],
-        "enum_value": null,
-        "enabled": true,
-        "text_value": "Some Value",
-        "description": "Development team priority",
-        "precision": 2
-      }
+      {}
     ],
     "dependencies": [
-      {
-        "id": 1234,
-        "gid": "1234"
-      },
-      {
-        "id": 4321,
-        "gid": "4321"
-      }
+      {},
+      {}
     ],
     "dependents": [
-      {
-        "id": 1234,
-        "gid": "1234"
-      },
-      {
-        "id": 4321,
-        "gid": "4321"
-      }
+      {},
+      {}
     ],
     "due_at": "2012-02-22T02:06:58.147Z",
     "due_on": "2012-03-26",
@@ -17874,47 +15595,19 @@ parent, or no parent task at all. Returns an empty data block. When using `inser
       "data": "A blob of information"
     },
     "followers": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
+      {}
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "hearted": true,
     "hearts": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
+      {}
     ],
     "liked": true,
     "likes": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
+      {}
     ],
     "memberships": [
-      {
-        "project": {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
-        },
-        "section": {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "section",
-          "name": "Next Actions"
-        }
-      }
+      {}
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "Mittens really likes the stuff from Humboldt.",
@@ -17923,20 +15616,11 @@ parent, or no parent task at all. Returns an empty data block. When using `inser
     "num_subtasks": 3,
     "parent": null,
     "projects": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "project",
-        "name": "Stuff to buy"
-      }
+      {}
     ],
     "start_on": "2012-03-26",
     "tags": [
-      {
-        "id": 59746,
-        "gid": "59746",
-        "name": "Grade A"
-      }
+      {}
     ],
     "workspace": null
   }
@@ -18105,122 +15789,28 @@ Returns the compact representations of all of the dependencies of a task.
       "assignee_status": "upcoming",
       "completed": false,
       "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "custom_field",
-          "name": "Bug Task",
-          "resource_subtype": "milestone",
-          "type": "text",
-          "enum_options": [
-            {
-              "id": 12345,
-              "gid": "12345",
-              "resource_type": "enum_option",
-              "name": "Low",
-              "enabled": true,
-              "color": "blue"
-            }
-          ],
-          "enum_value": null,
-          "enabled": true,
-          "text_value": "Some Value",
-          "description": "Development team priority",
-          "precision": 2
-        }
-      ],
-      "dependencies": [
-        {
-          "id": 1234,
-          "gid": "1234"
-        },
-        {
-          "id": 4321,
-          "gid": "4321"
-        }
-      ],
-      "dependents": [
-        {
-          "id": 1234,
-          "gid": "1234"
-        },
-        {
-          "id": 4321,
-          "gid": "4321"
-        }
-      ],
+      "custom_fields": [],
+      "dependencies": [],
+      "dependents": [],
       "due_at": "2012-02-22T02:06:58.147Z",
       "due_on": "2012-03-26",
-      "external": {
-        "id": "my_id",
-        "data": "A blob of information"
-      },
-      "followers": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
+      "external": {},
+      "followers": [],
       "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
       "hearted": true,
-      "hearts": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
+      "hearts": [],
       "liked": true,
-      "likes": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "memberships": [
-        {
-          "project": {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "project",
-            "name": "Stuff to buy"
-          },
-          "section": {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "section",
-            "name": "Next Actions"
-          }
-        }
-      ],
+      "likes": [],
+      "memberships": [],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "Mittens really likes the stuff from Humboldt.",
       "num_hearts": 5,
       "num_likes": 5,
       "num_subtasks": 3,
       "parent": null,
-      "projects": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
-        }
-      ],
+      "projects": [],
       "start_on": "2012-03-26",
-      "tags": [
-        {
-          "id": 59746,
-          "gid": "59746",
-          "name": "Grade A"
-        }
-      ],
+      "tags": [],
       "workspace": null
     }
   ]
@@ -18415,122 +16005,28 @@ Marks a set of tasks as dependencies of this task, if they are not already depen
       "assignee_status": "upcoming",
       "completed": false,
       "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "custom_field",
-          "name": "Bug Task",
-          "resource_subtype": "milestone",
-          "type": "text",
-          "enum_options": [
-            {
-              "id": 12345,
-              "gid": "12345",
-              "resource_type": "enum_option",
-              "name": "Low",
-              "enabled": true,
-              "color": "blue"
-            }
-          ],
-          "enum_value": null,
-          "enabled": true,
-          "text_value": "Some Value",
-          "description": "Development team priority",
-          "precision": 2
-        }
-      ],
-      "dependencies": [
-        {
-          "id": 1234,
-          "gid": "1234"
-        },
-        {
-          "id": 4321,
-          "gid": "4321"
-        }
-      ],
-      "dependents": [
-        {
-          "id": 1234,
-          "gid": "1234"
-        },
-        {
-          "id": 4321,
-          "gid": "4321"
-        }
-      ],
+      "custom_fields": [],
+      "dependencies": [],
+      "dependents": [],
       "due_at": "2012-02-22T02:06:58.147Z",
       "due_on": "2012-03-26",
-      "external": {
-        "id": "my_id",
-        "data": "A blob of information"
-      },
-      "followers": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
+      "external": {},
+      "followers": [],
       "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
       "hearted": true,
-      "hearts": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
+      "hearts": [],
       "liked": true,
-      "likes": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "memberships": [
-        {
-          "project": {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "project",
-            "name": "Stuff to buy"
-          },
-          "section": {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "section",
-            "name": "Next Actions"
-          }
-        }
-      ],
+      "likes": [],
+      "memberships": [],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "Mittens really likes the stuff from Humboldt.",
       "num_hearts": 5,
       "num_likes": 5,
       "num_subtasks": 3,
       "parent": null,
-      "projects": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
-        }
-      ],
+      "projects": [],
       "start_on": "2012-03-26",
-      "tags": [
-        {
-          "id": 59746,
-          "gid": "59746",
-          "name": "Grade A"
-        }
-      ],
+      "tags": [],
       "workspace": null
     }
   ]
@@ -18725,122 +16221,28 @@ Unlinks a set of dependencies from this task.
       "assignee_status": "upcoming",
       "completed": false,
       "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "custom_field",
-          "name": "Bug Task",
-          "resource_subtype": "milestone",
-          "type": "text",
-          "enum_options": [
-            {
-              "id": 12345,
-              "gid": "12345",
-              "resource_type": "enum_option",
-              "name": "Low",
-              "enabled": true,
-              "color": "blue"
-            }
-          ],
-          "enum_value": null,
-          "enabled": true,
-          "text_value": "Some Value",
-          "description": "Development team priority",
-          "precision": 2
-        }
-      ],
-      "dependencies": [
-        {
-          "id": 1234,
-          "gid": "1234"
-        },
-        {
-          "id": 4321,
-          "gid": "4321"
-        }
-      ],
-      "dependents": [
-        {
-          "id": 1234,
-          "gid": "1234"
-        },
-        {
-          "id": 4321,
-          "gid": "4321"
-        }
-      ],
+      "custom_fields": [],
+      "dependencies": [],
+      "dependents": [],
       "due_at": "2012-02-22T02:06:58.147Z",
       "due_on": "2012-03-26",
-      "external": {
-        "id": "my_id",
-        "data": "A blob of information"
-      },
-      "followers": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
+      "external": {},
+      "followers": [],
       "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
       "hearted": true,
-      "hearts": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
+      "hearts": [],
       "liked": true,
-      "likes": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "memberships": [
-        {
-          "project": {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "project",
-            "name": "Stuff to buy"
-          },
-          "section": {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "section",
-            "name": "Next Actions"
-          }
-        }
-      ],
+      "likes": [],
+      "memberships": [],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "Mittens really likes the stuff from Humboldt.",
       "num_hearts": 5,
       "num_likes": 5,
       "num_subtasks": 3,
       "parent": null,
-      "projects": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
-        }
-      ],
+      "projects": [],
       "start_on": "2012-03-26",
-      "tags": [
-        {
-          "id": 59746,
-          "gid": "59746",
-          "name": "Grade A"
-        }
-      ],
+      "tags": [],
       "workspace": null
     }
   ]
@@ -19009,122 +16411,28 @@ Returns the compact representations of all of the dependents of a task.
       "assignee_status": "upcoming",
       "completed": false,
       "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "custom_field",
-          "name": "Bug Task",
-          "resource_subtype": "milestone",
-          "type": "text",
-          "enum_options": [
-            {
-              "id": 12345,
-              "gid": "12345",
-              "resource_type": "enum_option",
-              "name": "Low",
-              "enabled": true,
-              "color": "blue"
-            }
-          ],
-          "enum_value": null,
-          "enabled": true,
-          "text_value": "Some Value",
-          "description": "Development team priority",
-          "precision": 2
-        }
-      ],
-      "dependencies": [
-        {
-          "id": 1234,
-          "gid": "1234"
-        },
-        {
-          "id": 4321,
-          "gid": "4321"
-        }
-      ],
-      "dependents": [
-        {
-          "id": 1234,
-          "gid": "1234"
-        },
-        {
-          "id": 4321,
-          "gid": "4321"
-        }
-      ],
+      "custom_fields": [],
+      "dependencies": [],
+      "dependents": [],
       "due_at": "2012-02-22T02:06:58.147Z",
       "due_on": "2012-03-26",
-      "external": {
-        "id": "my_id",
-        "data": "A blob of information"
-      },
-      "followers": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
+      "external": {},
+      "followers": [],
       "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
       "hearted": true,
-      "hearts": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
+      "hearts": [],
       "liked": true,
-      "likes": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "memberships": [
-        {
-          "project": {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "project",
-            "name": "Stuff to buy"
-          },
-          "section": {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "section",
-            "name": "Next Actions"
-          }
-        }
-      ],
+      "likes": [],
+      "memberships": [],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "Mittens really likes the stuff from Humboldt.",
       "num_hearts": 5,
       "num_likes": 5,
       "num_subtasks": 3,
       "parent": null,
-      "projects": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
-        }
-      ],
+      "projects": [],
       "start_on": "2012-03-26",
-      "tags": [
-        {
-          "id": 59746,
-          "gid": "59746",
-          "name": "Grade A"
-        }
-      ],
+      "tags": [],
       "workspace": null
     }
   ]
@@ -19319,122 +16627,28 @@ Marks a set of tasks as dependents of this task, if they are not already depende
       "assignee_status": "upcoming",
       "completed": false,
       "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "custom_field",
-          "name": "Bug Task",
-          "resource_subtype": "milestone",
-          "type": "text",
-          "enum_options": [
-            {
-              "id": 12345,
-              "gid": "12345",
-              "resource_type": "enum_option",
-              "name": "Low",
-              "enabled": true,
-              "color": "blue"
-            }
-          ],
-          "enum_value": null,
-          "enabled": true,
-          "text_value": "Some Value",
-          "description": "Development team priority",
-          "precision": 2
-        }
-      ],
-      "dependencies": [
-        {
-          "id": 1234,
-          "gid": "1234"
-        },
-        {
-          "id": 4321,
-          "gid": "4321"
-        }
-      ],
-      "dependents": [
-        {
-          "id": 1234,
-          "gid": "1234"
-        },
-        {
-          "id": 4321,
-          "gid": "4321"
-        }
-      ],
+      "custom_fields": [],
+      "dependencies": [],
+      "dependents": [],
       "due_at": "2012-02-22T02:06:58.147Z",
       "due_on": "2012-03-26",
-      "external": {
-        "id": "my_id",
-        "data": "A blob of information"
-      },
-      "followers": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
+      "external": {},
+      "followers": [],
       "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
       "hearted": true,
-      "hearts": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
+      "hearts": [],
       "liked": true,
-      "likes": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "memberships": [
-        {
-          "project": {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "project",
-            "name": "Stuff to buy"
-          },
-          "section": {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "section",
-            "name": "Next Actions"
-          }
-        }
-      ],
+      "likes": [],
+      "memberships": [],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "Mittens really likes the stuff from Humboldt.",
       "num_hearts": 5,
       "num_likes": 5,
       "num_subtasks": 3,
       "parent": null,
-      "projects": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
-        }
-      ],
+      "projects": [],
       "start_on": "2012-03-26",
-      "tags": [
-        {
-          "id": 59746,
-          "gid": "59746",
-          "name": "Grade A"
-        }
-      ],
+      "tags": [],
       "workspace": null
     }
   ]
@@ -19629,122 +16843,28 @@ Unlinks a set of dependents from this task.
       "assignee_status": "upcoming",
       "completed": false,
       "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "custom_field",
-          "name": "Bug Task",
-          "resource_subtype": "milestone",
-          "type": "text",
-          "enum_options": [
-            {
-              "id": 12345,
-              "gid": "12345",
-              "resource_type": "enum_option",
-              "name": "Low",
-              "enabled": true,
-              "color": "blue"
-            }
-          ],
-          "enum_value": null,
-          "enabled": true,
-          "text_value": "Some Value",
-          "description": "Development team priority",
-          "precision": 2
-        }
-      ],
-      "dependencies": [
-        {
-          "id": 1234,
-          "gid": "1234"
-        },
-        {
-          "id": 4321,
-          "gid": "4321"
-        }
-      ],
-      "dependents": [
-        {
-          "id": 1234,
-          "gid": "1234"
-        },
-        {
-          "id": 4321,
-          "gid": "4321"
-        }
-      ],
+      "custom_fields": [],
+      "dependencies": [],
+      "dependents": [],
       "due_at": "2012-02-22T02:06:58.147Z",
       "due_on": "2012-03-26",
-      "external": {
-        "id": "my_id",
-        "data": "A blob of information"
-      },
-      "followers": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
+      "external": {},
+      "followers": [],
       "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
       "hearted": true,
-      "hearts": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
+      "hearts": [],
       "liked": true,
-      "likes": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "memberships": [
-        {
-          "project": {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "project",
-            "name": "Stuff to buy"
-          },
-          "section": {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "section",
-            "name": "Next Actions"
-          }
-        }
-      ],
+      "likes": [],
+      "memberships": [],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "Mittens really likes the stuff from Humboldt.",
       "num_hearts": 5,
       "num_likes": 5,
       "num_subtasks": 3,
       "parent": null,
-      "projects": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
-        }
-      ],
+      "projects": [],
       "start_on": "2012-03-26",
-      "tags": [
-        {
-          "id": 59746,
-          "gid": "59746",
-          "name": "Grade A"
-        }
-      ],
+      "tags": [],
       "workspace": null
     }
   ]
@@ -19910,97 +17030,16 @@ Returns a compact representation of all of the projects the task is in.
       "created_at": "2012-02-22T02:06:58.147Z",
       "archived": false,
       "color": "light-green",
-      "current_status": {
-        "color": "green",
-        "text": "Everything is great",
-        "author": {
-          "id": 12345,
-          "name": "Greg Bizarro"
-        }
-      },
-      "custom_fields": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "custom_field_setting",
-          "project": null,
-          "is_important": false,
-          "parent": null,
-          "custom_field": null
-        }
-      ],
-      "custom_field_settings": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "custom_field_setting",
-          "project": null,
-          "is_important": false,
-          "parent": null,
-          "custom_field": null
-        }
-      ],
+      "current_status": {},
+      "custom_fields": [],
+      "custom_field_settings": [],
       "due_date": "2012-03-26",
       "due_on": "2012-03-26",
-      "followers": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez",
-          "email": "gsanchez@example.com",
-          "photo": {
-            "image_21x21": "https://...",
-            "image_27x27": "https://...",
-            "image_36x36": "https://...",
-            "image_60x60": "https://...",
-            "image_128x128": "https://..."
-          },
-          "workspaces": [
-            {
-              "id": 12345,
-              "gid": "12345",
-              "resource_type": "task",
-              "name": "Bug Task",
-              "email_domains": [
-                "asana.com"
-              ],
-              "is_organization": false
-            }
-          ]
-        }
-      ],
+      "followers": [],
       "html_notes": "These are things we need to purchase.",
       "is_template": false,
       "layout": "list",
-      "members": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez",
-          "email": "gsanchez@example.com",
-          "photo": {
-            "image_21x21": "https://...",
-            "image_27x27": "https://...",
-            "image_36x36": "https://...",
-            "image_60x60": "https://...",
-            "image_128x128": "https://..."
-          },
-          "workspaces": [
-            {
-              "id": 12345,
-              "gid": "12345",
-              "resource_type": "task",
-              "name": "Bug Task",
-              "email_domains": [
-                "asana.com"
-              ],
-              "is_organization": false
-            }
-          ]
-        }
-      ],
+      "members": [],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "These are things we need to purchase.",
       "owner": null,
@@ -20547,21 +17586,9 @@ Get a compact representation of all of the tags the task has.
       "gid": "12345",
       "resource_type": "tag",
       "name": "Stuff to buy",
-      "followers": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
+      "followers": [],
       "color": "light-green",
-      "workspace": {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "workspace",
-        "name": "Bug Task"
-      }
+      "workspace": {}
     }
   ]
 }
@@ -21938,25 +18965,8 @@ Returns the compact records for all users that are members of the team.
       "resource_type": "user",
       "name": "Greg Sanchez",
       "email": "gsanchez@example.com",
-      "photo": {
-        "image_21x21": "https://...",
-        "image_27x27": "https://...",
-        "image_36x36": "https://...",
-        "image_60x60": "https://...",
-        "image_128x128": "https://..."
-      },
-      "workspaces": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "task",
-          "name": "Bug Task",
-          "email_domains": [
-            "asana.com"
-          ],
-          "is_organization": false
-        }
-      ]
+      "photo": {},
+      "workspaces": []
     }
   ]
 }
@@ -22135,25 +19145,8 @@ The user making this call must be a member of the team in order to add others. T
       "resource_type": "user",
       "name": "Greg Sanchez",
       "email": "gsanchez@example.com",
-      "photo": {
-        "image_21x21": "https://...",
-        "image_27x27": "https://...",
-        "image_36x36": "https://...",
-        "image_60x60": "https://...",
-        "image_128x128": "https://..."
-      },
-      "workspaces": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "task",
-          "name": "Bug Task",
-          "email_domains": [
-            "asana.com"
-          ],
-          "is_organization": false
-        }
-      ]
+      "photo": {},
+      "workspaces": []
     }
   ]
 }
@@ -22332,25 +19325,8 @@ The user making this call must be a member of the team in order to remove themse
       "resource_type": "user",
       "name": "Greg Sanchez",
       "email": "gsanchez@example.com",
-      "photo": {
-        "image_21x21": "https://...",
-        "image_27x27": "https://...",
-        "image_36x36": "https://...",
-        "image_60x60": "https://...",
-        "image_128x128": "https://..."
-      },
-      "workspaces": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "task",
-          "name": "Bug Task",
-          "email_domains": [
-            "asana.com"
-          ],
-          "is_organization": false
-        }
-      ]
+      "photo": {},
+      "workspaces": []
     }
   ]
 }
@@ -22518,25 +19494,8 @@ Results are sorted by user ID.
       "resource_type": "user",
       "name": "Greg Sanchez",
       "email": "gsanchez@example.com",
-      "photo": {
-        "image_21x21": "https://...",
-        "image_27x27": "https://...",
-        "image_36x36": "https://...",
-        "image_60x60": "https://...",
-        "image_128x128": "https://..."
-      },
-      "workspaces": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "task",
-          "name": "Bug Task",
-          "email_domains": [
-            "asana.com"
-          ],
-          "is_organization": false
-        }
-      ]
+      "photo": {},
+      "workspaces": []
     }
   ]
 }
@@ -22707,16 +19666,7 @@ Results are sorted by user ID.
       "image_128x128": "https://..."
     },
     "workspaces": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "task",
-        "name": "Bug Task",
-        "email_domains": [
-          "asana.com"
-        ],
-        "is_organization": false
-      }
+      {}
     ]
   }
 }
@@ -23051,25 +20001,8 @@ Results are sorted alphabetically by user names.
       "resource_type": "user",
       "name": "Greg Sanchez",
       "email": "gsanchez@example.com",
-      "photo": {
-        "image_21x21": "https://...",
-        "image_27x27": "https://...",
-        "image_36x36": "https://...",
-        "image_60x60": "https://...",
-        "image_128x128": "https://..."
-      },
-      "workspaces": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "task",
-          "name": "Bug Task",
-          "email_domains": [
-            "asana.com"
-          ],
-          "is_organization": false
-        }
-      ]
+      "photo": {},
+      "workspaces": []
     }
   ]
 }
@@ -23571,122 +20504,28 @@ Returns the compact list of tasks in a user’s My Tasks list. The returned task
       "assignee_status": "upcoming",
       "completed": false,
       "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "custom_field",
-          "name": "Bug Task",
-          "resource_subtype": "milestone",
-          "type": "text",
-          "enum_options": [
-            {
-              "id": 12345,
-              "gid": "12345",
-              "resource_type": "enum_option",
-              "name": "Low",
-              "enabled": true,
-              "color": "blue"
-            }
-          ],
-          "enum_value": null,
-          "enabled": true,
-          "text_value": "Some Value",
-          "description": "Development team priority",
-          "precision": 2
-        }
-      ],
-      "dependencies": [
-        {
-          "id": 1234,
-          "gid": "1234"
-        },
-        {
-          "id": 4321,
-          "gid": "4321"
-        }
-      ],
-      "dependents": [
-        {
-          "id": 1234,
-          "gid": "1234"
-        },
-        {
-          "id": 4321,
-          "gid": "4321"
-        }
-      ],
+      "custom_fields": [],
+      "dependencies": [],
+      "dependents": [],
       "due_at": "2012-02-22T02:06:58.147Z",
       "due_on": "2012-03-26",
-      "external": {
-        "id": "my_id",
-        "data": "A blob of information"
-      },
-      "followers": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
+      "external": {},
+      "followers": [],
       "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
       "hearted": true,
-      "hearts": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
+      "hearts": [],
       "liked": true,
-      "likes": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "user",
-          "name": "Greg Sanchez"
-        }
-      ],
-      "memberships": [
-        {
-          "project": {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "project",
-            "name": "Stuff to buy"
-          },
-          "section": {
-            "id": 12345,
-            "gid": "12345",
-            "resource_type": "section",
-            "name": "Next Actions"
-          }
-        }
-      ],
+      "likes": [],
+      "memberships": [],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "Mittens really likes the stuff from Humboldt.",
       "num_hearts": 5,
       "num_likes": 5,
       "num_subtasks": 3,
       "parent": null,
-      "projects": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "project",
-          "name": "Stuff to buy"
-        }
-      ],
+      "projects": [],
       "start_on": "2012-03-26",
-      "tags": [
-        {
-          "id": 59746,
-          "gid": "59746",
-          "name": "Grade A"
-        }
-      ],
+      "tags": [],
       "workspace": null
     }
   ]
@@ -24780,9 +21619,7 @@ Returns the compact records for all workspaces visible to the authorized user.
       "gid": "12345",
       "resource_type": "task",
       "name": "Bug Task",
-      "email_domains": [
-        "asana.com"
-      ],
+      "email_domains": [],
       "is_organization": false
     }
   ]
@@ -25326,16 +22163,7 @@ The user can be referenced by their globally unique user ID or their email addre
       "image_128x128": "https://..."
     },
     "workspaces": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "task",
-        "name": "Bug Task",
-        "email_domains": [
-          "asana.com"
-        ],
-        "is_organization": false
-      }
+      {}
     ]
   }
 }
@@ -25834,12 +22662,7 @@ Returns the compact portfolio membership records for the portfolio.
       "id": 12345,
       "gid": "12345",
       "resource_type": "portfolio_membership",
-      "user": {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "user",
-        "name": "Greg Sanchez"
-      }
+      "user": {}
     }
   ]
 }
@@ -26238,7 +23061,7 @@ Attempting to edit a locked custom field will return HTTP error code
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the object.|
-|resource_subtype|string|false|none|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |type|string|false|none|**Deprecated: new integrations should prefer the resource_subtype field.** The type of the custom field. Must be one of the given values.|
 |enum_options|[object]|false|none|**Conditional**. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://asana.com/developers/api-reference/custom_fields#enum-options).|
 |» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
@@ -26303,7 +23126,7 @@ A generic Asana Object, containing a globally unique identifier.
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the object.|
-|resource_subtype|string|false|none|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |type|string|false|none|**Deprecated: new integrations should prefer the resource_subtype field.** The type of the custom field. Must be one of the given values.|
 |enum_options|[object]|false|none|**Conditional**. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://asana.com/developers/api-reference/custom_fields#enum-options).|
 |» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
@@ -26659,7 +23482,7 @@ A *job* is an object representing a process that handles asynchronous work.
 |id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
-|resource_subtype|string|false|none|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |status|string|false|read-only|none|
 |new_project|object|false|none|A generic Asana Object, containing a globally unique identifier.|
 |» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
@@ -27088,25 +23911,8 @@ This is read-only except for a small group of whitelisted apps.
       "resource_type": "user",
       "name": "Greg Sanchez",
       "email": "gsanchez@example.com",
-      "photo": {
-        "image_21x21": "https://...",
-        "image_27x27": "https://...",
-        "image_36x36": "https://...",
-        "image_60x60": "https://...",
-        "image_128x128": "https://..."
-      },
-      "workspaces": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "task",
-          "name": "Bug Task",
-          "email_domains": [
-            "asana.com"
-          ],
-          "is_organization": false
-        }
-      ]
+      "photo": {},
+      "workspaces": []
     }
   ],
   "html_notes": "These are things we need to purchase.",
@@ -27119,25 +23925,8 @@ This is read-only except for a small group of whitelisted apps.
       "resource_type": "user",
       "name": "Greg Sanchez",
       "email": "gsanchez@example.com",
-      "photo": {
-        "image_21x21": "https://...",
-        "image_27x27": "https://...",
-        "image_36x36": "https://...",
-        "image_60x60": "https://...",
-        "image_128x128": "https://..."
-      },
-      "workspaces": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "task",
-          "name": "Bug Task",
-          "email_domains": [
-            "asana.com"
-          ],
-          "is_organization": false
-        }
-      ]
+      "photo": {},
+      "workspaces": []
     }
   ],
   "modified_at": "2012-02-22T02:06:58.147Z",
@@ -27607,25 +24396,8 @@ A generic Asana Object, containing a globally unique identifier.
       "resource_type": "user",
       "name": "Greg Sanchez",
       "email": "gsanchez@example.com",
-      "photo": {
-        "image_21x21": "https://...",
-        "image_27x27": "https://...",
-        "image_36x36": "https://...",
-        "image_60x60": "https://...",
-        "image_128x128": "https://..."
-      },
-      "workspaces": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "task",
-          "name": "Bug Task",
-          "email_domains": [
-            "asana.com"
-          ],
-          "is_organization": false
-        }
-      ]
+      "photo": {},
+      "workspaces": []
     }
   ],
   "num_hearts": 5,
@@ -27637,25 +24409,8 @@ A generic Asana Object, containing a globally unique identifier.
       "resource_type": "user",
       "name": "Greg Sanchez",
       "email": "gsanchez@example.com",
-      "photo": {
-        "image_21x21": "https://...",
-        "image_27x27": "https://...",
-        "image_36x36": "https://...",
-        "image_60x60": "https://...",
-        "image_128x128": "https://..."
-      },
-      "workspaces": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "task",
-          "name": "Bug Task",
-          "email_domains": [
-            "asana.com"
-          ],
-          "is_organization": false
-        }
-      ]
+      "photo": {},
+      "workspaces": []
     }
   ],
   "num_likes": 5,
@@ -27745,14 +24500,7 @@ A generic Asana Object, containing a globally unique identifier.
     "resource_subtype": "milestone",
     "type": "text",
     "enum_options": [
-      {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "enum_option",
-        "name": "Low",
-        "enabled": true,
-        "color": "blue"
-      }
+      {}
     ],
     "enum_value": null,
     "enabled": true,
@@ -27790,7 +24538,7 @@ A generic Asana Object, containing a globally unique identifier.
     "resource_type": "task",
     "name": "Bug Task"
   },
-  "dependancy": {
+  "dependency": {
     "id": 12345,
     "gid": "12345",
     "resource_type": "task",
@@ -27819,13 +24567,13 @@ such as creating or assigning tasks, or moving tasks between projects.
 |id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
-|resource_subtype|string|false|none|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |created_at|string(date-time)|false|read-only|The time at which this resource was created.|
 |created_by|any|false|none|none|
 |text|any|false|none|**Create-only**. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br><br>**Note:** This is not guaranteed to be stable for a given type of<br>story. For example, text for a reassignment may not always say<br>“assigned to …” as the text for a story can both be edited and<br>change based on the language settings of the user making the request.<br>Use the `resource_subtype` property to discover the action that<br>created the story.|
 |type|string|false|read-only|**Deprecated: new integrations should prefer the `resource_subtype` field.** The type of this story. For more fine-grained inspection of story types, see the [`resource_subtype`] (https://asana.com/developers/api-reference/stories#field-resource_subtype) property.|
 |html_text|string|false|none|[Opt In](https://asana.com/developers/documentation/getting-started/input-output-options).<br>HTML formatted text for a comment. This will not include the name<br>of the creator.<br><br>**Note: This field is under active migration—please see our blog<br>post for more information.**|
-|is_edited|boolean|false|none|**Conditional**. Whether the text of the story has been edited after creation.|
+|is_edited|boolean|false|read-only|**Conditional**. Whether the text of the story has been edited after creation.|
 |is_pinned|boolean|false|none|**Conditional**. Whether the story should be pinned on the resource.|
 |hearted|boolean|false|read-only|**Deprecated - please use likes instead**<br><br>**Conditional**. True if the story is hearted by the authorized user, false if not.|
 |hearts|[object]|false|read-only|**Deprecated - please use likes instead**<br><br>**Conditional**. Array of users who have hearted this story.|
@@ -27879,22 +24627,22 @@ such as creating or assigning tasks, or moving tasks between projects.
 |»»» title|string|false|none|Text to display as the title.|
 |»»» title_link|string|false|none|Where to title will link to.|
 |»» old_name|string|false|none|**Conditional**'|
-|»» new_name|string|false|none|**Conditional**|
-|»» old_dates|object|false|none|**Conditional**|
+|»» new_name|string|false|read-only|**Conditional**|
+|»» old_dates|object|false|read-only|**Conditional**|
 |»»» start_on|string(date)|false|none|none|
 |»»» due_at|string(date-time)|false|none|none|
 |»»» due_on|string(date)|false|none|none|
-|»» new_dates|object|false|none|**Conditional**|
+|»» new_dates|object|false|read-only|**Conditional**|
 |»»» start_on|string(date)|false|none|none|
 |»»» due_at|string(date-time)|false|none|none|
 |»»» due_on|string(date)|false|none|none|
-|»» old_resource_subtype|string|false|none|**Conditional**|
-|»» new_resource_subtype|string|false|none|**Conditional**|
+|»» old_resource_subtype|string|false|read-only|**Conditional**|
+|»» new_resource_subtype|string|false|read-only|**Conditional**|
 |»» story|object|false|none|A generic Asana Object, containing a globally unique identifier.|
 |»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
-|»»» resource_subtype|string|false|none|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|»»» resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |»»» created_at|string(date-time)|false|read-only|The time at which this resource was created.|
 |»»» created_by|any|false|none|none|
 |»»» text|any|false|none|**Create-only**. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br><br>**Note:** This is not guaranteed to be stable for a given type of<br>story. For example, text for a reassignment may not always say<br>“assigned to …” as the text for a story can both be edited and<br>change based on the language settings of the user making the request.<br>Use the `resource_subtype` property to discover the action that<br>created the story.|
@@ -27939,7 +24687,7 @@ such as creating or assigning tasks, or moving tasks between projects.
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» name|string|false|none|The name of the object.|
-|»»» resource_subtype|string|false|none|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|»»» resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |»»» type|string|false|none|**Deprecated: new integrations should prefer the resource_subtype field.** The type of the custom field. Must be one of the given values.|
 |»»» enum_options|[object]|false|none|**Conditional**. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://asana.com/developers/api-reference/custom_fields#enum-options).|
 |»»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
@@ -27951,10 +24699,10 @@ such as creating or assigning tasks, or moving tasks between projects.
 |»»» enum_value|any|false|none|none|
 |»»» enabled|boolean|false|none|**Conditional**. Determines if the custom field is enabled or not.|
 |»»» text_value|string|false|none|**Conditional**. This string is the value of a text custom field.|
-|»» old_text_value|string|false|none|**Conditional**|
-|»» new_text_value|string|false|none|**Conditional**|
-|»» old_number_value|integer|false|none|**Conditional**|
-|»» new_number_value|integer|false|none|**Conditional**|
+|»» old_text_value|string|false|read-only|**Conditional**|
+|»» new_text_value|string|false|read-only|**Conditional**|
+|»» old_number_value|integer|false|read-only|**Conditional**|
+|»» new_number_value|integer|false|read-only|**Conditional**|
 |»» old_enum_value|object|false|none|Enum options are the possible values which an enum custom field can<br>adopt. An enum custom field must contain at least 1 enum option but no<br>more than 50.<br><br>You can add enum options to a custom field by using the `POST<br>/custom_fields/custom_field_gid/enum_options` endpoint.<br><br>**It is not possible to remove or delete an enum option**. Instead, enum<br>options can be disabled by updating the `enabled` field to false with the<br>`PUT /enum_options/enum_option_gid` endpoint. Other attributes can be<br>updated similarly.<br><br>On creation of an enum option, `enabled` is always set to `true`, meaning<br>the enum option is a selectable value for the custom field. Setting<br>`enabled=false` is equivalent to “trashing” the enum option in the Asana<br>web app within the “Edit Fields” dialog. The enum option will no longer<br>be selectable but, if the enum option value was previously set within a<br>task, the task will retain the value.<br><br>Enum options are an ordered list and by default new enum options are<br>inserted at the end. Ordering in relation to existing enum options can be<br>specified on creation by using `insert_before` or `insert_after` to<br>reference an existing enum option. Only one of `insert_before` and<br>`insert_after` can be provided when creating a new enum option.<br><br>An enum options list can be reordered with the `POST<br>/custom_fields/custom_field_gid/enum_options/insert` endpoint.|
 |»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
@@ -27979,7 +24727,7 @@ such as creating or assigning tasks, or moving tasks between projects.
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» name|string|false|none|The name of the object.|
-|»» dependancy|object|false|none|A generic Asana Object, containing a globally unique identifier.|
+|»» dependency|object|false|none|A generic Asana Object, containing a globally unique identifier.|
 |»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
@@ -28027,7 +24775,7 @@ A generic Asana Object, containing a globally unique identifier.
 |id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
-|resource_subtype|string|false|none|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |created_at|string(date-time)|false|read-only|The time at which this resource was created.|
 |created_by|any|false|none|none|
 |text|any|false|none|**Create-only**. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br><br>**Note:** This is not guaranteed to be stable for a given type of<br>story. For example, text for a reassignment may not always say<br>“assigned to …” as the text for a story can both be edited and<br>change based on the language settings of the user making the request.<br>Use the `resource_subtype` property to discover the action that<br>created the story.|
@@ -28171,16 +24919,7 @@ A generic Asana Object, containing a globally unique identifier.
       "name": "Bug Task",
       "resource_subtype": "milestone",
       "type": "text",
-      "enum_options": [
-        {
-          "id": 12345,
-          "gid": "12345",
-          "resource_type": "enum_option",
-          "name": "Low",
-          "enabled": true,
-          "color": "blue"
-        }
-      ],
+      "enum_options": [],
       "enum_value": null,
       "enabled": true,
       "text_value": "Some Value",
@@ -28243,18 +24982,8 @@ A generic Asana Object, containing a globally unique identifier.
   ],
   "memberships": [
     {
-      "project": {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "project",
-        "name": "Stuff to buy"
-      },
-      "section": {
-        "id": 12345,
-        "gid": "12345",
-        "resource_type": "section",
-        "name": "Next Actions"
-      }
+      "project": {},
+      "section": {}
     }
   ],
   "modified_at": "2012-02-22T02:06:58.147Z",
@@ -28311,7 +25040,7 @@ to manipulate what data is included in a response.
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |created_at|string(date-time)|false|read-only|The time at which this resource was created.|
-|resource_subtype|string|false|none|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |assignee|any|false|none|none|
 |assignee_status|string|false|none|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
 |completed|boolean|false|none|True if the task is currently marked complete, false if not.|
@@ -28321,7 +25050,7 @@ to manipulate what data is included in a response.
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|The name of the object.|
-|» resource_subtype|string|false|none|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|» resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |» type|string|false|none|**Deprecated: new integrations should prefer the resource_subtype field.** The type of the custom field. Must be one of the given values.|
 |» enum_options|[object]|false|none|**Conditional**. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://asana.com/developers/api-reference/custom_fields#enum-options).|
 |»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
@@ -28558,9 +25287,7 @@ A generic Asana Object, containing a globally unique identifier.
       "gid": "12345",
       "resource_type": "task",
       "name": "Bug Task",
-      "email_domains": [
-        "asana.com"
-      ],
+      "email_domains": [],
       "is_organization": false
     }
   ]
