@@ -24,13 +24,19 @@ under the License.
 $nav-bg: #102840 !default;
 $examples-bg: #102840 !default;
 $code-bg: #0c1222 !default;
+$section-heading-text: #e29800 !default;
 $code-annotation-bg: #002d5c !default;
 $nav-subitem-bg: #0c1222 !default;
 $nav-active-bg: #0f75d4 !default;
 $nav-active-parent-bg: #0c1222 !default; // parent links of the current section
 $lang-select-border: #000 !default;
 $lang-select-bg: #0c1222 !default;
-$lang-select-active-bg: rgba(119,137,162,.1) !default; // feel free to change this to blue or something
+$lang-select-active-bg: rgba(
+  119,
+  137,
+  162,
+  0.1
+) !default; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111 !default; // color of language tab bg when mouse is pressed
 $main-bg: #102840 !default;
 $aside-notice-bg: #8fbcd4 !default;
