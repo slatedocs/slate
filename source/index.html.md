@@ -114,6 +114,7 @@ All REST API requests must contain the following headers:
 * **FX-ACCESS-SIGN** The base64-encoded signature (see [Signing a Message](https://docs.falconx.io/#signing-a-message))
 * **FX-ACCESS-TIMESTAMP** The timestamp in seconds from epoch
 * **FX-ACCESS-PASSPHRASE** The passphrase given to you
+
 All request bodies should have content type `application/json` and should be a valid JSON
 
 ## Signing a Message
