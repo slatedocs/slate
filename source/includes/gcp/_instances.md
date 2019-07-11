@@ -332,7 +332,7 @@ Destroy an existing instance.
 <!-------------------- CHANGE MACHINE TYPE -------------------->
 
 #### Change machine type
-A machine type determine the number of vCPUs and the size of the memory allocated to new [instances](#gcp-instances).
+A machine type determines the number of vCPUs and the size of the memory allocated to new [instances](#gcp-instances).
 
 ```shell
 curl -X POST \
@@ -372,6 +372,37 @@ Optional | &nbsp;
 ------ | -----------
 `cpuCount`<br/>*string* | Updated number of vCPUs of instance
 `memoryInGB`<br/>*string* | Updated memory of instance
+
+<!-------------------- CHANGE EXTERNAL IP -------------------->
+
+#### Change external IP
+
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/instances/6564997542943928188?operation=change_external_ip"
+
+# Request example:
+```
+```json
+{
+	"id": "6564997542943928188",
+  "externalIp": {
+		"id": "3645738160550100933"
+	}
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=change_external_ip</code>
+
+Change the static external IP of an existing instance.
+
+Required | &nbsp;
+------ | -----------
+`externalIp`<br/>*object* | The external ip as an object
+`externalIp.id`<br/>*object* | The external ip's object id
 
 <!-------------------- START AN INSTANCE -------------------->
 

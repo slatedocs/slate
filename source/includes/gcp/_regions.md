@@ -1,4 +1,4 @@
-### Regions
+## Regions
 
 A region is a geographical area where a resource is located. Regions contains multiple Zones.
 
