@@ -5,7 +5,7 @@
 > Helpful code snippets will show up in this column. You can choose your language in the navigation above!
 
 ```shell
-curl -H "Authorization: Bearer 0/a7f89e98g007e0s07da763a" https://app.asana.com/api/1.0/users/me`
+curl -H "Authorization: Bearer 0/a7f89e98g007e0s07da763a" https://app.asana.com/api/1.0/users/me
 ```
 
 ```javascript--nodejs
