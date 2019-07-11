@@ -43,11 +43,12 @@ curl -X GET \
         "http-server"
       ],
       "action": "allow"
-    },
-    ],
+    }
+  ],
   "metadata": {
-    "recordCount": 2
+    "recordCount": 7
   }
+}
 ```
 
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/firewallrules</code>
@@ -113,6 +114,7 @@ curl -X GET \
     "http-server"
     ],
     "action": "allow"
+  }
 }
 ```
 
