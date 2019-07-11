@@ -309,11 +309,15 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/profiles/{profileId}/verif
 > Example Response:
 
 ```json
-{  
+{
+  "errorMessage": null,
+  "success": true  
 }
 ```
 Add identification document details to user profile. Applicable to personal profiles (not business) only.  
 Returns empty result if successful. 
+
+When sending a social security number (SSN) only `type` and `uniqueIdentifier` (only 9 digits no letters or symbols) are required.
 
 
 ### Request (Business)
@@ -324,8 +328,8 @@ Field                    | Description                                 | Format
 ---------                | -------                                     |-----------
 firstName                | Person first name in document               | Text
 lastName                 | Person last name in document                | Text
-type                     | Document type. Allowed Values: <ul><li>DRIVERS_LICENCE</li><li>IDENTITY_CARD</li><li>GREEN_CARD</li><li>MY_NUMBER</li><li>PASSPORT</li><li>OTHER</ul>   | Text
-uniqueIdentifier         | Document number                             | Text
+type                     | Document type. Allowed Values: <ul><li>DRIVERS_LICENCE</li><li>IDENTITY_CARD</li><li>GREEN_CARD</li><li>MY_NUMBER</li><li>PASSPORT</li><li>SSN</li><li>OTHER</ul>   | Text
+uniqueIdentifier         | Document number. Only digits when SSN.      | Text
 issueDate                | Document issue date                         | YYYY-MM-DD
 issuerCountry            | Issued by country code. For example "US"    | Text
 issuerState              | Issued by state code. For example "NY"      | Text
