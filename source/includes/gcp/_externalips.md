@@ -111,6 +111,7 @@ curl -X GET \
     "type": "STATIC"
   }
 }
+
 ```
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/externalips/:id</code>
 
@@ -134,3 +135,19 @@ Attributes | &nbsp;
 `shortUsers`<br/>*Array[string]* | The names of the instances the IP address is attached to.
 `shortRegion`<br/>*string* | A short version of the region name
 `type`<br/>*string* | One of EPHEMERAL or STATIC. EPHEMERAL are linked to an instance and are released automatically when an instance is deleted.
+
+<!-------------------- RESERVE AN EXTERNAL IP -------------------->
+
+
+<!-------------------- RELEASE AN EXTERNAL IP -------------------->
+#### Release a static IP address
+
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/externalips/8516891730356002156"
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/externalips/:id</code>
+
+Release an existing external IP. Returning it to be available within the network. You cannot release an external IP which is currently attached to a running instance.
