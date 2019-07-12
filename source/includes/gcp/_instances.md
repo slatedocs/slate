@@ -404,6 +404,59 @@ Required | &nbsp;
 `externalIp`<br/>*object* | The external ip as an object
 `externalIp.id`<br/>*object* | The external ip's object id
 
+<!-------------------- GET SSH COMMAND -------------------->
+
+#### Get SSH command
+
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/instances/6564997542943928188?operation=get_ssh"
+# Request example:
+```
+```json
+{
+	"sshKeyId": "my-ssh-key"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=get_ssh</code>
+
+Retrieves a command to allow you to SSH into a give running instance
+
+Required | &nbsp;
+------ | -----------
+`sshKeyId`<br/>*string* | The id of an existing SSH key already save in the environment. Mutually exclusive with `publicKey`.
+`publicKey`<br/>*string* | The SSH key text. Mutually exclusive with `sshKeyId`. A new SSH key will be save in the environment.
+
+<!-------------------- SET WINDOWS PASSWORD -------------------->
+
+#### Set Windows password
+
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/instances/6564997542943928188?operation=set_windows_password"
+# Request example:
+```
+```json
+{
+	"username": "my-user"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=set_windows_password</code>
+
+Sets and retrieves a generated password to a given user on a running Windows instance
+
+Required | &nbsp;
+------ | -----------
+`username`<br/>*string* | The username
+
 <!-------------------- START AN INSTANCE -------------------->
 
 #### Start an instance
