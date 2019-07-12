@@ -141,6 +141,50 @@ Retrieve a firewall rules in a given [network](#gcp-networks)
 `targetTags`<br/>*Array[string]* | A list of tags that controls which instances the firewall rule applies to. If targetTags are specified, then the firewall rule applies only to instances in the VPC network that have one of those tags. If no targetTags are specified, the firewall rule applies to all instances on the specified network.
 `action`<br/>*string* | The firewall rule type: 'allow' (allow traffic) or 'deny' (deny traffic)
 
+<!-------------------- CREATE A FIREWALL RULE -------------------->
+
+#### Create a firewall rule
+
+<code>CREATE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/firewallrule</code>
+
+
+```shell
+curl -X POST \
+  -H "MC-Api-Key: your_api_key" \
+  -d "request_body" \
+  "https://cloudmc_endpoint/v1/services/gcp/test-area/firewallrule"
+```
+```json
+{
+  "action": "allow",
+  "all": true,
+  "direction": "INGRESS",
+  "name": "fw-rd-tuv",
+  "priority": 1000,
+  "range": "0.0.0.0/0",
+}
+```
+
+
+Creates a new allow all firewall rule for the specified range.
+
+Required | &nbsp;
+------- | -----------
+`action`<br/>*string* | The firewall rule type: 'allow' (allow traffic) or 'deny' (deny traffic)
+`direction`<br/>*string* | Direction of traffic to which this firewall applies, either INGRESS or EGRESS. The default is INGRESS.
+`name`<br/>*string* | The display name of the firewall rule
+`priority`<br/>*string* | Priority for this rule. This is an integer between 0 and 65535, both inclusive. The default value is 1000.
+`range`<br/>*string* | The source or destination range depending on the `direction` specified. The firewall rule applies only to traffic that has a source/destination IP address in these ranges. These ranges must be expressed in CIDR format.
+
+
+Optional | &nbsp;
+------- | -----------
+`all`<br/>*boolean* | Specifies if the firewall rule is an allow all or deny all rule
+`tcpPorts`<br/>*string* | The tcp ports on which to apply the rule. These must be in the range [0, 65535). They may be specified as combination of comma seperated values and port ranges i.e. 3,6,9,10-22
+`udpPorts`<br/>*string* | The udp ports on which to apply the rule. These must be in the range [0, 65535). They may be specified as combination of comma seperated values and port ranges i.e. 3,6,9,10-22
+`protocols`<br/>*string* | Supported protocols are: icmp, esp, ah, sctp, ipip or a valid [decimal IP protocol number](https://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml)
+
+
 <!-------------------- DELETE A FIREWALL RULE -------------------->
 
 #### Delete a firewall rule

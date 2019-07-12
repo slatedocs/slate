@@ -138,6 +138,8 @@ Attributes | &nbsp;
 
 <!-------------------- RESERVE AN EXTERNAL IP -------------------->
 
+#### Reserve an external IP
+
 ```shell
 curl -X POST \
    -H "Content-Type: application/json" \
