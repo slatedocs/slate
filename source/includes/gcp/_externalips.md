@@ -138,6 +138,37 @@ Attributes | &nbsp;
 
 <!-------------------- RESERVE AN EXTERNAL IP -------------------->
 
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/externalips?operation=reserve"
+
+# Request example:
+```
+```json
+{
+  "name": "my-static-ip",
+  "shortRegion": "northamerica-northeast1",
+  "instanceId": "5611478403377505138"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/externalips</code>
+
+Reserves a new external static IP in a given [environment](#administration-environments).
+If instanceId is provided the IP will be reserved and attached this instance.
+
+Required | &nbsp;
+------- | -----------
+`name`<br/>*string* | The display name of the external ip
+`shortRegion`<br/>*string* | A short version of the region name
+
+Optional | &nbsp;
+------- | -----------
+`instanceId`<br/>*string* | The instance id to attach the new external ip address to
+
 
 <!-------------------- RELEASE AN EXTERNAL IP -------------------->
 #### Release a static IP address
