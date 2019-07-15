@@ -164,7 +164,7 @@ curl -X POST \
 
 <code>CREATE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/firewallrule</code>
 
-Creates a new allow all firewall rule for the specified range.
+Creates a new firewall rule.
 
 Required | &nbsp;
 ------- | -----------
