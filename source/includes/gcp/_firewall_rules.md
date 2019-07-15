@@ -145,9 +145,6 @@ Retrieve a firewall rules in a given [network](#gcp-networks)
 
 #### Create a firewall rule
 
-<code>CREATE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/firewallrule</code>
-
-
 ```shell
 curl -X POST \
   -H "MC-Api-Key: your_api_key" \
@@ -165,6 +162,7 @@ curl -X POST \
 }
 ```
 
+<code>CREATE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/firewallrule</code>
 
 Creates a new allow all firewall rule for the specified range.
 
