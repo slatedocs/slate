@@ -50,7 +50,7 @@ Attributes | &nbsp;
 `id` <br/> *string* | The cluster is uniquely identfied by the project name, location and cluster name.
 `name` <br/> *string* | The name of the cluster
 
-<!-------------------- RETRIEVE A CLUSTERS -------------------->
+<!-------------------- RETRIEVE A CLUSTER -------------------->
 
 #### Retrieve a clusters
 
