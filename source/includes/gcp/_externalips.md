@@ -187,4 +187,4 @@ You cannot release an external IP which is currently attached to an instance.
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/externalips/:id</code>
 
-Release an existing external IP. The external IP stays goes back to the reserved pool, and is available to be attached to another instance.
+Release an existing external IP. The external IP goes back to the reserved pool, and is available to be attached to another instance.
