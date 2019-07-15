@@ -545,6 +545,89 @@ We typically respond within a couple of hours during the business day.
         No
       </td>
     </tr>
+    <tr>
+      <th>
+        scm_subdirectory
+      </th>
+      <td>
+        The relative path from the base of your Git repo to the directory which contains your application code.
+      </td>
+      <td>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        core_agent_dir
+      </th>
+      <td>
+        Path to create the directory which will store the [Core Agent](#core-agent).
+      </td>
+      <td>
+        <code>/tmp/scout_apm_core</code> 
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        core_agent_download
+      </th>
+      <td>
+        Whether to download the [Core Agent](#core-agent) automatically, if needed.
+      </td>
+      <td>
+        <code>True</code> 
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        core_agent_launch
+      </th>
+      <td>
+        Whether to start the [Core Agent](#core-agent) automatically, if needed.
+      </td>
+      <td>
+        <code>True</code> 
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        core_agent_permissions
+      </th>
+      <td>
+        The permission bits to set when creating the directory of the [Core Agent](#core-agent).
+      </td>
+      <td>
+        <code>700</code> 
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        core_agent_triple
+      </th>
+      <td>
+        If you are running a MUSL based Linux (such as ArchLinux), you may need to explicitly specify the platform triple. E.g. <code>x86_64-unknown-linux-musl</code>
+      </td>
+      <td>
+        Auto detected
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
   </tbody>
 </table>
 
