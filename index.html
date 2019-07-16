@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>Swagger Petstore</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -212,9 +212,6 @@
       <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -228,16 +225,132 @@
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
           </li>
           <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#pet" class="toc-h1 toc-link" data-title="/PET">/PET</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#post" class="toc-h2 toc-link" data-title="POST"><strong><em>POST</em></strong></a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
+                    <a href="#put" class="toc-h2 toc-link" data-title="PUT"><strong><em>PUT</em></strong></a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#pet-findbystatus" class="toc-h1 toc-link" data-title="/PET/FINDBYSTATUS">/PET/FINDBYSTATUS</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get" class="toc-h2 toc-link" data-title="GET"><strong><em>GET</em></strong></a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#pet-findbytags" class="toc-h1 toc-link" data-title="/PET/FINDBYTAGS">/PET/FINDBYTAGS</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-2" class="toc-h2 toc-link" data-title="GET"><strong><em>GET</em></strong></a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#pet-petid" class="toc-h1 toc-link" data-title="/PET/{PETID}">/PET/{PETID}</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-3" class="toc-h2 toc-link" data-title="GET"><strong><em>GET</em></strong></a>
                   </li>
                   <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#post-2" class="toc-h2 toc-link" data-title="POST"><strong><em>POST</em></strong></a>
+                  </li>
+                  <li>
+                    <a href="#delete" class="toc-h2 toc-link" data-title="DELETE"><strong><em>DELETE</em></strong></a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#pet-petid-uploadimage" class="toc-h1 toc-link" data-title="/PET/{PETID}/UPLOADIMAGE">/PET/{PETID}/UPLOADIMAGE</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#post-3" class="toc-h2 toc-link" data-title="POST"><strong><em>POST</em></strong></a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#store-inventory" class="toc-h1 toc-link" data-title="/STORE/INVENTORY">/STORE/INVENTORY</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-4" class="toc-h2 toc-link" data-title="GET"><strong><em>GET</em></strong></a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#store-order" class="toc-h1 toc-link" data-title="/STORE/ORDER">/STORE/ORDER</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#post-4" class="toc-h2 toc-link" data-title="POST"><strong><em>POST</em></strong></a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#store-order-orderid" class="toc-h1 toc-link" data-title="/STORE/ORDER/{ORDERID}">/STORE/ORDER/{ORDERID}</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-5" class="toc-h2 toc-link" data-title="GET"><strong><em>GET</em></strong></a>
+                  </li>
+                  <li>
+                    <a href="#delete-2" class="toc-h2 toc-link" data-title="DELETE"><strong><em>DELETE</em></strong></a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#user" class="toc-h1 toc-link" data-title="/USER">/USER</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#post-5" class="toc-h2 toc-link" data-title="POST"><strong><em>POST</em></strong></a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#user-createwitharray" class="toc-h1 toc-link" data-title="/USER/CREATEWITHARRAY">/USER/CREATEWITHARRAY</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#post-6" class="toc-h2 toc-link" data-title="POST"><strong><em>POST</em></strong></a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#user-createwithlist" class="toc-h1 toc-link" data-title="/USER/CREATEWITHLIST">/USER/CREATEWITHLIST</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#post-7" class="toc-h2 toc-link" data-title="POST"><strong><em>POST</em></strong></a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#user-login" class="toc-h1 toc-link" data-title="/USER/LOGIN">/USER/LOGIN</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-6" class="toc-h2 toc-link" data-title="GET"><strong><em>GET</em></strong></a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#user-logout" class="toc-h1 toc-link" data-title="/USER/LOGOUT">/USER/LOGOUT</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-7" class="toc-h2 toc-link" data-title="GET"><strong><em>GET</em></strong></a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#user-username" class="toc-h1 toc-link" data-title="/USER/{USERNAME}">/USER/{USERNAME}</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-8" class="toc-h2 toc-link" data-title="GET"><strong><em>GET</em></strong></a>
+                  </li>
+                  <li>
+                    <a href="#put-2" class="toc-h2 toc-link" data-title="PUT"><strong><em>PUT</em></strong></a>
+                  </li>
+                  <li>
+                    <a href="#delete-3" class="toc-h2 toc-link" data-title="DELETE"><strong><em>DELETE</em></strong></a>
                   </li>
               </ul>
           </li>
@@ -247,191 +360,935 @@
       </ul>
         <ul class="toc-footer">
             <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='https://github.com/lavkumarv'>Documentation Powered by lav</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>This is a sample server Petstore server.  You can find out more about Swagger at <a href="http://swagger.io">http://swagger.io</a> or on <a href="http://swagger.io/irc/">irc.freenode.net, #swagger</a>.  For this sample, you can use the api key <code>special-key</code> to test the authorization filters. </p>
 
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p><strong>Version:</strong> 1.0.0 </p>
 
-<p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
+<p><a href="http://swagger.io">Find out more about Swagger</a> </p>
 <h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<table><thead>
+<tr>
+<th>oauth2</th>
+<th><em>OAuth 2.0</em></th>
+</tr>
+</thead><tbody>
+</tbody></table>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<table><thead>
+<tr>
+<th>apiKey</th>
+<th><em>API Key</em></th>
+</tr>
+</thead><tbody>
+</tbody></table>
+<h1 id='pet'>/PET</h1><h2 id='post'><strong><em>POST</em></strong></h2>
+<p><strong>Summary:</strong> Add a new pet to the store</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code>Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
+<p><strong>Description:</strong> </p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<p><code>***POST*** /pet</code> </p>
+
+<p><strong>Parameters</strong></p>
+
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Default</th>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>body</td>
+<td>body</td>
+<td>Pet object that needs to be added to the store</td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>405</td>
+<td>Invalid input</td>
 </tr>
 </tbody></table>
+<h2 id='put'><strong><em>PUT</em></strong></h2>
+<p><strong>Summary:</strong> Update an existing pet</p>
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+<p><strong>Description:</strong> </p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<p><code>***PUT*** /pet</code> </p>
+
+<p><strong>Parameters</strong></p>
+
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>body</td>
+<td>body</td>
+<td>Pet object that needs to be added to the store</td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>400</td>
+<td>Invalid ID supplied</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Pet not found</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Validation exception</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h1 id='pet-findbystatus'>/PET/FINDBYSTATUS</h1><h2 id='get'><strong><em>GET</em></strong></h2>
+<p><strong>Summary:</strong> Finds Pets by status</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint deletes a specific kitten.</p>
+<p><strong>Description:</strong> Multiple status values can be provided with comma separated strings</p>
 <h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
+<p><code>***GET*** /pet/findByStatus</code> </p>
+
+<p><strong>Parameters</strong></p>
+
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>query</td>
+<td>Status values that need to be considered for filter</td>
+<td>Yes</td>
+<td>array</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
+<td>200</td>
+<td>successful operation</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Invalid status value</td>
 </tr>
 </tbody></table>
+<h1 id='pet-findbytags'>/PET/FINDBYTAGS</h1><h2 id='get-2'><strong><em>GET</em></strong></h2>
+<p><strong>Summary:</strong> Finds Pets by tags</p>
+
+<p><strong>Description:</strong> Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>***GET*** /pet/findByTags</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tags</td>
+<td>query</td>
+<td>Tags to filter by</td>
+<td>Yes</td>
+<td>array</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>successful operation</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Invalid tag value</td>
+</tr>
+</tbody></table>
+<h1 id='pet-petid'>/PET/{PETID}</h1><h2 id='get-3'><strong><em>GET</em></strong></h2>
+<p><strong>Summary:</strong> Find pet by ID</p>
+
+<p><strong>Description:</strong> Returns a single pet</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>***GET*** /pet/{petId}</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>petId</td>
+<td>path</td>
+<td>ID of pet to return</td>
+<td>Yes</td>
+<td>long</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>successful operation</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Invalid ID supplied</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Pet not found</td>
+</tr>
+</tbody></table>
+<h2 id='post-2'><strong><em>POST</em></strong></h2>
+<p><strong>Summary:</strong> Updates a pet in the store with form data</p>
+
+<p><strong>Description:</strong> </p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>***POST*** /pet/{petId}</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>petId</td>
+<td>path</td>
+<td>ID of pet that needs to be updated</td>
+<td>Yes</td>
+<td>long</td>
+</tr>
+<tr>
+<td>name</td>
+<td>formData</td>
+<td>Updated name of the pet</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>status</td>
+<td>formData</td>
+<td>Updated status of the pet</td>
+<td>No</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>405</td>
+<td>Invalid input</td>
+</tr>
+</tbody></table>
+<h2 id='delete'><strong><em>DELETE</em></strong></h2>
+<p><strong>Summary:</strong> Deletes a pet</p>
+
+<p><strong>Description:</strong> </p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>***DELETE*** /pet/{petId}</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>api_key</td>
+<td>header</td>
+<td></td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>petId</td>
+<td>path</td>
+<td>Pet id to delete</td>
+<td>Yes</td>
+<td>long</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Invalid ID supplied</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Pet not found</td>
+</tr>
+</tbody></table>
+<h1 id='pet-petid-uploadimage'>/PET/{PETID}/UPLOADIMAGE</h1><h2 id='post-3'><strong><em>POST</em></strong></h2>
+<p><strong>Summary:</strong> uploads an image</p>
+
+<p><strong>Description:</strong> </p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>***POST*** /pet/{petId}/uploadImage</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>petId</td>
+<td>path</td>
+<td>ID of pet to update</td>
+<td>Yes</td>
+<td>long</td>
+</tr>
+<tr>
+<td>additionalMetadata</td>
+<td>formData</td>
+<td>Additional data to pass to server</td>
+<td>No</td>
+<td>string</td>
+</tr>
+<tr>
+<td>file</td>
+<td>formData</td>
+<td>file to upload</td>
+<td>No</td>
+<td>file</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>successful operation</td>
+</tr>
+</tbody></table>
+<h1 id='store-inventory'>/STORE/INVENTORY</h1><h2 id='get-4'><strong><em>GET</em></strong></h2>
+<p><strong>Summary:</strong> Returns pet inventories by status</p>
+
+<p><strong>Description:</strong> Returns a map of status codes to quantities</p>
+<h3 id='http-request-9'>HTTP Request</h3>
+<p><code>***GET*** /store/inventory</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>successful operation</td>
+</tr>
+</tbody></table>
+<h1 id='store-order'>/STORE/ORDER</h1><h2 id='post-4'><strong><em>POST</em></strong></h2>
+<p><strong>Summary:</strong> Place an order for a pet</p>
+
+<p><strong>Description:</strong> </p>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>***POST*** /store/order</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>body</td>
+<td>body</td>
+<td>order placed for purchasing the pet</td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>successful operation</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Invalid Order</td>
+</tr>
+</tbody></table>
+<h1 id='store-order-orderid'>/STORE/ORDER/{ORDERID}</h1><h2 id='get-5'><strong><em>GET</em></strong></h2>
+<p><strong>Summary:</strong> Find purchase order by ID</p>
+
+<p><strong>Description:</strong> For valid response try integer IDs with value &gt;= 1 and &lt;= 10. Other values will generated exceptions</p>
+<h3 id='http-request-11'>HTTP Request</h3>
+<p><code>***GET*** /store/order/{orderId}</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderId</td>
+<td>path</td>
+<td>ID of pet that needs to be fetched</td>
+<td>Yes</td>
+<td>long</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>successful operation</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Invalid ID supplied</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Order not found</td>
+</tr>
+</tbody></table>
+<h2 id='delete-2'><strong><em>DELETE</em></strong></h2>
+<p><strong>Summary:</strong> Delete purchase order by ID</p>
+
+<p><strong>Description:</strong> For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors</p>
+<h3 id='http-request-12'>HTTP Request</h3>
+<p><code>***DELETE*** /store/order/{orderId}</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderId</td>
+<td>path</td>
+<td>ID of the order that needs to be deleted</td>
+<td>Yes</td>
+<td>long</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Invalid ID supplied</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Order not found</td>
+</tr>
+</tbody></table>
+<h1 id='user'>/USER</h1><h2 id='post-5'><strong><em>POST</em></strong></h2>
+<p><strong>Summary:</strong> Create user</p>
+
+<p><strong>Description:</strong> This can only be done by the logged in user.</p>
+<h3 id='http-request-13'>HTTP Request</h3>
+<p><code>***POST*** /user</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>body</td>
+<td>body</td>
+<td>Created user object</td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>default</td>
+<td>successful operation</td>
+</tr>
+</tbody></table>
+<h1 id='user-createwitharray'>/USER/CREATEWITHARRAY</h1><h2 id='post-6'><strong><em>POST</em></strong></h2>
+<p><strong>Summary:</strong> Creates list of users with given input array</p>
+
+<p><strong>Description:</strong> </p>
+<h3 id='http-request-14'>HTTP Request</h3>
+<p><code>***POST*** /user/createWithArray</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>body</td>
+<td>body</td>
+<td>List of user object</td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>default</td>
+<td>successful operation</td>
+</tr>
+</tbody></table>
+<h1 id='user-createwithlist'>/USER/CREATEWITHLIST</h1><h2 id='post-7'><strong><em>POST</em></strong></h2>
+<p><strong>Summary:</strong> Creates list of users with given input array</p>
+
+<p><strong>Description:</strong> </p>
+<h3 id='http-request-15'>HTTP Request</h3>
+<p><code>***POST*** /user/createWithList</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>body</td>
+<td>body</td>
+<td>List of user object</td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>default</td>
+<td>successful operation</td>
+</tr>
+</tbody></table>
+<h1 id='user-login'>/USER/LOGIN</h1><h2 id='get-6'><strong><em>GET</em></strong></h2>
+<p><strong>Summary:</strong> Logs user into the system</p>
+
+<p><strong>Description:</strong> </p>
+<h3 id='http-request-16'>HTTP Request</h3>
+<p><code>***GET*** /user/login</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>username</td>
+<td>query</td>
+<td>The user name for login</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>password</td>
+<td>query</td>
+<td>The password for login in clear text</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>successful operation</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Invalid username/password supplied</td>
+</tr>
+</tbody></table>
+<h1 id='user-logout'>/USER/LOGOUT</h1><h2 id='get-7'><strong><em>GET</em></strong></h2>
+<p><strong>Summary:</strong> Logs out current logged in user session</p>
+
+<p><strong>Description:</strong> </p>
+<h3 id='http-request-17'>HTTP Request</h3>
+<p><code>***GET*** /user/logout</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>default</td>
+<td>successful operation</td>
+</tr>
+</tbody></table>
+<h1 id='user-username'>/USER/{USERNAME}</h1><h2 id='get-8'><strong><em>GET</em></strong></h2>
+<p><strong>Summary:</strong> Get user by user name</p>
+
+<p><strong>Description:</strong> </p>
+<h3 id='http-request-18'>HTTP Request</h3>
+<p><code>***GET*** /user/{username}</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>username</td>
+<td>path</td>
+<td>The name that needs to be fetched. Use user1 for testing.</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>successful operation</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Invalid username supplied</td>
+</tr>
+<tr>
+<td>404</td>
+<td>User not found</td>
+</tr>
+</tbody></table>
+<h2 id='put-2'><strong><em>PUT</em></strong></h2>
+<p><strong>Summary:</strong> Updated user</p>
+
+<p><strong>Description:</strong> This can only be done by the logged in user.</p>
+<h3 id='http-request-19'>HTTP Request</h3>
+<p><code>***PUT*** /user/{username}</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>username</td>
+<td>path</td>
+<td>name that need to be updated</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>body</td>
+<td>body</td>
+<td>Updated user object</td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Invalid user supplied</td>
+</tr>
+<tr>
+<td>404</td>
+<td>User not found</td>
+</tr>
+</tbody></table>
+<h2 id='delete-3'><strong><em>DELETE</em></strong></h2>
+<p><strong>Summary:</strong> Delete user</p>
+
+<p><strong>Description:</strong> This can only be done by the logged in user.</p>
+<h3 id='http-request-20'>HTTP Request</h3>
+<p><code>***DELETE*** /user/{username}</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>username</td>
+<td>path</td>
+<td>The name that needs to be deleted</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Invalid username supplied</td>
+</tr>
+<tr>
+<td>404</td>
+<td>User not found</td>
+</tr>
+</tbody></table>
+
+<!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 <h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
@@ -495,9 +1352,6 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>
     </div>
