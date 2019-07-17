@@ -456,7 +456,7 @@ curl 'https://app.procurementexpress.com/api/v1/companies/approvers?department_i
     "companies": [
       {
         "id": 1,
-        "name": "ABC Corp."
+        "approval_limit": 1000000
       }
     ]
   },
@@ -472,7 +472,7 @@ curl 'https://app.procurementexpress.com/api/v1/companies/approvers?department_i
     "companies": [
       {
         "id": 1,
-        "name": "ABC Corp."
+        "approval_limit": 1000000
       }
     ]
   }
@@ -536,7 +536,7 @@ curl 'https://app.procurementexpress.com/api/v1/companies/all_approvers'
     "companies": [
       {
         "id": 1,
-        "name": "ABC Corp."
+        "approval_limit": 1000000
       }
     ]
   },
@@ -552,7 +552,7 @@ curl 'https://app.procurementexpress.com/api/v1/companies/all_approvers'
     "companies": [
       {
         "id": 1,
-        "name": "ABC Corp."
+        "approval_limit": 1000000
       }
     ]
   }
