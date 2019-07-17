@@ -2,6 +2,38 @@
 
 This section contains important Accestype release notes. For any queries, please write to us at [support@quintype.com](mailto:support@quintype.com).
 
+## 1 Jul 19 Release Note - Accesstype
+1. **Outgoing Webhooks** - Accesstype now has the ability to make webhook calls to third party systems on specific events. Click here to know more about [Accesstype webhooks](#webhooks), [how to set up webhooks](#how-to-setup-accesstype-webhooks), a [description of the events](#description-of-events) and [how to verify the webhooks sent by Accesstype](#verify-webhooks-sent-by-accesstype).
+
+As part of this release, the **Subscription Expiry** event is available for use.
+
+## 27 Jun 19 Release Note - Accesstype
+1. Cloudfalre purge optimisations.
+
+## 25 Jun 19 Release Note - Accesstype
+1. Subscription Preview and Subscription Create without a login, are now allowed in Accesstype.js and served from the Cloudflare edge worker.
+
+## 21 Jun 19 Release Note - Accesstype
+1. Accesstype is now integrated with Voucherify so Discount and Referral vouchers can be applied redeemed by subscribers in One-Time subscriptions and Pay Per Asset subscriptions.
+
+## 18 Jun 19 Release Note - Accesstype
+1. Get Subscriptions and Get Assets APIs are now available in Accesstype.js and served from the Cloudflare Edge worker.
+
+## 13 Jun 19 Release Note - Accesstype
+1. Use publisher domain specific cookie for Paywall meter.
+
+## 29 May 19  Release Note - Accesstype
+1. Razorpay proactive subscription creation bug fixes.
+
+## 20 May 19 Release Note - Accesstype
+1. Access grant API now served from the Cloudflare edge worker.
+
+## 10 May 19 Release Note - Accesstype
+1. Juspay payment optimisations.
+
+## 24 Apr 19 Release Note - Accesstype
+1. Paywall meter and Coudflare purge optimisations.
+
 ## 17 Apr 19 Release Note - Accesstype
 1. **Consolidated Daily Subscription Report:** This daily subscription report contains Subscription details, payment information, tax invoice data and subscriber information for Plan based subscriptions, PPA purchases and Campaign subscriptions, all in one file.
 
