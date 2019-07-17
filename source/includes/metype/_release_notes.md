@@ -1,5 +1,24 @@
 # Release Notes
 
+## 20 Jun 2019 Release Note - Metype
+1. Claps - Introducing the Claps widget. Available as an embed code, this widget lets your audience appreciate your content by applauding. 
+
+![Claps](../../images/Metype_Claps.png "Claps")
+![Claps Embed code](../../images/Metype_Claps_Embed_Code.png "Claps Embed Code")
+![Claps Config Headline](../../images/Metype_Claps_Config_Headline.png "Claps Config Headline")
+
+2. [Bug fix] - Unable to save Settings in config page.
+
+
+## 14 Jun 2019 Release Note - Metype
+1. Caching optimisations in Page Reactions widget.
+
+## 10 Jun 2019 Release Note - Metype
+
+1. Third Party Login enhancements
+2. Removed page_url parameter from Live Feed iframe.
+3. [Bug fix] - Login using Twitter and LinkedIn fails in LiveFeed widget.
+
 ## 31 May 2019 Release Note - Metype
 
 1. Metype is now available for $7.99 per month. 
