@@ -1,5 +1,11 @@
 # Release Notes
 
+## 31 May 2019 Release Note - Metype
+
+1. Metype is now available for $7.99 per month. 
+2. Android and iOS applications can now leverage the Third Party Login feature for commenting.
+3. [Bug fix] - Facebook login redirect issue in iOS/Mac-Safari.
+
 ## 20 May 2019 Release Note - Metype
 1. **Configurable Page Reaction Headline** - Now customize your own message to be displayed above the Page Reactions widget.
 ![Config - Configuarable Page Reaction Headline](../../images/Metype_Page_Reaction_Headline.png "Config - Configuarable Page Reaction Headline")
