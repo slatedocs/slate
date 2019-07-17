@@ -23,7 +23,7 @@ includes:
   - accesstype/coupon_codes
   - accesstype/invoices
   - accesstype/referral_voucher
-  - accesstype/verify_webhooks_sent_by_accesstype
+  - accesstype/webhooks
   - accesstype/for-platform-customers
   - accesstype/amp
   - accesstype/faq
