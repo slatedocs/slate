@@ -1,5 +1,9 @@
 # Release Notes
 
+## 17 Jul 2019 Release Note - Metype
+1. Re-moderate edited comments - Comments approved by the admin, when edited by the commenter are now required to be re-aproved when pre-moderation is turned on.
+2. [Bug fix] - Console log has CORS error.
+
 ## 20 Jun 2019 Release Note - Metype
 1. Claps - Introducing the Claps widget. Available as an embed code, this widget lets your audience appreciate your content by applauding. 
 
