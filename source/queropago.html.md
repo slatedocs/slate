@@ -1651,10 +1651,10 @@ X-QP-Delivery: 01074956-543a-4045-ad7c-b39831a45646
       "payment_methods": [
         {
           "method_name": "boleto",
-          "status": "paid",
-          "paid_at": "2018-12-27T22:31:32Z",
-          "full_value": 400.0,
-          "paid_value": 400.0,
+          "status": "waiting_payment",
+          "paid_at": null,
+          "full_value": 149.5,
+          "paid_value": 0.0,
           "refunded_value": 0.0,
           "installments": 1,
           "boleto_barcode": "12345.12345 12345.123456 12345.123456 1 12300000001234",
