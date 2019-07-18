@@ -403,7 +403,7 @@ Error Code | Meaning
 ## FetchCompetencyPlaylist
 
 ```shell
-curl --data-binary '{"id":"5", "method":"playlist.FetchCompetencyPlaylists", "params":{"id":"1"}, "jsonrpc":"2.0"}'
+curl --data-binary '{"id":"5", "method":"playlist.FetchCompetencyPlaylist", "params":{"id":"1"}, "jsonrpc":"2.0"}'
   -H 'Authorization: Bearer jwt_access_token'
   -H 'content-type:application/json;'
 ```
