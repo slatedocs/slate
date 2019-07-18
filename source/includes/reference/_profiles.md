@@ -134,7 +134,7 @@ details.companyType          | Company legal form. Allowed values:   <ul><li>LIM
 details.companyRole          | Role of person. Allowed Values: <ul><li>OWNER</li><li>DIRECTOR</li><li>OTHER</ul>                 | Text
 details.descriptionOfBusiness| Sector / filed of activity           | Text
 details.webpage              | Business webpage                 | Text
-details.businessCategory              | Type of buinsess, see below for permitted values                | Text
+details.businessCategory              | Type of business, see below for permitted values                | Text
 details.businessSubCategory              | Specifc sub category of the business type, see below for permitted values                | Text
 
 #### Business Category
@@ -298,7 +298,7 @@ details.companyRole           | Role of person                                  
 details.descriptionOfBusiness | Sector / filed of activity                                                | Text
 details.webpage               | Business webpage                                                          | Text
 details.primaryAddress        | Address object id                                                         | Integer
-details.businessCategory      | Type of buinsess                                                          | Text
+details.businessCategory      | Type of business                                                          | Text
 details.businessSubCategory   | Specifc sub category of the business type                                 | Text
 
 
