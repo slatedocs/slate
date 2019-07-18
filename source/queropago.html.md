@@ -1646,14 +1646,14 @@ X-QP-Delivery: 01074956-543a-4045-ad7c-b39831a45646
       "value_with_discount": 400.0,
       "interest": 0.0,
       "penalty": 0.0,
-      "paid_value": 400.0,
+      "paid_value": 0.0,
       "paid_date": "2018-12-27",
       "payment_methods": [
         {
           "method_name": "boleto",
           "status": "waiting_payment",
           "paid_at": null,
-          "full_value": 149.5,
+          "full_value": 400.0,
           "paid_value": 0.0,
           "refunded_value": 0.0,
           "installments": 1,
