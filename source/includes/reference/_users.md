@@ -280,10 +280,9 @@ token_type            | "bearer"                                      | Text
 expires_in            | Expiry time in seconds                        | Integer
 scope                 | "transfers"                                   | Text
 
-
-
 ### 2) Create User
-TransferWise uses email address as unique identifier for users. 
+
+TransferWise uses email address as unique identifier for users.
 If email is new (there is no active user already) then new user will be created.
 
 When you are submitting an email which already exists amongst our users then you will get a warning that
@@ -308,7 +307,6 @@ name                    | User full name. Empty.    | Text
 email                   | Customer email            | Text
 active                  | true                      | Boolean
 details                 | User details. Empty.      | Group
-
 
 ### 3) Get User Tokens
 You can now use registration code to obtain user access token and refresh token. 

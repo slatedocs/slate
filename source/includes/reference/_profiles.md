@@ -108,7 +108,9 @@ curl -X POST https://api.sandbox.transferwise.tech/v1/profiles \
      "companyRole": "OWNER",
      "descriptionOfBusiness": "Information and communication",
      "webpage": "https://abc-logistics.com",
-     "primaryAddress": null
+     "primaryAddress": null,
+     "businessCategory":"CONSULTING_IT_BUSINESS_SERVICES",
+     "businessSubCategory":"DESIGN"
    }
 }
 ```
@@ -132,28 +134,173 @@ details.companyType          | Company legal form. Allowed values:   <ul><li>LIM
 details.companyRole          | Role of person. Allowed Values: <ul><li>OWNER</li><li>DIRECTOR</li><li>OTHER</ul>                 | Text
 details.descriptionOfBusiness| Sector / filed of activity           | Text
 details.webpage              | Business webpage                 | Text
-details.businessCategory              | Type of buinsess. Allowed values: <ul><li>CHARITY_ALL_ACTIVITIES</li><li>ADVERTISING_AND_MARKETING</li><li>ARCHITECTURE</li><li>COMPANY_ESTABLISHMENT_FORMATION_SERVICES</li><li>DESIGN</li><li>FINANCIAL_CONSULTING_ACCOUNTING_TAXATION_AUDITING</li><li>IT_DEVELOPMENT</li><li>IT_HOSTING_SERVICES</li><li>IT_CONSULTING_AND_SERVICES</li><li>LEGAL_SERVICES</li><li>MANAGEMENT_CONSULTING</li><li>SCIENTIFIC_AND_TECHNICAL_CONSULTING</li><li>SOFTWARE_AS_A_SERVICE</li><li>TRANSLATION_AND_LANGUAGE_SERVICES</li><li>CONSULTING_OTHER</li><li>SERVICES_OTHER</li><li>FREELANCE_PLATFORMS</li><li>AUDIO_AND_VIDEO</li><li>PHOTOGRAPHY</li><li>PRINT_AND_ONLINE_MEDIA</li><li>TELECOMMUNICATIONS_SERVICES</li><li>ADULT_CONTENT</li><li>FINE_ARTS</li><li>ARTS_OTHER</li><li>EVENTS_AND_ENTERTAINMENT</li><li>GAMBLING_BETTING_AND_ONLINE_GAMING</li><li>NEWSPAPERS_MAGAZINES_AND_BOOKS</li><li>PERFORMING_ARTS</li><li>VIDEO_GAMING</li><li>SCHOOLS_AND_UNIVERSITIES</li><li>TEACHING_AND_TUTORING</li><li>ONLINE_LEARNING</li><li>CROWDFUNDING</li><li>CRYPTOCURRENCY_FINANCIAL_SERVICES</li><li>HOLDING_COMPANIES</li><li>INSURANCE</li><li>INVESTMENTS</li><li>MONEY_SERVICE_BUSINESSES</li><li>FINANCIAL_SERVICES_OTHER</li><li>ALCOHOL</li><li>FOOD_MANUFACTURING_RETAIL</li><li>RESTAURANTS_AND_CATERING</li><li>SOFT_DRINKS</li><li>TOBACCO</li><li>VITAMINS_AND_DIETARY_SUPPLEMENTS</li><li>HEALTH_AND_BEAUTY_PRODUCTS_AND_SERVICES</li><li>DENTAL_SERVICES</li><li>DOCTORS_AND_MEDICAL_SERVICES</li><li>ELDERLY_OR_OTHER_CARE_HOME</li><li>FITNESS_SPORTS_SERVICES</li><li>MEDICAL_EQUIPMENT</li><li>NURSING_AND_OTHER_CARE_SERVICES</li><li>PHARMACEUTICALS</li><li>PHARMACY</li><li>PUBLIC_ALL_SERVICES</li><li>CONSTRUCTION</li><li>REAL_ESTATE_DEVELOPMENT</li><li>REAL_ESTATE_SALE_PURCHASE_AND_MANAGEMENT</li><li>AGRICULTURE_SEEDS_PLANTS</li><li>AUTOMOTIVE_SALES_SPARE_PARTS_TRADE</li><li>AUTOMOTIVE_MANUFACTURING</li><li>CHEMICALS</li><li>CLOTHING</li><li>ELECTRICAL_PRODUCTS</li><li>FIREARMS_WEAPONS_AND_MILITARY_GOODS_SERVICES</li><li>HOME_ACCESSORIES_FURNITURE</li><li>FINE_JEWELLERY_WATCHES</li><li>FASHION_JEWELLERY</li><li>LEGAL_HIGHS_AND_RELATED_ACCESSORIES</li><li>MACHINERY</li><li>PETS</li><li>PRECIOUS_STONES_DIAMONDS_AND_METALS</li><li>SPORTING_EQUIPMENT</li><li>MANUFACTURING_OTHER</li><li>RETAIL_WHOLESALE_MARKETPLACE_AUCTION</li><li>RETAIL_WHOLESALE_OTHER</li><li>ACCOMMODATION_HOTELS</li><li>PASSENGER_TRANSPORT</li><li>FREIGHT_TRANSPORT</li><li>RIDESHARING_TRANSPORT_SHARING_SERVICES</li><li>TRANSPORT</li><li>TRAVEL_AGENCIES</li><li>TOUR_OPERATORS</li><li>TRAVEL_OR_TOUR_ACTIVITIES_OTHER</li><li>OTHER_NOT_LISTED_ABOVE</li></ul>                 | Text
+details.businessCategory              | Type of buinsess, see below for permitted values                | Text
+details.businessSubCategory              | Specifc sub category of the business type, see below for permitted values                | Text
 
 #### Business Category
 
-Ensure when submitting a business profile that you submit a category from the list above. You should map from the information you have about the business to on eof our categories. If this is problematic please get in touch with the TransferWise for Banks team to discuss alternate solutions.
+Ensure when submitting a business profile that you submit a category and associated sub-category from the list below. You should map from the information you have about the business to one of our categories and sub-categories. If this is problematic please get in touch with the TransferWise for Banks team to discuss alternate solutions.
+
+The categories and their sub-categories are as follows:
+
+<ul>
+  <li>CHARITY_NON_PROFIT</li>
+  <ul>
+    <li>CHARITY_ALL_ACTIVITIES</li>
+  </ul>
+  <li>CONSULTING_IT_BUSINESS_SERVICES</li>
+  <ul>
+    <li>ADVERTISING_AND_MARKETING</li>
+    <li>ARCHITECTURE</li>
+    <li>COMPANY_ESTABLISHMENT_FORMATION_SERVICES</li>
+    <li>DESIGN</li>
+    <li>FINANCIAL_CONSULTING_ACCOUNTING_TAXATION_AUDITING</li>
+    <li>IT_DEVELOPMENT</li>
+    <li>IT_HOSTING_SERVICES</li>
+    <li>IT_CONSULTING_AND_SERVICES</li>
+    <li>LEGAL_SERVICES</li>
+    <li>MANAGEMENT_CONSULTING</li>
+    <li>SCIENTIFIC_AND_TECHNICAL_CONSULTING</li>
+    <li>SOFTWARE_AS_A_SERVICE</li>
+    <li>TRANSLATION_AND_LANGUAGE_SERVICES</li>
+    <li>CONSULTING_OTHER</li>
+    <li>SERVICES_OTHER</li>
+    <li>FREELANCE_PLATFORMS</li>
+  </ul>
+  <li>DESIGN_MARKETING_COMMUNICATIONS</li>
+  <ul>
+    <li>ADVERTISING_AND_MARKETING
+    <li>ARCHITECTURE</li>
+    <li>AUDIO_AND_VIDEO</li>
+    <li>DESIGN</li>
+    <li>PHOTOGRAPHY</li>
+    <li>PRINT_AND_ONLINE_MEDIA</li>
+    <li>TELECOMMUNICATIONS_SERVICES</li>
+    <li>TRANSLATION_AND_LANGUAGE_SERVICES</li>
+  </ul>
+  <li>MEDIA_COMMUNICATION_ENTERTAINMENT</li>
+  <ul>
+    <li>ADULT_CONTENT</li>
+    <li>AUDIO_AND_VIDEO</li>
+    <li>FINE_ARTS</li>
+    <li>ARTS_OTHER</li>
+    <li>EVENTS_AND_ENTERTAINMENT</li>
+    <li>GAMBLING_BETTING_AND_ONLINE_GAMING</li>
+    <li>NEWSPAPERS_MAGAZINES_AND_BOOKS</li>
+    <li>PERFORMING_ARTS</li>
+    <li>PHOTOGRAPHY</li>
+    <li>TELECOMMUNICATIONS_SERVICES</li>
+    <li>VIDEO_GAMING</li>
+  </ul>
+  <li>EDUCATION_LEARNING</li>
+  <ul>
+    <li>SCHOOLS_AND_UNIVERSITIES,</li>
+    <li>TEACHING_AND_TUTORING</li>
+    <li>ONLINE_LEARNING</li>
+  </ul>
+  <li>FINANCIAL_SERVICES_PRODUCTS_HOLDING_COMPANIES</li>
+  <ul>
+    <li>CROWDFUNDING</li>
+    <li>CRYPTOCURRENCY_FINANCIAL_SERVICES</li>
+    <li>FINANCIAL_CONSULTING_ACCOUNTING_TAXATION_AUDITING</li>
+    <li>HOLDING_COMPANIES</li>
+    <li>INSURANCE</li>
+    <li>INVESTMENTS</li>
+    <li>MONEY_SERVICE_BUSINESSES</li>
+    <li>FINANCIAL_SERVICES_OTHER</li>
+  </ul>
+  <li>FOOD_BEVERAGES_TOBACCO</li>
+  <ul>
+    <li>ALCOHOL</li>
+    <li>FOOD_MANUFACTURING_RETAIL</li>
+    <li>RESTAURANTS_AND_CATERING</li>
+    <li>SOFT_DRINKS</li>
+    <li>TOBACCO</li>
+    <li>VITAMINS_AND_DIETARY_SUPPLEMENTS</li>
+  </ul>
+  <li>HEALTH_PHARMACEUTICALS_PERSONAL_CARE</li>
+  <ul>
+    <li>HEALTH_AND_BEAUTY_PRODUCTS_AND_SERVICES,
+        <li>DENTAL_SERVICES,
+        <li>DOCTORS_AND_MEDICAL_SERVICES,
+        <li>ELDERLY_OR_OTHER_CARE_HOME,
+        <li>FITNESS_SPORTS_SERVICES,
+        <li>MEDICAL_EQUIPMENT,
+        <li>NURSING_AND_OTHER_CARE_SERVICES,
+        <li>PHARMACEUTICALS,
+        <li>PHARMACY,
+        <li>VITAMINS_AND_DIETARY_SUPPLEMENTS</li>
+  </ul>
+  <li>PUBLIC_GOVERNMENT_SERVICES</li>
+  <ul>
+    <li>PUBLIC_ALL_SERVICES</li>
+  </ul>
+  <li>REAL_ESTATE_CONSTRUCTION</li>
+  <ul>
+    <li>ARCHITECTURE</li>
+    <li>CONSTRUCTION</li>
+    <li>REAL_ESTATE_DEVELOPMENT</li>
+    <li>REAL_ESTATE_SALE_PURCHASE_AND_MANAGEMENT</li>
+  </ul>
+  <li>RETAIL_WHOLESALE_MANUFACTURING</li>
+  <ul>
+    <li>AGRICULTURE_SEEDS_PLANTS</li>
+    <li>FINE_ARTS</li>
+    <li>ARTS_OTHER</li>
+    <li>AUTOMOTIVE_SALES_SPARE_PARTS_TRADE</li>
+    <li>AUTOMOTIVE_MANUFACTURING</li>
+    <li>CHEMICALS</li>
+    <li>CLOTHING</li>
+    <li>ELECTRICAL_PRODUCTS</li>
+    <li>FIREARMS_WEAPONS_AND_MILITARY_GOODS_SERVICES</li>
+    <li>HOME_ACCESSORIES_FURNITURE</li>
+    <li>FINE_JEWELLERY_WATCHES</li>
+    <li>FASHION_JEWELLERY</li>
+    <li>LEGAL_HIGHS_AND_RELATED_ACCESSORIES</li>
+    <li>MACHINERY</li>
+    <li>PETS</li>
+    <li>PRECIOUS_STONES_DIAMONDS_AND_METALS</li>
+    <li>SPORTING_EQUIPMENT</li>
+    <li>MANUFACTURING_OTHER</li>
+    <li>RETAIL_WHOLESALE_MARKETPLACE_AUCTION</li>
+    <li>RETAIL_WHOLESALE_OTHER</li>
+  </ul>
+  <li>TRAVEL_TRANSPORT_TOUR_AGENCIES</li>
+  <ul>
+    <li>ACCOMMODATION_HOTELS</li>
+    <li>PASSENGER_TRANSPORT</li>
+    <li>FREIGHT_TRANSPORT</li>
+    <li>RIDESHARING_TRANSPORT_SHARING_SERVICES</li>
+    <li>TRANSPORT</li>
+    <li>TRAVEL_AGENCIES</li>
+    <li>TOUR_OPERATORS</li>
+    <li>TRAVEL_OR_TOUR_ACTIVITIES_OTHER</li>
+  </ul>
+  <li>OTHER</li>
+  <ul>
+    <li>OTHER_NOT_LISTED_ABOVE</li>
+  </ul>
+</ul>
 
 ### Response (Business)
 
-Field                   | Description                   | Format
----------               | -------                       | -----------
-id                      | profileId                     | Integer
-type                         | "business"                                                    | Text
-details.name                 | Business name                                                 | Text
-details.registrationNumber   | Business registration number                                  | Text
-details.acn                  | Australian Company Number  (only for AUS businesses)          | Text
-details.abn                  | Australian Business Nnumber (only for AUS businesses)         | Text
-details.arbn                 | Australian Registered Body Number  (only for AUS businesses)  | Text
-details.companyType          | Company legal form | Text
-details.companyRole          | Role of person                | Text
-details.descriptionOfBusiness| Sector / filed of activity           | Text
-details.webpage              | Business webpage                 | Text
-details.primaryAddress  | Address object id             | Integer
+Field                         | Description                                                               | Format
+---------                     | -------                                                                   | -----------
+id                            | profileId                                                                 | Integer
+type                          | "business"                                                                | Text
+details.name                  | Business name                                                             | Text
+details.registrationNumber    | Business registration number                                              | Text
+details.acn                   | Australian Company Number  (only for AUS businesses)                      | Text
+details.abn                   | Australian Business Nnumber (only for AUS businesses)                     | Text
+details.arbn                  | Australian Registered Body Number  (only for AUS businesses)              | Text
+details.companyType           | Company legal form                                                        | Text
+details.companyRole           | Role of person                                                            | Text
+details.descriptionOfBusiness | Sector / filed of activity                                                | Text
+details.webpage               | Business webpage                                                          | Text
+details.primaryAddress        | Address object id                                                         | Integer
+details.businessCategory      | Type of buinsess                                                          | Text
+details.businessSubCategory   | Specifc sub category of the business type                                 | Text
+
 
 ## Update
 
@@ -264,16 +411,18 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/profiles \
       "id": <your business profile id>,
       "type": "business",
       "details": {
-         "name": "ABC Logistics Ltd",
-         "registrationNumber": "12144939",
-         "acn": null,
-         "abn": null,
-         "arbn": null,
-         "companyType": "LIMITED",
-         "companyRole": "OWNER",
-         "descriptionOfBusiness": "Information and communication",
-         "webpage": "https://abc-logistics.com",
-         "primaryAddress": null
+        "name": "ABC Logistics Ltd",
+        "registrationNumber": "12144939",
+        "acn": null,
+        "abn": null,
+        "arbn": null,
+        "companyType": "LIMITED",
+        "companyRole": "OWNER",
+        "descriptionOfBusiness": "CHARITY_AND_NOT_FOR_PROFIT",
+        "webpage": "https://abc-logistics.com",
+        "primaryAddress": null,
+        "businessCategory": "CHARITY_AND_NOT_FOR_PROFIT",
+        "businessSubCategory": "CHARITY_ALL_ACTIVITIES"
        }
     }
     
@@ -283,9 +432,6 @@ List of all profiles belonging to user.
 
 ### Request
 **`GET https://api.sandbox.transferwise.tech/v1/profiles`**
-
-
-
 
 ## Create Identification Document
 > Example Request:
