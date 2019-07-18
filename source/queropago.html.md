@@ -1638,7 +1638,7 @@ X-QP-Delivery: 01074956-543a-4045-ad7c-b39831a45646
     {
       "id": 1,
       "external_id": "1728934017293477",
-      "status": "paid",
+      "status": "open",
       "year": 2018,
       "month": 12,
       "due_date": "2018-12-28",
@@ -1647,7 +1647,7 @@ X-QP-Delivery: 01074956-543a-4045-ad7c-b39831a45646
       "interest": 0.0,
       "penalty": 0.0,
       "paid_value": 0.0,
-      "paid_date": "2018-12-27",
+      "paid_date": null,
       "payment_methods": [
         {
           "method_name": "boleto",
