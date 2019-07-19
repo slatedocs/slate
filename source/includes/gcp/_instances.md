@@ -327,7 +327,7 @@ curl -X DELETE \
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id</code>
 
-Destroy an existing instance.
+Delete an existing instance
 
 <!-------------------- CHANGE MACHINE TYPE -------------------->
 
@@ -424,7 +424,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=get_ssh</code>
 
-Retrieves a command to allow you to SSH into a give running instance
+Retrieve a command to allow you to SSH into a give running instance
 
 Required | &nbsp;
 ------ | -----------
@@ -451,7 +451,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id?operation=set_windows_password</code>
 
-Sets and retrieves a generated password to a given user on a running Windows instance
+Set and retrieve a generated password to a given user on a running Windows instance
 
 Required | &nbsp;
 ------ | -----------
