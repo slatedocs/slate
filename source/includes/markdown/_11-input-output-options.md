@@ -94,14 +94,6 @@ the response.
 <a name="paths"></a>
 **SELECTING FIELDS**
 
-Some output options allow you to reference fields of objects to include or expand in the response.
-The way to specify a field is by *path*. A path is made up of a sequence of *terms* separated by the dot (`.`)
-operator. It takes the form `this.a.b`… where *this* refers to an object returned at the top level of the response,
-*a* the name of a field on a root object, *b* a field on a child object referred to by *a*, and so on.
-
-For example, when retrieving a task or tasks, the path `this.followers.email` refers to the email field of all users
-mentioned in the `followers` field of the task or tasks returned. See the annotated output below:
-
 ```
 "data": {                       < this
   "id": 1001,
@@ -119,6 +111,14 @@ mentioned in the `followers` field of the task or tasks returned. See the annota
   }]
 }
 ```
+
+Some output options allow you to reference fields of objects to include or expand in the response.
+The way to specify a field is by *path*. A path is made up of a sequence of *terms* separated by the dot (`.`)
+operator. It takes the form `this.a.b`… where *this* refers to an object returned at the top level of the response,
+*a* the name of a field on a root object, *b* a field on a child object referred to by *a*, and so on.
+
+For example, when retrieving a task or tasks, the path `this.followers.email` refers to the email field of all users
+mentioned in the `followers` field of the task or tasks returned. See the annotated output below:
 
 There are also some advanced operators you can use for shorter syntax in selecting fields:
 
