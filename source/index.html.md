@@ -249,7 +249,9 @@ JWT を生成するには、URL-safe な base64 文字列に変換する必要�
 
 最後に、これらの出力を全てドット `.` で接続して JWT の完成です。
 
-`eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb25zb2xlLnJvYm90aWNjcm93ZC5jb20iLCJzdWIiOiJJam9pSWl3aVozSmhiblJ6SWpwN0ltIiwiYXVkIjoiaHR0cHM6Ly9hcGkucm9ib3RpY2Nyb3dkLmNvbS8iLCJuYmYiOjE0NTA0NzExNDcsImV4cCI6MTQ1MDQ3Mzc0Nywic2NvcGVzIjpbInNlc3Npb25fcXVldWUud3JpdGUiLCJzZXNzaW9uX3F1ZXVlLnJlYWQiLCJ0b2tlbiJdfQ.LbICm0Ylbt0UFUGBRP7tqL1tT_RwH1D-XWSt_dfenUg`
+`
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb25zb2xlLnJvYm90aWNjcm93ZC5jb20iLCJzdWIiOiJJam9pSWl3aVozSmhiblJ6SWpwN0ltIiwiYXVkIjoiaHR0cHM6Ly9hcGkucm9ib3RpY2Nyb3dkLmNvbS8iLCJuYmYiOjE0NTA0NzExNDcsImV4cCI6MTQ1MDQ3Mzc0Nywic2NvcGVzIjpbInNlc3Npb25fcXVldWUud3JpdGUiLCJzZXNzaW9uX3F1ZXVlLnJlYWQiLCJ0b2tlbiJdfQ.LbICm0Ylbt0UFUGBRP7tqL1tT_RwH1D-XWSt_dfenUg
+`
 
 出来上がった JWT を [jwt.io](https://jwt.io) で検証してみましょう。Encoded のテキストエリアに JWT をペーストとします。
 その下に、 `Invalid Signature` と表示されたのではないでしょうか。これは署名が検証できなかったという事です。
@@ -291,7 +293,9 @@ JWT は、クライアントサイドで生成することを推奨していま�
 
 ### HTTP Request
 
-`POST https://api.roboticcrowd.com/v1/token`
+`
+  POST https://api.roboticcrowd.com/v1/token
+`
 
 ### パラメーター
 
@@ -379,7 +383,9 @@ curl --location --request POST "https://api.roboticcrowd.com/v1/session_queues" 
 
 ### HTTP Request
 
-`POST https://api.roboticcrowd.com/v1/session_queues`
+`
+POST https://api.roboticcrowd.com/v1/session_queues
+`
 
 ### パラメーター
 
@@ -468,7 +474,9 @@ curl --location --request GET "https://api.roboticcrowd.com/v1/session_queues?pa
 
 ### HTTP Request
 
-`GET https://api.roboticcrowd.com/v1/session_queues?page=1&per_page=10&query=`
+`
+  GET https://api.roboticcrowd.com/v1/session_queues?page=1&per_page=10&query=
+`
 
 ### クエリパラメーター
 
