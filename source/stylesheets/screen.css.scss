@@ -444,7 +444,8 @@ html, body {
     background-color: rgba(0,0,0,0.05);
     padding: 3px;
     border-radius: 3px;
-    @extend %break-words;
+    word-break: break-all;
+    hyphens: none;
     @extend %code-font;
   }
 
@@ -600,6 +601,10 @@ html, body {
   %right-col + %left-col {
     margin-top: $main-padding;
   }
+}
+
+code {
+  hyphens: none;
 }
 
 .highlight .c, .highlight .cm, .highlight .c1, .highlight .cs {

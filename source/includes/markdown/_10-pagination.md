@@ -36,8 +36,8 @@ you paginate all requests to the API.
 
 | Parameter | Description |
 |---|---|
-| Limit | <code class="table-example">20</code> The number of objects to return per page. The value must be between 1 and 100. |
-| Offset | <code class="table-example">eyJ0eXAiOJiKV1iQLCJhbGciOiJIUzI1NiJ9</code> An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results. <br><br><strong>Note:</strong> You can only pass in an offset that was returned to you via a previously paginated request. |
+| Limit | `20` The number of objects to return per page. The value must be between 1 and 100. |
+| Offset | `eyJ0eXAiOJiKV1iQLCJhbGciOiJIUzI1NiJ9` An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results. <br><br><strong>Note:</strong> You can only pass in an offset that was returned to you via a previously paginated request. |
 
 **This method returns paginated results for tasks from a project.**
 

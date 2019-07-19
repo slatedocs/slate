@@ -79,5 +79,5 @@ least one error object, described below:
 
 | Example | Description |
 |---|---|
-| Message: | <code class="table-example">project: Missing input</code> Message providing more detail about the error that occurred, if available. |
-| Phrase: | <code class="table-example">6 sad squid snuggle softly</code> **500 errors only**. A unique error phrase which can be used when contacting developer support to help identify the exact occurrence of the problem in Asana's logs. |
+| Message: | `project: Missing input` Message providing more detail about the error that occurred, if available. |
+| Phrase: | `6 sad squid snuggle softly` **500 errors only**. A unique error phrase which can be used when contacting developer support to help identify the exact occurrence of the problem in Asana's logs. |

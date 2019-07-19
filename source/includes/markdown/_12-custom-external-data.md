@@ -21,5 +21,5 @@ so this should not be used for private user data.
 
 | Parameter | Description |
 |---|---|
-| id | <code class="table-example">contractor_name</code> 	The external id. Max size is 1024 characters. Can be a URI. |
-| data | <code class="table-example">{ "time_estimate": 3600, "time_spent": 1482 }</code> The external data blob. Max size is 32,786 characters. |
+| id | `contractor_name` 	The external id. Max size is 1024 characters. Can be a URI. |
+| data | `{ "time_estimate": 3600, "time_spent": 1482 }` The external data blob. Max size is 32,786 characters. |

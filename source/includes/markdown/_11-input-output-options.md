@@ -10,11 +10,29 @@ content type, then options are specified inside the top-level `options` object
 These options can be used in combination in a single request, though some of them may conflict in their impact on
 the response.
 
+> GET url params
+
+```
+?opt_pretty
+?opt_fields=followers,assignee
+?opt_expand=followers
+``` 
+
+> PUT or POST body options
+
+```
+options: { 
+  pretty: true,
+  fields: ["followers", "assignee"],
+  expand: ["followers"]
+}
+```
+
 | Option | Description | Notes |
 |---|---|---|
-| **pretty** | <code class="table-example">?opt_pretty options: { pretty: true }</code> Provides the response in "pretty" output. In the case of JSON this means doing proper line breaking and indentation to make it readable. This will take extra time and increase the response size so it is advisable only to use this during debugging. |  |
-| **fields** | <code class="table-example">?opt_fields=followers,assignee options: { fields: ["followers", "assignee"] }</code> Some requests return *compact* representations of objects, to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as <a href="/developers/documentation/getting-started/input-output-options#paths">paths</a>, described below. | The id of included objects will always be returned, regardless of the field options. |
-| **expand** | <code class="table-example">?opt_expand=followers options: { expand: ["followers"] }</code> Query results and sub-objects are returned in *compact* form by default. This option can be used to expand query results or sub-objects to return more detailed information. Be sure you really need the information in the expanded form, as executing a query with many results in expanded form can be costly and return you a lot of data to consume. | If the `fields` option is also used, it will take precedence over the expand option and prevent expansion. |
+| **pretty** | Provides the response in "pretty" output. In the case of JSON this means doing proper line breaking and indentation to make it readable. This will take extra time and increase the response size so it is advisable only to use this during debugging. |  |
+| **fields** | Some requests return *compact* representations of objects, to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as <a href="/developers/documentation/getting-started/input-output-options#paths">paths</a>, described below. | The id of included objects will always be returned, regardless of the field options. |
+| **expand** | Query results and sub-objects are returned in *compact* form by default. This option can be used to expand query results or sub-objects to return more detailed information. Be sure you really need the information in the expanded form, as executing a query with many results in expanded form can be costly and return you a lot of data to consume. | If the `fields` option is also used, it will take precedence over the expand option and prevent expansion. |
 
 **Default output**
 
