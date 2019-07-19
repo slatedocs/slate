@@ -2,7 +2,7 @@
 
 Robotic Crowd が返却する API のエラーコードです。
 
-エラーコード | 意味
+Code | Description
 ---------- | -------
 400 | Bad Request -- リクエストが無効です。
 401 | Unauthorized -- JWT が無効です。
