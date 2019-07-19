@@ -102,49 +102,23 @@ operator. It takes the form `this.a.b`… where *this* refers to an object retur
 For example, when retrieving a task or tasks, the path `this.followers.email` refers to the email field of all users
 mentioned in the `followers` field of the task or tasks returned. See the annotated output below:
 
-<div class="row">
-  <div class="col-small-6">
-    <strong>Data</strong>
-
-<pre><code>"data": {
+```
+"data": {                       < this
   "id": 1001,
-  "name": "Feed the cat",
-  "workspace": {
+  "name": "Feed the cat",       < this.name
+  "workspace": {                < this.workspace
     "id": 14916,
-    "name": "Shared Projects",
+    "name": "Shared Projects",  < this.workspace.name
   },
-  "followers": [{
+  "followers": [{               < this.followers
     "id": 1234,
-    "email": "tbizarro@…",
+    "email": "tbizarro@…",      < this.followers.email
   }, {
     "id": 5678,
-    "email": "gsanchez@…",
+    "email": "gsanchez@…",      < this.followers.email
   }]
 }
-</pre></code>
-  </div>
-
-  <div class="col-small-6">
-    <strong>Path</strong>
-
-<pre><code>this
-
-this.name
-this.workspace
-
-this.workspace.name
-
-this.followers
-
-this.followers.email
-
-
-this.followers.email
-
-
-</pre></code>
-  </div>
-</div>
+```
 
 There are also some advanced operators you can use for shorter syntax in selecting fields:
 

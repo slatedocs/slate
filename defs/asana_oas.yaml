@@ -602,6 +602,13 @@ components:
     InternalServerError:
       description: >-
         There was a problem on Asana’s end.
+        In the event of a server error the response body should contain an error
+        phrase. These phrases are automatically generated using the
+        [node-asana-phrase
+        library](https://github.com/Asana/node-asana-phrase) and can be used by
+        Asana support to quickly look up the incident that caused the server
+        error.
+        Some errors are due to server load, and will not supply an error phrase.
       content:
         application/json:
           schema:
@@ -3262,8 +3269,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /tasks/{task_gid}/attachments:
     parameters:
       - name: task_gid
@@ -3303,8 +3308,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
     post:
       summary: Upload an attachment
       description: |-
@@ -3386,8 +3389,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /batch:
     parameters:
       - $ref: '#/components/parameters/pretty'
@@ -3440,8 +3441,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /projects/{project-id}/custom_field_settings:
     parameters:
       - name: project-id
@@ -3488,8 +3487,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /custom_fields:
     parameters:
       - $ref: '#/components/parameters/pretty'
@@ -3548,8 +3545,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /custom_fields/{custom_field_gid}:
     parameters:
       - name: custom_field_gid
@@ -3576,96 +3571,6 @@ paths:
         is only relevant for the enum type and defines the set of choices that
         the enum could represent. The examples below show some of these
         type-specific custom field definitions.
-
-        **Get the metadata for a custom field of type ‘text’**
-
-        ```
-        # Request
-        curl -H "Authorization: Bearer <personal_access_token>" \
-        https://app.asana.com/api/1.0/custom_fields/124578
-        ```
-
-        ```
-        # Response
-        HTTP/1.1 200
-        {
-          "data": [
-            {
-              "id": 134679,
-              "name": "Owner",
-              "description": "Person responsible for task",
-              "type": "text"
-            }
-          ]
-        }
-        ```
-
-        **Get the metadata for a custom field of type ‘number’**
-
-        ```
-        # Request
-        curl -H "Authorization: Bearer <personal_access_token>" \
-        https://app.asana.com/api/1.0/custom_fields/124578
-        ```
-
-        ```
-        # Response
-        HTTP/1.1 200
-        {
-          "data": [
-            {
-              "id": 938271,
-              "name": "Price",
-              "description": "In US Dollars",
-              "type": "number",
-              "precision": 2
-            }
-          ]
-        }
-        ```
-
-        **Get the metadata for a custom field when that field is of type ‘enum’.**
-
-        ```
-        # Request
-        curl -H "Authorization: Bearer <personal_access_token>" \
-        https://app.asana.com/api/1.0/custom_fields/124578
-        ```
-
-        ```
-        # Response
-        HTTP/1.1 200
-        {
-          "data": [
-            {
-              "id": 124578,
-              "name": "Priority",
-              "description": "Development team priority",
-              "type": "enum",
-              "enum_options": [
-                {
-                  "id": 789,
-                  "name": "Low",
-                  "enabled": true,
-                  "color": "blue"
-                },
-                {
-                  "id": 208,
-                  "name": "Medium",
-                  "enabled": false,
-                  "color": "yellow"
-                },
-                {
-                  "id": 439,
-                  "name": "High",
-                  "enabled": true,
-                  "color": "red"
-                }
-              ]
-            }
-          ]
-        }
-        ```
       tags:
         - Custom Fields
       operationId: getCustomField
@@ -3688,8 +3593,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
     put:
       summary: Update a custom field
       description: >-
@@ -3738,8 +3641,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
     delete:
       summary: Delete a custom field
       description: >-
@@ -3769,8 +3670,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /custom_fields/{custom_field_gid}/enum_options:
     parameters:
       - name: custom_field_gid
@@ -3812,27 +3711,24 @@ paths:
                 data:
                   allOf:
                     - $ref: '#/components/schemas/EnumOption'
-                    - oneOf:
-                        - type: object
-                          properties:
-                            insert_before:
-                              type: integer
-                              description: >-
-                                An existing enum option within this custom field
-                                before which the new enum option should be
-                                inserted. Cannot be provided together with
-                                after_enum_option.
-                              example: 12345
-                        - type: object
-                          properties:
-                            insert_after:
-                              type: integer
-                              description: >-
-                                An existing enum option within this custom field
-                                after which the new enum option should be inserted.
-                                Cannot be provided together with
-                                before_enum_option.
-                              example: 12345
+                    - type: object
+                      properties:
+                        insert_before:
+                          type: integer
+                          description: >-
+                            An existing enum option within this custom field
+                            before which the new enum option should be
+                            inserted. Cannot be provided together with
+                            after_enum_option.
+                          example: 12345
+                        insert_after:
+                          type: integer
+                          description: >-
+                            An existing enum option within this custom field
+                            after which the new enum option should be inserted.
+                            Cannot be provided together with
+                            before_enum_option.
+                          example: 12345
       responses:
         201:
           description: Custom field enum option successfully created.
@@ -3853,8 +3749,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /custom_fields/{custom_field_gid}/enum_options/insert:
     parameters:
       - name: custom_field_gid
@@ -3938,8 +3832,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /enum_options/{enum_option_gid}:
     parameters:
       - name: enum_option_gid
@@ -3997,8 +3889,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /workspaces/{workspace_gid}/custom_fields:
     parameters:
       - name: workspace_gid
@@ -4040,8 +3930,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /projects/{project_gid}/custom_field_settings:
     parameters:
       - name: project_gid
@@ -4088,8 +3976,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /portfolios/{portfolio_gid}/custom_field_settings:
     parameters:
       - name: portfolio_gid
@@ -4131,8 +4017,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /events:
     parameters:
       - name: resource
@@ -4192,8 +4076,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /jobs/{job_gid}:
     parameters:
       - $ref: '#/components/parameters/job_path_gid'
@@ -4226,8 +4108,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /organization_exports:
     parameters:
       - $ref: '#/components/parameters/pretty'
@@ -4273,8 +4153,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /organization_exports/{organization_export_gid}:
     parameters:
       - name: organization_export_gid
@@ -4313,8 +4191,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /portfolio_memberships:
     parameters:
       - $ref: '#/components/parameters/portfolio_query_param'
@@ -4350,8 +4226,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /portfolios/{portfolio_gid}/portfolio_memberships:
     parameters:
       - $ref: '#/components/parameters/portfolio_path_gid'
@@ -4386,8 +4260,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /portfolio_memberships/{portfolio_gid}:
     parameters:
       - $ref: '#/components/parameters/portfolio_path_gid'
@@ -4421,8 +4293,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /portfolios:
     parameters:
       - $ref: '#/components/parameters/pretty'
@@ -4470,8 +4340,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
     post:
       summary: Create a new portfolio
       description: |-
@@ -4509,8 +4377,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /portfolios/{portfolio_gid}:
     parameters:
       - $ref: '#/components/parameters/portfolio_path_gid'
@@ -4542,8 +4408,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
     put:
       summary: Update a portfolio
       description: |-
@@ -4579,8 +4443,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
     delete:
       summary: Delete a portfolio
       description: |-
@@ -4608,8 +4470,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /portfolios/{portfolio_gid}/items:
     parameters:
       - $ref: '#/components/parameters/portfolio_path_gid'
@@ -4643,8 +4503,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /portfolios/{portfolio_gid}/addItem:
     parameters:
       - $ref: '#/components/parameters/portfolio_path_gid'
@@ -4710,8 +4568,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /portfolios/{portfolio_gid}/removeItem:
     parameters:
       - $ref: '#/components/parameters/portfolio_path_gid'
@@ -4755,8 +4611,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /portfolios/{portfolio_gid}/addCustomFieldSetting:
     parameters:
       - $ref: '#/components/parameters/portfolio_path_gid'
@@ -4820,8 +4674,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /portfolios/{portfolio_gid}/removeCustomFieldSetting:
     parameters:
       - $ref: '#/components/parameters/portfolio_path_gid'
@@ -4858,8 +4710,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /projects/{project_gid}/project_memberships:
     parameters:
       - $ref: '#/components/parameters/project_path_gid'
@@ -4894,8 +4744,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /project_memberships/{project_gid}:
     parameters:
       - $ref: '#/components/parameters/project_path_gid'
@@ -4929,8 +4777,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /projects/{project_gid}/project_statuses:
     parameters:
       - name: project_gid
@@ -4965,8 +4811,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
     post:
       summary: Create a project status
       description: >-
@@ -5020,8 +4864,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /project_statuses/{project_status_gid}:
     parameters:
       - name: project_gid
@@ -5062,8 +4904,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
     delete:
       summary: Delete a project status
       description: |-
@@ -5090,8 +4930,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /projects:
     parameters:
       - $ref: '#/components/parameters/pretty'
@@ -5140,8 +4978,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
     post:
       summary: Create a new project
       description: |-
@@ -5206,8 +5042,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /projects/{project_gid}:
     parameters:
       - $ref: '#/components/parameters/project_path_gid'
@@ -5239,8 +5073,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
     put:
       summary: Update a project
       description: |-
@@ -5280,8 +5112,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
     delete:
       summary: Delete a project
       description: |-
@@ -5309,8 +5139,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /projects/{project_gid}/duplicate:
     parameters:
       - $ref: '#/components/parameters/project_path_gid'
@@ -5417,8 +5245,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /projects/{project_gid}/tasks:
     parameters:
       - $ref: '#/components/parameters/project_path_gid'
@@ -5453,8 +5279,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /projects/{project_gid}/addCustomFieldSetting:
     parameters:
       - $ref: '#/components/parameters/project_path_gid'
@@ -5519,8 +5343,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /projects/{project_gid}/removeCustomFieldSetting:
     parameters:
       - $ref: '#/components/parameters/project_path_gid'
@@ -5557,8 +5379,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /teams/{team_gid}/projects:
     parameters:
       - $ref: '#/components/parameters/team_path_gid'
@@ -5593,8 +5413,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
     post:
       summary: Create a project in a team
       description: |-
@@ -5628,8 +5446,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /workspaces/{workspace_gid}/projects:
     parameters:
       - $ref: '#/components/parameters/workspace_path_gid'
@@ -5664,8 +5480,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
     post:
       summary: Create a project in a workspace
       description: |-
@@ -5703,8 +5517,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /projects/{project_gid}/sections:
     parameters:
       - $ref: '#/components/parameters/project_path_gid'
@@ -5737,8 +5549,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
     post:
       summary: Creates a section in a project
       description: >-
@@ -5786,8 +5596,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /sections/{section_gid}:
     parameters:
       - $ref: '#/components/parameters/section_path_gid'
@@ -5820,8 +5628,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
     put:
       summary: Update a section
       description: |-
@@ -5862,8 +5668,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
     delete:
       summary: Delete a section
       description: |-
@@ -5895,8 +5699,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /sections/{section_gid}/addTask:
     parameters:
       - $ref: '#/components/parameters/section_path_gid'
@@ -5958,8 +5760,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /projects/{project_gid}/sections/insert:
     parameters:
       - $ref: '#/components/parameters/project_path_gid'
@@ -6033,8 +5833,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /tasks/{task_gid}/stories:
     parameters:
       - name: task_gid
@@ -6074,8 +5872,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
     post:
       summary: Create a comment on a task
       description: |-
@@ -6124,8 +5920,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /stories/{story_gid}:
     parameters:
       - name: story_gid
@@ -6163,8 +5957,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
     put:
       summary: Update a story
       description: >-
@@ -6199,8 +5991,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
     delete:
       summary: Delete a story
       description: |-
@@ -6227,8 +6017,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /tags:
     parameters:
       - $ref: '#/components/parameters/pretty'
@@ -6277,8 +6065,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
     post:
       summary: Create a tag
       description: |-
@@ -6317,8 +6103,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /tags/{tag_gid}:
     parameters:
       - $ref: '#/components/parameters/tag_path_gid'
@@ -6350,8 +6134,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
     put:
       summary: Update a tag
       description: |-
@@ -6383,8 +6165,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /tags/{tag_gid}/tasks:
     parameters:
       - $ref: '#/components/parameters/tag_path_gid'
@@ -6420,8 +6200,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /workspaces/{workspace_gid}/tags:
     parameters:
       - name: workspace_gid
@@ -6461,8 +6239,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
     post:
       summary: Create a tag in a workspace
       description: |-
@@ -6501,8 +6277,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /tasks:
     parameters:
       - $ref: '#/components/parameters/pretty'
@@ -6625,8 +6399,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
     post:
       summary: Create a task
       description: |-
@@ -6665,8 +6437,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /tasks/{task_gid}:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
@@ -6698,8 +6468,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
     put:
       summary: Update a task
       description: |-
@@ -6739,8 +6507,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
     delete:
       summary: Delete a task
       description: |-
@@ -6770,8 +6536,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /tasks/{task_gid}/duplicate:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
@@ -6837,8 +6601,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /tasks/{task_gid}/subtasks:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
@@ -6871,8 +6633,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
     post:
       summary: Create a subtask
       description: >-
@@ -6905,8 +6665,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /tasks/{task_gid}/setParent:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
@@ -6973,8 +6731,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /tasks/{task_gid}/dependencies:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
@@ -7007,8 +6763,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /tasks/{task_gid}/addDependencies:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
@@ -7049,8 +6803,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /tasks/{task_gid}/removeDependencies:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
@@ -7090,8 +6842,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /tasks/{task_gid}/dependents:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
@@ -7125,8 +6875,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /tasks/{task_gid}/addDependents:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
@@ -7168,8 +6916,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /tasks/{task_gid}/removeDependents:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
@@ -7210,8 +6956,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /tasks/{task_gid}/projects:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
@@ -7245,8 +6989,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /tasks/{task_gid}/addProject:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
@@ -7331,8 +7073,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /tasks/{task_gid}/removeProject:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
@@ -7386,8 +7126,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /tasks/{task_gid}/tags:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
@@ -7421,8 +7159,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /tasks/{task_gid}/addTag:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
@@ -7473,8 +7209,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /tasks/{task_gid}/removeTag:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
@@ -7525,8 +7259,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /tasks/{task_gid}/addFollowers:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
@@ -7586,8 +7318,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /tasks/{task_gid}/removeFollowers:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
@@ -7643,8 +7373,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /sections/{section_gid}/tasks:
     parameters:
       - $ref: '#/components/parameters/section_path_gid'
@@ -7680,8 +7408,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /workspaces/{workspace_gid}/tasks/search:
     parameters:
       - $ref: '#/components/parameters/workspace_path_gid'
@@ -8109,8 +7835,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /teams/{team_gid}:
     parameters:
       - name: team_gid
@@ -8148,8 +7872,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /organizations/{organization_gid}/teams:
     parameters:
       - name: organization_gid
@@ -8191,8 +7913,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /users/{user_gid}/teams:
     parameters:
       - name: user_gid
@@ -8259,8 +7979,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /teams/{team_gid}/users:
     parameters:
       - name: team_gid
@@ -8304,8 +8022,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /teams/{team_gid}/addUser:
     parameters:
       - name: team_gid
@@ -8366,8 +8082,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /teams/{team_gid}/removeUser:
     parameters:
       - name: team_gid
@@ -8427,8 +8141,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /workspaces/{workspace_gid}/typeahead:
     parameters:
       - $ref: '#/components/parameters/workspace_path_gid'
@@ -8531,8 +8243,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /user_task_list/{user_task_list_gid}:
     parameters:
       - $ref: '#/components/parameters/user_task_list_path_gid'
@@ -8566,8 +8276,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /users/{user_gid}/user_task_list:
     parameters:
       - $ref: '#/components/parameters/user_path_gid'
@@ -8601,8 +8309,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /user_task_lists/{user_task_list_gid}/tasks:
     parameters:
       - name: completed_since
@@ -8664,8 +8370,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /users:
     parameters:
       - name: workspace
@@ -8709,8 +8413,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /users/{user_gid}:
     parameters:
       - $ref: '#/components/parameters/user_path_gid'
@@ -8745,8 +8447,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /users/{user_gid}/favorites:
     parameters:
       - $ref: '#/components/parameters/user_path_gid'
@@ -8803,8 +8503,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /workspaces/{workspace_gid}/users:
     parameters:
       - $ref: '#/components/parameters/workspace_path_gid'
@@ -8841,8 +8539,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /webhooks:
     parameters:
       - $ref: '#/components/parameters/pretty'
@@ -8891,8 +8587,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
     post:
       summary: >-
         Establish a webhook on a resource
@@ -8993,8 +8687,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /webhooks/{webhook_gid}:
     parameters:
       - name: webhook_gid
@@ -9035,8 +8727,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
     delete:
       summary: Remove a webhook
       description: >-
@@ -9063,8 +8753,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /workspaces:
     parameters:
       - $ref: '#/components/parameters/pretty'
@@ -9097,8 +8785,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /workspaces/{workspace_gid}:
     parameters:
       - $ref: '#/components/parameters/workspace_path_gid'
@@ -9131,8 +8817,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
     put:
       summary: Update a workspace
       description: >-
@@ -9171,8 +8855,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /workspaces/{workspace_gid}/addUser:
     parameters:
       - $ref: '#/components/parameters/workspace_path_gid'
@@ -9231,8 +8913,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
   /workspaces/{workspace_gid}/removeUser:
     parameters:
       - $ref: '#/components/parameters/workspace_path_gid'
@@ -9293,5 +8973,3 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
-        default:
-          $ref: '#/components/responses/GenericErrorResponse'
