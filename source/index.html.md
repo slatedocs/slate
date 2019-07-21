@@ -53,11 +53,11 @@ verification. We won't be able to recover your passphrase if lost. -->
 #
 # Requires python-requests. Install with pip:
 #
-#   pip install requests
+#   pip3 install requests==2.20.0
 #
 # or, with easy-install:
 #
-#   easy_install requests
+#   easy_install requests==2.20.0
 
 import json, hmac, hashlib, time, requests, base64
 from requests.auth import AuthBase
@@ -167,7 +167,7 @@ curl "https://api.falconx.io/v1/pairs"
 ]
 ```
 
-API will return a list of the following structure
+API will return a list of the following structure:
 
 | Parameter     | Type                              | Description |
 | ---------     | ------------------------------    | ------------|
