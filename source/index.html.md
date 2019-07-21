@@ -110,10 +110,10 @@ print(r.json())
 
 All REST API requests must contain the following headers:
 
-* **FX-ACCESS-KEY** The API key as a string
-* **FX-ACCESS-SIGN** The base64-encoded signature (see [Signing a Message](#signing-a-message))
-* **FX-ACCESS-TIMESTAMP** The timestamp in seconds from epoch
-* **FX-ACCESS-PASSPHRASE** The passphrase given to you
+* `FX-ACCESS-KEY`: The API key as a string
+* `FX-ACCESS-SIGN`: The base64-encoded signature (see [Signing a Message](#signing-a-message))
+* `FX-ACCESS-TIMESTAMP`: The timestamp in seconds from epoch
+* `FX-ACCESS-PASSPHRASE`: The passphrase given to you
 
 All request bodies should have content type `application/json` and should be a valid JSON.
 
