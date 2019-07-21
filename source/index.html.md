@@ -8,7 +8,7 @@ search: true
 ---
 
 # Introduction
-Welcome to the FalconX trading API documentation. The APIs provide developers programmatic access to FalconX services. In case of any questions please contact `support@falconx.io` 
+Welcome to the FalconX API documentation. The APIs provide developers programmatic access to FalconX services. In case of any questions please contact `support@falconx.io` 
 
 # Request For Quote (RFQ)
 RFQ process involves the client sending details about the token pair they want to trade along with the quantity. FalconX RFQ API returns the price at which client can buy or sell the requested quantity in the requested token pair. The quote is valid only for a short period of time. If the client accepts the quote before it expires and FalconX sends a confirmation then the trade is considered closed.
@@ -133,16 +133,16 @@ The **FX-ACCESS-TIMESTAMP** header must be number of seconds since Unix Epoch in
 Your timestamp must be within 30 seconds of the API service time or your request will be considered expired and rejected.
 
 
-# Get Trading Pairs
+# Get Token Pairs
 
-Get the list of all trading pairs currently supported.
+Get the list of all token pairs currently supported.
 
 ## HTTP Request
 
 > Request Sample
 
 ```shell
-# pass in the correct authorization header values
+# substitute placeholders with correct authorization header values
 curl -X GET "https://api.falconx.io/v1/pairs" \
       -H "FX-ACCESS-SIGN: <signature>" \
       -H "FX-ACCESS-TIMESTAMP: <timestamp>" \
@@ -172,13 +172,14 @@ curl -X GET "https://api.falconx.io/v1/pairs" \
 ]
 ```
 
-API will return a list of the following structure:
+API will return a list of [Token Pair](#token-pair) JSON structure.
 
+<!--
 | Parameter     | Type                              | Description |
 | ---------     | ------------------------------    | ------------|
 | **base_token**        | STRING                            | Base Token
 | **quote_token**   | STRING                            |  Quote Token
-
+-->
 
 # Get Quote
 
@@ -208,9 +209,9 @@ Client sends request to get quotes to this endpoint. The response contains the t
 
 | Parameter  | Type                                | Description |
 | ---------  | ----------------------------------- | ------------|
-| **token_pair** | JSON                                | The market for which the client is requesting quote |
-| **quantity**   | JSON                                | Requested quantity |
-| **side**       | STRING                              | Side of quote. Accepted values: `buy`, `sell` or `two_way`
+| **token_pair** | JSON                                | Token pair for which the client is requesting quote (See [Token Pair](#token-pair)) |
+| **quantity**   | JSON                                | Requested quantity (See [Quantity](#quantity)) |
+| **side**       | STRING                              | Side of quote. Possible values: `buy`, `sell` or `two_way`
 
 
 ## Response Parameters
@@ -243,23 +244,23 @@ Client sends request to get quotes to this endpoint. The response contains the t
 
 | Parameter     | Type                              | Description |
 | ---------     | ------------------------------    | ------------|
-| **status**        | STRING                            | Status of the response. Accepted values: `success` or `failure`|
+| **status**        | STRING                            | Status of the response. Possible values: `success` or `failure`|
 | **fx_quote_id**   | STRING                            | FalconX Quote ID. Use this when executing 
 | **buy_price**   | DECIMAL                            | Buy price in quote token
 | **sell_price**   | DECIMAL                            | Sell price in quote token
-| **token_pair**    | JSON                              | The market for which the client is requesting quote |
-| **quantity_requested**      | JSON                              | Requested quantity |
-| **side_requested**       | STRING                              | Side of quote. Accepted values: `buy`, `sell` or `two_way`
+| **token_pair**    | JSON                              | Token pair for which the client is requesting quote (See [Token Pair](#token-pair)) |
+| **quantity_requested**      | JSON                              | Requested quantity (See [Quantity](#quantity)) |
+| **side_requested**       | STRING                              | Side of quote. Possible values: `buy`, `sell` or `two_way`
 | **t_quote**       | STRING                            | Quote time in ISO 8601 date format
 | **t_expiry**      | STRING                            | Quote expiry time in ISO 8601 date format
-| **is_filled**      | BOOLEAN                          | true if quote has been executed successfully else false. `false` for quote request
+| **is_filled**      | BOOLEAN                          | `true` if quote has been executed successfully else `false`. `false` for quote request
 | **side_executed**       | STRING                              | Side of quote executed. `null` for quote request
-| **error**       | JSON                                | Error info. `null` if no error (see [Error Response](#error-response) for JSON structure)
+| **error**       | JSON                                | Error info. `null` if no error (see [Error](#error))
 
 
 # Execute Quote
 
-Execute quote fetched in the `Get Quote` API call.
+Execute quote fetched in the [Get Quote](#get-quote) API call.
 
 ## HTTP Request
 `POST https://api.falconx.io/v1/quotes/execute`
@@ -277,8 +278,8 @@ Execute quote fetched in the `Get Quote` API call.
 
 | Parameter  | Type                                | Description
 | ---------  | ----------------------------------- | ------------
-| **fx_quote_id** | STRING                                 | FalconX Quote ID fetched in the `Get Quote` API call
-| **side**       | STRING                              | Side of quote. Accepted values: `buy` or `sell`
+| **fx_quote_id** | STRING                                 | FalconX Quote ID fetched in the [Get Quote](#get-quote) API call
+| **side**       | STRING                              | Side of quote. Possible values: `buy` or `sell`
 
 
 ## Response Parameters
@@ -311,18 +312,18 @@ Execute quote fetched in the `Get Quote` API call.
 
 | Parameter     | Type                              | Description |
 | ---------     | ------------------------------    | ------------|
-| **status**        | STRING                            | Status of the response. Accepted values: `success` or `failure`|
+| **status**        | STRING                            | Status of the response. Possible values: `success` or `failure`|
 | **fx_quote_id**   | STRING                            | FalconX Quote ID 
 | **buy_price**   | DECIMAL                            | Buy price in quote token
 | **sell_price**   | DECIMAL                            | Sell price in quote token
-| **token_pair**    | JSON                              | The market for which the client is requesting quote |
-| **quantity_requested**      | JSON                              | Requested quantity |
-| **side_requested**       | STRING                              | Side of quote. Accepted values: `buy`, `sell` or `two_way`
+| **token_pair**    | JSON                              | Token pair for which the client is requesting quote (See [Token Pair](#token-pair)) |
+| **quantity_requested**      | JSON                              | Requested quantity (See [Quantity](#quantity)) |
+| **side_requested**       | STRING                              | Side of quote. Possible values: `buy`, `sell` or `two_way`
 | **t_quote**       | STRING                            | Quote time in ISO 8601 date format
 | **t_expiry**      | STRING                            | Quote expiry time in ISO 8601 date format
-| **is_filled**      | BOOLEAN | true if quote has been executed successfully else false
+| **is_filled**      | BOOLEAN | `true` if quote has been executed successfully else `false`
 | **side_executed**       | STRING                              | Side of quote executed 
-| **error**       | JSON                                | Error info. `null` if no error (see [Error Response](#error-response) for JSON structure)
+| **error**       | JSON                                | Error info. `null` if no error (see [Error](#error))
 
 
 # Quote Status
@@ -337,7 +338,7 @@ Get status of a quote by ID.
 > Request Sample
 
 ```shell
-# pass in the correct authorization header values
+# substitute placeholders with correct authorization header values
 curl -X GET "https://api.falconx.io/v1/quotes/00c884b056f949338788dfb59e495377" \
       -H "FX-ACCESS-SIGN: <signature>" \
       -H "FX-ACCESS-TIMESTAMP: <timestamp>" \
@@ -349,7 +350,7 @@ curl -X GET "https://api.falconx.io/v1/quotes/00c884b056f949338788dfb59e495377" 
 
 | Parameter         | Type                                | Description
 | ---------         | ----------------------------------- | ------------
-| **fx_quote_id**   | STRING                         | FalconX Quote ID fetched in the `Get Quote` API call
+| **fx_quote_id**   | STRING                         | FalconX Quote ID fetched in the [Get Quote](#get-quote) API call
 
 
 ## Response Parameters
@@ -381,18 +382,18 @@ curl -X GET "https://api.falconx.io/v1/quotes/00c884b056f949338788dfb59e495377" 
 
 | Parameter     | Type                              | Description |
 | ---------     | ------------------------------    | ------------|
-| **status**        | STRING                            | Status of the response. Accepted values: `success` or `failure`|
+| **status**        | STRING                            | Status of the response. Possible values: `success` or `failure`|
 | **fx_quote_id**   | STRING                            | FalconX Quote ID 
 | **buy_price**   | DECIMAL                            | Buy price in quote token
 | **sell_price**   | DECIMAL                            | Sell price in quote token
-| **token_pair**    | JSON                              | The market for which the client is requesting quote |
-| **quantity_requested**      | JSON                              | Requested quantity |
-| **side_requested**       | STRING                              | Side of quote. Accepted values: `buy`, `sell` or `two_way`
+| **token_pair**    | JSON                              | Token pair for which the client is requesting quote (See [Token Pair](#token-pair)) |
+| **quantity_requested**      | JSON                              | Requested quantity (See [Quantity](#quantity)) |
+| **side_requested**       | STRING                              | Side of quote. Possible values: `buy`, `sell` or `two_way`
 | **t_quote**       | STRING                            | Quote time in ISO 8601 date format
 | **t_expiry**      | STRING                            | Quote expiry time in ISO 8601 date format
-| **is_filled**      | BOOLEAN | True if quote has been executed successfully else False
+| **is_filled**      | BOOLEAN | `true` if quote has been executed successfully else `false`
 | **side_executed**       | STRING                              | Side of quote executed. `null` if not executed 
-| **error**       | JSON                                | Error info. `null` if no error (see [Error Response](#error-response) for JSON structure)
+| **error**       | JSON                                | Error info. `null` if no error (see [Error](#error))
 
 
 # Get Executed Quotes
@@ -408,7 +409,7 @@ Get executed quotes between the given time range. Time range should be provided 
 > Request Sample
 
 ```shell
-# pass in the correct authorization header values
+# substitute placeholders with correct authorization header values
 curl -X GET "https://api.falconx.io/v1/quotes?t_start=2019-06-20T00:00:00+00:00&t_end=2019-06-28T00:00:00+00:00" \
       -H "FX-ACCESS-SIGN: <signature>" \
       -H "FX-ACCESS-TIMESTAMP: <timestamp>" \
@@ -456,32 +457,31 @@ API will return a list of the following structure:
 
 | Parameter     | Type                              | Description |
 | ---------     | ------------------------------    | ------------|
-| **status**        | STRING                            | Status of the response. Accepted values: `success` or `failure`|
+| **status**        | STRING                            | Status of the response. Possible values: `success` or `failure`|
 | **fx_quote_id**   | STRING                            | FalconX Quote ID
 | **buy_price**   | DECIMAL                            | Buy price in quote token
 | **sell_price**   | DECIMAL                            | Sell price in quote token
-| **token_pair**    | JSON                              | The market for which the client is requesting quote |
-| **quantity_requested**      | JSON                              | Requested quantity |
-| **side_requested**       | STRING                              | Side of quote. Accepted values: `buy`, `sell` or `two_way`
+| **token_pair**    | JSON                              | Token pair for which the client is requesting quote (See [Token Pair](#token-pair)) |
+| **quantity_requested**      | JSON                              | Requested quantity (See [Quantity](#quantity)) |
+| **side_requested**       | STRING                              | Side of quote. Possible values: `buy`, `sell` or `two_way`
 | **t_quote**       | STRING                            | Quote time in ISO 8601 date format
 | **t_expiry**      | STRING                            | Quote expiry time in ISO 8601 date format
-| **is_filled**      | BOOLEAN | True if quote has been executed successfully else False
+| **is_filled**      | BOOLEAN | `true` if quote has been executed successfully else `false`
 | **side_executed**       | STRING                              | Side of quote executed 
-| **error**       | JSON                                | Error info. `null` if no error (see [Error Response](#error-response) for JSON structure)
+| **error**       | JSON                                | Error info. `null` if no error (see [Error](#error))
 
 
 # Get Balances
-
-
-> Request Sample
 
 
 Fetches balances for all tokens.
 
 ## HTTP Request
 
+> Request Sample
+
 ```shell
-# pass in the correct authorization header values
+# substitute placeholders with correct authorization header values
 curl -X GET "https://api.falconx.io/v1/balances" \
       -H "FX-ACCESS-SIGN: <signature>" \
       -H "FX-ACCESS-TIMESTAMP: <timestamp>" \
@@ -516,18 +516,39 @@ API will return a list of the following structure:
 
 | Parameter     | Type                              | Description |
 | ---------     | ------------------------------    | ------------|
-| **token**     | STRING                            | Token Symbol  
+| **token**     | STRING                            | Token symbol  
 | **balance**   | DECIMAL                           | Balance for that token
 
 
-# Error Response
-The error structure returned by our API will be in the following format
+# JSON Structures
+
+## Token Pair
+
+The token pair JSON structure format:
+
+| Parameter     | Type                              | Description |
+| ---------     | ------------------------------    | ------------|
+| **base_token**     | STRING                            | Base Token  
+| **quote_token**   | STRING                            | Quote Token
+
+## Quantity
+
+The quantity JSON structure format:
+
+| Parameter     | Type                              | Description |
+| ---------     | ------------------------------    | ------------|
+| **token**     | STRING                            | Token symbol 
+| **value**     | DECIMAL                            | Quantity of token
+
+
+## Error
+
+The error structure returned by our API will be in the following format:
 
 | Parameter     | Type                              | Description |
 | ---------     | ------------------------------    | ------------|
 | **code**     | STRING                            | Error code  
-| **reason**   | STRING                           | Reason for the error
-
+| **reason**   | STRING                            | Reason for the error
 
 <!-- The following error codes are supported at the moment:
 
