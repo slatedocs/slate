@@ -11,7 +11,7 @@ search: true
 Welcome to the FalconX trading API documentation. The APIs provide developers programmatic access to FalconX services. In case of any questions please contact `support@falconx.io` 
 
 # Request For Quote (RFQ)
-RFQ process involves the client sending details about the market pair they want to trade along with the quantity. FalconX RFQ API returns the price at which client can buy or sell the requested quantity in the requested market pair. The quote is valid only for a short period of time. If the client accepts the quote before it expires and FalconX sends a confirmation then the trade is considered closed.
+RFQ process involves the client sending details about the token pair they want to trade along with the quantity. FalconX RFQ API returns the price at which client can buy or sell the requested quantity in the requested token pair. The quote is valid only for a short period of time. If the client accepts the quote before it expires and FalconX sends a confirmation then the trade is considered closed.
 
 # Requests
 All requests and responses are `application/json` content type and follow typical HTTP response status codes for success and failure.
@@ -142,8 +142,13 @@ Get the list of all trading pairs currently supported.
 > Request Sample
 
 ```shell
-# pass in the correct authorization headers
-curl "https://api.falconx.io/v1/pairs"
+# pass in the correct authorization header values
+curl -X GET "https://api.falconx.io/v1/pairs" \
+      -H "FX-ACCESS-SIGN: <signature>" \
+      -H "FX-ACCESS-TIMESTAMP: <timestamp>" \
+      -H "FX-ACCESS-KEY: <api_key>" \
+      -H "FX-ACCESS-PASSPHRASE: <passphrase>" \
+      -H "Content-Type: application/json"
 ```
 
 `GET https://api.falconx.io/v1/pairs`
@@ -332,8 +337,13 @@ Get status of a quote by ID.
 > Request Sample
 
 ```shell
-# pass in the correct authorization headers
-curl "https://api.falconx.io/v1/quotes/00c884b056f949338788dfb59e495377"
+# pass in the correct authorization header values
+curl -X GET "https://api.falconx.io/v1/quotes/00c884b056f949338788dfb59e495377" \
+      -H "FX-ACCESS-SIGN: <signature>" \
+      -H "FX-ACCESS-TIMESTAMP: <timestamp>" \
+      -H "FX-ACCESS-KEY: <api_key>" \
+      -H "FX-ACCESS-PASSPHRASE: <passphrase>" \
+      -H "Content-Type: application/json"
 ```
 
 
@@ -398,8 +408,13 @@ Get executed quotes between the given time range. Time range should be provided 
 > Request Sample
 
 ```shell
-# pass in the correct authorization headers
-curl "https://api.falconx.io/v1/quotes?t_start=2019-06-20T00:00:00+00:00&t_end=2019-06-28T00:00:00+00:00"
+# pass in the correct authorization header values
+curl -X GET "https://api.falconx.io/v1/quotes?t_start=2019-06-20T00:00:00+00:00&t_end=2019-06-28T00:00:00+00:00" \
+      -H "FX-ACCESS-SIGN: <signature>" \
+      -H "FX-ACCESS-TIMESTAMP: <timestamp>" \
+      -H "FX-ACCESS-KEY: <api_key>" \
+      -H "FX-ACCESS-PASSPHRASE: <passphrase>" \
+      -H "Content-Type: application/json"
 ```
 
 
@@ -466,8 +481,13 @@ Fetches balances for all tokens.
 ## HTTP Request
 
 ```shell
-# pass in the correct authorization headers
-curl "https://api.falconx.io/v1/balances"
+# pass in the correct authorization header values
+curl -X GET "https://api.falconx.io/v1/balances" \
+      -H "FX-ACCESS-SIGN: <signature>" \
+      -H "FX-ACCESS-TIMESTAMP: <timestamp>" \
+      -H "FX-ACCESS-KEY: <api_key>" \
+      -H "FX-ACCESS-PASSPHRASE: <passphrase>" \
+      -H "Content-Type: application/json"
 ```
 
 `GET https://api.falconx.io/v1/balances`
