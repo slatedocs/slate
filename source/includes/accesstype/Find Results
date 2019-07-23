@@ -1,0 +1,15 @@
+Searching 125 files for "identitiy"
+
+/Users/himani/work/qt/documentation/source/includes/accesstype/_referral_voucher.md:
+   23  This API will return the referral voucher code for a user.
+   24
+   25: It will accept the primary identity via URL parameters, and will also accept query parameters `alternate_provider`, `alternate_identity` and `name`.
+
+/Users/himani/work/qt/documentation/source/includes/accesstype/_subscriber-identities.md:
+    3  A subscriber is identified by a pair of a provider and an identity (such as [email,dev@quintype.com], or [facebook, fb-id]). A subscriber can have many identities. A provider is an external system. It can be one of [email, quintype, facebook, twitter].
+    4
+    5: Most APIs will accept the primary identity via URL parameters, and will also accept query parameters `alternate_provider` and `alternate_identity`, which will be used in case the user is not found at the primary identity.
+    6
+    7  ## LIST Subscriber Identities for a user
+
+2 matches across 2 files

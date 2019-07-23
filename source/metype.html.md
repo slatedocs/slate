@@ -20,6 +20,7 @@ includes:
   - metype/wordpress_installation
   - metype/blogger_installation
   - metype/api_documentation
+  - metype/public_api_documentation
   - metype/release_notes
 ---
 # Introduction To Metype
