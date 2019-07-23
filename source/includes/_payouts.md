@@ -992,7 +992,7 @@ currency=EUR&intervalStart=2018-03-01T00:00:00.000Z&intervalEnd=2018-03-15T23:59
 ```
 
 Get borderless account statement for one currency and for specified time range. 
-The period between intervalStart and intervalEnd cannot exceed 3 months.
+The period between intervalStart and intervalEnd cannot exceed 469 days (around 1 year 3 month).
 
 ### Request
 
