@@ -19,8 +19,9 @@ includes:
   - metype/third_party_login
   - metype/wordpress_installation
   - metype/blogger_installation
-  - metype/api_documentation
+  - metype/page_metadata_script
   - metype/public_api_documentation
+  - metype/api_documentation
   - metype/release_notes
 ---
 # Introduction To Metype
