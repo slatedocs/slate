@@ -131,13 +131,13 @@ Accesstype has the ability to inform third party system by webhook calls that it
 
 |Event name|Applicability|Description|
 |-|-|-|
-|Subscription Expiry|One-time and Recurring Subscriptions|Triggered when a one-time-subscription has expired or a recurring subscription which was cancelled, has come to an end.|
-|Subscription Cancellation|One-time and Recurring Subscriptions|Triggered when a one-time or a recurring subscription is cancelled.|
-|Subscription Renewal|Recurring Subscriptions|Triggered when a recurring subscription is successfully renewed for the subsequent cycle.|
-|Subscription Creation|One-time and Recurring Subscriptions|Triggered when a new subscription is created.|
-|Subscription Awaiting Payment|Recurring Subscriptions|Triggered when the payment is pending for a recurring subscription, and is not yet renewed. Note: When a payment is due for a recurring subscription, Accesstype waits for the payment for a grace period of 5 days before it marks the subscription as expired. During this grace period, the subscriber continues to gain access to the content.|
-|Subscription Activation|One-time and Recurring subscriptions|Triggered when a subscription which was created in the `Pending` state, becomes `Active`.|
-|Subscriber Creation|-NA-|Triggered when a new Subscriber is created in Accesstype.|
+|subscription.expiry|One-time and Recurring Subscriptions|Triggered when a one-time-subscription has expired or a recurring subscription which was cancelled, has come to an end.|
+|subscription.cancellation|One-time and Recurring Subscriptions|Triggered when a one-time or a recurring subscription is cancelled.|
+|subscription.renewal|Recurring Subscriptions|Triggered when a recurring subscription is successfully renewed for the subsequent cycle.|
+|subscription.creation|One-time and Recurring Subscriptions|Triggered when a new subscription is created.|
+|subscription.entered_grace_period|Recurring Subscriptions|Triggered when the payment is pending for a recurring subscription, and is not yet renewed. Note: When a payment is due for a recurring subscription, Accesstype waits for the payment for a grace period of 5 days before it marks the subscription as expired. During this grace period, the subscriber continues to gain access to the content.|
+|subscription.activated|One-time and Recurring subscriptions|Triggered when a subscription which was created in the `Pending` state, becomes `Active`.|
+|subscriber.creation|-NA-|Triggered when a new Subscriber is created in Accesstype.|
 
 ## Verify Webhooks sent by Accesstype
 
