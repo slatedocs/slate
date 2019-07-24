@@ -7,16 +7,125 @@ Accesstype has the ability to inform third party system by webhook calls that it
 1. Login to Accesstype and go to Settings > Outgoing webhooks > Add Webhook
 2. Enter the URL that you would like Accesstype to make a POST call to.
 3. Optionally enter a `Secret` in case you wish to verify and segregate the calls made from Accesstype. [Click here](#verify-webhooks-sent-by-accesstype) for more info on how to verify Accesstype webhooks.
-4. Check the `Active` checkbox. This is useful to activate the webhook when Accesstype automatically disables in case of failures. 
+4. Check the `Active` checkbox. This is useful to activate the webhook when Accesstype automatically disables in case of failures.
 5. Select one or more events for which for which you would want the webhook call to be made, and press save.
 
 ## Here is how the Accesstype Outgoing Webhooks work
-* Once the webhooks are set up, Accesstype makes a POST API call to the webhook URLs specified, as and when the event(s) occur. 
+* Once the webhooks are set up, Accesstype makes a POST API call to the webhook URLs specified, as and when the event(s) occur.
 * The Webhook request body contains the Event Name and the Subscription Object.
 * When the third party system receives the request, it is advised to return back a success response (200, 201, 2xx).
 * In case the external system responds will a failure (non 2xx), then Accesstype will send an email to the Admins and Owners of the Accesstype account along with the payload and will also retry making the webhook call every hour. Accesstype will discontinue retrying the webhook call when it receives a success response or after 24 retries, whichever is earlier.
 * If the failures continue to persist, Accesstype will disable the webhook.
 * The disabled webhook can then be re-activated in the dashboard by going to Accesstype.com > Settings > Outgoing Webhooks > Activate.
+
+```json
+{
+  "event": "subscription.created",
+  "event_timestamp": "2019-06-16T14:04:39.836Z",
+  "data": {
+    "id": 213,
+    "subscriber_id": 234,
+    "subscription_plan_id": 26,
+    "created_at": "2019-06-16T14:04:39.836Z",
+    "updated_at": "2019-06-16T14:04:39.836Z",
+    "assets": [
+      {
+        "title": "Monthly magazines",
+        "metadata": {},
+        "type": "static"
+      },
+      {
+        "title": "All exclusive reportage content",
+        "metadata": {
+          "access_level": 400
+        },
+        "type": "story"
+      },
+      {
+        "title": "All paid stories",
+        "metadata": {
+          "access_level": 300
+        },
+        "type": "story"
+      }
+    ],
+    "start_timestamp": "2019-06-16T14:04:39.836Z",
+    "end_timestamp": "2049-06-16T14:04:39.836Z",
+    "deleted_at": null,
+    "payment_id": 213,
+    "metadata": {
+      "full-name": "Damon Fritsch",
+      "email": "blakemcglynn@west.io",
+      "mobile-or-contact-number": "504.901.7100"
+    },
+    "external_id": null,
+    "trial_period_length": null,
+    "trial_period_unit": null,
+    "campaign_id": null,
+    "plan_amount_cents": 999900,
+    "plan_amount_currency": "INR",
+    "duration_unit": "years",
+    "duration_length": 30,
+    "plan_name": "Gold-lifetime-30-years",
+    "plan_description": null,
+    "group_name": "Gold",
+    "group_description": "Silver + Access to Exclusive Reportage + Monthly round-up magazines",
+    "subscription_type": "standard",
+    "plan_occurrence": "One Time",
+    "subscription_attempt_id": 224,
+    "renewal_reminder_sent_date": null,
+    "dynamic_assets": [
+      {
+        "id": "df46ab654bfaa0067f928dd3247710e8",
+        "title": "A Summer Bird-Cage",
+        "slug": "voluptatem_quaerat"
+      }
+    ],
+    "coupon_discount_id": null,
+    "subscription_group_id": 7,
+    "preferred_identity": {
+      "provider": "email",
+      "value": "blakemcglynn@west.io"
+    },
+    "active": true,
+    "payment_amount": "0.00",
+    "payment_amount_cents": 0,
+    "payment_amount_currency": "USD",
+    "payment_type": "manual",
+    "payment_token": null,
+    "renewable": true,
+    "status": "active",
+    "expired": false,
+    "coupon_code": null,
+    "campaign_name": null,
+    "campaign_subscription": false,
+    "recurring": false,
+    "cancelled_at": null,
+    "next_payment_due_date": null,
+    "cancelled": false,
+    "in_grace_period": false,
+    "invoices": [
+      {
+        "id": 210,
+        "sequenced_invoice_number": "",
+        "base_price": "9999",
+        "amount_cents": 0,
+        "amount_currency": "USD",
+        "created_at": "2019-07-16T14:04:49.847Z",
+        "amount_after_discount_before_tax": "9999",
+        "discount_details": {},
+        "invoice_taxes": {},
+        "round_off": "9999",
+        "external_payment_id": null,
+        "downloadable": false
+      }
+    ],
+    "subscriber_name": "Damon Fritsch",
+    "discount_detail": {},
+    "referrer": null
+  }
+}
+```
 
 ## Description of events
 
