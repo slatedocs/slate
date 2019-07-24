@@ -296,7 +296,10 @@ curl -X POST \
   "bootDiskSizeInGb": "10",
   "cpuCount": "2",
   "memoryInGB": "4.5",
-  "osImageSelfLink": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514"
+  "osImageSelfLink": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514",
+  "externalIp": {
+    "id": "3645738160550100933"
+  }
 }
 ```
 
@@ -314,6 +317,10 @@ Required | &nbsp;
 `cpuCount`<br/>*string* | Updated number of vCPUs of instance
 `memoryInGB`<br/>*string* | Updated memory of instance
 `osImageSelfLink`<br/>*string* | The full URL to the OS image
+
+Optional | &nbsp;
+------- | -----------
+`externalIp`<br/>*Object* | The external IP to attach to this instance.<br/>__To attach to an existing static IP__, use the syntax given above and replace the `id` value to your own.<br/>__To request a new static IP__, use <code>"externalIp": { "name": "new_static" }</code> as the `externalIp` object.
 
 <!-------------------- DELETE AN INSTANCE -------------------->
 
