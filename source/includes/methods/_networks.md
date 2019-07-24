@@ -56,7 +56,7 @@ network = Beyonic::Network.get(15)
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$account = Beyonic_Currency::get(15);
+$account = Beyonic_Network::get(15);
 ?>
 ```
 
@@ -77,7 +77,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
-public class SingleCurrencyExample {
+public class SingleNetworkExample {
 
     private static final String API_ENDPOINT = "https://app.beyonic.com/api/networks";
     private static final String API_KEY = "ab594c14986612f6167a975e1c369e71edab6900";
@@ -162,7 +162,7 @@ networks = Beyonic::Network.list
 require_once('./lib/Beyonic.php');
 Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
 
-$accounts = Beyonic_Currency::getAll();
+$accounts = Beyonic_Network::getAll();
 ?>
 ```
 
