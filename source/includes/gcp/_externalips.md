@@ -160,7 +160,7 @@ curl -X POST \
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/externalips</code>
 
 Reserve a new external static IP in a given [environment](#administration-environments).
-If instanceId is provided the IP will be reserved and attached to this instance.
+If `instanceId` is provided the IP will be reserved and attached to this instance.
 
 Required | &nbsp;
 ------- | -----------
