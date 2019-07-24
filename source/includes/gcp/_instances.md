@@ -345,8 +345,8 @@ curl -X POST \
 ```
 ```json
 {
-   "cpuCount": "2",
-   "memoryInGB": "4.5"
+  "cpuCount": "2",
+  "memoryInGB": "4.5"
 }
 ```
 
@@ -388,10 +388,10 @@ curl -X POST \
 ```
 ```json
 {
-	"id": "6564997542943928188",
+  "id": "6564997542943928188",
   "externalIp": {
-		"id": "3645738160550100933"
-	}
+    "id": "3645738160550100933"
+  }
 }
 ```
 
@@ -418,7 +418,7 @@ curl -X POST \
 ```
 ```json
 {
-	"sshKeyId": "my-ssh-key"
+  "sshKeyId": "my-ssh-key"
 }
 ```
 
