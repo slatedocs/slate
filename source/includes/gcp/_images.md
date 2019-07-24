@@ -1,4 +1,4 @@
-### Images
+## Images
 
 Images are virtual machine images that have a virtual disk which contains a bootable operating system.
 
