@@ -10,14 +10,7 @@ Accesstype has the ability to inform third party system by webhook calls that it
 4. Check the `Active` checkbox. This is useful to activate the webhook when Accesstype automatically disables in case of failures.
 5. Select one or more events for which for which you would want the webhook call to be made, and press save.
 
-## Here is how the Accesstype Outgoing Webhooks work
-* Once the webhooks are set up, Accesstype makes a POST API call to the webhook URLs specified, as and when the event(s) occur.
-* The Webhook request body contains the Event Name and the Subscription Object.
-* When the third party system receives the request, it is advised to return back a success response (200, 201, 2xx).
-* In case the external system responds will a failure (non 2xx), then Accesstype will send an email to the Admins and Owners of the Accesstype account along with the payload and will also retry making the webhook call every hour. Accesstype will discontinue retrying the webhook call when it receives a success response or after 24 retries, whichever is earlier.
-* If the failures continue to persist, Accesstype will disable the webhook.
-* The disabled webhook can then be re-activated in the dashboard by going to Accesstype.com > Settings > Outgoing Webhooks > Activate.
-
+## How Accesstype Outgoing Webhooks work
 ```json
 {
   "event": "subscription.created",
@@ -126,6 +119,14 @@ Accesstype has the ability to inform third party system by webhook calls that it
   }
 }
 ```
+* Once the webhooks are set up, Accesstype makes a POST API call to the webhook URLs specified, as and when the event(s) occur.
+* The Webhook request body contains the Event Name and the Subscription Object.
+* When the third party system receives the request, it is advised to return back a success response (200, 201, 2xx).
+* In case the external system responds will a failure (non 2xx), then Accesstype will send an email to the Admins and Owners of the Accesstype account along with the payload and will also retry making the webhook call every hour. Accesstype will discontinue retrying the webhook call when it receives a success response or after 24 retries, whichever is earlier.
+* If the failures continue to persist, Accesstype will disable the webhook.
+* The disabled webhook can then be re-activated in the dashboard by going to Accesstype.com > Settings > Outgoing Webhooks > Activate.
+
+
 
 ## Description of events
 
