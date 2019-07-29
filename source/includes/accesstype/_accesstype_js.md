@@ -106,7 +106,7 @@ You need to make sure that the below code block is present in the redirect URL
         queryParams.includes('order_id') &&
         queryParams.includes('status')
       ) {
-      window.opener.postMessage(queryParams);
+      window.opener.postMessage(queryParams, "*");
     }
   })();
 ```
@@ -155,11 +155,8 @@ const subscriptionParams = {
   },
   "juspay": {
     "window_config": {
-      "type": "mobile",
-      'width': 600,
-      'height': 600,
-      'top': 100,
-      'bottom': 100
+        // this value can be either "mobile" or "web", when not sent, web is considered to be default
+      "type": "mobile"
     }
   }
 }
