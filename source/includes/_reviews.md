@@ -158,7 +158,7 @@ Parameter | Notes
 --------- | -----
 api-key | <span class="label label-required">Required</span>
 batch-id | <span class="label label-required">Required</span>
-profile-url | <span class="label label-required">Required</span> For requests to fetch Google reviews please see [constructing Google URLs](#constructing-google+-urls).
+profile-url | <span class="label label-required">Required</span> For requests to fetch Google reviews please see [constructing Google URLs](http://apidocs.brightlocal.com/#constructing-google-local-listing-url).
 country | <span class="label label-required">Required</span>
 sort | 'rating' or 'date'. By default 'date'.
 reviews-limit | Positive number or 'all'. By default 100.
