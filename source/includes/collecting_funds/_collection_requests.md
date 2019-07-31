@@ -289,37 +289,156 @@ success_message | No | String (Max 140 characters) | "Thank you for your payment
 send_instructions | No | Boolean | False | *New in V2.* Defaults to False (but you probably want to set this to True). Indicates whether we should send payment instructions to the subscriber via SMS. Note that this field defaults to False, so if you want the collection request to actually notify the customer (with a USSD popup and an SMS), you must set this field to True. Omitting the field will prevent collection requests from being sent out to the customer.
 instructions | No | String (Max 140 characters) | "Use #1234 as the reference" | *New in V2.* Allows overriding of the default instructions sent to the subscriber. If omitted, default network-specific instructions will be sent to the subscriber via SMS. If you want to skip sending ANY sms instructions and turn off even the default instructions, set this parameter to "skip" (instructions = "skip")
 expiry_date | No | Date String | 24 hours | Defaults to "24 hours". Specifies the date and time when this collection request will be marked as expired. Examples of valid values for this field include strings such as "tomorrow", "24 hours", "2 minutes", or %d/%m/%Y format e.g 24/05/2019 or %d/%m/%Y %H:%M:%S format e.g 24/05/2019 13:24:12
-start_date | string or null | Use this to schedule collection requests for a future date.Examples of valid values for this field include strings such as “tomorrow”, or %d/%m/%Y format e.g 09/06/2019 or %d/%m/%Y %H:%M:%S format e.g 09/06/2019 13:24:12.Please note that the start_date should be greater than the time of creating the request.
-retry_interval_minutes | integer or null | Used to retry a collection request after certain interval in minutes if a collection request isn’t yet handled or failed or expired.**Note:**: The retry is upto a maximum of five times and value for retry_interval_minutes cannot be less than 30.
-subscription_settings | JSON String or null | Enables setup of recurring collection requests. See the section about "Creating recurring collection request".
+start_date | NO | Date String | 01/08/2019 13:24:12 |  Use this to schedule collection requests for a future date.Examples of valid values for this field include strings such as “tomorrow”, or %d/%m/%Y format e.g 09/06/2019 or %d/%m/%Y %H:%M:%S format e.g 09/06/2019 13:24:12.Please note that the start_date should be greater than the time of creating the request.
+retry_interval_minutes | NO | Integer | 40 | Used to retry a collection request after certain interval in minutes if a collection request isn’t yet handled or failed or expired.**Note:**: The retry is upto a maximum of five times and value for retry_interval_minutes cannot be less than 30.
+subscription_settings | NO |  JSON String | "{'start_date': '24/05/2019 13:24:12','end_date': '24/06/2019 13:24:12','frequency': 'weekly'}" | Enables setup of recurring collection requests. See the section about [Creating recurring collection request](#creating-recurring-collection-request).
 
 ## Creating recurring collection request
-To create a recurring collection request, add these fields to the subscription_settings.
-* start_date:The start date of the subscription.*Note* must be in future.The default value is the creation date of the collection request object.
-* end_date:The end date of the subscription. *Note* must be in future and greater than the start date.
-* weekdays:Respective days of the week.
-* months:Respective months of the year.
-* frequency:If you don’t want to set the weekdays and months, simply use the frequency option.Available frequency options include: yearly, monthly, weekly, daily, hourly and minutely.
-> For the example below, the collection request recurrence is every week from 24th May 2019 until 24th June 2019.
 
-```json
-    subscription_settings: [{
-        'start_date': '24/05/2019 13:24:12',
-        'end_date': '24/06/2019 13:24:12',
-        'frequency': 'weekly',
-    }]
+> Sample Request : The recurrence for this collection  request is every week from 24th May 2019 until 24th June 2019
+
+```shell
+curl https://app.beyonic.com/api/collectionrequests -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
+-d phonenumber=+80000000001 \
+-d currency=BXC \
+-d amount=3000 \
+-d metadata.my_id='123ASDAsd123'
+-d send_instructions=True
+-d subscription_settings.start_date='24/05/2019 10:30:00'
+-d subscription_settings.end_date='24/06/2019 10:30:00'
+-d subscription_settings.frequency='weekly'
+```
+
+```ruby
+require 'beyonic'
+Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
+
+collection_request = Beyonic::CollectionRequest.create(
+    phonenumber: "+80000000001",
+    amount: "100.2",
+    currency: "BXC",
+    metadata: {"my_id": "123ASDAsd123"},
+    send_instructions: true,
+    subscription_settings: {"start_date": "24/05/2019 10:30:00","end_date": "24/06/2019 10:30:00","frequency": "weekly"}
+)
+
+p collection_request  # Examine the returned object
+```
+
+```php
+<?php
+require_once('./lib/Beyonic.php');
+Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
+
+$collection_request = Beyonic_Collection_Request::create(array(
+  "phonenumber" => "+80000000001",
+  "amount" => "100.2",
+  "currency" => "BXC",
+  "metadata" => array("my_id"=>"123ASDAsd123"),
+  "send_instructions" => True,
+  "subscription_settings" => array("start_date"=>"24/05/2019 10:30:00","end_date"=>"24/06/2019 10:30:00","frequency"=>"weekly")
+));
+
+print_r($collection_request);  // Examine the returned object
+?>
+```
+
+```python
+import beyonic
+beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
+collection_request = beyonic.CollectionRequest.create(phonenumber='+80000000001',
+                       amount='1200',
+                       currency='BXC',
+                       description='Per diem',
+                       callback_url='https://my.website/payments/callback',
+                       metadata={'my_id': '123ASDAsd123'},
+                       send_instructions = True,
+                       subscription_settings = {
+                                'start_date': '24/05/2019 10:30:00',
+                                'end_date': '24/06/2019 10:30:00',
+                                'frequency': 'weekly'}
+                       )
+
+print collection_request  # Examine the returned object
+```
+
+> Sample Request : The recurrence for this collection request is in the month of July, August and December.
+
+```shell
+curl https://app.beyonic.com/api/collectionrequests -H "Authorization: Token ab594c14986612f6167a975e1c369e71edab6900" \
+-d phonenumber=+80000000001 \
+-d currency=BXC \
+-d amount=3000 \
+-d metadata.my_id='123ASDAsd123'
+-d send_instructions=True
+-d subscription_settings.start_date='24/05/2019 10:30:00'
+-d subscription_settings.months='July, August,December'
+```
+
+```ruby
+require 'beyonic'
+Beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
+
+collection_request = Beyonic::CollectionRequest.create(
+    phonenumber: "+80000000001",
+    amount: "100.2",
+    currency: "BXC",
+    metadata: {"my_id": "123ASDAsd123"},
+    send_instructions: true,
+    subscription_settings: {"start_date": "24/05/2019 10:30:00","months": "July, August,December"}
+)
+
+p collection_request  # Examine the returned object
+```
+
+```php
+<?php
+require_once('./lib/Beyonic.php');
+Beyonic::setApiKey("ab594c14986612f6167a975e1c369e71edab6900");
+
+$collection_request = Beyonic_Collection_Request::create(array(
+  "phonenumber" => "+80000000001",
+  "amount" => "100.2",
+  "currency" => "BXC",
+  "metadata" => array("my_id"=>"123ASDAsd123"),
+  "send_instructions" => True,
+  "subscription_settings" => array("start_date"=>"24/05/2019 10:30:00","months"=>"July, August,December")
+));
+
+print_r($collection_request);  // Examine the returned object
+?>
+```
+
+```python
+import beyonic
+beyonic.api_key = 'ab594c14986612f6167a975e1c369e71edab6900'
+collection_request = beyonic.CollectionRequest.create(phonenumber='+80000000001',
+                       amount='1200',
+                       currency='BXC',
+                       description='Per diem',
+                       callback_url='https://my.website/payments/callback',
+                       metadata={'my_id': '123ASDAsd123'},
+                       send_instructions = True,
+                       subscription_settings = {
+                                'start_date': '24/05/2019 10:30:00',
+                                'months':'July, August,December'}
+                       )
+
+print collection_request  # Examine the returned object
 
 ```
 
-> For the example below, the collection request recurrence is the month of July, August and December.
+To create a recurring collection request, use the options below in the subscription_settings field.The start_date and end_date are mandatory whereas  weekdays, months and frequency are the options you should use for your recurrence logic.
 
-```json
-    subscription_settings: [{
-        'start_date': '24/05/2019 13:24:12',
-        'months':'July, August,December'
-    }]
+* start_date:The start date of the subscription.The default value is the creation date of the collection request object.Please note that value must be in future date
 
-```
+* end_date:The end date of the subscription.Please note that this must be  greater than the start date.
+
+* weekdays:Use this for the respective days of the week you want in the recurrence.Please use commas to separate multiple values.Examples : Monday, Tuesday 
+
+* months:Use this for the respective   months of the year you want in the recurrence.Please use commas to separate multiple values.Examples : January, February
+
+* frequency:Please use commas to separate multiple values.Available frequency options include: yearly, monthly, weekly, daily, hourly and minutely.
 
 ## Retrieving a single Collection Request
 
