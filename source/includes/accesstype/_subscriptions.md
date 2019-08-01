@@ -106,6 +106,7 @@ In order to get only active subscriptions, param `active_only=true` can be used.
 ```shell--request
 curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST https://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriptions/preview.json -d '{
     "subscription": {
+        "notes": "enter your notes",
         "alternate_provider": "email",
         "alternate_identity": "hey@quintype.com",
         "subscription_type": "standard",
@@ -127,6 +128,7 @@ curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST ht
 ```shell--response
 {
     "subscription": {
+        "notes": "enter your notes",
         "invoices": [],
         "next_payment_due_date": null,
         "deleted_at": null,
@@ -243,6 +245,7 @@ One can pass the value for `payment.payment_type` as `razorpay_recurring` when m
 ```shell--request
 curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST https://www.accesstype.com/api/v1/subscribers/<provider>/<identity>/subscriptions.json -d '{
     "subscription": {
+        "notes": "enter your notes",
         "subscription_type": "standard",
         "subscription_plan_id": 2118,
         "coupon_code": "UAT",
@@ -264,6 +267,7 @@ curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST ht
 ```shell--response
 {
     "subscription": {
+        "notes": "enter your notes",
         "invoices": [
             {
                 "amount_after_discount_before_tax": "122.03",
