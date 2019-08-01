@@ -1,3 +1,5 @@
+---
+
 ## Authentication Basics
 Asana supports a few methods of authenticating with the API.
 

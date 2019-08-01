@@ -1,3 +1,5 @@
+---
+
 ## Rate Limits
 
 To protect the stability of the API and keep it available to all users, Asana enforces multiple kinds of rate limiting. Requests that hit any of our rate limits will receive a `429 Too Many Requests` response, which contains the standard `Retry-After` header indicating how many seconds the client should wait before retrying the request.

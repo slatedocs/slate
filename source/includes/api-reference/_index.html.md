@@ -1,5 +1,6 @@
 <!-- Generator: Widdershins v3.6.6 -->
 
+<hr class="full-line">
 <h1 id="asana">API Reference</h1>
 
 > Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
@@ -18,6 +19,7 @@ Base URLs:
 Web: <a href="https://asana.com/support">Asana Support</a> 
 License: <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a>
 
+<hr class="full-line">
 # Authentication
 
 - HTTP Authentication, scheme: bearer A personal access token allows access to the api for the user who created it. This should be kept a secret and be treated like a password.
@@ -32,10 +34,12 @@ Asana supports both the Authorization Code Grant flow, and the Implicit Grant fl
     - Flow: implicit
     - Authorization URL = [https://app.asana.com/-/oauth_authorize](https://app.asana.com/-/oauth_authorize)
 
+<hr class="full-line">
 <h1 id="asana-attachments">Attachments</h1>
 
 An *attachment* object represents any file attached to a task in Asana, whether it’s an uploaded file or one associated via a third-party service such as Dropbox or Google Drive.
 
+<hr class="half-line">
 ## Get an attachment
 
 <a id="opIdgetAttachment"></a>
@@ -199,6 +203,7 @@ Get the full record for a single attachment.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get attachments for a task
 
 <a id="opIdgetAttachmentsForTask"></a>
@@ -359,6 +364,7 @@ Returns the compact records for all attachments on the task.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Upload an attachment
 
 <a id="opIduploadAttachmentToTask"></a>
@@ -587,6 +593,7 @@ appending the content type to the file path: `—form
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="full-line">
 <h1 id="asana-batch-api">Batch API</h1>
 
 There are many cases where you want to accomplish a variety of work in the Asana API but want to minimize the number of HTTP requests you make. For example:
@@ -619,6 +626,7 @@ Not every endpoint can be accessed through the batch API. Specifically, the foll
 * Any SCIM operations
 * Nested calls to the batch API
 
+<hr class="half-line">
 ## Submit parallel requests
 
 <a id="opIdbatchRequest"></a>
@@ -833,6 +841,7 @@ Status Code **200**
 | headers|object|false|none|A map of HTTP headers specific to this result. This is primarily used for returning a `Location` header to accompany a `201 Created` result.  The parent HTTP response will contain all common headers.|
 | body|object|false|none|The JSON body that the invoked endpoint returned.|
 
+<hr class="full-line">
 <h1 id="asana-custom-fields">Custom Fields</h1>
 
 In the Asana application, Tasks can hold user-specified Custom Fields which provide extra information; for example, a priority value or a number representing the time required to complete a Task. This lets a user define the type of information that each Task within a Project can contain in addition to the built-in fields that Asana provides.
@@ -867,6 +876,7 @@ On the Task's Custom Field value, the enum will have an `enum_value` property wh
 
 The [Custom Field API Reference](/developers/api-reference/custom_fields) contains information about the specifics of how to use Custom Fields in conjunction with Asana's API.
 
+<hr class="half-line">
 ## Create a custom field
 
 <a id="opIdcreateCustomField"></a>
@@ -1127,6 +1137,7 @@ Attempting to edit a locked custom field will return HTTP error code
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get a custom field definition
 
 <a id="opIdgetCustomField"></a>
@@ -1302,6 +1313,7 @@ type-specific custom field definitions.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Update a custom field
 
 <a id="opIdupdateCustomField"></a>
@@ -1513,6 +1525,7 @@ Returns the complete updated custom field record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Delete a custom field
 
 <a id="opIddeleteCustomField"></a>
@@ -1668,6 +1681,7 @@ Returns an empty data record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Create an enum option
 
 <a id="opIdaddEnumOption"></a>
@@ -1913,6 +1927,7 @@ Status Code **201**
 | enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
 | color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
 
+<hr class="half-line">
 ## Reorder a custom field's enum
 
 <a id="opIdreorderEnumOption"></a>
@@ -2161,6 +2176,7 @@ Status Code **200**
 | enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
 | color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
 
+<hr class="half-line">
 ## Update an enum option.
 
 <a id="opIdupdateEnumOption"></a>
@@ -2398,6 +2414,7 @@ Status Code **200**
 | enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
 | color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
 
+<hr class="half-line">
 ## Get a workspace's custom fields
 
 <a id="opIdgetCustomFieldsInWorkspace"></a>
@@ -2564,10 +2581,12 @@ Returns a list of the compact representation of all of the custom fields in a wo
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="full-line">
 <h1 id="asana-custom-field-settings">Custom Field Settings</h1>
 
 Custom Fields Settings objects represent the many-to-many join of the Custom Field and Project as well as stores information that is relevant to that particular pairing.
 
+<hr class="half-line">
 ## Query for all of the custom fields settings on a project.
 
 <a id="opIdgetCustomFieldSettingsForProject"></a>
@@ -2731,6 +2750,7 @@ Returns a list of all of the custom fields settings on a project, in compact for
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get a project's custom fields
 
 <a id="opIdgetCustomFieldSettingsForProject"></a>
@@ -2894,6 +2914,7 @@ Returns a list of all of the custom fields settings on a project, in compact for
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get a portfolio's custom fields
 
 <a id="opIdgetCustomFieldSettingsForPortfolio"></a>
@@ -3057,10 +3078,12 @@ Returns a list of all of the custom fields settings on a portfolio, in compact f
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="full-line">
 <h1 id="asana-events">Events</h1>
 
 An event is an object representing a change to a resource that was observed by an event subscription.
 
+<hr class="half-line">
 ## Get events on a resource
 
 <a id="opIdgetEvents"></a>
@@ -3235,12 +3258,14 @@ lieu of including the resource ID in the data for the request.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="full-line">
 <h1 id="asana-jobs">Jobs</h1>
 
 Jobs represent processes that handle asynchronous work.
 Jobs are created when an endpoint requests an action that will be handled asynchronously. Such as project or task duplication.
 Only the creator of the duplication process can access the duplication status of the new object.
 
+<hr class="half-line">
 ## Get a job by id
 
 <a id="opIdgetJob"></a>
@@ -3412,10 +3437,12 @@ Returns the full record for a job.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="full-line">
 <h1 id="asana-organization-exports">Organization Exports</h1>
 
 An *organization_export* object represents a request to export the complete data of an Organization in JSON format.
 
+<hr class="half-line">
 ## Create an organization export request
 
 <a id="opIdcreateOrganizationExport"></a>
@@ -3597,6 +3624,7 @@ This method creates a request to export an Organization. Asana will complete the
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get details on an org export request
 
 <a id="opIdgetOrganizationExport"></a>
@@ -3762,11 +3790,13 @@ Returns details of a previously-requested Organization export.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="full-line">
 <h1 id="asana-portfolios">Portfolios</h1>
 
 A 'portfolio' gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](https://asana.com/developers/api-reference/project_statuses) update.
 Portfolios have some restrictions on size. Each portfolio has a max of 250 items and, like projects, a max of 20 custom fields.
 
+<hr class="half-line">
 ## Get a list of the portfolios
 
 <a id="opIdgetPortfolios"></a>
@@ -3928,6 +3958,7 @@ Returns a list of the portfolios in compact representation that are owned by the
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Create a new portfolio
 
 <a id="opIdcreatePortfolio"></a>
@@ -4123,6 +4154,7 @@ integrations to create their own starting state on a portfolio.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get a portfolio
 
 <a id="opIdgetPortfolio"></a>
@@ -4290,6 +4322,7 @@ Returns the complete portfolio record for a single portfolio.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Update a portfolio
 
 <a id="opIdupdateportfolio"></a>
@@ -4491,6 +4524,7 @@ Returns the complete updated portfolio record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Delete a portfolio
 
 <a id="opIddeletePortfolio"></a>
@@ -4647,6 +4681,7 @@ Returns an empty data record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get portfolio items
 
 <a id="opIdgetPortfolioItems"></a>
@@ -4828,6 +4863,7 @@ Get a list of the items in compact form in a portfolio.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Add a portfolio item
 
 <a id="opIdaddPortfolioItem"></a>
@@ -4988,6 +5024,7 @@ Returns an empty data block.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Remove a portfolio item
 
 <a id="opIdremovePortfolioItem"></a>
@@ -5144,6 +5181,7 @@ Returns an empty data block.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Add a custom field to a portfolio
 
 <a id="opIdportfolio.addCustomFieldSetting"></a>
@@ -5298,6 +5336,7 @@ Custom fields are associated with portfolios by way of custom field settings.  T
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Remove a custom field from a portfolio
 
 <a id="opIdportfolio.removeCustomFieldSetting"></a>
@@ -5449,10 +5488,12 @@ Removes a custom field setting from a portfolio.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="full-line">
 <h1 id="asana-projects">Projects</h1>
 
 A `project` represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.
 
+<hr class="half-line">
 ## Get a project's statuses
 
 <a id="opIdgetProductStatuses"></a>
@@ -5613,6 +5654,7 @@ Returns the compact project status update records for all updates on the project
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Create a project status
 
 <a id="opIdcreateProjectStatus"></a>
@@ -5803,6 +5845,7 @@ Returns the full record of the newly created project status update.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get a set of projects
 
 <a id="opIdgetProjects"></a>
@@ -5986,6 +6029,7 @@ Returns the compact project records for some filtered set of projects. Use one o
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Create a new project
 
 <a id="opIdcreateProject"></a>
@@ -6217,6 +6261,7 @@ Returns the full record of the newly created project.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get a project
 
 <a id="opIdgetProject"></a>
@@ -6408,6 +6453,7 @@ Returns the complete project record for a single project.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Update a project
 
 <a id="opIdupdateProject"></a>
@@ -6653,6 +6699,7 @@ Returns the complete updated project record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Delete a project
 
 <a id="opIddeleteProject"></a>
@@ -6809,6 +6856,7 @@ Returns an empty data record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Duplicate a project
 
 <a id="opIdduplicateProject"></a>
@@ -7043,6 +7091,7 @@ Creates and returns a job that will asynchronously handle the duplication.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Add a custom field to a project
 
 <a id="opIdproject.addCustomFieldSetting"></a>
@@ -7197,6 +7246,7 @@ Custom fields are associated with projects by way of custom field settings.  Thi
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Remove a custom field from a project
 
 <a id="opIdproject.removeCustomFieldSetting"></a>
@@ -7348,6 +7398,7 @@ Removes a custom field setting from a project.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get a team's projects
 
 <a id="opIdgetProjectsInTeam"></a>
@@ -7530,6 +7581,7 @@ Returns the compact project records for all projects in the team.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Create a project in a team
 
 <a id="opIdcreateProjectsWithTeam"></a>
@@ -7769,6 +7821,7 @@ Returns the full record of the newly created project.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get all projects in a workspace
 
 <a id="opIdgetProjectsInWorkspace"></a>
@@ -7951,6 +8004,7 @@ Returns the compact project records for all projects in the workspace.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Create a project in a workspace
 
 <a id="opIdcreateProjectsInWorkspace"></a>
@@ -8193,10 +8247,12 @@ Returns the full record of the newly created project.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="full-line">
 <h1 id="asana-project-memberships">Project Memberships</h1>
 
 With the introduction of “comment-only” projects in Asana, a user’s membership in a project comes with associated permissions. These permissions (whether a user has full access to the project or comment-only access) are accessible through the project memberships endpoints described here.
 
+<hr class="half-line">
 ## Get the project memberships for a project
 
 <a id="opIdgetProjectMembershipsForProject"></a>
@@ -8360,6 +8416,7 @@ Returns the compact project membership records for the project.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get a project membership
 
 <a id="opIdgetProjectMembership"></a>
@@ -8530,10 +8587,12 @@ Returns the complete project record for a single project membership.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="full-line">
 <h1 id="asana-project-statuses">Project Statuses</h1>
 
 A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: “green” for projects that are on track, “yellow” for projects at risk, and “red” for projects that are behind.
 
+<hr class="half-line">
 ## Get a project status
 
 <a id="opIdgetProductStatus"></a>
@@ -8693,6 +8752,7 @@ Returns the complete record for a single status update.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Delete a project status
 
 <a id="opIddeleteProductStatus"></a>
@@ -8844,10 +8904,12 @@ Returns an empty data record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="full-line">
 <h1 id="asana-sections">Sections</h1>
 
 A *section* is a subdivision of a project that groups tasks together.
 
+<hr class="half-line">
 ## Get all sections in a project
 
 <a id="opIdgetSectionsInProject"></a>
@@ -9010,6 +9072,7 @@ Returns the compact records for all sections in the specified project.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Creates a section in a project
 
 <a id="opIdcreateSectionInProject"></a>
@@ -9193,6 +9256,7 @@ Returns the full record of the newly created section.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get a section
 
 <a id="opIdgetSection"></a>
@@ -9355,6 +9419,7 @@ Returns the complete record for a single section.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Update a section
 
 <a id="opIdupdateSection"></a>
@@ -9552,6 +9617,7 @@ Returns the complete updated section record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Delete a section
 
 <a id="opIddeleteSection"></a>
@@ -9712,6 +9778,7 @@ Returns an empty data block.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Add task to section
 
 <a id="opIdaddTaskToSection"></a>
@@ -9887,6 +9954,7 @@ This does not work for separators (tasks with the resource_subtype of section).
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Move sections
 
 <a id="opIdmoveSection"></a>
@@ -10074,6 +10142,7 @@ Returns an empty data block.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get tasks in a section
 
 <a id="opIdgetSectionTasks"></a>
@@ -10263,6 +10332,7 @@ p JSON.parse(result)
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Query for tasks in a workspace
 
 <a id="opIdgetWorkspaceTasksSearch"></a>
@@ -10537,10 +10607,12 @@ You may receive a `429 Too Many Requests` response if you hit any of our [rate l
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="full-line">
 <h1 id="asana-stories">Stories</h1>
 
 A story represents an activity associated with an object in the Asana system.
 
+<hr class="half-line">
 ## Get a task's stories
 
 <a id="opIdgetTaskStories"></a>
@@ -10741,6 +10813,7 @@ Returns the compact records for all stories on the task.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Create a comment on a task
 
 <a id="opIdcreateCommentStory"></a>
@@ -11064,6 +11137,7 @@ Returns the full record for the new story added to the task.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get a story
 
 <a id="opIdgetStory"></a>
@@ -11363,6 +11437,7 @@ Returns the full record for a single story.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Update a story
 
 <a id="opIdupdateStory"></a>
@@ -11794,6 +11869,7 @@ Updates the story and returns the full record for the updated story. Only commen
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Delete a story
 
 <a id="opIddeleteStory"></a>
@@ -11949,10 +12025,12 @@ Returns an empty data record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="full-line">
 <h1 id="asana-tags">Tags</h1>
 
 A tag is a label that can be attached to any task in Asana. It exists in a single workspace or organization.
 
+<hr class="half-line">
 ## Get a set of tags
 
 <a id="opIdqueryTags"></a>
@@ -12117,6 +12195,7 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Create a tag
 
 <a id="opIdcreateTag"></a>
@@ -12319,6 +12398,7 @@ Returns the full record of the newly created tag.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get a tag
 
 <a id="opIdgetTag"></a>
@@ -12487,6 +12567,7 @@ Returns the complete tag record for a single tag.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Update a tag
 
 <a id="opIdupdateTag"></a>
@@ -12662,6 +12743,7 @@ Returns the complete updated tag record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get tasks with tag
 
 <a id="opIdgetTagTasks"></a>
@@ -12851,6 +12933,7 @@ Returns the compact task records for all tasks with the given tag. Tasks can hav
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get tags in a workspace
 
 <a id="opIdqueryAllTagsInWorkspace"></a>
@@ -13014,6 +13097,7 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Create a tag in a workspace
 
 <a id="opIdcreateTagInWorkspace"></a>
@@ -13212,10 +13296,12 @@ Returns the full record of the newly created tag.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="full-line">
 <h1 id="asana-tasks">Tasks</h1>
 
 The task is the basic object around which many operations in Asana are centered.
 
+<hr class="half-line">
 ## Get a project's tasks
 
 <a id="opIdgetProjectTasks"></a>
@@ -13405,6 +13491,7 @@ Returns the compact task records for all tasks within the given project, ordered
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get a set of tasks
 
 <a id="opIdqueryTasks"></a>
@@ -13619,6 +13706,7 @@ include assigning, renaming, completing, and adding stories.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Create a task
 
 <a id="opIdcreateTask"></a>
@@ -13906,6 +13994,7 @@ explicitly if you specify `projects` or a `parent` task instead.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get a task
 
 <a id="opIdgetTask"></a>
@@ -14116,6 +14205,7 @@ Returns the complete task record for a single task.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Update a task
 
 <a id="opIdupdateTask"></a>
@@ -14406,6 +14496,7 @@ Returns the complete updated task record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Delete a task
 
 <a id="opIddeleteTask"></a>
@@ -14564,6 +14655,7 @@ Returns an empty data record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Duplicate a task
 
 <a id="opIdduplicateTask"></a>
@@ -14781,6 +14873,7 @@ Creates and returns a job that will asynchronously handle the duplication.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get a subtask
 
 <a id="opIdgetSubTasks"></a>
@@ -14970,6 +15063,7 @@ Returns a compact representation of all of the subtasks of a task.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Create a subtask
 
 <a id="opIdcreateSubtask"></a>
@@ -15252,6 +15346,7 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Change a task's parent
 
 <a id="opIdchangeSubtaskParent"></a>
@@ -15490,6 +15585,7 @@ parent, or no parent task at all. Returns an empty data block. When using `inser
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get a task's dependencies
 
 <a id="opIdgetTaskDependencies"></a>
@@ -15679,6 +15775,7 @@ Returns the compact representations of all of the dependencies of a task.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Set a task's dependencies
 
 <a id="opIdaddTaskDependencies"></a>
@@ -15894,6 +15991,7 @@ Marks a set of tasks as dependencies of this task, if they are not already depen
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Unlinks dependencies from a task
 
 <a id="opIdremoveTaskDependencies"></a>
@@ -16109,6 +16207,7 @@ Unlinks a set of dependencies from this task.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get a task's dependents
 
 <a id="opIdgetTaskDependents"></a>
@@ -16298,6 +16397,7 @@ Returns the compact representations of all of the dependents of a task.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Set a task's dependents
 
 <a id="opIdaddTaskDependents"></a>
@@ -16513,6 +16613,7 @@ Marks a set of tasks as dependents of this task, if they are not already depende
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Unlink dependents from a task
 
 <a id="opIdremoveTaskDependents"></a>
@@ -16728,6 +16829,7 @@ Unlinks a set of dependents from this task.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get projects a task is in
 
 <a id="opIdgetTaskProjects"></a>
@@ -16909,6 +17011,7 @@ Returns a compact representation of all of the projects the task is in.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Add a project to a task
 
 <a id="opIdaddProjectToTask"></a>
@@ -17106,6 +17209,7 @@ Returns an empty data block.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Remove a project a task
 
 <a id="opIdremoveProjectFromTask"></a>
@@ -17284,6 +17388,7 @@ Returns an empty data block.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get a task's tags
 
 <a id="opIdgetTaskTags"></a>
@@ -17447,6 +17552,7 @@ Get a compact representation of all of the tags the task has.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Add a tag to a task
 
 <a id="opIdaddTagToTask"></a>
@@ -17622,6 +17728,7 @@ Adds a tag to a task. Returns an empty data block.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Remove a tag from a task
 
 <a id="opIdremoveTagFromTask"></a>
@@ -17797,6 +17904,7 @@ Removes a tag from a task. Returns an empty data block.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Add followers to a task
 
 <a id="opIdaddFollowerToTask"></a>
@@ -17980,6 +18088,7 @@ Requests to add/remove followers, if successful, will return the complete update
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Remove followers from a task
 
 <a id="opIdremoveFollowerToTask"></a>
@@ -18161,10 +18270,12 @@ Removes each of the specified followers from the task if they are following. Ret
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="full-line">
 <h1 id="asana-team">Team</h1>
 
 A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.
 
+<hr class="half-line">
 ## Get a team
 
 <a id="opIdgetTeam"></a>
@@ -18326,6 +18437,7 @@ Returns the full record for a single team.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get teams in an organization
 
 <a id="opIdgetAllTeams"></a>
@@ -18489,6 +18601,7 @@ Returns the compact records for all teams in the organization visible to the aut
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get a user's teams
 
 <a id="opIdgetTeamsForUser"></a>
@@ -18654,6 +18767,7 @@ Returns the compact records for all teams to which the given user is assigned.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get users in a team
 
 <a id="opIdgetUsersForTeam"></a>
@@ -18817,6 +18931,7 @@ Returns the compact records for all users that are members of the team.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Add a user to a team
 
 <a id="opIdaddUserToTeam"></a>
@@ -18996,6 +19111,7 @@ The user making this call must be a member of the team in order to add others. T
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Remove a user from a team
 
 <a id="opIdremoveUserFromTeam"></a>
@@ -19175,10 +19291,12 @@ The user making this call must be a member of the team in order to remove themse
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="full-line">
 <h1 id="asana-users">Users</h1>
 
 A user object represents an account in Asana that can be given access to various workspaces, projects, and tasks.
 
+<hr class="half-line">
 ## Get a set of users
 
 <a id="opIdgetAllUsers"></a>
@@ -19343,6 +19461,7 @@ Results are sorted by user ID.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get a user
 
 <a id="opIdgetUser"></a>
@@ -19513,6 +19632,7 @@ Results are sorted by user ID.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get a user's favorites
 
 <a id="opIdgetUserFavorites"></a>
@@ -19683,6 +19803,7 @@ Results are given in order (The same order as Asana's sidebar).
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get users in a workspace or organization
 
 <a id="opIdgetUsersInWorkspace"></a>
@@ -19847,10 +19968,12 @@ Results are sorted alphabetically by user names.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="full-line">
 <h1 id="asana-user-task-lists">User Task Lists</h1>
 
 A user task list represents the tasks assigned to a particular user.
 
+<hr class="half-line">
 ## Get a user task list
 
 <a id="opIdgetUserTaskList"></a>
@@ -20011,6 +20134,7 @@ Returns the full record for a user task list.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get a user's task list
 
 <a id="opIdgetUsersTaskList"></a>
@@ -20171,6 +20295,7 @@ Returns the full record for a user's task list.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get tasks in a user task list
 
 <a id="opIdgetUserTaskListTasks"></a>
@@ -20368,10 +20493,12 @@ Returns the compact list of tasks in a user’s My Tasks list. The returned task
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="full-line">
 <h1 id="asana-webhooks">Webhooks</h1>
 
 Webhooks allow an application to be notified of changes in Asana.
 
+<hr class="half-line">
 ## Get a set of webhooks
 
 <a id="opIdgetWebhooks"></a>
@@ -20540,6 +20667,7 @@ Get the compact representation of all webhooks your app has registered for the a
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Establish a webhook on a resource
 
 <a id="opIdcreateWebhook"></a>
@@ -20776,6 +20904,7 @@ HTTP/1.1 201
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get a webhook
 
 <a id="opIdgetWebhook"></a>
@@ -20940,6 +21069,7 @@ Returns the full record for the given webhook.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Remove a webhook
 
 <a id="opIddeleteWebhook"></a>
@@ -21093,10 +21223,12 @@ This method **permanently** removes a webhook. Note that it may be possible to r
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="full-line">
 <h1 id="asana-workspaces">Workspaces</h1>
 
 A workspace is the highest-level organizational unit in Asana. An organization is a special kind of workspace that represents a company.
 
+<hr class="half-line">
 ## Retrieve objects via typeahead
 
 <a id="opIdgetTypeahead"></a>
@@ -21295,6 +21427,7 @@ data is included in a response.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get a set of workspaces
 
 <a id="opIdgetAllWorkspaces"></a>
@@ -21456,6 +21589,7 @@ Returns the compact records for all workspaces visible to the authorized user.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get a workspace
 
 <a id="opIdgetWorkspace"></a>
@@ -21618,6 +21752,7 @@ Returns the full workspace record for a single workspace.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Update a workspace
 
 <a id="opIdupdateWorkspace"></a>
@@ -21810,6 +21945,7 @@ Returns the complete, updated workspace record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Add a user to a workspace or organization
 
 <a id="opIdaddUserToWorkspace"></a>
@@ -21996,6 +22132,7 @@ The user can be referenced by their globally unique user ID or their email addre
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Remove a user from a workspace or organization
 
 <a id="opIdremoveUserToWorkspace"></a>
@@ -22167,8 +22304,10 @@ Returns an empty data record.
 
 <h3 id="remove-a-user-from-a-workspace-or-organization-responseschema">Response Schema</h3>
 
+<hr class="full-line">
 <h1 id="asana-portfolio-memberships">Portfolio Memberships</h1>
 
+<hr class="half-line">
 ## Get a list of portfolio memberships
 
 <a id="opIdgetPortfolioMemberships"></a>
@@ -22331,6 +22470,7 @@ Returns a list of portfolio memberships in compact representation. You must spec
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get the portfolio memberships for a portfolio
 
 <a id="opIdgetPortfolioMembershipsForPortfolio"></a>
@@ -22492,6 +22632,7 @@ Returns the compact portfolio membership records for the portfolio.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
+<hr class="half-line">
 ## Get a portfolio membership
 
 <a id="opIdgetPortfolioMembership"></a>

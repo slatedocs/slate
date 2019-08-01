@@ -1,3 +1,5 @@
+---
+
 ## Rich Text
 
 > Example Rich Text

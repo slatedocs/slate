@@ -1,3 +1,5 @@
+<hr class="full-line">
+
 # Why use Asana's API?
 
 ## Asanaâ€™s API and you
@@ -111,6 +113,8 @@ By managing this routine and specialized workflow with automation through Asanaâ
 Over time, we've continuously tweaked how our integration behaves to evolve our process, empowering us to adjust and iterate our approach. This is one of the key opportunities that Asana's API provides: ownership and control over how work gets done. Incremental improvements provide the chance to try out new workflows and settle on one that works well for everyone, leading to a more consistent and customized experience of using Asana.
 
 To get started, check out our [quick start](/developers/documentation/getting-started/quick-start "Quick Start") page for an overview of Asana's API. For support or to generate ideas of how your team can work more effectively with Asana, head to the [Asana Community](https://community.asana.com/c/developersAPI "Asana Developers Community") to chat with Asana team members and users!
+
+---
 
 ## Bot examples
 

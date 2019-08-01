@@ -14,6 +14,363 @@ License for the specific language governing permissions and limitations
 under the License.
 */
 
+//
+// App Colors
+// =============================================================================
+
+$white:   #fff;
+$gray-1:        #f6f8f9;
+$gray-2:        #edf1f2;
+$gray-3:        #e8ecee;
+$gray-4:        #d5dce0;
+$gray-5:        #b7bfc6;
+$gray-6:        #9ca6af;
+$gray-7:        #848f99;
+$gray-8:        #646f79;
+$gray-9:        #222b37;
+$gray-10:       #151b26;
+$black:   #000;
+
+//
+// Tertiary Colors
+// =============================================================================
+
+$green:         #25e8c8;
+$darkGreen:     #00bf9c;
+$brightGreen:   #58f5d9;
+$medGreen:      #b0fff1;
+$lightGreen:    #e2fffa;
+$fadedGreen:    #b2ebe1;
+
+$teal:          #14aaf5;
+$darkTeal:      #008ce3;
+$brightTeal:    #32c1ff;
+$medTeal:       #caeeff;
+$lightTeal:     #edf8ff;
+
+$purple:        #796eff;
+$darkPurple:    #635ac7;
+$brightPurple:  #9287ff;
+$medPurple:     #aba3ff;
+$lightPurple:   #f0f0ff;
+
+$gold:          #fcbd01;
+$darkGold:      #f2a100;
+$brightGold:    #ffe01b;
+$medGold:       #fff78f;
+$lightGold:     #fffede;
+
+$coral:         #ff5263;
+$darkCoral:     #ed4758;
+$brightCoral:   #ff7381;
+$medCoral:      #ff9ca5;
+$lightCoral:    #ffedef;
+
+$navy:          $gray-9;
+$navyText:      $gray-6;
+
+// TODO#scsslint
+// https://app.asana.com/0/113504799556066/117506147861377
+$color-green: $green;
+$color-teal: $teal;
+$color-purple: $purple;
+$color-gold: $gold;
+$color-coral: $coral;
+
+/*
+ * Colorblind Friendly Colors for Status / Due Date
+ */
+$green-deuteranopia: #62d26f;
+$gold-deuteranopia: #ffdd2b;
+$orange-deuteranopia: #fd612c;
+
+// Palettes
+$palette-green: (
+  core: $color-green,
+  dark: $darkGreen,
+  bright: $brightGreen,
+  med: $medGreen,
+  light: $lightGreen
+);
+
+$palette-teal: (
+  core: $color-teal,
+  dark: $darkTeal,
+  bright: $brightTeal,
+  med: $medTeal,
+  light: $lightTeal
+);
+
+$palette-purple: (
+  core: $color-purple,
+  dark: $darkPurple,
+  bright: $brightPurple,
+  med: $medPurple,
+  light: $lightPurple
+);
+
+$palette-gold: (
+  core: $color-gold,
+  dark: $darkGold,
+  bright: $brightGold,
+  med: $medGold,
+  light: $lightGold
+);
+
+$palette-coral: (
+  core: $color-coral,
+  dark: $darkCoral,
+  bright: $brightCoral,
+  med: $medCoral,
+  light: $lightCoral
+);
+
+$palette-premium: $palette-gold;
+
+//
+// spacing scale
+// =============================================================================
+
+$spacing-buffer: 2px;
+$spacing-xxs:    5px;
+$spacing-xs:     10px;
+$spacing-s:      15px;
+$spacing-ms:     20px;
+$spacing-m:      30px;
+$spacing-l:      45px;
+$spacing-xl:     60px;
+$spacing-xxl:    75px;
+
+//
+// z-index scale
+// =============================================================================
+
+$zIndex-1:  100;
+$zIndex-2:  200;
+$zIndex-3:  300;
+$zIndex-4:  400;
+$zIndex-5:  500;
+$zIndex-6:  600;
+$zIndex-7:  700;
+$zIndex-8:  800;
+$zIndex-9:  900;
+$zIndex-10: 1000;
+$zIndex-layer: 10000;
+$zIndex-dragPreview: 20000;
+
+//
+// font variables
+// =============================================================================
+
+$fontFamily-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+$fontFamily-title: $fontFamily-base;
+$fontFamily-marketing: $fontFamily-base;
+
+$fontSize-xhuge:    90px;
+$fontSize-huge:     48px;
+$fontSize-jumbo:    35px;
+$fontSize-larger:   24px; // Medium title
+$fontSize-large:    16px; // Medium heading
+$fontSize-base:     13px; // Body Text
+$fontSize-small:    11px; // Small Text
+
+$fontWeight-thin:      200;
+$fontWeight-light:     300;
+$fontWeight-normal:    400;
+$fontWeight-medium:    500;
+$fontWeight-bold:      700;
+$fontWeight-extrabold: 800;
+
+$fontWeight-base: $fontWeight-normal;
+$fontWeight-title: $fontWeight-medium;
+
+// General Text Styles
+
+$text-h3: (
+  font-family: $fontFamily-title,
+  font-size: $fontSize-larger,
+  font-weight: $fontWeight-title,
+  // Segoe UI needs font-size * 1.25, rounded up to the nearest multiple of 4
+  line-height: 32px
+);
+
+$text-h4: (
+  font-family: $fontFamily-title,
+  font-size: 20px,
+  line-height: 28px,
+  font-weight: $fontWeight-title
+);
+
+$text-h5: (
+  font-family: $fontFamily-title,
+  font-size: 16px,
+  font-weight: $fontWeight-medium,
+  line-height: 21px
+);
+
+$text-smallTitle: (
+  color: $gray-7,
+  font-family: $fontFamily-title,
+  font-size: 12px,
+  font-weight: $fontWeight-medium
+);
+
+$text-body: (
+  font-family: $fontFamily-base,
+  font-size: $fontSize-base,
+  font-weight: $fontWeight-base,
+  line-height: 20px
+);
+
+$text-small: (
+  font-family: $fontFamily-base,
+  font-size: $fontSize-small,
+  line-height: 17px
+);
+
+// Specific Product Styles
+$text-cardTitle: (
+  font-family: $fontFamily-title,
+  line-height: 26px,
+  font-size: 20px,
+  font-weight: $fontWeight-title
+);
+
+$text-groupTitle: (
+  color: $gray-8,
+  font-size: 20px
+);
+
+$text-taskTitle: (
+  font-family: $fontFamily-title,
+  line-height: 28px,
+  font-size: 24px,
+  font-weight: $fontWeight-title
+);
+
+$text-caption: (
+  color: $gray-7,
+  font-size: $fontSize-base
+);
+
+$text-captionSmall: (
+  color: $gray-7,
+  font-size: $fontSize-small
+);
+
+$text-sectionTitle: (
+  color: $gray-10,
+  font-size: $fontSize-base,
+  font-weight: $fontWeight-title
+);
+
+$text-validationErrorMessage: (
+  color: $coral,
+  font-size: map-get($text-small, "font-size"),
+  line-height: map-get($text-small, "line-height")
+);
+
+// Marketing Styles
+
+$text-marketingH1: (
+  font-family: $fontFamily-marketing,
+  font-size: 48px,
+  font-weight: $fontWeight-light,
+  line-height: 54px,
+  color: $gray-10
+);
+
+$text-marketingH2: (
+  font-family: $fontFamily-marketing,
+  font-size: 32px,
+  font-weight: $fontWeight-normal,
+  line-height: 40px,
+  color: $gray-10
+);
+
+$text-marketingH3: (
+  color: $gray-10,
+  font-family: $fontFamily-marketing,
+  line-height: 32px,
+  font-size: 24px
+);
+
+$text-marketingBodyCopy: (
+  font-family: $fontFamily-base,
+  font-size: $fontSize-large,
+  line-height: 24px,
+  color: $gray-7
+);
+
+$text-marketingLargeBodyCopy: (
+  font-family: $fontFamily-base,
+  font-size: 22px,
+  font-weight: $fontWeight-normal,
+  line-height: 32px,
+  color: $gray-8
+);
+
+$text-marketingSmallLabel: (
+  color: $gray-8,
+  font-family: $fontFamily-base,
+  font-size: $fontSize-base,
+  font-weight: $fontWeight-medium,
+  line-height: 17px,
+  text-transform: uppercase
+);
+
+@mixin text-all($style) {
+  color: map-get($style, "color");
+  font-family: map-get($style, "font-family");
+  font-size: map-get($style, "font-size");
+  font-weight: map-get($style, "font-weight");
+  line-height: map-get($style, "line-height");
+  text-transform: map-get($style, "text-transform");
+
+  // TODO#sass-lint gonzales-pe parse error.
+  // See sass-lint issues #44, #184, and #321
+  // @each $attr, $value in $style {
+  //   #{$attr}: $value
+  // }
+}
+
+//
+// Animations
+// =============================================================================
+
+$timing-xxs: 100ms;
+$timing-xs: 200ms;
+$timing-s: 250ms;
+
+//
+// Borders
+// =============================================================================
+
+$border-dottedGrey: 1px dotted $gray-7;
+
+@mixin border-lightGrayTop {
+  border-color: $gray-3;
+  border-style: solid none none;
+  border-width: 1px;
+}
+
+@mixin border-lightGray {
+  border-color: $gray-3;
+  border-style: solid;
+  border-width: 1px;
+}
+
+//
+// Box Shadows
+// =============================================================================
+
+$boxShadow-small:     0 1px 3px 0 rgba($gray-10, .15);
+$boxShadow-smallTop:  0 -1px 3px 0 rgba($gray-10, .15);
+$boxShadow-medium:    0 2px 10px 0 rgba($gray-10, .1);
+$boxShadow-large:     0 5px 20px 0 rgba($gray-10, .08);
+$boxShadow-largeDark: 0 5px 20px 0 rgba($gray-10, .25); // to be used only on colored-foreground elements
+$boxShadow-largeTop:  0 -5px 20px 0 rgba($gray-10, .08);
+$boxShadow-marketing: 0 14px 80px 0 rgba($gray-10, .06);
 
 ////////////////////////////////////////////////////////////////////////////////
 // CUSTOMIZE SLATE
@@ -23,18 +380,18 @@ under the License.
 
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: #FFFFFF !default;
-$examples-bg: #2E3336 !default;
-$code-bg: #1E2224 !default;
+$nav-bg: $white !default;
+$examples-bg: $white !default;
+$code-bg: $gray-2 !default;
 $code-annotation-bg: #191D1F !default;
-$nav-subitem-bg: #FFFFFF !default;
-$nav-active-bg: #eff0f1 !default;
-$nav-active-parent-bg: #FFFFFF !default; // parent links of the current section
-$lang-select-border: #000 !default;
-$lang-select-bg: #1E2224 !default;
-$lang-select-active-bg: $examples-bg !default; // feel free to change this to blue or something
-$lang-select-pressed-bg: #111 !default; // color of language tab bg when mouse is pressed
-$main-bg: #f8f8f9 !default;
+$nav-subitem-bg: $white !default;
+$nav-active-bg: $gray-2 !default;
+$nav-active-parent-bg: $white !default; // parent links of the current section
+$lang-select-border: $white !default;
+$lang-select-bg: $white !default;
+$lang-select-active-bg: $gray-2 !default; // feel free to change this to blue or something
+$lang-select-pressed-bg: $gray-2 !default; // color of language tab bg when mouse is pressed
+$main-bg: $white !default;
 $aside-notice-bg: #8fbcd4 !default;
 $aside-warning-bg: #FF7381 !default;
 $aside-success-bg: #6ac174 !default;
@@ -43,35 +400,44 @@ $search-notice-bg: #FF7381 !default;
 
 // TEXT COLORS
 ////////////////////
-$main-text: #151b26 !default; // main content text color
-$nav-text: #151b26 !default;
-$nav-active-text: #151b26 !default;
-$nav-active-parent-text: #151b26 !default; // parent links of the current section
-$lang-select-text: #fff !default; // color of unselected language tab text
-$lang-select-active-text: #fff !default; // color of selected language tab text
-$lang-select-pressed-text: #fff !default; // color of language tab text when mouse is pressed
+$main-text: $gray-10 !default; // main content text color
+$nav-text: $gray-10 !default;
+$nav-active-text: $gray-10 !default;
+$nav-active-parent-text: $gray-10 !default; // parent links of the current section
+$lang-select-text: $gray-10 !default; // color of unselected language tab text
+$lang-select-active-text: $gray-10 !default; // color of selected language tab text
+$lang-select-pressed-text: $gray-10 !default; // color of language tab text when mouse is pressed
+$code-annotation-text: $gray-10 !default;
+$code-text: $gray-10 !default;
 
 
 // SIZES
 ////////////////////
 $nav-width: 240px !default; // width of the navbar
-$examples-width: 50% !default; // portion of the screen taken up by code examples
+$examples-width: 40% !default; // portion of the screen taken up by code examples
 $logo-margin: 0px !default; // margin below logo
-$main-padding: 32px !default; // padding to left and right of content & examples
-$nav-padding: 16px !default; // padding to left and right of navbar
-$nav-v-padding: 8px !default; // padding used vertically around search boxes and results
-$nav-indent: 8px !default; // extra padding for ToC subitems
-$code-annotation-padding: 16px !default; // padding inside code annotations
-$h1-margin-bottom: 24px !default; // padding under the largest header tags
+$main-padding: $spacing-xl !default; // padding to left and right of content & examples
+$nav-padding: $spacing-s !default; // padding to left and right of navbar
+$nav-v-padding: $spacing-xs !default; // padding used vertically around search boxes and results
+$nav-indent: $spacing-xs !default; // extra padding for ToC subitems
+$code-annotation-padding: $spacing-xxs !default; // padding inside code annotations
+$h1-margin-bottom: $spacing-ms !default; // padding under the largest header tags
+$h1-padding-top: $spacing-xxl !default;
 $tablet-width: 930px !default; // min width before reverting to tablet size
 $phone-width: $tablet-width - $nav-width !default; // min width before reverting to mobile size
-$table-padding: 2%;
+$table-padding: 4%;
+$line-seperator-padding-h: 10%;
+$line-seperator-padding-v: $spacing-xxl * 2;
+$full-line-seperator-padding-v: $spacing-xxl * 3;
+$line-color: $gray-5;
+$h2-padding: $spacing-l;
+$page-wrapper-width: 1500px;
 
 
 // FONTS
 ////////////////////
 %default-font {
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: $fontFamily-base;
   font-size: 14px;
 }
 
@@ -89,8 +455,8 @@ $table-padding: 2%;
 
 // OTHER
 ////////////////////
-$nav-footer-border-color: #666 !default;
-$search-box-border-color: #666 !default;
+$nav-footer-border-color: $gray-3 !default;
+$search-box-border-color: $gray-10 !default;
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -102,3 +468,7 @@ $search-box-border-color: #666 !default;
     word-break: break-all;
     hyphens: auto;
 }
+
+
+
+

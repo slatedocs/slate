@@ -23,7 +23,7 @@ includes:
   - markdown/15-quick-start
   - api-reference/index.html.md
 search: true
-highlight_theme: darkula
+highlight_theme: github
 headingLevel: 2
 
 ---

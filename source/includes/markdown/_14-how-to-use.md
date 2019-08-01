@@ -1,3 +1,5 @@
+<hr class="full-line">
+
 # How to use the API
 
 > Request
@@ -21,28 +23,28 @@ To get started
 
 ```json
 {
-  data: {
-    gid: "12e345a67b8910c11",
-    email: "jonsnow@example.com",
-    name: "Jon Snow",
-    photo: {
-      image_21x21: "https://s3.amazonaws.com/profile_photos/121110987654321.hJGlskahcKA5hdslf4FS_21x21.png",
-      image_27x27: "https://s3.amazonaws.com/profile_photos/121110987654321.hJGlskahcKA5hdslf4FS_27x27.png",
-      image_36x36: "https://s3.amazonaws.com/profile_photos/121110987654321.hJGlskahcKA5hdslf4FS_36x36.png",
-      image_60x60: "https://s3.amazonaws.com/profile_photos/121110987654321.hJGlskahcKA5hdslf4FS_60x60.png",
-      image_128x128: "https://s3.amazonaws.com/profile_photos/121110987654321.hJGlskahcKA5hdslf4FS_128x128.png"
+  "data": {
+    "gid": "12e345a67b8910c11",
+    "email": "jonsnow@example.com",
+    "name": "Jon Snow",
+    "photo": {
+      "image_21x21": "https://s3.amazonaws.com/profile_photos/121110987654321.hJGlskahcKA5hdslf4FS_21x21.png",
+      "image_27x27": "https://s3.amazonaws.com/profile_photos/121110987654321.hJGlskahcKA5hdslf4FS_27x27.png",
+      "image_36x36": "https://s3.amazonaws.com/profile_photos/121110987654321.hJGlskahcKA5hdslf4FS_36x36.png",
+      "image_60x60": "https://s3.amazonaws.com/profile_photos/121110987654321.hJGlskahcKA5hdslf4FS_60x60.png",
+      "image_128x128": "https://s3.amazonaws.com/profile_photos/121110987654321.hJGlskahcKA5hdslf4FS_128x128.png"
     },
-    resource_type: "user",
-    workspaces: [
+    "resource_type": "user",
+    "workspaces": [
       {
-        gid: "15c43287b6a8",
-        name: "Castle Black",
-        resource_type: "workspace"
+        "gid": "15c43287b6a8",
+        "name": "Castle Black",
+        "resource_type": "workspace"
       },
       {
-        gid: "a1432e1987654d",
-        name: "Jon's Personal",
-        resource_type: "workspace"
+        "gid": "a1432e1987654d",
+        "name": "Jon's Personal",
+        "resource_type": "workspace"
       },
     ]
   }
@@ -63,6 +65,7 @@ Our API is documented for what resources are available and what sort of return d
 
 Now, let’s make the same call to `/users/me` more like software would. Before we do so, we’ll need to get access outside of your web browser to the API.
 
+---
 
 ## Authentication Quick Start
 
@@ -99,6 +102,8 @@ If your app needs to perform actions on behalf of users, you should use [OAuth](
 5. Copy your token. You will only see this one time, but you can always create another PAT later.
 
 _**Note**: treat your PAT like you would a password. Do not share it or display it online_. 
+
+---
 
 ## Accessing the API in the Terminal
 
@@ -139,7 +144,12 @@ You’re ready to start coding!
 
 Asana has [client libraries](/#official-client-libraries) in several popular coding languages. Using these libraries has several advantages (like managing authorization and retrying errors) that make them a good place to go from here. Let’s take a look at making the same `/users/me` request in Python, JavaScript, and Ruby (feel free to skip ahead to your favorite of the three languages).
 
+<hr class="full-line">
+
 # Quick Start
+
+## Python Hello World
+
 ```python
 !
 import asana
@@ -159,7 +169,6 @@ me = client.users.me()
 print "Hello world! " + "My name is " + me['name'] + " and I my primary Asana workspace is " + me['workspaces'][0]['name'] + "."
 
 ```
-### Python Hello World
 
 To get started, run `pip install asana` or follow the detailed installation instructions on the [GitHub page for the Python client library](https://github.com/Asana/python-asana/).  
 
@@ -176,9 +185,9 @@ All of the built-in functions can be found in the [/gen folder of the client lib
 
 You can see a variant of this script, and other useful Asana API scripts, in our open-source <a href="https://github.com/Asana/DevRel-Examples/tree/master/python" target="_blank">Github examples repository</a>
 
-<br></br>
-<br></br>
-<br></br>
+---
+
+## Node Hello World
 
 ```javascript
 !
@@ -197,7 +206,6 @@ client.users.me()
     console.log('Hello world! ' + 'My name is ' + me.name + ' and my primary Asana workspace is ' + me.workspaces[0].name + '.');
 });
 ```
-### Node Hello World
 
 To get started, `npm install asana` or follow the detailed installation instructions on the [GitHub page for the Node client library](https://github.com/Asana/node-asana/).  
 
@@ -211,9 +219,9 @@ All of the built-in functions can be found in the [/gen folder of the client lib
 
 You can see a variant of this script, and other useful Asana API scripts, in our open-source <a href="https://github.com/Asana/DevRel-Examples/tree/master/javascript" target="_blank">Github examples repository</a>
 
-<br></br>
-<br></br>
-<br></br>
+---
+
+## Ruby Hello World
 
 ```ruby
 !
@@ -233,7 +241,6 @@ me = client.users.me
 
 puts "Hello world! " + "My name is " + me.name + " and I my primary Asana workspace is " + me.workspaces[0].name + "."
 ```
-### Ruby Hello World
 
 To get started, `gem install asana` or follow the detailed installation instructions on the [GitHub page for the Ruby client library](https://github.com/Asana/ruby-asana/).  
 
@@ -246,7 +253,3 @@ To run this script in your console, pass it as an argument to the ruby interpret
 All of the built-in methods can be found in the [/resources folder of the client library](https://github.com/Asana/ruby-asana/tree/master/lib/asana/resources). 
 
 You can see a variant of this script, and other useful Asana API scripts, in our open-source <a href="https://github.com/Asana/DevRel-Examples/tree/master/ruby" target="_blank">Github examples repository</a>
-
-
-<br></br>
-<br></br>
