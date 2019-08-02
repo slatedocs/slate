@@ -1049,13 +1049,16 @@ note | true | string | `Hủy vận đơn` | Note of status canceled
 Name | Vn Name | Color code | Description
 -----| ------- | ---------- | ---------------
 `request_received` | `Đã khởi tạo` | `#AD7E05` | Vn Name is `current_status` and Name is `current_status_en` of api [GET /snappy/trackings](#get-trackings)
-`picked_up` | `Đã nhận hàng` | `#277790`
+`processing_picked_up` | `Đang lấy hàng` | `#039BE5` | Vn Name is `current_status` and Name is `current_status_en` of api [GET /snappy/trackings](#get-trackings)
+`picked_up_fail` | `K.lấy được hàng` | `#C62828` | Vn Name is `current_status` and Name is `current_status_en` of api [GET /snappy/trackings](#get-trackings)
+`picked_up` | `Đã nhận hàng` | `#277790` | Vn Name is `current_status` and Name is `current_status_en` of api [GET /snappy/trackings](#get-trackings)
 `processing_on_the_way` | `Đang giao kho` | `#9C27B0` | Vn Name is `current_status` and Name is `current_status_en` of api [GET /snappy/trackings](#get-trackings)
 `on_the_way` | `Giao kho` | `#129797` | Vn Name is `current_status` and Name is `current_status_en` of api [GET /snappy/trackings](#get-trackings)
-`out_for_delivery` | `out_for_delivery` | `#0063B8` | Vn Name is `current_status` and Name is `current_status_en` of api [GET /snappy/trackings](#get-trackings)
+`out_for_delivery` | `Đang giao hàng` | `#0063B8` | Vn Name is `current_status` and Name is `current_status_en` of api [GET /snappy/trackings](#get-trackings)
 `part_delivery` | `Giao một phần` | `#4CAF50` | Vn Name is `current_status` and Name is `current_status_en` of api [GET /snappy/trackings](#get-trackings)
 `delivered` | `Phát thành công` | `#639026` | Vn Name is `current_status` and Name is `current_status_en` of api [GET /snappy/trackings](#get-trackings)
 `undeliverable` | `Giao không thành` | `#DB3E36` | Vn Name is `current_status` and Name is `current_status_en` of api [GET /snappy/trackings](#get-trackings)
+`waiting_for_return` | `Chờ hoàn` | `#FF4081` | Vn Name is `current_status` and Name is `current_status_en` of api [GET /snappy/trackings](#get-trackings)
 `returning` | `Đang hoàn` | `#51ACC7` | Vn Name is `current_status` and Name is `current_status_en` of api [GET /snappy/trackings](#get-trackings)
 `returned` | `Đã hoàn` | `#FF4500` | Vn Name is `current_status` and Name is `current_status_en` of api [GET /snappy/trackings](#get-trackings)
 `canceled` | `Đã hủy` | `#DB3E36` | Vn Name is `current_status` and Name is `current_status_en` of api [GET /snappy/trackings](#get-trackings)
