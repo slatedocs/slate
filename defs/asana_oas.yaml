@@ -3238,16 +3238,12 @@ components:
         We require that applications designed to access the Asana API on behalf
         of multiple users implement OAuth 2.0.
 
-        Asana supports both the Authorization Code Grant flow, and the Implicit
-        Grant flows.
+        Asana supports the Authorization Code Grant flow.
       flows:
         authorizationCode:
           authorizationUrl: https://app.asana.com/-/oauth_authorize
           tokenUrl: https://app.asana.com/-/oauth_token
           refreshUrl: https://app.asana.com/-/oauth_token
-        implicit:
-          authorizationUrl: https://app.asana.com/-/oauth_authorize
-          refreshUrl: https://api.getbase.com/oauth2/authorize
 paths:
   /attachments/{attachment_gid}:
     parameters:

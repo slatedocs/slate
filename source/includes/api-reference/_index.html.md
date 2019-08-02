@@ -25,14 +25,11 @@ License: <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a>
 - HTTP Authentication, scheme: bearer A personal access token allows access to the api for the user who created it. This should be kept a secret and be treated like a password.
 
 - oAuth2 authentication. We require that applications designed to access the Asana API on behalf of multiple users implement OAuth 2.0.
-Asana supports both the Authorization Code Grant flow, and the Implicit Grant flows.
+Asana supports the Authorization Code Grant flow.
 
     - Flow: authorizationCode
     - Authorization URL = [https://app.asana.com/-/oauth_authorize](https://app.asana.com/-/oauth_authorize)
     - Token URL = [https://app.asana.com/-/oauth_token](https://app.asana.com/-/oauth_token)
-
-    - Flow: implicit
-    - Authorization URL = [https://app.asana.com/-/oauth_authorize](https://app.asana.com/-/oauth_authorize)
 
 <hr class="full-line">
 <h1 id="asana-attachments">Attachments</h1>
