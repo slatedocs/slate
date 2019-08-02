@@ -823,23 +823,12 @@ Make multiple requests in parallel to Asana's API.
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully completed the requested batch API operations.|Inline|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully completed the requested batch API operations.|[BatchResult](#schemabatchresult)|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
-
-<h3 id="submit-parallel-requests-responseschema">Response Schema</h3>
-
-Status Code **200**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-| data|[[BatchResponse](#schemabatchresponse)]|false|none|[A response object returned from a batch request.]|
-| status_code|integer|false|none|The HTTP status code that the invoked endpoint returned.|
-| headers|object|false|none|A map of HTTP headers specific to this result. This is primarily used for returning a `Location` header to accompany a `201 Created` result.  The parent HTTP response will contain all common headers.|
-| body|object|false|none|The JSON body that the invoked endpoint returned.|
 
 <hr class="full-line">
 <h1 id="asana-custom-fields">Custom Fields</h1>
@@ -1052,28 +1041,26 @@ Returns the full record of the newly created custom field.
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|object|true|The custom field object to create.|
-|» data|body|any|false|none|
-|»» *anonymous*|body|[CustomField](#schemacustomfield)|false|Custom Fields store the metadata that is used in order to|
+|» data|body|object|false|Custom Fields store the metadata that is used in order to|
+|»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»» gid|body|string|false|Globally unique ID of the object, as a string.|
+|»» resource_type|body|string|false|The base type of this resource.|
+|»» name|body|string|false|The name of the object.|
+|»» resource_subtype|body|string|false|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|»» type|body|string|false|**Deprecated: new integrations should prefer the resource_subtype field.** The type of the custom field. Must be one of the given values.|
+|»» enum_options|body|[object]|false|**Conditional**. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://asana.com/developers/api-reference/custom_fields#enum-options).|
 |»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
 |»»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»»» resource_type|body|string|false|The base type of this resource.|
-|»»» name|body|string|false|The name of the object.|
-|»»» resource_subtype|body|string|false|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|»»» type|body|string|false|**Deprecated: new integrations should prefer the resource_subtype field.** The type of the custom field. Must be one of the given values.|
-|»»» enum_options|body|[object]|false|**Conditional**. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://asana.com/developers/api-reference/custom_fields#enum-options).|
-|»»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
-|»»»» gid|body|string|false|Globally unique ID of the object, as a string.|
-|»»»» resource_type|body|string|false|The base type of this resource.|
-|»»»» name|body|string|false|The name of the enum option.|
-|»»»» enabled|body|boolean|false|The color of the enum option. Defaults to ‘none’.|
-|»»»» color|body|string|false|Whether or not the enum option is a selectable value for the custom field.|
-|»»» enum_value|body|any|false|none|
-|»»» enabled|body|boolean|false|**Conditional**. Determines if the custom field is enabled or not.|
-|»»» text_value|body|string|false|**Conditional**. This string is the value of a text custom field.|
-|»»» description|body|string|false|[Opt In](/developers/documentation/getting-started/input-output-options). The description of the custom field.|
-|»»» precision|body|integer|false|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
-|»» *anonymous*|body|object|false|none|
-|»»» workspace|body|integer|true|The workspace to create a custom field in.|
+|»»» name|body|string|false|The name of the enum option.|
+|»»» enabled|body|boolean|false|The color of the enum option. Defaults to ‘none’.|
+|»»» color|body|string|false|Whether or not the enum option is a selectable value for the custom field.|
+|»» enum_value|body|any|false|none|
+|»» enabled|body|boolean|false|**Conditional**. Determines if the custom field is enabled or not.|
+|»» text_value|body|string|false|**Conditional**. This string is the value of a text custom field.|
+|»» description|body|string|false|[Opt In](/developers/documentation/getting-started/input-output-options). The description of the custom field.|
+|»» precision|body|integer|false|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|»» workspace|body|integer|false|The workspace to create a custom field in.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 |opt_expand|query|array[string]|false|Expand fields returned.|
@@ -1082,7 +1069,7 @@ Returns the full record of the newly created custom field.
 
 #### Detailed descriptions
 
-** *anonymous***: Custom Fields store the metadata that is used in order to
+** data**: Custom Fields store the metadata that is used in order to
 add user-specified information to tasks in Asana. Be sure
 to reference the [Custom Fields]
 (https://asana.com/developers/documentation/getting-started/custom-fields)
@@ -1839,17 +1826,15 @@ Returns the full record of the newly created enum option.
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|object|true|The enum option object to create.|
-|» data|body|any|false|none|
-|»» *anonymous*|body|[EnumOption](#schemaenumoption)|false|Enum options are the possible values which an enum custom field can|
-|»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
-|»»» gid|body|string|false|Globally unique ID of the object, as a string.|
-|»»» resource_type|body|string|false|The base type of this resource.|
-|»»» name|body|string|false|The name of the enum option.|
-|»»» enabled|body|boolean|false|The color of the enum option. Defaults to ‘none’.|
-|»»» color|body|string|false|Whether or not the enum option is a selectable value for the custom field.|
-|»» *anonymous*|body|object|false|none|
-|»»» insert_before|body|integer|false|An existing enum option within this custom field before which the new enum option should be inserted. Cannot be provided together with after_enum_option.|
-|»»» insert_after|body|integer|false|An existing enum option within this custom field after which the new enum option should be inserted. Cannot be provided together with before_enum_option.|
+|» data|body|object|false|Enum options are the possible values which an enum custom field can|
+|»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»» gid|body|string|false|Globally unique ID of the object, as a string.|
+|»» resource_type|body|string|false|The base type of this resource.|
+|»» name|body|string|false|The name of the enum option.|
+|»» enabled|body|boolean|false|The color of the enum option. Defaults to ‘none’.|
+|»» color|body|string|false|Whether or not the enum option is a selectable value for the custom field.|
+|»» insert_before|body|integer|false|An existing enum option within this custom field before which the new enum option should be inserted. Cannot be provided together with after_enum_option.|
+|»» insert_after|body|integer|false|An existing enum option within this custom field after which the new enum option should be inserted. Cannot be provided together with before_enum_option.|
 |custom_field_gid|path|integer|true|Globally unique identifier for the custom field.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
@@ -1859,7 +1844,7 @@ Returns the full record of the newly created enum option.
 
 #### Detailed descriptions
 
-** *anonymous***: Enum options are the possible values which an enum custom field can
+** data**: Enum options are the possible values which an enum custom field can
 adopt. An enum custom field must contain at least 1 enum option but no
 more than 50.
 
@@ -1906,26 +1891,12 @@ An enum options list can be reordered with the `POST
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Custom field enum option successfully created.|Inline|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Custom field enum option successfully created.|[EnumOption](#schemaenumoption)|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
-
-<h3 id="create-an-enum-option-responseschema">Response Schema</h3>
-
-Status Code **201**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-| data|[EnumOption](#schemaenumoption)|false|none|Enum options are the possible values which an enum custom field can<br>adopt. An enum custom field must contain at least 1 enum option but no<br>more than 50.<br><br>You can add enum options to a custom field by using the `POST<br>/custom_fields/custom_field_gid/enum_options` endpoint.<br><br>**It is not possible to remove or delete an enum option**. Instead, enum<br>options can be disabled by updating the `enabled` field to false with the<br>`PUT /enum_options/enum_option_gid` endpoint. Other attributes can be<br>updated similarly.<br><br>On creation of an enum option, `enabled` is always set to `true`, meaning<br>the enum option is a selectable value for the custom field. Setting<br>`enabled=false` is equivalent to “trashing” the enum option in the Asana<br>web app within the “Edit Fields” dialog. The enum option will no longer<br>be selectable but, if the enum option value was previously set within a<br>task, the task will retain the value.<br><br>Enum options are an ordered list and by default new enum options are<br>inserted at the end. Ordering in relation to existing enum options can be<br>specified on creation by using `insert_before` or `insert_after` to<br>reference an existing enum option. Only one of `insert_before` and<br>`insert_after` can be provided when creating a new enum option.<br><br>An enum options list can be reordered with the `POST<br>/custom_fields/custom_field_gid/enum_options/insert` endpoint.|
-| id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
-| gid|string|false|read-only|Globally unique ID of the object, as a string.|
-| resource_type|string|false|read-only|The base type of this resource.|
-| name|string|false|none|The name of the enum option.|
-| enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
-| color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
 
 <hr class="half-line">
 ## Reorder a custom field's enum
@@ -1951,7 +1922,8 @@ const inputBody = '{
     "enabled": true,
     "color": "blue",
     "enum_option": 97285,
-    "before_enum_option": 12345
+    "before_enum_option": 12345,
+    "after_enum_option": 12345
   }
 }';
 const headers = {
@@ -2074,7 +2046,8 @@ Locked custom fields can only be reordered by the user who locked the field.
     "enabled": true,
     "color": "blue",
     "enum_option": 97285,
-    "before_enum_option": 12345
+    "before_enum_option": 12345,
+    "after_enum_option": 12345
   }
 }
 ```
@@ -2084,21 +2057,16 @@ Locked custom fields can only be reordered by the user who locked the field.
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|object|true|The enum option object to create.|
-|» data|body|any|false|none|
-|»» *anonymous*|body|[EnumOption](#schemaenumoption)|false|Enum options are the possible values which an enum custom field can|
-|»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
-|»»» gid|body|string|false|Globally unique ID of the object, as a string.|
-|»»» resource_type|body|string|false|The base type of this resource.|
-|»»» name|body|string|false|The name of the enum option.|
-|»»» enabled|body|boolean|false|The color of the enum option. Defaults to ‘none’.|
-|»»» color|body|string|false|Whether or not the enum option is a selectable value for the custom field.|
-|»» *anonymous*|body|object|false|none|
-|»»» enum_option|body|integer|false|The ID of the enum option to relocate.|
-|»» *anonymous*|body|any|false|none|
-|»»» *anonymous*|body|object|false|none|
-|»»»» before_enum_option|body|integer|false|An existing enum option within this custom field before which the new enum option should be inserted. Cannot be provided together with after_enum_option.|
-|»»» *anonymous*|body|object|false|none|
-|»»»» after_enum_option|body|integer|false|An existing enum option within this custom field after which the new enum option should be inserted. Cannot be provided together with before_enum_option.|
+|» data|body|object|false|Enum options are the possible values which an enum custom field can|
+|»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»» gid|body|string|false|Globally unique ID of the object, as a string.|
+|»» resource_type|body|string|false|The base type of this resource.|
+|»» name|body|string|false|The name of the enum option.|
+|»» enabled|body|boolean|false|The color of the enum option. Defaults to ‘none’.|
+|»» color|body|string|false|Whether or not the enum option is a selectable value for the custom field.|
+|»» enum_option|body|integer|false|The ID of the enum option to relocate.|
+|»» before_enum_option|body|integer|false|An existing enum option within this custom field before which the new enum option should be inserted. Cannot be provided together with after_enum_option.|
+|»» after_enum_option|body|integer|false|An existing enum option within this custom field after which the new enum option should be inserted. Cannot be provided together with before_enum_option.|
 |custom_field_gid|path|integer|true|Globally unique identifier for the custom field.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
@@ -2108,7 +2076,7 @@ Locked custom fields can only be reordered by the user who locked the field.
 
 #### Detailed descriptions
 
-** *anonymous***: Enum options are the possible values which an enum custom field can
+** data**: Enum options are the possible values which an enum custom field can
 adopt. An enum custom field must contain at least 1 enum option but no
 more than 50.
 
@@ -2155,26 +2123,12 @@ An enum options list can be reordered with the `POST
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Custom field enum option successfully reordered.|Inline|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Custom field enum option successfully reordered.|[EnumOption](#schemaenumoption)|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
-
-<h3 id="reorder-a-custom-field's-enum-responseschema">Response Schema</h3>
-
-Status Code **200**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-| data|[EnumOption](#schemaenumoption)|false|none|Enum options are the possible values which an enum custom field can<br>adopt. An enum custom field must contain at least 1 enum option but no<br>more than 50.<br><br>You can add enum options to a custom field by using the `POST<br>/custom_fields/custom_field_gid/enum_options` endpoint.<br><br>**It is not possible to remove or delete an enum option**. Instead, enum<br>options can be disabled by updating the `enabled` field to false with the<br>`PUT /enum_options/enum_option_gid` endpoint. Other attributes can be<br>updated similarly.<br><br>On creation of an enum option, `enabled` is always set to `true`, meaning<br>the enum option is a selectable value for the custom field. Setting<br>`enabled=false` is equivalent to “trashing” the enum option in the Asana<br>web app within the “Edit Fields” dialog. The enum option will no longer<br>be selectable but, if the enum option value was previously set within a<br>task, the task will retain the value.<br><br>Enum options are an ordered list and by default new enum options are<br>inserted at the end. Ordering in relation to existing enum options can be<br>specified on creation by using `insert_before` or `insert_after` to<br>reference an existing enum option. Only one of `insert_before` and<br>`insert_after` can be provided when creating a new enum option.<br><br>An enum options list can be reordered with the `POST<br>/custom_fields/custom_field_gid/enum_options/insert` endpoint.|
-| id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
-| gid|string|false|read-only|Globally unique ID of the object, as a string.|
-| resource_type|string|false|read-only|The base type of this resource.|
-| name|string|false|none|The name of the enum option.|
-| enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
-| color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
 
 <hr class="half-line">
 ## Update an enum option.
@@ -2393,26 +2347,12 @@ An enum options list can be reordered with the `POST
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully updated the specified custom field enum.|Inline|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully updated the specified custom field enum.|[EnumOption](#schemaenumoption)|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
-
-<h3 id="update-an-enum-option.-responseschema">Response Schema</h3>
-
-Status Code **200**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-| data|[EnumOption](#schemaenumoption)|false|none|Enum options are the possible values which an enum custom field can<br>adopt. An enum custom field must contain at least 1 enum option but no<br>more than 50.<br><br>You can add enum options to a custom field by using the `POST<br>/custom_fields/custom_field_gid/enum_options` endpoint.<br><br>**It is not possible to remove or delete an enum option**. Instead, enum<br>options can be disabled by updating the `enabled` field to false with the<br>`PUT /enum_options/enum_option_gid` endpoint. Other attributes can be<br>updated similarly.<br><br>On creation of an enum option, `enabled` is always set to `true`, meaning<br>the enum option is a selectable value for the custom field. Setting<br>`enabled=false` is equivalent to “trashing” the enum option in the Asana<br>web app within the “Edit Fields” dialog. The enum option will no longer<br>be selectable but, if the enum option value was previously set within a<br>task, the task will retain the value.<br><br>Enum options are an ordered list and by default new enum options are<br>inserted at the end. Ordering in relation to existing enum options can be<br>specified on creation by using `insert_before` or `insert_after` to<br>reference an existing enum option. Only one of `insert_before` and<br>`insert_after` can be provided when creating a new enum option.<br><br>An enum options list can be reordered with the `POST<br>/custom_fields/custom_field_gid/enum_options/insert` endpoint.|
-| id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
-| gid|string|false|read-only|Globally unique ID of the object, as a string.|
-| resource_type|string|false|read-only|The base type of this resource.|
-| name|string|false|none|The name of the enum option.|
-| enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
-| color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
 
 <hr class="half-line">
 ## Get a workspace's custom fields
@@ -5489,6 +5429,506 @@ Removes a custom field setting from a portfolio.
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="full-line">
+<h1 id="asana-portfolio-memberships">Portfolio Memberships</h1>
+
+This object determines if a user is a member of a portfolio.
+
+<hr class="half-line">
+## Get a list of portfolio memberships
+
+<a id="opIdgetPortfolioMemberships"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/portfolio_memberships \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+
+};
+
+fetch('https://app.asana.com/api/1.0/portfolio_memberships',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+    
+    );
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://app.asana.com/api/1.0/portfolio_memberships', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://app.asana.com/api/1.0/portfolio_memberships', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://app.asana.com/api/1.0/portfolio_memberships");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://app.asana.com/api/1.0/portfolio_memberships',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /portfolio_memberships`
+
+Returns a list of portfolio memberships in compact representation. You must specify `portolio`, `portfolio` and `user`, or `workspace` and `user`.
+
+<h3 id="get-a-list-of-portfolio-memberships-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|portfolio|query|string|false|The portfolio to filter results on.|
+|workspace|query|string|false|The workspace to filter results on.|
+|user|query|string(email)|false|The user to filter results on.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+|opt_expand|query|array[string]|false|Expand fields returned.|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "portfolio",
+      "name": "Bug Task"
+    }
+  ]
+}
+```
+
+<h3 id="get-a-list-of-portfolio-memberships-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved portfolio memberships.|[Portfolio](#schemaportfolio)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+
+<hr class="half-line">
+## Get the portfolio memberships for a portfolio
+
+<a id="opIdgetPortfolioMembershipsForPortfolio"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/portfolio_memberships \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+
+};
+
+fetch('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/portfolio_memberships',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+    
+    );
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/portfolio_memberships', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/portfolio_memberships', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/portfolio_memberships");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/portfolio_memberships',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /portfolios/{portfolio_gid}/portfolio_memberships`
+
+Returns the compact portfolio membership records for the portfolio.
+
+<h3 id="get-the-portfolio-memberships-for-a-portfolio-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
+|user|query|string(email)|false|The user to filter results on.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+|opt_expand|query|array[string]|false|Expand fields returned.|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "portfolio_membership",
+      "user": {}
+    }
+  ]
+}
+```
+
+<h3 id="get-the-portfolio-memberships-for-a-portfolio-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested portfolio's memberships.|[PortfolioMembership](#schemaportfoliomembership)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+
+<hr class="half-line">
+## Get a portfolio membership
+
+<a id="opIdgetPortfolioMembership"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/portfolio_memberships/{portfolio_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+```javascript--nodejs
+const fetch = require('node-fetch');
+
+const headers = {
+  'Accept':'application/json',
+  'Authorization':'Bearer {access-token}'
+
+};
+
+fetch('https://app.asana.com/api/1.0/portfolio_memberships/{portfolio_gid}',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+    'Authorization' => 'Bearer {access-token}',
+    
+    );
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','https://app.asana.com/api/1.0/portfolio_memberships/{portfolio_gid}', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'Authorization': 'Bearer {access-token}'
+}
+
+r = requests.get('https://app.asana.com/api/1.0/portfolio_memberships/{portfolio_gid}', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```java
+URL obj = new URL("https://app.asana.com/api/1.0/portfolio_memberships/{portfolio_gid}");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'Authorization' => 'Bearer {access-token}'
+}
+
+result = RestClient.get 'https://app.asana.com/api/1.0/portfolio_memberships/{portfolio_gid}',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /portfolio_memberships/{portfolio_gid}`
+
+Returns the complete portfolio record for a single portfolio membership.
+
+<h3 id="get-a-portfolio-membership-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+|opt_expand|query|array[string]|false|Expand fields returned.|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "id": 12345,
+    "gid": "12345",
+    "resource_type": "portfolio_membership",
+    "user": {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "portfolio": {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "portfolio",
+      "name": "Bug Task"
+    }
+  }
+}
+```
+
+<h3 id="get-a-portfolio-membership-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested portfolio membership.|[PortfolioMembership](#schemaportfoliomembership)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+
+<hr class="full-line">
 <h1 id="asana-projects">Projects</h1>
 
 A `project` represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.
@@ -8381,7 +8821,7 @@ Returns the compact project membership records for the project.
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |project_gid|path|string|true|Globally unique identifier for the project.|
-|user|query|any|false|The user to filter results on.|
+|user|query|string(email)|false|The user to filter results on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 |opt_expand|query|array[string]|false|Expand fields returned.|
@@ -13619,12 +14059,12 @@ Returns the compact task records for some filtered set of tasks. Use one or more
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|assignee|query|any|false|The assignee to filter tasks on.|
+|assignee|query|string(email)|false|The assignee to filter tasks on.|
 |project|query|integer|false|The project to filter tasks on.|
 |section|query|integer|false|The section to filter tasks on.|
 |workspace|query|integer|false|The workspace to filter tasks on.|
-|completed_since|query|any|false|Only return tasks that are either incomplete or that have been completed since this time.|
-|modified_since|query|any|false|Only return tasks that have been modified since the given time.|
+|completed_since|query|string(date-time)|false|Only return tasks that are either incomplete or that have been completed since this time.|
+|modified_since|query|string(date-time)|false|Only return tasks that have been modified since the given time.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 |opt_expand|query|array[string]|false|Expand fields returned.|
@@ -13911,12 +14351,194 @@ explicitly if you specify `projects` or a `parent` task instead.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|any|true|The task to create.|
+|body|body|object|true|The task to create.|
+|» data|body|object|false|The *task* is the basic object around which many operations in Asana are|
+|»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»» gid|body|string|false|Globally unique ID of the object, as a string.|
+|»» resource_type|body|string|false|The base type of this resource.|
+|»» name|body|string|false|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» created_at|body|string(date-time)|false|The time at which this resource was created.|
+|»» resource_subtype|body|string|false|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|»» assignee|body|any|false|none|
+|»» assignee_status|body|string|false|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
+|»» completed|body|boolean|false|True if the task is currently marked complete, false if not.|
+|»» completed_at|body|string(date-time)¦null|false|The time at which this task was completed, or null if the task is incomplete.|
+|»» custom_fields|body|[object]|false|Array of custom field values applied to the project. These represent|
+|»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» gid|body|string|false|Globally unique ID of the object, as a string.|
+|»»» resource_type|body|string|false|The base type of this resource.|
+|»»» name|body|string|false|The name of the object.|
+|»»» resource_subtype|body|string|false|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|»»» type|body|string|false|**Deprecated: new integrations should prefer the resource_subtype field.** The type of the custom field. Must be one of the given values.|
+|»»» enum_options|body|[object]|false|**Conditional**. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://asana.com/developers/api-reference/custom_fields#enum-options).|
+|»»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»»» gid|body|string|false|Globally unique ID of the object, as a string.|
+|»»»» resource_type|body|string|false|The base type of this resource.|
+|»»»» name|body|string|false|The name of the enum option.|
+|»»»» enabled|body|boolean|false|The color of the enum option. Defaults to ‘none’.|
+|»»»» color|body|string|false|Whether or not the enum option is a selectable value for the custom field.|
+|»»» enum_value|body|any|false|none|
+|»»» enabled|body|boolean|false|**Conditional**. Determines if the custom field is enabled or not.|
+|»»» text_value|body|string|false|**Conditional**. This string is the value of a text custom field.|
+|»»» description|body|string|false|[Opt In](/developers/documentation/getting-started/input-output-options). The description of the custom field.|
+|»»» precision|body|integer|false|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|»» dependencies|body|[object]|false|[Opt In](/developers/documentation/getting-started/input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the ID of the dependency.|
+|»»» id|body|integer|false|none|
+|»»» gid|body|string|false|none|
+|»» dependents|body|[object]|false|[Opt In](/developers/documentation/getting-started/input-output-options). Array of resources referencing tasks that depend on this task. The objects contain only the ID of the dependent.|
+|»»» id|body|integer|false|none|
+|»»» gid|body|string|false|none|
+|»» due_at|body|string(date)¦null|false|Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
+|»» due_on|body|string(date)¦null|false|Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
+|»» external|body|object|false|**OAuth Required**. **Conditional**. This field is returned only if external values are set or included by using [Opt In] (/developers/documentation/getting-started/input-output-options).|
+|»»» id|body|integer|false|none|
+|»»» gid|body|string|false|none|
+|»»» data|body|string|false|none|
+|»» followers|body|[object]|false|Array of users following this task.|
+|»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» gid|body|string|false|Globally unique ID of the object, as a string.|
+|»»» resource_type|body|string|false|The base type of this resource.|
+|»»» name|body|string|false|**Read-only except when same user as requester**. The user’s name.|
+|»» html_notes|body|string|false|[Opt In](/developers/documentation/getting-started/input-output-options). The notes of the text with formatting as HTML.|
+|»» hearted|body|boolean|false|**Deprecated - please use liked instead** True if the task is hearted by the authorized user, false if not.|
+|»» hearts|body|[object]|false|**Deprecated - please use likes instead** Array of users who have hearted this task.|
+|»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» gid|body|string|false|Globally unique ID of the object, as a string.|
+|»»» resource_type|body|string|false|The base type of this resource.|
+|»»» name|body|string|false|**Read-only except when same user as requester**. The user’s name.|
+|»» liked|body|boolean|false|True if the task is liked by the authorized user, false if not.|
+|»» likes|body|[object]|false|Array of users who have liked this task.|
+|»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» gid|body|string|false|Globally unique ID of the object, as a string.|
+|»»» resource_type|body|string|false|The base type of this resource.|
+|»»» name|body|string|false|**Read-only except when same user as requester**. The user’s name.|
+|»» memberships|body|[object]|false|**Create-only**. Array of projects this task is associated with and the section it is in. At task creation time, this array can be used to add the task to specific sections. After task creation, these associations can be modified using the `addProject` and `removeProject` endpoints. Note that over time, more types of memberships may be added to this property.|
+|»»» project|body|object|false|A generic Asana Object, containing a globally unique identifier.|
+|»»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»»» gid|body|string|false|Globally unique ID of the object, as a string.|
+|»»»» resource_type|body|string|false|The base type of this resource.|
+|»»»» name|body|string|false|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»»» section|body|object|false|A generic Asana Object, containing a globally unique identifier.|
+|»»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»»» gid|body|string|false|Globally unique ID of the object, as a string.|
+|»»»» resource_type|body|string|false|The base type of this resource.|
+|»»»» name|body|string|false|The name of the section (i.e. the text displayed as the section header).|
+|»»» modified_at|body|string(date-time)|false|The time at which this task was last modified.|
+|»»» notes|body|string|false|More detailed, free-form textual information associated with the task.|
+|»»» num_hearts|body|integer|false|**Deprecated - please use likes instead** The number of users who have hearted this task.|
+|»»» num_likes|body|integer|false|The number of users who have liked this task.|
+|»»» num_subtasks|body|integer|false|[Opt In](https://asana.com/developers/documentation/getting-started/input-output-options). The number of subtasks on this task.|
+|»»» parent|body|any|false|none|
+|»»» projects|body|[object]|false|**Create-only.** Array of projects this task is associated with. At task creation time, this array can be used to add the task to many projects at once. After task creation, these associations can be modified using the addProject and removeProject endpoints.|
+|»»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»»» gid|body|string|false|Globally unique ID of the object, as a string.|
+|»»»» resource_type|body|string|false|The base type of this resource.|
+|»»»» name|body|string|false|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»»» start_on|body|string(date)¦null|false|The day on which work begins for the task , or null if the task has|
+|»»» tags|body|[object]|false|**Create-only**. Array of tags associated with this task. This property may be specified on creation using just an array of tag IDs.  In order to change tags on an existing task use `addTag` and `removeTag`.|
+|»»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»»» gid|body|string|false|Globally unique ID of the object, as a string.|
+|»»»» resource_type|body|string|false|The base type of this resource.|
+|»»»» name|body|string|false|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»»»» followers|body|[object]|false|Array of users following this tag.|
+|»»»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»»»» gid|body|string|false|Globally unique ID of the object, as a string.|
+|»»»»» resource_type|body|string|false|The base type of this resource.|
+|»»»»» name|body|string|false|**Read-only except when same user as requester**. The user’s name.|
+|»»»» color|body|string|false|Color of the tag.|
+|»»»» workspace|body|object|false|A generic Asana Object, containing a globally unique identifier.|
+|»»»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»»»» gid|body|string|false|Globally unique ID of the object, as a string.|
+|»»»»» resource_type|body|string|false|The base type of this resource.|
+|»»»»» name|body|string|false|The name of the object.|
+|»»»» workspace|body|any|false|none|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 |opt_expand|query|array[string]|false|Expand fields returned.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
+
+#### Detailed descriptions
+
+** data**: The *task* is the basic object around which many operations in Asana are
+centered. In the Asana application, multiple tasks populate the middle
+pane according to some view parameters, and the set of selected tasks
+determines the more detailed information presented in the details pane.
+
+A *section*, at its core, is a task whose name ends with the colon
+character `:`. Sections are unique in that they will be included in the
+*memberships* field of task objects returned in the API when the task is
+within a section. They can also be used to manipulate the ordering of a
+task within a project.
+
+[Queries](https://asana.com/developers/api-reference/tasks#query) return
+a compact representation of each object which is typically the id and
+name fields. Interested in a specific set of fields or all of the fields?
+Use [field
+selectors](https://asana.com/developers/documentation/getting-started/input-output-options)
+to manipulate what data is included in a response.
+
+** custom_fields**: Array of custom field values applied to the project. These represent
+the custom field values recorded on this project for a particular
+custom field. For example, these custom field values will contain
+an `enum_value` property for custom fields of type `enum`, a
+`string_value` property for custom fields of type `string`, and
+so on. Please note that the `id` returned on each custom field
+value *is identical* to the `id` of the custom field, which
+allows referencing the custom field metadata through the
+`/custom_fields/custom_field-id` endpoint.
+
+** external**: **OAuth Required**. **Conditional**. This field is returned only if external values are set or included by using [Opt In] (/developers/documentation/getting-started/input-output-options).
+The external field allows you to store app-specific metadata on tasks, including an id that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external id is set, you can use the notation `external:custom_id` to reference your object anywhere in the API where you may use the original object id. See the page on Custom External Data for more details.
+
+** html_notes**: [Opt In](/developers/documentation/getting-started/input-output-options). The notes of the text with formatting as HTML.
+**Note: This field is under active migration—please see our blog post for more information.**
+
+** modified_at**: The time at which this task was last modified.
+
+**Note:** This does not currently reflect any changes in
+associations such as projects or comments that may have been
+added or removed from the task.
+
+** start_on**: The day on which work begins for the task , or null if the task has
+no start date. This takes a date with `YYYY-MM-DD` format.
+
+**Note:** `due_on` or `due_at` must be present in the request when
+setting or unsetting the `start_on` parameter.
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+| resource_subtype|default_task|
+| resource_subtype|milestone|
+| resource_subtype|section|
+| assignee_status|today|
+| assignee_status|upcoming|
+| assignee_status|later|
+| assignee_status|new|
+| assignee_status|inbox|
+| type|text|
+| type|enum|
+| type|number|
+| color|dark-pink|
+| color|dark-green|
+| color|dark-blue|
+| color|dark-red|
+| color|dark-teal|
+| color|dark-brown|
+| color|dark-orange|
+| color|dark-purple|
+| color|dark-warm-gray|
+| color|light-pink|
+| color|light-green|
+| color|light-blue|
+| color|light-red|
+| color|light-teal|
+| color|light-brown|
+| color|light-orange|
+| color|light-purple|
+| color|light-warm-gray|
 
 > 201 Response
 
@@ -18730,7 +19352,7 @@ Returns the compact records for all teams to which the given user is assigned.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|user_gid|path|any|true|An identifier for the user. Can be one of an email address, the globally unique identifier for the user, or the keyword `me` to indicate the current user making the request.|
+|user_gid|path|string(email)|true|An identifier for the user. Can be one of an email address, the globally unique identifier for the user, or the keyword `me` to indicate the current user making the request.|
 |organization_gid|query|integer|true|The workspace or organization to filter teams on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
@@ -22288,521 +22910,27 @@ Returns an empty data record.
 > 200 Response
 
 ```json
-{}
+{
+  "data": {}
+}
 ```
 
 <h3 id="remove-a-user-from-a-workspace-or-organization-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|The user was removed successfully to the workspace or organization.|Inline|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|The user was removed successfully to the workspace or organization.|[Empty](#schemaempty)|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
-
-<h3 id="remove-a-user-from-a-workspace-or-organization-responseschema">Response Schema</h3>
 
 <hr class="full-line">
-<h1 id="asana-portfolio-memberships">Portfolio Memberships</h1>
-
-<hr class="half-line">
-## Get a list of portfolio memberships
-
-<a id="opIdgetPortfolioMemberships"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X GET https://app.asana.com/api/1.0/portfolio_memberships \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/portfolio_memberships',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/portfolio_memberships', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/portfolio_memberships', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/portfolio_memberships");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/portfolio_memberships',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-`GET /portfolio_memberships`
-
-Returns a list of portfolio memberships in compact representation. You must specify `portolio`, `portfolio` and `user`, or `workspace` and `user`.
-
-<h3 id="get-a-list-of-portfolio-memberships-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|portfolio|query|string|false|The portfolio to filter results on.|
-|workspace|query|string|false|The workspace to filter results on.|
-|user|query|any|false|The user to filter results on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
-
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "portfolio",
-      "name": "Bug Task"
-    }
-  ]
-}
-```
-
-<h3 id="get-a-list-of-portfolio-memberships-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved portfolio memberships.|[Portfolio](#schemaportfolio)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
-
-<hr class="half-line">
-## Get the portfolio memberships for a portfolio
-
-<a id="opIdgetPortfolioMembershipsForPortfolio"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/portfolio_memberships \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/portfolio_memberships',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/portfolio_memberships', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/portfolio_memberships', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/portfolio_memberships");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/portfolio_memberships',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-`GET /portfolios/{portfolio_gid}/portfolio_memberships`
-
-Returns the compact portfolio membership records for the portfolio.
-
-<h3 id="get-the-portfolio-memberships-for-a-portfolio-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
-|user|query|any|false|The user to filter results on.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
-
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "portfolio_membership",
-      "user": {}
-    }
-  ]
-}
-```
-
-<h3 id="get-the-portfolio-memberships-for-a-portfolio-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested portfolio's memberships.|[PortfolioMembership](#schemaportfoliomembership)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
-
-<hr class="half-line">
-## Get a portfolio membership
-
-<a id="opIdgetPortfolioMembership"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X GET https://app.asana.com/api/1.0/portfolio_memberships/{portfolio_gid} \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/portfolio_memberships/{portfolio_gid}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/portfolio_memberships/{portfolio_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/portfolio_memberships/{portfolio_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/portfolio_memberships/{portfolio_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/portfolio_memberships/{portfolio_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-`GET /portfolio_memberships/{portfolio_gid}`
-
-Returns the complete portfolio record for a single portfolio membership.
-
-<h3 id="get-a-portfolio-membership-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
-
-> 200 Response
-
-```json
-{
-  "data": {
-    "id": 12345,
-    "gid": "12345",
-    "resource_type": "portfolio_membership",
-    "user": {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "user",
-      "name": "Greg Sanchez"
-    },
-    "portfolio": {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "portfolio",
-      "name": "Bug Task"
-    }
-  }
-}
-```
-
-<h3 id="get-a-portfolio-membership-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested portfolio membership.|[PortfolioMembership](#schemaportfoliomembership)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 # Schemas
+
+<hr>
 
 <h2 id="tocS_Attachment">Attachment</h2>
 <!-- backwards compatibility -->
@@ -22842,6 +22970,8 @@ An *attachment* object represents any file attached to a task in Asana, whether 
 |parent|any|false|none|none|
 |view_url|string(uri)¦null|false|read-only|The URL where the attachment can be viewed, which may be friendlier to users in a browser than just directing them to a raw file. May be null if no view URL exists for the service.|
 
+<hr>
+
 <h2 id="tocS_AttachmentCompact">AttachmentCompact</h2>
 <!-- backwards compatibility -->
 <a id="schemaattachmentcompact"></a>
@@ -22869,6 +22999,8 @@ A generic Asana Object, containing a globally unique identifier.
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|read-only|The name of the file.|
+
+<hr>
 
 <h2 id="tocS_BatchRequest">BatchRequest</h2>
 <!-- backwards compatibility -->
@@ -22923,12 +23055,14 @@ A request object for use in a batch request.
 |method|patch|
 |method|head|
 
-<h2 id="tocS_BatchResponse">BatchResponse</h2>
+<hr>
+
+<h2 id="tocS_BatchResult">BatchResult</h2>
 <!-- backwards compatibility -->
-<a id="schemabatchresponse"></a>
-<a id="schema_BatchResponse"></a>
-<a id="tocSbatchresponse"></a>
-<a id="tocsbatchresponse"></a>
+<a id="schemabatchresult"></a>
+<a id="schema_BatchResult"></a>
+<a id="tocSbatchresult"></a>
+<a id="tocsbatchresult"></a>
 
 ```json
 {
@@ -22957,6 +23091,8 @@ A response object returned from a batch request.
 |status_code|integer|false|none|The HTTP status code that the invoked endpoint returned.|
 |headers|object|false|none|A map of HTTP headers specific to this result. This is primarily used for returning a `Location` header to accompany a `201 Created` result.  The parent HTTP response will contain all common headers.|
 |body|object|false|none|The JSON body that the invoked endpoint returned.|
+
+<hr>
 
 <h2 id="tocS_CustomField">CustomField</h2>
 <!-- backwards compatibility -->
@@ -23036,6 +23172,8 @@ Attempting to edit a locked custom field will return HTTP error code
 |type|enum|
 |type|number|
 
+<hr>
+
 <h2 id="tocS_CustomFieldCompact">CustomFieldCompact</h2>
 <!-- backwards compatibility -->
 <a id="schemacustomfieldcompact"></a>
@@ -23099,6 +23237,8 @@ A generic Asana Object, containing a globally unique identifier.
 |type|enum|
 |type|number|
 
+<hr>
+
 <h2 id="tocS_CustomFieldSetting">CustomFieldSetting</h2>
 <!-- backwards compatibility -->
 <a id="schemacustomfieldsetting"></a>
@@ -23133,6 +23273,8 @@ Custom fields are attached to a particular project with the Custom Field Setting
 |parent|any|false|none|none|
 |custom_field|any|false|none|none|
 
+<hr>
+
 <h2 id="tocS_CustomFieldSettingCompact">CustomFieldSettingCompact</h2>
 <!-- backwards compatibility -->
 <a id="schemacustomfieldsettingcompact"></a>
@@ -23158,6 +23300,8 @@ A generic Asana Object, containing a globally unique identifier.
 |id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
+
+<hr>
 
 <h2 id="tocS_EnumOption">EnumOption</h2>
 <!-- backwards compatibility -->
@@ -23217,6 +23361,8 @@ An enum options list can be reordered with the `POST
 |enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
 |color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
 
+<hr>
+
 <h2 id="tocS_EnumOptionCompact">EnumOptionCompact</h2>
 <!-- backwards compatibility -->
 <a id="schemaenumoptioncompact"></a>
@@ -23275,6 +23421,8 @@ An enum options list can be reordered with the `POST
 |enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
 |color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
 
+<hr>
+
 <h2 id="tocS_Error">Error</h2>
 <!-- backwards compatibility -->
 <a id="schemaerror"></a>
@@ -23315,6 +23463,8 @@ error.
 |» message|string|false|read-only|Message providing more detail about the error that occurred, if available.|
 |» help|string|false|read-only|Additional information directing developers to resources on how to address and fix the problem, if available.|
 |» phrase|string|false|read-only|**500 errors only**. A unique error phrase which can be used when contacting developer support to help identify the exact occurrence of the problem in Asana’s logs.|
+
+<hr>
 
 <h2 id="tocS_Event">Event</h2>
 <!-- backwards compatibility -->
@@ -23395,6 +23545,8 @@ depending on load on the service.
 |» name|string|false|none|The name of the object.|
 |created_at|string(date-time)|false|read-only|The timestamp when the event occurred.|
 
+<hr>
+
 <h2 id="tocS_Job">Job</h2>
 <!-- backwards compatibility -->
 <a id="schemajob"></a>
@@ -23453,6 +23605,8 @@ A *job* is an object representing a process that handles asynchronous work.
 |---|---|
 |status|in_progress|
 |status|completed|
+
+<hr>
 
 <h2 id="tocS_OrganizationExport">OrganizationExport</h2>
 <!-- backwards compatibility -->
@@ -23520,6 +23674,8 @@ Accounts](https://asana.com/guide/help/premium/service-accounts) of an
 |state|finished|
 |state|error|
 
+<hr>
+
 <h2 id="tocS_OrganizationExportObjectResponse">OrganizationExportObjectResponse</h2>
 <!-- backwards compatibility -->
 <a id="schemaorganizationexportobjectresponse"></a>
@@ -23570,6 +23726,8 @@ Accounts](https://asana.com/guide/help/premium/service-accounts) of an
 |state|started|
 |state|finished|
 |state|error|
+
+<hr>
 
 <h2 id="tocS_Portfolio">Portfolio</h2>
 <!-- backwards compatibility -->
@@ -23657,6 +23815,8 @@ update.
 |color|light-purple|
 |color|light-warm-gray|
 
+<hr>
+
 <h2 id="tocS_PortfolioCompact">PortfolioCompact</h2>
 <!-- backwards compatibility -->
 <a id="schemaportfoliocompact"></a>
@@ -23684,6 +23844,8 @@ A generic Asana Object, containing a globally unique identifier.
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the object.|
+
+<hr>
 
 <h2 id="tocS_PortfolioMembership">PortfolioMembership</h2>
 <!-- backwards compatibility -->
@@ -23733,6 +23895,8 @@ This object determines if a user is a member of a portfolio.
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|The name of the object.|
 
+<hr>
+
 <h2 id="tocS_PortfolioMembershipCompact">PortfolioMembershipCompact</h2>
 <!-- backwards compatibility -->
 <a id="schemaportfoliomembershipcompact"></a>
@@ -23769,6 +23933,8 @@ A generic Asana Object, containing a globally unique identifier.
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|**Read-only except when same user as requester**. The user’s name.|
+
+<hr>
 
 <h2 id="tocS_Preview">Preview</h2>
 <!-- backwards compatibility -->
@@ -23807,6 +23973,8 @@ This is read-only except for a small group of whitelisted apps.
 |text|string|false|none|Text for the body of the preview.|
 |title|string|false|none|Text to display as the title.|
 |title_link|string|false|none|Where to title will link to.|
+
+<hr>
 
 <h2 id="tocS_Project">Project</h2>
 <!-- backwards compatibility -->
@@ -24042,6 +24210,8 @@ followers from a project will not affect membership.
 |section_migration_status|in_progress|
 |section_migration_status|completed|
 
+<hr>
+
 <h2 id="tocS_ProjectCompact">ProjectCompact</h2>
 <!-- backwards compatibility -->
 <a id="schemaprojectcompact"></a>
@@ -24069,6 +24239,8 @@ A generic Asana Object, containing a globally unique identifier.
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+
+<hr>
 
 <h2 id="tocS_ProjectMembership">ProjectMembership</h2>
 <!-- backwards compatibility -->
@@ -24127,6 +24299,8 @@ With the introduction of “comment-only” projects in Asana, a user’s member
 |write_access|full_write|
 |write_access|comment_only|
 
+<hr>
+
 <h2 id="tocS_ProjectMembershipCompact">ProjectMembershipCompact</h2>
 <!-- backwards compatibility -->
 <a id="schemaprojectmembershipcompact"></a>
@@ -24163,6 +24337,8 @@ A generic Asana Object, containing a globally unique identifier.
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|**Read-only except when same user as requester**. The user’s name.|
+
+<hr>
 
 <h2 id="tocS_ProjectStatus">ProjectStatus</h2>
 <!-- backwards compatibility -->
@@ -24211,6 +24387,8 @@ Project statuses can be created and deleted, but not modified.
 |color|yellow|
 |color|red|
 
+<hr>
+
 <h2 id="tocS_ProjectStatusCompact">ProjectStatusCompact</h2>
 <!-- backwards compatibility -->
 <a id="schemaprojectstatuscompact"></a>
@@ -24238,6 +24416,8 @@ A generic Asana Object, containing a globally unique identifier.
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |title|string|false|read-only|The title of the project status update.|
+
+<hr>
 
 <h2 id="tocS_Section">Section</h2>
 <!-- backwards compatibility -->
@@ -24292,6 +24472,8 @@ response.
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 
+<hr>
+
 <h2 id="tocS_SectionCompact">SectionCompact</h2>
 <!-- backwards compatibility -->
 <a id="schemasectioncompact"></a>
@@ -24319,6 +24501,8 @@ A generic Asana Object, containing a globally unique identifier.
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the section (i.e. the text displayed as the section header).|
+
+<hr>
 
 <h2 id="tocS_Story">Story</h2>
 <!-- backwards compatibility -->
@@ -24697,6 +24881,8 @@ such as creating or assigning tasks, or moving tasks between projects.
 |type|enum|
 |type|number|
 
+<hr>
+
 <h2 id="tocS_StoryCompact">StoryCompact</h2>
 <!-- backwards compatibility -->
 <a id="schemastorycompact"></a>
@@ -24732,6 +24918,8 @@ A generic Asana Object, containing a globally unique identifier.
 |created_by|any|false|none|none|
 |text|any|false|none|**Create-only**. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br><br>**Note:** This is not guaranteed to be stable for a given type of<br>story. For example, text for a reassignment may not always say<br>“assigned to …” as the text for a story can both be edited and<br>change based on the language settings of the user making the request.<br>Use the `resource_subtype` property to discover the action that<br>created the story.|
 |type|string|false|read-only|**Deprecated: new integrations should prefer the `resource_subtype` field.** The type of this story. For more fine-grained inspection of story types, see the [`resource_subtype`] (https://asana.com/developers/api-reference/stories#field-resource_subtype) property.|
+
+<hr>
 
 <h2 id="tocS_Tag">Tag</h2>
 <!-- backwards compatibility -->
@@ -24816,6 +25004,8 @@ tasks they are associated with.
 |color|light-purple|
 |color|light-warm-gray|
 
+<hr>
+
 <h2 id="tocS_TagCompact">TagCompact</h2>
 <!-- backwards compatibility -->
 <a id="schematagcompact"></a>
@@ -24843,6 +25033,8 @@ A generic Asana Object, containing a globally unique identifier.
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+
+<hr>
 
 <h2 id="tocS_Task">Task</h2>
 <!-- backwards compatibility -->
@@ -25121,6 +25313,8 @@ to manipulate what data is included in a response.
 |color|light-purple|
 |color|light-warm-gray|
 
+<hr>
+
 <h2 id="tocS_TaskCompact">TaskCompact</h2>
 <!-- backwards compatibility -->
 <a id="schemataskcompact"></a>
@@ -25148,6 +25342,8 @@ A generic Asana Object, containing a globally unique identifier.
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the object.|
+
+<hr>
 
 <h2 id="tocS_Team">Team</h2>
 <!-- backwards compatibility -->
@@ -25184,6 +25380,8 @@ organization. Each project in an organization is associated with a team.
 |html_description|string|false|none|[Opt In](/developers/documentation/getting-started/input-output-options). The description of the team with formatting as HTML.<br>**Note: This field is under active migration—please see our [blog post](https://asana.com/developers/news/new-rich-text) for more information.**|
 |organization|any|false|none|none|
 
+<hr>
+
 <h2 id="tocS_TeamCompact">TeamCompact</h2>
 <!-- backwards compatibility -->
 <a id="schemateamcompact"></a>
@@ -25211,6 +25409,8 @@ A generic Asana Object, containing a globally unique identifier.
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the object.|
+
+<hr>
 
 <h2 id="tocS_User">User</h2>
 <!-- backwards compatibility -->
@@ -25277,6 +25477,8 @@ user ID is accepted, to refer to the current authenticated user.
 |» email_domains|[string]|false|none|The email domains that are associated with this workspace.|
 |» is_organization|boolean|false|none|Whether the workspace is an *organization*.|
 
+<hr>
+
 <h2 id="tocS_UserCompact">UserCompact</h2>
 <!-- backwards compatibility -->
 <a id="schemausercompact"></a>
@@ -25304,6 +25506,8 @@ A generic Asana Object, containing a globally unique identifier.
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|**Read-only except when same user as requester**. The user’s name.|
+
+<hr>
 
 <h2 id="tocS_UserTaskList">UserTaskList</h2>
 <!-- backwards compatibility -->
@@ -25337,6 +25541,8 @@ A user’s “My Tasks” represent all of the tasks assigned to that user. It i
 |name|string|false|none|The name of the object.|
 |owner|any|false|none|none|
 |workspace|any|false|none|none|
+
+<hr>
 
 <h2 id="tocS_Webhook">Webhook</h2>
 <!-- backwards compatibility -->
@@ -25395,6 +25601,8 @@ are generated.
 |resource|any|false|none|none|
 |target|string(uri)|false|read-only|The URL to receive the HTTP POST.|
 
+<hr>
+
 <h2 id="tocS_WebhookEvent">WebhookEvent</h2>
 <!-- backwards compatibility -->
 <a id="schemawebhookevent"></a>
@@ -25424,6 +25632,8 @@ are generated.
 |resource|integer|false|read-only|The resource ID the event occurred on.<br><br>**Note**: The resource that triggered the event may be different from<br>the one that the events were requested for. For example, a<br>subscription to a project will contain events for tasks contained<br>within the project.|
 |type|string|false|read-only|The type of the resource that generated the event.<br><br>**Note**: Currently, only tasks, projects and stories generate<br>events.|
 |user|integer¦null|false|read-only|The ID of the user who triggered the event.<br><br>**Note**: The event may be triggered by a different user than the<br>subscriber. For example, if user A subscribes to a task and user B<br>modified it, the event’s user will be user B. Note: Some events are<br>generated by the system, and will have `null` as the user. API<br>consumers should make sure to handle this case.|
+
+<hr>
 
 <h2 id="tocS_Workspace">Workspace</h2>
 <!-- backwards compatibility -->
@@ -25472,6 +25682,8 @@ parameter.
 |name|string|false|none|The name of the object.|
 |email_domains|[string]|false|none|The email domains that are associated with this workspace.|
 |is_organization|boolean|false|none|Whether the workspace is an *organization*.|
+
+<hr>
 
 <h2 id="tocS_WorkspaceCompact">WorkspaceCompact</h2>
 <!-- backwards compatibility -->

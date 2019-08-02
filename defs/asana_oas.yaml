@@ -247,6 +247,9 @@ tags:
 
       Portfolios have some restrictions on size. Each portfolio has a max of 250 items
       and, like projects, a max of 20 custom fields.
+  - name: Portfolio Memberships
+    description: >-
+      This object determines if a user is a member of a portfolio.
   - name: Projects
     description: >-
       A `project` represents a prioritized list of tasks in Asana or a board
@@ -478,13 +481,8 @@ components:
       in: query
       description: The user to filter results on.
       schema:
-        oneOf:
-          - type: string
-          - type: string
-            enum:
-              - me
-          - type: string
-            format: email
+        type: string
+        format: email
       examples:
         id:
           summary: A globally unique identifier for the user
@@ -830,7 +828,7 @@ components:
       required:
         - relative_path
         - method
-    BatchResponse:
+    BatchResult:
       description: A response object returned from a batch request.
       type: object
       properties:
@@ -855,6 +853,18 @@ components:
               completed: false
               name: Hello, world!
               notes: How are you today?
+    BatchResultObject:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/BatchResult'
+    BatchResultArray:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/BatchResult'
     CustomField:
       allOf:
         - $ref: '#/components/schemas/CustomFieldCompact'
@@ -1149,6 +1159,18 @@ components:
                 custom field.
               type: string
               example: blue
+    EnumOptionObject:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/EnumOption'
+    EnumOptionArray:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnumOptionCompact'
     Error:
       description: |-
         Sadly, sometimes requests to the API are not successful. Failures can
@@ -2942,13 +2964,8 @@ components:
           type: object
           properties:
             user:
-              oneOf:
-                - type: integer
-                - type: string
-                  enum:
-                    - me
-                - type: string
-                  format: email
+              type: string
+              format: email
               example: 12345
     UserTaskList:
       allOf:
@@ -3425,12 +3442,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/BatchResponse'
+                $ref: '#/components/schemas/BatchResultArray'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -3521,13 +3533,12 @@ paths:
                   allOf:
                     - $ref: '#/components/schemas/CustomField'
                     - type: object
-                      required:
-                        - workspace
                       properties:
                         workspace:
                           type: integer
                           description: The workspace to create a custom field in.
                           example: 1331
+                          required: true
       responses:
         201:
           description: Custom field successfully created.
@@ -3735,10 +3746,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  data:
-                    $ref: '#/components/schemas/EnumOption'
+                $ref: '#/components/schemas/EnumOptionObject'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -3791,37 +3799,30 @@ paths:
                           type: integer
                           description: The ID of the enum option to relocate.
                           example: 97285
-                    - oneOf:
-                        - type: object
-                          properties:
-                            before_enum_option:
-                              type: integer
-                              description: >-
-                                An existing enum option within this custom field
-                                before which the new enum option should be
-                                inserted. Cannot be provided together with
-                                after_enum_option.
-                              example: 12345
-                        - type: object
-                          properties:
-                            after_enum_option:
-                              type: integer
-                              description: >-
-                                An existing enum option within this custom field
-                                after which the new enum option should be inserted.
-                                Cannot be provided together with
-                                before_enum_option.
-                              example: 12345
+                        before_enum_option:
+                          type: integer
+                          description: >-
+                            An existing enum option within this custom field
+                            before which the new enum option should be
+                            inserted. Cannot be provided together with
+                            after_enum_option.
+                          example: 12345
+                          required: true
+                        after_enum_option:
+                          type: integer
+                          description: >-
+                            An existing enum option within this custom field
+                            after which the new enum option should be inserted.
+                            Cannot be provided together with
+                            before_enum_option.
+                          example: 12345
       responses:
         200:
           description: Custom field enum option successfully reordered.
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  data:
-                    $ref: '#/components/schemas/EnumOption'
+                $ref: '#/components/schemas/EnumOptionObject'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -3875,10 +3876,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  data:
-                    $ref: '#/components/schemas/EnumOption'
+                $ref: '#/components/schemas/EnumOptionObject'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -6303,13 +6301,8 @@ paths:
             **Note**: If you specify `assignee`, you must also specify the
             `workspace` to filter on.
           schema:
-            oneOf:
-              - type: integer
-              - type: string
-                enum:
-                  - me
-              - type: string
-                format: email
+            type: string
+            format: email
           examples:
             id:
               summary: A globally unique identifier for the user
@@ -6354,13 +6347,9 @@ paths:
             Only return tasks that are either incomplete or that have been
             completed since this time.
           schema:
-            oneOf:
-              - type: string
-                format: date-time
-                example: '2012-02-22T02:06:58.158Z'
-              - type: string
-                enum:
-                  - now
+            type: string
+            format: date-time
+            example: '2012-02-22T02:06:58.158Z'
           example: '2012-02-22T02:06:58.158Z'
         - name: modified_since
           in: query
@@ -6374,13 +6363,9 @@ paths:
             subtask) is modified. Actions that count as modifying the task
             include assigning, renaming, completing, and adding stories.
           schema:
-            oneOf:
-              - type: string
-                format: date-time
-                example: '2012-02-22T02:06:58.158Z'
-              - type: string
-                enum:
-                  - now
+            type: string
+            format: date-time
+            example: '2012-02-22T02:06:58.158Z'
           example: '2012-02-22T02:06:58.158Z'
       responses:
         200:
@@ -7922,13 +7907,8 @@ paths:
           current user making the request.
         required: true
         schema:
-          oneOf:
-            - type: string
-            - type: string
-              enum:
-                - me
-            - type: string
-              format: email
+          type: string
+          format: email
         examples:
           id:
             summary: A globally unique identifier for the user
@@ -8962,7 +8942,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/EmptyObject'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
