@@ -81,7 +81,7 @@ class AsanaRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
     elsif num_common_responses > 1
       common_expander = "<tr class='common-items-toggle'><td class='show-common-items' colspan=6>&darr; Show Common Responses &darr;</td><td class='hide-common-items' colspan=6>&uarr; Hide Common Responses &uarr;</td></tr>"
     end
-    return "<table class='asana-table'><thead>"+header+"</thead><tbody>"+result_rows.join('')+common_expander+"</tbody></table>"
+    return "<div class='table-holder'><table class='asana-table'><thead>"+header+"</thead><tbody>"+result_rows.join('')+common_expander+"</tbody></table></div>"
   end
 
   def table_cell(content, alignment)

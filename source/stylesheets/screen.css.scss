@@ -364,7 +364,7 @@ html, body {
     clear: both;
   }
 
-  &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl {
+  &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>.table-holder, &>ul, &>ol, &>aside, &>dl {
     margin-right: $examples-width;
     padding: 0 $main-padding;
     box-sizing: border-box;
@@ -643,6 +643,19 @@ html, body {
   %right-col + %left-col {
     margin-top: $main-padding;
   }
+
+  .page-wrapper {
+    .content {
+      .table-holder {
+        width: 100%;
+        margin-right: 0;
+        padding: 0;
+        table {
+          margin: 0;
+        }
+      }
+    }
+  }
 }
 
 code {
@@ -688,9 +701,16 @@ code {
     border-radius: 4px;
   }
 
+  .table-holder {
+    width: 100% - $examples-width - $table-padding - $table-padding;
+    overflow-x: scroll;
+    clear: none;
+    margin-right: 0;
+  }
+
   table {
     display: table;
-    width: 100% - $examples-width - $table-padding - $table-padding;
+    width: 100%;
     padding: 0;
     margin-left: $table-padding;
     margin-right: $table-padding;
