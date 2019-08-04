@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>Ampron API</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;json&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -211,233 +211,452 @@
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
+              <a href="#" data-language-name="json">JSON</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
         </div>
         <ul class="search-results"></ul>
-      <ul id="toc" class="toc-list-h1">
+      <div id="toc" class="toc-list-h1">
           <li>
-            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="introduction">Introduction</a>
           </li>
           <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#communication-protocol" class="toc-h1 toc-link" data-title="communication-protocol">Communication Protocol</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#general-view" class="toc-h2 toc-link" data-title="general-view">General View</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
+                    <a href="#method-syntax-and-semantics" class="toc-h2 toc-link" data-title="method-syntax-and-semantics">Method, Syntax and Semantics</a>
                   </li>
                   <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#variables-and-requests" class="toc-h2 toc-link" data-title="variables-and-requests">Variables and Requests</a>
+                  </li>
+                  <li>
+                    <a href="#areadata" class="toc-h2 toc-link" data-title="areadata">AreaData</a>
+                  </li>
+                  <li>
+                    <a href="#status-responses" class="toc-h2 toc-link" data-title="status-responses">Status Responses</a>
+                  </li>
+                  <li>
+                    <a href="#addressing" class="toc-h2 toc-link" data-title="addressing">Addressing</a>
+                  </li>
+                  <li>
+                    <a href="#numbering" class="toc-h2 toc-link" data-title="numbering">Numbering</a>
+                  </li>
+                  <li>
+                    <a href="#encoding-of-url-query-parameters" class="toc-h2 toc-link" data-title="encoding-of-url-query-parameters">Encoding of URL Query Parameters</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+            <a href="#configuration" class="toc-h1 toc-link" data-title="configuration">Configuration</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#configurable-items" class="toc-h2 toc-link" data-title="configurable-items">Configurable Items</a>
+                  </li>
+                  <li>
+                    <a href="#listening-port" class="toc-h2 toc-link" data-title="listening-port">Listening Port</a>
+                  </li>
+                  <li>
+                    <a href="#displays-group" class="toc-h2 toc-link" data-title="displays-group">Displays Group</a>
+                  </li>
+                  <li>
+                    <a href="#display-id" class="toc-h2 toc-link" data-title="display-id">Display ID</a>
+                  </li>
+                  <li>
+                    <a href="#display-ip-and-port" class="toc-h2 toc-link" data-title="display-ip-and-port">Display IP and Port</a>
+                  </li>
+                  <li>
+                    <a href="#display-metaname" class="toc-h2 toc-link" data-title="display-metaname">Display Metaname</a>
+                  </li>
+                  <li>
+                    <a href="#display-controller-type" class="toc-h2 toc-link" data-title="display-controller-type">Display Controller Type</a>
+                  </li>
+                  <li>
+                    <a href="#feedback-server-ip-and-port" class="toc-h2 toc-link" data-title="feedback-server-ip-and-port">Feedback Server IP and port</a>
+                  </li>
+                  <li>
+                    <a href="#display-size" class="toc-h2 toc-link" data-title="display-size">Display Size</a>
+                  </li>
+                  <li>
+                    <a href="#display-layout-management" class="toc-h2 toc-link" data-title="display-layout-management">Display Layout Management</a>
+                  </li>
+                  <li>
+                    <a href="#area-coordinates" class="toc-h2 toc-link" data-title="area-coordinates">Area Coordinates</a>
+                  </li>
+                  <li>
+                    <a href="#area-types" class="toc-h2 toc-link" data-title="area-types">Area Types</a>
+                  </li>
+                  <li>
+                    <a href="#monitoring-and-bite" class="toc-h2 toc-link" data-title="monitoring-and-bite">Monitoring and BITE</a>
+                  </li>
+                  <li>
+                    <a href="#logging" class="toc-h2 toc-link" data-title="logging">Logging</a>
+                  </li>
+              </ul>
           </li>
-      </ul>
+          <li>
+            <a href="#errors" class="toc-h1 toc-link" data-title="errors">Errors</a>
+          </li>
+      </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='https://www.ampron.eu/#contact' target="_blank">Send Us Questions</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>This document describes the main aspects for configuration and communication of Smart LED Display System provided by Ampron. The  purpose is to detail the configuration and communication protocol for the use by third party integrations of our displays.
+AmpronLED software is designed to drive and monitor the status of Smart LED Display Systems (SLDS) manufactured by Ampron. Our LED display hardware and AmpronLED software together combine the solution that we define as Smart LED Display System.</p>
 
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>Current API is composed to define the ways to configure and communicate with the software. General approach, method, syntax and semantics are defined in the following chapters.</p>
 
-<p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p>Communication protocol is defined to a level of technical detail which should assure clear understanding of how to drive, monitor and manage the software and displays. Communication methods and syntax are considered final and remain unchangeable without written agreement between both parties.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<p>Following is structured in a way that at the left side you will see descriptions and at the right side are the example values.</p>
+<h1 id='communication-protocol'>Communication Protocol</h1>
+<p>This chapter is intended to describe the communication concept and protocol between Third Party Communication Module (TPCM) and AmpronLED software for operational environment. Communication protocol is closely related to the configuration of AmpronLED software.
+Additional requirements to the LED Displays control software will be inherited from the proposal or the Client specific Final Design Document (FDD), additionally some functionality will be modified, if needed, during design meetings.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+<p>Main Communication Process:</p>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-</blockquote>
+<p><strong>PHASE1</strong>
+-   Third Party Communication Module (TPCM) sends control message to AmpronLED</p>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<p><strong>PHASE2</strong>
+-   AmpronLED sends data to Smart LED Display System (SLDS)</p>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<p><strong>PHASE3</strong>
+-   SLDS reports back to TPCM through ApronLED with the status message</p>
+<h2 id='general-view'>General View</h2>
+<p>Complete system is composed of the following components:</p>
 
-<p><code>Authorization: meowmeowmeow</code></p>
+<ul>
+<li>Third Party Communication Module</li>
+<li>AmpronLED Software</li>
+<li>SLDS Display Units</li>
+<li>Communication Network</li>
+</ul>
 
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p><strong>Third party communication module</strong> is responsible for sending control messages and receiving status messages.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<p><strong>AmpronLED Software</strong> is responsible for receiving the control messages from TPCM, sending out status messages to TPCM and communicating with SLDS Unit(s).</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+<p><em>Note: as for generalization purposes, only Ampron standard software with its communication format, syntax and semantics are desicribed. Variants or other formats are agreed in Design Document during production phase.</em></p>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<p><strong>SLDS Display Units</strong> are the visualization units (LED displays) which provide the visual results of communication between Third Party communication module and AmpronLED software.</p>
+
+<p><strong>Communication Network</strong> is considered to include all equipment and measures between TPCM, AmpronLED and SLDS Display Units.</p>
+
+<p><img src="images/Ampron_LED_Communication_Overview.png" alt="Ampron LED Communication Overview" /></p>
+<h2 id='method-syntax-and-semantics'>Method, Syntax and Semantics</h2><h3 id='method'>Method</h3>
+<p>Messaging between TPCM and AmpronLED is performed by using <strong>HTTP GET</strong> method in both directions.</p>
+<h3 id='syntax'>Syntax</h3>
+<p>Control message format between TPCM and AmpronLED is HTTP Request:</p>
+
+<p><code>GET http://ipaddress:port/slds?nameX=valueX&amp;nameY=valueY&amp;nameZ=valueZ</code></p>
+
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Default</th>
+<th>Message element</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td><code>http://</code></td>
+<td>hypertext transfer protocol identifier, constant string</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td><code>ipaddress</code></td>
+<td>IP address of the server where AmpronLED Software or TPCM is installed</td>
+</tr>
+<tr>
+<td><code>:port</code></td>
+<td>communication port which is listened by TPCM or AmpronLED,integer 1025…65535</td>
+</tr>
+<tr>
+<td><code>/slds?</code></td>
+<td>resource request, constant string</td>
+</tr>
+<tr>
+<td><code>nameX=valueX</code></td>
+<td>message pairs/AreaData, predefined alphanumeric pairs</td>
+</tr>
+<tr>
+<td><code>&amp;</code></td>
+<td>separator, constant character</td>
 </tr>
 </tbody></table>
+<h3 id='semantics'>Semantics</h3>
+<p><code>nameX = valueX</code> - nameX is variable identifier and valueX is value of variable</p>
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p>There are five types of variables:</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<ul>
+<li>Layouts</li>
+<li>AreaData</li>
+<li>Status responses </li>
+<li>Addressing</li>
+<li>Numbering</li>
+</ul>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+<p>Please see next chapter for details</p>
+<h2 id='variables-and-requests'>Variables and Requests</h2><h3 id='layouts'>Layouts</h3>
+<p>Layouts are configurable views of LED displays. There can be multiple layouts for every single display. However, from communications point of view, only one layout can be defined in a single GET request.</p>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+<p>Layouts are defined in config.json file, inside the block named “layout”.</p>
+
+<p><code>GET http://ipaddress:port/slds?id=GATE_2&amp;layout=vehiclenumber&amp;nameZ=valueZ&amp;inumber=XXXXX</code></p>
+<h2 id='areadata'>AreaData</h2>
+<p>AreaDatas are configurable sections (Areas) in every Layout. There can be multiple Areas in one Layout. From communications point of view, if there are nameX=valueX pairs in the GET request, which are not described in configuration file, then the request will be disregarded as faulty.
+If there are no pairs or less pairs than defined in Area configuration, the request will be handled as request for blank screen or blank area respectively. There are 3 types of AreaData (static text, live text and images):</p>
+
+<p><code>GET http://ipaddress:port/slds?id=GATE_2&amp;layout=vehiclenumber&amp;kiosk=21&amp;plate=123ABC&amp;inumber=XXXXX</code></p>
+<h2 id='status-responses'>Status Responses</h2><h3 id='success'>Success</h3>
+<p>AmpronLED software confirms the successful control message execution by responding with HTTP GET.</p>
+
+<p><code>GET http://ipaddress:port/slds?confirm=1&amp;inumber=XXXXX</code></p>
+<h3 id='failed'>Failed</h3>
+<p>AmpronLED software responds with unsuccessful control message execution by responding with HTTP GET.</p>
+
+<p><code>GET http://ipaddress:port/slds?confirm=0&amp;inumber=XXXXX</code></p>
+<h3 id='fault'>Fault</h3>
+<p>AmpronLED software responds to faulty command by responding with HTTP GET.</p>
+
+<p><code>GET http://ipaddress:port/slds?confirm=2&amp;inumber=XXXXX</code></p>
+<h2 id='addressing'>Addressing</h2>
+<p>It is advised to use maximum 99 SLDS units operated by one AmpronLED instance, usually multiple instances are used if there are more SLDS units in the system:</p>
+
+<p>SLDS unit identifier -&gt; variable nameX is “id”, value is string max 255 chars</p>
+
+<p><code>GET http://ipaddress:port/slds?id=GATE_2&amp;layout=vehiclenumber&amp;kiosk=21&amp;plate=123ABC&amp;inumber=XXXXX</code></p>
+<h2 id='numbering'>Numbering</h2>
+<p>The numbering is done by TPCM (Third Party Communication Module), AmpronLED answers with the string provided by TPCM:</p>
+
+<p>Instructions sequence number -&gt; variable <code>nameX</code> is <code>inumber</code>, value is string of reasonable lenght </p>
+
+<p><code>GET http://ipaddress:port/slds?id=GATE_2&amp;layout=vehiclenumber&amp;kiosk=21&amp;plate=123ABC&amp;inumber=XXXXX</code></p>
+<h2 id='encoding-of-url-query-parameters'>Encoding of URL Query Parameters</h2>
+<p>Characters from the unreserved set are represented as is without translation, other characters are converted to bytes according to UTF-8, and then percent-encoded.
+See <a href='https://en.wikipedia.org/wiki/Percent-encoding' target="_blank">Wikipedia Percent Encoding</a></p>
+<h1 id='configuration'>Configuration</h1>
+<p>Main configuration is set in a <code>config.json</code> file. Other configuration items are defined in various files and are linked to a main file according to specific needs.
+After changes to configuration files server needs to be restarted.</p>
+<h2 id='configurable-items'>Configurable Items</h2><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"port"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9199"</span><span class="p">,</span><span class="w">
+
+    </span><span class="s2">"displays"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"GATE_OUT2"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+        </span><span class="s2">"displayName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"anyname"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"displayIp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"192.168.100.100"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"displayPort"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9551"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"controllerType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"T430"</span><span class="p">,</span><span class="w">
+
+            </span><span class="s2">"confirmIp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"confirmPort"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9098"</span><span class="p">,</span><span class="w">
+
+            </span><span class="s2">"displayHeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"160"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"displayWidth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"96"</span><span class="p">,</span><span class="w">
+
+            </span><span class="s2">"layout"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"vehicle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"numberplate"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"coordinates"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0 0 100 29"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"align"</span><span class="p">:</span><span class="w"> </span><span class="s2">"center"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"fontSize"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"fontColor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"255 255 255"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"infotext"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"coordinates"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0 30 100 69"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"static"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"align"</span><span class="p">:</span><span class="w"> </span><span class="s2">"center"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"fontSize"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"fontColor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"255 255 255"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"21"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Some static text"</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"arrow"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"coordinates"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0 70 100 100"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"S"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fwd.bmp"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"RE"</span><span class="p">:</span><span class="w"> </span><span class="s2">"left.bmp"</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"all"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"coordinates"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0 0 100 100"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"WAIT"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pleasewait.bmp"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"CLOSED"</span><span class="p">:</span><span class="w"> </span><span class="s2">"closed.bmp"</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
+
 </span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
+<ul>
+<li>Server listning port</li>
+<li>Display group name</li>
+<li>Display ID</li>
+<li>Display IP and port</li>
+<li>Display metaname</li>
+<li>Display controller type</li>
+<li>Feedback server IP and port</li>
+<li>Display height</li>
+<li>Display width</li>
+<li>Display layout</li>
+<li>Display areas</li>
+<li>Content type</li>
+<li>Text based content alignement</li>
+<li>Text based content font size</li>
+<li>Text based content font color</li>
+<li>Picture based content parameters</li>
+</ul>
+<h2 id='listening-port'>Listening Port</h2><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="s2">"port"</span><span class="p">:</span><span class="w">  </span><span class="s2">"9090"</span><span class="p">,</span><span class="w">
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
-</tr>
-</tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
-</span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
-</tr>
-</tbody></table>
+<p>Define the following value in <code>config.json</code> file:</p>
+
+<p><code>port</code>      -&gt; Numerical value within the range of from 1025 up to 65535</p>
+<h2 id='displays-group'>Displays Group</h2><pre class="highlight json tab-json"><code><span class="s2">"displays"</span><span class="p">:</span><span class="w">
+</span></code></pre>
+<p><code>displays</code> Displays subgroup. Fixed value.</p>
+<h2 id='display-id'>Display ID</h2><pre class="highlight json tab-json"><code><span class="s2">"DISPLAYID"</span><span class="w">
+</span></code></pre>
+<p>First thing to do for adding new display is define following value in <code>config.json</code> file:</p>
+
+<p><code>Display ID</code> - String type unique value, up to 255 characters</p>
+
+<p>Replace default DISPLAYID with your own unique display ID name.</p>
+<h2 id='display-ip-and-port'>Display IP and Port</h2><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="s2">"displayIp"</span><span class="p">:</span><span class="w">    </span><span class="s2">"192.168.200.200"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"displayPort"</span><span class="p">:</span><span class="w">  </span><span class="s2">"10000"</span><span class="p">,</span><span class="w">
+</span></code></pre>
+<p>Set the following value in <code>config.json</code> file:</p>
+
+<p><code>“displayIP“</code>       -&gt; In the form of standard IPv4 address
+<code>“displayPort“</code>     -&gt; Numerical value according to the specification</p>
+<h2 id='display-metaname'>Display Metaname</h2><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="s2">"displayName"</span><span class="p">:</span><span class="w">  </span><span class="s2">"anyname"</span><span class="p">,</span><span class="w">
+</span></code></pre>
+<p>Define the following value in <code>config.json</code> file:</p>
+
+<p><code>displayName</code>       -&gt; String type value, up to 255 characters</p>
+<h2 id='display-controller-type'>Display Controller Type</h2><pre class="highlight json tab-json"><code><span class="s2">"controllerType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"G20"</span><span class="p">,</span><span class="w">
+</span></code></pre>
+<p>Define the following value in <code>config.json</code> file:</p>
+
+<p><code>controllerType</code>        -&gt; Display height in pixels</p>
+<h2 id='feedback-server-ip-and-port'>Feedback Server IP and port</h2><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="s2">"confirmIp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"confirmPort"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9092"</span><span class="p">,</span><span class="w">
+</span></code></pre>
+<p>Define the following value in <code>config.json</code> file:</p>
+
+<p><code>confirmIp</code>         -&gt; In the form of standard IPv4 address
+<code>confirmPort</code>       -&gt; Numerical value within the range 1025-&gt;65535</p>
+<h2 id='display-size'>Display Size</h2><pre class="highlight json tab-json"><code><span class="s2">"displayHeight"</span><span class="p">:</span><span class="w">    </span><span class="s2">"160"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"displayWidth"</span><span class="p">:</span><span class="w">     </span><span class="s2">"96"</span><span class="p">,</span><span class="w">
+</span></code></pre>
+<p>Define the following values in <code>config.json</code> file:</p>
+
+<p><code>displayHeight</code>     -&gt; Display height in pixels</p>
+
+<p><code>displayWidth</code>      -&gt; Display width in pixels</p>
+<h2 id='display-layout-management'>Display Layout Management</h2><pre class="highlight json tab-json"><code><span class="w">    </span><span class="s2">"layout"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"layoutName"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"areaID"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+                            </span><span class="p">}</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">      
+
+</span></code></pre>
+<p>Define the following value in <code>config.json</code> file:</p>
+
+<p><code>layoutName</code>    -&gt; String type value, up to 255 characters</p>
+
+<p><code>areaID</code>        -&gt; String type of unique value, up to 255 characters</p>
+
+<p>Consider the values that makes sense in your overall system configuration.</p>
+<h2 id='area-coordinates'>Area Coordinates</h2><pre class="highlight json tab-json"><code><span class="s2">"coordinates"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0 0 100 100"</span><span class="p">,</span><span class="w">
+</span></code></pre>
+<p>Define the following values in <code>config.json</code> file:</p>
+
+<p><code>coordinates</code>    -&gt; Area coordinates in pixels (x y X Y)</p>
+
+<aside class="warning">
+Must physically fit into display area and no overlap with other areas.
+</aside>
+
+<p><em>x,y - square area upper left corner.</em></p>
+
+<p><em>X,Y - square area lower right corner.</em></p>
+<h2 id='area-types'>Area Types</h2><pre class="highlight json tab-json"><code><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"static"</span><span class="p">,</span><span class="w">
+</span></code></pre>
+<p>Define the following values in <code>config.json</code> file:</p>
+
+<p><code>type</code>           -&gt; Possible values - <code>static</code>, <code>text</code> or <code>image</code></p>
+<h3 id='static-text-variables'>Static Text Variables</h3><pre class="highlight json tab-json"><code><span class="s2">"align"</span><span class="p">:</span><span class="w"> </span><span class="s2">"center"</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"fontSize"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24"</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"fontColor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"255 255 255"</span><span class="p">,</span><span class="w">
+           </span><span class="s2">"params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"TEXTID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>If the chosen area type was chosen <code>static</code> then define section <code>texts</code> and add following variables:</p>
+
+<p><code>align</code> -&gt; text alginment. Possible values <code>center</code> or <code>left</code></p>
+
+<p><code>fontsize</code> -&gt; font size in pixels, must be smaller than area height</p>
+
+<p><code>fontColor</code> -&gt; font color in RGB</p>
+
+<p><code>params</code> -&gt; parameters subgroup. Fixed value.</p>
+
+<p><code>TEXTID</code> -&gt; String type value, up to 255 characters</p>
+
+<p><code>text</code> -&gt; Text to be displayed, up to 255 characters</p>
+<h3 id='picture-parameters'>Picture Parameters</h3><pre class="highlight json tab-json"><code><span class="s2">"params"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"PICTUREID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"filename1.gif"</span><span class="p">,</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Add following values:</p>
+
+<p><code>PICTUREID</code> -&gt; String type unique value, up to 255 characters
+<code>filename.gif</code>  -&gt; String type value, up to 255 characters fiename with the filename extension.</p>
+
+<p>All files must be locate in the catalogue <code>img/filename</code>, relative to <code>ampronled</code></p>
+<h3 id='freetext-parameters'>Freetext Parameters</h3><pre class="highlight json tab-json"><code><span class="s2">"align"</span><span class="p">:</span><span class="w"> </span><span class="s2">"center"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"fontSize"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"fontColor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"255 255 255"</span><span class="w">
+
+</span></code></pre>
+<p>If the chosen area type was chosen <code>text</code> then define following variables:</p>
+
+<p><code>align</code>     -&gt; text alginment. Possible values <code>center</code> or <code>left</code>. Valid only when text fits into area.
+<code>fontSize</code>  -&gt; font size in pixels, must be smaller than area height
+<code>fontColor</code> -&gt; font color in RGB</p>
+<h2 id='monitoring-and-bite'>Monitoring and BITE</h2>
+<p>Our information system has built-in monitoring that monitors communications to the all displays that are added to configuration file. It also monitors the successful forwarding of the information packages and has the feedback loop to a feedback IP address.
+Information system monitors the last sent package success. If the feedback was the same then information is not sent again. After server restart, all active displays receive command to empty the content of the screen.</p>
+<h2 id='logging'>Logging</h2>
+<p>AmpronLED software logs all actions with timestamps. Logs are kept by default one month. Length may be set different according to a specific needs.</p>
 <h1 id='errors'>Errors</h1>
-<aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
-</aside>
-
-<p>The Kittn API uses the following error codes:</p>
+<p>Ampron API uses the following error codes:</p>
 
 <table><thead>
 <tr>
@@ -455,31 +674,23 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </tr>
 <tr>
 <td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+<td>Forbidden -- The resource requested is hidden for administrators only.</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
+<td>Not Found -- The specified resource could not be found.</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+<td>Method Not Allowed -- You tried to access a resource with an invalid method.</td>
 </tr>
 <tr>
 <td>406</td>
 <td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
 </tr>
 <tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
-</tr>
-<tr>
 <td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+<td>Too Many Requests -- You&#39;re requesting too many resource! Slow down!</td>
 </tr>
 <tr>
 <td>500</td>
@@ -487,17 +698,14 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </tr>
 <tr>
 <td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+<td>Service Unavailable -- Server temporarily offline. Please contact support.</td>
 </tr>
 </tbody></table>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
+                <a href="#" data-language-name="json">JSON</a>
           </div>
       </div>
     </div>
