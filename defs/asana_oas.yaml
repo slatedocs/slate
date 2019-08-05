@@ -619,9 +619,9 @@ components:
       properties:
         id:
           description: >
-            Globally unique ID of the attachment, as an integer. **Note: This
+            Globally unique ID of the attachment, as an integer. *Note: This
             field is under active migration to the gid field—please see our blog
-            post for more information.**
+            post for more information.*
           type: integer
           format: int64
           readOnly: true
@@ -700,11 +700,11 @@ components:
               description: >-
                 The URL containing the content of the attachment.
 
-                **Note:** May be null if the attachment is hosted by
+                *Note: May be null if the attachment is hosted by
                 [Box](https://www.box.com/). If present, this URL may only be
                 valid for 1 hour from the time of retrieval. You should avoid
                 persisting this URL somewhere and just refresh it on demand to
-                ensure you do not keep stale URLs.
+                ensure you do not keep stale URLs.*
               type: string
               format: uri
               readOnly: true
@@ -902,7 +902,7 @@ components:
               example: Development team priority
             enum_options:
               description: >-
-                **Conditional**. Only relevant for custom fields of type `enum`.
+                *Conditional*. Only relevant for custom fields of type `enum`.
                 This array specifies the possible values which an `enum` custom
                 field can adopt. To modify the enum options, refer to [working
                 with enum
@@ -928,8 +928,8 @@ components:
               example: custom_field
             type:
               description: >
-                **Deprecated: new integrations should prefer the resource_subtype
-                field.** The type of the custom field. Must be one of the given
+                *Deprecated: new integrations should prefer the resource_subtype
+                field.* The type of the custom field. Must be one of the given
                 values.
               type: string
               enum:
@@ -938,7 +938,7 @@ components:
                 - number
             enum_options:
               description: >-
-                **Conditional**. Only relevant for custom fields of type `enum`.
+                *Conditional*. Only relevant for custom fields of type `enum`.
                 This array specifies the possible values which an `enum` custom
                 field can adopt. To modify the enum options, refer to [working
                 with enum
@@ -951,17 +951,17 @@ components:
                 - $ref: '#/components/schemas/EnumOption'
                 - type: object
                   description: >-
-                    **Conditional**. Only relevant for custom fields of type
+                    *Conditional*. Only relevant for custom fields of type
                     `enum`. This object is the chosen value of an enum custom
                     field.
             enabled:
               description: >-
-                **Conditional**. Determines if the custom field is enabled or not.
+                *Conditional*. Determines if the custom field is enabled or not.
               type: boolean
               example: true
             text_value:
               description: >-
-                **Conditional**. This string is the value of a text custom field.
+                *Conditional*. This string is the value of a text custom field.
               type: string
               example: Some Value
     CustomFieldObject:
@@ -993,8 +993,8 @@ components:
                 - $ref: '#/components/schemas/ProjectCompact'
                 - type: object
                   description: >-
-                    **Deprecated: new integrations should prefer the `parent`
-                    field.** The id of the project that this custom field settings
+                    *Deprecated: new integrations should prefer the `parent`
+                    field.* The id of the project that this custom field settings
                     refers to.
                   readOnly: true
             is_important:
@@ -1212,7 +1212,7 @@ components:
                 type: string
                 readOnly: true
                 description: >-
-                  **500 errors only**. A unique error phrase which can be used
+                  *500 errors only*. A unique error phrase which can be used
                   when contacting developer support to help identify the exact
                   occurrence of the problem in Asana’s logs.
                 example: 6 sad squid snuggle softly
@@ -1253,26 +1253,21 @@ components:
                 The user who triggered the event.
 
 
-                **Note**: The event may be triggered by a different user than the
-
+                *Note: The event may be triggered by a different user than the
                 subscriber. For example, if user A subscribes to a task and user B
-
                 modified it, the event’s user will be user B. Note: Some events
-                are
-
-                generated by the system, and will have `null` as the user. API
-
-                consumers should make sure to handle this case.
+                are generated by the system, and will have `null` as the user. API
+                consumers should make sure to handle this case.*
               readOnly: true
               nullable: true
         resource:
           description: |-
             The resource the event occurred on.
 
-            **Note**: The resource that triggered the event may be different from
+            *Note: The resource that triggered the event may be different from
             the one that the events were requested for. For example, a
             subscription to a project will contain events for tasks contained
-            within the project.
+            within the project.*
           type: object
           readOnly: true
           properties:
@@ -1284,11 +1279,11 @@ components:
               example: Bug Task
         type:
           description: |-
-            **Deprecated: Refer to the resource_type of the resource.**
+            *Deprecated: Refer to the resource_type of the resource.*
             The type of the resource that generated the event.
 
-            **Note**: Currently, only tasks, projects and stories generate
-            events.
+            *Note: Currently, only tasks, projects and stories generate
+            events.*
           type: string
           readOnly: true
           example: task
@@ -1376,22 +1371,22 @@ components:
             for
               large Organizations.
 
-            **Note**: These endpoints are only available to [Service
+            *Note: These endpoints are only available to [Service
 
             Accounts](https://asana.com/guide/help/premium/service-accounts) of an
 
-            [Enterprise](https://asana.com/enterprise) Organization.
+            [Enterprise](https://asana.com/enterprise) Organization.*
           properties:
             download_url:
               description: |-
                 Download this URL to retreive the full export of the organization
                 in JSON format. It will be compressed in a gzip (.gz) container.
 
-                **Note**: May be null if the export is still in progress or
+                *Note: May be null if the export is still in progress or
                 failed.  If present, this URL may only be valid for 1 hour from
                 the time of retrieval. You should avoid persisting this URL
                 somewhere and rather refresh on demand to ensure you do not keep
-                stale URLs.
+                stale URLs.*
               type: string
               format: uri
               readOnly: true
@@ -1410,7 +1405,7 @@ components:
               example: started
             organization:
               description: >-
-                **Create-only**: The Organization that is being exported. This can
+                **Create-only*: The Organization that is being exported. This can
                 only be specified at create time.
               type: object
               properties:
@@ -1485,7 +1480,7 @@ components:
                 - $ref: '#/components/schemas/WorkspaceCompact'
                 - type: object
                   description: >-
-                    **Create-only**. The workspace or organization that the
+                    *Create-only*. The workspace or organization that the
                     portfolio belongs to.
             members:
               allOf:
@@ -1701,7 +1696,7 @@ components:
                 $ref: '#/components/schemas/CustomFieldSetting'
             due_date:
               description: >-
-                **Deprecated: new integrations should prefer the due_on field.**
+                *Deprecated: new integrations should prefer the due_on field.*
               type: string
               nullable: true
               format: date-time
@@ -1728,9 +1723,9 @@ components:
                 [Opt In](https://asana.com/developers/documentation/getting-started/input-output-options).
                 The notes of the project with formatting as HTML.
 
-                **Note: This field is under active migration—please see our [blog
+                *Note: This field is under active migration—please see our [blog
                 post] (https://asana.com/developers/news/new-rich-text) for more
-                information.**
+                information.*
               type: string
               example: These are things we need to purchase.
             is_template:
@@ -1756,9 +1751,9 @@ components:
               description: >-
                 The time at which this project was last modified.
 
-                **Note**: This does not currently reflect any changes in
+                *Note: This does not currently reflect any changes in
                 associations such as tasks or comments that may have been added or
-                removed from the project.
+                removed from the project.*
               type: string
               format: date-time
               example: '2012-02-22T02:06:58.147Z'
@@ -1784,7 +1779,7 @@ components:
               example: false
             section_migration_status:
               description: >-
-                **Read-only** The section migration status of this project.
+                *Read-only* The section migration status of this project.
               type: string
               enum:
                 - not_migrated
@@ -1797,8 +1792,8 @@ components:
               description: >-
                 The day on which work for this project begins, or null if the
                 project has no start date. This takes a date with `YYYY-MM-DD`
-                format. **Note:** `due_on` or `due_at` must be present in the
-                request when setting or unsetting the `start_on` parameter.
+                format. *Note: `due_on` or `due_at` must be present in the
+                request when setting or unsetting the `start_on` parameter.*
               type: string
               nullable: true
               format: date
@@ -1808,14 +1803,14 @@ components:
                 - $ref: '#/components/schemas/TeamCompact'
                 - type: object
                   description: >-
-                    **Create-only**. The team that this project is shared with.
+                    *Create-only*. The team that this project is shared with.
                     This field only exists for projects in organizations.
             workspace:
               allOf:
                 - $ref: '#/components/schemas/WorkspaceCompact'
                 - type: object
                   description: >-
-                    **Create-only**. The workspace or organization this project is
+                    *Create-only*. The workspace or organization this project is
                     associated with. Once created, projects cannot be moved to a
                     different workspace. This attribute can only be specified at
                     creation time.
@@ -2018,11 +2013,11 @@ components:
         - $ref: '#/components/schemas/StoryCompact'
         - type: object
           description: >-
-            **See [our forum
+            *See [our forum
             post](https://forum.asana.com/t/no-more-parsing-story-text-new-fields-on-stories/42924)
             for
 
-            more info on when conditional fields are returned.**
+            more info on when conditional fields are returned.*
 
             A *story* represents an activity associated with an object in the
             Asana
@@ -2044,96 +2039,96 @@ components:
                 of the creator.
 
 
-                **Note: This field is under active migration—please see our blog
+                *Note: This field is under active migration—please see our blog
 
-                post for more information.**
+                post for more information.*
               type: string
               example: Get whatever Sashimi has.
             is_edited:
               description: >-
-                **Conditional**. Whether the text of the story has been edited
+                *Conditional*. Whether the text of the story has been edited
                 after creation.
               type: boolean
               readOnly: true
               example: false
             is_pinned:
               description: >-
-                **Conditional**. Whether the story should be pinned on the
+                *Conditional*. Whether the story should be pinned on the
                 resource.
               type: boolean
               example: false
             hearted:
               description: >-
-                **Deprecated - please use likes instead**
+                *Deprecated - please use likes instead*
 
 
-                **Conditional**. True if the story is hearted by the authorized
+                *Conditional*. True if the story is hearted by the authorized
                 user, false if not.
               type: boolean
               readOnly: true
               example: false
             hearts:
               description: |-
-                **Deprecated - please use likes instead**
+                *Deprecated - please use likes instead*
 
-                **Conditional**. Array of users who have hearted this story.
+                *Conditional*. Array of users who have hearted this story.
               type: array
               items:
                 $ref: '#/components/schemas/User'
               readOnly: true
             num_hearts:
               description: |-
-                **Deprecated - please use likes instead**
+                *Deprecated - please use likes instead*
 
-                **Conditional**. The number of users who have hearted this story.
+                *Conditional*. The number of users who have hearted this story.
               type: integer
               readOnly: true
               example: 5
             liked:
               description: >-
-                **Conditional**. True if the story is liked by the authorized
+                *Conditional*. True if the story is liked by the authorized
                 user, false if not.
               type: boolean
               readOnly: true
               example: false
             likes:
               description: >-
-                **Conditional**. Array of users who have liked this story.
+                *Conditional*. Array of users who have liked this story.
               type: array
               items:
                 $ref: '#/components/schemas/User'
               readOnly: true
             num_likes:
               description: >-
-                **Conditional**. The number of users who have liked this story.
+                *Conditional*. The number of users who have liked this story.
               type: integer
               readOnly: true
               example: 5
             previews:
               description: >-
-                **Conditional**. A collection of previews to be displayed in the
+                *Conditional*. A collection of previews to be displayed in the
                 story.
 
 
-                **Note**: This property only exists for comment stories.
+                *Note: This property only exists for comment stories.*
               type: array
               items:
                 $ref: '#/components/schemas/Preview'
               readOnly: true
             old_name:
               description: >-
-                **Conditional**'
+                *Conditional*'
               type: string
               example: This was the Old Name
             new_name:
               description: >-
-                **Conditional**
+                *Conditional*
               type: string
               example: This is the New Name
               readOnly: true
             old_dates:
               description: >-
-                **Conditional**
+                *Conditional*
               type: object
               readOnly: true
               properties:
@@ -2151,7 +2146,7 @@ components:
                   example: '2019-09-15'
             new_dates:
               description: >-
-                **Conditional**
+                *Conditional*
               type: object
               readOnly: true
               properties:
@@ -2169,108 +2164,108 @@ components:
                   example: '2019-09-15'
             old_resource_subtype:
               description: >-
-                **Conditional**
+                *Conditional*
               type: string
               readOnly: true
               example: default_task
             new_resource_subtype:
               description: >-
-                **Conditional**
+                *Conditional*
               type: string
               readOnly: true
               example: milestone
             story:
               description: >-
-                **Conditional**
+                *Conditional*
               $ref: '#/components/schemas/StoryCompact'
               readOnly: true
             assignee:
               description: >-
-                **Conditional**
+                *Conditional*
               readOnly: true
               $ref: '#/components/schemas/UserCompact'
             follower:
               description: >-
-                **Conditional**
+                *Conditional*
               readOnly: true
               $ref: '#/components/schemas/UserCompact'
             old_section:
               description: >-
-                **Conditional**
+                *Conditional*
               readOnly: true
               $ref: '#/components/schemas/SectionCompact'
             new_section:
               description: >-
-                **Conditional**
+                *Conditional*
               readOnly: true
               $ref: '#/components/schemas/SectionCompact'
             task:
               description: >-
-                **Conditional**
+                *Conditional*
               readOnly: true
               $ref: '#/components/schemas/TaskCompact'
             project:
               description: >-
-                **Conditional**
+                *Conditional*
               readOnly: true
               $ref: '#/components/schemas/ProjectCompact'
             tag:
               description: >-
-                **Conditional**
+                *Conditional*
               readOnly: true
               $ref: '#/components/schemas/TagCompact'
             custom_field:
               description: >-
-                **Conditional**
+                *Conditional*
               readOnly: true
               $ref: '#/components/schemas/CustomFieldCompact'
             old_text_value:
               description: >-
-                **Conditional**
+                *Conditional*
               readOnly: true
               type: string
               example: This was the Old Text
             new_text_value:
               description: >-
-                **Conditional**
+                *Conditional*
               readOnly: true
               type: string
               example: This is the New Text
             old_number_value:
               description: >-
-                **Conditional**
+                *Conditional*
               readOnly: true
               type: integer
               example: 1
             new_number_value:
               description: >-
-                **Conditional**
+                *Conditional*
               readOnly: true
               type: integer
               example: 2
             old_enum_value:
               description: >-
-                **Conditional**
+                *Conditional*
               readOnly: true
               $ref: '#/components/schemas/EnumOptionCompact'
             new_enum_value:
               description: >-
-                **Conditional**
+                *Conditional*
               readOnly: true
               $ref: '#/components/schemas/EnumOptionCompact'
             duplicate_of:
               description: >-
-                **Conditional**
+                *Conditional*
               readOnly: true
               $ref: '#/components/schemas/TaskCompact'
             duplicated_from:
               description: >-
-                **Conditional**
+                *Conditional*
               readOnly: true
               $ref: '#/components/schemas/TaskCompact'
             dependency:
               description: >-
-                **Conditional**
+                *Conditional*
               readOnly: true
               $ref: '#/components/schemas/TaskCompact'
             source:
@@ -2303,12 +2298,12 @@ components:
               example: story
             text:
               description: >-
-                **Create-only**. Human-readable text for the story or comment.
+                *Create-only*. Human-readable text for the story or comment.
 
                 This will not include the name of the creator.
 
 
-                **Note:** This is not guaranteed to be stable for a given type of
+                *Note: This is not guaranteed to be stable for a given type of
 
                 story. For example, text for a reassignment may not always say
 
@@ -2319,12 +2314,12 @@ components:
 
                 Use the `resource_subtype` property to discover the action that
 
-                created the story.
+                created the story.*
               example: marked today
             type:
               description: >
-                **Deprecated: new integrations should prefer the
-                `resource_subtype` field.** The type of this story. For more
+                *Deprecated: new integrations should prefer the
+                `resource_subtype` field.* The type of this story. For more
                 fine-grained inspection of story types, see the
                 [`resource_subtype`]
                 (https://asana.com/developers/api-reference/stories#field-resource_subtype)
@@ -2586,7 +2581,7 @@ components:
               nullable: true
             external:
               description: >-
-                **OAuth Required**. **Conditional**. This field is returned only
+                *OAuth Required*. *Conditional*. This field is returned only
                 if external values are set or included by using [Opt In]
                 (/developers/documentation/getting-started/input-output-options).
 
@@ -2623,22 +2618,22 @@ components:
                 In](/developers/documentation/getting-started/input-output-options).
                 The notes of the text with formatting as HTML.
 
-                **Note: This field is under active migration—please see our blog
-                post for more information.**
+                *Note: This field is under active migration—please see our blog
+                post for more information.*
               type: string
               example: >-
                 <body>Mittens <em>really</em> likes the stuff from
                 Humboldt.</body>
             hearted:
               description: >-
-                **Deprecated - please use liked instead** True if the task is
+                *Deprecated - please use liked instead* True if the task is
                 hearted by the authorized user, false if not.
               type: boolean
               example: true
               readOnly: true
             hearts:
               description: >-
-                **Deprecated - please use likes instead** Array of users who have
+                *Deprecated - please use likes instead* Array of users who have
                 hearted this task.
               type: array
               items:
@@ -2658,7 +2653,7 @@ components:
               readOnly: true
             memberships:
               description: >-
-                **Create-only**. Array of projects this task is associated with
+                *Create-only*. Array of projects this task is associated with
                 and the section it is in. At task creation time, this array can be
                 used to add the task to specific sections. After task creation,
                 these associations can be modified using the `addProject` and
@@ -2676,9 +2671,9 @@ components:
               description: |-
                 The time at which this task was last modified.
 
-                **Note:** This does not currently reflect any changes in
+                *Note: This does not currently reflect any changes in
                 associations such as projects or comments that may have been
-                added or removed from the task.
+                added or removed from the task.*
               type: string
               format: date-time
               readOnly: true
@@ -2698,7 +2693,7 @@ components:
               example: Mittens really likes the stuff from Humboldt.
             num_hearts:
               description: >-
-                **Deprecated - please use likes instead** The number of users who
+                *Deprecated - please use likes instead* The number of users who
                 have hearted this task.
               type: integer
               example: 5
@@ -2728,7 +2723,7 @@ components:
                   nullable: true
             projects:
               description: >-
-                **Create-only.** Array of projects this task is associated with.
+                *Create-only.* Array of projects this task is associated with.
                 At task creation time, this array can be used to add the task to
                 many projects at once. After task creation, these associations can
                 be modified using the addProject and removeProject endpoints.
@@ -2746,10 +2741,10 @@ components:
                 The resource_subtype `milestone` represent a single moment in
                 time. This means tasks with this subtype cannot have a start_date.
 
-                **The resource_subtype of `section` is under active
+                *Note: The resource_subtype of `section` is under active
                 migration—please see our [forum
                 post](https://forum.asana.com/t/sections-are-dead-long-live-sections)
-                for more information.**
+                for more information.*
               enum:
                 - default_task
                 - milestone
@@ -2763,16 +2758,15 @@ components:
                 no start date. This takes a date with `YYYY-MM-DD` format.
 
 
-                **Note:** `due_on` or `due_at` must be present in the request when
-
-                setting or unsetting the `start_on` parameter.
+                *Note: `due_on` or `due_at` must be present in the request when
+                setting or unsetting the `start_on` parameter.*
               type: string
               nullable: true
               format: date
               example: '2012-03-26'
             tags:
               description: >-
-                **Create-only**. Array of tags associated with this task. This
+                *Create-only*. Array of tags associated with this task. This
                 property may be specified on creation using just an array of tag
                 IDs.  In order to change tags on an existing task use `addTag` and
                 `removeTag`.
@@ -2835,9 +2829,9 @@ components:
                 In](/developers/documentation/getting-started/input-output-options).
                 The description of the team with formatting as HTML.
 
-                **Note: This field is under active migration—please see our [blog
+                *Note: This field is under active migration—please see our [blog
                 post](https://asana.com/developers/news/new-rich-text) for more
-                information.**
+                information.*
               type: string
               example: >-
                 <body><em>All</em> developers should be members of this
@@ -2941,7 +2935,7 @@ components:
             name:
               type: string
               description: >-
-                **Read-only except when same user as requester**. The user’s name.
+                *Read-only except when same user as requester*. The user’s name.
               example: Greg Sanchez
     UserObject:
       type: object
@@ -3038,17 +3032,11 @@ components:
             more information on what data these events contain.
 
 
-            **Note**: While Webhooks send arrays of Event objects to their target,
-
+            *Note: While Webhooks send arrays of Event objects to their target,
             the Event objects themselves contain *only IDs*, rather than the
-            actual
-
-            resource they are referencing. Webhooks themselves contain only the
-
+            actual resource they are referencing. Webhooks themselves contain only the
             information necessary to deliver the events to the desired target as
-            they
-
-            are generated.
+            they are generated.*
           properties:
             active:
               description: >-
@@ -3116,10 +3104,10 @@ components:
           description: |-
             The resource ID the event occurred on.
 
-            **Note**: The resource that triggered the event may be different from
+            *Note: The resource that triggered the event may be different from
             the one that the events were requested for. For example, a
             subscription to a project will contain events for tasks contained
-            within the project.
+            within the project.*
           type: integer
           readOnly: true
           example: 32154
@@ -3127,8 +3115,8 @@ components:
           description: |-
             The type of the resource that generated the event.
 
-            **Note**: Currently, only tasks, projects and stories generate
-            events.
+            *Note: Currently, only tasks, projects and stories generate
+            events.*
           type: string
           readOnly: true
           example: task
@@ -3136,11 +3124,11 @@ components:
           description: |-
             The ID of the user who triggered the event.
 
-            **Note**: The event may be triggered by a different user than the
+            *Note: The event may be triggered by a different user than the
             subscriber. For example, if user A subscribes to a task and user B
             modified it, the event’s user will be user B. Note: Some events are
             generated by the system, and will have `null` as the user. API
-            consumers should make sure to handle this case.
+            consumers should make sure to handle this case.*
           type: integer
           readOnly: true
           nullable: true
@@ -3369,7 +3357,7 @@ paths:
         description: |-
           The file you want to upload.
 
-          **Note when using curl:**
+          *Note when using curl:*
 
           Be sure to add an `‘@’` before the file path, and use the `—form`
           option instead of the `-d` option.
@@ -4029,7 +4017,7 @@ paths:
           Events will be returned from the point in time that the sync token was
           generated.
 
-          **Note**: On your first request, omit the sync token. The response will
+          *Note*: On your first request, omit the sync token. The response will
           be the same as for an expired sync token, and will include a new valid
           sync token.If the sync token is too old (which may happen from time to
           time) the API will return a `412 Precondition Failed` error, and
@@ -4342,7 +4330,7 @@ paths:
         Note that portfolios created in the Asana UI may have some state
         (like the “Priority” custom field) which is automatically added
         to the portfolio when it is created. Portfolios created via our
-        API will **not** be created with the same initial state to allow
+        API will *not* be created with the same initial state to allow
         integrations to create their own starting state on a portfolio.
       tags:
         - Portfolios
@@ -6294,8 +6282,8 @@ paths:
           description: >-
             The assignee to filter tasks on.
 
-            **Note**: If you specify `assignee`, you must also specify the
-            `workspace` to filter on.
+            *Note: If you specify `assignee`, you must also specify the
+            `workspace` to filter on.*
           schema:
             type: string
             format: email
@@ -6323,7 +6311,7 @@ paths:
           description: >-
             The section to filter tasks on.
 
-            **Note**: Currently, this is only supported in board views.
+            *Note: Currently, this is only supported in board views.*
           schema:
             type: integer
           example: 321654
@@ -6332,8 +6320,8 @@ paths:
           description: >-
             The workspace to filter tasks on.
 
-            **Note**: If you specify `workspace`, you must also specify the
-            `assignee` to filter on.
+            *Note: If you specify `workspace`, you must also specify the
+            `assignee` to filter on.*
           schema:
             type: integer
           example: 321654
@@ -6352,12 +6340,12 @@ paths:
           description: |-
             Only return tasks that have been modified since the given time.
 
-            **Note**: A task is considered “modified” if any of its properties
+            *Note: A task is considered “modified” if any of its properties
             change, or associations between it and other objects are modified
             (e.g.  a task being added to a project). A task is not considered
             modified just because another object it is associated with (e.g. a
             subtask) is modified. Actions that count as modifying the task
-            include assigning, renaming, completing, and adding stories.
+            include assigning, renaming, completing, and adding stories.*
           schema:
             type: string
             format: date-time
@@ -7365,7 +7353,7 @@ paths:
     get:
       summary: Get tasks in a section
       description: >-
-        **Board view only**: Returns the compact section records for all tasks
+        *Board view only*: Returns the compact section records for all tasks
         within the given section.
       tags:
         - Sections
@@ -8142,7 +8130,7 @@ paths:
       - name: type
         in: query
         description: >-
-          **Deprecated: new integrations should prefer the resource_type field.**
+          *Deprecated: new integrations should prefer the resource_type field.*
         required: false
         schema:
           type: string
@@ -8310,21 +8298,21 @@ paths:
         The returned tasks will be in order within each assignee status
         group of `Inbox`, `Today`, and `Upcoming`.
 
-        **Note:** tasks in `Later` have a different ordering in the Asana
+        *Note: tasks in `Later` have a different ordering in the Asana
         web app than the other assignee status groups; this endpoint
         will still return them in list order in `Later` (differently
         than they show up in Asana, but the same order as in Asana’s
-        mobile apps).
+        mobile apps).*
 
-        **Note:** Access control is enforced for this endpoint as with
+        *Note: Access control is enforced for this endpoint as with
         all Asana API endpoints, meaning a user’s private tasks will be
         filtered out if the API-authenticated user does not have access
-        to them.
+        to them.*
 
-        **Note:** Both complete and incomplete tasks are returned by
+        *Note: Both complete and incomplete tasks are returned by
         default unless they are filtered out (for example, setting
         `completed_since=now` will return only incomplete tasks, which
-        is the default view for “My Tasks” in Asana.)
+        is the default view for “My Tasks” in Asana.)*
       tags:
         - User Task Lists
       operationId: getUserTaskListTasks
@@ -8706,7 +8694,7 @@ paths:
     delete:
       summary: Remove a webhook
       description: >-
-        This method **permanently** removes a webhook. Note that it may be possible
+        This method *permanently* removes a webhook. Note that it may be possible
         to receive a request that was already in flight after deleting the
         webhook, but no further requests will be issued.
       tags:

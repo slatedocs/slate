@@ -556,7 +556,7 @@ file: string
 
 **body**: The file you want to upload.
 
-**Note when using curl:**
+*Note when using curl:*
 
 Be sure to add an `‘@’` before the file path, and use the `—form`
 option instead of the `-d` option.
@@ -1051,22 +1051,22 @@ Returns the full record of the newly created custom field.
 |---|---|---|---|---|
 |body|body|object|true|The custom field object to create.|
 |» data|body|object|false|Custom Fields store the metadata that is used in order to|
-|»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»» resource_type|body|string|false|The base type of this resource.|
 |»» name|body|string|false|The name of the object.|
 |»» resource_subtype|body|string|false|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|»» type|body|string|false|**Deprecated: new integrations should prefer the resource_subtype field.** The type of the custom field. Must be one of the given values.|
-|»» enum_options|body|[object]|false|**Conditional**. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://asana.com/developers/api-reference/custom_fields#enum-options).|
-|»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»» type|body|string|false|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|»» enum_options|body|[object]|false|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://asana.com/developers/api-reference/custom_fields#enum-options).|
+|»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»»» resource_type|body|string|false|The base type of this resource.|
 |»»» name|body|string|false|The name of the enum option.|
 |»»» enabled|body|boolean|false|The color of the enum option. Defaults to ‘none’.|
 |»»» color|body|string|false|Whether or not the enum option is a selectable value for the custom field.|
 |»» enum_value|body|any|false|none|
-|»» enabled|body|boolean|false|**Conditional**. Determines if the custom field is enabled or not.|
-|»» text_value|body|string|false|**Conditional**. This string is the value of a text custom field.|
+|»» enabled|body|boolean|false|*Conditional*. Determines if the custom field is enabled or not.|
+|»» text_value|body|string|false|*Conditional*. This string is the value of a text custom field.|
 |»» description|body|string|false|[Opt In](/developers/documentation/getting-started/input-output-options). The description of the custom field.|
 |»» precision|body|integer|false|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
 |»» workspace|body|integer|false|The workspace to create a custom field in.|
@@ -1077,19 +1077,6 @@ Returns the full record of the newly created custom field.
 |offset|query|string|false|Offset token.|
 
 #### Detailed descriptions
-
-** data**: Custom Fields store the metadata that is used in order to
-add user-specified information to tasks in Asana. Be sure
-to reference the [Custom Fields]
-(https://asana.com/developers/documentation/getting-started/custom-fields)
-developer documentation for more information about how custom fields
-relate to various resources in Asana.
-
-Users in Asana can [lock custom fields]
-(https://asana.com/guide/help/premium/custom-fields#gl-lock-fields),
-which will make them read-only when accessed by other users.
-Attempting to edit a locked custom field will return HTTP error code
-`403 Forbidden`.
 
 #### Enumerated Values
 
@@ -1836,7 +1823,7 @@ Returns the full record of the newly created enum option.
 |---|---|---|---|---|
 |body|body|object|true|The enum option object to create.|
 |» data|body|object|false|Enum options are the possible values which an enum custom field can|
-|»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»» resource_type|body|string|false|The base type of this resource.|
 |»» name|body|string|false|The name of the enum option.|
@@ -1852,34 +1839,6 @@ Returns the full record of the newly created enum option.
 |offset|query|string|false|Offset token.|
 
 #### Detailed descriptions
-
-** data**: Enum options are the possible values which an enum custom field can
-adopt. An enum custom field must contain at least 1 enum option but no
-more than 50.
-
-You can add enum options to a custom field by using the `POST
-/custom_fields/custom_field_gid/enum_options` endpoint.
-
-**It is not possible to remove or delete an enum option**. Instead, enum
-options can be disabled by updating the `enabled` field to false with the
-`PUT /enum_options/enum_option_gid` endpoint. Other attributes can be
-updated similarly.
-
-On creation of an enum option, `enabled` is always set to `true`, meaning
-the enum option is a selectable value for the custom field. Setting
-`enabled=false` is equivalent to “trashing” the enum option in the Asana
-web app within the “Edit Fields” dialog. The enum option will no longer
-be selectable but, if the enum option value was previously set within a
-task, the task will retain the value.
-
-Enum options are an ordered list and by default new enum options are
-inserted at the end. Ordering in relation to existing enum options can be
-specified on creation by using `insert_before` or `insert_after` to
-reference an existing enum option. Only one of `insert_before` and
-`insert_after` can be provided when creating a new enum option.
-
-An enum options list can be reordered with the `POST
-/custom_fields/custom_field_gid/enum_options/insert` endpoint.
 
 > 201 Response
 
@@ -2067,7 +2026,7 @@ Locked custom fields can only be reordered by the user who locked the field.
 |---|---|---|---|---|
 |body|body|object|true|The enum option object to create.|
 |» data|body|object|false|Enum options are the possible values which an enum custom field can|
-|»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»» resource_type|body|string|false|The base type of this resource.|
 |»» name|body|string|false|The name of the enum option.|
@@ -2084,34 +2043,6 @@ Locked custom fields can only be reordered by the user who locked the field.
 |offset|query|string|false|Offset token.|
 
 #### Detailed descriptions
-
-** data**: Enum options are the possible values which an enum custom field can
-adopt. An enum custom field must contain at least 1 enum option but no
-more than 50.
-
-You can add enum options to a custom field by using the `POST
-/custom_fields/custom_field_gid/enum_options` endpoint.
-
-**It is not possible to remove or delete an enum option**. Instead, enum
-options can be disabled by updating the `enabled` field to false with the
-`PUT /enum_options/enum_option_gid` endpoint. Other attributes can be
-updated similarly.
-
-On creation of an enum option, `enabled` is always set to `true`, meaning
-the enum option is a selectable value for the custom field. Setting
-`enabled=false` is equivalent to “trashing” the enum option in the Asana
-web app within the “Edit Fields” dialog. The enum option will no longer
-be selectable but, if the enum option value was previously set within a
-task, the task will retain the value.
-
-Enum options are an ordered list and by default new enum options are
-inserted at the end. Ordering in relation to existing enum options can be
-specified on creation by using `insert_before` or `insert_after` to
-reference an existing enum option. Only one of `insert_before` and
-`insert_after` can be provided when creating a new enum option.
-
-An enum options list can be reordered with the `POST
-/custom_fields/custom_field_gid/enum_options/insert` endpoint.
 
 > 200 Response
 
@@ -2294,7 +2225,7 @@ Returns the full record of the updated enum option.
 |---|---|---|---|---|
 |body|body|object|true|The enum option object to update|
 |» data|body|[EnumOption](#schemaenumoption)|false|Enum options are the possible values which an enum custom field can|
-|»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»» resource_type|body|string|false|The base type of this resource.|
 |»» name|body|string|false|The name of the enum option.|
@@ -2308,34 +2239,6 @@ Returns the full record of the updated enum option.
 |offset|query|string|false|Offset token.|
 
 #### Detailed descriptions
-
-** data**: Enum options are the possible values which an enum custom field can
-adopt. An enum custom field must contain at least 1 enum option but no
-more than 50.
-
-You can add enum options to a custom field by using the `POST
-/custom_fields/custom_field_gid/enum_options` endpoint.
-
-**It is not possible to remove or delete an enum option**. Instead, enum
-options can be disabled by updating the `enabled` field to false with the
-`PUT /enum_options/enum_option_gid` endpoint. Other attributes can be
-updated similarly.
-
-On creation of an enum option, `enabled` is always set to `true`, meaning
-the enum option is a selectable value for the custom field. Setting
-`enabled=false` is equivalent to “trashing” the enum option in the Asana
-web app within the “Edit Fields” dialog. The enum option will no longer
-be selectable but, if the enum option value was previously set within a
-task, the task will retain the value.
-
-Enum options are an ordered list and by default new enum options are
-inserted at the end. Ordering in relation to existing enum options can be
-specified on creation by using `insert_before` or `insert_after` to
-reference an existing enum option. Only one of `insert_before` and
-`insert_after` can be provided when creating a new enum option.
-
-An enum options list can be reordered with the `POST
-/custom_fields/custom_field_gid/enum_options/insert` endpoint.
 
 > 200 Response
 
@@ -3184,7 +3087,7 @@ lieu of including the resource ID in the data for the request.
 #### Detailed descriptions
 
 **sync**: A sync token received from the last request, or none on first sync. Events will be returned from the point in time that the sync token was generated.
-**Note**: On your first request, omit the sync token. The response will be the same as for an expired sync token, and will include a new valid sync token.If the sync token is too old (which may happen from time to time) the API will return a `412 Precondition Failed` error, and include a fresh sync token in the response.
+*Note*: On your first request, omit the sync token. The response will be the same as for an expired sync token, and will include a new valid sync token.If the sync token is too old (which may happen from time to time) the API will return a `412 Precondition Failed` error, and include a fresh sync token in the response.
 
 > 200 Response
 
@@ -4068,7 +3971,7 @@ Creates a new portfolio in the given workspace with the supplied name.
 Note that portfolios created in the Asana UI may have some state
 (like the “Priority” custom field) which is automatically added
 to the portfolio when it is created. Portfolios created via our
-API will **not** be created with the same initial state to allow
+API will *not* be created with the same initial state to allow
 integrations to create their own starting state on a portfolio.
 
 > Body parameter
@@ -10753,7 +10656,7 @@ p JSON.parse(result)
 
 `GET /sections/{section_gid}/tasks`
 
-**Board view only**: Returns the compact section records for all tasks within the given section.
+*Board view only*: Returns the compact section records for all tasks within the given section.
 
 <h3 id="get-tasks-in-a-section-parameters">Parameters</h3>
 
@@ -14135,22 +14038,22 @@ Returns the compact task records for some filtered set of tasks. Use one or more
 #### Detailed descriptions
 
 **assignee**: The assignee to filter tasks on.
-**Note**: If you specify `assignee`, you must also specify the `workspace` to filter on.
+*Note: If you specify `assignee`, you must also specify the `workspace` to filter on.*
 
 **section**: The section to filter tasks on.
-**Note**: Currently, this is only supported in board views.
+*Note: Currently, this is only supported in board views.*
 
 **workspace**: The workspace to filter tasks on.
-**Note**: If you specify `workspace`, you must also specify the `assignee` to filter on.
+*Note: If you specify `workspace`, you must also specify the `assignee` to filter on.*
 
 **modified_since**: Only return tasks that have been modified since the given time.
 
-**Note**: A task is considered “modified” if any of its properties
+*Note: A task is considered “modified” if any of its properties
 change, or associations between it and other objects are modified
 (e.g.  a task being added to a project). A task is not considered
 modified just because another object it is associated with (e.g. a
 subtask) is modified. Actions that count as modifying the task
-include assigning, renaming, completing, and adding stories.
+include assigning, renaming, completing, and adding stories.*
 
 > 200 Response
 
@@ -14414,7 +14317,7 @@ explicitly if you specify `projects` or a `parent` task instead.
 |---|---|---|---|---|
 |body|body|object|true|The task to create.|
 |» data|body|object|false|The *task* is the basic object around which many operations in Asana are|
-|»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»» resource_type|body|string|false|The base type of this resource.|
 |»» name|body|string|false|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
@@ -14425,22 +14328,22 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»» completed|body|boolean|false|True if the task is currently marked complete, false if not.|
 |»» completed_at|body|string(date-time)¦null|false|The time at which this task was completed, or null if the task is incomplete.|
 |»» custom_fields|body|[object]|false|Array of custom field values applied to the project. These represent|
-|»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»»» resource_type|body|string|false|The base type of this resource.|
 |»»» name|body|string|false|The name of the object.|
 |»»» resource_subtype|body|string|false|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|»»» type|body|string|false|**Deprecated: new integrations should prefer the resource_subtype field.** The type of the custom field. Must be one of the given values.|
-|»»» enum_options|body|[object]|false|**Conditional**. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://asana.com/developers/api-reference/custom_fields#enum-options).|
-|»»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» type|body|string|false|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|»»» enum_options|body|[object]|false|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://asana.com/developers/api-reference/custom_fields#enum-options).|
+|»»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»»»» resource_type|body|string|false|The base type of this resource.|
 |»»»» name|body|string|false|The name of the enum option.|
 |»»»» enabled|body|boolean|false|The color of the enum option. Defaults to ‘none’.|
 |»»»» color|body|string|false|Whether or not the enum option is a selectable value for the custom field.|
 |»»» enum_value|body|any|false|none|
-|»»» enabled|body|boolean|false|**Conditional**. Determines if the custom field is enabled or not.|
-|»»» text_value|body|string|false|**Conditional**. This string is the value of a text custom field.|
+|»»» enabled|body|boolean|false|*Conditional*. Determines if the custom field is enabled or not.|
+|»»» text_value|body|string|false|*Conditional*. This string is the value of a text custom field.|
 |»»» description|body|string|false|[Opt In](/developers/documentation/getting-started/input-output-options). The description of the custom field.|
 |»»» precision|body|integer|false|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
 |»» dependencies|body|[object]|false|[Opt In](/developers/documentation/getting-started/input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the ID of the dependency.|
@@ -14451,64 +14354,64 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»»» gid|body|string|false|none|
 |»» due_at|body|string(date)¦null|false|Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
 |»» due_on|body|string(date)¦null|false|Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
-|»» external|body|object|false|**OAuth Required**. **Conditional**. This field is returned only if external values are set or included by using [Opt In] (/developers/documentation/getting-started/input-output-options).|
+|»» external|body|object|false|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/developers/documentation/getting-started/input-output-options).|
 |»»» id|body|integer|false|none|
 |»»» gid|body|string|false|none|
 |»»» data|body|string|false|none|
 |»» followers|body|[object]|false|Array of users following this task.|
-|»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»»» resource_type|body|string|false|The base type of this resource.|
-|»»» name|body|string|false|**Read-only except when same user as requester**. The user’s name.|
+|»»» name|body|string|false|*Read-only except when same user as requester*. The user’s name.|
 |»» html_notes|body|string|false|[Opt In](/developers/documentation/getting-started/input-output-options). The notes of the text with formatting as HTML.|
-|»» hearted|body|boolean|false|**Deprecated - please use liked instead** True if the task is hearted by the authorized user, false if not.|
-|»» hearts|body|[object]|false|**Deprecated - please use likes instead** Array of users who have hearted this task.|
-|»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»» hearted|body|boolean|false|*Deprecated - please use liked instead* True if the task is hearted by the authorized user, false if not.|
+|»» hearts|body|[object]|false|*Deprecated - please use likes instead* Array of users who have hearted this task.|
+|»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»»» resource_type|body|string|false|The base type of this resource.|
-|»»» name|body|string|false|**Read-only except when same user as requester**. The user’s name.|
+|»»» name|body|string|false|*Read-only except when same user as requester*. The user’s name.|
 |»» liked|body|boolean|false|True if the task is liked by the authorized user, false if not.|
 |»» likes|body|[object]|false|Array of users who have liked this task.|
-|»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»»» resource_type|body|string|false|The base type of this resource.|
-|»»» name|body|string|false|**Read-only except when same user as requester**. The user’s name.|
-|»» memberships|body|[object]|false|**Create-only**. Array of projects this task is associated with and the section it is in. At task creation time, this array can be used to add the task to specific sections. After task creation, these associations can be modified using the `addProject` and `removeProject` endpoints. Note that over time, more types of memberships may be added to this property.|
+|»»» name|body|string|false|*Read-only except when same user as requester*. The user’s name.|
+|»» memberships|body|[object]|false|*Create-only*. Array of projects this task is associated with and the section it is in. At task creation time, this array can be used to add the task to specific sections. After task creation, these associations can be modified using the `addProject` and `removeProject` endpoints. Note that over time, more types of memberships may be added to this property.|
 |»»» project|body|object|false|A generic Asana Object, containing a globally unique identifier.|
-|»»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»»»» resource_type|body|string|false|The base type of this resource.|
 |»»»» name|body|string|false|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»»» section|body|object|false|A generic Asana Object, containing a globally unique identifier.|
-|»»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»»»» resource_type|body|string|false|The base type of this resource.|
 |»»»» name|body|string|false|The name of the section (i.e. the text displayed as the section header).|
 |»»» modified_at|body|string(date-time)|false|The time at which this task was last modified.|
 |»»» notes|body|string|false|More detailed, free-form textual information associated with the task.|
-|»»» num_hearts|body|integer|false|**Deprecated - please use likes instead** The number of users who have hearted this task.|
+|»»» num_hearts|body|integer|false|*Deprecated - please use likes instead* The number of users who have hearted this task.|
 |»»» num_likes|body|integer|false|The number of users who have liked this task.|
 |»»» num_subtasks|body|integer|false|[Opt In](https://asana.com/developers/documentation/getting-started/input-output-options). The number of subtasks on this task.|
 |»»» parent|body|any|false|none|
-|»»» projects|body|[object]|false|**Create-only.** Array of projects this task is associated with. At task creation time, this array can be used to add the task to many projects at once. After task creation, these associations can be modified using the addProject and removeProject endpoints.|
-|»»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» projects|body|[object]|false|*Create-only.* Array of projects this task is associated with. At task creation time, this array can be used to add the task to many projects at once. After task creation, these associations can be modified using the addProject and removeProject endpoints.|
+|»»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»»»» resource_type|body|string|false|The base type of this resource.|
 |»»»» name|body|string|false|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»»» start_on|body|string(date)¦null|false|The day on which work begins for the task , or null if the task has|
-|»»» tags|body|[object]|false|**Create-only**. Array of tags associated with this task. This property may be specified on creation using just an array of tag IDs.  In order to change tags on an existing task use `addTag` and `removeTag`.|
-|»»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» tags|body|[object]|false|*Create-only*. Array of tags associated with this task. This property may be specified on creation using just an array of tag IDs.  In order to change tags on an existing task use `addTag` and `removeTag`.|
+|»»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»»»» resource_type|body|string|false|The base type of this resource.|
 |»»»» name|body|string|false|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»»»» followers|body|[object]|false|Array of users following this tag.|
-|»»»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»»»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»»»»» resource_type|body|string|false|The base type of this resource.|
-|»»»»» name|body|string|false|**Read-only except when same user as requester**. The user’s name.|
+|»»»»» name|body|string|false|*Read-only except when same user as requester*. The user’s name.|
 |»»»» color|body|string|false|Color of the tag.|
 |»»»» workspace|body|object|false|A generic Asana Object, containing a globally unique identifier.|
-|»»»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»»»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»»»»» resource_type|body|string|false|The base type of this resource.|
 |»»»»» name|body|string|false|The name of the object.|
@@ -14521,25 +14424,7 @@ explicitly if you specify `projects` or a `parent` task instead.
 
 #### Detailed descriptions
 
-** data**: The *task* is the basic object around which many operations in Asana are
-centered. In the Asana application, multiple tasks populate the middle
-pane according to some view parameters, and the set of selected tasks
-determines the more detailed information presented in the details pane.
-
-A *section*, at its core, is a task whose name ends with the colon
-character `:`. Sections are unique in that they will be included in the
-*memberships* field of task objects returned in the API when the task is
-within a section. They can also be used to manipulate the ordering of a
-task within a project.
-
-[Queries](https://asana.com/developers/api-reference/tasks#query) return
-a compact representation of each object which is typically the id and
-name fields. Interested in a specific set of fields or all of the fields?
-Use [field
-selectors](https://asana.com/developers/documentation/getting-started/input-output-options)
-to manipulate what data is included in a response.
-
-** custom_fields**: Array of custom field values applied to the project. These represent
+**custom_fields**: Array of custom field values applied to the project. These represent
 the custom field values recorded on this project for a particular
 custom field. For example, these custom field values will contain
 an `enum_value` property for custom fields of type `enum`, a
@@ -14549,23 +14434,22 @@ value *is identical* to the `id` of the custom field, which
 allows referencing the custom field metadata through the
 `/custom_fields/custom_field-id` endpoint.
 
-** external**: **OAuth Required**. **Conditional**. This field is returned only if external values are set or included by using [Opt In] (/developers/documentation/getting-started/input-output-options).
+**external**: *OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/developers/documentation/getting-started/input-output-options).
 The external field allows you to store app-specific metadata on tasks, including an id that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external id is set, you can use the notation `external:custom_id` to reference your object anywhere in the API where you may use the original object id. See the page on Custom External Data for more details.
 
-** html_notes**: [Opt In](/developers/documentation/getting-started/input-output-options). The notes of the text with formatting as HTML.
-**Note: This field is under active migration—please see our blog post for more information.**
+**html_notes**: [Opt In](/developers/documentation/getting-started/input-output-options). The notes of the text with formatting as HTML.
+*Note: This field is under active migration—please see our blog post for more information.*
 
-** modified_at**: The time at which this task was last modified.
+**modified_at**: The time at which this task was last modified.
 
-**Note:** This does not currently reflect any changes in
+*Note: This does not currently reflect any changes in
 associations such as projects or comments that may have been
-added or removed from the task.
+added or removed from the task.*
 
-** start_on**: The day on which work begins for the task , or null if the task has
+**start_on**: The day on which work begins for the task , or null if the task has
 no start date. This takes a date with `YYYY-MM-DD` format.
 
-**Note:** `due_on` or `due_at` must be present in the request when
-setting or unsetting the `start_on` parameter.
+*Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*
 
 #### Enumerated Values
 
@@ -21113,9 +20997,9 @@ p JSON.parse(result)
 `GET /user_task_lists/{user_task_list_gid}/tasks`
 
 Returns the compact list of tasks in a user’s My Tasks list. The returned tasks will be in order within each assignee status group of `Inbox`, `Today`, and `Upcoming`.
-**Note:** tasks in `Later` have a different ordering in the Asana web app than the other assignee status groups; this endpoint will still return them in list order in `Later` (differently than they show up in Asana, but the same order as in Asana’s mobile apps).
-**Note:** Access control is enforced for this endpoint as with all Asana API endpoints, meaning a user’s private tasks will be filtered out if the API-authenticated user does not have access to them.
-**Note:** Both complete and incomplete tasks are returned by default unless they are filtered out (for example, setting `completed_since=now` will return only incomplete tasks, which is the default view for “My Tasks” in Asana.)
+*Note: tasks in `Later` have a different ordering in the Asana web app than the other assignee status groups; this endpoint will still return them in list order in `Later` (differently than they show up in Asana, but the same order as in Asana’s mobile apps).*
+*Note: Access control is enforced for this endpoint as with all Asana API endpoints, meaning a user’s private tasks will be filtered out if the API-authenticated user does not have access to them.*
+*Note: Both complete and incomplete tasks are returned by default unless they are filtered out (for example, setting `completed_since=now` will return only incomplete tasks, which is the default view for “My Tasks” in Asana.)*
 
 <h3 id="get-tasks-in-a-user-task-list-parameters">Parameters</h3>
 
@@ -21890,7 +21774,7 @@ p JSON.parse(result)
 
 `DELETE /webhooks/{webhook_gid}`
 
-This method **permanently** removes a webhook. Note that it may be possible to receive a request that was already in flight after deleting the webhook, but no further requests will be issued.
+This method *permanently* removes a webhook. Note that it may be possible to receive a request that was already in flight after deleting the webhook, but no further requests will be issued.
 
 <h3 id="remove-a-webhook-parameters">Parameters</h3>
 
@@ -22078,7 +21962,7 @@ data is included in a response.
 |---|---|---|---|---|
 |workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
 |resource_type|query|string|true|The type of values the typeahead should return. You can choose from one of the following: `custom_field`, `project`, `tag`, `task`, and `user`. Note that unlike in the names of endpoints, the types listed here are in singular form (e.g. `task`). Using multiple types is not yet supported.|
-|type|query|string|false|**Deprecated: new integrations should prefer the resource_type field.**|
+|type|query|string|false|*Deprecated: new integrations should prefer the resource_type field.*|
 |query|query|string|false|The string that will be used to search for relevant objects. If an empty string is passed in, the API will currently return an empty result set.|
 |count|query|integer|false|The number of results to return. The default is 20 if this parameter is omitted, with a minimum of 1 and a maximum of 100. If there are fewer results found than requested, all will be returned.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
@@ -23041,12 +22925,12 @@ An *attachment* object represents any file attached to a task in Asana, whether 
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|read-only|The name of the file.|
 |created_at|string(date-time)|false|read-only|The time at which this resource was created.|
-|download_url|string(uri)¦null|false|read-only|The URL containing the content of the attachment.<br>**Note:** May be null if the attachment is hosted by [Box](https://www.box.com/). If present, this URL may only be valid for 1 hour from the time of retrieval. You should avoid persisting this URL somewhere and just refresh it on demand to ensure you do not keep stale URLs.|
+|download_url|string(uri)¦null|false|read-only|The URL containing the content of the attachment.<br>*Note: May be null if the attachment is hosted by [Box](https://www.box.com/). If present, this URL may only be valid for 1 hour from the time of retrieval. You should avoid persisting this URL somewhere and just refresh it on demand to ensure you do not keep stale URLs.*|
 |host|string|false|read-only|The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive` and `box`.|
 |parent|any|false|none|none|
 |view_url|string(uri)¦null|false|read-only|The URL where the attachment can be viewed, which may be friendlier to users in a browser than just directing them to a raw file. May be null if no view URL exists for the service.|
@@ -23076,7 +22960,7 @@ A generic Asana Object, containing a globally unique identifier.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|read-only|The name of the file.|
@@ -23226,22 +23110,22 @@ Attempting to edit a locked custom field will return HTTP error code
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the object.|
 |resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|type|string|false|none|**Deprecated: new integrations should prefer the resource_subtype field.** The type of the custom field. Must be one of the given values.|
-|enum_options|[object]|false|none|**Conditional**. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://asana.com/developers/api-reference/custom_fields#enum-options).|
-|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|type|string|false|none|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|enum_options|[object]|false|none|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://asana.com/developers/api-reference/custom_fields#enum-options).|
+|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|The name of the enum option.|
 |» enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
 |» color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
 |enum_value|any|false|none|none|
-|enabled|boolean|false|none|**Conditional**. Determines if the custom field is enabled or not.|
-|text_value|string|false|none|**Conditional**. This string is the value of a text custom field.|
+|enabled|boolean|false|none|*Conditional*. Determines if the custom field is enabled or not.|
+|text_value|string|false|none|*Conditional*. This string is the value of a text custom field.|
 |description|string|false|none|[Opt In](/developers/documentation/getting-started/input-output-options). The description of the custom field.|
 |precision|integer|false|none|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
 
@@ -23293,22 +23177,22 @@ A generic Asana Object, containing a globally unique identifier.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the object.|
 |resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|type|string|false|none|**Deprecated: new integrations should prefer the resource_subtype field.** The type of the custom field. Must be one of the given values.|
-|enum_options|[object]|false|none|**Conditional**. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://asana.com/developers/api-reference/custom_fields#enum-options).|
-|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|type|string|false|none|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|enum_options|[object]|false|none|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://asana.com/developers/api-reference/custom_fields#enum-options).|
+|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|The name of the enum option.|
 |» enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
 |» color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
 |enum_value|any|false|none|none|
-|enabled|boolean|false|none|**Conditional**. Determines if the custom field is enabled or not.|
-|text_value|string|false|none|**Conditional**. This string is the value of a text custom field.|
+|enabled|boolean|false|none|*Conditional*. Determines if the custom field is enabled or not.|
+|text_value|string|false|none|*Conditional*. This string is the value of a text custom field.|
 
 #### Enumerated Values
 
@@ -23346,7 +23230,7 @@ Custom fields are attached to a particular project with the Custom Field Setting
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |project|any|false|none|none|
@@ -23378,7 +23262,7 @@ A generic Asana Object, containing a globally unique identifier.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 
@@ -23435,7 +23319,7 @@ An enum options list can be reordered with the `POST
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the enum option.|
@@ -23495,7 +23379,7 @@ An enum options list can be reordered with the `POST
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the enum option.|
@@ -23543,7 +23427,7 @@ error.
 |errors|[object]|false|none|none|
 |» message|string|false|read-only|Message providing more detail about the error that occurred, if available.|
 |» help|string|false|read-only|Additional information directing developers to resources on how to address and fix the problem, if available.|
-|» phrase|string|false|read-only|**500 errors only**. A unique error phrase which can be used when contacting developer support to help identify the exact occurrence of the problem in Asana’s logs.|
+|» phrase|string|false|read-only|*500 errors only*. A unique error phrase which can be used when contacting developer support to help identify the exact occurrence of the problem in Asana’s logs.|
 
 <hr>
 
@@ -23609,18 +23493,18 @@ depending on load on the service.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|user|object¦null|false|read-only|The user who triggered the event.<br><br>**Note**: The event may be triggered by a different user than the<br>subscriber. For example, if user A subscribes to a task and user B<br>modified it, the event’s user will be user B. Note: Some events are<br>generated by the system, and will have `null` as the user. API<br>consumers should make sure to handle this case.|
-|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|user|object¦null|false|read-only|The user who triggered the event.<br><br>*Note: The event may be triggered by a different user than the subscriber. For example, if user A subscribes to a task and user B modified it, the event’s user will be user B. Note: Some events are generated by the system, and will have `null` as the user. API consumers should make sure to handle this case.*|
+|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|**Read-only except when same user as requester**. The user’s name.|
-|resource|object|false|read-only|The resource the event occurred on.<br><br>**Note**: The resource that triggered the event may be different from<br>the one that the events were requested for. For example, a<br>subscription to a project will contain events for tasks contained<br>within the project.|
+|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
+|resource|object|false|read-only|The resource the event occurred on.<br><br>*Note: The resource that triggered the event may be different from<br>the one that the events were requested for. For example, a<br>subscription to a project will contain events for tasks contained<br>within the project.*|
 |» id|integer|false|none|none|
 |» name|string|false|none|none|
-|type|string|false|read-only|**Deprecated: Refer to the resource_type of the resource.**<br>The type of the resource that generated the event.<br><br>**Note**: Currently, only tasks, projects and stories generate<br>events.|
+|type|string|false|read-only|*Deprecated: Refer to the resource_type of the resource.*<br>The type of the resource that generated the event.<br><br>*Note: Currently, only tasks, projects and stories generate<br>events.*|
 |action|string|false|read-only|The type of action taken that triggered the event.|
 |parent|object¦null|false|read-only|For added/removed events, the parent that resource was added to or removed from. The parent will be `null` for other event types.|
-|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|The name of the object.|
@@ -23664,18 +23548,18 @@ A *job* is an object representing a process that handles asynchronous work.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |status|string|false|read-only|none|
 |new_project|object|false|none|A generic Asana Object, containing a globally unique identifier.|
-|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |new_task|object|false|none|A generic Asana Object, containing a globally unique identifier.|
-|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|The name of the object.|
@@ -23727,21 +23611,21 @@ To export an Organization using this API:
 * Exports can take a long time, from several minutes to a few hours for
   large Organizations.
 
-**Note**: These endpoints are only available to [Service
+*Note: These endpoints are only available to [Service
 Accounts](https://asana.com/guide/help/premium/service-accounts) of an
-[Enterprise](https://asana.com/enterprise) Organization.
+[Enterprise](https://asana.com/enterprise) Organization.*
 
 ### Properties
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |created_at|string(date-time)|false|read-only|The time at which this resource was created.|
-|download_url|string(uri)¦null|false|read-only|Download this URL to retreive the full export of the organization<br>in JSON format. It will be compressed in a gzip (.gz) container.<br><br>**Note**: May be null if the export is still in progress or<br>failed.  If present, this URL may only be valid for 1 hour from<br>the time of retrieval. You should avoid persisting this URL<br>somewhere and rather refresh on demand to ensure you do not keep<br>stale URLs.|
+|download_url|string(uri)¦null|false|read-only|Download this URL to retreive the full export of the organization<br>in JSON format. It will be compressed in a gzip (.gz) container.<br><br>*Note: May be null if the export is still in progress or<br>failed.  If present, this URL may only be valid for 1 hour from<br>the time of retrieval. You should avoid persisting this URL<br>somewhere and rather refresh on demand to ensure you do not keep<br>stale URLs.*|
 |state|string|false|read-only|The current state of the export.|
-|organization|object|false|none|**Create-only**: The Organization that is being exported. This can only be specified at create time.|
+|organization|object|false|none|**Create-only*: The Organization that is being exported. This can only be specified at create time.|
 |» id|integer|false|none|none|
 |» gid|string|false|none|none|
 |» name|string|false|none|none|
@@ -23787,14 +23671,14 @@ Accounts](https://asana.com/guide/help/premium/service-accounts) of an
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|data|object|false|none|An *organization_export* object represents a request to export the<br>complete data of an Organization in JSON format.<br><br>To export an Organization using this API:<br><br>* Create an `organization_export`<br>  [request](https://asana.com/developers/api-reference/organization_exports#create)<br>  and store the id that is returned.<br>* Request the `organization_export` every few minutes, until the `state`<br>  field contains ‘finished’.<br>* Download the file located at the URL in the `download_url` field.<br>* Exports can take a long time, from several minutes to a few hours for<br>  large Organizations.<br><br>**Note**: These endpoints are only available to [Service<br>Accounts](https://asana.com/guide/help/premium/service-accounts) of an<br>[Enterprise](https://asana.com/enterprise) Organization.|
-|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|data|object|false|none|An *organization_export* object represents a request to export the<br>complete data of an Organization in JSON format.<br><br>To export an Organization using this API:<br><br>* Create an `organization_export`<br>  [request](https://asana.com/developers/api-reference/organization_exports#create)<br>  and store the id that is returned.<br>* Request the `organization_export` every few minutes, until the `state`<br>  field contains ‘finished’.<br>* Download the file located at the URL in the `download_url` field.<br>* Exports can take a long time, from several minutes to a few hours for<br>  large Organizations.<br><br>*Note: These endpoints are only available to [Service<br>Accounts](https://asana.com/guide/help/premium/service-accounts) of an<br>[Enterprise](https://asana.com/enterprise) Organization.*|
+|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» created_at|string(date-time)|false|read-only|The time at which this resource was created.|
-|» download_url|string(uri)¦null|false|read-only|Download this URL to retreive the full export of the organization<br>in JSON format. It will be compressed in a gzip (.gz) container.<br><br>**Note**: May be null if the export is still in progress or<br>failed.  If present, this URL may only be valid for 1 hour from<br>the time of retrieval. You should avoid persisting this URL<br>somewhere and rather refresh on demand to ensure you do not keep<br>stale URLs.|
+|» download_url|string(uri)¦null|false|read-only|Download this URL to retreive the full export of the organization<br>in JSON format. It will be compressed in a gzip (.gz) container.<br><br>*Note: May be null if the export is still in progress or<br>failed.  If present, this URL may only be valid for 1 hour from<br>the time of retrieval. You should avoid persisting this URL<br>somewhere and rather refresh on demand to ensure you do not keep<br>stale URLs.*|
 |» state|string|false|read-only|The current state of the export.|
-|» organization|object|false|none|**Create-only**: The Organization that is being exported. This can only be specified at create time.|
+|» organization|object|false|none|**Create-only*: The Organization that is being exported. This can only be specified at create time.|
 |»» id|integer|false|none|none|
 |»» gid|string|false|none|none|
 |»» name|string|false|none|none|
@@ -23854,7 +23738,7 @@ update.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the object.|
@@ -23862,7 +23746,7 @@ update.
 |created_by|any|false|none|none|
 |color|string|false|none|Color of the portfolio.|
 |custom_field_settings|[object]|false|read-only|Array of custom field settings applied to the portfolio.|
-|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» project|any|false|none|none|
@@ -23921,7 +23805,7 @@ A generic Asana Object, containing a globally unique identifier.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the object.|
@@ -23962,16 +23846,16 @@ This object determines if a user is a member of a portfolio.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |user|object|false|none|A generic Asana Object, containing a globally unique identifier.|
-|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|**Read-only except when same user as requester**. The user’s name.|
+|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
 |portfolio|object|false|none|A generic Asana Object, containing a globally unique identifier.|
-|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|The name of the object.|
@@ -24006,14 +23890,14 @@ A generic Asana Object, containing a globally unique identifier.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |user|object|false|none|A generic Asana Object, containing a globally unique identifier.|
-|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|**Read-only except when same user as requester**. The user’s name.|
+|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
 
 <hr>
 
@@ -24163,7 +24047,7 @@ followers from a project will not affect membership.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
@@ -24174,10 +24058,10 @@ followers from a project will not affect membership.
 |» color|string|false|none|none|
 |» text|string|false|none|none|
 |» author|object|false|none|A *user* object represents an account in Asana that can be given access<br>to various workspaces, projects, and tasks.<br><br>Like other objects in the system, users are referred to by numerical<br>IDs. However, the special string identifier `me` can be used anywhere a<br>user ID is accepted, to refer to the current authenticated user.|
-|»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»» resource_type|string|false|read-only|The base type of this resource.|
-|»» name|string|false|none|**Read-only except when same user as requester**. The user’s name.|
+|»» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
 |»» email|string(email)|false|read-only|The user’s email address.|
 |»» photo|object¦null|false|read-only|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.|
 |»»» image_21x21|string(uri)|false|none|none|
@@ -24186,14 +24070,14 @@ followers from a project will not affect membership.
 |»»» image_60x60|string(uri)|false|none|none|
 |»»» image_128x128|string(uri)|false|none|none|
 |»» workspaces|[object]|false|read-only|Workspaces and organizations this user may access.<br>Note\: The API will only return workspaces and organizations that also contain the authenticated user.|
-|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» name|string|false|none|The name of the object.|
 |»»» email_domains|[string]|false|none|The email domains that are associated with this workspace.|
 |»»» is_organization|boolean|false|none|Whether the workspace is an *organization*.|
 |»» custom_fields|[object]|false|read-only|Array of Custom Fields.|
-|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» project|any|false|none|none|
@@ -24201,20 +24085,20 @@ followers from a project will not affect membership.
 |»»» parent|any|false|none|none|
 |»»» custom_field|any|false|none|none|
 |»» custom_field_settings|[object]|false|read-only|Array of Custom Field Settings (in compact form).|
-|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» project|any|false|none|none|
 |»»» is_important|boolean|false|read-only|`is_important` is used in the Asana web application to determine if this custom field is displayed in the task list (left pane) of a project. A project can have a maximum of 5 custom field settings marked as `is_important`.|
 |»»» parent|any|false|none|none|
 |»»» custom_field|any|false|none|none|
-|»» due_date|string(date-time)¦null|false|none|**Deprecated: new integrations should prefer the due_on field.**|
+|»» due_date|string(date-time)¦null|false|none|*Deprecated: new integrations should prefer the due_on field.*|
 |»» due_on|string(date-time)¦null|false|none|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
 |»» followers|[object]|false|read-only|Array of users following this project. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
-|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
-|»»» name|string|false|none|**Read-only except when same user as requester**. The user’s name.|
+|»»» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
 |»»» email|string(email)|false|read-only|The user’s email address.|
 |»»» photo|object¦null|false|read-only|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.|
 |»»»» image_21x21|string(uri)|false|none|none|
@@ -24223,20 +24107,20 @@ followers from a project will not affect membership.
 |»»»» image_60x60|string(uri)|false|none|none|
 |»»»» image_128x128|string(uri)|false|none|none|
 |»»» workspaces|[object]|false|read-only|Workspaces and organizations this user may access.<br>Note\: The API will only return workspaces and organizations that also contain the authenticated user.|
-|»»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»»» name|string|false|none|The name of the object.|
 |»»»» email_domains|[string]|false|none|The email domains that are associated with this workspace.|
 |»»»» is_organization|boolean|false|none|Whether the workspace is an *organization*.|
-|»»» html_notes|string|false|none|[Opt In](https://asana.com/developers/documentation/getting-started/input-output-options). The notes of the project with formatting as HTML.<br>**Note: This field is under active migration—please see our [blog post] (https://asana.com/developers/news/new-rich-text) for more information.**|
+|»»» html_notes|string|false|none|[Opt In](https://asana.com/developers/documentation/getting-started/input-output-options). The notes of the project with formatting as HTML.<br>*Note: This field is under active migration—please see our [blog post] (https://asana.com/developers/news/new-rich-text) for more information.*|
 |»»» is_template|boolean|false|none|[Opt In](/developers/documentation/getting-started/input-output-options). Determines if the project is a template.|
 |»»» layout|string|false|read-only|The layout (board or list view) of a project|
 |»»» members|[object]|false|read-only|Array of users who are members of this project.|
-|»»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»»» resource_type|string|false|read-only|The base type of this resource.|
-|»»»» name|string|false|none|**Read-only except when same user as requester**. The user’s name.|
+|»»»» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
 |»»»» email|string(email)|false|read-only|The user’s email address.|
 |»»»» photo|object¦null|false|read-only|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.|
 |»»»»» image_21x21|string(uri)|false|none|none|
@@ -24245,18 +24129,18 @@ followers from a project will not affect membership.
 |»»»»» image_60x60|string(uri)|false|none|none|
 |»»»»» image_128x128|string(uri)|false|none|none|
 |»»»» workspaces|[object]|false|read-only|Workspaces and organizations this user may access.<br>Note\: The API will only return workspaces and organizations that also contain the authenticated user.|
-|»»»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»»»» name|string|false|none|The name of the object.|
 |»»»»» email_domains|[string]|false|none|The email domains that are associated with this workspace.|
 |»»»»» is_organization|boolean|false|none|Whether the workspace is an *organization*.|
-|»»»» modified_at|string(date-time)|false|none|The time at which this project was last modified.<br>**Note**: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.|
+|»»»» modified_at|string(date-time)|false|none|The time at which this project was last modified.<br>*Note: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.*|
 |»»»» notes|string|false|none|More detailed, free-form textual information associated with the project.|
 |»»»» owner|any|false|none|none|
 |»»»» public|boolean|false|none|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
-|»»»» section_migration_status|string|false|read-only|**Read-only** The section migration status of this project.|
-|»»»» start_on|string(date)¦null|false|none|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. **Note:** `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.|
+|»»»» section_migration_status|string|false|read-only|*Read-only* The section migration status of this project.|
+|»»»» start_on|string(date)¦null|false|none|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
 |»»»» team|any|false|none|none|
 |»»»» workspace|any|false|none|none|
 
@@ -24316,7 +24200,7 @@ A generic Asana Object, containing a globally unique identifier.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
@@ -24358,16 +24242,16 @@ With the introduction of “comment-only” projects in Asana, a user’s member
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |user|object|false|none|A generic Asana Object, containing a globally unique identifier.|
-|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|**Read-only except when same user as requester**. The user’s name.|
+|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
 |project|object|false|none|A generic Asana Object, containing a globally unique identifier.|
-|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
@@ -24410,14 +24294,14 @@ A generic Asana Object, containing a globally unique identifier.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |user|object|false|none|A generic Asana Object, containing a globally unique identifier.|
-|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|**Read-only except when same user as requester**. The user’s name.|
+|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
 
 <hr>
 
@@ -24450,7 +24334,7 @@ Project statuses can be created and deleted, but not modified.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |title|string|false|read-only|The title of the project status update.|
@@ -24493,7 +24377,7 @@ A generic Asana Object, containing a globally unique identifier.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |title|string|false|read-only|The title of the project status update.|
@@ -24542,13 +24426,13 @@ response.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the section (i.e. the text displayed as the section header).|
 |created_at|string(date-time)|false|read-only|The time at which this resource was created.|
 |projects|[object]|false|none|none|
-|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
@@ -24578,7 +24462,7 @@ A generic Asana Object, containing a globally unique identifier.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the section (i.e. the text displayed as the section header).|
@@ -24770,8 +24654,8 @@ A generic Asana Object, containing a globally unique identifier.
 
 ```
 
-**See [our forum post](https://forum.asana.com/t/no-more-parsing-story-text-new-fields-on-stories/42924) for
-more info on when conditional fields are returned.**
+*See [our forum post](https://forum.asana.com/t/no-more-parsing-story-text-new-fields-on-stories/42924) for
+more info on when conditional fields are returned.*
 A *story* represents an activity associated with an object in the Asana
 system. Stories are generated by the system whenever users take actions
 such as creating or assigning tasks, or moving tasks between projects.
@@ -24781,23 +24665,23 @@ such as creating or assigning tasks, or moving tasks between projects.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |created_at|string(date-time)|false|read-only|The time at which this resource was created.|
 |created_by|any|false|none|none|
-|text|any|false|none|**Create-only**. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br><br>**Note:** This is not guaranteed to be stable for a given type of<br>story. For example, text for a reassignment may not always say<br>“assigned to …” as the text for a story can both be edited and<br>change based on the language settings of the user making the request.<br>Use the `resource_subtype` property to discover the action that<br>created the story.|
-|type|string|false|read-only|**Deprecated: new integrations should prefer the `resource_subtype` field.** The type of this story. For more fine-grained inspection of story types, see the [`resource_subtype`] (https://asana.com/developers/api-reference/stories#field-resource_subtype) property.|
-|html_text|string|false|none|[Opt In](https://asana.com/developers/documentation/getting-started/input-output-options).<br>HTML formatted text for a comment. This will not include the name<br>of the creator.<br><br>**Note: This field is under active migration—please see our blog<br>post for more information.**|
-|is_edited|boolean|false|read-only|**Conditional**. Whether the text of the story has been edited after creation.|
-|is_pinned|boolean|false|none|**Conditional**. Whether the story should be pinned on the resource.|
-|hearted|boolean|false|read-only|**Deprecated - please use likes instead**<br><br>**Conditional**. True if the story is hearted by the authorized user, false if not.|
-|hearts|[object]|false|read-only|**Deprecated - please use likes instead**<br><br>**Conditional**. Array of users who have hearted this story.|
-|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|text|any|false|none|*Create-only*. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br><br>*Note: This is not guaranteed to be stable for a given type of<br>story. For example, text for a reassignment may not always say<br>“assigned to …” as the text for a story can both be edited and<br>change based on the language settings of the user making the request.<br>Use the `resource_subtype` property to discover the action that<br>created the story.*|
+|type|string|false|read-only|*Deprecated: new integrations should prefer the `resource_subtype` field.* The type of this story. For more fine-grained inspection of story types, see the [`resource_subtype`] (https://asana.com/developers/api-reference/stories#field-resource_subtype) property.|
+|html_text|string|false|none|[Opt In](https://asana.com/developers/documentation/getting-started/input-output-options).<br>HTML formatted text for a comment. This will not include the name<br>of the creator.<br><br>*Note: This field is under active migration—please see our blog<br>post for more information.*|
+|is_edited|boolean|false|read-only|*Conditional*. Whether the text of the story has been edited after creation.|
+|is_pinned|boolean|false|none|*Conditional*. Whether the story should be pinned on the resource.|
+|hearted|boolean|false|read-only|*Deprecated - please use likes instead*<br><br>*Conditional*. True if the story is hearted by the authorized user, false if not.|
+|hearts|[object]|false|read-only|*Deprecated - please use likes instead*<br><br>*Conditional*. Array of users who have hearted this story.|
+|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|**Read-only except when same user as requester**. The user’s name.|
+|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
 |» email|string(email)|false|read-only|The user’s email address.|
 |» photo|object¦null|false|read-only|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.|
 |»» image_21x21|string(uri)|false|none|none|
@@ -24806,19 +24690,19 @@ such as creating or assigning tasks, or moving tasks between projects.
 |»» image_60x60|string(uri)|false|none|none|
 |»» image_128x128|string(uri)|false|none|none|
 |» workspaces|[object]|false|read-only|Workspaces and organizations this user may access.<br>Note\: The API will only return workspaces and organizations that also contain the authenticated user.|
-|»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»» resource_type|string|false|read-only|The base type of this resource.|
 |»» name|string|false|none|The name of the object.|
 |»» email_domains|[string]|false|none|The email domains that are associated with this workspace.|
 |»» is_organization|boolean|false|none|Whether the workspace is an *organization*.|
-|» num_hearts|integer|false|read-only|**Deprecated - please use likes instead**<br><br>**Conditional**. The number of users who have hearted this story.|
-|» liked|boolean|false|read-only|**Conditional**. True if the story is liked by the authorized user, false if not.|
-|» likes|[object]|false|read-only|**Conditional**. Array of users who have liked this story.|
-|»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|» num_hearts|integer|false|read-only|*Deprecated - please use likes instead*<br><br>*Conditional*. The number of users who have hearted this story.|
+|» liked|boolean|false|read-only|*Conditional*. True if the story is liked by the authorized user, false if not.|
+|» likes|[object]|false|read-only|*Conditional*. Array of users who have liked this story.|
+|»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»» resource_type|string|false|read-only|The base type of this resource.|
-|»» name|string|false|none|**Read-only except when same user as requester**. The user’s name.|
+|»» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
 |»» email|string(email)|false|read-only|The user’s email address.|
 |»» photo|object¦null|false|read-only|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.|
 |»»» image_21x21|string(uri)|false|none|none|
@@ -24827,14 +24711,14 @@ such as creating or assigning tasks, or moving tasks between projects.
 |»»» image_60x60|string(uri)|false|none|none|
 |»»» image_128x128|string(uri)|false|none|none|
 |»» workspaces|[object]|false|read-only|Workspaces and organizations this user may access.<br>Note\: The API will only return workspaces and organizations that also contain the authenticated user.|
-|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» name|string|false|none|The name of the object.|
 |»»» email_domains|[string]|false|none|The email domains that are associated with this workspace.|
 |»»» is_organization|boolean|false|none|Whether the workspace is an *organization*.|
-|»» num_likes|integer|false|read-only|**Conditional**. The number of users who have liked this story.|
-|»» previews|[object]|false|read-only|**Conditional**. A collection of previews to be displayed in the story.<br><br>**Note**: This property only exists for comment stories.|
+|»» num_likes|integer|false|read-only|*Conditional*. The number of users who have liked this story.|
+|»» previews|[object]|false|read-only|*Conditional*. A collection of previews to be displayed in the story.<br><br>*Note: This property only exists for comment stories.*|
 |»»» fallback|string|false|none|Some fallback text to display if unable to display the full preview.|
 |»»» footer|string|false|none|Text to display in the footer.|
 |»»» header|string|false|none|Text to display in the header.|
@@ -24843,109 +24727,109 @@ such as creating or assigning tasks, or moving tasks between projects.
 |»»» text|string|false|none|Text for the body of the preview.|
 |»»» title|string|false|none|Text to display as the title.|
 |»»» title_link|string|false|none|Where to title will link to.|
-|»» old_name|string|false|none|**Conditional**'|
-|»» new_name|string|false|read-only|**Conditional**|
-|»» old_dates|object|false|read-only|**Conditional**|
+|»» old_name|string|false|none|*Conditional*'|
+|»» new_name|string|false|read-only|*Conditional*|
+|»» old_dates|object|false|read-only|*Conditional*|
 |»»» start_on|string(date)|false|none|none|
 |»»» due_at|string(date-time)|false|none|none|
 |»»» due_on|string(date)|false|none|none|
-|»» new_dates|object|false|read-only|**Conditional**|
+|»» new_dates|object|false|read-only|*Conditional*|
 |»»» start_on|string(date)|false|none|none|
 |»»» due_at|string(date-time)|false|none|none|
 |»»» due_on|string(date)|false|none|none|
-|»» old_resource_subtype|string|false|read-only|**Conditional**|
-|»» new_resource_subtype|string|false|read-only|**Conditional**|
+|»» old_resource_subtype|string|false|read-only|*Conditional*|
+|»» new_resource_subtype|string|false|read-only|*Conditional*|
 |»» story|object|false|none|A generic Asana Object, containing a globally unique identifier.|
-|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |»»» created_at|string(date-time)|false|read-only|The time at which this resource was created.|
 |»»» created_by|any|false|none|none|
-|»»» text|any|false|none|**Create-only**. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br><br>**Note:** This is not guaranteed to be stable for a given type of<br>story. For example, text for a reassignment may not always say<br>“assigned to …” as the text for a story can both be edited and<br>change based on the language settings of the user making the request.<br>Use the `resource_subtype` property to discover the action that<br>created the story.|
-|»»» type|string|false|read-only|**Deprecated: new integrations should prefer the `resource_subtype` field.** The type of this story. For more fine-grained inspection of story types, see the [`resource_subtype`] (https://asana.com/developers/api-reference/stories#field-resource_subtype) property.|
+|»»» text|any|false|none|*Create-only*. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br><br>*Note: This is not guaranteed to be stable for a given type of<br>story. For example, text for a reassignment may not always say<br>“assigned to …” as the text for a story can both be edited and<br>change based on the language settings of the user making the request.<br>Use the `resource_subtype` property to discover the action that<br>created the story.*|
+|»»» type|string|false|read-only|*Deprecated: new integrations should prefer the `resource_subtype` field.* The type of this story. For more fine-grained inspection of story types, see the [`resource_subtype`] (https://asana.com/developers/api-reference/stories#field-resource_subtype) property.|
 |»» assignee|object|false|none|A generic Asana Object, containing a globally unique identifier.|
-|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
-|»»» name|string|false|none|**Read-only except when same user as requester**. The user’s name.|
+|»»» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
 |»» follower|object|false|none|A generic Asana Object, containing a globally unique identifier.|
-|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
-|»»» name|string|false|none|**Read-only except when same user as requester**. The user’s name.|
+|»»» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
 |»» old_section|object|false|none|A generic Asana Object, containing a globally unique identifier.|
-|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» name|string|false|none|The name of the section (i.e. the text displayed as the section header).|
 |»» new_section|object|false|none|A generic Asana Object, containing a globally unique identifier.|
-|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» name|string|false|none|The name of the section (i.e. the text displayed as the section header).|
 |»» task|object|false|none|A generic Asana Object, containing a globally unique identifier.|
-|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» name|string|false|none|The name of the object.|
 |»» project|object|false|none|A generic Asana Object, containing a globally unique identifier.|
-|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» name|string|false|none|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» tag|object|false|none|A generic Asana Object, containing a globally unique identifier.|
-|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» name|string|false|none|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» custom_field|object|false|none|A generic Asana Object, containing a globally unique identifier.|
-|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» name|string|false|none|The name of the object.|
 |»»» resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|»»» type|string|false|none|**Deprecated: new integrations should prefer the resource_subtype field.** The type of the custom field. Must be one of the given values.|
-|»»» enum_options|[object]|false|none|**Conditional**. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://asana.com/developers/api-reference/custom_fields#enum-options).|
-|»»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» type|string|false|none|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|»»» enum_options|[object]|false|none|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://asana.com/developers/api-reference/custom_fields#enum-options).|
+|»»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»»» name|string|false|none|The name of the enum option.|
 |»»»» enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
 |»»»» color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
 |»»» enum_value|any|false|none|none|
-|»»» enabled|boolean|false|none|**Conditional**. Determines if the custom field is enabled or not.|
-|»»» text_value|string|false|none|**Conditional**. This string is the value of a text custom field.|
-|»» old_text_value|string|false|read-only|**Conditional**|
-|»» new_text_value|string|false|read-only|**Conditional**|
-|»» old_number_value|integer|false|read-only|**Conditional**|
-|»» new_number_value|integer|false|read-only|**Conditional**|
+|»»» enabled|boolean|false|none|*Conditional*. Determines if the custom field is enabled or not.|
+|»»» text_value|string|false|none|*Conditional*. This string is the value of a text custom field.|
+|»» old_text_value|string|false|read-only|*Conditional*|
+|»» new_text_value|string|false|read-only|*Conditional*|
+|»» old_number_value|integer|false|read-only|*Conditional*|
+|»» new_number_value|integer|false|read-only|*Conditional*|
 |»» old_enum_value|object|false|none|Enum options are the possible values which an enum custom field can<br>adopt. An enum custom field must contain at least 1 enum option but no<br>more than 50.<br><br>You can add enum options to a custom field by using the `POST<br>/custom_fields/custom_field_gid/enum_options` endpoint.<br><br>**It is not possible to remove or delete an enum option**. Instead, enum<br>options can be disabled by updating the `enabled` field to false with the<br>`PUT /enum_options/enum_option_gid` endpoint. Other attributes can be<br>updated similarly.<br><br>On creation of an enum option, `enabled` is always set to `true`, meaning<br>the enum option is a selectable value for the custom field. Setting<br>`enabled=false` is equivalent to “trashing” the enum option in the Asana<br>web app within the “Edit Fields” dialog. The enum option will no longer<br>be selectable but, if the enum option value was previously set within a<br>task, the task will retain the value.<br><br>Enum options are an ordered list and by default new enum options are<br>inserted at the end. Ordering in relation to existing enum options can be<br>specified on creation by using `insert_before` or `insert_after` to<br>reference an existing enum option. Only one of `insert_before` and<br>`insert_after` can be provided when creating a new enum option.<br><br>An enum options list can be reordered with the `POST<br>/custom_fields/custom_field_gid/enum_options/insert` endpoint.|
-|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» name|string|false|none|The name of the enum option.|
 |»»» enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
 |»»» color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
 |»» new_enum_value|object|false|none|Enum options are the possible values which an enum custom field can<br>adopt. An enum custom field must contain at least 1 enum option but no<br>more than 50.<br><br>You can add enum options to a custom field by using the `POST<br>/custom_fields/custom_field_gid/enum_options` endpoint.<br><br>**It is not possible to remove or delete an enum option**. Instead, enum<br>options can be disabled by updating the `enabled` field to false with the<br>`PUT /enum_options/enum_option_gid` endpoint. Other attributes can be<br>updated similarly.<br><br>On creation of an enum option, `enabled` is always set to `true`, meaning<br>the enum option is a selectable value for the custom field. Setting<br>`enabled=false` is equivalent to “trashing” the enum option in the Asana<br>web app within the “Edit Fields” dialog. The enum option will no longer<br>be selectable but, if the enum option value was previously set within a<br>task, the task will retain the value.<br><br>Enum options are an ordered list and by default new enum options are<br>inserted at the end. Ordering in relation to existing enum options can be<br>specified on creation by using `insert_before` or `insert_after` to<br>reference an existing enum option. Only one of `insert_before` and<br>`insert_after` can be provided when creating a new enum option.<br><br>An enum options list can be reordered with the `POST<br>/custom_fields/custom_field_gid/enum_options/insert` endpoint.|
-|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» name|string|false|none|The name of the enum option.|
 |»»» enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
 |»»» color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
 |»» duplicate_of|object|false|none|A generic Asana Object, containing a globally unique identifier.|
-|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» name|string|false|none|The name of the object.|
 |»» duplicated_from|object|false|none|A generic Asana Object, containing a globally unique identifier.|
-|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» name|string|false|none|The name of the object.|
 |»» dependency|object|false|none|A generic Asana Object, containing a globally unique identifier.|
-|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» name|string|false|none|The name of the object.|
@@ -24991,14 +24875,14 @@ A generic Asana Object, containing a globally unique identifier.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |created_at|string(date-time)|false|read-only|The time at which this resource was created.|
 |created_by|any|false|none|none|
-|text|any|false|none|**Create-only**. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br><br>**Note:** This is not guaranteed to be stable for a given type of<br>story. For example, text for a reassignment may not always say<br>“assigned to …” as the text for a story can both be edited and<br>change based on the language settings of the user making the request.<br>Use the `resource_subtype` property to discover the action that<br>created the story.|
-|type|string|false|read-only|**Deprecated: new integrations should prefer the `resource_subtype` field.** The type of this story. For more fine-grained inspection of story types, see the [`resource_subtype`] (https://asana.com/developers/api-reference/stories#field-resource_subtype) property.|
+|text|any|false|none|*Create-only*. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br><br>*Note: This is not guaranteed to be stable for a given type of<br>story. For example, text for a reassignment may not always say<br>“assigned to …” as the text for a story can both be edited and<br>change based on the language settings of the user making the request.<br>Use the `resource_subtype` property to discover the action that<br>created the story.*|
+|type|string|false|read-only|*Deprecated: new integrations should prefer the `resource_subtype` field.* The type of this story. For more fine-grained inspection of story types, see the [`resource_subtype`] (https://asana.com/developers/api-reference/stories#field-resource_subtype) property.|
 
 <hr>
 
@@ -25046,18 +24930,18 @@ tasks they are associated with.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |followers|[object]|false|read-only|Array of users following this tag.|
-|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|**Read-only except when same user as requester**. The user’s name.|
+|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
 |color|string|false|none|Color of the tag.|
 |workspace|object|false|none|A generic Asana Object, containing a globally unique identifier.|
-|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|The name of the object.|
@@ -25110,7 +24994,7 @@ A generic Asana Object, containing a globally unique identifier.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
@@ -25260,7 +25144,7 @@ to manipulate what data is included in a response.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
@@ -25271,22 +25155,22 @@ to manipulate what data is included in a response.
 |completed|boolean|false|none|True if the task is currently marked complete, false if not.|
 |completed_at|string(date-time)¦null|false|read-only|The time at which this task was completed, or null if the task is incomplete.|
 |custom_fields|[object]|false|read-only|Array of custom field values applied to the project. These represent<br>the custom field values recorded on this project for a particular<br>custom field. For example, these custom field values will contain<br>an `enum_value` property for custom fields of type `enum`, a<br>`string_value` property for custom fields of type `string`, and<br>so on. Please note that the `id` returned on each custom field<br>value *is identical* to the `id` of the custom field, which<br>allows referencing the custom field metadata through the<br>`/custom_fields/custom_field-id` endpoint.|
-|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|The name of the object.|
 |» resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|» type|string|false|none|**Deprecated: new integrations should prefer the resource_subtype field.** The type of the custom field. Must be one of the given values.|
-|» enum_options|[object]|false|none|**Conditional**. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://asana.com/developers/api-reference/custom_fields#enum-options).|
-|»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|» type|string|false|none|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|» enum_options|[object]|false|none|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://asana.com/developers/api-reference/custom_fields#enum-options).|
+|»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»» resource_type|string|false|read-only|The base type of this resource.|
 |»» name|string|false|none|The name of the enum option.|
 |»» enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
 |»» color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
 |» enum_value|any|false|none|none|
-|» enabled|boolean|false|none|**Conditional**. Determines if the custom field is enabled or not.|
-|» text_value|string|false|none|**Conditional**. This string is the value of a text custom field.|
+|» enabled|boolean|false|none|*Conditional*. Determines if the custom field is enabled or not.|
+|» text_value|string|false|none|*Conditional*. This string is the value of a text custom field.|
 |» description|string|false|none|[Opt In](/developers/documentation/getting-started/input-output-options). The description of the custom field.|
 |» precision|integer|false|none|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
 |dependencies|[object]|false|read-only|[Opt In](/developers/documentation/getting-started/input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the ID of the dependency.|
@@ -25297,64 +25181,64 @@ to manipulate what data is included in a response.
 |» gid|string|false|none|none|
 |due_at|string(date)¦null|false|none|Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
 |due_on|string(date)¦null|false|none|Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
-|external|object|false|none|**OAuth Required**. **Conditional**. This field is returned only if external values are set or included by using [Opt In] (/developers/documentation/getting-started/input-output-options).<br>The external field allows you to store app-specific metadata on tasks, including an id that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external id is set, you can use the notation `external:custom_id` to reference your object anywhere in the API where you may use the original object id. See the page on Custom External Data for more details.|
+|external|object|false|none|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/developers/documentation/getting-started/input-output-options).<br>The external field allows you to store app-specific metadata on tasks, including an id that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external id is set, you can use the notation `external:custom_id` to reference your object anywhere in the API where you may use the original object id. See the page on Custom External Data for more details.|
 |» id|integer|false|none|none|
 |» gid|string|false|none|none|
 |» data|string|false|none|none|
 |followers|[object]|false|none|Array of users following this task.|
-|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|**Read-only except when same user as requester**. The user’s name.|
-|html_notes|string|false|none|[Opt In](/developers/documentation/getting-started/input-output-options). The notes of the text with formatting as HTML.<br>**Note: This field is under active migration—please see our blog post for more information.**|
-|hearted|boolean|false|read-only|**Deprecated - please use liked instead** True if the task is hearted by the authorized user, false if not.|
-|hearts|[object]|false|read-only|**Deprecated - please use likes instead** Array of users who have hearted this task.|
-|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
+|html_notes|string|false|none|[Opt In](/developers/documentation/getting-started/input-output-options). The notes of the text with formatting as HTML.<br>*Note: This field is under active migration—please see our blog post for more information.*|
+|hearted|boolean|false|read-only|*Deprecated - please use liked instead* True if the task is hearted by the authorized user, false if not.|
+|hearts|[object]|false|read-only|*Deprecated - please use likes instead* Array of users who have hearted this task.|
+|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|**Read-only except when same user as requester**. The user’s name.|
+|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
 |liked|boolean|false|read-only|True if the task is liked by the authorized user, false if not.|
 |likes|[object]|false|read-only|Array of users who have liked this task.|
-|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|**Read-only except when same user as requester**. The user’s name.|
-|memberships|[object]|false|none|**Create-only**. Array of projects this task is associated with and the section it is in. At task creation time, this array can be used to add the task to specific sections. After task creation, these associations can be modified using the `addProject` and `removeProject` endpoints. Note that over time, more types of memberships may be added to this property.|
+|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
+|memberships|[object]|false|none|*Create-only*. Array of projects this task is associated with and the section it is in. At task creation time, this array can be used to add the task to specific sections. After task creation, these associations can be modified using the `addProject` and `removeProject` endpoints. Note that over time, more types of memberships may be added to this property.|
 |» project|object|false|none|A generic Asana Object, containing a globally unique identifier.|
-|»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»» resource_type|string|false|read-only|The base type of this resource.|
 |»» name|string|false|none|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |» section|object|false|none|A generic Asana Object, containing a globally unique identifier.|
-|»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»» resource_type|string|false|read-only|The base type of this resource.|
 |»» name|string|false|none|The name of the section (i.e. the text displayed as the section header).|
-|» modified_at|string(date-time)|false|read-only|The time at which this task was last modified.<br><br>**Note:** This does not currently reflect any changes in<br>associations such as projects or comments that may have been<br>added or removed from the task.|
+|» modified_at|string(date-time)|false|read-only|The time at which this task was last modified.<br><br>*Note: This does not currently reflect any changes in<br>associations such as projects or comments that may have been<br>added or removed from the task.*|
 |» notes|string|false|none|More detailed, free-form textual information associated with the task.|
-|» num_hearts|integer|false|read-only|**Deprecated - please use likes instead** The number of users who have hearted this task.|
+|» num_hearts|integer|false|read-only|*Deprecated - please use likes instead* The number of users who have hearted this task.|
 |» num_likes|integer|false|read-only|The number of users who have liked this task.|
 |» num_subtasks|integer|false|read-only|[Opt In](https://asana.com/developers/documentation/getting-started/input-output-options). The number of subtasks on this task.|
 |» parent|any|false|none|none|
-|» projects|[object]|false|none|**Create-only.** Array of projects this task is associated with. At task creation time, this array can be used to add the task to many projects at once. After task creation, these associations can be modified using the addProject and removeProject endpoints.|
-|»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|» projects|[object]|false|none|*Create-only.* Array of projects this task is associated with. At task creation time, this array can be used to add the task to many projects at once. After task creation, these associations can be modified using the addProject and removeProject endpoints.|
+|»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»» resource_type|string|false|read-only|The base type of this resource.|
 |»» name|string|false|none|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|» start_on|string(date)¦null|false|none|The day on which work begins for the task , or null if the task has<br>no start date. This takes a date with `YYYY-MM-DD` format.<br><br>**Note:** `due_on` or `due_at` must be present in the request when<br>setting or unsetting the `start_on` parameter.|
-|» tags|[object]|false|none|**Create-only**. Array of tags associated with this task. This property may be specified on creation using just an array of tag IDs.  In order to change tags on an existing task use `addTag` and `removeTag`.|
-|»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|» start_on|string(date)¦null|false|none|The day on which work begins for the task , or null if the task has<br>no start date. This takes a date with `YYYY-MM-DD` format.<br><br>*Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
+|» tags|[object]|false|none|*Create-only*. Array of tags associated with this task. This property may be specified on creation using just an array of tag IDs.  In order to change tags on an existing task use `addTag` and `removeTag`.|
+|»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»» resource_type|string|false|read-only|The base type of this resource.|
 |»» name|string|false|none|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» followers|[object]|false|read-only|Array of users following this tag.|
-|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
-|»»» name|string|false|none|**Read-only except when same user as requester**. The user’s name.|
+|»»» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
 |»» color|string|false|none|Color of the tag.|
 |»» workspace|object|false|none|A generic Asana Object, containing a globally unique identifier.|
-|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» name|string|false|none|The name of the object.|
@@ -25419,7 +25303,7 @@ A generic Asana Object, containing a globally unique identifier.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the object.|
@@ -25453,12 +25337,12 @@ organization. Each project in an organization is associated with a team.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the object.|
 |description|string|false|none|[Opt In](/developers/documentation/getting-started/input-output-options). The description of the team.|
-|html_description|string|false|none|[Opt In](/developers/documentation/getting-started/input-output-options). The description of the team with formatting as HTML.<br>**Note: This field is under active migration—please see our [blog post](https://asana.com/developers/news/new-rich-text) for more information.**|
+|html_description|string|false|none|[Opt In](/developers/documentation/getting-started/input-output-options). The description of the team with formatting as HTML.<br>*Note: This field is under active migration—please see our [blog post](https://asana.com/developers/news/new-rich-text) for more information.*|
 |organization|any|false|none|none|
 
 <hr>
@@ -25486,7 +25370,7 @@ A generic Asana Object, containing a globally unique identifier.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the object.|
@@ -25539,10 +25423,10 @@ user ID is accepted, to refer to the current authenticated user.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
-|name|string|false|none|**Read-only except when same user as requester**. The user’s name.|
+|name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
 |email|string(email)|false|read-only|The user’s email address.|
 |photo|object¦null|false|read-only|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.|
 |» image_21x21|string(uri)|false|none|none|
@@ -25551,7 +25435,7 @@ user ID is accepted, to refer to the current authenticated user.
 |» image_60x60|string(uri)|false|none|none|
 |» image_128x128|string(uri)|false|none|none|
 |workspaces|[object]|false|read-only|Workspaces and organizations this user may access.<br>Note\: The API will only return workspaces and organizations that also contain the authenticated user.|
-|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|The name of the object.|
@@ -25583,10 +25467,10 @@ A generic Asana Object, containing a globally unique identifier.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
-|name|string|false|none|**Read-only except when same user as requester**. The user’s name.|
+|name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
 
 <hr>
 
@@ -25616,7 +25500,7 @@ A user’s “My Tasks” represent all of the tasks assigned to that user. It i
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the object.|
@@ -25661,17 +25545,13 @@ to the [Events
 documentation](https://asana.com/developers/api-reference/events) for
 more information on what data these events contain.
 
-**Note**: While Webhooks send arrays of Event objects to their target,
-the Event objects themselves contain *only IDs*, rather than the actual
-resource they are referencing. Webhooks themselves contain only the
-information necessary to deliver the events to the desired target as they
-are generated.
+*Note: While Webhooks send arrays of Event objects to their target, the Event objects themselves contain *only IDs*, rather than the actual resource they are referencing. Webhooks themselves contain only the information necessary to deliver the events to the desired target as they are generated.*
 
 ### Properties
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |created_at|string(date-time)|false|read-only|The time at which this resource was created.|
@@ -25710,9 +25590,9 @@ are generated.
 |action|string|false|read-only|The type of action taken that triggered the event.|
 |created_at|string(date-time)|false|read-only|The timestamp when the event occurred.|
 |parent|integer¦null|false|read-only|For added/removed events, the parent ID that resource was added to or removed from. The parent will be `null` for other event types.|
-|resource|integer|false|read-only|The resource ID the event occurred on.<br><br>**Note**: The resource that triggered the event may be different from<br>the one that the events were requested for. For example, a<br>subscription to a project will contain events for tasks contained<br>within the project.|
-|type|string|false|read-only|The type of the resource that generated the event.<br><br>**Note**: Currently, only tasks, projects and stories generate<br>events.|
-|user|integer¦null|false|read-only|The ID of the user who triggered the event.<br><br>**Note**: The event may be triggered by a different user than the<br>subscriber. For example, if user A subscribes to a task and user B<br>modified it, the event’s user will be user B. Note: Some events are<br>generated by the system, and will have `null` as the user. API<br>consumers should make sure to handle this case.|
+|resource|integer|false|read-only|The resource ID the event occurred on.<br><br>*Note: The resource that triggered the event may be different from<br>the one that the events were requested for. For example, a<br>subscription to a project will contain events for tasks contained<br>within the project.*|
+|type|string|false|read-only|The type of the resource that generated the event.<br><br>*Note: Currently, only tasks, projects and stories generate<br>events.*|
+|user|integer¦null|false|read-only|The ID of the user who triggered the event.<br><br>*Note: The event may be triggered by a different user than the<br>subscriber. For example, if user A subscribes to a task and user B<br>modified it, the event’s user will be user B. Note: Some events are<br>generated by the system, and will have `null` as the user. API<br>consumers should make sure to handle this case.*|
 
 <hr>
 
@@ -25757,7 +25637,7 @@ parameter.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the object.|
@@ -25789,7 +25669,7 @@ A generic Asana Object, containing a globally unique identifier.
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. **Note: This field is under active migration to the gid field—please see our blog post for more information.**|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the object.|
