@@ -1,10 +1,11 @@
 version: 2
 jobs:
   build:
-    machine: true
     filters:
       branches:
-        only: master
+        only:
+          - master
+    machine: true
     steps:
       - checkout
       - run: git clone git@github.com:rossgrambo/widdershins

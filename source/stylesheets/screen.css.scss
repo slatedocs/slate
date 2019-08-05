@@ -291,18 +291,14 @@ html, body {
     top: 0;
     bottom: 0;
 
-    text-align: center;
+    display: flex;
+    justify-content: flex-end;
   }
 
   .lang-selector {
     position: fixed;
     z-index: 50;
-    display: inline-block;
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    -o-transform: translateX(-50%);
-    transform: translateX(-50%);
+    display: flex;
 
     box-shadow: $boxShadow-small;
     //border-bottom: 5px solid $lang-select-border;
@@ -554,7 +550,7 @@ html, body {
     background-color: $code-bg;
     color: $code-text;
 
-    margin: 0;
+    margin: 0 $main-padding/2;
     width: $examples-width;
 
     float:right;
