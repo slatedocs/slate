@@ -41,6 +41,11 @@
           headerHeights[targetId] = $(targetId).offset().top;
         }
       });
+
+      var currentAnchor = (document.URL.split('#').length > 1) ? document.URL.split('#')[1] : null;
+      if (currentAnchor != null) {
+        document.getElementById(currentAnchor).scrollIntoView();
+      }
     };
 
     var refreshToc = function() {
