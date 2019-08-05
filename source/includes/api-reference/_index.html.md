@@ -35,7 +35,7 @@ Asana supports the Authorization Code Grant flow.
 <h1 id="asana-attachments">Attachments</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/api/1.1/attachments/{attachment_gid}</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/tasks/{task_gid}/attachments</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/tasks/{task_gid}/attachments</span></code>
+<code><span class="nf">GET</span> <span class=""nn>/attachments/{attachment_gid}</span><br><span class="nf">GET</span> <span class=""nn>/tasks/{task_gid}/attachments</span><br><span class="nf">POST</span> <span class=""nn>/tasks/{task_gid}/attachments</span></code>
 </pre>
 
 An *attachment* object represents any file attached to a task in Asana, whether it’s an uploaded file or one associated via a third-party service such as Dropbox or Google Drive.
@@ -598,7 +598,7 @@ appending the content type to the file path: `—form
 <h1 id="asana-batch-api">Batch API</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">POST</span> <span class=""nn>/api/1.1/batch</span></code>
+<code><span class="nf">POST</span> <span class=""nn>/batch</span></code>
 </pre>
 
 There are many cases where you want to accomplish a variety of work in the Asana API but want to minimize the number of HTTP requests you make. For example:
@@ -839,7 +839,7 @@ Make multiple requests in parallel to Asana's API.
 <h1 id="asana-custom-fields">Custom Fields</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">POST</span> <span class=""nn>/api/1.1/custom_fields</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/custom_fields/{custom_field_gid}</span><br><span class="nf">PUT</span> <span class=""nn>/api/1.1/custom_fields/{custom_field_gid}</span><br><span class="nf">DELETE</span> <span class=""nn>/api/1.1/custom_fields/{custom_field_gid}</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/custom_fields/{custom_field_gid}/enum_options</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/custom_fields/{custom_field_gid}/enum_options/insert</span><br><span class="nf">PUT</span> <span class=""nn>/api/1.1/enum_options/{enum_option_gid}</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/workspaces/{workspace_gid}/custom_fields</span></code>
+<code><span class="nf">POST</span> <span class=""nn>/custom_fields</span><br><span class="nf">GET</span> <span class=""nn>/custom_fields/{custom_field_gid}</span><br><span class="nf">PUT</span> <span class=""nn>/custom_fields/{custom_field_gid}</span><br><span class="nf">DELETE</span> <span class=""nn>/custom_fields/{custom_field_gid}</span><br><span class="nf">POST</span> <span class=""nn>/custom_fields/{custom_field_gid}/enum_options</span><br><span class="nf">POST</span> <span class=""nn>/custom_fields/{custom_field_gid}/enum_options/insert</span><br><span class="nf">PUT</span> <span class=""nn>/enum_options/{enum_option_gid}</span><br><span class="nf">GET</span> <span class=""nn>/workspaces/{workspace_gid}/custom_fields</span></code>
 </pre>
 
 In the Asana application, Tasks can hold user-specified Custom Fields which provide extra information; for example, a priority value or a number representing the time required to complete a Task. This lets a user define the type of information that each Task within a Project can contain in addition to the built-in fields that Asana provides.
@@ -2140,7 +2140,7 @@ An enum options list can be reordered with the `POST
 |5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
-## Update an enum option.
+## Update an enum option
 
 <a id="opIdupdateEnumOption"></a>
 
@@ -2288,7 +2288,7 @@ Returns the full record of the updated enum option.
 }
 ```
 
-<h3 id="update-an-enum-option.-parameters">Parameters</h3>
+<h3 id="update-an-enum-option-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -2352,7 +2352,7 @@ An enum options list can be reordered with the `POST
 }
 ```
 
-<h3 id="update-an-enum-option.-responses">Responses</h3>
+<h3 id="update-an-enum-option-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -2534,13 +2534,13 @@ Returns a list of the compact representation of all of the custom fields in a wo
 <h1 id="asana-custom-field-settings">Custom Field Settings</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/api/1.1/projects/{project-id}/custom_field_settings</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/projects/{project_gid}/custom_field_settings</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/portfolios/{portfolio_gid}/custom_field_settings</span></code>
+<code><span class="nf">GET</span> <span class=""nn>/projects/{project-id}/custom_field_settings</span><br><span class="nf">GET</span> <span class=""nn>/projects/{project_gid}/custom_field_settings</span><br><span class="nf">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/custom_field_settings</span></code>
 </pre>
 
 Custom Fields Settings objects represent the many-to-many join of the Custom Field and Project as well as stores information that is relevant to that particular pairing.
 
 <hr class="half-line">
-## Query for all of the custom fields settings on a project.
+## Query for all of the custom fields settings on a project
 
 <a id="opIdgetCustomFieldSettingsForProject"></a>
 
@@ -2663,7 +2663,7 @@ p JSON.parse(result)
 
 Returns a list of all of the custom fields settings on a project, in compact form. Note that, as in all queries to collections which return compact representation, `opt_fields` and `opt_expand` can be used to include more data than is returned in the compact representation. See the [getting started guide on input/output options](https://asana.com/developers/documentation/getting-started/input-output-options) for more information.
 
-<h3 id="query-for-all-of-the-custom-fields-settings-on-a-project.-parameters">Parameters</h3>
+<h3 id="query-for-all-of-the-custom-fields-settings-on-a-project-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -2692,7 +2692,7 @@ Returns a list of all of the custom fields settings on a project, in compact for
 }
 ```
 
-<h3 id="query-for-all-of-the-custom-fields-settings-on-a-project.-responses">Responses</h3>
+<h3 id="query-for-all-of-the-custom-fields-settings-on-a-project-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -3035,7 +3035,7 @@ Returns a list of all of the custom fields settings on a portfolio, in compact f
 <h1 id="asana-events">Events</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/api/1.1/events</span></code>
+<code><span class="nf">GET</span> <span class=""nn>/events</span></code>
 </pre>
 
 An event is an object representing a change to a resource that was observed by an event subscription.
@@ -3219,7 +3219,7 @@ lieu of including the resource ID in the data for the request.
 <h1 id="asana-jobs">Jobs</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/api/1.1/jobs/{job_gid}</span></code>
+<code><span class="nf">GET</span> <span class=""nn>/jobs/{job_gid}</span></code>
 </pre>
 
 Jobs represent processes that handle asynchronous work.
@@ -3402,7 +3402,7 @@ Returns the full record for a job.
 <h1 id="asana-organization-exports">Organization Exports</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">POST</span> <span class=""nn>/api/1.1/organization_exports</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/organization_exports/{organization_export_gid}</span></code>
+<code><span class="nf">POST</span> <span class=""nn>/organization_exports</span><br><span class="nf">GET</span> <span class=""nn>/organization_exports/{organization_export_gid}</span></code>
 </pre>
 
 An *organization_export* object represents a request to export the complete data of an Organization in JSON format.
@@ -3759,7 +3759,7 @@ Returns details of a previously-requested Organization export.
 <h1 id="asana-portfolios">Portfolios</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/api/1.1/portfolios</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/portfolios</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/portfolios/{portfolio_gid}</span><br><span class="nf">PUT</span> <span class=""nn>/api/1.1/portfolios/{portfolio_gid}</span><br><span class="nf">DELETE</span> <span class=""nn>/api/1.1/portfolios/{portfolio_gid}</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/portfolios/{portfolio_gid}/items</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/portfolios/{portfolio_gid}/addItem</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/portfolios/{portfolio_gid}/removeItem</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/portfolios/{portfolio_gid}/addCustomFieldSetting</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/portfolios/{portfolio_gid}/removeCustomFieldSetting</span></code>
+<code><span class="nf">GET</span> <span class=""nn>/portfolios</span><br><span class="nf">POST</span> <span class=""nn>/portfolios</span><br><span class="nf">GET</span> <span class=""nn>/portfolios/{portfolio_gid}</span><br><span class="nf">PUT</span> <span class=""nn>/portfolios/{portfolio_gid}</span><br><span class="nf">DELETE</span> <span class=""nn>/portfolios/{portfolio_gid}</span><br><span class="nf">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/items</span><br><span class="nf">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addItem</span><br><span class="nf">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeItem</span><br><span class="nf">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addCustomFieldSetting</span><br><span class="nf">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeCustomFieldSetting</span></code>
 </pre>
 
 A 'portfolio' gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](https://asana.com/developers/api-reference/project_statuses) update.
@@ -5461,7 +5461,7 @@ Removes a custom field setting from a portfolio.
 <h1 id="asana-portfolio-memberships">Portfolio Memberships</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/api/1.1/portfolio_memberships</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/portfolios/{portfolio_gid}/portfolio_memberships</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/portfolio_memberships/{portfolio_gid}</span></code>
+<code><span class="nf">GET</span> <span class=""nn>/portfolio_memberships</span><br><span class="nf">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/portfolio_memberships</span><br><span class="nf">GET</span> <span class=""nn>/portfolio_memberships/{portfolio_gid}</span></code>
 </pre>
 
 This object determines if a user is a member of a portfolio.
@@ -5965,7 +5965,7 @@ Returns the complete portfolio record for a single portfolio membership.
 <h1 id="asana-projects">Projects</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/api/1.1/projects/{project_gid}/project_statuses</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/projects/{project_gid}/project_statuses</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/projects</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/projects</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/projects/{project_gid}</span><br><span class="nf">PUT</span> <span class=""nn>/api/1.1/projects/{project_gid}</span><br><span class="nf">DELETE</span> <span class=""nn>/api/1.1/projects/{project_gid}</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/projects/{project_gid}/duplicate</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/projects/{project_gid}/addCustomFieldSetting</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/projects/{project_gid}/removeCustomFieldSetting</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/teams/{team_gid}/projects</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/teams/{team_gid}/projects</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/workspaces/{workspace_gid}/projects</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/workspaces/{workspace_gid}/projects</span></code>
+<code><span class="nf">GET</span> <span class=""nn>/projects/{project_gid}/project_statuses</span><br><span class="nf">POST</span> <span class=""nn>/projects/{project_gid}/project_statuses</span><br><span class="nf">GET</span> <span class=""nn>/projects</span><br><span class="nf">POST</span> <span class=""nn>/projects</span><br><span class="nf">GET</span> <span class=""nn>/projects/{project_gid}</span><br><span class="nf">PUT</span> <span class=""nn>/projects/{project_gid}</span><br><span class="nf">DELETE</span> <span class=""nn>/projects/{project_gid}</span><br><span class="nf">POST</span> <span class=""nn>/projects/{project_gid}/duplicate</span><br><span class="nf">POST</span> <span class=""nn>/projects/{project_gid}/addCustomFieldSetting</span><br><span class="nf">POST</span> <span class=""nn>/projects/{project_gid}/removeCustomFieldSetting</span><br><span class="nf">GET</span> <span class=""nn>/teams/{team_gid}/projects</span><br><span class="nf">POST</span> <span class=""nn>/teams/{team_gid}/projects</span><br><span class="nf">GET</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span><br><span class="nf">POST</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></code>
 </pre>
 
 A `project` represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.
@@ -8728,7 +8728,7 @@ Returns the full record of the newly created project.
 <h1 id="asana-project-memberships">Project Memberships</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/api/1.1/projects/{project_gid}/project_memberships</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/project_memberships/{project_gid}</span></code>
+<code><span class="nf">GET</span> <span class=""nn>/projects/{project_gid}/project_memberships</span><br><span class="nf">GET</span> <span class=""nn>/project_memberships/{project_gid}</span></code>
 </pre>
 
 With the introduction of “comment-only” projects in Asana, a user’s membership in a project comes with associated permissions. These permissions (whether a user has full access to the project or comment-only access) are accessible through the project memberships endpoints described here.
@@ -9072,7 +9072,7 @@ Returns the complete project record for a single project membership.
 <h1 id="asana-project-statuses">Project Statuses</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/api/1.1/project_statuses/{project_status_gid}</span><br><span class="nf">DELETE</span> <span class=""nn>/api/1.1/project_statuses/{project_status_gid}</span></code>
+<code><span class="nf">GET</span> <span class=""nn>/project_statuses/{project_status_gid}</span><br><span class="nf">DELETE</span> <span class=""nn>/project_statuses/{project_status_gid}</span></code>
 </pre>
 
 A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: “green” for projects that are on track, “yellow” for projects at risk, and “red” for projects that are behind.
@@ -9393,7 +9393,7 @@ Returns an empty data record.
 <h1 id="asana-sections">Sections</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/api/1.1/projects/{project_gid}/sections</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/projects/{project_gid}/sections</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/sections/{section_gid}</span><br><span class="nf">PUT</span> <span class=""nn>/api/1.1/sections/{section_gid}</span><br><span class="nf">DELETE</span> <span class=""nn>/api/1.1/sections/{section_gid}</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/sections/{section_gid}/addTask</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/projects/{project_gid}/sections/insert</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/sections/{section_gid}/tasks</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/workspaces/{workspace_gid}/tasks/search</span></code>
+<code><span class="nf">GET</span> <span class=""nn>/projects/{project_gid}/sections</span><br><span class="nf">POST</span> <span class=""nn>/projects/{project_gid}/sections</span><br><span class="nf">GET</span> <span class=""nn>/sections/{section_gid}</span><br><span class="nf">PUT</span> <span class=""nn>/sections/{section_gid}</span><br><span class="nf">DELETE</span> <span class=""nn>/sections/{section_gid}</span><br><span class="nf">POST</span> <span class=""nn>/sections/{section_gid}/addTask</span><br><span class="nf">POST</span> <span class=""nn>/projects/{project_gid}/sections/insert</span><br><span class="nf">GET</span> <span class=""nn>/sections/{section_gid}/tasks</span><br><span class="nf">GET</span> <span class=""nn>/workspaces/{workspace_gid}/tasks/search</span></code>
 </pre>
 
 A *section* is a subdivision of a project that groups tasks together.
@@ -11100,7 +11100,7 @@ You may receive a `429 Too Many Requests` response if you hit any of our [rate l
 <h1 id="asana-stories">Stories</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/api/1.1/tasks/{task_gid}/stories</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/tasks/{task_gid}/stories</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/stories/{story_gid}</span><br><span class="nf">PUT</span> <span class=""nn>/api/1.1/stories/{story_gid}</span><br><span class="nf">DELETE</span> <span class=""nn>/api/1.1/stories/{story_gid}</span></code>
+<code><span class="nf">GET</span> <span class=""nn>/tasks/{task_gid}/stories</span><br><span class="nf">POST</span> <span class=""nn>/tasks/{task_gid}/stories</span><br><span class="nf">GET</span> <span class=""nn>/stories/{story_gid}</span><br><span class="nf">PUT</span> <span class=""nn>/stories/{story_gid}</span><br><span class="nf">DELETE</span> <span class=""nn>/stories/{story_gid}</span></code>
 </pre>
 
 A story represents an activity associated with an object in the Asana system.
@@ -12522,7 +12522,7 @@ Returns an empty data record.
 <h1 id="asana-tags">Tags</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/api/1.1/tags</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/tags</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/tags/{tag_gid}</span><br><span class="nf">PUT</span> <span class=""nn>/api/1.1/tags/{tag_gid}</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/tags/{tag_gid}/tasks</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/workspaces/{workspace_gid}/tags</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/workspaces/{workspace_gid}/tags</span></code>
+<code><span class="nf">GET</span> <span class=""nn>/tags</span><br><span class="nf">POST</span> <span class=""nn>/tags</span><br><span class="nf">GET</span> <span class=""nn>/tags/{tag_gid}</span><br><span class="nf">PUT</span> <span class=""nn>/tags/{tag_gid}</span><br><span class="nf">GET</span> <span class=""nn>/tags/{tag_gid}/tasks</span><br><span class="nf">GET</span> <span class=""nn>/workspaces/{workspace_gid}/tags</span><br><span class="nf">POST</span> <span class=""nn>/workspaces/{workspace_gid}/tags</span></code>
 </pre>
 
 A tag is a label that can be attached to any task in Asana. It exists in a single workspace or organization.
@@ -13797,7 +13797,7 @@ Returns the full record of the newly created tag.
 <h1 id="asana-tasks">Tasks</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/api/1.1/projects/{project_gid}/tasks</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/tasks</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/tasks</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/tasks/{task_gid}</span><br><span class="nf">PUT</span> <span class=""nn>/api/1.1/tasks/{task_gid}</span><br><span class="nf">DELETE</span> <span class=""nn>/api/1.1/tasks/{task_gid}</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/tasks/{task_gid}/duplicate</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/tasks/{task_gid}/subtasks</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/tasks/{task_gid}/subtasks</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/tasks/{task_gid}/setParent</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/tasks/{task_gid}/dependencies</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/tasks/{task_gid}/addDependencies</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/tasks/{task_gid}/removeDependencies</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/tasks/{task_gid}/dependents</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/tasks/{task_gid}/addDependents</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/tasks/{task_gid}/removeDependents</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/tasks/{task_gid}/projects</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/tasks/{task_gid}/addProject</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/tasks/{task_gid}/removeProject</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/tasks/{task_gid}/tags</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/tasks/{task_gid}/addTag</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/tasks/{task_gid}/removeTag</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/tasks/{task_gid}/addFollowers</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/tasks/{task_gid}/removeFollowers</span></code>
+<code><span class="nf">GET</span> <span class=""nn>/projects/{project_gid}/tasks</span><br><span class="nf">GET</span> <span class=""nn>/tasks</span><br><span class="nf">POST</span> <span class=""nn>/tasks</span><br><span class="nf">GET</span> <span class=""nn>/tasks/{task_gid}</span><br><span class="nf">PUT</span> <span class=""nn>/tasks/{task_gid}</span><br><span class="nf">DELETE</span> <span class=""nn>/tasks/{task_gid}</span><br><span class="nf">POST</span> <span class=""nn>/tasks/{task_gid}/duplicate</span><br><span class="nf">GET</span> <span class=""nn>/tasks/{task_gid}/subtasks</span><br><span class="nf">POST</span> <span class=""nn>/tasks/{task_gid}/subtasks</span><br><span class="nf">POST</span> <span class=""nn>/tasks/{task_gid}/setParent</span><br><span class="nf">GET</span> <span class=""nn>/tasks/{task_gid}/dependencies</span><br><span class="nf">POST</span> <span class=""nn>/tasks/{task_gid}/addDependencies</span><br><span class="nf">POST</span> <span class=""nn>/tasks/{task_gid}/removeDependencies</span><br><span class="nf">GET</span> <span class=""nn>/tasks/{task_gid}/dependents</span><br><span class="nf">POST</span> <span class=""nn>/tasks/{task_gid}/addDependents</span><br><span class="nf">POST</span> <span class=""nn>/tasks/{task_gid}/removeDependents</span><br><span class="nf">GET</span> <span class=""nn>/tasks/{task_gid}/projects</span><br><span class="nf">POST</span> <span class=""nn>/tasks/{task_gid}/addProject</span><br><span class="nf">POST</span> <span class=""nn>/tasks/{task_gid}/removeProject</span><br><span class="nf">GET</span> <span class=""nn>/tasks/{task_gid}/tags</span><br><span class="nf">POST</span> <span class=""nn>/tasks/{task_gid}/addTag</span><br><span class="nf">POST</span> <span class=""nn>/tasks/{task_gid}/removeTag</span><br><span class="nf">POST</span> <span class=""nn>/tasks/{task_gid}/addFollowers</span><br><span class="nf">POST</span> <span class=""nn>/tasks/{task_gid}/removeFollowers</span></code>
 </pre>
 
 The task is the basic object around which many operations in Asana are centered.
@@ -18957,7 +18957,7 @@ Removes each of the specified followers from the task if they are following. Ret
 <h1 id="asana-team">Team</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/api/1.1/teams/{team_gid}</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/organizations/{organization_gid}/teams</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/users/{user_gid}/teams</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/teams/{team_gid}/users</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/teams/{team_gid}/addUser</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/teams/{team_gid}/removeUser</span></code>
+<code><span class="nf">GET</span> <span class=""nn>/teams/{team_gid}</span><br><span class="nf">GET</span> <span class=""nn>/organizations/{organization_gid}/teams</span><br><span class="nf">GET</span> <span class=""nn>/users/{user_gid}/teams</span><br><span class="nf">GET</span> <span class=""nn>/teams/{team_gid}/users</span><br><span class="nf">POST</span> <span class=""nn>/teams/{team_gid}/addUser</span><br><span class="nf">POST</span> <span class=""nn>/teams/{team_gid}/removeUser</span></code>
 </pre>
 
 A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.
@@ -19982,7 +19982,7 @@ The user making this call must be a member of the team in order to remove themse
 <h1 id="asana-users">Users</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/api/1.1/users</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/users/{user_gid}</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/users/{user_gid}/favorites</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/workspaces/{workspace_gid}/users</span></code>
+<code><span class="nf">GET</span> <span class=""nn>/users</span><br><span class="nf">GET</span> <span class=""nn>/users/{user_gid}</span><br><span class="nf">GET</span> <span class=""nn>/users/{user_gid}/favorites</span><br><span class="nf">GET</span> <span class=""nn>/workspaces/{workspace_gid}/users</span></code>
 </pre>
 
 A user object represents an account in Asana that can be given access to various workspaces, projects, and tasks.
@@ -20663,7 +20663,7 @@ Results are sorted alphabetically by user names.
 <h1 id="asana-user-task-lists">User Task Lists</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/api/1.1/user_task_list/{user_task_list_gid}</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/users/{user_gid}/user_task_list</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/user_task_lists/{user_task_list_gid}/tasks</span></code>
+<code><span class="nf">GET</span> <span class=""nn>/user_task_list/{user_task_list_gid}</span><br><span class="nf">GET</span> <span class=""nn>/users/{user_gid}/user_task_list</span><br><span class="nf">GET</span> <span class=""nn>/user_task_lists/{user_task_list_gid}/tasks</span></code>
 </pre>
 
 A user task list represents the tasks assigned to a particular user.
@@ -21192,7 +21192,7 @@ Returns the compact list of tasks in a user’s My Tasks list. The returned task
 <h1 id="asana-webhooks">Webhooks</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/api/1.1/webhooks</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/webhooks</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/webhooks/{webhook_gid}</span><br><span class="nf">DELETE</span> <span class=""nn>/api/1.1/webhooks/{webhook_gid}</span></code>
+<code><span class="nf">GET</span> <span class=""nn>/webhooks</span><br><span class="nf">POST</span> <span class=""nn>/webhooks</span><br><span class="nf">GET</span> <span class=""nn>/webhooks/{webhook_gid}</span><br><span class="nf">DELETE</span> <span class=""nn>/webhooks/{webhook_gid}</span></code>
 </pre>
 
 Webhooks allow an application to be notified of changes in Asana.
@@ -21926,7 +21926,7 @@ This method **permanently** removes a webhook. Note that it may be possible to r
 <h1 id="asana-workspaces">Workspaces</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/api/1.1/workspaces/{workspace_gid}/typeahead</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/workspaces</span><br><span class="nf">GET</span> <span class=""nn>/api/1.1/workspaces/{workspace_gid}</span><br><span class="nf">PUT</span> <span class=""nn>/api/1.1/workspaces/{workspace_gid}</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/workspaces/{workspace_gid}/addUser</span><br><span class="nf">POST</span> <span class=""nn>/api/1.1/workspaces/{workspace_gid}/removeUser</span></code>
+<code><span class="nf">GET</span> <span class=""nn>/workspaces/{workspace_gid}/typeahead</span><br><span class="nf">GET</span> <span class=""nn>/workspaces</span><br><span class="nf">GET</span> <span class=""nn>/workspaces/{workspace_gid}</span><br><span class="nf">PUT</span> <span class=""nn>/workspaces/{workspace_gid}</span><br><span class="nf">POST</span> <span class=""nn>/workspaces/{workspace_gid}/addUser</span><br><span class="nf">POST</span> <span class=""nn>/workspaces/{workspace_gid}/removeUser</span></code>
 </pre>
 
 A workspace is the highest-level organizational unit in Asana. An organization is a special kind of workspace that represents a company.

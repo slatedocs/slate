@@ -3465,7 +3465,7 @@ paths:
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
-      summary: Query for all of the custom fields settings on a project.
+      summary: Query for all of the custom fields settings on a project
       description: >-
         Returns a list of all of the custom fields settings on a project, in
         compact form. Note that, as in all queries to collections which return
@@ -3845,7 +3845,7 @@ paths:
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     put:
-      summary: Update an enum option.
+      summary: Update an enum option
       description: >-
         Updates an existing enum option. Enum custom fields require at least one
         enabled enum option.
@@ -8068,7 +8068,7 @@ paths:
           type: integer
         examples:
           id:
-            summary: A globally unique identifier for the team.
+            summary: A globally unique identifier for the team
             value: 14916
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
