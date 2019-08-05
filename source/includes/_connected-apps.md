@@ -106,7 +106,7 @@ This means you have to securely store the user's `refresh_token` in order to gen
 
 ### Request
 
-**`POST https://api.sandbox.transferwise.tech/v1/oauth/token`**
+**`POST https://api.sandbox.transferwise.tech/oauth/token`**
 
 Use Basic Authentication with your api-client-id/api-client-secret as username/pwd.
 
@@ -158,7 +158,7 @@ There is no need to wait for the actual expiration to happen first.
 
 ### Request
 
-**`POST https://api.sandbox.transferwise.tech/v1/oauth/token`**
+**`POST https://api.sandbox.transferwise.tech/oauth/token`**
 
 Use Basic Authentication with your api-client-id/api-client-secret as username/pwd.
 
