@@ -291,8 +291,9 @@ html, body {
     top: 0;
     bottom: 0;
 
+    margin: 0 $main-padding/2;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
   }
 
   .lang-selector {
@@ -898,5 +899,9 @@ a {
     max-width: $page-wrapper-width;
     left: 50%;
     margin-left: $nav-width / 2 -$page-wrapper-width / 2
+  }
+
+  .lang-selector {
+    justify-content: flex-end;
   }
 }
