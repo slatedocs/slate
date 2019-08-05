@@ -618,7 +618,7 @@ html, body {
   }
 }
 
-@media (max-width: $phone-width) {
+@media (max-width: $tablet-width) {
   .dark-box {
     display: none;
   }
@@ -643,16 +643,25 @@ html, body {
   %right-col + %left-col {
     margin-top: $main-padding;
   }
+}
 
+@media($tablet-width) {
   .page-wrapper {
     .content {
       .table-holder {
         width: 100%;
-        margin-right: 0;
-        padding: 0;
-        table {
-          margin: 0;
-        }
+      }
+    }
+  }
+}
+
+.page-wrapper {
+  .content {
+    .table-holder {
+      margin-right: 0;
+      padding: 0;
+      table {
+        margin: 0;
       }
     }
   }
