@@ -80,7 +80,7 @@
         if (window.history.replaceState) {
           window.history.replaceState(null, "", best);
         }
-        var thisTitle = $best.data("title")
+        var thisTitle = $best.data("title").replace(htmlPattern, "")
         if (thisTitle !== undefined && thisTitle.length > 0) {
           document.title = thisTitle + " – " + originalTitle;
         } else {
