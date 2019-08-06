@@ -58,15 +58,18 @@ includes:
   - openstack/volumes
   - openstack/snapshots
   - gcp
+  - gcp/compute # Compute section
   - gcp/instances
   - gcp/disks
-  - masterportal
-  - masterportal/applications
+  - gcp/ssh_keys
+  - gcp/networking # Networking section
+  - gcp/networks
+  - gcp/firewall_rules
+  - gcp/externalips
   - gcp/images
   - gcp/regions
-  - gcp/ssh_keys
-  - gcp/networks
-  - gcp/externalips
+  - masterportal
+  - masterportal/applications
 
 search: true
 ---

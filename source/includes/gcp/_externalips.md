@@ -111,6 +111,7 @@ curl -X GET \
     "type": "STATIC"
   }
 }
+
 ```
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/externalips/:id</code>
 
@@ -134,3 +135,56 @@ Attributes | &nbsp;
 `shortUsers`<br/>*Array[string]* | The names of the instances the IP address is attached to.
 `shortRegion`<br/>*string* | A short version of the region name
 `type`<br/>*string* | One of EPHEMERAL or STATIC. EPHEMERAL are linked to an instance and are released automatically when an instance is deleted.
+
+<!-------------------- RESERVE AN EXTERNAL IP -------------------->
+
+#### Reserve an external IP
+
+```shell
+curl -X POST \
+   -H "Content-Type: application/json" \
+   -H "MC-Api-Key: your_api_key" \
+   -d "request_body" \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/externalips?operation=reserve"
+
+# Request example:
+```
+```json
+{
+  "name": "my-static-ip",
+  "shortRegion": "northamerica-northeast1",
+  "instanceId": "5611478403377505138"
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/externalips</code>
+
+Reserve a new external static IP in a given [environment](#administration-environments).
+If `instanceId` is provided the IP will be reserved and attached to this instance.
+
+Required | &nbsp;
+------- | -----------
+`name`<br/>*string* | The display name of the external ip
+`shortRegion`<br/>*string* | A short version of the region name
+
+Optional | &nbsp;
+------- | -----------
+`instanceId`<br/>*string* | The instance id to attach the new external ip address to
+
+
+<!-------------------- RELEASE AN EXTERNAL IP -------------------->
+#### Release a static IP address
+
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/externalips/8516891730356002156"
+```
+
+<aside class="notice">
+You cannot release an external IP which is currently attached to an instance.
+</aside>
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/externalips/:id</code>
+
+Release an existing external IP. The external IP goes back to the reserved pool, and is available to be attached to another instance.

@@ -159,7 +159,7 @@ curl -X POST \
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/disks</code>
 
-Creates a new disk
+Create a new disk
 
 Required | &nbsp;
 ------- | -----------
