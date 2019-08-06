@@ -750,19 +750,19 @@ curl --header "Authorization: Bearer ########" \
   "payment_methods": [
     {
       "method_name": "boleto",
-       "status": "paid",
-       "paid_at": "2018-12-27T22:31:32Z",
-       "full_value": 400.0,
-       "paid_value": 400.0,
-       "refunded_value": 0.0,
-       "installments": 1,
-       "boleto_barcode": "12345.12345 12345.123456 12345.123456 1 12300000001234",
-       "boleto_url": "https://boleto-url.com",
-       "boleto_expiry_date": "2018-12-28",
-       "created_at": "2018-03-21T22:31:32Z",
-       "updated_at": "2018-03-21T22:32:32Z"
+      "status": "paid",
+      "paid_at": "2018-12-27T22:31:32Z",
+      "full_value": 400.0,
+      "paid_value": 400.0,
+      "refunded_value": 0.0,
+      "installments": 1,
+      "boleto_barcode": "12345.12345 12345.123456 12345.123456 1 12300000001234",
+      "boleto_url": "https://boleto-url.com",
+      "boleto_expiry_date": "2018-12-28",
+      "created_at": "2018-03-21T22:31:32Z",
+      "updated_at": "2018-03-21T22:32:32Z"
     }
- ],
+  ],
   "enrollment": {
     "id": 123456,
     "external_id": "RA984930527"
@@ -1630,7 +1630,7 @@ X-QP-Delivery: 01074956-543a-4045-ad7c-b39831a45646
     "campus": {
       "id": 1,
       "external_id": "1234"
-     },
+    },
     "created_at": "2018-03-20T22:31:32Z",
     "updated_at": "2018-03-20T22:32:32Z"
   },
@@ -1672,8 +1672,8 @@ X-QP-Delivery: 01074956-543a-4045-ad7c-b39831a45646
       "updated_at": "2018-03-20T22:32:32Z"
     }
   ],
-  "created_at": "2019-03-20T22: 31: 32Z",
-  "updated_at": "2019-03-20T22: 32: 32Z"
+  "created_at": "2019-03-20T22:31:32Z",
+  "updated_at": "2019-03-20T22:32:32Z"
 }
 ```
 
@@ -1812,7 +1812,7 @@ X-QP-Delivery: 5980475a-c875-4f00-bb9d-d94059b7a4af
     {
       "method_name": "boleto",
       "status": "paid",
-      "paid_at": "2018-12-27T22: 31: 32Z",
+      "paid_at": "2018-12-27T22:31:32Z",
       "full_value": 400.0,
       "paid_value": 400.0,
       "refunded_value": 0.0,
