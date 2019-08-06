@@ -45,14 +45,14 @@ Attributes | &nbsp;
 `creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format
 `nodeCount`<br/>*number* | Number of nodes in the cluster
 `endpoint`<br/>*string* | The IP address of the master node of the cluster. All interactions with the Kubernetes API are done through the master node.
-`location` <br/> *string* | The region zone in which the cluster is running. For regional clusters the nodes of your cluster may span multiple zones within the region.  
+`location` <br/> *string* | The zone in which the cluster is running. For regional clusters the nodes of your cluster may span multiple zones within the region.
 `status` <br/> *string* | The status of the cluster
 `id` <br/> *string* | The cluster is uniquely identfied by the project name, location and cluster name.
 `name` <br/> *string* | The name of the cluster
 
 <!-------------------- RETRIEVE A CLUSTER -------------------->
 
-#### Retrieve a clusters
+#### Retrieve a cluster
 
 ```shell
 curl -X GET \
@@ -80,7 +80,7 @@ Attributes | &nbsp;
 `creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format
 `nodeCount`<br/>*number* | Number of nodes in the cluster
 `endpoint`<br/>*string* | The IP address of the master node of the cluster. All interactions with the Kubernetes API are done through the master node.
-`location` <br/> *string* | The region zone in which the cluster is running. For regional clusters the nodes of your cluster may span multiple zones within the region.  
+`location` <br/> *string* | The zone in which the cluster is running. For regional clusters the nodes of your cluster may span multiple zones within the region.
 `status` <br/> *string* | The status of the cluster
 `id` <br/> *string* | The cluster is uniquely identfied by the project name, location and cluster name.
 `name` <br/> *string* | The name of the cluster
