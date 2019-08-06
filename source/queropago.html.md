@@ -735,40 +735,40 @@ curl --header "Authorization: Bearer ########" \
 
 ```json
 {
-   "id":1,
-   "external_id":"12345",
-   "status":"paid",
-   "year":2018,
-   "month":12,
-   "due_date":"2018-12-28",
-   "value_without_discount":1000.0,
-   "value_with_discount":400.0,
-   "interest":0.0,
-   "penalty":0.0,
-   "paid_value":400.0,
-   "paid_date":"2018-12-27",
-   "payment_methods":[
-      {
-         "method_name":"boleto",
-         "status":"paid",
-         "paid_at":"2018-12-27T22:31:32Z",
-         "full_value":400.0,
-         "paid_value":400.0,
-         "refunded_value":0.0,
-         "installments":1,
-         "boleto_barcode":"12345.12345 12345.123456 12345.123456 1 12300000001234",
-         "boleto_url":"https://boleto-url.com",
-         "boleto_expiry_date":"2018-12-28",
-         "created_at":"2018-03-21T22:31:32Z",
-         "updated_at":"2018-03-21T22:32:32Z"
-      }
-   ],
-   "enrollment":{
-      "id":123456,
-      "external_id":"RA984930527"
-   },
-   "created_at":"2018-03-20T22:31:32Z",
-   "updated_at":"2018-03-20T22:32:32Z"
+ "id": 1,
+ "external_id": "12345",
+ "status": "paid",
+ "year": 2018,
+ "month": 12,
+ "due_date": "2018-12-28",
+ "value_without_discount": 1000.0,
+ "value_with_discount": 400.0,
+ "interest": 0.0,
+ "penalty": 0.0,
+ "paid_value": 400.0,
+ "paid_date": "2018-12-27",
+ "payment_methods": [
+    {
+       "method_name": "boleto",
+       "status": "paid",
+       "paid_at": "2018-12-27T22:31:32Z",
+       "full_value": 400.0,
+       "paid_value": 400.0,
+       "refunded_value": 0.0,
+       "installments": 1,
+       "boleto_barcode": "12345.12345 12345.123456 12345.123456 1 12300000001234",
+       "boleto_url": "https://boleto-url.com",
+       "boleto_expiry_date": "2018-12-28",
+       "created_at": "2018-03-21T22:31:32Z",
+       "updated_at": "2018-03-21T22:32:32Z"
+    }
+ ],
+ "enrollment": {
+    "id": 123456,
+    "external_id": "RA984930527"
+ },
+ "created_at": "2018-03-20T22:31:32Z",
+ "updated_at": "2018-03-20T22:32:32Z"
 }
 ```
 
@@ -1585,95 +1585,95 @@ X-QP-Signature: f0a62682f54860925766a26b302cdd973cfaad9f71d375e99ca6d287fa109193
 X-QP-Delivery: 01074956-543a-4045-ad7c-b39831a45646
 
 {
-   "id":1234567,
-   "external_id":"RA1234",
-   "value_without_discount":1000.0,
-   "value_with_discount":500.0,
-   "discount_percentage":50.0,
-   "due_day":10,
-   "start_month":7,
-   "start_year":2019,
-   "duration_in_months":24,
-   "period_installments":6,
-   "enrollment_semester":"2019.2",
-   "student":{
-      "id":1,
-      "cpf":"01234567890",
-      "name":"Aluno Quero Pago",
-      "email":"queropago@queropago.com",
-      "gender":"M",
-      "birthday":"1996-04-10",
-      "identity_card":"42134567X",
-      "identity_card_emissor":"SSP",
-      "cellphone":"12912345678",
-      "address":{
-         "street":"Rua Quero Pago",
-         "number":"123",
-         "neighborhood":"Bairro Quero Pago",
-         "postal_code":"12345620",
-         "complement":"Perto da quero",
-         "city":{
-            "id":1,
-            "ibge_code":"123456"
-         }
-      },
-      "created_at":"2018-03-20T22:31:32Z",
-      "updated_at":"2018-03-20T22:32:32Z"
-   },
-   "course":{
-      "id":1,
-      "external_id":"1234",
-      "name":"Curso Quero Pago",
-      "shift":"Manhã",
-      "kind":"Presencial",
-      "level":"Graduação",
-      "campus":{
-         "id":1,
-         "external_id":"1234"
-      },
-      "created_at":"2018-03-20T22:31:32Z",
-      "updated_at":"2018-03-20T22:32:32Z"
-   },
-   "bills":[
-      {
-         "id":1,
-         "external_id":"1728934017293477",
-         "status":"open",
-         "year":2018,
-         "month":12,
-         "due_date":"2018-12-28",
-         "value_without_discount":1000.0,
-         "value_with_discount":400.0,
-         "interest":0.0,
-         "penalty":0.0,
-         "paid_value":0.0,
-         "paid_date":null,
-         "payment_methods":[
-            {
-               "method_name":"boleto",
-               "status":"waiting_payment",
-               "paid_at":null,
-               "full_value":400.0,
-               "paid_value":0.0,
-               "refunded_value":0.0,
-               "installments":1,
-               "boleto_barcode":"12345.12345 12345.123456 12345.123456 1 12300000001234",
-               "boleto_url":"https://boleto-url.com",
-               "boleto_expiry_date":"2018-12-28",
-               "created_at":"2018-03-21T22:31:32Z",
-               "updated_at":"2018-03-21T22:32:32Z"
-            }
-         ],
-         "enrollment":{
-            "id":1234567,
-            "external_id":"RA1234"
-         },
-         "created_at":"2018-03-20T22:31:32Z",
-         "updated_at":"2018-03-20T22:32:32Z"
-      }
-   ],
-   "created_at":"2019-03-20T22:31:32Z",
-   "updated_at":"2019-03-20T22:32:32Z"
+ "id": 1234567,
+ "external_id": "RA1234",
+ "value_without_discount": 1000.0,
+ "value_with_discount": 500.0,
+ "discount_percentage": 50.0,
+ "due_day": 10,
+ "start_month": 7,
+ "start_year": 2019,
+ "duration_in_months": 24,
+ "period_installments": 6,
+ "enrollment_semester": "2019.2",
+ "student": {
+    "id": 1,
+    "cpf": "01234567890",
+    "name": "Aluno Quero Pago",
+    "email": "queropago@queropago.com",
+    "gender": "M",
+    "birthday": "1996-04-10",
+    "identity_card": "42134567X",
+    "identity_card_emissor": "SSP",
+    "cellphone": "12912345678",
+    "address": {
+       "street": "Rua Quero Pago",
+       "number": "123",
+       "neighborhood": "Bairro Quero Pago",
+       "postal_code": "12345620",
+       "complement": "Perto da quero",
+       "city": {
+          "id": 1,
+          "ibge_code": "123456"
+       }
+    },
+    "created_at": "2018-03-20T22:31:32Z",
+    "updated_at": "2018-03-20T22:32:32Z"
+ },
+ "course": {
+    "id": 1,
+    "external_id": "1234",
+    "name": "Curso Quero Pago",
+    "shift": "Manhã",
+    "kind": "Presencial",
+    "level": "Graduação",
+    "campus": {
+       "id": 1,
+       "external_id": "1234"
+    },
+    "created_at": "2018-03-20T22:31:32Z",
+    "updated_at": "2018-03-20T22:32:32Z"
+ },
+ "bills": [
+    {
+       "id": 1,
+       "external_id": "1728934017293477",
+       "status": "open",
+       "year": 2018,
+       "month": 12,
+       "due_date": "2018-12-28",
+       "value_without_discount": 1000.0,
+       "value_with_discount": 400.0,
+       "interest": 0.0,
+       "penalty": 0.0,
+       "paid_value": 0.0,
+       "paid_date": null,
+       "payment_methods": [
+          {
+             "method_name": "boleto",
+             "status": "waiting_payment",
+             "paid_at": null,
+             "full_value": 400.0,
+             "paid_value": 0.0,
+             "refunded_value": 0.0,
+             "installments": 1,
+             "boleto_barcode": "12345.12345 12345.123456 12345.123456 1 12300000001234",
+             "boleto_url": "https://boleto-url.com",
+             "boleto_expiry_date": "2018-12-28",
+             "created_at": "2018-03-21T22:31:32Z",
+             "updated_at": "2018-03-21T22:32:32Z"
+          }
+       ],
+       "enrollment": {
+          "id": 1234567,
+          "external_id": "RA1234"
+       },
+       "created_at": "2018-03-20T22:31:32Z",
+       "updated_at": "2018-03-20T22:32:32Z"
+    }
+ ],
+ "created_at": "2019-03-20T22: 31: 32Z",
+ "updated_at": "2019-03-20T22: 32: 32Z"
 }
 ```
 
@@ -1743,40 +1743,40 @@ X-QP-Signature: f0a62682f54860925766a26b302cdd973cfaad9f71d375e99ca6d287fa109193
 X-QP-Delivery: 39f196c0-c745-41e9-9e7e-835eb0eb3435
 
 {
-   "id":1,
-   "external_id":"1728934017293477",
-   "status":"open",
-   "year":2018,
-   "month":12,
-   "due_date":"2018-12-28",
-   "value_without_discount":1000.0,
-   "value_with_discount":400.0,
-   "interest":0.0,
-   "penalty":0.0,
-   "paid_value":0.0,
-   "paid_date":null,
-   "payment_methods":[
-      {
-         "method_name":"boleto",
-         "status":"waiting_payment",
-         "paid_at":null,
-         "full_value":400.0,
-         "paid_value":0.0,
-         "refunded_value":0.0,
-         "installments":1,
-         "boleto_barcode":"12345.12345 12345.123456 12345.123456 1 12300000001234",
-         "boleto_url":"https://boleto-url.com",
-         "boleto_expiry_date":"2018-12-28",
-         "created_at":"2018-03-21T22:31:32Z",
-         "updated_at":"2018-03-21T22:32:32Z"
-      }
-   ],
-   "enrollment":{
-      "id":1234567,
-      "external_id":"RA1234"
-   },
-   "created_at":"2018-03-20T22:31:32Z",
-   "updated_at":"2018-03-20T22:32:32Z"
+ "id": 1,
+ "external_id": "1728934017293477",
+ "status": "open",
+ "year": 2018,
+ "month": 12,
+ "due_date": "2018-12-28",
+ "value_without_discount": 1000.0,
+ "value_with_discount": 400.0,
+ "interest": 0.0,
+ "penalty": 0.0,
+ "paid_value": 0.0,
+ "paid_date": null,
+ "payment_methods": [
+    {
+       "method_name": "boleto",
+       "status": "waiting_payment",
+       "paid_at": null,
+       "full_value": 400.0,
+       "paid_value": 0.0,
+       "refunded_value": 0.0,
+       "installments": 1,
+       "boleto_barcode": "12345.12345 12345.123456 12345.123456 1 12300000001234",
+       "boleto_url": "https://boleto-url.com",
+       "boleto_expiry_date": "2018-12-28",
+       "created_at": "2018-03-21T22:31:32Z",
+       "updated_at": "2018-03-21T22:32:32Z"
+    }
+ ],
+ "enrollment": {
+    "id": 1234567,
+    "external_id": "RA1234"
+ },
+ "created_at": "2018-03-20T22:31:32Z",
+ "updated_at": "2018-03-20T22:32:32Z"
 }
 ```
 
@@ -1796,40 +1796,40 @@ X-QP-Signature: f0a62682f54860925766a26b302cdd973cfaad9f71d375e99ca6d287fa109193
 X-QP-Delivery: 5980475a-c875-4f00-bb9d-d94059b7a4af
 
 {
-   "id":1,
-   "external_id":"1728934017293477",
-   "status":"paid",
-   "year":2018,
-   "month":12,
-   "due_date":"2018-12-28",
-   "value_without_discount":1000.0,
-   "value_with_discount":400.0,
-   "interest":0.0,
-   "penalty":0.0,
-   "paid_value":400.0,
-   "paid_date":"2018-12-27",
-   "payment_methods":[
-      {
-         "method_name":"boleto",
-         "status":"paid",
-         "paid_at":"2018-12-27T22:31:32Z",
-         "full_value":400.0,
-         "paid_value":400.0,
-         "refunded_value":0.0,
-         "installments":1,
-         "boleto_barcode":"12345.12345 12345.123456 12345.123456 1 12300000001234",
-         "boleto_url":"https://boleto-url.com",
-         "boleto_expiry_date":"2018-12-28",
-         "created_at":"2018-03-21T22:31:32Z",
-         "updated_at":"2018-03-21T22:32:32Z"
-      }
-   ],
-   "enrollment":{
-      "id":1234567,
-      "external_id":"RA1234"
-   },
-   "created_at":"2018-03-20T22:31:32Z",
-   "updated_at":"2018-03-20T22:32:32Z"
+ "id": 1,
+ "external_id": "1728934017293477",
+ "status": "paid",
+ "year": 2018,
+ "month": 12,
+ "due_date": "2018-12-28",
+ "value_without_discount": 1000.0,
+ "value_with_discount": 400.0,
+ "interest": 0.0,
+ "penalty": 0.0,
+ "paid_value": 400.0,
+ "paid_date": "2018-12-27",
+ "payment_methods": [
+    {
+       "method_name": "boleto",
+       "status": "paid",
+       "paid_at": "2018-12-27T22: 31: 32Z",
+       "full_value": 400.0,
+       "paid_value": 400.0,
+       "refunded_value": 0.0,
+       "installments": 1,
+       "boleto_barcode": "12345.12345 12345.123456 12345.123456 1 12300000001234",
+       "boleto_url": "https://boleto-url.com",
+       "boleto_expiry_date": "2018-12-28",
+       "created_at": "2018-03-21T22:31:32Z",
+       "updated_at": "2018-03-21T22:32:32Z"
+    }
+ ],
+ "enrollment": {
+    "id": 1234567,
+    "external_id": "RA1234"
+ },
+ "created_at": "2018-03-20T22:31:32Z",
+ "updated_at": "2018-03-20T22:32:32Z"
 }
 ```
 
@@ -1860,40 +1860,40 @@ X-QP-Signature: f0a62682f54860925766a26b302cdd973cfaad9f71d375e99ca6d287fa109193
 X-QP-Delivery: c58812c8-139f-40b0-8aff-2df4845f401f
 
 {
-   "id":1,
-   "external_id":"1728934017293477",
-   "status":"overdue",
-   "year":2018,
-   "month":12,
-   "due_date":"2018-12-28",
-   "value_without_discount":1000.0,
-   "value_with_discount":400.0,
-   "interest":0.0,
-   "penalty":0.0,
-   "paid_value":0.0,
-   "paid_date":null,
-   "payment_methods":[
-      {
-         "method_name":"boleto",
-         "status":"waiting_payment",
-         "paid_at":null,
-         "full_value":400.0,
-         "paid_value":0.0,
-         "refunded_value":0.0,
-         "installments":1,
-         "boleto_barcode":"12345.12345 12345.123456 12345.123456 1 12300000001234",
-         "boleto_url":"https://boleto-url.com",
-         "boleto_expiry_date":"2018-12-28",
-         "created_at":"2018-03-21T22:31:32Z",
-         "updated_at":"2018-03-21T22:32:32Z"
-      }
-   ],
-   "enrollment":{
-      "id":1234567,
-      "external_id":"RA1234"
-   },
-   "created_at":"2018-03-20T22:31:32Z",
-   "updated_at":"2018-03-20T22:32:32Z"
+ "id": 1,
+ "external_id": "1728934017293477",
+ "status": "overdue",
+ "year": 2018,
+ "month": 12,
+ "due_date": "2018-12-28",
+ "value_without_discount": 1000.0,
+ "value_with_discount": 400.0,
+ "interest": 0.0,
+ "penalty": 0.0,
+ "paid_value": 0.0,
+ "paid_date": null,
+ "payment_methods": [
+    {
+       "method_name": "boleto",
+       "status": "waiting_payment",
+       "paid_at": null,
+       "full_value": 400.0,
+       "paid_value": 0.0,
+       "refunded_value": 0.0,
+       "installments": 1,
+       "boleto_barcode": "12345.12345 12345.123456 12345.123456 1 12300000001234",
+       "boleto_url": "https://boleto-url.com",
+       "boleto_expiry_date": "2018-12-28",
+       "created_at": "2018-03-21T22:31:32Z",
+       "updated_at": "2018-03-21T22:32:32Z"
+    }
+ ],
+ "enrollment": {
+    "id": 1234567,
+    "external_id": "RA1234"
+ },
+ "created_at": "2018-03-20T22:31:32Z",
+ "updated_at": "2018-03-20T22:32:32Z"
 }
 ```
 
@@ -1993,54 +1993,54 @@ X-QP-Signature: f0a62682f54860925766a26b302cdd973cfaad9f71d375e99ca6d287fa109193
 X-QP-Delivery: 33940f46-5eb0-4400-812e-1b78018151c8
 
 {
-   "id":1,
-   "external_id":"1728934017293477",
-   "status":"open",
-   "year":2018,
-   "month":12,
-   "due_date":"2019-10-10",
-   "value_without_discount":1000.0,
-   "value_with_discount":400.0,
-   "interest":0.0,
-   "penalty":0.0,
-   "paid_value":0.0,
-   "paid_date":null,
-   "payment_methods":[
-      {
-         "method_name":"boleto",
-         "status":"waiting_payment",
-         "paid_at":null,
-         "full_value":400.0,
-         "paid_value":0.0,
-         "refunded_value":0.0,
-         "installments":1,
-         "boleto_barcode":"12345.12345 12345.123456 12345.123456 1 12300000004321",
-         "boleto_url":"https://boleto-url.com",
-         "boleto_expiry_date":"2019-10-10",
-         "created_at":"2018-03-21T22:31:32Z",
-         "updated_at":"2018-03-21T22:32:32Z"
-      },
-      {
-         "method_name":"boleto",
-         "status":"inactive",
-         "paid_at":null,
-         "full_value":400.0,
-         "paid_value":0.0,
-         "refunded_value":0.0,
-         "installments":1,
-         "boleto_barcode":"12345.12345 12345.123456 12345.123456 1 12300000001234",
-         "boleto_url":"https://boleto-url.com",
-         "boleto_expiry_date":"2018-12-28",
-         "created_at":"2018-03-21T22:31:32Z",
-         "updated_at":"2018-03-21T22:32:32Z"
-      }
-   ],
-   "enrollment":{
-      "id":1234567,
-      "external_id":"RA1234"
-   },
-   "created_at":"2018-03-20T22:31:32Z",
-   "updated_at":"2018-03-20T22:32:32Z"
+ "id": 1,
+ "external_id": "1728934017293477",
+ "status": "open",
+ "year": 2018,
+ "month": 12,
+ "due_date": "2019-10-10",
+ "value_without_discount": 1000.0,
+ "value_with_discount": 400.0,
+ "interest": 0.0,
+ "penalty": 0.0,
+ "paid_value": 0.0,
+ "paid_date": null,
+ "payment_methods": [
+    {
+       "method_name": "boleto",
+       "status": "waiting_payment",
+       "paid_at": null,
+       "full_value": 400.0,
+       "paid_value": 0.0,
+       "refunded_value": 0.0,
+       "installments": 1,
+       "boleto_barcode": "12345.12345 12345.123456 12345.123456 1 12300000004321",
+       "boleto_url": "https://boleto-url.com",
+       "boleto_expiry_date": "2019-10-10",
+       "created_at": "2018-03-21T22:31:32Z",
+       "updated_at": "2018-03-21T22:32:32Z"
+    },
+    {
+       "method_name": "boleto",
+       "status": "inactive",
+       "paid_at": null,
+       "full_value": 400.0,
+       "paid_value": 0.0,
+       "refunded_value": 0.0,
+       "installments": 1,
+       "boleto_barcode": "12345.12345 12345.123456 12345.123456 1 12300000001234",
+       "boleto_url": "https://boleto-url.com",
+       "boleto_expiry_date": "2018-12-28",
+       "created_at": "2018-03-21T22:31:32Z",
+       "updated_at": "2018-03-21T22:32:32Z"
+    }
+ ],
+ "enrollment": {
+    "id": 1234567,
+    "external_id": "RA1234"
+ },
+ "created_at": "2018-03-20T22:31:32Z",
+ "updated_at": "2018-03-20T22:32:32Z"
 }
 ```
 **Ambiente de testes**
