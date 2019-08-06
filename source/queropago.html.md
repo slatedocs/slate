@@ -760,7 +760,7 @@ curl --header "Authorization: Bearer ########" \
       "boleto_url": "https://boleto-url.com",
       "boleto_expiry_date": "2018-12-28",
       "created_at": "2018-03-21T22:31:32Z",
-      "updated_at": "2018-03-21T22:32:32Z",
+      "updated_at": "2018-03-21T22:32:32Z"
     }
   ],
   "enrollment": {
@@ -1661,16 +1661,16 @@ X-QP-Delivery: 01074956-543a-4045-ad7c-b39831a45646
           "boleto_url": "https://boleto-url.com",
           "boleto_expiry_date": "2018-12-28",
           "created_at": "2018-03-21T22:31:32Z",
-          "updated_at": "2018-03-21T22:32:32Z",
+          "updated_at": "2018-03-21T22:32:32Z"
         }
       ],
       "enrollment": {
         "id": 1234567,
-        "external_id": "RA1234",
+        "external_id": "RA1234"
       },
       "created_at": "2018-03-20T22:31:32Z",
       "updated_at": "2018-03-20T22:32:32Z"
-    },
+    }
   ],
   "created_at": "2019-03-20T22:31:32Z",
   "updated_at": "2019-03-20T22:32:32Z"
@@ -1768,12 +1768,12 @@ X-QP-Delivery: 39f196c0-c745-41e9-9e7e-835eb0eb3435
       "boleto_url": "https://boleto-url.com",
       "boleto_expiry_date": "2018-12-28",
       "created_at": "2018-03-21T22:31:32Z",
-      "updated_at": "2018-03-21T22:32:32Z",
+      "updated_at": "2018-03-21T22:32:32Z"
     }
   ],
   "enrollment": {
     "id": 1234567,
-    "external_id": "RA1234",
+    "external_id": "RA1234"
   },
   "created_at": "2018-03-20T22:31:32Z",
   "updated_at": "2018-03-20T22:32:32Z"
@@ -1821,12 +1821,12 @@ X-QP-Delivery: 5980475a-c875-4f00-bb9d-d94059b7a4af
       "boleto_url": "https://boleto-url.com",
       "boleto_expiry_date": "2018-12-28",
       "created_at": "2018-03-21T22:31:32Z",
-      "updated_at": "2018-03-21T22:32:32Z",
+      "updated_at": "2018-03-21T22:32:32Z"
     }
   ],
   "enrollment": {
     "id": 1234567,
-    "external_id": "RA1234",
+    "external_id": "RA1234"
   },
   "created_at": "2018-03-20T22:31:32Z",
   "updated_at": "2018-03-20T22:32:32Z"
@@ -1871,7 +1871,7 @@ X-QP-Delivery: c58812c8-139f-40b0-8aff-2df4845f401f
   "interest": 0.0,
   "penalty": 0.0,
   "paid_value": 0.0,
-  "paid_date": nul,
+  "paid_date": null,
   "payment_methods": [
     {
       "method_name": "boleto",
@@ -1885,12 +1885,12 @@ X-QP-Delivery: c58812c8-139f-40b0-8aff-2df4845f401f
       "boleto_url": "https://boleto-url.com",
       "boleto_expiry_date": "2018-12-28",
       "created_at": "2018-03-21T22:31:32Z",
-      "updated_at": "2018-03-21T22:32:32Z",
+      "updated_at": "2018-03-21T22:32:32Z"
     }
   ],
   "enrollment": {
     "id": 1234567,
-    "external_id": "RA1234",
+    "external_id": "RA1234"
   },
   "created_at": "2018-03-20T22:31:32Z",
   "updated_at": "2018-03-20T22:32:32Z"
@@ -1949,7 +1949,7 @@ X-QP-Delivery: 33940f46-5eb0-4400-812e-1b78018151c8
       "boleto_url": "https://boleto-url.com",
       "boleto_expiry_date": "2019-10-10",
       "created_at": "2018-03-21T22:31:32Z",
-      "updated_at": "2018-03-21T22:32:32Z",
+      "updated_at": "2018-03-21T22:32:32Z"
     },
     {
       "method_name": "boleto",
@@ -1963,12 +1963,12 @@ X-QP-Delivery: 33940f46-5eb0-4400-812e-1b78018151c8
       "boleto_url": "https://boleto-url.com",
       "boleto_expiry_date": "2018-12-28",
       "created_at": "2018-03-21T22:31:32Z",
-      "updated_at": "2018-03-21T22:32:32Z",
+      "updated_at": "2018-03-21T22:32:32Z"
     }
   ],
   "enrollment": {
     "id": 1234567,
-    "external_id": "RA1234",
+    "external_id": "RA1234"
   },
   "created_at": "2018-03-20T22:31:32Z",
   "updated_at": "2018-03-20T22:32:32Z"
@@ -2018,7 +2018,7 @@ X-QP-Delivery: 33940f46-5eb0-4400-812e-1b78018151c8
       "boleto_url": "https://boleto-url.com",
       "boleto_expiry_date": "2019-10-10",
       "created_at": "2018-03-21T22:31:32Z",
-      "updated_at": "2018-03-21T22:32:32Z",
+      "updated_at": "2018-03-21T22:32:32Z"
     },
     {
       "method_name": "boleto",
@@ -2032,12 +2032,12 @@ X-QP-Delivery: 33940f46-5eb0-4400-812e-1b78018151c8
       "boleto_url": "https://boleto-url.com",
       "boleto_expiry_date": "2018-12-28",
       "created_at": "2018-03-21T22:31:32Z",
-      "updated_at": "2018-03-21T22:32:32Z",
+      "updated_at": "2018-03-21T22:32:32Z"
     }
   ],
   "enrollment": {
     "id": 1234567,
-    "external_id": "RA1234",
+    "external_id": "RA1234"
   },
   "created_at": "2018-03-20T22:31:32Z",
   "updated_at": "2018-03-20T22:32:32Z"
