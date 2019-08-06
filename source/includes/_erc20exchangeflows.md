@@ -25,7 +25,7 @@ ERC20 tokens we currently support are:
 | Fetch.ai.             | `fet`  |
 
 
-## ERC20 Full Historical Inflow to Exchanges (will be deprecated Aug 16th, 2019, use v2)
+## V1 ERC20 Full Historical Inflow to Exchanges (will be deprecated Aug 16th, 2019, use v2)
 
 <img src="https://img.shields.io/badge/Tier-Professional-black.svg"/>
 
@@ -78,7 +78,7 @@ This endpoint returns the inflow of ERC20 tokens into exchange wallets. The `avg
 | direction | _string_ | `inflow`                                            |
 
 
-## ERC20 Full Historical Inflow to Exchanges (v2 with increased granularity)
+## V2 ERC20 Full Historical Inflow to Exchanges (with 1 hour granularity)
 
 <img src="https://img.shields.io/badge/Tier-Professional-black.svg"/>
 
@@ -117,7 +117,7 @@ curl "https://api.tokenanalyst.io/analytics/private/v1/erc20_exchanges_flow_wind
 ]
 ```
 
-This endpoint returns the inflow of ERC20 into exchange wallets. The `avg_txn_value`, `inflow`, and `number_of_txns` are calculated over the window (either 1 hour or 1 day)
+This endpoint returns the inflow of ERC20 into exchange wallets. The `avg_txn_value`, `inflow`, and `number_of_txns` are calculated over the window (either 1 hour or 1 day). `hour` is in UTC
 
 ### HTTP Request
 
@@ -134,7 +134,7 @@ This endpoint returns the inflow of ERC20 into exchange wallets. The `avg_txn_va
 | window    | _string_ | `1h` or `1d`                                        |
 
 
-## ERC20 Full Historical Outflow from Exchanges (will be deprecated Aug 16th, 2019, use v2)
+## V1 ERC20 Full Historical Outflow from Exchanges (will be deprecated Aug 16th, 2019, use v2)
 
 <img src="https://img.shields.io/badge/Tier-Professional-black.svg"/>
 
@@ -187,7 +187,7 @@ This endpoint returns the outflow of ERC20 & stablecoins from exchange wallets. 
 | direction | _string_ | `outflow`                                           |
 
 
-## ERC20 Full Historical Outflow from Exchanges (v2 with increased granularity)
+## V2 ERC20 Full Historical Outflow from Exchanges (with 1 hour granularity)
 
 <img src="https://img.shields.io/badge/Tier-Professional-black.svg"/>
 
@@ -226,7 +226,7 @@ curl "https://api.tokenanalyst.io/analytics/private/v1/erc20_exchanges_flow_wind
 ]
 ```
 
-This endpoint returns the outflow of ERC20 from exchange wallets. The `avg_txn_value`, `outflow`, and `number_of_txns` are calculated over the window (either 1 hour or 1 day)
+This endpoint returns the outflow of ERC20 from exchange wallets. The `avg_txn_value`, `outflow`, and `number_of_txns` are calculated over the window (either 1 hour or 1 day). `hour` is in UTC
 
 ### HTTP Request
 

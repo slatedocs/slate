@@ -11,7 +11,7 @@ The stablecoins we currently support are:
 | Gemini Dollar        | `gusd` |
 | Dai                  | `dai`  |
 
-## Stablecoin Full Historical Inflow to Exchanges (will be deprecated Aug 16th, 2019, use v2)
+## V1 Stablecoin Full Historical Inflow to Exchanges (will be deprecated Aug 16th, 2019, use v2)
 
 <img src="https://img.shields.io/badge/Tier-Professional-black.svg"/>
 
@@ -65,7 +65,7 @@ This endpoint returns the inflow of Stablecoins into exchange wallets. The `avg_
 
 
 
-## Stablecoin Full Historical Inflow from Exchanges (v2 with increased granularity)
+## V2 Stablecoin Full Historical Inflow from Exchanges (with 1 hour granularity)
 
 <img src="https://img.shields.io/badge/Tier-Professional-black.svg"/>
 
@@ -104,7 +104,7 @@ curl "https://api.tokenanalyst.io/analytics/private/v1/erc20_exchanges_flow_wind
 ]
 ```
 
-This endpoint returns the inflow of stablecoins into exchange wallets. The `avg_txn_value`, `inflow`, and `number_of_txns` are calculated over the window (either 1 hour or 1 day)
+This endpoint returns the inflow of stablecoins into exchange wallets. The `avg_txn_value`, `inflow`, and `number_of_txns` are calculated over the window (either 1 hour or 1 day). `hour` is in UTC
 
 ### HTTP Request
 
@@ -174,7 +174,7 @@ This endpoint returns the outflow of Stablecoins from exchange wallets. The `avg
 
 
 
-## Stablecoin Full Historical Outflow from Exchanges (v2 with increased granularity)
+## V2 Stablecoin Full Historical Outflow from Exchanges (with 1 hour granularity)
 
 <img src="https://img.shields.io/badge/Tier-Professional-black.svg"/>
 
@@ -213,7 +213,7 @@ curl "https://api.tokenanalyst.io/analytics/private/v1/erc20_exchanges_flow_wind
 ]
 ```
 
-This endpoint returns the outflow of stablecoins from exchange wallets. The `avg_txn_value`, `outflow`, and `number_of_txns` are calculated over the window (either 1 hour or 1 day)
+This endpoint returns the outflow of stablecoins from exchange wallets. The `avg_txn_value`, `outflow`, and `number_of_txns` are calculated over the window (either 1 hour or 1 day). `hour` is in UTC
 
 ### HTTP Request
 

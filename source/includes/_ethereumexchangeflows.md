@@ -2,7 +2,7 @@
 
 For Ethereum currently supported exchanges are: `binance`, `kraken`, `bitfinex`, `poloniex`, `bittrex`, `kucoin`
 
-## ETH Full Historical Inflow to Exchanges (will be deprecated Aug 16th, 2019, use v2)
+## V1 ETH Full Historical Inflow to Exchanges (will be deprecated Aug 16th, 2019, use v2)
 
 <img src="https://img.shields.io/badge/Tier-Professional-black.svg"/>
 
@@ -54,7 +54,7 @@ This endpoint returns the inflow of ETH into exchange wallets. The `avg_txn_valu
 | exchange  | _string_ | An exchange from the list of ones we support        |
 
 
-## ETH Full Historical Flows to Exchanges (v2 with increased granularity)
+## V2 ETH Full Historical Flows to Exchanges (with 1 hour granularity)
 
 <img src="https://img.shields.io/badge/Tier-Professional-black.svg"/>
 
@@ -91,7 +91,8 @@ curl "https://api.tokenanalyst.io/analytics/private/v1/exchange_flow_window_hist
 ]
 ```
 
-This endpoint returns the inflow of ETH into exchange wallets. The `avg_txn_value`, `inflow`, and `number_of_txns` are calculated over the window (either 1 hour or 1 day)
+This endpoint returns the inflow of ETH into exchange wallets. The `avg_txn_value`, `inflow`, and `number_of_txns` are calculated over the window (either 1 hour or 1 day). `hour` is in UTC 
+
 ### HTTP Request
 
 `GET https://api.tokenanalyst.io/analytics/private/v1/last/exchange_flow_window_historical/last?`
@@ -108,7 +109,7 @@ This endpoint returns the inflow of ETH into exchange wallets. The `avg_txn_valu
 | window    | _string_ | `1h` or `1d`       |
 
 
-## ETH Full Historical Outflows from Exchanges (will be deprecated Aug 16th, 2019, use v2)
+## V1 ETH Full Historical Outflows from Exchanges (will be deprecated Aug 16th, 2019, use v2)
 
 <img src="https://img.shields.io/badge/Tier-Professional-black.svg"/>
 
@@ -160,7 +161,7 @@ This endpoint returns the outflow of ETH from exchange wallets. The 'avg_txn_val
 | exchange  | _string_ | An exchange from the list of ones we support        |
 
 
-## ETH Full Historical Flows From Exchanges (v2 with increased granularity)
+## V2 ETH Full Historical Flows From Exchanges (with 1 hour granularity)
 
 <img src="https://img.shields.io/badge/Tier-Professional-black.svg"/>
 
@@ -197,7 +198,7 @@ curl "https://api.tokenanalyst.io/analytics/private/v1/exchange_flow_window_hist
 ]
 ```
 
-This endpoint returns the outflow of ETH from exchange wallets. The `avg_txn_value`, `outflow`, and `number_of_txns` are calculated over the window (either 1 hour or 1 day)
+This endpoint returns the outflow of ETH from exchange wallets. The `avg_txn_value`, `outflow`, and `number_of_txns` are calculated over the window (either 1 hour or 1 day). `hour` is in UTC
 ### HTTP Request
 
 `GET https://api.tokenanalyst.io/analytics/private/v1/last/exchange_flow_window_historical/last?`
