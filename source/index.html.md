@@ -66,6 +66,8 @@ includes:
   - gcp/networks
   - gcp/firewall_rules
   - gcp/externalips
+  - gcp/kubernetes # Kubernetes section
+  - gcp/clusters
   - gcp/images
   - gcp/regions
   - masterportal
