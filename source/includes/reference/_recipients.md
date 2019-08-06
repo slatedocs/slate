@@ -1312,7 +1312,7 @@ Send payments to Australia.
 
 Private and business recipients are supported. 
 
-Recipient type = *'australia'*
+Recipient type = *'australian'*
 
 Required details: 
 
