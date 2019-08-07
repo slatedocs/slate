@@ -160,6 +160,12 @@ html, body {
     line-height: 28px;
   }
 
+  a {
+    &:hover {
+      background-color: $gray-1;
+    }
+  }
+
   li {
     color: $nav-text;
     transition-property: background;
