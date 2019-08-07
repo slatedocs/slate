@@ -22,6 +22,72 @@ under the License.
       page_content += partial("includes/#{include}")
     end
   end
+
+  class AsanaHighlight < Rouge::CSSTheme
+    name 'asana'
+
+    style Comment::Multiline,               :fg => '#e2fffa', :italic => true
+    style Comment::Preproc,                 :fg => '#b7bfc6', :bold => true
+    style Comment::Single,                  :fg => '#e2fffa', :italic => true
+    style Comment::Special,                 :fg => '#b7bfc6', :italic => true, :bold => true
+    style Comment,                          :fg => '#e2fffa', :italic => true
+    style Error,                            :fg => '#a61717', :bg => '#e3d2d2'
+    style Generic::Deleted,                 :fg => '#000000', :bg => '#ffdddd'
+    style Generic::Emph,                    :fg => '#000000', :italic => true
+    style Generic::Error,                   :fg => '#aa0000'
+    style Generic::Heading,                 :fg => '#b7bfc6'
+    style Generic::Inserted,                :fg => '#000000', :bg => '#ddffdd'
+    style Generic::Output,                  :fg => '#9ca6af'
+    style Generic::Prompt,                  :fg => '#555555'
+    style Generic::Strong,                  :bold => true
+    style Generic::Subheading,              :fg => '#aaaaaa'
+    style Generic::Traceback,               :fg => '#aa0000'
+    style Keyword::Constant,                :fg => '#000000', :bold => true
+    style Keyword::Declaration,             :fg => '#000000', :bold => true
+    style Keyword::Namespace,               :fg => '#000000', :bold => true
+    style Keyword::Pseudo,                  :fg => '#000000', :bold => true
+    style Keyword::Reserved,                :fg => '#000000', :bold => true
+    style Keyword::Type,                    :fg => '#445588', :bold => true
+    style Keyword,                          :fg => '#000000', :bold => true
+    style Literal::Number::Float,           :fg => '#00bf9c'
+    style Literal::Number::Hex,             :fg => '#00bf9c'
+    style Literal::Number::Integer::Long,   :fg => '#00bf9c'
+    style Literal::Number::Integer,         :fg => '#00bf9c'
+    style Literal::Number::Oct,             :fg => '#00bf9c'
+    style Literal::Number,                  :fg => '#00bf9c'
+    style Literal::String::Backtick,        :fg => '#ed4758'
+    style Literal::String::Char,            :fg => '#ed4758'
+    style Literal::String::Doc,             :fg => '#ed4758'
+    style Literal::String::Double,          :fg => '#ed4758'
+    style Literal::String::Escape,          :fg => '#ed4758'
+    style Literal::String::Heredoc,         :fg => '#ed4758'
+    style Literal::String::Interpol,        :fg => '#ed4758'
+    style Literal::String::Other,           :fg => '#ed4758'
+    style Literal::String::Regex,           :fg => '#25e8c8'
+    style Literal::String::Single,          :fg => '#ed4758'
+    style Literal::String::Symbol,          :fg => '#635ac7'
+    style Literal::String,                  :fg => '#ed4758'
+    style Name::Attribute,                  :fg => '#008ce3'
+    style Name::Builtin::Pseudo,            :fg => '#b7bfc6'
+    style Name::Builtin,                    :fg => '#0086B3'
+    style Name::Class,                      :fg => '#445588', :bold => true
+    style Name::Constant,                   :fg => '#008ce3'
+    style Name::Decorator,                  :fg => '#3c5d5d', :bold => true
+    style Name::Entity,                     :fg => '#800080'
+    style Name::Exception,                  :fg => '#ff5263', :bold => true
+    style Name::Function,                   :fg => '#ff5263', :bold => true
+    style Name::Label,                      :fg => '#ff5263', :bold => true
+    style Name::Namespace,                  :fg => '#555555'
+    style Name::Tag,                        :fg => '#000080'
+    style Name::Variable::Class,            :fg => '#008ce3'
+    style Name::Variable::Global,           :fg => '#008ce3'
+    style Name::Variable::Instance,         :fg => '#008ce3'
+    style Name::Variable,                   :fg => '#008ce3'
+    style Operator::Word,                   :fg => '#000000', :bold => true
+    style Operator,                         :fg => '#000000', :bold => true
+    style Text::Whitespace,                 :fg => '#d5dce0'
+    style Text,                             :bg => '#f6f8f9'
+  end
 %>
 
 <!doctype html>
@@ -34,7 +100,7 @@ under the License.
     <%= favicon_tag 'favicon.ico' %>
 
     <style>
-      <%= Rouge::Themes::Github.render(:scope => '.highlight') %>
+      <%= AsanaHighlight.render(:scope => '.highlight') %>
     </style>
     <%= stylesheet_link_tag :screen, media: :screen %>
     <%= stylesheet_link_tag :print, media: :print %>

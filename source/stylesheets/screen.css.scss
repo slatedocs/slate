@@ -146,10 +146,6 @@ html, body {
     a {
       color: $nav-text;
       text-decoration: none;
-
-      &:hover {
-        text-decoration: underline;
-      }
     }
   }
 
@@ -484,7 +480,7 @@ html, body {
   }
 
   code {
-    background-color: rgba(0,0,0,0.05);
+    background-color: $gray-1;
     padding: $spacing-xxs;
     border-radius: 4px;
     word-break: break-all;
@@ -570,7 +566,10 @@ html, body {
     a {
       color: $code-text;
       text-decoration: none;
-      border-bottom: dashed 1px #ccc;
+
+      &:hover {
+        opacity: 0.5;
+      }
     }
   }
 
@@ -705,7 +704,6 @@ code {
   }
 
   pre,table {
-    box-shadow: $boxShadow-small;
     border-radius: 4px;
   }
 
@@ -724,6 +722,8 @@ code {
     margin-right: $table-padding;
     background-color: white;
 
+    box-shadow: $boxShadow-small;
+
     thead {
       width: 100%;
 
@@ -737,8 +737,7 @@ code {
 
     tbody {
       tr:hover {
-        background-color: #f6f8f9;
-        border-color: #e0e6e8;
+        background-color: $table-hover-color;
       }
 
       .chevron {
@@ -759,7 +758,7 @@ code {
       }
 
       .common-item {
-        background-color: #f3f3f3;
+        background-color: $common-item-color;
       }
 
       .common-items-toggle {
@@ -906,4 +905,29 @@ a {
   .lang-selector {
     justify-content: flex-end;
   }
+}
+
+pre {
+  .get-verb, .post-verb, .delete-verb, .put-verb {
+    display: inline-block;
+    width: 52px;
+    padding-right: $spacing-xs;
+    text-align: right;
+  }
+}
+
+.get-verb {
+  color: $darkTeal;
+}
+
+.post-verb {
+  color: $darkGreen;
+}
+
+.delete-verb {
+  color: $darkGold;
+}
+
+.put-verb {
+  color: $darkPurple;
 }

@@ -35,7 +35,7 @@ Asana supports the Authorization Code Grant flow.
 <h1 id="asana-attachments">Attachments</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/attachments/{attachment_gid}</span><br><span class="nf">GET</span> <span class=""nn>/tasks/{task_gid}/attachments</span><br><span class="nf">POST</span> <span class=""nn>/tasks/{task_gid}/attachments</span></code>
+<code><a href="#get-an-attachment"><span class="get-verb">GET</span> <span class=""nn>/attachments/{attachment_gid}</span></a><br><a href="#get-attachments-for-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/attachments</span></a><br><a href="#upload-an-attachment"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/attachments</span></a></code>
 </pre>
 
 An *attachment* object represents any file attached to a task in Asana, whether it’s an uploaded file or one associated via a third-party service such as Dropbox or Google Drive.
@@ -160,7 +160,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /attachments/{attachment_gid}`
+<p>
+<code> <span class="get-verb">GET</span> /attachments/{attachment_gid}</code>
+</p>
 
 Get the full record for a single attachment.
 
@@ -324,7 +326,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /tasks/{task_gid}/attachments`
+<p>
+<code> <span class="get-verb">GET</span> /tasks/{task_gid}/attachments</code>
+</p>
 
 Returns the compact records for all attachments on the task.
 
@@ -492,7 +496,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /tasks/{task_gid}/attachments`
+<p>
+<code> <span class="post-verb">POST</span> /tasks/{task_gid}/attachments</code>
+</p>
 
 Upload an attachment.
 
@@ -598,7 +604,7 @@ appending the content type to the file path: `—form
 <h1 id="asana-batch-api">Batch API</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">POST</span> <span class=""nn>/batch</span></code>
+<code><a href="#submit-parallel-requests"><span class="post-verb">POST</span> <span class=""nn>/batch</span></a></code>
 </pre>
 
 There are many cases where you want to accomplish a variety of work in the Asana API but want to minimize the number of HTTP requests you make. For example:
@@ -762,7 +768,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /batch`
+<p>
+<code> <span class="post-verb">POST</span> /batch</code>
+</p>
 
 Make multiple requests in parallel to Asana's API.
 
@@ -839,7 +847,7 @@ Make multiple requests in parallel to Asana's API.
 <h1 id="asana-custom-fields">Custom Fields</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">POST</span> <span class=""nn>/custom_fields</span><br><span class="nf">GET</span> <span class=""nn>/custom_fields/{custom_field_gid}</span><br><span class="nf">PUT</span> <span class=""nn>/custom_fields/{custom_field_gid}</span><br><span class="nf">DELETE</span> <span class=""nn>/custom_fields/{custom_field_gid}</span><br><span class="nf">POST</span> <span class=""nn>/custom_fields/{custom_field_gid}/enum_options</span><br><span class="nf">POST</span> <span class=""nn>/custom_fields/{custom_field_gid}/enum_options/insert</span><br><span class="nf">PUT</span> <span class=""nn>/enum_options/{enum_option_gid}</span><br><span class="nf">GET</span> <span class=""nn>/workspaces/{workspace_gid}/custom_fields</span></code>
+<code><a href="#create-a-custom-field"><span class="post-verb">POST</span> <span class=""nn>/custom_fields</span></a><br><a href="#get-a-custom-field-definition"><span class="get-verb">GET</span> <span class=""nn>/custom_fields/{custom_field_gid}</span></a><br><a href="#update-a-custom-field"><span class="put-verb">PUT</span> <span class=""nn>/custom_fields/{custom_field_gid}</span></a><br><a href="#delete-a-custom-field"><span class="delete-verb">DELETE</span> <span class=""nn>/custom_fields/{custom_field_gid}</span></a><br><a href="#create-an-enum-option"><span class="post-verb">POST</span> <span class=""nn>/custom_fields/{custom_field_gid}/enum_options</span></a><br><a href="#reorder-a-custom-field-39-s-enum"><span class="post-verb">POST</span> <span class=""nn>/custom_fields/{custom_field_gid}/enum_options/insert</span></a><br><a href="#update-an-enum-option"><span class="put-verb">PUT</span> <span class=""nn>/enum_options/{enum_option_gid}</span></a><br><a href="#get-a-workspace-39-s-custom-fields"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/custom_fields</span></a></code>
 </pre>
 
 In the Asana application, Tasks can hold user-specified Custom Fields which provide extra information; for example, a priority value or a number representing the time required to complete a Task. This lets a user define the type of information that each Task within a Project can contain in addition to the built-in fields that Asana provides.
@@ -1013,7 +1021,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /custom_fields`
+<p>
+<code> <span class="post-verb">POST</span> /custom_fields</code>
+</p>
 
 Creates a new custom field in a workspace. Every custom field is required
 to be created in a specific workspace, and this workspace cannot be
@@ -1240,7 +1250,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /custom_fields/{custom_field_gid}`
+<p>
+<code> <span class="get-verb">GET</span> /custom_fields/{custom_field_gid}</code>
+</p>
 
 Get the complete definition of a custom field’s metadata.
 
@@ -1434,7 +1446,9 @@ p JSON.parse(result)
 
 ```
 
-`PUT /custom_fields/{custom_field_gid}`
+<p>
+<code> <span class="put-verb">PUT</span> /custom_fields/{custom_field_gid}</code>
+</p>
 
 A specific, existing custom field can be updated by making a PUT request on the URL for that custom field. Only the fields provided in the `data` block will be updated; any unspecified fields will remain unchanged
 When using this method, it is best to specify only those fields you wish to change, or else you may overwrite changes made by another user since you last retrieved the custom field.
@@ -1628,7 +1642,9 @@ p JSON.parse(result)
 
 ```
 
-`DELETE /custom_fields/{custom_field_gid}`
+<p>
+<code> <span class="delete-verb">DELETE</span> /custom_fields/{custom_field_gid}</code>
+</p>
 
 A specific, existing custom field can be deleted by making a DELETE request on the URL for that custom field.
 Locked custom fields can only be deleted by the user who locked the field.
@@ -1797,7 +1813,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /custom_fields/{custom_field_gid}/enum_options`
+<p>
+<code> <span class="post-verb">POST</span> /custom_fields/{custom_field_gid}/enum_options</code>
+</p>
 
 Creates an enum option and adds it to this custom field’s list of enum options. A custom field can have at most 50 enum options (including disabled options). By default new enum options are inserted at the end of a custom field’s list.
 Locked custom fields can only have enum options added by the user who locked the field.
@@ -2000,7 +2018,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /custom_fields/{custom_field_gid}/enum_options/insert`
+<p>
+<code> <span class="post-verb">POST</span> /custom_fields/{custom_field_gid}/enum_options/insert</code>
+</p>
 
 Moves a particular enum option to be either before or after another specified enum option in the custom field.
 Locked custom fields can only be reordered by the user who locked the field.
@@ -2201,7 +2221,9 @@ p JSON.parse(result)
 
 ```
 
-`PUT /enum_options/{enum_option_gid}`
+<p>
+<code> <span class="put-verb">PUT</span> /enum_options/{enum_option_gid}</code>
+</p>
 
 Updates an existing enum option. Enum custom fields require at least one enabled enum option.
 Locked custom fields can only be updated by the user who locked the field.
@@ -2386,7 +2408,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /workspaces/{workspace_gid}/custom_fields`
+<p>
+<code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}/custom_fields</code>
+</p>
 
 Returns a list of the compact representation of all of the custom fields in a workspace.
 
@@ -2437,7 +2461,7 @@ Returns a list of the compact representation of all of the custom fields in a wo
 <h1 id="asana-custom-field-settings">Custom Field Settings</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/projects/{project-id}/custom_field_settings</span><br><span class="nf">GET</span> <span class=""nn>/projects/{project_gid}/custom_field_settings</span><br><span class="nf">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/custom_field_settings</span></code>
+<code><a href="#query-for-all-of-the-custom-fields-settings-on-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project-id}/custom_field_settings</span></a><br><a href="#get-a-project-39-s-custom-fields"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/custom_field_settings</span></a><br><a href="#get-a-portfolio-39-s-custom-fields"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/custom_field_settings</span></a></code>
 </pre>
 
 Custom Fields Settings objects represent the many-to-many join of the Custom Field and Project as well as stores information that is relevant to that particular pairing.
@@ -2562,7 +2586,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /projects/{project-id}/custom_field_settings`
+<p>
+<code> <span class="get-verb">GET</span> /projects/{project-id}/custom_field_settings</code>
+</p>
 
 Returns a list of all of the custom fields settings on a project, in compact form. Note that, as in all queries to collections which return compact representation, `opt_fields` and `opt_expand` can be used to include more data than is returned in the compact representation. See the [getting started guide on input/output options](https://asana.com/developers/documentation/getting-started/input-output-options) for more information.
 
@@ -2726,7 +2752,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /projects/{project_gid}/custom_field_settings`
+<p>
+<code> <span class="get-verb">GET</span> /projects/{project_gid}/custom_field_settings</code>
+</p>
 
 Returns a list of all of the custom fields settings on a project, in compact form. Note that, as in all queries to collections which return compact representation, `opt_fields` and `opt_expand` can be used to include more data than is returned in the compact representation. See the [getting started guide on input/output options](https://asana.com/developers/documentation/getting-started/input-output-options) for more information.
 
@@ -2890,7 +2918,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /portfolios/{portfolio_gid}/custom_field_settings`
+<p>
+<code> <span class="get-verb">GET</span> /portfolios/{portfolio_gid}/custom_field_settings</code>
+</p>
 
 Returns a list of all of the custom fields settings on a portfolio, in compact form.
 
@@ -2938,7 +2968,7 @@ Returns a list of all of the custom fields settings on a portfolio, in compact f
 <h1 id="asana-events">Events</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/events</span></code>
+<code><a href="#get-events-on-a-resource"><span class="get-verb">GET</span> <span class=""nn>/events</span></a></code>
 </pre>
 
 An event is an object representing a change to a resource that was observed by an event subscription.
@@ -3064,7 +3094,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /events`
+<p>
+<code> <span class="get-verb">GET</span> /events</code>
+</p>
 
 Returns the full record for all events that have occurred since the sync
 token was created.
@@ -3122,7 +3154,7 @@ lieu of including the resource ID in the data for the request.
 <h1 id="asana-jobs">Jobs</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/jobs/{job_gid}</span></code>
+<code><a href="#get-a-job-by-id"><span class="get-verb">GET</span> <span class=""nn>/jobs/{job_gid}</span></a></code>
 </pre>
 
 Jobs represent processes that handle asynchronous work.
@@ -3249,7 +3281,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /jobs/{job_gid}`
+<p>
+<code> <span class="get-verb">GET</span> /jobs/{job_gid}</code>
+</p>
 
 Returns the full record for a job.
 
@@ -3305,7 +3339,7 @@ Returns the full record for a job.
 <h1 id="asana-organization-exports">Organization Exports</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">POST</span> <span class=""nn>/organization_exports</span><br><span class="nf">GET</span> <span class=""nn>/organization_exports/{organization_export_gid}</span></code>
+<code><a href="#create-an-organization-export-request"><span class="post-verb">POST</span> <span class=""nn>/organization_exports</span></a><br><a href="#get-details-on-an-org-export-request"><span class="get-verb">GET</span> <span class=""nn>/organization_exports/{organization_export_gid}</span></a></code>
 </pre>
 
 An *organization_export* object represents a request to export the complete data of an Organization in JSON format.
@@ -3437,7 +3471,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /organization_exports`
+<p>
+<code> <span class="post-verb">POST</span> /organization_exports</code>
+</p>
 
 This method creates a request to export an Organization. Asana will complete the export at some point after you create the request.
 
@@ -3612,7 +3648,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /organization_exports/{organization_export_gid}`
+<p>
+<code> <span class="get-verb">GET</span> /organization_exports/{organization_export_gid}</code>
+</p>
 
 Returns details of a previously-requested Organization export.
 
@@ -3662,7 +3700,7 @@ Returns details of a previously-requested Organization export.
 <h1 id="asana-portfolios">Portfolios</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/portfolios</span><br><span class="nf">POST</span> <span class=""nn>/portfolios</span><br><span class="nf">GET</span> <span class=""nn>/portfolios/{portfolio_gid}</span><br><span class="nf">PUT</span> <span class=""nn>/portfolios/{portfolio_gid}</span><br><span class="nf">DELETE</span> <span class=""nn>/portfolios/{portfolio_gid}</span><br><span class="nf">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/items</span><br><span class="nf">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addItem</span><br><span class="nf">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeItem</span><br><span class="nf">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addCustomFieldSetting</span><br><span class="nf">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeCustomFieldSetting</span></code>
+<code><a href="#get-a-list-of-the-portfolios"><span class="get-verb">GET</span> <span class=""nn>/portfolios</span></a><br><a href="#create-a-new-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios</span></a><br><a href="#get-a-portfolio"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="#update-a-portfolio"><span class="put-verb">PUT</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="#delete-a-portfolio"><span class="delete-verb">DELETE</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="#get-portfolio-items"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/items</span></a><br><a href="#add-a-portfolio-item"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addItem</span></a><br><a href="#remove-a-portfolio-item"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeItem</span></a><br><a href="#add-a-custom-field-to-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addCustomFieldSetting</span></a><br><a href="#remove-a-custom-field-from-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeCustomFieldSetting</span></a></code>
 </pre>
 
 A 'portfolio' gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](https://asana.com/developers/api-reference/project_statuses) update.
@@ -3788,7 +3826,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /portfolios`
+<p>
+<code> <span class="get-verb">GET</span> /portfolios</code>
+</p>
 
 Returns a list of the portfolios in compact representation that are owned by the current API user.
 
@@ -3964,7 +4004,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /portfolios`
+<p>
+<code> <span class="post-verb">POST</span> /portfolios</code>
+</p>
 
 Creates a new portfolio in the given workspace with the supplied name.
 
@@ -4146,7 +4188,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /portfolios/{portfolio_gid}`
+<p>
+<code> <span class="get-verb">GET</span> /portfolios/{portfolio_gid}</code>
+</p>
 
 Returns the complete portfolio record for a single portfolio.
 
@@ -4328,7 +4372,9 @@ p JSON.parse(result)
 
 ```
 
-`PUT /portfolios/{portfolio_gid}`
+<p>
+<code> <span class="put-verb">PUT</span> /portfolios/{portfolio_gid}</code>
+</p>
 
 An existing portfolio can be updated by making a PUT request on the URL for
 that portfolio. Only the fields provided in the `data` block will be updated;
@@ -4516,7 +4562,9 @@ p JSON.parse(result)
 
 ```
 
-`DELETE /portfolios/{portfolio_gid}`
+<p>
+<code> <span class="delete-verb">DELETE</span> /portfolios/{portfolio_gid}</code>
+</p>
 
 An existing portfolio can be deleted by making a DELETE request on
 the URL for that portfolio.
@@ -4673,7 +4721,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /portfolios/{portfolio_gid}/items`
+<p>
+<code> <span class="get-verb">GET</span> /portfolios/{portfolio_gid}/items</code>
+</p>
 
 Get a list of the items in compact form in a portfolio.
 
@@ -4858,7 +4908,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /portfolios/{portfolio_gid}/addItem`
+<p>
+<code> <span class="post-verb">POST</span> /portfolios/{portfolio_gid}/addItem</code>
+</p>
 
 Add an item to a portfolio.
 Returns an empty data block.
@@ -5017,7 +5069,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /portfolios/{portfolio_gid}/removeItem`
+<p>
+<code> <span class="post-verb">POST</span> /portfolios/{portfolio_gid}/removeItem</code>
+</p>
 
 Remove an item from a portfolio.
 Returns an empty data block.
@@ -5174,7 +5228,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /portfolios/{portfolio_gid}/addCustomFieldSetting`
+<p>
+<code> <span class="post-verb">POST</span> /portfolios/{portfolio_gid}/addCustomFieldSetting</code>
+</p>
 
 Custom fields are associated with portfolios by way of custom field settings.  This method creates a setting for the portfolio.
 
@@ -5329,7 +5385,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /portfolios/{portfolio_gid}/removeCustomFieldSetting`
+<p>
+<code> <span class="post-verb">POST</span> /portfolios/{portfolio_gid}/removeCustomFieldSetting</code>
+</p>
 
 Removes a custom field setting from a portfolio.
 
@@ -5364,7 +5422,7 @@ Removes a custom field setting from a portfolio.
 <h1 id="asana-portfolio-memberships">Portfolio Memberships</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/portfolio_memberships</span><br><span class="nf">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/portfolio_memberships</span><br><span class="nf">GET</span> <span class=""nn>/portfolio_memberships/{portfolio_gid}</span></code>
+<code><a href="#get-a-list-of-portfolio-memberships"><span class="get-verb">GET</span> <span class=""nn>/portfolio_memberships</span></a><br><a href="#get-the-portfolio-memberships-for-a-portfolio"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/portfolio_memberships</span></a><br><a href="#get-a-portfolio-membership"><span class="get-verb">GET</span> <span class=""nn>/portfolio_memberships/{portfolio_gid}</span></a></code>
 </pre>
 
 This object determines if a user is a member of a portfolio.
@@ -5489,7 +5547,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /portfolio_memberships`
+<p>
+<code> <span class="get-verb">GET</span> /portfolio_memberships</code>
+</p>
 
 Returns a list of portfolio memberships in compact representation. You must specify `portolio`, `portfolio` and `user`, or `workspace` and `user`.
 
@@ -5652,7 +5712,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /portfolios/{portfolio_gid}/portfolio_memberships`
+<p>
+<code> <span class="get-verb">GET</span> /portfolios/{portfolio_gid}/portfolio_memberships</code>
+</p>
 
 Returns the compact portfolio membership records for the portfolio.
 
@@ -5814,7 +5876,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /portfolio_memberships/{portfolio_gid}`
+<p>
+<code> <span class="get-verb">GET</span> /portfolio_memberships/{portfolio_gid}</code>
+</p>
 
 Returns the complete portfolio record for a single portfolio membership.
 
@@ -5868,7 +5932,7 @@ Returns the complete portfolio record for a single portfolio membership.
 <h1 id="asana-projects">Projects</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/projects/{project_gid}/project_statuses</span><br><span class="nf">POST</span> <span class=""nn>/projects/{project_gid}/project_statuses</span><br><span class="nf">GET</span> <span class=""nn>/projects</span><br><span class="nf">POST</span> <span class=""nn>/projects</span><br><span class="nf">GET</span> <span class=""nn>/projects/{project_gid}</span><br><span class="nf">PUT</span> <span class=""nn>/projects/{project_gid}</span><br><span class="nf">DELETE</span> <span class=""nn>/projects/{project_gid}</span><br><span class="nf">POST</span> <span class=""nn>/projects/{project_gid}/duplicate</span><br><span class="nf">POST</span> <span class=""nn>/projects/{project_gid}/addCustomFieldSetting</span><br><span class="nf">POST</span> <span class=""nn>/projects/{project_gid}/removeCustomFieldSetting</span><br><span class="nf">GET</span> <span class=""nn>/teams/{team_gid}/projects</span><br><span class="nf">POST</span> <span class=""nn>/teams/{team_gid}/projects</span><br><span class="nf">GET</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span><br><span class="nf">POST</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></code>
+<code><a href="#get-a-project-39-s-statuses"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/project_statuses</span></a><br><a href="#create-a-project-status"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/project_statuses</span></a><br><a href="#get-a-set-of-projects"><span class="get-verb">GET</span> <span class=""nn>/projects</span></a><br><a href="#create-a-new-project"><span class="post-verb">POST</span> <span class=""nn>/projects</span></a><br><a href="#get-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="#update-a-project"><span class="put-verb">PUT</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="#delete-a-project"><span class="delete-verb">DELETE</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="#duplicate-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/duplicate</span></a><br><a href="#add-a-custom-field-to-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/addCustomFieldSetting</span></a><br><a href="#remove-a-custom-field-from-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/removeCustomFieldSetting</span></a><br><a href="#get-a-team-39-s-projects"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}/projects</span></a><br><a href="#create-a-project-in-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/projects</span></a><br><a href="#get-all-projects-in-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></a><br><a href="#create-a-project-in-a-workspace"><span class="post-verb">POST</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></a></code>
 </pre>
 
 A `project` represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.
@@ -5993,7 +6057,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /projects/{project_gid}/project_statuses`
+<p>
+<code> <span class="get-verb">GET</span> /projects/{project_gid}/project_statuses</code>
+</p>
 
 Returns the compact project status update records for all updates on the project.
 
@@ -6163,7 +6229,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /projects/{project_gid}/project_statuses`
+<p>
+<code> <span class="post-verb">POST</span> /projects/{project_gid}/project_statuses</code>
+</p>
 
 Creates a new status update on the project.
 Returns the full record of the newly created project status update.
@@ -6345,7 +6413,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /projects`
+<p>
+<code> <span class="get-verb">GET</span> /projects</code>
+</p>
 
 Returns the compact project records for some filtered set of projects. Use one or more of the parameters provided to filter the projects returned.
 
@@ -6541,7 +6611,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /projects`
+<p>
+<code> <span class="post-verb">POST</span> /projects</code>
+</p>
 
 Create a new project in a workspace or team.
 
@@ -6761,7 +6833,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /projects/{project_gid}`
+<p>
+<code> <span class="get-verb">GET</span> /projects/{project_gid}</code>
+</p>
 
 Returns the complete project record for a single project.
 
@@ -6975,7 +7049,9 @@ p JSON.parse(result)
 
 ```
 
-`PUT /projects/{project_gid}`
+<p>
+<code> <span class="put-verb">PUT</span> /projects/{project_gid}</code>
+</p>
 
 A specific, existing project can be updated by making a PUT request on
 the URL for that project. Only the fields provided in the `data` block
@@ -7199,7 +7275,9 @@ p JSON.parse(result)
 
 ```
 
-`DELETE /projects/{project_gid}`
+<p>
+<code> <span class="delete-verb">DELETE</span> /projects/{project_gid}</code>
+</p>
 
 A specific, existing project can be deleted by making a DELETE request on
 the URL for that project.
@@ -7375,7 +7453,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /projects/{project_gid}/duplicate`
+<p>
+<code> <span class="post-verb">POST</span> /projects/{project_gid}/duplicate</code>
+</p>
 
 Creates and returns a job that will asynchronously handle the duplication.
 
@@ -7592,7 +7672,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /projects/{project_gid}/addCustomFieldSetting`
+<p>
+<code> <span class="post-verb">POST</span> /projects/{project_gid}/addCustomFieldSetting</code>
+</p>
 
 Custom fields are associated with projects by way of custom field settings.  This method creates a setting for the project.
 
@@ -7747,7 +7829,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /projects/{project_gid}/removeCustomFieldSetting`
+<p>
+<code> <span class="post-verb">POST</span> /projects/{project_gid}/removeCustomFieldSetting</code>
+</p>
 
 Removes a custom field setting from a project.
 
@@ -7898,7 +7982,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /teams/{team_gid}/projects`
+<p>
+<code> <span class="get-verb">GET</span> /teams/{team_gid}/projects</code>
+</p>
 
 Returns the compact project records for all projects in the team.
 
@@ -8103,7 +8189,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /teams/{team_gid}/projects`
+<p>
+<code> <span class="post-verb">POST</span> /teams/{team_gid}/projects</code>
+</p>
 
 Creates a project shared with the given team.
 
@@ -8321,7 +8409,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /workspaces/{workspace_gid}/projects`
+<p>
+<code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}/projects</code>
+</p>
 
 Returns the compact project records for all projects in the workspace.
 
@@ -8526,7 +8616,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /workspaces/{workspace_gid}/projects`
+<p>
+<code> <span class="post-verb">POST</span> /workspaces/{workspace_gid}/projects</code>
+</p>
 
 Returns the compact project records for all projects in the workspace.
 
@@ -8631,7 +8723,7 @@ Returns the full record of the newly created project.
 <h1 id="asana-project-memberships">Project Memberships</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/projects/{project_gid}/project_memberships</span><br><span class="nf">GET</span> <span class=""nn>/project_memberships/{project_gid}</span></code>
+<code><a href="#get-the-project-memberships-for-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/project_memberships</span></a><br><a href="#get-a-project-membership"><span class="get-verb">GET</span> <span class=""nn>/project_memberships/{project_gid}</span></a></code>
 </pre>
 
 With the introduction of “comment-only” projects in Asana, a user’s membership in a project comes with associated permissions. These permissions (whether a user has full access to the project or comment-only access) are accessible through the project memberships endpoints described here.
@@ -8756,7 +8848,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /projects/{project_gid}/project_memberships`
+<p>
+<code> <span class="get-verb">GET</span> /projects/{project_gid}/project_memberships</code>
+</p>
 
 Returns the compact project membership records for the project.
 
@@ -8920,7 +9014,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /project_memberships/{project_gid}`
+<p>
+<code> <span class="get-verb">GET</span> /project_memberships/{project_gid}</code>
+</p>
 
 Returns the complete project record for a single project membership.
 
@@ -8975,7 +9071,7 @@ Returns the complete project record for a single project membership.
 <h1 id="asana-project-statuses">Project Statuses</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/project_statuses/{project_status_gid}</span><br><span class="nf">DELETE</span> <span class=""nn>/project_statuses/{project_status_gid}</span></code>
+<code><a href="#get-a-project-status"><span class="get-verb">GET</span> <span class=""nn>/project_statuses/{project_status_gid}</span></a><br><a href="#delete-a-project-status"><span class="delete-verb">DELETE</span> <span class=""nn>/project_statuses/{project_status_gid}</span></a></code>
 </pre>
 
 A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: “green” for projects that are on track, “yellow” for projects at risk, and “red” for projects that are behind.
@@ -9100,7 +9196,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /project_statuses/{project_status_gid}`
+<p>
+<code> <span class="get-verb">GET</span> /project_statuses/{project_status_gid}</code>
+</p>
 
 Returns the complete record for a single status update.
 
@@ -9260,7 +9358,9 @@ p JSON.parse(result)
 
 ```
 
-`DELETE /project_statuses/{project_status_gid}`
+<p>
+<code> <span class="delete-verb">DELETE</span> /project_statuses/{project_status_gid}</code>
+</p>
 
 Deletes a specific, existing project status update.
 
@@ -9296,7 +9396,7 @@ Returns an empty data record.
 <h1 id="asana-sections">Sections</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/projects/{project_gid}/sections</span><br><span class="nf">POST</span> <span class=""nn>/projects/{project_gid}/sections</span><br><span class="nf">GET</span> <span class=""nn>/sections/{section_gid}</span><br><span class="nf">PUT</span> <span class=""nn>/sections/{section_gid}</span><br><span class="nf">DELETE</span> <span class=""nn>/sections/{section_gid}</span><br><span class="nf">POST</span> <span class=""nn>/sections/{section_gid}/addTask</span><br><span class="nf">POST</span> <span class=""nn>/projects/{project_gid}/sections/insert</span><br><span class="nf">GET</span> <span class=""nn>/sections/{section_gid}/tasks</span><br><span class="nf">GET</span> <span class=""nn>/workspaces/{workspace_gid}/tasks/search</span></code>
+<code><a href="#get-all-sections-in-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/sections</span></a><br><a href="#creates-a-section-in-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/sections</span></a><br><a href="#get-a-section"><span class="get-verb">GET</span> <span class=""nn>/sections/{section_gid}</span></a><br><a href="#update-a-section"><span class="put-verb">PUT</span> <span class=""nn>/sections/{section_gid}</span></a><br><a href="#delete-a-section"><span class="delete-verb">DELETE</span> <span class=""nn>/sections/{section_gid}</span></a><br><a href="#add-task-to-section"><span class="post-verb">POST</span> <span class=""nn>/sections/{section_gid}/addTask</span></a><br><a href="#move-sections"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/sections/insert</span></a><br><a href="#get-tasks-in-a-section"><span class="get-verb">GET</span> <span class=""nn>/sections/{section_gid}/tasks</span></a><br><a href="#query-for-tasks-in-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/tasks/search</span></a></code>
 </pre>
 
 A *section* is a subdivision of a project that groups tasks together.
@@ -9421,7 +9521,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /projects/{project_gid}/sections`
+<p>
+<code> <span class="get-verb">GET</span> /projects/{project_gid}/sections</code>
+</p>
 
 Returns the compact records for all sections in the specified project.
 
@@ -9592,7 +9694,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /projects/{project_gid}/sections`
+<p>
+<code> <span class="post-verb">POST</span> /projects/{project_gid}/sections</code>
+</p>
 
 Creates a new section in a project.
 Returns the full record of the newly created section.
@@ -9768,7 +9872,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /sections/{section_gid}`
+<p>
+<code> <span class="get-verb">GET</span> /sections/{section_gid}</code>
+</p>
 
 Returns the complete record for a single section.
 
@@ -9943,7 +10049,9 @@ p JSON.parse(result)
 
 ```
 
-`PUT /sections/{section_gid}`
+<p>
+<code> <span class="put-verb">PUT</span> /sections/{section_gid}</code>
+</p>
 
 A specific, existing section can be updated by making a PUT request on
 the URL for that project. Only the fields provided in the `data` block
@@ -10129,7 +10237,9 @@ p JSON.parse(result)
 
 ```
 
-`DELETE /sections/{section_gid}`
+<p>
+<code> <span class="delete-verb">DELETE</span> /sections/{section_gid}</code>
+</p>
 
 A specific, existing section can be deleted by making a DELETE request on
 the URL for that section.
@@ -10299,7 +10409,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /sections/{section_gid}/addTask`
+<p>
+<code> <span class="post-verb">POST</span> /sections/{section_gid}/addTask</code>
+</p>
 
 Add a task to a specific, existing section. This is remove the task from other sections of the project.
 
@@ -10476,7 +10588,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /projects/{project_gid}/sections/insert`
+<p>
+<code> <span class="post-verb">POST</span> /projects/{project_gid}/sections/insert</code>
+</p>
 
 Move sections relative to each other in a board view. One of
 `before_section` or `after_section` is required.
@@ -10654,7 +10768,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /sections/{section_gid}/tasks`
+<p>
+<code> <span class="get-verb">GET</span> /sections/{section_gid}/tasks</code>
+</p>
 
 *Board view only*: Returns the compact section records for all tasks within the given section.
 
@@ -10844,7 +10960,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /workspaces/{workspace_gid}/tasks/search`
+<p>
+<code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}/tasks/search</code>
+</p>
 
 To mirror the functionality of the Asana web app's advanced search feature, the Asana API has a task search endpoint that allows you to build complex filters to find and retrieve the exact data you need.
 #### Custom fields
@@ -11003,7 +11121,7 @@ You may receive a `429 Too Many Requests` response if you hit any of our [rate l
 <h1 id="asana-stories">Stories</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/tasks/{task_gid}/stories</span><br><span class="nf">POST</span> <span class=""nn>/tasks/{task_gid}/stories</span><br><span class="nf">GET</span> <span class=""nn>/stories/{story_gid}</span><br><span class="nf">PUT</span> <span class=""nn>/stories/{story_gid}</span><br><span class="nf">DELETE</span> <span class=""nn>/stories/{story_gid}</span></code>
+<code><a href="#get-a-task-39-s-stories"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/stories</span></a><br><a href="#create-a-comment-on-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/stories</span></a><br><a href="#get-a-story"><span class="get-verb">GET</span> <span class=""nn>/stories/{story_gid}</span></a><br><a href="#update-a-story"><span class="put-verb">PUT</span> <span class=""nn>/stories/{story_gid}</span></a><br><a href="#delete-a-story"><span class="delete-verb">DELETE</span> <span class=""nn>/stories/{story_gid}</span></a></code>
 </pre>
 
 A story represents an activity associated with an object in the Asana system.
@@ -11128,7 +11246,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /tasks/{task_gid}/stories`
+<p>
+<code> <span class="get-verb">GET</span> /tasks/{task_gid}/stories</code>
+</p>
 
 Returns the compact records for all stories on the task.
 
@@ -11337,7 +11457,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /tasks/{task_gid}/stories`
+<p>
+<code> <span class="post-verb">POST</span> /tasks/{task_gid}/stories</code>
+</p>
 
 Adds a comment to a task. The comment will be authored by the currently
 authenticated user, and timestamped when the server receives the
@@ -11653,7 +11775,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /stories/{story_gid}`
+<p>
+<code> <span class="get-verb">GET</span> /stories/{story_gid}</code>
+</p>
 
 Returns the full record for a single story.
 
@@ -12018,7 +12142,9 @@ p JSON.parse(result)
 
 ```
 
-`PUT /stories/{story_gid}`
+<p>
+<code> <span class="put-verb">PUT</span> /stories/{story_gid}</code>
+</p>
 
 Updates the story and returns the full record for the updated story. Only comment stories can have their text updated, and only comment stories and attachment stories can be pinned. Only one of `text` and `html_text` can be specified.
 
@@ -12385,7 +12511,9 @@ p JSON.parse(result)
 
 ```
 
-`DELETE /stories/{story_gid}`
+<p>
+<code> <span class="delete-verb">DELETE</span> /stories/{story_gid}</code>
+</p>
 
 Deletes a story. A user can only delete stories they have created. Returns an empty data record.
 
@@ -12425,7 +12553,7 @@ Returns an empty data record.
 <h1 id="asana-tags">Tags</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/tags</span><br><span class="nf">POST</span> <span class=""nn>/tags</span><br><span class="nf">GET</span> <span class=""nn>/tags/{tag_gid}</span><br><span class="nf">PUT</span> <span class=""nn>/tags/{tag_gid}</span><br><span class="nf">GET</span> <span class=""nn>/tags/{tag_gid}/tasks</span><br><span class="nf">GET</span> <span class=""nn>/workspaces/{workspace_gid}/tags</span><br><span class="nf">POST</span> <span class=""nn>/workspaces/{workspace_gid}/tags</span></code>
+<code><a href="#get-a-set-of-tags"><span class="get-verb">GET</span> <span class=""nn>/tags</span></a><br><a href="#create-a-tag"><span class="post-verb">POST</span> <span class=""nn>/tags</span></a><br><a href="#get-a-tag"><span class="get-verb">GET</span> <span class=""nn>/tags/{tag_gid}</span></a><br><a href="#update-a-tag"><span class="put-verb">PUT</span> <span class=""nn>/tags/{tag_gid}</span></a><br><a href="#get-tasks-with-tag"><span class="get-verb">GET</span> <span class=""nn>/tags/{tag_gid}/tasks</span></a><br><a href="#get-tags-in-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/tags</span></a><br><a href="#create-a-tag-in-a-workspace"><span class="post-verb">POST</span> <span class=""nn>/workspaces/{workspace_gid}/tags</span></a></code>
 </pre>
 
 A tag is a label that can be attached to any task in Asana. It exists in a single workspace or organization.
@@ -12550,7 +12678,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /tags`
+<p>
+<code> <span class="get-verb">GET</span> /tags</code>
+</p>
 
 Returns the compact tag records for some filtered set of tags. Use one or more of the parameters provided to filter the tags returned.
 
@@ -12728,7 +12858,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /tags`
+<p>
+<code> <span class="post-verb">POST</span> /tags</code>
+</p>
 
 Creates a new tag in a workspace or organization.
 
@@ -12918,7 +13050,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /tags/{tag_gid}`
+<p>
+<code> <span class="get-verb">GET</span> /tags/{tag_gid}</code>
+</p>
 
 Returns the complete tag record for a single tag.
 
@@ -13087,7 +13221,9 @@ p JSON.parse(result)
 
 ```
 
-`PUT /tags/{tag_gid}`
+<p>
+<code> <span class="put-verb">PUT</span> /tags/{tag_gid}</code>
+</p>
 
 Updates the properties of a tag. Only the fields provided in the `data`
 block will be updated; any unspecified fields will remain unchanged.
@@ -13263,7 +13399,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /tags/{tag_gid}/tasks`
+<p>
+<code> <span class="get-verb">GET</span> /tags/{tag_gid}/tasks</code>
+</p>
 
 Returns the compact task records for all tasks with the given tag. Tasks can have more than one tag at a time.
 
@@ -13453,7 +13591,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /workspaces/{workspace_gid}/tags`
+<p>
+<code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}/tags</code>
+</p>
 
 Returns the compact tag records for some filtered set of tags. Use one or more of the parameters provided to filter the tags returned.
 
@@ -13630,7 +13770,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /workspaces/{workspace_gid}/tags`
+<p>
+<code> <span class="post-verb">POST</span> /workspaces/{workspace_gid}/tags</code>
+</p>
 
 Creates a new tag in a workspace or organization.
 
@@ -13700,7 +13842,7 @@ Returns the full record of the newly created tag.
 <h1 id="asana-tasks">Tasks</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/projects/{project_gid}/tasks</span><br><span class="nf">GET</span> <span class=""nn>/tasks</span><br><span class="nf">POST</span> <span class=""nn>/tasks</span><br><span class="nf">GET</span> <span class=""nn>/tasks/{task_gid}</span><br><span class="nf">PUT</span> <span class=""nn>/tasks/{task_gid}</span><br><span class="nf">DELETE</span> <span class=""nn>/tasks/{task_gid}</span><br><span class="nf">POST</span> <span class=""nn>/tasks/{task_gid}/duplicate</span><br><span class="nf">GET</span> <span class=""nn>/tasks/{task_gid}/subtasks</span><br><span class="nf">POST</span> <span class=""nn>/tasks/{task_gid}/subtasks</span><br><span class="nf">POST</span> <span class=""nn>/tasks/{task_gid}/setParent</span><br><span class="nf">GET</span> <span class=""nn>/tasks/{task_gid}/dependencies</span><br><span class="nf">POST</span> <span class=""nn>/tasks/{task_gid}/addDependencies</span><br><span class="nf">POST</span> <span class=""nn>/tasks/{task_gid}/removeDependencies</span><br><span class="nf">GET</span> <span class=""nn>/tasks/{task_gid}/dependents</span><br><span class="nf">POST</span> <span class=""nn>/tasks/{task_gid}/addDependents</span><br><span class="nf">POST</span> <span class=""nn>/tasks/{task_gid}/removeDependents</span><br><span class="nf">GET</span> <span class=""nn>/tasks/{task_gid}/projects</span><br><span class="nf">POST</span> <span class=""nn>/tasks/{task_gid}/addProject</span><br><span class="nf">POST</span> <span class=""nn>/tasks/{task_gid}/removeProject</span><br><span class="nf">GET</span> <span class=""nn>/tasks/{task_gid}/tags</span><br><span class="nf">POST</span> <span class=""nn>/tasks/{task_gid}/addTag</span><br><span class="nf">POST</span> <span class=""nn>/tasks/{task_gid}/removeTag</span><br><span class="nf">POST</span> <span class=""nn>/tasks/{task_gid}/addFollowers</span><br><span class="nf">POST</span> <span class=""nn>/tasks/{task_gid}/removeFollowers</span></code>
+<code><a href="#get-a-project-39-s-tasks"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/tasks</span></a><br><a href="#get-a-set-of-tasks"><span class="get-verb">GET</span> <span class=""nn>/tasks</span></a><br><a href="#create-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks</span></a><br><a href="#get-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}</span></a><br><a href="#update-a-task"><span class="put-verb">PUT</span> <span class=""nn>/tasks/{task_gid}</span></a><br><a href="#delete-a-task"><span class="delete-verb">DELETE</span> <span class=""nn>/tasks/{task_gid}</span></a><br><a href="#duplicate-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/duplicate</span></a><br><a href="#get-a-subtask"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/subtasks</span></a><br><a href="#create-a-subtask"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/subtasks</span></a><br><a href="#change-a-task-39-s-parent"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/setParent</span></a><br><a href="#get-a-task-39-s-dependencies"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/dependencies</span></a><br><a href="#set-a-task-39-s-dependencies"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addDependencies</span></a><br><a href="#unlinks-dependencies-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeDependencies</span></a><br><a href="#get-a-task-39-s-dependents"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/dependents</span></a><br><a href="#set-a-task-39-s-dependents"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addDependents</span></a><br><a href="#unlink-dependents-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeDependents</span></a><br><a href="#get-projects-a-task-is-in"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/projects</span></a><br><a href="#add-a-project-to-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addProject</span></a><br><a href="#remove-a-project-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeProject</span></a><br><a href="#get-a-task-39-s-tags"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/tags</span></a><br><a href="#add-a-tag-to-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addTag</span></a><br><a href="#remove-a-tag-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeTag</span></a><br><a href="#add-followers-to-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addFollowers</span></a><br><a href="#remove-followers-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeFollowers</span></a></code>
 </pre>
 
 The task is the basic object around which many operations in Asana are centered.
@@ -13825,7 +13967,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /projects/{project_gid}/tasks`
+<p>
+<code> <span class="get-verb">GET</span> /projects/{project_gid}/tasks</code>
+</p>
 
 Returns the compact task records for all tasks within the given project, ordered by their priority within the project. Tasks can exist in more than one project at a time.
 
@@ -14015,7 +14159,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /tasks`
+<p>
+<code> <span class="get-verb">GET</span> /tasks</code>
+</p>
 
 Returns the compact task records for some filtered set of tasks. Use one or more of the parameters provided to filter the tasks returned. You must specify a `project` or `tag` if you do not specify `assignee` and `workspace`.
 
@@ -14265,7 +14411,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /tasks`
+<p>
+<code> <span class="post-verb">POST</span> /tasks</code>
+</p>
 
 Creating a new task is as easy as POSTing to the `/tasks` endpoint with a
 data block containing the fields you’d like to set on the task. Any
@@ -14681,7 +14829,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /tasks/{task_gid}`
+<p>
+<code> <span class="get-verb">GET</span> /tasks/{task_gid}</code>
+</p>
 
 Returns the complete task record for a single task.
 
@@ -14927,7 +15077,9 @@ p JSON.parse(result)
 
 ```
 
-`PUT /tasks/{task_gid}`
+<p>
+<code> <span class="put-verb">PUT</span> /tasks/{task_gid}</code>
+</p>
 
 A specific, existing task can be updated by making a PUT request on the
 URL for that task. Only the fields provided in the `data` block will be
@@ -15183,7 +15335,9 @@ p JSON.parse(result)
 
 ```
 
-`DELETE /tasks/{task_gid}`
+<p>
+<code> <span class="delete-verb">DELETE</span> /tasks/{task_gid}</code>
+</p>
 
 A specific, existing task can be deleted by making a DELETE request on
 the URL for that task. Deleted tasks go into the “trash” of the user
@@ -15355,7 +15509,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /tasks/{task_gid}/duplicate`
+<p>
+<code> <span class="post-verb">POST</span> /tasks/{task_gid}/duplicate</code>
+</p>
 
 Creates and returns a job that will asynchronously handle the duplication.
 
@@ -15560,7 +15716,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /tasks/{task_gid}/subtasks`
+<p>
+<code> <span class="get-verb">GET</span> /tasks/{task_gid}/subtasks</code>
+</p>
 
 Returns a compact representation of all of the subtasks of a task.
 
@@ -15785,7 +15943,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /tasks/{task_gid}/subtasks`
+<p>
+<code> <span class="post-verb">POST</span> /tasks/{task_gid}/subtasks</code>
+</p>
 
 Creates a new subtask and adds it to the parent task. Returns the full record for the newly created subtask.
 
@@ -16044,7 +16204,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /tasks/{task_gid}/setParent`
+<p>
+<code> <span class="post-verb">POST</span> /tasks/{task_gid}/setParent</code>
+</p>
 
 parent, or no parent task at all. Returns an empty data block. When using `insert_before` and `insert_after`, at most one of those two options can be specified, and they must already be subtasks of the parent.
 
@@ -16272,7 +16434,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /tasks/{task_gid}/dependencies`
+<p>
+<code> <span class="get-verb">GET</span> /tasks/{task_gid}/dependencies</code>
+</p>
 
 Returns the compact representations of all of the dependencies of a task.
 
@@ -16474,7 +16638,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /tasks/{task_gid}/addDependencies`
+<p>
+<code> <span class="post-verb">POST</span> /tasks/{task_gid}/addDependencies</code>
+</p>
 
 Marks a set of tasks as dependencies of this task, if they are not already dependencies. *A task can have at most 15 dependencies*.
 
@@ -16690,7 +16856,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /tasks/{task_gid}/removeDependencies`
+<p>
+<code> <span class="post-verb">POST</span> /tasks/{task_gid}/removeDependencies</code>
+</p>
 
 Unlinks a set of dependencies from this task.
 
@@ -16894,7 +17062,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /tasks/{task_gid}/dependents`
+<p>
+<code> <span class="get-verb">GET</span> /tasks/{task_gid}/dependents</code>
+</p>
 
 Returns the compact representations of all of the dependents of a task.
 
@@ -17096,7 +17266,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /tasks/{task_gid}/addDependents`
+<p>
+<code> <span class="post-verb">POST</span> /tasks/{task_gid}/addDependents</code>
+</p>
 
 Marks a set of tasks as dependents of this task, if they are not already dependents. *A task can have at most 30 dependents*.
 
@@ -17312,7 +17484,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /tasks/{task_gid}/removeDependents`
+<p>
+<code> <span class="post-verb">POST</span> /tasks/{task_gid}/removeDependents</code>
+</p>
 
 Unlinks a set of dependents from this task.
 
@@ -17516,7 +17690,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /tasks/{task_gid}/projects`
+<p>
+<code> <span class="get-verb">GET</span> /tasks/{task_gid}/projects</code>
+</p>
 
 Returns a compact representation of all of the projects the task is in.
 
@@ -17710,7 +17886,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /tasks/{task_gid}/addProject`
+<p>
+<code> <span class="post-verb">POST</span> /tasks/{task_gid}/addProject</code>
+</p>
 
 Adds the task to the specified project, in the optional location
 specified. If no location arguments are given, the task will be added to
@@ -17905,7 +18083,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /tasks/{task_gid}/removeProject`
+<p>
+<code> <span class="post-verb">POST</span> /tasks/{task_gid}/removeProject</code>
+</p>
 
 Removes the task from the specified project. The task will still exist in
 the system, but it will not be in the project anymore.
@@ -18075,7 +18255,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /tasks/{task_gid}/tags`
+<p>
+<code> <span class="get-verb">GET</span> /tasks/{task_gid}/tags</code>
+</p>
 
 Get a compact representation of all of the tags the task has.
 
@@ -18248,7 +18430,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /tasks/{task_gid}/addTag`
+<p>
+<code> <span class="post-verb">POST</span> /tasks/{task_gid}/addTag</code>
+</p>
 
 Adds a tag to a task. Returns an empty data block.
 
@@ -18424,7 +18608,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /tasks/{task_gid}/removeTag`
+<p>
+<code> <span class="post-verb">POST</span> /tasks/{task_gid}/removeTag</code>
+</p>
 
 Removes a tag from a task. Returns an empty data block.
 
@@ -18603,7 +18789,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /tasks/{task_gid}/addFollowers`
+<p>
+<code> <span class="post-verb">POST</span> /tasks/{task_gid}/addFollowers</code>
+</p>
 
 Adds a tag to a task. Returns an empty data block.
 Each task can be associated with zero or more followers in the system.
@@ -18787,7 +18975,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /tasks/{task_gid}/removeFollowers`
+<p>
+<code> <span class="post-verb">POST</span> /tasks/{task_gid}/removeFollowers</code>
+</p>
 
 Removes each of the specified followers from the task if they are following. Returns the complete, updated record for the affected task.
 
@@ -18841,7 +19031,7 @@ Removes each of the specified followers from the task if they are following. Ret
 <h1 id="asana-team">Team</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/teams/{team_gid}</span><br><span class="nf">GET</span> <span class=""nn>/organizations/{organization_gid}/teams</span><br><span class="nf">GET</span> <span class=""nn>/users/{user_gid}/teams</span><br><span class="nf">GET</span> <span class=""nn>/teams/{team_gid}/users</span><br><span class="nf">POST</span> <span class=""nn>/teams/{team_gid}/addUser</span><br><span class="nf">POST</span> <span class=""nn>/teams/{team_gid}/removeUser</span></code>
+<code><a href="#get-a-team"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}</span></a><br><a href="#get-teams-in-an-organization"><span class="get-verb">GET</span> <span class=""nn>/organizations/{organization_gid}/teams</span></a><br><a href="#get-a-user-39-s-teams"><span class="get-verb">GET</span> <span class=""nn>/users/{user_gid}/teams</span></a><br><a href="#get-users-in-a-team"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}/users</span></a><br><a href="#add-a-user-to-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/addUser</span></a><br><a href="#remove-a-user-from-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/removeUser</span></a></code>
 </pre>
 
 A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.
@@ -18966,7 +19156,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /teams/{team_gid}`
+<p>
+<code> <span class="get-verb">GET</span> /teams/{team_gid}</code>
+</p>
 
 Returns the full record for a single team.
 
@@ -19128,7 +19320,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /organizations/{organization_gid}/teams`
+<p>
+<code> <span class="get-verb">GET</span> /organizations/{organization_gid}/teams</code>
+</p>
 
 Returns the compact records for all teams in the organization visible to the authorized user.
 
@@ -19293,7 +19487,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /users/{user_gid}/teams`
+<p>
+<code> <span class="get-verb">GET</span> /users/{user_gid}/teams</code>
+</p>
 
 Returns the compact records for all teams to which the given user is assigned.
 
@@ -19458,7 +19654,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /teams/{team_gid}/users`
+<p>
+<code> <span class="get-verb">GET</span> /teams/{team_gid}/users</code>
+</p>
 
 Returns the compact records for all users that are members of the team.
 
@@ -19629,7 +19827,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /teams/{team_gid}/addUser`
+<p>
+<code> <span class="post-verb">POST</span> /teams/{team_gid}/addUser</code>
+</p>
 
 The user making this call must be a member of the team in order to add others. The user being added must exist in the same organization as the team.
 
@@ -19809,7 +20009,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /teams/{team_gid}/removeUser`
+<p>
+<code> <span class="post-verb">POST</span> /teams/{team_gid}/removeUser</code>
+</p>
 
 The user making this call must be a member of the team in order to remove themselves or others.
 
@@ -19866,7 +20068,7 @@ The user making this call must be a member of the team in order to remove themse
 <h1 id="asana-users">Users</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/users</span><br><span class="nf">GET</span> <span class=""nn>/users/{user_gid}</span><br><span class="nf">GET</span> <span class=""nn>/users/{user_gid}/favorites</span><br><span class="nf">GET</span> <span class=""nn>/workspaces/{workspace_gid}/users</span></code>
+<code><a href="#get-a-set-of-users"><span class="get-verb">GET</span> <span class=""nn>/users</span></a><br><a href="#get-a-user"><span class="get-verb">GET</span> <span class=""nn>/users/{user_gid}</span></a><br><a href="#get-a-user-39-s-favorites"><span class="get-verb">GET</span> <span class=""nn>/users/{user_gid}/favorites</span></a><br><a href="#get-users-in-a-workspace-or-organization"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/users</span></a></code>
 </pre>
 
 A user object represents an account in Asana that can be given access to various workspaces, projects, and tasks.
@@ -19991,7 +20193,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /users`
+<p>
+<code> <span class="get-verb">GET</span> /users</code>
+</p>
 
 Returns the user records for all users in all workspaces and organizations accessible to the authenticated user. Accepts an optional workspace ID parameter.
 Results are sorted by user ID.
@@ -20156,7 +20360,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /users/{user_gid}`
+<p>
+<code> <span class="get-verb">GET</span> /users/{user_gid}</code>
+</p>
 
 Returns the full user record for the single user with the provided ID.
 Results are sorted by user ID.
@@ -20329,7 +20535,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /users/{user_gid}/favorites`
+<p>
+<code> <span class="get-verb">GET</span> /users/{user_gid}/favorites</code>
+</p>
 
 Returns all of a user's favorites in the given workspace, of the given type.
 Results are given in order (The same order as Asana's sidebar).
@@ -20498,7 +20706,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /workspaces/{workspace_gid}/users`
+<p>
+<code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}/users</code>
+</p>
 
 Returns the user records for all users in the specified workspace or organization.
 Results are sorted alphabetically by user names.
@@ -20547,7 +20757,7 @@ Results are sorted alphabetically by user names.
 <h1 id="asana-user-task-lists">User Task Lists</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/user_task_list/{user_task_list_gid}</span><br><span class="nf">GET</span> <span class=""nn>/users/{user_gid}/user_task_list</span><br><span class="nf">GET</span> <span class=""nn>/user_task_lists/{user_task_list_gid}/tasks</span></code>
+<code><a href="#get-a-user-task-list"><span class="get-verb">GET</span> <span class=""nn>/user_task_list/{user_task_list_gid}</span></a><br><a href="#get-a-user-39-s-task-list"><span class="get-verb">GET</span> <span class=""nn>/users/{user_gid}/user_task_list</span></a><br><a href="#get-tasks-in-a-user-task-list"><span class="get-verb">GET</span> <span class=""nn>/user_task_lists/{user_task_list_gid}/tasks</span></a></code>
 </pre>
 
 A user task list represents the tasks assigned to a particular user.
@@ -20672,7 +20882,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /user_task_list/{user_task_list_gid}`
+<p>
+<code> <span class="get-verb">GET</span> /user_task_list/{user_task_list_gid}</code>
+</p>
 
 Returns the full record for a user task list.
 
@@ -20833,7 +21045,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /users/{user_gid}/user_task_list`
+<p>
+<code> <span class="get-verb">GET</span> /users/{user_gid}/user_task_list</code>
+</p>
 
 Returns the full record for a user's task list.
 
@@ -20994,7 +21208,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /user_task_lists/{user_task_list_gid}/tasks`
+<p>
+<code> <span class="get-verb">GET</span> /user_task_lists/{user_task_list_gid}/tasks</code>
+</p>
 
 Returns the compact list of tasks in a user’s My Tasks list. The returned tasks will be in order within each assignee status group of `Inbox`, `Today`, and `Upcoming`.
 *Note: tasks in `Later` have a different ordering in the Asana web app than the other assignee status groups; this endpoint will still return them in list order in `Later` (differently than they show up in Asana, but the same order as in Asana’s mobile apps).*
@@ -21076,7 +21292,7 @@ Returns the compact list of tasks in a user’s My Tasks list. The returned task
 <h1 id="asana-webhooks">Webhooks</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/webhooks</span><br><span class="nf">POST</span> <span class=""nn>/webhooks</span><br><span class="nf">GET</span> <span class=""nn>/webhooks/{webhook_gid}</span><br><span class="nf">DELETE</span> <span class=""nn>/webhooks/{webhook_gid}</span></code>
+<code><a href="#get-a-set-of-webhooks"><span class="get-verb">GET</span> <span class=""nn>/webhooks</span></a><br><a href="#establish-a-webhook-on-a-resource"><span class="post-verb">POST</span> <span class=""nn>/webhooks</span></a><br><a href="#get-a-webhook"><span class="get-verb">GET</span> <span class=""nn>/webhooks/{webhook_gid}</span></a><br><a href="#remove-a-webhook"><span class="delete-verb">DELETE</span> <span class=""nn>/webhooks/{webhook_gid}</span></a></code>
 </pre>
 
 Webhooks allow an application to be notified of changes in Asana.
@@ -21202,7 +21418,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /webhooks`
+<p>
+<code> <span class="get-verb">GET</span> /webhooks</code>
+</p>
 
 Get the compact representation of all webhooks your app has registered for the authenticated user in the given workspace.
 
@@ -21378,7 +21596,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /webhooks`
+<p>
+<code> <span class="post-verb">POST</span> /webhooks</code>
+</p>
 
 Establishing a webhook is a two-part process. First, a simple HTTP POST
 similar to any other resource creation. Since you could have multiple
@@ -21607,7 +21827,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /webhooks/{webhook_gid}`
+<p>
+<code> <span class="get-verb">GET</span> /webhooks/{webhook_gid}</code>
+</p>
 
 Returns the full record for the given webhook.
 
@@ -21772,7 +21994,9 @@ p JSON.parse(result)
 
 ```
 
-`DELETE /webhooks/{webhook_gid}`
+<p>
+<code> <span class="delete-verb">DELETE</span> /webhooks/{webhook_gid}</code>
+</p>
 
 This method *permanently* removes a webhook. Note that it may be possible to receive a request that was already in flight after deleting the webhook, but no further requests will be issued.
 
@@ -21810,7 +22034,7 @@ This method *permanently* removes a webhook. Note that it may be possible to rec
 <h1 id="asana-workspaces">Workspaces</h1>
 
 <pre class="highlight http tab-http">
-<code><span class="nf">GET</span> <span class=""nn>/workspaces/{workspace_gid}/typeahead</span><br><span class="nf">GET</span> <span class=""nn>/workspaces</span><br><span class="nf">GET</span> <span class=""nn>/workspaces/{workspace_gid}</span><br><span class="nf">PUT</span> <span class=""nn>/workspaces/{workspace_gid}</span><br><span class="nf">POST</span> <span class=""nn>/workspaces/{workspace_gid}/addUser</span><br><span class="nf">POST</span> <span class=""nn>/workspaces/{workspace_gid}/removeUser</span></code>
+<code><a href="#retrieve-objects-via-typeahead"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/typeahead</span></a><br><a href="#get-a-set-of-workspaces"><span class="get-verb">GET</span> <span class=""nn>/workspaces</span></a><br><a href="#get-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}</span></a><br><a href="#update-a-workspace"><span class="put-verb">PUT</span> <span class=""nn>/workspaces/{workspace_gid}</span></a><br><a href="#add-a-user-to-a-workspace-or-organization"><span class="post-verb">POST</span> <span class=""nn>/workspaces/{workspace_gid}/addUser</span></a><br><a href="#remove-a-user-from-a-workspace-or-organization"><span class="post-verb">POST</span> <span class=""nn>/workspaces/{workspace_gid}/removeUser</span></a></code>
 </pre>
 
 A workspace is the highest-level organizational unit in Asana. An organization is a special kind of workspace that represents a company.
@@ -21936,7 +22160,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /workspaces/{workspace_gid}/typeahead`
+<p>
+<code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}/typeahead</code>
+</p>
 
 Retrieves objects in the workspace based via an auto-completion/typeahead
 search algorithm. This feature is meant to provide results quickly, so do
@@ -22134,7 +22360,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /workspaces`
+<p>
+<code> <span class="get-verb">GET</span> /workspaces</code>
+</p>
 
 Returns the compact records for all workspaces visible to the authorized user.
 
@@ -22296,7 +22524,9 @@ p JSON.parse(result)
 
 ```
 
-`GET /workspaces/{workspace_gid}`
+<p>
+<code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}</code>
+</p>
 
 Returns the full workspace record for a single workspace.
 
@@ -22472,7 +22702,9 @@ p JSON.parse(result)
 
 ```
 
-`PUT /workspaces/{workspace_gid}`
+<p>
+<code> <span class="put-verb">PUT</span> /workspaces/{workspace_gid}</code>
+</p>
 
 A specific, existing workspace can be updated by making a PUT request on the URL for that workspace. Only the fields provided in the data block will be updated; any unspecified fields will remain unchanged.
 Currently the only field that can be modified for a workspace is its name.
@@ -22659,7 +22891,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /workspaces/{workspace_gid}/addUser`
+<p>
+<code> <span class="post-verb">POST</span> /workspaces/{workspace_gid}/addUser</code>
+</p>
 
 Add a user to a workspace or organization.
 The user can be referenced by their globally unique user ID or their email address. Returns the full user record for the invited user.
@@ -22846,7 +23080,9 @@ p JSON.parse(result)
 
 ```
 
-`POST /workspaces/{workspace_gid}/removeUser`
+<p>
+<code> <span class="post-verb">POST</span> /workspaces/{workspace_gid}/removeUser</code>
+</p>
 
 Remove a user from a workspace or organization.
 The user making this call must be an admin in the workspace. The user can be referenced by their globally unique user ID or their email address.

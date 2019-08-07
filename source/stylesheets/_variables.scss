@@ -382,7 +382,7 @@ $boxShadow-marketing: 0 14px 80px 0 rgba($gray-10, .06);
 ////////////////////
 $nav-bg: $white !default;
 $examples-bg: $white !default;
-$code-bg: $gray-2 !default;
+$code-bg: $gray-1 !default;
 $code-annotation-bg: #191D1F !default;
 $nav-subitem-bg: $white !default;
 $nav-active-bg: $gray-2 !default;
@@ -432,6 +432,8 @@ $full-line-seperator-padding-v: $spacing-xxl * 3;
 $line-color: $gray-5;
 $h2-padding: $spacing-l;
 $page-wrapper-width: 1500px;
+$common-item-color: $gray-1;
+$table-hover-color: $gray-2;
 
 
 // FONTS
