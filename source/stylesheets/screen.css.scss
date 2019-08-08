@@ -893,7 +893,8 @@ hr {
   background-color: $line-color;
 }
 a {
-  color: $teal
+  color: $teal;
+  text-decoration: none;
 }
 
 @media (min-width: $page-wrapper-width + $nav-width) {
