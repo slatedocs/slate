@@ -1086,8 +1086,6 @@ Returns the full record of the newly created custom field.
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
-#### Detailed descriptions
-
 #### Enumerated Values
 
 |Parameter|Value|
@@ -1856,8 +1854,6 @@ Returns the full record of the newly created enum option.
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
-#### Detailed descriptions
-
 > 201 Response
 
 ```json
@@ -2062,8 +2058,6 @@ Locked custom fields can only be reordered by the user who locked the field.
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
-#### Detailed descriptions
-
 > 200 Response
 
 ```json
@@ -2259,8 +2253,6 @@ Returns the full record of the updated enum option.
 |opt_expand|query|array[string]|false|Expand fields returned.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
-
-#### Detailed descriptions
 
 > 200 Response
 
