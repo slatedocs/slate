@@ -426,9 +426,9 @@ $h1-padding-top: $spacing-xxl !default;
 $tablet-width: 930px !default; // min width before reverting to tablet size
 $phone-width: $tablet-width - $nav-width !default; // min width before reverting to mobile size
 $table-padding: 4%;
-$line-seperator-padding-h: 10%;
-$line-seperator-padding-v: $spacing-xxl * 2;
-$full-line-seperator-padding-v: $spacing-xxl * 3;
+$line-separator-padding-h: 10%;
+$line-separator-padding-v: $spacing-xxl * 2;
+$full-line-separator-padding-v: $spacing-xxl * 3;
 $line-color: $gray-5;
 $h2-padding: $spacing-l;
 $page-wrapper-width: 1500px;

@@ -361,6 +361,7 @@ html, body {
     content: '';
     display: block;
     clear: both;
+    padding-top: $line-separator-padding-v;
   }
 
   &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>.table-holder, &>ul, &>ol, &>aside, &>dl {
@@ -386,7 +387,7 @@ html, body {
     font-size: 25px;
     padding-bottom: 0.5em;
     margin-bottom: $h1-margin-bottom;
-    padding-top: $line-seperator-padding-v;
+    padding-top: $line-separator-padding-v;
     // border-top: 1px solid $line-color;
   }
 
@@ -398,7 +399,7 @@ html, body {
   h2 {
     @extend %header-font;
     font-size: 19px;
-    padding: $line-seperator-padding-v 0 $h2-padding 0;
+    padding: $line-separator-padding-v 0 $h2-padding 0;
     margin-left: $main-padding;
     // border-top: 1px solid $line-color;
   }
@@ -406,7 +407,7 @@ html, body {
   // h2s right after h1s should bump right up
   // against the h1s.
   h1 + h2, h1 + div + h2 {
-    margin-top: $line-seperator-padding-v * -1;
+    margin-top: $line-separator-padding-v * -1;
     border-top: none;
   }
 
@@ -426,12 +427,12 @@ html, body {
     margin: 0;
 
     &:not(.full-line) {
-      padding: $line-seperator-padding-v $line-seperator-padding-h 0 $line-seperator-padding-h;
-      width: 100% - $line-seperator-padding-h - $line-seperator-padding-h;
+      padding: $line-separator-padding-v $line-separator-padding-h 0 $line-separator-padding-h;
+      width: 100% - $line-separator-padding-h - $line-separator-padding-h;
     }
 
     &.full-line {
-      padding: $full-line-seperator-padding-v 0 0 0;
+      padding: $full-line-separator-padding-v 0 0 0;
       width: 100%;
     }
   }
