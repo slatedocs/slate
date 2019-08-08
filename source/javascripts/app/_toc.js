@@ -41,14 +41,6 @@
           headerHeights[targetId] = $(targetId).offset().top;
         }
       });
-
-      var currentAnchor = (document.URL.split('#').length > 1) ? document.URL.split('#')[1] : null;
-      if (currentAnchor != null) {
-        var currentElement = document.getElementById(currentAnchor);
-        if (currentElement != null) {
-          currentElement.scrollIntoView();
-        }
-      }
     };
 
     var refreshToc = function() {
@@ -117,7 +109,18 @@
       });
 
       $(window).scroll(debounce(refreshToc, 200));
-      $(window).resize(debounce(recacheHeights, 200));
+      $(window).resize(debounce(
+        function() {
+          recacheHeights();
+          var currentAnchor = (document.URL.split('#').length > 1) ? document.URL.split('#')[1] : null;
+          if (currentAnchor != null) {
+            var currentElement = document.getElementById(currentAnchor);
+            if (currentElement != null) {
+              currentElement.scrollIntoView();
+            }
+          }
+        },
+        200));
     };
 
     makeToc();

@@ -485,7 +485,6 @@ html, body {
     background-color: $gray-1;
     padding: $spacing-xxs;
     border-radius: 4px;
-    word-break: break-all;
     hyphens: none;
     @extend %code-font;
   }

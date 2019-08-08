@@ -1,7 +1,13 @@
 ---
 
 ## Authentication Basics
+
 Asana supports a few methods of authenticating with the API.
+
+```shell
+!
+"Authorization: Bearer ACCESS_TOKEN"
+```
 
  * **[OAuth 2.0](#oauth)** We require that applications designed to access the Asana API on behalf of multiple users implement OAuth 2.0.
  * **[Personal Access Token](#personal-access-token)** Personal Access Tokens are designed for accessing the API from the command line or from personal applications.
@@ -45,9 +51,6 @@ Bearer Tokens when the current one expires).
 7. Once the Bearer Token expires, the application can again use the Token Exchange Endpoint to exchange the Refresh
 Token for a new Bearer Token. (This can be repeated for as long as the user has authorized the application.)
 
-This is just one example using the Authorization Code Grant - applications that run entirely in the browser would
-generally use the [Implicit Grant](#implicit-grant) flow instead.
-
 We definitely recommend using a library to take care of the nitty-gritty of OAuth, but hopefully this helps demystify
 the process somewhat.
 
@@ -83,15 +86,24 @@ the Asana API, as well as a Client Secret.
 * Applications can be created from the ["Apps" tab of your account settings](https://app.asana.com/-/account_api), where you will find your Client ID and Client Secret.
 * The endpoint for user authorization is `https://app.asana.com/-/oauth_authorize`
 * The endpoint for token exchange is `https://app.asana.com/-/oauth_token`
-* Asana supports both the Authorization Code Grant flow, and the Implicit Grant flows.
-* Once an access token has been obtained your application can make calls on behalf of the user in the following form:
-
-        curl -H "Authorization: Bearer ACCESS_TOKEN" https://app.asana.com/api/1.0/users/me
+* Asana supports the Authorization Code Grant flow.
+* Once an access token has been obtained your application can make calls on behalf of the user
 
 <a name="user-authorization" class="jump-anchor"></a>
 ### User Authorization Endpoint
 
 #### Request
+
+> Send a user to oauth_authorize
+
+```html
+<a href="https://app.asana.com/-/oauth_authorize
+?client_id=753482910
+&redirect_uri=https://my.app.com
+&response_type=code
+&state=thisIsARandomString
+&scope=default">Authenticate with Asana</a>
+```
 
 Your app redirects the user to `https://app.asana.com/-/oauth_authorize`, passing parameters along as a standard query string:
 
@@ -104,6 +116,12 @@ Your app redirects the user to `https://app.asana.com/-/oauth_authorize`, passin
 | **scope** | *optional* A space-delimited set of one or more [scopes](#scopes) to get the user's permission to access. Defauts to the `default` OAuth scope if no scopes are specified. |
 
 #### Response
+
+> User is redirected to the redirect_uri
+
+```
+https://my.app.com?code=325797325&state=thisIsARandomString
+```
 
 If either the `client_id` or `redirect_uri` do not match, the user will simply see a plain-text error. Otherwise,
 all errors will be sent back to the `redirect_uri` specified.
@@ -119,6 +137,9 @@ If using the `response_type=token`, these parameters will appear in the URL frag
 | **code** | If response_type=code in the request, this is the code your app can exchange for a token |
 | **token** | If response_type=token in the request, this is the token your app can use to make requests of the API |
 | **state** | The state parameter that was sent with the authorizing request |
+
+You should check that the state is the same in this response as it was in the request. You can read more about the `state`
+parameter [here](https://auth0.com/docs/protocols/oauth2/oauth-state).
 
 <a name="scopes" class="jump-anchor"></a>
 ### OAuth Scopes
@@ -145,6 +166,16 @@ exchanged for a proper token, optionally including a *refresh_token*, which can
 be used to request new tokens when the current one expires without needing to
 redirect or reauthorize the user.
 
+```json
+{
+  "grant_type": "authorization_code",
+  "client_id": "753482910",
+  "client_secret": "6572195638271537892521",
+  "redirect_uri": "https://my.app.com",
+  "code": "325797325"
+}
+```
+
 Your app should make a `POST` request to `https://app.asana.com/-/oauth_token`,
 passing the parameters as part of a standard form-encoded post body.
 
@@ -163,6 +194,20 @@ The token exchange endpoint is used to exchange a code or refresh token for an a
 
 In the response, you will receive a JSON payload with the following parameters:
 
+```json
+{
+  "access_token": "f6ds7fdsa69ags7ag9sd5a",
+  "expires_in": 3600,
+  "token_type": "bearer",
+  "refresh_token": "hjkl325hjkl4325hj4kl32fjds",
+  "data": {
+    "id": "4673218951",
+    "name": "Greg Sanchez",
+    "email": "gsanchez@example.com"
+  }
+}
+```
+
 | Parameter | Description |
 |---|---|
 | **access_token** | The token to use in future requests against the API |
@@ -178,53 +223,11 @@ To implement the Authorization Code Grant flow (the most typical flow for most a
 
 1. Send the user to the authorization endpoint so that they can approve access of your app to their Asana account
 
-        # Send the user to the authorization endpoint. Newlines inserted for readability
-        https://app.asana.com/-/oauth_authorize?
-        client_id=123&
-        redirect_uri=https://myapp.com/oauth
-        &response_type=code
-        &state=somerandomstate
-
 2. Receive a redirect back from the authorization endpoint with a **code** embedded in the parameters
-
-        # After the user authenticates they will redirected back to your app with a code for your app to exchange.
-        # Newlines inserted for readability
-        https://myapp.com/oauth?
-        code=0%2F817a776a358a5d8d89988562d2b3dc8f&
-        state=somerandomstate
 
 3. Exchange the code for a **token** via the token exchange endpoint
 
 The token that you have at the end can be used to make calls to the Asana API on the user's behalf.
-
-<a name="implicit-grant" class="jump-anchor"></a>
-### Implicit Grant
-
-The Implicit Grant flow is suitable for in-browser web apps written in
-JavaScript or other applications that cannot securely make the `POST` request
-containing the client secret to the authorization server without exposing that
-secret to the user or others. To implement this flow, there are only two steps:
-
-1. Redirect a user to the authorization endpoint so that they can approve access of your app to their Asana account
-
-        # Send the user to the authorization endpoint. Newlines inserted for readability
-        https://app.asana.com/-/oauth_authorize?
-        client_id=123&
-        redirect_uri=https://myapp.com/oauth&
-        response_type=token&
-        state=somerandomstate
-
-2. Receive a redirect back from the authorization endpoint with a **token** embedded in the *fragment* portion (the bit following the `#`) of the URL.
-
-        # After the user authenticates they will redirected back to your app with a short-lived access token.
-        https://myapp.com/auth#
-        access_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpemF0aW9uIjo0NDMxMDYwMjQwODA0Niwic2NvcGUiOiIiLCJpYXQiOjE0Mzg4OTExODEsImV4cCI6MTQzODg5NDc4MX0.kVm8MWD8ahU4hMxT7B7ZrsgAEAw5ebb1yknXlskGfeM&
-        token_type=bearer&
-        expires_in=3600&
-        data=&
-        state=somerandomstate
-
-This token can then be used to access the API, in this case typically using CORS.
 
 <a name="secure-redirect" class="jump-anchor"></a>
 ### Secure Redirect Endpoint
@@ -254,9 +257,12 @@ unlimited, personal access tokens. When creating a token you must give it a desc
 created the token for.
 
 Personal Access Tokens should be used similarly to OAuth access tokens when accessing the API, passing them in the
-Authorization header:
+Authorization header.
 
-    curl -H "Authorization: Bearer ACCESS_TOKEN" https://app.asana.com/api/1.0/users/me
+```shell
+!
+curl -H "Authorization: Bearer ACCESS_TOKEN" https://app.asana.com/api/1.0/users/me
+```
 
 You should regularly review the list of personal access tokens you have created and **deauthorize** those that you no
 longer need.
@@ -276,9 +282,8 @@ rather given a signed [Json Web Token](https://jwt.io/) containing the user's ID
 to allow users to log into your services using their Asana account, the OpenID Connect protocol is an ideal way to
 authenticate an Asana user. To obtain an ID token, you must request the `openid` scope during the authentication flow.
 
-It is also possible to obtain an ID token alongside the normal access token in the implicit flow by using the
-(space-delimited) `token id_token` response type, or alongside an authorization code in the authorization code grant
-flow by using the (again space-delimited) `code id_token` response type. If you do, the redirect parameters will include
+It is also possible to obtain an ID token alongside an authorization code in the authorization code grant
+flow by using the (space-delimited) `code id_token` response type. If you do, the redirect parameters will include
 the ID token in addition to everything you would normally receive.
 
 To access additional information about the user in a standardized format, we also expose a
