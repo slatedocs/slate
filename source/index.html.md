@@ -20,7 +20,7 @@ search: true
 # Introduction
 
 Welcome to the CoinDCX API!
-<aside class="notice">The base URL for all the API calls is `https://api.coindcx.com` </aside>
+<aside class="notice">The base URL for the API calls is `https://api.coindcx.com`, base URL for some public endpoint is `https://public.coindcx.com`. However, it will only be used where it is exclusively mentioned in the documentation. </aside>
 
 You can get your API key and Secret as follows
 <ul>
@@ -30,6 +30,31 @@ You can get your API key and Secret as follows
 </ul>
 
 > The python version used for API samples is 2.7
+
+# Terminology
+
+### Common
+
+* `target currency` refers to the asset that is the `quantity` of a symbol.
+* `base currency` refers to the asset that is the `price` of a symbol.
+* `pair` uniquely idenfies the market along with it's exchange, and is available in market details api.
+* `ecode` is used to specify the exchange for the given market. Valid values for ecode include:
+  - `B`: Binance
+  - `I`: CoinDCX
+  - `HB`: HitBTC
+  - `H`: Huobi
+  - `BM`: BitMEX
+
+### Orders
+
+* `status`: used to denote the current status of the given order. Valid values for status include:
+  - `init`: order is just created, but not placed in the orderbook
+  - `open`: order is successfully placed in the orderbook
+  - `partially_filled`: order is partially filled
+  - `filled`: order is completely filled
+  - `partially_cancelled`: order is partially filled, but cancelled, thus inactive
+  - `cancelled`: order is completely or partially cancelled
+  - `rejected`: order is rejected (not placed on the exchange
 
 # Public endpoints
 
@@ -41,7 +66,7 @@ You can get your API key and Secret as follows
 const request = require('request')
 
 var baseurl = "https://api.coindcx.com"
-	
+
 request.get(baseurl + "/exchange/ticker",function(error, response, body) {
 	console.log(body);
 })
@@ -95,7 +120,7 @@ print(data)
 const request = require('request')
 
 var baseurl = "https://api.coindcx.com"
-	
+
 request.get(baseurl + "/exchange/v1/markets",function(error, response, body) {
 	console.log(body);
 })
@@ -134,7 +159,7 @@ Returns an array of strings of currently active markets.
 const request = require('request')
 
 var baseurl = "https://api.coindcx.com"
-	
+
 request.get(baseurl + "/exchange/v1/markets_details",function(error, response, body) {
 	console.log(body);
 })
@@ -147,7 +172,7 @@ url = "https://api.coindcx.com/exchange/v1/markets_details"
 response = requests.get(url)
 data = response.json()
 print(data)
-```       
+```
 > Response:
 
 ```json
@@ -192,13 +217,16 @@ print(data)
 
 
 ## Trades
+
+<aside class="notice">The base URL for Trades API call is https://public.coindcx.com </aside>
+
 ### HTTP request
-`GET /exchange/v1/trades/:market`
+`GET /market_data/trade_history`
 
 ```python
 import requests # Install requests module first.
 
-url = "https://api.coindcx.com/exchange/v1/trades/SNTBTC" # Replace 'SNTBTC' with your desired market pair.
+url = "https://public.coindcx.com/market_data/trade_history?pair=B-BTC_USDT&limit=50" # Replace 'B-BTC_USDT' with your desired market pair.
 
 response = requests.get(url)
 data = response.json()
@@ -207,10 +235,10 @@ print(data)
 ```javascript
 const request = require('request')
 
-var baseurl = "https://api.coindcx.com"
+var baseurl = "https://public.coindcx.com"
 
-// Replace the "SNTBTC" with the desired market pair.
-request.get(baseurl + "/exchange/v1/trades/SNTBTC",function(error, response, body) {
+// Replace the "B-BTC_USDT" with the desired market pair.
+request.get(baseurl + "/market_data/trade_history?pair=B-BTC_USDT&limit=50",function(error, response, body) {
 	console.log(body);
 })
 ```
@@ -220,52 +248,51 @@ request.get(baseurl + "/exchange/v1/trades/SNTBTC",function(error, response, bod
 ```json
 [
   {
-    "p":  0.00001693,
-    "q":  394,
-    "T":  1521476030955.09,
-    "m":  false
+    "p": 11603.88,
+    "q": 0.023519,
+    "s": "BTCUSDT",
+    "T": 1565163305770,
+    "m": false
   }
-}
+]
 ```
 
-### Path parameters
-| Name   | Required | Example |
-|--------|----------|---------|
-| market | Yes      | SNTBTC  |
+### Query parameters
+| Name   | Required | Example    |
+|--------|----------|------------|
+| pair   | Yes      | B-SNT_BTC  (`pair` from Market Details API)|
+| limit  | No       | Default: 30; Max: 500|
 
-This API provides with a sorted list of most recent 50 trades.
+
+
+This API provides with a sorted list of most recent 30 trades by default if limit parameter is not passed.
 ### Definitions
 <ul>
-  <li>m stands for whether the buyer is market maker or not.</li>
   <li>p is the trade price</li>
   <li>q is the quantity</li>
+  <li>s is the market name</li>
   <li>T is the timestamp of trade</li>
+  <li>m stands for whether the buyer is market maker or not.</li>
 </ul>
 
 
 ## Order book
-### HTTP request
-`GET /exchange/v1/books/:market`
-
-### Path parameters
-| Name   | Required | Example |
-|--------|----------|---------|
-| market | Yes      | SNTBTC  |
+<aside class="notice">The base URL for Order book API call is https://public.coindcx.com </aside>
 
 ```javascript
 const request = require('request')
 
-var baseurl = "https://api.coindcx.com"
+var baseurl = "https://public.coindcx.com"
 
-// Replace the "SNTBTC" with the desired market pair.
-request.get(baseurl + "/exchange/v1/books/SNTBTC",function(error, response, body) {
+// Replace the "B-BTC_USDT" with the desired market pair.
+request.get(baseurl + "/market_data/orderbook?pair=B-BTC_USDT",function(error, response, body) {
 	console.log(body);
 })
 ```
 ```python
 import requests # Install requests module first.
 
-url = "https://api.coindcx.com/exchange/v1/books/SNTBTC" # Replace 'SNTBTC' with the desired market pair.
+url = "https://public.coindcx.com/market_data/orderbook?pair=B-BTC_USDT" # Replace 'SNTBTC' with the desired market pair.
 
 response = requests.get(url)
 data = response.json()
@@ -275,34 +302,123 @@ print(data)
 > Response
 
 ```json
-{  
-  "asks":{
-    "0.00160900":"23.79000000",
-    "0.00161000":"300.85",
-    "0.00161400":"11.25",
-    "0.00161500":"101.82",
-    "0.00161700":"222.37000000"
+{
+  "bids":{
+    "11570.67000000": "0.000871",
+    "11570.58000000": "0.001974",
+    "11570.02000000": "0.280293",
+    "11570.00000000": "5.929216",
+    "11569.91000000": "0.000871",
+    "11569.89000000": "0.0016",
     ,
     ,
     ,
   },
-  "bids":{  
-    "0.00160400":"24.24000000",
-    "0.00160300":"7.63",
-    "0.00160100":"917.51000000",
-    "0.00159900":"40.8",
-    "0.00159700":"6"
+  "asks":{
+   "13900.00000000": "27.04094600",
+    "13100.00000000": "15.48547100",
+    "12800.00000000": "36.93142200",
+    "12200.00000000": "92.04554800",
+    "12000.00000000": "72.66595000",
+    "11950.00000000": "17.16624600",
     ,
     ,
     ,
-  }
+  },
+
 ```
 
-<aside class="warning">This end point returns unsorted objects of bids and asks. They must be sorted locally at your end</aside>
+### HTTP request
+`GET /market_data/orderbook`
+
+### Query parameters
+| Name   | Required | Example |
+|--------|----------|---------|
+| pair | Yes      | B-BTC_USDT (`pair` from Market Details API) |
+
+This API provides with a sorted list (in descending order) of bids and asks.
+
+###
 
 
+## Candles
+<aside class="notice">The base URL for Candles API call is https://public.coindcx.com </aside>
 
-### 
+```javascript
+const request = require('request')
+
+var baseurl = "https://public.coindcx.com"
+
+// Replace the "B-BTC_USDT" with the desired market pair.
+request.get(baseurl + "/market_data/candles?pair=B-BTC_USDT&interval=1m",function(error, response, body) {
+	console.log(body);
+})
+```
+```python
+import requests # Install requests module first.
+
+url = "https://public.coindcx.com/market_data/candles?pair=B-BTC_USDT&interval=1m" # Replace 'SNTBTC' with the desired market pair.
+
+response = requests.get(url)
+data = response.json()
+print(data)
+
+```
+> Response
+
+```json
+[
+  {
+        "open": 0.011803, // open price
+        "high": 0.011803, // highest price
+        "low": 0.011803, // lowest price
+        "volume": 0.35,  // total volume in terms of target currency (in BTC for B-BTC_USDT)
+        "close": 0.011803, // close price
+        "time": 1561463700000 //open time in ms
+  }
+  .
+  .
+  .
+],
+
+```
+
+### HTTP request
+`GET /market_data/candles`
+
+### Query parameters
+| Name   | Required | Example |
+|--------|----------|---------|
+| pair | Yes      | B-BTC_USDT (`pair` from Market Details API) |
+| interval | Yes      | any of the valid intervals given below|
+| startTime | No      | timestamp in ms, eg: `1562855417000` |
+| endTime | No      | timestamp in ms, eg: `1562855417000`  |
+| limit | No      | Default: 500; Max: 1000  |
+
+This API provides with a sorted list (in descending order according to time key) of candlestick bars for given pair. Candles are uniquely identified by their time.
+
+**Valid intervals**
+
+m -> minutes, h -> hours, d -> days, w -> weeks, M -> months
+
+* `1m`
+- `5m`
+- `15m`
+- `30m`
+- `1h`
+- `2h`
+- `4h`
+- `6h`
+- `8h`
+- `1d`
+- `3d`
+- `1w`
+- `1M`
+
+
+###
+
+
 
 
 # Authentication
@@ -337,7 +453,7 @@ print(data)
 
   headers = {
     'Content-Type' => 'application/json',
-    'X-AUTH-APIKEY' => key, 
+    'X-AUTH-APIKEY' => key,
     'X-AUTH-SIGNATURE' => signature
   }
 
@@ -682,6 +798,7 @@ Enum definitions for the purpose of order are as follows:
 |------------|---------------------------|
 | side       | buy, sell                 |
 | order_type | market_order, limit_order |
+| order_status | open, partially_filled, filled, cancelled, rejected, partially_cancelled, init|
 | timestamp  | 1524211224                |
 | ecode      | I, B, HB                  |
 
@@ -780,9 +897,9 @@ request.post(options, function(error, response, body) {
 > Response:
 
 ```json
-{  
-   "orders":[  
-     {  
+{
+   "orders":[
+     {
         "id":"ead19992-43fd-11e8-b027-bb815bcb14ed",
         "market":"TRXETH",
         "order_type":"limit_order",
@@ -822,7 +939,7 @@ Use this endpoint to place a new order on the exchange
 ## Create multiple orders
 
 <aside class="notice">
-Multiple ordering API is only supported for CoinDCX markets. Set ecode parameter as <code>I</code> 
+Multiple ordering API is only supported for CoinDCX markets. Set ecode parameter as <code>I</code>
 </aside>
 
 ```ruby
@@ -940,9 +1057,9 @@ request.post(options, function(error, response, body) {
 > Response:
 
 ```json
-{  
-   "orders":[  
-     {  
+{
+   "orders":[
+     {
         "id":"ead19992-43fd-11e8-b027-bb815bcb14ed",
         "market":"TRXETH",
         "order_type":"limit_order",
@@ -1066,8 +1183,8 @@ request.post(options, function(error, response, body) {
 
 > Response:
 
-```json 
-{  
+```json
+{
   "id":"ead19992-43fd-11e8-b027-bb815bcb14ed",
   "market":"TRXETH",
   "order_type":"limit_order",
@@ -1183,9 +1300,9 @@ request.post(options, function(error, response, body) {
 
 > Response:
 
-```json 
+```json
 [
-  {  
+  {
     "id":"ead19992-43fd-11e8-b027-bb815bcb14ed",
     "market":"TRXETH",
     "order_type":"limit_order",
@@ -1306,9 +1423,9 @@ request.post(options, function(error, response, body) {
 
 > Response:
 
-```json 
+```json
 [
-  {  
+  {
     "id":"ead19992-43fd-11e8-b027-bb815bcb14ed",
     "market":"TRXETH",
     "order_type":"limit_order",
@@ -1540,7 +1657,7 @@ request.post(options, function(error, response, body) {
 
 > Response:
 
-```json 
+```json
  { count: 1, status: 200 }
 ```
 
@@ -1648,7 +1765,7 @@ secret = "";
 
 > Response:
 
-```json 
+```json
 
 ```
 
@@ -1761,7 +1878,7 @@ secret = "";
 
 > Response:
 
-```json 
+```json
 
 ```
 
@@ -1867,7 +1984,7 @@ request.post(options, function(error, response, body) {
 
 > Response:
 
-```json 
+```json
 
 ```
 
@@ -2205,7 +2322,7 @@ socket.on("trade-update", (response) => {
 ```
 <!-- ------------------- END Sockets ---------------------- -->
 
-<!-- 
+<!--
 
 # API call limits
 We have rate limits in place to facilitate availability of our resources to a wider set of people. Typically you can place around 4 orders per second. The exact number depends on the server load.
