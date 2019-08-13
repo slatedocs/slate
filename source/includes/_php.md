@@ -1,14 +1,14 @@
 # PHP Agent
 
 Scout's PHP agent supports many popular libraries to instrument middleware, request times, SQL queries, and more.
-The base package is called `scoutapp/scoutapm-php`, and laravel instrumentation
-is in the `scoutapp/scoutapm-laravel`. See our install instructions for more details..
+The base package is called `scoutapp/scout-apm-php`, and Laravel instrumentation
+is in the `scoutapp/scout-apm-laravel`. See our install instructions for more details..
 
-Source code and issues can be found on our [scoutapm-php](https://github.com/scoutapp/scoutapm-php) GitHub repository.
+Source code and issues can be found on our [scout-apm-php](https://github.com/scoutapp/scout-apm-php) GitHub repository.
 
 <h2 id="php-requirements">Requirements</h2>
 
-`scoutapm-php` requires:
+`scout-apm-php` requires:
 
 * PHP
 * A POSIX operating system, such as Linux or macOS.
@@ -29,7 +29,7 @@ the respective library for instructions.
 
 You can instrument your own code or other libraries via [custom instrumentation](#php-custom-instrumentation).
 You can suggest additional libraries you'd like Scout to instrument
-[on GitHub](https://github.com/scoutapp/scout_apm_python/issues).
+[on GitHub](https://github.com/scoutapp/scout-apm-php/issues).
 
 
 ## Laravel
@@ -43,12 +43,12 @@ Scout supports Laravel 5.8+.
         <span class="step">1</span>
       </td>
       <td style="padding-top: 15px">
-        <p>Install the <code>scoutapp/scoutapm-laravel</code> package:</p>
+        <p>Install the <code>scoutapp/scout-apm-laravel</code> package:</p>
 <pre style="width:500px">
-composer install scoutapp/scoutapm-laravel
+composer install scoutapp/scout-apm-laravel
 </pre>
 <p>
-Note that the <code>scoutapm-php</code> package will automatically be included. It does
+Note that the <code>scout-apm-php</code> package will automatically be included. It does
 not need to be installed directly.
 </p>
       </td>
@@ -194,6 +194,10 @@ A transaction groups a sequence of work under in the Scout UI. These are used
 to generate transaction traces. For example, you may create a transaction that
 wraps around the entire execution of a PHP script that is ran as a Cron Job.
 
+The Laravel instrumentation does this all for you. You only will need to
+manually instrument transactions in special cases. Contact us at
+support@scoutapm.com for help.
+
 <h4 id="php-transaction-limits">Limits</h4>
 
 We limit the number of unique transactions that can be instrumented. Tracking
@@ -201,14 +205,6 @@ too many uniquely named transactions can impact the performance of the UI. Do no
 dynamically generate transaction names in your instrumentation as this can quickly
 exceed our rate limits. Use [context](#php-custom-context) to add
 high-dimensionality information instead.
-
-#### Getting Started
-
-Import the API module and configure Scout:
-
-```php
-TODO
-```
 
 <h4 id="php-web-or-background">Web or Background transactions?</h4>
 
@@ -222,10 +218,15 @@ Scout distinguishes between two types of transactions:
   "Background Jobs" area of the UI.
 
 ```php
-TODO
+$agent->webTransaction("GET Users", function() { ... your code ... });
+$agent->send();
 ```
 
 ### Timing functions and blocks of code
+
+In existing transactions, both automatically created with Laravel instruments,
+and also manually created, you can time sections of code that are interesting
+to your application.
 
 Traces that allocate significant amount of time to `Controller` or `Job` layers
 are good candidates to add custom instrumentation. This indicates a significant
@@ -242,25 +243,42 @@ For high-cardinality details, use tags.
 
 <h4 id="php-span-getting-started">Getting Started</h4>
 
-Import the API module:
+With existing code like:
 
-```php
-TODO
+```
+$request = new ServiceRequest();
+$request->setApiVersion($version);
 ```
 
-```php
-TODO
+It is wrapped with instrumentation:
+
+```
+// At top, with other imports
+use ScoutApm;
+
+// Replacing the above code
+$request = ScoutApm::instrument(
+    "Custom", // Kind
+    "Building Service Request", // Name
+    function ($span) use ($version) {
+        $request = new ServiceRequest();
+        $request->setApiVersion($version);
+        return $request;
+    }
+);
 ```
 
-* `name` - A semi-detailed version of what the section of code is. It should be
-  static between different invocations of the method. Individual details like a
-  user ID, or counts or other data points can be added as tags. Names like
-  `retreive_from_api` or `GET` are good names.
 * `kind` - A high level area of the application. This defaults to `Custom`.
   Your whole application should have a very low number of unique strings here.
   In our built-in instruments, this is things like `Template` and `SQL`. For
   custom instrumentation, it can be strings like `MongoDB` or `HTTP` or
   similar. This should not change based on input or state of the application.
+* `name` - A semi-detailed version of what the section of code is. It should be
+  static between different invocations of the method. Individual details like a
+  user ID, or counts or other data points can be added as tags. Names like
+  `retreive_from_api` or `GET` are good names.
+* `span` - An object that represents instrumenting this section of code. You
+  can set tags on it by calling `$span->tag("key", "value")`
 * `tags` - A dictionary of key/value pairs. Key should be a string, but value
   can be any json-able structure. High-cardinality fields like a user ID are
   permitted.
@@ -279,8 +297,15 @@ you can add custom context to answer critical questions like:
 It's simple to add [custom context](#context) to your app:
 
 ```php
-TODO
+use ScoutApm; // Laravel only: Add near the other use statements
+
+ScoutApm::addContext("Key", "Value");
+
+// or if you have an $agent instance:
+$agent->addContext("Key", "Value");
 ```
+
+
 
 ### Context Key Restrictions
 
@@ -301,10 +326,10 @@ Context values can be any json-serializable type. Examples:
 <h2 id="php-upgrade">Updating to the Newest Version</h2>
 
 ```sh
-TODO
+composer update scout-apm-laravel
 ```
 
-The package changelog is [available here](https://github.com/scoutapp/scoutapm-php/blob/master/CHANGELOG.md).
+The package changelog is [available here](https://github.com/scoutapp/scout-apm-php/blob/master/CHANGELOG.md).
 
 <h2 id="php-deploy-tracking-config">Deploy Tracking Config</h2>
 
