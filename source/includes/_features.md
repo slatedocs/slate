@@ -94,7 +94,61 @@ There are two main areas of Trace Explorer:
 * __Dimension Histograms__ - the top portion of the page generates a histogram representation for a number of trace dimensions (the response time distribution, count of traces by endpoints, and a display for each piece of [custom context](#context)). Selecting a specific area of a chart filters the transactions to just the selected data.
 * __List of transaction traces__ - the bottom portion of the page lists the [individual traces](#transaction-traces). The traces are updated to reflect those that match any filtered dimensions. You can increase the height of this pane by clicking and dragging the top portion of the pane. Clicking on a trace URI opens the transaction trace in a new browser tab.
 
+## AutoInstruments
+
+<aside class="notice">AutoInstruments is in our BETA program.</aside>
+
+In many apps, more than 30% of the time spent in a transaction is within custom code written by your development team. In traces, this shows up as time spent in "Controller" or "Job". AutoInstruments helps break down the time spent in your custom code without the need to add custom instrumentation on your own.
+
+AutoInstruments instruments code expressions in Ruby on Rails controllers by instrumenting Ruby’s Abstract Syntax Tree ([AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree)) as code is loaded. These code expressions then appear in traces, just like the many libraries Scout already instruments:
+
+![auto instruments trace](auto_instrument_trace.png)
+
+In the screenshot of a trace above, 68% of the time would be allocated to the `Controller` without enabling AutoInstruments. With AutoInstruments enabled, `Controller` time is just 3% of the request and we can clearly see that most of the time is spent inside two method calls.
+
+AutoInstruments is currently available for Ruby on Rails applications.
+
+### Enabling AutoInstruments
+
+AutoInstruments is a BETA feature and available to apps using Ruby 2.3.1+. To enable:
+
+<table class="help install">
+  <tbody>
+    <tr>
+      <td>
+        <span class="step">1</span>
+      </td>
+      <td>
+        <p>Modify your <code>Gemfile</code> entry for <code>scout_apm</code>, 
+          changing it to:</p>
+          <pre>gem 'scout_apm', git: 'https://github.com/scoutapp/scout_apm_ruby.git', branch: 'auto_instruments'
+</pre>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="step">2</span></td>
+      <td><p>Within your Rails app's directory, run:</p><pre>bundle update scout_apm</pre></td>
+    </tr>
+    <tr>
+      <td><span class="step">2</span></td>
+      <td>
+        <p>In your <code>config/boot.rb</code> add:</p>
+        <pre>
+# Added AFTER `File.expand_path('../../Gemfile', __FILE__)`
+# But BEFORE `require 'bundler/setup'`
+require 'scout_apm/auto_instrument'</pre>
+      </td>
+    </tr>
+      <tr>
+      <td><span class="step">3</span></td>
+      <td><p>Deploy</p></td>
+    </tr>
+  </tbody>
+</table>
+
 ## ScoutProf
+
+<aside class="notice">ScoutProf will be deprecated and succeeded by <a href="#autoinstruments">AutoInstruments</a>.</aside>
 
 Every millisecond, ScoutProf captures a backtrace of what each thread in your application is currently running.  Over many backtraces, when you combine them, it tells a story of what code paths are taking up the most time in your application.
 
