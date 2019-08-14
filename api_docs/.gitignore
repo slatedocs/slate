@@ -21,4 +21,4 @@ build/
 .yardoc
 _yardoc
 doc/
-.idea/
+../.idea/

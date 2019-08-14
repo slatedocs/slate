@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d84cc2f2-a2e1-4c65-9e38-8a7b272090ce" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CODE_OF_CONDUCT.md" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/CODE_OF_CONDUCT.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/Gemfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/Gemfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vagrantfile" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/Vagrantfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.rb" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/config.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deploy.sh" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/deploy.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/font-selection.json" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/font-selection.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/multilang.rb" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/lib/multilang.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/nesting_unique_head.rb" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/lib/nesting_unique_head.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/toc_data.rb" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/lib/toc_data.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/unique_head.rb" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/lib/unique_head.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/fonts/slate.eot" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/source/fonts/slate.eot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/fonts/slate.svg" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/source/fonts/slate.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/fonts/slate.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/source/fonts/slate.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/fonts/slate.woff" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/source/fonts/slate.woff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/fonts/slate.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/source/fonts/slate.woff2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/images/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/source/images/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/images/navbar.png" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/source/images/navbar.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/includes/_errors.md" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/source/includes/_errors.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/index.html.md" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/source/index.html.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/javascripts/all.js" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/source/javascripts/all.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/javascripts/all_nosearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/source/javascripts/all_nosearch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/javascripts/app/_lang.js" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/source/javascripts/app/_lang.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/javascripts/app/_search.js" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/source/javascripts/app/_search.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/javascripts/app/_toc.js" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/source/javascripts/app/_toc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/javascripts/lib/_energize.js" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/source/javascripts/lib/_energize.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/javascripts/lib/_imagesloaded.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/source/javascripts/lib/_imagesloaded.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/javascripts/lib/_jquery.highlight.js" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/source/javascripts/lib/_jquery.highlight.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/javascripts/lib/_jquery.js" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/source/javascripts/lib/_jquery.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/javascripts/lib/_lunr.js" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/source/javascripts/lib/_lunr.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/layouts/layout.erb" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/source/layouts/layout.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/stylesheets/_icon-font.scss" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/source/stylesheets/_icon-font.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/stylesheets/_normalize.scss" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/source/stylesheets/_normalize.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/stylesheets/_rtl.scss" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/source/stylesheets/_rtl.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/stylesheets/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/source/stylesheets/_variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/stylesheets/print.css.scss" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/source/stylesheets/print.css.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/stylesheets/screen.css.scss" beforeDir="false" afterPath="$PROJECT_DIR$/api_docs/source/stylesheets/screen.css.scss" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1PQZFubyBkSIsf8MVuGJh83pGEY" />
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/api_docs" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d84cc2f2-a2e1-4c65-9e38-8a7b272090ce" name="Default Changelist" comment="" />
+      <created>1565808180110</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1565808180110</updated>
+      <workItem from="1565808181426" duration="1092000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
