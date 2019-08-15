@@ -28,28 +28,50 @@ $examples-bg: #2E3336 !default;
 $code-bg: #1E2224 !default;
 $code-annotation-bg: #191D1F !default;
 $nav-subitem-bg: #1E2224 !default;
-$nav-active-bg: #0F75D4 !default;
+$nav-active-bg: #26BCB9 !default;
 $nav-active-parent-bg: #1E2224 !default; // parent links of the current section
 $lang-select-border: #000 !default;
 $lang-select-bg: #1E2224 !default;
 $lang-select-active-bg: $examples-bg !default; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111 !default; // color of language tab bg when mouse is pressed
-$main-bg: #F3F7F9 !default;
-$aside-notice-bg: #8fbcd4 !default;
-$aside-warning-bg: #c97a7e !default;
-$aside-success-bg: #6ac174 !default;
-$search-notice-bg: #c97a7e !default;
+$main-bg: #F1F1F4 !default;
+$aside-notice-bg: #45ACE4 !default;
+$aside-warning-bg: #FAAB18 !default;
+$aside-success-bg: #03BA5B !default;
+$search-notice-bg: #FAAB18 !default;
 
 
 // TEXT COLORS
 ////////////////////
 $main-text: #333 !default; // main content text color
+$main-text-inverse: #fff !default;
 $nav-text: #fff !default;
 $nav-active-text: #fff !default;
 $nav-active-parent-text: #fff !default; // parent links of the current section
 $lang-select-text: #fff !default; // color of unselected language tab text
 $lang-select-active-text: #fff !default; // color of selected language tab text
 $lang-select-pressed-text: #fff !default; // color of language tab text when mouse is pressed
+
+
+// PROCURIFY COLOURS
+////////////////////
+$aurora: #03BA5B;
+$flux: #26BCB9;
+$soulflare: #FAAB18;
+$turbo: #E8583D;
+$nova: #45ACE4;
+$nebula: #8A42E6;
+$abyss: #1B3D46;
+$dust: #E3E3E3;
+$eclipse: #414141;
+$offwhite: #F1F1F4;
+$color-orange: $soulflare;
+$color-red: $turbo;
+$color-blue: $nova;
+$color-navy: $abyss;
+$color-green: $aurora;
+$color-purple: $nebula;
+$color-grey: #e0e0e0;
 
 
 // SIZES
@@ -76,6 +98,12 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 
 %header-font {
   @extend %default-font;
+  font-weight: bold;
+}
+
+%tag-font {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 10px;
   font-weight: bold;
 }
 
