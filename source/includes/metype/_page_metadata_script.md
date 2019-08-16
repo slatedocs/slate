@@ -2,7 +2,7 @@
 
 Metype provides a script to add metadata to a page. A Page is a resource created when any of the Metype widgets are used. By setting the desired value of Metadata, you can later query using [Metype APIs](#api-documentation) for detailed metrics.
 
-### Javascript
+### Page Metadata Javascript
 Use this script when you want to save some details of a page that you might want to use for querying using APIs.
 
 ```javascript
