@@ -502,30 +502,6 @@ html, body {
     border: 1px solid #F7E633;
     background: linear-gradient(to top left, #F7E633 0%, #F1D32F 100%);
   }
-
-  span.required-tag {
-    margin-left: 1em;
-    color: $color-red;
-    font-style: italic;
-  }
-  code {
-    &.get {
-      background:  $color-green;
-      color: $offwhite;
-    }
-    &.post {
-      background:  $color-blue;
-      color: $offwhite;
-    }
-    &.patch {
-      background: $color-orange;
-      color: $offwhite;
-    }
-    &.delete {
-      background:  $color-red;
-      color: $offwhite;
-    }
-  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -571,6 +547,46 @@ html, body {
       color: #eee;
     }
   }
+}
+
+span.required-tag {
+  margin-left: 1em;
+  color: $color-red;
+  font-style: italic;
+}
+code {
+  &.get {
+    background:  $color-green;
+    color: $offwhite;
+  }
+  &.post {
+    background:  $color-blue;
+    color: $offwhite;
+  }
+  &.put {
+    background: $color-purple;
+    color: $offwhite;
+  }
+  &.patch {
+    background: $color-orange;
+    color: $offwhite;
+  }
+  &.delete {
+    background:  $color-red;
+    color: $offwhite;
+  }
+}
+
+h2>code, a>code {
+  text-transform: uppercase;
+  border-radius: 3px;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+a>code {
+  @extend %tag-font;
+  padding: 1px 2px;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
