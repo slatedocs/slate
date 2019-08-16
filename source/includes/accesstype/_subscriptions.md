@@ -16,6 +16,27 @@ $ curl -H "X-SUBAUTH: <auth-token>" https://www.accesstype.com/api/v1/subscriber
 {
   "subscriptions": [
     {
+      "subscriber": {
+        "id": 1087,
+        "name": null,
+        "created_at": "2019-08-14T09:43:57.557Z",
+        "updated_at": "2019-08-14T09:43:57.557Z",
+        "metadata": null,
+        "cumulative_end_timestamps": {
+            "standard_subscriptions_cumulative_end_timestamp": "2019-09-14T09:43:57.801Z",
+            "campaign_subscriptions_cumulative_end_timestamp": "2020-04-14T09:45:02.183Z"
+        },
+        "subscriber_identities": [
+            {
+                "provider": "email",
+                "value": "foo@example.com"
+            },
+            {
+                "provider": "quintype",
+                "value": "123"
+            }
+        ]
+      },
       "invoices": [
         {
           "amount_after_discount_before_tax": "122.03",
@@ -128,6 +149,27 @@ curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST ht
 ```shell--response
 {
     "subscription": {
+        "subscriber": {
+            "id": 1087,
+            "name": 'foo',
+            "created_at": "2019-08-14T09:43:57.557Z",
+            "updated_at": "2019-08-14T09:43:57.557Z",
+            "metadata": null,
+            "cumulative_end_timestamps": {
+                "standard_subscriptions_cumulative_end_timestamp": null,
+                "campaign_subscriptions_cumulative_end_timestamp": null
+            },
+            "subscriber_identities": [
+                {
+                    "provider": "email",
+                    "value": "foo@example.com"
+                },
+                {
+                    "provider": "quintype",
+                    "value": "123"
+                }
+            ]
+        },
         "notes": "enter your notes",
         "invoices": [],
         "next_payment_due_date": null,
@@ -267,6 +309,27 @@ curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST ht
 ```shell--response
 {
     "subscription": {
+        "subscriber": {
+            "id": 1087,
+            "name": 'foo',
+            "created_at": "2019-08-14T09:43:57.557Z",
+            "updated_at": "2019-08-14T09:43:57.557Z",
+            "metadata": null,
+            "cumulative_end_timestamps": {
+                "standard_subscriptions_cumulative_end_timestamp": "2019-09-14T09:43:57.801Z",
+                "campaign_subscriptions_cumulative_end_timestamp": null
+            },
+            "subscriber_identities": [
+                {
+                    "provider": "email",
+                    "value": "foo@example.com"
+                },
+                {
+                    "provider": "quintype",
+                    "value": "123"
+                }
+            ]
+        },
         "notes": "enter your notes",
         "invoices": [
             {
