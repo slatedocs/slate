@@ -20,8 +20,8 @@ jobs:
         bundle exec middleman build --clean
     - name: GitHub Pages Deploy
       uses: JamesIves/github-pages-deploy-action@master
+      with:
+        GH_PAT: ${{ secrets.GH_PAT }}
       env:
         BRANCH: "gh-pages"
         FOLDER: "build"
-      secrets:
-        - "GH_PAT"
