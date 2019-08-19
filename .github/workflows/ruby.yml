@@ -6,7 +6,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    secrets: 
+    - ACCESS_TOKEN
     steps:
     - uses: actions/checkout@v1
     - name: Set up Ruby 2.6
