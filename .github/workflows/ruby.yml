@@ -22,6 +22,7 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@master
       with:
         GH_PAT: ${{ secrets.GH_PAT }}
+        ACCESS_TOKEN: ${{ secrets.GH_PAT }}
       env:
         BRANCH: "gh-pages"
         FOLDER: "build"
