@@ -725,7 +725,7 @@ ID of parent location.
 <code>external_id</code><span class="required-tag">required</span><br />
 ID of the integration object.
 
-## Delete department<code class='delete'>DELETE</code>
+## Delete Department<code class='delete'>DELETE</code>
 
 This endpoint deletes a specific department.
 
