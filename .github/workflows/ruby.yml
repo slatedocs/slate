@@ -20,7 +20,7 @@ jobs:
         bundle exec middleman build --clean
     - name: GitHub Pages Deploy
       uses: JamesIves/github-pages-deploy-action@master
-      with:
+      secrets:
         GH_PAT: ${{ secrets.GH_PAT }}
         ACCESS_TOKEN: ${{ secrets.GH_PAT }}
       env:
