@@ -1,26 +1,51 @@
 version: 2
 jobs:
     build:
+        working_directory: ~/project
         docker:
             - image: starefossen/ruby-node:2-8
         steps:
-            - add_ssh_keys:
-                fingerprints:
-                    - "dc:3e:2f:44:f5:5a:ab:71:af:6c:e8:00:d9:77:d2:b1"
             - checkout
-            - attach_workspace:
-                at: build
             - run:
                 name: Install and configure dependencies
                 command: |
                     gem install bundler
                     bundle install --jobs 4 --retry 3
+            - run:
+                name: Build static html
+                command: bundle exec middleman build --clean
+            - persist_to_workspace:
+                root: /root/project
+                paths:
+                    - build
+    deploy:
+        working_directory: ~/project
+        docker:
+            - image: starefossen/ruby-node:2-8
+        steps:
+            - checkout
+            - add_ssh_keys:
+                fingerprints:
+                    - "dc:3e:2f:44:f5:5a:ab:71:af:6c:e8:00:d9:77:d2:b1"
+            - attach_workspace:
+                at: /root/project
+            - run:
+                name: Install and configure dependencies
+                command: |
                     npm install -g --silent gh-pages@2.0.1
                     git config user.email "ci-build@klukas.net"
                     git config user.name "ci-build"
             - run:
-                name: Build static html
-                command: bundle exec middleman build --clean
-            - run:
                 name: Deploy docs to gh-pages branch
                 command: gh-pages --dotfiles --message "[skip ci] Updates" --dist build
+workflows:
+    version: 2
+    build-and-deploy:
+        jobs:
+            - build
+            - deploy:
+                filters:
+                    branches:
+                        only: master
+                requires:
+                    - build            
