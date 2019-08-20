@@ -29,6 +29,7 @@ The libraries below require a small number of configuration updates. Click on th
 * [Falcon](#falcon)
 * [Flask](#flask)
 * [Flask SQLAlchemy](#flask-sqlalchemy)
+* [Nameko](#nameko)
 * [Pyramid](#pyramid)
 * [SQLAlchemy](#sqlalchemy)
 
@@ -380,6 +381,68 @@ from scout_apm.flask.sqlalchemy import instrument_sqlalchemy
 instrument_sqlalchemy(engine)
 ```
 
+## Nameko
+
+General instructions for a Nameko app:
+
+<table class="help install install_ruby">
+  <tbody>
+    <tr>
+      <td>
+        <span class="step">1</span>
+      </td>
+      <td style="padding-top: 15px">
+        <p>Install the <code>scout-apm</code> package:</p>
+<pre style="width:500px">
+pip install scout-apm
+</pre>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="step">2</span>
+      </td>
+      <td style="padding-top: 15px">
+        <p>Configure scout once in the root of your app, and add a `ScoutReporter` to each Nameko service:</p>
+
+<pre style="width:initial">
+from scout_apm.api import Config
+from scout_apm.nameko import ScoutReporter
+
+
+Config.set(
+    key=os.environ["SCOUT_KEY"],
+    name="Test Nameko App",
+    monitor=True,
+)
+
+class Service(object):
+    name = "myservice"
+
+    scout = ScoutReporter()
+
+    @http("GET", "/")
+    def home(self, request):
+        return "Welcome home."
+</pre>
+
+<p>If you wish to configure Scout via environment variables, use <code>SCOUT_MONITOR</code>, <code>SCOUT_NAME</code> and <code>SCOUT_KEY</code> and remove the call to <code>Config.set</code>.</p>
+
+<p>
+If you've installed Scout via the Heroku Addon, the provisioning process automatically sets <code>SCOUT_MONITOR</code> and <code>SCOUT_KEY</code> via <a href="https://devcenter.heroku.com/articles/config-vars">config vars</a>. Only <code>SCOUT_NAME</code> is required.
+</p>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="step">3</span></td>
+      <td style="padding-top: 15px">
+        <p>Deploy.</p>
+        <p>It takes approximatively five minutes for your data to first appear within the Scout UI.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 ## Pyramid
 
 General instructions for a Pyramid app:
@@ -484,7 +547,7 @@ We typically respond within a couple of hours during the business day.
       <td>
         The organization API key.
       </td>
-      <td>       
+      <td>
       </td>
       <td>
         Yes
@@ -497,7 +560,7 @@ We typically respond within a couple of hours during the business day.
       <td>
         Name of the application (ex: 'Photos App').
       </td>
-      <td>       
+      <td>
       </td>
       <td>
         Yes
@@ -511,7 +574,7 @@ We typically respond within a couple of hours during the business day.
         Whether monitoring data should be reported.
       </td>
       <td>
-        <code>false</code>       
+        <code>false</code>
       </td>
       <td>
         Yes
@@ -525,7 +588,7 @@ We typically respond within a couple of hours during the business day.
         The hostname the metrics should be aggregrated under.
       </td>
       <td>
-        <code>hostname</code>       
+        <code>hostname</code>
       </td>
       <td>
         Yes
@@ -539,7 +602,7 @@ We typically respond within a couple of hours during the business day.
         The Git SHA associated with this release.
       </td>
       <td>
-        <a href="#python-deploy-tracking-config">See docs</a>   
+        <a href="#python-deploy-tracking-config">See docs</a>
       </td>
       <td>
         No
@@ -566,7 +629,7 @@ We typically respond within a couple of hours during the business day.
         Path to create the directory which will store the [Core Agent](#core-agent).
       </td>
       <td>
-        <code>/tmp/scout_apm_core</code> 
+        <code>/tmp/scout_apm_core</code>
       </td>
       <td>
         No
@@ -580,7 +643,7 @@ We typically respond within a couple of hours during the business day.
         Whether to download the [Core Agent](#core-agent) automatically, if needed.
       </td>
       <td>
-        <code>True</code> 
+        <code>True</code>
       </td>
       <td>
         No
@@ -594,7 +657,7 @@ We typically respond within a couple of hours during the business day.
         Whether to start the [Core Agent](#core-agent) automatically, if needed.
       </td>
       <td>
-        <code>True</code> 
+        <code>True</code>
       </td>
       <td>
         No
@@ -608,7 +671,7 @@ We typically respond within a couple of hours during the business day.
         The permission bits to set when creating the directory of the [Core Agent](#core-agent).
       </td>
       <td>
-        <code>700</code> 
+        <code>700</code>
       </td>
       <td>
         No
@@ -867,7 +930,7 @@ Traces that allocate significant amount of time to `View`, `Job`, or `Template` 
 
 <h4 id="python-span-limits">Limits</h4>
 
-We limit the number of metrics that can be instrumented. Tracking too many unique metrics can impact the performance of our UI. Do not dynamically generate metric types in your instrumentation (ie `with scout_apm.api.instrument("Computation_for_user_" + user.email)`) as this can quickly exceed our rate limits. 
+We limit the number of metrics that can be instrumented. Tracking too many unique metrics can impact the performance of our UI. Do not dynamically generate metric types in your instrumentation (ie `with scout_apm.api.instrument("Computation_for_user_" + user.email)`) as this can quickly exceed our rate limits.
 
 For high-cardinality details, use tags: `with scout_apm.api.instrument("Computation", tags={"user": user.email})`.
 
