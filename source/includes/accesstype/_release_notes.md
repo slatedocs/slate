@@ -2,6 +2,32 @@
 
 This section contains important Accestype release notes. For any queries, please write to us at [support@quintype.com](mailto:support@quintype.com).
 
+## 19 Aug 19 Release Note - Accesstype
+1. Attempts CSV report now contains the payment gateway that was used by the potential subscriber to perform the attempt to subscribe.
+2. [Bug fix] - Add identity now trims leading and trailing spaces when Accesstype user adds an email.
+3. [Bug fix] - Paywall meter cookie is now persistent on exiting the browser application.
+
+
+## 8 Aug 19 Release Note - Accesstype
+1. **Update Subscriber metadata** - Subscriber information can now be updated by using Accesstype JS.
+2. Manual Subscriptions can now be created and Amount Paid can be captured by Accesstype Owners using the dashboard. 
+Go to Accesstype.com > Subscribers > Add new user or find a user by entering email > Select the Group and Plan > Enter Amount paid and notes if any > Click on Save.
+![Accesstype Manual Subscription Creation Amount Paid](../../images/Accesstype_ManualSubscriptionAmountPaid.png "Accesstype Manual Subscription Creation Amount Paid")
+
+
+## 5 August 19 Release Note - Accesstype
+1. **Outgoing Webhooks (update)** - **Subscriber Creation** webhook is an additional event that is now available for use. **Time-outs** are now applied to the webhook call that are made to third party systems. Time-outs are set at 10s to establish a connection and 5s to receive a response to the POST API calls.
+2. **Skip payment gateway** Accesstype now allows subscriptipons to be created when no  amount is required to be paid. This may happen when the price of the plan is set to 0 or when the entire plan amount is discounted using a coupon code.
+
+## 30 Jul 19 Release Note - Accesstype
+1. Juspay payment now opens up in a new tab instead of a new pop-up window.
+
+## 26 Jul 19 Release Note - Accesstype
+1. **Outgoing Webhooks (update)** - **Subscription Activation** and **Subscription Entered Grace Period** are the events that are additionally available for use.
+
+## 19 Jul 19 Release Note - Accesstype
+1. **Outgoing Webhooks (update)** - **Subscription Creation**, **Subscription Cancellation** and **Subscription Renewal** are the events that are additionally available for use.
+
 ## 1 Jul 19 Release Note - Accesstype
 1. **Outgoing Webhooks** - Accesstype now has the ability to make webhook calls to third party systems on specific events. Click here to know more about [Accesstype webhooks](#webhooks), [how to set up webhooks](#how-to-setup-accesstype-webhooks), a [description of the events](#description-of-events) and [how to verify the webhooks sent by Accesstype](#verify-webhooks-sent-by-accesstype).
 
