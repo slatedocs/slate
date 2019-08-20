@@ -1,6 +1,14 @@
 # Netsuite
 
-## Initialize
+## Initialize<code class='post'>POST</code>
+
+> The above command accepts a basic authentication header:
+
+```
+Authorization: Basic <base64 string>
+
+base64 string is the base64-encoding of "username:password"
+```
 
 > The above command returns JSON structured like this:
 
@@ -10,7 +18,7 @@
   }
 ```
 
-This endpoint retrieves a basic authentication string.
+This endpoint will create an integration user and retrieves a basic authentication string.
 
 ### HTTP Request
 
