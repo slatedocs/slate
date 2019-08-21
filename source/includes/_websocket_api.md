@@ -72,8 +72,6 @@ Once a subscribe message is received the server will respond with a subscription
 
 If you want to unsubscribe from channel/contracts pairs, send an "unsubscribe" message. The structure is equivalent to subscribe messages. As a shorthand you can also provide no symbols for a channel, which will unsubscribe you from the channel entirely.
 
-As a response to an unsubscribe message you will receive a subscriptions response.
-
 > Unsubscribe Sample
 
 ```
@@ -401,6 +399,7 @@ Private channels require clients to authenticate.
 // Fill
 {
     "symbol": "BNBBTC_30Nov",
+    "fill_id": "1234-abcd-qwer-3456",
     "product_id": 7,
     "type": "fill",
     "user_id": 1998,
@@ -408,6 +407,8 @@ Private channels require clients to authenticate.
     "side": "buy",
     "size": 190,
     "price": "0.00145791",
+    "role": "taker",
+    "client_order_id": "GA123",
     "timestamp": 1544091555086559
 }
 ```
