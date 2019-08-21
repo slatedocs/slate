@@ -687,7 +687,7 @@ use BrightLocal\Api;
 
 $api = new Api('<INSERT_API_KEY>', '<INSERT_API_SECRET>');
 $campaign = $api->get('/v2/cb/get', [
-	'campaign_id' => 1
+	'campaign-id' => 1
 ]);
 print_r($campaign);
 ```
