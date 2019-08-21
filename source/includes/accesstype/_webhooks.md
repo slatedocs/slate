@@ -16,6 +16,28 @@ Accesstype has the ability to inform third party system by webhook calls that it
   "event": "subscription.created",
   "event_timestamp": "2019-06-16T14:04:39.836Z",
   "data": {
+    "subscriber": {
+      "id": 1087,
+      "name": null,
+      "created_at": "2019-08-14T09:43:57.557Z",
+      "updated_at": "2019-08-14T09:43:57.557Z",
+      "metadata": null,
+      "cumulative_end_timestamps": {
+          "standard_subscriptions_cumulative_end_timestamp": "2019-09-14T09:43:57.801Z",
+          "campaign_subscriptions_cumulative_end_timestamp": "2020-04-14T09:45:02.183Z"
+      },
+      "subscriber_identities": [
+          {
+              "provider": "email",
+              "value": "foo@example.com"
+          },
+          {
+              "provider": "quintype",
+              "value": "123"
+          }
+      ]
+    },
+    "expires_in": 30, // represents 30 days
     "id": 213,
     "subscriber_id": 234,
     "subscription_plan_id": 26,
@@ -138,7 +160,9 @@ Accesstype has the ability to inform third party system by webhook calls that it
 |subscription.creation|One-time and Recurring Subscriptions|Triggered when a new subscription is created.|
 |subscription.entered_grace_period|Recurring Subscriptions|Triggered when the payment is pending for a recurring subscription, and is not yet renewed. Note: When a payment is due for a recurring subscription, Accesstype waits for the payment for a grace period of 5 days before it marks the subscription as expired. During this grace period, the subscriber continues to gain access to the content.|
 |subscription.activated|One-time and Recurring subscriptions|Triggered when a subscription which was created in the `Pending` state, becomes `Active`.|
+|subscription.expiry_reminder|One-time Subscriptions|Triggered as per the Number of Days Before Subscription Expiry in the webhooks dashboard|
 |subscriber.creation|-NA-|Triggered when a new Subscriber is created in Accesstype.|
+
 
 ## Verify Webhooks sent by Accesstype
 
