@@ -66,7 +66,25 @@ Once a subscribe message is received the server will respond with a subscription
         }
     ]
 }
+
+// Error Response 
+{
+    "type": "subscriptions",
+    "channels": [
+        {
+            "name": "l2_orderbook",
+            "symbols": [
+                "BTCUSD_28Dec"
+            ],
+        },
+        {
+            "name": "trading_notifications",
+            "error": "subscription forbidden on trading_notifications. Unauthorized user"
+        }
+    ]
+}
 ```
+
 
 ## Unsubscribe
 
