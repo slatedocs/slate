@@ -21287,9 +21287,9 @@ Returns the compact list of tasks in a user’s My Tasks list. The returned task
 <code><a href="#get-a-set-of-webhooks"><span class="get-verb">GET</span> <span class=""nn>/webhooks</span></a><br><a href="#establish-a-webhook-on-a-resource"><span class="post-verb">POST</span> <span class=""nn>/webhooks</span></a><br><a href="#get-a-webhook"><span class="get-verb">GET</span> <span class=""nn>/webhooks/{webhook_gid}</span></a><br><a href="#remove-a-webhook"><span class="delete-verb">DELETE</span> <span class=""nn>/webhooks/{webhook_gid}</span></a></code>
 </pre>
 
-Webhooks allow an application to be notified of changes. This is in addition to the ability to fetch those changes directly as [Events](/developers/api-reference/events) - in fact, Webhooks are just a way to receive Events via HTTP POST at the time they occur instead of polling for them. For services accessible via HTTP this is often vastly more convenient, and if events are not too frequent can be significantly more efficient.
+Webhooks allow an application to be notified of changes. This is in addition to the ability to fetch those changes directly as [Events](#asana-events) - in fact, Webhooks are just a way to receive Events via HTTP POST at the time they occur instead of polling for them. For services accessible via HTTP this is often vastly more convenient, and if events are not too frequent can be significantly more efficient.
 
-In both cases, however, changes are represented as Event objects - refer to the [Events documentation](/developers/api-reference/events) for more information on what data these events contain.
+In both cases, however, changes are represented as Event objects - refer to the [Events documentation](#asana-events) for more information on what data these events contain.
 
 **NOTE:** While Webhooks send arrays of Event objects to their target, the Event objects themselves contain *only IDs*, rather than the actual resource they are referencing. So while a normal event you receive via GET /events would look like an [Event](/#tocS_Event). In a Webhook payload you will instead receive a [WebhookEvent](#tocS_WebhookEvent) (a simplified version of the event object).
 
@@ -25786,20 +25786,13 @@ A user’s “My Tasks” represent all of the tasks assigned to that user. It i
 
 ```
 
-Webhooks allow an application to be notified of changes. This is in
-addition to the ability to fetch those changes directly as Events - in
-fact, Webhooks are just a way to receive
-[Events](https://asana.com/developers/api-reference/events) via HTTP POST
-at the time they occur instead of polling for them. For services
-accessible via HTTP this is often vastly more convenient, and if events
-are not too frequent can be significantly more efficient.
+Webhooks allow an application to be notified of changes. This is in addition to the ability to fetch those changes directly as [Events](#asana-events) - in fact, Webhooks are just a way to receive Events via HTTP POST at the time they occur instead of polling for them. For services accessible via HTTP this is often vastly more convenient, and if events are not too frequent can be significantly more efficient.
 
-In both cases, however, changes are represented as Event objects - refer
-to the [Events
-documentation](https://asana.com/developers/api-reference/events) for
-more information on what data these events contain.
+In both cases, however, changes are represented as Event objects - refer to the [Events documentation](#asana-events) for more information on what data these events contain.
 
-*Note: While Webhooks send arrays of Event objects to their target, the Event objects themselves contain *only IDs*, rather than the actual resource they are referencing. Webhooks themselves contain only the information necessary to deliver the events to the desired target as they are generated.*
+**NOTE:** While Webhooks send arrays of Event objects to their target, the Event objects themselves contain *only IDs*, rather than the actual resource they are referencing. So while a normal event you receive via GET /events would look like an [Event](/#tocS_Event). In a Webhook payload you will instead receive a [WebhookEvent](#tocS_WebhookEvent) (a simplified version of the event object).
+
+[Webhooks](#tocS_Webhook) themselves contain only the information necessary to deliver the events to the desired target as they are generated.
 
 ### Properties
 
