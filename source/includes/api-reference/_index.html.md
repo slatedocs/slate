@@ -21287,7 +21287,33 @@ Returns the compact list of tasks in a user’s My Tasks list. The returned task
 <code><a href="#get-a-set-of-webhooks"><span class="get-verb">GET</span> <span class=""nn>/webhooks</span></a><br><a href="#establish-a-webhook-on-a-resource"><span class="post-verb">POST</span> <span class=""nn>/webhooks</span></a><br><a href="#get-a-webhook"><span class="get-verb">GET</span> <span class=""nn>/webhooks/{webhook_gid}</span></a><br><a href="#remove-a-webhook"><span class="delete-verb">DELETE</span> <span class=""nn>/webhooks/{webhook_gid}</span></a></code>
 </pre>
 
-Webhooks allow an application to be notified of changes in Asana.
+Webhooks allow an application to be notified of changes. This is in addition to the ability to fetch those changes directly as [Events](/developers/api-reference/events) - in fact, Webhooks are just a way to receive Events via HTTP POST at the time they occur instead of polling for them. For services accessible via HTTP this is often vastly more convenient, and if events are not too frequent can be significantly more efficient.
+
+In both cases, however, changes are represented as Event objects - refer to the [Events documentation](/developers/api-reference/events) for more information on what data these events contain.
+
+**NOTE:** While Webhooks send arrays of Event objects to their target, the Event objects themselves contain *only IDs*, rather than the actual resource they are referencing. So while a normal event you receive via GET /events would look like an [Event](/#tocS_Event). In a Webhook payload you will instead receive a [WebhookEvent](#tocS_WebhookEvent) (a simplified version of the event object).
+
+[Webhooks](#tocS_Webhook) themselves contain only the information necessary to deliver the events to the desired target as they are generated.
+
+### Receiving Events
+
+Because multiple events often happen in short succession, a webhook payload is designed to be able to transmit multiple events at once. The exact model of events is described in the [Events documentation](/developers/api-reference/events).
+
+The HTTP POST that the target receives contains:
+
+ * An `X-Hook-Signature` header, which allows verifying that the payload is genuine.  The signature is a SHA256
+ HMAC using the shared secret (transmitted during the handshake) of the request body. Verification is **strongly
+ recommended**, as it would otherwise be possible for an attacker to POST a malicious payload to the same endpoint.
+ If the target endpoint can be kept secret this risk is mitigated somewhat, of course.
+ * A JSON body with a single key, `events`, containing an array of the events that have occurred since the last
+ webhook delivery. Note that this list may be empty, as periodically we may send a "heartbeat" webhook to verify
+ that the endpoint is available.
+
+Note that events are "skinny" - we expect consumers who desire syncing data to make additional calls to the API to retrieve the latest state. Because the data may have already changed by the time we send the event, it would be misleading to send a snapshot of the data along with the event.
+
+### Error Handling and Retry
+
+If we attempt to send a webhook payload and we receive an error status code, or the request times out, we will retry delivery with exponential backoff. In general, if your servers are not available for an hour, you can expect it to take no longer than approximately an hour after they come back before the paused delivery resumes. However, if we are unable to deliver a message for 24 hours the webhook will be deactivated.
 
 <hr class="half-line">
 ## Get a set of webhooks
