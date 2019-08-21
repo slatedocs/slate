@@ -382,7 +382,7 @@ client.options['client_name'] = "hello_world_python"
 me = client.users.me()
 
 # Print out your information
-print "Hello world! " + "My name is " + me['name'] + " and I my primary Asana workspace is " + me['workspaces'][0]['name'] + "."
+print "Hello world! " + "My name is " + me['name'] + "!"
 
 ```
 
@@ -419,7 +419,7 @@ var client = asana.Client.create().useAccessToken(personalAccessToken);
 client.users.me()
   .then(function(me) {
     // Print out your information
-    console.log('Hello world! ' + 'My name is ' + me.name + ' and my primary Asana workspace is ' + me.workspaces[0].name + '.');
+    console.log('Hello world! ' + 'My name is ' + me.name + '!');
 });
 ```
 
@@ -455,7 +455,7 @@ end
 
 me = client.users.me
 
-puts "Hello world! " + "My name is " + me.name + " and I my primary Asana workspace is " + me.workspaces[0].name + "."
+puts "Hello world! " + "My name is " + me.name + "!"
 ```
 
 To get started, `gem install asana` or follow the detailed installation instructions on the [GitHub page for the Ruby client library](https://github.com/Asana/ruby-asana/).  
