@@ -114,7 +114,7 @@ $ curl -H "X-SUBAUTH: <auth-token>" https://www.accesstype.com/api/v1/subscriber
         "price_cents": 10000,
         "price_currency": "USD"
       },
-    "expires_in": 30 // represents 30 days
+    "expires_in_days": 30
     }
   ]
 }
@@ -331,7 +331,7 @@ curl -H "X-SUBAUTH: <auth-token>" -H "Content-Type: application/json" -X POST ht
                 }
             ]
         },
-        "expires_in": 30, // represents 30 days
+        "expires_in_days": 30,
         "notes": "enter your notes",
         "invoices": [
             {

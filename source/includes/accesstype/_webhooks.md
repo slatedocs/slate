@@ -37,7 +37,7 @@ Accesstype has the ability to inform third party system by webhook calls that it
           }
       ]
     },
-    "expires_in": 30, // represents 30 days
+    "expires_in_days": 30,
     "id": 213,
     "subscriber_id": 234,
     "subscription_plan_id": 26,
