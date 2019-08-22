@@ -1289,7 +1289,7 @@ accountNumber - Recipient’s account CBU,	22 characters (Alias not supported)
 
 ## Create AUD Recipient
 
-> Example Request (AUD):
+> Example Request (AUD australian):
 
 ```shell
 curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
@@ -1308,17 +1308,55 @@ curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
         }'
 ```
 
+> Example Request (AUD australian_business):
+
+```shell
+curl -X POST "https://api.sandbox.transferwise.tech/v1/accounts" \
+     -H "Authorization: Bearer <your api token>" \
+     -H "Content-Type: application/json" \
+     -d '{ 
+          "profile": <your profile id>,
+          "accountHolderName": "<recipient name>",
+          "currency": "AUD",
+          "type": "australian_business",
+          "details": {
+           "legalType": "BUSINESS",
+           "bsbCode": "023604",
+           "businessNumber": "12 345 678 910"
+           "accountNumber": "123456789"
+          }
+        }'
+```
+
 Send payments to Australia. 
 
-Private and business recipients are supported. 
-
 Recipient type = *'australian'*
+
+Private recipients are supported. 
 
 Required details: 
 
 bsbCode - 6 digits
 
-accountNumber - 5..9 digits
+accountNumber - 5..14 digits
+
+<br/>
+
+OR
+
+<br/>
+
+Recipient type = *'australian_business'*
+
+Business recipients are supported.
+
+Required details:
+
+bsbCode - 6 digits
+
+businessNumber - 9..14 digits
+
+accountNumber - 5..14 digits
 
 ## Create BDT Recipient
 
