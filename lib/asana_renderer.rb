@@ -19,7 +19,16 @@ class AsanaRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
     if @head_count[friendly_text] > 1
       friendly_text += "-#{@head_count[friendly_text]}"
     end
-    return "<h#{header_level} id='#{friendly_text}'>#{text}</h#{header_level}>"
+
+    classes = ''
+    on_click = ''
+    if friendly_text.match(/^enumerated-values/)
+      classes = 'class="enumerated-values"'
+      on_click = 'onclick="$(this).next().toggle(); $(this).toggleClass(\'expanded\');"'
+      text = text + "<div class='chevron'>&rarr;</div>"
+    end
+
+    "<h#{header_level} id='#{friendly_text}' #{classes} #{on_click}>#{text}</h#{header_level}>"
   end
 
   def table(header, body)

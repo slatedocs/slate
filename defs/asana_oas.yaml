@@ -55,7 +55,7 @@ tags:
       only a single HTTP request.
 
 
-      ### Making a Batch Request
+      #### Making a Batch Request
 
       To make a batch request, send a `POST` request to `/batch`. Like other
       `POST` endpoints, the body should contain a `data` envelope. Inside this
@@ -89,7 +89,7 @@ tags:
       return a `200 Success` response, and each result object in the response
       will contain the errors encountered with each action.
 
-      ### Rate Limiting
+      #### Rate Limiting
 
       The batch API fully respects all of our rate limiting. This means that a
       batch request counts against *both* the standard rate limiter and the
@@ -104,7 +104,7 @@ tags:
       error. This is to prevent the unpredictability of which actions might
       succeed if not all of them could succeed.
 
-      ### Restrictions
+      #### Restrictions
 
       Not every endpoint can be accessed through the batch API.
       Specifically, the following actions cannot be taken and will result in a

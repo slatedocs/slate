@@ -620,16 +620,16 @@ There are many cases where you want to accomplish a variety of work in the Asana
 
 To make development easier in these use cases, Asana provides a **batch API** that enables developers to perform multiple “actions” by making only a single HTTP request.
 
-### Making a Batch Request
+#### Making a Batch Request
 To make a batch request, send a `POST` request to `/batch`. Like other `POST` endpoints, the body should contain a `data` envelope. Inside this envelope should be a single `actions` field, containing a list of “action” objects.  Each action represents a standard request to an existing endpoint in the Asana API.
 **The maximum number of actions allowed in a single batch request is 10**. Making a batch request with no actions in it will result in a `400 Bad Request`.
 When the batch API receives the list of actions to execute, it will dispatch those actions to the already-implemented endpoints specified by the `relative_path` and `method` for each action. This happens in parallel, so all actions in the request will be processed simultaneously. There is no guarantee of the execution order for these actions, nor is there a way to use the output of one action as the input of another action (such as creating a task and then commenting on it).
 The response to the batch request will contain (within the `data` envelope) a list of result objects, one for each action. The results are guaranteed to be in the same order as the actions in the request, e.g., the first result in the response corresponds to the first action in the request.
 The batch API will always attempt to return a `200 Success` response with individual result objects for each individual action in the request. Only in certain cases (such as missing authorization or malformed JSON in the body) will the entire request fail with another status code. Even if every individual action in the request fails, the batch API will still return a `200 Success` response, and each result object in the response will contain the errors encountered with each action.
-### Rate Limiting
+#### Rate Limiting
 The batch API fully respects all of our rate limiting. This means that a batch request counts against *both* the standard rate limiter and the concurrent request limiter as though you had made a separate HTTP request for every individual action. For example, a batch request with five actions counts as five separate requests in the standard rate limiter, and counts as five concurrent requests in the concurrent request limiter. The batch request itself incurs no cost.
 If any of the actions in a batch request would exceed any of the enforced limits, the *entire* request will fail with a `429 Too Many Requests` error. This is to prevent the unpredictability of which actions might succeed if not all of them could succeed.
-### Restrictions
+#### Restrictions
 Not every endpoint can be accessed through the batch API. Specifically, the following actions cannot be taken and will result in a `400 Bad Request` for that action:
 
 * Uploading attachments
@@ -658,7 +658,16 @@ const fetch = require('node-fetch');
 const inputBody = '{
   "data": {
     "actions": [
-      {}
+      {
+        "relative_path": "/tasks/123",
+        "method": "get",
+        "data": {
+          "...": "..."
+        },
+        "options": {
+          "...": "..."
+        }
+      }
     ]
   }
 }';
@@ -780,7 +789,16 @@ Make multiple requests in parallel to Asana's API.
 {
   "data": {
     "actions": [
-      {}
+      {
+        "relative_path": "/tasks/123",
+        "method": "get",
+        "data": {
+          ...
+        },
+        "options": {
+          ...
+        }
+      }
     ]
   }
 }
@@ -825,8 +843,14 @@ Make multiple requests in parallel to Asana's API.
   "data": [
     {
       "status_code": 200,
-      "headers": {},
-      "body": {}
+      "headers": {
+        "location": "/tasks/1234"
+      },
+      "body": {
+        "data": {
+          ...
+        }
+      }
     }
   ]
 }
@@ -905,7 +929,9 @@ const inputBody = '{
     "name": "Bug Task",
     "type": "text",
     "enum_options": [
-      {}
+      {
+        "...": "..."
+      }
     ],
     "enum_value": null,
     "enabled": true,
@@ -1043,7 +1069,9 @@ Returns the full record of the newly created custom field.
     "name": "Bug Task",
     "type": "text",
     "enum_options": [
-      {}
+      {
+        ...
+      }
     ],
     "enum_value": null,
     "enabled": true,
@@ -1106,7 +1134,9 @@ Returns the full record of the newly created custom field.
     "resource_subtype": "milestone",
     "type": "text",
     "enum_options": [
-      {}
+      {
+        ...
+      }
     ],
     "enum_value": null,
     "enabled": true,
@@ -1284,7 +1314,9 @@ type-specific custom field definitions.
     "resource_subtype": "milestone",
     "type": "text",
     "enum_options": [
-      {}
+      {
+        ...
+      }
     ],
     "enum_value": null,
     "enabled": true,
@@ -1329,7 +1361,9 @@ const inputBody = '{
     "name": "Bug Task",
     "type": "text",
     "enum_options": [
-      {}
+      {
+        "...": "..."
+      }
     ],
     "enum_value": null,
     "enabled": true,
@@ -1463,7 +1497,9 @@ Returns the complete updated custom field record.
     "name": "Bug Task",
     "type": "text",
     "enum_options": [
-      {}
+      {
+        ...
+      }
     ],
     "enum_value": null,
     "enabled": true,
@@ -1498,7 +1534,9 @@ Returns the complete updated custom field record.
     "resource_subtype": "milestone",
     "type": "text",
     "enum_options": [
-      {}
+      {
+        ...
+      }
     ],
     "enum_value": null,
     "enabled": true,
@@ -2429,7 +2467,9 @@ Returns a list of the compact representation of all of the custom fields in a wo
       "name": "Bug Task",
       "resource_subtype": "milestone",
       "type": "text",
-      "enum_options": [],
+      "enum_options": [
+        ...
+      ],
       "enum_value": null,
       "enabled": true,
       "text_value": "Some Value"
@@ -3119,11 +3159,17 @@ lieu of including the resource ID in the data for the request.
 {
   "data": [
     {
-      "user": {},
-      "resource": {},
+      "user": {
+        ...
+      },
+      "resource": {
+        ...
+      },
       "type": "task",
       "action": "changed",
-      "parent": {},
+      "parent": {
+        ...
+      },
       "created_at": "2012-02-22T02:06:58.147Z"
     }
   ],
@@ -4210,7 +4256,9 @@ Returns the complete portfolio record for a single portfolio.
     "created_by": null,
     "color": "light-green",
     "custom_field_settings": [
-      {}
+      {
+        ...
+      }
     ],
     "owner": null,
     "workspace": null,
@@ -4414,7 +4462,9 @@ Returns the complete updated portfolio record.
     "created_by": null,
     "color": "light-green",
     "custom_field_settings": [
-      {}
+      {
+        ...
+      }
     ],
     "owner": null,
     "workspace": null,
@@ -4743,16 +4793,26 @@ Get a list of the items in compact form in a portfolio.
       "created_at": "2012-02-22T02:06:58.147Z",
       "archived": false,
       "color": "light-green",
-      "current_status": {},
-      "custom_fields": [],
-      "custom_field_settings": [],
+      "current_status": {
+        ...
+      },
+      "custom_fields": [
+        ...
+      ],
+      "custom_field_settings": [
+        ...
+      ],
       "due_date": "2012-03-26",
       "due_on": "2012-03-26",
-      "followers": [],
+      "followers": [
+        ...
+      ],
       "html_notes": "These are things we need to purchase.",
       "is_template": false,
       "layout": "list",
-      "members": [],
+      "members": [
+        ...
+      ],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "These are things we need to purchase.",
       "owner": null,
@@ -5731,7 +5791,9 @@ Returns the compact portfolio membership records for the portfolio.
       "id": 12345,
       "gid": "12345",
       "resource_type": "portfolio_membership",
-      "user": {}
+      "user": {
+        ...
+      }
     }
   ]
 }
@@ -6437,16 +6499,26 @@ Returns the compact project records for some filtered set of projects. Use one o
       "created_at": "2012-02-22T02:06:58.147Z",
       "archived": false,
       "color": "light-green",
-      "current_status": {},
-      "custom_fields": [],
-      "custom_field_settings": [],
+      "current_status": {
+        ...
+      },
+      "custom_fields": [
+        ...
+      ],
+      "custom_field_settings": [
+        ...
+      ],
       "due_date": "2012-03-26",
       "due_on": "2012-03-26",
-      "followers": [],
+      "followers": [
+        ...
+      ],
       "html_notes": "These are things we need to purchase.",
       "is_template": false,
       "layout": "list",
-      "members": [],
+      "members": [
+        ...
+      ],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "These are things we need to purchase.",
       "owner": null,
@@ -6663,24 +6735,34 @@ Returns the full record of the newly created project.
     "current_status": {
       "color": "green",
       "text": "Everything is great",
-      "author": {}
+      "author": {
+        ...
+      }
     },
     "custom_fields": [
-      {}
+      {
+        ...
+      }
     ],
     "custom_field_settings": [
-      {}
+      {
+        ...
+      }
     ],
     "due_date": "2012-03-26",
     "due_on": "2012-03-26",
     "followers": [
-      {}
+      {
+        ...
+      }
     ],
     "html_notes": "These are things we need to purchase.",
     "is_template": false,
     "layout": "list",
     "members": [
-      {}
+      {
+        ...
+      }
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "These are things we need to purchase.",
@@ -6857,24 +6939,34 @@ Returns the complete project record for a single project.
     "current_status": {
       "color": "green",
       "text": "Everything is great",
-      "author": {}
+      "author": {
+        ...
+      }
     },
     "custom_fields": [
-      {}
+      {
+        ...
+      }
     ],
     "custom_field_settings": [
-      {}
+      {
+        ...
+      }
     ],
     "due_date": "2012-03-26",
     "due_on": "2012-03-26",
     "followers": [
-      {}
+      {
+        ...
+      }
     ],
     "html_notes": "These are things we need to purchase.",
     "is_template": false,
     "layout": "list",
     "members": [
-      {}
+      {
+        ...
+      }
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "These are things we need to purchase.",
@@ -7105,24 +7197,34 @@ Returns the complete updated project record.
     "current_status": {
       "color": "green",
       "text": "Everything is great",
-      "author": {}
+      "author": {
+        ...
+      }
     },
     "custom_fields": [
-      {}
+      {
+        ...
+      }
     ],
     "custom_field_settings": [
-      {}
+      {
+        ...
+      }
     ],
     "due_date": "2012-03-26",
     "due_on": "2012-03-26",
     "followers": [
-      {}
+      {
+        ...
+      }
     ],
     "html_notes": "These are things we need to purchase.",
     "is_template": false,
     "layout": "list",
     "members": [
-      {}
+      {
+        ...
+      }
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "These are things we need to purchase.",
@@ -8005,16 +8107,26 @@ Returns the compact project records for all projects in the team.
       "created_at": "2012-02-22T02:06:58.147Z",
       "archived": false,
       "color": "light-green",
-      "current_status": {},
-      "custom_fields": [],
-      "custom_field_settings": [],
+      "current_status": {
+        ...
+      },
+      "custom_fields": [
+        ...
+      ],
+      "custom_field_settings": [
+        ...
+      ],
       "due_date": "2012-03-26",
       "due_on": "2012-03-26",
-      "followers": [],
+      "followers": [
+        ...
+      ],
       "html_notes": "These are things we need to purchase.",
       "is_template": false,
       "layout": "list",
-      "members": [],
+      "members": [
+        ...
+      ],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "These are things we need to purchase.",
       "owner": null,
@@ -8239,24 +8351,34 @@ Returns the full record of the newly created project.
     "current_status": {
       "color": "green",
       "text": "Everything is great",
-      "author": {}
+      "author": {
+        ...
+      }
     },
     "custom_fields": [
-      {}
+      {
+        ...
+      }
     ],
     "custom_field_settings": [
-      {}
+      {
+        ...
+      }
     ],
     "due_date": "2012-03-26",
     "due_on": "2012-03-26",
     "followers": [
-      {}
+      {
+        ...
+      }
     ],
     "html_notes": "These are things we need to purchase.",
     "is_template": false,
     "layout": "list",
     "members": [
-      {}
+      {
+        ...
+      }
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "These are things we need to purchase.",
@@ -8432,16 +8554,26 @@ Returns the compact project records for all projects in the workspace.
       "created_at": "2012-02-22T02:06:58.147Z",
       "archived": false,
       "color": "light-green",
-      "current_status": {},
-      "custom_fields": [],
-      "custom_field_settings": [],
+      "current_status": {
+        ...
+      },
+      "custom_fields": [
+        ...
+      ],
+      "custom_field_settings": [
+        ...
+      ],
       "due_date": "2012-03-26",
       "due_on": "2012-03-26",
-      "followers": [],
+      "followers": [
+        ...
+      ],
       "html_notes": "These are things we need to purchase.",
       "is_template": false,
       "layout": "list",
-      "members": [],
+      "members": [
+        ...
+      ],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "These are things we need to purchase.",
       "owner": null,
@@ -8669,24 +8801,34 @@ Returns the full record of the newly created project.
     "current_status": {
       "color": "green",
       "text": "Everything is great",
-      "author": {}
+      "author": {
+        ...
+      }
     },
     "custom_fields": [
-      {}
+      {
+        ...
+      }
     ],
     "custom_field_settings": [
-      {}
+      {
+        ...
+      }
     ],
     "due_date": "2012-03-26",
     "due_on": "2012-03-26",
     "followers": [
-      {}
+      {
+        ...
+      }
     ],
     "html_notes": "These are things we need to purchase.",
     "is_template": false,
     "layout": "list",
     "members": [
-      {}
+      {
+        ...
+      }
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "These are things we need to purchase.",
@@ -8867,8 +9009,12 @@ Returns the compact project membership records for the project.
       "id": 12345,
       "gid": "12345",
       "resource_type": "project_membership",
-      "user": {},
-      "project": {},
+      "user": {
+        ...
+      },
+      "project": {
+        ...
+      },
       "write_access": "full_write"
     }
   ]
@@ -9541,7 +9687,9 @@ Returns the compact records for all sections in the specified project.
       "resource_type": "section",
       "name": "Next Actions",
       "created_at": "2012-02-22T02:06:58.147Z",
-      "projects": []
+      "projects": [
+        ...
+      ]
     }
   ]
 }
@@ -9727,7 +9875,9 @@ Returns the full record of the newly created section.
     "name": "Next Actions",
     "created_at": "2012-02-22T02:06:58.147Z",
     "projects": [
-      {}
+      {
+        ...
+      }
     ]
   }
 }
@@ -9892,7 +10042,9 @@ Returns the complete record for a single section.
     "name": "Next Actions",
     "created_at": "2012-02-22T02:06:58.147Z",
     "projects": [
-      {}
+      {
+        ...
+      }
     ]
   }
 }
@@ -9931,7 +10083,9 @@ const inputBody = '{
   "data": {
     "name": "Next Actions",
     "projects": [
-      {}
+      {
+        "...": "..."
+      }
     ]
   }
 }';
@@ -10063,7 +10217,9 @@ Returns the complete updated section record.
   "data": {
     "name": "Next Actions",
     "projects": [
-      {}
+      {
+        ...
+      }
     ]
   }
 }
@@ -10092,7 +10248,9 @@ Returns the complete updated section record.
     "name": "Next Actions",
     "created_at": "2012-02-22T02:06:58.147Z",
     "projects": [
-      {}
+      {
+        ...
+      }
     ]
   }
 }
@@ -10793,28 +10951,48 @@ p JSON.parse(result)
       "assignee_status": "upcoming",
       "completed": false,
       "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [],
-      "dependencies": [],
-      "dependents": [],
+      "custom_fields": [
+        ...
+      ],
+      "dependencies": [
+        ...
+      ],
+      "dependents": [
+        ...
+      ],
       "due_at": "2012-02-22T02:06:58.147Z",
       "due_on": "2012-03-26",
-      "external": {},
-      "followers": [],
+      "external": {
+        ...
+      },
+      "followers": [
+        ...
+      ],
       "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
       "hearted": true,
-      "hearts": [],
+      "hearts": [
+        ...
+      ],
       "liked": true,
-      "likes": [],
-      "memberships": [],
+      "likes": [
+        ...
+      ],
+      "memberships": [
+        ...
+      ],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "Mittens really likes the stuff from Humboldt.",
       "num_hearts": 5,
       "num_likes": 5,
       "num_subtasks": 3,
       "parent": null,
-      "projects": [],
+      "projects": [
+        ...
+      ],
       "start_on": "2012-03-26",
-      "tags": [],
+      "tags": [
+        ...
+      ],
       "workspace": null
     }
   ]
@@ -11070,28 +11248,48 @@ You may receive a `429 Too Many Requests` response if you hit any of our [rate l
       "assignee_status": "upcoming",
       "completed": false,
       "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [],
-      "dependencies": [],
-      "dependents": [],
+      "custom_fields": [
+        ...
+      ],
+      "dependencies": [
+        ...
+      ],
+      "dependents": [
+        ...
+      ],
       "due_at": "2012-02-22T02:06:58.147Z",
       "due_on": "2012-03-26",
-      "external": {},
-      "followers": [],
+      "external": {
+        ...
+      },
+      "followers": [
+        ...
+      ],
       "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
       "hearted": true,
-      "hearts": [],
+      "hearts": [
+        ...
+      ],
       "liked": true,
-      "likes": [],
-      "memberships": [],
+      "likes": [
+        ...
+      ],
+      "memberships": [
+        ...
+      ],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "Mittens really likes the stuff from Humboldt.",
       "num_hearts": 5,
       "num_likes": 5,
       "num_subtasks": 3,
       "parent": null,
-      "projects": [],
+      "projects": [
+        ...
+      ],
       "start_on": "2012-03-26",
-      "tags": [],
+      "tags": [
+        ...
+      ],
       "workspace": null
     }
   ]
@@ -11273,38 +11471,78 @@ Returns the compact records for all stories on the task.
       "is_edited": false,
       "is_pinned": false,
       "hearted": false,
-      "hearts": [],
+      "hearts": [
+        ...
+      ],
       "num_hearts": 5,
       "liked": false,
-      "likes": [],
+      "likes": [
+        ...
+      ],
       "num_likes": 5,
-      "previews": [],
+      "previews": [
+        ...
+      ],
       "old_name": "This was the Old Name",
       "new_name": "This is the New Name",
-      "old_dates": {},
-      "new_dates": {},
+      "old_dates": {
+        ...
+      },
+      "new_dates": {
+        ...
+      },
       "old_resource_subtype": "default_task",
       "new_resource_subtype": "milestone",
-      "story": {},
-      "assignee": {},
-      "follower": {},
-      "old_section": {},
-      "new_section": {},
-      "task": {},
-      "project": {},
-      "tag": {},
-      "custom_field": {},
+      "story": {
+        ...
+      },
+      "assignee": {
+        ...
+      },
+      "follower": {
+        ...
+      },
+      "old_section": {
+        ...
+      },
+      "new_section": {
+        ...
+      },
+      "task": {
+        ...
+      },
+      "project": {
+        ...
+      },
+      "tag": {
+        ...
+      },
+      "custom_field": {
+        ...
+      },
       "old_text_value": "This was the Old Text",
       "new_text_value": "This is the New Text",
       "old_number_value": 1,
       "new_number_value": 2,
-      "old_enum_value": {},
-      "new_enum_value": {},
-      "duplicate_of": {},
-      "duplicated_from": {},
-      "dependency": {},
+      "old_enum_value": {
+        ...
+      },
+      "new_enum_value": {
+        ...
+      },
+      "duplicate_of": {
+        ...
+      },
+      "duplicated_from": {
+        ...
+      },
+      "dependency": {
+        ...
+      },
       "source": "web",
-      "target": {}
+      "target": {
+        ...
+      }
     }
   ]
 }
@@ -11500,16 +11738,22 @@ Returns the full record for the new story added to the task.
     "is_pinned": false,
     "hearted": false,
     "hearts": [
-      {}
+      {
+        ...
+      }
     ],
     "num_hearts": 5,
     "liked": false,
     "likes": [
-      {}
+      {
+        ...
+      }
     ],
     "num_likes": 5,
     "previews": [
-      {}
+      {
+        ...
+      }
     ],
     "old_name": "This was the Old Name",
     "new_name": "This is the New Name",
@@ -11584,7 +11828,9 @@ Returns the full record for the new story added to the task.
       "name": "Bug Task",
       "resource_subtype": "milestone",
       "type": "text",
-      "enum_options": [],
+      "enum_options": [
+        ...
+      ],
       "enum_value": null,
       "enabled": true,
       "text_value": "Some Value"
@@ -11802,16 +12048,22 @@ Returns the full record for a single story.
     "is_pinned": false,
     "hearted": false,
     "hearts": [
-      {}
+      {
+        ...
+      }
     ],
     "num_hearts": 5,
     "liked": false,
     "likes": [
-      {}
+      {
+        ...
+      }
     ],
     "num_likes": 5,
     "previews": [
-      {}
+      {
+        ...
+      }
     ],
     "old_name": "This was the Old Name",
     "new_name": "This is the New Name",
@@ -11886,7 +12138,9 @@ Returns the full record for a single story.
       "name": "Bug Task",
       "resource_subtype": "milestone",
       "type": "text",
-      "enum_options": [],
+      "enum_options": [
+        ...
+      ],
       "enum_value": null,
       "enabled": true,
       "text_value": "Some Value"
@@ -12002,7 +12256,9 @@ const inputBody = '{
     "custom_field": {
       "name": "Bug Task",
       "type": "text",
-      "enum_options": [],
+      "enum_options": [
+        "..."
+      ],
       "enum_value": null,
       "enabled": true,
       "text_value": "Some Value"
@@ -12178,7 +12434,9 @@ Updates the story and returns the full record for the updated story. Only commen
     "custom_field": {
       "name": "Bug Task",
       "type": "text",
-      "enum_options": [],
+      "enum_options": [
+        ...
+      ],
       "enum_value": null,
       "enabled": true,
       "text_value": "Some Value"
@@ -12236,16 +12494,22 @@ Updates the story and returns the full record for the updated story. Only commen
     "is_pinned": false,
     "hearted": false,
     "hearts": [
-      {}
+      {
+        ...
+      }
     ],
     "num_hearts": 5,
     "liked": false,
     "likes": [
-      {}
+      {
+        ...
+      }
     ],
     "num_likes": 5,
     "previews": [
-      {}
+      {
+        ...
+      }
     ],
     "old_name": "This was the Old Name",
     "new_name": "This is the New Name",
@@ -12320,7 +12584,9 @@ Updates the story and returns the full record for the updated story. Only commen
       "name": "Bug Task",
       "resource_subtype": "milestone",
       "type": "text",
-      "enum_options": [],
+      "enum_options": [
+        ...
+      ],
       "enum_value": null,
       "enabled": true,
       "text_value": "Some Value"
@@ -12698,9 +12964,13 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
       "gid": "12345",
       "resource_type": "tag",
       "name": "Stuff to buy",
-      "followers": [],
+      "followers": [
+        ...
+      ],
       "color": "light-green",
-      "workspace": {}
+      "workspace": {
+        ...
+      }
     }
   ]
 }
@@ -12898,7 +13168,9 @@ Returns the full record of the newly created tag.
     "resource_type": "tag",
     "name": "Stuff to buy",
     "followers": [
-      {}
+      {
+        ...
+      }
     ],
     "color": "light-green",
     "workspace": {
@@ -13069,7 +13341,9 @@ Returns the complete tag record for a single tag.
     "resource_type": "tag",
     "name": "Stuff to buy",
     "followers": [
-      {}
+      {
+        ...
+      }
     ],
     "color": "light-green",
     "workspace": {
@@ -13247,7 +13521,9 @@ Returns the complete updated tag record.
     "resource_type": "tag",
     "name": "Stuff to buy",
     "followers": [
-      {}
+      {
+        ...
+      }
     ],
     "color": "light-green",
     "workspace": {
@@ -13424,28 +13700,48 @@ Returns the compact task records for all tasks with the given tag. Tasks can hav
       "assignee_status": "upcoming",
       "completed": false,
       "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [],
-      "dependencies": [],
-      "dependents": [],
+      "custom_fields": [
+        ...
+      ],
+      "dependencies": [
+        ...
+      ],
+      "dependents": [
+        ...
+      ],
       "due_at": "2012-02-22T02:06:58.147Z",
       "due_on": "2012-03-26",
-      "external": {},
-      "followers": [],
+      "external": {
+        ...
+      },
+      "followers": [
+        ...
+      ],
       "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
       "hearted": true,
-      "hearts": [],
+      "hearts": [
+        ...
+      ],
       "liked": true,
-      "likes": [],
-      "memberships": [],
+      "likes": [
+        ...
+      ],
+      "memberships": [
+        ...
+      ],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "Mittens really likes the stuff from Humboldt.",
       "num_hearts": 5,
       "num_likes": 5,
       "num_subtasks": 3,
       "parent": null,
-      "projects": [],
+      "projects": [
+        ...
+      ],
       "start_on": "2012-03-26",
-      "tags": [],
+      "tags": [
+        ...
+      ],
       "workspace": null
     }
   ]
@@ -13610,9 +13906,13 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
       "gid": "12345",
       "resource_type": "tag",
       "name": "Stuff to buy",
-      "followers": [],
+      "followers": [
+        ...
+      ],
       "color": "light-green",
-      "workspace": {}
+      "workspace": {
+        ...
+      }
     }
   ]
 }
@@ -13811,9 +14111,13 @@ Returns the full record of the newly created tag.
       "gid": "12345",
       "resource_type": "tag",
       "name": "Stuff to buy",
-      "followers": [],
+      "followers": [
+        ...
+      ],
       "color": "light-green",
-      "workspace": {}
+      "workspace": {
+        ...
+      }
     }
   ]
 }
@@ -13992,28 +14296,48 @@ Returns the compact task records for all tasks within the given project, ordered
       "assignee_status": "upcoming",
       "completed": false,
       "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [],
-      "dependencies": [],
-      "dependents": [],
+      "custom_fields": [
+        ...
+      ],
+      "dependencies": [
+        ...
+      ],
+      "dependents": [
+        ...
+      ],
       "due_at": "2012-02-22T02:06:58.147Z",
       "due_on": "2012-03-26",
-      "external": {},
-      "followers": [],
+      "external": {
+        ...
+      },
+      "followers": [
+        ...
+      ],
       "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
       "hearted": true,
-      "hearts": [],
+      "hearts": [
+        ...
+      ],
       "liked": true,
-      "likes": [],
-      "memberships": [],
+      "likes": [
+        ...
+      ],
+      "memberships": [
+        ...
+      ],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "Mittens really likes the stuff from Humboldt.",
       "num_hearts": 5,
       "num_likes": 5,
       "num_subtasks": 3,
       "parent": null,
-      "projects": [],
+      "projects": [
+        ...
+      ],
       "start_on": "2012-03-26",
-      "tags": [],
+      "tags": [
+        ...
+      ],
       "workspace": null
     }
   ]
@@ -14209,28 +14533,48 @@ include assigning, renaming, completing, and adding stories.*
       "assignee_status": "upcoming",
       "completed": false,
       "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [],
-      "dependencies": [],
-      "dependents": [],
+      "custom_fields": [
+        ...
+      ],
+      "dependencies": [
+        ...
+      ],
+      "dependents": [
+        ...
+      ],
       "due_at": "2012-02-22T02:06:58.147Z",
       "due_on": "2012-03-26",
-      "external": {},
-      "followers": [],
+      "external": {
+        ...
+      },
+      "followers": [
+        ...
+      ],
       "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
       "hearted": true,
-      "hearts": [],
+      "hearts": [
+        ...
+      ],
       "liked": true,
-      "likes": [],
-      "memberships": [],
+      "likes": [
+        ...
+      ],
+      "memberships": [
+        ...
+      ],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "Mittens really likes the stuff from Humboldt.",
       "num_hearts": 5,
       "num_likes": 5,
       "num_subtasks": 3,
       "parent": null,
-      "projects": [],
+      "projects": [
+        ...
+      ],
       "start_on": "2012-03-26",
-      "tags": [],
+      "tags": [
+        ...
+      ],
       "workspace": null
     }
   ]
@@ -14279,20 +14623,28 @@ const inputBody = '{
       "data": "A blob of information"
     },
     "followers": [
-      {}
+      {
+        "...": "..."
+      }
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "memberships": [
-      {}
+      {
+        "...": "..."
+      }
     ],
     "notes": "Mittens really likes the stuff from Humboldt.",
     "parent": null,
     "projects": [
-      {}
+      {
+        "...": "..."
+      }
     ],
     "start_on": "2012-03-26",
     "tags": [
-      {}
+      {
+        "...": "..."
+      }
     ],
     "workspace": null
   }
@@ -14431,20 +14783,28 @@ explicitly if you specify `projects` or a `parent` task instead.
       "data": "A blob of information"
     },
     "followers": [
-      {}
+      {
+        ...
+      }
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "memberships": [
-      {}
+      {
+        ...
+      }
     ],
     "notes": "Mittens really likes the stuff from Humboldt.",
     "parent": null,
     "projects": [
-      {}
+      {
+        ...
+      }
     ],
     "start_on": "2012-03-26",
     "tags": [
-      {}
+      {
+        ...
+      }
     ],
     "workspace": null
   }
@@ -14641,15 +15001,25 @@ no start date. This takes a date with `YYYY-MM-DD` format.
     "completed": false,
     "completed_at": "2012-02-22T02:06:58.147Z",
     "custom_fields": [
-      {}
+      {
+        ...
+      }
     ],
     "dependencies": [
-      {},
-      {}
+      {
+        ...
+      },
+      {
+        ...
+      }
     ],
     "dependents": [
-      {},
-      {}
+      {
+        ...
+      },
+      {
+        ...
+      }
     ],
     "due_at": "2012-02-22T02:06:58.147Z",
     "due_on": "2012-03-26",
@@ -14658,19 +15028,27 @@ no start date. This takes a date with `YYYY-MM-DD` format.
       "data": "A blob of information"
     },
     "followers": [
-      {}
+      {
+        ...
+      }
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "hearted": true,
     "hearts": [
-      {}
+      {
+        ...
+      }
     ],
     "liked": true,
     "likes": [
-      {}
+      {
+        ...
+      }
     ],
     "memberships": [
-      {}
+      {
+        ...
+      }
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "Mittens really likes the stuff from Humboldt.",
@@ -14679,11 +15057,15 @@ no start date. This takes a date with `YYYY-MM-DD` format.
     "num_subtasks": 3,
     "parent": null,
     "projects": [
-      {}
+      {
+        ...
+      }
     ],
     "start_on": "2012-03-26",
     "tags": [
-      {}
+      {
+        ...
+      }
     ],
     "workspace": null
   }
@@ -14854,15 +15236,25 @@ Returns the complete task record for a single task.
     "completed": false,
     "completed_at": "2012-02-22T02:06:58.147Z",
     "custom_fields": [
-      {}
+      {
+        ...
+      }
     ],
     "dependencies": [
-      {},
-      {}
+      {
+        ...
+      },
+      {
+        ...
+      }
     ],
     "dependents": [
-      {},
-      {}
+      {
+        ...
+      },
+      {
+        ...
+      }
     ],
     "due_at": "2012-02-22T02:06:58.147Z",
     "due_on": "2012-03-26",
@@ -14871,19 +15263,27 @@ Returns the complete task record for a single task.
       "data": "A blob of information"
     },
     "followers": [
-      {}
+      {
+        ...
+      }
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "hearted": true,
     "hearts": [
-      {}
+      {
+        ...
+      }
     ],
     "liked": true,
     "likes": [
-      {}
+      {
+        ...
+      }
     ],
     "memberships": [
-      {}
+      {
+        ...
+      }
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "Mittens really likes the stuff from Humboldt.",
@@ -14892,11 +15292,15 @@ Returns the complete task record for a single task.
     "num_subtasks": 3,
     "parent": null,
     "projects": [
-      {}
+      {
+        ...
+      }
     ],
     "start_on": "2012-03-26",
     "tags": [
-      {}
+      {
+        ...
+      }
     ],
     "workspace": null
   }
@@ -14945,20 +15349,28 @@ const inputBody = '{
       "data": "A blob of information"
     },
     "followers": [
-      {}
+      {
+        "...": "..."
+      }
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "memberships": [
-      {}
+      {
+        "...": "..."
+      }
     ],
     "notes": "Mittens really likes the stuff from Humboldt.",
     "parent": null,
     "projects": [
-      {}
+      {
+        "...": "..."
+      }
     ],
     "start_on": "2012-03-26",
     "tags": [
-      {}
+      {
+        "...": "..."
+      }
     ],
     "workspace": null
   }
@@ -15099,20 +15511,28 @@ Returns the complete updated task record.
       "data": "A blob of information"
     },
     "followers": [
-      {}
+      {
+        ...
+      }
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "memberships": [
-      {}
+      {
+        ...
+      }
     ],
     "notes": "Mittens really likes the stuff from Humboldt.",
     "parent": null,
     "projects": [
-      {}
+      {
+        ...
+      }
     ],
     "start_on": "2012-03-26",
     "tags": [
-      {}
+      {
+        ...
+      }
     ],
     "workspace": null
   }
@@ -15147,15 +15567,25 @@ Returns the complete updated task record.
     "completed": false,
     "completed_at": "2012-02-22T02:06:58.147Z",
     "custom_fields": [
-      {}
+      {
+        ...
+      }
     ],
     "dependencies": [
-      {},
-      {}
+      {
+        ...
+      },
+      {
+        ...
+      }
     ],
     "dependents": [
-      {},
-      {}
+      {
+        ...
+      },
+      {
+        ...
+      }
     ],
     "due_at": "2012-02-22T02:06:58.147Z",
     "due_on": "2012-03-26",
@@ -15164,19 +15594,27 @@ Returns the complete updated task record.
       "data": "A blob of information"
     },
     "followers": [
-      {}
+      {
+        ...
+      }
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "hearted": true,
     "hearts": [
-      {}
+      {
+        ...
+      }
     ],
     "liked": true,
     "likes": [
-      {}
+      {
+        ...
+      }
     ],
     "memberships": [
-      {}
+      {
+        ...
+      }
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "Mittens really likes the stuff from Humboldt.",
@@ -15185,11 +15623,15 @@ Returns the complete updated task record.
     "num_subtasks": 3,
     "parent": null,
     "projects": [
-      {}
+      {
+        ...
+      }
     ],
     "start_on": "2012-03-26",
     "tags": [
-      {}
+      {
+        ...
+      }
     ],
     "workspace": null
   }
@@ -15741,28 +16183,48 @@ Returns a compact representation of all of the subtasks of a task.
       "assignee_status": "upcoming",
       "completed": false,
       "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [],
-      "dependencies": [],
-      "dependents": [],
+      "custom_fields": [
+        ...
+      ],
+      "dependencies": [
+        ...
+      ],
+      "dependents": [
+        ...
+      ],
       "due_at": "2012-02-22T02:06:58.147Z",
       "due_on": "2012-03-26",
-      "external": {},
-      "followers": [],
+      "external": {
+        ...
+      },
+      "followers": [
+        ...
+      ],
       "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
       "hearted": true,
-      "hearts": [],
+      "hearts": [
+        ...
+      ],
       "liked": true,
-      "likes": [],
-      "memberships": [],
+      "likes": [
+        ...
+      ],
+      "memberships": [
+        ...
+      ],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "Mittens really likes the stuff from Humboldt.",
       "num_hearts": 5,
       "num_likes": 5,
       "num_subtasks": 3,
       "parent": null,
-      "projects": [],
+      "projects": [
+        ...
+      ],
       "start_on": "2012-03-26",
-      "tags": [],
+      "tags": [
+        ...
+      ],
       "workspace": null
     }
   ]
@@ -15811,20 +16273,28 @@ const inputBody = '{
       "data": "A blob of information"
     },
     "followers": [
-      {}
+      {
+        "...": "..."
+      }
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "memberships": [
-      {}
+      {
+        "...": "..."
+      }
     ],
     "notes": "Mittens really likes the stuff from Humboldt.",
     "parent": null,
     "projects": [
-      {}
+      {
+        "...": "..."
+      }
     ],
     "start_on": "2012-03-26",
     "tags": [
-      {}
+      {
+        "...": "..."
+      }
     ],
     "workspace": null
   }
@@ -15957,20 +16427,28 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
       "data": "A blob of information"
     },
     "followers": [
-      {}
+      {
+        ...
+      }
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "memberships": [
-      {}
+      {
+        ...
+      }
     ],
     "notes": "Mittens really likes the stuff from Humboldt.",
     "parent": null,
     "projects": [
-      {}
+      {
+        ...
+      }
     ],
     "start_on": "2012-03-26",
     "tags": [
-      {}
+      {
+        ...
+      }
     ],
     "workspace": null
   }
@@ -16005,15 +16483,25 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
     "completed": false,
     "completed_at": "2012-02-22T02:06:58.147Z",
     "custom_fields": [
-      {}
+      {
+        ...
+      }
     ],
     "dependencies": [
-      {},
-      {}
+      {
+        ...
+      },
+      {
+        ...
+      }
     ],
     "dependents": [
-      {},
-      {}
+      {
+        ...
+      },
+      {
+        ...
+      }
     ],
     "due_at": "2012-02-22T02:06:58.147Z",
     "due_on": "2012-03-26",
@@ -16022,19 +16510,27 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
       "data": "A blob of information"
     },
     "followers": [
-      {}
+      {
+        ...
+      }
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "hearted": true,
     "hearts": [
-      {}
+      {
+        ...
+      }
     ],
     "liked": true,
     "likes": [
-      {}
+      {
+        ...
+      }
     ],
     "memberships": [
-      {}
+      {
+        ...
+      }
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "Mittens really likes the stuff from Humboldt.",
@@ -16043,11 +16539,15 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
     "num_subtasks": 3,
     "parent": null,
     "projects": [
-      {}
+      {
+        ...
+      }
     ],
     "start_on": "2012-03-26",
     "tags": [
-      {}
+      {
+        ...
+      }
     ],
     "workspace": null
   }
@@ -16246,15 +16746,25 @@ parent, or no parent task at all. Returns an empty data block. When using `inser
     "completed": false,
     "completed_at": "2012-02-22T02:06:58.147Z",
     "custom_fields": [
-      {}
+      {
+        ...
+      }
     ],
     "dependencies": [
-      {},
-      {}
+      {
+        ...
+      },
+      {
+        ...
+      }
     ],
     "dependents": [
-      {},
-      {}
+      {
+        ...
+      },
+      {
+        ...
+      }
     ],
     "due_at": "2012-02-22T02:06:58.147Z",
     "due_on": "2012-03-26",
@@ -16263,19 +16773,27 @@ parent, or no parent task at all. Returns an empty data block. When using `inser
       "data": "A blob of information"
     },
     "followers": [
-      {}
+      {
+        ...
+      }
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "hearted": true,
     "hearts": [
-      {}
+      {
+        ...
+      }
     ],
     "liked": true,
     "likes": [
-      {}
+      {
+        ...
+      }
     ],
     "memberships": [
-      {}
+      {
+        ...
+      }
     ],
     "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "Mittens really likes the stuff from Humboldt.",
@@ -16284,11 +16802,15 @@ parent, or no parent task at all. Returns an empty data block. When using `inser
     "num_subtasks": 3,
     "parent": null,
     "projects": [
-      {}
+      {
+        ...
+      }
     ],
     "start_on": "2012-03-26",
     "tags": [
-      {}
+      {
+        ...
+      }
     ],
     "workspace": null
   }
@@ -16459,28 +16981,48 @@ Returns the compact representations of all of the dependencies of a task.
       "assignee_status": "upcoming",
       "completed": false,
       "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [],
-      "dependencies": [],
-      "dependents": [],
+      "custom_fields": [
+        ...
+      ],
+      "dependencies": [
+        ...
+      ],
+      "dependents": [
+        ...
+      ],
       "due_at": "2012-02-22T02:06:58.147Z",
       "due_on": "2012-03-26",
-      "external": {},
-      "followers": [],
+      "external": {
+        ...
+      },
+      "followers": [
+        ...
+      ],
       "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
       "hearted": true,
-      "hearts": [],
+      "hearts": [
+        ...
+      ],
       "liked": true,
-      "likes": [],
-      "memberships": [],
+      "likes": [
+        ...
+      ],
+      "memberships": [
+        ...
+      ],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "Mittens really likes the stuff from Humboldt.",
       "num_hearts": 5,
       "num_likes": 5,
       "num_subtasks": 3,
       "parent": null,
-      "projects": [],
+      "projects": [
+        ...
+      ],
       "start_on": "2012-03-26",
-      "tags": [],
+      "tags": [
+        ...
+      ],
       "workspace": null
     }
   ]
@@ -16677,28 +17219,48 @@ Marks a set of tasks as dependencies of this task, if they are not already depen
       "assignee_status": "upcoming",
       "completed": false,
       "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [],
-      "dependencies": [],
-      "dependents": [],
+      "custom_fields": [
+        ...
+      ],
+      "dependencies": [
+        ...
+      ],
+      "dependents": [
+        ...
+      ],
       "due_at": "2012-02-22T02:06:58.147Z",
       "due_on": "2012-03-26",
-      "external": {},
-      "followers": [],
+      "external": {
+        ...
+      },
+      "followers": [
+        ...
+      ],
       "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
       "hearted": true,
-      "hearts": [],
+      "hearts": [
+        ...
+      ],
       "liked": true,
-      "likes": [],
-      "memberships": [],
+      "likes": [
+        ...
+      ],
+      "memberships": [
+        ...
+      ],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "Mittens really likes the stuff from Humboldt.",
       "num_hearts": 5,
       "num_likes": 5,
       "num_subtasks": 3,
       "parent": null,
-      "projects": [],
+      "projects": [
+        ...
+      ],
       "start_on": "2012-03-26",
-      "tags": [],
+      "tags": [
+        ...
+      ],
       "workspace": null
     }
   ]
@@ -16895,28 +17457,48 @@ Unlinks a set of dependencies from this task.
       "assignee_status": "upcoming",
       "completed": false,
       "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [],
-      "dependencies": [],
-      "dependents": [],
+      "custom_fields": [
+        ...
+      ],
+      "dependencies": [
+        ...
+      ],
+      "dependents": [
+        ...
+      ],
       "due_at": "2012-02-22T02:06:58.147Z",
       "due_on": "2012-03-26",
-      "external": {},
-      "followers": [],
+      "external": {
+        ...
+      },
+      "followers": [
+        ...
+      ],
       "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
       "hearted": true,
-      "hearts": [],
+      "hearts": [
+        ...
+      ],
       "liked": true,
-      "likes": [],
-      "memberships": [],
+      "likes": [
+        ...
+      ],
+      "memberships": [
+        ...
+      ],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "Mittens really likes the stuff from Humboldt.",
       "num_hearts": 5,
       "num_likes": 5,
       "num_subtasks": 3,
       "parent": null,
-      "projects": [],
+      "projects": [
+        ...
+      ],
       "start_on": "2012-03-26",
-      "tags": [],
+      "tags": [
+        ...
+      ],
       "workspace": null
     }
   ]
@@ -17087,28 +17669,48 @@ Returns the compact representations of all of the dependents of a task.
       "assignee_status": "upcoming",
       "completed": false,
       "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [],
-      "dependencies": [],
-      "dependents": [],
+      "custom_fields": [
+        ...
+      ],
+      "dependencies": [
+        ...
+      ],
+      "dependents": [
+        ...
+      ],
       "due_at": "2012-02-22T02:06:58.147Z",
       "due_on": "2012-03-26",
-      "external": {},
-      "followers": [],
+      "external": {
+        ...
+      },
+      "followers": [
+        ...
+      ],
       "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
       "hearted": true,
-      "hearts": [],
+      "hearts": [
+        ...
+      ],
       "liked": true,
-      "likes": [],
-      "memberships": [],
+      "likes": [
+        ...
+      ],
+      "memberships": [
+        ...
+      ],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "Mittens really likes the stuff from Humboldt.",
       "num_hearts": 5,
       "num_likes": 5,
       "num_subtasks": 3,
       "parent": null,
-      "projects": [],
+      "projects": [
+        ...
+      ],
       "start_on": "2012-03-26",
-      "tags": [],
+      "tags": [
+        ...
+      ],
       "workspace": null
     }
   ]
@@ -17305,28 +17907,48 @@ Marks a set of tasks as dependents of this task, if they are not already depende
       "assignee_status": "upcoming",
       "completed": false,
       "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [],
-      "dependencies": [],
-      "dependents": [],
+      "custom_fields": [
+        ...
+      ],
+      "dependencies": [
+        ...
+      ],
+      "dependents": [
+        ...
+      ],
       "due_at": "2012-02-22T02:06:58.147Z",
       "due_on": "2012-03-26",
-      "external": {},
-      "followers": [],
+      "external": {
+        ...
+      },
+      "followers": [
+        ...
+      ],
       "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
       "hearted": true,
-      "hearts": [],
+      "hearts": [
+        ...
+      ],
       "liked": true,
-      "likes": [],
-      "memberships": [],
+      "likes": [
+        ...
+      ],
+      "memberships": [
+        ...
+      ],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "Mittens really likes the stuff from Humboldt.",
       "num_hearts": 5,
       "num_likes": 5,
       "num_subtasks": 3,
       "parent": null,
-      "projects": [],
+      "projects": [
+        ...
+      ],
       "start_on": "2012-03-26",
-      "tags": [],
+      "tags": [
+        ...
+      ],
       "workspace": null
     }
   ]
@@ -17523,28 +18145,48 @@ Unlinks a set of dependents from this task.
       "assignee_status": "upcoming",
       "completed": false,
       "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [],
-      "dependencies": [],
-      "dependents": [],
+      "custom_fields": [
+        ...
+      ],
+      "dependencies": [
+        ...
+      ],
+      "dependents": [
+        ...
+      ],
       "due_at": "2012-02-22T02:06:58.147Z",
       "due_on": "2012-03-26",
-      "external": {},
-      "followers": [],
+      "external": {
+        ...
+      },
+      "followers": [
+        ...
+      ],
       "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
       "hearted": true,
-      "hearts": [],
+      "hearts": [
+        ...
+      ],
       "liked": true,
-      "likes": [],
-      "memberships": [],
+      "likes": [
+        ...
+      ],
+      "memberships": [
+        ...
+      ],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "Mittens really likes the stuff from Humboldt.",
       "num_hearts": 5,
       "num_likes": 5,
       "num_subtasks": 3,
       "parent": null,
-      "projects": [],
+      "projects": [
+        ...
+      ],
       "start_on": "2012-03-26",
-      "tags": [],
+      "tags": [
+        ...
+      ],
       "workspace": null
     }
   ]
@@ -17712,16 +18354,26 @@ Returns a compact representation of all of the projects the task is in.
       "created_at": "2012-02-22T02:06:58.147Z",
       "archived": false,
       "color": "light-green",
-      "current_status": {},
-      "custom_fields": [],
-      "custom_field_settings": [],
+      "current_status": {
+        ...
+      },
+      "custom_fields": [
+        ...
+      ],
+      "custom_field_settings": [
+        ...
+      ],
       "due_date": "2012-03-26",
       "due_on": "2012-03-26",
-      "followers": [],
+      "followers": [
+        ...
+      ],
       "html_notes": "These are things we need to purchase.",
       "is_template": false,
       "layout": "list",
-      "members": [],
+      "members": [
+        ...
+      ],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "These are things we need to purchase.",
       "owner": null,
@@ -18274,9 +18926,13 @@ Get a compact representation of all of the tags the task has.
       "gid": "12345",
       "resource_type": "tag",
       "name": "Stuff to buy",
-      "followers": [],
+      "followers": [
+        ...
+      ],
       "color": "light-green",
-      "workspace": {}
+      "workspace": {
+        ...
+      }
     }
   ]
 }
@@ -19674,8 +20330,12 @@ Returns the compact records for all users that are members of the team.
       "resource_type": "user",
       "name": "Greg Sanchez",
       "email": "gsanchez@example.com",
-      "photo": {},
-      "workspaces": []
+      "photo": {
+        ...
+      },
+      "workspaces": [
+        ...
+      ]
     }
   ]
 }
@@ -19856,8 +20516,12 @@ The user making this call must be a member of the team in order to add others. T
       "resource_type": "user",
       "name": "Greg Sanchez",
       "email": "gsanchez@example.com",
-      "photo": {},
-      "workspaces": []
+      "photo": {
+        ...
+      },
+      "workspaces": [
+        ...
+      ]
     }
   ]
 }
@@ -20038,8 +20702,12 @@ The user making this call must be a member of the team in order to remove themse
       "resource_type": "user",
       "name": "Greg Sanchez",
       "email": "gsanchez@example.com",
-      "photo": {},
-      "workspaces": []
+      "photo": {
+        ...
+      },
+      "workspaces": [
+        ...
+      ]
     }
   ]
 }
@@ -20214,8 +20882,12 @@ Results are sorted by user ID.
       "resource_type": "user",
       "name": "Greg Sanchez",
       "email": "gsanchez@example.com",
-      "photo": {},
-      "workspaces": []
+      "photo": {
+        ...
+      },
+      "workspaces": [
+        ...
+      ]
     }
   ]
 }
@@ -20388,7 +21060,9 @@ Results are sorted by user ID.
       "image_128x128": "https://..."
     },
     "workspaces": [
-      {}
+      {
+        ...
+      }
     ]
   }
 }
@@ -20727,8 +21401,12 @@ Results are sorted alphabetically by user names.
       "resource_type": "user",
       "name": "Greg Sanchez",
       "email": "gsanchez@example.com",
-      "photo": {},
-      "workspaces": []
+      "photo": {
+        ...
+      },
+      "workspaces": [
+        ...
+      ]
     }
   ]
 }
@@ -21241,28 +21919,48 @@ Returns the compact list of tasks in a user’s My Tasks list. The returned task
       "assignee_status": "upcoming",
       "completed": false,
       "completed_at": "2012-02-22T02:06:58.147Z",
-      "custom_fields": [],
-      "dependencies": [],
-      "dependents": [],
+      "custom_fields": [
+        ...
+      ],
+      "dependencies": [
+        ...
+      ],
+      "dependents": [
+        ...
+      ],
       "due_at": "2012-02-22T02:06:58.147Z",
       "due_on": "2012-03-26",
-      "external": {},
-      "followers": [],
+      "external": {
+        ...
+      },
+      "followers": [
+        ...
+      ],
       "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
       "hearted": true,
-      "hearts": [],
+      "hearts": [
+        ...
+      ],
       "liked": true,
-      "likes": [],
-      "memberships": [],
+      "likes": [
+        ...
+      ],
+      "memberships": [
+        ...
+      ],
       "modified_at": "2012-02-22T02:06:58.147Z",
       "notes": "Mittens really likes the stuff from Humboldt.",
       "num_hearts": 5,
       "num_likes": 5,
       "num_subtasks": 3,
       "parent": null,
-      "projects": [],
+      "projects": [
+        ...
+      ],
       "start_on": "2012-03-26",
-      "tags": [],
+      "tags": [
+        ...
+      ],
       "workspace": null
     }
   ]
@@ -22404,7 +23102,9 @@ Returns the compact records for all workspaces visible to the authorized user.
       "gid": "12345",
       "resource_type": "task",
       "name": "Bug Task",
-      "email_domains": [],
+      "email_domains": [
+        ...
+      ],
       "is_organization": false
     }
   ]
@@ -22954,7 +23654,9 @@ The user can be referenced by their globally unique user ID or their email addre
       "image_128x128": "https://..."
     },
     "workspaces": [
-      {}
+      {
+        ...
+      }
     ]
   }
 }
@@ -24250,8 +24952,12 @@ This is read-only except for a small group of whitelisted apps.
       "resource_type": "user",
       "name": "Greg Sanchez",
       "email": "gsanchez@example.com",
-      "photo": {},
-      "workspaces": []
+      "photo": {
+        ...
+      },
+      "workspaces": [
+        ...
+      ]
     }
   ],
   "html_notes": "These are things we need to purchase.",
@@ -24264,8 +24970,12 @@ This is read-only except for a small group of whitelisted apps.
       "resource_type": "user",
       "name": "Greg Sanchez",
       "email": "gsanchez@example.com",
-      "photo": {},
-      "workspaces": []
+      "photo": {
+        ...
+      },
+      "workspaces": [
+        ...
+      ]
     }
   ],
   "modified_at": "2012-02-22T02:06:58.147Z",
@@ -24751,8 +25461,12 @@ A generic Asana Object, containing a globally unique identifier.
       "resource_type": "user",
       "name": "Greg Sanchez",
       "email": "gsanchez@example.com",
-      "photo": {},
-      "workspaces": []
+      "photo": {
+        ...
+      },
+      "workspaces": [
+        ...
+      ]
     }
   ],
   "num_hearts": 5,
@@ -24764,8 +25478,12 @@ A generic Asana Object, containing a globally unique identifier.
       "resource_type": "user",
       "name": "Greg Sanchez",
       "email": "gsanchez@example.com",
-      "photo": {},
-      "workspaces": []
+      "photo": {
+        ...
+      },
+      "workspaces": [
+        ...
+      ]
     }
   ],
   "num_likes": 5,
@@ -24855,7 +25573,9 @@ A generic Asana Object, containing a globally unique identifier.
     "resource_subtype": "milestone",
     "type": "text",
     "enum_options": [
-      {}
+      {
+        ...
+      }
     ],
     "enum_value": null,
     "enabled": true,
@@ -25282,7 +26002,9 @@ A generic Asana Object, containing a globally unique identifier.
       "name": "Bug Task",
       "resource_subtype": "milestone",
       "type": "text",
-      "enum_options": [],
+      "enum_options": [
+        ...
+      ],
       "enum_value": null,
       "enabled": true,
       "text_value": "Some Value",
@@ -25345,8 +26067,12 @@ A generic Asana Object, containing a globally unique identifier.
   ],
   "memberships": [
     {
-      "project": {},
-      "section": {}
+      "project": {
+        ...
+      },
+      "section": {
+        ...
+      }
     }
   ],
   "modified_at": "2012-02-22T02:06:58.147Z",
@@ -25658,7 +26384,9 @@ A generic Asana Object, containing a globally unique identifier.
       "gid": "12345",
       "resource_type": "task",
       "name": "Bug Task",
-      "email_domains": [],
+      "email_domains": [
+        ...
+      ],
       "is_organization": false
     }
   ]

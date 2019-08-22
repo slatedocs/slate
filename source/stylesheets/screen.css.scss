@@ -934,3 +934,24 @@ pre {
 .put-verb {
   color: $darkPurple;
 }
+
+.enumerated-values {
+  cursor: pointer;
+
+  .chevron {
+    text-align: center;
+    display: inline-block;
+    padding: $spacing-xs;
+  }
+
+  &.expanded {
+    .chevron {
+      transform: rotate(90deg);
+      transition: transform 0.2s ease;
+    }
+  }
+
+  & + .table-holder {
+    display: none;
+  }
+}
