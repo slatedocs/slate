@@ -19,23 +19,48 @@ To begin using the Intelex API you will need:
 
 ## Authentication
 
-> Example Request - make sure to replace **hello** with your credentials.
+> Example Requests:
 
 ```javascript
+// Basic Authentication
 var request = require("request");
 
 var options = {
-  headers: { Authorization: 'Basic hello' }
+  headers: { Authorization: "Basic [insert credentials here]" }
   };
-});
+
+
+//ApiKey Authentication
+var request = require("request");
+
+var options = {
+  headers: { Authorization: "ApiKey [insert key here]" }
+  };
 ```
 
 ```csharp
+
+// Basic Authentication
 var request = new RestRequest(Method.GET);
-request.AddHeader("Authorization", "Basic hello");
+
+request.AddHeader("Authorization", "Basic [insert credentials here]");
+
+
+// ApiKey Authentication
+var request = new RestRequest(Method.GET);
+
+request.AddHeader("Authorization", "ApiKey [insert key here]");
 ```
 
-Authentication to the API is performed via HTTP Basic Auth and your Intelex user credentials. All API requests must be made over HTTPS and API requests without authentication will fail. Security on data is managed by the platform security configuration. API requests will maintain the same security settings you have configured in the platform for each user. 
+Intelex utilizes two methods for authentication to the API- Basic and ApiKey.
+
+Basic authentication is performed via HTTP Basic Auth and your Intelex user credentials (Username:Password). The credentials are then verified by Intelex and access will be granted or denied accordingly.
+
+ApiKey authentication can be performed by generating API access key(s) from the Intelex User Profile menu (note that this page is only accessible to full-access and admins on the site). 
+The unique generated key can then be used to access the Intelex REST API and used to authenticate and prove that the user is who they claim to be.
+
+All API requests must be made over HTTPS and API requests without authentication will fail. Security on data is managed by the platform security configuration. 
+API requests will maintain the same security settings you have configured in the platform for each user.
 
 ## Data Format
 
