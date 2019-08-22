@@ -334,7 +334,7 @@ eventTime                 | Timestamp when update happened                | Time
 ```
 ### Event
 
-Event will be triggered every time balance is debited.
+Event will be triggered every time balance is credited.
 
 Field                     | Description                                   | Format
 ---------                 | -------                                       | -----------
