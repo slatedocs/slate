@@ -16,64 +16,68 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+## FinLocker Integration
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+This document illustrates how NestReady will provide user behavior data to FinLocker.
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+This process can be simplified into two steps:
 
-# Authentication
+1)FinLocker subscribe for events for specific contacts
 
-> To authorize, use this code:
+2)Every time Nestready tracks an event from that contact, NestReady will send an event to FinLocker.
 
-```javascript
-const kittn = require('kittn');
+#Finlocker Integration
 
-let api = kittn.authorize('meowmeowmeow');
+##Contact Subscription
+
+###Subscribing
+```json
+Body: {
+  contact: {
+    email: "alex@nestready.ai",
+    phone: "(123)12341234", // not obligatory but good to have
+  },
+  events: ["favorite_property"], // or all' (see event types)
+  delivery_url: "https://api.finlocker.com/nestready/events",
+  metadata: "anything that you will use to query later, could_be_userID"
+}
 ```
+This endpoint subscribes to the listings
 
-> Make sure to replace `meowmeowmeow` with your API key.
+#### HTTP Request
+`POST https://events.stage-nestready.net/webhooks/contacts`
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+#### Query Parameters
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+Parameter | Default | Description
+--------- | ------- | -----------
+email | something@somewhere.co | email address of the user subscribing for the listings
+phone | null | phone number of the user subscribing for the listings
+events | "all"| event types related to properties listings
+metadata | null | The metadata value set by the client on subscription creation
 
-`Authorization: meowmeowmeow`
 
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Contact Subscription
-
-## Listing
+### Listing
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+Response: { 
+   subscriptions: [
+     {
+        metadata: ‘metadata1’, 
+        events: [...], 
+        delivery_url: ‘’
+     },
+   ]
+}
 ```
 
 This endpoint retrieves all contact subscriptions for the given client.
 
-### HTTP Request
+#### HTTP Request
 
 `GET http://events.nestready.net/webhooks/contacts`
 
-### Query Parameters
+#### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
@@ -83,156 +87,81 @@ metadata | null | The metadata value set by the client on subscription creation
 You can also send * as metadata to retrieve all contact subscriptions.
 </aside>
 
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-> The above command returns JSON structured like this:
+### Unsubscribing
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+Response: { 
+   subscriptions: [
+     {
+        metadata: ‘metadata1’, 
+        events: [...], 
+        delivery_url: ‘’
+     },
+   ]
+}
 ```
+#### HTTP Request
 
-This endpoint retrieves all kittens.
+`GET http://events.nestready.net/webhooks/contacts#####`
+Where ##### is the userID number
 
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
+#### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+metadata | userID | The userID will be set upon subscription
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Response body may return empty or contain...
 </aside>
 
-## Get a Specific Kitten
+## Events
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
+### Listing
+```json
+[
+  {
+  "id": 321,
+  "created_at": 1349699313,
+  "type": "example",
+  "metadata": "could_be_userID",
+  "data": {
+    property_address: "809 William St Suite 205, Montreal, QC H3C 1N8, CA",
+           ...
+     }
+   }
+]
 ```
+#### HTTP Request
+`GET https://events.nestready.net/contacts?metadata=could_be_userID&start_at=1349699313&end_at=1349699313&page=1`
 
-```python
-import kittn
+Parameter | Default | Description
+--------- | ------- | -----------
+metadata | userID&start_at| The userID will be set upon subscription, start at will the define the range of the listing
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
+### Receiving
 
 ```json
+
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  id: <string>,
+  type: <string>,
+  metadata: <string>,
+  partner_name: <string>,
+  data: <hashmap>,
+  created_at: <timestamp>,
 }
+
 ```
 
-This endpoint retrieves a specific kitten.
+#### HTTP Request
+` `
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+Parameter | Default | Description
+--------- | ------- | -----------
+ | | 
 
-### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
 
-### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
 
