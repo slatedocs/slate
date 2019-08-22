@@ -13,16 +13,19 @@ base64 string is the base64-encoding of "username:password"
 > The above command returns JSON structured like this:
 
 ```json
-  {
-    "auth_string": "auth_string"
-  }
+{
+    "data": {
+        "auth_string": "auth_string"
+    },
+    "metadata": {}
+}
 ```
 
 This endpoint will create an integration user and retrieves a basic authentication string.
 
 ### HTTP Request
 
-`POST http://example.procurify.com/api/v3/integrations/netsuite/initialize/`
+`POST https://example.procurify.com/api/v3/integrations/netsuite/initialize/`
 
 
 ## Get Accounts<code class='get'>GET</code>
@@ -30,25 +33,47 @@ This endpoint will create an integration user and retrieves a basic authenticati
 > The above command returns JSON structured like this:
 
 ```json
-[
-    {
-      "id": 1,
-      "code": "12345",
-      "description": "test",
-      "parent": "",
-      "active": 1,
-      "account_type": "Expense",
-      "external_id": "1234",
-      "custom_fields": {}
+{
+    "data": [
+        {
+            "id": 1,
+            "code": "1000",
+            "description": "Supplies",
+            "parent": null,
+            "active": true,
+            "account_type": "Expense",
+            "external_id": "1234",
+            "custom_fields": {}
+        },
+        {
+            "id": 2,
+            "code": "2000",
+            "description": "Services",
+            "parent": null,
+            "active": true,
+            "account_type": "Expense",
+            "external_id": "4321",
+            "custom_fields": {}
+        }
+    ],
+    "metadata": {
+        "pagination": {
+            "count": 2,
+            "next": null,
+            "previous": null,
+            "page_size": 10,
+            "num_pages": 1,
+            "current_page": 1
+        }
     }
-]
+}
 ```
 
 This endpoint retrieves a list of accounts with specific status.
 
 ### HTTP Request
 
-`GET http://example.procurify.com/api/v3/integrations/netsuite/accounts/?status=<STATUS>`
+`GET https://example.procurify.com/api/v3/integrations/netsuite/accounts/?status=<STATUS>`
 
 ### URL Parameters
 
@@ -73,14 +98,17 @@ STATUS | status can be "pending", "synced", or "error"
 
 ```json
 {
-  "id": 2,
-  "code": 1234,
-  "description": "Test Account",
-  "parent": "",
-  "active": 1,
-  "account_type": "Expense",
-  "external_id": 4321,
-  "custom_fields": {}
+    "data": {
+        "id": 24,
+        "code": "1234",
+        "description": "Test Account",
+        "parent": null,
+        "active": true,
+        "account_type": "2",
+        "external_id": "4321",
+        "custom_fields": {}
+    },
+    "metadata": {}
 }
 ```
 
@@ -88,7 +116,7 @@ This endpoint creates an account.
 
 ### HTTP Request
 
-`POST http://example.procurify.com/api/v3/integrations/netsuite/accounts/`
+`POST https://example.procurify.com/api/v3/integrations/netsuite/accounts/`
 
 ### Arguments
 
@@ -130,14 +158,17 @@ ID of the integration object.
 
 ```json
 {
-  "id": 2,
-  "code": 1234,
-  "description": "Test Account",
-  "parent": "",
-  "active": 1,
-  "account_type": "Expense",
-  "external_id": 4321,
-  "custom_fields": {}
+    "data": {
+        "id": 1,
+        "code": "1234",
+        "description": "Test Account",
+        "parent": null,
+        "active": true,
+        "account_type": "2",
+        "external_id": "4321",
+        "custom_fields": {}
+    },
+    "metadata": {}
 }
 ```
 
@@ -402,6 +433,28 @@ This endpoint deletes a specific catalog item.
 Parameter | Description
 --------- | -----------
 CATALOG_ITEM_ID | ID of the catalog item being deleted
+
+
+
+## Get Content Types<code class='get'>GET</code>
+
+> The above command returns JSON structured like this:
+
+```json
+[
+    {
+      "id": 212,
+      "app_label": "vendors",
+      "model": "vendoraddress"
+    }
+]
+```
+
+This endpoint retrieves a list of accounts with specific status.
+
+### HTTP Request
+
+`GET http://example.procurify.com/api/v3/integrations/netsuite/content-types/`
 
 
 
