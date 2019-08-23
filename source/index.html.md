@@ -10,6 +10,7 @@ toc_footers:
 
 includes:
   - errors
+  - default_sucess_responses
 
 search: true
 ---
@@ -141,6 +142,8 @@ metadata | userID&start_at| The userID will be set upon subscription, start at w
 
 ### Receiving
 
+Every event will be delivered to the defined delivery_url when subscribed
+
 ```json
 
 {
@@ -155,11 +158,65 @@ metadata | userID&start_at| The userID will be set upon subscription, start at w
 ```
 
 #### HTTP Request
-` `
 
 Parameter | Default | Description
 --------- | ------- | -----------
  | | 
+
+
+## Event types with example of Data
+
+### Contact Request
+`{ message: 'message user sent' }`
+
+### Location_Favorited
+`{
+  location: {
+    id: location_1,
+    name: 'Boston',
+    level: 'place' // state|county|metro|place|nbh
+  }
+}`
+
+### PROPERTY_VISIT_REQUESTED & FINANCE_REQUESTED & LISTING_FAVORITED
+`
+{
+  listing: {
+    id: listing_1,
+    property_address: 'full_address',
+    mls_number: '1234mls',
+    listing_image_cover_url: 'https://listing-images.nestready.net/dArboFrG37bMhDjHxWUMBZ3vs',
+    price_cents: 100_000,
+    property_type: ‘’, // TODO: add available types
+    bathrooms_count: 1,
+    bedrooms_count: 1,
+    year_built: 1990,
+    description: ‘’
+  } 
+}`
+
+### SEARCH_SAVED & SEARCH_SHARED
+`data: {
+  search: {
+    id: 'search_1',
+    bathroom_count: 1,
+    bedroom_count: 2,
+    location_name: 'boston',
+    location_level: 'place', // state|county|metro|place|nbh
+    max_price_cents: 100000000,
+    min_price_cents: nil,
+     listing_image_cover_url: 'https://listing-images.nestready.net/dArboFrG37bMhDjHxWUMBZ3vs'
+    property_type: 'apartment/condo', // townhouse|single-family-home|all
+  }
+}`
+
+### EMAIL_SIGNED_UP
+`null`
+
+### NOTIFICATION_SENT
+
+
+
 
 
 
