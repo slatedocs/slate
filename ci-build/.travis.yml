@@ -1,0 +1,24 @@
+language: ruby
+
+rvm:
+  - 2.4.0
+
+cache: bundler
+
+before_install:
+  - git clone https://github.com/lord/slate.git
+  - mv -f docs/* slate/source/
+  - cd slate
+
+script:
+  - bundle exec middleman build
+
+deploy:
+  provider: pages
+  local_dir: slate/build/
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  keep_history: true
+  target_branch: gh-pages
+  on:
+    branch: master
