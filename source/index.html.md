@@ -377,8 +377,8 @@ curl --location --request POST "https://api.roboticcrowd.com/v1/session_queues" 
     "name": "Awesome Workflow."
   },
   "params": {
-    var1: "this is string",
-    var2: ["this", "is", "array"]
+    "var1": "this is string",
+    "var2": ["this", "is", "array"]
   },
   "robot": {
     "id": 12341234,
@@ -449,8 +449,8 @@ curl --location --request GET "https://api.roboticcrowd.com/v1/session_queues?pa
         "name": "test"
       },
       "params": {
-        var1: "this is string",
-        var2: ["this", "is", "array"]
+        "var1": "this is string",
+        "var2": ["this", "is", "array"]
       },
       "robot": {
         "id": 12341234,
@@ -469,8 +469,8 @@ curl --location --request GET "https://api.roboticcrowd.com/v1/session_queues?pa
         "name": "test"
       },
       "params": {
-        var1: "this is string",
-        var2: ["this", "is", "array"]
+        "var1": "this is string",
+        "var2": ["this", "is", "array"]
       },
       "robot": {
         "id": 12341234,
@@ -489,8 +489,8 @@ curl --location --request GET "https://api.roboticcrowd.com/v1/session_queues?pa
         "name": "test"
       },
       "params": {
-        var1: "this is string",
-        var2: ["this", "is", "array"]
+        "var1": "this is string",
+        "var2": ["this", "is", "array"]
       },
       "robot": {
         "id": 12341234,
