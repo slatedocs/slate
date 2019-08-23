@@ -10,7 +10,7 @@ Authorization: Basic <base64 string>
 base64 string is the base64-encoding of "username:password"
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -21,16 +21,35 @@ base64 string is the base64-encoding of "username:password"
 }
 ```
 
-This endpoint will create an integration user and retrieves a basic authentication string.
+> The authentication string can then be used to do basic authentication in subsequent endpoint calls, so superuser credentials would not be needed.
+
+> Include basic authentication in subsequent request headers:
+
+```javascript
+
+    Authorization:Basic aW50ZWdyYXRpb25zQHByb2N1c
+
+```
+
+This endpoint enables integration and get or create the integration user. It returns a basic authentication string of the integration user.
+
+<aside class="notice">
+Only users with superuser role can call this endpoint.
+</aside>
 
 ### HTTP Request
 
 `POST https://example.procurify.com/api/v3/integrations/netsuite/initialize/`
 
+### HTTP Response Status Code
+
+201 Created
+
+
 
 ## Get Accounts<code class='get'>GET</code>
 
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -81,6 +100,10 @@ Parameter | Description
 --------- | -----------
 STATUS | status can be "pending", "synced", or "error"
 
+### HTTP Response Status Code
+
+200 OK
+
 ## Create Account<code class='post'>POST</code>
 
 > The above command accepts a POST body:
@@ -94,7 +117,7 @@ STATUS | status can be "pending", "synced", or "error"
 }
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -117,6 +140,10 @@ This endpoint creates an account.
 ### HTTP Request
 
 `POST https://example.procurify.com/api/v3/integrations/netsuite/accounts/`
+
+### HTTP Response Status Code
+
+201 Created
 
 ### Arguments
 
@@ -154,7 +181,7 @@ ID of the integration object.
 }
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -178,12 +205,16 @@ This endpoint updates a specific account.
 
 `PUT https://example.procurify.com/api/v3/integrations/netsuite/accounts/<ACCOUNT_ID>/`
 
+
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
 ACCOUNT_ID | ID of the account being updated
 
+### HTTP Response Status Code
+
+200 OK
 
 ### Arguments
 
@@ -222,10 +253,15 @@ Parameter | Description
 --------- | -----------
 ACCOUNT_ID | ID of the account being deleted
 
+### HTTP Response Status Code
+
+204 No Content
+
+
 
 ## Get Catalog Items<code class='get'>GET</code>
 
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -271,6 +307,10 @@ Parameter | Description
 --------- | -----------
 STATUS | status can be "pending", "synced", or "error"
 
+### HTTP Response Status Code
+
+200 OK
+
 ## Create Catalog Item<code class='post'>POST</code>
 
 > The above command accepts a POST body:
@@ -290,7 +330,7 @@ STATUS | status can be "pending", "synced", or "error"
 }
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -318,6 +358,10 @@ This endpoint creates a catalog item.
 ### HTTP Request
 
 `POST https://example.procurify.com/api/v3/integrations/netsuite/catalog-items/`
+
+### HTTP Response Status Code
+
+201 Created
 
 ### Arguments
 
@@ -370,7 +414,7 @@ ID of the integration object.
 }
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -405,6 +449,9 @@ Parameter | Description
 --------- | -----------
 CATLOG_ITEM_ID | ID of the catalog item being updated
 
+### HTTP Response Status Code
+
+200 OK
 
 ### Arguments
 
@@ -452,47 +499,75 @@ Parameter | Description
 --------- | -----------
 CATALOG_ITEM_ID | ID of the catalog item being deleted
 
+### HTTP Response Status Code
+
+204 No Content
+
 
 
 ## Get Content Types<code class='get'>GET</code>
 
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
-[
-    {
-      "id": 212,
-      "app_label": "vendors",
-      "model": "vendoraddress"
-    }
-]
+{
+    "data": [
+        {
+            "id": 231,
+            "app_label": "account",
+            "model": "emailaddress"
+        },
+        {
+            "id": 232,
+            "app_label": "account",
+            "model": "emailconfirmation"
+        }
+    ],
+    "metadata": {}
+}
 ```
 
-This endpoint retrieves a list of accounts with specific status.
+This endpoint retrieves a list content types.
 
 ### HTTP Request
 
 `GET https://example.procurify.com/api/v3/integrations/netsuite/content-types/`
 
+### HTTP Response Status Code
+
+200 OK
+
 
 
 ## Get Currencies<code class='get'>GET</code>
 
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
-[
-    {
-      "id": 1,
-      "name": "CAD",
-      "rate": "1.000000",
-      "active": 1,
-      "description": "Canadian Dollars",
-      "base": 0,
-      "external_id": "1234",
-      "custom_fields": {}
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "CAD",
+            "rate": "1.000000",
+            "active": true,
+            "description": "",
+            "base": true,
+            "external_id": "",
+            "custom_fields": {}
+        }
+    ],
+    "metadata": {
+        "pagination": {
+            "count": 1,
+            "next": null,
+            "previous": null,
+            "page_size": 10,
+            "num_pages": 1,
+            "current_page": 1
+        }
     }
-]
+}
 ```
 
 This endpoint retrieves a list of currencies with specific status.
@@ -506,6 +581,10 @@ This endpoint retrieves a list of currencies with specific status.
 Parameter | Description
 --------- | -----------
 STATUS | status can be "pending", "synced", or "error"
+
+### HTTP Response Status Code
+
+200 OK
 
 ## Update Currency<code class='put'>PUT</code>
 
@@ -522,18 +601,21 @@ STATUS | status can be "pending", "synced", or "error"
 }
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
-  "id": 1,
-  "name": "CAD",
-  "rate": "1.000000",
-  "active": 1,
-  "description": "Canadian Dollars",
-  "base": 0,
-  "external_id": "1234",
-  "custom_fields": {}
+    "data": {
+        "id": 1,
+        "name": "CAD",
+        "rate": "1.300000",
+        "active": true,
+        "description": "Canadian Dollars",
+        "base": true,
+        "external_id": "1234",
+        "custom_fields": {}
+    },
+    "metadata": {}
 }
 ```
 
@@ -549,6 +631,9 @@ Parameter | Description
 --------- | -----------
 CURRENCY_ID | ID of the currency being updated
 
+### HTTP Response Status Code
+
+200 OK
 
 ### Arguments
 
@@ -588,6 +673,10 @@ Parameter | Description
 --------- | -----------
 CURRENCY_ID | ID of the currency being deleted
 
+### HTTP Response Status Code
+
+204 No Content
+
 
 
 ## Create Custom Field<code class='post'>POST</code>
@@ -603,13 +692,16 @@ CURRENCY_ID | ID of the currency being deleted
 }
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
-  "id": 1,
-  "field_label": "Subsidiary",
-  "field_required": 1
+    "data": {
+        "id": 54,
+        "field_label": "Subsidary",
+        "field_required": true
+    },
+    "metadata": {}
 }
 ```
 
@@ -618,6 +710,10 @@ This endpoint creates a custom field.
 ### HTTP Request
 
 `POST https://example.procurify.com/api/v3/integrations/netsuite/custom-fields/`
+
+### HTTP Response Status Code
+
+201 Created
 
 ### Arguments
 
@@ -646,13 +742,16 @@ ID of the integration object.
 }
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
-  "id": 1,
-  "field_label": "Subsidiary",
-  "field_required": 1
+    "data": {
+        "id": 54,
+        "field_label": "Subsidary",
+        "field_required": true
+    },
+    "metadata": {}
 }
 ```
 
@@ -667,6 +766,10 @@ This endpoint updates a specific custom field.
 Parameter | Description
 --------- | -----------
 CUSTOM_FIELD_ID | ID of the custom field being updated
+
+### HTTP Response Status Code
+
+200 OK
 
 ### Arguments
 
@@ -686,19 +789,31 @@ ID of the integration object.
 
 ## Get Departments<code class='get'>GET</code>
 
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
-[
-    {
-      "id": 1,
-      "name": "Accounting",
-      "branch_id": 1,
-      "active": 1,
-      "external_id": "1234",
-      "custom_fields": {}
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "Accounting",
+            "branch_id": 1,
+            "active": true,
+            "external_id": "1234",
+            "custom_fields": {}
+        }
+    ],
+    "metadata": {
+        "pagination": {
+            "count": 1,
+            "next": null,
+            "previous": null,
+            "page_size": 10,
+            "num_pages": 1,
+            "current_page": 1
+        }
     }
-]
+}
 ```
 
 This endpoint retrieves a list of departments with specific status.
@@ -713,6 +828,10 @@ Parameter | Description
 --------- | -----------
 STATUS | status can be "pending", "synced", or "error"
 
+### HTTP Response Status Code
+
+200 OK
+
 ## Create Department<code class='post'>POST</code>
 
 > The above command accepts a POST body:
@@ -724,16 +843,19 @@ STATUS | status can be "pending", "synced", or "error"
 }
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
-  "id": 1,
-  "name": "Accounting",
-  "branch_id": 1,
-  "active": 1,
-  "external_id": "1234",
-  "custom_fields": {}
+    "data": {
+        "id": 818,
+        "name": "Accounting",
+        "branch_id": 1,
+        "active": true,
+        "external_id": "1234",
+        "custom_fields": {}
+    },
+    "metadata": {}
 }
 ```
 
@@ -746,6 +868,10 @@ Departments are created for ALL locations in Procurify.
 ### HTTP Request
 
 `POST https://example.procurify.com/api/v3/integrations/netsuite/departments/`
+
+### HTTP Response Status Code
+
+201 Created
 
 ### Arguments
 
@@ -762,21 +888,23 @@ ID of the integration object.
 ```json
 {
   "name": "Accounting",
-  "branch_id": 1,
   "external_id": 4321
 }
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
-  "id": 1,
-  "name": "Accounting",
-  "branch_id": 1,
-  "active": 1,
-  "external_id": "1234",
-  "custom_fields": {}
+    "data": {
+        "id": 818,
+        "name": "Accounting",
+        "branch_id": 1,
+        "active": true,
+        "external_id": "4321",
+        "custom_fields": {}
+    },
+    "metadata": {}
 }
 ```
 
@@ -792,14 +920,14 @@ Parameter | Description
 --------- | -----------
 DEPARTMENT_ID | ID of the department being updated
 
+### HTTP Response Status Code
+
+200 OK
 
 ### Arguments
 
 <code>name</code><span class="required-tag">required</span><br />
 Department name.
-
-<code>branch_id</code><br />
-ID of parent location.
 
 <code>external_id</code><span class="required-tag">required</span><br />
 ID of the integration object.
@@ -822,15 +950,20 @@ Parameter | Description
 --------- | -----------
 DEPARTMENT_ID | ID of the department being deleted
 
+### HTTP Response Status Code
+
+204 No Content
+
 
 
 ## Get Locations<code class='get'>GET</code>
 
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
-[
-    {
+{
+    "data": [
+      {
         "id": 1,
         "name": "Procurify",
         "url": "httpss://www.procurify.com/",
@@ -861,8 +994,19 @@ DEPARTMENT_ID | ID of the department being deleted
         "active": 1,
         "external_id": "1234",
         "custom_fields": {}
+      }
+    ],
+    "metadata": {
+        "pagination": {
+            "count": 1,
+            "next": null,
+            "previous": null,
+            "page_size": 10,
+            "num_pages": 1,
+            "current_page": 1
+        }
     }
-]
+}
 ```
 
 This endpoint retrieves a list of locations with specific status.
@@ -876,6 +1020,10 @@ This endpoint retrieves a list of locations with specific status.
 Parameter | Description
 --------- | -----------
 STATUS | status can be "pending", "synced", or "error"
+
+### HTTP Response Status Code
+
+200 OK
 
 ## Create Location<code class='post'>POST</code>
 
@@ -909,40 +1057,54 @@ STATUS | status can be "pending", "synced", or "error"
 }
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
-	"id": 1,
-	"name": "Procurify",
-	"url": "httpss://www.procurify.com/",
-	"logo": "procurify-logo.png",
-	"phone_one": "1 888-463-5254",
-	"fax": "1 888-463-5254",
-	"email": "procurify@procurify.com",
-	"primary_billing_address": {
-		"id": 1,
-		"name": "Procurify",
-		"addressLineOne": "455 Granville St",
-		"city": "Vancouver",
-		"postal_code": "V6C 1T1",
-		"state_province": "British Columbia",
-		"country": "Canada"
-	},
-	"primary_shipping_address": {
-		"id": 2,
-		"name": "Procurify",
-		"addressLineOne": "455 Granville St",
-		"city": "Vancouver",
-		"postal_code": "V6C 1T1",
-		"state_province": "British Columbia",
-		"country": "Canada"
-	},
-	"language": 1,
-	"location_timezone": "Asia/Singapore",
-	"active": 1,
-	"external_id": "1234",
-	"custom_fields": {}
+    "data": [
+      {
+        "id": 1,
+        "name": "Procurify",
+        "url": "httpss://www.procurify.com/",
+        "logo": "procurify-logo.png",
+        "phone_one": "1 888-463-5254",
+        "fax": "1 888-463-5254",
+        "email": "procurify@procurify.com",
+        "primary_billing_address": {
+            "id": 1,
+            "name": "Procurify",
+            "addressLineOne": "455 Granville St",
+            "city": "Vancouver",
+            "postal_code": "V6C 1T1",
+            "state_province": "British Columbia",
+            "country": "Canada"
+        },
+        "primary_shipping_address": {
+            "id": 2,
+            "name": "Procurify",
+            "addressLineOne": "455 Granville St",
+            "city": "Vancouver",
+            "postal_code": "V6C 1T1",
+            "state_province": "British Columbia",
+            "country": "Canada"
+        },
+        "language": 1,
+        "location_timezone": "Asia/Singapore",
+        "active": 1,
+        "external_id": "1234",
+        "custom_fields": {}
+      }
+    ],
+    "metadata": {
+        "pagination": {
+            "count": 1,
+            "next": null,
+            "previous": null,
+            "page_size": 10,
+            "num_pages": 1,
+            "current_page": 1
+        }
+    }
 }
 ```
 
@@ -951,6 +1113,10 @@ This endpoint creates a location.
 ### HTTP Request
 
 `POST https://example.procurify.com/api/v3/integrations/netsuite/locations/`
+
+### HTTP Response Status Code
+
+201 Created
 
 ### Arguments
 
@@ -1010,40 +1176,54 @@ ID of the integration object.
 }
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
-	"id": 1,
-	"name": "Procurify",
-	"url": "httpss://www.procurify.com/",
-	"logo": "procurify-logo.png",
-	"phone_one": "1 888-463-5254",
-	"fax": "1 888-463-5254",
-	"email": "procurify@procurify.com",
-	"primary_billing_address": {
-		"id": 1,
-		"name": "Procurify",
-		"addressLineOne": "455 Granville St",
-		"city": "Vancouver",
-		"postal_code": "V6C 1T1",
-		"state_province": "British Columbia",
-		"country": "Canada"
-	},
-	"primary_shipping_address": {
-		"id": 2,
-		"name": "Procurify",
-		"addressLineOne": "455 Granville St",
-		"city": "Vancouver",
-		"postal_code": "V6C 1T1",
-		"state_province": "British Columbia",
-		"country": "Canada"
-	},
-	"language": 1,
-	"location_timezone": "Asia/Singapore",
-	"active": 1,
-	"external_id": "1234",
-	"custom_fields": {}
+    "data": [
+      {
+        "id": 1,
+        "name": "Procurify",
+        "url": "httpss://www.procurify.com/",
+        "logo": "procurify-logo.png",
+        "phone_one": "1 888-463-5254",
+        "fax": "1 888-463-5254",
+        "email": "procurify@procurify.com",
+        "primary_billing_address": {
+            "id": 1,
+            "name": "Procurify",
+            "addressLineOne": "455 Granville St",
+            "city": "Vancouver",
+            "postal_code": "V6C 1T1",
+            "state_province": "British Columbia",
+            "country": "Canada"
+        },
+        "primary_shipping_address": {
+            "id": 2,
+            "name": "Procurify",
+            "addressLineOne": "455 Granville St",
+            "city": "Vancouver",
+            "postal_code": "V6C 1T1",
+            "state_province": "British Columbia",
+            "country": "Canada"
+        },
+        "language": 1,
+        "location_timezone": "Asia/Singapore",
+        "active": 1,
+        "external_id": "1234",
+        "custom_fields": {}
+      }
+    ],
+    "metadata": {
+        "pagination": {
+            "count": 1,
+            "next": null,
+            "previous": null,
+            "page_size": 10,
+            "num_pages": 1,
+            "current_page": 1
+        }
+    }
 }
 ```
 
@@ -1059,6 +1239,9 @@ Parameter | Description
 --------- | -----------
 LOCATION_ID | ID of the location being updated
 
+### HTTP Response Status Code
+
+200 OK
 
 ### Arguments
 
@@ -1100,23 +1283,47 @@ Parameter | Description
 --------- | -----------
 LOCATION_ID | ID of the location being deleted
 
+### HTTP Response Status Code
+
+204 No Content
+
 
 
 ## Get Object Maps<code class='get'>GET</code>
 
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
-[
-    {
-      "id": 1,
-      "object_id": 1,
-      "status": 1,
-      "name": "",
-      "content_type": 27,
-      "external_id": "1234"
+{
+    "data": [
+        {
+            "id": 1,
+            "object_id": 151,
+            "status": 1,
+            "name": "",
+            "content_type": 23,
+            "external_id": ""
+        },
+        {
+            "id": 2,
+            "object_id": 1,
+            "status": 1,
+            "name": "",
+            "content_type": 23,
+            "external_id": ""
+        }
+    ],
+    "metadata": {
+        "pagination": {
+            "count": 116,
+            "next": "http://shylock.dev.procurify.xyz/api/v3/integrations/netsuite/object-maps/?page=2&status=synced",
+            "previous": null,
+            "page_size": 10,
+            "num_pages": 12,
+            "current_page": 1
+        }
     }
-]
+}
 ```
 
 This endpoint retrieves a list of object maps with specific status.
@@ -1131,30 +1338,37 @@ Parameter | Description
 --------- | -----------
 STATUS | status can be "pending", "synced", or "error"
 
+### HTTP Response Status Code
+
+200 OK
+
 ## Update Object Map<code class='PUT'>PUT</code>
 
 > The above command accepts a PUT body:
 
 ```json
 {
-    "object_id": 1,
-    "content_type": 27,
+    "object_id": 151,
+    "content_type": 23,
     "status": 1,
     "name": "",
     "external_id": "1234"
 }
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
-  "id": 1,
-  "object_id": 1,
-  "status": 1,
-  "name": "",
-  "content_type": 27,
-  "external_id": "1234"
+    "data": {
+        "id": 1,
+        "object_id": 151,
+        "status": 1,
+        "name": "",
+        "content_type": 23,
+        "external_id": "1234"
+    },
+    "metadata": {}
 }
 ```
 
@@ -1170,6 +1384,9 @@ Parameter | Description
 --------- | -----------
 OBJECT_MAP_ID | ID of the object map being updated
 
+### HTTP Response Status Code
+
+200 OK
 
 ### Arguments
 
@@ -1208,11 +1425,14 @@ Parameter | Description
 --------- | -----------
 OBJECT_MAP_ID | ID of the object map being deleted
 
+### HTTP Response Status Code
+
+204 No Content
 
 
 ## Get Purchase Orders<code class='get'>GET</code>
 
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
@@ -1333,28 +1553,44 @@ Parameter | Description
 --------- | -----------
 STATUS | status can be "pending", "synced", or "error"
 
+### HTTP Response Status Code
+
+200 OK
+
 
 
 ## Get Vendors<code class='get'>GET</code>
 
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
-[
-    {
-      "id": 1,
-      "name": "Procurify",
-      "active": 1,
-      "address_line_one": "455 Granville St",
-      "address_line_two": "300",
-      "postal_code": "V6C 1T1",
-      "city": "Vancouver",
-      "state_province": "British Columbia",
-      "country": "Canada",
-      "external_id": "1234",
-      "custom_fields": {}
+{
+    "data": [
+        {
+          "id": 1,
+          "name": "Procurify",
+          "active": 1,
+          "address_line_one": "455 Granville St",
+          "address_line_two": "300",
+          "postal_code": "V6C 1T1",
+          "city": "Vancouver",
+          "state_province": "British Columbia",
+          "country": "Canada",
+          "external_id": "1234",
+          "custom_fields": {}
+        }
+    ],
+    "metadata": {
+        "pagination": {
+            "count": 1,
+            "next": null,
+            "previous": null,
+            "page_size": 10,
+            "num_pages": 1,
+            "current_page": 1
+        }
     }
-]
+}
 ```
 
 This endpoint retrieves a list of vendors with specific status.
@@ -1368,6 +1604,10 @@ This endpoint retrieves a list of vendors with specific status.
 Parameter | Description
 --------- | -----------
 STATUS | status can be "pending", "synced", or "error"
+
+### HTTP Response Status Code
+
+200 OK
 
 ## Create Vendor<code class='post'>POST</code>
 
@@ -1386,21 +1626,24 @@ STATUS | status can be "pending", "synced", or "error"
 }
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
-  "id": 1,
-  "name": "Procurify",
-  "active": 1,
-  "address_line_one": "455 Granville St",
-  "address_line_two": "300",
-  "postal_code": "V6C 1T1",
-  "city": "Vancouver",
-  "state_province": "British Columbia",
-  "country": "Canada",
-  "external_id": "1234",
-  "custom_fields": {}
+    "data": {
+        "id": 711,
+        "name": "Procurify,",
+        "active": true,
+        "address_line_one": "455 Granville St",
+        "address_line_two": "300",
+        "postal_code": "V6C 1T1",
+        "city": "Vancouver",
+        "state_province": "British Columbia",
+        "country": "Canada",
+        "external_id": "1234",
+        "custom_fields": {}
+    },
+    "metadata": {}
 }
 ```
 
@@ -1409,6 +1652,10 @@ This endpoint creates a vendor.
 ### HTTP Request
 
 `POST https://example.procurify.com/api/v3/integrations/netsuite/vendors/`
+
+### HTTP Response Status Code
+
+201 Created
 
 ### Arguments
 
@@ -1453,21 +1700,24 @@ ID of the integration object.
 }
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns a JSON structured like this:
 
 ```json
 {
-  "id": 1,
-  "name": "Procurify",
-  "active": 1,
-  "address_line_one": "455 Granville St",
-  "address_line_two": "300",
-  "postal_code": "V6C 1T1",
-  "city": "Vancouver",
-  "state_province": "British Columbia",
-  "country": "Canada",
-  "external_id": "1234",
-  "custom_fields": {}
+    "data": {
+        "id": 711,
+        "name": "Procurify,",
+        "active": true,
+        "address_line_one": "455 Granville St",
+        "address_line_two": "300",
+        "postal_code": "V6C 1T1",
+        "city": "Vancouver",
+        "state_province": "British Columbia",
+        "country": "Canada",
+        "external_id": "1234",
+        "custom_fields": {}
+    },
+    "metadata": {}
 }
 ```
 
@@ -1483,6 +1733,9 @@ Parameter | Description
 --------- | -----------
 VENDOR_ID | ID of the vendor being updated
 
+### HTTP Response Status Code
+
+200 OK
 
 ### Arguments
 
@@ -1523,3 +1776,7 @@ This endpoint deletes a specific vendor.
 Parameter | Description
 --------- | -----------
 VENDOR_ID | ID of the vendor being deleted
+
+### HTTP Response Status Code
+
+204 No Content
