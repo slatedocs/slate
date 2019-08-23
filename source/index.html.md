@@ -136,7 +136,7 @@ JWT は、base64 エンコードされた、 JSON 形式の header と payload �
 
 ### iss
 
-`iss` は、トークンの発行者を示すデータです。`access_key_id` もしくは、トークンを発行するサーバーのドメインなどをセットしてください。任意に設定していただいても大丈夫です。この情報は検証されません。
+`iss` は、トークンの発行者を示すデータです。`access_key_id` を設定してください。
 
 ### sub
 
@@ -344,6 +344,7 @@ JWT は、クライアントサイドで生成することを推奨していま�
 Session Queue とは、実行キューのことです。実行が要求されると直ちに作成されます。
 Session Queue が作成された時に実行可能なロボットがあれば、ただちに実行が試みられます。
 実行が試みられると同時にロボットが割り当てられ、Session が作成されます。
+params 内のオブジェクトとして設定した key と value は、ワークフロー内で定義した変数の初期値を定義します。
 
 ## 実行キューを作成する
 
@@ -353,7 +354,11 @@ Session Queue が作成された時に実行可能なロボットがあれば、
 curl --location --request POST "https://api.roboticcrowd.com/v1/session_queues" \
   --header "Authorization: Bearer [jwt_token]" \
   --data "{
-  \"workflow_id\": [workflow_id]
+  \"workflow_id\": [workflow_id],
+  \"params\": {
+    \"var1\": \"this is string\",
+    \"var2\": [\"this\", \"is\", \"array\"]
+  }
 }"
 ```
 
@@ -370,6 +375,10 @@ curl --location --request POST "https://api.roboticcrowd.com/v1/session_queues" 
   "workflow": {
     "id": 12341234,
     "name": "Awesome Workflow."
+  },
+  "params": {
+    var1: "this is string",
+    var2: ["this", "is", "array"]
   },
   "robot": {
     "id": 12341234,
@@ -398,6 +407,17 @@ POST https://api.roboticcrowd.com/v1/session_queues
 **説明**
 
 ワークフローを指定する ID です。ワークフロー ID は、Robotic Crowd のプロジェクト画面から確認できます。
+
+#### params
+
+**初期値**
+
+無し、任意
+
+**説明**
+
+ワークフロー内で使用される変数の初期値を定義します。
+ワークフロー内で未定義の変数を使用することにより実行時に変数を定義することができるようになります。
 
 ### 応答
 
@@ -428,6 +448,10 @@ curl --location --request GET "https://api.roboticcrowd.com/v1/session_queues?pa
         "id": 123123,
         "name": "test"
       },
+      "params": {
+        var1: "this is string",
+        var2: ["this", "is", "array"]
+      },
       "robot": {
         "id": 12341234,
         "name": "sunaba-1"
@@ -444,6 +468,10 @@ curl --location --request GET "https://api.roboticcrowd.com/v1/session_queues?pa
         "id": 12341234,
         "name": "test"
       },
+      "params": {
+        var1: "this is string",
+        var2: ["this", "is", "array"]
+      },
       "robot": {
         "id": 12341234,
         "name": "sunaba-2"
@@ -459,6 +487,10 @@ curl --location --request GET "https://api.roboticcrowd.com/v1/session_queues?pa
       "workflow": {
         "id": 12341234,
         "name": "test"
+      },
+      "params": {
+        var1: "this is string",
+        var2: ["this", "is", "array"]
       },
       "robot": {
         "id": 12341234,
