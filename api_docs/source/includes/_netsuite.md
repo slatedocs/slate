@@ -1315,11 +1315,11 @@ LOCATION_ID | ID of the location being deleted
     ],
     "metadata": {
         "pagination": {
-            "count": 116,
-            "next": "http://shylock.dev.procurify.xyz/api/v3/integrations/netsuite/object-maps/?page=2&status=synced",
+            "count": 2,
+            "next": null,
             "previous": null,
             "page_size": 10,
-            "num_pages": 12,
+            "num_pages": 1,
             "current_page": 1
         }
     }

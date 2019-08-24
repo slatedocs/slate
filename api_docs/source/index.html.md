@@ -9,6 +9,7 @@ toc_footers:
 
 includes:
   - netsuite
+  - metadata
   - errors
 
 search: true
