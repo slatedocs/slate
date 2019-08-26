@@ -157,6 +157,7 @@ During this phase the client can give commands to the server. The server will re
  },
  "billing_address" : {
     "isPrimary": 2,
+	"addressType":"B",
     "address1": "Nablus",
     "address2": "Rafidia",
     "address3": "-",
@@ -266,7 +267,7 @@ bottomTextArea | (STRING) Key, value pair will show at the bottom of the receipt
 
 Parameters | Short Description | Required 
 ---- | ----------- | -----------
-addressType | U: User | Yes
+addressType | B: Billing address | Yes
 memberId | Loyalty Customer Member ID | No
 status | Status of address. Value: A | Yes
 isPrimary | Value: 1 | Yes
