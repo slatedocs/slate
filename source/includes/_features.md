@@ -146,6 +146,8 @@ require 'scout_apm/auto_instrument'</pre>
   </tbody>
 </table>
 
+AutoInstruments isn't compatible with [Bootsnap](https://github.com/Shopify/bootsnap). Disable Bootsnap before using AutoInstruments.
+
 ## ScoutProf
 
 <aside class="notice">ScoutProf will be deprecated and succeeded by <a href="#autoinstruments">AutoInstruments</a>.</aside>
