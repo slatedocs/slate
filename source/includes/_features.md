@@ -19,13 +19,13 @@ You can sort traces by response time, object allocations, date, and more.
 
 ## Transaction Traces
 
-Scout collects detailed transactions across your web endpoints and background jobs automatically. The transaction traces provide a number of visual queues to direct you to hotspots. Dig into bottlenecks - down to the line-of-code, author, commit date, and deploy time - from this view. 
+Scout collects detailed transactions across your web endpoints and background jobs automatically. The transaction traces provide a number of visual queues to direct you to hotspots. Dig into bottlenecks - down to the line-of-code, author, commit date, and deploy time - from this view.
 
 ![transaction traces](trace_timeline.png)
 
 ### SQL Queries
 
-Scout captures a sanitized version of SQL queries. Click the "SQL" button next to a call to view details. 
+Scout captures a sanitized version of SQL queries. Click the "SQL" button next to a call to view details.
 
 ![stream show sql](stream_show_sql_annotated.png)
 
@@ -58,7 +58,7 @@ Method calls are aggregated together and listed from most expensive to least exp
 
 #### Timeline View
 
-See the execution order of your code. 
+See the execution order of your code.
 
 ![trace timeline](trace_timeline_annotated.png)
 
@@ -85,7 +85,7 @@ What was the slowest request yesterday? How has the app performed for `user@doma
 
 ![crossfilter](https://s3-us-west-1.amazonaws.com/scout-blog/s_vs_nr/crossfilter.gif)
 
-Trace Explorer is accessed via the "Traces" navigation link when viewing an app. 
+Trace Explorer is accessed via the "Traces" navigation link when viewing an app.
 
 ### How to use Trace Explorer
 
@@ -119,7 +119,7 @@ AutoInstruments is a BETA feature and available to apps using Ruby 2.3.1+. To en
         <span class="step">1</span>
       </td>
       <td>
-        <p>Modify your <code>Gemfile</code> entry for <code>scout_apm</code>, 
+        <p>Modify your <code>Gemfile</code> entry for <code>scout_apm</code>,
           changing it to:</p>
           <pre>gem 'scout_apm', git: 'https://github.com/scoutapp/scout_apm_ruby.git', branch: 'auto_instruments'
 </pre>
@@ -129,24 +129,12 @@ AutoInstruments is a BETA feature and available to apps using Ruby 2.3.1+. To en
       <td><span class="step">2</span></td>
       <td><p>Within your Rails app's directory, run:</p><pre>bundle update scout_apm</pre></td>
     </tr>
-    <tr>
-      <td><span class="step">2</span></td>
-      <td>
-        <p>In your <code>config/boot.rb</code> add:</p>
-        <pre>
-# Added AFTER `File.expand_path('../../Gemfile', __FILE__)`
-# But BEFORE `require 'bundler/setup'`
-require 'scout_apm/auto_instrument'</pre>
-      </td>
-    </tr>
       <tr>
       <td><span class="step">3</span></td>
       <td><p>Deploy</p></td>
     </tr>
   </tbody>
 </table>
-
-AutoInstruments isn't compatible with [Bootsnap](https://github.com/Shopify/bootsnap). Disable Bootsnap before using AutoInstruments.
 
 ## ScoutProf
 
@@ -376,11 +364,10 @@ You can embed an app's overview chart inside another web page (ex: an internal k
 
 ![chart_embed](chart_embed.png)
 
-Note that you'll need to update the provided iframe url with a Scout API key. 
+Note that you'll need to update the provided iframe url with a Scout API key.
 
 When clicking on an embedded chart, you'll be redirected to the relevant application.
 
 ## Data Retention
 
 Scout stores 30 days of metrics and seven days of transaction traces.
-
