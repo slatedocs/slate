@@ -531,7 +531,13 @@ This endpoint retrieves a list content types.
 
 ### HTTP Request
 
-`GET https://example.procurify.com/api/v3/integrations/netsuite/content-types/`
+`GET https://example.procurify.com/api/v3/integrations/netsuite/content-types/?model=<MODEL>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+MODEL | Filter Contenty Types by model name
 
 ### HTTP Response Status Code
 
@@ -1300,7 +1306,6 @@ LOCATION_ID | ID of the location being deleted
             "id": 1,
             "object_id": 151,
             "status": 1,
-            "name": "",
             "content_type": 23,
             "external_id": ""
         },
@@ -1308,7 +1313,6 @@ LOCATION_ID | ID of the location being deleted
             "id": 2,
             "object_id": 1,
             "status": 1,
-            "name": "",
             "content_type": 23,
             "external_id": ""
         }
@@ -1342,17 +1346,17 @@ STATUS | status can be "pending", "synced", or "error"
 
 200 OK
 
-## Update Object Map<code class='PUT'>PUT</code>
+## Upsert Object Map<code class='post'>POST</code>
 
-> The above command accepts a PUT body:
+> The above command accepts a POST body:
 
 ```json
 {
     "object_id": 151,
     "content_type": 23,
     "status": 1,
-    "name": "",
-    "external_id": "1234"
+    "external_id": "1234",
+    "message": "Error Message"
 }
 ```
 
@@ -1364,7 +1368,6 @@ STATUS | status can be "pending", "synced", or "error"
         "id": 1,
         "object_id": 151,
         "status": 1,
-        "name": "",
         "content_type": 23,
         "external_id": "1234"
     },
@@ -1372,17 +1375,11 @@ STATUS | status can be "pending", "synced", or "error"
 }
 ```
 
-This endpoint updates a specific object map.
+This endpoint upserts an object map.
 
 ### HTTP Request
 
-`PUT https://example.procurify.com/api/v3/integrations/netsuite/object-maps/<OBJECT_MAP_ID>/`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-OBJECT_MAP_ID | ID of the object map being updated
+`POST https://example.procurify.com/api/v3/integrations/netsuite/object-maps/`
 
 ### HTTP Response Status Code
 
@@ -1410,6 +1407,9 @@ Object map name.
 
 <code>external_id</code><span class="required-tag">required</span><br />
 ID of the integration object.
+
+<code>message</code><br />
+Optional message to save to integration logs.
 
 ## Delete Object Map<code class='delete'>DELETE</code>
 
