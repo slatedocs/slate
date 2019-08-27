@@ -151,6 +151,7 @@ includes:
   - validate_user
   - validate_user_and_password
   - dashboard2
+  - dismiss_alert
   - pub_sub
 
   - using_the_api
