@@ -107,8 +107,10 @@ html, body {
       height: 30px;
 
       &:not(:focus) {
-        background-color: #edf1f2;
-        border-color: #edf1f2;
+        &:not(.visible) {
+          background-color: #edf1f2;
+          border-color: #edf1f2;
+        }
       }
     }
 
@@ -123,7 +125,6 @@ html, body {
   }
 
   .search-results {
-    margin-top: 0;
     box-sizing: border-box;
     height: 0;
     overflow-y: auto;
@@ -134,8 +135,10 @@ html, body {
     background: $nav-subitem-bg;
 
     &.visible {
-      height: 30%;
-      margin-bottom: 1em;
+      height: 70%;
+      margin: -10px $nav-padding 1em $nav-padding;
+      box-shadow: $boxShadow-small;
+      border-radius: 4px;
     }
 
     li {
@@ -954,4 +957,33 @@ pre {
   & + .table-holder {
     display: none;
   }
+}
+
+.beta-feedback-holder {
+  @include text-all($text-body);
+
+  padding: 0 $spacing-s;
+  text-align: center;
+  margin-top: -$spacing-xxs;
+
+  .beta-indicator {
+    color: $purple;
+    text-transform: uppercase;
+    padding-right: $spacing-xs;
+  }
+
+  .feedback-link {
+    color: $gray-7;
+    border-bottom: 1px dotted $gray-7;
+
+    &:hover {
+      background-color: transparent;
+      color: $teal;
+      border-bottom: 1px solid $teal;
+    }
+  }
+}
+
+.lang-selector {
+  display: none !important;
 }

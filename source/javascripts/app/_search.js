@@ -56,16 +56,17 @@
   }
 
   function search(event) {
-
-    var searchInput = $('#input-search')[0];
+    var searchInputDom = $('#input-search');
+    var searchInput = searchInputDom[0];
 
     unhighlight();
     searchResults.addClass('visible');
+    searchInputDom.addClass('visible');
 
     // ESC clears the field
     if (event.keyCode === 27) searchInput.value = '';
 
-    if (searchInput.value) {
+    if (searchInput.value && searchInput.value.length > 2) {
       var results = index.search(searchInput.value).filter(function(r) {
         return r.score > 0.0001;
       });
@@ -84,6 +85,7 @@
     } else {
       unhighlight();
       searchResults.removeClass('visible');
+      searchInputDom.removeClass('visible');
     }
   }
 

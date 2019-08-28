@@ -122,6 +122,9 @@ under the License.
     </a>
     <div class="toc-wrapper">
       <%= image_tag "logo.png", class: 'logo' %>
+      <div class="beta-feedback-holder">
+        <span class="beta-indicator">BETA</span><a class="feedback-link" href="https://form-beta.asana.com?hash=c439d6062b165442b3d40383ab2f95cac08176b5b8ced11cf47817743a704728&id=1137609721785458">Send Feedback</a>
+      </div>
       <% if language_tabs.any? %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>
@@ -135,7 +138,7 @@ under the License.
       <% end %>
       <% if current_page.data.search %>
         <div class="search">
-          <input type="text" class="search" id="input-search" placeholder="Search">
+          <input type="text" class="search" id="input-search" placeholder="Search" autocomplete="off">
         </div>
         <ul class="search-results"></ul>
       <% end %>
