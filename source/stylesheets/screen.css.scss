@@ -142,13 +142,14 @@ html, body {
     }
 
     li {
-      margin: 1em $nav-padding;
       line-height: 1;
     }
 
     a {
+      padding: 0.5em $nav-padding;
       color: $nav-text;
       text-decoration: none;
+      display: block;
     }
   }
 
