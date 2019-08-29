@@ -57,15 +57,18 @@ tags:
 
       #### Making a Batch Request
 
+
       To make a batch request, send a `POST` request to `/batch`. Like other
       `POST` endpoints, the body should contain a `data` envelope. Inside this
       envelope should be a single `actions` field, containing a list of
       “action” objects.  Each action represents a standard request to an
       existing endpoint in the Asana API.
 
+
       **The maximum number of actions allowed in a single batch request is 10**.
       Making a batch request with no actions in it will result in a `400 Bad
       Request`.
+
 
       When the batch API receives the list of actions to execute, it will
       dispatch those actions to the already-implemented endpoints specified by
@@ -75,11 +78,13 @@ tags:
       there a way to use the output of one action as the input of another
       action (such as creating a task and then commenting on it).
 
+
       The response to the batch request will contain (within the `data`
       envelope) a list of result objects, one for each action. The results are
       guaranteed to be in the same order as the actions in the request, e.g.,
       the first result in the response corresponds to the first action in the
       request.
+
 
       The batch API will always attempt to return a `200 Success` response with
       individual result objects for each individual action in the request. Only
@@ -89,7 +94,9 @@ tags:
       return a `200 Success` response, and each result object in the response
       will contain the errors encountered with each action.
 
+
       #### Rate Limiting
+
 
       The batch API fully respects all of our rate limiting. This means that a
       batch request counts against *both* the standard rate limiter and the
@@ -99,12 +106,15 @@ tags:
       and counts as five concurrent requests in the concurrent request limiter.
       The batch request itself incurs no cost.
 
+
       If any of the actions in a batch request would exceed any of the enforced
       limits, the *entire* request will fail with a `429 Too Many Requests`
       error. This is to prevent the unpredictability of which actions might
       succeed if not all of them could succeed.
 
+
       #### Restrictions
+
 
       Not every endpoint can be accessed through the batch API.
       Specifically, the following actions cannot be taken and will result in a
@@ -127,11 +137,11 @@ tags:
       addition to the built-in fields that Asana provides.
 
 
-      **Note:** Custom Fields are a premium feature.
-      Integrations which work with Custom Fields need to handle an assortment of
-      use cases for free and premium users in context of free and premium
-      organizations. For a detailed examination of to what data users will have
-      access in different circumstances, read the section below on
+      **Note:** Custom Fields are a premium feature. Integrations which work
+      with Custom Fields need to handle an assortment of use cases for free and
+      premium users in context of free and premium organizations. For a detailed
+      examination of to what data users will have access in different
+      circumstances, read the section below on
       [access control](#access-control).
 
 
@@ -210,43 +220,89 @@ tags:
       On the Task's Custom Field value, the enum will have an `enum_value`
       property which will be the same as one of the choices from the list
       defined in the Custom Field metadata.
-
-
-      The [Custom Field API Reference](/developers/api-reference/custom_fields)
-      contains information about the specifics of how to use Custom Fields in
-      conjunction with Asana's API.
   - name: Custom Field Settings
     description: >-
-      Custom Fields Settings objects represent the many-to-many join of
-      the Custom Field and Project as well as stores information that is
-      relevant to that particular pairing.
+      Custom fields are attached to a particular project with the Custom
+      Field Settings resource. This resource both represents the
+      many-to-many join of the Custom Field and Project as well as stores
+      information that is relevant to that particular pairing; for instance,
+      the `is_important` property determines some possible
+      application-specific handling of that custom field.
   - name: Events
     description: >-
-      An event is an object representing a change to a resource that was
+      An *event* is an object representing a change to a resource that was
       observed by an event subscription.
+
+
+      In general, requesting events on a resource is faster and subject to
+      higher rate limits than requesting the resource itself. Additionally,
+      change events bubble up - listening to events on a project would include
+      when stories are added to tasks in the project, even on subtasks.
+
+
+      Establish an initial sync token by making a request with no sync token.
+      The response will be a `412` error - the same as if the sync token had
+      expired.
+
+
+      Subsequent requests should always provide the sync token from the
+      immediately preceding call.
+
+
+      Sync tokens may not be valid if you attempt to go ‘backward’ in the
+      history by requesting previous tokens, though re-requesting the current
+      sync token is generally safe, and will always return the same results.
+
+
+      When you receive a `412 Precondition Failed` error, it means that the
+      sync token is either invalid or expired. If you are attempting to keep a
+      set of data in sync, this signals you may need to re-crawl the data.
+
+
+      Sync tokens always expire after 24 hours, but may expire sooner,
+      depending on load on the service.
   - name: Jobs
     description: >-
       Jobs represent processes that handle asynchronous work.
 
-      Jobs are created when an endpoint requests an action that will be handled asynchronously.
-      Such as project or task duplication.
+      Jobs are created when an endpoint requests an action that will be handled
+      asynchronously. Such as project or task duplication.
 
-      Only the creator of the duplication process can access the duplication status
+      Only the creator of the duplication process can access the duplication
+      status
       of the new object.
   - name: Organization Exports
     description: >-
       An *organization_export* object represents a request to export the
       complete data of an Organization in JSON format.
+
+
+      To export an Organization using this API:
+
+
+      * Create an `organization_export`
+        [request](#create-an-organization-export-request)
+        and store the id that is returned.
+      * Request the `organization_export` every few minutes, until the
+        `state` field contains ‘finished’.
+      * Download the file located at the URL in the `download_url` field.
+      * Exports can take a long time, from several minutes to a few hours
+        for large Organizations.
+
+
+      *Note: These endpoints are only available to [Service
+      Accounts](https://asana.com/guide/help/premium/service-accounts) of an
+      [Enterprise](https://asana.com/enterprise) Organization.*
   - name: Portfolios
     description: >-
       A 'portfolio' gives a high-level overview of the status of multiple
       initiatives in Asana. Portfolios provide a dashboard overview of the
       state of multiple projects, including a progress report and the most
-      recent [project status](https://asana.com/developers/api-reference/project_statuses)
+      recent [project status](#asana-project-statuses)
       update.
 
-      Portfolios have some restrictions on size. Each portfolio has a max of 250 items
-      and, like projects, a max of 20 custom fields.
+      Portfolios have some restrictions on size. Each portfolio has a max of 250
+      items and, like projects, a max of 20 custom fields.
   - name: Portfolio Memberships
     description: >-
       This object determines if a user is a member of a portfolio.
@@ -256,6 +312,20 @@ tags:
       with columns of tasks represented as cards. It exists in a single
       workspace or organization and is accessible to a subset of users in that
       workspace or organization, depending on its permissions.
+
+
+      Projects in organizations are shared with a single team. You cannot
+      currently change the team of a project via the API. Non-organization
+      workspaces do not have teams and so you should not specify the team of
+      project in a regular workspace.
+
+
+      Followers of a project are a subset of the members of that project.
+      Followers of a project will receive all updates including tasks
+      created, added and removed from that project. Members of the project
+      have access to and will receive status updates of the project. Adding
+      followers to a project will add them as members if they are not
+      already, removing followers from a project will not affect membership.
   - name: Project Memberships
     description: >-
       With the introduction of “comment-only” projects in Asana, a user’s
@@ -271,21 +341,64 @@ tags:
       represent the overall state of the project: “green” for projects that
       are on track, “yellow” for projects at risk, and “red” for projects that
       are behind.
+
+
+      Project statuses can be created and deleted, but not modified.
   - name: Sections
     description: >-
       A *section* is a subdivision of a project that groups tasks together.
+      It can either be a header above a list of tasks in a list view or a
+      column in a board view of a project.
+
+
+      Sections are largely a shared idiom in Asana’s API for both list and
+      board views of a project regardless of the project’s layout.
+
+
+      The ‘memberships’ property when
+      [getting a task](#get-a-task)
+      will return the information for the section or the column under
+      ‘section’ in the response.
   - name: Stories
     description: >-
-      A story represents an activity associated with an object in the Asana
-      system.
+      *See [our forum post](https://forum.asana.com/t/no-more-parsing-story-text-new-fields-on-stories/42924)
+      for more info on when conditional fields are returned.*
+
+
+      A *story* represents an activity associated with an object in the
+      Asana system. Stories are generated by the system whenever users take
+      actions such as creating or assigning tasks, or moving tasks between
+      projects. *Comments* are also a form of user-generated story.
   - name: Tags
     description: >-
       A tag is a label that can be attached to any task in Asana. It exists in
       a single workspace or organization.
+
+
+      Tags have some metadata associated with them, but it is possible that
+      we will simplify them in the future so it is not encouraged to rely
+      too heavily on it. Unlike projects, tags do not provide any ordering
+      on the tasks they are associated with.
   - name: Tasks
     description: >-
       The task is the basic object around which many operations in Asana are
-      centered.
+      centered. In the Asana application, multiple tasks populate the
+      middle pane according to some view parameters, and the set of selected
+      tasks determines the more detailed information presented in the
+      details pane.
+
+
+      Sections are unique in that they will be included in the *memberships*
+      field of task objects returned in the API when the task is within a
+      section. They can also be used to manipulate the ordering of a task
+      within a project.
+
+
+      [Queries](#get-a-set-of-tasks)
+      return a compact representation of each object which is typically the
+      id and name fields. Interested in a specific set of fields or all of
+      the fields? Use [field selectors](#input-output-options)
+      to manipulate what data is included in a response.
   - name: Team
     description: >-
       A *team* is used to group related projects and people together within an
@@ -298,93 +411,117 @@ tags:
     description: >-
       A user object represents an account in Asana that can be given access to
       various workspaces, projects, and tasks.
+
+
+      Like other objects in the system, users are referred to by numerical
+      IDs. However, the special string identifier `me` can be used anywhere
+      a user ID is accepted, to refer to the current authenticated user.
   - name: User Task Lists
     description: >-
       A user task list represents the tasks assigned to a particular user.
+
+
+      A user’s “My Tasks” represent all of the tasks assigned to that user.
+      It is visually divided into regions based on the task’s
+      [`assignee_status`](#tocS_Task)
+      for Asana users to triage their tasks based on when they can address
+      them. When building an integration it’s worth noting that tasks with
+      due dates will automatically move through `assignee_status` states as
+      their due dates approach; read up on [task
+      auto-promotion](https://asana.com/guide/help/fundamentals/my-tasks#gl-auto-promote)
+      for more information.
   - name: Webhooks
     description: >-
-      Webhooks allow an application to be notified of changes. This is in addition to the ability to fetch those
-      changes directly as [Events](#asana-events) - in fact, Webhooks are just a way to receive
-      Events via HTTP POST at the time they occur instead of polling for them. For services accessible via HTTP this is
-      often vastly more convenient, and if events are not too frequent can be significantly more efficient.
+      Webhooks allow an application to be notified of changes. This is in
+      addition to the ability to fetch those changes directly as
+      [Events](#asana-events) - in fact, Webhooks are just a way to receive
+      Events via HTTP POST at the time they occur instead of polling for them.
+      For services accessible via HTTP this is often vastly more convenient, and
+      if events are not too frequent can be significantly more efficient.
 
 
-      In both cases, however, changes are represented as Event objects - refer to the
-      [Events documentation](#asana-events) for more information on what data these events contain.
+      In both cases, however, changes are represented as Event objects - refer
+      to the [Events documentation](#asana-events) for more information on what
+      data these events contain.
 
 
-      **NOTE:** While Webhooks send arrays of Event objects to their target, the Event objects themselves contain
-      *only IDs*, rather than the actual resource they are referencing. So while a normal event you receive via GET
-      /events would look like an [Event](/#tocS_Event). In a Webhook payload you will instead receive a
-      [WebhookEvent](#tocS_WebhookEvent) (a simplified version of the event object).
+      **NOTE:** While Webhooks send arrays of Event objects to their target, the
+      Event objects themselves contain *only IDs*, rather than the actual
+      resource they are referencing. So while a normal event you receive via GET
+      /events would look like an [Event](/#tocS_Event). In a Webhook payload you
+      will instead receive a [WebhookEvent](#tocS_WebhookEvent) (a simplified
+      version of the event object).
 
 
-      [Webhooks](#tocS_Webhook) themselves contain only the information necessary to deliver the events to the desired
-      target as they are generated.
+      [Webhooks](#tocS_Webhook) themselves contain only the information
+      necessary to deliver the events to the desired target as they are
+      generated.
 
 
       ### Receiving Events
 
 
-      Because multiple events often happen in short succession, a webhook payload is designed to be able to transmit
-      multiple events at once. The exact model of events is described in the
-      [Events documentation](/developers/api-reference/events).
+      Because multiple events often happen in short succession, a webhook
+      payload is designed to be able to transmit multiple events at once. The
+      exact model of events is described in the
+      [Events documentation](#asana-events).
 
 
       The HTTP POST that the target receives contains:
 
 
-       * An `X-Hook-Signature` header, which allows verifying that the payload is genuine.  The signature is a SHA256
-       HMAC using the shared secret (transmitted during the handshake) of the request body. Verification is **strongly
-       recommended**, as it would otherwise be possible for an attacker to POST a malicious payload to the same endpoint.
-       If the target endpoint can be kept secret this risk is mitigated somewhat, of course.
-       * A JSON body with a single key, `events`, containing an array of the events that have occurred since the last
-       webhook delivery. Note that this list may be empty, as periodically we may send a "heartbeat" webhook to verify
-       that the endpoint is available.
+       * An `X-Hook-Signature` header, which allows verifying that the payload
+       is genuine.  The signature is a SHA256 HMAC using the shared secret
+       (transmitted during the handshake) of the request body. Verification is
+       **strongly recommended**, as it would otherwise be possible for an
+       attacker to POST a malicious payload to the same endpoint. If the target
+       endpoint can be kept secret this risk is mitigated somewhat, of course.
+       * A JSON body with a single key, `events`, containing an array of the
+       events that have occurred since the last webhook delivery. Note that this
+       list may be empty, as periodically we may send a "heartbeat" webhook to
+       verify that the endpoint is available.
 
 
-      Note that events are "skinny" - we expect consumers who desire syncing data to make additional calls to the API
-      to retrieve the latest state. Because the data may have already changed by the time we send the event, it would
-      be misleading to send a snapshot of the data along with the event.
+      Note that events are "skinny" - we expect consumers who desire syncing
+      data to make additional calls to the API to retrieve the latest state.
+      Because the data may have already changed by the time we send the event,
+      it would be misleading to send a snapshot of the data along with the
+      event.
 
 
       ### Error Handling and Retry
 
 
-      If we attempt to send a webhook payload and we receive an error status code, or the request times out, we will
-      retry delivery with exponential backoff. In general, if your servers are not available for an hour, you can expect
-      it to take no longer than approximately an hour after they come back before the paused delivery resumes. However,
-      if we are unable to deliver a message for 24 hours the webhook will be deactivated.
+      If we attempt to send a webhook payload and we receive an error status
+      code, or the request times out, we will retry delivery with exponential
+      backoff. In general, if your servers are not available for an hour, you
+      can expect it to take no longer than approximately an hour after they come
+      back before the paused delivery resumes. However, if we are unable to
+      deliver a message for 24 hours the webhook will be deactivated.
   - name: Workspaces
     description: >-
-      A workspace is the highest-level organizational unit in Asana. An
-      organization is a special kind of workspace that represents a company.
+      A *workspace* is the highest-level organizational unit in Asana. All
+      projects and tasks have an associated workspace.
+
+
+      An *organization* is a special kind of workspace that represents a
+      company. In an organization, you can group your projects into teams.
+      You can read more about how organizations work on the Asana Guide. To
+      tell if your workspace is an organization or not, check its
+      `is_organization` property.
+
+
+      Over time, we intend to migrate most workspaces into organizations and
+      to release more organization-specific functionality. We may eventually
+      deprecate using workspace-based APIs for organizations. Currently, and
+      until after some reasonable grace period following any further
+      announcements, you can still reference organizations in any
+      `workspace` parameter.
+  - name: Workspace Memberships
+    description: >-
+      This object determines if a user is a member of a workspace.
 components:
   parameters:
-    expand:
-      name: opt_expand
-      in: query
-      description: >-
-        Expand fields returned.
-
-        Query results and sub-objects are returned in compact form by default.
-        This option can be used to expand query results or sub-objects to
-        return more detailed information. Be sure you really need the
-        information in the expanded form, as executing a query with many
-        results in expanded form can be costly and return you a lot of data to
-        consume.
-
-        If the fields option is also used, it will take precedence over the
-        expand option and prevent expansion.
-      example:
-        - followers
-      required: false
-      schema:
-        type: array
-        items:
-          type: string
-      style: form
-      explode: false
     fields:
       name: opt_fields
       in: query
@@ -582,6 +719,12 @@ components:
       schema:
         type: string
       example: 12345
+    workspace_membership_path_gid:
+      name: workspace_membership_gid
+      in: path
+      required: true
+      schema:
+        type: string
   responses:
     GenericErrorResponse:
       description: >-
@@ -618,8 +761,7 @@ components:
     PaymentRequired:
       description: >-
         The request was valid, but the queried object or object mutation
-        specified in the request is only available to premium organizations and
-        workspaces.
+        specified in the request is above your current premium level.
     Forbidden:
       description: >-
         The authentication and request syntax was valid but the server is
@@ -652,12 +794,31 @@ components:
       description: >-
         There was a problem on Asana’s end.
         In the event of a server error the response body should contain an error
-        phrase. These phrases are automatically generated using the
-        [node-asana-phrase
-        library](https://github.com/Asana/node-asana-phrase) and can be used by
-        Asana support to quickly look up the incident that caused the server
-        error.
+        phrase. These phrases can be used by Asana support to quickly look up the
+        incident that caused the server error.
         Some errors are due to server load, and will not supply an error phrase.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadGateway:
+      description: >-
+        There is an issue between the load balancers and Asana's API.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ServiceUnavailable:
+      description: >-
+        Either the upstream service is unavailable to the API, or he API has been
+        intentionally shut off.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    GatewayTimeout:
+      description: >-
+        This request took too long to complete.
       content:
         application/json:
           schema:
@@ -742,20 +903,16 @@ components:
         - $ref: '#/components/schemas/AttachmentCompact'
         - $ref: '#/components/schemas/AsanaCreatedAt'
         - type: object
-          description: >-
-            An *attachment* object represents any file attached to a task in
-            Asana, whether it’s an uploaded file or one associated via a
-            third-party service such as Dropbox or Google Drive.
           properties:
             download_url:
               description: >-
                 The URL containing the content of the attachment.
 
-                *Note: May be null if the attachment is hosted by
+                *Note:* May be null if the attachment is hosted by
                 [Box](https://www.box.com/). If present, this URL may only be
                 valid for 1 hour from the time of retrieval. You should avoid
                 persisting this URL somewhere and just refresh it on demand to
-                ensure you do not keep stale URLs.*
+                ensure you do not keep stale URLs.
               type: string
               format: uri
               readOnly: true
@@ -788,6 +945,10 @@ components:
       allOf:
         - $ref: '#/components/schemas/AsanaObject'
         - type: object
+          description: >-
+            An *attachment* object represents any file attached to a task in
+            Asana, whether it’s an uploaded file or one associated via a
+            third-party service such as Dropbox or Google Drive.
           properties:
             resource_type:
               example: attachment
@@ -920,34 +1081,11 @@ components:
       allOf:
         - $ref: '#/components/schemas/CustomFieldCompact'
         - type: object
-          description: >-
-            Custom Fields store the metadata that is used in order to
-
-            add user-specified information to tasks in Asana. Be sure
-
-            to reference the [Custom Fields]
-
-            (https://asana.com/developers/documentation/getting-started/custom-fields)
-
-            developer documentation for more information about how custom fields
-
-            relate to various resources in Asana.
-
-
-            Users in Asana can [lock custom fields]
-
-            (https://asana.com/guide/help/premium/custom-fields#gl-lock-fields),
-
-            which will make them read-only when accessed by other users.
-
-            Attempting to edit a locked custom field will return HTTP error code
-
-            `403 Forbidden`.
           properties:
             description:
               description: >-
                 [Opt
-                In](/developers/documentation/getting-started/input-output-options).
+                In](#input-output-options).
                 The description of the custom field.
               type: string
               example: Development team priority
@@ -957,7 +1095,7 @@ components:
                 This array specifies the possible values which an `enum` custom
                 field can adopt. To modify the enum options, refer to [working
                 with enum
-                options](https://asana.com/developers/api-reference/custom_fields#enum-options).
+                options](#create-an-enum-option).
               type: array
               items:
                 $ref: '#/components/schemas/EnumOption'
@@ -974,6 +1112,18 @@ components:
         - $ref: '#/components/schemas/AsanaNamedObject'
         - $ref: '#/components/schemas/AsanaSubtype'
         - type: object
+          description: >-
+            Custom Fields store the metadata that is used in order to
+            add user-specified information to tasks in Asana. Be sure
+            to reference the [Custom Fields](#asana-custom-fields)
+            developer documentation for more information about how custom fields
+            relate to various resources in Asana.
+
+
+            Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/custom-fields#gl-lock-fields),
+            which will make them read-only when accessed by other users.
+            Attempting to edit a locked custom field will return HTTP error code
+            `403 Forbidden`.
           properties:
             resource_type:
               example: custom_field
@@ -993,7 +1143,7 @@ components:
                 This array specifies the possible values which an `enum` custom
                 field can adopt. To modify the enum options, refer to [working
                 with enum
-                options](https://asana.com/developers/api-reference/custom_fields#enum-options).
+                options](#create-an-enum-option).
               type: array
               items:
                 $ref: '#/components/schemas/EnumOptionCompact'
@@ -1031,13 +1181,6 @@ components:
       allOf:
         - $ref: '#/components/schemas/CustomFieldSettingCompact'
         - type: object
-          description: >-
-            Custom fields are attached to a particular project with the Custom
-            Field Settings resource. This resource both represents the
-            many-to-many join of the Custom Field and Project as well as stores
-            information that is relevant to that particular pairing; for instance,
-            the `is_important` property determines some possible
-            application-specific handling of that custom field.
           properties:
             project:
               allOf:
@@ -1078,6 +1221,10 @@ components:
       allOf:
         - $ref: '#/components/schemas/AsanaObject'
         - type: object
+          description: >-
+            Custom Fields Settings objects represent the many-to-many join of the
+            Custom Field and Project as well as stores information that is
+            relevant to that particular pairing.
           properties:
             resource_type:
               example: custom_field_setting
@@ -1130,7 +1277,6 @@ components:
           type: object
     EnumOption:
       allOf:
-        - $ref: '#/components/schemas/AsanaObject'
         - $ref: '#/components/schemas/EnumOptionCompact'
     EnumOptionCompact:
       allOf:
@@ -1138,59 +1284,36 @@ components:
         - type: object
           description: >-
             Enum options are the possible values which an enum custom field can
-
             adopt. An enum custom field must contain at least 1 enum option but no
-
             more than 50.
 
 
             You can add enum options to a custom field by using the `POST
-
             /custom_fields/custom_field_gid/enum_options` endpoint.
 
 
             **It is not possible to remove or delete an enum option**. Instead,
-            enum
-
-            options can be disabled by updating the `enabled` field to false with
-            the
-
-            `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be
-
-            updated similarly.
+            enum options can be disabled by updating the `enabled` field to false
+            with the `PUT /enum_options/enum_option_gid` endpoint. Other
+            attributes can be updated similarly.
 
 
             On creation of an enum option, `enabled` is always set to `true`,
-            meaning
-
-            the enum option is a selectable value for the custom field. Setting
-
-            `enabled=false` is equivalent to “trashing” the enum option in the
-            Asana
-
-            web app within the “Edit Fields” dialog. The enum option will no
-            longer
-
-            be selectable but, if the enum option value was previously set within
-            a
-
-            task, the task will retain the value.
+            meaning the enum option is a selectable value for the custom field.
+            Setting `enabled=false` is equivalent to “trashing” the enum option in
+            the Asana web app within the “Edit Fields” dialog. The enum option
+            will no longer be selectable but, if the enum option value was
+            previously set within a task, the task will retain the value.
 
 
             Enum options are an ordered list and by default new enum options are
-
             inserted at the end. Ordering in relation to existing enum options can
-            be
-
-            specified on creation by using `insert_before` or `insert_after` to
-
+            be specified on creation by using `insert_before` or `insert_after` to
             reference an existing enum option. Only one of `insert_before` and
-
             `insert_after` can be provided when creating a new enum option.
 
 
             An enum options list can be reordered with the `POST
-
             /custom_fields/custom_field_gid/enum_options/insert` endpoint.
           properties:
             resource_type:
@@ -1229,6 +1352,7 @@ components:
         an HTTP Status Code that indicates the nature of the failure,
         with a response body in JSON format containing additional information.
 
+
         In the event of a server error the response body will contain an error
         phrase. These phrases are automatically generated using the
         [node-asana-phrase
@@ -1258,7 +1382,7 @@ components:
                 example: >-
                   For more information on API status codes and how to handle them,
                   read the docs on errors:
-                  https://asana.com/developers/documentation/getting-started/errors'
+                  https://asana.github.io/developer-docs/#errors'
               phrase:
                 type: string
                 readOnly: true
@@ -1271,29 +1395,6 @@ components:
       description: |-
         An *event* is an object representing a change to a resource that was
         observed by an event subscription.
-
-        In general, requesting events on a resource is faster and subject to
-        higher rate limits than requesting the resource itself. Additionally,
-        change events bubble up - listening to events on a project would include
-        when stories are added to tasks in the project, even on subtasks.
-
-        Establish an initial sync token by making a request with no sync token.
-        The response will be a `412` error - the same as if the sync token had
-        expired.
-
-        Subsequent requests should always provide the sync token from the
-        immediately preceding call.
-
-        Sync tokens may not be valid if you attempt to go ‘backward’ in the
-        history by requesting previous tokens, though re-requesting the current
-        sync token is generally safe, and will always return the same results.
-
-        When you receive a `412 Precondition Failed` error, it means that the
-        sync token is either invalid or expired. If you are attempting to keep a
-        set of data in sync, this signals you may need to re-crawl the data.
-
-        Sync tokens always expire after 24 hours, but may expire sooner,
-        depending on load on the service.
       type: object
       properties:
         user:
@@ -1308,7 +1409,7 @@ components:
                 subscriber. For example, if user A subscribes to a task and user B
                 modified it, the event’s user will be user B. Note: Some events
                 are generated by the system, and will have `null` as the user. API
-                consumers should make sure to handle this case.*
+                consumers should make sure to handle this case.
               readOnly: true
               nullable: true
         resource:
@@ -1383,8 +1484,10 @@ components:
             status:
               type: string
               enum:
+                - not_started
                 - in_progress
                 - completed
+                - failed
               readOnly: true
               example: in_progress
             new_project:
@@ -1403,30 +1506,7 @@ components:
         - type: object
           description: >-
             An *organization_export* object represents a request to export the
-
             complete data of an Organization in JSON format.
-
-
-            To export an Organization using this API:
-
-
-            * Create an `organization_export`
-              [request](https://asana.com/developers/api-reference/organization_exports#create)
-              and store the id that is returned.
-            * Request the `organization_export` every few minutes, until the
-            `state`
-              field contains ‘finished’.
-            * Download the file located at the URL in the `download_url` field.
-
-            * Exports can take a long time, from several minutes to a few hours
-            for
-              large Organizations.
-
-            *Note: These endpoints are only available to [Service
-
-            Accounts](https://asana.com/guide/help/premium/service-accounts) of an
-
-            [Enterprise](https://asana.com/enterprise) Organization.*
           properties:
             download_url:
               description: |-
@@ -1456,7 +1536,7 @@ components:
               example: started
             organization:
               description: >-
-                **Create-only*: The Organization that is being exported. This can
+                *Create-only*: The Organization that is being exported. This can
                 only be specified at create time.
               type: object
               properties:
@@ -1479,17 +1559,6 @@ components:
         - $ref: '#/components/schemas/PortfolioCompact'
         - $ref: '#/components/schemas/AsanaCreatedByAndAt'
         - type: object
-          description: >-
-            A *portfolio* gives a high-level overview of the status of multiple
-
-            initiatives in Asana. Portfolios provide a dashboard overview of
-
-            the state of multiple projects, including a progress report and the
-
-            most recent [project
-            status](https://asana.com/developers/api-reference/project_statuses)
-
-            update.
           properties:
             color:
               description: Color of the portfolio.
@@ -1542,8 +1611,19 @@ components:
       allOf:
         - $ref: '#/components/schemas/AsanaNamedObject'
         - type: object
+          description: >-
+            A *portfolio* gives a high-level overview of the status of multiple
+            initiatives in Asana. Portfolios provide a dashboard overview of
+            the state of multiple projects, including a progress report and the
+            most recent [project
+            status](#asana-project-statuses)
+            update.
+
+            Portfolios have some restrictions on size. Each portfolio has a max of
+            250 items and, like projects, a max of 20 custom fields.
           properties:
             resource_type:
+              type: string
               example: portfolio
     PortfolioObject:
       type: object
@@ -1561,18 +1641,18 @@ components:
       allOf:
         - $ref: '#/components/schemas/PortfolioMembershipCompact'
         - type: object
-          description: >-
-            This object determines if a user is a member of a portfolio.
           properties:
             portfolio:
               description: >-
-                [Opt In](https://asana.com/developers/documentation/getting-started/input-output-options).
+                [Opt In](#input-output-options).
                 The portfolio the user is a member of.
               $ref: '#/components/schemas/PortfolioCompact'
     PortfolioMembershipCompact:
       allOf:
         - $ref: '#/components/schemas/AsanaObject'
         - type: object
+          description: >-
+            This object determines if a user is a member of a portfolio.
           properties:
             resource_type:
               example: portfolio_membership
@@ -1640,40 +1720,6 @@ components:
         - $ref: '#/components/schemas/ProjectCompact'
         - $ref: '#/components/schemas/AsanaCreatedAt'
         - type: object
-          description: >-
-            A *project* represents a prioritized list of tasks in Asana or a board
-
-            with columns of tasks represented as cards. It exists in a single
-
-            workspace or organization and is accessible to a subset of users in
-            that
-
-            workspace or organization, depending on its permissions.
-
-
-            Projects in organizations are shared with a single team. You cannot
-
-            currently change the team of a project via the API. Non-organization
-
-            workspaces do not have teams and so you should not specify the team of
-
-            project in a regular workspace.
-
-
-            Followers of a project are a subset of the members of that project.
-
-            Followers of a project will receive all updates including tasks
-            created,
-
-            added and removed from that project. Members of the project have
-            access
-
-            to and will receive status updates of the project. Adding followers to
-            a
-
-            project will add them as members if they are not already, removing
-
-            followers from a project will not affect membership.
           properties:
             archived:
               description: >-
@@ -1710,7 +1756,7 @@ components:
               description: >-
                 The most recently created status update for the project, or `null`
                 if no update exists. See also the documentation for [project
-                status updates](/developers/api-reference/project_statuses).
+                status updates](#asana-project-statuses).
               type: object
               nullable: true
               readOnly: true
@@ -1771,7 +1817,7 @@ components:
               readOnly: true
             html_notes:
               description: >-
-                [Opt In](https://asana.com/developers/documentation/getting-started/input-output-options).
+                [Opt In](#input-output-options).
                 The notes of the project with formatting as HTML.
 
                 *Note: This field is under active migration—please see our [blog
@@ -1781,7 +1827,7 @@ components:
               example: These are things we need to purchase.
             is_template:
               description: >-
-                [Opt In](/developers/documentation/getting-started/input-output-options).
+                [Opt In](#input-output-options).
                 Determines if the project is a template.
               type: boolean
               example: false
@@ -1869,8 +1915,14 @@ components:
       allOf:
         - $ref: '#/components/schemas/AsanaNamedObject'
         - type: object
+          description: >-
+            A *project* represents a prioritized list of tasks in Asana or a board
+            with columns of tasks represented as cards. It exists in a single
+            workspace or organization and is accessible to a subset of users in
+            that workspace or organization, depending on its permissions.
           properties:
             resource_type:
+              type: string
               example: project
             name:
               description: >-
@@ -1895,17 +1947,11 @@ components:
       allOf:
         - $ref: '#/components/schemas/ProjectMembershipCompact'
         - type: object
-          description: >-
-            With the introduction of “comment-only” projects in Asana, a user’s
-            membership in a project comes with associated permissions. These
-            permissions (whether a user has full access to the project or
-            comment-only access) are accessible through the project memberships
-            endpoints described here.
           properties:
             project:
               description: >-
                 [Opt
-                In](https://asana.com/developers/documentation/getting-started/input-output-options).
+                In](#input-output-options).
                 The project the user is a member of.
               $ref: '#/components/schemas/ProjectCompact'
             write_access:
@@ -1922,6 +1968,12 @@ components:
       allOf:
         - $ref: '#/components/schemas/AsanaObject'
         - type: object
+          description: >-
+            With the introduction of “comment-only” projects in Asana, a user’s
+            membership in a project comes with associated permissions. These
+            permissions (whether a user has full access to the project or
+            comment-only access) are accessible through the project memberships
+            endpoints described here.
           properties:
             resource_type:
               example: project_membership
@@ -1938,21 +1990,12 @@ components:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/ProjectMembership'
+            $ref: '#/components/schemas/ProjectMembershipCompact'
     ProjectStatus:
       allOf:
         - $ref: '#/components/schemas/ProjectStatusCompact'
         - $ref: '#/components/schemas/AsanaCreatedByAndAt'
         - type: object
-          description: >-
-            A *project status* is an update on the progress of a particular
-            project, and is sent out to all project followers when created. These
-            updates include both text describing the update and a color code
-            intended to represent the overall state of the project: "green" for
-            projects that are on track, "yellow" for projects at risk, and "red"
-            for projects that are behind.
-
-            Project statuses can be created and deleted, but not modified.
           properties:
             text:
               description: The text content of the status update.
@@ -1962,7 +2005,7 @@ components:
             html-text:
               description: >-
                 [Opt
-                In](https://asana.com/developers/documentation/getting-started/input-output-options).
+                In](#input-output-options).
                 The text content of the status update with formatting as HTML.
               readOnly: true
               type: string
@@ -1981,6 +2024,13 @@ components:
       allOf:
         - $ref: '#/components/schemas/AsanaObject'
         - type: object
+          description: >-
+            A *project status* is an update on the progress of a particular
+            project, and is sent out to all project followers when created. These
+            updates include both text describing the update and a color code
+            intended to represent the overall state of the project: "green" for
+            projects that are on track, "yellow" for projects at risk, and "red"
+            for projects that are behind.
           properties:
             resource_type:
               example: project_status
@@ -2006,29 +2056,6 @@ components:
         - $ref: '#/components/schemas/SectionCompact'
         - $ref: '#/components/schemas/AsanaCreatedAt'
         - type: object
-          description: >-
-            A *section* is a subdivision of a project that groups tasks together.
-            It
-
-            can either be a header above a list of tasks in a list view or a
-            column
-
-            in a board view of a project.
-
-
-            Sections are largely a shared idiom in Asana’s API for both list and
-
-            board views of a project regardless of the project’s layout.
-
-
-            The ‘memberships’ property when [getting a
-
-            task](https://asana.com/developers/api-reference/tasks#get) will
-            return
-
-            the information for the section or the column under ‘section’ in the
-
-            response.
           properties:
             projects:
               type: array
@@ -2038,6 +2065,10 @@ components:
       allOf:
         - $ref: '#/components/schemas/AsanaObject'
         - type: object
+          description: >-
+            A *section* is a subdivision of a project that groups tasks together.
+            It can either be a header above a list of tasks in a list view or a
+            column in a board view of a project.
           properties:
             resource_type:
               example: section
@@ -2063,27 +2094,11 @@ components:
       allOf:
         - $ref: '#/components/schemas/StoryCompact'
         - type: object
-          description: >-
-            *See [our forum
-            post](https://forum.asana.com/t/no-more-parsing-story-text-new-fields-on-stories/42924)
-            for
-
-            more info on when conditional fields are returned.*
-
-            A *story* represents an activity associated with an object in the
-            Asana
-
-            system. Stories are generated by the system whenever users take
-            actions
-
-            such as creating or assigning tasks, or moving tasks between projects.
-
-            *Comments* are also a form of user-generated story.
           properties:
             html_text:
               description: >-
                 [Opt
-                In](https://asana.com/developers/documentation/getting-started/input-output-options).
+                In](#input-output-options).
 
                 HTML formatted text for a comment. This will not include the name
 
@@ -2175,8 +2190,8 @@ components:
               description: >-
                 *Conditional*
               type: string
-              example: This is the New Name
               readOnly: true
+              example: This is the New Name
             old_dates:
               description: >-
                 *Conditional*
@@ -2233,92 +2248,92 @@ components:
             assignee:
               description: >-
                 *Conditional*
-              readOnly: true
               $ref: '#/components/schemas/UserCompact'
+              readOnly: true
             follower:
               description: >-
                 *Conditional*
-              readOnly: true
               $ref: '#/components/schemas/UserCompact'
+              readOnly: true
             old_section:
               description: >-
                 *Conditional*
-              readOnly: true
               $ref: '#/components/schemas/SectionCompact'
+              readOnly: true
             new_section:
               description: >-
                 *Conditional*
-              readOnly: true
               $ref: '#/components/schemas/SectionCompact'
+              readOnly: true
             task:
               description: >-
                 *Conditional*
-              readOnly: true
               $ref: '#/components/schemas/TaskCompact'
+              readOnly: true
             project:
               description: >-
                 *Conditional*
-              readOnly: true
               $ref: '#/components/schemas/ProjectCompact'
+              readOnly: true
             tag:
               description: >-
                 *Conditional*
-              readOnly: true
               $ref: '#/components/schemas/TagCompact'
+              readOnly: true
             custom_field:
               description: >-
                 *Conditional*
-              readOnly: true
               $ref: '#/components/schemas/CustomFieldCompact'
+              readOnly: true
             old_text_value:
               description: >-
                 *Conditional*
-              readOnly: true
               type: string
+              readOnly: true
               example: This was the Old Text
             new_text_value:
               description: >-
                 *Conditional*
-              readOnly: true
               type: string
+              readOnly: true
               example: This is the New Text
             old_number_value:
               description: >-
                 *Conditional*
-              readOnly: true
               type: integer
+              readOnly: true
               example: 1
             new_number_value:
               description: >-
                 *Conditional*
-              readOnly: true
               type: integer
+              readOnly: true
               example: 2
             old_enum_value:
               description: >-
                 *Conditional*
-              readOnly: true
               $ref: '#/components/schemas/EnumOptionCompact'
+              readOnly: true
             new_enum_value:
               description: >-
                 *Conditional*
-              readOnly: true
               $ref: '#/components/schemas/EnumOptionCompact'
+              readOnly: true
             duplicate_of:
               description: >-
                 *Conditional*
-              readOnly: true
               $ref: '#/components/schemas/TaskCompact'
+              readOnly: true
             duplicated_from:
               description: >-
                 *Conditional*
-              readOnly: true
               $ref: '#/components/schemas/TaskCompact'
+              readOnly: true
             dependency:
               description: >-
                 *Conditional*
-              readOnly: true
               $ref: '#/components/schemas/TaskCompact'
+              readOnly: true
             source:
               description: >-
                 The component of the Asana product the user used to trigger the
@@ -2344,6 +2359,9 @@ components:
         - $ref: '#/components/schemas/AsanaSubtype'
         - $ref: '#/components/schemas/AsanaCreatedByAndAt'
         - type: object
+          description: >-
+            A story represents an activity associated with an object in the Asana
+            system.
           properties:
             resource_type:
               example: story
@@ -2353,28 +2371,19 @@ components:
 
                 This will not include the name of the creator.
 
-
                 *Note: This is not guaranteed to be stable for a given type of
-
                 story. For example, text for a reassignment may not always say
-
                 “assigned to …” as the text for a story can both be edited and
-
                 change based on the language settings of the user making the
-                request.
+                request.*
 
                 Use the `resource_subtype` property to discover the action that
-
-                created the story.*
+                created the story.
               example: marked today
             type:
               description: >
                 *Deprecated: new integrations should prefer the
-                `resource_subtype` field.* The type of this story. For more
-                fine-grained inspection of story types, see the
-                [`resource_subtype`]
-                (https://asana.com/developers/api-reference/stories#field-resource_subtype)
-                property.
+                `resource_subtype` field.*
               type: string
               readOnly: true
               example: comment
@@ -2393,22 +2402,6 @@ components:
       allOf:
         - $ref: '#/components/schemas/TagCompact'
         - type: object
-          description: >-
-            A *tag* is a label that can be attached to any task in Asana. It
-            exists
-
-            in a single workspace or organization.
-
-
-            Tags have some metadata associated with them, but it is possible that
-            we
-
-            will simplify them in the future so it is not encouraged to rely too
-
-            heavily on it. Unlike projects, tags do not provide any ordering on
-            the
-
-            tasks they are associated with.
           properties:
             followers:
               description: Array of users following this tag.
@@ -2445,6 +2438,9 @@ components:
       allOf:
         - $ref: '#/components/schemas/AsanaObject'
         - type: object
+          description: >-
+            A *tag* is a label that can be attached to any task in Asana. It
+            exists in a single workspace or organization.
           properties:
             resource_type:
               example: tag
@@ -2473,45 +2469,6 @@ components:
         - $ref: '#/components/schemas/AsanaCreatedAt'
         - $ref: '#/components/schemas/AsanaSubtype'
         - type: object
-          description: >-
-            The *task* is the basic object around which many operations in Asana
-            are
-
-            centered. In the Asana application, multiple tasks populate the middle
-
-            pane according to some view parameters, and the set of selected tasks
-
-            determines the more detailed information presented in the details
-            pane.
-
-
-            A *section*, at its core, is a task whose name ends with the colon
-
-            character `:`. Sections are unique in that they will be included in
-            the
-
-            *memberships* field of task objects returned in the API when the task
-            is
-
-            within a section. They can also be used to manipulate the ordering of
-            a
-
-            task within a project.
-
-
-            [Queries](https://asana.com/developers/api-reference/tasks#query)
-            return
-
-            a compact representation of each object which is typically the id and
-
-            name fields. Interested in a specific set of fields or all of the
-            fields?
-
-            Use [field
-
-            selectors](https://asana.com/developers/documentation/getting-started/input-output-options)
-
-            to manipulate what data is included in a response.
           properties:
             assignee:
               allOf:
@@ -2547,22 +2504,13 @@ components:
             custom_fields:
               description: >-
                 Array of custom field values applied to the project. These
-                represent
-
-                the custom field values recorded on this project for a particular
-
-                custom field. For example, these custom field values will contain
-
-                an `enum_value` property for custom fields of type `enum`, a
-
-                `string_value` property for custom fields of type `string`, and
-
-                so on. Please note that the `id` returned on each custom field
-
-                value *is identical* to the `id` of the custom field, which
-
-                allows referencing the custom field metadata through the
-
+                represent the custom field values recorded on this project for a
+                particular custom field. For example, these custom field values
+                will contain an `enum_value` property for custom fields of type
+                `enum`, a `string_value` property for custom fields of type
+                `string`, and so on. Please note that the `id` returned on each
+                custom field value *is identical* to the `id` of the custom field,
+                which allows referencing the custom field metadata through the
                 `/custom_fields/custom_field-id` endpoint.
               type: array
               items:
@@ -2571,7 +2519,7 @@ components:
             dependencies:
               description: >-
                 [Opt
-                In](/developers/documentation/getting-started/input-output-options).
+                In](#input-output-options).
                 Array of resources referencing tasks that this task depends on.
                 The objects contain only the ID of the dependency.
               type: array
@@ -2593,7 +2541,7 @@ components:
             dependents:
               description: >-
                 [Opt
-                In](/developers/documentation/getting-started/input-output-options).
+                In](#input-output-options).
                 Array of resources referencing tasks that depend on this task. The
                 objects contain only the ID of the dependent.
               type: array
@@ -2634,7 +2582,7 @@ components:
               description: >-
                 *OAuth Required*. *Conditional*. This field is returned only
                 if external values are set or included by using [Opt In]
-                (/developers/documentation/getting-started/input-output-options).
+                (#input-output-options).
 
                 The external field allows you to store app-specific metadata on
                 tasks, including an id that can be used to retrieve tasks and a
@@ -2666,7 +2614,7 @@ components:
             html_notes:
               description: >-
                 [Opt
-                In](/developers/documentation/getting-started/input-output-options).
+                In](#input-output-options).
                 The notes of the text with formatting as HTML.
 
                 *Note: This field is under active migration—please see our blog
@@ -2689,6 +2637,21 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/UserCompact'
+              readOnly: true
+            is_rendered_as_separator:
+              description: >-
+                [Opt In](#input-output-options).
+                In some contexts tasks can be rendered as a visual separator;
+                for instance, subtasks can appear similar to
+                [sections](#asana-sections) without being true
+                `section` objects. If a `task` object is rendered this way in any
+                context it will have the property `is_rendered_as_separator` set
+                to `true`.<br /><br />*Note: Until the default behavior for our
+                API changes integrations must [opt in to the `new_sections` change]
+                (https://forum.asana.com/t/sections-are-dead-long-live-sections/33951)
+                to modify the `is_rendered_as_separator` property.*
+              type: boolean
+              example: false
               readOnly: true
             liked:
               description: >-
@@ -2757,7 +2720,7 @@ components:
             num_subtasks:
               description: >
                 [Opt
-                In](https://asana.com/developers/documentation/getting-started/input-output-options).
+                In](#input-output-options).
                 The number of subtasks on this task.
               type: integer
               example: 3
@@ -2804,10 +2767,7 @@ components:
             start_on:
               description: >-
                 The day on which work begins for the task , or null if the task
-                has
-
-                no start date. This takes a date with `YYYY-MM-DD` format.
-
+                has no start date. This takes a date with `YYYY-MM-DD` format.
 
                 *Note: `due_on` or `due_at` must be present in the request when
                 setting or unsetting the `start_on` parameter.*
@@ -2832,15 +2792,18 @@ components:
               allOf:
                 - $ref: '#/components/schemas/WorkspaceCompact'
                 - type: object
+                  readOnly: true
                   description: >-
                     *Create-only*. The workspace this task is associated with.
                     Once created, task cannot be moved to a different workspace.
                     This attribute can only be specified at creation time.
-                  readOnly: true
     TaskCompact:
       allOf:
         - $ref: '#/components/schemas/AsanaNamedObject'
         - type: object
+          description: >-
+            The *task* is the basic object around which many operations in Asana
+            are centered.
           properties:
             resource_type:
               example: task
@@ -2860,24 +2823,18 @@ components:
       allOf:
         - $ref: '#/components/schemas/TeamCompact'
         - type: object
-          description: >-
-            A *team* is used to group related projects and people together within
-            an
-
-            organization. Each project in an organization is associated with a
-            team.
           properties:
             description:
               description: >
                 [Opt
-                In](/developers/documentation/getting-started/input-output-options).
+                In](#input-output-options).
                 The description of the team.
               type: string
               example: All developers should be members of this team.
             html_description:
               description: >
                 [Opt
-                In](/developers/documentation/getting-started/input-output-options).
+                In](#input-output-options).
                 The description of the team with formatting as HTML.
 
                 *Note: This field is under active migration—please see our [blog
@@ -2897,6 +2854,10 @@ components:
       allOf:
         - $ref: '#/components/schemas/AsanaNamedObject'
         - type: object
+          description: >-
+            A *team* is used to group related projects and people together within
+            an organization. Each project in an organization is associated with a
+            team.
           properties:
             resource_type:
               example: team
@@ -2916,19 +2877,6 @@ components:
       allOf:
         - $ref: '#/components/schemas/UserCompact'
         - type: object
-          description: >-
-            A *user* object represents an account in Asana that can be given
-            access
-
-            to various workspaces, projects, and tasks.
-
-
-            Like other objects in the system, users are referred to by numerical
-
-            IDs. However, the special string identifier `me` can be used anywhere
-            a
-
-            user ID is accepted, to refer to the current authenticated user.
           properties:
             email:
               type: string
@@ -2980,6 +2928,9 @@ components:
       allOf:
         - $ref: '#/components/schemas/AsanaNamedObject'
         - type: object
+          description: >-
+            A *user* object represents an account in Asana that can be given
+            access to various workspaces, projects, and tasks.
           properties:
             resource_type:
               example: user
@@ -3019,17 +2970,6 @@ components:
           description: >-
             A user task list represents the tasks assigned to a particular user.
             It provides API access to a user’s “My Tasks” view in Asana.
-
-            A user’s “My Tasks” represent all of the tasks assigned to that user.
-            It is visually divided into regions based on the task’s
-            [`assignee_status`]
-            (https://asana.com/developers/api-reference/tasks#field-assignee_status)
-            for Asana users to triage their tasks based on when they can address
-            them. When building an integration it’s worth noting that tasks with
-            due dates will automatically move through `assignee_status` states as
-            their due dates approach; read up on [task
-            auto-promotion](https://asana.com/guide/help/fundamentals/my-tasks#gl-auto-promote)
-            for more information.
           properties:
             owner:
               allOf:
@@ -3045,6 +2985,10 @@ components:
                 - type: object
                   description: The workspace in which the user task list is located.
                   readOnly: true
+    UserTaskListCompact:
+      allOf:
+        - $ref: '#/components/schemas/AsanaNamedObject'
+        - type: object
     UserTaskListObject:
       type: object
       properties:
@@ -3056,24 +3000,25 @@ components:
         - $ref: '#/components/schemas/AsanaCreatedAt'
         - type: object
           description: >-
-            Webhooks allow an application to be notified of changes. This is in addition to the ability to fetch those
-            changes directly as [Events](#asana-events) - in fact, Webhooks are just a way to receive
-            Events via HTTP POST at the time they occur instead of polling for them. For services accessible via HTTP this is
-            often vastly more convenient, and if events are not too frequent can be significantly more efficient.
+            Webhooks allow an application to be notified of changes. This is in
+            addition to the ability to fetch those changes directly as Events - in
+            fact, Webhooks are just a way to receive
+            [Events](#asana-events) via HTTP
+            POST at the time they occur instead of polling for them. For services
+            accessible via HTTP this is often vastly more convenient, and if
+            events are not too frequent can be significantly more efficient.
 
 
-            In both cases, however, changes are represented as Event objects - refer to the
-            [Events documentation](#asana-events) for more information on what data these events contain.
+            In both cases, however, changes are represented as Event objects -
+            refer to the [Events documentation](#asana-events)
+            for more information on what data these events contain.
 
 
-            **NOTE:** While Webhooks send arrays of Event objects to their target, the Event objects themselves contain
-            *only IDs*, rather than the actual resource they are referencing. So while a normal event you receive via GET
-            /events would look like an [Event](/#tocS_Event). In a Webhook payload you will instead receive a
-            [WebhookEvent](#tocS_WebhookEvent) (a simplified version of the event object).
-
-
-            [Webhooks](#tocS_Webhook) themselves contain only the information necessary to deliver the events to the desired
-            target as they are generated.
+            *Note: While Webhooks send arrays of Event objects to their target,
+            the Event objects themselves contain *only IDs*, rather than the
+            actual resource they are referencing. Webhooks themselves contain only
+            the information necessary to deliver the events to the desired target
+            as they are generated.*
           properties:
             active:
               description: >-
@@ -3186,35 +3131,6 @@ components:
       allOf:
         - $ref: '#/components/schemas/AsanaNamedObject'
         - type: object
-          description: >-
-            A *workspace* is the highest-level organizational unit in Asana. All
-
-            projects and tasks have an associated workspace.
-
-
-            An *organization* is a special kind of workspace that represents a
-
-            company. In an organization, you can group your projects into teams.
-
-            You can read more about how organizations work on the Asana Guide. To
-
-            tell if your workspace is an organization or not, check its
-
-            `is_organization` property.
-
-
-            Over time, we intend to migrate most workspaces into organizations and
-
-            to release more organization-specific functionality. We may eventually
-
-            deprecate using workspace-based APIs for organizations. Currently, and
-
-            until after some reasonable grace period following any further
-
-            announcements, you can still reference organizations in any
-            `workspace`
-
-            parameter.
           properties:
             email_domains:
               description: The email domains that are associated with this workspace.
@@ -3232,6 +3148,9 @@ components:
       allOf:
         - $ref: '#/components/schemas/AsanaNamedObject'
         - type: object
+          description: >-
+            A *workspace* is the highest-level organizational unit in Asana. All
+            projects and tasks have an associated workspace.
           properties:
             resource_type:
               example: workspace
@@ -3247,6 +3166,63 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Workspace'
+    WorkspaceMembership:
+      allOf:
+        - $ref: '#/components/schemas/WorkspaceMembershipCompact'
+        - type: object
+          properties:
+            user_task_list:
+              $ref: '#/components/schemas/UserTaskList'
+              description: >-
+                The user's "My Tasks" in the workspace.
+              readOnly: true
+            is_active:
+              type: boolean
+              readOnly: true
+              description: >-
+                Reflects if this user still a member of the workspace.
+            is_admin:
+              type: boolean
+              readOnly: true
+              description: >-
+                Reflects if this user is an admin of the workspace.
+            is_guest:
+              type: boolean
+              readOnly: true
+              description: >-
+                Reflects if this user is a guest of the workspace.
+    WorkspaceMembershipCompact:
+      allOf:
+        - $ref: '#/components/schemas/AsanaObject'
+        - type: object
+          description: >-
+            This object determines if a user is a member of a workspace.
+          properties:
+            resource_type:
+              description: >-
+                The resource type of this resource. The value for this resource is always
+                `workspace_membership`.
+              type: string
+              readOnly: true
+              example: workspace_membership
+            user:
+              $ref: '#/components/schemas/UserCompact'
+              readOnly: true
+            workspace:
+              $ref: '#/components/schemas/WorkspaceCompact'
+              readOnly: true
+    WorkspaceMembershipObject:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/WorkspaceMembership'
+    WorkspaceMembershipArray:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkspaceMembershipCompact'
   securitySchemes:
     personalAccessToken:
       type: http
@@ -3254,7 +3230,7 @@ components:
         A personal access token allows access to the api for the user who
         created it. This should be kept a secret and be treated like a
         password.
-      name: api_key
+      name: pat
       in: header
       scheme: bearer
     oauth2:
@@ -3281,7 +3257,6 @@ paths:
         example: 12357
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -3301,12 +3276,22 @@ paths:
           $ref: '#/components/responses/BadRequest'
         401:
           $ref: '#/components/responses/Unauthorized'
+        402:
+          $ref: '#/components/responses/PaymentRequired'
         403:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        424:
+          $ref: '#/components/responses/TooManyRequests'
+        500:
           $ref: '#/components/responses/InternalServerError'
+        501:
+          $ref: '#/components/responses/BadGateway'
+        503:
+          $ref: '#/components/responses/ServiceUnavailable'
+        504:
+          $ref: '#/components/responses/GatewayTimeout'
   /tasks/{task_gid}/attachments:
     parameters:
       - name: task_gid
@@ -3318,7 +3303,6 @@ paths:
         example: 124816
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -3431,7 +3415,6 @@ paths:
     parameters:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     post:
@@ -3486,7 +3469,6 @@ paths:
         example: 13579
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -3494,7 +3476,7 @@ paths:
       description: >-
         Returns a list of all of the custom fields settings on a project, in
         compact form. Note that, as in all queries to collections which return
-        compact representation, `opt_fields` and `opt_expand` can be used to
+        compact representation, `opt_fields` can be used to
         include more data than is returned in the compact representation. See the
         [getting started guide on input/output
         options](https://asana.com/developers/documentation/getting-started/input-output-options)
@@ -3524,7 +3506,6 @@ paths:
     parameters:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     post:
@@ -3589,7 +3570,6 @@ paths:
         example: 124578
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -3714,7 +3694,6 @@ paths:
         example: 124578
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     post:
@@ -3790,7 +3769,6 @@ paths:
         example: 124578
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     post:
@@ -3828,7 +3806,6 @@ paths:
                             inserted. Cannot be provided together with
                             after_enum_option.
                           example: 12345
-                          required: true
                         after_enum_option:
                           type: integer
                           description: >-
@@ -3866,7 +3843,6 @@ paths:
         example: 124578
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     put:
@@ -3920,7 +3896,6 @@ paths:
         example: 1331
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -3961,7 +3936,6 @@ paths:
         example: '13579'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -3969,7 +3943,7 @@ paths:
       description: >-
         Returns a list of all of the custom fields settings on a project, in
         compact form. Note that, as in all queries to collections which return
-        compact representation, `opt_fields` and `opt_expand` can be used to
+        compact representation, `opt_fields` can be used to
         include more data than is returned in the compact representation. See the
         [getting started guide on input/output
         options](https://asana.com/developers/documentation/getting-started/input-output-options)
@@ -4007,7 +3981,6 @@ paths:
         example: '13579'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -4054,17 +4027,16 @@ paths:
           Events will be returned from the point in time that the sync token was
           generated.
 
-          *Note*: On your first request, omit the sync token. The response will
+          *Note: On your first request, omit the sync token. The response will
           be the same as for an expired sync token, and will include a new valid
           sync token.If the sync token is too old (which may happen from time to
           time) the API will return a `412 Precondition Failed` error, and
-          include a fresh sync token in the response.
+          include a fresh sync token in the response.*
         schema:
           type: string
         example: de4774f6915eae04714ca93bb2f5ee81
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -4100,7 +4072,6 @@ paths:
       - $ref: '#/components/parameters/job_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -4131,7 +4102,6 @@ paths:
     parameters:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     post:
@@ -4183,7 +4153,6 @@ paths:
         example: 133549
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -4217,7 +4186,6 @@ paths:
       - $ref: '#/components/parameters/user_query_param'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -4251,7 +4219,6 @@ paths:
       - $ref: '#/components/parameters/user_query_param'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -4284,7 +4251,6 @@ paths:
       - $ref: '#/components/parameters/portfolio_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -4316,7 +4282,6 @@ paths:
     parameters:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -4401,7 +4366,6 @@ paths:
       - $ref: '#/components/parameters/portfolio_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -4494,7 +4458,6 @@ paths:
       - $ref: '#/components/parameters/portfolio_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -4527,7 +4490,6 @@ paths:
       - $ref: '#/components/parameters/portfolio_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
       - name: item
@@ -4592,7 +4554,6 @@ paths:
       - $ref: '#/components/parameters/portfolio_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
       - name: item
@@ -4615,7 +4576,89 @@ paths:
       operationId: removePortfolioItem
       responses:
         200:
-          description: Successfully added the item to the portfolio.
+          description: Successfully removed the item from the portfolio.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyObject'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        5XX:
+          $ref: '#/components/responses/InternalServerError'
+  /portfolios/{portfolio_gid}/addMembers:
+    parameters:
+      - $ref: '#/components/parameters/portfolio_path_gid'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+      - name: members
+        in: query
+        description: >-
+          An array of user ids.
+        schema:
+          type: string
+        required: true
+        example: 521621,621373
+    post:
+      summary: Add users to a portfolio
+      description: >-
+        Adds the specified list of users as members of the portfolio.
+
+        Returns the updated portfolio record.
+      tags:
+        - Portfolios
+      operationId: addPortfolioMembers
+      responses:
+        200:
+          description: Successfully added members to the portfolio.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyObject'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        5XX:
+          $ref: '#/components/responses/InternalServerError'
+  /portfolios/{portfolio_gid}/removeMembers:
+    parameters:
+      - $ref: '#/components/parameters/portfolio_path_gid'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+      - name: members
+        in: query
+        description: >-
+          An array of user ids.
+        schema:
+          type: string
+        required: true
+        example: 521621,621373
+    post:
+      summary: Remove users from a portfolio
+      description: >-
+        Removes the specified list of users from members of the portfolio.
+
+        Returns the updated portfolio record.
+      tags:
+        - Portfolios
+      operationId: removePortfolioMembers
+      responses:
+        200:
+          description: Successfully removed the members from the portfolio.
           content:
             application/json:
               schema:
@@ -4735,7 +4778,6 @@ paths:
       - $ref: '#/components/parameters/user_query_param'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -4768,7 +4810,6 @@ paths:
       - $ref: '#/components/parameters/project_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -4953,7 +4994,6 @@ paths:
     parameters:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -5066,7 +5106,6 @@ paths:
       - $ref: '#/components/parameters/project_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -5163,7 +5202,6 @@ paths:
       - $ref: '#/components/parameters/project_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     post:
@@ -5200,10 +5238,11 @@ paths:
                     include:
                       description: >-
                         The elements that will be duplicated to the new project.
-                        Tasks and project notes are always included.
+                        Tasks are always included.
                       type: string
                       enum:
                         - members
+                        - notes
                         - task_notes
                         - task_assignee
                         - task_subtasks
@@ -5269,7 +5308,6 @@ paths:
       - $ref: '#/components/parameters/project_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -5403,7 +5441,6 @@ paths:
       - $ref: '#/components/parameters/team_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -5470,7 +5507,6 @@ paths:
       - $ref: '#/components/parameters/workspace_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -5541,7 +5577,6 @@ paths:
       - $ref: '#/components/parameters/project_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -5620,7 +5655,6 @@ paths:
       - $ref: '#/components/parameters/section_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -5784,7 +5818,6 @@ paths:
       - $ref: '#/components/parameters/project_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     post:
@@ -5863,7 +5896,6 @@ paths:
         example: 321654
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -5950,7 +5982,6 @@ paths:
         example: 1234
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -6040,7 +6071,6 @@ paths:
     parameters:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -6127,7 +6157,6 @@ paths:
       - $ref: '#/components/parameters/tag_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -6189,7 +6218,6 @@ paths:
       - $ref: '#/components/parameters/tag_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -6230,7 +6258,6 @@ paths:
         example: 1331
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -6300,7 +6327,6 @@ paths:
     parameters:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -6371,7 +6397,6 @@ paths:
             type: string
             format: date-time
             example: '2012-02-22T02:06:58.158Z'
-          example: '2012-02-22T02:06:58.158Z'
         - name: modified_since
           in: query
           description: |-
@@ -6386,7 +6411,6 @@ paths:
           schema:
             type: string
             format: date-time
-            example: '2012-02-22T02:06:58.158Z'
           example: '2012-02-22T02:06:58.158Z'
       responses:
         200:
@@ -6448,7 +6472,6 @@ paths:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -6547,7 +6570,6 @@ paths:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     post:
@@ -6612,7 +6634,6 @@ paths:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -6676,7 +6697,6 @@ paths:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     post:
@@ -6742,7 +6762,6 @@ paths:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -6774,7 +6793,6 @@ paths:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     post:
@@ -6814,7 +6832,6 @@ paths:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     post:
@@ -6853,7 +6870,6 @@ paths:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -6886,7 +6902,6 @@ paths:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     post:
@@ -6927,7 +6942,6 @@ paths:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     post:
@@ -6967,7 +6981,6 @@ paths:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -7000,7 +7013,6 @@ paths:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     post:
@@ -7084,7 +7096,6 @@ paths:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     post:
@@ -7137,7 +7148,6 @@ paths:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -7170,7 +7180,6 @@ paths:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     post:
@@ -7220,7 +7229,6 @@ paths:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     post:
@@ -7270,7 +7278,6 @@ paths:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     post:
@@ -7329,7 +7336,6 @@ paths:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     post:
@@ -7384,7 +7390,6 @@ paths:
       - $ref: '#/components/parameters/section_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -7419,7 +7424,6 @@ paths:
       - $ref: '#/components/parameters/workspace_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
       - name: text
@@ -7852,7 +7856,6 @@ paths:
         example: 14916
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -7889,7 +7892,6 @@ paths:
         example: 1331
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -7951,7 +7953,6 @@ paths:
         example: 1331
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -7994,7 +7995,6 @@ paths:
             value: 14916
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -8037,7 +8037,6 @@ paths:
             value: 14916
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     post:
@@ -8097,7 +8096,6 @@ paths:
             value: 14916
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     post:
@@ -8199,7 +8197,6 @@ paths:
         example: 20
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -8249,7 +8246,6 @@ paths:
       - $ref: '#/components/parameters/user_task_list_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -8282,7 +8278,6 @@ paths:
       - $ref: '#/components/parameters/user_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -8325,7 +8320,6 @@ paths:
       - $ref: '#/components/parameters/user_task_list_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -8382,7 +8376,6 @@ paths:
         example: 1331
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -8419,7 +8412,6 @@ paths:
       - $ref: '#/components/parameters/user_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -8453,7 +8445,6 @@ paths:
       - $ref: '#/components/parameters/user_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
       - name: resource_type
@@ -8509,7 +8500,6 @@ paths:
       - $ref: '#/components/parameters/workspace_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -8544,7 +8534,6 @@ paths:
     parameters:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -8700,7 +8689,6 @@ paths:
           example: 95784
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -8754,11 +8742,138 @@ paths:
           $ref: '#/components/responses/NotFound'
         5XX:
           $ref: '#/components/responses/InternalServerError'
+  /users/{user_gid}/workspace_memberships:
+    parameters:
+      - $ref: '#/components/parameters/user_path_gid'
+    get:
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceMembershipArray'
+  /users/{workspace_gid}/workspace_memberships:
+    parameters:
+      - $ref: '#/components/parameters/user_path_gid'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+    get:
+      summary: Get the workspace memberships for a user
+      description: >-
+        Returns the compact workspace membership records for the user.
+      tags:
+        - Workspace Memberships
+      operationId: getWorkspaceMembershipsForUser
+      responses:
+        200:
+          description: >-
+            Successfully retrieved the requested user's workspace memberships.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceMembershipArray'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        5XX:
+          $ref: '#/components/responses/InternalServerError'
+  /workspaces/{workspace_gid}/workspace_memberships:
+    parameters:
+      - $ref: '#/components/parameters/workspace_path_gid'
+      - $ref: '#/components/parameters/user_query_param'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+    get:
+      summary: Get the workspace memberships for a workspace
+      description: >-
+        Returns the compact workspace membership records for the workspace.
+      tags:
+        - Workspace Memberships
+      operationId: getWorkspaceMembershipsForWorkspace
+      responses:
+        200:
+          description: >-
+            Successfully retrieved the requested workspace's memberships.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceMembershipArray'
+  /workspaces/{workspace_gid}/workspace_memberships?user={user_gid}:
+    parameters:
+      - $ref: '#/components/parameters/workspace_path_gid'
+      - $ref: '#/components/parameters/user_path_gid'
+    get:
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceMembershipObject'
+  /workspace_memberships/{workspace_membership_gid}:
+    parameters:
+      - $ref: '#/components/parameters/workspace_membership_path_gid'
+    get:
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceMembershipObject'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        5XX:
+          $ref: '#/components/responses/InternalServerError'
+  /workspace_memberships/{workspace_gid}:
+    parameters:
+      - $ref: '#/components/parameters/workspace_path_gid'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+    get:
+      summary: Get a workspace membership
+      description: >-
+        Returns the complete workspace record for a single workspace membership.
+      tags:
+        - Workspace Memberships
+      operationId: getWorkspaceMembership
+      responses:
+        200:
+          description: >-
+            Successfully retrieved the requested workspace membership.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceMembershipObject'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        5XX:
+          $ref: '#/components/responses/InternalServerError'
   /workspaces:
     parameters:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -8791,7 +8906,6 @@ paths:
       - $ref: '#/components/parameters/workspace_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
@@ -8861,7 +8975,6 @@ paths:
       - $ref: '#/components/parameters/workspace_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     post:
@@ -8919,7 +9032,6 @@ paths:
       - $ref: '#/components/parameters/workspace_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/expand'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     post:
