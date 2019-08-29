@@ -17,7 +17,6 @@ the response.
 ```
 ?opt_pretty
 ?opt_fields=followers,assignee
-?opt_expand=followers
 ``` 
 
 > PUT or POST body options
@@ -25,8 +24,7 @@ the response.
 ```
 options: { 
   pretty: true,
-  fields: ["followers", "assignee"],
-  expand: ["followers"]
+  fields: ["followers", "assignee"]
 }
 ```
 
@@ -34,7 +32,6 @@ options: {
 |---|---|---|
 | **pretty** | Provides the response in "pretty" output. In the case of JSON this means doing proper line breaking and indentation to make it readable. This will take extra time and increase the response size so it is advisable only to use this during debugging. |  |
 | **fields** | Some requests return *compact* representations of objects, to conserve resources and complete the request more efficiently. Other times requests return more information than you may need. This option allows you to list the exact set of fields that the API should be sure to return for the objects. The field names should be provided as <a href="/developers/documentation/getting-started/input-output-options#paths">paths</a>, described below. | The id of included objects will always be returned, regardless of the field options. |
-| **expand** | Query results and sub-objects are returned in *compact* form by default. This option can be used to expand query results or sub-objects to return more detailed information. Be sure you really need the information in the expanded form, as executing a query with many results in expanded form can be costly and return you a lot of data to consume. | If the `fields` option is also used, it will take precedence over the expand option and prevent expansion. |
 
 **Default output**
 
@@ -75,19 +72,19 @@ options: {
       }
     }
 
-**Reassign task, expanding projects in output**
+**Reassign task, opting for projects in output**
 
     # Request
     curl --request PUT -H "Authorization: Bearer <personal_access_token>" https://app.asana.com/api/1.0/tasks/1001 \
     -d "assignee=1234" \
-    -d "opt_expand=%2Aprojects%2A"
+    -d "opt_fields=%2Aprojects%2A"
 
     # Alternative request using JSON
     curl --request PUT -H "Authorization: Bearer <personal_access_token>" -H "Content-Type: application/json" \
     https://app.asana.com/api/1.0/tasks/1001 -d \
     '{
         "data": { "assignee": 1234 },
-        "options": { "expand": "projects" }
+        "options": { "fields": "projects" }
     }'
 
 
@@ -132,7 +129,7 @@ options: {
 }
 ```
 
-Some output options allow you to reference fields of objects to include or expand in the response.
+Some output options allow you to reference fields of objects to include in the response.
 The way to specify a field is by *path*. A path is made up of a sequence of *terms* separated by the dot (`.`)
 operator. It takes the form `this.a.b`… where *this* refers to an object returned at the top level of the response,
 *a* the name of a field on a root object, *b* a field on a child object referred to by *a*, and so on.
