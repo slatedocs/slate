@@ -186,7 +186,8 @@ The follow schema is used for every event payload, the example of data is availa
 { "message": "message user sent" }
 ```
 
-## Location events
+This event is triggered once a user sends a contact request via online form.
+
 ### location_favorited
 ```json
 //DATA EXAMPLE
@@ -198,6 +199,8 @@ The follow schema is used for every event payload, the example of data is availa
   }
 }
 ```
+
+This event is triggered once a user "pins" or favorites a location either from the dashboards listings, or from the location details itself.
 
 ## Listing events
 ```json
@@ -217,13 +220,20 @@ The follow schema is used for every event payload, the example of data is availa
   } 
 }
 ```
+
+This event is triggered once the user click to view a property's details.
+
 ### property_visit_requested 
+
+This event is triggered once the user clicks on the option to schedule a visit to a property, either from the listings dashboards or from the property details itself.
 
 ### finance_requested
 
+This event is triggered once the user requests a financing for a property.
+
 ### listing_favorited
 
-
+This event is triggered once the user clicks on favorites to view the properties and/or locations previously pinned, or favorited.
 
 ## Search events
 
@@ -243,11 +253,19 @@ The follow schema is used for every event payload, the example of data is availa
   }
 }
 ```
+This event is triggered once the user, using the filter provided, performs a property search
+
 ### search_saved
+This event is triggered once the user has already perfomed a property search and then saves it.
+
 ### search_shared
+This event is triggered once the user has already perfomed a property search, saved it, then shares it.
 
 ## Email events
+This event is triggered once the user has already perfomed a property search, saved it, then mails it.
+
 ### email_signed_up
+This event is triggered once the user provides its email for the first time using one of the contact forms or shares a search.
 
 ```json
 //DATA EXAMPLE
