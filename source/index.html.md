@@ -4392,6 +4392,38 @@ Response body param | Description
 -------------- | -----------
 xxx | yyy
 
+## Get icd9/search
+
+`GET` /api/diagnoses/icd9/search
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/diagnoses/icd9/search?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Response body param | Description
+-------------- | -----------
+xxx | yyy
+
 # docs
 
 ## Post doc
