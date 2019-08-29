@@ -265,7 +265,7 @@ This event is triggered once the user has already perfomed a property search, sa
 This event is triggered once the user has already perfomed a property search, saved it, then mails it.
 
 ### email_signed_up
-This event is triggered once the user provides its email for the first time using one of the contact forms or shares a search.
+This event is triggered once the user provides its email for the first time using one of the contact forms or sharing a search.
 
 ```json
 //DATA EXAMPLE
