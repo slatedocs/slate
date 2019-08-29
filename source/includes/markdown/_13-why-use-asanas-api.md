@@ -54,14 +54,15 @@ Whether it's ensuring that custom fields are filled out, tasks are completed, ta
 
 Check out some examples of integrations we've built on Asana below:
 
-* [Reminder Bot](/developers/documentation/examples-tutorials/reminder-bot "Reminder bot") - don't let a task slip away!
-* [Q&A Response Times](/developers/documentation/examples-tutorials/q-a-response "Workflow automation") - measure goals and maintain a consistent process.
+* [Triage Bot](#triage-bot "Triage bot")
+* [Reminder Bot](#bot-examples "Reminder bot") - don't let a task slip away!
+* [Q&A Response Times](#q-a-response "Workflow automation") - measure goals and maintain a consistent process.
 
 ### Learn more or submit an app you've built
 
-Read more on how to [get started](/developers/documentation/getting-started/quick-start "Quick start") building on Asana or [submit an app](/apps/submit) to add to our [apps page](/apps).
+Read more on how to [get started](#quick-start "Quick start") building on Asana or [submit an app](https://asana.com/apps/submit) to add to our [apps page](https://asana.com/apps).
 
-### Q&A Response
+## Q&A Response
 
 Asana's API enables customization and automation of your organization’s workflow through scripts built to specialize your use of Asana. Using Asana to track your work and leveraging Asana’s API to automate your processes is a powerful combination which can make your team much more efficient. Here's one example of how we do it at Asana.
 
@@ -77,7 +78,7 @@ To do this, we wrote an integration with the following goals in mind:
 
 * Maintain clarity amongst our teams by tracking work in Asana.
 * Have only one place we have to look to stay in the loop.
-* Ensure that no questions get missed, i.e. a [reminder bot](/developers/documentation/examples-tutorials/reminder-bot "Reminder Bot").
+* Ensure that no questions get missed, i.e. a [reminder bot](#bot-examples "Reminder Bot").
 * Let our API users know that they've been heard in a timely fashion.
 * Track our performance in remaining responsive.
 * Automate some of the bookkeeping required to maintain a consistent workflow.
@@ -86,13 +87,13 @@ To do this, we wrote an integration with the following goals in mind:
 The script we built does the following for us:
 
 1. Integrate with external sources to put incoming questions into Asana, one project per channel.
-2. Add question tasks from each incoming project into a [single combined project.](/guide/help/tasks/fields#gl-multi-home "Multi-Home")
+2. Add question tasks from each incoming project into a [single combined project.](https://asana.com/guide/help/tasks/fields#gl-multi-home "Multi-Home")
 3. Acknowledge a question has been received and begin tracking response times.
 4. Upon first response, complete a task to signal relevant followers that we've reached out.
 
 ### Maintain focus
 
-We use [webhooks](/developers/api-reference/webhooks "Webhooks documentation") to get notified in near-real time when new tasks are created in any of several Asana projects, one per incoming channel. Some of these projects are automatically synced with outside sources, others are available for our coworkers to create tasks in. Keeping tasks in their source channel helps keep us organized for where to go to respond. These projects are what our colleagues follow in order to remain focused on their own channels. 
+We use [webhooks](#asana-webhooks "Webhooks documentation") to get notified in near-real time when new tasks are created in any of several Asana projects, one per incoming channel. Some of these projects are automatically synced with outside sources, others are available for our coworkers to create tasks in. Keeping tasks in their source channel helps keep us organized for where to go to respond. These projects are what our colleagues follow in order to remain focused on their own channels. 
 
 Our script responds to these webhook notifications from each project by adding these tasks into a single "Developer Questions" project. Our developer relations team can then see all outstanding questions about our API in a single place. This is a key part of hitting our service level agreement (SLA) goals: not having to cycle through many projects and channels to see how we're progressing.
 
@@ -112,7 +113,7 @@ By managing this routine and specialized workflow with automation through Asana�
 
 Over time, we've continuously tweaked how our integration behaves to evolve our process, empowering us to adjust and iterate our approach. This is one of the key opportunities that Asana's API provides: ownership and control over how work gets done. Incremental improvements provide the chance to try out new workflows and settle on one that works well for everyone, leading to a more consistent and customized experience of using Asana.
 
-To get started, check out our [quick start](/developers/documentation/getting-started/quick-start "Quick Start") page for an overview of Asana's API. For support or to generate ideas of how your team can work more effectively with Asana, head to the [Asana Community](https://community.asana.com/c/developersAPI "Asana Developers Community") to chat with Asana team members and users!
+To get started, check out our [quick start](#quick-start "Quick Start") page for an overview of Asana's API. For support or to generate ideas of how your team can work more effectively with Asana, head to the [Asana Community](https://community.asana.com/c/developersAPI "Asana Developers Community") to chat with Asana team members and users!
 
 ---
 

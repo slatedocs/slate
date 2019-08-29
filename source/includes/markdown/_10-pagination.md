@@ -23,7 +23,7 @@ providing the optional **limit** parameter in your query. We will be working to
 deprecate requests to these endpoints in the future.
 
 Note that all of Asana's official [client
-libraries](/developers/documentation/getting-started/client-libraries) support
+libraries](#official-client-libraries) support
 pagination by default.
 
 When making a paginated request, the API will return a number of results as specified by the **limit** parameter.

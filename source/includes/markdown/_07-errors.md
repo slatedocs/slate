@@ -71,7 +71,7 @@ HTTP/1.1 500 Server Error
 | 402 | **Payment Required** | The request was valid, but the queried object or object mutation specified in the request is only available to premium organizations and workspaces. |
 | 403 | **Forbidden** | The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to. |
 | 404 | **Not Found** | Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist. |
-| 429 | **Too Many Requests** | You have exceeded one of the enforced rate limits in the API. See the [documentation on rate limiting](/developers/documentation/getting-started/rate-limits) for more information. |
+| 429 | **Too Many Requests** | You have exceeded one of the enforced rate limits in the API. See the [documentation on rate limiting](#rate-limits) for more information. |
 | 500 | **Internal Server Error** | There was a problem on Asana's end. |
 
 <br></br>

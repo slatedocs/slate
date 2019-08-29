@@ -6,7 +6,7 @@ To protect the stability of the API and keep it available to all users, Asana en
 
 Limits are allocated per authorization token. Different tokens will have independent limits.
 
-The [client libraries](/developers/documentation/getting-started/client-libraries) respect the rate-limited responses and will wait the appropriate amount of time before automatically retrying the request, up to a configurable maximum number of retries.
+The [client libraries](#official-client-libraries) respect the rate-limited responses and will wait the appropriate amount of time before automatically retrying the request, up to a configurable maximum number of retries.
 
 <a name="standard"></a>
 ### Standard Rate Limits
@@ -41,7 +41,7 @@ Our standard rate limiter imposes a quota on how many requests can be made in a 
 | Free | 150 |
 | Premium | 1500 |
 
-In addition, calls to the [search API](/developers/documentation/getting-started/search-api) are limited to 60 requests per minute.
+In addition, calls to the [search API](#search-api) are limited to 60 requests per minute.
 
 Although the quota is defined per minute, it is evaluated more frequently than once per minute, so you may not need to wait for a full minute before retrying your request. For requests rejected by this limiter, the `Retry-After` header has the result of this calculation.
 

@@ -61,7 +61,7 @@ Since every API request you make will start with the same base URL ('https://app
 
 After requesting information from the API, you will receive a resposne in [JSON](https://en.wikipedia.org/wiki/JSON) format, which can be read and understood by both humans and computers. It's structured in a particular way so programs can rely on a consistent format for the data.
 
-Our API is documented for what resources are available and what sort of return data to expect.  For example, here are the [docs for the `/users` endpoint](/#get-a-user) which we just called. This is where you can discover what's possible with our API.
+Our API is documented for what resources are available and what sort of return data to expect.  For example, here are the [docs for the `/users` endpoint](#get-a-user) which we just called. This is where you can discover what's possible with our API.
 
 Now, let’s make the same call to `/users/me` more like software would. Before we do so, we’ll need to get access outside of your web browser to the API.
 
@@ -75,7 +75,7 @@ If you want to write a script that interacts with the Asana API, the easiest met
 
 ### App or PAT?
 
-If your app needs to perform actions on behalf of users, you should use [OAuth](https://asana.com/developers/documentation/getting-started/auth).
+If your app needs to perform actions on behalf of users, you should use [OAuth](#oauth).
 
 **Getting a Personal Access Token (PAT)**
 
@@ -142,7 +142,7 @@ In our API documentation, we will often write examples as cURL commands since it
 
 You’re ready to start coding!
 
-Asana has [client libraries](/#official-client-libraries) in several popular coding languages. Using these libraries has several advantages (like managing authorization and retrying errors) that make them a good place to go from here. Let’s take a look at making the same `/users/me` request in Python, JavaScript, and Ruby (feel free to skip ahead to your favorite of the three languages).
+Asana has [client libraries](#official-client-libraries) in several popular coding languages. Using these libraries has several advantages (like managing authorization and retrying errors) that make them a good place to go from here. Let’s take a look at making the same `/users/me` request in Python, JavaScript, and Ruby (feel free to skip ahead to your favorite of the three languages).
 
 <hr class="full-line">
 
@@ -196,7 +196,7 @@ let config = require('./config');
 
 > Get your access token and use it to create an Asana client. At the time of writing this guide, the Asana API is going 
 through two deprecations (moving to string gids and changing how sections function). You can learn about our 
-[deprecations framework in our docs](https://asana.com/developers/documentation/getting-started/deprecations). 
+[deprecations framework in our docs](#deprecations). 
 To prevent my app from breaking when the deprecations are finalized, I'm passing headers to enable the new API 
 behavior for string gids and sections. We will also set a delay to determine how quickly our parallel requests are sent.
 
@@ -259,7 +259,7 @@ function assignTask(taskStringId, assigneeStringId) {
 > Our final function will take the array of unassigned tasks and round-robin assign them to the group of shuffled 
 designers from the config file. We will use an interval to loop so we can control the speed of the requests. 
 You can change the delay with the const you declared earlier. This is a balance between speed and staying within our 
-[concurrent request limit](https://asana.com/developers/documentation/getting-started/rate-limits#concurrent). 
+[concurrent request limit](#concurrent-request-limits). 
 In node, a normal loop would send all requests at once, which doesn’t work in larger projects.
 
 ```javascript
@@ -316,8 +316,8 @@ For the purposes of this guide, we will keep it this simple, however, you could 
 ### Helpful links
 Before we get started, here are some helpful links for building on the Asana API:
 
-* [Asana API reference docs](https://asana.com/developers/api-reference)
-* [Asana longform documentation](https://asana.com/developers/documentation/examples-tutorials/overview)
+* [Asana API reference docs](#asana)
+* [Asana longform documentation](#why-use-asana-39-s-api)
 * [Asana developer community](https://forum.asana.com/c/developersAPI) -- if you get blocked or have a question about the API, there are devs in our community that are eager to help. We also post API updates and news to the community forum.
 * The [code for this bot on Github](https://github.com/Asana/devrel-examples/tree/master/javascript/triage_bot)
 
@@ -325,7 +325,7 @@ Before we get started, here are some helpful links for building on the Asana API
 Create a new Asana account for your bot ([instructions for inviting users](https://asana.com/guide/help/organizations/members#gl-invite)). You want to create a distinct Asana account for your bot because any action it takes in Asana will be attributed to this user. Give your bot a name and photo that will be recognizable to users in Asana that encounter it. Note that if your bot is a guest member in Asana that it will need to be added to every project you need it to work in. Bots based on guest Asana accounts will also not have access to some API features such as defining new custom fields or modifying their settings.
 
 ### Authenticating your bot
-We will authenticate our bot using a [Personal Access Token (PAT)](https://asana.com/developers/documentation/getting-started/auth#personal-access-token). Log in to the Asana account that will be used for the bot and navigate to the developer console. You can get to your dev console by either using this URL https://app.asana.com/-/developer_console or from within Asana by clicking your photo icon in the upper right of Asana -> My Profile Settings -> Apps -> Manage Developer Apps.
+We will authenticate our bot using a [Personal Access Token (PAT)](#personal-access-token). Log in to the Asana account that will be used for the bot and navigate to the developer console. You can get to your dev console by either using this URL https://app.asana.com/-/developer_console or from within Asana by clicking your photo icon in the upper right of Asana -> My Profile Settings -> Apps -> Manage Developer Apps.
 
 Next, click “+ New access token” and follow the instructions to get your token. Treat this token like a username and password. Don’t share it with anyone and never publish it to a public repository. I like to save my PAT as an environment variable (here are instructions on [how to do this on Mac](https://medium.com/@himanshuagarwal1395/setting-up-environment-variables-in-macos-sierra-f5978369b255)). For this guide, I’ve saved a PAT as an env variable called `triage_bot_pat`.
 
@@ -333,7 +333,7 @@ Next, click “+ New access token” and follow the instructions to get your tok
 Before we start coding, [create a project in Asana](https://asana.com/guide/help/projects/basics#gl-create) to use as a sandbox. While not required, I like to [set the project to private](https://asana.com/guide/help/permissions/project-permissions#gl-private-project) while developing. To get some users in the project, add your main Asana user as well as your bot account. You could also invite a personal email as a guest user.
 
 ### Choose an Asana client library 
-The Asana API has [SDKs in several popular languages](https://asana.com/developers/documentation/getting-started/client-libraries). For most developers, we recommend using one of our client libraries because they help with some of the complexities of using an API such as authentication, pagination, and deprecations. 
+The Asana API has [SDKs in several popular languages](#official-client-libraries). For most developers, we recommend using one of our client libraries because they help with some of the complexities of using an API such as authentication, pagination, and deprecations. 
 
 For this guide, we will use the [Asana Node client library](https://github.com/Asana/node-asana), however, you can follow along in any language of your choice. 
 
@@ -360,7 +360,7 @@ To take your bot’s accessibility to the next level, put your configuration in 
 To see this approach in the wild, checkout [Ohmega](https://github.com/Asana/ohmega), an automation framework we created. Here’s the [configuration service](https://github.com/Asana/ohmega/blob/master/ohmega/services/configuration_service.py) that reads a tree of tasks for its configuration. 
 
 ### Use webhooks for real-time triaging 
-If you need your bot to react to changes in real time, then you’ll need to use [webhooks](https://asana.com/developers/api-reference/webhooks). We built a [python webhook inspector](https://github.com/Asana/devrel-examples/tree/master/python/webhooks) to help developers get started using Asana webhooks. 
+If you need your bot to react to changes in real time, then you’ll need to use [webhooks](#asana-webhooks). We built a [python webhook inspector](https://github.com/Asana/devrel-examples/tree/master/python/webhooks) to help developers get started using Asana webhooks. 
 
 ---
 

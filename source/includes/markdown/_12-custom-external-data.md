@@ -2,7 +2,7 @@
 
 ## Custom External Data
 
-Custom external data allows a client application to add app-specific metadata to [Tasks](/developers/api-reference/tasks)
+Custom external data allows a client application to add app-specific metadata to [Tasks](#asana-tasks)
 in the API. The custom data includes a string id that can be used to retrieve objects and a data blob that can store
 character strings.
 
