@@ -16433,6 +16433,41 @@ text|String, optional
 _id|ObjectID, optional
 __v|Number, optional
 
+## OutboundReferral
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: yes
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes
+updatedBy|Type: ObjectID, Required: yes
+facility|Type: ObjectID, Required: no, Referencing: [Facility](#facility)
+provider|Type: ObjectID, Required: no, Referencing: [Provider](#provider)
+renderingProvider|Type: ObjectID, Required: no, Referencing: [Provider](#provider)
+patient|Type: ObjectID, Required: yes, Referencing: [User](#user)
+appointmentType|Type: ObjectID, Required: no, Referencing: [AppointmentType](#appointmenttype)
+source|Type: String, Required: no, Possible values: ["upload","ui","integrator"]
+status|Type: String, Required: no, Possible values:
+["active","called","scheduled","incomplete","cancelled","expired","closed"]
+diagnoses|Type: Array, Required: no
+attempt|Type: Number, Required: no
+startOn|Type: Date, Required: yes
+expireAt|Type: Date, Required: yes
+lastAttemptSentAt|Type: Date, Required: no
+calledAt|Type: Date, Required: no
+scheduledAt|Type: Date, Required: no
+notes|Type: String, Required: no
+externalId.source|Type: String, Required: no, Possible values:
+["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner","allmeds"]
+externalId.value|Type: String, Required: no
+reason|Type: String, Required: no
+processedReferralOutreach|Type: String, Required: no, Possible values: ["pending","skipped","failed","success"]
+faxUpload|Type: ObjectID, Required: no, Referencing: [FileUpload](#fileupload)
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
 ## PatientFormTemplate
 
 Attribute|Description
