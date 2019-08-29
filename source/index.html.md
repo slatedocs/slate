@@ -16268,6 +16268,24 @@ recipient|ObjectID, optional, ref: [User](#user)
 _id|ObjectID, optional
 __v|Number, optional
 
+## NlpTraining
+
+Attribute|Description
+----|----
+key|Type: String, Required: yes
+text|Type: String, Required: yes
+userIntent|Type: String, Required: yes
+evaluator|Type: String, Required: yes
+evaluatorSlack|Type: String, Required: no
+inboundMessage|Type: ObjectID, Required: no, Referencing: [Message](#message)
+createdAt|Type: Date, Required: yes
+updatedAt|Type: Date, Required: yes
+createdBy|Type: ObjectID, Required: no, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: no, Referencing: [User](#user)
+user|Type: ObjectID, Required: no, Referencing: [User](#user)
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
 ## Notification
 
 Attribute|Description
