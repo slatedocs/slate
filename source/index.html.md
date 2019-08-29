@@ -15956,23 +15956,23 @@ updatedBy|ObjectID, required, ref: [User](#user)
 _id|ObjectID, optional
 __v|Number, optional
 
-## hl7message
+## Hl7messages
 
 Attribute|Description
 ----|----
-user|ObjectID, required, ref: [User](#user)
-integratorRef|ObjectID, required, ref: [Integrator](#integrator)
-integrator|String, required, Possible values:`mi7` (our third party vendor) or `hl7` (luma link based)
-direction|String, required, Possible values: ["inbound", "outbound"]
-content|Mixed, optional
-status|String, required, Possible values: "pending" (the message has been accepted), "processing" (the message is being worked on), "completed" (the message was successfully completed), "failed" (the message failed to process)], default: "pending".
-createdAt|Date, optional
-updatedAt|Date, optional
-createdBy|ObjectID, required, ref: [User](#user)
-updatedBy|ObjectID, required, ref: [User](#user)
-deleted|Number, optional
-_id|ObjectID, optional
-__v|Number, optional
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+integratorRef|Type: ObjectID, Required: yes, Referencing: [Integrator](#integrator)
+integrator|Type: String, Required: yes, Possible values: ["mi7","hl7"]
+direction|Type: String, Required: yes, Possible values: ["inbound","outbound"]
+content|Type: Mixed, Required: no
+status|Type: String, Required: yes, Possible values: ["pending","processing","completed","failed"]
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: no
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
 
 ## InboundMessageRequest
 
