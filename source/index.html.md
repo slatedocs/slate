@@ -199,6 +199,52 @@ createdBy | User id of the user who created the activity.
 updatedBy | User id of the user who updated the activity.
 user | User id of the owner account.
 
+## Put by id
+
+`PUT` /api/activities/:id
+
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/activities/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+-d '{
+"field1": "test",
+"field2": {
+"foo": "bar"
+}
+}'
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description
+-------------- | -----------
+:id | xxx
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Request body param | Description
+-------------- | -----------
+:id | xxx
+
+Response body param | Description
+-------------- | -----------
+xxx | yyy
+
 # appointments
 
 ## Get appointments
@@ -734,17 +780,205 @@ Any property of an [Appointment](#appointment) | ex.: ?status=unconfirmed&source
 
 Response: XLS spreadsheet file.
 
+## Get summary
+
+`GET` /api/appointments/summary
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/appointments/summary?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Response body param | Description
+-------------- | -----------
+xxx | yyy
+
 ## Post upload/dentrix
 
+`POST` /api/appointments/upload/dentrix
+
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/appointments/upload/dentrix?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+-d '{
+"field1": "test",
+"field2": {
+"foo": "bar"
+}
+}'
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Request body param | Description
+-------------- | -----------
+| xxx
+
+Response body param | Description
+-------------- | -----------
+xxx | yyy
 
 ## Post upload/referral
 
+`POST` /api/appointments/upload/referral
+
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/appointments/upload/referral?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+-d '{
+"field1": "test",
+"field2": {
+"foo": "bar"
+}
+}'
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Request body param | Description
+-------------- | -----------
+| xxx
+
+Response body param | Description
+-------------- | -----------
+xxx | yyy
 
 ## Post upload/successehs
 
+`POST` /api/appointments/upload/successehs
+
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/appointments/upload/successehs?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+-d '{
+"field1": "test",
+"field2": {
+"foo": "bar"
+}
+}'
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Request body param | Description
+-------------- | -----------
+| xxx
+
+Response body param | Description
+-------------- | -----------
+xxx | yyy
 
 ## Post upload/theraoffice
 
+`POST` /api/appointments/upload/theraoffice
+
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/appointments/upload/theraoffice?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+-d '{
+"field1": "test",
+"field2": {
+"foo": "bar"
+}
+}'
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Request body param | Description
+-------------- | -----------
+| xxx
+
+Response body param | Description
+-------------- | -----------
+xxx | yyy
 
 # appointmentTypes
 
@@ -3630,6 +3864,52 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
+## Put publish
+
+`PUT` /api/customWebStyles/:id/publish
+
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/customWebStyles/:id/publish?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+-d '{
+"field1": "test",
+"field2": {
+"foo": "bar"
+}
+}'
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description
+-------------- | -----------
+:id | xxx
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Request body param | Description
+-------------- | -----------
+:id | xxx
+
+Response body param | Description
+-------------- | -----------
+xxx | yyy
+
 ## Put upload
 
 `PUT` /api/customWebStyles/:id/upload
@@ -3954,6 +4234,194 @@ x-access-token | JWT auth access token
 
 Response body param | Description 
 -------------- | ----------- 
+xxx | yyy
+
+## Get by id
+
+`GET` /api/diagnoses/:id
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/diagnoses/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description
+-------------- | -----------
+:id | xxx
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Response body param | Description
+-------------- | -----------
+xxx | yyy
+
+## Post diagnose
+
+`POST` /api/diagnoses/
+
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/diagnoses/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+-d '{
+"field1": "test",
+"field2": {
+"foo": "bar"
+}
+}'
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Request body param | Description
+-------------- | -----------
+| xxx
+
+Response body param | Description
+-------------- | -----------
+xxx | yyy
+
+## Put by id
+
+`PUT` /api/diagnoses/:id
+
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/diagnoses/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+-d '{
+"field1": "test",
+"field2": {
+"foo": "bar"
+}
+}'
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description
+-------------- | -----------
+:id | xxx
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Request body param | Description
+-------------- | -----------
+:id | xxx
+
+Response body param | Description
+-------------- | -----------
+xxx | yyy
+
+## Get icd10/search
+
+`GET` /api/diagnoses/icd10/search
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/diagnoses/icd10/search?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Response body param | Description
+-------------- | -----------
+xxx | yyy
+
+## Get icd9/search
+
+`GET` /api/diagnoses/icd9/search
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/diagnoses/icd9/search?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Response body param | Description
+-------------- | -----------
 xxx | yyy
 
 # docs
@@ -6182,6 +6650,44 @@ x-access-token | JWT auth access token
 
 Response body param | Description 
 -------------- | ----------- 
+xxx | yyy
+
+# heartbeat
+
+## Get by id
+
+`GET` /api/heartbeat/:id
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/heartbeat/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description
+-------------- | -----------
+:id | xxx
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Response body param | Description
+-------------- | -----------
 xxx | yyy
 
 # hl7messages
@@ -8487,6 +8993,210 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
+# outboundReferrals
+
+## Get outboundReferrals
+
+`GET` /api/outboundReferrals/
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/outboundReferrals/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Response body param | Description
+-------------- | -----------
+xxx | yyy
+
+## Post outboundReferral
+
+`POST` /api/outboundReferrals/
+
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/outboundReferrals/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+-d '{
+"field1": "test",
+"field2": {
+"foo": "bar"
+}
+}'
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Request body param | Description
+-------------- | -----------
+| xxx
+
+Response body param | Description
+-------------- | -----------
+xxx | yyy
+
+## Get by id
+
+`GET` /api/outboundReferrals/:id
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/outboundReferrals/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description
+-------------- | -----------
+:id | xxx
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Response body param | Description
+-------------- | -----------
+xxx | yyy
+
+## Put by id
+
+`PUT` /api/outboundReferrals/:id
+
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/outboundReferrals/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+-d '{
+"field1": "test",
+"field2": {
+"foo": "bar"
+}
+}'
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description
+-------------- | -----------
+:id | xxx
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Request body param | Description
+-------------- | -----------
+:id | xxx
+
+Response body param | Description
+-------------- | -----------
+xxx | yyy
+
+## Delete by id
+
+`DELETE` /api/outboundReferrals/:id
+
+```shell
+#shell command:
+curl -X DELETE \
+http://localhost:8002/api/outboundReferrals/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+-d '{
+"field1": "test",
+"field2": {
+"foo": "bar"
+}
+}'
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description
+-------------- | -----------
+:id | xxx
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Request body param | Description
+-------------- | -----------
+:id | xxx
+
+Response body param | Description
+-------------- | -----------
+xxx | yyy
+
 # patientForms
 
 ## Get patientForms
@@ -8555,6 +9265,70 @@ x-access-token | JWT auth access token
 
 Response body param | Description 
 -------------- | ----------- 
+xxx | yyy
+
+## Get medicationsearch
+
+`GET` /api/patientForms/medicationsearch
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/patientForms/medicationsearch?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Response body param | Description
+-------------- | -----------
+xxx | yyy
+
+## Get pharmacysearch
+
+`GET` /api/patientForms/pharmacysearch
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/patientForms/pharmacysearch?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Response body param | Description
+-------------- | -----------
 xxx | yyy
 
 ## Get pdf
@@ -8805,6 +9579,94 @@ Request body param | Description
 
 Response body param | Description 
 -------------- | ----------- 
+xxx | yyy
+
+## Delete by id
+
+`DELETE` /api/patientForms/:id
+
+```shell
+#shell command:
+curl -X DELETE \
+http://localhost:8002/api/patientForms/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+-d '{
+"field1": "test",
+"field2": {
+"foo": "bar"
+}
+}'
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description
+-------------- | -----------
+:id | xxx
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Request body param | Description
+-------------- | -----------
+:id | xxx
+
+Response body param | Description
+-------------- | -----------
+xxx | yyy
+
+## Post eSignature/upload
+
+`POST` /api/patientForms/eSignature/upload
+
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/patientForms/eSignature/upload?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+-d '{
+"field1": "test",
+"field2": {
+"foo": "bar"
+}
+}'
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Request body param | Description
+-------------- | -----------
+| xxx
+
+Response body param | Description
+-------------- | -----------
 xxx | yyy
 
 # patientFormTemplates
@@ -10487,6 +11349,98 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
+## Put activate
+
+`PUT` /api/providers/:id/activate
+
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/providers/:id/activate?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+-d '{
+"field1": "test",
+"field2": {
+"foo": "bar"
+}
+}'
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description
+-------------- | -----------
+:id | xxx
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Request body param | Description
+-------------- | -----------
+:id | xxx
+
+Response body param | Description
+-------------- | -----------
+xxx | yyy
+
+## Put deactivate
+
+`PUT` /api/providers/:id/deactivate
+
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/providers/:id/deactivate?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+-d '{
+"field1": "test",
+"field2": {
+"foo": "bar"
+}
+}'
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description
+-------------- | -----------
+:id | xxx
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Request body param | Description
+-------------- | -----------
+:id | xxx
+
+Response body param | Description
+-------------- | -----------
+xxx | yyy
+
 ## Get availabilities
 
 `GET` /api/providers/:id/availabilities
@@ -10903,6 +11857,38 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
+## Get rendering
+
+`GET` /api/providers/rendering
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/providers/rendering?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Response body param | Description
+-------------- | -----------
+xxx | yyy
+
 ## Get search
 
 `GET` /api/providers/search
@@ -10967,6 +11953,176 @@ x-access-token | JWT auth access token
 
 Response body param | Description 
 -------------- | ----------- 
+xxx | yyy
+
+## Post recall
+
+`POST` /api/recalls/
+
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/recalls/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+-d '{
+"field1": "test",
+"field2": {
+"foo": "bar"
+}
+}'
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Request body param | Description
+-------------- | -----------
+| xxx
+
+Response body param | Description
+-------------- | -----------
+xxx | yyy
+
+## Get by id
+
+`GET` /api/recalls/:id
+
+```shell
+#shell command:
+curl \
+http://localhost:8002/api/recalls/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN"
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description
+-------------- | -----------
+:id | xxx
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Response body param | Description
+-------------- | -----------
+xxx | yyy
+
+## Put by id
+
+`PUT` /api/recalls/:id
+
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/recalls/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+-d '{
+"field1": "test",
+"field2": {
+"foo": "bar"
+}
+}'
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description
+-------------- | -----------
+:id | xxx
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Request body param | Description
+-------------- | -----------
+:id | xxx
+
+Response body param | Description
+-------------- | -----------
+xxx | yyy
+
+## Delete by id
+
+`DELETE` /api/recalls/:id
+
+```shell
+#shell command:
+curl -X DELETE \
+http://localhost:8002/api/recalls/:id?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+-d '{
+"field1": "test",
+"field2": {
+"foo": "bar"
+}
+}'
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description
+-------------- | -----------
+:id | xxx
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Request body param | Description
+-------------- | -----------
+:id | xxx
+
+Response body param | Description
+-------------- | -----------
 xxx | yyy
 
 # referrals
@@ -13137,7 +14293,7 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
-## Post admin
+## Post admin by id
 
 `POST` /api/users/admin/:id
 
@@ -13181,6 +14337,90 @@ Request body param | Description
 
 Response body param | Description 
 -------------- | ----------- 
+xxx | yyy
+
+## Post admin/masters
+
+`POST` /api/users/admin/masters
+
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/users/admin/masters?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+-d '{
+"field1": "test",
+"field2": {
+"foo": "bar"
+}
+}'
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Request body param | Description
+-------------- | -----------
+| xxx
+
+Response body param | Description
+-------------- | -----------
+xxx | yyy
+
+## Post admin/subaccounts
+
+`POST` /api/users/admin/subaccounts
+
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/users/admin/subaccounts?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+-d '{
+"field1": "test",
+"field2": {
+"foo": "bar"
+}
+}'
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Request body param | Description
+-------------- | -----------
+| xxx
+
+Response body param | Description
+-------------- | -----------
 xxx | yyy
 
 ## Post decommission
@@ -14486,6 +15726,23 @@ previousAssignee|ObjectID, optional, ref: [User](#user)
 _id|ObjectID, optional
 __v|Number, optional
 
+## CustomWebStyle
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+description|Type: String, Required: no
+url|Type: String, Required: no
+styles.theme|Type: Mixed, Required: no
+published|Type: Boolean, Required: no
+publishedAt|Type: Date, Required: no
+publishedBy|Type: ObjectID, Required: no, Referencing: [User](#user)
+createdAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: yes
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
 ## Diagnosis
 
 Attribute|Description
@@ -14716,23 +15973,23 @@ updatedBy|ObjectID, required, ref: [User](#user)
 _id|ObjectID, optional
 __v|Number, optional
 
-## hl7message
+## Hl7messages
 
 Attribute|Description
 ----|----
-user|ObjectID, required, ref: [User](#user)
-integratorRef|ObjectID, required, ref: [Integrator](#integrator)
-integrator|String, required, Possible values:`mi7` (our third party vendor) or `hl7` (luma link based)
-direction|String, required, Possible values: ["inbound", "outbound"]
-content|Mixed, optional
-status|String, required, Possible values: "pending" (the message has been accepted), "processing" (the message is being worked on), "completed" (the message was successfully completed), "failed" (the message failed to process)], default: "pending".
-createdAt|Date, optional
-updatedAt|Date, optional
-createdBy|ObjectID, required, ref: [User](#user)
-updatedBy|ObjectID, required, ref: [User](#user)
-deleted|Number, optional
-_id|ObjectID, optional
-__v|Number, optional
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+integratorRef|Type: ObjectID, Required: yes, Referencing: [Integrator](#integrator)
+integrator|Type: String, Required: yes, Possible values: ["mi7","hl7"]
+direction|Type: String, Required: yes, Possible values: ["inbound","outbound"]
+content|Type: Mixed, Required: no
+status|Type: String, Required: yes, Possible values: ["pending","processing","completed","failed"]
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: no
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
 
 ## InboundMessageRequest
 
@@ -14812,26 +16069,50 @@ deleted|Number, required
 _id|ObjectID, optional
 __v|Number, optional
 
-## integrator
+## Integrator
 
 Attribute|Description
 ----|----
-user|ObjectID, required, ref: [User](#user)
-type|String, optional, Possible values: ["gcalendar", "successehs", "drchrono", "dentrix", "webpt", "theraoffice", "mi7", "practicefusion", "advancedmd", "acomrapidpm", "kareo", "nextech", "mwtherapy", "clinicient", "carecloud", "eclinicalmobile", "duxware", "labretriever", "optimispt", "referral", "recall", "allscriptspm", "lytec", "brightree", "fullslate", "nuemd", "centricityps", "officeally", "greenwayintergy", "compulink", "adspm", "dsnpm", "lumamock", "medicalmastermind", "meditouch", "healthnautica", "ezemrx", "hl7", "amazingcharts", "greenwayprimesuite", "raintree", "athenahealth", "revflow", "eclinicalworks10e", "hl7pickup", "mindbody", "eclinicalworkssql", "nextgen", "practiceperfect", "avimark", "clinix", "keymedical", "mdoffice", "webedoctor", "emapm", "medinformatix", "imsgo", "emds", "allscriptsunity", "medevolve", "caretracker", "clearpractice", "valant", "micromd", "systemedx", "medicalmaster", "athenamdp", "gmed", "roche", "onetouch", "somnoware", "managementplus", "lumacare", "nextechfhir", "curemd", "epic", "phoenixortho", "ezderm", "ggastromobile", "epicconfirmationpickup", "cerner"]
-credentials|Mixed, optional
-lastSync|Date, optional
-lastSyncStatus|String, optional, Possible values: ["success", "failure", "needs-sync", "in-progress"]
-lastSuccessfulSync|Date, required
-enabled|Boolean, required
-deleted|Number, required
-integratorClient|ObjectID, optional, ref: [IntegratorClient](#integratorclient)
-setting|ObjectID, optional, ref: [Setting](#setting)
-createdAt|Date, optional
-updatedAt|Date, optional
-createdBy|ObjectID, required, ref: [User](#user)
-updatedBy|ObjectID, required, ref: [User](#user)
-_id|ObjectID, optional
-__v|Number, optional
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+type|Type: String, Required: no, Possible values:
+["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner","allmeds"]
+credentials|Type: Mixed, Required: no
+lastSync|Type: Date, Required: no
+lastSyncStatus|Type: String, Required: no, Possible values: ["success","failure","needs-sync","in-progress"]
+lastSuccessfulSync|Type: Date, Required: yes
+enabled|Type: Boolean, Required: yes
+deleted|Type: Number, Required: yes
+integratorClient|Type: ObjectID, Required: no, Referencing: [IntegratorClient](#integratorclient)
+setting|Type: ObjectID, Required: no, Referencing: [Setting](#setting)
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
+## Intent
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: yes
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes
+updatedBy|Type: ObjectID, Required: yes
+intent|Type: String, Required: yes, Possible values:
+["waitlist","none","confirm-appointment","cancel-appointment","appointment-offer-accept","ignore","positive-feedback","negative-feedback","error","irregular","directions","address","reschedule"]
+inboundMessage|Type: ObjectID, Required: yes, Referencing: [Message](#message)
+ref|Type: String, Required: yes, Possible values:
+["reminder","referral-reminder","feedback-reminder","followup","outbound-referral-reminder","form-reminder","waitlist","appointment-offer","chat-notification","pin-verification","chat","chat-audit","feedback","waitlist-offer","referral-followup","outbound-referral-outreach","referral-redirect","broadcast","generic","stop","bot:followup"]
+refId|Type: ObjectID, Required: yes
+key|Type: String, Required: yes
+patient|Type: ObjectID, Required: yes, Referencing: [User](#user)
+method|Type: String, Required: no
+params|Type: Mixed, Required: no
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
 
 ## Logins
 
@@ -14987,6 +16268,24 @@ recipient|ObjectID, optional, ref: [User](#user)
 _id|ObjectID, optional
 __v|Number, optional
 
+## NlpTraining
+
+Attribute|Description
+----|----
+key|Type: String, Required: yes
+text|Type: String, Required: yes
+userIntent|Type: String, Required: yes
+evaluator|Type: String, Required: yes
+evaluatorSlack|Type: String, Required: no
+inboundMessage|Type: ObjectID, Required: no, Referencing: [Message](#message)
+createdAt|Type: Date, Required: yes
+updatedAt|Type: Date, Required: yes
+createdBy|Type: ObjectID, Required: no, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: no, Referencing: [User](#user)
+user|Type: ObjectID, Required: no, Referencing: [User](#user)
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
 ## Notification
 
 Attribute|Description
@@ -15134,6 +16433,41 @@ text|String, optional
 _id|ObjectID, optional
 __v|Number, optional
 
+## OutboundReferral
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: yes
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes
+updatedBy|Type: ObjectID, Required: yes
+facility|Type: ObjectID, Required: no, Referencing: [Facility](#facility)
+provider|Type: ObjectID, Required: no, Referencing: [Provider](#provider)
+renderingProvider|Type: ObjectID, Required: no, Referencing: [Provider](#provider)
+patient|Type: ObjectID, Required: yes, Referencing: [User](#user)
+appointmentType|Type: ObjectID, Required: no, Referencing: [AppointmentType](#appointmenttype)
+source|Type: String, Required: no, Possible values: ["upload","ui","integrator"]
+status|Type: String, Required: no, Possible values:
+["active","called","scheduled","incomplete","cancelled","expired","closed"]
+diagnoses|Type: Array, Required: no
+attempt|Type: Number, Required: no
+startOn|Type: Date, Required: yes
+expireAt|Type: Date, Required: yes
+lastAttemptSentAt|Type: Date, Required: no
+calledAt|Type: Date, Required: no
+scheduledAt|Type: Date, Required: no
+notes|Type: String, Required: no
+externalId.source|Type: String, Required: no, Possible values:
+["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner","allmeds"]
+externalId.value|Type: String, Required: no
+reason|Type: String, Required: no
+processedReferralOutreach|Type: String, Required: no, Possible values: ["pending","skipped","failed","success"]
+faxUpload|Type: ObjectID, Required: no, Referencing: [FileUpload](#fileupload)
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
 ## PatientFormTemplate
 
 Attribute|Description
@@ -15182,23 +16516,23 @@ integratorUpdateResults.error|String, optional
 _id|ObjectID, optional
 __v|Number, optional
 
-## patientMessageTemplate
+## PatientMessageTemplate
 
 Attribute|Description
 ----|----
-user|ObjectID, required, ref: [User](#user)
-language|String, required, Possible values: ["es", "en", "vi", "am", "fa", "ko", "ru", "zh-t", "zh-s", "zh", "pt", "ar"]
-message|String, required
-name|String, required
-type|String, required, Possible values: ["chat", "broadcast"]
-channel|String, optional, Possible values: ["sms", "email", "voice"]
-createdAt|Date, optional
-updatedAt|Date, optional
-createdBy|ObjectID, required, ref: [User](#user)
-updatedBy|ObjectID, required, ref: [User](#user)
-deleted|Number, optional
-_id|ObjectID, optional
-__v|Number, optional
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+language|Type: String, Required: yes, Possible values: ["es","en","vi","am","fa","ko","ru","zh-t","zh-s","zh","pt","ar"]
+message|Type: String, Required: yes
+name|Type: String, Required: yes
+type|Type: String, Required: yes, Possible values: ["chat","broadcast"]
+channel|Type: String, Required: no, Possible values: ["sms","email","voice"]
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: no
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
 
 ## PatientSubscriber
 
