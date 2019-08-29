@@ -11349,6 +11349,52 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
+## Put activate
+
+`PUT` /api/providers/:id/activate
+
+```shell
+#shell command:
+curl -X PUT \
+http://localhost:8002/api/providers/:id/activate?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+-d '{
+"field1": "test",
+"field2": {
+"foo": "bar"
+}
+}'
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Path parameters | Description
+-------------- | -----------
+:id | xxx
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Request body param | Description
+-------------- | -----------
+:id | xxx
+
+Response body param | Description
+-------------- | -----------
+xxx | yyy
+
 ## Get availabilities
 
 `GET` /api/providers/:id/availabilities
