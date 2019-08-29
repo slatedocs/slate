@@ -15726,6 +15726,23 @@ previousAssignee|ObjectID, optional, ref: [User](#user)
 _id|ObjectID, optional
 __v|Number, optional
 
+## CustomWebStyle
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+description|Type: String, Required: no
+url|Type: String, Required: no
+styles.theme|Type: Mixed, Required: no
+published|Type: Boolean, Required: no
+publishedAt|Type: Date, Required: no
+publishedBy|Type: ObjectID, Required: no, Referencing: [User](#user)
+createdAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: yes
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
 ## Diagnosis
 
 Attribute|Description
