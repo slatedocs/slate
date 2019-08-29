@@ -8745,16 +8745,6 @@ paths:
   /users/{user_gid}/workspace_memberships:
     parameters:
       - $ref: '#/components/parameters/user_path_gid'
-    get:
-      responses:
-        200:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/WorkspaceMembershipArray'
-  /users/{workspace_gid}/workspace_memberships:
-    parameters:
-      - $ref: '#/components/parameters/user_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
       - $ref: '#/components/parameters/limit'
@@ -8807,38 +8797,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WorkspaceMembershipArray'
-  /workspaces/{workspace_gid}/workspace_memberships?user={user_gid}:
-    parameters:
-      - $ref: '#/components/parameters/workspace_path_gid'
-      - $ref: '#/components/parameters/user_path_gid'
-    get:
-      responses:
-        200:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/WorkspaceMembershipObject'
   /workspace_memberships/{workspace_membership_gid}:
-    parameters:
-      - $ref: '#/components/parameters/workspace_membership_path_gid'
-    get:
-      responses:
-        200:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/WorkspaceMembershipObject'
-        400:
-          $ref: '#/components/responses/BadRequest'
-        401:
-          $ref: '#/components/responses/Unauthorized'
-        403:
-          $ref: '#/components/responses/Forbidden'
-        404:
-          $ref: '#/components/responses/NotFound'
-        5XX:
-          $ref: '#/components/responses/InternalServerError'
-  /workspace_memberships/{workspace_gid}:
     parameters:
       - $ref: '#/components/parameters/workspace_path_gid'
       - $ref: '#/components/parameters/pretty'
