@@ -16091,6 +16091,29 @@ updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
 _id|Type: ObjectID, Required: no
 __v|Type: Number, Required: no
 
+## Intent
+
+Attribute|Description
+----|----
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: yes
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes
+updatedBy|Type: ObjectID, Required: yes
+intent|Type: String, Required: yes, Possible values:
+["waitlist","none","confirm-appointment","cancel-appointment","appointment-offer-accept","ignore","positive-feedback","negative-feedback","error","irregular","directions","address","reschedule"]
+inboundMessage|Type: ObjectID, Required: yes, Referencing: [Message](#message)
+ref|Type: String, Required: yes, Possible values:
+["reminder","referral-reminder","feedback-reminder","followup","outbound-referral-reminder","form-reminder","waitlist","appointment-offer","chat-notification","pin-verification","chat","chat-audit","feedback","waitlist-offer","referral-followup","outbound-referral-outreach","referral-redirect","broadcast","generic","stop","bot:followup"]
+refId|Type: ObjectID, Required: yes
+key|Type: String, Required: yes
+patient|Type: ObjectID, Required: yes, Referencing: [User](#user)
+method|Type: String, Required: no
+params|Type: Mixed, Required: no
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
+
 ## Logins
 
 Attribute|Description
