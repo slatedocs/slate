@@ -16052,26 +16052,27 @@ deleted|Number, required
 _id|ObjectID, optional
 __v|Number, optional
 
-## integrator
+## Integrator
 
 Attribute|Description
 ----|----
-user|ObjectID, required, ref: [User](#user)
-type|String, optional, Possible values: ["gcalendar", "successehs", "drchrono", "dentrix", "webpt", "theraoffice", "mi7", "practicefusion", "advancedmd", "acomrapidpm", "kareo", "nextech", "mwtherapy", "clinicient", "carecloud", "eclinicalmobile", "duxware", "labretriever", "optimispt", "referral", "recall", "allscriptspm", "lytec", "brightree", "fullslate", "nuemd", "centricityps", "officeally", "greenwayintergy", "compulink", "adspm", "dsnpm", "lumamock", "medicalmastermind", "meditouch", "healthnautica", "ezemrx", "hl7", "amazingcharts", "greenwayprimesuite", "raintree", "athenahealth", "revflow", "eclinicalworks10e", "hl7pickup", "mindbody", "eclinicalworkssql", "nextgen", "practiceperfect", "avimark", "clinix", "keymedical", "mdoffice", "webedoctor", "emapm", "medinformatix", "imsgo", "emds", "allscriptsunity", "medevolve", "caretracker", "clearpractice", "valant", "micromd", "systemedx", "medicalmaster", "athenamdp", "gmed", "roche", "onetouch", "somnoware", "managementplus", "lumacare", "nextechfhir", "curemd", "epic", "phoenixortho", "ezderm", "ggastromobile", "epicconfirmationpickup", "cerner"]
-credentials|Mixed, optional
-lastSync|Date, optional
-lastSyncStatus|String, optional, Possible values: ["success", "failure", "needs-sync", "in-progress"]
-lastSuccessfulSync|Date, required
-enabled|Boolean, required
-deleted|Number, required
-integratorClient|ObjectID, optional, ref: [IntegratorClient](#integratorclient)
-setting|ObjectID, optional, ref: [Setting](#setting)
-createdAt|Date, optional
-updatedAt|Date, optional
-createdBy|ObjectID, required, ref: [User](#user)
-updatedBy|ObjectID, required, ref: [User](#user)
-_id|ObjectID, optional
-__v|Number, optional
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+type|Type: String, Required: no, Possible values:
+["gcalendar","successehs","drchrono","dentrix","webpt","theraoffice","mi7","practicefusion","advancedmd","acomrapidpm","kareo","nextech","mwtherapy","clinicient","carecloud","eclinicalmobile","duxware","labretriever","optimispt","referral","recall","allscriptspm","lytec","brightree","fullslate","nuemd","centricityps","officeally","greenwayintergy","compulink","adspm","dsnpm","lumamock","medicalmastermind","meditouch","healthnautica","ezemrx","hl7","amazingcharts","greenwayprimesuite","raintree","athenahealth","revflow","eclinicalworks10e","hl7pickup","mindbody","eclinicalworkssql","nextgen","practiceperfect","avimark","clinix","keymedical","mdoffice","webedoctor","emapm","medinformatix","imsgo","emds","allscriptsunity","medevolve","caretracker","clearpractice","valant","micromd","systemedx","medicalmaster","athenamdp","gmed","roche","onetouch","somnoware","managementplus","lumacare","nextechfhir","curemd","epic","phoenixortho","ezderm","ggastromobile","epicconfirmationpickup","cerner","allmeds"]
+credentials|Type: Mixed, Required: no
+lastSync|Type: Date, Required: no
+lastSyncStatus|Type: String, Required: no, Possible values: ["success","failure","needs-sync","in-progress"]
+lastSuccessfulSync|Type: Date, Required: yes
+enabled|Type: Boolean, Required: yes
+deleted|Type: Number, Required: yes
+integratorClient|Type: ObjectID, Required: no, Referencing: [IntegratorClient](#integratorclient)
+setting|Type: ObjectID, Required: no, Referencing: [Setting](#setting)
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
 
 ## Logins
 
