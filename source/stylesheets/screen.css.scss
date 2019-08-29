@@ -133,10 +133,10 @@ html, body {
     transition-duration: 180ms;
     transition-timing-function: ease-in-out;
     background: $nav-subitem-bg;
+    margin: -10px $nav-padding 1em $nav-padding;
 
     &.visible {
       height: 70%;
-      margin: -10px $nav-padding 1em $nav-padding;
       box-shadow: $boxShadow-small;
       border-radius: 4px;
     }
