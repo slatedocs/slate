@@ -16423,23 +16423,23 @@ integratorUpdateResults.error|String, optional
 _id|ObjectID, optional
 __v|Number, optional
 
-## patientMessageTemplate
+## PatientMessageTemplate
 
 Attribute|Description
 ----|----
-user|ObjectID, required, ref: [User](#user)
-language|String, required, Possible values: ["es", "en", "vi", "am", "fa", "ko", "ru", "zh-t", "zh-s", "zh", "pt", "ar"]
-message|String, required
-name|String, required
-type|String, required, Possible values: ["chat", "broadcast"]
-channel|String, optional, Possible values: ["sms", "email", "voice"]
-createdAt|Date, optional
-updatedAt|Date, optional
-createdBy|ObjectID, required, ref: [User](#user)
-updatedBy|ObjectID, required, ref: [User](#user)
-deleted|Number, optional
-_id|ObjectID, optional
-__v|Number, optional
+user|Type: ObjectID, Required: yes, Referencing: [User](#user)
+language|Type: String, Required: yes, Possible values: ["es","en","vi","am","fa","ko","ru","zh-t","zh-s","zh","pt","ar"]
+message|Type: String, Required: yes
+name|Type: String, Required: yes
+type|Type: String, Required: yes, Possible values: ["chat","broadcast"]
+channel|Type: String, Required: no, Possible values: ["sms","email","voice"]
+createdAt|Type: Date, Required: no
+updatedAt|Type: Date, Required: no
+createdBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+updatedBy|Type: ObjectID, Required: yes, Referencing: [User](#user)
+deleted|Type: Number, Required: no
+_id|Type: ObjectID, Required: no
+__v|Type: Number, Required: no
 
 ## PatientSubscriber
 
