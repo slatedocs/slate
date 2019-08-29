@@ -4236,6 +4236,48 @@ Response body param | Description
 -------------- | ----------- 
 xxx | yyy
 
+## Post diagnose
+
+`POST` /api/diagnoses/
+
+```shell
+#shell command:
+curl -X POST \
+http://localhost:8002/api/diagnoses/?q=xyz \
+-H 'Content-Type: application/json' \
+-H 'x-access-token: '"$TOKEN" \
+-d '{
+"field1": "test",
+"field2": {
+"foo": "bar"
+}
+}'
+```
+
+> The above command returns JSON structured like this:
+
+```json-doc
+{
+"x": "y",
+"y", true,
+"z": 1
+}
+```
+
+Authorization: No Auth / x-access-token
+
+Request headers | Description
+-------------- | -----------
+x-access-token | JWT auth access token
+
+Request body param | Description
+-------------- | -----------
+| xxx
+
+Response body param | Description
+-------------- | -----------
+xxx | yyy
+
 # docs
 
 ## Post doc
