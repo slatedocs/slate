@@ -3,11 +3,7 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
-
-toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
-
+π
 includes:
   - errors
   - default_sucess_responses
@@ -15,111 +11,126 @@ includes:
 search: true
 ---
 
-# Introduction
+#Introduction
+## Basics
+This document illustrates how interact with NestReady events api.
 
-## FinLocker Integration
+This process can be described into two steps:
 
-This document illustrates how NestReady will provide user behavior data to FinLocker.
+1) Subscribe to events for specific contacts. 
 
-This process can be simplified into two steps:
+2) Every time NestReady tracks an event from that contact, NestReady will trigger a webhooks to your server.
 
-1)FinLocker subscribe for events for specific contacts
+## Staging/Production
+Staging URL: `https://events.stage-nestready.net`
 
-2)Every time Nestready tracks an event from that contact, NestReady will send an event to FinLocker.
+Production URL: `http://events.nestready.net`
 
-#Finlocker Integration
+#Authentication
 
-##Contact Subscription
+## Making requests
+You will need to send a personal token on every request.
 
-###Subscribing
+You should receive two token from our team, one for each environment.
+
+We expect you to send this information in a field called 'X-Token' inside headers.
+
+## Receiving webhooks
+TODO
+
+#Webhook Subscriptions
+## Subscribing
 ```json
-Body: {
-  contact: {
-    email: "alex@nestready.ai",
-    phone: "(123)12341234", // not obligatory but good to have
+// BODY EXAMPLE
+{
+  "contact": {
+    "email": "something@somewhere.co",
+    "phone": "(123)12341234",
   },
-  events: ["favorite_property"], // or all' (see event types)
-  delivery_url: "https://api.finlocker.com/nestready/events",
-  metadata: "anything that you will use to query later, could_be_userID"
+  "events": ["favorite_property"],
+  "delivery_url": "https://api.your_url.com/nestready/events",
+  "metadata": "user_id_in_your_system"
 }
 ```
-This endpoint subscribes to the listings
+Subscribe to events for the given contact.
 
-#### HTTP Request
-`POST https://events.stage-nestready.net/webhooks/contacts`
+Everytime you subscribe to an event, we will send you a notification with
+the just created webhook information to the defined `delivery_url`.
 
-#### Query Parameters
+### HTTP Request
+`POST /webhooks/subscriptions/contacts`
 
-Parameter | Default | Description
+### Parameters
+
+Name | Required? | Description
 --------- | ------- | -----------
-email | something@somewhere.co | email address of the user subscribing for the listings
-phone | null | phone number of the user subscribing for the listings
-events | "all"| event types related to properties listings
-metadata | null | The metadata value set by the client on subscription creation
+contact | yes | email(required) and phone of the target contact
+events | yes| array with the list of target events. [supported_events](http://localhost:4567/#events). ex: `['all']`
+metadata | yes | anything that you need to recognize this user in your system, or query in our API, we recommend that to be the user_id inside your system.
 
-
-### Listing
+## Unsubscribing
 
 ```json
-Response: { 
-   subscriptions: [
+//RESPONSE EXAMPLE
+{ 
+   "subscriptions": [
      {
-        metadata: ‘metadata1’, 
-        events: [...], 
-        delivery_url: ‘’
+        "metadata": "metadata1", 
+        "events": [...], 
+        "delivery_url": ""
      },
    ]
 }
 ```
+
+Destroy a subscription, so that your system won't receive events for the given
+user.
+### HTTP Request
+
+`DELETE /webhooks/subscriptions/contacts`
+
+### Parameters
+
+Name | Required? | Description
+--------- | ------- | -----------
+metadata | yes | -
+
+<aside class="success">It will delete all matched subscriptions.</aside>
+
+## Listing
+
+```json
+//RESPONSE EXAMPLE
+{ 
+   "subscriptions": [
+     {
+        "metadata": "metadata1", 
+        "events": [...], 
+        "delivery_url": ‘’
+     },
+   ]
+}
+```
+### HTTP Request
+
+`GET webhooks/subscriptions/contacts`
+
+### Parameters
+
+Name | Required? | Description
+--------- | ------- | -----------
+metadata | yes | The metadata value set by the client on subscription creation
 
 This endpoint retrieves all contact subscriptions for the given client.
 
-#### HTTP Request
 
-`GET http://events.nestready.net/webhooks/contacts`
-
-#### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-metadata | null | The metadata value set by the client on subscription creation
-
-<aside class="success">
-You can also send * as metadata to retrieve all contact subscriptions.
-</aside>
-
-### Unsubscribing
+#Events
+## Listing 
+Method used only for Disaster Recovery, the retention period is 48
+hours (meaning that events occured more than 48 hours ago won't be retrieved).
 
 ```json
-Response: { 
-   subscriptions: [
-     {
-        metadata: ‘metadata1’, 
-        events: [...], 
-        delivery_url: ‘’
-     },
-   ]
-}
-```
-#### HTTP Request
-
-`GET http://events.nestready.net/webhooks/contacts#####`
-Where ##### is the userID number
-
-#### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-metadata | userID | The userID will be set upon subscription
-
-<aside class="success">
-Response body may return empty or contain...
-</aside>
-
-## Events
-
-### Listing
-```json
+//BODY EXAMPLE
 [
   {
   "id": 321,
@@ -127,93 +138,124 @@ Response body may return empty or contain...
   "type": "example",
   "metadata": "could_be_userID",
   "data": {
-    property_address: "809 William St Suite 205, Montreal, QC H3C 1N8, CA",
+    "property_address": "809 William St Suite 205, Montreal, QC H3C 1N8, CA",
            ...
      }
    }
 ]
 ```
-#### HTTP Request
-`GET https://events.nestready.net/contacts?metadata=could_be_userID&start_at=1349699313&end_at=1349699313&page=1`
 
-Parameter | Default | Description
+### HTTP Request
+
+`GET /contacts`
+
+Name | Required? | Description
 --------- | ------- | -----------
-metadata | userID&start_at| The userID will be set upon subscription, start at will the define the range of the listing
+metadata | no | --
+start_at | yes | ex: 1567017624
+end_at | yes | ex: 1567104024000
+page | yes | ex: 1
 
-### Receiving
 
-Every event will be delivered to the defined delivery_url when subscribed
+## Receiving
+After subscribing successfully, you will begin to receive events for your contacts to the defined delivery_url.
+
+The follow schema is used for every event payload, the example of data is available [here](/#event-types)
 
 ```json
-
+//BODY EXAMPLE
 {
-  id: <string>,
-  type: <string>,
-  metadata: <string>,
-  partner_name: <string>,
-  data: <hashmap>,
-  created_at: <timestamp>,
+  "id": <string>,
+  "type": <string>,
+  "metadata": <string>,
+  "partner_name": <string>,
+  "data": <hashmap>,
+  "created_at": <timestamp>,
 }
 
 ```
 
-#### HTTP Request
+### HTTP Request
+`POST delivery_url` 
 
-Parameter | Default | Description
---------- | ------- | -----------
- | | 
+# Event types
+## Contact events
+### contact_request
+```json
+//DATA EXAMPLE
+{ "message": "message user sent" }
+```
 
-
-## Event types with example of Data
-
-### Contact Request
-`{ message: 'message user sent' }`
-
-### Location_Favorited
-`{
-  location: {
-    id: location_1,
-    name: 'Boston',
-    level: 'place' // state|county|metro|place|nbh
-  }
-}`
-
-### PROPERTY_VISIT_REQUESTED & FINANCE_REQUESTED & LISTING_FAVORITED
-`
+## Location events
+### location_favorited
+```json
+//DATA EXAMPLE
 {
-  listing: {
-    id: listing_1,
-    property_address: 'full_address',
-    mls_number: '1234mls',
-    listing_image_cover_url: 'https://listing-images.nestready.net/dArboFrG37bMhDjHxWUMBZ3vs',
-    price_cents: 100_000,
-    property_type: ‘’, // TODO: add available types
-    bathrooms_count: 1,
-    bedrooms_count: 1,
-    year_built: 1990,
-    description: ‘’
-  } 
-}`
-
-### SEARCH_SAVED & SEARCH_SHARED
-`data: {
-  search: {
-    id: 'search_1',
-    bathroom_count: 1,
-    bedroom_count: 2,
-    location_name: 'boston',
-    location_level: 'place', // state|county|metro|place|nbh
-    max_price_cents: 100000000,
-    min_price_cents: nil,
-     listing_image_cover_url: 'https://listing-images.nestready.net/dArboFrG37bMhDjHxWUMBZ3vs'
-    property_type: 'apartment/condo', // townhouse|single-family-home|all
+  "location": {
+    "id": "location_1",
+    "name": "Boston",
+    "level": "place" // state|county|metro|place|nbh
   }
-}`
+}
+```
 
-### EMAIL_SIGNED_UP
-`null`
+## Listing events
+```json
+//DATA EXAMPLE
+{
+  "listing": {
+    "id": "listing_1",
+    "property_address": "full_address",
+    "mls_number": "1234mls",
+    "listing_image_cover_url": "https://listing-images.nestready.net/dArboFrG37bMhDjHxWUMBZ3vs",
+    "price_cents": 100000,
+    "property_type": "", // TODO: add available types
+    "bathrooms_count": 1,
+    "bedrooms_count": 1,
+    "year_built": 1990,
+    "description": ""
+  } 
+}
+```
+### property_visit_requested 
 
-### NOTIFICATION_SENT
+### finance_requested
+
+### listing_favorited
+
+
+
+## Search events
+
+```json
+//DATA EXAMPLE
+{
+  "search": {
+    "id": "search_1",
+    "bathroom_count": 1,
+    "bedroom_count": 2,
+    "location_name": "boston",
+    "location_level": "place", // state|county|metro|place|nbh
+    "max_price_cents": 100000000,
+    "min_price_cents": "",
+    "listing_image_cover_url": "https://listing-images.nestready.net/dArboFrG37bMhDjHxWUMBZ3vs",
+    "property_type": "apartment/condo", // townhouse|single-family-home|all
+  }
+}
+```
+### search_saved
+### search_shared
+
+## Email events
+### email_signed_up
+
+```json
+//DATA EXAMPLE
+null
+```
+
+## Notification events
+### notification_sent
 
 
 
