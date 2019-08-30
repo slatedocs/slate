@@ -24,7 +24,7 @@ This process can be described into two steps:
 ## Staging/Production
 Staging URL: `https://events.stage-nestready.net`
 
-Production URL: `http://events.nestready.net`
+Production URL: `https://events.nestready.net`
 
 #Authentication
 
