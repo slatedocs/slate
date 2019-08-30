@@ -2,7 +2,7 @@
 
 Websocket api can be used for the following use cases
 
-- Get real time feed of market data, this includes l2 and l3 orderbook and recent trades.
+- Get real time feed of market data, this includes L2 and L3 orderbook and recent trades.
 - Get price feeds - Mark prices of different contracts, price feed of underlying indexes etc.
 - Get account specific notifications like fills, liquidations, ADL and PnL updates.
 
@@ -88,7 +88,7 @@ Once a subscribe message is received the server will respond with a subscription
 
 ## Unsubscribe
 
-If you want to unsubscribe from channel/contracts pairs, send an "unsubscribe" message. The structure is equivalent to subscribe messages. As a shorthand you can also provide no symbols for a channel, which will unsubscribe you from the channel entirely.
+If you want to unsubscribe from channel/contracts pairs, send an "unsubscribe" message. The structure is equivalent to subscribe messages. If you want to unsubscribe for specific symbols in a channel, you can pass it in the symbol list. As a shorthand you can also provide no symbols for a channel, which will unsubscribe you from the channel entirely.
 
 > Unsubscribe Sample
 
@@ -99,7 +99,13 @@ If you want to unsubscribe from channel/contracts pairs, send an "unsubscribe" m
     "payload": {
         "channels": [
             {
-                "name": "ticker"
+                "name": "ticker",          // unsubscribe from ticker channel only for BTCUSD_28Dec
+                "symbols": [
+                    "BTCUSD_28Dec"
+                ]
+            },
+            {
+                "name": "l2_orderbook"      // unsubscribe from all symbols for l2_orderbook channel
             }
         ]
     }
@@ -114,6 +120,8 @@ To authenticate, you need to send a signed request of type 'auth' on your socket
 
 The payload for the signed request will be
 'GET' + timestamp + '/live'
+
+To subscribe to private channels, the client needs to first send an auth event, providing api-key, and signature. 
 
 > Authentication sample
 
@@ -171,10 +179,7 @@ ws.send(json.dumps({
 
 ```
 
-To subscribe to private channels, the client needs to first send an auth event, providing api-key, and signature. 
 
-You can create a new API key from here :
-https://www.delta.exchange/app/account/manageapikeys
 
 ## Heartbeats
 
@@ -225,7 +230,7 @@ On subscribing to **ticker** channel, socket server will emit messages with type
 }
 ```
 
-## Recent trades
+## recent_trade
 
 **recent_trade** channel provides a real time feed of all recent trades (fills).
 
@@ -267,9 +272,9 @@ Please note that the product symbol is prepended with a "MARK:" to subscribe for
 ```
 // Spot Price Response
 {
-    symbol: "BNB/BTC",
+    symbol: ".DEBNBBTC",
     price: "0.0014579",
-    type: "spot_price,
+    type: "spot_price",
     timestamp: 1561634049751430
 }
 ```
@@ -440,7 +445,11 @@ Private channels require clients to authenticate.
     "product_id": 7,
     "type": "adl",
     "timestamp": 1544091555086559
-
+    "side": 'buy',          // Position side
+    "size": 32,             // size by which your position was reduced
+    "entry_price": "0.000121",
+    "exit_price": "0.0001222",
+    "realized_pnl": "0.1",
 }
 ```
 

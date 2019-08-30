@@ -6,6 +6,9 @@ Api endpoints that place orders or fetch account related information needs to au
 
 Before being able to sign any requests, you must create an API key via the Delta website. Upon creating a key you will receive api key and api secret, which you must remember and secure at your end. The Key and Secret will be randomly generated.
 
+You can create a new API key from here :
+https://www.delta.exchange/app/account/manageapikeys
+
 ## API Key Permissions
 
 You can restrict the functionality of API keys. Before creating the key, you must choose what permissions you would like the key to have. The permissions are:
@@ -18,8 +21,11 @@ You can restrict the functionality of API keys. Before creating the key, you mus
 All Authenticated requests must contain the following headers:
 
 api-key: The api key as a string.
-signature: The base64-encoded signature (see Signing a Message).
+
+signature: The hex-encoded signature (see Signing a Message).
+
 timestamp: A timestamp for your request.
+
 
 All request bodies should have content type application/json and be valid JSON.
 
