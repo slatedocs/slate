@@ -63,7 +63,7 @@ Including this SDK exposes `window.createForm` function which takes in below par
 | CAMPAIGN_ID | string | null | true | CAMPAIGN ID given by anarock team |
 | ENVIRONMENT | string | 'staging' | true | possible values are `staging` or `production` |
 | requireOTP | boolean | false | - | possible values are `true` or `false` |
-| options | object | null | - | possible keys are `showRemarks` or `remarksTitle`, `show_label`, `show_placeholder`, `contacting_authority`, `show_thankyou`, `dnc_checked`, `projects`, `skipMandatoryEmail` , `selectedProject`,  `default_country`, `host`, `apartment_type_options`, `city_options`|
+| options | object | null | - | possible keys are `showRemarks` or `remarksTitle`, `show_label`, `show_placeholder`, `contacting_authority`, `show_thankyou`, `dnc_checked`, `projects`, `skipMandatoryEmail` , `selectedProject`,  `default_country`, `host`, `apartment_type_options`, `city_options`, `dnc_agree_text`|
 
 
 In the `options` object 
@@ -83,6 +83,8 @@ In the `options` object
 `show_thankyou` is a boolean to check if after success thank you screen to be shown or not. default value is `true`
 
 `dnc_checked` is a boolean to autocheck the DNC checkbox. default value is `false`
+
+`dnc_agree_text` text that can be shown instead of default DNC message
 
 `host` is a string of your own domain if anarock system is deployed at your end locally. 
 
