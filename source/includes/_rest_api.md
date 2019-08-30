@@ -6,6 +6,79 @@ REST API ENDPOINT URL
 - Production - https://api.delta.exchange
 - Testnet - https://testnet-api.delta.exchange
 
+<h1 id="delta-exchange-api-assets">Assets</h1>
+
+Get Asset List
+
+## Get list of all assets
+
+<a id="opIdgetAssets"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://api.delta.exchange/assets', params={
+
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET https://api.delta.exchange/assets \
+  -H 'Accept: application/json'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get 'https://api.delta.exchange/assets',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /assets`
+
+> Example responses
+
+> 200 Response
+
+```json
+[
+  {
+    "id": 0,
+    "symbol": "string",
+    "precision": 0
+  }
+]
+```
+
+<h3 id="get-list-of-all-assets-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|List of all assets|[ArrayOfAssets](#schemaarrayofassets)|
+
+<aside class="success">
+This operation does not require authentication.
+</aside>
+
 <h1 id="delta-exchange-api-products">Products</h1>
 
 Get Product List, 24hr Ticker
@@ -2740,6 +2813,27 @@ This operation does not require authentication.
 |id|integer(int64)|false|none|none|
 |symbol|string|false|none|none|
 |precision|integer|false|none|none|
+
+<h2 id="tocSarrayofassets">ArrayOfAssets</h2>
+
+<a id="schemaarrayofassets"></a>
+
+```json
+[
+  {
+    "id": 0,
+    "symbol": "string",
+    "precision": 0
+  }
+]
+
+```
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|*anonymous*|[[Asset](#schemaasset)]|false|none|none|
 
 <h2 id="tocSproduct">Product</h2>
 

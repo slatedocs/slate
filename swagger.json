@@ -12,6 +12,9 @@
   "host" : "api.delta.exchange",
   "basePath" : "/",
   "tags" : [ {
+    "name" : "Assets",
+    "description" : "Get Asset List"
+  }, {
     "name" : "Products",
     "description" : "Get Product List, 24hr Ticker"
   }, {
@@ -34,6 +37,22 @@
   } ],
   "schemes" : [ "https" ],
   "paths" : {
+    "/assets" : {
+      "get" : {
+        "tags" : [ "Assets" ],
+        "summary" : "Get list of all assets",
+        "operationId" : "getAssets",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "List of all assets",
+            "schema" : {
+              "$ref" : "#/definitions/ArrayOfAssets"
+            }
+          }
+        }
+      }
+    },
     "/products" : {
       "get" : {
         "tags" : [ "Products" ],
@@ -927,6 +946,12 @@
         "precision" : {
           "type" : "integer"
         }
+      }
+    },
+    "ArrayOfAssets": {
+      "type" : "array",
+      "items" : {
+        "$ref" : "#/definitions/Asset"
       }
     },
     "Product" : {
