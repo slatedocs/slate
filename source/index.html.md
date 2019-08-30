@@ -73,5 +73,5 @@ Error Code | Meaning
 data in order to ensure your sensitive information remains secure.
 
 ## Rate Limiting
-Each API key is limited to 150k requests per day. Once you hit the quota, all further requests will return an error code of
+Each API key is limited to 450k requests per day. Once you hit the quota, all further requests will return an error code of
 429 - this will reset as soon as the next day begins.
