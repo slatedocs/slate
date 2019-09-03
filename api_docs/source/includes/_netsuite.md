@@ -1438,6 +1438,7 @@ OBJECT_MAP_ID | ID of the object map being deleted
 {
     "data": [
       {
+        "id": 3,
         "uuid": "58234091-5f3b-4a7d-b696-2e48070cbfa6",
         "purchase_order_no": "",
         "transaction_date": "2019-08-16T11:22:24-07:00",
@@ -1525,7 +1526,52 @@ OBJECT_MAP_ID | ID of the object map being deleted
                 "custom_fields": {}
             },
             "memo": "Forward conference."
-        }]
+        }],
+        "vendor": {
+            "id": 2,
+            "name": "Vendor Preferred",
+            "active": True,
+            "address_line_one": "",
+            "address_line_two": "",
+            "postal_code": "",
+            "city": "",
+            "state_province": "",
+            "country": "",
+            "external_id": 'EX_VENDOR_2',
+            "custom_field": {}
+        },
+        "shipping_address": {
+            "contact_name": "Purchaser 1",
+            "address_line_one": "12651 Vickers Way",
+            "city": "Vancouver",
+            "state_province": "BC",
+            "country": "US",
+            "postal_code": "V6V 1J2"
+        },
+        "shipping_method": {
+                    "id": 2,
+                    "name": "Canada Post",
+                    "description": "Canada Post",
+                    "external_id": null,
+                    "custom_fields": {}
+        },
+        "shipping_term": {
+            "id": 2,
+            "name": "Work To Commence",
+            "description": "Work To Commence",
+            "external_id": null,
+            "custom_fields": {}
+        },
+        "payment_term": {
+            "id": 11,
+            "name": "Credit Card",
+            "description": "Credit Card",
+            "external_id": null,
+            "custom_fields": {}
+        },
+        "memo": "",
+        "external_id": "",
+        "custom_fields": {}
       }
     ],
     "metadata": {
