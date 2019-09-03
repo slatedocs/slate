@@ -6,6 +6,8 @@ language_tabs:
   - ruby: Ruby
 toc_footers: []
 includes:
+
+  - general_information
   - authentication
   - rate_limits
   - rest_api
