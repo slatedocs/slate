@@ -445,7 +445,18 @@ The rest of the fields are optional.
          "contact" : "2978",
          "batch_id" : 437751,
          "description" : "Per diem",
-         "phonenumber" : "+256773712831",
+         "phonenumber" : "+254727447101",
+         "payment_id" : 123209
+      },
+      {
+         "metadata" : null,
+         "amount" : "1200.0000",
+         "last_error" : "Recipient mobile money readiness checks failed.+256773712831",
+         "state" : "error",
+         "contact" : "2978",
+         "batch_id" : 437751,
+         "description" : "Per diem",
+         "phonenumber" : "+254739936708",
          "payment_id" : 123209
       }
    ],
