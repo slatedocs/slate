@@ -15,19 +15,121 @@ The collections api endpoint is:
 
 ```json
 {
-    "id": 230,
-    "remote_transaction_id": "12132",
-    "organization": 1,
-    "amount": "20.0000",
-    "currency": "BXC",
-    "phonenumber": "+80000000001",
-    "payment_date": "2015-12-12T00:00:00Z",
-    "reference": null,
-    "status": "successful",
-    "created": "2015-08-01T16:49:48Z",
-    "author": null,
-    "modified": "2015-08-01T16:55:38Z",
-    "updated_by": null
+   "remote_transaction_id" : "a9011942a8a9b669be6a05da411d9da2",
+   "created" : "2017-07-26T09:28:25Z",
+   "organization" : 4,
+   "reference" : "",
+   "transaction" : {
+      "fee_transaction" : null,
+      "account" : {
+         "author" : 15,
+         "low_balance_threshold" : null,
+         "organization" : 4,
+         "status" : "active",
+         "created" : "2016-08-06T17:09:13Z",
+         "updated_by" : 15,
+         "label" : "Test currency",
+         "description" : "Test currency",
+         "low_balance_notification_last_send_time" : null,
+         "id" : 2874303,
+         "modified" : "2016-08-06T17:09:13Z",
+         "currency" : 4
+      },
+      "created" : "2017-07-26T09:28:24.993743Z",
+      "description" : "Incoming payment from +80000000011",
+      "id" : 2797147,
+      "amount" : "1000.0000",
+      "type" : "mobile_collection",
+      "currency" : "BXC"
+   },
+   "modified" : "2017-07-26T09:28:25Z",
+   "payment_date" : "2017-07-26T09:28:25Z",
+   "collection_request" : {
+      "subscription_settings" : null,
+      "instructions" : "Thank you for making a test credit purchase request. Please check your credit balance in 'Payment Options' menu on the app after completing your purchase.",
+      "created" : "2017-07-26T09:28:24Z",
+      "success_message" : "1000 test credit successfully purchased",
+      "organization" : 4,
+      "retry_interval_minutes" : 0,
+      "send_instructions" : true,
+      "modified" : "2017-07-26T09:28:25Z",
+      "max_attempts" : null,
+      "start_date" : "2019-06-11 21:11:13.702766+00:00",
+      "error_details" : "",
+      "phonenumber" : "+80000000011",
+      "updated_by" : 134,
+      "account" : null,
+      "status" : "successful",
+      "expiry_date" : "2017-10-03 06:15:55.722862+00:00",
+      "collection" : 131820,
+      "author" : 134,
+      "currency" : "BXC",
+      "error_message" : "",
+      "reason" : "",
+      "contact" : {
+         "email" : null,
+         "phone_number" : "+80000000011",
+         "last_name" : "Doe",
+         "modified" : "2019-08-26T08:21:15Z",
+         "type" : "employee",
+         "organization" : 4,
+         "network_name" : "",
+         "created" : "2017-06-17T14:43:57Z",
+         "phone_is_mm_registered" : "yes",
+         "metadata" : {
+            "s_contact4partner_id" : null,
+            "s_contact4gender" : null,
+            "s_contact4age" : null
+         },
+         "id" : 219912,
+         "phone_is_supported" : "yes",
+         "first_name" : "John",
+         "author" : 134,
+         "name_on_network" : "John Doe",
+         "status" : "active",
+         "updated_by" : 134,
+         "name_matches_network_score" : 100,
+         "name_matches_network_status" : "checked"
+      },
+      "metadata" : {
+         "amount" : "1000",
+         "user_id" : "212407165802199720"
+      },
+      "id" : 86296,
+      "amount" : "1000.0000"
+   },
+   "phonenumber" : "+80000000011",
+   "updated_by" : null,
+   "status" : "successful",
+   "author" : null,
+   "currency" : "BXC",
+   "contact" : {
+      "name_matches_network_status" : "checked",
+      "status" : "active",
+      "updated_by" : 134,
+      "name_matches_network_score" : 100,
+      "name_on_network" : "John Doe",
+      "author" : 134,
+      "first_name" : "John",
+      "id" : 219912,
+      "metadata" : {
+         "s_contact4gender" : null,
+         "s_contact4partner_id" : null,
+         "s_contact4age" : null
+      },
+      "phone_is_supported" : "yes",
+      "phone_is_mm_registered" : "yes",
+      "network_name" : "",
+      "created" : "2017-06-17T14:43:57Z",
+      "organization" : 4,
+      "type" : "employee",
+      "modified" : "2019-08-26T08:21:15Z",
+      "last_name" : "Doe",
+      "email" : null,
+      "phone_number" : "+80000000011"
+   },
+   "amount" : "1000.0000",
+   "id" : 131820
 }
 ```
 
@@ -47,6 +149,7 @@ author | long integer | The ID of the user who created the collection
 modified | string | The date that the collection was last modified, in the UTC timezone. Format: "YYYY-MM-DDTHH:MM:SSZ"
 updated_by | string | The ID of the user who last updated the collection
 collection_request | JSON string| *New in V3.* A JSON representation of the collection request that this collection was matched to, if any. Before V3, this was simply the id of the collection request object. In V3. It's an expanded representation of the collection request object.
+transaction | JSON string| *New in V4.* A JSON representation of the transaction that added funds to the organization account when this collection was received.
 
 ## Accept or reject Collections
 
@@ -218,39 +321,121 @@ public class SingleCollectionExample {
 
 ```json
 {
-    "id": 131820,
-    "remote_transaction_id": "12132",
-    "organization": 1,
-    "amount": "200.0000",
-    "currency": "BXC",
-    "phonenumber": "+254722000000",
-    "payment_date": "2016-09-21T08:55:54Z",
-    "reference": "98989",
-    "status": "successful",
-    "created": "2016-09-21T08:56:18Z",
-    "author": 1,
-    "modified": "2016-09-21T09:07:13Z",
-    "updated_by": 1,
-    "collection_request": {
-        "id": 2,
-        "organization": 1,
-        "amount": "200.0000",
-        "currency": "BXC",
-        "phonenumber": "+254722000000",
-        "reason": "Test payment",
-        "metadata": {},
-        "created": "2016-09-21T08:52:54Z",
-        "author": 1,
-        "modified": "2016-09-21T09:04:14Z",
-        "updated_by": 1,
-        "collection": 1,
-        "success_message": "",
-        "instructions": "",
-        "send_instructions": false,
-        "status": "successful",
-        "error_message": null,
-        "error_details": null
-    }
+   "remote_transaction_id" : "a9011942a8a9b669be6a05da411d9da2",
+   "created" : "2017-07-26T09:28:25Z",
+   "organization" : 4,
+   "reference" : "",
+   "transaction" : {
+      "fee_transaction" : null,
+      "account" : {
+         "author" : 15,
+         "low_balance_threshold" : null,
+         "organization" : 4,
+         "status" : "active",
+         "created" : "2016-08-06T17:09:13Z",
+         "updated_by" : 15,
+         "label" : "Test currency",
+         "description" : "Test currency",
+         "low_balance_notification_last_send_time" : null,
+         "id" : 2874303,
+         "modified" : "2016-08-06T17:09:13Z",
+         "currency" : 4
+      },
+      "created" : "2017-07-26T09:28:24.993743Z",
+      "description" : "Incoming payment from +80000000011",
+      "id" : 2797147,
+      "amount" : "1000.0000",
+      "type" : "mobile_collection",
+      "currency" : "BXC"
+   },
+   "modified" : "2017-07-26T09:28:25Z",
+   "payment_date" : "2017-07-26T09:28:25Z",
+   "collection_request" : {
+      "subscription_settings" : null,
+      "instructions" : "Thank you for making a test credit purchase request. Please check your credit balance in 'Payment Options' menu on the app after completing your purchase.",
+      "created" : "2017-07-26T09:28:24Z",
+      "success_message" : "1000 test credit successfully purchased",
+      "organization" : 4,
+      "retry_interval_minutes" : 0,
+      "send_instructions" : true,
+      "modified" : "2017-07-26T09:28:25Z",
+      "max_attempts" : null,
+      "start_date" : "2019-06-11 21:11:13.702766+00:00",
+      "error_details" : "",
+      "phonenumber" : "+80000000011",
+      "updated_by" : 134,
+      "account" : null,
+      "status" : "successful",
+      "expiry_date" : "2017-10-03 06:15:55.722862+00:00",
+      "collection" : 131820,
+      "author" : 134,
+      "currency" : "BXC",
+      "error_message" : "",
+      "reason" : "",
+      "contact" : {
+         "email" : null,
+         "phone_number" : "+80000000011",
+         "last_name" : "Doe",
+         "modified" : "2019-08-26T08:21:15Z",
+         "type" : "employee",
+         "organization" : 4,
+         "network_name" : "",
+         "created" : "2017-06-17T14:43:57Z",
+         "phone_is_mm_registered" : "yes",
+         "metadata" : {
+            "s_contact4partner_id" : null,
+            "s_contact4gender" : null,
+            "s_contact4age" : null
+         },
+         "id" : 219912,
+         "phone_is_supported" : "yes",
+         "first_name" : "John",
+         "author" : 134,
+         "name_on_network" : "John Doe",
+         "status" : "active",
+         "updated_by" : 134,
+         "name_matches_network_score" : 100,
+         "name_matches_network_status" : "checked"
+      },
+      "metadata" : {
+         "amount" : "1000",
+         "user_id" : "212407165802199720"
+      },
+      "id" : 86296,
+      "amount" : "1000.0000"
+   },
+   "phonenumber" : "+80000000011",
+   "updated_by" : null,
+   "status" : "successful",
+   "author" : null,
+   "currency" : "BXC",
+   "contact" : {
+      "name_matches_network_status" : "checked",
+      "status" : "active",
+      "updated_by" : 134,
+      "name_matches_network_score" : 100,
+      "name_on_network" : "John Doe",
+      "author" : 134,
+      "first_name" : "John",
+      "id" : 219912,
+      "metadata" : {
+         "s_contact4gender" : null,
+         "s_contact4partner_id" : null,
+         "s_contact4age" : null
+      },
+      "phone_is_supported" : "yes",
+      "phone_is_mm_registered" : "yes",
+      "network_name" : "",
+      "created" : "2017-06-17T14:43:57Z",
+      "organization" : 4,
+      "type" : "employee",
+      "modified" : "2019-08-26T08:21:15Z",
+      "last_name" : "Doe",
+      "email" : null,
+      "phone_number" : "+80000000011"
+   },
+   "amount" : "1000.0000",
+   "id" : 131820
 }
 ```
 
