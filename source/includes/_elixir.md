@@ -103,7 +103,7 @@ end
     <p class="instruct">
       <span class="step">E</span>Restart your app.
       <div class="terminal">
-        mix phoenix.server
+        mix phx.server
       </div>
     </p>
 
@@ -140,6 +140,14 @@ Not seeing data?
         <span class="step">2</span>
       </td>
       <td>
+      <p>Run <code>mix scout.test_config</code> in your terminal to check for any configuration issues</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="step">3</span>
+      </td>
+      <td>
         <p>Is <code>use ScoutApm.Instrumentation</code> specified in <em>every</em> controller module you wish to instrument?</p>
 
         <p>
@@ -149,7 +157,7 @@ Not seeing data?
     </tr>
     <tr>
       <td>
-        <span class="step">3</span>
+        <span class="step">4</span>
       </td>
       <td>
         <p>Still stuck? Email us.</p>
@@ -314,6 +322,90 @@ The following configuration settings are available:
       </td>
       <td>
         <code>[]</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        core_agent_dir
+      </th>
+      <td>
+        Path to create the directory which will store the <a href="#core-agent">Core Agent</a>.
+      </td>
+      <td>
+        <code>/tmp/scout_apm_core</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        core_agent_download
+      </th>
+      <td>
+        Whether to download the <a href="#core-agent">Core Agent</a> automatically, if needed.
+      </td>
+      <td>
+        <code>True</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        core_agent_launch
+      </th>
+      <td>
+        Whether to start the <a href="#core-agent">Core Agent</a> automatically, if needed.
+      </td>
+      <td>
+        <code>True</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        core_agent_tcp_ip
+      </th>
+      <td>
+        The TCP IP address the <a href="#core-agent">Core Agent</a> uses to communicate with your application.
+      </td>
+      <td>
+        <code>{127, 0, 0, 1}</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        core_agent_tcp_port
+      </th>
+      <td>
+        The TCP port the <a href="#core-agent">Core Agent</a> uses to communicate with your application.
+      </td>
+      <td>
+        <code>9000</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        core_agent_triple
+      </th>
+      <td>
+        If you are running a MUSL based Linux (such as ArchLinux), you may need to explicitly specify the platform triple. E.g. <code>x86_64-unknown-linux-musl</code>
+      </td>
+      <td>
+        Auto detected
       </td>
       <td>
         No
