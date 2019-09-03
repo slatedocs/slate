@@ -688,7 +688,7 @@ We typically respond within a couple of hours during the business day.
         core_agent_dir
       </th>
       <td>
-        Path to create the directory which will store the [Core Agent](#core-agent).
+        Path to create the directory which will store the <a href="#core-agent">Core Agent</a>.
       </td>
       <td>
         <code>/tmp/scout_apm_core</code>
@@ -702,7 +702,7 @@ We typically respond within a couple of hours during the business day.
         core_agent_download
       </th>
       <td>
-        Whether to download the [Core Agent](#core-agent) automatically, if needed.
+        Whether to download the <a href="#core-agent">Core Agent</a> automatically, if needed.
       </td>
       <td>
         <code>True</code>
@@ -716,7 +716,7 @@ We typically respond within a couple of hours during the business day.
         core_agent_launch
       </th>
       <td>
-        Whether to start the [Core Agent](#core-agent) automatically, if needed.
+        Whether to start the <a href="#core-agent">Core Agent</a> automatically, if needed.
       </td>
       <td>
         <code>True</code>
@@ -730,7 +730,7 @@ We typically respond within a couple of hours during the business day.
         core_agent_permissions
       </th>
       <td>
-        The permission bits to set when creating the directory of the [Core Agent](#core-agent).
+        The permission bits to set when creating the directory of the <a href="#core-agent">.
       </td>
       <td>
         <code>700</code>
