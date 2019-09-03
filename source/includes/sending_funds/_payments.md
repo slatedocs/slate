@@ -429,6 +429,7 @@ Amount can be nullable, but if missing then it must be set in the main payload. 
 The rest of the fields are optional.
 
 > The following is a sample response
+
 ```json
 {
    "id" : 22744,
