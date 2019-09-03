@@ -11,31 +11,46 @@ The payments api endpoint is:
 
 ```json
 {
-    "id": 3620,
-    "organization": 1,
-    "amount": "30",
-    "currency": "BXC",
-    "account": "1",
-    "payment_type": "money",
-    "metadata": {"id": 1234, "name": "Lucy"},
-    "description": "Per diem payment",
-    "phone_nos": ["+80000000001"],
-    "state": "new",
-    "last_error": null,
-    "rejected_reason": null,
-    "rejected_by": null,
-    "rejected_time": null,
-    "cancelled_reason": null,
-    "cancelled_by": null,
-    "cancelled_time": null,
-    "created": "2014-11-22T20:57:04.017Z",
-    "author": 15,
-    "modified": "2014-11-22T20:57:04.018Z",
-    "updated_by": null,
-    "start_date": "2014-11-22T20:57:04.018Z",
-    "remote_transaction_id": null,
-    "send_sms_message": false,
-    "charged_fee": 0
+   "id" : 22744,
+   "cancelled_time" : null,
+   "start_date" : "2016-03-31T08:08:01Z",
+   "modified" : "2018-02-13T06:02:20Z",
+   "phone_nos" : [
+      {
+         "metadata" : null,
+         "amount" : "1200.0000",
+         "last_error" : "Recipient mobile money readiness checks failed.+256773712831",
+         "state" : "error",
+         "contact" : "2978",
+         "batch_id" : 437751,
+         "description" : "Per diem",
+         "phonenumber" : "+256773712831",
+         "payment_id" : 123209
+      }
+   ],
+   "organization" : 4,
+   "author" : 134,
+   "created" : "2016-03-31T08:08:01Z",
+   "send_sms_message" : false,
+   "updated_by" : 134,
+   "rejected_time" : null,
+   "metadata" : {
+      "s_batchpaymentschedule4123" : null
+   },
+   "remote_transaction_id" : null,
+   "cancelled_by" : null,
+   "charged_fee" : 0,
+   "account" : 48,
+   "cancelled_reason" : null,
+   "transactions" : [],
+   "rejected_by" : null,
+   "description" : "Per diem",
+   "currency" : "UGX",
+   "amount" : "1200.00",
+   "rejected_reason" : null,
+   "payment_type" : "money",
+   "last_error" : "Last Error: System error. - Recipient mobile money readiness checks failed.+256773712831",
+   "state" : "processed_with_errors"
 }
 ```
 
@@ -217,10 +232,10 @@ public class CreatePayment {
 > Sample Response (JSON) - if you use one of the development libraries, this is automatically converted into a native object for you:
 
 ```json
-
+{
+   "id" : 22744,
    "cancelled_time" : null,
    "start_date" : "2016-03-31T08:08:01Z",
-   "id" : 22744,
    "modified" : "2018-02-13T06:02:20Z",
    "phone_nos" : [
       {
@@ -231,7 +246,7 @@ public class CreatePayment {
          "contact" : "2978",
          "batch_id" : 437751,
          "description" : "Per diem",
-         "phonenumber" : "+80000000001",
+         "phonenumber" : "+256773712831",
          "payment_id" : 123209
       }
    ],
@@ -415,10 +430,10 @@ The rest of the fields are optional.
 
 > The following is a sample response
 ```json
-
+{
+   "id" : 22744,
    "cancelled_time" : null,
    "start_date" : "2016-03-31T08:08:01Z",
-   "id" : 22744,
    "modified" : "2018-02-13T06:02:20Z",
    "phone_nos" : [
       {
@@ -457,7 +472,6 @@ The rest of the fields are optional.
    "last_error" : "Last Error: System error. - Recipient mobile money readiness checks failed.+256773712831",
    "state" : "processed_with_errors"
 }
-
 ```
 
 
@@ -551,10 +565,10 @@ public class SinglePaymentExample {
 > Sample Response (JSON) - if you use one of the development libraries, this is automatically converted into a native object for you:
 
 ```json
-
+{
+   "id" : 22744,
    "cancelled_time" : null,
    "start_date" : "2016-03-31T08:08:01Z",
-   "id" : 22744,
    "modified" : "2018-02-13T06:02:20Z",
    "phone_nos" : [
       {
