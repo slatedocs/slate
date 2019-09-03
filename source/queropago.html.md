@@ -1467,7 +1467,7 @@ Entidade que representa um acordo financeiro feito pelo aluno no sistema do Quer
 | created_at | datetime | Momento da criação do Acordo no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) em UTC |
 | updated_at | datetime | Momento da última atualização do Acordo no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) em UTC |
 
-## Listagem de cursos
+## Listagem de acordos
 
 > Requisição
 
