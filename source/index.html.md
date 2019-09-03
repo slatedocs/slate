@@ -47,7 +47,7 @@ TODO
     "email": "something@somewhere.co",
     "phone": "(123)12341234",
   },
-  "events": ["favorite_property"],
+  "events": ["listing_favorited"],
   "delivery_url": "https://api.your_url.com/nestready/events",
   "metadata": "user_id_in_your_system"
 }
@@ -69,19 +69,6 @@ events | yes| array with the list of target events. [supported_events](http://lo
 metadata | yes | anything that you need to recognize this user in your system, or query in our API, we recommend that to be the user_id inside your system.
 
 ## Unsubscribing
-
-```json
-//RESPONSE EXAMPLE
-{ 
-   "subscriptions": [
-     {
-        "metadata": "metadata1", 
-        "events": [...], 
-        "delivery_url": ""
-     },
-   ]
-}
-```
 
 Destroy a subscription, so that your system won't receive events for the given
 user.
@@ -156,6 +143,8 @@ start_at | yes | ex: 1567017624
 end_at | yes | ex: 1567104024000
 page | yes | ex: 1
 
+<aside class="success">Batch size is 100 per page.</aside>
+
 
 ## Receiving
 After subscribing successfully, you will begin to receive events for your contacts to the defined delivery_url.
@@ -180,7 +169,7 @@ The follow schema is used for every event payload, the example of data is availa
 
 # Event types
 ## Contact events
-### contact_request
+### contact_requested
 ```json
 //DATA EXAMPLE
 { "message": "message user sent" }
@@ -257,6 +246,8 @@ This event is triggered once the user, using the filter provided, performs a pro
 
 ### search_saved
 This event is triggered once the user has already perfomed a property search and then saves it.
+
+### search_deleted
 
 ### search_shared
 This event is triggered once the user has already perfomed a property search, saved it, then shares it.
