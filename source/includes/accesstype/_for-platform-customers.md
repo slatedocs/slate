@@ -243,8 +243,8 @@ curl -H "X-QT-AUTH: sample-auth" -H "Content-Type: application/json" http://sket
           "landmark": "Karnataka",
           "pincode": "560017",
           "mobile": "8129612361"
-         }
-
+         },
+         "coupon-code": "HOLI"
     },
     "attempt-token": "attempt-token"}
 '
