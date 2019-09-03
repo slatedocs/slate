@@ -1455,12 +1455,12 @@ Entidade que representa um acordo financeiro feito pelo aluno no sistema do Quer
 | installments | int | Número de parcelas do Acordo |
 | start_month | int | Mês de início da cobrança do Acordo. Valores de 1 a 12, sendo 1 Janeiro e 12 Dezembro |
 | start_year | int | Ano de início da cobrança do Acordo |
-| final_value | float | Valor final do Acordo, ou seja, valor acordado menos descontos |
-| full_value | float | Valor acordado |
-| principal_amount | float | Valor acordado menos juros e multa |
-| discount_amount | float | Valor do desconto dado no Acordo |
-| interest | float | Parte do valor acordado referente aos juros acumulados |
-| penalty | float | Parte do valor acordado referente às multas por atraso acumuladas |
+| full_value | float | Valor total do Acordo, a soma do valor de todas as mensalidades que geraram o acordo, incluindo juros e multa |
+| final_value | float | Valor final do Acordo, ou seja, o valor total subtraindo o valor do desconto |
+| principal_value | float | Valor total subtraindo o valor de juros e multa |
+| discount_value | float | Valor do desconto dado no Acordo |
+| interest | float | Parte do valor total referente aos juros acumulados |
+| penalty | float | Parte do valor total referente às multas por atraso acumuladas |
 | enrollment | object | Referência a entidade Matrícula em que o Acordo pertence |
 | input_bills | array | Referências às entidades Mensalidade que geraram o Acordo |
 | output_bills | array | Referências às entidades Mensalidade que foram geradas pelo Acordo |
@@ -1528,7 +1528,11 @@ curl --header "Authorization: Bearer ########" \
 | Nome | Tipo | Descrição |
 | ---- | ---- | --------- |
 | page | Query | Número da página que deve ser retornada |
-
+| external_id | Query | Identificador do acordo na instituição de ensino |
+| enrollment_id | Query | Identificador da matrícula no Quero Pago |
+| enrollment_external_id | Query | Identificador da matrícula na instituição de ensino|
+| created_at_lte | Query | Retorna os acordos com data de criação menor ou igual à data indicada. Deve ser formatada no padrão ISO 8601 |
+| created_at_gte | Query | Retorna os acordos com data de criação maior ou igual à data indicada. Deve ser formatada no padrão ISO 8601 |
 
 ## Busca de um Acordo
 Busca de um Acordo utilizando o ID Quero Pago
@@ -1651,7 +1655,7 @@ O corpo de toda requisição será sempre no formato JSON (`application/json`).
 | bill_overdue | Quando uma mensalidade de um aluno é marcada como vencida, é retornado a mensalidade que foi vencida |
 | bill_due_date_changed | Quando a data de vencimento de uma mensalidade é alterada, é retornado a mensalidade que teve a data de vencimento alterada |
 | boleto_updated | Quando um novo boleto é gerado, é retornado a mensalidade que teve seu boleto atualizado |
-| debt_agreement_created | Quando um novo acordo é gerado, é retornado os dados do acordo e as novas mensalidades geradas |
+| debt_agreement_created | Quando um novo acordo é gerado, é retornado os dados do acordo e as mensalidades que o geraram |
 
 
 ## Verificando autenticidade das entregas
@@ -2269,39 +2273,39 @@ X-QP-Delivery: 01074956-543a-4045-ad7c-b39831a45646
   "output_bills": [
     {
       "id": 1,
-      "external_id": "1728934017293477",
-      "status": "paid",
-      "year": 2018,
-      "month": 12,
-      "due_date": "2018-12-28",
-      "value_without_discount": 1000.0,
-      "value_with_discount": 400.0,
+      "external_id": null,
+      "status": "open",
+      "year": 2019,
+      "month": 9,
+      "due_date": "2019-09-10",
+      "value_without_discount": 39000.0,
+      "value_with_discount": 39000.0,
       "interest": 0.0,
       "penalty": 0.0,
-      "paid_value": 400.0,
-      "paid_date": "2018-12-27",
+      "paid_value": 0.0,
+      "paid_date": null,
       "payment_methods": [
         {
           "method_name": "boleto",
           "status": "paid",
           "paid_at": "2018-12-27T22:31:32Z",
-          "full_value": 400.0,
-          "paid_value": 400.0,
+          "full_value": 39000.0,
+          "paid_value": 0.0,
           "refunded_value": 0.0,
           "installments": 1,
           "boleto_barcode": "12345.12345 12345.123456 12345.123456 1 12300000001234",
           "boleto_url": "https://boleto-url.com",
-          "boleto_expiry_date": "2018-12-28",
-          "created_at": "2018-03-21T22:31:32Z",
-          "updated_at": "2018-03-21T22:32:32Z",
+          "boleto_expiry_date": "2019-09-10",
+          "created_at": "2019-09-03T14:40:07Z",
+          "updated_at": "2019-09-03T14:40:07Z",
         }
       ],
       "enrollment": {
         "id": 123456,
         "external_id": "RA984930527"
       },
-      "created_at": "2018-03-20T22:31:32Z",
-      "updated_at": "2018-03-20T22:32:32Z"
+      "created_at": "2019-09-03T14:40:07Z",
+      "updated_at": "2019-09-03T14:40:07Z"
     }
   ],
   "created_at": "2019-09-03T14:40:07Z",
