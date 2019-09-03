@@ -441,6 +441,7 @@ To create a recurring collection request, use the options below in the subscript
 
 * frequency:Please use commas to separate multiple values.Available frequency options include: yearly, monthly, weekly, daily, hourly and minutely.
 
+
 ## Retrieving a single Collection Request
 
 > Sample Request:
