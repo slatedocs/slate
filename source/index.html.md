@@ -248,6 +248,7 @@ This event is triggered once the user, using the filter provided, performs a pro
 This event is triggered once the user has already perfomed a property search and then saves it.
 
 ### search_deleted
+This event is triggered when the user deletes a previously saved search.
 
 ### search_shared
 This event is triggered once the user has already perfomed a property search, saved it, then shares it.
