@@ -19,9 +19,9 @@ Tailored instructions are provided within our user interface. General instructio
     <pre class="terminal"># mix.exs
 
  def deps do
-   [{:phoenix, "~> 1.2.0"},
+   [{:phoenix, "~> 1.4.0"},
     ...
-    <span>{:scout_apm, "~> 0.0"}</span>]
+    <span>{:scout_apm, "~> 1.0"}</span>]
  end</pre>
     <p class="smaller">If your Mixfile manually specifies <code>applications</code>, <code>:scout_apm</code> must be added:</p>
     <pre class="terminal"># mix.exs
