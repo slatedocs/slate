@@ -179,7 +179,7 @@ This event is triggered once a user sends a contact request via online form.
 
 ### location_favorited
 ```json
-//DATA EXAMPLE
+//DATA EXAMPLE for location_favorited and location_unfavorited
 {
   "location": {
     "id": "location_1",
@@ -189,7 +189,10 @@ This event is triggered once a user sends a contact request via online form.
 }
 ```
 
-This event is triggered once a user "pins" or favorites a location either from the dashboards listings, or from the location details itself.
+This event is triggered once the user "pins" or favorites a location either from the dashboards listings, or from the location details itself.
+
+### location_unfavorited
+This event is triggered once the user unfavorites or unpins a previously favorited location.
 
 ## Listing events
 ```json
@@ -239,6 +242,10 @@ This event is triggered once the user requests a financing for a property.
 ### listing_favorited
 
 This event is triggered once the user clicks on favorites to view the properties and/or locations previously pinned, or favorited.
+
+### listing_unfavorited
+
+This evente is triggerend once the user unfavorites or unpins a favorited listing/property.
 
 ## Search events
 
