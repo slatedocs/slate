@@ -1443,6 +1443,194 @@ curl --header "Authorization: Bearer ########" \
 ## Criação de um aluno
 A criação de um aluno ocorre junto com a criação da **Matrícula**.
 
+# Acordos
+
+Entidade que representa um acordo financeiro feito pelo aluno no sistema do Quero Pago.
+
+| Campo | Tipo | Descrição |
+| ---- | ---- | --------- |
+| id | int | Identificador do Acordo no Quero Pago  |
+| external_id | text | Identificador externo do Acordo |
+| status | text | Estado atual do Acordo |
+| installments | int | Número de parcelas do Acordo |
+| start_month | int | Mês de início da cobrança do Acordo. Valores de 1 a 12, sendo 1 Janeiro e 12 Dezembro |
+| start_year | int | Ano de início da cobrança do Acordo |
+| full_value | float | Valor total do Acordo, a soma do valor de todas as mensalidades que geraram o acordo, incluindo juros e multa |
+| final_value | float | Valor final do Acordo, ou seja, o valor total subtraindo o valor do desconto |
+| principal_value | float | Valor total subtraindo o valor de juros e multa |
+| discount_value | float | Valor do desconto dado no Acordo |
+| interest | float | Parte do valor total referente aos juros acumulados |
+| penalty | float | Parte do valor total referente às multas por atraso acumuladas |
+| enrollment | object | Referência a entidade Matrícula em que o Acordo pertence |
+| input_bills | array | Referências às entidades Mensalidade que geraram o Acordo |
+| output_bills | array | Referências às entidades Mensalidade que foram geradas pelo Acordo |
+| created_at | datetime | Momento da criação do Acordo no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) em UTC |
+| updated_at | datetime | Momento da última atualização do Acordo no formato [ISO 8601](https://pt.wikipedia.org/wiki/ISO_8601) em UTC |
+
+## Listagem de acordos
+
+> Requisição
+
+```bash
+curl --header "Authorization: Bearer ########" \
+     --header "Content-Type: application/json" \
+     https://queropago.com.br/api/v1/debt-agreements
+```
+
+> Resposta
+
+```json
+{
+  "page": 1,
+  "items": [
+    {
+      "id": 1,
+      "external_id": "AC123",
+      "installments": 1,
+      "start_month": 9,
+      "start_year": 2019,
+      "status": "pending",
+      "final_value": 39000.0,
+      "full_value": 40000.0,
+      "principal_value": 30000.0,
+      "interest": 9000.0,
+      "penalty": 1000.0,
+      "discount_value": 1000.0,
+      "enrollment": { "id": 655, "external_id": "RA123" },
+      "input_bills": [{ "id": 521, "external_id": "B123" }],
+      "output_bills": [{ "id": 522, "external_id": "B456" }],
+      "created_at": "2019-09-03T14:40:07Z",
+      "updated_at": "2019-09-03T14:40:07Z"
+    }
+  ]
+}
+```
+
+### Parâmetros da request
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `GET` |
+| URL | `https://queropago.com.br/api/v1/debt-agreements` |
+
+### Filtros
+
+> Exemplo de requisição filtrando por page
+
+```bash
+curl --header "Authorization: Bearer ########" \
+     --header "Content-Type: application/json" \
+     https://queropago.com.br/api/v1/debt-agreements?page=15
+```
+
+| Nome | Tipo | Descrição |
+| ---- | ---- | --------- |
+| page | Query | Número da página que deve ser retornada |
+| external_id | Query | Identificador do acordo na instituição de ensino |
+| enrollment_id | Query | Identificador da matrícula no Quero Pago |
+| enrollment_external_id | Query | Identificador da matrícula na instituição de ensino|
+| created_at_lte | Query | Retorna os acordos com data de criação menor ou igual à data indicada. Deve ser formatada no padrão ISO 8601 |
+| created_at_gte | Query | Retorna os acordos com data de criação maior ou igual à data indicada. Deve ser formatada no padrão ISO 8601 |
+
+## Busca de um Acordo
+Busca de um Acordo utilizando o ID Quero Pago
+
+> Requisição
+
+```bash
+curl --header "Authorization: Bearer ########" \
+     --header "Content-Type: application/json" \
+     https://queropago.com.br/api/v1/debt-agreements/1
+```
+
+> Resposta
+
+```json
+{
+  "id": 1,
+  "external_id": "AC123",
+  "installments": 1,
+  "start_month": 9,
+  "start_year": 2019,
+  "status": "pending",
+  "final_value": 39000.0,
+  "full_value": 40000.0,
+  "principal_value": 30000.0,
+  "interest": 9000.0,
+  "penalty": 1000.0,
+  "discount_value": 1000.0,
+  "enrollment": { "id": 655, "external_id": "RA123" },
+  "input_bills": [{ "id": 521, "external_id": "B123" }],
+  "output_bills": [{ "id": 522, "external_id": "B456" }],
+  "created_at": "2019-09-03T14:40:07Z",
+  "updated_at": "2019-09-03T14:40:07Z"
+}
+```
+
+### Parâmetros da request
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `GET` |
+| URL | `https://queropago.com.br/api/v1/debt-agreements/{id}` |
+
+## Update de um Acordo
+Faz o update de um acordo no sistema do Quero Pago e retorna o objeto atualizado
+
+> Requisição
+
+```bash
+curl --header "Authorization: Bearer ########" \
+     --header "Content-Type: application/json" \
+     -d external_id=12345 \
+     -X PUT \
+     https://queropago.com.br/api/v1/debt-agreements/1
+```
+
+> Resposta
+
+```json
+{
+  "id": 1,
+  "external_id": "12345",
+  "installments": 1,
+  "start_month": 9,
+  "start_year": 2019,
+  "status": "pending",
+  "final_value": 39000.0,
+  "full_value": 40000.0,
+  "principal_value": 30000.0,
+  "interest": 9000.0,
+  "penalty": 1000.0,
+  "discount_value": 1000.0,
+  "enrollment": { "id": 655, "external_id": "RA123" },
+  "input_bills": [{ "id": 521, "external_id": "B123" }],
+  "output_bills": [{ "id": 522, "external_id": "B456" }],
+  "created_at": "2019-09-03T14:40:07Z",
+  "updated_at": "2019-09-03T14:40:07Z"
+}
+```
+
+### Parâmetros da request
+
+| Parâmetro | Conteúdo |
+| ---- | --------- |
+| Header | `"Authorization: Bearer ########"` |
+| Header | `"Content-Type: application/json"` |
+| Método HTTP | `PUT` |
+| URL | `https://queropago.com.br/api/v1/debt-agreements/{id}` |
+
+### Possíveis atributos para realizar o update
+
+| Atributo | Tipo | Descrição |
+| ---- | ---- | --------- |
+| external_id | text | Identificador do Acordo na instituição de ensino |
+
+
 # Webhooks
 
 Com webhooks você poderá receber informações sobre eventos que ocorrem no Quero Pago. Consiste basicamente de um endereço onde enviamos requisições HTTP com os dados de eventos. Por exemplo, dados referente a um evento de mensalidade paga.
@@ -1467,6 +1655,7 @@ O corpo de toda requisição será sempre no formato JSON (`application/json`).
 | bill_overdue | Quando uma mensalidade de um aluno é marcada como vencida, é retornado a mensalidade que foi vencida |
 | bill_due_date_changed | Quando a data de vencimento de uma mensalidade é alterada, é retornado a mensalidade que teve a data de vencimento alterada |
 | boleto_updated | Quando um novo boleto é gerado, é retornado a mensalidade que teve seu boleto atualizado |
+| debt_agreement_created | Quando um novo acordo é gerado, é retornado os dados do acordo e as mensalidades que o geraram |
 
 
 ## Verificando autenticidade das entregas
@@ -2055,3 +2244,71 @@ X-QP-Delivery: 33940f46-5eb0-4400-812e-1b78018151c8
 | URL | `https://queropago.com.br/api/v1/test-events/boleto-updated/{id}` |
 
 Passando como parâmetro o Identificador da mensalidade Quero Pago que deseja gerar um novo boleto.
+
+## Acordo criado (debt_agreement_created)
+Ocorre quando um [**Acordo**](#acordos) é criado. Apenas as mensalidades geradas pelo acordo terão todas as informações, as mensalidades usadas para gerar o acordo terão somente seus identificadores, interno e externo.
+
+```http
+POST /your-webhook HTTP/1.1
+Content-Type: application/json; charset=utf-8
+X-QP-Event: debt_agreement_created
+X-QP-Signature: f0a62682f54860925766a26b302cdd973cfaad9f71d375e99ca6d287fa109193
+X-QP-Delivery: 01074956-543a-4045-ad7c-b39831a45646
+
+{
+  "id": 1,
+  "external_id": "AC123",
+  "installments": 1,
+  "start_month": 9,
+  "start_year": 2019,
+  "status": "pending",
+  "final_value": 39000.0,
+  "full_value": 40000.0,
+  "principal_value": 30000.0,
+  "interest": 9000.0,
+  "penalty": 1000.0,
+  "discount_value": 1000.0,
+  "enrollment": { "id": 655, "external_id": "RA123" },
+  "input_bills": [{ "id": 521, "external_id": "B123" }],
+  "output_bills": [
+    {
+      "id": 1,
+      "external_id": null,
+      "status": "open",
+      "year": 2019,
+      "month": 9,
+      "due_date": "2019-09-10",
+      "value_without_discount": 39000.0,
+      "value_with_discount": 39000.0,
+      "interest": 0.0,
+      "penalty": 0.0,
+      "paid_value": 0.0,
+      "paid_date": null,
+      "payment_methods": [
+        {
+          "method_name": "boleto",
+          "status": "paid",
+          "paid_at": "2018-12-27T22:31:32Z",
+          "full_value": 39000.0,
+          "paid_value": 0.0,
+          "refunded_value": 0.0,
+          "installments": 1,
+          "boleto_barcode": "12345.12345 12345.123456 12345.123456 1 12300000001234",
+          "boleto_url": "https://boleto-url.com",
+          "boleto_expiry_date": "2019-09-10",
+          "created_at": "2019-09-03T14:40:07Z",
+          "updated_at": "2019-09-03T14:40:07Z",
+        }
+      ],
+      "enrollment": {
+        "id": 123456,
+        "external_id": "RA984930527"
+      },
+      "created_at": "2019-09-03T14:40:07Z",
+      "updated_at": "2019-09-03T14:40:07Z"
+    }
+  ],
+  "created_at": "2019-09-03T14:40:07Z",
+  "updated_at": "2019-09-03T14:40:07Z"
+}
+```
