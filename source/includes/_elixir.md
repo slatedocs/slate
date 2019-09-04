@@ -411,6 +411,19 @@ The following configuration settings are available:
         No
       </td>
     </tr>
+    <tr>
+      <th>
+        hostname
+      </th>
+      <td>
+        The host registered with the <a href="#core-agent">.
+      </td>
+      <td>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
   </tbody>
 </table>
 
@@ -490,13 +503,14 @@ An example:
 ```elixir
 defmodule FirestormWeb.Web.PostsChannel do
   use FirestormWeb.Web, :channel
-  use ScoutApm.Tracing
+  import ScoutApm.Tracing
 
   # Will appear under "Web" in the UI, named "PostsChannel.update"
-  @transaction(type: "web", name: "PostsChannel.update")
-  def handle_out("update", msg, socket) do
+  @transaction_opts [type: "web", name: "PostsChannel.update"]
+  deftransaction handle_out("update", msg, socket) do
     push socket, "update", FetchView.render("index.json", msg)
   end
+end
 ```
 
 ### Plug Chunked Response (HTTP Streaming)
@@ -560,13 +574,14 @@ An example:
 ```elixir
 defmodule Flight.Checker do
   use GenServer
-  use ScoutApm.Tracing
+  import ScoutApm.Tracing
 
   # Will appear under "Background Jobs" in the UI, named "Flight.handle_check".
-  @transaction(type: "background", name: "check")
+  @transaction_opts [type: "background", name: "check"]
   def handle_call({:check, flight}, _from, state) do
     # Do work...
   end
+end
 ```
 
 ### Task.start
@@ -597,15 +612,15 @@ end)
 
 ### Exq
 
-To instrument [Exq](https://github.com/akira/exq) background jobs, `use ScoutApm.Tracing`, and add a `@transaction` module attribute to each worker's `perform` function:
+To instrument [Exq](https://github.com/akira/exq) background jobs, `import ScoutApm.Tracing`, use `deftransaction` to define the function, and add a `@transaction_opts` module attribute to optionally override the name and type:
 
 ```elixir
 defmodule MyWorker do
-  use ScoutApm.Tracing
+  import ScoutApm.Tracing
 
   # Will appear under "Background Jobs" in the UI, named "MyWorker.perform".
-  @transaction(type: "background")
-  def perform(arg1, arg2) do
+  @transaction_opts [type: "background"]
+  deftransaction perform(arg1, arg2) do
     # do work
   end
 end
@@ -669,7 +684,7 @@ Replace your function `def` with `deftransaction` to instrument it. You can over
 ```elixir
 defmodule YourApp.Web.RoomChannel do
   use Phoenix.Channel
-  use ScoutApm.Tracing
+  import ScoutApm.Tracing
 
   # Will appear under "Web" in the UI, named "YourApp.Web.RoomChannel.join".
   @transaction_opts [type: "web"]
@@ -713,7 +728,7 @@ Replace your function `def` with `deftiming` to instrument it. You can override 
 
 ```elixir
 defmodule Searcher do
-  use ScoutApm.Tracing
+  import ScoutApm.Tracing
 
   # Time associated with this function will appear under "Hound" in timeseries charts.
   # The function will appear as `Hound/open_search` in transaction traces.
