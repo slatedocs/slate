@@ -212,6 +212,22 @@ This event is triggered once a user "pins" or favorites a location either from t
 
 This event is triggered once the user click to view a property's details.
 
+### listing_changed
+
+```json
+//DATA EXAMPLE
+{
+  "listing": {
+    "id": "listing_1",
+   "listing_diff": {
+   "price": [100000, 100001]
+   }
+ }
+}
+```
+
+This event is triggered when a property has an update. In this data example, the previous price for this property was 100000, then it was updated to 100001.
+
 ### property_visit_requested 
 
 This event is triggered once the user clicks on the option to schedule a visit to a property, either from the listings dashboards or from the property details itself.
