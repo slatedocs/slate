@@ -215,7 +215,7 @@ This event is triggered once the user click to view a property's details.
 ### listing_changed
 
 ```json
-//DATA EXAMPLE
+//DATA EXAMPLE for listing_changed
 {
   "listing": {
     "id": "listing_1",
