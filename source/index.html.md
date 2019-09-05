@@ -248,39 +248,93 @@ This evente is triggerend once the user unfavorites or unpins a favorited listin
 
 ```json
 //DATA EXAMPLE
-{"searches":
-    [{"id":"5d71461ad71b0100091a10af",
-      "bathrooms_count":"3",
-      "bedrooms_count":"3",
-      "max_price_cents":"400000",
-      "min_price_cents":"1",
-      "listing_image_cover_url":"",
-      "property_type":"townhouse",
-      "commute":{"mode":"car", "range":"20", "name":"work"},
-      "location":{"id":"597796fbb5e1b5f5d7000655", "name":"boston metro area", "level":"metro"}},
-     {"id":"5d714622d71b0100091a10b0",
-      "bathrooms_count":"3",
-      "bedrooms_count":"3",
-      "max_price_cents":"400000",
-      "min_price_cents":"1",
-      "listing_image_cover_url":"",
-      "property_type":"townhouse",
-      "commute":{"mode":"car", "range":"20", "name":"work"},
-      "location":{"id":"597796fbb5e1b5f5d7000655", "name":"boston metro area", "level":"metro"}},
-     {"id":"5d714799d71b0100091a10b3",
-      "bathrooms_count":"3",
-      "bedrooms_count":"3",
-      "max_price_cents":"400000",
-      "min_price_cents":"1",
-      "listing_image_cover_url":"",
-      "property_type":"townhouse",
-      "commute":{"mode":"car", "range":"20", "name":"work"},
-      "location":{"id":"597796fbb5e1b5f5d7000655", "name":"boston metro area", "level":"metro"
-      }
-    }
-    ]
-  },
- "event_type":"saved_search_updated"}
+{
+    "partner_name": "partner_name",
+    "journey_id": "2a018bdb786cf7ffd83d738bfccdcc9b",
+    "contact": {
+        "journey_id": "2a018bdb786cf7ffd83d738bfccdcc9b",
+        "email": "someone@somewhere.co",
+        "phone": "123123123",
+        "id": {
+            "id": "5d6fdd0f9821d200086b6186",
+            "first_name": "someone",
+            "last_name": "somename",
+            "emails": ["J5d6fdc628544ce0009b22fe1@nestready.com",
+                "someonelse@somewhere.co",
+                "myemail@somewhere.co",
+                "sofive@@somewhere.co",
+                "sofour@@somewhere.co",
+                "sothree@@somewhere.co",
+                "sotwo@@somewhere.co",
+                "sone@@somewhere.co",
+                "someone@somewhere.co"
+            ],
+            "phones": ["11111111111", "1111111", "123123123123", "11111111111111", "1111123123", "123132123", "123", "123123123", "1231231231"]
+        }
+    },
+    "created_at": "2019-09-05T17:36:26+00:00",
+    "data": {
+        "searches": [{
+                "id": "5d71461ad71b0100091a10af",
+                "bathrooms_count": "3",
+                "bedrooms_count": "3",
+                "max_price_cents": "400000",
+                "min_price_cents": "1",
+                "listing_image_cover_url": "",
+                "property_type": "townhouse",
+                "commute": {
+                    "mode": "car",
+                    "range": "20",
+                    "name": "work"
+                },
+                "location": {
+                    "id": "597796fbb5e1b5f5d7000655",
+                    "name": "boston metro area",
+                    "level": "metro"
+                }
+            },
+            {
+                "id": "5d714622d71b0100091a10b0",
+                "bathrooms_count": "3",
+                "bedrooms_count": "3",
+                "max_price_cents": "400000",
+                "min_price_cents": "1",
+                "listing_image_cover_url": "",
+                "property_type": "townhouse",
+                "commute": {
+                    "mode": "car",
+                    "range": "20",
+                    "name": "work"
+                },
+                "location": {
+                    "id": "597796fbb5e1b5f5d7000655",
+                    "name": "boston metro area",
+                    "level": "metro"
+                }
+            },
+            {
+                "id": "5d714799d71b0100091a10b3",
+                "bathrooms_count": "3",
+                "bedrooms_count": "3",
+                "max_price_cents": "400000",
+                "min_price_cents": "1",
+                "listing_image_cover_url": "",
+                "property_type": "townhouse",
+                "commute": {
+                    "mode": "car",
+                    "range": "20",
+                    "name": "work"
+                },
+                "location": {
+                    "id": "597796fbb5e1b5f5d7000655",
+                    "name": "boston metro area",
+                    "level": "metro"
+                }
+            }
+        ]
+    },
+    "event_type": "saved_search_updated"
+}
 ```
 This event is triggered once the user, using the filter provided, performs a property search
 
