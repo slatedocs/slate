@@ -55,111 +55,6 @@ curl -X GET https://app.asana.com/api/1.0/attachments/{attachment_gid} \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/attachments/{attachment_gid}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/attachments/{attachment_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/attachments/{attachment_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/attachments/{attachment_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/attachments/{attachment_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /attachments/{attachment_gid}</code>
 </p>
@@ -173,9 +68,6 @@ Get the full record for a single attachment.
 |attachment_gid|path|integer|true|Globally unique identifier for the attachment.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -202,9 +94,14 @@ Get the full record for a single attachment.
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the record for a single attachment.|[Attachment](#schemaattachment)|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|402|[Payment Required](https://tools.ietf.org/html/rfc7231#section-6.5.2)|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|None|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|424|[Failed Dependency](https://tools.ietf.org/html/rfc2518#section-10.5)|You have exceeded one of the enforced rate limits in the API. See the [documentation on rate limiting](https://asana.com/developers/documentation/getting-started/rate-limits) for more information.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|501|[Not Implemented](https://tools.ietf.org/html/rfc7231#section-6.6.2)|There is an issue between the load balancers and Asana's API.|[Error](#schemaerror)|
+|503|[Service Unavailable](https://tools.ietf.org/html/rfc7231#section-6.6.4)|Either the upstream service is unavailable to the API, or he API has been intentionally shut off.|[Error](#schemaerror)|
+|504|[Gateway Time-out](https://tools.ietf.org/html/rfc7231#section-6.6.5)|This request took too long to complete.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get attachments for a task
@@ -221,111 +118,6 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/attachments \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tasks/{task_gid}/attachments',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/tasks/{task_gid}/attachments', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/tasks/{task_gid}/attachments', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tasks/{task_gid}/attachments");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/tasks/{task_gid}/attachments',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /tasks/{task_gid}/attachments</code>
 </p>
@@ -339,7 +131,6 @@ Returns the compact records for all attachments on the task.
 |task_gid|path|integer|true|Globally unique identifier for the task.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
@@ -367,7 +158,7 @@ Returns the compact records for all attachments on the task.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Upload an attachment
@@ -382,117 +173,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/attachments \
   -H 'Content-Type: multipart/form-data' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "file": "string"
-}';
-const headers = {
-  'Content-Type':'multipart/form-data',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tasks/{task_gid}/attachments',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'multipart/form-data',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/tasks/{task_gid}/attachments', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'multipart/form-data',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/tasks/{task_gid}/attachments', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tasks/{task_gid}/attachments");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'multipart/form-data',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/tasks/{task_gid}/attachments',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -512,27 +192,6 @@ The 100MB size limit on attachments in Asana is enforced on this endpoint.
 
 This endpoint expects a multipart/form-data encoded request containing
 the full contents of the file to be uploaded.
-
-Below is an example of what a well formed multipart/form-data encoded
-request might look like.
-
-```
-Authorization: Basic <BASE64_ENCODED_API_KEY>
-Content-Type: multipart/form-data; boundary=<UNIQUE_BOUNDARY>
-User-Agent: Java/1.7.0_76
-Host: localhost
-Accept: */*
-Connection: keep-alive
-Content-Length: 141
-
---<UNIQUE_BOUNDARY>
-Content-Disposition: form-data; name="file"; filename="example.txt"
-Content-Type: text/plain
-
-<RAW_FILE_DATA>
-
---<UNIQUE_BOUNDARY>--
-```
 
 Requests made should follow the HTTP/1.1 specification that line
 terminators are of the form `CRLF` or `\r\n` outlined
@@ -554,7 +213,6 @@ file: string
 |task_gid|path|integer|true|Globally unique identifier for the task.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
@@ -598,7 +256,7 @@ appending the content type to the file path: `—form
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="full-line">
 <h1 id="asana-batch-api">Batch API</h1>
@@ -621,15 +279,25 @@ There are many cases where you want to accomplish a variety of work in the Asana
 To make development easier in these use cases, Asana provides a **batch API** that enables developers to perform multiple “actions” by making only a single HTTP request.
 
 #### Making a Batch Request
+
 To make a batch request, send a `POST` request to `/batch`. Like other `POST` endpoints, the body should contain a `data` envelope. Inside this envelope should be a single `actions` field, containing a list of “action” objects.  Each action represents a standard request to an existing endpoint in the Asana API.
+
 **The maximum number of actions allowed in a single batch request is 10**. Making a batch request with no actions in it will result in a `400 Bad Request`.
+
 When the batch API receives the list of actions to execute, it will dispatch those actions to the already-implemented endpoints specified by the `relative_path` and `method` for each action. This happens in parallel, so all actions in the request will be processed simultaneously. There is no guarantee of the execution order for these actions, nor is there a way to use the output of one action as the input of another action (such as creating a task and then commenting on it).
+
 The response to the batch request will contain (within the `data` envelope) a list of result objects, one for each action. The results are guaranteed to be in the same order as the actions in the request, e.g., the first result in the response corresponds to the first action in the request.
+
 The batch API will always attempt to return a `200 Success` response with individual result objects for each individual action in the request. Only in certain cases (such as missing authorization or malformed JSON in the body) will the entire request fail with another status code. Even if every individual action in the request fails, the batch API will still return a `200 Success` response, and each result object in the response will contain the errors encountered with each action.
+
 #### Rate Limiting
+
 The batch API fully respects all of our rate limiting. This means that a batch request counts against *both* the standard rate limiter and the concurrent request limiter as though you had made a separate HTTP request for every individual action. For example, a batch request with five actions counts as five separate requests in the standard rate limiter, and counts as five concurrent requests in the concurrent request limiter. The batch request itself incurs no cost.
+
 If any of the actions in a batch request would exceed any of the enforced limits, the *entire* request will fail with a `429 Too Many Requests` error. This is to prevent the unpredictability of which actions might succeed if not all of them could succeed.
+
 #### Restrictions
+
 Not every endpoint can be accessed through the batch API. Specifically, the following actions cannot be taken and will result in a `400 Bad Request` for that action:
 
 * Uploading attachments
@@ -650,130 +318,6 @@ curl -X POST https://app.asana.com/api/1.0/batch \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "actions": [
-      {
-        "relative_path": "/tasks/123",
-        "method": "get",
-        "data": {
-          "...": "..."
-        },
-        "options": {
-          "...": "..."
-        }
-      }
-    ]
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/batch',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/batch', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/batch', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/batch");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/batch',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -821,9 +365,6 @@ Make multiple requests in parallel to Asana's API.
 |»»»» expand|body|string|false|The expansion path for the request.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 #### Enumerated Values
 
@@ -865,7 +406,7 @@ Make multiple requests in parallel to Asana's API.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="full-line">
 <h1 id="asana-custom-fields">Custom Fields</h1>
@@ -904,8 +445,6 @@ Enum fields represent a selection from a list of options. On the metadata, they 
 
 On the Task's Custom Field value, the enum will have an `enum_value` property which will be the same as one of the choices from the list defined in the Custom Field metadata.
 
-The [Custom Field API Reference](/developers/api-reference/custom_fields) contains information about the specifics of how to use Custom Fields in conjunction with Asana's API.
-
 <hr class="half-line">
 ## Create a custom field
 
@@ -919,131 +458,6 @@ curl -X POST https://app.asana.com/api/1.0/custom_fields \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "name": "Bug Task",
-    "type": "text",
-    "enum_options": [
-      {
-        "...": "..."
-      }
-    ],
-    "enum_value": null,
-    "enabled": true,
-    "text_value": "Some Value",
-    "description": "Development team priority",
-    "precision": 2,
-    "workspace": 1331
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/custom_fields',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/custom_fields', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/custom_fields', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/custom_fields");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/custom_fields',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -1088,14 +502,14 @@ Returns the full record of the newly created custom field.
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|object|true|The custom field object to create.|
-|» data|body|object|false|Custom Fields store the metadata that is used in order to|
+|» data|body|object|false|Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](#asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.|
 |»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»» resource_type|body|string|false|The base type of this resource.|
 |»» name|body|string|false|The name of the object.|
 |»» resource_subtype|body|string|false|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |»» type|body|string|false|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
-|»» enum_options|body|[object]|false|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://asana.com/developers/api-reference/custom_fields#enum-options).|
+|»» enum_options|body|[object]|false|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
 |»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»»» resource_type|body|string|false|The base type of this resource.|
@@ -1105,12 +519,11 @@ Returns the full record of the newly created custom field.
 |»» enum_value|body|any|false|none|
 |»» enabled|body|boolean|false|*Conditional*. Determines if the custom field is enabled or not.|
 |»» text_value|body|string|false|*Conditional*. This string is the value of a text custom field.|
-|»» description|body|string|false|[Opt In](/developers/documentation/getting-started/input-output-options). The description of the custom field.|
+|»» description|body|string|false|[Opt In](#input-output-options). The description of the custom field.|
 |»» precision|body|integer|false|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
 |»» workspace|body|integer|false|The workspace to create a custom field in.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
@@ -1156,7 +569,7 @@ Returns the full record of the newly created custom field.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get a custom field definition
@@ -1170,111 +583,6 @@ Returns the full record of the newly created custom field.
 curl -X GET https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -1298,9 +606,6 @@ type-specific custom field definitions.
 |custom_field_gid|path|integer|true|Globally unique identifier for the custom field.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -1336,7 +641,7 @@ type-specific custom field definitions.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Update a custom field
@@ -1351,130 +656,6 @@ curl -X PUT https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "name": "Bug Task",
-    "type": "text",
-    "enum_options": [
-      {
-        "...": "..."
-      }
-    ],
-    "enum_value": null,
-    "enabled": true,
-    "text_value": "Some Value",
-    "description": "Development team priority",
-    "precision": 2
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}',
-{
-  method: 'PUT',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('PUT','https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.put('https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("PUT");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.put 'https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -1518,9 +699,6 @@ Returns the complete updated custom field record.
 |custom_field_gid|path|integer|true|Globally unique identifier for the custom field.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -1556,7 +734,7 @@ Returns the complete updated custom field record.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Delete a custom field
@@ -1570,111 +748,6 @@ Returns the complete updated custom field record.
 curl -X DELETE https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}',
-{
-  method: 'DELETE',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('DELETE','https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.delete('https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("DELETE");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.delete 'https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -1693,9 +766,6 @@ Returns an empty data record.
 |custom_field_gid|path|integer|true|Globally unique identifier for the custom field.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -1714,7 +784,7 @@ Returns an empty data record.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Create an enum option
@@ -1729,123 +799,6 @@ curl -X POST https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "name": "Low",
-    "enabled": true,
-    "color": "blue",
-    "insert_before": 12345,
-    "insert_after": 12345
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum_options',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum_options', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum_options', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum_options");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum_options',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -1876,7 +829,7 @@ Returns the full record of the newly created enum option.
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|object|true|The enum option object to create.|
-|» data|body|object|false|Enum options are the possible values which an enum custom field can|
+|» data|body|object|false|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.|
 |»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»» resource_type|body|string|false|The base type of this resource.|
@@ -1888,7 +841,6 @@ Returns the full record of the newly created enum option.
 |custom_field_gid|path|integer|true|Globally unique identifier for the custom field.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
@@ -1916,7 +868,7 @@ Returns the full record of the newly created enum option.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Reorder a custom field's enum
@@ -1931,124 +883,6 @@ curl -X POST https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "name": "Low",
-    "enabled": true,
-    "color": "blue",
-    "enum_option": 97285,
-    "before_enum_option": 12345,
-    "after_enum_option": 12345
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum_options/insert',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum_options/insert', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum_options/insert', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum_options/insert");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum_options/insert',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -2079,7 +913,7 @@ Locked custom fields can only be reordered by the user who locked the field.
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|object|true|The enum option object to create.|
-|» data|body|object|false|Enum options are the possible values which an enum custom field can|
+|» data|body|object|false|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.|
 |»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»» resource_type|body|string|false|The base type of this resource.|
@@ -2092,9 +926,6 @@ Locked custom fields can only be reordered by the user who locked the field.
 |custom_field_gid|path|integer|true|Globally unique identifier for the custom field.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -2120,7 +951,7 @@ Locked custom fields can only be reordered by the user who locked the field.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Update an enum option
@@ -2135,121 +966,6 @@ curl -X PUT https://app.asana.com/api/1.0/enum_options/{enum_option_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "name": "Low",
-    "enabled": true,
-    "color": "blue"
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/enum_options/{enum_option_gid}',
-{
-  method: 'PUT',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('PUT','https://app.asana.com/api/1.0/enum_options/{enum_option_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.put('https://app.asana.com/api/1.0/enum_options/{enum_option_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/enum_options/{enum_option_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("PUT");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.put 'https://app.asana.com/api/1.0/enum_options/{enum_option_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -2278,7 +994,7 @@ Returns the full record of the updated enum option.
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|object|true|The enum option object to update|
-|» data|body|[EnumOption](#schemaenumoption)|false|Enum options are the possible values which an enum custom field can|
+|» data|body|[EnumOption](#schemaenumoption)|false|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.|
 |»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»» resource_type|body|string|false|The base type of this resource.|
@@ -2288,9 +1004,6 @@ Returns the full record of the updated enum option.
 |enum_option_gid|path|integer|true|Globally unique identifier for the enum option.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -2316,7 +1029,7 @@ Returns the full record of the updated enum option.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get a workspace's custom fields
@@ -2333,111 +1046,6 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/custom_fiel
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/workspaces/{workspace_gid}/custom_fields',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/workspaces/{workspace_gid}/custom_fields', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/workspaces/{workspace_gid}/custom_fields', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/workspaces/{workspace_gid}/custom_fields");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/workspaces/{workspace_gid}/custom_fields',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}/custom_fields</code>
 </p>
@@ -2451,7 +1059,6 @@ Returns a list of the compact representation of all of the custom fields in a wo
 |workspace_gid|path|integer|true|The workspace or organization to find custom field definitions in.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
@@ -2487,182 +1094,16 @@ Returns a list of the compact representation of all of the custom fields in a wo
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="full-line">
 <h1 id="asana-custom-field-settings">Custom Field Settings</h1>
 
 <pre class="highlight http tab-http">
-<code><a href="#query-for-all-of-the-custom-fields-settings-on-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project-id}/custom_field_settings</span></a><br><a href="#get-a-project-39-s-custom-fields"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/custom_field_settings</span></a><br><a href="#get-a-portfolio-39-s-custom-fields"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/custom_field_settings</span></a></code>
+<code><a href="#get-a-project-39-s-custom-fields"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/custom_field_settings</span></a><br><a href="#get-a-portfolio-39-s-custom-fields"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/custom_field_settings</span></a></code>
 </pre>
 
-Custom Fields Settings objects represent the many-to-many join of the Custom Field and Project as well as stores information that is relevant to that particular pairing.
-
-<hr class="half-line">
-## Query for all of the custom fields settings on a project
-
-<a id="opIdgetCustomFieldSettingsForProject"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X GET https://app.asana.com/api/1.0/projects/{project-id}/custom_field_settings \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/projects/{project-id}/custom_field_settings',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/projects/{project-id}/custom_field_settings', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/projects/{project-id}/custom_field_settings', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/projects/{project-id}/custom_field_settings");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/projects/{project-id}/custom_field_settings',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-<p>
-<code> <span class="get-verb">GET</span> /projects/{project-id}/custom_field_settings</code>
-</p>
-
-Returns a list of all of the custom fields settings on a project, in compact form. Note that, as in all queries to collections which return compact representation, `opt_fields` and `opt_expand` can be used to include more data than is returned in the compact representation. See the [getting started guide on input/output options](https://asana.com/developers/documentation/getting-started/input-output-options) for more information.
-
-<h3 id="query-for-all-of-the-custom-fields-settings-on-a-project-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|project-id|path|integer|true|The ID of the project for which to list custom field settings.|
-|opt_pretty|query|boolean|false|Provides “pretty” output.|
-|opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
-
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "custom_field_setting",
-      "project": null,
-      "is_important": false,
-      "parent": null,
-      "custom_field": null
-    }
-  ]
-}
-```
-
-<h3 id="query-for-all-of-the-custom-fields-settings-on-a-project-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved custom field settings objects for a project.|[CustomFieldSetting](#schemacustomfieldsetting)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+Custom fields are attached to a particular project with the Custom Field Settings resource. This resource both represents the many-to-many join of the Custom Field and Project as well as stores information that is relevant to that particular pairing; for instance, the `is_important` property determines some possible application-specific handling of that custom field.
 
 <hr class="half-line">
 ## Get a project's custom fields
@@ -2679,116 +1120,11 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/custom_field_se
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/projects/{project_gid}/custom_field_settings',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/projects/{project_gid}/custom_field_settings', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/projects/{project_gid}/custom_field_settings', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/projects/{project_gid}/custom_field_settings");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/projects/{project_gid}/custom_field_settings',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /projects/{project_gid}/custom_field_settings</code>
 </p>
 
-Returns a list of all of the custom fields settings on a project, in compact form. Note that, as in all queries to collections which return compact representation, `opt_fields` and `opt_expand` can be used to include more data than is returned in the compact representation. See the [getting started guide on input/output options](https://asana.com/developers/documentation/getting-started/input-output-options) for more information.
+Returns a list of all of the custom fields settings on a project, in compact form. Note that, as in all queries to collections which return compact representation, `opt_fields` can be used to include more data than is returned in the compact representation. See the [getting started guide on input/output options](https://asana.com/developers/documentation/getting-started/input-output-options) for more information.
 
 <h3 id="get-a-project's-custom-fields-parameters">Parameters</h3>
 
@@ -2797,7 +1133,6 @@ Returns a list of all of the custom fields settings on a project, in compact for
 |project_gid|path|string|true|The ID of the project for which to list custom field settings.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
@@ -2828,7 +1163,7 @@ Returns a list of all of the custom fields settings on a project, in compact for
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get a portfolio's custom fields
@@ -2845,111 +1180,6 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/custom_fiel
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/custom_field_settings',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/custom_field_settings', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/custom_field_settings', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/custom_field_settings");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/custom_field_settings',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /portfolios/{portfolio_gid}/custom_field_settings</code>
 </p>
@@ -2963,7 +1193,6 @@ Returns a list of all of the custom fields settings on a portfolio, in compact f
 |portfolio_gid|path|string|true|The ID of the portfolio for which to list custom field settings.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
@@ -2994,7 +1223,7 @@ Returns a list of all of the custom fields settings on a portfolio, in compact f
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="full-line">
 <h1 id="asana-events">Events</h1>
@@ -3003,7 +1232,19 @@ Returns a list of all of the custom fields settings on a portfolio, in compact f
 <code><a href="#get-events-on-a-resource"><span class="get-verb">GET</span> <span class=""nn>/events</span></a></code>
 </pre>
 
-An event is an object representing a change to a resource that was observed by an event subscription.
+An *event* is an object representing a change to a resource that was observed by an event subscription.
+
+In general, requesting events on a resource is faster and subject to higher rate limits than requesting the resource itself. Additionally, change events bubble up - listening to events on a project would include when stories are added to tasks in the project, even on subtasks.
+
+Establish an initial sync token by making a request with no sync token. The response will be a `412` error - the same as if the sync token had expired.
+
+Subsequent requests should always provide the sync token from the immediately preceding call.
+
+Sync tokens may not be valid if you attempt to go ‘backward’ in the history by requesting previous tokens, though re-requesting the current sync token is generally safe, and will always return the same results.
+
+When you receive a `412 Precondition Failed` error, it means that the sync token is either invalid or expired. If you are attempting to keep a set of data in sync, this signals you may need to re-crawl the data.
+
+Sync tokens always expire after 24 hours, but may expire sooner, depending on load on the service.
 
 <hr class="half-line">
 ## Get events on a resource
@@ -3017,112 +1258,6 @@ An event is an object representing a change to a resource that was observed by a
 curl -X GET https://app.asana.com/api/1.0/events?resource=12345 \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/events?resource=12345',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/events', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/events', params={
-  'resource': '12345'
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/events?resource=12345");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/events',
-  params: {
-  'resource' => 'integer'
-}, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -3144,14 +1279,11 @@ lieu of including the resource ID in the data for the request.
 |sync|query|string|false|A sync token received from the last request, or none on first sync. Events will be returned from the point in time that the sync token was generated.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 #### Detailed descriptions
 
 **sync**: A sync token received from the last request, or none on first sync. Events will be returned from the point in time that the sync token was generated.
-*Note*: On your first request, omit the sync token. The response will be the same as for an expired sync token, and will include a new valid sync token.If the sync token is too old (which may happen from time to time) the API will return a `412 Precondition Failed` error, and include a fresh sync token in the response.
+*Note: On your first request, omit the sync token. The response will be the same as for an expired sync token, and will include a new valid sync token.If the sync token is too old (which may happen from time to time) the API will return a `412 Precondition Failed` error, and include a fresh sync token in the response.*
 
 > 200 Response
 
@@ -3186,7 +1318,7 @@ lieu of including the resource ID in the data for the request.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="full-line">
 <h1 id="asana-jobs">Jobs</h1>
@@ -3214,111 +1346,6 @@ curl -X GET https://app.asana.com/api/1.0/jobs/{job_gid} \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/jobs/{job_gid}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/jobs/{job_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/jobs/{job_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/jobs/{job_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/jobs/{job_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /jobs/{job_gid}</code>
 </p>
@@ -3332,9 +1359,6 @@ Returns the full record for a job.
 |job_gid|path|string|true|Globally unique identifier for the job.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -3371,7 +1395,7 @@ Returns the full record for a job.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="full-line">
 <h1 id="asana-organization-exports">Organization Exports</h1>
@@ -3381,6 +1405,18 @@ Returns the full record for a job.
 </pre>
 
 An *organization_export* object represents a request to export the complete data of an Organization in JSON format.
+
+To export an Organization using this API:
+
+* Create an `organization_export`
+  [request](#create-an-organization-export-request)
+  and store the id that is returned.
+* Request the `organization_export` every few minutes, until the
+  `state` field contains ‘finished’.
+* Download the file located at the URL in the `download_url` field. * Exports can take a long time, from several minutes to a few hours
+  for large Organizations.
+
+*Note: These endpoints are only available to [Service Accounts](https://asana.com/guide/help/premium/service-accounts) of an [Enterprise](https://asana.com/enterprise) Organization.*
 
 <hr class="half-line">
 ## Create an organization export request
@@ -3395,117 +1431,6 @@ curl -X POST https://app.asana.com/api/1.0/organization_exports \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "organization": 1331
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/organization_exports',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/organization_exports', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/organization_exports', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/organization_exports");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/organization_exports',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -3531,7 +1456,6 @@ This method creates a request to export an Organization. Asana will complete the
 |» organization|body|integer|false|Globally unique identifier for the workspace or organization.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
@@ -3564,7 +1488,7 @@ This method creates a request to export an Organization. Asana will complete the
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get details on an org export request
@@ -3581,111 +1505,6 @@ curl -X GET https://app.asana.com/api/1.0/organization_exports/{organization_exp
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/organization_exports/{organization_export_gid}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/organization_exports/{organization_export_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/organization_exports/{organization_export_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/organization_exports/{organization_export_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/organization_exports/{organization_export_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /organization_exports/{organization_export_gid}</code>
 </p>
@@ -3699,9 +1518,6 @@ Returns details of a previously-requested Organization export.
 |organization_export_gid|path|integer|true|Globally unique identifier for the organization export.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -3732,16 +1548,16 @@ Returns details of a previously-requested Organization export.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="full-line">
 <h1 id="asana-portfolios">Portfolios</h1>
 
 <pre class="highlight http tab-http">
-<code><a href="#get-a-list-of-the-portfolios"><span class="get-verb">GET</span> <span class=""nn>/portfolios</span></a><br><a href="#create-a-new-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios</span></a><br><a href="#get-a-portfolio"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="#update-a-portfolio"><span class="put-verb">PUT</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="#delete-a-portfolio"><span class="delete-verb">DELETE</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="#get-portfolio-items"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/items</span></a><br><a href="#add-a-portfolio-item"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addItem</span></a><br><a href="#remove-a-portfolio-item"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeItem</span></a><br><a href="#add-a-custom-field-to-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addCustomFieldSetting</span></a><br><a href="#remove-a-custom-field-from-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeCustomFieldSetting</span></a></code>
+<code><a href="#get-a-list-of-the-portfolios"><span class="get-verb">GET</span> <span class=""nn>/portfolios</span></a><br><a href="#create-a-new-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios</span></a><br><a href="#get-a-portfolio"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="#update-a-portfolio"><span class="put-verb">PUT</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="#delete-a-portfolio"><span class="delete-verb">DELETE</span> <span class=""nn>/portfolios/{portfolio_gid}</span></a><br><a href="#get-portfolio-items"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/items</span></a><br><a href="#add-a-portfolio-item"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addItem</span></a><br><a href="#remove-a-portfolio-item"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeItem</span></a><br><a href="#add-users-to-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addMembers</span></a><br><a href="#remove-users-from-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeMembers</span></a><br><a href="#add-a-custom-field-to-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/addCustomFieldSetting</span></a><br><a href="#remove-a-custom-field-from-a-portfolio"><span class="post-verb">POST</span> <span class=""nn>/portfolios/{portfolio_gid}/removeCustomFieldSetting</span></a></code>
 </pre>
 
-A 'portfolio' gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](https://asana.com/developers/api-reference/project_statuses) update.
+A 'portfolio' gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.
 Portfolios have some restrictions on size. Each portfolio has a max of 250 items and, like projects, a max of 20 custom fields.
 
 <hr class="half-line">
@@ -3759,111 +1575,6 @@ curl -X GET https://app.asana.com/api/1.0/portfolios \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/portfolios',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/portfolios', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/portfolios', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/portfolios");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/portfolios',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /portfolios</code>
 </p>
@@ -3874,13 +1585,12 @@ Returns a list of the portfolios in compact representation that are owned by the
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
 |workspace|query|string|false|The workspace or organization to filter portfolios on.|
 |owner|query|string|false|The user who owns the portfolio. Currently, API users can only get a list of portfolios that they themselves own.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -3906,7 +1616,7 @@ Returns a list of the portfolios in compact representation that are owned by the
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Create a new portfolio
@@ -3921,124 +1631,6 @@ curl -X POST https://app.asana.com/api/1.0/portfolios \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "name": "Bug Task",
-    "created_by": null,
-    "color": "light-green",
-    "owner": null,
-    "workspace": null,
-    "members": null
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/portfolios',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/portfolios', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/portfolios', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/portfolios");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/portfolios',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -4076,9 +1668,6 @@ integrations to create their own starting state on a portfolio.
 |body|body|[PortfolioObject](#schemaportfolioobject)|true|The portfolio to create.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 201 Response
 
@@ -4104,7 +1693,7 @@ integrations to create their own starting state on a portfolio.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get a portfolio
@@ -4121,111 +1710,6 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/portfolios/{portfolio_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/portfolios/{portfolio_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/portfolios/{portfolio_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /portfolios/{portfolio_gid}</code>
 </p>
@@ -4239,9 +1723,6 @@ Returns the complete portfolio record for a single portfolio.
 |portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -4276,7 +1757,7 @@ Returns the complete portfolio record for a single portfolio.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Update a portfolio
@@ -4291,124 +1772,6 @@ curl -X PUT https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "name": "Bug Task",
-    "created_by": null,
-    "color": "light-green",
-    "owner": null,
-    "workspace": null,
-    "members": null
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}',
-{
-  method: 'PUT',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('PUT','https://app.asana.com/api/1.0/portfolios/{portfolio_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.put('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/portfolios/{portfolio_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("PUT");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.put 'https://app.asana.com/api/1.0/portfolios/{portfolio_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -4445,9 +1808,6 @@ Returns the complete updated portfolio record.
 |portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -4482,7 +1842,7 @@ Returns the complete updated portfolio record.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Delete a portfolio
@@ -4496,111 +1856,6 @@ Returns the complete updated portfolio record.
 curl -X DELETE https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}',
-{
-  method: 'DELETE',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('DELETE','https://app.asana.com/api/1.0/portfolios/{portfolio_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.delete('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/portfolios/{portfolio_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("DELETE");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.delete 'https://app.asana.com/api/1.0/portfolios/{portfolio_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -4620,9 +1875,6 @@ Returns an empty data record.
 |portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -4641,7 +1893,7 @@ Returns an empty data record.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get portfolio items
@@ -4658,111 +1910,6 @@ curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/items \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/items',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/items', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/items', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/items");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/items',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /portfolios/{portfolio_gid}/items</code>
 </p>
@@ -4776,7 +1923,6 @@ Get a list of the items in compact form in a portfolio.
 |portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
@@ -4835,7 +1981,7 @@ Get a list of the items in compact form in a portfolio.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Add a portfolio item
@@ -4849,114 +1995,6 @@ Get a list of the items in compact form in a portfolio.
 curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addItem?item=1331&insert_before=1331&insert_after=1331 \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addItem?item=1331&insert_before=1331&insert_after=1331',
-{
-  method: 'POST',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addItem', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addItem', params={
-  'item': '1331',  'insert_before': '1331',  'insert_after': '1331'
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addItem?item=1331&insert_before=1331&insert_after=1331");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addItem',
-  params: {
-  'item' => 'string',
-'insert_before' => 'string',
-'insert_after' => 'string'
-}, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -4974,9 +2012,6 @@ Returns an empty data block.
 |portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 |item|query|string|true|The item to add to the portfolio.|
 |insert_before|query|string|true|An id of an item in this portfolio. The new item will be added before the one specified here. `insert_before` and `insert_after` parameters cannot both be specified.|
 |insert_after|query|string|true|An id of an item in this portfolio. The new item will be added after the one specified here. `insert_before` and `insert_after` parameters cannot both be specified.|
@@ -4998,7 +2033,7 @@ Returns an empty data block.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Remove a portfolio item
@@ -5012,112 +2047,6 @@ Returns an empty data block.
 curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeItem?item=1331 \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeItem?item=1331',
-{
-  method: 'POST',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeItem', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeItem', params={
-  'item': '1331'
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeItem?item=1331");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeItem',
-  params: {
-  'item' => 'string'
-}, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -5135,9 +2064,6 @@ Returns an empty data block.
 |portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 |item|query|string|true|The item to remove from the portfolio.|
 
 > 200 Response
@@ -5152,12 +2078,112 @@ Returns an empty data block.
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully added the item to the portfolio.|[Empty](#schemaempty)|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully removed the item from the portfolio.|[Empty](#schemaempty)|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+
+<hr class="half-line">
+## Add users to a portfolio
+
+<a id="opIdaddPortfolioMembers"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addMembers?members=521621%2C621373 \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+<p>
+<code> <span class="post-verb">POST</span> /portfolios/{portfolio_gid}/addMembers</code>
+</p>
+
+Adds the specified list of users as members of the portfolio.
+Returns the updated portfolio record.
+
+<h3 id="add-users-to-a-portfolio-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+|members|query|string|true|An array of user ids.|
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
+```
+
+<h3 id="add-users-to-a-portfolio-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully added members to the portfolio.|[Empty](#schemaempty)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+
+<hr class="half-line">
+## Remove users from a portfolio
+
+<a id="opIdremovePortfolioMembers"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeMembers?members=521621%2C621373 \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+<p>
+<code> <span class="post-verb">POST</span> /portfolios/{portfolio_gid}/removeMembers</code>
+</p>
+
+Removes the specified list of users from members of the portfolio.
+Returns the updated portfolio record.
+
+<h3 id="remove-users-from-a-portfolio-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+|members|query|string|true|An array of user ids.|
+
+> 200 Response
+
+```json
+{
+  "data": {}
+}
+```
+
+<h3 id="remove-users-from-a-portfolio-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully removed the members from the portfolio.|[Empty](#schemaempty)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Add a custom field to a portfolio
@@ -5171,112 +2197,6 @@ Returns an empty data block.
 curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addCustomFieldSetting?custom_field=14916 \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addCustomFieldSetting?custom_field=14916',
-{
-  method: 'POST',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addCustomFieldSetting', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addCustomFieldSetting', params={
-  'custom_field': '14916'
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addCustomFieldSetting?custom_field=14916");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addCustomFieldSetting',
-  params: {
-  'custom_field' => 'integer'
-}, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -5314,7 +2234,7 @@ Custom fields are associated with portfolios by way of custom field settings.  T
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Remove a custom field from a portfolio
@@ -5328,112 +2248,6 @@ Custom fields are associated with portfolios by way of custom field settings.  T
 curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeCustomFieldSetting?custom_field=14916 \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeCustomFieldSetting?custom_field=14916',
-{
-  method: 'POST',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeCustomFieldSetting', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeCustomFieldSetting', params={
-  'custom_field': '14916'
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeCustomFieldSetting?custom_field=14916");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeCustomFieldSetting',
-  params: {
-  'custom_field' => 'integer'
-}, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -5468,13 +2282,13 @@ Removes a custom field setting from a portfolio.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="full-line">
 <h1 id="asana-portfolio-memberships">Portfolio Memberships</h1>
 
 <pre class="highlight http tab-http">
-<code><a href="#get-a-list-of-portfolio-memberships"><span class="get-verb">GET</span> <span class=""nn>/portfolio_memberships</span></a><br><a href="#get-the-portfolio-memberships-for-a-portfolio"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/portfolio_memberships</span></a><br><a href="#get-a-portfolio-membership"><span class="get-verb">GET</span> <span class=""nn>/portfolio_memberships/{portfolio_gid}</span></a></code>
+<code><a href="#get-a-list-of-portfolio-memberships"><span class="get-verb">GET</span> <span class=""nn>/portfolio_memberships</span></a><br><a href="#get-the-portfolio-memberships-for-a-portfolio"><span class="get-verb">GET</span> <span class=""nn>/portfolios/{portfolio_gid}/portfolio_memberships</span></a><br><a href="#get-a-portfolio-membership"><span class="get-verb">GET</span> <span class=""nn>/portfolio_memberships/{portfolio_membership_gid}</span></a></code>
 </pre>
 
 This object determines if a user is a member of a portfolio.
@@ -5494,111 +2308,6 @@ curl -X GET https://app.asana.com/api/1.0/portfolio_memberships \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/portfolio_memberships',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/portfolio_memberships', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/portfolio_memberships', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/portfolio_memberships");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/portfolio_memberships',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /portfolio_memberships</code>
 </p>
@@ -5614,7 +2323,6 @@ Returns a list of portfolio memberships in compact representation. You must spec
 |user|query|string(email)|false|The user to filter results on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
@@ -5642,7 +2350,7 @@ Returns a list of portfolio memberships in compact representation. You must spec
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get the portfolio memberships for a portfolio
@@ -5656,111 +2364,6 @@ Returns a list of portfolio memberships in compact representation. You must spec
 curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/portfolio_memberships \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/portfolio_memberships',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/portfolio_memberships', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/portfolio_memberships', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/portfolio_memberships");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/portfolio_memberships',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -5778,7 +2381,6 @@ Returns the compact portfolio membership records for the portfolio.
 |user|query|string(email)|false|The user to filter results on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
@@ -5808,7 +2410,7 @@ Returns the compact portfolio membership records for the portfolio.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get a portfolio membership
@@ -5819,119 +2421,14 @@ Returns the compact portfolio membership records for the portfolio.
 
 ```shell
 # You can also use wget
-curl -X GET https://app.asana.com/api/1.0/portfolio_memberships/{portfolio_gid} \
+curl -X GET https://app.asana.com/api/1.0/portfolio_memberships/{portfolio_membership_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/portfolio_memberships/{portfolio_gid}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/portfolio_memberships/{portfolio_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/portfolio_memberships/{portfolio_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/portfolio_memberships/{portfolio_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/portfolio_memberships/{portfolio_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
-<code> <span class="get-verb">GET</span> /portfolio_memberships/{portfolio_gid}</code>
+<code> <span class="get-verb">GET</span> /portfolio_memberships/{portfolio_membership_gid}</code>
 </p>
 
 Returns the complete portfolio record for a single portfolio membership.
@@ -5940,12 +2437,9 @@ Returns the complete portfolio record for a single portfolio membership.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
+|portfolio_membership_path_gid|path|string|true|none|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -5980,372 +2474,20 @@ Returns the complete portfolio record for a single portfolio membership.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="full-line">
 <h1 id="asana-projects">Projects</h1>
 
 <pre class="highlight http tab-http">
-<code><a href="#get-a-project-39-s-statuses"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/project_statuses</span></a><br><a href="#create-a-project-status"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/project_statuses</span></a><br><a href="#get-a-set-of-projects"><span class="get-verb">GET</span> <span class=""nn>/projects</span></a><br><a href="#create-a-new-project"><span class="post-verb">POST</span> <span class=""nn>/projects</span></a><br><a href="#get-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="#update-a-project"><span class="put-verb">PUT</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="#delete-a-project"><span class="delete-verb">DELETE</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="#duplicate-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/duplicate</span></a><br><a href="#add-a-custom-field-to-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/addCustomFieldSetting</span></a><br><a href="#remove-a-custom-field-from-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/removeCustomFieldSetting</span></a><br><a href="#get-a-team-39-s-projects"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}/projects</span></a><br><a href="#create-a-project-in-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/projects</span></a><br><a href="#get-all-projects-in-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></a><br><a href="#create-a-project-in-a-workspace"><span class="post-verb">POST</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></a></code>
+<code><a href="#get-a-set-of-projects"><span class="get-verb">GET</span> <span class=""nn>/projects</span></a><br><a href="#create-a-new-project"><span class="post-verb">POST</span> <span class=""nn>/projects</span></a><br><a href="#get-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="#update-a-project"><span class="put-verb">PUT</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="#delete-a-project"><span class="delete-verb">DELETE</span> <span class=""nn>/projects/{project_gid}</span></a><br><a href="#duplicate-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/duplicate</span></a><br><a href="#add-a-custom-field-to-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/addCustomFieldSetting</span></a><br><a href="#remove-a-custom-field-from-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/removeCustomFieldSetting</span></a><br><a href="#get-a-team-39-s-projects"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}/projects</span></a><br><a href="#create-a-project-in-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/projects</span></a><br><a href="#get-all-projects-in-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></a><br><a href="#create-a-project-in-a-workspace"><span class="post-verb">POST</span> <span class=""nn>/workspaces/{workspace_gid}/projects</span></a></code>
 </pre>
 
 A `project` represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.
 
-<hr class="half-line">
-## Get a project's statuses
+Projects in organizations are shared with a single team. You cannot currently change the team of a project via the API. Non-organization workspaces do not have teams and so you should not specify the team of project in a regular workspace.
 
-<a id="opIdgetProductStatuses"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/project_statuses \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/projects/{project_gid}/project_statuses',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/projects/{project_gid}/project_statuses', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/projects/{project_gid}/project_statuses', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/projects/{project_gid}/project_statuses");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/projects/{project_gid}/project_statuses',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-<p>
-<code> <span class="get-verb">GET</span> /projects/{project_gid}/project_statuses</code>
-</p>
-
-Returns the compact project status update records for all updates on the project.
-
-<h3 id="get-a-project's-statuses-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|project_gid|path|integer|true|The project to get statuses from.|
-
-> 200 Response
-
-```json
-{
-  "data": [
-    {
-      "id": 12345,
-      "gid": "12345",
-      "resource_type": "project_status",
-      "title": "Status Update - Jun 15",
-      "created_at": "2012-02-22T02:06:58.147Z",
-      "created_by": null,
-      "text": "The project is moving forward according to plan...",
-      "html-text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
-      "color": "green"
-    }
-  ]
-}
-```
-
-<h3 id="get-a-project's-statuses-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the specified project's status updates.|[ProjectStatus](#schemaprojectstatus)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
-
-<hr class="half-line">
-## Create a project status
-
-<a id="opIdcreateProjectStatus"></a>
-
-> Code samples
-
-```shell
-# You can also use wget
-curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/project_statuses \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json' \
-  -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "project": 123456,
-  "text": "The project is on track to ship next month!",
-  "color": "green"
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/projects/{project_gid}/project_statuses',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/projects/{project_gid}/project_statuses', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/projects/{project_gid}/project_statuses', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/projects/{project_gid}/project_statuses");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/projects/{project_gid}/project_statuses',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-<p>
-<code> <span class="post-verb">POST</span> /projects/{project_gid}/project_statuses</code>
-</p>
-
-Creates a new status update on the project.
-Returns the full record of the newly created project status update.
-
-> Body parameter
-
-```json
-{
-  "project": 123456,
-  "text": "The project is on track to ship next month!",
-  "color": "green"
-}
-```
-
-<h3 id="create-a-project-status-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|The project status to create.|
-|» project|body|integer|true|Globally unique identifier for the project.|
-|» text|body|string|true|The text of the project status update.|
-|» color|body|any|true|The color to associate with the status update.|
-|project_gid|path|integer|true|The project to get statuses from.|
-
-#### Enumerated Values
-
-|Parameter|Value|
-|---|---|
-| color|green|
-| color|yellow|
-| color|red|
-
-> 201 Response
-
-```json
-{
-  "data": {
-    "id": 12345,
-    "gid": "12345",
-    "resource_type": "project_status",
-    "title": "Status Update - Jun 15",
-    "created_at": "2012-02-22T02:06:58.147Z",
-    "created_by": null,
-    "text": "The project is moving forward according to plan...",
-    "html-text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
-    "color": "green"
-  }
-}
-```
-
-<h3 id="create-a-project-status-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Successfully created a new story.|[ProjectStatus](#schemaprojectstatus)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
-|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+Followers of a project are a subset of the members of that project. Followers of a project will receive all updates including tasks created, added and removed from that project. Members of the project have access to and will receive status updates of the project. Adding followers to a project will add them as members if they are not already, removing followers from a project will not affect membership.
 
 <hr class="half-line">
 ## Get a set of projects
@@ -6362,111 +2504,6 @@ curl -X GET https://app.asana.com/api/1.0/projects \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/projects',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/projects', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/projects', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/projects");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/projects',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /projects</code>
 </p>
@@ -6477,14 +2514,13 @@ Returns the compact project records for some filtered set of projects. Use one o
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
 |workspace|query|integer|false|The workspace or organization to filter projects on.|
 |team|query|integer|false|The team to filter projects on.|
 |archived|query|boolean|false|Only return projects whose `archived` field takes on the value of this parameter.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -6541,7 +2577,7 @@ Returns the compact project records for some filtered set of projects. Use one o
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Create a new project
@@ -6556,122 +2592,6 @@ curl -X POST https://app.asana.com/api/1.0/projects \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "name": "Bug Project",
-    "notes": "For tracking pesky bugs.",
-    "workspace": 1331,
-    "team": 14916
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/projects',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/projects', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/projects', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/projects");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/projects',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -6716,9 +2636,6 @@ Returns the full record of the newly created project.
 |»» team|body|integer|false|If creating in an organization, the specific team to create the project in.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 201 Response
 
@@ -6785,7 +2702,7 @@ Returns the full record of the newly created project.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get a project
@@ -6802,111 +2719,6 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid} \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/projects/{project_gid}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/projects/{project_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/projects/{project_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/projects/{project_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/projects/{project_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /projects/{project_gid}</code>
 </p>
@@ -6920,9 +2732,6 @@ Returns the complete project record for a single project.
 |project_gid|path|string|true|Globally unique identifier for the project.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -6989,7 +2798,7 @@ Returns the complete project record for a single project.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Update a project
@@ -7004,132 +2813,6 @@ curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "name": "Stuff to buy",
-    "archived": false,
-    "color": "light-green",
-    "due_date": "2012-03-26",
-    "due_on": "2012-03-26",
-    "html_notes": "These are things we need to purchase.",
-    "is_template": false,
-    "modified_at": "2012-02-22T02:06:58.147Z",
-    "notes": "These are things we need to purchase.",
-    "owner": null,
-    "public": false,
-    "start_on": "2012-03-26",
-    "team": null,
-    "workspace": null
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/projects/{project_gid}',
-{
-  method: 'PUT',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('PUT','https://app.asana.com/api/1.0/projects/{project_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.put('https://app.asana.com/api/1.0/projects/{project_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/projects/{project_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("PUT");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.put 'https://app.asana.com/api/1.0/projects/{project_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -7178,9 +2861,6 @@ Returns the complete updated project record.
 |project_gid|path|string|true|Globally unique identifier for the project.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -7247,7 +2927,7 @@ Returns the complete updated project record.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Delete a project
@@ -7261,111 +2941,6 @@ Returns the complete updated project record.
 curl -X DELETE https://app.asana.com/api/1.0/projects/{project_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/projects/{project_gid}',
-{
-  method: 'DELETE',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('DELETE','https://app.asana.com/api/1.0/projects/{project_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.delete('https://app.asana.com/api/1.0/projects/{project_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/projects/{project_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("DELETE");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.delete 'https://app.asana.com/api/1.0/projects/{project_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -7385,9 +2960,6 @@ Returns an empty data record.
 |project_gid|path|string|true|Globally unique identifier for the project.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -7406,7 +2978,7 @@ Returns an empty data record.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Duplicate a project
@@ -7421,129 +2993,6 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/duplicate \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "name": "New Project Name",
-    "team": "12345",
-    "include": [
-      "members",
-      "task_notes"
-    ],
-    "schedule_dates": {
-      "should_skip_weekends": true,
-      "due_on": "2019-05-21",
-      "start_on": "2019-05-21"
-    }
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/projects/{project_gid}/duplicate',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/projects/{project_gid}/duplicate', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/projects/{project_gid}/duplicate', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/projects/{project_gid}/duplicate");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/projects/{project_gid}/duplicate',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -7581,7 +3030,7 @@ Creates and returns a job that will asynchronously handle the duplication.
 |» data|body|object|false|none|
 |»» name|body|string|false|The name of the new project.|
 |»» team|body|string|false|Sets the team of the new project. If team is not defined, the new project will be in the same team as the the original project.|
-|»» include|body|string|false|The elements that will be duplicated to the new project. Tasks and project notes are always included.|
+|»» include|body|string|false|The elements that will be duplicated to the new project. Tasks are always included.|
 |»» schedule_dates|body|object|false|A dictionary of options to auto-shift dates. `task_dates` must be included to use this option. Requires either `start_on` or `due_on`, but not both.|
 |»»» should_skip_weekends|body|boolean|false|Determines if the auto-shifted dates should skip weekends.|
 |»»» due_on|body|string|false|Sets the last due date in the duplicated project to the given date. The rest of the due dates will be offset by the same amount as the due dates in the original project.|
@@ -7589,15 +3038,13 @@ Creates and returns a job that will asynchronously handle the duplication.
 |project_gid|path|string|true|Globally unique identifier for the project.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 #### Enumerated Values
 
 |Parameter|Value|
 |---|---|
 | include|members|
+| include|notes|
 | include|task_notes|
 | include|task_assignee|
 | include|task_subtasks|
@@ -7643,7 +3090,7 @@ Creates and returns a job that will asynchronously handle the duplication.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Add a custom field to a project
@@ -7657,112 +3104,6 @@ Creates and returns a job that will asynchronously handle the duplication.
 curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/addCustomFieldSetting?custom_field=14916 \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/projects/{project_gid}/addCustomFieldSetting?custom_field=14916',
-{
-  method: 'POST',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/projects/{project_gid}/addCustomFieldSetting', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/projects/{project_gid}/addCustomFieldSetting', params={
-  'custom_field': '14916'
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/projects/{project_gid}/addCustomFieldSetting?custom_field=14916");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/projects/{project_gid}/addCustomFieldSetting',
-  params: {
-  'custom_field' => 'integer'
-}, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -7800,7 +3141,7 @@ Custom fields are associated with projects by way of custom field settings.  Thi
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Remove a custom field from a project
@@ -7814,112 +3155,6 @@ Custom fields are associated with projects by way of custom field settings.  Thi
 curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/removeCustomFieldSetting?custom_field=14916 \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/projects/{project_gid}/removeCustomFieldSetting?custom_field=14916',
-{
-  method: 'POST',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/projects/{project_gid}/removeCustomFieldSetting', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/projects/{project_gid}/removeCustomFieldSetting', params={
-  'custom_field': '14916'
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/projects/{project_gid}/removeCustomFieldSetting?custom_field=14916");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/projects/{project_gid}/removeCustomFieldSetting',
-  params: {
-  'custom_field' => 'integer'
-}, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -7954,7 +3189,7 @@ Removes a custom field setting from a project.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get a team's projects
@@ -7971,111 +3206,6 @@ curl -X GET https://app.asana.com/api/1.0/teams/{team_gid}/projects \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/teams/{team_gid}/projects',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/teams/{team_gid}/projects', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/teams/{team_gid}/projects', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/teams/{team_gid}/projects");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/teams/{team_gid}/projects',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /teams/{team_gid}/projects</code>
 </p>
@@ -8086,13 +3216,12 @@ Returns the compact project records for all projects in the team.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
 |archived|query|boolean|false|Only return projects whose `archived` field takes on the value of this parameter.|
 |team_gid|path|string|true|Globally unique identifier for the team.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -8149,7 +3278,7 @@ Returns the compact project records for all projects in the team.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Create a project in a team
@@ -8164,132 +3293,6 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "name": "Stuff to buy",
-    "archived": false,
-    "color": "light-green",
-    "due_date": "2012-03-26",
-    "due_on": "2012-03-26",
-    "html_notes": "These are things we need to purchase.",
-    "is_template": false,
-    "modified_at": "2012-02-22T02:06:58.147Z",
-    "notes": "These are things we need to purchase.",
-    "owner": null,
-    "public": false,
-    "start_on": "2012-03-26",
-    "team": null,
-    "workspace": null
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/teams/{team_gid}/projects',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/teams/{team_gid}/projects', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/teams/{team_gid}/projects', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/teams/{team_gid}/projects");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/teams/{team_gid}/projects',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -8332,9 +3335,6 @@ Returns the full record of the newly created project.
 |team_gid|path|string|true|Globally unique identifier for the team.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 201 Response
 
@@ -8401,7 +3401,7 @@ Returns the full record of the newly created project.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get all projects in a workspace
@@ -8418,111 +3418,6 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}/projects</code>
 </p>
@@ -8533,13 +3428,12 @@ Returns the compact project records for all projects in the workspace.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
 |archived|query|boolean|false|Only return projects whose `archived` field takes on the value of this parameter.|
 |workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -8596,7 +3490,7 @@ Returns the compact project records for all projects in the workspace.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Create a project in a workspace
@@ -8611,132 +3505,6 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "name": "Stuff to buy",
-    "archived": false,
-    "color": "light-green",
-    "due_date": "2012-03-26",
-    "due_on": "2012-03-26",
-    "html_notes": "These are things we need to purchase.",
-    "is_template": false,
-    "modified_at": "2012-02-22T02:06:58.147Z",
-    "notes": "These are things we need to purchase.",
-    "owner": null,
-    "public": false,
-    "start_on": "2012-03-26",
-    "team": null,
-    "workspace": null
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -8782,9 +3550,6 @@ Returns the full record of the newly created project.
 |workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 201 Response
 
@@ -8851,13 +3616,13 @@ Returns the full record of the newly created project.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="full-line">
 <h1 id="asana-project-memberships">Project Memberships</h1>
 
 <pre class="highlight http tab-http">
-<code><a href="#get-the-project-memberships-for-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/project_memberships</span></a><br><a href="#get-a-project-membership"><span class="get-verb">GET</span> <span class=""nn>/project_memberships/{project_gid}</span></a></code>
+<code><a href="#get-the-project-memberships-for-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/project_memberships</span></a><br><a href="#get-a-project-membership"><span class="get-verb">GET</span> <span class=""nn>/project_memberships/{project_membership_gid}</span></a></code>
 </pre>
 
 With the introduction of “comment-only” projects in Asana, a user’s membership in a project comes with associated permissions. These permissions (whether a user has full access to the project or comment-only access) are accessible through the project memberships endpoints described here.
@@ -8877,111 +3642,6 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/project_members
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/projects/{project_gid}/project_memberships',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/projects/{project_gid}/project_memberships', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/projects/{project_gid}/project_memberships', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/projects/{project_gid}/project_memberships");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/projects/{project_gid}/project_memberships',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /projects/{project_gid}/project_memberships</code>
 </p>
@@ -8996,7 +3656,6 @@ Returns the compact project membership records for the project.
 |user|query|string(email)|false|The user to filter results on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
@@ -9011,11 +3670,7 @@ Returns the compact project membership records for the project.
       "resource_type": "project_membership",
       "user": {
         ...
-      },
-      "project": {
-        ...
-      },
-      "write_access": "full_write"
+      }
     }
   ]
 }
@@ -9030,7 +3685,7 @@ Returns the compact project membership records for the project.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get a project membership
@@ -9041,119 +3696,14 @@ Returns the compact project membership records for the project.
 
 ```shell
 # You can also use wget
-curl -X GET https://app.asana.com/api/1.0/project_memberships/{project_gid} \
+curl -X GET https://app.asana.com/api/1.0/project_memberships/{project_membership_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/project_memberships/{project_gid}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/project_memberships/{project_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/project_memberships/{project_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/project_memberships/{project_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/project_memberships/{project_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
-<code> <span class="get-verb">GET</span> /project_memberships/{project_gid}</code>
+<code> <span class="get-verb">GET</span> /project_memberships/{project_membership_gid}</code>
 </p>
 
 Returns the complete project record for a single project membership.
@@ -9162,12 +3712,9 @@ Returns the complete project record for a single project membership.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|project_gid|path|string|true|Globally unique identifier for the project.|
+|project_membership_path_gid|path|string|true|none|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -9203,16 +3750,160 @@ Returns the complete project record for a single project membership.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="full-line">
 <h1 id="asana-project-statuses">Project Statuses</h1>
 
 <pre class="highlight http tab-http">
-<code><a href="#get-a-project-status"><span class="get-verb">GET</span> <span class=""nn>/project_statuses/{project_status_gid}</span></a><br><a href="#delete-a-project-status"><span class="delete-verb">DELETE</span> <span class=""nn>/project_statuses/{project_status_gid}</span></a></code>
+<code><a href="#get-a-project-39-s-statuses"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/project_statuses</span></a><br><a href="#create-a-project-status"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/project_statuses</span></a><br><a href="#get-a-project-status"><span class="get-verb">GET</span> <span class=""nn>/project_statuses/{project_status_gid}</span></a><br><a href="#delete-a-project-status"><span class="delete-verb">DELETE</span> <span class=""nn>/project_statuses/{project_status_gid}</span></a></code>
 </pre>
 
 A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: “green” for projects that are on track, “yellow” for projects at risk, and “red” for projects that are behind.
+
+Project statuses can be created and deleted, but not modified.
+
+<hr class="half-line">
+## Get a project's statuses
+
+<a id="opIdgetProductStatuses"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/project_statuses \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+<p>
+<code> <span class="get-verb">GET</span> /projects/{project_gid}/project_statuses</code>
+</p>
+
+Returns the compact project status update records for all updates on the project.
+
+<h3 id="get-a-project's-statuses-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|project_gid|path|string|true|Globally unique identifier for the project.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "project_status",
+      "title": "Status Update - Jun 15",
+      "created_at": "2012-02-22T02:06:58.147Z",
+      "created_by": null,
+      "text": "The project is moving forward according to plan...",
+      "html-text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
+      "color": "green"
+    }
+  ]
+}
+```
+
+<h3 id="get-a-project's-statuses-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the specified project's status updates.|[ProjectStatus](#schemaprojectstatus)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+
+<hr class="half-line">
+## Create a project status
+
+<a id="opIdcreateProjectStatus"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/project_statuses \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+<p>
+<code> <span class="post-verb">POST</span> /projects/{project_gid}/project_statuses</code>
+</p>
+
+Creates a new status update on the project.
+Returns the full record of the newly created project status update.
+
+> Body parameter
+
+```json
+{
+  "project": 123456,
+  "text": "The project is on track to ship next month!",
+  "color": "green"
+}
+```
+
+<h3 id="create-a-project-status-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|object|true|The project status to create.|
+|» project|body|integer|true|Globally unique identifier for the project.|
+|» text|body|string|true|The text of the project status update.|
+|» color|body|any|true|The color to associate with the status update.|
+|project_gid|path|string|true|Globally unique identifier for the project.|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+| color|green|
+| color|yellow|
+| color|red|
+
+> 201 Response
+
+```json
+{
+  "data": {
+    "id": 12345,
+    "gid": "12345",
+    "resource_type": "project_status",
+    "title": "Status Update - Jun 15",
+    "created_at": "2012-02-22T02:06:58.147Z",
+    "created_by": null,
+    "text": "The project is moving forward according to plan...",
+    "html-text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
+    "color": "green"
+  }
+}
+```
+
+<h3 id="create-a-project-status-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Successfully created a new story.|[ProjectStatus](#schemaprojectstatus)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get a project status
@@ -9229,111 +3920,6 @@ curl -X GET https://app.asana.com/api/1.0/project_statuses/{project_status_gid} 
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/project_statuses/{project_status_gid}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/project_statuses/{project_status_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/project_statuses/{project_status_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/project_statuses/{project_status_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/project_statuses/{project_status_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /project_statuses/{project_status_gid}</code>
 </p>
@@ -9344,8 +3930,7 @@ Returns the complete record for a single status update.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|project_gid|path|integer|true|The project to get statuses from.|
-|project_status_gid|path|integer|true|The project status update to get.|
+|project_status_path_gid|path|string|true|The project status update to get.|
 
 > 200 Response
 
@@ -9374,7 +3959,7 @@ Returns the complete record for a single status update.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Delete a project status
@@ -9391,111 +3976,6 @@ curl -X DELETE https://app.asana.com/api/1.0/project_statuses/{project_status_gi
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/project_statuses/{project_status_gid}',
-{
-  method: 'DELETE',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('DELETE','https://app.asana.com/api/1.0/project_statuses/{project_status_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.delete('https://app.asana.com/api/1.0/project_statuses/{project_status_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/project_statuses/{project_status_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("DELETE");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.delete 'https://app.asana.com/api/1.0/project_statuses/{project_status_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="delete-verb">DELETE</span> /project_statuses/{project_status_gid}</code>
 </p>
@@ -9508,8 +3988,7 @@ Returns an empty data record.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|project_gid|path|integer|true|The project to get statuses from.|
-|project_status_gid|path|integer|true|The project status update to get.|
+|project_status_path_gid|path|string|true|The project status update to get.|
 
 > 200 Response
 
@@ -9528,7 +4007,7 @@ Returns an empty data record.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="full-line">
 <h1 id="asana-sections">Sections</h1>
@@ -9537,7 +4016,11 @@ Returns an empty data record.
 <code><a href="#get-all-sections-in-a-project"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/sections</span></a><br><a href="#creates-a-section-in-a-project"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/sections</span></a><br><a href="#get-a-section"><span class="get-verb">GET</span> <span class=""nn>/sections/{section_gid}</span></a><br><a href="#update-a-section"><span class="put-verb">PUT</span> <span class=""nn>/sections/{section_gid}</span></a><br><a href="#delete-a-section"><span class="delete-verb">DELETE</span> <span class=""nn>/sections/{section_gid}</span></a><br><a href="#add-task-to-section"><span class="post-verb">POST</span> <span class=""nn>/sections/{section_gid}/addTask</span></a><br><a href="#move-sections"><span class="post-verb">POST</span> <span class=""nn>/projects/{project_gid}/sections/insert</span></a><br><a href="#get-tasks-in-a-section"><span class="get-verb">GET</span> <span class=""nn>/sections/{section_gid}/tasks</span></a><br><a href="#query-for-tasks-in-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/tasks/search</span></a></code>
 </pre>
 
-A *section* is a subdivision of a project that groups tasks together.
+A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.
+
+Sections are largely a shared idiom in Asana’s API for both list and board views of a project regardless of the project’s layout.
+
+The ‘memberships’ property when [getting a task](#get-a-task) will return the information for the section or the column under ‘section’ in the response.
 
 <hr class="half-line">
 ## Get all sections in a project
@@ -9554,111 +4037,6 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/sections \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/projects/{project_gid}/sections',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/projects/{project_gid}/sections', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/projects/{project_gid}/sections', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/projects/{project_gid}/sections");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/projects/{project_gid}/sections',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /projects/{project_gid}/sections</code>
 </p>
@@ -9669,12 +4047,11 @@ Returns the compact records for all sections in the specified project.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
 |project_gid|path|string|true|Globally unique identifier for the project.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -9704,7 +4081,7 @@ Returns the compact records for all sections in the specified project.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Creates a section in a project
@@ -9719,118 +4096,6 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/sections \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "project": 13579,
-  "name": "Next Actions"
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/projects/{project_gid}/sections',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/projects/{project_gid}/sections', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/projects/{project_gid}/sections', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/projects/{project_gid}/sections");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/projects/{project_gid}/sections',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -9860,9 +4125,6 @@ Returns the full record of the newly created section.
 |project_gid|path|string|true|Globally unique identifier for the project.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 201 Response
 
@@ -9892,7 +4154,7 @@ Returns the full record of the newly created section.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get a section
@@ -9909,111 +4171,6 @@ curl -X GET https://app.asana.com/api/1.0/sections/{section_gid} \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/sections/{section_gid}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/sections/{section_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/sections/{section_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/sections/{section_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/sections/{section_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /sections/{section_gid}</code>
 </p>
@@ -10027,9 +4184,6 @@ Returns the complete record for a single section.
 |section_gid|path|string|true|The globally unique identified for the section.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -10059,7 +4213,7 @@ Returns the complete record for a single section.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Update a section
@@ -10074,124 +4228,6 @@ curl -X PUT https://app.asana.com/api/1.0/sections/{section_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "name": "Next Actions",
-    "projects": [
-      {
-        "...": "..."
-      }
-    ]
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/sections/{section_gid}',
-{
-  method: 'PUT',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('PUT','https://app.asana.com/api/1.0/sections/{section_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.put('https://app.asana.com/api/1.0/sections/{section_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/sections/{section_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("PUT");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.put 'https://app.asana.com/api/1.0/sections/{section_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -10233,9 +4269,6 @@ Returns the complete updated section record.
 |section_gid|path|string|true|The globally unique identified for the section.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -10265,7 +4298,7 @@ Returns the complete updated section record.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Delete a section
@@ -10279,111 +4312,6 @@ Returns the complete updated section record.
 curl -X DELETE https://app.asana.com/api/1.0/sections/{section_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/sections/{section_gid}',
-{
-  method: 'DELETE',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('DELETE','https://app.asana.com/api/1.0/sections/{section_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.delete('https://app.asana.com/api/1.0/sections/{section_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/sections/{section_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("DELETE");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.delete 'https://app.asana.com/api/1.0/sections/{section_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -10407,9 +4335,6 @@ Returns an empty data block.
 |section_gid|path|string|true|The globally unique identified for the section.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -10428,7 +4353,7 @@ Returns an empty data block.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Add task to section
@@ -10443,119 +4368,6 @@ curl -X POST https://app.asana.com/api/1.0/sections/{section_gid}/addTask \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "task": 123456,
-  "insert_before": 86420,
-  "insert_after": 987654
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/sections/{section_gid}/addTask',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/sections/{section_gid}/addTask', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/sections/{section_gid}/addTask', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/sections/{section_gid}/addTask");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/sections/{section_gid}/addTask',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -10588,6 +4400,8 @@ This does not work for separators (tasks with the resource_subtype of section).
 |» insert_before|body|string|true|An existing task within this section before which the added task should be inserted. Cannot be provided together with insert_after.|
 |» insert_after|body|string|true|An existing task within this section after which the added task should be inserted. Cannot be provided together with insert_before.|
 |section_gid|path|string|true|The globally unique identified for the section.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
 
 > 200 Response
 
@@ -10606,7 +4420,7 @@ This does not work for separators (tasks with the resource_subtype of section).
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Move sections
@@ -10621,120 +4435,6 @@ curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/sections/inser
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "project": 123456,
-  "section": 321654,
-  "before_section": 86420,
-  "after_section": 987654
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/projects/{project_gid}/sections/insert',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/projects/{project_gid}/sections/insert', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/projects/{project_gid}/sections/insert', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/projects/{project_gid}/sections/insert");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/projects/{project_gid}/sections/insert',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -10775,9 +4475,6 @@ Returns an empty data block.
 |project_gid|path|string|true|Globally unique identifier for the project.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -10796,7 +4493,7 @@ Returns an empty data block.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get tasks in a section
@@ -10813,111 +4510,6 @@ curl -X GET https://app.asana.com/api/1.0/sections/{section_gid}/tasks \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/sections/{section_gid}/tasks',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/sections/{section_gid}/tasks', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/sections/{section_gid}/tasks', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/sections/{section_gid}/tasks");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/sections/{section_gid}/tasks',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /sections/{section_gid}/tasks</code>
 </p>
@@ -10931,7 +4523,6 @@ p JSON.parse(result)
 |section_gid|path|string|true|The globally unique identified for the section.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
@@ -10973,6 +4564,7 @@ p JSON.parse(result)
       "hearts": [
         ...
       ],
+      "is_rendered_as_separator": false,
       "liked": true,
       "likes": [
         ...
@@ -11008,7 +4600,7 @@ p JSON.parse(result)
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Query for tasks in a workspace
@@ -11022,111 +4614,6 @@ p JSON.parse(result)
 curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tasks/search \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tasks/search',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tasks/search', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tasks/search', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tasks/search");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tasks/search',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -11157,9 +4644,6 @@ You may receive a `429 Too Many Requests` response if you hit any of our [rate l
 |workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 |text|undefined|string|false|Performs full-text search on both task name and description|
 |resource_subtype|undefined|string|false|Filters results by the task's resource_subtype|
 |assignee.any|query|string|false|none|
@@ -11270,6 +4754,7 @@ You may receive a `429 Too Many Requests` response if you hit any of our [rate l
       "hearts": [
         ...
       ],
+      "is_rendered_as_separator": false,
       "liked": true,
       "likes": [
         ...
@@ -11305,7 +4790,7 @@ You may receive a `429 Too Many Requests` response if you hit any of our [rate l
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="full-line">
 <h1 id="asana-stories">Stories</h1>
@@ -11314,7 +4799,9 @@ You may receive a `429 Too Many Requests` response if you hit any of our [rate l
 <code><a href="#get-a-task-39-s-stories"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/stories</span></a><br><a href="#create-a-comment-on-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/stories</span></a><br><a href="#get-a-story"><span class="get-verb">GET</span> <span class=""nn>/stories/{story_gid}</span></a><br><a href="#update-a-story"><span class="put-verb">PUT</span> <span class=""nn>/stories/{story_gid}</span></a><br><a href="#delete-a-story"><span class="delete-verb">DELETE</span> <span class=""nn>/stories/{story_gid}</span></a></code>
 </pre>
 
-A story represents an activity associated with an object in the Asana system.
+*See [our forum post](https://forum.asana.com/t/no-more-parsing-story-text-new-fields-on-stories/42924) for more info on when conditional fields are returned.*
+
+A *story* represents an activity associated with an object in the Asana system. Stories are generated by the system whenever users take actions such as creating or assigning tasks, or moving tasks between projects. *Comments* are also a form of user-generated story.
 
 <hr class="half-line">
 ## Get a task's stories
@@ -11331,111 +4818,6 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tasks/{task_gid}/stories',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/tasks/{task_gid}/stories', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/tasks/{task_gid}/stories', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tasks/{task_gid}/stories");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/tasks/{task_gid}/stories',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /tasks/{task_gid}/stories</code>
 </p>
@@ -11446,12 +4828,11 @@ Returns the compact records for all stories on the task.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
 |task_gid|path|string|true|The task to get stories from.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -11557,7 +4938,7 @@ Returns the compact records for all stories on the task.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Create a comment on a task
@@ -11572,118 +4953,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "task": 123456,
-  "text": "This is a comment."
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tasks/{task_gid}/stories',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/tasks/{task_gid}/stories', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/tasks/{task_gid}/stories', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tasks/{task_gid}/stories");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/tasks/{task_gid}/stories',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -11716,9 +4985,6 @@ Returns the full record for the new story added to the task.
 |task_gid|path|string|true|The task to get stories from.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 201 Response
 
@@ -11891,7 +5157,7 @@ Returns the full record for the new story added to the task.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get a story
@@ -11908,111 +5174,6 @@ curl -X GET https://app.asana.com/api/1.0/stories/{story_gid} \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/stories/{story_gid}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/stories/{story_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/stories/{story_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/stories/{story_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/stories/{story_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /stories/{story_gid}</code>
 </p>
@@ -12023,12 +5184,11 @@ Returns the full record for a single story.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
 |story_gid|path|string|true|The globally unique identifier for the story.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -12201,7 +5361,7 @@ Returns the full record for a single story.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Update a story
@@ -12216,177 +5376,6 @@ curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "created_by": null,
-    "text": "marked today",
-    "html_text": "Get whatever Sashimi has.",
-    "is_pinned": false,
-    "old_name": "This was the Old Name",
-    "story": {
-      "created_by": null,
-      "text": "marked today"
-    },
-    "assignee": {
-      "name": "Greg Sanchez"
-    },
-    "follower": {
-      "name": "Greg Sanchez"
-    },
-    "old_section": {
-      "name": "Next Actions"
-    },
-    "new_section": {
-      "name": "Next Actions"
-    },
-    "task": {
-      "name": "Bug Task"
-    },
-    "project": {
-      "name": "Stuff to buy"
-    },
-    "tag": {
-      "name": "Stuff to buy"
-    },
-    "custom_field": {
-      "name": "Bug Task",
-      "type": "text",
-      "enum_options": [
-        "..."
-      ],
-      "enum_value": null,
-      "enabled": true,
-      "text_value": "Some Value"
-    },
-    "old_enum_value": {
-      "name": "Low",
-      "enabled": true,
-      "color": "blue"
-    },
-    "new_enum_value": {
-      "name": "Low",
-      "enabled": true,
-      "color": "blue"
-    },
-    "duplicate_of": {
-      "name": "Bug Task"
-    },
-    "duplicated_from": {
-      "name": "Bug Task"
-    },
-    "dependency": {
-      "name": "Bug Task"
-    }
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/stories/{story_gid}',
-{
-  method: 'PUT',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('PUT','https://app.asana.com/api/1.0/stories/{story_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.put('https://app.asana.com/api/1.0/stories/{story_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/stories/{story_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("PUT");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.put 'https://app.asana.com/api/1.0/stories/{story_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -12472,9 +5461,6 @@ Updates the story and returns the full record for the updated story. Only commen
 |story_gid|path|string|true|The globally unique identifier for the story.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -12647,7 +5633,7 @@ Updates the story and returns the full record for the updated story. Only commen
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Delete a story
@@ -12661,111 +5647,6 @@ Updates the story and returns the full record for the updated story. Only commen
 curl -X DELETE https://app.asana.com/api/1.0/stories/{story_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/stories/{story_gid}',
-{
-  method: 'DELETE',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('DELETE','https://app.asana.com/api/1.0/stories/{story_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.delete('https://app.asana.com/api/1.0/stories/{story_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/stories/{story_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("DELETE");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.delete 'https://app.asana.com/api/1.0/stories/{story_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -12784,9 +5665,6 @@ Returns an empty data record.
 |story_gid|path|string|true|The globally unique identifier for the story.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -12805,7 +5683,7 @@ Returns an empty data record.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="full-line">
 <h1 id="asana-tags">Tags</h1>
@@ -12815,6 +5693,8 @@ Returns an empty data record.
 </pre>
 
 A tag is a label that can be attached to any task in Asana. It exists in a single workspace or organization.
+
+Tags have some metadata associated with them, but it is possible that we will simplify them in the future so it is not encouraged to rely too heavily on it. Unlike projects, tags do not provide any ordering on the tasks they are associated with.
 
 <hr class="half-line">
 ## Get a set of tags
@@ -12831,111 +5711,6 @@ curl -X GET https://app.asana.com/api/1.0/tags \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tags',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/tags', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/tags', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tags");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/tags',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /tags</code>
 </p>
@@ -12946,13 +5721,12 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
 |workspace|query|integer|false|The workspace to filter tags on.|
 |archived|query|boolean|false|Only return tags whose `archived` field takes on the value of this parameter.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -12985,7 +5759,7 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Create a tag
@@ -13000,123 +5774,6 @@ curl -X POST https://app.asana.com/api/1.0/tags \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "name": "Stuff to buy",
-    "color": "light-green",
-    "workspace": {
-      "name": "Bug Task"
-    }
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tags',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/tags', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/tags', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tags");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/tags',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -13154,9 +5811,6 @@ Returns the full record of the newly created tag.
 |body|body|[TagObject](#schematagobject)|true|The tag to create.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 201 Response
 
@@ -13192,7 +5846,7 @@ Returns the full record of the newly created tag.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get a tag
@@ -13209,111 +5863,6 @@ curl -X GET https://app.asana.com/api/1.0/tags/{tag_gid} \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tags/{tag_gid}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/tags/{tag_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/tags/{tag_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tags/{tag_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/tags/{tag_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /tags/{tag_gid}</code>
 </p>
@@ -13327,7 +5876,6 @@ Returns the complete tag record for a single tag.
 |tag_gid|path|string|true|Globally unique identifier for the tag.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
@@ -13365,7 +5913,7 @@ Returns the complete tag record for a single tag.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Update a tag
@@ -13379,111 +5927,6 @@ Returns the complete tag record for a single tag.
 curl -X PUT https://app.asana.com/api/1.0/tags/{tag_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tags/{tag_gid}',
-{
-  method: 'PUT',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('PUT','https://app.asana.com/api/1.0/tags/{tag_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.put('https://app.asana.com/api/1.0/tags/{tag_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tags/{tag_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("PUT");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.put 'https://app.asana.com/api/1.0/tags/{tag_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -13507,7 +5950,6 @@ Returns the complete updated tag record.
 |tag_gid|path|string|true|Globally unique identifier for the tag.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
@@ -13545,7 +5987,7 @@ Returns the complete updated tag record.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get tasks with tag
@@ -13562,111 +6004,6 @@ curl -X GET https://app.asana.com/api/1.0/tags/{tag_gid}/tasks \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tags/{tag_gid}/tasks',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/tags/{tag_gid}/tasks', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/tags/{tag_gid}/tasks', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tags/{tag_gid}/tasks");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/tags/{tag_gid}/tasks',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /tags/{tag_gid}/tasks</code>
 </p>
@@ -13680,7 +6017,6 @@ Returns the compact task records for all tasks with the given tag. Tasks can hav
 |tag_gid|path|string|true|Globally unique identifier for the tag.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
@@ -13722,6 +6058,7 @@ Returns the compact task records for all tasks with the given tag. Tasks can hav
       "hearts": [
         ...
       ],
+      "is_rendered_as_separator": false,
       "liked": true,
       "likes": [
         ...
@@ -13757,7 +6094,7 @@ Returns the compact task records for all tasks with the given tag. Tasks can hav
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get tags in a workspace
@@ -13774,111 +6111,6 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}/tags</code>
 </p>
@@ -13889,12 +6121,11 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
 |workspace_gid|path|integer|true|The workspace to filter tags on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -13927,7 +6158,7 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Create a tag in a workspace
@@ -13942,123 +6173,6 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "name": "Stuff to buy",
-    "color": "light-green",
-    "workspace": {
-      "name": "Bug Task"
-    }
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -14097,9 +6211,6 @@ Returns the full record of the newly created tag.
 |workspace_gid|path|integer|true|The workspace to filter tags on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -14132,7 +6243,7 @@ Returns the full record of the newly created tag.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="full-line">
 <h1 id="asana-tasks">Tasks</h1>
@@ -14141,7 +6252,11 @@ Returns the full record of the newly created tag.
 <code><a href="#get-a-project-39-s-tasks"><span class="get-verb">GET</span> <span class=""nn>/projects/{project_gid}/tasks</span></a><br><a href="#get-a-set-of-tasks"><span class="get-verb">GET</span> <span class=""nn>/tasks</span></a><br><a href="#create-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks</span></a><br><a href="#get-a-task"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}</span></a><br><a href="#update-a-task"><span class="put-verb">PUT</span> <span class=""nn>/tasks/{task_gid}</span></a><br><a href="#delete-a-task"><span class="delete-verb">DELETE</span> <span class=""nn>/tasks/{task_gid}</span></a><br><a href="#duplicate-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/duplicate</span></a><br><a href="#get-a-subtask"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/subtasks</span></a><br><a href="#create-a-subtask"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/subtasks</span></a><br><a href="#change-a-task-39-s-parent"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/setParent</span></a><br><a href="#get-a-task-39-s-dependencies"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/dependencies</span></a><br><a href="#set-a-task-39-s-dependencies"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addDependencies</span></a><br><a href="#unlinks-dependencies-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeDependencies</span></a><br><a href="#get-a-task-39-s-dependents"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/dependents</span></a><br><a href="#set-a-task-39-s-dependents"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addDependents</span></a><br><a href="#unlink-dependents-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeDependents</span></a><br><a href="#get-projects-a-task-is-in"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/projects</span></a><br><a href="#add-a-project-to-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addProject</span></a><br><a href="#remove-a-project-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeProject</span></a><br><a href="#get-a-task-39-s-tags"><span class="get-verb">GET</span> <span class=""nn>/tasks/{task_gid}/tags</span></a><br><a href="#add-a-tag-to-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addTag</span></a><br><a href="#remove-a-tag-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeTag</span></a><br><a href="#add-followers-to-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/addFollowers</span></a><br><a href="#remove-followers-from-a-task"><span class="post-verb">POST</span> <span class=""nn>/tasks/{task_gid}/removeFollowers</span></a></code>
 </pre>
 
-The task is the basic object around which many operations in Asana are centered.
+The task is the basic object around which many operations in Asana are centered. In the Asana application, multiple tasks populate the middle pane according to some view parameters, and the set of selected tasks determines the more detailed information presented in the details pane.
+
+Sections are unique in that they will be included in the *memberships* field of task objects returned in the API when the task is within a section. They can also be used to manipulate the ordering of a task within a project.
+
+[Queries](#get-a-set-of-tasks) return a compact representation of each object which is typically the id and name fields. Interested in a specific set of fields or all of the fields? Use [field selectors](#input-output-options) to manipulate what data is included in a response.
 
 <hr class="half-line">
 ## Get a project's tasks
@@ -14158,111 +6273,6 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/tasks \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/projects/{project_gid}/tasks',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/projects/{project_gid}/tasks', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/projects/{project_gid}/tasks', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/projects/{project_gid}/tasks");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/projects/{project_gid}/tasks',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /projects/{project_gid}/tasks</code>
 </p>
@@ -14276,7 +6286,6 @@ Returns the compact task records for all tasks within the given project, ordered
 |project_gid|path|string|true|Globally unique identifier for the project.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
@@ -14318,6 +6327,7 @@ Returns the compact task records for all tasks within the given project, ordered
       "hearts": [
         ...
       ],
+      "is_rendered_as_separator": false,
       "liked": true,
       "likes": [
         ...
@@ -14353,7 +6363,7 @@ Returns the compact task records for all tasks within the given project, ordered
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get a set of tasks
@@ -14370,111 +6380,6 @@ curl -X GET https://app.asana.com/api/1.0/tasks \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tasks',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/tasks', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/tasks', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tasks");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/tasks',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /tasks</code>
 </p>
@@ -14485,6 +6390,8 @@ Returns the compact task records for some filtered set of tasks. Use one or more
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
 |assignee|query|string(email)|false|The assignee to filter tasks on.|
 |project|query|integer|false|The project to filter tasks on.|
 |section|query|integer|false|The section to filter tasks on.|
@@ -14493,9 +6400,6 @@ Returns the compact task records for some filtered set of tasks. Use one or more
 |modified_since|query|string(date-time)|false|Only return tasks that have been modified since the given time.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 #### Detailed descriptions
 
@@ -14555,6 +6459,7 @@ include assigning, renaming, completing, and adding stories.*
       "hearts": [
         ...
       ],
+      "is_rendered_as_separator": false,
       "liked": true,
       "likes": [
         ...
@@ -14590,7 +6495,7 @@ include assigning, renaming, completing, and adding stories.*
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Create a task
@@ -14605,153 +6510,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "name": "Buy catnip",
-    "assignee": null,
-    "assignee_status": "upcoming",
-    "completed": false,
-    "due_at": "2012-02-22T02:06:58.147Z",
-    "due_on": "2012-03-26",
-    "external": {
-      "id": "my_id",
-      "data": "A blob of information"
-    },
-    "followers": [
-      {
-        "...": "..."
-      }
-    ],
-    "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-    "memberships": [
-      {
-        "...": "..."
-      }
-    ],
-    "notes": "Mittens really likes the stuff from Humboldt.",
-    "parent": null,
-    "projects": [
-      {
-        "...": "..."
-      }
-    ],
-    "start_on": "2012-03-26",
-    "tags": [
-      {
-        "...": "..."
-      }
-    ],
-    "workspace": null
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tasks',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/tasks', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/tasks', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tasks");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/tasks',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -14816,7 +6574,7 @@ explicitly if you specify `projects` or a `parent` task instead.
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|object|true|The task to create.|
-|» data|body|object|false|The *task* is the basic object around which many operations in Asana are|
+|» data|body|object|false|The *task* is the basic object around which many operations in Asana are centered.|
 |»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»» resource_type|body|string|false|The base type of this resource.|
@@ -14827,14 +6585,14 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»» assignee_status|body|string|false|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
 |»» completed|body|boolean|false|True if the task is currently marked complete, false if not.|
 |»» completed_at|body|string(date-time)¦null|false|The time at which this task was completed, or null if the task is incomplete.|
-|»» custom_fields|body|[object]|false|Array of custom field values applied to the project. These represent|
+|»» custom_fields|body|[object]|false|Array of custom field values applied to the project. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `string_value` property for custom fields of type `string`, and so on. Please note that the `id` returned on each custom field value *is identical* to the `id` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-id` endpoint.|
 |»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»»» resource_type|body|string|false|The base type of this resource.|
 |»»» name|body|string|false|The name of the object.|
 |»»» resource_subtype|body|string|false|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |»»» type|body|string|false|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
-|»»» enum_options|body|[object]|false|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://asana.com/developers/api-reference/custom_fields#enum-options).|
+|»»» enum_options|body|[object]|false|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
 |»»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»»»» resource_type|body|string|false|The base type of this resource.|
@@ -14844,17 +6602,17 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»»» enum_value|body|any|false|none|
 |»»» enabled|body|boolean|false|*Conditional*. Determines if the custom field is enabled or not.|
 |»»» text_value|body|string|false|*Conditional*. This string is the value of a text custom field.|
-|»»» description|body|string|false|[Opt In](/developers/documentation/getting-started/input-output-options). The description of the custom field.|
+|»»» description|body|string|false|[Opt In](#input-output-options). The description of the custom field.|
 |»»» precision|body|integer|false|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
-|»» dependencies|body|[object]|false|[Opt In](/developers/documentation/getting-started/input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the ID of the dependency.|
+|»» dependencies|body|[object]|false|[Opt In](#input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the ID of the dependency.|
 |»»» id|body|integer|false|none|
 |»»» gid|body|string|false|none|
-|»» dependents|body|[object]|false|[Opt In](/developers/documentation/getting-started/input-output-options). Array of resources referencing tasks that depend on this task. The objects contain only the ID of the dependent.|
+|»» dependents|body|[object]|false|[Opt In](#input-output-options). Array of resources referencing tasks that depend on this task. The objects contain only the ID of the dependent.|
 |»»» id|body|integer|false|none|
 |»»» gid|body|string|false|none|
 |»» due_at|body|string(date)¦null|false|Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
 |»» due_on|body|string(date)¦null|false|Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
-|»» external|body|object|false|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/developers/documentation/getting-started/input-output-options).|
+|»» external|body|object|false|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).|
 |»»» id|body|integer|false|none|
 |»»» gid|body|string|false|none|
 |»»» data|body|string|false|none|
@@ -14863,13 +6621,14 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»»» resource_type|body|string|false|The base type of this resource.|
 |»»» name|body|string|false|*Read-only except when same user as requester*. The user’s name.|
-|»» html_notes|body|string|false|[Opt In](/developers/documentation/getting-started/input-output-options). The notes of the text with formatting as HTML.|
+|»» html_notes|body|string|false|[Opt In](#input-output-options). The notes of the text with formatting as HTML.|
 |»» hearted|body|boolean|false|*Deprecated - please use liked instead* True if the task is hearted by the authorized user, false if not.|
 |»» hearts|body|[object]|false|*Deprecated - please use likes instead* Array of users who have hearted this task.|
 |»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»»» resource_type|body|string|false|The base type of this resource.|
 |»»» name|body|string|false|*Read-only except when same user as requester*. The user’s name.|
+|»» is_rendered_as_separator|body|boolean|false|[Opt In](#input-output-options). In some contexts tasks can be rendered as a visual separator; for instance, subtasks can appear similar to [sections](#asana-sections) without being true `section` objects. If a `task` object is rendered this way in any context it will have the property `is_rendered_as_separator` set to `true`.<br /><br />*Note: Until the default behavior for our API changes integrations must [opt in to the `new_sections` change] (https://forum.asana.com/t/sections-are-dead-long-live-sections/33951) to modify the `is_rendered_as_separator` property.*|
 |»» liked|body|boolean|false|True if the task is liked by the authorized user, false if not.|
 |»» likes|body|[object]|false|Array of users who have liked this task.|
 |»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
@@ -14877,12 +6636,12 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»»» resource_type|body|string|false|The base type of this resource.|
 |»»» name|body|string|false|*Read-only except when same user as requester*. The user’s name.|
 |»» memberships|body|[object]|false|*Create-only*. Array of projects this task is associated with and the section it is in. At task creation time, this array can be used to add the task to specific sections. After task creation, these associations can be modified using the `addProject` and `removeProject` endpoints. Note that over time, more types of memberships may be added to this property.|
-|»»» project|body|object|false|A generic Asana Object, containing a globally unique identifier.|
+|»»» project|body|object|false|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
 |»»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»»»» resource_type|body|string|false|The base type of this resource.|
 |»»»» name|body|string|false|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»»» section|body|object|false|A generic Asana Object, containing a globally unique identifier.|
+|»»» section|body|object|false|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
 |»»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»»»» resource_type|body|string|false|The base type of this resource.|
@@ -14891,14 +6650,14 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»»» notes|body|string|false|More detailed, free-form textual information associated with the task.|
 |»»» num_hearts|body|integer|false|*Deprecated - please use likes instead* The number of users who have hearted this task.|
 |»»» num_likes|body|integer|false|The number of users who have liked this task.|
-|»»» num_subtasks|body|integer|false|[Opt In](https://asana.com/developers/documentation/getting-started/input-output-options). The number of subtasks on this task.|
+|»»» num_subtasks|body|integer|false|[Opt In](#input-output-options). The number of subtasks on this task.|
 |»»» parent|body|any|false|none|
 |»»» projects|body|[object]|false|*Create-only.* Array of projects this task is associated with. At task creation time, this array can be used to add the task to many projects at once. After task creation, these associations can be modified using the addProject and removeProject endpoints.|
 |»»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»»»» resource_type|body|string|false|The base type of this resource.|
 |»»»» name|body|string|false|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»»» start_on|body|string(date)¦null|false|The day on which work begins for the task , or null if the task has|
+|»»» start_on|body|string(date)¦null|false|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
 |»»» tags|body|[object]|false|*Create-only*. Array of tags associated with this task. This property may be specified on creation using just an array of tag IDs.  In order to change tags on an existing task use `addTag` and `removeTag`.|
 |»»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»»» gid|body|string|false|Globally unique ID of the object, as a string.|
@@ -14910,7 +6669,7 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»»»»» resource_type|body|string|false|The base type of this resource.|
 |»»»»» name|body|string|false|*Read-only except when same user as requester*. The user’s name.|
 |»»»» color|body|string|false|Color of the tag.|
-|»»»» workspace|body|object|false|A generic Asana Object, containing a globally unique identifier.|
+|»»»» workspace|body|object|false|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
 |»»»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»»»» gid|body|string|false|Globally unique ID of the object, as a string.|
 |»»»»» resource_type|body|string|false|The base type of this resource.|
@@ -14918,26 +6677,13 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»»»» workspace|body|any|false|none|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 #### Detailed descriptions
 
-**custom_fields**: Array of custom field values applied to the project. These represent
-the custom field values recorded on this project for a particular
-custom field. For example, these custom field values will contain
-an `enum_value` property for custom fields of type `enum`, a
-`string_value` property for custom fields of type `string`, and
-so on. Please note that the `id` returned on each custom field
-value *is identical* to the `id` of the custom field, which
-allows referencing the custom field metadata through the
-`/custom_fields/custom_field-id` endpoint.
-
-**external**: *OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/developers/documentation/getting-started/input-output-options).
+**external**: *OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).
 The external field allows you to store app-specific metadata on tasks, including an id that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external id is set, you can use the notation `external:custom_id` to reference your object anywhere in the API where you may use the original object id. See the page on Custom External Data for more details.
 
-**html_notes**: [Opt In](/developers/documentation/getting-started/input-output-options). The notes of the text with formatting as HTML.
+**html_notes**: [Opt In](#input-output-options). The notes of the text with formatting as HTML.
 *Note: This field is under active migration—please see our blog post for more information.*
 
 **modified_at**: The time at which this task was last modified.
@@ -14946,9 +6692,7 @@ The external field allows you to store app-specific metadata on tasks, including
 associations such as projects or comments that may have been
 added or removed from the task.*
 
-**start_on**: The day on which work begins for the task , or null if the task has
-no start date. This takes a date with `YYYY-MM-DD` format.
-
+**start_on**: The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.
 *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*
 
 #### Enumerated Values
@@ -15039,6 +6783,7 @@ no start date. This takes a date with `YYYY-MM-DD` format.
         ...
       }
     ],
+    "is_rendered_as_separator": false,
     "liked": true,
     "likes": [
       {
@@ -15081,7 +6826,7 @@ no start date. This takes a date with `YYYY-MM-DD` format.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get a task
@@ -15098,111 +6843,6 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid} \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tasks/{task_gid}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/tasks/{task_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/tasks/{task_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tasks/{task_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/tasks/{task_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /tasks/{task_gid}</code>
 </p>
@@ -15216,9 +6856,6 @@ Returns the complete task record for a single task.
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -15274,6 +6911,7 @@ Returns the complete task record for a single task.
         ...
       }
     ],
+    "is_rendered_as_separator": false,
     "liked": true,
     "likes": [
       {
@@ -15316,7 +6954,7 @@ Returns the complete task record for a single task.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Update a task
@@ -15331,153 +6969,6 @@ curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "name": "Buy catnip",
-    "assignee": null,
-    "assignee_status": "upcoming",
-    "completed": false,
-    "due_at": "2012-02-22T02:06:58.147Z",
-    "due_on": "2012-03-26",
-    "external": {
-      "id": "my_id",
-      "data": "A blob of information"
-    },
-    "followers": [
-      {
-        "...": "..."
-      }
-    ],
-    "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-    "memberships": [
-      {
-        "...": "..."
-      }
-    ],
-    "notes": "Mittens really likes the stuff from Humboldt.",
-    "parent": null,
-    "projects": [
-      {
-        "...": "..."
-      }
-    ],
-    "start_on": "2012-03-26",
-    "tags": [
-      {
-        "...": "..."
-      }
-    ],
-    "workspace": null
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tasks/{task_gid}',
-{
-  method: 'PUT',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('PUT','https://app.asana.com/api/1.0/tasks/{task_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.put('https://app.asana.com/api/1.0/tasks/{task_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tasks/{task_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("PUT");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.put 'https://app.asana.com/api/1.0/tasks/{task_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -15547,9 +7038,6 @@ Returns the complete updated task record.
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -15605,6 +7093,7 @@ Returns the complete updated task record.
         ...
       }
     ],
+    "is_rendered_as_separator": false,
     "liked": true,
     "likes": [
       {
@@ -15647,7 +7136,7 @@ Returns the complete updated task record.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Delete a task
@@ -15661,111 +7150,6 @@ Returns the complete updated task record.
 curl -X DELETE https://app.asana.com/api/1.0/tasks/{task_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tasks/{task_gid}',
-{
-  method: 'DELETE',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('DELETE','https://app.asana.com/api/1.0/tasks/{task_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.delete('https://app.asana.com/api/1.0/tasks/{task_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tasks/{task_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("DELETE");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.delete 'https://app.asana.com/api/1.0/tasks/{task_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -15787,9 +7171,6 @@ Returns an empty data record.
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -15808,7 +7189,7 @@ Returns an empty data record.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Duplicate a task
@@ -15823,123 +7204,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/duplicate \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "name": "New Task Name",
-    "include": [
-      "notes",
-      "assignee"
-    ]
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tasks/{task_gid}/duplicate',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/tasks/{task_gid}/duplicate', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/tasks/{task_gid}/duplicate', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tasks/{task_gid}/duplicate");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/tasks/{task_gid}/duplicate',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -15974,9 +7238,6 @@ Creates and returns a job that will asynchronously handle the duplication.
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 #### Enumerated Values
 
@@ -16028,7 +7289,7 @@ Creates and returns a job that will asynchronously handle the duplication.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get a subtask
@@ -16045,111 +7306,6 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /tasks/{task_gid}/subtasks</code>
 </p>
@@ -16160,12 +7316,11 @@ Returns a compact representation of all of the subtasks of a task.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -16205,6 +7360,7 @@ Returns a compact representation of all of the subtasks of a task.
       "hearts": [
         ...
       ],
+      "is_rendered_as_separator": false,
       "liked": true,
       "likes": [
         ...
@@ -16240,7 +7396,7 @@ Returns a compact representation of all of the subtasks of a task.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Create a subtask
@@ -16255,153 +7411,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "name": "Buy catnip",
-    "assignee": null,
-    "assignee_status": "upcoming",
-    "completed": false,
-    "due_at": "2012-02-22T02:06:58.147Z",
-    "due_on": "2012-03-26",
-    "external": {
-      "id": "my_id",
-      "data": "A blob of information"
-    },
-    "followers": [
-      {
-        "...": "..."
-      }
-    ],
-    "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-    "memberships": [
-      {
-        "...": "..."
-      }
-    ],
-    "notes": "Mittens really likes the stuff from Humboldt.",
-    "parent": null,
-    "projects": [
-      {
-        "...": "..."
-      }
-    ],
-    "start_on": "2012-03-26",
-    "tags": [
-      {
-        "...": "..."
-      }
-    ],
-    "workspace": null
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -16463,9 +7472,6 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 201 Response
 
@@ -16521,6 +7527,7 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
         ...
       }
     ],
+    "is_rendered_as_separator": false,
     "liked": true,
     "likes": [
       {
@@ -16563,7 +7570,7 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Change a task's parent
@@ -16578,121 +7585,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/setParent \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "parent": 987654,
-    "insert_after": "null",
-    "insert_before": "124816"
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tasks/{task_gid}/setParent',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/tasks/{task_gid}/setParent', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/tasks/{task_gid}/setParent', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tasks/{task_gid}/setParent");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/tasks/{task_gid}/setParent',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -16726,9 +7618,6 @@ parent, or no parent task at all. Returns an empty data block. When using `inser
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -16784,6 +7673,7 @@ parent, or no parent task at all. Returns an empty data block. When using `inser
         ...
       }
     ],
+    "is_rendered_as_separator": false,
     "liked": true,
     "likes": [
       {
@@ -16826,7 +7716,7 @@ parent, or no parent task at all. Returns an empty data block. When using `inser
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get a task's dependencies
@@ -16843,111 +7733,6 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/dependencies \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tasks/{task_gid}/dependencies',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/tasks/{task_gid}/dependencies', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/tasks/{task_gid}/dependencies', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tasks/{task_gid}/dependencies");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/tasks/{task_gid}/dependencies',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /tasks/{task_gid}/dependencies</code>
 </p>
@@ -16961,7 +7746,6 @@ Returns the compact representations of all of the dependencies of a task.
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
@@ -17003,6 +7787,7 @@ Returns the compact representations of all of the dependencies of a task.
       "hearts": [
         ...
       ],
+      "is_rendered_as_separator": false,
       "liked": true,
       "likes": [
         ...
@@ -17038,7 +7823,7 @@ Returns the compact representations of all of the dependencies of a task.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Set a task's dependencies
@@ -17053,122 +7838,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addDependencies \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "dependencies": [
-      133713,
-      184253
-    ]
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tasks/{task_gid}/addDependencies',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/tasks/{task_gid}/addDependencies', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/tasks/{task_gid}/addDependencies', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tasks/{task_gid}/addDependencies");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/tasks/{task_gid}/addDependencies',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -17199,9 +7868,6 @@ Marks a set of tasks as dependencies of this task, if they are not already depen
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -17241,6 +7907,7 @@ Marks a set of tasks as dependencies of this task, if they are not already depen
       "hearts": [
         ...
       ],
+      "is_rendered_as_separator": false,
       "liked": true,
       "likes": [
         ...
@@ -17276,7 +7943,7 @@ Marks a set of tasks as dependencies of this task, if they are not already depen
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Unlinks dependencies from a task
@@ -17291,122 +7958,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependencies \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "dependencies": [
-      133713,
-      184253
-    ]
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependencies',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependencies', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependencies', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependencies");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependencies',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -17437,9 +7988,6 @@ Unlinks a set of dependencies from this task.
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -17479,6 +8027,7 @@ Unlinks a set of dependencies from this task.
       "hearts": [
         ...
       ],
+      "is_rendered_as_separator": false,
       "liked": true,
       "likes": [
         ...
@@ -17514,7 +8063,7 @@ Unlinks a set of dependencies from this task.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get a task's dependents
@@ -17531,111 +8080,6 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/dependents \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tasks/{task_gid}/dependents',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/tasks/{task_gid}/dependents', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/tasks/{task_gid}/dependents', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tasks/{task_gid}/dependents");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/tasks/{task_gid}/dependents',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /tasks/{task_gid}/dependents</code>
 </p>
@@ -17649,7 +8093,6 @@ Returns the compact representations of all of the dependents of a task.
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
@@ -17691,6 +8134,7 @@ Returns the compact representations of all of the dependents of a task.
       "hearts": [
         ...
       ],
+      "is_rendered_as_separator": false,
       "liked": true,
       "likes": [
         ...
@@ -17726,7 +8170,7 @@ Returns the compact representations of all of the dependents of a task.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Set a task's dependents
@@ -17741,122 +8185,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addDependents \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "dependents": [
-      133713,
-      184253
-    ]
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tasks/{task_gid}/addDependents',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/tasks/{task_gid}/addDependents', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/tasks/{task_gid}/addDependents', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tasks/{task_gid}/addDependents");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/tasks/{task_gid}/addDependents',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -17887,9 +8215,6 @@ Marks a set of tasks as dependents of this task, if they are not already depende
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -17929,6 +8254,7 @@ Marks a set of tasks as dependents of this task, if they are not already depende
       "hearts": [
         ...
       ],
+      "is_rendered_as_separator": false,
       "liked": true,
       "likes": [
         ...
@@ -17964,7 +8290,7 @@ Marks a set of tasks as dependents of this task, if they are not already depende
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Unlink dependents from a task
@@ -17979,122 +8305,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependents \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "dependents": [
-      133713,
-      184253
-    ]
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependents',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependents', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependents', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependents");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependents',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -18125,9 +8335,6 @@ Unlinks a set of dependents from this task.
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -18167,6 +8374,7 @@ Unlinks a set of dependents from this task.
       "hearts": [
         ...
       ],
+      "is_rendered_as_separator": false,
       "liked": true,
       "likes": [
         ...
@@ -18202,7 +8410,7 @@ Unlinks a set of dependents from this task.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get projects a task is in
@@ -18219,111 +8427,6 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/projects \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tasks/{task_gid}/projects',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/tasks/{task_gid}/projects', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/tasks/{task_gid}/projects', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tasks/{task_gid}/projects");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/tasks/{task_gid}/projects',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /tasks/{task_gid}/projects</code>
 </p>
@@ -18337,7 +8440,6 @@ Returns a compact representation of all of the projects the task is in.
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
@@ -18396,7 +8498,7 @@ Returns a compact representation of all of the projects the task is in.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Add a project to a task
@@ -18411,122 +8513,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addProject \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "project": 13579,
-    "insert_after": 124816,
-    "insert_before": 432134,
-    "section": 987654
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tasks/{task_gid}/addProject',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/tasks/{task_gid}/addProject', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/tasks/{task_gid}/addProject', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tasks/{task_gid}/addProject");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/tasks/{task_gid}/addProject',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -18575,9 +8561,6 @@ Returns an empty data block.
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -18596,7 +8579,7 @@ Returns an empty data block.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Remove a project a task
@@ -18611,119 +8594,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeProject \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "project": 13579
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tasks/{task_gid}/removeProject',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/tasks/{task_gid}/removeProject', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/tasks/{task_gid}/removeProject', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tasks/{task_gid}/removeProject");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/tasks/{task_gid}/removeProject',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -18756,9 +8626,6 @@ Returns an empty data block.
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -18777,7 +8644,7 @@ Returns an empty data block.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get a task's tags
@@ -18794,111 +8661,6 @@ curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/tags \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tasks/{task_gid}/tags',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/tasks/{task_gid}/tags', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/tasks/{task_gid}/tags', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tasks/{task_gid}/tags");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/tasks/{task_gid}/tags',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /tasks/{task_gid}/tags</code>
 </p>
@@ -18912,7 +8674,6 @@ Get a compact representation of all of the tags the task has.
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
@@ -18947,7 +8708,7 @@ Get a compact representation of all of the tags the task has.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Add a tag to a task
@@ -18962,119 +8723,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addTag \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "tag": 13579
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tasks/{task_gid}/addTag',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/tasks/{task_gid}/addTag', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/tasks/{task_gid}/addTag', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tasks/{task_gid}/addTag");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/tasks/{task_gid}/addTag',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -19104,9 +8752,6 @@ Adds a tag to a task. Returns an empty data block.
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -19125,7 +8770,7 @@ Adds a tag to a task. Returns an empty data block.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Remove a tag from a task
@@ -19140,119 +8785,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeTag \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "tag": 13579
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tasks/{task_gid}/removeTag',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/tasks/{task_gid}/removeTag', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/tasks/{task_gid}/removeTag', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tasks/{task_gid}/removeTag");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/tasks/{task_gid}/removeTag',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -19282,9 +8814,6 @@ Removes a tag from a task. Returns an empty data block.
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -19303,7 +8832,7 @@ Removes a tag from a task. Returns an empty data block.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Add followers to a task
@@ -19318,122 +8847,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addFollowers \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "followers": [
-      13579,
-      321654
-    ]
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tasks/{task_gid}/addFollowers',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/tasks/{task_gid}/addFollowers', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/tasks/{task_gid}/addFollowers', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tasks/{task_gid}/addFollowers");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/tasks/{task_gid}/addFollowers',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -19468,9 +8881,6 @@ Requests to add/remove followers, if successful, will return the complete update
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -19489,7 +8899,7 @@ Requests to add/remove followers, if successful, will return the complete update
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Remove followers from a task
@@ -19504,122 +8914,6 @@ curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeFollowers \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "followers": [
-      13579,
-      321654
-    ]
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/tasks/{task_gid}/removeFollowers',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/tasks/{task_gid}/removeFollowers', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/tasks/{task_gid}/removeFollowers', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/tasks/{task_gid}/removeFollowers");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/tasks/{task_gid}/removeFollowers',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -19652,9 +8946,6 @@ Removes each of the specified followers from the task if they are following. Ret
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -19673,7 +8964,7 @@ Removes each of the specified followers from the task if they are following. Ret
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="full-line">
 <h1 id="asana-team">Team</h1>
@@ -19699,111 +8990,6 @@ curl -X GET https://app.asana.com/api/1.0/teams/{team_gid} \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/teams/{team_gid}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/teams/{team_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/teams/{team_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/teams/{team_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/teams/{team_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /teams/{team_gid}</code>
 </p>
@@ -19817,7 +9003,6 @@ Returns the full record for a single team.
 |team_gid|path|integer|true|Globally unique identifier for the team.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
@@ -19846,7 +9031,7 @@ Returns the full record for a single team.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get teams in an organization
@@ -19863,111 +9048,6 @@ curl -X GET https://app.asana.com/api/1.0/organizations/{organization_gid}/teams
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/organizations/{organization_gid}/teams',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/organizations/{organization_gid}/teams', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/organizations/{organization_gid}/teams', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/organizations/{organization_gid}/teams");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/organizations/{organization_gid}/teams',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /organizations/{organization_gid}/teams</code>
 </p>
@@ -19981,7 +9061,6 @@ Returns the compact records for all teams in the organization visible to the aut
 |organization_gid|path|integer|true|Globally unique identifier for the workspace or organization.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
@@ -20012,7 +9091,7 @@ Returns the compact records for all teams in the organization visible to the aut
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get a user's teams
@@ -20029,112 +9108,6 @@ curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/teams?organization_gi
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/users/{user_gid}/teams?organization_gid=1331',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/users/{user_gid}/teams', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/users/{user_gid}/teams', params={
-  'organization_gid': '1331'
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/users/{user_gid}/teams?organization_gid=1331");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/users/{user_gid}/teams',
-  params: {
-  'organization_gid' => 'integer'
-}, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /users/{user_gid}/teams</code>
 </p>
@@ -20145,13 +9118,12 @@ Returns the compact records for all teams to which the given user is assigned.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|user_gid|path|string(email)|true|An identifier for the user. Can be one of an email address, the globally unique identifier for the user, or the keyword `me` to indicate the current user making the request.|
-|organization_gid|query|integer|true|The workspace or organization to filter teams on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
+|user_gid|path|string(email)|true|An identifier for the user. Can be one of an email address, the globally unique identifier for the user, or the keyword `me` to indicate the current user making the request.|
+|organization_gid|query|integer|true|The workspace or organization to filter teams on.|
 
 > 200 Response
 
@@ -20180,7 +9152,7 @@ Returns the compact records for all teams to which the given user is assigned.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get users in a team
@@ -20197,111 +9169,6 @@ curl -X GET https://app.asana.com/api/1.0/teams/{team_gid}/users \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/teams/{team_gid}/users',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/teams/{team_gid}/users', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/teams/{team_gid}/users', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/teams/{team_gid}/users");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/teams/{team_gid}/users',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /teams/{team_gid}/users</code>
 </p>
@@ -20315,7 +9182,6 @@ Returns the compact records for all users that are members of the team.
 |team_gid|path|integer|true|A globally unique identifier for the team.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
@@ -20350,7 +9216,7 @@ Returns the compact records for all users that are members of the team.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Add a user to a team
@@ -20365,117 +9231,6 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/addUser \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "user": 14641
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/teams/{team_gid}/addUser',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/teams/{team_gid}/addUser', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/teams/{team_gid}/addUser', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/teams/{team_gid}/addUser");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/teams/{team_gid}/addUser',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -20501,9 +9256,6 @@ The user making this call must be a member of the team in order to add others. T
 |team_gid|path|integer|true|A globally unique identifier for the team.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -20536,7 +9288,7 @@ The user making this call must be a member of the team in order to add others. T
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Remove a user from a team
@@ -20551,117 +9303,6 @@ curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/removeUser \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "user": 14641
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/teams/{team_gid}/removeUser',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/teams/{team_gid}/removeUser', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/teams/{team_gid}/removeUser', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/teams/{team_gid}/removeUser");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/teams/{team_gid}/removeUser',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -20687,9 +9328,6 @@ The user making this call must be a member of the team in order to remove themse
 |team_gid|path|integer|true|A globally unique identifier for the team.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -20722,7 +9360,7 @@ The user making this call must be a member of the team in order to remove themse
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="full-line">
 <h1 id="asana-users">Users</h1>
@@ -20732,6 +9370,8 @@ The user making this call must be a member of the team in order to remove themse
 </pre>
 
 A user object represents an account in Asana that can be given access to various workspaces, projects, and tasks.
+
+Like other objects in the system, users are referred to by numerical IDs. However, the special string identifier `me` can be used anywhere a user ID is accepted, to refer to the current authenticated user.
 
 <hr class="half-line">
 ## Get a set of users
@@ -20745,111 +9385,6 @@ A user object represents an account in Asana that can be given access to various
 curl -X GET https://app.asana.com/api/1.0/users \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/users',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/users', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/users', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/users");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/users',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -20867,7 +9402,6 @@ Results are sorted by user ID.
 |workspace|query|integer|false|The workspace or organization ID to filter users on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
@@ -20902,7 +9436,7 @@ Results are sorted by user ID.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get a user
@@ -20916,111 +9450,6 @@ Results are sorted by user ID.
 curl -X GET https://app.asana.com/api/1.0/users/{user_gid} \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/users/{user_gid}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/users/{user_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/users/{user_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/users/{user_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/users/{user_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -21038,9 +9467,6 @@ Results are sorted by user ID.
 |user_gid|path|string|true|Globally unique identifier for the user.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -21077,7 +9503,7 @@ Results are sorted by user ID.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get a user's favorites
@@ -21091,113 +9517,6 @@ Results are sorted by user ID.
 curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/favorites?resource_type=project&workspace=1234 \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/users/{user_gid}/favorites?resource_type=project&workspace=1234',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/users/{user_gid}/favorites', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/users/{user_gid}/favorites', params={
-  'resource_type': 'project',  'workspace': '1234'
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/users/{user_gid}/favorites?resource_type=project&workspace=1234");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/users/{user_gid}/favorites',
-  params: {
-  'resource_type' => 'string',
-'workspace' => 'string'
-}, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -21215,9 +9534,6 @@ Results are given in order (The same order as Asana's sidebar).
 |user_gid|path|string|true|Globally unique identifier for the user.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 |resource_type|query|string|true|The resource type of favorites to be returned.|
 |workspace|query|string|true|The workspace in which to get favorites.|
 
@@ -21250,7 +9566,7 @@ Results are given in order (The same order as Asana's sidebar).
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get users in a workspace or organization
@@ -21264,111 +9580,6 @@ Results are given in order (The same order as Asana's sidebar).
 curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/users \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/workspaces/{workspace_gid}/users',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/workspaces/{workspace_gid}/users', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/workspaces/{workspace_gid}/users', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/workspaces/{workspace_gid}/users");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/workspaces/{workspace_gid}/users',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -21386,7 +9597,6 @@ Results are sorted alphabetically by user names.
 |workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
@@ -21421,7 +9631,7 @@ Results are sorted alphabetically by user names.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="full-line">
 <h1 id="asana-user-task-lists">User Task Lists</h1>
@@ -21431,6 +9641,8 @@ Results are sorted alphabetically by user names.
 </pre>
 
 A user task list represents the tasks assigned to a particular user.
+
+A user’s “My Tasks” represent all of the tasks assigned to that user. It is visually divided into regions based on the task’s [`assignee_status`](#tocS_Task) for Asana users to triage their tasks based on when they can address them. When building an integration it’s worth noting that tasks with due dates will automatically move through `assignee_status` states as their due dates approach; read up on [task auto-promotion](https://asana.com/guide/help/fundamentals/my-tasks#gl-auto-promote) for more information.
 
 <hr class="half-line">
 ## Get a user task list
@@ -21447,111 +9659,6 @@ curl -X GET https://app.asana.com/api/1.0/user_task_list/{user_task_list_gid} \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/user_task_list/{user_task_list_gid}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/user_task_list/{user_task_list_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/user_task_list/{user_task_list_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/user_task_list/{user_task_list_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/user_task_list/{user_task_list_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /user_task_list/{user_task_list_gid}</code>
 </p>
@@ -21565,9 +9672,6 @@ Returns the full record for a user task list.
 |user_task_list_gid|path|string|true|Globally unique identifier for the user task list.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -21593,7 +9697,7 @@ Returns the full record for a user task list.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get a user's task list
@@ -21610,111 +9714,6 @@ curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/user_task_list \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/users/{user_gid}/user_task_list',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/users/{user_gid}/user_task_list', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/users/{user_gid}/user_task_list', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/users/{user_gid}/user_task_list");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/users/{user_gid}/user_task_list',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /users/{user_gid}/user_task_list</code>
 </p>
@@ -21728,9 +9727,6 @@ Returns the full record for a user's task list.
 |user_gid|path|string|true|Globally unique identifier for the user.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -21756,7 +9752,7 @@ Returns the full record for a user's task list.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get tasks in a user task list
@@ -21770,111 +9766,6 @@ Returns the full record for a user's task list.
 curl -X GET https://app.asana.com/api/1.0/user_task_lists/{user_task_list_gid}/tasks \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/user_task_lists/{user_task_list_gid}/tasks',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/user_task_lists/{user_task_list_gid}/tasks', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/user_task_lists/{user_task_list_gid}/tasks', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/user_task_lists/{user_task_list_gid}/tasks");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/user_task_lists/{user_task_list_gid}/tasks',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -21895,7 +9786,6 @@ Returns the compact list of tasks in a user’s My Tasks list. The returned task
 |user_task_list_gid|path|string|true|Globally unique identifier for the user task list.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
@@ -21941,6 +9831,7 @@ Returns the compact list of tasks in a user’s My Tasks list. The returned task
       "hearts": [
         ...
       ],
+      "is_rendered_as_separator": false,
       "liked": true,
       "likes": [
         ...
@@ -21976,7 +9867,7 @@ Returns the compact list of tasks in a user’s My Tasks list. The returned task
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="full-line">
 <h1 id="asana-webhooks">Webhooks</h1>
@@ -21995,17 +9886,20 @@ In both cases, however, changes are represented as Event objects - refer to the 
 
 ### Receiving Events
 
-Because multiple events often happen in short succession, a webhook payload is designed to be able to transmit multiple events at once. The exact model of events is described in the [Events documentation](/developers/api-reference/events).
+Because multiple events often happen in short succession, a webhook payload is designed to be able to transmit multiple events at once. The exact model of events is described in the [Events documentation](#asana-events).
 
 The HTTP POST that the target receives contains:
 
- * An `X-Hook-Signature` header, which allows verifying that the payload is genuine.  The signature is a SHA256
- HMAC using the shared secret (transmitted during the handshake) of the request body. Verification is **strongly
- recommended**, as it would otherwise be possible for an attacker to POST a malicious payload to the same endpoint.
- If the target endpoint can be kept secret this risk is mitigated somewhat, of course.
- * A JSON body with a single key, `events`, containing an array of the events that have occurred since the last
- webhook delivery. Note that this list may be empty, as periodically we may send a "heartbeat" webhook to verify
- that the endpoint is available.
+ * An `X-Hook-Signature` header, which allows verifying that the payload
+ is genuine.  The signature is a SHA256 HMAC using the shared secret
+ (transmitted during the handshake) of the request body. Verification is
+ **strongly recommended**, as it would otherwise be possible for an
+ attacker to POST a malicious payload to the same endpoint. If the target
+ endpoint can be kept secret this risk is mitigated somewhat, of course.
+ * A JSON body with a single key, `events`, containing an array of the
+ events that have occurred since the last webhook delivery. Note that this
+ list may be empty, as periodically we may send a "heartbeat" webhook to
+ verify that the endpoint is available.
 
 Note that events are "skinny" - we expect consumers who desire syncing data to make additional calls to the API to retrieve the latest state. Because the data may have already changed by the time we send the event, it would be misleading to send a snapshot of the data along with the event.
 
@@ -22028,112 +9922,6 @@ curl -X GET https://app.asana.com/api/1.0/webhooks?workspace=1331 \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/webhooks?workspace=1331',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/webhooks', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/webhooks', params={
-  'workspace': '1331'
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/webhooks?workspace=1331");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/webhooks',
-  params: {
-  'workspace' => 'integer'
-}, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /webhooks</code>
 </p>
@@ -22144,13 +9932,12 @@ Get the compact representation of all webhooks your app has registered for the a
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
 |workspace|query|integer|true|The workspace to query for webhooks in.|
 |resource|query|integer|false|Only return webhooks for the given resource.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -22182,7 +9969,7 @@ Get the compact representation of all webhooks your app has registered for the a
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Establish a webhook on a resource
@@ -22197,118 +9984,6 @@ curl -X POST https://app.asana.com/api/1.0/webhooks \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "resource": 12345,
-  "target": "https://example.com/receive-webhook/7654"
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/webhooks',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/webhooks', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/webhooks', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/webhooks");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/webhooks',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -22389,9 +10064,6 @@ HTTP/1.1 201
 |» target|body|string(uri)|true|The URL to receive the HTTP POST.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 201 Response
 
@@ -22421,7 +10093,7 @@ HTTP/1.1 201
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get a webhook
@@ -22438,111 +10110,6 @@ curl -X GET https://app.asana.com/api/1.0/webhooks/{webhook_gid} \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/webhooks/{webhook_gid}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/webhooks/{webhook_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/webhooks/{webhook_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/webhooks/{webhook_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/webhooks/{webhook_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /webhooks/{webhook_gid}</code>
 </p>
@@ -22556,9 +10123,6 @@ Returns the full record for the given webhook.
 |webhook_gid|path|integer|true|The webhook to affect with the current operation.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -22588,7 +10152,7 @@ Returns the full record for the given webhook.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Remove a webhook
@@ -22605,111 +10169,6 @@ curl -X DELETE https://app.asana.com/api/1.0/webhooks/{webhook_gid} \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/webhooks/{webhook_gid}',
-{
-  method: 'DELETE',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('DELETE','https://app.asana.com/api/1.0/webhooks/{webhook_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.delete('https://app.asana.com/api/1.0/webhooks/{webhook_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/webhooks/{webhook_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("DELETE");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.delete 'https://app.asana.com/api/1.0/webhooks/{webhook_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="delete-verb">DELETE</span> /webhooks/{webhook_gid}</code>
 </p>
@@ -22723,9 +10182,6 @@ This method *permanently* removes a webhook. Note that it may be possible to rec
 |webhook_gid|path|integer|true|The webhook to affect with the current operation.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -22744,7 +10200,7 @@ This method *permanently* removes a webhook. Note that it may be possible to rec
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="full-line">
 <h1 id="asana-workspaces">Workspaces</h1>
@@ -22753,7 +10209,11 @@ This method *permanently* removes a webhook. Note that it may be possible to rec
 <code><a href="#retrieve-objects-via-typeahead"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/typeahead</span></a><br><a href="#get-a-set-of-workspaces"><span class="get-verb">GET</span> <span class=""nn>/workspaces</span></a><br><a href="#get-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}</span></a><br><a href="#update-a-workspace"><span class="put-verb">PUT</span> <span class=""nn>/workspaces/{workspace_gid}</span></a><br><a href="#add-a-user-to-a-workspace-or-organization"><span class="post-verb">POST</span> <span class=""nn>/workspaces/{workspace_gid}/addUser</span></a><br><a href="#remove-a-user-from-a-workspace-or-organization"><span class="post-verb">POST</span> <span class=""nn>/workspaces/{workspace_gid}/removeUser</span></a></code>
 </pre>
 
-A workspace is the highest-level organizational unit in Asana. An organization is a special kind of workspace that represents a company.
+A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.
+
+An *organization* is a special kind of workspace that represents a company. In an organization, you can group your projects into teams. You can read more about how organizations work on the Asana Guide. To tell if your workspace is an organization or not, check its `is_organization` property.
+
+Over time, we intend to migrate most workspaces into organizations and to release more organization-specific functionality. We may eventually deprecate using workspace-based APIs for organizations. Currently, and until after some reasonable grace period following any further announcements, you can still reference organizations in any `workspace` parameter.
 
 <hr class="half-line">
 ## Retrieve objects via typeahead
@@ -22767,112 +10227,6 @@ A workspace is the highest-level organizational unit in Asana. An organization i
 curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/typeahead?resource_type=user \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/workspaces/{workspace_gid}/typeahead?resource_type=user',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/workspaces/{workspace_gid}/typeahead', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/workspaces/{workspace_gid}/typeahead', params={
-  'resource_type': 'user'
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/workspaces/{workspace_gid}/typeahead?resource_type=user");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/workspaces/{workspace_gid}/typeahead',
-  params: {
-  'resource_type' => 'string'
-}, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -22909,9 +10263,6 @@ data is included in a response.
 |count|query|integer|false|The number of results to return. The default is 20 if this parameter is omitted, with a minimum of 1 and a maximum of 100. If there are fewer results found than requested, all will be returned.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 #### Enumerated Values
 
@@ -22954,7 +10305,7 @@ data is included in a response.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get a set of workspaces
@@ -22971,111 +10322,6 @@ curl -X GET https://app.asana.com/api/1.0/workspaces \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/workspaces',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/workspaces', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/workspaces', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/workspaces");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/workspaces',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /workspaces</code>
 </p>
@@ -23088,7 +10334,6 @@ Returns the compact records for all workspaces visible to the authorized user.
 |---|---|---|---|---|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 
@@ -23120,7 +10365,7 @@ Returns the compact records for all workspaces visible to the authorized user.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Get a workspace
@@ -23137,111 +10382,6 @@ curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid} \
 
 ```
 
-```javascript--nodejs
-const fetch = require('node-fetch');
-
-const headers = {
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/workspaces/{workspace_gid}',
-{
-  method: 'GET',
-
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('GET','https://app.asana.com/api/1.0/workspaces/{workspace_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.get('https://app.asana.com/api/1.0/workspaces/{workspace_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/workspaces/{workspace_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("GET");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.get 'https://app.asana.com/api/1.0/workspaces/{workspace_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
 <p>
 <code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}</code>
 </p>
@@ -23255,9 +10395,6 @@ Returns the full workspace record for a single workspace.
 |workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -23285,7 +10422,7 @@ Returns the full workspace record for a single workspace.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Update a workspace
@@ -23300,123 +10437,6 @@ curl -X PUT https://app.asana.com/api/1.0/workspaces/{workspace_gid} \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "data": {
-    "name": "Bug Task",
-    "email_domains": [
-      "asana.com"
-    ],
-    "is_organization": false
-  }
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/workspaces/{workspace_gid}',
-{
-  method: 'PUT',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('PUT','https://app.asana.com/api/1.0/workspaces/{workspace_gid}', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.put('https://app.asana.com/api/1.0/workspaces/{workspace_gid}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/workspaces/{workspace_gid}");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("PUT");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.put 'https://app.asana.com/api/1.0/workspaces/{workspace_gid}',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -23450,9 +10470,6 @@ Returns the complete, updated workspace record.
 |workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -23480,7 +10497,7 @@ Returns the complete, updated workspace record.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Add a user to a workspace or organization
@@ -23495,117 +10512,6 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/addUser \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "user": 14641
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/workspaces/{workspace_gid}/addUser',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/workspaces/{workspace_gid}/addUser', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/workspaces/{workspace_gid}/addUser', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/workspaces/{workspace_gid}/addUser");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/workspaces/{workspace_gid}/addUser',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -23632,9 +10538,6 @@ The user can be referenced by their globally unique user ID or their email addre
 |workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -23671,7 +10574,7 @@ The user can be referenced by their globally unique user ID or their email addre
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="half-line">
 ## Remove a user from a workspace or organization
@@ -23686,117 +10589,6 @@ curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/removeUser
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
-
-```
-
-```javascript--nodejs
-const fetch = require('node-fetch');
-const inputBody = '{
-  "user": 14641
-}';
-const headers = {
-  'Content-Type':'application/json',
-  'Accept':'application/json',
-  'Authorization':'Bearer {access-token}'
-
-};
-
-fetch('https://app.asana.com/api/1.0/workspaces/{workspace_gid}/removeUser',
-{
-  method: 'POST',
-  body: inputBody,
-  headers: headers
-})
-.then(function(res) {
-    return res.json();
-}).then(function(body) {
-    console.log(body);
-});
-
-```
-
-```php
-<?php
-
-require 'vendor/autoload.php';
-
-$headers = array(
-    'Content-Type' => 'application/json',
-    'Accept' => 'application/json',
-    'Authorization' => 'Bearer {access-token}',
-    
-    );
-
-$client = new \GuzzleHttp\Client();
-
-// Define array of request body.
-$request_body = array();
-
-try {
-    $response = $client->request('POST','https://app.asana.com/api/1.0/workspaces/{workspace_gid}/removeUser', array(
-        'headers' => $headers,
-        'json' => $request_body,
-       )
-    );
-    print_r($response->getBody()->getContents());
- }
- catch (\GuzzleHttp\Exception\BadResponseException $e) {
-    // handle exception or api errors.
-    print_r($e->getMessage());
- }
-
- // ...
-
-```
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer {access-token}'
-}
-
-r = requests.post('https://app.asana.com/api/1.0/workspaces/{workspace_gid}/removeUser', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```java
-URL obj = new URL("https://app.asana.com/api/1.0/workspaces/{workspace_gid}/removeUser");
-HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-con.setRequestMethod("POST");
-int responseCode = con.getResponseCode();
-BufferedReader in = new BufferedReader(
-    new InputStreamReader(con.getInputStream()));
-String inputLine;
-StringBuffer response = new StringBuffer();
-while ((inputLine = in.readLine()) != null) {
-    response.append(inputLine);
-}
-in.close();
-System.out.println(response.toString());
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'Authorization' => 'Bearer {access-token}'
-}
-
-result = RestClient.post 'https://app.asana.com/api/1.0/workspaces/{workspace_gid}/removeUser',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
 
 ```
 
@@ -23824,9 +10616,6 @@ Returns an empty data record.
 |workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|opt_expand|query|array[string]|false|Expand fields returned.|
-|limit|query|integer|false|Results per page.|
-|offset|query|string|false|Offset token.|
 
 > 200 Response
 
@@ -23845,7 +10634,211 @@ Returns an empty data record.
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|5XX|Unknown|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases are automatically generated using the [node-asana-phrase library](https://github.com/Asana/node-asana-phrase) and can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+
+<hr class="full-line">
+<h1 id="asana-workspace-memberships">Workspace Memberships</h1>
+
+<pre class="highlight http tab-http">
+<code><a href="#get-the-workspace-memberships-for-a-user"><span class="get-verb">GET</span> <span class=""nn>/users/{user_gid}/workspace_memberships</span></a><br><a href="#get-the-workspace-memberships-for-a-workspace"><span class="get-verb">GET</span> <span class=""nn>/workspaces/{workspace_gid}/workspace_memberships</span></a><br><a href="#get-a-workspace-membership"><span class="get-verb">GET</span> <span class=""nn>/workspace_memberships/{workspace_membership_gid}</span></a></code>
+</pre>
+
+This object determines if a user is a member of a workspace.
+
+<hr class="half-line">
+## Get the workspace memberships for a user
+
+<a id="opIdgetWorkspaceMembershipsForUser"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/workspace_memberships \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+<p>
+<code> <span class="get-verb">GET</span> /users/{user_gid}/workspace_memberships</code>
+</p>
+
+Returns the compact workspace membership records for the user.
+
+<h3 id="get-the-workspace-memberships-for-a-user-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|user_gid|path|string|true|Globally unique identifier for the user.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "workspace_membership",
+      "user": {
+        ...
+      },
+      "workspace": {
+        ...
+      }
+    }
+  ]
+}
+```
+
+<h3 id="get-the-workspace-memberships-for-a-user-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested user's workspace memberships.|[WorkspaceMembership](#schemaworkspacemembership)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+
+<hr class="half-line">
+## Get the workspace memberships for a workspace
+
+<a id="opIdgetWorkspaceMembershipsForWorkspace"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/workspace_memberships \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+<p>
+<code> <span class="get-verb">GET</span> /workspaces/{workspace_gid}/workspace_memberships</code>
+</p>
+
+Returns the compact workspace membership records for the workspace.
+
+<h3 id="get-the-workspace-memberships-for-a-workspace-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
+|user|query|string(email)|false|The user to filter results on.|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+|limit|query|integer|false|Results per page.|
+|offset|query|string|false|Offset token.|
+
+> 200 Response
+
+```json
+{
+  "data": [
+    {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "workspace_membership",
+      "user": {
+        ...
+      },
+      "workspace": {
+        ...
+      }
+    }
+  ]
+}
+```
+
+<h3 id="get-the-workspace-memberships-for-a-workspace-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested workspace's memberships.|[WorkspaceMembership](#schemaworkspacemembership)|
+
+<hr class="half-line">
+## Get a workspace membership
+
+<a id="opIdgetWorkspaceMembership"></a>
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/workspace_memberships/{workspace_membership_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
+```
+
+<p>
+<code> <span class="get-verb">GET</span> /workspace_memberships/{workspace_membership_gid}</code>
+</p>
+
+Returns the complete workspace record for a single workspace membership.
+
+<h3 id="get-a-workspace-membership-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|workspace_membership_path_gid|path|string|true|none|
+|opt_pretty|query|boolean|false|Provides “pretty” output.|
+|opt_fields|query|array[string]|false|Defines fields to return.|
+
+> 200 Response
+
+```json
+{
+  "data": {
+    "id": 12345,
+    "gid": "12345",
+    "resource_type": "workspace_membership",
+    "user": {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
+    "workspace": {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "workspace",
+      "name": "Bug Task"
+    },
+    "user_task_list": {
+      "id": 12345,
+      "gid": "12345",
+      "resource_type": "task",
+      "name": "Bug Task",
+      "owner": null,
+      "workspace": null
+    },
+    "is_active": true,
+    "is_admin": true,
+    "is_guest": true
+  }
+}
+```
+
+<h3 id="get-a-workspace-membership-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested workspace membership.|[WorkspaceMembership](#schemaworkspacemembership)|
+|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
+|401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
+|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
+|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
+|500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
 <hr class="full-line">
 
@@ -23886,7 +10879,7 @@ An *attachment* object represents any file attached to a task in Asana, whether 
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|read-only|The name of the file.|
 |created_at|string(date-time)|false|read-only|The time at which this resource was created.|
-|download_url|string(uri)¦null|false|read-only|The URL containing the content of the attachment.<br>*Note: May be null if the attachment is hosted by [Box](https://www.box.com/). If present, this URL may only be valid for 1 hour from the time of retrieval. You should avoid persisting this URL somewhere and just refresh it on demand to ensure you do not keep stale URLs.*|
+|download_url|string(uri)¦null|false|read-only|The URL containing the content of the attachment.<br>*Note:* May be null if the attachment is hosted by [Box](https://www.box.com/). If present, this URL may only be valid for 1 hour from the time of retrieval. You should avoid persisting this URL somewhere and just refresh it on demand to ensure you do not keep stale URLs.|
 |host|string|false|read-only|The service hosting the attachment. Valid values are `asana`, `dropbox`, `gdrive` and `box`.|
 |parent|any|false|none|none|
 |view_url|string(uri)¦null|false|read-only|The URL where the attachment can be viewed, which may be friendlier to users in a browser than just directing them to a raw file. May be null if no view URL exists for the service.|
@@ -23910,7 +10903,7 @@ An *attachment* object represents any file attached to a task in Asana, whether 
 
 ```
 
-A generic Asana Object, containing a globally unique identifier.
+An *attachment* object represents any file attached to a task in Asana, whether it’s an uploaded file or one associated via a third-party service such as Dropbox or Google Drive.
 
 ### Properties
 
@@ -24049,18 +11042,9 @@ A response object returned from a batch request.
 
 ```
 
-Custom Fields store the metadata that is used in order to
-add user-specified information to tasks in Asana. Be sure
-to reference the [Custom Fields]
-(https://asana.com/developers/documentation/getting-started/custom-fields)
-developer documentation for more information about how custom fields
-relate to various resources in Asana.
+Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](#asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.
 
-Users in Asana can [lock custom fields]
-(https://asana.com/guide/help/premium/custom-fields#gl-lock-fields),
-which will make them read-only when accessed by other users.
-Attempting to edit a locked custom field will return HTTP error code
-`403 Forbidden`.
+Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/custom-fields#gl-lock-fields), which will make them read-only when accessed by other users. Attempting to edit a locked custom field will return HTTP error code `403 Forbidden`.
 
 ### Properties
 
@@ -24072,7 +11056,7 @@ Attempting to edit a locked custom field will return HTTP error code
 |name|string|false|none|The name of the object.|
 |resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |type|string|false|none|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
-|enum_options|[object]|false|none|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://asana.com/developers/api-reference/custom_fields#enum-options).|
+|enum_options|[object]|false|none|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
 |» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
@@ -24082,7 +11066,7 @@ Attempting to edit a locked custom field will return HTTP error code
 |enum_value|any|false|none|none|
 |enabled|boolean|false|none|*Conditional*. Determines if the custom field is enabled or not.|
 |text_value|string|false|none|*Conditional*. This string is the value of a text custom field.|
-|description|string|false|none|[Opt In](/developers/documentation/getting-started/input-output-options). The description of the custom field.|
+|description|string|false|none|[Opt In](#input-output-options). The description of the custom field.|
 |precision|integer|false|none|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
 
 #### Enumerated Values
@@ -24127,7 +11111,9 @@ Attempting to edit a locked custom field will return HTTP error code
 
 ```
 
-A generic Asana Object, containing a globally unique identifier.
+Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](#asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.
+
+Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/custom-fields#gl-lock-fields), which will make them read-only when accessed by other users. Attempting to edit a locked custom field will return HTTP error code `403 Forbidden`.
 
 ### Properties
 
@@ -24139,7 +11125,7 @@ A generic Asana Object, containing a globally unique identifier.
 |name|string|false|none|The name of the object.|
 |resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |type|string|false|none|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
-|enum_options|[object]|false|none|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://asana.com/developers/api-reference/custom_fields#enum-options).|
+|enum_options|[object]|false|none|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
 |» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
@@ -24180,7 +11166,7 @@ A generic Asana Object, containing a globally unique identifier.
 
 ```
 
-Custom fields are attached to a particular project with the Custom Field Settings resource. This resource both represents the many-to-many join of the Custom Field and Project as well as stores information that is relevant to that particular pairing; for instance, the `is_important` property determines some possible application-specific handling of that custom field.
+Custom Fields Settings objects represent the many-to-many join of the Custom Field and Project as well as stores information that is relevant to that particular pairing.
 
 ### Properties
 
@@ -24212,7 +11198,7 @@ Custom fields are attached to a particular project with the Custom Field Setting
 
 ```
 
-A generic Asana Object, containing a globally unique identifier.
+Custom Fields Settings objects represent the many-to-many join of the Custom Field and Project as well as stores information that is relevant to that particular pairing.
 
 ### Properties
 
@@ -24243,33 +11229,17 @@ A generic Asana Object, containing a globally unique identifier.
 
 ```
 
-Enum options are the possible values which an enum custom field can
-adopt. An enum custom field must contain at least 1 enum option but no
-more than 50.
+Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.
 
-You can add enum options to a custom field by using the `POST
-/custom_fields/custom_field_gid/enum_options` endpoint.
+You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.
 
-**It is not possible to remove or delete an enum option**. Instead, enum
-options can be disabled by updating the `enabled` field to false with the
-`PUT /enum_options/enum_option_gid` endpoint. Other attributes can be
-updated similarly.
+**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.
 
-On creation of an enum option, `enabled` is always set to `true`, meaning
-the enum option is a selectable value for the custom field. Setting
-`enabled=false` is equivalent to “trashing” the enum option in the Asana
-web app within the “Edit Fields” dialog. The enum option will no longer
-be selectable but, if the enum option value was previously set within a
-task, the task will retain the value.
+On creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.
 
-Enum options are an ordered list and by default new enum options are
-inserted at the end. Ordering in relation to existing enum options can be
-specified on creation by using `insert_before` or `insert_after` to
-reference an existing enum option. Only one of `insert_before` and
-`insert_after` can be provided when creating a new enum option.
+Enum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.
 
-An enum options list can be reordered with the `POST
-/custom_fields/custom_field_gid/enum_options/insert` endpoint.
+An enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.
 
 ### Properties
 
@@ -24303,33 +11273,17 @@ An enum options list can be reordered with the `POST
 
 ```
 
-Enum options are the possible values which an enum custom field can
-adopt. An enum custom field must contain at least 1 enum option but no
-more than 50.
+Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.
 
-You can add enum options to a custom field by using the `POST
-/custom_fields/custom_field_gid/enum_options` endpoint.
+You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.
 
-**It is not possible to remove or delete an enum option**. Instead, enum
-options can be disabled by updating the `enabled` field to false with the
-`PUT /enum_options/enum_option_gid` endpoint. Other attributes can be
-updated similarly.
+**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.
 
-On creation of an enum option, `enabled` is always set to `true`, meaning
-the enum option is a selectable value for the custom field. Setting
-`enabled=false` is equivalent to “trashing” the enum option in the Asana
-web app within the “Edit Fields” dialog. The enum option will no longer
-be selectable but, if the enum option value was previously set within a
-task, the task will retain the value.
+On creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.
 
-Enum options are an ordered list and by default new enum options are
-inserted at the end. Ordering in relation to existing enum options can be
-specified on creation by using `insert_before` or `insert_after` to
-reference an existing enum option. Only one of `insert_before` and
-`insert_after` can be provided when creating a new enum option.
+Enum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.
 
-An enum options list can be reordered with the `POST
-/custom_fields/custom_field_gid/enum_options/insert` endpoint.
+An enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.
 
 ### Properties
 
@@ -24356,7 +11310,7 @@ An enum options list can be reordered with the `POST
   "errors": [
     {
       "message": "project: Missing input",
-      "help": "For more information on API status codes and how to handle them, read the docs on errors: https://asana.com/developers/documentation/getting-started/errors'",
+      "help": "For more information on API status codes and how to handle them, read the docs on errors: https://asana.github.io/developer-docs/#errors'",
       "phrase": "6 sad squid snuggle softly"
     }
   ]
@@ -24422,34 +11376,11 @@ error.
 An *event* is an object representing a change to a resource that was
 observed by an event subscription.
 
-In general, requesting events on a resource is faster and subject to
-higher rate limits than requesting the resource itself. Additionally,
-change events bubble up - listening to events on a project would include
-when stories are added to tasks in the project, even on subtasks.
-
-Establish an initial sync token by making a request with no sync token.
-The response will be a `412` error - the same as if the sync token had
-expired.
-
-Subsequent requests should always provide the sync token from the
-immediately preceding call.
-
-Sync tokens may not be valid if you attempt to go ‘backward’ in the
-history by requesting previous tokens, though re-requesting the current
-sync token is generally safe, and will always return the same results.
-
-When you receive a `412 Precondition Failed` error, it means that the
-sync token is either invalid or expired. If you are attempting to keep a
-set of data in sync, this signals you may need to re-crawl the data.
-
-Sync tokens always expire after 24 hours, but may expire sooner,
-depending on load on the service.
-
 ### Properties
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|user|object¦null|false|read-only|The user who triggered the event.<br><br>*Note: The event may be triggered by a different user than the subscriber. For example, if user A subscribes to a task and user B modified it, the event’s user will be user B. Note: Some events are generated by the system, and will have `null` as the user. API consumers should make sure to handle this case.*|
+|user|object¦null|false|read-only|The user who triggered the event.<br><br>*Note: The event may be triggered by a different user than the subscriber. For example, if user A subscribes to a task and user B modified it, the event’s user will be user B. Note: Some events are generated by the system, and will have `null` as the user. API consumers should make sure to handle this case.|
 |» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
@@ -24509,12 +11440,12 @@ A *job* is an object representing a process that handles asynchronous work.
 |resource_type|string|false|read-only|The base type of this resource.|
 |resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |status|string|false|read-only|none|
-|new_project|object|false|none|A generic Asana Object, containing a globally unique identifier.|
+|new_project|object|false|none|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
 |» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|new_task|object|false|none|A generic Asana Object, containing a globally unique identifier.|
+|new_task|object|false|none|The *task* is the basic object around which many operations in Asana are centered.|
 |» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
@@ -24524,8 +11455,10 @@ A *job* is an object representing a process that handles asynchronous work.
 
 |Property|Value|
 |---|---|
+|status|not_started|
 |status|in_progress|
 |status|completed|
+|status|failed|
 
 <hr>
 
@@ -24553,23 +11486,7 @@ A *job* is an object representing a process that handles asynchronous work.
 
 ```
 
-An *organization_export* object represents a request to export the
-complete data of an Organization in JSON format.
-
-To export an Organization using this API:
-
-* Create an `organization_export`
-  [request](https://asana.com/developers/api-reference/organization_exports#create)
-  and store the id that is returned.
-* Request the `organization_export` every few minutes, until the `state`
-  field contains ‘finished’.
-* Download the file located at the URL in the `download_url` field.
-* Exports can take a long time, from several minutes to a few hours for
-  large Organizations.
-
-*Note: These endpoints are only available to [Service
-Accounts](https://asana.com/guide/help/premium/service-accounts) of an
-[Enterprise](https://asana.com/enterprise) Organization.*
+An *organization_export* object represents a request to export the complete data of an Organization in JSON format.
 
 ### Properties
 
@@ -24581,7 +11498,7 @@ Accounts](https://asana.com/guide/help/premium/service-accounts) of an
 |created_at|string(date-time)|false|read-only|The time at which this resource was created.|
 |download_url|string(uri)¦null|false|read-only|Download this URL to retreive the full export of the organization<br>in JSON format. It will be compressed in a gzip (.gz) container.<br><br>*Note: May be null if the export is still in progress or<br>failed.  If present, this URL may only be valid for 1 hour from<br>the time of retrieval. You should avoid persisting this URL<br>somewhere and rather refresh on demand to ensure you do not keep<br>stale URLs.*|
 |state|string|false|read-only|The current state of the export.|
-|organization|object|false|none|**Create-only*: The Organization that is being exported. This can only be specified at create time.|
+|organization|object|false|none|*Create-only*: The Organization that is being exported. This can only be specified at create time.|
 |» id|integer|false|none|none|
 |» gid|string|false|none|none|
 |» name|string|false|none|none|
@@ -24627,14 +11544,14 @@ Accounts](https://asana.com/guide/help/premium/service-accounts) of an
 
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-|data|object|false|none|An *organization_export* object represents a request to export the<br>complete data of an Organization in JSON format.<br><br>To export an Organization using this API:<br><br>* Create an `organization_export`<br>  [request](https://asana.com/developers/api-reference/organization_exports#create)<br>  and store the id that is returned.<br>* Request the `organization_export` every few minutes, until the `state`<br>  field contains ‘finished’.<br>* Download the file located at the URL in the `download_url` field.<br>* Exports can take a long time, from several minutes to a few hours for<br>  large Organizations.<br><br>*Note: These endpoints are only available to [Service<br>Accounts](https://asana.com/guide/help/premium/service-accounts) of an<br>[Enterprise](https://asana.com/enterprise) Organization.*|
+|data|object|false|none|An *organization_export* object represents a request to export the complete data of an Organization in JSON format.|
 |» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» created_at|string(date-time)|false|read-only|The time at which this resource was created.|
 |» download_url|string(uri)¦null|false|read-only|Download this URL to retreive the full export of the organization<br>in JSON format. It will be compressed in a gzip (.gz) container.<br><br>*Note: May be null if the export is still in progress or<br>failed.  If present, this URL may only be valid for 1 hour from<br>the time of retrieval. You should avoid persisting this URL<br>somewhere and rather refresh on demand to ensure you do not keep<br>stale URLs.*|
 |» state|string|false|read-only|The current state of the export.|
-|» organization|object|false|none|**Create-only*: The Organization that is being exported. This can only be specified at create time.|
+|» organization|object|false|none|*Create-only*: The Organization that is being exported. This can only be specified at create time.|
 |»» id|integer|false|none|none|
 |»» gid|string|false|none|none|
 |»» name|string|false|none|none|
@@ -24684,11 +11601,8 @@ Accounts](https://asana.com/guide/help/premium/service-accounts) of an
 
 ```
 
-A *portfolio* gives a high-level overview of the status of multiple
-initiatives in Asana. Portfolios provide a dashboard overview of
-the state of multiple projects, including a progress report and the
-most recent [project status](https://asana.com/developers/api-reference/project_statuses)
-update.
+A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.
+Portfolios have some restrictions on size. Each portfolio has a max of 250 items and, like projects, a max of 20 custom fields.
 
 ### Properties
 
@@ -24755,7 +11669,8 @@ update.
 
 ```
 
-A generic Asana Object, containing a globally unique identifier.
+A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.
+Portfolios have some restrictions on size. Each portfolio has a max of 250 items and, like projects, a max of 20 custom fields.
 
 ### Properties
 
@@ -24805,12 +11720,12 @@ This object determines if a user is a member of a portfolio.
 |id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
-|user|object|false|none|A generic Asana Object, containing a globally unique identifier.|
+|user|object|false|none|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|portfolio|object|false|none|A generic Asana Object, containing a globally unique identifier.|
+|portfolio|object|false|none|A *portfolio* gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.<br>Portfolios have some restrictions on size. Each portfolio has a max of 250 items and, like projects, a max of 20 custom fields.|
 |» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
@@ -24840,7 +11755,7 @@ This object determines if a user is a member of a portfolio.
 
 ```
 
-A generic Asana Object, containing a globally unique identifier.
+This object determines if a user is a member of a portfolio.
 
 ### Properties
 
@@ -24849,7 +11764,7 @@ A generic Asana Object, containing a globally unique identifier.
 |id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
-|user|object|false|none|A generic Asana Object, containing a globally unique identifier.|
+|user|object|false|none|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
@@ -24990,22 +11905,7 @@ This is read-only except for a small group of whitelisted apps.
 
 ```
 
-A *project* represents a prioritized list of tasks in Asana or a board
-with columns of tasks represented as cards. It exists in a single
-workspace or organization and is accessible to a subset of users in that
-workspace or organization, depending on its permissions.
-
-Projects in organizations are shared with a single team. You cannot
-currently change the team of a project via the API. Non-organization
-workspaces do not have teams and so you should not specify the team of
-project in a regular workspace.
-
-Followers of a project are a subset of the members of that project.
-Followers of a project will receive all updates including tasks created,
-added and removed from that project. Members of the project have access
-to and will receive status updates of the project. Adding followers to a
-project will add them as members if they are not already, removing
-followers from a project will not affect membership.
+A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.
 
 ### Properties
 
@@ -25018,10 +11918,10 @@ followers from a project will not affect membership.
 |created_at|string(date-time)|false|read-only|The time at which this resource was created.|
 |archived|boolean|false|none|True if the project is archived, false if not. Archived projects do not show in the UI by default and may be treated differently for queries.|
 |color|string¦null|false|none|Color of the project.|
-|current_status|object¦null|false|read-only|The most recently created status update for the project, or `null` if no update exists. See also the documentation for [project status updates](/developers/api-reference/project_statuses).|
+|current_status|object¦null|false|read-only|The most recently created status update for the project, or `null` if no update exists. See also the documentation for [project status updates](#asana-project-statuses).|
 |» color|string|false|none|none|
 |» text|string|false|none|none|
-|» author|object|false|none|A *user* object represents an account in Asana that can be given access<br>to various workspaces, projects, and tasks.<br><br>Like other objects in the system, users are referred to by numerical<br>IDs. However, the special string identifier `me` can be used anywhere a<br>user ID is accepted, to refer to the current authenticated user.|
+|» author|object|false|none|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»» resource_type|string|false|read-only|The base type of this resource.|
@@ -25077,8 +11977,8 @@ followers from a project will not affect membership.
 |»»»» name|string|false|none|The name of the object.|
 |»»»» email_domains|[string]|false|none|The email domains that are associated with this workspace.|
 |»»»» is_organization|boolean|false|none|Whether the workspace is an *organization*.|
-|»»» html_notes|string|false|none|[Opt In](https://asana.com/developers/documentation/getting-started/input-output-options). The notes of the project with formatting as HTML.<br>*Note: This field is under active migration—please see our [blog post] (https://asana.com/developers/news/new-rich-text) for more information.*|
-|»»» is_template|boolean|false|none|[Opt In](/developers/documentation/getting-started/input-output-options). Determines if the project is a template.|
+|»»» html_notes|string|false|none|[Opt In](#input-output-options). The notes of the project with formatting as HTML.<br>*Note: This field is under active migration—please see our [blog post] (https://asana.com/developers/news/new-rich-text) for more information.*|
+|»»» is_template|boolean|false|none|[Opt In](#input-output-options). Determines if the project is a template.|
 |»»» layout|string|false|read-only|The layout (board or list view) of a project|
 |»»» members|[object]|false|read-only|Array of users who are members of this project.|
 |»»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
@@ -25158,7 +12058,7 @@ followers from a project will not affect membership.
 
 ```
 
-A generic Asana Object, containing a globally unique identifier.
+A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.
 
 ### Properties
 
@@ -25209,12 +12109,12 @@ With the introduction of “comment-only” projects in Asana, a user’s member
 |id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
-|user|object|false|none|A generic Asana Object, containing a globally unique identifier.|
+|user|object|false|none|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|project|object|false|none|A generic Asana Object, containing a globally unique identifier.|
+|project|object|false|none|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
 |» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
@@ -25252,7 +12152,7 @@ With the introduction of “comment-only” projects in Asana, a user’s member
 
 ```
 
-A generic Asana Object, containing a globally unique identifier.
+With the introduction of “comment-only” projects in Asana, a user’s membership in a project comes with associated permissions. These permissions (whether a user has full access to the project or comment-only access) are accessible through the project memberships endpoints described here.
 
 ### Properties
 
@@ -25261,7 +12161,7 @@ A generic Asana Object, containing a globally unique identifier.
 |id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
-|user|object|false|none|A generic Asana Object, containing a globally unique identifier.|
+|user|object|false|none|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
@@ -25292,7 +12192,6 @@ A generic Asana Object, containing a globally unique identifier.
 ```
 
 A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.
-Project statuses can be created and deleted, but not modified.
 
 ### Properties
 
@@ -25305,7 +12204,7 @@ Project statuses can be created and deleted, but not modified.
 |created_at|string(date-time)|false|read-only|The time at which this resource was created.|
 |created_by|any|false|none|none|
 |text|string|false|read-only|The text content of the status update.|
-|html-text|string|false|read-only|[Opt In](https://asana.com/developers/documentation/getting-started/input-output-options). The text content of the status update with formatting as HTML.|
+|html-text|string|false|read-only|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
 |color|string|false|read-only|The color associated with the status update.|
 
 #### Enumerated Values
@@ -25335,7 +12234,7 @@ Project statuses can be created and deleted, but not modified.
 
 ```
 
-A generic Asana Object, containing a globally unique identifier.
+A *project status* is an update on the progress of a particular project, and is sent out to all project followers when created. These updates include both text describing the update and a color code intended to represent the overall state of the project: "green" for projects that are on track, "yellow" for projects at risk, and "red" for projects that are behind.
 
 ### Properties
 
@@ -25374,17 +12273,7 @@ A generic Asana Object, containing a globally unique identifier.
 
 ```
 
-A *section* is a subdivision of a project that groups tasks together. It
-can either be a header above a list of tasks in a list view or a column
-in a board view of a project.
-
-Sections are largely a shared idiom in Asana’s API for both list and
-board views of a project regardless of the project’s layout.
-
-The ‘memberships’ property when [getting a
-task](https://asana.com/developers/api-reference/tasks#get) will return
-the information for the section or the column under ‘section’ in the
-response.
+A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.
 
 ### Properties
 
@@ -25420,7 +12309,7 @@ response.
 
 ```
 
-A generic Asana Object, containing a globally unique identifier.
+A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.
 
 ### Properties
 
@@ -25628,12 +12517,7 @@ A generic Asana Object, containing a globally unique identifier.
 
 ```
 
-*See [our forum post](https://forum.asana.com/t/no-more-parsing-story-text-new-fields-on-stories/42924) for
-more info on when conditional fields are returned.*
-A *story* represents an activity associated with an object in the Asana
-system. Stories are generated by the system whenever users take actions
-such as creating or assigning tasks, or moving tasks between projects.
-*Comments* are also a form of user-generated story.
+A story represents an activity associated with an object in the Asana system.
 
 ### Properties
 
@@ -25645,9 +12529,9 @@ such as creating or assigning tasks, or moving tasks between projects.
 |resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |created_at|string(date-time)|false|read-only|The time at which this resource was created.|
 |created_by|any|false|none|none|
-|text|any|false|none|*Create-only*. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br><br>*Note: This is not guaranteed to be stable for a given type of<br>story. For example, text for a reassignment may not always say<br>“assigned to …” as the text for a story can both be edited and<br>change based on the language settings of the user making the request.<br>Use the `resource_subtype` property to discover the action that<br>created the story.*|
-|type|string|false|read-only|*Deprecated: new integrations should prefer the `resource_subtype` field.* The type of this story. For more fine-grained inspection of story types, see the [`resource_subtype`] (https://asana.com/developers/api-reference/stories#field-resource_subtype) property.|
-|html_text|string|false|none|[Opt In](https://asana.com/developers/documentation/getting-started/input-output-options).<br>HTML formatted text for a comment. This will not include the name<br>of the creator.<br><br>*Note: This field is under active migration—please see our blog<br>post for more information.*|
+|text|any|false|none|*Create-only*. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br>*Note: This is not guaranteed to be stable for a given type of story. For example, text for a reassignment may not always say “assigned to …” as the text for a story can both be edited and change based on the language settings of the user making the request.*<br>Use the `resource_subtype` property to discover the action that created the story.|
+|type|string|false|read-only|*Deprecated: new integrations should prefer the `resource_subtype` field.*|
+|html_text|string|false|none|[Opt In](#input-output-options).<br>HTML formatted text for a comment. This will not include the name<br>of the creator.<br><br>*Note: This field is under active migration—please see our blog<br>post for more information.*|
 |is_edited|boolean|false|read-only|*Conditional*. Whether the text of the story has been edited after creation.|
 |is_pinned|boolean|false|none|*Conditional*. Whether the story should be pinned on the resource.|
 |hearted|boolean|false|read-only|*Deprecated - please use likes instead*<br><br>*Conditional*. True if the story is hearted by the authorized user, false if not.|
@@ -25713,58 +12597,58 @@ such as creating or assigning tasks, or moving tasks between projects.
 |»»» due_on|string(date)|false|none|none|
 |»» old_resource_subtype|string|false|read-only|*Conditional*|
 |»» new_resource_subtype|string|false|read-only|*Conditional*|
-|»» story|object|false|none|A generic Asana Object, containing a globally unique identifier.|
+|»» story|object|false|none|A story represents an activity associated with an object in the Asana system.|
 |»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |»»» created_at|string(date-time)|false|read-only|The time at which this resource was created.|
 |»»» created_by|any|false|none|none|
-|»»» text|any|false|none|*Create-only*. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br><br>*Note: This is not guaranteed to be stable for a given type of<br>story. For example, text for a reassignment may not always say<br>“assigned to …” as the text for a story can both be edited and<br>change based on the language settings of the user making the request.<br>Use the `resource_subtype` property to discover the action that<br>created the story.*|
-|»»» type|string|false|read-only|*Deprecated: new integrations should prefer the `resource_subtype` field.* The type of this story. For more fine-grained inspection of story types, see the [`resource_subtype`] (https://asana.com/developers/api-reference/stories#field-resource_subtype) property.|
-|»» assignee|object|false|none|A generic Asana Object, containing a globally unique identifier.|
+|»»» text|any|false|none|*Create-only*. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br>*Note: This is not guaranteed to be stable for a given type of story. For example, text for a reassignment may not always say “assigned to …” as the text for a story can both be edited and change based on the language settings of the user making the request.*<br>Use the `resource_subtype` property to discover the action that created the story.|
+|»»» type|string|false|read-only|*Deprecated: new integrations should prefer the `resource_subtype` field.*|
+|»» assignee|object|false|none|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|»» follower|object|false|none|A generic Asana Object, containing a globally unique identifier.|
+|»» follower|object|false|none|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
 |»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|»» old_section|object|false|none|A generic Asana Object, containing a globally unique identifier.|
+|»» old_section|object|false|none|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
 |»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» name|string|false|none|The name of the section (i.e. the text displayed as the section header).|
-|»» new_section|object|false|none|A generic Asana Object, containing a globally unique identifier.|
+|»» new_section|object|false|none|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
 |»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» name|string|false|none|The name of the section (i.e. the text displayed as the section header).|
-|»» task|object|false|none|A generic Asana Object, containing a globally unique identifier.|
+|»» task|object|false|none|The *task* is the basic object around which many operations in Asana are centered.|
 |»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» name|string|false|none|The name of the object.|
-|»» project|object|false|none|A generic Asana Object, containing a globally unique identifier.|
+|»» project|object|false|none|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
 |»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» name|string|false|none|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» tag|object|false|none|A generic Asana Object, containing a globally unique identifier.|
+|»» tag|object|false|none|A *tag* is a label that can be attached to any task in Asana. It exists in a single workspace or organization.|
 |»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» name|string|false|none|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» custom_field|object|false|none|A generic Asana Object, containing a globally unique identifier.|
+|»» custom_field|object|false|none|Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](#asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.<br><br>Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/custom-fields#gl-lock-fields), which will make them read-only when accessed by other users. Attempting to edit a locked custom field will return HTTP error code `403 Forbidden`.|
 |»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» name|string|false|none|The name of the object.|
 |»»» resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |»»» type|string|false|none|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
-|»»» enum_options|[object]|false|none|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://asana.com/developers/api-reference/custom_fields#enum-options).|
+|»»» enum_options|[object]|false|none|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
 |»»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»»» resource_type|string|false|read-only|The base type of this resource.|
@@ -25778,31 +12662,31 @@ such as creating or assigning tasks, or moving tasks between projects.
 |»» new_text_value|string|false|read-only|*Conditional*|
 |»» old_number_value|integer|false|read-only|*Conditional*|
 |»» new_number_value|integer|false|read-only|*Conditional*|
-|»» old_enum_value|object|false|none|Enum options are the possible values which an enum custom field can<br>adopt. An enum custom field must contain at least 1 enum option but no<br>more than 50.<br><br>You can add enum options to a custom field by using the `POST<br>/custom_fields/custom_field_gid/enum_options` endpoint.<br><br>**It is not possible to remove or delete an enum option**. Instead, enum<br>options can be disabled by updating the `enabled` field to false with the<br>`PUT /enum_options/enum_option_gid` endpoint. Other attributes can be<br>updated similarly.<br><br>On creation of an enum option, `enabled` is always set to `true`, meaning<br>the enum option is a selectable value for the custom field. Setting<br>`enabled=false` is equivalent to “trashing” the enum option in the Asana<br>web app within the “Edit Fields” dialog. The enum option will no longer<br>be selectable but, if the enum option value was previously set within a<br>task, the task will retain the value.<br><br>Enum options are an ordered list and by default new enum options are<br>inserted at the end. Ordering in relation to existing enum options can be<br>specified on creation by using `insert_before` or `insert_after` to<br>reference an existing enum option. Only one of `insert_before` and<br>`insert_after` can be provided when creating a new enum option.<br><br>An enum options list can be reordered with the `POST<br>/custom_fields/custom_field_gid/enum_options/insert` endpoint.|
+|»» old_enum_value|object|false|none|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.<br><br>You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.<br><br>**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.<br><br>On creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.<br><br>Enum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.<br><br>An enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.|
 |»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» name|string|false|none|The name of the enum option.|
 |»»» enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
 |»»» color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
-|»» new_enum_value|object|false|none|Enum options are the possible values which an enum custom field can<br>adopt. An enum custom field must contain at least 1 enum option but no<br>more than 50.<br><br>You can add enum options to a custom field by using the `POST<br>/custom_fields/custom_field_gid/enum_options` endpoint.<br><br>**It is not possible to remove or delete an enum option**. Instead, enum<br>options can be disabled by updating the `enabled` field to false with the<br>`PUT /enum_options/enum_option_gid` endpoint. Other attributes can be<br>updated similarly.<br><br>On creation of an enum option, `enabled` is always set to `true`, meaning<br>the enum option is a selectable value for the custom field. Setting<br>`enabled=false` is equivalent to “trashing” the enum option in the Asana<br>web app within the “Edit Fields” dialog. The enum option will no longer<br>be selectable but, if the enum option value was previously set within a<br>task, the task will retain the value.<br><br>Enum options are an ordered list and by default new enum options are<br>inserted at the end. Ordering in relation to existing enum options can be<br>specified on creation by using `insert_before` or `insert_after` to<br>reference an existing enum option. Only one of `insert_before` and<br>`insert_after` can be provided when creating a new enum option.<br><br>An enum options list can be reordered with the `POST<br>/custom_fields/custom_field_gid/enum_options/insert` endpoint.|
+|»» new_enum_value|object|false|none|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.<br><br>You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.<br><br>**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.<br><br>On creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.<br><br>Enum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.<br><br>An enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.|
 |»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» name|string|false|none|The name of the enum option.|
 |»»» enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
 |»»» color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
-|»» duplicate_of|object|false|none|A generic Asana Object, containing a globally unique identifier.|
+|»» duplicate_of|object|false|none|The *task* is the basic object around which many operations in Asana are centered.|
 |»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» name|string|false|none|The name of the object.|
-|»» duplicated_from|object|false|none|A generic Asana Object, containing a globally unique identifier.|
+|»» duplicated_from|object|false|none|The *task* is the basic object around which many operations in Asana are centered.|
 |»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» name|string|false|none|The name of the object.|
-|»» dependency|object|false|none|A generic Asana Object, containing a globally unique identifier.|
+|»» dependency|object|false|none|The *task* is the basic object around which many operations in Asana are centered.|
 |»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
@@ -25843,7 +12727,7 @@ such as creating or assigning tasks, or moving tasks between projects.
 
 ```
 
-A generic Asana Object, containing a globally unique identifier.
+A story represents an activity associated with an object in the Asana system.
 
 ### Properties
 
@@ -25855,8 +12739,8 @@ A generic Asana Object, containing a globally unique identifier.
 |resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |created_at|string(date-time)|false|read-only|The time at which this resource was created.|
 |created_by|any|false|none|none|
-|text|any|false|none|*Create-only*. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br><br>*Note: This is not guaranteed to be stable for a given type of<br>story. For example, text for a reassignment may not always say<br>“assigned to …” as the text for a story can both be edited and<br>change based on the language settings of the user making the request.<br>Use the `resource_subtype` property to discover the action that<br>created the story.*|
-|type|string|false|read-only|*Deprecated: new integrations should prefer the `resource_subtype` field.* The type of this story. For more fine-grained inspection of story types, see the [`resource_subtype`] (https://asana.com/developers/api-reference/stories#field-resource_subtype) property.|
+|text|any|false|none|*Create-only*. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br>*Note: This is not guaranteed to be stable for a given type of story. For example, text for a reassignment may not always say “assigned to …” as the text for a story can both be edited and change based on the language settings of the user making the request.*<br>Use the `resource_subtype` property to discover the action that created the story.|
+|type|string|false|read-only|*Deprecated: new integrations should prefer the `resource_subtype` field.*|
 
 <hr>
 
@@ -25892,13 +12776,7 @@ A generic Asana Object, containing a globally unique identifier.
 
 ```
 
-A *tag* is a label that can be attached to any task in Asana. It exists
-in a single workspace or organization.
-
-Tags have some metadata associated with them, but it is possible that we
-will simplify them in the future so it is not encouraged to rely too
-heavily on it. Unlike projects, tags do not provide any ordering on the
-tasks they are associated with.
+A *tag* is a label that can be attached to any task in Asana. It exists in a single workspace or organization.
 
 ### Properties
 
@@ -25914,7 +12792,7 @@ tasks they are associated with.
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
 |color|string|false|none|Color of the tag.|
-|workspace|object|false|none|A generic Asana Object, containing a globally unique identifier.|
+|workspace|object|false|none|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
 |» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
@@ -25962,7 +12840,7 @@ tasks they are associated with.
 
 ```
 
-A generic Asana Object, containing a globally unique identifier.
+A *tag* is a label that can be attached to any task in Asana. It exists in a single workspace or organization.
 
 ### Properties
 
@@ -26056,6 +12934,7 @@ A generic Asana Object, containing a globally unique identifier.
       "name": "Greg Sanchez"
     }
   ],
+  "is_rendered_as_separator": false,
   "liked": true,
   "likes": [
     {
@@ -26102,23 +12981,7 @@ A generic Asana Object, containing a globally unique identifier.
 
 ```
 
-The *task* is the basic object around which many operations in Asana are
-centered. In the Asana application, multiple tasks populate the middle
-pane according to some view parameters, and the set of selected tasks
-determines the more detailed information presented in the details pane.
-
-A *section*, at its core, is a task whose name ends with the colon
-character `:`. Sections are unique in that they will be included in the
-*memberships* field of task objects returned in the API when the task is
-within a section. They can also be used to manipulate the ordering of a
-task within a project.
-
-[Queries](https://asana.com/developers/api-reference/tasks#query) return
-a compact representation of each object which is typically the id and
-name fields. Interested in a specific set of fields or all of the fields?
-Use [field
-selectors](https://asana.com/developers/documentation/getting-started/input-output-options)
-to manipulate what data is included in a response.
+The *task* is the basic object around which many operations in Asana are centered.
 
 ### Properties
 
@@ -26134,14 +12997,14 @@ to manipulate what data is included in a response.
 |assignee_status|string|false|none|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
 |completed|boolean|false|none|True if the task is currently marked complete, false if not.|
 |completed_at|string(date-time)¦null|false|read-only|The time at which this task was completed, or null if the task is incomplete.|
-|custom_fields|[object]|false|read-only|Array of custom field values applied to the project. These represent<br>the custom field values recorded on this project for a particular<br>custom field. For example, these custom field values will contain<br>an `enum_value` property for custom fields of type `enum`, a<br>`string_value` property for custom fields of type `string`, and<br>so on. Please note that the `id` returned on each custom field<br>value *is identical* to the `id` of the custom field, which<br>allows referencing the custom field metadata through the<br>`/custom_fields/custom_field-id` endpoint.|
+|custom_fields|[object]|false|read-only|Array of custom field values applied to the project. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `string_value` property for custom fields of type `string`, and so on. Please note that the `id` returned on each custom field value *is identical* to the `id` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-id` endpoint.|
 |» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|The name of the object.|
 |» resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |» type|string|false|none|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
-|» enum_options|[object]|false|none|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](https://asana.com/developers/api-reference/custom_fields#enum-options).|
+|» enum_options|[object]|false|none|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
 |»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»» resource_type|string|false|read-only|The base type of this resource.|
@@ -26151,17 +13014,17 @@ to manipulate what data is included in a response.
 |» enum_value|any|false|none|none|
 |» enabled|boolean|false|none|*Conditional*. Determines if the custom field is enabled or not.|
 |» text_value|string|false|none|*Conditional*. This string is the value of a text custom field.|
-|» description|string|false|none|[Opt In](/developers/documentation/getting-started/input-output-options). The description of the custom field.|
+|» description|string|false|none|[Opt In](#input-output-options). The description of the custom field.|
 |» precision|integer|false|none|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
-|dependencies|[object]|false|read-only|[Opt In](/developers/documentation/getting-started/input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the ID of the dependency.|
+|dependencies|[object]|false|read-only|[Opt In](#input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the ID of the dependency.|
 |» id|integer|false|none|none|
 |» gid|string|false|none|none|
-|dependents|[object]|false|read-only|[Opt In](/developers/documentation/getting-started/input-output-options). Array of resources referencing tasks that depend on this task. The objects contain only the ID of the dependent.|
+|dependents|[object]|false|read-only|[Opt In](#input-output-options). Array of resources referencing tasks that depend on this task. The objects contain only the ID of the dependent.|
 |» id|integer|false|none|none|
 |» gid|string|false|none|none|
 |due_at|string(date)¦null|false|none|Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
 |due_on|string(date)¦null|false|none|Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
-|external|object|false|none|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (/developers/documentation/getting-started/input-output-options).<br>The external field allows you to store app-specific metadata on tasks, including an id that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external id is set, you can use the notation `external:custom_id` to reference your object anywhere in the API where you may use the original object id. See the page on Custom External Data for more details.|
+|external|object|false|none|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).<br>The external field allows you to store app-specific metadata on tasks, including an id that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external id is set, you can use the notation `external:custom_id` to reference your object anywhere in the API where you may use the original object id. See the page on Custom External Data for more details.|
 |» id|integer|false|none|none|
 |» gid|string|false|none|none|
 |» data|string|false|none|none|
@@ -26170,13 +13033,14 @@ to manipulate what data is included in a response.
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|html_notes|string|false|none|[Opt In](/developers/documentation/getting-started/input-output-options). The notes of the text with formatting as HTML.<br>*Note: This field is under active migration—please see our blog post for more information.*|
+|html_notes|string|false|none|[Opt In](#input-output-options). The notes of the text with formatting as HTML.<br>*Note: This field is under active migration—please see our blog post for more information.*|
 |hearted|boolean|false|read-only|*Deprecated - please use liked instead* True if the task is hearted by the authorized user, false if not.|
 |hearts|[object]|false|read-only|*Deprecated - please use likes instead* Array of users who have hearted this task.|
 |» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
+|is_rendered_as_separator|boolean|false|read-only|[Opt In](#input-output-options). In some contexts tasks can be rendered as a visual separator; for instance, subtasks can appear similar to [sections](#asana-sections) without being true `section` objects. If a `task` object is rendered this way in any context it will have the property `is_rendered_as_separator` set to `true`.<br /><br />*Note: Until the default behavior for our API changes integrations must [opt in to the `new_sections` change] (https://forum.asana.com/t/sections-are-dead-long-live-sections/33951) to modify the `is_rendered_as_separator` property.*|
 |liked|boolean|false|read-only|True if the task is liked by the authorized user, false if not.|
 |likes|[object]|false|read-only|Array of users who have liked this task.|
 |» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
@@ -26184,12 +13048,12 @@ to manipulate what data is included in a response.
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
 |memberships|[object]|false|none|*Create-only*. Array of projects this task is associated with and the section it is in. At task creation time, this array can be used to add the task to specific sections. After task creation, these associations can be modified using the `addProject` and `removeProject` endpoints. Note that over time, more types of memberships may be added to this property.|
-|» project|object|false|none|A generic Asana Object, containing a globally unique identifier.|
+|» project|object|false|none|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
 |»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»» resource_type|string|false|read-only|The base type of this resource.|
 |»» name|string|false|none|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|» section|object|false|none|A generic Asana Object, containing a globally unique identifier.|
+|» section|object|false|none|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
 |»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»» resource_type|string|false|read-only|The base type of this resource.|
@@ -26198,14 +13062,14 @@ to manipulate what data is included in a response.
 |» notes|string|false|none|More detailed, free-form textual information associated with the task.|
 |» num_hearts|integer|false|read-only|*Deprecated - please use likes instead* The number of users who have hearted this task.|
 |» num_likes|integer|false|read-only|The number of users who have liked this task.|
-|» num_subtasks|integer|false|read-only|[Opt In](https://asana.com/developers/documentation/getting-started/input-output-options). The number of subtasks on this task.|
+|» num_subtasks|integer|false|read-only|[Opt In](#input-output-options). The number of subtasks on this task.|
 |» parent|any|false|none|none|
 |» projects|[object]|false|none|*Create-only.* Array of projects this task is associated with. At task creation time, this array can be used to add the task to many projects at once. After task creation, these associations can be modified using the addProject and removeProject endpoints.|
 |»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»» resource_type|string|false|read-only|The base type of this resource.|
 |»» name|string|false|none|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|» start_on|string(date)¦null|false|none|The day on which work begins for the task , or null if the task has<br>no start date. This takes a date with `YYYY-MM-DD` format.<br><br>*Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
+|» start_on|string(date)¦null|false|none|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.<br>*Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
 |» tags|[object]|false|none|*Create-only*. Array of tags associated with this task. This property may be specified on creation using just an array of tag IDs.  In order to change tags on an existing task use `addTag` and `removeTag`.|
 |»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
@@ -26217,7 +13081,7 @@ to manipulate what data is included in a response.
 |»»» resource_type|string|false|read-only|The base type of this resource.|
 |»»» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
 |»» color|string|false|none|Color of the tag.|
-|»» workspace|object|false|none|A generic Asana Object, containing a globally unique identifier.|
+|»» workspace|object|false|none|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
 |»»» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |»»» resource_type|string|false|read-only|The base type of this resource.|
@@ -26277,7 +13141,7 @@ to manipulate what data is included in a response.
 
 ```
 
-A generic Asana Object, containing a globally unique identifier.
+The *task* is the basic object around which many operations in Asana are centered.
 
 ### Properties
 
@@ -26310,8 +13174,7 @@ A generic Asana Object, containing a globally unique identifier.
 
 ```
 
-A *team* is used to group related projects and people together within an
-organization. Each project in an organization is associated with a team.
+A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.
 
 ### Properties
 
@@ -26321,8 +13184,8 @@ organization. Each project in an organization is associated with a team.
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the object.|
-|description|string|false|none|[Opt In](/developers/documentation/getting-started/input-output-options). The description of the team.|
-|html_description|string|false|none|[Opt In](/developers/documentation/getting-started/input-output-options). The description of the team with formatting as HTML.<br>*Note: This field is under active migration—please see our [blog post](https://asana.com/developers/news/new-rich-text) for more information.*|
+|description|string|false|none|[Opt In](#input-output-options). The description of the team.|
+|html_description|string|false|none|[Opt In](#input-output-options). The description of the team with formatting as HTML.<br>*Note: This field is under active migration—please see our [blog post](https://asana.com/developers/news/new-rich-text) for more information.*|
 |organization|any|false|none|none|
 
 <hr>
@@ -26344,7 +13207,7 @@ organization. Each project in an organization is associated with a team.
 
 ```
 
-A generic Asana Object, containing a globally unique identifier.
+A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.
 
 ### Properties
 
@@ -26394,12 +13257,7 @@ A generic Asana Object, containing a globally unique identifier.
 
 ```
 
-A *user* object represents an account in Asana that can be given access
-to various workspaces, projects, and tasks.
-
-Like other objects in the system, users are referred to by numerical
-IDs. However, the special string identifier `me` can be used anywhere a
-user ID is accepted, to refer to the current authenticated user.
+A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.
 
 ### Properties
 
@@ -26443,7 +13301,7 @@ user ID is accepted, to refer to the current authenticated user.
 
 ```
 
-A generic Asana Object, containing a globally unique identifier.
+A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.
 
 ### Properties
 
@@ -26476,7 +13334,6 @@ A generic Asana Object, containing a globally unique identifier.
 ```
 
 A user task list represents the tasks assigned to a particular user. It provides API access to a user’s “My Tasks” view in Asana.
-A user’s “My Tasks” represent all of the tasks assigned to that user. It is visually divided into regions based on the task’s [`assignee_status`] (https://asana.com/developers/api-reference/tasks#field-assignee_status) for Asana users to triage their tasks based on when they can address them. When building an integration it’s worth noting that tasks with due dates will automatically move through `assignee_status` states as their due dates approach; read up on [task auto-promotion](https://asana.com/guide/help/fundamentals/my-tasks#gl-auto-promote) for more information.
 
 ### Properties
 
@@ -26488,6 +13345,36 @@ A user’s “My Tasks” represent all of the tasks assigned to that user. It i
 |name|string|false|none|The name of the object.|
 |owner|any|false|none|none|
 |workspace|any|false|none|none|
+
+<hr>
+
+<h2 id="tocS_UserTaskListCompact">UserTaskListCompact</h2>
+<!-- backwards compatibility -->
+<a id="schemausertasklistcompact"></a>
+<a id="schema_UserTaskListCompact"></a>
+<a id="tocSusertasklistcompact"></a>
+<a id="tocsusertasklistcompact"></a>
+
+```json
+{
+  "id": 12345,
+  "gid": "12345",
+  "resource_type": "task",
+  "name": "Bug Task"
+}
+
+```
+
+A generic Asana Object, containing a globally unique identifier.
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
+|gid|string|false|read-only|Globally unique ID of the object, as a string.|
+|resource_type|string|false|read-only|The base type of this resource.|
+|name|string|false|none|The name of the object.|
 
 <hr>
 
@@ -26514,13 +13401,11 @@ A user’s “My Tasks” represent all of the tasks assigned to that user. It i
 
 ```
 
-Webhooks allow an application to be notified of changes. This is in addition to the ability to fetch those changes directly as [Events](#asana-events) - in fact, Webhooks are just a way to receive Events via HTTP POST at the time they occur instead of polling for them. For services accessible via HTTP this is often vastly more convenient, and if events are not too frequent can be significantly more efficient.
+Webhooks allow an application to be notified of changes. This is in addition to the ability to fetch those changes directly as Events - in fact, Webhooks are just a way to receive [Events](#asana-events) via HTTP POST at the time they occur instead of polling for them. For services accessible via HTTP this is often vastly more convenient, and if events are not too frequent can be significantly more efficient.
 
 In both cases, however, changes are represented as Event objects - refer to the [Events documentation](#asana-events) for more information on what data these events contain.
 
-**NOTE:** While Webhooks send arrays of Event objects to their target, the Event objects themselves contain *only IDs*, rather than the actual resource they are referencing. So while a normal event you receive via GET /events would look like an [Event](/#tocS_Event). In a Webhook payload you will instead receive a [WebhookEvent](#tocS_WebhookEvent) (a simplified version of the event object).
-
-[Webhooks](#tocS_Webhook) themselves contain only the information necessary to deliver the events to the desired target as they are generated.
+*Note: While Webhooks send arrays of Event objects to their target, the Event objects themselves contain *only IDs*, rather than the actual resource they are referencing. Webhooks themselves contain only the information necessary to deliver the events to the desired target as they are generated.*
 
 ### Properties
 
@@ -26592,21 +13477,7 @@ In both cases, however, changes are represented as Event objects - refer to the 
 
 ```
 
-A *workspace* is the highest-level organizational unit in Asana. All
-projects and tasks have an associated workspace.
-
-An *organization* is a special kind of workspace that represents a
-company. In an organization, you can group your projects into teams.
-You can read more about how organizations work on the Asana Guide. To
-tell if your workspace is an organization or not, check its
-`is_organization` property.
-
-Over time, we intend to migrate most workspaces into organizations and
-to release more organization-specific functionality. We may eventually
-deprecate using workspace-based APIs for organizations. Currently, and
-until after some reasonable grace period following any further
-announcements, you can still reference organizations in any `workspace`
-parameter.
+A generic Asana Object, containing a globally unique identifier.
 
 ### Properties
 
@@ -26638,7 +13509,7 @@ parameter.
 
 ```
 
-A generic Asana Object, containing a globally unique identifier.
+A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.
 
 ### Properties
 
@@ -26648,4 +13519,125 @@ A generic Asana Object, containing a globally unique identifier.
 |gid|string|false|read-only|Globally unique ID of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the object.|
+
+<hr>
+
+<h2 id="tocS_WorkspaceMembership">WorkspaceMembership</h2>
+<!-- backwards compatibility -->
+<a id="schemaworkspacemembership"></a>
+<a id="schema_WorkspaceMembership"></a>
+<a id="tocSworkspacemembership"></a>
+<a id="tocsworkspacemembership"></a>
+
+```json
+{
+  "id": 12345,
+  "gid": "12345",
+  "resource_type": "workspace_membership",
+  "user": {
+    "id": 12345,
+    "gid": "12345",
+    "resource_type": "user",
+    "name": "Greg Sanchez"
+  },
+  "workspace": {
+    "id": 12345,
+    "gid": "12345",
+    "resource_type": "workspace",
+    "name": "Bug Task"
+  },
+  "user_task_list": {
+    "id": 12345,
+    "gid": "12345",
+    "resource_type": "task",
+    "name": "Bug Task",
+    "owner": null,
+    "workspace": null
+  },
+  "is_active": true,
+  "is_admin": true,
+  "is_guest": true
+}
+
+```
+
+This object determines if a user is a member of a workspace.
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
+|gid|string|false|read-only|Globally unique ID of the object, as a string.|
+|resource_type|string|false|read-only|The resource type of this resource. The value for this resource is always `workspace_membership`.|
+|user|object|false|none|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
+|» gid|string|false|read-only|Globally unique ID of the object, as a string.|
+|» resource_type|string|false|read-only|The base type of this resource.|
+|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
+|workspace|object|false|none|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
+|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
+|» gid|string|false|read-only|Globally unique ID of the object, as a string.|
+|» resource_type|string|false|read-only|The base type of this resource.|
+|» name|string|false|none|The name of the object.|
+|user_task_list|object|false|none|A user task list represents the tasks assigned to a particular user. It provides API access to a user’s “My Tasks” view in Asana.|
+|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
+|» gid|string|false|read-only|Globally unique ID of the object, as a string.|
+|» resource_type|string|false|read-only|The base type of this resource.|
+|» name|string|false|none|The name of the object.|
+|» owner|any|false|none|none|
+|» workspace|any|false|none|none|
+|is_active|boolean|false|read-only|Reflects if this user still a member of the workspace.|
+|is_admin|boolean|false|read-only|Reflects if this user is an admin of the workspace.|
+|is_guest|boolean|false|read-only|Reflects if this user is a guest of the workspace.|
+
+<hr>
+
+<h2 id="tocS_WorkspaceMembershipCompact">WorkspaceMembershipCompact</h2>
+<!-- backwards compatibility -->
+<a id="schemaworkspacemembershipcompact"></a>
+<a id="schema_WorkspaceMembershipCompact"></a>
+<a id="tocSworkspacemembershipcompact"></a>
+<a id="tocsworkspacemembershipcompact"></a>
+
+```json
+{
+  "id": 12345,
+  "gid": "12345",
+  "resource_type": "workspace_membership",
+  "user": {
+    "id": 12345,
+    "gid": "12345",
+    "resource_type": "user",
+    "name": "Greg Sanchez"
+  },
+  "workspace": {
+    "id": 12345,
+    "gid": "12345",
+    "resource_type": "workspace",
+    "name": "Bug Task"
+  }
+}
+
+```
+
+This object determines if a user is a member of a workspace.
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
+|gid|string|false|read-only|Globally unique ID of the object, as a string.|
+|resource_type|string|false|read-only|The resource type of this resource. The value for this resource is always `workspace_membership`.|
+|user|object|false|none|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
+|» gid|string|false|read-only|Globally unique ID of the object, as a string.|
+|» resource_type|string|false|read-only|The base type of this resource.|
+|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
+|workspace|object|false|none|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
+|» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
+|» gid|string|false|read-only|Globally unique ID of the object, as a string.|
+|» resource_type|string|false|read-only|The base type of this resource.|
+|» name|string|false|none|The name of the object.|
 

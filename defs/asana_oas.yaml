@@ -616,6 +616,21 @@ components:
       schema:
         type: string
       example: 1331
+    project_membership_path_gid:
+      name: project_membership_path_gid
+      in: path
+      required: true
+      schema:
+        type: string
+      example: 1331
+    project_status_path_gid:
+      name: project_status_path_gid
+      in: path
+      required: true
+      description: The project status update to get.
+      schema:
+        type: string
+      example: 321654
     portfolio_path_gid:
       name: portfolio_gid
       in: path
@@ -625,6 +640,13 @@ components:
       schema:
         type: string
       example: 12345
+    portfolio_membership_path_gid:
+      name: portfolio_membership_path_gid
+      in: path
+      required: true
+      schema:
+        type: string
+      example: 1331
     portfolio_query_param:
       name: portfolio
       in: query
@@ -720,11 +742,12 @@ components:
         type: string
       example: 12345
     workspace_membership_path_gid:
-      name: workspace_membership_gid
+      name: workspace_membership_path_gid
       in: path
       required: true
       schema:
         type: string
+      example: 12345
   responses:
     GenericErrorResponse:
       description: >-
@@ -3257,8 +3280,6 @@ paths:
         example: 12357
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     get:
       summary: Get an attachment
       description: Get the full record for a single attachment.
@@ -3328,7 +3349,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
     post:
       summary: Upload an attachment
@@ -3345,27 +3366,6 @@ paths:
 
         This endpoint expects a multipart/form-data encoded request containing
         the full contents of the file to be uploaded.
-
-        Below is an example of what a well formed multipart/form-data encoded
-        request might look like.
-
-        ```
-        Authorization: Basic <BASE64_ENCODED_API_KEY>
-        Content-Type: multipart/form-data; boundary=<UNIQUE_BOUNDARY>
-        User-Agent: Java/1.7.0_76
-        Host: localhost
-        Accept: */*
-        Connection: keep-alive
-        Content-Length: 141
-
-        --<UNIQUE_BOUNDARY>
-        Content-Disposition: form-data; name="file"; filename="example.txt"
-        Content-Type: text/plain
-
-        <RAW_FILE_DATA>
-
-        --<UNIQUE_BOUNDARY>--
-        ```
 
         Requests made should follow the HTTP/1.1 specification that line
         terminators are of the form `CRLF` or `\r\n` outlined
@@ -3409,14 +3409,12 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /batch:
     parameters:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     post:
       summary: Submit parallel requests
       description: |-
@@ -3455,52 +3453,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
-          $ref: '#/components/responses/InternalServerError'
-  /projects/{project-id}/custom_field_settings:
-    parameters:
-      - name: project-id
-        in: path
-        required: true
-        description: >-
-          The ID of the project for which to list custom field settings.
-        schema:
-          type: integer
-        example: 13579
-      - $ref: '#/components/parameters/pretty'
-      - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
-    get:
-      summary: Query for all of the custom fields settings on a project
-      description: >-
-        Returns a list of all of the custom fields settings on a project, in
-        compact form. Note that, as in all queries to collections which return
-        compact representation, `opt_fields` can be used to
-        include more data than is returned in the compact representation. See the
-        [getting started guide on input/output
-        options](https://asana.com/developers/documentation/getting-started/input-output-options)
-        for more information.
-      tags:
-        - Custom Field Settings
-      operationId: getCustomFieldSettingsForProject
-      responses:
-        200:
-          description: >-
-            Successfully retrieved custom field settings objects for a project.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CustomFieldSettingArray'
-        400:
-          $ref: '#/components/responses/BadRequest'
-        401:
-          $ref: '#/components/responses/Unauthorized'
-        403:
-          $ref: '#/components/responses/Forbidden'
-        404:
-          $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /custom_fields:
     parameters:
@@ -3556,7 +3509,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /custom_fields/{custom_field_gid}:
     parameters:
@@ -3570,8 +3523,6 @@ paths:
         example: 124578
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     get:
       summary: Get a custom field definition
       description: |-
@@ -3603,7 +3554,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
     put:
       summary: Update a custom field
@@ -3651,7 +3602,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
     delete:
       summary: Delete a custom field
@@ -3680,7 +3631,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /custom_fields/{custom_field_gid}/enum_options:
     parameters:
@@ -3755,7 +3706,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /custom_fields/{custom_field_gid}/enum_options/insert:
     parameters:
@@ -3769,8 +3720,6 @@ paths:
         example: 124578
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     post:
       summary: Reorder a custom field's enum
       description: >-
@@ -3829,7 +3778,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /enum_options/{enum_option_gid}:
     parameters:
@@ -3843,8 +3792,6 @@ paths:
         example: 124578
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     put:
       summary: Update an enum option
       description: >-
@@ -3882,7 +3829,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /workspaces/{workspace_gid}/custom_fields:
     parameters:
@@ -3922,7 +3869,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /projects/{project_gid}/custom_field_settings:
     parameters:
@@ -3967,7 +3914,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /portfolios/{portfolio_gid}/custom_field_settings:
     parameters:
@@ -4007,7 +3954,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /events:
     parameters:
@@ -4037,8 +3984,6 @@ paths:
         example: de4774f6915eae04714ca93bb2f5ee81
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     get:
       summary: Get events on a resource
       description: |-
@@ -4065,15 +4010,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /jobs/{job_gid}:
     parameters:
       - $ref: '#/components/parameters/job_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     get:
       summary: Get a job by id
       description: |-
@@ -4096,7 +4039,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /organization_exports:
     parameters:
@@ -4140,7 +4083,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /organization_exports/{organization_export_gid}:
     parameters:
@@ -4153,8 +4096,6 @@ paths:
         example: 133549
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     get:
       summary: Get details on an org export request
       description: >-
@@ -4177,7 +4118,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /portfolio_memberships:
     parameters:
@@ -4211,7 +4152,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /portfolios/{portfolio_gid}/portfolio_memberships:
     parameters:
@@ -4244,15 +4185,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
-  /portfolio_memberships/{portfolio_gid}:
+  /portfolio_memberships/{portfolio_membership_gid}:
     parameters:
-      - $ref: '#/components/parameters/portfolio_path_gid'
+      - $ref: '#/components/parameters/portfolio_membership_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     get:
       summary: Get a portfolio membership
       description: >-
@@ -4276,14 +4215,12 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /portfolios:
     parameters:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     get:
       summary: Get a list of the portfolios
       description: >-
@@ -4293,6 +4230,8 @@ paths:
         - Portfolios
       operationId: getPortfolios
       parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
         - name: workspace
           in: query
           description: >-
@@ -4322,7 +4261,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
     post:
       summary: Create a new portfolio
@@ -4359,15 +4298,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /portfolios/{portfolio_gid}:
     parameters:
       - $ref: '#/components/parameters/portfolio_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     get:
       summary: Get a portfolio
       description: Returns the complete portfolio record for a single portfolio.
@@ -4389,7 +4326,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
     put:
       summary: Update a portfolio
@@ -4424,7 +4361,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
     delete:
       summary: Delete a portfolio
@@ -4451,7 +4388,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /portfolios/{portfolio_gid}/items:
     parameters:
@@ -4483,15 +4420,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /portfolios/{portfolio_gid}/addItem:
     parameters:
       - $ref: '#/components/parameters/portfolio_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
       - name: item
         in: query
         description: >-
@@ -4547,15 +4482,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /portfolios/{portfolio_gid}/removeItem:
     parameters:
       - $ref: '#/components/parameters/portfolio_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
       - name: item
         in: query
         description: >-
@@ -4589,15 +4522,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /portfolios/{portfolio_gid}/addMembers:
     parameters:
       - $ref: '#/components/parameters/portfolio_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
       - name: members
         in: query
         description: >-
@@ -4630,15 +4561,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /portfolios/{portfolio_gid}/removeMembers:
     parameters:
       - $ref: '#/components/parameters/portfolio_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
       - name: members
         in: query
         description: >-
@@ -4671,7 +4600,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /portfolios/{portfolio_gid}/addCustomFieldSetting:
     parameters:
@@ -4734,7 +4663,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /portfolios/{portfolio_gid}/removeCustomFieldSetting:
     parameters:
@@ -4770,7 +4699,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /projects/{project_gid}/project_memberships:
     parameters:
@@ -4803,15 +4732,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
-  /project_memberships/{project_gid}:
+  /project_memberships/{project_membership_gid}:
     parameters:
-      - $ref: '#/components/parameters/project_path_gid'
+      - $ref: '#/components/parameters/project_membership_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     get:
       summary: Get a project membership
       description: >-
@@ -4835,25 +4762,24 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /projects/{project_gid}/project_statuses:
     parameters:
-      - name: project_gid
-        in: path
-        required: true
-        description: The project to get statuses from.
-        schema:
-          type: integer
-        example: 321654
+      - $ref: '#/components/parameters/project_path_gid'
     get:
       summary: Get a project's statuses
       description: >-
         Returns the compact project status update records for all updates on the project.
       tags:
-        - Projects
         - Project Statuses
       operationId: getProductStatuses
+      parameters:
+        - $ref: '#/components/parameters/project_path_gid'
+        - $ref: '#/components/parameters/pretty'
+        - $ref: '#/components/parameters/fields'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
       responses:
         200:
           description: Successfully retrieved the specified project's status updates.
@@ -4869,7 +4795,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
     post:
       summary: Create a project status
@@ -4878,7 +4804,6 @@ paths:
 
         Returns the full record of the newly created project status update.
       tags:
-        - Projects
         - Project Statuses
       operationId: createProjectStatus
       requestBody:
@@ -4922,24 +4847,11 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /project_statuses/{project_status_gid}:
     parameters:
-      - name: project_gid
-        in: path
-        required: true
-        description: The project to get statuses from.
-        schema:
-          type: integer
-        example: 321654
-      - name: project_status_gid
-        in: path
-        required: true
-        description: The project status update to get.
-        schema:
-          type: integer
-        example: 321654
+      - $ref: '#/components/parameters/project_status_path_gid'
     get:
       summary: Get a project status
       description: >-
@@ -4962,7 +4874,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
     delete:
       summary: Delete a project status
@@ -4988,14 +4900,12 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /projects:
     parameters:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     get:
       summary: Get a set of projects
       description: >-
@@ -5006,6 +4916,8 @@ paths:
         - Projects
       operationId: getProjects
       parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
         - name: workspace
           in: query
           description: >-
@@ -5035,7 +4947,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
     post:
       summary: Create a new project
@@ -5099,15 +5011,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /projects/{project_gid}:
     parameters:
       - $ref: '#/components/parameters/project_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     get:
       summary: Get a project
       description: Returns the complete project record for a single project.
@@ -5129,7 +5039,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
     put:
       summary: Update a project
@@ -5168,7 +5078,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
     delete:
       summary: Delete a project
@@ -5195,15 +5105,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /projects/{project_gid}/duplicate:
     parameters:
       - $ref: '#/components/parameters/project_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     post:
       summary: Duplicate a project
       description: >-
@@ -5301,7 +5209,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /projects/{project_gid}/tasks:
     parameters:
@@ -5334,7 +5242,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /projects/{project_gid}/addCustomFieldSetting:
     parameters:
@@ -5398,7 +5306,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /projects/{project_gid}/removeCustomFieldSetting:
     parameters:
@@ -5434,15 +5342,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /teams/{team_gid}/projects:
     parameters:
       - $ref: '#/components/parameters/team_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     get:
       summary: Get a team's projects
       description: >-
@@ -5451,6 +5357,8 @@ paths:
         - Projects
       operationId: getProjectsInTeam
       parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/archived_query_param'
       responses:
         200:
@@ -5467,7 +5375,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
     post:
       summary: Create a project in a team
@@ -5500,15 +5408,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /workspaces/{workspace_gid}/projects:
     parameters:
       - $ref: '#/components/parameters/workspace_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     get:
       summary: Get all projects in a workspace
       description: >-
@@ -5517,6 +5423,8 @@ paths:
         - Projects
       operationId: getProjectsInWorkspace
       parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/archived_query_param'
       responses:
         200:
@@ -5533,7 +5441,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
     post:
       summary: Create a project in a workspace
@@ -5570,15 +5478,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /projects/{project_gid}/sections:
     parameters:
       - $ref: '#/components/parameters/project_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     get:
       summary: Get all sections in a project
       description: >-
@@ -5586,6 +5492,9 @@ paths:
       tags:
         - Sections
       operationId: getSectionsInProject
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
       responses:
         200:
           description: Successfully retrieved sections in project.
@@ -5601,7 +5510,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
     post:
       summary: Creates a section in a project
@@ -5648,15 +5557,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /sections/{section_gid}:
     parameters:
       - $ref: '#/components/parameters/section_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     get:
       summary: Get a section
       description: >-
@@ -5679,7 +5586,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
     put:
       summary: Update a section
@@ -5719,7 +5626,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
     delete:
       summary: Delete a section
@@ -5750,11 +5657,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /sections/{section_gid}/addTask:
     parameters:
       - $ref: '#/components/parameters/section_path_gid'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
     post:
       summary: Add task to section
       description: |-
@@ -5811,15 +5720,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /projects/{project_gid}/sections/insert:
     parameters:
       - $ref: '#/components/parameters/project_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     post:
       summary: Move sections
       description: |-
@@ -5883,7 +5790,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /tasks/{task_gid}/stories:
     parameters:
@@ -5896,8 +5803,6 @@ paths:
         example: 321654
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     get:
       summary: Get a task's stories
       description: >-
@@ -5906,6 +5811,9 @@ paths:
         - Stories
         - Tasks
       operationId: getTaskStories
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
       responses:
         200:
           description: Successfully retrieved the specified task's stories.
@@ -5921,7 +5829,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
     post:
       summary: Create a comment on a task
@@ -5969,7 +5877,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /stories/{story_gid}:
     parameters:
@@ -5982,14 +5890,15 @@ paths:
         example: 1234
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     get:
       summary: Get a story
       description: Returns the full record for a single story.
       tags:
         - Stories
       operationId: getStory
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
       responses:
         200:
           description: Successfully retrieved the specified story.
@@ -6005,7 +5914,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
     put:
       summary: Update a story
@@ -6039,7 +5948,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
     delete:
       summary: Delete a story
@@ -6065,14 +5974,12 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /tags:
     parameters:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     get:
       summary: Get a set of tags
       description: >-
@@ -6082,6 +5989,8 @@ paths:
         - Tags
       operationId: queryTags
       parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
         - name: workspace
           in: query
           description: >-
@@ -6112,7 +6021,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
     post:
       summary: Create a tag
@@ -6150,7 +6059,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /tags/{tag_gid}:
     parameters:
@@ -6180,7 +6089,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
     put:
       summary: Update a tag
@@ -6211,7 +6120,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /tags/{tag_gid}/tasks:
     parameters:
@@ -6245,7 +6154,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /workspaces/{workspace_gid}/tags:
     parameters:
@@ -6258,8 +6167,6 @@ paths:
         example: 1331
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     get:
       summary: Get tags in a workspace
       description: >-
@@ -6268,6 +6175,9 @@ paths:
       tags:
         - Tags
       operationId: queryAllTagsInWorkspace
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
       responses:
         200:
           description: Successfully retrieved the specified set of tags.
@@ -6283,7 +6193,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
     post:
       summary: Create a tag in a workspace
@@ -6321,14 +6231,12 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /tasks:
     parameters:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     get:
       summary: Get a set of tasks
       description: >-
@@ -6340,6 +6248,8 @@ paths:
         - Tasks
       operationId: queryTasks
       parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
         - name: assignee
           in: query
           description: >-
@@ -6427,7 +6337,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
     post:
       summary: Create a task
@@ -6465,15 +6375,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /tasks/{task_gid}:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     get:
       summary: Get a task
       description: Returns the complete task record for a single task.
@@ -6495,7 +6403,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
     put:
       summary: Update a task
@@ -6534,7 +6442,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
     delete:
       summary: Delete a task
@@ -6563,15 +6471,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /tasks/{task_gid}/duplicate:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     post:
       summary: Duplicate a task
       description: >-
@@ -6627,15 +6533,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /tasks/{task_gid}/subtasks:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     get:
       summary: Get a subtask
       description: >-
@@ -6643,6 +6547,9 @@ paths:
       tags:
         - Tasks
       operationId: getSubTasks
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
       responses:
         200:
           description: Successfully retrieved the specified task's subtasks.
@@ -6658,7 +6565,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
     post:
       summary: Create a subtask
@@ -6690,15 +6597,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /tasks/{task_gid}/setParent:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     post:
       summary: Change a task's parent
       description: >-
@@ -6755,7 +6660,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /tasks/{task_gid}/dependencies:
     parameters:
@@ -6786,15 +6691,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /tasks/{task_gid}/addDependencies:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     post:
       summary: Set a task's dependencies
       description: >-
@@ -6825,15 +6728,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /tasks/{task_gid}/removeDependencies:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     post:
       summary: Unlinks dependencies from a task
       description: Unlinks a set of dependencies from this task.
@@ -6863,7 +6764,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /tasks/{task_gid}/dependents:
     parameters:
@@ -6895,15 +6796,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /tasks/{task_gid}/addDependents:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     post:
       summary: Set a task's dependents
       description: >-
@@ -6935,15 +6834,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /tasks/{task_gid}/removeDependents:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     post:
       summary: Unlink dependents from a task
       description: >-
@@ -6974,7 +6871,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /tasks/{task_gid}/projects:
     parameters:
@@ -7006,15 +6903,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /tasks/{task_gid}/addProject:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     post:
       summary: Add a project to a task
       description: |-
@@ -7089,15 +6984,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /tasks/{task_gid}/removeProject:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     post:
       summary: Remove a project a task
       description: |-
@@ -7141,7 +7034,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /tasks/{task_gid}/tags:
     parameters:
@@ -7173,15 +7066,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /tasks/{task_gid}/addTag:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     post:
       summary: Add a tag to a task
       description: >-
@@ -7222,15 +7113,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /tasks/{task_gid}/removeTag:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     post:
       summary: Remove a tag from a task
       description: >-
@@ -7271,15 +7160,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /tasks/{task_gid}/addFollowers:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     post:
       summary: Add followers to a task
       description: >-
@@ -7329,15 +7216,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /tasks/{task_gid}/removeFollowers:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     post:
       summary: Remove followers from a task
       description: >-
@@ -7383,7 +7268,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /sections/{section_gid}/tasks:
     parameters:
@@ -7417,15 +7302,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /workspaces/{workspace_gid}/tasks/search:
     parameters:
       - $ref: '#/components/parameters/workspace_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
       - name: text
         description: >-
           Performs full-text search on both task name and description
@@ -7843,7 +7726,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /teams/{team_gid}:
     parameters:
@@ -7879,7 +7762,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /organizations/{organization_gid}/teams:
     parameters:
@@ -7919,10 +7802,14 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /users/{user_gid}/teams:
     parameters:
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
       - name: user_gid
         in: path
         description: An identifier for the user. Can be one of an email address, the
@@ -7951,10 +7838,6 @@ paths:
         schema:
           type: integer
         example: 1331
-      - $ref: '#/components/parameters/pretty'
-      - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     get:
       summary: Get a user's teams
       description: >-
@@ -7979,7 +7862,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /teams/{team_gid}/users:
     parameters:
@@ -8021,7 +7904,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /teams/{team_gid}/addUser:
     parameters:
@@ -8037,8 +7920,6 @@ paths:
             value: 14916
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     post:
       summary: Add a user to a team
       description: >-
@@ -8080,7 +7961,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /teams/{team_gid}/removeUser:
     parameters:
@@ -8096,8 +7977,6 @@ paths:
             value: 14916
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     post:
       summary: Remove a user from a team
       description: >-
@@ -8138,7 +8017,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /workspaces/{workspace_gid}/typeahead:
     parameters:
@@ -8197,8 +8076,6 @@ paths:
         example: 20
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     get:
       summary: Retrieve objects via typeahead
       description: |-
@@ -8239,15 +8116,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /user_task_list/{user_task_list_gid}:
     parameters:
       - $ref: '#/components/parameters/user_task_list_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     get:
       summary: Get a user task list
       description: >-
@@ -8271,15 +8146,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /users/{user_gid}/user_task_list:
     parameters:
       - $ref: '#/components/parameters/user_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     get:
       summary: Get a user's task list
       description: >-
@@ -8303,7 +8176,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /user_task_lists/{user_task_list_gid}/tasks:
     parameters:
@@ -8363,7 +8236,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /users:
     parameters:
@@ -8405,15 +8278,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /users/{user_gid}:
     parameters:
       - $ref: '#/components/parameters/user_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     get:
       summary: Get a user
       description: >-
@@ -8438,15 +8309,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /users/{user_gid}/favorites:
     parameters:
       - $ref: '#/components/parameters/user_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
       - name: resource_type
         in: query
         required: true
@@ -8493,7 +8362,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /workspaces/{workspace_gid}/users:
     parameters:
@@ -8528,14 +8397,12 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /webhooks:
     parameters:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     get:
       summary: >-
         Get a set of webhooks
@@ -8546,6 +8413,8 @@ paths:
         - Webhooks
       operationId: getWebhooks
       parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
         - name: workspace
           in: query
           required: true
@@ -8575,7 +8444,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
     post:
       summary: >-
@@ -8675,7 +8544,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /webhooks/{webhook_gid}:
     parameters:
@@ -8689,8 +8558,6 @@ paths:
           example: 95784
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     get:
       summary: >-
         Get a webhook
@@ -8714,7 +8581,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
     delete:
       summary: Remove a webhook
@@ -8740,7 +8607,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /users/{user_gid}/workspace_memberships:
     parameters:
@@ -8772,7 +8639,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /workspaces/{workspace_gid}/workspace_memberships:
     parameters:
@@ -8799,11 +8666,9 @@ paths:
                 $ref: '#/components/schemas/WorkspaceMembershipArray'
   /workspace_memberships/{workspace_membership_gid}:
     parameters:
-      - $ref: '#/components/parameters/workspace_path_gid'
+      - $ref: '#/components/parameters/workspace_membership_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     get:
       summary: Get a workspace membership
       description: >-
@@ -8827,7 +8692,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /workspaces:
     parameters:
@@ -8858,15 +8723,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /workspaces/{workspace_gid}:
     parameters:
       - $ref: '#/components/parameters/workspace_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     get:
       summary: Get a workspace
       description: >-
@@ -8889,7 +8752,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
     put:
       summary: Update a workspace
@@ -8927,15 +8790,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /workspaces/{workspace_gid}/addUser:
     parameters:
       - $ref: '#/components/parameters/workspace_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     post:
       summary: Add a user to a workspace or organization
       description: >-
@@ -8984,15 +8845,13 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
   /workspaces/{workspace_gid}/removeUser:
     parameters:
       - $ref: '#/components/parameters/workspace_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
     post:
       summary: Remove a user from a workspace or organization
       description: >-
@@ -9043,5 +8902,5 @@ paths:
           $ref: '#/components/responses/Forbidden'
         404:
           $ref: '#/components/responses/NotFound'
-        5XX:
+        500:
           $ref: '#/components/responses/InternalServerError'
