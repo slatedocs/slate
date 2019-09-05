@@ -852,18 +852,9 @@ components:
         A generic Asana Object, containing a globally unique identifier.
       type: object
       properties:
-        id:
-          description: >
-            Globally unique ID of the attachment, as an integer. *Note: This
-            field is under active migration to the gid field—please see our blog
-            post for more information.*
-          type: integer
-          format: int64
-          readOnly: true
-          example: 12345
         gid:
           description: >-
-            Globally unique ID of the object, as a string.
+            Globally unique identifier of the object, as a string.
           type: string
           readOnly: true
           example: '12345'
@@ -1047,7 +1038,7 @@ components:
                 type: string
               example:
                 - name
-                - id
+                - gid
                 - notes
                 - completed
             expand:
@@ -1084,7 +1075,7 @@ components:
           type: object
           example:
             data:
-              id: 1967
+              gid: 1967
               completed: false
               name: Hello, world!
               notes: How are you today?
@@ -1266,7 +1257,7 @@ components:
           type: object
           properties:
             dependencies:
-              description: An array of task IDs that a task should depend on.
+              description: An array of task gids that a task should depend on.
               type: array
               items:
                 type: integer
@@ -1283,7 +1274,8 @@ components:
           type: object
           properties:
             dependents:
-              description: An array of task IDs that are dependents of the given task.
+              description: An array of task gids that are dependents of the given
+                task.
               type: array
               items:
                 type: integer
@@ -1446,7 +1438,7 @@ components:
           type: object
           readOnly: true
           properties:
-            id:
+            gid:
               type: integer
               example: 12345
             name:
@@ -1563,9 +1555,6 @@ components:
                 only be specified at create time.
               type: object
               properties:
-                id:
-                  type: integer
-                  example: 14916
                 gid:
                   type: string
                   example: '14916'
@@ -1800,7 +1789,7 @@ components:
                 color: green
                 text: Everything is great
                 author:
-                  id: 12345
+                  gid: 12345
                   name: Greg Bizarro
             custom_fields:
               description: Array of Custom Fields.
@@ -2370,7 +2359,7 @@ components:
                 task.
               readOnly: true
               properties:
-                id:
+                gid:
                   type: integer
                   example: 1234
                 name:
@@ -2531,10 +2520,10 @@ components:
                 particular custom field. For example, these custom field values
                 will contain an `enum_value` property for custom fields of type
                 `enum`, a `string_value` property for custom fields of type
-                `string`, and so on. Please note that the `id` returned on each
-                custom field value *is identical* to the `id` of the custom field,
+                `string`, and so on. Please note that the `gid` returned on each
+                custom field value *is identical* to the `gid` of the custom field,
                 which allows referencing the custom field metadata through the
-                `/custom_fields/custom_field-id` endpoint.
+                `/custom_fields/custom_field-gid` endpoint.
               type: array
               items:
                 $ref: '#/components/schemas/CustomField'
@@ -2544,23 +2533,18 @@ components:
                 [Opt
                 In](#input-output-options).
                 Array of resources referencing tasks that this task depends on.
-                The objects contain only the ID of the dependency.
+                The objects contain only the gid of the dependency.
               type: array
               items:
                 type: object
                 properties:
-                  id:
-                    type: integer
-                    example: 1234
                   gid:
                     type: string
                     example: '1234'
               readOnly: true
               example:
-                - id: 1234
-                  gid: '1234'
-                - id: 4321
-                  gid: '4321'
+                - gid: '1234'
+                - gid: '4321'
             dependents:
               description: >-
                 [Opt
@@ -2571,18 +2555,13 @@ components:
               items:
                 type: object
                 properties:
-                  id:
-                    type: integer
-                    example: 1234
                   gid:
                     type: string
                     example: '1234'
               readOnly: true
               example:
-                - id: 1234
-                  gid: '1234'
-                - id: 4321
-                  gid: '4321'
+                - gid: '1234'
+                - gid: '4321'
             due_at:
               description: >-
                 Date and time on which this task is due, or null if the task has
@@ -2608,18 +2587,15 @@ components:
                 (#input-output-options).
 
                 The external field allows you to store app-specific metadata on
-                tasks, including an id that can be used to retrieve tasks and a
+                tasks, including a gid that can be used to retrieve tasks and a
                 data blob that can store app-specific character strings. Note that
                 you will need to authenticate with Oauth to access or modify this
-                data. Once an external id is set, you can use the notation
-                `external:custom_id` to reference your object anywhere in the API
-                where you may use the original object id. See the page on Custom
+                data. Once an external gid is set, you can use the notation
+                `external:custom_gid` to reference your object anywhere in the API
+                where you may use the original object gid. See the page on Custom
                 External Data for more details.
               type: object
               properties:
-                id:
-                  type: integer
-                  example: 1234
                 gid:
                   type: string
                   example: '1234'
@@ -2627,7 +2603,7 @@ components:
                   type: string
                   example: A blob of information.
               example:
-                id: my_id
+                gid: my_gid
                 data: A blob of information
             followers:
               description: Array of users following this task.
@@ -2802,14 +2778,13 @@ components:
               description: >-
                 *Create-only*. Array of tags associated with this task. This
                 property may be specified on creation using just an array of tag
-                IDs.  In order to change tags on an existing task use `addTag` and
+                gids.  In order to change tags on an existing task use `addTag` and
                 `removeTag`.
               type: array
               items:
                 $ref: '#/components/schemas/Tag'
               example:
-                - id: 59746
-                  gid: '59746'
+                - gid: '59746'
                   name: Grade A
             workspace:
               allOf:
@@ -2975,7 +2950,7 @@ components:
           items:
             $ref: '#/components/schemas/User'
     UserIdObject:
-      description: A user ID object for specification with the addUser/removeUser
+      description: A user identification object for specification with the addUser/removeUser
         endpoints.
       type: object
       properties:
@@ -2984,7 +2959,6 @@ components:
           properties:
             user:
               type: string
-              format: email
               example: 12345
     UserTaskList:
       allOf:
@@ -3038,7 +3012,7 @@ components:
 
 
             *Note: While Webhooks send arrays of Event objects to their target,
-            the Event objects themselves contain *only IDs*, rather than the
+            the Event objects themselves contain *only gids*, rather than the
             actual resource they are referencing. Webhooks themselves contain only
             the information necessary to deliver the events to the desired target
             as they are generated.*
@@ -3099,7 +3073,7 @@ components:
           example: '2012-02-22T02:06:58.147Z'
         parent:
           description: >-
-            For added/removed events, the parent ID that resource was added to or
+            For added/removed events, the parent gid that resource was added to or
             removed from. The parent will be `null` for other event types.
           type: integer
           readOnly: true
@@ -3107,7 +3081,7 @@ components:
           example: 12345
         resource:
           description: |-
-            The resource ID the event occurred on.
+            The resource gid the event occurred on.
 
             *Note: The resource that triggered the event may be different from
             the one that the events were requested for. For example, a
@@ -3127,7 +3101,7 @@ components:
           example: task
         user:
           description: |-
-            The ID of the user who triggered the event.
+            The gid of the user who triggered the event.
 
             *Note: The event may be triggered by a different user than the
             subscriber. For example, if user A subscribes to a task and user B
@@ -3445,6 +3419,91 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BatchResultArray'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /projects/{project_gid}/custom_field_settings:
+    parameters:
+      - name: project_gid
+        in: path
+        required: true
+        description: >-
+          The ID of the project for which to list custom field settings.
+        schema:
+          type: string
+        example: '13579'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+    get:
+      summary: Get a project's custom fields
+      description: >-
+        Returns a list of all of the custom fields settings on a project, in
+        compact form. Note that, as in all queries to collections which return
+        compact representation, `opt_fields` can be used to
+        include more data than is returned in the compact representation. See the
+        [getting started guide on input/output
+        options](https://asana.com/developers/documentation/getting-started/input-output-options)
+        for more information.
+      tags:
+        - Custom Field Settings
+      operationId: getCustomFieldSettingsForProject
+      responses:
+        200:
+          description: >-
+            Successfully retrieved custom field settings objects for a project.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomFieldSettingArray'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /portfolios/{portfolio_gid}/custom_field_settings:
+    parameters:
+      - name: portfolio_gid
+        in: path
+        required: true
+        description: >-
+          The ID of the portfolio for which to list custom field settings.
+        schema:
+          type: string
+        example: '13579'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+    get:
+      summary: Get a portfolio's custom fields
+      description: >-
+        Returns a list of all of the custom fields settings on a portfolio, in
+        compact form.
+      tags:
+        - Custom Field Settings
+      operationId: getCustomFieldSettingsForPortfolio
+      responses:
+        200:
+          description: >-
+            Successfully retrieved custom field settings objects for a portfolio.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomFieldSettingArray'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -3861,91 +3920,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CustomFieldArray'
-        400:
-          $ref: '#/components/responses/BadRequest'
-        401:
-          $ref: '#/components/responses/Unauthorized'
-        403:
-          $ref: '#/components/responses/Forbidden'
-        404:
-          $ref: '#/components/responses/NotFound'
-        500:
-          $ref: '#/components/responses/InternalServerError'
-  /projects/{project_gid}/custom_field_settings:
-    parameters:
-      - name: project_gid
-        in: path
-        required: true
-        description: >-
-          The ID of the project for which to list custom field settings.
-        schema:
-          type: string
-        example: '13579'
-      - $ref: '#/components/parameters/pretty'
-      - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
-    get:
-      summary: Get a project's custom fields
-      description: >-
-        Returns a list of all of the custom fields settings on a project, in
-        compact form. Note that, as in all queries to collections which return
-        compact representation, `opt_fields` can be used to
-        include more data than is returned in the compact representation. See the
-        [getting started guide on input/output
-        options](https://asana.com/developers/documentation/getting-started/input-output-options)
-        for more information.
-      tags:
-        - Custom Field Settings
-      operationId: getCustomFieldSettingsForProject
-      responses:
-        200:
-          description: >-
-            Successfully retrieved custom field settings objects for a project.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CustomFieldSettingArray'
-        400:
-          $ref: '#/components/responses/BadRequest'
-        401:
-          $ref: '#/components/responses/Unauthorized'
-        403:
-          $ref: '#/components/responses/Forbidden'
-        404:
-          $ref: '#/components/responses/NotFound'
-        500:
-          $ref: '#/components/responses/InternalServerError'
-  /portfolios/{portfolio_gid}/custom_field_settings:
-    parameters:
-      - name: portfolio_gid
-        in: path
-        required: true
-        description: >-
-          The ID of the portfolio for which to list custom field settings.
-        schema:
-          type: string
-        example: '13579'
-      - $ref: '#/components/parameters/pretty'
-      - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
-    get:
-      summary: Get a portfolio's custom fields
-      description: >-
-        Returns a list of all of the custom fields settings on a portfolio, in
-        compact form.
-      tags:
-        - Custom Field Settings
-      operationId: getCustomFieldSettingsForPortfolio
-      responses:
-        200:
-          description: >-
-            Successfully retrieved custom field settings objects for a portfolio.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CustomFieldSettingArray'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -8093,7 +8067,7 @@ paths:
         cannot be paginated.
 
         Queries return a compact representation of each object which is typically
-        the id and name fields. Interested in a specific set of fields or all of
+        the gid and name fields. Interested in a specific set of fields or all of
         the fields?! Of course you are. Use field selectors to manipulate what
         data is included in a response.
       tags:
