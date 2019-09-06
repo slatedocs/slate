@@ -9,7 +9,7 @@ We're transparent about our uptime and service issues. If you appear to be exper
 
 Don't hesitate to contact us at [support@scoutapm.com](mailto:support@scoutapm.com) with any issues. We typically respond in a couple of hours during the business day.
 
-Or, join us on [Slack](http://slack.scoutapm.com/). We are often, but not always, in Slack. 
+Or, join us on [Slack](http://slack.scoutapm.com/). We are often, but not always, in Slack.
 
 # Reference
 
@@ -81,6 +81,48 @@ With a few extra steps, you can grant Scout read-only access. Here's how:
 * Create a team in your Github organization with read-only access to the respective application repositories.
 * Create a new Github user and make them a member of that team.
 * Authenticate with this user.
+
+## AutoInstruments FAQ
+
+### What files within a Rails app does AutoInstruments attempt to instrument?
+
+AutoInstruments applies instrumentation to file names that match `RAILS_ROOT/app/controllers/*_controller.rb`.
+
+### Why is Autoinstruments limited to controllers?
+
+Adding instrumentation induces a small amount of overhead to each instrumented code expression. If we added instrumentation to every line of code within a Rails app, the overhead would be too significant on a production deployment. By limiting Autoinstruments to controllers, we're striking a balance between visibility and overhead.
+
+### What are some examples of code expressions that are instrumented?
+
+Below are some examples of how autoinstrumented spans appear in traces.
+
+```ruby
+# RAILS_ROOT/app/controllers/users_controller.rb
+# This file will be instrumented as its name matches `app/controllers/*_controller.rb`.
+class UsersController < ApplicationController
+
+  def index
+    fetch_users # <- Appears as `fetch_users` in traces.
+    if rss? || xml? # <- This is broken into 2 spans within traces: (`rss?` and `xml?`)
+      formatter = proc do |row| # <- The entire block will appear under "proc do |row|..."
+        row.to_json
+      end
+      return render_xml # <- Appears as `return render_xml`
+    end
+  end
+
+  private
+
+  def fetch_users
+    return unless authorized? # <- Appears as `return unless authorized?` in traces.
+    source ||= params[:source].present? # <- Appears as `params[:source].present?`
+    @users = User.all(limit: 10) # <- ActiveRecord queries are instrumented w/our AR instrumentation
+  end
+```
+
+### Is every method call to an autoinstrumented code expression recorded?
+
+Prior to storing a span, our agent checks if the span's total execution time is at least 5 ms. If the time spent is under this threshold, the span is thrown away and the time is allocated to the parent span. This decreases the amount of noise that appears in traces (spans consuming < 5ms are unlikely optimization candidates) and decreases the memory usage of the agent. Only autoinstrumented spans are thrown away - spans that are explicity instrumented are retained.
 
 ## ScoutProf FAQ
 

@@ -136,6 +136,8 @@ AutoInstruments is a BETA feature and available to apps using Ruby 2.3.1+. To en
   </tbody>
 </table>
 
+A [detailed AutoInstruments FAQ](#autoinstruments-faq) is available in our reference area.
+
 ## ScoutProf
 
 <aside class="notice">ScoutProf will be deprecated and succeeded by <a href="#autoinstruments">AutoInstruments</a>.</aside>
