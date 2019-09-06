@@ -1448,7 +1448,7 @@ OBJECT_MAP_ID | ID of the object map being deleted
             "id": 1,
             "name": "these591",
             "quantity": "9.00000",
-            "unit_cost": "826.33200000",
+            "unit_cost": "826.33",
             "amount": "7436.99",
             "currency": {
                 "id": 1,
@@ -1569,6 +1569,11 @@ OBJECT_MAP_ID | ID of the object map being deleted
             "external_id": null,
             "custom_fields": {}
         },
+        "subtotal": "319.96",
+        "freight": "0.00",
+        "other": "0.00",
+        "discount": "0.00",
+        "tax": "38.40",
         "memo": "",
         "external_id": "",
         "custom_fields": {}
