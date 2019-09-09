@@ -475,6 +475,16 @@ The following configuration settings are available:
        </td>
       <td>No</td>
     </tr>
+    <tr>
+      <th id="auto_instruments_config">auto_instruments</th>
+      <td>
+        Instrument custom code with <a href="#autoinstruments">AutoInstruments</a>.
+      </td>
+       <td>
+         <code>false</code>
+       </td>
+      <td>No</td>
+    </tr>
   </tbody>
 </table>
 
@@ -582,7 +592,7 @@ RequestHeader set X-Request-Start "%t"
 
 If you are using Apache, you may observe a spike in queue time within Scout for actions that process large file uploads. Apache adds the `X-Request-Start` header as soon as the request hits Apache. So, all of the time spent uploading a file will be reported as queue time.
 
-This is different from Nginx, which will first buffer the file to a tmp file on disk, then once the upload is complete, add headers to the request. 
+This is different from Nginx, which will first buffer the file to a tmp file on disk, then once the upload is complete, add headers to the request.
 
 ### HAProxy
 
@@ -1142,9 +1152,9 @@ You can ignore all background jobs by setting `enable_background_jobs: false` in
 
 ## Overhead Considerations
 
-Scout is built for production monitoring and is engineered to add minimal overhead. We test against several open-source benchmarks on significant releases to prevent releasing performance regressions. 
+Scout is built for production monitoring and is engineered to add minimal overhead. We test against several open-source benchmarks on significant releases to prevent releasing performance regressions.
 
-There are a couple of scenarios worth mentioning where more overhead than expected may be observed. 
+There are a couple of scenarios worth mentioning where more overhead than expected may be observed.
 
 ### Enabling the detailed_middleware option
 
