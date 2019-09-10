@@ -45,7 +45,7 @@ Scout supports Laravel 5.8+.
       <td style="padding-top: 15px">
         <p>Install the <code>scoutapp/scout-apm-laravel</code> package:</p>
 <pre style="width:500px">
-composer install scoutapp/scout-apm-laravel
+composer require scoutapp/scout-apm-laravel
 </pre>
 <p>
 Note that the <code>scout-apm-php</code> package will automatically be included. It does
