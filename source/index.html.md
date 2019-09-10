@@ -224,6 +224,48 @@ This event is triggered once the user provides its email for the first time usin
 
 # Listing
 ## Webhook Subscriptions
+### Subscribing
+```json
+// BODY EXAMPLE
+{
+    "listing_id": 'listing1'
+    "events": ["listing_changed"],
+    "delivery_url": "https://api.your_url.com/nestready/events",
+    "metadata": "listing_id_in_your_system"
+}
+```
+Subscribe to events for the given listing.
+
+Everytime you subscribe to an event, we will send you a notification with
+the just created webhook information to the defined `delivery_url`.
+
+#### HTTP Request
+`POST /listing/webhooks/subscriptions`
+
+#### Parameters
+
+Name | Required? | Description
+--------- | ------- | -----------
+listing_id | yes | email(required) and phone of the target home_buyers
+events | yes| array with the list of target events. [supported_events](http://localhost:4567/#events). ex: `['all']`
+metadata | yes | anything that you need to recognize this user in your system, or query in our API, we recommend that to be the user_id inside your system.
+
+### Unsubscribing
+
+Destroy a subscription, so that your system won't receive events for the given
+user.
+#### HTTP Request
+
+`DELETE /listing/webhooks/subscriptions`
+
+#### Parameters
+
+Name | Required? | Description
+--------- | ------- | -----------
+metadata | yes | -
+
+<aside class="success">It will delete all matched subscriptions.</aside>
+
 
 ## Events
 ### Listing
