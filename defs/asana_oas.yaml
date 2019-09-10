@@ -1784,7 +1784,7 @@ components:
                   type: string
                   example: All gravy!
                 author:
-                  $ref: '#/components/schemas/User'
+                  $ref: '#/components/schemas/UserCompact'
               example:
                 color: green
                 text: Everything is great
@@ -1796,13 +1796,13 @@ components:
               readOnly: true
               type: array
               items:
-                $ref: '#/components/schemas/CustomFieldSetting'
+                $ref: '#/components/schemas/CustomFieldCompact'
             custom_field_settings:
               description: Array of Custom Field Settings (in compact form).
               readOnly: true
               type: array
               items:
-                $ref: '#/components/schemas/CustomFieldSetting'
+                $ref: '#/components/schemas/CustomFieldSettingCompact'
             due_date:
               description: >-
                 *Deprecated: new integrations should prefer the due_on field.*
@@ -1825,7 +1825,7 @@ components:
                 notification setting when adding members to a project in-product.
               type: array
               items:
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/UserCompact'
               readOnly: true
             html_notes:
               description: >-
@@ -1854,7 +1854,7 @@ components:
               description: Array of users who are members of this project.
               type: array
               items:
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/UserCompact'
               readOnly: true
             modified_at:
               description: >-

@@ -6519,31 +6519,31 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
 |»»»» resource_type|body|string|false|The base type of this resource.|
 |»»»» name|body|string|false|The name of the section (i.e. the text displayed as the section header).|
-|»»» modified_at|body|string(date-time)|false|The time at which this task was last modified.|
-|»»» notes|body|string|false|More detailed, free-form textual information associated with the task.|
-|»»» num_hearts|body|integer|false|*Deprecated - please use likes instead* The number of users who have hearted this task.|
-|»»» num_likes|body|integer|false|The number of users who have liked this task.|
-|»»» num_subtasks|body|integer|false|[Opt In](#input-output-options). The number of subtasks on this task.|
-|»»» parent|body|any|false|none|
-|»»» projects|body|[object]|false|*Create-only.* Array of projects this task is associated with. At task creation time, this array can be used to add the task to many projects at once. After task creation, these associations can be modified using the addProject and removeProject endpoints.|
+|»» modified_at|body|string(date-time)|false|The time at which this task was last modified.|
+|»» notes|body|string|false|More detailed, free-form textual information associated with the task.|
+|»» num_hearts|body|integer|false|*Deprecated - please use likes instead* The number of users who have hearted this task.|
+|»» num_likes|body|integer|false|The number of users who have liked this task.|
+|»» num_subtasks|body|integer|false|[Opt In](#input-output-options). The number of subtasks on this task.|
+|»» parent|body|any|false|none|
+|»» projects|body|[object]|false|*Create-only.* Array of projects this task is associated with. At task creation time, this array can be used to add the task to many projects at once. After task creation, these associations can be modified using the addProject and removeProject endpoints.|
+|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
+|»»» resource_type|body|string|false|The base type of this resource.|
+|»»» name|body|string|false|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» start_on|body|string(date)¦null|false|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
+|»» tags|body|[object]|false|*Create-only*. Array of tags associated with this task. This property may be specified on creation using just an array of tag gids.  In order to change tags on an existing task use `addTag` and `removeTag`.|
+|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
+|»»» resource_type|body|string|false|The base type of this resource.|
+|»»» name|body|string|false|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»»» followers|body|[object]|false|Array of users following this tag.|
 |»»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
 |»»»» resource_type|body|string|false|The base type of this resource.|
-|»»»» name|body|string|false|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»»» start_on|body|string(date)¦null|false|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
-|»»» tags|body|[object]|false|*Create-only*. Array of tags associated with this task. This property may be specified on creation using just an array of tag gids.  In order to change tags on an existing task use `addTag` and `removeTag`.|
+|»»»» name|body|string|false|*Read-only except when same user as requester*. The user’s name.|
+|»»» color|body|string|false|Color of the tag.|
+|»»» workspace|body|object|false|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
 |»»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
 |»»»» resource_type|body|string|false|The base type of this resource.|
-|»»»» name|body|string|false|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»»»» followers|body|[object]|false|Array of users following this tag.|
-|»»»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»»»» resource_type|body|string|false|The base type of this resource.|
-|»»»»» name|body|string|false|*Read-only except when same user as requester*. The user’s name.|
-|»»»» color|body|string|false|Color of the tag.|
-|»»»» workspace|body|object|false|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
-|»»»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»»»» resource_type|body|string|false|The base type of this resource.|
-|»»»»» name|body|string|false|The name of the object.|
-|»»»» workspace|body|any|false|none|
+|»»»» name|body|string|false|The name of the object.|
+|»» workspace|body|any|false|none|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -11609,21 +11609,22 @@ This is read-only except for a small group of whitelisted apps.
   "custom_fields": [
     {
       "gid": "12345",
-      "resource_type": "custom_field_setting",
-      "project": null,
-      "is_important": false,
-      "parent": null,
-      "custom_field": null
+      "resource_type": "custom_field",
+      "name": "Bug Task",
+      "resource_subtype": "milestone",
+      "type": "text",
+      "enum_options": [
+        ...
+      ],
+      "enum_value": null,
+      "enabled": true,
+      "text_value": "Some Value"
     }
   ],
   "custom_field_settings": [
     {
       "gid": "12345",
-      "resource_type": "custom_field_setting",
-      "project": null,
-      "is_important": false,
-      "parent": null,
-      "custom_field": null
+      "resource_type": "custom_field_setting"
     }
   ],
   "due_date": "2012-03-26",
@@ -11632,14 +11633,7 @@ This is read-only except for a small group of whitelisted apps.
     {
       "gid": "12345",
       "resource_type": "user",
-      "name": "Greg Sanchez",
-      "email": "gsanchez@example.com",
-      "photo": {
-        ...
-      },
-      "workspaces": [
-        ...
-      ]
+      "name": "Greg Sanchez"
     }
   ],
   "html_notes": "These are things we need to purchase.",
@@ -11649,14 +11643,7 @@ This is read-only except for a small group of whitelisted apps.
     {
       "gid": "12345",
       "resource_type": "user",
-      "name": "Greg Sanchez",
-      "email": "gsanchez@example.com",
-      "photo": {
-        ...
-      },
-      "workspaces": [
-        ...
-      ]
+      "name": "Greg Sanchez"
     }
   ],
   "modified_at": "2012-02-22T02:06:58.147Z",
@@ -11690,80 +11677,45 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
 |»» resource_type|string|false|read-only|The base type of this resource.|
 |»» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|»» email|string(email)|false|read-only|The user’s email address.|
-|»» photo|object¦null|false|read-only|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.|
-|»»» image_21x21|string(uri)|false|none|none|
-|»»» image_27x27|string(uri)|false|none|none|
-|»»» image_36x36|string(uri)|false|none|none|
-|»»» image_60x60|string(uri)|false|none|none|
-|»»» image_128x128|string(uri)|false|none|none|
-|»» workspaces|[object]|false|read-only|Workspaces and organizations this user may access.<br>Note\: The API will only return workspaces and organizations that also contain the authenticated user.|
-|»»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»»» resource_type|string|false|read-only|The base type of this resource.|
-|»»» name|string|false|none|The name of the object.|
-|»»» email_domains|[string]|false|none|The email domains that are associated with this workspace.|
-|»»» is_organization|boolean|false|none|Whether the workspace is an *organization*.|
-|»» custom_fields|[object]|false|read-only|Array of Custom Fields.|
-|»»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»»» resource_type|string|false|read-only|The base type of this resource.|
-|»»» project|any|false|none|none|
-|»»» is_important|boolean|false|read-only|`is_important` is used in the Asana web application to determine if this custom field is displayed in the task list (left pane) of a project. A project can have a maximum of 5 custom field settings marked as `is_important`.|
-|»»» parent|any|false|none|none|
-|»»» custom_field|any|false|none|none|
-|»» custom_field_settings|[object]|false|read-only|Array of Custom Field Settings (in compact form).|
-|»»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»»» resource_type|string|false|read-only|The base type of this resource.|
-|»»» project|any|false|none|none|
-|»»» is_important|boolean|false|read-only|`is_important` is used in the Asana web application to determine if this custom field is displayed in the task list (left pane) of a project. A project can have a maximum of 5 custom field settings marked as `is_important`.|
-|»»» parent|any|false|none|none|
-|»»» custom_field|any|false|none|none|
-|»» due_date|string(date-time)¦null|false|none|*Deprecated: new integrations should prefer the due_on field.*|
-|»» due_on|string(date-time)¦null|false|none|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
-|»» followers|[object]|false|read-only|Array of users following this project. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
-|»»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»»» resource_type|string|false|read-only|The base type of this resource.|
-|»»» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|»»» email|string(email)|false|read-only|The user’s email address.|
-|»»» photo|object¦null|false|read-only|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.|
-|»»»» image_21x21|string(uri)|false|none|none|
-|»»»» image_27x27|string(uri)|false|none|none|
-|»»»» image_36x36|string(uri)|false|none|none|
-|»»»» image_60x60|string(uri)|false|none|none|
-|»»»» image_128x128|string(uri)|false|none|none|
-|»»» workspaces|[object]|false|read-only|Workspaces and organizations this user may access.<br>Note\: The API will only return workspaces and organizations that also contain the authenticated user.|
-|»»»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»»»» resource_type|string|false|read-only|The base type of this resource.|
-|»»»» name|string|false|none|The name of the object.|
-|»»»» email_domains|[string]|false|none|The email domains that are associated with this workspace.|
-|»»»» is_organization|boolean|false|none|Whether the workspace is an *organization*.|
-|»»» html_notes|string|false|none|[Opt In](#input-output-options). The notes of the project with formatting as HTML.<br>*Note: This field is under active migration—please see our [blog post] (https://asana.com/developers/news/new-rich-text) for more information.*|
-|»»» is_template|boolean|false|none|[Opt In](#input-output-options). Determines if the project is a template.|
-|»»» layout|string|false|read-only|The layout (board or list view) of a project|
-|»»» members|[object]|false|read-only|Array of users who are members of this project.|
-|»»»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»»»» resource_type|string|false|read-only|The base type of this resource.|
-|»»»» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|»»»» email|string(email)|false|read-only|The user’s email address.|
-|»»»» photo|object¦null|false|read-only|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.|
-|»»»»» image_21x21|string(uri)|false|none|none|
-|»»»»» image_27x27|string(uri)|false|none|none|
-|»»»»» image_36x36|string(uri)|false|none|none|
-|»»»»» image_60x60|string(uri)|false|none|none|
-|»»»»» image_128x128|string(uri)|false|none|none|
-|»»»» workspaces|[object]|false|read-only|Workspaces and organizations this user may access.<br>Note\: The API will only return workspaces and organizations that also contain the authenticated user.|
-|»»»»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»»»»» resource_type|string|false|read-only|The base type of this resource.|
-|»»»»» name|string|false|none|The name of the object.|
-|»»»»» email_domains|[string]|false|none|The email domains that are associated with this workspace.|
-|»»»»» is_organization|boolean|false|none|Whether the workspace is an *organization*.|
-|»»»» modified_at|string(date-time)|false|none|The time at which this project was last modified.<br>*Note: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.*|
-|»»»» notes|string|false|none|More detailed, free-form textual information associated with the project.|
-|»»»» owner|any|false|none|none|
-|»»»» public|boolean|false|none|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
-|»»»» section_migration_status|string|false|read-only|*Read-only* The section migration status of this project.|
-|»»»» start_on|string(date)¦null|false|none|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
-|»»»» team|any|false|none|none|
-|»»»» workspace|any|false|none|none|
+|custom_fields|[object]|false|read-only|Array of Custom Fields.|
+|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+|» resource_type|string|false|read-only|The base type of this resource.|
+|» name|string|false|none|The name of the object.|
+|» resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|» type|string|false|none|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|» enum_options|[object]|false|none|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+|»» resource_type|string|false|read-only|The base type of this resource.|
+|»» name|string|false|none|The name of the enum option.|
+|»» enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
+|»» color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
+|» enum_value|any|false|none|none|
+|» enabled|boolean|false|none|*Conditional*. Determines if the custom field is enabled or not.|
+|» text_value|string|false|none|*Conditional*. This string is the value of a text custom field.|
+|custom_field_settings|[object]|false|read-only|Array of Custom Field Settings (in compact form).|
+|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+|» resource_type|string|false|read-only|The base type of this resource.|
+|due_date|string(date-time)¦null|false|none|*Deprecated: new integrations should prefer the due_on field.*|
+|due_on|string(date-time)¦null|false|none|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
+|followers|[object]|false|read-only|Array of users following this project. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
+|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+|» resource_type|string|false|read-only|The base type of this resource.|
+|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
+|html_notes|string|false|none|[Opt In](#input-output-options). The notes of the project with formatting as HTML.<br>*Note: This field is under active migration—please see our [blog post] (https://asana.com/developers/news/new-rich-text) for more information.*|
+|is_template|boolean|false|none|[Opt In](#input-output-options). Determines if the project is a template.|
+|layout|string|false|read-only|The layout (board or list view) of a project|
+|members|[object]|false|read-only|Array of users who are members of this project.|
+|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+|» resource_type|string|false|read-only|The base type of this resource.|
+|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
+|modified_at|string(date-time)|false|none|The time at which this project was last modified.<br>*Note: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.*|
+|notes|string|false|none|More detailed, free-form textual information associated with the project.|
+|owner|any|false|none|none|
+|public|boolean|false|none|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
+|section_migration_status|string|false|read-only|*Read-only* The section migration status of this project.|
+|start_on|string(date)¦null|false|none|The day on which work for this project begins, or null if the project has no start date. This takes a date with `YYYY-MM-DD` format. *Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
+|team|any|false|none|none|
+|workspace|any|false|none|none|
 
 #### Enumerated Values
 
@@ -11790,6 +11742,9 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |color|green|
 |color|yellow|
 |color|red|
+|type|text|
+|type|enum|
+|type|number|
 |layout|list|
 |layout|board|
 |section_migration_status|not_migrated|
@@ -12269,130 +12224,130 @@ A story represents an activity associated with an object in the Asana system.
 |»» name|string|false|none|The name of the object.|
 |»» email_domains|[string]|false|none|The email domains that are associated with this workspace.|
 |»» is_organization|boolean|false|none|Whether the workspace is an *organization*.|
-|» num_hearts|integer|false|read-only|*Deprecated - please use likes instead*<br><br>*Conditional*. The number of users who have hearted this story.|
-|» liked|boolean|false|read-only|*Conditional*. True if the story is liked by the authorized user, false if not.|
-|» likes|[object]|false|read-only|*Conditional*. Array of users who have liked this story.|
+|num_hearts|integer|false|read-only|*Deprecated - please use likes instead*<br><br>*Conditional*. The number of users who have hearted this story.|
+|liked|boolean|false|read-only|*Conditional*. True if the story is liked by the authorized user, false if not.|
+|likes|[object]|false|read-only|*Conditional*. Array of users who have liked this story.|
+|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+|» resource_type|string|false|read-only|The base type of this resource.|
+|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
+|» email|string(email)|false|read-only|The user’s email address.|
+|» photo|object¦null|false|read-only|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.|
+|»» image_21x21|string(uri)|false|none|none|
+|»» image_27x27|string(uri)|false|none|none|
+|»» image_36x36|string(uri)|false|none|none|
+|»» image_60x60|string(uri)|false|none|none|
+|»» image_128x128|string(uri)|false|none|none|
+|» workspaces|[object]|false|read-only|Workspaces and organizations this user may access.<br>Note\: The API will only return workspaces and organizations that also contain the authenticated user.|
 |»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
 |»» resource_type|string|false|read-only|The base type of this resource.|
-|»» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|»» email|string(email)|false|read-only|The user’s email address.|
-|»» photo|object¦null|false|read-only|A map of the user’s profile photo in various sizes, or null if no photo is set. Sizes provided are 21, 27, 36, 60, and 128. Images are in PNG format.|
-|»»» image_21x21|string(uri)|false|none|none|
-|»»» image_27x27|string(uri)|false|none|none|
-|»»» image_36x36|string(uri)|false|none|none|
-|»»» image_60x60|string(uri)|false|none|none|
-|»»» image_128x128|string(uri)|false|none|none|
-|»» workspaces|[object]|false|read-only|Workspaces and organizations this user may access.<br>Note\: The API will only return workspaces and organizations that also contain the authenticated user.|
-|»»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»»» resource_type|string|false|read-only|The base type of this resource.|
-|»»» name|string|false|none|The name of the object.|
-|»»» email_domains|[string]|false|none|The email domains that are associated with this workspace.|
-|»»» is_organization|boolean|false|none|Whether the workspace is an *organization*.|
-|»» num_likes|integer|false|read-only|*Conditional*. The number of users who have liked this story.|
-|»» previews|[object]|false|read-only|*Conditional*. A collection of previews to be displayed in the story.<br><br>*Note: This property only exists for comment stories.*|
-|»»» fallback|string|false|none|Some fallback text to display if unable to display the full preview.|
-|»»» footer|string|false|none|Text to display in the footer.|
-|»»» header|string|false|none|Text to display in the header.|
-|»»» header_link|string|false|none|Where the header will link to.|
-|»»» html_text|string|false|none|HTML formatted text for the body of the preview.|
-|»»» text|string|false|none|Text for the body of the preview.|
-|»»» title|string|false|none|Text to display as the title.|
-|»»» title_link|string|false|none|Where to title will link to.|
-|»» old_name|string|false|none|*Conditional*'|
-|»» new_name|string|false|read-only|*Conditional*|
-|»» old_dates|object|false|read-only|*Conditional*|
-|»»» start_on|string(date)|false|none|none|
-|»»» due_at|string(date-time)|false|none|none|
-|»»» due_on|string(date)|false|none|none|
-|»» new_dates|object|false|read-only|*Conditional*|
-|»»» start_on|string(date)|false|none|none|
-|»»» due_at|string(date-time)|false|none|none|
-|»»» due_on|string(date)|false|none|none|
-|»» old_resource_subtype|string|false|read-only|*Conditional*|
-|»» new_resource_subtype|string|false|read-only|*Conditional*|
-|»» story|object|false|none|A story represents an activity associated with an object in the Asana system.|
-|»»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»»» resource_type|string|false|read-only|The base type of this resource.|
-|»»» resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|»»» created_at|string(date-time)|false|read-only|The time at which this resource was created.|
-|»»» created_by|any|false|none|none|
-|»»» text|any|false|none|*Create-only*. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br>*Note: This is not guaranteed to be stable for a given type of story. For example, text for a reassignment may not always say “assigned to …” as the text for a story can both be edited and change based on the language settings of the user making the request.*<br>Use the `resource_subtype` property to discover the action that created the story.|
-|»»» type|string|false|read-only|*Deprecated: new integrations should prefer the `resource_subtype` field.*|
-|»» assignee|object|false|none|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»»» resource_type|string|false|read-only|The base type of this resource.|
-|»»» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|»» follower|object|false|none|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
-|»»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»»» resource_type|string|false|read-only|The base type of this resource.|
-|»»» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|»» old_section|object|false|none|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
-|»»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»»» resource_type|string|false|read-only|The base type of this resource.|
-|»»» name|string|false|none|The name of the section (i.e. the text displayed as the section header).|
-|»» new_section|object|false|none|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
-|»»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»»» resource_type|string|false|read-only|The base type of this resource.|
-|»»» name|string|false|none|The name of the section (i.e. the text displayed as the section header).|
-|»» task|object|false|none|The *task* is the basic object around which many operations in Asana are centered.|
-|»»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»»» resource_type|string|false|read-only|The base type of this resource.|
-|»»» name|string|false|none|The name of the object.|
-|»» project|object|false|none|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
-|»»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»»» resource_type|string|false|read-only|The base type of this resource.|
-|»»» name|string|false|none|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» tag|object|false|none|A *tag* is a label that can be attached to any task in Asana. It exists in a single workspace or organization.|
-|»»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»»» resource_type|string|false|read-only|The base type of this resource.|
-|»»» name|string|false|none|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» custom_field|object|false|none|Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](#asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.<br><br>Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/custom-fields#gl-lock-fields), which will make them read-only when accessed by other users. Attempting to edit a locked custom field will return HTTP error code `403 Forbidden`.|
-|»»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»»» resource_type|string|false|read-only|The base type of this resource.|
-|»»» name|string|false|none|The name of the object.|
-|»»» resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|»»» type|string|false|none|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
-|»»» enum_options|[object]|false|none|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|»»»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»»»» resource_type|string|false|read-only|The base type of this resource.|
-|»»»» name|string|false|none|The name of the enum option.|
-|»»»» enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
-|»»»» color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
-|»»» enum_value|any|false|none|none|
-|»»» enabled|boolean|false|none|*Conditional*. Determines if the custom field is enabled or not.|
-|»»» text_value|string|false|none|*Conditional*. This string is the value of a text custom field.|
-|»» old_text_value|string|false|read-only|*Conditional*|
-|»» new_text_value|string|false|read-only|*Conditional*|
-|»» old_number_value|integer|false|read-only|*Conditional*|
-|»» new_number_value|integer|false|read-only|*Conditional*|
-|»» old_enum_value|object|false|none|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.<br><br>You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.<br><br>**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.<br><br>On creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.<br><br>Enum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.<br><br>An enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.|
-|»»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»»» resource_type|string|false|read-only|The base type of this resource.|
-|»»» name|string|false|none|The name of the enum option.|
-|»»» enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
-|»»» color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
-|»» new_enum_value|object|false|none|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.<br><br>You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.<br><br>**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.<br><br>On creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.<br><br>Enum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.<br><br>An enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.|
-|»»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»»» resource_type|string|false|read-only|The base type of this resource.|
-|»»» name|string|false|none|The name of the enum option.|
-|»»» enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
-|»»» color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
-|»» duplicate_of|object|false|none|The *task* is the basic object around which many operations in Asana are centered.|
-|»»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»»» resource_type|string|false|read-only|The base type of this resource.|
-|»»» name|string|false|none|The name of the object.|
-|»» duplicated_from|object|false|none|The *task* is the basic object around which many operations in Asana are centered.|
-|»»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»»» resource_type|string|false|read-only|The base type of this resource.|
-|»»» name|string|false|none|The name of the object.|
-|»» dependency|object|false|none|The *task* is the basic object around which many operations in Asana are centered.|
-|»»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»»» resource_type|string|false|read-only|The base type of this resource.|
-|»»» name|string|false|none|The name of the object.|
-|»» source|string|false|read-only|The component of the Asana product the user used to trigger the story.|
-|»» target|object|false|read-only|The object this story is associated with. Currently may only be a task.|
-|»»» gid|integer|false|none|none|
-|»»» name|string|false|none|none|
+|»» name|string|false|none|The name of the object.|
+|»» email_domains|[string]|false|none|The email domains that are associated with this workspace.|
+|»» is_organization|boolean|false|none|Whether the workspace is an *organization*.|
+|num_likes|integer|false|read-only|*Conditional*. The number of users who have liked this story.|
+|previews|[object]|false|read-only|*Conditional*. A collection of previews to be displayed in the story.<br><br>*Note: This property only exists for comment stories.*|
+|» fallback|string|false|none|Some fallback text to display if unable to display the full preview.|
+|» footer|string|false|none|Text to display in the footer.|
+|» header|string|false|none|Text to display in the header.|
+|» header_link|string|false|none|Where the header will link to.|
+|» html_text|string|false|none|HTML formatted text for the body of the preview.|
+|» text|string|false|none|Text for the body of the preview.|
+|» title|string|false|none|Text to display as the title.|
+|» title_link|string|false|none|Where to title will link to.|
+|old_name|string|false|none|*Conditional*'|
+|new_name|string|false|read-only|*Conditional*|
+|old_dates|object|false|read-only|*Conditional*|
+|» start_on|string(date)|false|none|none|
+|» due_at|string(date-time)|false|none|none|
+|» due_on|string(date)|false|none|none|
+|new_dates|object|false|read-only|*Conditional*|
+|» start_on|string(date)|false|none|none|
+|» due_at|string(date-time)|false|none|none|
+|» due_on|string(date)|false|none|none|
+|old_resource_subtype|string|false|read-only|*Conditional*|
+|new_resource_subtype|string|false|read-only|*Conditional*|
+|story|object|false|none|A story represents an activity associated with an object in the Asana system.|
+|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+|» resource_type|string|false|read-only|The base type of this resource.|
+|» resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|» created_at|string(date-time)|false|read-only|The time at which this resource was created.|
+|» created_by|any|false|none|none|
+|» text|any|false|none|*Create-only*. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br>*Note: This is not guaranteed to be stable for a given type of story. For example, text for a reassignment may not always say “assigned to …” as the text for a story can both be edited and change based on the language settings of the user making the request.*<br>Use the `resource_subtype` property to discover the action that created the story.|
+|» type|string|false|read-only|*Deprecated: new integrations should prefer the `resource_subtype` field.*|
+|assignee|object|false|none|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+|» resource_type|string|false|read-only|The base type of this resource.|
+|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
+|follower|object|false|none|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
+|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+|» resource_type|string|false|read-only|The base type of this resource.|
+|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
+|old_section|object|false|none|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
+|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+|» resource_type|string|false|read-only|The base type of this resource.|
+|» name|string|false|none|The name of the section (i.e. the text displayed as the section header).|
+|new_section|object|false|none|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
+|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+|» resource_type|string|false|read-only|The base type of this resource.|
+|» name|string|false|none|The name of the section (i.e. the text displayed as the section header).|
+|task|object|false|none|The *task* is the basic object around which many operations in Asana are centered.|
+|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+|» resource_type|string|false|read-only|The base type of this resource.|
+|» name|string|false|none|The name of the object.|
+|project|object|false|none|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
+|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+|» resource_type|string|false|read-only|The base type of this resource.|
+|» name|string|false|none|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|tag|object|false|none|A *tag* is a label that can be attached to any task in Asana. It exists in a single workspace or organization.|
+|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+|» resource_type|string|false|read-only|The base type of this resource.|
+|» name|string|false|none|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|custom_field|object|false|none|Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](#asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.<br><br>Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/custom-fields#gl-lock-fields), which will make them read-only when accessed by other users. Attempting to edit a locked custom field will return HTTP error code `403 Forbidden`.|
+|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+|» resource_type|string|false|read-only|The base type of this resource.|
+|» name|string|false|none|The name of the object.|
+|» resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|» type|string|false|none|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|» enum_options|[object]|false|none|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+|»» resource_type|string|false|read-only|The base type of this resource.|
+|»» name|string|false|none|The name of the enum option.|
+|»» enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
+|»» color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
+|» enum_value|any|false|none|none|
+|» enabled|boolean|false|none|*Conditional*. Determines if the custom field is enabled or not.|
+|» text_value|string|false|none|*Conditional*. This string is the value of a text custom field.|
+|old_text_value|string|false|read-only|*Conditional*|
+|new_text_value|string|false|read-only|*Conditional*|
+|old_number_value|integer|false|read-only|*Conditional*|
+|new_number_value|integer|false|read-only|*Conditional*|
+|old_enum_value|object|false|none|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.<br><br>You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.<br><br>**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.<br><br>On creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.<br><br>Enum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.<br><br>An enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.|
+|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+|» resource_type|string|false|read-only|The base type of this resource.|
+|» name|string|false|none|The name of the enum option.|
+|» enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
+|» color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
+|new_enum_value|object|false|none|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.<br><br>You can add enum options to a custom field by using the `POST /custom_fields/custom_field_gid/enum_options` endpoint.<br><br>**It is not possible to remove or delete an enum option**. Instead, enum options can be disabled by updating the `enabled` field to false with the `PUT /enum_options/enum_option_gid` endpoint. Other attributes can be updated similarly.<br><br>On creation of an enum option, `enabled` is always set to `true`, meaning the enum option is a selectable value for the custom field. Setting `enabled=false` is equivalent to “trashing” the enum option in the Asana web app within the “Edit Fields” dialog. The enum option will no longer be selectable but, if the enum option value was previously set within a task, the task will retain the value.<br><br>Enum options are an ordered list and by default new enum options are inserted at the end. Ordering in relation to existing enum options can be specified on creation by using `insert_before` or `insert_after` to reference an existing enum option. Only one of `insert_before` and `insert_after` can be provided when creating a new enum option.<br><br>An enum options list can be reordered with the `POST /custom_fields/custom_field_gid/enum_options/insert` endpoint.|
+|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+|» resource_type|string|false|read-only|The base type of this resource.|
+|» name|string|false|none|The name of the enum option.|
+|» enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
+|» color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
+|duplicate_of|object|false|none|The *task* is the basic object around which many operations in Asana are centered.|
+|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+|» resource_type|string|false|read-only|The base type of this resource.|
+|» name|string|false|none|The name of the object.|
+|duplicated_from|object|false|none|The *task* is the basic object around which many operations in Asana are centered.|
+|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+|» resource_type|string|false|read-only|The base type of this resource.|
+|» name|string|false|none|The name of the object.|
+|dependency|object|false|none|The *task* is the basic object around which many operations in Asana are centered.|
+|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+|» resource_type|string|false|read-only|The base type of this resource.|
+|» name|string|false|none|The name of the object.|
+|source|string|false|read-only|The component of the Asana product the user used to trigger the story.|
+|target|object|false|read-only|The object this story is associated with. Currently may only be a task.|
+|» gid|integer|false|none|none|
+|» name|string|false|none|none|
 
 #### Enumerated Values
 
@@ -12724,31 +12679,31 @@ The *task* is the basic object around which many operations in Asana are centere
 |»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
 |»» resource_type|string|false|read-only|The base type of this resource.|
 |»» name|string|false|none|The name of the section (i.e. the text displayed as the section header).|
-|» modified_at|string(date-time)|false|read-only|The time at which this task was last modified.<br><br>*Note: This does not currently reflect any changes in<br>associations such as projects or comments that may have been<br>added or removed from the task.*|
-|» notes|string|false|none|More detailed, free-form textual information associated with the task.|
-|» num_hearts|integer|false|read-only|*Deprecated - please use likes instead* The number of users who have hearted this task.|
-|» num_likes|integer|false|read-only|The number of users who have liked this task.|
-|» num_subtasks|integer|false|read-only|[Opt In](#input-output-options). The number of subtasks on this task.|
-|» parent|any|false|none|none|
-|» projects|[object]|false|none|*Create-only.* Array of projects this task is associated with. At task creation time, this array can be used to add the task to many projects at once. After task creation, these associations can be modified using the addProject and removeProject endpoints.|
+|modified_at|string(date-time)|false|read-only|The time at which this task was last modified.<br><br>*Note: This does not currently reflect any changes in<br>associations such as projects or comments that may have been<br>added or removed from the task.*|
+|notes|string|false|none|More detailed, free-form textual information associated with the task.|
+|num_hearts|integer|false|read-only|*Deprecated - please use likes instead* The number of users who have hearted this task.|
+|num_likes|integer|false|read-only|The number of users who have liked this task.|
+|num_subtasks|integer|false|read-only|[Opt In](#input-output-options). The number of subtasks on this task.|
+|parent|any|false|none|none|
+|projects|[object]|false|none|*Create-only.* Array of projects this task is associated with. At task creation time, this array can be used to add the task to many projects at once. After task creation, these associations can be modified using the addProject and removeProject endpoints.|
+|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+|» resource_type|string|false|read-only|The base type of this resource.|
+|» name|string|false|none|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|start_on|string(date)¦null|false|none|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.<br>*Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
+|tags|[object]|false|none|*Create-only*. Array of tags associated with this task. This property may be specified on creation using just an array of tag gids.  In order to change tags on an existing task use `addTag` and `removeTag`.|
+|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+|» resource_type|string|false|read-only|The base type of this resource.|
+|» name|string|false|none|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|» followers|[object]|false|read-only|Array of users following this tag.|
 |»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
 |»» resource_type|string|false|read-only|The base type of this resource.|
-|»» name|string|false|none|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|» start_on|string(date)¦null|false|none|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.<br>*Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
-|» tags|[object]|false|none|*Create-only*. Array of tags associated with this task. This property may be specified on creation using just an array of tag gids.  In order to change tags on an existing task use `addTag` and `removeTag`.|
+|»» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
+|» color|string|false|none|Color of the tag.|
+|» workspace|object|false|none|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
 |»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
 |»» resource_type|string|false|read-only|The base type of this resource.|
-|»» name|string|false|none|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»» followers|[object]|false|read-only|Array of users following this tag.|
-|»»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»»» resource_type|string|false|read-only|The base type of this resource.|
-|»»» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|»» color|string|false|none|Color of the tag.|
-|»» workspace|object|false|none|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
-|»»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»»» resource_type|string|false|read-only|The base type of this resource.|
-|»»» name|string|false|none|The name of the object.|
-|»» workspace|any|false|none|none|
+|»» name|string|false|none|The name of the object.|
+|workspace|any|false|none|none|
 
 #### Enumerated Values
 
