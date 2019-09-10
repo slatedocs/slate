@@ -1530,7 +1530,7 @@ curl --header "Authorization: Bearer ########" \
 | page | Query | Número da página que deve ser retornada |
 | external_id | Query | Identificador do acordo na instituição de ensino |
 | enrollment_id | Query | Identificador da matrícula no Quero Pago |
-| enrollment_external_id | Query | Identificador da matrícula na instituição de ensino|
+| external_enrollment_id | Query | Identificador da matrícula na instituição de ensino|
 | created_at_lte | Query | Retorna os acordos com data de criação menor ou igual à data indicada. Deve ser formatada no padrão ISO 8601 |
 | created_at_gte | Query | Retorna os acordos com data de criação maior ou igual à data indicada. Deve ser formatada no padrão ISO 8601 |
 
