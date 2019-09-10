@@ -5,8 +5,6 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
 
 includes:
-  - errors
-  - default_sucess_responses
 
 search: true
 ---
@@ -17,7 +15,7 @@ This document illustrates how interact with NestReady events api.
 
 This process can be described into two steps:
 
-1) Subscribe to events for specific home_buyerss. 
+1) Subscribe to events for specific home_buyerss.
 
 2) Every time NestReady tracks an event from that home_buyers, NestReady will trigger a webhooks to your server.
 
@@ -26,7 +24,7 @@ Staging URL: `https://events.stage-nestready.net`
 
 Production URL: `https://events.nestready.net`
 
-#Authentication
+# Authentication
 
 ## Making requests
 You will need to send a personal token on every request.
@@ -35,8 +33,9 @@ You should receive two token from our team, one for each environment.
 
 We expect you to send this information in a field called 'X-Token' inside headers.
 
-#Webhook Subscriptions
-## Subscribing
+# HomeBuyer
+## Webhook Subscriptions
+### Subscribing
 ```json
 // BODY EXAMPLE
 {
@@ -54,10 +53,10 @@ Subscribe to events for the given home_buyers.
 Everytime you subscribe to an event, we will send you a notification with
 the just created webhook information to the defined `delivery_url`.
 
-### HTTP Request
+#### HTTP Request
 `POST /home_buyers/webhooks/subscriptions`
 
-### Parameters
+#### Parameters
 
 Name | Required? | Description
 --------- | ------- | -----------
@@ -65,15 +64,15 @@ home_buyer | yes | email(required) and phone of the target home_buyers
 events | yes| array with the list of target events. [supported_events](http://localhost:4567/#events). ex: `['all']`
 metadata | yes | anything that you need to recognize this user in your system, or query in our API, we recommend that to be the user_id inside your system.
 
-## Unsubscribing
+### Unsubscribing
 
 Destroy a subscription, so that your system won't receive events for the given
 user.
-### HTTP Request
+#### HTTP Request
 
 `DELETE /home_buyers/webhooks/subscriptions`
 
-### Parameters
+#### Parameters
 
 Name | Required? | Description
 --------- | ------- | -----------
@@ -81,29 +80,42 @@ metadata | yes | -
 
 <aside class="success">It will delete all matched subscriptions.</aside>
 
-## Listing
+### Listing
 
 This endpoint retrieves all home buyer subscriptions for that giver client.
 
-### HTTP Request
+#### HTTP Request
 
 `GET /home_buyers/webhooks/subscriptions`
 
-### Parameters
+#### Parameters
 
 Name | Required? | Description
 --------- | ------- | -----------
 metadata | yes | The metadata value set by the client on subscription creation
 
 
-#Events
-## Listing 
+
+## Events
+### Listing
 Method used only for Disaster Recovery, the retention period is 48
 hours (meaning that events occured more than 48 hours ago won't be retrieved).
 
-### HTTP Request
 
-`GET /homebuyers`
+```json
+//BODY EXAMPLE
+{
+  "current_page": 1,
+  "total_pages_count": 0,
+  "listings_per_page": 100,
+  "events": []
+}
+``````
+
+
+#### HTTP Request
+
+`GET /homebuyers/events`
 
 Name | Required? | Description
 --------- | ------- | -----------
@@ -115,7 +127,7 @@ page | yes | ex: 1
 <aside class="success">Batch size is 100 per page.</aside>
 
 
-## Receiving
+### Receiving
 After subscribing successfully, you will begin to receive events for your home_buyerss to the defined delivery_url.
 
 The follow schema is used for every event payload, the example of data is available [here](/#event-types)
@@ -133,12 +145,12 @@ The follow schema is used for every event payload, the example of data is availa
 
 ```
 
-### HTTP Request
-`POST delivery_url` 
+#### HTTP Request
+`POST delivery_url`
 
-# Event types
-## Home Buyer events
-### home_buyers_requested
+## Event types
+
+### contact_request_requested
 ```json
 //DATA EXAMPLE
 {
@@ -168,7 +180,7 @@ This event is triggered once a user sends a request by any listed event.
                 "name": "Boston",
                 "level": "place"
             }
-        
+
     },
     "event_type": "location_favorited",
     "partner_name": "mybank",
@@ -181,7 +193,7 @@ This event is triggered once the user "pins" or favorites a location either from
 ### location_unfavorited
 This event is triggered once the user unfavorites or unpins a previously favorited location.
 
-### property_visit_requested 
+### property_visit_requested
 
 This event is triggered once the user clicks on the option to schedule a visit to a property, either from the listings dashboards or from the property details itself.
 
@@ -210,26 +222,63 @@ This event is triggered once the user has already perfomed a property search, sa
 This event is triggered once the user provides its email for the first time using one of the home_buyers forms or sharing a search.
 
 
-## Listing events
+# Listing
+## Webhook Subscriptions
+
+## Events
+### Listing
+Method used only for Disaster Recovery, the retention period is 48
+hours (meaning that events occured more than 48 hours ago won't be retrieved).
+
+
 ```json
-//DATA EXAMPLE for listing changed
+//BODY EXAMPLE
 {
-    "listing_id": "2",
-    "events": ["listing_changed"],
-    "delivery_url": "https://api.your_url.com/nestready/events",
-    "metadata": "listing_id_in_your_system2"
+  "current_page": 1,
+  "total_pages_count": 0,
+  "listings_per_page": 100,
+  "events": []
 }
+``````
+
+
+#### HTTP Request
+
+`GET /listings/events`
+
+Name | Required? | Description
+--------- | ------- | -----------
+metadata | no | --
+start_at | yes | ex: 1567017624
+end_at | yes | ex: 1567104024000
+page | yes | ex: 1
+
+<aside class="success">Batch size is 100 per page.</aside>
+
+
+### Receiving
+After subscribing successfully, you will begin to receive events for your home_buyerss to the defined delivery_url.
+
+The follow schema is used for every event payload, the example of data is available [here](/#event-types)
+
+```json
+//BODY EXAMPLE
+{
+  "id": <string>,
+  "type": <string>,
+  "metadata": <string>,
+  "listing_id": <string>,
+  "data": <hashmap>,
+  "created_at": <timestamp>,
+}
+
 ```
 
-Events triggered once there is an update to a listing.
+#### HTTP Request
+`POST delivery_url`
 
+
+## Event types
 ### listing_changed
 This event is triggered when a property has an update. In this data example, the previous price for this property was 100000, then it was updated to 100001.
-
-
-
-
-
-
-
 
