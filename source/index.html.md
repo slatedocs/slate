@@ -7,7 +7,7 @@ toc_footers:
 search: true
 ---
 
-Welcome To Quintype Developer Documentation.
+Welcome To Quintype Developer Documentation. This landing page is still in progress, but please click on one of the links below.
 
 Here are some useful links
 
