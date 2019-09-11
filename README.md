@@ -1,6 +1,6 @@
 ## Quintype Documentation
 
-This is the parent folder that controls https://developers.quintype.com
+This is the parent folder that controls https://developers.quintype.com.
 
 Do note that various subdirectories are controlled from other repos.
 
@@ -8,6 +8,8 @@ Do note that various subdirectories are controlled from other repos.
 * https://developers.quintype.com/quintype-node-components - is controlled from the quintype-node-components via jsdoc, and is updated pre-publish
 * https://developers.quintype.com/quintype-node-backend - is controlled from the quintype-node-backend via jsdoc, and is updated pre-publish
 * https://developers.quintype.com/quintype-node-migration-helpers - is controlled from the quintype-node-migration-helpers via tsdoc
+
+To deploy this repo, just run `./deploy` in your local directory.
 
 ### Sitemaps
 
