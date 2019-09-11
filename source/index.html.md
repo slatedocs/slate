@@ -17,6 +17,7 @@ Here are some useful links
 * [AccessType Documentation](https://developers.quintype.com/access-type)
 * [Metype Documentation](https://developers.quintype.com/metype)
 * [Quintype CMS Swagger Documentation](https://developers.quintype.com/swagger)
+* [End User Help Documentation](https://help.quintype.com)
 
 Some Deprecated Pages
 
