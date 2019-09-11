@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<sitemap>
+<loc>https://quintype.github.io/malibu/sitemap.xml</loc>
+</sitemap>
+<sitemap>
+<loc>https://quintype.github.io/quintype-node-components/sitemap.xml</loc>
+</sitemap>
+<sitemap>
+<loc>https://quintype.github.io/quintype-node-backend/sitemap.xml</loc>
+</sitemap>
+</sitemapindex>
