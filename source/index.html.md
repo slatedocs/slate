@@ -24,3 +24,8 @@ Some Deprecated Pages
 
 * [Old Version of the Documentation](https://developers.quintype.com/docs)
 * [Getting Started With Node](https://developers.quintype.com/getting-started-with-node)
+
+## Search
+
+<script async src="https://cse.google.com/cse.js?cx=001066932855844974881:tfzpqaaz85y"></script>
+<div class="gcse-search"></div>
