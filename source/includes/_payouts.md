@@ -747,7 +747,8 @@ Note: Payment systems in different countries operate in different speeds and fre
 
 * **funds_refunded** – Transfer has been refunded. This is a final final state of the transfer.
 
-* **bounced_back** –Transfer has bounced back but has not been cancelled nor refunded yet.
+* **bounced_back** –Transfer has bounced back but has not been cancelled nor refunded yet. This is not a final transfer state, it means the transfer will either be delivered with delay or it will turn to funds_refunded state
+
 
 Keep in mind the transfer statuses in our API have different names than what you’ll see on our website or app. That’s because we use more  consumer friendly language in the front end of our products. 
 For example "Completed" on our website means "outgoing_payment_sent" in the API. 
