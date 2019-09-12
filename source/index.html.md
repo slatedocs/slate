@@ -12,6 +12,7 @@ Welcome To Quintype Developer Documentation. This landing page is still in progr
 Here are some useful links
 
 * [Malibu Documentation](https://developers.quintype.com/malibu)
+* [Project Lancelot](https://developers.quintype.com/lancelot)
 * [Component Documentation](https://developers.quintype.com/quintype-node-components)
 * [API Client Documentation](https://developers.quintype.com/quintype-node-backend)
 * [AccessType Documentation](https://developers.quintype.com/access-type)
