@@ -13,6 +13,7 @@ includes:
   - v4/tours
   - v4/search
   - v4/locale
+  - v4/other_data
   - errors
 
 search: true
@@ -20,6 +21,6 @@ search: true
 
 # Preparation
 
-The use of the go~mus public API does not require authentication and no API key. 
+The use of the go~mus public API does not require authentication and no API key.
 
 See [detailed documentation on Reseller API](/reseller_api.html) on how to create orders and sell end customer stuff like tickets, events and tours.
