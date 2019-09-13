@@ -399,7 +399,7 @@ tags:
       id and name fields. Interested in a specific set of fields or all of
       the fields? Use [field selectors](#input-output-options)
       to manipulate what data is included in a response.
-  - name: Team
+  - name: Teams
     description: >-
       A *team* is used to group related projects and people together within an
       organization. Each project in an organization is associated with a team.
@@ -458,7 +458,7 @@ tags:
       generated.
 
 
-      ### Receiving Events
+      #### Receiving Events
 
 
       Because multiple events often happen in short succession, a webhook
@@ -489,7 +489,7 @@ tags:
       event.
 
 
-      ### Error Handling and Retry
+      #### Error Handling and Retry
 
 
       If we attempt to send a webhook payload and we receive an error status
@@ -3583,7 +3583,7 @@ paths:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     get:
-      summary: Get a custom field definition
+      summary: Get a custom field
       description: |-
         Get the complete definition of a custom field’s metadata.
 
@@ -3682,6 +3682,46 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EmptyObject'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /workspaces/{workspace_gid}/custom_fields:
+    parameters:
+      - name: workspace_gid
+        in: path
+        required: true
+        description: >-
+          The workspace or organization to find custom field definitions in.
+        schema:
+          type: integer
+        example: 1331
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+    get:
+      summary: Get a workspace's custom fields
+      description: >-
+        Returns a list of the compact representation of all of the custom fields
+        in a workspace.
+      tags:
+        - Custom Fields
+      operationId: getCustomFieldsInWorkspace
+      responses:
+        200:
+          description: >-
+            Successfully retrieved all custom fields for the given workspace.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomFieldArray'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -3890,46 +3930,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         500:
           $ref: '#/components/responses/InternalServerError'
-  /workspaces/{workspace_gid}/custom_fields:
-    parameters:
-      - name: workspace_gid
-        in: path
-        required: true
-        description: >-
-          The workspace or organization to find custom field definitions in.
-        schema:
-          type: integer
-        example: 1331
-      - $ref: '#/components/parameters/pretty'
-      - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
-    get:
-      summary: Get a workspace's custom fields
-      description: >-
-        Returns a list of the compact representation of all of the custom fields
-        in a workspace.
-      tags:
-        - Custom Fields
-      operationId: getCustomFieldsInWorkspace
-      responses:
-        200:
-          description: >-
-            Successfully retrieved all custom fields for the given workspace.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CustomFieldArray'
-        400:
-          $ref: '#/components/responses/BadRequest'
-        401:
-          $ref: '#/components/responses/Unauthorized'
-        403:
-          $ref: '#/components/responses/Forbidden'
-        404:
-          $ref: '#/components/responses/NotFound'
-        500:
-          $ref: '#/components/responses/InternalServerError'
   /events:
     parameters:
       - name: resource
@@ -4104,7 +4104,7 @@ paths:
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
-      summary: Get a list of portfolio memberships
+      summary: Get multiple portfolio memberships
       description: >-
         Returns a list of portfolio memberships in compact representation. You must
         specify `portolio`, `portfolio` and `user`, or `workspace` and `user`.
@@ -4118,39 +4118,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PortfolioArray'
-        400:
-          $ref: '#/components/responses/BadRequest'
-        401:
-          $ref: '#/components/responses/Unauthorized'
-        403:
-          $ref: '#/components/responses/Forbidden'
-        404:
-          $ref: '#/components/responses/NotFound'
-        500:
-          $ref: '#/components/responses/InternalServerError'
-  /portfolios/{portfolio_gid}/portfolio_memberships:
-    parameters:
-      - $ref: '#/components/parameters/portfolio_path_gid'
-      - $ref: '#/components/parameters/user_query_param'
-      - $ref: '#/components/parameters/pretty'
-      - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
-    get:
-      summary: Get the portfolio memberships for a portfolio
-      description: >-
-        Returns the compact portfolio membership records for the portfolio.
-      tags:
-        - Portfolio Memberships
-      operationId: getPortfolioMembershipsForPortfolio
-      responses:
-        200:
-          description: >-
-            Successfully retrieved the requested portfolio's memberships.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PortfolioMembershipArray'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -4191,12 +4158,45 @@ paths:
           $ref: '#/components/responses/NotFound'
         500:
           $ref: '#/components/responses/InternalServerError'
+  /portfolios/{portfolio_gid}/portfolio_memberships:
+    parameters:
+      - $ref: '#/components/parameters/portfolio_path_gid'
+      - $ref: '#/components/parameters/user_query_param'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+    get:
+      summary: Get memberships from a portfolio
+      description: >-
+        Returns the compact portfolio membership records for the portfolio.
+      tags:
+        - Portfolio Memberships
+      operationId: getPortfolioMembershipsForPortfolio
+      responses:
+        200:
+          description: >-
+            Successfully retrieved the requested portfolio's memberships.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PortfolioMembershipArray'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
   /portfolios:
     parameters:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     get:
-      summary: Get a list of the portfolios
+      summary: Get multiple portfolios
       description: >-
         Returns a list of the portfolios in compact representation that are
         owned by the current API user.
@@ -4238,7 +4238,7 @@ paths:
         500:
           $ref: '#/components/responses/InternalServerError'
     post:
-      summary: Create a new portfolio
+      summary: Create a portfolio
       description: |-
         Creates a new portfolio in the given workspace with the supplied name.
 
@@ -4675,39 +4675,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         500:
           $ref: '#/components/responses/InternalServerError'
-  /projects/{project_gid}/project_memberships:
-    parameters:
-      - $ref: '#/components/parameters/project_path_gid'
-      - $ref: '#/components/parameters/user_query_param'
-      - $ref: '#/components/parameters/pretty'
-      - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
-    get:
-      summary: Get the project memberships for a project
-      description: >-
-        Returns the compact project membership records for the project.
-      tags:
-        - Project Memberships
-      operationId: getProjectMembershipsForProject
-      responses:
-        200:
-          description: >-
-            Successfully retrieved the requested project's memberships.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProjectMembershipArray'
-        400:
-          $ref: '#/components/responses/BadRequest'
-        401:
-          $ref: '#/components/responses/Unauthorized'
-        403:
-          $ref: '#/components/responses/Forbidden'
-        404:
-          $ref: '#/components/responses/NotFound'
-        500:
-          $ref: '#/components/responses/InternalServerError'
   /project_memberships/{project_membership_gid}:
     parameters:
       - $ref: '#/components/parameters/project_membership_path_gid'
@@ -4738,11 +4705,97 @@ paths:
           $ref: '#/components/responses/NotFound'
         500:
           $ref: '#/components/responses/InternalServerError'
+  /projects/{project_gid}/project_memberships:
+    parameters:
+      - $ref: '#/components/parameters/project_path_gid'
+      - $ref: '#/components/parameters/user_query_param'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+    get:
+      summary: Get memberships from a project
+      description: >-
+        Returns the compact project membership records for the project.
+      tags:
+        - Project Memberships
+      operationId: getProjectMembershipsForProject
+      responses:
+        200:
+          description: >-
+            Successfully retrieved the requested project's memberships.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectMembershipArray'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /project_statuses/{project_status_gid}:
+    parameters:
+      - $ref: '#/components/parameters/project_status_path_gid'
+    get:
+      summary: Get a project status
+      description: >-
+        Returns the complete record for a single status update.
+      tags:
+        - Project Statuses
+      operationId: getProductStatus
+      responses:
+        200:
+          description: Successfully retrieved the specified project's status updates.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectStatusObject'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      summary: Delete a project status
+      description: |-
+        Deletes a specific, existing project status update.
+
+        Returns an empty data record.
+      tags:
+        - Project Statuses
+      operationId: deleteProductStatus
+      responses:
+        200:
+          description: Successfully deleted the specified product status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyObject'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
   /projects/{project_gid}/project_statuses:
     parameters:
       - $ref: '#/components/parameters/project_path_gid'
     get:
-      summary: Get a project's statuses
+      summary: Get statuses from a project
       description: >-
         Returns the compact project status update records for all updates on the project.
       tags:
@@ -4823,65 +4876,12 @@ paths:
           $ref: '#/components/responses/NotFound'
         500:
           $ref: '#/components/responses/InternalServerError'
-  /project_statuses/{project_status_gid}:
-    parameters:
-      - $ref: '#/components/parameters/project_status_path_gid'
-    get:
-      summary: Get a project status
-      description: >-
-        Returns the complete record for a single status update.
-      tags:
-        - Project Statuses
-      operationId: getProductStatus
-      responses:
-        200:
-          description: Successfully retrieved the specified project's status updates.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProjectStatusObject'
-        400:
-          $ref: '#/components/responses/BadRequest'
-        401:
-          $ref: '#/components/responses/Unauthorized'
-        403:
-          $ref: '#/components/responses/Forbidden'
-        404:
-          $ref: '#/components/responses/NotFound'
-        500:
-          $ref: '#/components/responses/InternalServerError'
-    delete:
-      summary: Delete a project status
-      description: |-
-        Deletes a specific, existing project status update.
-
-        Returns an empty data record.
-      tags:
-        - Project Statuses
-      operationId: deleteProductStatus
-      responses:
-        200:
-          description: Successfully deleted the specified product status.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EmptyObject'
-        400:
-          $ref: '#/components/responses/BadRequest'
-        401:
-          $ref: '#/components/responses/Unauthorized'
-        403:
-          $ref: '#/components/responses/Forbidden'
-        404:
-          $ref: '#/components/responses/NotFound'
-        500:
-          $ref: '#/components/responses/InternalServerError'
   /projects:
     parameters:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     get:
-      summary: Get a set of projects
+      summary: Get multiple projects
       description: >-
         Returns the compact project records for some filtered set of projects.
         Use one or more of the parameters provided to filter the projects
@@ -4924,7 +4924,7 @@ paths:
         500:
           $ref: '#/components/responses/InternalServerError'
     post:
-      summary: Create a new project
+      summary: Create a project
       description: |-
         Create a new project in a workspace or team.
 
@@ -5185,129 +5185,28 @@ paths:
           $ref: '#/components/responses/NotFound'
         500:
           $ref: '#/components/responses/InternalServerError'
-  /projects/{project_gid}/tasks:
+  /tasks/{task_gid}/projects:
     parameters:
-      - $ref: '#/components/parameters/project_path_gid'
+      - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
-      summary: Get a project's tasks
+      summary: Get projects a task is in
       description: >-
-        Returns the compact task records for all tasks within the given project,
-        ordered by their priority within the project. Tasks can exist in more
-        than one project at a time.
-      tags:
-        - Tasks
-      operationId: getProjectTasks
-      responses:
-        200:
-          description: Successfully retrieved the requested project's tasks.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TaskArray'
-        400:
-          $ref: '#/components/responses/BadRequest'
-        401:
-          $ref: '#/components/responses/Unauthorized'
-        403:
-          $ref: '#/components/responses/Forbidden'
-        404:
-          $ref: '#/components/responses/NotFound'
-        500:
-          $ref: '#/components/responses/InternalServerError'
-  /projects/{project_gid}/addCustomFieldSetting:
-    parameters:
-      - $ref: '#/components/parameters/project_path_gid'
-      - name: custom_field
-        in: query
-        description: The custom field to associate with this project.
-        required: true
-        schema:
-          type: integer
-        example: 14916
-      - name: is_important
-        in: query
-        description: >-
-          Whether this field should be considered "important" to this project.
-          This may cause it to be displayed more prominently, for example in the
-          task grid.
-        schema:
-          type: boolean
-        example: true
-      - name: insert_before
-        in: query
-        description: >-
-          An id of a Custom Field Setting on this project, before which the new
-          Custom Field Setting will be added.  `insert_before` and `insert_after`
-          parameters cannot both be specified.
-        schema:
-          type: integer
-        example: 1331
-      - name: insert_after
-        in: query
-        description: >-
-          An id of a Custom Field Setting on this project, after which the new
-          Custom Field Setting will be added.  `insert_before` and `insert_after`
-          parameters cannot both be specified.
-        schema:
-          type: integer
-        example: 1331
-      - $ref: '#/components/parameters/pretty'
-    post:
-      summary: Add a custom field to a project
-      description: >-
-        Custom fields are associated with projects by way of custom field
-        settings.  This method creates a setting for the project.
+        Returns a compact representation of all of the projects the task is in.
       tags:
         - Projects
-        - Custom Fields
-      operationId: project.addCustomFieldSetting
+      operationId: getTaskProjects
       responses:
         200:
-          description: Successfully added the custom field to the project.
+          description: >-
+            Successfully retrieved the projects for the given task.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EmptyObject'
-        400:
-          $ref: '#/components/responses/BadRequest'
-        401:
-          $ref: '#/components/responses/Unauthorized'
-        403:
-          $ref: '#/components/responses/Forbidden'
-        404:
-          $ref: '#/components/responses/NotFound'
-        500:
-          $ref: '#/components/responses/InternalServerError'
-  /projects/{project_gid}/removeCustomFieldSetting:
-    parameters:
-      - $ref: '#/components/parameters/project_path_gid'
-      - name: custom_field
-        in: query
-        description: The custom field to remove from this project.
-        required: true
-        schema:
-          type: integer
-        example: 14916
-      - $ref: '#/components/parameters/pretty'
-    post:
-      summary: Remove a custom field from a project
-      description: >-
-        Removes a custom field setting from a project.
-      tags:
-        - Projects
-        - Custom Fields
-      operationId: project.removeCustomFieldSetting
-      responses:
-        200:
-          description: Successfully removed the custom field from the project.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EmptyObject'
+                $ref: '#/components/schemas/ProjectArray'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -5454,28 +5353,59 @@ paths:
           $ref: '#/components/responses/NotFound'
         500:
           $ref: '#/components/responses/InternalServerError'
-  /projects/{project_gid}/sections:
+  /projects/{project_gid}/addCustomFieldSetting:
     parameters:
       - $ref: '#/components/parameters/project_path_gid'
+      - name: custom_field
+        in: query
+        description: The custom field to associate with this project.
+        required: true
+        schema:
+          type: integer
+        example: 14916
+      - name: is_important
+        in: query
+        description: >-
+          Whether this field should be considered "important" to this project.
+          This may cause it to be displayed more prominently, for example in the
+          task grid.
+        schema:
+          type: boolean
+        example: true
+      - name: insert_before
+        in: query
+        description: >-
+          An id of a Custom Field Setting on this project, before which the new
+          Custom Field Setting will be added.  `insert_before` and `insert_after`
+          parameters cannot both be specified.
+        schema:
+          type: integer
+        example: 1331
+      - name: insert_after
+        in: query
+        description: >-
+          An id of a Custom Field Setting on this project, after which the new
+          Custom Field Setting will be added.  `insert_before` and `insert_after`
+          parameters cannot both be specified.
+        schema:
+          type: integer
+        example: 1331
       - $ref: '#/components/parameters/pretty'
-      - $ref: '#/components/parameters/fields'
-    get:
-      summary: Get all sections in a project
+    post:
+      summary: Add a custom field to a project
       description: >-
-        Returns the compact records for all sections in the specified project.
+        Custom fields are associated with projects by way of custom field
+        settings.  This method creates a setting for the project.
       tags:
-        - Sections
-      operationId: getSectionsInProject
-      parameters:
-        - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/offset'
+        - Projects
+      operationId: project.addCustomFieldSetting
       responses:
         200:
-          description: Successfully retrieved sections in project.
+          description: Successfully added the custom field to the project.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SectionArray'
+                $ref: '#/components/schemas/EmptyObject'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -5486,43 +5416,31 @@ paths:
           $ref: '#/components/responses/NotFound'
         500:
           $ref: '#/components/responses/InternalServerError'
-    post:
-      summary: Creates a section in a project
-      description: >-
-        Creates a new section in a project.
-
-        Returns the full record of the newly created section.
-      tags:
-        - Sections
-      operationId: createSectionInProject
-      requestBody:
-        description: The section to create.
+  /projects/{project_gid}/removeCustomFieldSetting:
+    parameters:
+      - $ref: '#/components/parameters/project_path_gid'
+      - name: custom_field
+        in: query
+        description: The custom field to remove from this project.
         required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                project:
-                  description: The project to create the section in
-                  type: integer
-                  example: 13579
-                name:
-                  description: >-
-                    The text to be displayed as the section name. This cannot be
-                    an empty string.
-                  type: string
-                  example: Next Actions
-              required:
-                - project
-                - name
+        schema:
+          type: integer
+        example: 14916
+      - $ref: '#/components/parameters/pretty'
+    post:
+      summary: Remove a custom field from a project
+      description: >-
+        Removes a custom field setting from a project.
+      tags:
+        - Projects
+      operationId: project.removeCustomFieldSetting
       responses:
-        201:
-          description: Successfully created the specified section.
+        200:
+          description: Successfully removed the custom field from the project.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SectionObject'
+                $ref: '#/components/schemas/EmptyObject'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -5623,6 +5541,85 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EmptyObject'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /projects/{project_gid}/sections:
+    parameters:
+      - $ref: '#/components/parameters/project_path_gid'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+    get:
+      summary: Get sections in a project
+      description: >-
+        Returns the compact records for all sections in the specified project.
+      tags:
+        - Sections
+      operationId: getSectionsInProject
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+      responses:
+        200:
+          description: Successfully retrieved sections in project.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SectionArray'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      summary: Create a section in a project
+      description: >-
+        Creates a new section in a project.
+
+        Returns the full record of the newly created section.
+      tags:
+        - Sections
+      operationId: createSectionInProject
+      requestBody:
+        description: The section to create.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                project:
+                  description: The project to create the section in
+                  type: integer
+                  example: 13579
+                name:
+                  description: >-
+                    The text to be displayed as the section name. This cannot be
+                    an empty string.
+                  type: string
+                  example: Next Actions
+              required:
+                - project
+                - name
+      responses:
+        201:
+          description: Successfully created the specified section.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SectionObject'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -5766,93 +5763,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         500:
           $ref: '#/components/responses/InternalServerError'
-  /tasks/{task_gid}/stories:
-    parameters:
-      - name: task_gid
-        in: path
-        required: true
-        description: The task to get stories from.
-        schema:
-          type: string
-        example: 321654
-      - $ref: '#/components/parameters/pretty'
-      - $ref: '#/components/parameters/fields'
-    get:
-      summary: Get a task's stories
-      description: >-
-        Returns the compact records for all stories on the task.
-      tags:
-        - Stories
-        - Tasks
-      operationId: getTaskStories
-      parameters:
-        - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/offset'
-      responses:
-        200:
-          description: Successfully retrieved the specified task's stories.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/StoryArray'
-        400:
-          $ref: '#/components/responses/BadRequest'
-        401:
-          $ref: '#/components/responses/Unauthorized'
-        403:
-          $ref: '#/components/responses/Forbidden'
-        404:
-          $ref: '#/components/responses/NotFound'
-        500:
-          $ref: '#/components/responses/InternalServerError'
-    post:
-      summary: Create a comment on a task
-      description: |-
-        Adds a comment to a task. The comment will be authored by the currently
-        authenticated user, and timestamped when the server receives the
-        request.
-
-        Returns the full record for the new story added to the task.
-      tags:
-        - Stories
-        - Tasks
-      operationId: createCommentStory
-      requestBody:
-        description: The comment story to create.
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                task:
-                  description: Globally unique identifier for the task.
-                  type: integer
-                  example: 123456
-                text:
-                  description: The plain text of the comment to add.
-                  type: string
-                  example: This is a comment.
-              required:
-                - task
-                - text
-      responses:
-        201:
-          description: Successfully created a new story.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/StoryObject'
-        400:
-          $ref: '#/components/responses/BadRequest'
-        401:
-          $ref: '#/components/responses/Unauthorized'
-        403:
-          $ref: '#/components/responses/Forbidden'
-        404:
-          $ref: '#/components/responses/NotFound'
-        500:
-          $ref: '#/components/responses/InternalServerError'
   /stories/{story_gid}:
     parameters:
       - name: story_gid
@@ -5950,12 +5860,97 @@ paths:
           $ref: '#/components/responses/NotFound'
         500:
           $ref: '#/components/responses/InternalServerError'
+  /tasks/{task_gid}/stories:
+    parameters:
+      - name: task_gid
+        in: path
+        required: true
+        description: The task to get stories from.
+        schema:
+          type: string
+        example: 321654
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+    get:
+      summary: Get stories from a task
+      description: >-
+        Returns the compact records for all stories on the task.
+      tags:
+        - Stories
+      operationId: getTaskStories
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/offset'
+      responses:
+        200:
+          description: Successfully retrieved the specified task's stories.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StoryArray'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      summary: Create a comment on a task
+      description: |-
+        Adds a comment to a task. The comment will be authored by the currently
+        authenticated user, and timestamped when the server receives the
+        request.
+
+        Returns the full record for the new story added to the task.
+      tags:
+        - Stories
+      operationId: createCommentStory
+      requestBody:
+        description: The comment story to create.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                task:
+                  description: Globally unique identifier for the task.
+                  type: integer
+                  example: 123456
+                text:
+                  description: The plain text of the comment to add.
+                  type: string
+                  example: This is a comment.
+              required:
+                - task
+                - text
+      responses:
+        201:
+          description: Successfully created a new story.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StoryObject'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
   /tags:
     parameters:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     get:
-      summary: Get a set of tags
+      summary: Get multiple tags
       description: >-
         Returns the compact tag records for some filtered set of tags.
         Use one or more of the parameters provided to filter the tags returned.
@@ -6096,30 +6091,28 @@ paths:
           $ref: '#/components/responses/NotFound'
         500:
           $ref: '#/components/responses/InternalServerError'
-  /tags/{tag_gid}/tasks:
+  /tasks/{task_gid}/tags:
     parameters:
-      - $ref: '#/components/parameters/tag_path_gid'
+      - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
-      summary: Get tasks with tag
+      summary: Get a task's tags
       description: >-
-        Returns the compact task records for all tasks with the given tag. Tasks
-        can have more than one tag at a time.
+        Get a compact representation of all of the tags the task has.
       tags:
         - Tags
-        - Tasks
-      operationId: getTagTasks
+      operationId: getTaskTags
       responses:
         200:
           description: >-
-            Successfully retrieved the tasks associated with the specified tag.
+            Successfully retrieved the tags for the given task.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TaskArray'
+                $ref: '#/components/schemas/TagArray'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -6212,12 +6205,16 @@ paths:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     get:
-      summary: Get a set of tasks
+      summary: Get multiple tasks
       description: >-
         Returns the compact task records for some filtered set of tasks. Use one
         or more of the parameters provided to filter the tasks returned. You must
         specify a `project` or `tag` if you do not specify `assignee` and
         `workspace`.
+
+
+        For more complex task retrieval, use
+        [workspaces/{workspace_gid}/tasks/search](#search-tasks-in-a-workspace).
       tags:
         - Tasks
       operationId: queryTasks
@@ -6509,13 +6506,172 @@ paths:
           $ref: '#/components/responses/NotFound'
         500:
           $ref: '#/components/responses/InternalServerError'
+  /projects/{project_gid}/tasks:
+    parameters:
+      - $ref: '#/components/parameters/project_path_gid'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+    get:
+      summary: Get tasks from a project
+      description: >-
+        Returns the compact task records for all tasks within the given project,
+        ordered by their priority within the project. Tasks can exist in more
+        than one project at a time.
+      tags:
+        - Tasks
+      operationId: getProjectTasks
+      responses:
+        200:
+          description: Successfully retrieved the requested project's tasks.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskArray'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /sections/{section_gid}/tasks:
+    parameters:
+      - $ref: '#/components/parameters/section_path_gid'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+    get:
+      summary: Get tasks from a section
+      description: >-
+        *Board view only*: Returns the compact section records for all tasks
+        within the given section.
+      tags:
+        - Tasks
+      operationId: getSectionTasks
+      responses:
+        200:
+          description: >-
+            Successfully retrieved the section's tasks.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskArray'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /tags/{tag_gid}/tasks:
+    parameters:
+      - $ref: '#/components/parameters/tag_path_gid'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+    get:
+      summary: Get tasks from a tag
+      description: >-
+        Returns the compact task records for all tasks with the given tag. Tasks
+        can have more than one tag at a time.
+      tags:
+        - Tasks
+      operationId: getTagTasks
+      responses:
+        200:
+          description: >-
+            Successfully retrieved the tasks associated with the specified tag.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskArray'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /user_task_lists/{user_task_list_gid}/tasks:
+    parameters:
+      - name: completed_since
+        in: query
+        required: false
+        description: >
+          Only return tasks that are either incomplete or that have
+          been completed since this time. Accepts a date-time string or
+          the keyword *now*.
+        schema:
+          type: string
+        example: '2012-02-22T02:06:58.158Z'
+      - $ref: '#/components/parameters/user_task_list_path_gid'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+    get:
+      summary: Get tasks from a user task list
+      description: >-
+        Returns the compact list of tasks in a user’s My Tasks list.
+        The returned tasks will be in order within each assignee status
+        group of `Inbox`, `Today`, and `Upcoming`.
+
+        *Note: tasks in `Later` have a different ordering in the Asana
+        web app than the other assignee status groups; this endpoint
+        will still return them in list order in `Later` (differently
+        than they show up in Asana, but the same order as in Asana’s
+        mobile apps).*
+
+        *Note: Access control is enforced for this endpoint as with
+        all Asana API endpoints, meaning a user’s private tasks will be
+        filtered out if the API-authenticated user does not have access
+        to them.*
+
+        *Note: Both complete and incomplete tasks are returned by
+        default unless they are filtered out (for example, setting
+        `completed_since=now` will return only incomplete tasks, which
+        is the default view for “My Tasks” in Asana.)*
+      tags:
+        - User Task Lists
+      operationId: getUserTaskListTasks
+      responses:
+        200:
+          description: >-
+            Successfully retrieved the user task list's tasks.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskArray'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
   /tasks/{task_gid}/subtasks:
     parameters:
       - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     get:
-      summary: Get a subtask
+      summary: Get subtasks from a task
       description: >-
         Returns a compact representation of all of the subtasks of a task.
       tags:
@@ -6579,7 +6735,7 @@ paths:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     post:
-      summary: Change a task's parent
+      summary: Change the parent of a task
       description: >-
         parent, or no parent task at all. Returns an empty data block. When using
         `insert_before` and `insert_after`, at most one of those two options can
@@ -6644,7 +6800,7 @@ paths:
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
-      summary: Get a task's dependencies
+      summary: Get dependencies from a task
       description: >-
         Returns the compact representations of all of the dependencies of a task.
       tags:
@@ -6673,7 +6829,7 @@ paths:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     post:
-      summary: Set a task's dependencies
+      summary: Set dependencies for a task
       description: >-
         Marks a set of tasks as dependencies of this task, if they are not
         already dependencies. *A task can have at most 15 dependencies*.
@@ -6710,7 +6866,7 @@ paths:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     post:
-      summary: Unlinks dependencies from a task
+      summary: Unlink dependencies from a task
       description: Unlinks a set of dependencies from this task.
       tags:
         - Tasks
@@ -6748,7 +6904,7 @@ paths:
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
-      summary: Get a task's dependents
+      summary: Get dependents from a task
       description: >-
         Returns the compact representations of all of the dependents of a task.
       tags:
@@ -6778,7 +6934,7 @@ paths:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     post:
-      summary: Set a task's dependents
+      summary: Set dependents for a task
       description: >-
         Marks a set of tasks as dependents of this task, if they are not already
         dependents. *A task can have at most 30 dependents*.
@@ -6837,38 +6993,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TaskArray'
-        400:
-          $ref: '#/components/responses/BadRequest'
-        401:
-          $ref: '#/components/responses/Unauthorized'
-        403:
-          $ref: '#/components/responses/Forbidden'
-        404:
-          $ref: '#/components/responses/NotFound'
-        500:
-          $ref: '#/components/responses/InternalServerError'
-  /tasks/{task_gid}/projects:
-    parameters:
-      - $ref: '#/components/parameters/task_path_gid'
-      - $ref: '#/components/parameters/pretty'
-      - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
-    get:
-      summary: Get projects a task is in
-      description: >-
-        Returns a compact representation of all of the projects the task is in.
-      tags:
-        - Tasks
-      operationId: getTaskProjects
-      responses:
-        200:
-          description: >-
-            Successfully retrieved the projects for the given task.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ProjectArray'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -6966,7 +7090,7 @@ paths:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     post:
-      summary: Remove a project a task
+      summary: Remove a project from a task
       description: |-
         Removes the task from the specified project. The task will still exist in
         the system, but it will not be in the project anymore.
@@ -7000,38 +7124,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EmptyObject'
-        400:
-          $ref: '#/components/responses/BadRequest'
-        401:
-          $ref: '#/components/responses/Unauthorized'
-        403:
-          $ref: '#/components/responses/Forbidden'
-        404:
-          $ref: '#/components/responses/NotFound'
-        500:
-          $ref: '#/components/responses/InternalServerError'
-  /tasks/{task_gid}/tags:
-    parameters:
-      - $ref: '#/components/parameters/task_path_gid'
-      - $ref: '#/components/parameters/pretty'
-      - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
-    get:
-      summary: Get a task's tags
-      description: >-
-        Get a compact representation of all of the tags the task has.
-      tags:
-        - Tasks
-      operationId: getTaskTags
-      responses:
-        200:
-          description: >-
-            Successfully retrieved the tags for the given task.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TagArray'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -7234,40 +7326,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EmptyObject'
-        400:
-          $ref: '#/components/responses/BadRequest'
-        401:
-          $ref: '#/components/responses/Unauthorized'
-        403:
-          $ref: '#/components/responses/Forbidden'
-        404:
-          $ref: '#/components/responses/NotFound'
-        500:
-          $ref: '#/components/responses/InternalServerError'
-  /sections/{section_gid}/tasks:
-    parameters:
-      - $ref: '#/components/parameters/section_path_gid'
-      - $ref: '#/components/parameters/pretty'
-      - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
-    get:
-      summary: Get tasks in a section
-      description: >-
-        *Board view only*: Returns the compact section records for all tasks
-        within the given section.
-      tags:
-        - Sections
-        - Tasks
-      operationId: getSectionTasks
-      responses:
-        200:
-          description: >-
-            Successfully retrieved the section's tasks.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TaskArray'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -7610,7 +7668,7 @@ paths:
         default: false
         example: true
     get:
-      summary: Query for tasks in a workspace
+      summary: Search tasks in a workspace
       description: >-
         To mirror the functionality of the Asana web app's advanced search feature,
         the Asana API has a task search endpoint that allows you to build complex
@@ -7619,16 +7677,28 @@ paths:
         #### Custom fields
 
         | Parameter name | Custom field type | Accepted type |
+
         |---|---|---|
+
         | `custom_fields.<id>.is_set` | All | Boolean |
+
         | `custom_fields.<id>.value` | Text | String |
+
         | `custom_fields.<id>.value` | Number | Number |
+
         | `custom_fields.<id>.value` | Enum | Enum option ID |
+
         | `custom_fields.<id>.starts_with` | Text only | String |
+
         | `custom_fields.<id>.ends_with` | Text only | String |
+
         | `custom_fields.<id>.contains` | Text only | String |
+
         | `custom_fields.<id>.less_than` | Number only | Number |
+
         | `custom_fields.<id>.greater_than` | Number only | Number |
+
+
 
         For example, if the ID of the custom field is 12345, these query parameter
         to
@@ -7636,6 +7706,7 @@ paths:
         match
         an exact value for an enum custom field, use the ID of the desired enum option
         and not the name of the enum option: `custom_fields.12345.value=67890`.
+
 
         Searching for multiple exact matches of a custom field is not supported.
 
@@ -7646,8 +7717,10 @@ paths:
         only be available to premium Asana users. A user is premium if any of the
         following is true:
 
+
         - The workspace in which the search is being performed is a premium workspace
         - The user is a member of a premium team inside the workspace
+
 
         Even if a user is only a member of a premium team inside a non-premium
         workspace, search will allow them to find data anywhere in the workspace,
@@ -7681,7 +7754,6 @@ paths:
         You may receive a `429 Too Many Requests` response if you hit any of our
         [rate limits](/developers/documentation/getting-started/rate-limits).
       tags:
-        - Sections
         - Tasks
       operationId: getWorkspaceTasksSearch
       responses:
@@ -7719,7 +7791,7 @@ paths:
       summary: Get a team
       description: Returns the full record for a single team.
       tags:
-        - Team
+        - Teams
       operationId: getTeam
       responses:
         200:
@@ -7757,7 +7829,7 @@ paths:
         Returns the compact records for all teams in the organization visible to
         the authorized user.
       tags:
-        - Team
+        - Teams
       operationId: getAllTeams
       responses:
         200:
@@ -7813,11 +7885,11 @@ paths:
           type: integer
         example: 1331
     get:
-      summary: Get a user's teams
+      summary: Get teams for a user
       description: >-
         Returns the compact records for all teams to which the given user is assigned.
       tags:
-        - Team
+        - Teams
       operationId: getTeamsForUser
       responses:
         200:
@@ -7828,48 +7900,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TeamArray'
-        400:
-          $ref: '#/components/responses/BadRequest'
-        401:
-          $ref: '#/components/responses/Unauthorized'
-        403:
-          $ref: '#/components/responses/Forbidden'
-        404:
-          $ref: '#/components/responses/NotFound'
-        500:
-          $ref: '#/components/responses/InternalServerError'
-  /teams/{team_gid}/users:
-    parameters:
-      - name: team_gid
-        in: path
-        description: A globally unique identifier for the team.
-        required: true
-        schema:
-          type: integer
-        examples:
-          id:
-            summary: A globally unique identifier for the team
-            value: 14916
-      - $ref: '#/components/parameters/pretty'
-      - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
-    get:
-      summary: Get users in a team
-      description: >-
-        Returns the compact records for all users that are members of the team.
-      tags:
-        - Team
-      operationId: getUsersForTeam
-      responses:
-        200:
-          description: >-
-            Returns the user records for all the members of the team, including
-            guests and limited access users
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserArray'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -7901,7 +7931,7 @@ paths:
         others. The user being added must exist in the same organization as the
         team.
       tags:
-        - Team
+        - Teams
       operationId: addUserToTeam
       requestBody:
         description: The user to add to the team.
@@ -7957,7 +7987,7 @@ paths:
         The user making this call must be a member of the team in order to remove
         themselves or others.
       tags:
-        - Team
+        - Teams
       operationId: removeUserFromTeam
       requestBody:
         description: The user to remove from the team.
@@ -8051,7 +8081,7 @@ paths:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     get:
-      summary: Retrieve objects via typeahead
+      summary: Get objects via typeahead
       description: |-
         Retrieves objects in the workspace based via an auto-completion/typeahead
         search algorithm. This feature is meant to provide results quickly, so do
@@ -8071,7 +8101,6 @@ paths:
         the fields?! Of course you are. Use field selectors to manipulate what
         data is included in a response.
       tags:
-        - Workspaces
         - Typeahead
       operationId: getTypeahead
       responses:
@@ -8152,66 +8181,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         500:
           $ref: '#/components/responses/InternalServerError'
-  /user_task_lists/{user_task_list_gid}/tasks:
-    parameters:
-      - name: completed_since
-        in: query
-        required: false
-        description: >
-          Only return tasks that are either incomplete or that have
-          been completed since this time. Accepts a date-time string or
-          the keyword *now*.
-        schema:
-          type: string
-        example: '2012-02-22T02:06:58.158Z'
-      - $ref: '#/components/parameters/user_task_list_path_gid'
-      - $ref: '#/components/parameters/pretty'
-      - $ref: '#/components/parameters/fields'
-      - $ref: '#/components/parameters/limit'
-      - $ref: '#/components/parameters/offset'
-    get:
-      summary: Get tasks in a user task list
-      description: >-
-        Returns the compact list of tasks in a user’s My Tasks list.
-        The returned tasks will be in order within each assignee status
-        group of `Inbox`, `Today`, and `Upcoming`.
-
-        *Note: tasks in `Later` have a different ordering in the Asana
-        web app than the other assignee status groups; this endpoint
-        will still return them in list order in `Later` (differently
-        than they show up in Asana, but the same order as in Asana’s
-        mobile apps).*
-
-        *Note: Access control is enforced for this endpoint as with
-        all Asana API endpoints, meaning a user’s private tasks will be
-        filtered out if the API-authenticated user does not have access
-        to them.*
-
-        *Note: Both complete and incomplete tasks are returned by
-        default unless they are filtered out (for example, setting
-        `completed_since=now` will return only incomplete tasks, which
-        is the default view for “My Tasks” in Asana.)*
-      tags:
-        - User Task Lists
-      operationId: getUserTaskListTasks
-      responses:
-        200:
-          description: >-
-            Successfully retrieved the user task list's tasks.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TaskArray'
-        400:
-          $ref: '#/components/responses/BadRequest'
-        401:
-          $ref: '#/components/responses/Unauthorized'
-        403:
-          $ref: '#/components/responses/Forbidden'
-        404:
-          $ref: '#/components/responses/NotFound'
-        500:
-          $ref: '#/components/responses/InternalServerError'
   /users:
     parameters:
       - name: workspace
@@ -8226,7 +8195,7 @@ paths:
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
-      summary: Get a set of users
+      summary: Get multiple users
       description: >-
         Returns the user records for all users in all workspaces and
         organizations accessible to the authenticated user. Accepts an optional
@@ -8338,6 +8307,48 @@ paths:
           $ref: '#/components/responses/NotFound'
         500:
           $ref: '#/components/responses/InternalServerError'
+  /teams/{team_gid}/users:
+    parameters:
+      - name: team_gid
+        in: path
+        description: A globally unique identifier for the team.
+        required: true
+        schema:
+          type: integer
+        examples:
+          id:
+            summary: A globally unique identifier for the team
+            value: 14916
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/offset'
+    get:
+      summary: Get users in a team
+      description: >-
+        Returns the compact records for all users that are members of the team.
+      tags:
+        - Users
+      operationId: getUsersForTeam
+      responses:
+        200:
+          description: >-
+            Returns the user records for all the members of the team, including
+            guests and limited access users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserArray'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
   /workspaces/{workspace_gid}/users:
     parameters:
       - $ref: '#/components/parameters/workspace_path_gid'
@@ -8379,7 +8390,7 @@ paths:
       - $ref: '#/components/parameters/fields'
     get:
       summary: >-
-        Get a set of webhooks
+        Get multiple webhooks
       description: >-
         Get the compact representation of all webhooks your app has registered
         for the authenticated user in the given workspace.
@@ -8422,7 +8433,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
     post:
       summary: >-
-        Establish a webhook on a resource
+        Establish a webhook
       description: |-
         Establishing a webhook is a two-part process. First, a simple HTTP POST
         similar to any other resource creation. Since you could have multiple
@@ -8558,7 +8569,7 @@ paths:
         500:
           $ref: '#/components/responses/InternalServerError'
     delete:
-      summary: Remove a webhook
+      summary: Delete a webhook
       description: >-
         This method *permanently* removes a webhook. Note that it may be possible
         to receive a request that was already in flight after deleting the
@@ -8583,6 +8594,36 @@ paths:
           $ref: '#/components/responses/NotFound'
         500:
           $ref: '#/components/responses/InternalServerError'
+  /workspace_memberships/{workspace_membership_gid}:
+    parameters:
+      - $ref: '#/components/parameters/workspace_membership_path_gid'
+      - $ref: '#/components/parameters/pretty'
+      - $ref: '#/components/parameters/fields'
+    get:
+      summary: Get a workspace membership
+      description: >-
+        Returns the complete workspace record for a single workspace membership.
+      tags:
+        - Workspace Memberships
+      operationId: getWorkspaceMembership
+      responses:
+        200:
+          description: >-
+            Successfully retrieved the requested workspace membership.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkspaceMembershipObject'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        403:
+          $ref: '#/components/responses/Forbidden'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
   /users/{user_gid}/workspace_memberships:
     parameters:
       - $ref: '#/components/parameters/user_path_gid'
@@ -8591,7 +8632,7 @@ paths:
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
-      summary: Get the workspace memberships for a user
+      summary: Get workspace memberships for a user
       description: >-
         Returns the compact workspace membership records for the user.
       tags:
@@ -8638,36 +8679,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WorkspaceMembershipArray'
-  /workspace_memberships/{workspace_membership_gid}:
-    parameters:
-      - $ref: '#/components/parameters/workspace_membership_path_gid'
-      - $ref: '#/components/parameters/pretty'
-      - $ref: '#/components/parameters/fields'
-    get:
-      summary: Get a workspace membership
-      description: >-
-        Returns the complete workspace record for a single workspace membership.
-      tags:
-        - Workspace Memberships
-      operationId: getWorkspaceMembership
-      responses:
-        200:
-          description: >-
-            Successfully retrieved the requested workspace membership.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/WorkspaceMembershipObject'
-        400:
-          $ref: '#/components/responses/BadRequest'
-        401:
-          $ref: '#/components/responses/Unauthorized'
-        403:
-          $ref: '#/components/responses/Forbidden'
-        404:
-          $ref: '#/components/responses/NotFound'
-        500:
-          $ref: '#/components/responses/InternalServerError'
   /workspaces:
     parameters:
       - $ref: '#/components/parameters/pretty'
@@ -8675,7 +8686,7 @@ paths:
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
     get:
-      summary: Get a set of workspaces
+      summary: Get multiple workspaces
       description: >-
         Returns the compact records for all workspaces visible to the
         authorized user.

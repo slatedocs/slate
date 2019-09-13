@@ -44,7 +44,8 @@ you paginate all requests to the API.
 **This method returns paginated results for tasks from a project.**
 
     # Request
-    curl -H "Authorization: Bearer <personal_access_token>" "https://app.asana.com/api/1.0/tasks?project=1337&limit=5&offset=eyJ0eXAiOJiKV1iQLCJhbGciOiJIUzI1NiJ9"
+    curl "https://app.asana.com/api/1.0/tasks?project=1337&limit=5&offset=eyJ0eXAiOJiKV1iQLCJhbGciOiJIUzI1NiJ9" \
+      -H "Authorization: Bearer <personal_access_token>"
 
     # Response
     {

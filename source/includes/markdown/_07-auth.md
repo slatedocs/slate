@@ -261,7 +261,8 @@ Authorization header.
 
 ```shell
 !
-curl -H "Authorization: Bearer ACCESS_TOKEN" https://app.asana.com/api/1.0/users/me
+curl https://app.asana.com/api/1.0/users/me \
+  -H "Authorization: Bearer ACCESS_TOKEN"
 ```
 
 You should regularly review the list of personal access tokens you have created and **deauthorize** those that you no

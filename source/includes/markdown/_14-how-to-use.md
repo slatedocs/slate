@@ -110,7 +110,8 @@ _**Note**: treat your PAT like you would a password. Do not share it or display 
 > curl Request
 
 ```
-curl -H "Authorization: Bearer 0/123456789abcdef" https://app.asana.com/api/1.0/users/me`
+curl https://app.asana.com/api/1.0/users/me \
+  -H "Authorization: Bearer 0/123456789abcdef"
 ```
 
 We’ll use cURL, a command line[^1] program to make HTTP requests. MacOS and many Linux distributions have cURL pre-installed, and it’s [available for download](https://curl.haxx.se/dlwiz/?type=bin) on Windows and many other operating systems.  If you’re curious, you can learn more about cURL [in its own documentation](https://curl.haxx.se/docs/httpscripting.html). 
@@ -170,7 +171,7 @@ $ touch config.js app.js
  
 > Add gids (global ids) for the workspace, design request project, and designers that will be assigned requests 
 (note that all ids in Asana should be strings).  You can get a project’s gid from its URL in the Asana web product 
-(e.g. the structure of links for a task is www.asana.com/0/<project_gid>/<task_gid>). Similarly, you can get user’s 
+(e.g. the structure of links for a task is www.asana.com/0/{project_gid}/{task_gid}). Similarly, you can get user’s 
 gid from the URL of their task list (i.e. click on their name in Asana). To get your workspace gid(s), go to 
 https://app.asana.com/api/1.0/users/me/workspaces.
 

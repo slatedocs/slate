@@ -36,7 +36,8 @@ options: {
 **Default output**
 
     # Request
-    curl -H "Authorization: Bearer <personal_access_token>" https://app.asana.com/api/1.0/users/me
+    curl https://app.asana.com/api/1.0/users/me \
+       -H "Authorization: Bearer <personal_access_token>"
 
     # Response
     HTTP/1.1 200
@@ -45,7 +46,8 @@ options: {
 **Pretty output (how all API requests in this doc are presented)**
 
     # Request
-    curl -H "Authorization: Bearer <personal_access_token>" "https://app.asana.com/api/1.0/users/me?opt_pretty"
+    curl "https://app.asana.com/api/1.0/users/me?opt_pretty" \
+      -H "Authorization: Bearer <personal_access_token>"
 
     # Response
     HTTP/1.1 200
@@ -60,7 +62,8 @@ options: {
 **Get only name and description of task**
 
     # Request
-    curl -H "Authorization: Bearer <personal_access_token>" "https://app.asana.com/api/1.0/tasks/1224?opt_fields=name,notes"
+    curl "https://app.asana.com/api/1.0/tasks/1224?opt_fields=name,notes" \
+      -H "Authorization: Bearer <personal_access_token>"
 
     # Response
     HTTP/1.1 200
@@ -75,17 +78,20 @@ options: {
 **Reassign task, opting for projects in output**
 
     # Request
-    curl --request PUT -H "Authorization: Bearer <personal_access_token>" https://app.asana.com/api/1.0/tasks/1001 \
-    -d "assignee=1234" \
-    -d "opt_fields=%2Aprojects%2A"
+    curl --request PUT https://app.asana.com/api/1.0/tasks/1001 \
+      -H "Authorization: Bearer <personal_access_token>" \
+      -d "assignee=1234" \
+      -d "opt_fields=%2Aprojects%2A"
 
     # Alternative request using JSON
-    curl --request PUT -H "Authorization: Bearer <personal_access_token>" -H "Content-Type: application/json" \
-    https://app.asana.com/api/1.0/tasks/1001 -d \
-    '{
-        "data": { "assignee": 1234 },
-        "options": { "fields": "projects" }
-    }'
+    curl --request PUT https://app.asana.com/api/1.0/tasks/1001 \
+      -H "Authorization: Bearer <personal_access_token>" \
+      -H "Content-Type: application/json" \
+      -d \
+      '{
+          "data": { "assignee": 1234 },
+          "options": { "fields": "projects" }
+      }'
 
 
     # Response
