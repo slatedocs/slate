@@ -56,8 +56,8 @@ curl "https://demo.gomus.de/api/v4/ticket/1?locale[]=de&locale[]=en`
           "en": "description",
           "de": "Beschreibung"
         },
-        
+
         ...
     }
-}   
+}
 ```
