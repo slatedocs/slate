@@ -606,7 +606,7 @@ components:
       required: true
       schema:
         type: string
-      example: 12345
+      example: '12345'
     project_path_gid:
       name: project_gid
       in: path
@@ -615,14 +615,14 @@ components:
       required: true
       schema:
         type: string
-      example: 1331
+      example: '1331'
     project_membership_path_gid:
       name: project_membership_path_gid
       in: path
       required: true
       schema:
         type: string
-      example: 1331
+      example: '1331'
     project_status_path_gid:
       name: project_status_path_gid
       in: path
@@ -630,7 +630,7 @@ components:
       description: The project status update to get.
       schema:
         type: string
-      example: 321654
+      example: '321654'
     portfolio_path_gid:
       name: portfolio_gid
       in: path
@@ -639,21 +639,21 @@ components:
       required: true
       schema:
         type: string
-      example: 12345
+      example: '12345'
     portfolio_membership_path_gid:
       name: portfolio_membership_path_gid
       in: path
       required: true
       schema:
         type: string
-      example: 1331
+      example: '1331'
     portfolio_query_param:
       name: portfolio
       in: query
       description: The portfolio to filter results on.
       schema:
         type: string
-      example: 12345
+      example: '12345'
     section_path_gid:
       name: section_gid
       in: path
@@ -661,7 +661,7 @@ components:
       description: The globally unique identified for the section.
       schema:
         type: string
-      example: 321654
+      example: '321654'
     tag_path_gid:
       name: tag_gid
       in: path
@@ -669,7 +669,7 @@ components:
       required: true
       schema:
         type: string
-      example: 11235
+      example: '11235'
     task_path_gid:
       name: task_gid
       in: path
@@ -677,7 +677,7 @@ components:
       description: The task to operate on.
       schema:
         type: string
-      example: 321654
+      example: '321654'
     team_path_gid:
       name: team_gid
       in: path
@@ -685,7 +685,7 @@ components:
       required: true
       schema:
         type: string
-      example: 159874
+      example: '159874'
     user_query_param:
       name: user
       in: query
@@ -696,7 +696,7 @@ components:
       examples:
         gid:
           summary: A globally unique identifier for the user
-          value: 14641
+          value: '14641'
         me:
           summary: >-
             The keyword 'me' to indicate the current user making the
@@ -724,7 +724,7 @@ components:
       required: true
       schema:
         type: string
-      example: 12345
+      example: '12345'
     workspace_path_gid:
       name: workspace_gid
       in: path
@@ -733,21 +733,21 @@ components:
       required: true
       schema:
         type: string
-      example: 12345
+      example: '12345'
     workspace_query_param:
       name: workspace
       in: query
       description: The workspace to filter results on.
       schema:
         type: string
-      example: 12345
+      example: '12345'
     workspace_membership_path_gid:
       name: workspace_membership_path_gid
       in: path
       required: true
       schema:
         type: string
-      example: 12345
+      example: '12345'
   responses:
     GenericErrorResponse:
       description: >-
@@ -1014,7 +1014,7 @@ components:
           type: object
           example:
             assignee: me
-            workspace: 1337
+            workspace: '1337'
         options:
           description: >-
             Pagination (`limit` and `offset`) and output options (`fields` or
@@ -1075,7 +1075,7 @@ components:
           type: object
           example:
             data:
-              gid: 1967
+              gid: '1967'
               completed: false
               name: Hello, world!
               notes: How are you today?
@@ -1264,8 +1264,8 @@ components:
       example:
         data:
           dependencies:
-            - 133713
-            - 184253
+            - '133713'
+            - '184253'
     DependentArray:
       description: A set of dependent tasks.
       type: object
@@ -1282,8 +1282,8 @@ components:
       example:
         data:
           dependents:
-            - 133713
-            - 184253
+            - '133713'
+            - '184253'
     EmptyObject:
       description: An empty object.
       type: object
@@ -1440,7 +1440,7 @@ components:
           properties:
             gid:
               type: string
-              example: 12345
+              example: '12345'
             name:
               type: string
               example: Bug Task
@@ -1789,7 +1789,7 @@ components:
                 color: green
                 text: Everything is great
                 author:
-                  gid: 12345
+                  gid: '12345'
                   name: Greg Bizarro
             custom_fields:
               description: Array of Custom Fields.
@@ -2361,7 +2361,7 @@ components:
               properties:
                 gid:
                   type: string
-                  example: 1234
+                  example: '1234'
                 name:
                   type: string
                   example: Bug Task
@@ -2959,7 +2959,7 @@ components:
           properties:
             user:
               type: string
-              example: 12345
+              example: '12345'
     UserTaskList:
       allOf:
         - $ref: '#/components/schemas/AsanaNamedObject'
@@ -3078,7 +3078,7 @@ components:
           type: string
           readOnly: true
           nullable: true
-          example: 12345
+          example: '12345'
         resource:
           description: |-
             The resource gid the event occurred on.
@@ -3089,7 +3089,7 @@ components:
             within the project.*
           type: string
           readOnly: true
-          example: 32154
+          example: '32154'
         type:
           description: |-
             The type of the resource that generated the event.
@@ -3111,7 +3111,7 @@ components:
           type: string
           readOnly: true
           nullable: true
-          example: 321654987
+          example: '321654987'
     WebhookObject:
       type: object
       properties:
@@ -3251,7 +3251,7 @@ paths:
         required: true
         schema:
           type: string
-        example: 12357
+        example: '12357'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     get:
@@ -3295,7 +3295,7 @@ paths:
         required: true
         schema:
           type: string
-        example: 124816
+        example: '124816'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
       - $ref: '#/components/parameters/limit'
@@ -3551,7 +3551,7 @@ paths:
                         workspace:
                           type: string
                           description: The workspace to create a custom field in.
-                          example: 1331
+                          example: '1331'
                           required: true
       responses:
         201:
@@ -3579,7 +3579,7 @@ paths:
           Globally unique identifier for the custom field.
         schema:
           type: string
-        example: 124578
+        example: '124578'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     get:
@@ -3701,7 +3701,7 @@ paths:
           The workspace or organization to find custom field definitions in.
         schema:
           type: string
-        example: 1331
+        example: '1331'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
       - $ref: '#/components/parameters/limit'
@@ -3741,7 +3741,7 @@ paths:
           Globally unique identifier for the custom field.
         schema:
           type: string
-        example: 124578
+        example: '124578'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
       - $ref: '#/components/parameters/limit'
@@ -3781,7 +3781,7 @@ paths:
                             before which the new enum option should be
                             inserted. Cannot be provided together with
                             after_enum_option.
-                          example: 12345
+                          example: '12345'
                         insert_after:
                           type: string
                           description: >-
@@ -3789,7 +3789,7 @@ paths:
                             after which the new enum option should be inserted.
                             Cannot be provided together with
                             before_enum_option.
-                          example: 12345
+                          example: '12345'
       responses:
         201:
           description: Custom field enum option successfully created.
@@ -3816,7 +3816,7 @@ paths:
           Globally unique identifier for the custom field.
         schema:
           type: string
-        example: 124578
+        example: '124578'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     post:
@@ -3845,7 +3845,7 @@ paths:
                         enum_option:
                           type: string
                           description: The gid of the enum option to relocate.
-                          example: 97285
+                          example: '97285'
                         before_enum_option:
                           type: string
                           description: >-
@@ -3853,7 +3853,7 @@ paths:
                             before which the new enum option should be
                             inserted. Cannot be provided together with
                             after_enum_option.
-                          example: 12345
+                          example: '12345'
                         after_enum_option:
                           type: string
                           description: >-
@@ -3861,7 +3861,7 @@ paths:
                             after which the new enum option should be inserted.
                             Cannot be provided together with
                             before_enum_option.
-                          example: 12345
+                          example: '12345'
       responses:
         200:
           description: Custom field enum option successfully reordered.
@@ -3888,7 +3888,7 @@ paths:
           Globally unique identifier for the enum option.
         schema:
           type: string
-        example: 124578
+        example: '124578'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     put:
@@ -3939,7 +3939,7 @@ paths:
           A resource ID to subscribe to. The resource can be a task or project.
         schema:
           type: string
-        example: 12345
+        example: '12345'
       - name: sync
         in: query
         required: false
@@ -4041,7 +4041,7 @@ paths:
                   description: >-
                     Globally unique identifier for the workspace or organization.
                   type: string
-                  example: 1331
+                  example: '1331'
       responses:
         201:
           description: Successfully created organization export request.
@@ -4067,7 +4067,7 @@ paths:
         required: true
         schema:
           type: string
-        example: 133549
+        example: '133549'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     get:
@@ -4212,14 +4212,14 @@ paths:
             The workspace or organization to filter portfolios on.
           schema:
             type: string
-          example: 1331
+          example: '1331'
         - name: owner
           in: query
           description: The user who owns the portfolio. Currently, API users can only
             get a list of portfolios that they themselves own.
           schema:
             type: string
-          example: 14916
+          example: '14916'
       responses:
         200:
           description: Successfully retrieved portfolios.
@@ -4408,7 +4408,7 @@ paths:
         schema:
           type: string
         required: true
-        example: 1331
+        example: '1331'
       - name: insert_before
         in: query
         description: >-
@@ -4419,7 +4419,7 @@ paths:
         schema:
           type: string
         required: true
-        example: 1331
+        example: '1331'
       - name: insert_after
         in: query
         description: >-
@@ -4430,7 +4430,7 @@ paths:
         schema:
           type: string
         required: true
-        example: 1331
+        example: '1331'
     post:
       summary: Add a portfolio item
       description: >-
@@ -4470,7 +4470,7 @@ paths:
         schema:
           type: string
         required: true
-        example: 1331
+        example: '1331'
     post:
       summary: Remove a portfolio item
       description: >-
@@ -4585,7 +4585,7 @@ paths:
         required: true
         schema:
           type: string
-        example: 14916
+        example: '14916'
       - name: is_important
         in: query
         description: >-
@@ -4602,7 +4602,7 @@ paths:
           parameters cannot both be specified.
         schema:
           type: string
-        example: 1331
+        example: '1331'
       - name: insert_after
         in: query
         description: >-
@@ -4611,7 +4611,7 @@ paths:
           parameters cannot both be specified.
         schema:
           type: string
-        example: 1331
+        example: '1331'
       - $ref: '#/components/parameters/pretty'
     post:
       summary: Add a custom field to a portfolio
@@ -4648,7 +4648,7 @@ paths:
         required: true
         schema:
           type: string
-        example: 14916
+        example: '14916'
       - $ref: '#/components/parameters/pretty'
     post:
       summary: Remove a custom field from a portfolio
@@ -4844,7 +4844,7 @@ paths:
                 project:
                   description: Globally unique identifier for the project.
                   type: string
-                  example: 123456
+                  example: '123456'
                 text:
                   description: The text of the project status update.
                   type: string
@@ -4898,13 +4898,13 @@ paths:
             The workspace or organization to filter projects on.
           schema:
             type: string
-          example: 1331
+          example: '1331'
         - name: team
           in: query
           description: The team to filter projects on.
           schema:
             type: string
-          example: 14916
+          example: '14916'
         - $ref: '#/components/parameters/archived_query_param'
       responses:
         200:
@@ -4963,13 +4963,13 @@ paths:
                       description: >-
                         The workspace or organization to create the project in.
                       type: string
-                      example: 1331
+                      example: '1331'
                     team:
                       description: >-
                         If creating in an organization, the specific team to
                         create the project in.
                       type: string
-                      example: 14916
+                      example: '14916'
       responses:
         201:
           description: Successfully retrieved projects.
@@ -5362,7 +5362,7 @@ paths:
         required: true
         schema:
           type: string
-        example: 14916
+        example: '14916'
       - name: is_important
         in: query
         description: >-
@@ -5380,7 +5380,7 @@ paths:
           parameters cannot both be specified.
         schema:
           type: string
-        example: 1331
+        example: '1331'
       - name: insert_after
         in: query
         description: >-
@@ -5389,7 +5389,7 @@ paths:
           parameters cannot both be specified.
         schema:
           type: string
-        example: 1331
+        example: '1331'
       - $ref: '#/components/parameters/pretty'
     post:
       summary: Add a custom field to a project
@@ -5425,7 +5425,7 @@ paths:
         required: true
         schema:
           type: string
-        example: 14916
+        example: '14916'
       - $ref: '#/components/parameters/pretty'
     post:
       summary: Remove a custom field from a project
@@ -5603,7 +5603,7 @@ paths:
                 project:
                   description: The project to create the section in
                   type: string
-                  example: 13579
+                  example: '13579'
                 name:
                   description: >-
                     The text to be displayed as the section name. This cannot be
@@ -5657,21 +5657,21 @@ paths:
                 task:
                   description: The task to add to this section.
                   type: string
-                  example: 123456
+                  example: '123456'
                 insert_before:
                   description: >-
                     An existing task within this section before which the added
                     task should be inserted. Cannot be provided together with
                     insert_after.
                   type: string
-                  example: 86420
+                  example: '86420'
                 insert_after:
                   description: >-
                     An existing task within this section after which the added
                     task should be inserted. Cannot be provided together with
                     insert_before.
                   type: string
-                  example: 987654
+                  example: '987654'
               required:
                 - task
                 - insert_before
@@ -5724,23 +5724,23 @@ paths:
                 project:
                   description: The project in which to reorder the given section.
                   type: string
-                  example: 123456
+                  example: '123456'
                 section:
                   description: The section to reorder.
                   type: string
-                  example: 321654
+                  example: '321654'
                 before_section:
                   description: >-
                     Insert the given section immediately before the section
                     specified by this parameter.
                   type: string
-                  example: 86420
+                  example: '86420'
                 after_section:
                   description: >-
                     Insert the given section immediately after the section
                     specified by this parameter.
                   type: string
-                  example: 987654
+                  example: '987654'
               required:
                 - project
                 - section
@@ -5771,7 +5771,7 @@ paths:
         description: The globally unique identifier for the story.
         schema:
           type: string
-        example: 1234
+        example: '1234'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     get:
@@ -5868,7 +5868,7 @@ paths:
         description: The task to get stories from.
         schema:
           type: string
-        example: 321654
+        example: '321654'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     get:
@@ -5920,7 +5920,7 @@ paths:
                 task:
                   description: Globally unique identifier for the task.
                   type: string
-                  example: 123456
+                  example: '123456'
                 text:
                   description: The plain text of the comment to add.
                   type: string
@@ -5966,7 +5966,7 @@ paths:
             The workspace to filter tags on.
           schema:
             type: string
-          example: 1331
+          example: '1331'
         - name: archived
           in: query
           description: >-
@@ -6131,7 +6131,7 @@ paths:
         required: true
         schema:
           type: string
-        example: 1331
+        example: '1331'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     get:
@@ -6234,7 +6234,7 @@ paths:
           examples:
             gid:
               summary: A globally unique identifier for the user
-              value: 14641
+              value: '14641'
             me:
               summary: >-
                 The keyword 'me' to indicate the current user making the
@@ -6249,7 +6249,7 @@ paths:
             The project to filter tasks on.
           schema:
             type: string
-          example: 321654
+          example: '321654'
         - name: section
           in: query
           description: >-
@@ -6258,7 +6258,7 @@ paths:
             *Note: Currently, this is only supported in board views.*
           schema:
             type: string
-          example: 321654
+          example: '321654'
         - name: workspace
           in: query
           description: >-
@@ -6268,7 +6268,7 @@ paths:
             `assignee` to filter on.*
           schema:
             type: string
-          example: 321654
+          example: '321654'
         - name: completed_since
           in: query
           description: >-
@@ -6758,7 +6758,7 @@ paths:
                       description: >-
                         The new parent of the task, or `null` for no parent.
                       type: string
-                      example: 987654
+                      example: '987654'
                     insert_after:
                       description: >-
                         A subtask of the parent to insert the task after, or `null`
@@ -7042,28 +7042,28 @@ paths:
                     project:
                       description: The project to add the task to.
                       type: string
-                      example: 13579
+                      example: '13579'
                     insert_after:
                       description: >-
                         A task in the project to insert the task after, or `null`
                         to insert at the beginning of the list.
                       type: string
                       nullable: true
-                      example: 124816
+                      example: '124816'
                     insert_before:
                       description: >-
                         A task in the project to insert the task before, or
                         `null` to insert at the end of the list.
                       type: string
                       nullable: true
-                      example: 432134
+                      example: '432134'
                     section:
                       description: >-
                         A section in the project to insert the task into. The
                         task will be inserted at the bottom of the section.
                       type: string
                       nullable: true
-                      example: 987654
+                      example: '987654'
                   required:
                     - project
       responses:
@@ -7113,7 +7113,7 @@ paths:
                     project:
                       description: The project to remove the task from.
                       type: string
-                      example: 13579
+                      example: '13579'
                   required:
                     - project
       responses:
@@ -7160,7 +7160,7 @@ paths:
                     tag:
                       description: The tag to add to the task.
                       type: string
-                      example: 13579
+                      example: '13579'
                   required:
                     - tag
       responses:
@@ -7207,7 +7207,7 @@ paths:
                     tag:
                       description: The tag to remove from the task.
                       type: string
-                      example: 13579
+                      example: '13579'
                   required:
                     - tag
       responses:
@@ -7262,8 +7262,8 @@ paths:
                       items:
                         type: string
                       example:
-                        - 13579
-                        - 321654
+                        - '13579'
+                        - '321654'
                   required:
                     - followers
       responses:
@@ -7314,8 +7314,8 @@ paths:
                       items:
                         type: string
                       example:
-                        - 13579
-                        - 321654
+                        - '13579'
+                        - '321654'
                   required:
                     - followers
       responses:
@@ -7700,11 +7700,11 @@ paths:
 
 
 
-        For example, if the ID of the custom field is 12345, these query parameter
+        For example, if the gid of the custom field is 12345, these query parameter
         to
         find tasks where it is set would be `custom_fields.12345.is_set=true`. To
         match
-        an exact value for an enum custom field, use the ID of the desired enum option
+        an exact value for an enum custom field, use the gid of the desired enum option
         and not the name of the enum option: `custom_fields.12345.value=67890`.
 
 
@@ -7782,7 +7782,7 @@ paths:
         required: true
         schema:
           type: string
-        example: 14916
+        example: '14916'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
       - $ref: '#/components/parameters/limit'
@@ -7818,7 +7818,7 @@ paths:
         required: true
         schema:
           type: string
-        example: 1331
+        example: '1331'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
       - $ref: '#/components/parameters/limit'
@@ -7883,7 +7883,7 @@ paths:
         required: true
         schema:
           type: string
-        example: 1331
+        example: '1331'
     get:
       summary: Get teams for a user
       description: >-
@@ -7921,7 +7921,7 @@ paths:
         examples:
           gid:
             summary: A globally unique identifier for the team
-            value: 14916
+            value: '14916'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     post:
@@ -7944,7 +7944,7 @@ paths:
               gid:
                 summary: A globally unique identifier for the user
                 value:
-                  user: 14641
+                  user: '14641'
               email:
                 summary: An email address for a user
                 value:
@@ -7978,7 +7978,7 @@ paths:
         examples:
           gid:
             summary: A globally unique identifier for the team
-            value: 14916
+            value: '14916'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     post:
@@ -8000,7 +8000,7 @@ paths:
               gid:
                 summary: A globally unique identifier for the user
                 value:
-                  user: 14641
+                  user: '14641'
               email:
                 summary: An email address for a user
                 value:
@@ -8189,7 +8189,7 @@ paths:
           The workspace or organization ID to filter users on.
         schema:
           type: string
-        example: 1331
+        example: '1331'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
       - $ref: '#/components/parameters/limit'
@@ -8280,7 +8280,7 @@ paths:
           The workspace in which to get favorites.
         schema:
           type: string
-        example: 1234
+        example: '1234'
     get:
       summary: Get a user's favorites
       description: >-
@@ -8318,7 +8318,7 @@ paths:
         examples:
           gid:
             summary: A globally unique identifier for the team
-            value: 14916
+            value: '14916'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
       - $ref: '#/components/parameters/limit'
@@ -8407,13 +8407,13 @@ paths:
             The workspace to query for webhooks in.
           schema:
             type: string
-          example: 1331
+          example: '1331'
         - name: resource
           in: query
           description: Only return webhooks for the given resource.
           schema:
             type: string
-          example: 51648
+          example: '51648'
       responses:
         200:
           description: Successfully retrieved the requested webhooks.
@@ -8476,9 +8476,9 @@ paths:
         HTTP/1.1 201
         {
           "data": {
-            "id": 43214,
+            "gid": "43214",
             "resource": {
-              "id": 8675309,
+              "gid": "8675309",
               "name": "Bugs"
             },
             "target": "https://example.com/receive-webhook/7654",
@@ -8505,7 +8505,7 @@ paths:
                     A resource ID to subscribe to. The resource can be
                     a task or project.
                   type: string
-                  example: 12345
+                  example: '12345'
                 target:
                   description: The URL to receive the HTTP POST.
                   type: string
@@ -8540,7 +8540,7 @@ paths:
           The webhook to affect with the current operation.
         schema:
           type: string
-          example: 95784
+          example: '95784'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     get:
@@ -8803,7 +8803,7 @@ paths:
               gid:
                 summary: A globally unique identifier for the user
                 value:
-                  user: 14641
+                  user: '14641'
               me:
                 summary: >-
                   The keyword 'me' to indicate the current user making the
@@ -8860,7 +8860,7 @@ paths:
               gid:
                 summary: A globally unique identifier for the user
                 value:
-                  user: 14641
+                  user: '14641'
               me:
                 summary: >-
                   The keyword 'me' to indicate the current user making the
