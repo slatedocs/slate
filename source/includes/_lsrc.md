@@ -1042,7 +1042,61 @@ var results = request.Get("/v2/lsrc/results/get", parameters);
             }
           }
         }
-      }
+      },
+      "competitors": [
+        {
+          "id": 1,
+          "name": "Test Competitor",
+          "url": "https://test-competitor.com/",
+          "rankings": {
+            "bear bar": {
+              "google": [
+                {
+                  "id": 11764,
+                  "url": "https://alaskabar.org/",
+                  "orig_url": "https://www.alaskabar.org/",
+                  "rank": 1,
+                  "page": 1,
+                  "type": "Organic",
+                  "match": "website address",
+                  "directory": null,
+                  "hash": "32d3f35ad7633a34b2cf93dec7dfdd2455d25f84",
+                  "search_url": "https://www.google.com/search?q=Alaska+Bar+Association&gl=us&gws_rd=cr&uule=w+CAIQICIGQWxhc2th&pws=0",
+                  "last": 1
+                },
+                {
+                  "id": "11764",
+                  "url": "https://alaskabar.org/",
+                  "orig_url": "https://www.alaskabar.org/",
+                  "rank": 8,
+                  "page": 1,
+                  "type": "Organic",
+                  "match": "website address",
+                  "directory": null,
+                  "hash": "32d3f35ad7633a34b2cf93dec7dfdd2455d25f84",
+                  "search_url": "https://www.google.com/search?q=Alaska+Bar+Association&gl=us&gws_rd=cr&uule=w+CAIQICIGQWxhc2th&pws=0",
+                  "last": 1
+                }                
+              ],
+              "google-places": [
+                {
+                  "id": "11764",
+                  "url": "https://alaskabar.org/",
+                  "orig_url": "https://www.alaskabar.org/",
+                  "rank": 1,
+                  "page": 1,
+                  "type": "Organic",
+                  "match": "website address",
+                  "directory": null,
+                  "hash": "32d3f35ad7633a34b2cf93dec7dfdd2455d25f84",
+                  "search_url": "https://www.google.com/search?q=Alaska+Bar+Association&gl=us&gws_rd=cr&uule=w+CAIQICIGQWxhc2th&pws=0",
+                  "last": 1
+                }
+              ]
+            }
+          }
+        }
+      ]        
     }
   }
 }
