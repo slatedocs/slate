@@ -374,3 +374,59 @@ Note that the ticket response block may not contain all of your requested ticket
 ### Reservations
 
 Provide an array of reservation tokens to be considered in calculation
+
+## Contents for a set of tickets
+
+This call returns dynamic content for a set of tickets. Use this to optimise content fetching.
+
+`GET https://demo.gomus.de/api/v4/tickets/content`
+
+```shell
+curl "https://demo.gomus.de/api/v4/tickets/content?ticket_ids[]=14&ticket_ids[]=11"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "data": [
+    {
+      "id": 11,
+      "content": {
+        "shop_title": "My Ticket Title"
+      }
+    },
+    {
+      "id": 14,
+      "content": {
+        "shop_title": "Another Ticket Title",
+        "shop_description": "<p>Description DE</p>"
+      }
+    }
+  ],
+  "meta": {
+    "total_count": 2,
+    "page": 1,
+    "per_page": 25
+  }
+}
+```
+### Available filters:
+
+- locales are available with the `locale` parameter, see more in the locale section
+
+### Necessary parameters:
+
+- ticket_ids (Array of ticket ids)
+
+### Available parameters:
+
+- attr, defaults to `nil`, can be used to only query a specific attribute per set
+- per_page, defaults to system default (`25`)
+- page, defaults to `1`
+
+### Response
+
+The json response contains a list of contents for a set of tickets as an array and a meta block.
+
+- content, contains key/value pairs of a specific attribute per set of tickets
