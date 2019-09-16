@@ -15,7 +15,7 @@ This document illustrates how interact with NestReady events api.
 
 This process can be described into two steps:
 
-1) Subscribe to events for specific home_buyerss.
+1) Subscribe to events for specific home_buyers.
 
 2) Every time NestReady tracks an event from that home_buyers, NestReady will trigger a webhooks to your server.
 
@@ -40,6 +40,7 @@ We expect you to send this information in a field called 'X-Token' inside header
 // BODY EXAMPLE
 {
     "home_buyer": {
+        "id": "1234",
         "email": "something@somewhere.co",
         "phone": "(123)12341234"
     },
@@ -105,10 +106,28 @@ hours (meaning that events occured more than 48 hours ago won't be retrieved).
 ```json
 //BODY EXAMPLE
 {
-  "current_page": 1,
-  "total_pages_count": 0,
-  "listings_per_page": 100,
-  "events": []
+    "current_page": 1,
+    "total_pages_count": 1,
+    "listings_per_page": 100,
+    "events": [
+        {
+            "id": "5d7bf7967b571f00122e295c",
+            "created_at": 1568405398,
+            "type": "listing_changed",
+            "data": {
+                "listing_diff": {
+                    "price_cents": [
+                        "2000000",
+                        "3000000"
+                    ],
+                    "status": [
+                        "peding",
+                        "active"
+                    ]
+                }
+            }
+        }
+    ]
 }
 ``````
 
@@ -128,21 +147,44 @@ page | yes | ex: 1
 
 
 ### Receiving
-After subscribing successfully, you will begin to receive events for your home_buyerss to the defined delivery_url.
+After subscribing successfully, you will begin to receive events for your home_buyers to the defined delivery_url.
 
 The follow schema is used for every event payload, the example of data is available [here](/#event-types)
 
 ```json
 //BODY EXAMPLE
 {
-  "id": <string>,
-  "type": <string>,
-  "metadata": <string>,
-  "partner_name": <string>,
-  "data": <hashmap>,
-  "created_at": <timestamp>,
+    "current_page": 1,
+    "total_pages_count": 1,
+    "events_per_page": 100,
+    "events": [
+        {
+            "id": "5d7bf6117b571f000f2e2989",
+            "created_at": 1568405009,
+            "type": "finance_requested",
+            "partner_name": "mybank",
+            "data": {
+                "listing": {
+                    "id": "listing_1",
+                    "bathrooms_count": "1",
+                    "bedrooms_count": "1",
+                    "description": "description",
+                    "listing_image_cover_url": "https://listing-images.nestready.net/dArboFrG37bMhDjHxWUMBZ3vs",
+                    "mls_number": "1234mls",
+                    "price_cents": "100_000",
+                    "property_address": "full_address",
+                    "year_built": "1990"
+                }
+            },
+            "home_buyer": {
+                "id": "1234",
+                "email": "something@somewhere.co",
+                "phone": "(123)12341234"
+            },
+            "metadata": "user_id_in_your_system"
+        }
+    ]
 }
-
 ```
 
 #### HTTP Request
@@ -155,6 +197,7 @@ The follow schema is used for every event payload, the example of data is availa
 //DATA EXAMPLE
 {
     "home_buyer": {
+        "id": "1234",
         "email": "something@somewhere.co",
         "phone": "(123)12341234"
     },
@@ -167,7 +210,7 @@ This event is triggered once a user sends a request by any listed event.
 
 ### location_favorited
 ```json
-//DATA EXAMPLE for location_favorited and location_unfavorited
+//DATA EXAMPLE 
 {
     "home_buyer": {
         "id": "1234",
@@ -191,34 +234,231 @@ This event is triggered once a user sends a request by any listed event.
 This event is triggered once the user "pins" or favorites a location either from the dashboards listings, or from the location details itself.
 
 ### location_unfavorited
+```json
+//DATA EXAMPLE 
+{
+    "home_buyer": {
+        "id": "1234",
+        "email": "something@somewhere.co",
+        "phone": "(123)12341234"
+    },
+    "data": {
+            "location": {
+                "id": "1",
+                "name": "Boston",
+                "level": "place"
+            }
+
+    },
+    "event_type": "location_unfavorited",
+    "partner_name": "mybank",
+    "journey_id": "j1"
+}
+```
 This event is triggered once the user unfavorites or unpins a previously favorited location.
 
 ### property_visit_requested
+```json
+//DATA EXAMPLE 
+{
+    "home_buyer": {
+        "id": "1234",
+        "email": "something@somewhere.co",
+        "phone": "(123)12341234"
+    },
+    "data": {
+            "listing": {
+                    "id": "listing_1",
+                    "property_address": "full_address",
+                    "mls_number": "1234mls",
+                    "listing_image_cover_url": "https://listing-images.nestready.net/dArboFrG37bMhDjHxWUMBZ3vs",
+                    "price_cents": "100_000",
+                    "bathrooms_count": "1",
+                    "bedrooms_count": "1",
+                    "year_built": "1990",
+                    "description": "description"
+                  }
+    },
+    "event_type": "property_visit_requested",
+    "partner_name": "mybank",
+    "journey_id": "j1"
+}
+```
 
 This event is triggered once the user clicks on the option to schedule a visit to a property, either from the listings dashboards or from the property details itself.
 
 
 ### listing_favorited
+```json
+//DATA EXAMPLE 
+{
+    "home_buyer": {
+        "id": "1234",
+        "email": "something@somewhere.co",
+        "phone": "(123)12341234"
+    },
+    "data": {
+            "listing": {
+                    "id": "listing_1",
+                    "property_address": "full_address",
+                    "mls_number": "1234mls",
+                    "listing_image_cover_url": "https://listing-images.nestready.net/dArboFrG37bMhDjHxWUMBZ3vs",
+                    "price_cents": "100_000",
+                    "bathrooms_count": "1",
+                    "bedrooms_count": "1",
+                    "year_built": "1990",
+                    "description": "description"
+                  }
+    },
+    "event_type": "listing_favorited",
+    "partner_name": "mybank",
+    "journey_id": "j1"
+}
+```
 
 This event is triggered once the user clicks on favorites to view the properties and/or locations previously pinned, or favorited.
 
 ### listing_unfavorited
+```json
+//DATA EXAMPLE
+{
+    "home_buyer": {
+        "id": "1234",
+        "email": "something@somewhere.co",
+        "phone": "(123)12341234"
+    },
+    "data": {
+            "listing": {
+                    "id": "listing_1",
+                    "property_address": "full_address",
+                    "mls_number": "1234mls",
+                    "listing_image_cover_url": "https://listing-images.nestready.net/dArboFrG37bMhDjHxWUMBZ3vs",
+                    "price_cents": "100_000",
+                    "bathrooms_count": "1",
+                    "bedrooms_count": "1",
+                    "year_built": "1990",
+                    "description": "description"
+                  }
+    },
+    "event_type": "listing_ufavorited",
+    "partner_name": "mybank",
+    "journey_id": "j1"
+}
 
+```
 This evente is triggerend once the user unfavorites or unpins a favorited listing/property.
 
-This event is triggered once the user, using the filter provided, performs a property search
-
 ### saved_search_updated
-
+```json
+//DATA EXAMPLE
+{
+    "home_buyer": {
+        "id": "1234",
+        "email": "something@somewhere.co",
+        "phone": "(123)12341234"
+    },
+    "data": {
+        "searches": [{
+            "id": "search_1",
+            "bathrooms_count": "1",
+            "bedrooms_count": "2",
+            "location": {
+                "id": "1",
+                "name": "boston",
+                "level": "place"
+            },
+            "max_price_cents": "100_000_000",
+            "min_price_cents": "",
+            "listing_image_cover_url": "https://listing-images.nestready.net/dArboFrG37bMhDjHxWUMBZ3vs",
+            "property_type": "all"
+        }]
+    },
+"event_type": "saved_search_updated",
+"partner_name": "mybank",
+"journey_id": "j1"
+}
+```
 This event is triggered once the user has already perfomed a property search and then saves it.
 
 ### search_deleted
+```json
+//DATA EXAMPLE
+{
+    "home_buyer": {
+        "id": "1234",
+        "email": "something@somewhere.co",
+        "phone": "(123)12341234"
+    },
+    "data": {
+        "searches": [{
+            "id": "search_1",
+            "bathrooms_count": "1",
+            "bedrooms_count": "2",
+            "location": {
+                "id": "1",
+                "name": "boston",
+                "level": "place"
+            },
+            "max_price_cents": "100_000_000",
+            "min_price_cents": "",
+            "listing_image_cover_url": "https://listing-images.nestready.net/dArboFrG37bMhDjHxWUMBZ3vs",
+            "property_type": "all"
+        }]
+    },
+"event_type": "search_deleted",
+"partner_name": "mybank",
+"journey_id": "j1"
+}
+```
 This event is triggered when the user deletes a previously saved search.
 
 ### saved_search_shared
+```json
+//DATA EXAMPLE
+{
+    "home_buyer": {
+        "id": "1234",
+        "email": "something@somewhere.co",
+        "phone": "(123)12341234"
+    },
+    "data": {
+        "search": {
+            "id": "search_1",
+            "bathrooms_count": "1",
+            "bedrooms_count": "2",
+            "location": {
+                "id": "locationID",
+                "name": "boston",
+                "level": "metro"
+            },
+            "max_price_cents": "100_000_000",
+            "min_price_cents": "nil",
+            "listing_image_cover_url": "https://listing-images.nestready.net/dArboFrG37bMhDjHxWUMBZ3vs",
+            "property_type": "apartment/condo"
+        }
+    },
+    "event_type": "saved_search_shared",
+    "partner_name": "mybank",
+    "journey_id": "j1"
+}
+```
 This event is triggered once the user has already perfomed a property search, saved it, then shares it.
 
 ### email_signed_up
+```json
+//DATA EXAMPLE
+{
+    "home_buyer": {
+      "id": "1234",
+        "email": "something@somewhere.co",
+        "phone": "(123)12341234"
+    },
+    "data": { "timestamp": "2019-09-09 21:09:23 UTC" },
+    "event_type": "email_signed_up",
+    "partner_name": "mybank",
+    "journey_id": "j1"
+}
+```
 This event is triggered once the user provides its email for the first time using one of the home_buyers forms or sharing a search.
 
 
@@ -228,7 +468,7 @@ This event is triggered once the user provides its email for the first time usin
 ```json
 // BODY EXAMPLE
 {
-    "listing_id": 'listing1'
+    "listing_id": "listing1"
     "events": ["listing_changed"],
     "delivery_url": "https://api.your_url.com/nestready/events",
     "metadata": "listing_id_in_your_system"
@@ -278,7 +518,7 @@ hours (meaning that events occured more than 48 hours ago won't be retrieved).
 {
   "current_page": 1,
   "total_pages_count": 0,
-  "listings_per_page": 100,
+  "events_per_page": 100,
   "events": []
 }
 ``````
@@ -299,19 +539,31 @@ page | yes | ex: 1
 
 
 ### Receiving
-After subscribing successfully, you will begin to receive events for your home_buyerss to the defined delivery_url.
-
-The follow schema is used for every event payload, the example of data is available [here](/#event-types)
+After subscribing to the event, whenever an event related to the subscribed homebuyer is triggered on our side, we will be sending the payload of that event to the develivery_url of the given subscription. The following schema is used for every event payload, the example of data is available.
 
 ```json
 //BODY EXAMPLE
 {
-  "id": <string>,
-  "type": <string>,
-  "metadata": <string>,
-  "listing_id": <string>,
-  "data": <hashmap>,
-  "created_at": <timestamp>,
+    "current_page": 1,
+    "total_pages_count": 1,
+    "listings_per_page": 100,
+    "events": [{
+            "id": "5d7ab6207b571f00122e2947",
+            "created_at": 1568323104,
+            "type": "listing_changed",
+            "data": {
+                "listing_diff": {
+                    "price_cents": [
+                        "2000000",
+                        "3000000"
+                    ],
+                    "status": [
+                        "peding",
+                        "active"
+                    ]
+                }
+            }
+        }
 }
 
 ```
@@ -321,6 +573,20 @@ The follow schema is used for every event payload, the example of data is availa
 
 
 ## Event types
+```json
+//BODY EXAMPLE
+{
+   "event_type": "listing_changed",
+   "data": {
+      "listing_diff": { 
+        "price_cents": [ "2000000", "3000000" ],
+        "status": ["peding", "active"]
+      }
+   },
+   "listing_id": "2"
+}
+```
 ### listing_changed
 This event is triggered when a property has an update. In this data example, the previous price for this property was 100000, then it was updated to 100001.
 
+<aside class="success">The possible statuses for listings are: [active, cancelled, closed, expired, pendind, withdrawn]</aside>
