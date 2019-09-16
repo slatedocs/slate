@@ -377,6 +377,8 @@ Provide an array of reservation tokens to be considered in calculation
 
 ## Contents for a set of tickets
 
+This call returns dynamic content for a set of tickets. Use this to optimise content fetching.
+
 `GET https://demo.gomus.de/api/v4/tickets/content`
 
 ```shell
@@ -391,13 +393,13 @@ curl "https://demo.gomus.de/api/v4/tickets/content?ticket_ids[]=14&ticket_ids[]=
     {
       "id": 11,
       "content": {
-        "shop_title": "Fu Bar DEE"
+        "shop_title": "My Ticket Title"
       }
     },
     {
       "id": 14,
       "content": {
-        "shop_title": "Titel DE",
+        "shop_title": "Another Ticket Title",
         "shop_description": "<p>Description DE</p>"
       }
     }
