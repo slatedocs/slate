@@ -20,11 +20,10 @@ jobs:
       run: |
         gem install bundler
         bundle install --jobs 4 --retry 3
+        bundle exec middleman build --clean
     - name: Deploy
+      uses: peaceiris/actions-gh-pages@v2.3.1
       env:
-        DEPLOY_KEY: ${{ secrets.GIT_DEPLOY_KEY }}
-        GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
-      run: |
-        eval "$(ssh-agent -s)"
-        ssh-add - <<< "${DEPLOY_KEY}"
-        ./deploy.sh
+        ACTIONS_DEPLOY_KEY: ${{ secrets.GIT_DEPLOY_KEY }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: ./build
