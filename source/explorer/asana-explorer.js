@@ -1188,7 +1188,7 @@ module.exports = RouteEntry;
 "use strict";
 var ghPagesConstants = {
     LOCALSTORAGE_KEY: "api_explorer_credentials",
-    CLIENT_ID: "vv",
+    CLIENT_ID: "29147353239426",
     REDIRECT_URI: "https://asana.github.io/api-explorer/popup_receiver.html",
     INITIAL_PAGINATION_LIMIT: 10
 };
@@ -1205,7 +1205,7 @@ var production = {
     INITIAL_PAGINATION_LIMIT: 10
 };
 var constant;
-switch (undefined) {
+switch ("production") {
     case "gh_pages":
         constant = ghPagesConstants;
         break;
