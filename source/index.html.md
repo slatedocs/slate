@@ -29,4 +29,4 @@ Some Deprecated Pages
 ## Search
 
 <script async src="https://cse.google.com/cse.js?cx=001066932855844974881:tfzpqaaz85y"></script>
-<div class="gcse-search"></div>
+<aside style="background: white; padding: 0"><div class="gcse-search"></div></aside>
