@@ -1,6 +1,9 @@
 name: deploy
 
-on: [push]
+on:
+  push:
+    branches:
+    - master
 
 jobs:
   build:
@@ -17,5 +20,10 @@ jobs:
       run: |
         gem install bundler
         bundle install --jobs 4 --retry 3
+    - name: Add deploy key
+      env: 
+        DEPLOY_KEY: ${{ secrets.GIT_DEPLOY_KEY }}
+      run: |
+        echo "$DEPLOY_KEY" | ssh-add -
     - name: Deploy
       run: ./deploy.sh
