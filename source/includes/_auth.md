@@ -37,21 +37,6 @@ The encrypted string is then UTF-8 URL encoded.
 
 ### Examples
 
-`GET https://api.gojip2p.com/user/session/valid`
-
-With a nonce = 67681625-d7f9-43e3-859a-25e634c203c2
-
-and timestamp = 1474982268271
-
-The signature string would be as follows:
-
-    67681625-d7f9-43e3-859a-25e634c203c2
-    1474982268271
-
-Assuming a secret key of `abcd1234`, this will produce a signature equal to: `q0AdIAm6SphhgN/VxjMiE9UEd3uZRca9gjJXQ5+dyNI=` which is then URL encoded to `q0AdIAm6SphhgN%2FVxjMiE9UEd3uZRca9gjJXQ5%2BdyNI%3D`
-
-An example in Java is as follows:
-
 ```java
   public String hashSignature(String signatureToHash, String apiSecret) {
     try {
@@ -88,6 +73,19 @@ public class HmacExample
     }
 }
 ```
+
+`GET https://api.gojip2p.com/user/session/valid`
+
+With a nonce = 67681625-d7f9-43e3-859a-25e634c203c2
+
+and timestamp = 1474982268271
+
+The signature string would be as follows:
+
+    67681625-d7f9-43e3-859a-25e634c203c2
+    1474982268271
+
+Assuming a secret key of `abcd1234`, this will produce a signature equal to: `q0AdIAm6SphhgN/VxjMiE9UEd3uZRca9gjJXQ5+dyNI=` which is then URL encoded to `q0AdIAm6SphhgN%2FVxjMiE9UEd3uZRca9gjJXQ5%2BdyNI%3D`
 
 ## Security
 
