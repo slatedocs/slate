@@ -20,10 +20,11 @@ jobs:
       run: |
         gem install bundler
         bundle install --jobs 4 --retry 3
-    - name: Add deploy key
-      env: 
-        DEPLOY_KEY: ${{ secrets.GIT_DEPLOY_KEY }}
-      run: |
-        echo "$DEPLOY_KEY" | ssh-add -
     - name: Deploy
-      run: ./deploy.sh
+      env:
+        DEPLOY_KEY: ${{ secrets.GIT_DEPLOY_KEY }}
+        GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
+      run: |
+        eval "$(ssh-agent -s)"
+        ssh-add - <<< "${DEPLOY_KEY}"
+        ./deploy.sh
