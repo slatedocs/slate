@@ -13,3 +13,19 @@ spec:
       - backend:
           serviceName: docs
           servicePort: 4567
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    io.coinbetter.ingress: master
+  name: docs-app-tauros
+  namespace: default
+spec:
+  rules:
+  - host: docs.tauros.io
+    http:
+      paths:
+      - backend:
+          serviceName: docs
+          servicePort: 4567
