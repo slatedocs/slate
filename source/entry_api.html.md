@@ -13,19 +13,19 @@ search: true
 
 # Preparation
 
-Before you can use the go~mus Entry API you will have to register an API account with an API key. 
+Before you can use the go~mus Entry API you will have to register an API account with an API key.
 Please talk to your contact person in order to get access.
 
-See [detailed documentation on Public API](/public_api.html) for information on how to request the basic data 
+See [detailed documentation on Public API](/public_api.html) for information on how to request the basic data
 for events, tours and tickets.
 
 
 # Barcodes
 
-We track tickets, events and tours by using barcodes. The barcodes encode unique codes. 
+We track tickets, events and tours by using barcodes. The barcodes encode unique codes.
 These codes can be used track entry and exit events.
- 
-Barcodes may be encoded as Code128 or Code39. Additionally barcodes may also be encoded in 2D as a QR-Code. 
+
+Barcodes may be encoded as Code128 or Code39. Additionally barcodes may also be encoded in 2D as a QR-Code.
 
 
 ## Status API
@@ -63,7 +63,7 @@ The HTTP status code will be 422 Unprocessable Entity.
 }
 ```
 
-    
+
 ## Entry API - Voiding the barcode
 
 To do an actual entry and possibly void the barcode an PUT needs to be sent.
@@ -75,7 +75,7 @@ curl -XPUT -H "Authorization: Bearer meowmeowmeow" "https://demo.gomus.de/api/v3
 ```
 
 
-This will return the same responses as the Status API above. 
+This will return the same responses as the Status API above.
 HTTP 200 OK for success and HTTP 422 Unprocessable Entity in case of error.
 
 The barcode will be voided in the process.
@@ -84,7 +84,49 @@ The barcode will be voided in the process.
 In practice it is common to call the Status API first and then void the barcode.
 
 
-## Exit API - Tracking exits 
+## Entry API - Scans
+
+This API is for tracking entry.
+
+### Showing the scan event
+
+`GET https://demo.gomus.de/api/v4/entry/scans/:scan`
+
+### Updating the scan event
+
+`PUT https://demo.gomus.de/api/v4/entry/scans/:scan`
+
+```shell
+curl "https://demo.gomus.de/api/v4/entry/scans/3"
+    -XPUT --data "scan[people_count]=3"
+    -H "Authorization: Bearer meowmeowmeow"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "scan": {
+    "id": 3,
+    "barcode": "111yxqgyxGWWVmXEg",
+    "entry_at": "2019-09-03T12:55:53+02:00",
+    "position": null,
+    "device": "3",
+    "people_count": 3,
+    "is_valid": true,
+    "is_entry": true,
+    "updated_at": "2019-09-03T21:53:20+02:00",
+    "created_at": "2019-09-03T12:55:53+02:00"
+  }
+}
+```
+
+### Response
+
+The json response contains a serialized scan event.
+
+
+## Exit API - Tracking exits
 
 This API is for tracking exits
 
@@ -95,8 +137,8 @@ curl -XPUT -H "Authorization: Bearer meowmeowmeow" "https://demo.gomus.de/api/v3
 ```
 
 
-This will return responses in the same structure as the Status API above. 
-HTTP 200 OK for success and HTTP 422 Unprocessable Entity in case of error. 
+This will return responses in the same structure as the Status API above.
+HTTP 200 OK for success and HTTP 422 Unprocessable Entity in case of error.
 
 
 
@@ -118,6 +160,6 @@ You can transmit these parameters in the URL. For example:
 ## Turnstiles
 
 When using turnstiles it is best practice to only void the barcode if the visitor actually goes through.
-In some cases the visitor may scan his ticket barcode but then not walk through. 
-He should be able to re-scan his ticket barcode and then walk through.  
+In some cases the visitor may scan his ticket barcode but then not walk through.
+He should be able to re-scan his ticket barcode and then walk through.
 
