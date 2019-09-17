@@ -1188,7 +1188,7 @@ module.exports = RouteEntry;
 "use strict";
 var ghPagesConstants = {
     LOCALSTORAGE_KEY: "api_explorer_credentials",
-    CLIENT_ID: "29147353239426",
+    CLIENT_ID: "vv",
     REDIRECT_URI: "https://asana.github.io/api-explorer/popup_receiver.html",
     INITIAL_PAGINATION_LIMIT: 10
 };
@@ -1201,7 +1201,7 @@ var localhostConstants = {
 var production = {
     LOCALSTORAGE_KEY: "api_explorer_credentials",
     CLIENT_ID: "38682966449842",
-    REDIRECT_URI: "https://asana.com/popup_receiver.php",
+    REDIRECT_URI: "https://asana.github.io/developer-docs/explorer/popup_receiver.html",
     INITIAL_PAGINATION_LIMIT: 10
 };
 var constant;
@@ -8846,7 +8846,7 @@ module.exports = OauthAuthenticator;
 var util = require('util');
 
 /**
- * @param options {Object} A data blob parsed from a query string or JSON
+ * @param options {Object} A data blob parsed from a query string or JSON 
  * response from the Asana API
  * @option {String} error The string code identifying the error.
  * @option {String} [error_uri] A link to help and information about the error.
@@ -10347,27 +10347,27 @@ var _ = require('lodash');
 /**
  * An _event_ is an object representing a change to a resource that was observed
  * by an event subscription.
- *
+ * 
  * In general, requesting events on a resource is faster and subject to higher
  * rate limits than requesting the resource itself. Additionally, change events
  * bubble up - listening to events on a project would include when stories are
  * added to tasks in the project, even on subtasks.
- *
+ * 
  * Establish an initial sync token by making a request with no sync token.
  * The response will be a `412` error - the same as if the sync token had
  * expired.
- *
+ * 
  * Subsequent requests should always provide the sync token from the immediately
  * preceding call.
- *
+ * 
  * Sync tokens may not be valid if you attempt to go 'backward' in the history
  * by requesting previous tokens, though re-requesting the current sync token
  * is generally safe, and will always return the same results.
- *
+ * 
  * When you receive a `412 Precondition Failed` error, it means that the
  * sync token is either invalid or expired. If you are attempting to keep a set
  * of data in sync, this signals you may need to re-crawl the data.
- *
+ * 
  * Sync tokens always expire after 24 hours, but may expire sooner, depending on
  * load on the service.
  * @class
@@ -12658,7 +12658,7 @@ Teams.prototype.findById = function(
     dispatchOptions
 ) {
   var path = util.format('/teams/%s', team);
-
+  
   return this.dispatchGet(path, params, dispatchOptions);
 };
 
@@ -12676,7 +12676,7 @@ Teams.prototype.findByOrganization = function(
     dispatchOptions
 ) {
   var path = util.format('/organizations/%s/teams', organization);
-
+  
   return this.dispatchGetCollection(path, params, dispatchOptions);
 };
 
@@ -12696,7 +12696,7 @@ Teams.prototype.findByUser = function(
     dispatchOptions
 ) {
   var path = util.format('/users/%s/teams', user);
-
+  
   return this.dispatchGetCollection(path, params, dispatchOptions);
 };
 
@@ -12713,7 +12713,7 @@ Teams.prototype.users = function(
     dispatchOptions
 ) {
   var path = util.format('/teams/%s/users', team);
-
+  
   return this.dispatchGetCollection(path, params, dispatchOptions);
 };
 
@@ -12736,7 +12736,7 @@ Teams.prototype.addUser = function(
     dispatchOptions
 ) {
   var path = util.format('/teams/%s/addUser', team);
-
+  
   return this.dispatchPost(path, data, dispatchOptions);
 };
 
@@ -12757,7 +12757,7 @@ Teams.prototype.removeUser = function(
     dispatchOptions
 ) {
   var path = util.format('/teams/%s/removeUser', team);
-
+  
   return this.dispatchPost(path, data, dispatchOptions);
 };
 
@@ -13023,16 +13023,16 @@ var _ = require('lodash');
  * to receive Events via HTTP POST at the time they occur instead of polling for
  * them. For services accessible via HTTP this is often vastly more convenient,
  * and if events are not too frequent can be significantly more efficient.
- *
+ * 
  * In both cases, however, changes are represented as Event objects - refer to
  * the [Events documentation](/developers/api-reference/events) for more
  * information on what data these events contain.
- *
+ * 
  * **NOTE:** While Webhooks send arrays of Event objects to their target, the
  * Event objects themselves contain *only IDs*, rather than the actual resource
  * they are referencing. So while a normal event you receive via GET /events
  * would look like this:
- *
+ * 
  *     {\
  *       "resource": {\
  *         "id": 1337,\
@@ -13049,9 +13049,9 @@ var _ = require('lodash');
  *       "action": "changed",\
  *       "type": "task"\
  *     }
- *
+ * 
  * In a Webhook payload you would instead receive this:
- *
+ * 
  *     {\
  *       "resource": 1337,\
  *       "parent": null,\
@@ -13060,7 +13060,7 @@ var _ = require('lodash');
  *       "action": "changed",\
  *       "type": "task"\
  *     }
- *
+ * 
  * Webhooks themselves contain only the information necessary to deliver the
  * events to the desired target as they are generated.
  * @class
@@ -13076,14 +13076,14 @@ util.inherits(Webhooks, Resource);
  * Establishing a webhook is a two-part process. First, a simple HTTP POST
  * similar to any other resource creation. Since you could have multiple
  * webhooks we recommend specifying a unique local id for each target.
- *
+ * 
  * Next comes the confirmation handshake. When a webhook is created, we will
  * send a test POST to the `target` with an `X-Hook-Secret` header as
  * described in the
  * [Resthooks Security documentation](http://resthooks.org/docs/security/).
  * The target must respond with a `200 OK` and a matching `X-Hook-Secret`
  * header to confirm that this webhook subscription is indeed expected.
- *
+ * 
  * If you do not acknowledge the webhook's confirmation handshake it will
  * fail to setup, and you will receive an error in response to your attempt
  * to create it. This means you need to be able to receive and complete the
@@ -13101,7 +13101,7 @@ Webhooks.prototype.create = function(
     dispatchOptions
 ) {
   var path = util.format('/webhooks');
-
+  
   data = _.extend({}, data || {}, {
     resource: resource,
     target: target
@@ -13124,7 +13124,7 @@ Webhooks.prototype.getAll = function(
     dispatchOptions
 ) {
   var path = util.format('/webhooks');
-
+  
   params = _.extend({}, params || {}, {
     workspace: workspace
   });
@@ -13144,7 +13144,7 @@ Webhooks.prototype.getById = function(
     dispatchOptions
 ) {
   var path = util.format('/webhooks/%s', webhook);
-
+  
   return this.dispatchGet(path, params, dispatchOptions);
 };
 
@@ -13161,7 +13161,7 @@ Webhooks.prototype.deleteById = function(
     dispatchOptions
 ) {
   var path = util.format('/webhooks/%s', webhook);
-
+  
   return this.dispatchDelete(path, dispatchOptions);
 };
 
@@ -13186,13 +13186,13 @@ var _ = require('lodash');
 /**
  * A _workspace_ is the highest-level organizational unit in Asana. All projects
  * and tasks have an associated workspace.
- *
+ * 
  * An _organization_ is a special kind of workspace that represents a company.
  * In an organization, you can group your projects into teams. You can read
  * more about how organizations work on the Asana Guide.
  * To tell if your workspace is an organization or not, check its
  * `is_organization` property.
- *
+ * 
  * Over time, we intend to migrate most workspaces into organizations and to
  * release more organization-specific functionality. We may eventually deprecate
  * using workspace-based APIs for organizations. Currently, and until after
@@ -13220,7 +13220,7 @@ Workspaces.prototype.findById = function(
     dispatchOptions
 ) {
   var path = util.format('/workspaces/%s', workspace);
-
+  
   return this.dispatchGet(path, params, dispatchOptions);
 };
 
@@ -13235,7 +13235,7 @@ Workspaces.prototype.findAll = function(
     dispatchOptions
 ) {
   var path = util.format('/workspaces');
-
+  
   return this.dispatchGetCollection(path, params, dispatchOptions);
 };
 
@@ -13243,9 +13243,9 @@ Workspaces.prototype.findAll = function(
  * A specific, existing workspace can be updated by making a PUT request on
  * the URL for that workspace. Only the fields provided in the data block
  * will be updated; any unspecified fields will remain unchanged.
- *
+ * 
  * Currently the only field that can be modified for a workspace is its `name`.
- *
+ * 
  * Returns the complete, updated workspace record.
    * @param {String} workspace The workspace to update.
    * @param {Object} data Data for the request
@@ -13258,7 +13258,7 @@ Workspaces.prototype.update = function(
     dispatchOptions
 ) {
   var path = util.format('/workspaces/%s', workspace);
-
+  
   return this.dispatchPut(path, data, dispatchOptions);
 };
 
@@ -13290,7 +13290,7 @@ Workspaces.prototype.typeahead = function(
     dispatchOptions
 ) {
   var path = util.format('/workspaces/%s/typeahead', workspace);
-
+  
   return this.dispatchGetCollection(path, params, dispatchOptions);
 };
 
@@ -13311,7 +13311,7 @@ Workspaces.prototype.addUser = function(
     dispatchOptions
 ) {
   var path = util.format('/workspaces/%s/addUser', workspace);
-
+  
   return this.dispatchPost(path, data, dispatchOptions);
 };
 
@@ -13332,7 +13332,7 @@ Workspaces.prototype.removeUser = function(
     dispatchOptions
 ) {
   var path = util.format('/workspaces/%s/removeUser', workspace);
-
+  
   return this.dispatchPost(path, data, dispatchOptions);
 };
 
@@ -14208,19 +14208,19 @@ function fromByteArray (uint8) {
 (function (process,global,setImmediate){
 /* @preserve
  * The MIT License (MIT)
- *
+ * 
  * Copyright (c) 2013-2015 Petka Antonov
- *
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
@@ -14228,7 +14228,7 @@ function fromByteArray (uint8) {
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- *
+ * 
  */
 /**
  * bluebird build version 2.11.0
@@ -17127,30 +17127,30 @@ _dereq_('./any.js')(Promise);
 _dereq_('./each.js')(Promise, INTERNAL);
 _dereq_('./timers.js')(Promise, INTERNAL);
 _dereq_('./filter.js')(Promise, INTERNAL);
-
-    util.toFastProperties(Promise);
-    util.toFastProperties(Promise.prototype);
-    function fillTypes(value) {
-        var p = new Promise(INTERNAL);
-        p._fulfillmentHandler0 = value;
-        p._rejectionHandler0 = value;
-        p._progressHandler0 = value;
-        p._promise0 = value;
-        p._receiver0 = value;
-        p._settledValue = value;
-    }
-    // Complete slack tracking, opt out of field-type tracking and
-    // stabilize map
-    fillTypes({a: 1});
-    fillTypes({b: 2});
-    fillTypes({c: 3});
-    fillTypes(1);
-    fillTypes(function(){});
-    fillTypes(undefined);
-    fillTypes(false);
-    fillTypes(new Promise(INTERNAL));
-    CapturedTrace.setBounds(async.firstLineError, util.lastLineError);
-    return Promise;
+                                                         
+    util.toFastProperties(Promise);                                          
+    util.toFastProperties(Promise.prototype);                                
+    function fillTypes(value) {                                              
+        var p = new Promise(INTERNAL);                                       
+        p._fulfillmentHandler0 = value;                                      
+        p._rejectionHandler0 = value;                                        
+        p._progressHandler0 = value;                                         
+        p._promise0 = value;                                                 
+        p._receiver0 = value;                                                
+        p._settledValue = value;                                             
+    }                                                                        
+    // Complete slack tracking, opt out of field-type tracking and           
+    // stabilize map                                                         
+    fillTypes({a: 1});                                                       
+    fillTypes({b: 2});                                                       
+    fillTypes({c: 3});                                                       
+    fillTypes(1);                                                            
+    fillTypes(function(){});                                                 
+    fillTypes(undefined);                                                    
+    fillTypes(false);                                                        
+    fillTypes(new Promise(INTERNAL));                                        
+    CapturedTrace.setBounds(async.firstLineError, util.lastLineError);       
+    return Promise;                                                          
 
 };
 
@@ -18500,7 +18500,7 @@ var TimeoutError = Promise.TimeoutError;
 
 var afterTimeout = function (promise, message) {
     if (!promise.isPending()) return;
-
+    
     var err;
     if(!util.isPrimitive(message) && (message instanceof Error)) {
         err = message;
@@ -19114,7 +19114,7 @@ module.exports = ret;
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// UMD HEADER START
+// UMD HEADER START 
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
@@ -19197,7 +19197,7 @@ function request(options, callback) {
     else if(typeof options.body !== 'string')
       options.body = JSON.stringify(options.body)
   }
-
+  
   //BEGIN QS Hack
   var serialize = function(obj) {
     var str = [];
@@ -19207,7 +19207,7 @@ function request(options, callback) {
       }
     return str.join("&");
   }
-
+  
   if(options.qs){
     var qs = (typeof options.qs == 'string')? options.qs : serialize(options.qs);
     if(options.uri.indexOf('?') !== -1){ //no get params
@@ -19217,7 +19217,7 @@ function request(options, callback) {
     }
   }
   //END QS Hack
-
+  
   //BEGIN FORM Hack
   var multipart = function(obj) {
     //todo: support file type (useful?)
@@ -19240,7 +19240,7 @@ function request(options, callback) {
     result.type = 'multipart/form-data; boundary='+result.boundry;
     return result;
   }
-
+  
   if(options.form){
     if(typeof options.form == 'string') throw('form name unsupported');
     if(options.method === 'POST'){
@@ -55005,7 +55005,7 @@ var currentlyProcessingQueue = void 0;
 {
   didWarnUpdateInsideUpdate = false;
   currentlyProcessingQueue = null;
-
+  
 }
 
 function createUpdateQueue(baseState) {
@@ -58857,7 +58857,7 @@ function insertNonHydratedInstance(returnFiber, fiber) {
               didNotFindHydratableContainerTextInstance(parentContainer, text);
               break;
             case SuspenseComponent:
-
+              
               break;
           }
           break;
@@ -70623,7 +70623,7 @@ function ReadableState(options, stream) {
   this.decoder = null;
   this.encoding = null;
   if (options.encoding) {
-    if (!StringDecoder) StringDecoder = require('source/explorer/asana-explorer').StringDecoder;
+    if (!StringDecoder) StringDecoder = require('string_decoder/').StringDecoder;
     this.decoder = new StringDecoder(options.encoding);
     this.encoding = options.encoding;
   }
@@ -70779,7 +70779,7 @@ Readable.prototype.isPaused = function () {
 
 // backwards compatibility.
 Readable.prototype.setEncoding = function (enc) {
-  if (!StringDecoder) StringDecoder = require('source/explorer/asana-explorer').StringDecoder;
+  if (!StringDecoder) StringDecoder = require('string_decoder/').StringDecoder;
   this._readableState.decoder = new StringDecoder(enc);
   this._readableState.encoding = enc;
   return this;
