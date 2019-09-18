@@ -6439,18 +6439,19 @@ paths:
         content:
           application/json:
             schema:
-              - $ref: '#/components/schemas/TaskObject'
-              - type: object
-                properties:
-                  data:
-                    type: object
-                    properties:
-                      assignee:
-                        $ref: '#/components/parameters/body_object_gid_override'
-                        nullable: true
-                      parent:
-                        $ref: '#/components/parameters/body_object_gid_override'
-                        nullable: true
+              allOf:
+                - $ref: '#/components/schemas/TaskObject'
+                - type: object
+                  properties:
+                    data:
+                      type: object
+                      properties:
+                        assignee:
+                          $ref: '#/components/parameters/body_object_gid_override'
+                          nullable: true
+                        parent:
+                          $ref: '#/components/parameters/body_object_gid_override'
+                          nullable: true
       responses:
         200:
           description: Successfully updated the specified task.
