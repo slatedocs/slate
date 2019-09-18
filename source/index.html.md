@@ -10,6 +10,7 @@ includes:
   - general_information
   - authentication
   - rate_limits
+  - types
   - rest_api
   - errors
   - rest_clients
