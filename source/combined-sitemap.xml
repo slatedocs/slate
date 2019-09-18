@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<sitemap>
-<loc>https://developers.quintype.com/sitemap.xml</loc>
-</sitemap>
-<sitemap>
-<loc>https://developers.quintype.com/malibu/sitemap.xml</loc>
-</sitemap>
-<sitemap>
-<loc>https://developers.quintype.com/quintype-node-components/sitemap.xml</loc>
-</sitemap>
-<sitemap>
-<loc>https://developers.quintype.com/quintype-node-backend/sitemap.xml</loc>
-</sitemap>
+<sitemap><loc>https://developers.quintype.com/sitemap.xml</loc></sitemap>
+<sitemap><loc>https://developers.quintype.com/malibu/sitemap.xml</loc></sitemap>
+<sitemap><loc>https://developers.quintype.com/quintype-node-components/sitemap.xml</loc></sitemap>
+<sitemap><loc>https://developers.quintype.com/quintype-node-backend/sitemap.xml</loc></sitemap>
+<sitemap><loc>https://developers.quintype.com/quintype-node-framework/sitemap.xml</loc></sitemap>
+<sitemap><loc>https://developers.quintype.com/quintype-node-seo/sitemap.xml</loc></sitemap>
 </sitemapindex>
