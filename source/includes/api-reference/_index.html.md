@@ -5,7 +5,7 @@
 
 > Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
 
-This is the interface for interacting with the [Asana Platform](https://asana.com/developers/). Our API reference is generated from our [OpenAPI spec] (https://github.com/Asana/developer-docs/blob/master/defs/asana_oas.json).
+This is the interface for interacting with the [Asana Platform](https://asana.com/developers/). Our API reference is generated from our [OpenAPI spec] (https://raw.githubusercontent.com/Asana/developer-docs/master/defs/asana_oas.yaml).
 
 Base URLs:
 
@@ -36,10 +36,11 @@ An *attachment* object represents any file attached to a task in Asana, whether 
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/attachments/12357 \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/attachments/{attachment_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -52,7 +53,7 @@ Get the full record for a single attachment.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|attachment_gid|path|integer|true|Globally unique identifier for the attachment.|
+|attachment_gid|path|string|true|Globally unique identifier for the attachment.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -97,10 +98,11 @@ Get the full record for a single attachment.
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/tasks/124816/attachments \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/attachments \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -113,7 +115,7 @@ Returns the compact records for all attachments on the task.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|task_gid|path|integer|true|Globally unique identifier for the task.|
+|task_gid|path|string|true|Globally unique identifier for the task.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 |limit|query|integer|false|Results per page.|
@@ -152,12 +154,12 @@ Returns the compact records for all attachments on the task.
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/tasks/124816/attachments \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: multipart/form-data; boundary=---011000010111000001101001' \
-  --form file=string
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/attachments \
+  -H 'Content-Type: multipart/form-data' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -194,7 +196,7 @@ file: string
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|object|true|The file you want to upload.|
-|task_gid|path|integer|true|Globally unique identifier for the task.|
+|task_gid|path|string|true|Globally unique identifier for the task.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 |limit|query|integer|false|Results per page.|
@@ -296,12 +298,12 @@ Not every endpoint can be accessed through the batch API. Specifically, the foll
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/batch \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"actions":[{"relative_path":"/tasks/123","method":"get","data":{"...":"..."},"options":{"...":"..."}}]}}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/batch \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -436,12 +438,12 @@ On the Task's Custom Field value, the enum will have an `enum_value` property wh
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/custom_fields \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"name":"Bug Task","type":"text","enum_options":[{"...":"..."}],"enum_value":null,"enabled":true,"text_value":"Some Value","description":"Development team priority","precision":2,"workspace":1331}}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/custom_fields \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -475,7 +477,7 @@ Returns the full record of the newly created custom field.
     "text_value": "Some Value",
     "description": "Development team priority",
     "precision": 2,
-    "workspace": 1331
+    "workspace": "1331"
   }
 }
 ```
@@ -502,7 +504,7 @@ Returns the full record of the newly created custom field.
 |»» text_value|body|string|false|*Conditional*. This string is the value of a text custom field.|
 |»» description|body|string|false|[Opt In](#input-output-options). The description of the custom field.|
 |»» precision|body|integer|false|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
-|»» workspace|body|integer|false|The workspace to create a custom field in.|
+|»» workspace|body|string|false|The workspace to create a custom field in.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 |limit|query|integer|false|Results per page.|
@@ -559,10 +561,11 @@ Returns the full record of the newly created custom field.
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/custom_fields/124578 \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -582,7 +585,7 @@ type-specific custom field definitions.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|custom_field_gid|path|integer|true|Globally unique identifier for the custom field.|
+|custom_field_gid|path|string|true|Globally unique identifier for the custom field.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -629,12 +632,12 @@ type-specific custom field definitions.
 > Code samples
 
 ```shell
-curl --request PUT \
-  --url https://app.asana.com/api/1.0/custom_fields/124578 \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"name":"Bug Task","type":"text","enum_options":[{"...":"..."}],"enum_value":null,"enabled":true,"text_value":"Some Value","description":"Development team priority","precision":2}}'
+# You can also use wget
+curl -X PUT https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -674,7 +677,7 @@ Returns the complete updated custom field record.
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[CustomFieldObject](#schemacustomfieldobject)|true|The custom field object with all updated properties.|
-|custom_field_gid|path|integer|true|Globally unique identifier for the custom field.|
+|custom_field_gid|path|string|true|Globally unique identifier for the custom field.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -721,10 +724,11 @@ Returns the complete updated custom field record.
 > Code samples
 
 ```shell
-curl --request DELETE \
-  --url https://app.asana.com/api/1.0/custom_fields/124578 \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X DELETE https://app.asana.com/api/1.0/custom_fields/{custom_field_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -739,7 +743,7 @@ Returns an empty data record.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|custom_field_gid|path|integer|true|Globally unique identifier for the custom field.|
+|custom_field_gid|path|string|true|Globally unique identifier for the custom field.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -770,10 +774,11 @@ Returns an empty data record.
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/workspaces/1331/custom_fields \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/custom_fields \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -786,7 +791,7 @@ Returns a list of the compact representation of all of the custom fields in a wo
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|workspace_gid|path|integer|true|The workspace or organization to find custom field definitions in.|
+|workspace_gid|path|string|true|The workspace or organization to find custom field definitions in.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 |limit|query|integer|false|Results per page.|
@@ -833,12 +838,12 @@ Returns a list of the compact representation of all of the custom fields in a wo
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/custom_fields/124578/enum_options \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"name":"Low","enabled":true,"color":"blue","insert_before":12345,"insert_after":12345}}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum_options \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -857,8 +862,8 @@ Returns the full record of the newly created enum option.
     "name": "Low",
     "enabled": true,
     "color": "blue",
-    "insert_before": 12345,
-    "insert_after": 12345
+    "insert_before": "12345",
+    "insert_after": "12345"
   }
 }
 ```
@@ -874,9 +879,9 @@ Returns the full record of the newly created enum option.
 |»» name|body|string|false|The name of the enum option.|
 |»» enabled|body|boolean|false|The color of the enum option. Defaults to ‘none’.|
 |»» color|body|string|false|Whether or not the enum option is a selectable value for the custom field.|
-|»» insert_before|body|integer|false|An existing enum option within this custom field before which the new enum option should be inserted. Cannot be provided together with after_enum_option.|
-|»» insert_after|body|integer|false|An existing enum option within this custom field after which the new enum option should be inserted. Cannot be provided together with before_enum_option.|
-|custom_field_gid|path|integer|true|Globally unique identifier for the custom field.|
+|»» insert_before|body|string|false|An existing enum option within this custom field before which the new enum option should be inserted. Cannot be provided together with after_enum_option.|
+|»» insert_after|body|string|false|An existing enum option within this custom field after which the new enum option should be inserted. Cannot be provided together with before_enum_option.|
+|custom_field_gid|path|string|true|Globally unique identifier for the custom field.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 |limit|query|integer|false|Results per page.|
@@ -915,12 +920,12 @@ Returns the full record of the newly created enum option.
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/custom_fields/124578/enum_options/insert \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"name":"Low","enabled":true,"color":"blue","enum_option":97285,"before_enum_option":12345,"after_enum_option":12345}}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/custom_fields/{custom_field_gid}/enum_options/insert \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -938,9 +943,9 @@ Locked custom fields can only be reordered by the user who locked the field.
     "name": "Low",
     "enabled": true,
     "color": "blue",
-    "enum_option": 97285,
-    "before_enum_option": 12345,
-    "after_enum_option": 12345
+    "enum_option": "97285",
+    "before_enum_option": "12345",
+    "after_enum_option": "12345"
   }
 }
 ```
@@ -956,10 +961,10 @@ Locked custom fields can only be reordered by the user who locked the field.
 |»» name|body|string|false|The name of the enum option.|
 |»» enabled|body|boolean|false|The color of the enum option. Defaults to ‘none’.|
 |»» color|body|string|false|Whether or not the enum option is a selectable value for the custom field.|
-|»» enum_option|body|integer|false|The ID of the enum option to relocate.|
-|»» before_enum_option|body|integer|false|An existing enum option within this custom field before which the new enum option should be inserted. Cannot be provided together with after_enum_option.|
-|»» after_enum_option|body|integer|false|An existing enum option within this custom field after which the new enum option should be inserted. Cannot be provided together with before_enum_option.|
-|custom_field_gid|path|integer|true|Globally unique identifier for the custom field.|
+|»» enum_option|body|string|false|The gid of the enum option to relocate.|
+|»» before_enum_option|body|string|false|An existing enum option within this custom field before which the new enum option should be inserted. Cannot be provided together with after_enum_option.|
+|»» after_enum_option|body|string|false|An existing enum option within this custom field after which the new enum option should be inserted. Cannot be provided together with before_enum_option.|
+|custom_field_gid|path|string|true|Globally unique identifier for the custom field.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -996,12 +1001,12 @@ Locked custom fields can only be reordered by the user who locked the field.
 > Code samples
 
 ```shell
-curl --request PUT \
-  --url https://app.asana.com/api/1.0/enum_options/124578 \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"name":"Low","enabled":true,"color":"blue"}}'
+# You can also use wget
+curl -X PUT https://app.asana.com/api/1.0/enum_options/{enum_option_gid} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -1035,7 +1040,7 @@ Returns the full record of the updated enum option.
 |»» name|body|string|false|The name of the enum option.|
 |»» enabled|body|boolean|false|The color of the enum option. Defaults to ‘none’.|
 |»» color|body|string|false|Whether or not the enum option is a selectable value for the custom field.|
-|enum_option_gid|path|integer|true|Globally unique identifier for the enum option.|
+|enum_option_gid|path|string|true|Globally unique identifier for the enum option.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -1081,10 +1086,11 @@ Custom fields are attached to a particular project with the Custom Field Setting
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/projects/13579/custom_field_settings \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/custom_field_settings \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -1139,10 +1145,11 @@ Returns a list of all of the custom fields settings on a project, in compact for
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/portfolios/13579/custom_field_settings \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/custom_field_settings \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -1218,10 +1225,11 @@ Sync tokens always expire after 24 hours, but may expire sooner, depending on lo
 > Code samples
 
 ```shell
-curl --request GET \
-  --url 'https://app.asana.com/api/1.0/events?resource=12345' \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/events?resource=12345 \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -1238,7 +1246,7 @@ lieu of including the resource ID in the data for the request.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|resource|query|integer|true|A resource ID to subscribe to. The resource can be a task or project.|
+|resource|query|string|true|A resource ID to subscribe to. The resource can be a task or project.|
 |sync|query|string|false|A sync token received from the last request, or none on first sync. Events will be returned from the point in time that the sync token was generated.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
@@ -1302,10 +1310,11 @@ Only the creator of the duplication process can access the duplication status of
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/jobs/12345 \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/jobs/{job_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -1385,12 +1394,12 @@ To export an Organization using this API:
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/organization_exports \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"organization":1331}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/organization_exports \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -1403,7 +1412,7 @@ This method creates a request to export an Organization. Asana will complete the
 
 ```json
 {
-  "organization": 1331
+  "organization": "1331"
 }
 ```
 
@@ -1412,7 +1421,7 @@ This method creates a request to export an Organization. Asana will complete the
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|object|true|The organization to export.|
-|» organization|body|integer|false|Globally unique identifier for the workspace or organization.|
+|» organization|body|string|false|Globally unique identifier for the workspace or organization.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 |limit|query|integer|false|Results per page.|
@@ -1455,10 +1464,11 @@ This method creates a request to export an Organization. Asana will complete the
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/organization_exports/133549 \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/organization_exports/{organization_export_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -1471,7 +1481,7 @@ Returns details of a previously-requested Organization export.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|organization_export_gid|path|integer|true|Globally unique identifier for the organization export.|
+|organization_export_gid|path|string|true|Globally unique identifier for the organization export.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -1522,10 +1532,11 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/portfolios \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/portfolios \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -1578,12 +1589,12 @@ Returns a list of the portfolios in compact representation that are owned by the
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/portfolios \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"name":"Bug Task","created_by":null,"color":"light-green","owner":null,"workspace":null,"members":null}}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/portfolios \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -1604,7 +1615,6 @@ integrations to create their own starting state on a portfolio.
 {
   "data": {
     "name": "Bug Task",
-    "created_by": null,
     "color": "light-green",
     "owner": null,
     "workspace": null,
@@ -1654,10 +1664,11 @@ integrations to create their own starting state on a portfolio.
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/portfolios/12345 \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -1683,7 +1694,11 @@ Returns the complete portfolio record for a single portfolio.
     "resource_type": "portfolio",
     "name": "Bug Task",
     "created_at": "2012-02-22T02:06:58.147Z",
-    "created_by": null,
+    "created_by": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
     "color": "light-green",
     "custom_field_settings": [
       {
@@ -1716,12 +1731,12 @@ Returns the complete portfolio record for a single portfolio.
 > Code samples
 
 ```shell
-curl --request PUT \
-  --url https://app.asana.com/api/1.0/portfolios/12345 \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"name":"Bug Task","created_by":null,"color":"light-green","owner":null,"workspace":null,"members":null}}'
+# You can also use wget
+curl -X PUT https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -1740,7 +1755,6 @@ Returns the complete updated portfolio record.
 {
   "data": {
     "name": "Bug Task",
-    "created_by": null,
     "color": "light-green",
     "owner": null,
     "workspace": null,
@@ -1767,7 +1781,11 @@ Returns the complete updated portfolio record.
     "resource_type": "portfolio",
     "name": "Bug Task",
     "created_at": "2012-02-22T02:06:58.147Z",
-    "created_by": null,
+    "created_by": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
     "color": "light-green",
     "custom_field_settings": [
       {
@@ -1800,10 +1818,11 @@ Returns the complete updated portfolio record.
 > Code samples
 
 ```shell
-curl --request DELETE \
-  --url https://app.asana.com/api/1.0/portfolios/12345 \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X DELETE https://app.asana.com/api/1.0/portfolios/{portfolio_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -1850,10 +1869,11 @@ Returns an empty data record.
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/portfolios/12345/items \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/items \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -1936,10 +1956,11 @@ Get a list of the items in compact form in a portfolio.
 > Code samples
 
 ```shell
-curl --request POST \
-  --url 'https://app.asana.com/api/1.0/portfolios/12345/addItem?insert_after=1331&insert_before=1331&item=1331' \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addItem?item=1331&insert_before=1331&insert_after=1331 \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -1987,10 +2008,11 @@ Returns an empty data block.
 > Code samples
 
 ```shell
-curl --request POST \
-  --url 'https://app.asana.com/api/1.0/portfolios/12345/removeItem?item=1331' \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeItem?item=1331 \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -2036,10 +2058,11 @@ Returns an empty data block.
 > Code samples
 
 ```shell
-curl --request POST \
-  --url 'https://app.asana.com/api/1.0/portfolios/12345/addMembers?members=521621%2C621373' \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addMembers?members=521621%2C621373 \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -2085,10 +2108,11 @@ Returns the updated portfolio record.
 > Code samples
 
 ```shell
-curl --request POST \
-  --url 'https://app.asana.com/api/1.0/portfolios/12345/removeMembers?members=521621%2C621373' \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeMembers?members=521621%2C621373 \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -2134,10 +2158,11 @@ Returns the updated portfolio record.
 > Code samples
 
 ```shell
-curl --request POST \
-  --url 'https://app.asana.com/api/1.0/portfolios/12345/addCustomFieldSetting?custom_field=14916' \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/addCustomFieldSetting?custom_field=14916 \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -2151,10 +2176,10 @@ Custom fields are associated with portfolios by way of custom field settings.  T
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
-|custom_field|query|integer|true|The custom field to associate with this portfolio.|
+|custom_field|query|string|true|The custom field to associate with this portfolio.|
 |is_important|query|boolean|false|Whether this field should be considered important to this portfolio (for instance, to display in the list view of items in the portfolio).|
-|insert_before|query|integer|false|An id of a Custom Field Setting on this portfolio, before which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
-|insert_after|query|integer|false|An id of a Custom Field Setting on this portfolio, after which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
+|insert_before|query|string|false|An id of a Custom Field Setting on this portfolio, before which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
+|insert_after|query|string|false|An id of a Custom Field Setting on this portfolio, after which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 
 > 200 Response
@@ -2184,10 +2209,11 @@ Custom fields are associated with portfolios by way of custom field settings.  T
 > Code samples
 
 ```shell
-curl --request POST \
-  --url 'https://app.asana.com/api/1.0/portfolios/12345/removeCustomFieldSetting?custom_field=14916' \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/removeCustomFieldSetting?custom_field=14916 \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -2201,7 +2227,7 @@ Removes a custom field setting from a portfolio.
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
-|custom_field|query|integer|true|The custom field to remove from this portfolio.|
+|custom_field|query|string|true|The custom field to remove from this portfolio.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 
 > 200 Response
@@ -2240,10 +2266,11 @@ This object determines if a user is a member of a portfolio.
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/portfolio_memberships \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/portfolio_memberships \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -2297,10 +2324,11 @@ Returns a list of portfolio memberships in compact representation. You must spec
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/portfolio_memberships/ \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/portfolio_memberships/{portfolio_membership_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -2357,10 +2385,11 @@ Returns the complete portfolio record for a single portfolio membership.
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/portfolios/12345/portfolio_memberships \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/portfolios/{portfolio_gid}/portfolio_memberships \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -2428,10 +2457,11 @@ Followers of a project are a subset of the members of that project. Followers of
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/projects \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/projects \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -2446,8 +2476,8 @@ Returns the compact project records for some filtered set of projects. Use one o
 |---|---|---|---|---|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
-|workspace|query|integer|false|The workspace or organization to filter projects on.|
-|team|query|integer|false|The team to filter projects on.|
+|workspace|query|string|false|The workspace or organization to filter projects on.|
+|team|query|string|false|The team to filter projects on.|
 |archived|query|boolean|false|Only return projects whose `archived` field takes on the value of this parameter.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
@@ -2516,12 +2546,12 @@ Returns the compact project records for some filtered set of projects. Use one o
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/projects \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"name":"Bug Project","notes":"For tracking pesky bugs.","workspace":1331,"team":14916}}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/projects \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -2547,8 +2577,8 @@ Returns the full record of the newly created project.
   "data": {
     "name": "Bug Project",
     "notes": "For tracking pesky bugs.",
-    "workspace": 1331,
-    "team": 14916
+    "workspace": "1331",
+    "team": "14916"
   }
 }
 ```
@@ -2561,8 +2591,8 @@ Returns the full record of the newly created project.
 |» data|body|object|false|none|
 |»» name|body|string|false|The name of the project.|
 |»» notes|body|string|false|The description of the project.|
-|»» workspace|body|integer|false|The workspace or organization to create the project in.|
-|»» team|body|integer|false|If creating in an organization, the specific team to create the project in.|
+|»» workspace|body|string|false|The workspace or organization to create the project in.|
+|»» team|body|string|false|If creating in an organization, the specific team to create the project in.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -2640,10 +2670,11 @@ Returns the full record of the newly created project.
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/projects/1331 \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/projects/{project_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -2734,12 +2765,12 @@ Returns the complete project record for a single project.
 > Code samples
 
 ```shell
-curl --request PUT \
-  --url https://app.asana.com/api/1.0/projects/1331 \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"name":"Stuff to buy","archived":false,"color":"light-green","due_date":"2012-03-26","due_on":"2012-03-26","html_notes":"These are things we need to purchase.","is_template":false,"modified_at":"2012-02-22T02:06:58.147Z","notes":"These are things we need to purchase.","owner":null,"public":false,"start_on":"2012-03-26","team":null,"workspace":null}}'
+# You can also use wget
+curl -X PUT https://app.asana.com/api/1.0/projects/{project_gid} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -2768,7 +2799,6 @@ Returns the complete updated project record.
     "due_on": "2012-03-26",
     "html_notes": "These are things we need to purchase.",
     "is_template": false,
-    "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "These are things we need to purchase.",
     "owner": null,
     "public": false,
@@ -2862,10 +2892,11 @@ Returns the complete updated project record.
 > Code samples
 
 ```shell
-curl --request DELETE \
-  --url https://app.asana.com/api/1.0/projects/1331 \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X DELETE https://app.asana.com/api/1.0/projects/{project_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -2912,12 +2943,12 @@ Returns an empty data record.
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/projects/1331/duplicate \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"name":"New Project Name","team":"12345","include":["members","task_notes"],"schedule_dates":{"should_skip_weekends":true,"due_on":"2019-05-21","start_on":"2019-05-21"}}}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/duplicate \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -3021,10 +3052,11 @@ Creates and returns a job that will asynchronously handle the duplication.
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/tasks/321654/projects \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/projects \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -3107,10 +3139,11 @@ Returns a compact representation of all of the projects the task is in.
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/teams/159874/projects \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/teams/{team_gid}/projects \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -3194,12 +3227,12 @@ Returns the compact project records for all projects in the team.
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/teams/159874/projects \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"name":"Stuff to buy","archived":false,"color":"light-green","due_date":"2012-03-26","due_on":"2012-03-26","html_notes":"These are things we need to purchase.","is_template":false,"modified_at":"2012-02-22T02:06:58.147Z","notes":"These are things we need to purchase.","owner":null,"public":false,"start_on":"2012-03-26","team":null,"workspace":null}}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/projects \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -3222,7 +3255,6 @@ Returns the full record of the newly created project.
     "due_on": "2012-03-26",
     "html_notes": "These are things we need to purchase.",
     "is_template": false,
-    "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "These are things we need to purchase.",
     "owner": null,
     "public": false,
@@ -3316,10 +3348,11 @@ Returns the full record of the newly created project.
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/workspaces/12345/projects \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -3403,12 +3436,12 @@ Returns the compact project records for all projects in the workspace.
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/workspaces/12345/projects \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"name":"Stuff to buy","archived":false,"color":"light-green","due_date":"2012-03-26","due_on":"2012-03-26","html_notes":"These are things we need to purchase.","is_template":false,"modified_at":"2012-02-22T02:06:58.147Z","notes":"These are things we need to purchase.","owner":null,"public":false,"start_on":"2012-03-26","team":null,"workspace":null}}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/projects \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -3434,7 +3467,6 @@ Returns the full record of the newly created project.
     "due_on": "2012-03-26",
     "html_notes": "These are things we need to purchase.",
     "is_template": false,
-    "modified_at": "2012-02-22T02:06:58.147Z",
     "notes": "These are things we need to purchase.",
     "owner": null,
     "public": false,
@@ -3528,10 +3560,11 @@ Returns the full record of the newly created project.
 > Code samples
 
 ```shell
-curl --request POST \
-  --url 'https://app.asana.com/api/1.0/projects/1331/addCustomFieldSetting?custom_field=14916' \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/addCustomFieldSetting?custom_field=14916 \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -3545,10 +3578,10 @@ Custom fields are associated with projects by way of custom field settings.  Thi
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |project_gid|path|string|true|Globally unique identifier for the project.|
-|custom_field|query|integer|true|The custom field to associate with this project.|
+|custom_field|query|string|true|The custom field to associate with this project.|
 |is_important|query|boolean|false|Whether this field should be considered "important" to this project. This may cause it to be displayed more prominently, for example in the task grid.|
-|insert_before|query|integer|false|An id of a Custom Field Setting on this project, before which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
-|insert_after|query|integer|false|An id of a Custom Field Setting on this project, after which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
+|insert_before|query|string|false|An id of a Custom Field Setting on this project, before which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
+|insert_after|query|string|false|An id of a Custom Field Setting on this project, after which the new Custom Field Setting will be added.  `insert_before` and `insert_after` parameters cannot both be specified.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 
 > 200 Response
@@ -3578,10 +3611,11 @@ Custom fields are associated with projects by way of custom field settings.  Thi
 > Code samples
 
 ```shell
-curl --request POST \
-  --url 'https://app.asana.com/api/1.0/projects/1331/removeCustomFieldSetting?custom_field=14916' \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/removeCustomFieldSetting?custom_field=14916 \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -3595,7 +3629,7 @@ Removes a custom field setting from a project.
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |project_gid|path|string|true|Globally unique identifier for the project.|
-|custom_field|query|integer|true|The custom field to remove from this project.|
+|custom_field|query|string|true|The custom field to remove from this project.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 
 > 200 Response
@@ -3634,10 +3668,11 @@ With the introduction of “comment-only” projects in Asana, a user’s member
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/project_memberships/ \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/project_memberships/{project_membership_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -3695,10 +3730,11 @@ Returns the complete project record for a single project membership.
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/projects/1331/project_memberships \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/project_memberships \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -3764,10 +3800,11 @@ Project statuses can be created and deleted, but not modified.
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/project_statuses/ \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/project_statuses/{project_status_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -3791,7 +3828,11 @@ Returns the complete record for a single status update.
     "resource_type": "project_status",
     "title": "Status Update - Jun 15",
     "created_at": "2012-02-22T02:06:58.147Z",
-    "created_by": null,
+    "created_by": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
     "text": "The project is moving forward according to plan...",
     "html-text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
     "color": "green"
@@ -3818,10 +3859,11 @@ Returns the complete record for a single status update.
 > Code samples
 
 ```shell
-curl --request DELETE \
-  --url https://app.asana.com/api/1.0/project_statuses/ \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X DELETE https://app.asana.com/api/1.0/project_statuses/{project_status_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -3865,10 +3907,11 @@ Returns an empty data record.
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/projects/1331/project_statuses \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/project_statuses \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -3897,7 +3940,9 @@ Returns the compact project status update records for all updates on the project
       "resource_type": "project_status",
       "title": "Status Update - Jun 15",
       "created_at": "2012-02-22T02:06:58.147Z",
-      "created_by": null,
+      "created_by": {
+        ...
+      },
       "text": "The project is moving forward according to plan...",
       "html-text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
       "color": "green"
@@ -3925,12 +3970,12 @@ Returns the compact project status update records for all updates on the project
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/projects/1331/project_statuses \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"project":123456,"text":"The project is on track to ship next month!","color":"green"}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/project_statuses \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -3944,7 +3989,7 @@ Returns the full record of the newly created project status update.
 
 ```json
 {
-  "project": 123456,
+  "project": "123456",
   "text": "The project is on track to ship next month!",
   "color": "green"
 }
@@ -3955,7 +4000,7 @@ Returns the full record of the newly created project status update.
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|object|true|The project status to create.|
-|» project|body|integer|true|Globally unique identifier for the project.|
+|» project|body|string|true|Globally unique identifier for the project.|
 |» text|body|string|true|The text of the project status update.|
 |» color|body|any|true|The color to associate with the status update.|
 |project_gid|path|string|true|Globally unique identifier for the project.|
@@ -3977,7 +4022,11 @@ Returns the full record of the newly created project status update.
     "resource_type": "project_status",
     "title": "Status Update - Jun 15",
     "created_at": "2012-02-22T02:06:58.147Z",
-    "created_by": null,
+    "created_by": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
     "text": "The project is moving forward according to plan...",
     "html-text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
     "color": "green"
@@ -4017,10 +4066,11 @@ The ‘memberships’ property when [getting a task](#get-a-task) will return th
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/sections/321654 \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/sections/{section_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -4074,12 +4124,12 @@ Returns the complete record for a single section.
 > Code samples
 
 ```shell
-curl --request PUT \
-  --url https://app.asana.com/api/1.0/sections/321654 \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"name":"Next Actions","projects":[{"...":"..."}]}}'
+# You can also use wget
+curl -X PUT https://app.asana.com/api/1.0/sections/{section_gid} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -4158,10 +4208,11 @@ Returns the complete updated section record.
 > Code samples
 
 ```shell
-curl --request DELETE \
-  --url https://app.asana.com/api/1.0/sections/321654 \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X DELETE https://app.asana.com/api/1.0/sections/{section_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -4212,10 +4263,11 @@ Returns an empty data block.
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/projects/1331/sections \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/sections \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -4271,12 +4323,12 @@ Returns the compact records for all sections in the specified project.
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/projects/1331/sections \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"project":13579,"name":"Next Actions"}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/sections \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -4290,7 +4342,7 @@ Returns the full record of the newly created section.
 
 ```json
 {
-  "project": 13579,
+  "project": "13579",
   "name": "Next Actions"
 }
 ```
@@ -4300,7 +4352,7 @@ Returns the full record of the newly created section.
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|object|true|The section to create.|
-|» project|body|integer|true|The project to create the section in|
+|» project|body|string|true|The project to create the section in|
 |» name|body|string|true|The text to be displayed as the section name. This cannot be an empty string.|
 |project_gid|path|string|true|Globally unique identifier for the project.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
@@ -4343,12 +4395,12 @@ Returns the full record of the newly created section.
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/sections/321654/addTask \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"task":123456,"insert_before":86420,"insert_after":987654}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/sections/{section_gid}/addTask \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -4365,9 +4417,9 @@ This does not work for separators (tasks with the resource_subtype of section).
 
 ```json
 {
-  "task": 123456,
-  "insert_before": 86420,
-  "insert_after": 987654
+  "task": "123456",
+  "insert_before": "86420",
+  "insert_after": "987654"
 }
 ```
 
@@ -4410,12 +4462,12 @@ This does not work for separators (tasks with the resource_subtype of section).
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/projects/1331/sections/insert \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"project":123456,"section":321654,"before_section":86420,"after_section":987654}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/projects/{project_gid}/sections/insert \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -4436,10 +4488,10 @@ Returns an empty data block.
 
 ```json
 {
-  "project": 123456,
-  "section": 321654,
-  "before_section": 86420,
-  "after_section": 987654
+  "project": "123456",
+  "section": "321654",
+  "before_section": "86420",
+  "after_section": "987654"
 }
 ```
 
@@ -4448,10 +4500,10 @@ Returns an empty data block.
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|object|true|The section's move action.|
-|» project|body|integer|true|The project in which to reorder the given section.|
-|» section|body|integer|true|The section to reorder.|
-|» before_section|body|integer|true|Insert the given section immediately before the section specified by this parameter.|
-|» after_section|body|integer|true|Insert the given section immediately after the section specified by this parameter.|
+|» project|body|string|true|The project in which to reorder the given section.|
+|» section|body|string|true|The section to reorder.|
+|» before_section|body|string|true|Insert the given section immediately before the section specified by this parameter.|
+|» after_section|body|string|true|Insert the given section immediately after the section specified by this parameter.|
 |project_gid|path|string|true|Globally unique identifier for the project.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
@@ -4494,10 +4546,11 @@ A *story* represents an activity associated with an object in the Asana system. 
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/stories/1234 \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/stories/{story_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -4525,7 +4578,11 @@ Returns the full record for a single story.
     "resource_type": "story",
     "resource_subtype": "milestone",
     "created_at": "2012-02-22T02:06:58.147Z",
-    "created_by": null,
+    "created_by": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
     "text": "marked today",
     "type": "comment",
     "html_text": "Get whatever Sashimi has.",
@@ -4569,7 +4626,9 @@ Returns the full record for a single story.
       "resource_type": "story",
       "resource_subtype": "milestone",
       "created_at": "2012-02-22T02:06:58.147Z",
-      "created_by": null,
+      "created_by": {
+        ...
+      },
       "text": "marked today",
       "type": "comment"
     },
@@ -4656,7 +4715,7 @@ Returns the full record for a single story.
     },
     "source": "web",
     "target": {
-      "gid": 1234,
+      "gid": "1234",
       "name": "Bug Task"
     }
   }
@@ -4682,12 +4741,12 @@ Returns the full record for a single story.
 > Code samples
 
 ```shell
-curl --request PUT \
-  --url https://app.asana.com/api/1.0/stories/1234 \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"created_by":null,"text":"marked today","html_text":"Get whatever Sashimi has.","is_pinned":false,"old_name":"This was the Old Name","story":{"created_by":null,"text":"marked today"},"assignee":{"name":"Greg Sanchez"},"follower":{"name":"Greg Sanchez"},"old_section":{"name":"Next Actions"},"new_section":{"name":"Next Actions"},"task":{"name":"Bug Task"},"project":{"name":"Stuff to buy"},"tag":{"name":"Stuff to buy"},"custom_field":{"name":"Bug Task","type":"text","enum_options":["..."],"enum_value":null,"enabled":true,"text_value":"Some Value"},"old_enum_value":{"name":"Low","enabled":true,"color":"blue"},"new_enum_value":{"name":"Low","enabled":true,"color":"blue"},"duplicate_of":{"name":"Bug Task"},"duplicated_from":{"name":"Bug Task"},"dependency":{"name":"Bug Task"}}}'
+# You can also use wget
+curl -X PUT https://app.asana.com/api/1.0/stories/{story_gid} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -4701,13 +4760,11 @@ Updates the story and returns the full record for the updated story. Only commen
 ```json
 {
   "data": {
-    "created_by": null,
     "text": "marked today",
     "html_text": "Get whatever Sashimi has.",
     "is_pinned": false,
     "old_name": "This was the Old Name",
     "story": {
-      "created_by": null,
       "text": "marked today"
     },
     "assignee": {
@@ -4782,7 +4839,11 @@ Updates the story and returns the full record for the updated story. Only commen
     "resource_type": "story",
     "resource_subtype": "milestone",
     "created_at": "2012-02-22T02:06:58.147Z",
-    "created_by": null,
+    "created_by": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
     "text": "marked today",
     "type": "comment",
     "html_text": "Get whatever Sashimi has.",
@@ -4826,7 +4887,9 @@ Updates the story and returns the full record for the updated story. Only commen
       "resource_type": "story",
       "resource_subtype": "milestone",
       "created_at": "2012-02-22T02:06:58.147Z",
-      "created_by": null,
+      "created_by": {
+        ...
+      },
       "text": "marked today",
       "type": "comment"
     },
@@ -4913,7 +4976,7 @@ Updates the story and returns the full record for the updated story. Only commen
     },
     "source": "web",
     "target": {
-      "gid": 1234,
+      "gid": "1234",
       "name": "Bug Task"
     }
   }
@@ -4939,10 +5002,11 @@ Updates the story and returns the full record for the updated story. Only commen
 > Code samples
 
 ```shell
-curl --request DELETE \
-  --url https://app.asana.com/api/1.0/stories/1234 \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X DELETE https://app.asana.com/api/1.0/stories/{story_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -4988,10 +5052,11 @@ Returns an empty data record.
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/tasks/321654/stories \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -5020,7 +5085,9 @@ Returns the compact records for all stories on the task.
       "resource_type": "story",
       "resource_subtype": "milestone",
       "created_at": "2012-02-22T02:06:58.147Z",
-      "created_by": null,
+      "created_by": {
+        ...
+      },
       "text": "marked today",
       "type": "comment",
       "html_text": "Get whatever Sashimi has.",
@@ -5123,12 +5190,12 @@ Returns the compact records for all stories on the task.
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/tasks/321654/stories \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"task":123456,"text":"This is a comment."}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/stories \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -5145,7 +5212,7 @@ Returns the full record for the new story added to the task.
 
 ```json
 {
-  "task": 123456,
+  "task": "123456",
   "text": "This is a comment."
 }
 ```
@@ -5155,7 +5222,7 @@ Returns the full record for the new story added to the task.
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|object|true|The comment story to create.|
-|» task|body|integer|true|Globally unique identifier for the task.|
+|» task|body|string|true|Globally unique identifier for the task.|
 |» text|body|string|true|The plain text of the comment to add.|
 |task_gid|path|string|true|The task to get stories from.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
@@ -5170,7 +5237,11 @@ Returns the full record for the new story added to the task.
     "resource_type": "story",
     "resource_subtype": "milestone",
     "created_at": "2012-02-22T02:06:58.147Z",
-    "created_by": null,
+    "created_by": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
     "text": "marked today",
     "type": "comment",
     "html_text": "Get whatever Sashimi has.",
@@ -5214,7 +5285,9 @@ Returns the full record for the new story added to the task.
       "resource_type": "story",
       "resource_subtype": "milestone",
       "created_at": "2012-02-22T02:06:58.147Z",
-      "created_by": null,
+      "created_by": {
+        ...
+      },
       "text": "marked today",
       "type": "comment"
     },
@@ -5301,7 +5374,7 @@ Returns the full record for the new story added to the task.
     },
     "source": "web",
     "target": {
-      "gid": 1234,
+      "gid": "1234",
       "name": "Bug Task"
     }
   }
@@ -5338,10 +5411,11 @@ Tags have some metadata associated with them, but it is possible that we will si
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/tags \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/tags \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -5356,7 +5430,7 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
 |---|---|---|---|---|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
-|workspace|query|integer|false|The workspace to filter tags on.|
+|workspace|query|string|false|The workspace to filter tags on.|
 |archived|query|boolean|false|Only return tags whose `archived` field takes on the value of this parameter.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
@@ -5401,12 +5475,12 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/tags \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"name":"Stuff to buy","color":"light-green","workspace":{"name":"Bug Task"}}}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/tags \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -5486,10 +5560,11 @@ Returns the full record of the newly created tag.
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/tags/11235 \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/tags/{tag_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -5550,10 +5625,11 @@ Returns the complete tag record for a single tag.
 > Code samples
 
 ```shell
-curl --request PUT \
-  --url https://app.asana.com/api/1.0/tags/11235 \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X PUT https://app.asana.com/api/1.0/tags/{tag_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -5621,10 +5697,11 @@ Returns the complete updated tag record.
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/tasks/321654/tags \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/tags \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -5683,10 +5760,11 @@ Get a compact representation of all of the tags the task has.
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/workspaces/1331/tags \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -5701,7 +5779,7 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
 |---|---|---|---|---|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
-|workspace_gid|path|integer|true|The workspace to filter tags on.|
+|workspace_gid|path|string|true|The workspace to filter tags on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -5745,12 +5823,12 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/workspaces/1331/tags \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"name":"Stuff to buy","color":"light-green","workspace":{"name":"Bug Task"}}}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tags \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -5785,7 +5863,7 @@ Returns the full record of the newly created tag.
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[TagObject](#schematagobject)|true|The tag to create.|
-|workspace_gid|path|integer|true|The workspace to filter tags on.|
+|workspace_gid|path|string|true|The workspace to filter tags on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -5842,10 +5920,11 @@ Sections are unique in that they will be included in the *memberships* field of 
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/tasks \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/tasks \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -5863,9 +5942,9 @@ For more complex task retrieval, use [workspaces/{workspace_gid}/tasks/search](#
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 |assignee|query|string(email)|false|The assignee to filter tasks on.|
-|project|query|integer|false|The project to filter tasks on.|
-|section|query|integer|false|The section to filter tasks on.|
-|workspace|query|integer|false|The workspace to filter tasks on.|
+|project|query|string|false|The project to filter tasks on.|
+|section|query|string|false|The section to filter tasks on.|
+|workspace|query|string|false|The workspace to filter tasks on.|
 |completed_since|query|string(date-time)|false|Only return tasks that are either incomplete or that have been completed since this time.|
 |modified_since|query|string(date-time)|false|Only return tasks that have been modified since the given time.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
@@ -5974,12 +6053,12 @@ include assigning, renaming, completing, and adding stories.*
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/tasks \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"name":"Buy catnip","assignee":null,"assignee_status":"upcoming","completed":false,"due_at":"2012-02-22T02:06:58.147Z","due_on":"2012-03-26","external":{"gid":"my_gid","data":"A blob of information"},"followers":[{"...":"..."}],"html_notes":"<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>","memberships":[{"...":"..."}],"notes":"Mittens really likes the stuff from Humboldt.","parent":null,"projects":[{"...":"..."}],"start_on":"2012-03-26","tags":[{"...":"..."}],"workspace":null}}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/tasks \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -6000,7 +6079,7 @@ explicitly if you specify `projects` or a `parent` task instead.
 {
   "data": {
     "name": "Buy catnip",
-    "assignee": null,
+    "assignee": "12345",
     "assignee_status": "upcoming",
     "completed": false,
     "due_at": "2012-02-22T02:06:58.147Z",
@@ -6010,22 +6089,13 @@ explicitly if you specify `projects` or a `parent` task instead.
       "data": "A blob of information"
     },
     "followers": [
-      {
-        ...
-      }
+      "74362"
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-    "memberships": [
-      {
-        ...
-      }
-    ],
     "notes": "Mittens really likes the stuff from Humboldt.",
-    "parent": null,
+    "parent": "12345",
     "projects": [
-      {
-        ...
-      }
+      "74362"
     ],
     "start_on": "2012-03-26",
     "tags": [
@@ -6033,7 +6103,7 @@ explicitly if you specify `projects` or a `parent` task instead.
         ...
       }
     ],
-    "workspace": null
+    "workspace": "12345"
   }
 }
 ```
@@ -6049,7 +6119,7 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»» name|body|string|false|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» created_at|body|string(date-time)|false|The time at which this resource was created.|
 |»» resource_subtype|body|string|false|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|»» assignee|body|any|false|none|
+|»» assignee|body|string|false|Gid of an object.|
 |»» assignee_status|body|string|false|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
 |»» completed|body|boolean|false|True if the task is currently marked complete, false if not.|
 |»» completed_at|body|string(date-time)¦null|false|The time at which this task was completed, or null if the task is incomplete.|
@@ -6079,7 +6149,7 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»» external|body|object|false|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).|
 |»»» gid|body|string|false|none|
 |»»» data|body|string|false|none|
-|»» followers|body|[object]|false|Array of users following this task.|
+|»» followers|body|[string]|false|Array of object Gids.|
 |»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
 |»»» resource_type|body|string|false|The base type of this resource.|
 |»»» name|body|string|false|*Read-only except when same user as requester*. The user’s name.|
@@ -6109,26 +6179,17 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»» num_hearts|body|integer|false|*Deprecated - please use likes instead* The number of users who have hearted this task.|
 |»» num_likes|body|integer|false|The number of users who have liked this task.|
 |»» num_subtasks|body|integer|false|[Opt In](#input-output-options). The number of subtasks on this task.|
-|»» parent|body|any|false|none|
-|»» projects|body|[object]|false|*Create-only.* Array of projects this task is associated with. At task creation time, this array can be used to add the task to many projects at once. After task creation, these associations can be modified using the addProject and removeProject endpoints.|
+|»» parent|body|string|false|Gid of an object.|
+|»» projects|body|[string]|false|Array of object Gids.|
 |»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
 |»»» resource_type|body|string|false|The base type of this resource.|
 |»»» name|body|string|false|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |»» start_on|body|string(date)¦null|false|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
-|»» tags|body|[object]|false|*Create-only*. Array of tags associated with this task. This property may be specified on creation using just an array of tag gids.  In order to change tags on an existing task use `addTag` and `removeTag`.|
+|»» tags|body|[string]|false|Array of object Gids.|
 |»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
 |»»» resource_type|body|string|false|The base type of this resource.|
 |»»» name|body|string|false|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|»»» followers|body|[object]|false|Array of users following this tag.|
-|»»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»»» resource_type|body|string|false|The base type of this resource.|
-|»»»» name|body|string|false|*Read-only except when same user as requester*. The user’s name.|
-|»»» color|body|string|false|Color of the tag.|
-|»»» workspace|body|object|false|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
-|»»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
-|»»»» resource_type|body|string|false|The base type of this resource.|
-|»»»» name|body|string|false|The name of the object.|
-|»» workspace|body|any|false|none|
+|»» workspace|body|string|false|Gid of an object.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -6164,24 +6225,6 @@ added or removed from the task.*
 | type|text|
 | type|enum|
 | type|number|
-| color|dark-pink|
-| color|dark-green|
-| color|dark-blue|
-| color|dark-red|
-| color|dark-teal|
-| color|dark-brown|
-| color|dark-orange|
-| color|dark-purple|
-| color|dark-warm-gray|
-| color|light-pink|
-| color|light-green|
-| color|light-blue|
-| color|light-red|
-| color|light-teal|
-| color|light-brown|
-| color|light-orange|
-| color|light-purple|
-| color|light-warm-gray|
 
 > 201 Response
 
@@ -6289,10 +6332,11 @@ added or removed from the task.*
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/tasks/321654 \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -6415,12 +6459,12 @@ Returns the complete task record for a single task.
 > Code samples
 
 ```shell
-curl --request PUT \
-  --url https://app.asana.com/api/1.0/tasks/321654 \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"name":"Buy catnip","assignee":null,"assignee_status":"upcoming","completed":false,"due_at":"2012-02-22T02:06:58.147Z","due_on":"2012-03-26","external":{"gid":"my_gid","data":"A blob of information"},"followers":[{"...":"..."}],"html_notes":"<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>","memberships":[{"...":"..."}],"notes":"Mittens really likes the stuff from Humboldt.","parent":null,"projects":[{"...":"..."}],"start_on":"2012-03-26","tags":[{"...":"..."}],"workspace":null}}'
+# You can also use wget
+curl -X PUT https://app.asana.com/api/1.0/tasks/{task_gid} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -6440,52 +6484,14 @@ Returns the complete updated task record.
 > Body parameter
 
 ```json
-{
-  "data": {
-    "name": "Buy catnip",
-    "assignee": null,
-    "assignee_status": "upcoming",
-    "completed": false,
-    "due_at": "2012-02-22T02:06:58.147Z",
-    "due_on": "2012-03-26",
-    "external": {
-      "gid": "my_gid",
-      "data": "A blob of information"
-    },
-    "followers": [
-      {
-        ...
-      }
-    ],
-    "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-    "memberships": [
-      {
-        ...
-      }
-    ],
-    "notes": "Mittens really likes the stuff from Humboldt.",
-    "parent": null,
-    "projects": [
-      {
-        ...
-      }
-    ],
-    "start_on": "2012-03-26",
-    "tags": [
-      {
-        ...
-      }
-    ],
-    "workspace": null
-  }
-}
+null
 ```
 
 <h3 id="update-a-task-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|[TaskObject](#schemataskobject)|true|The task to update.|
+|body|body|any|true|The task to update.|
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
@@ -6596,10 +6602,11 @@ Returns the complete updated task record.
 > Code samples
 
 ```shell
-curl --request DELETE \
-  --url https://app.asana.com/api/1.0/tasks/321654 \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X DELETE https://app.asana.com/api/1.0/tasks/{task_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -6648,12 +6655,12 @@ Returns an empty data record.
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/tasks/321654/duplicate \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"name":"New Task Name","include":["notes","assignee"]}}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/duplicate \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -6745,10 +6752,11 @@ Creates and returns a job that will asynchronously handle the duplication.
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/projects/1331/tasks \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/tasks \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -6850,10 +6858,11 @@ Returns the compact task records for all tasks within the given project, ordered
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/sections/321654/tasks \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/sections/{section_gid}/tasks \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -6955,10 +6964,11 @@ curl --request GET \
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/tags/11235/tasks \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/tags/{tag_gid}/tasks \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -7060,10 +7070,11 @@ Returns the compact task records for all tasks with the given tag. Tasks can hav
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/tasks/321654/subtasks \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -7165,12 +7176,12 @@ Returns a compact representation of all of the subtasks of a task.
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/tasks/321654/subtasks \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"name":"Buy catnip","assignee":null,"assignee_status":"upcoming","completed":false,"due_at":"2012-02-22T02:06:58.147Z","due_on":"2012-03-26","external":{"gid":"my_gid","data":"A blob of information"},"followers":[{"...":"..."}],"html_notes":"<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>","memberships":[{"...":"..."}],"notes":"Mittens really likes the stuff from Humboldt.","parent":null,"projects":[{"...":"..."}],"start_on":"2012-03-26","tags":[{"...":"..."}],"workspace":null}}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/subtasks \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -7185,7 +7196,7 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 {
   "data": {
     "name": "Buy catnip",
-    "assignee": null,
+    "assignee": "12345",
     "assignee_status": "upcoming",
     "completed": false,
     "due_at": "2012-02-22T02:06:58.147Z",
@@ -7195,22 +7206,12 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
       "data": "A blob of information"
     },
     "followers": [
-      {
-        ...
-      }
+      "74362"
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
-    "memberships": [
-      {
-        ...
-      }
-    ],
     "notes": "Mittens really likes the stuff from Humboldt.",
-    "parent": null,
     "projects": [
-      {
-        ...
-      }
+      "74362"
     ],
     "start_on": "2012-03-26",
     "tags": [
@@ -7218,7 +7219,7 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
         ...
       }
     ],
-    "workspace": null
+    "workspace": "12345"
   }
 }
 ```
@@ -7227,10 +7228,120 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|[TaskObject](#schemataskobject)|true|The new subtask to create.|
+|body|body|object|true|The new subtask to create.|
+|» data|body|object|false|The *task* is the basic object around which many operations in Asana are centered.|
+|»» gid|body|string|false|Globally unique identifier of the object, as a string.|
+|»» resource_type|body|string|false|The base type of this resource.|
+|»» name|body|string|false|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» created_at|body|string(date-time)|false|The time at which this resource was created.|
+|»» resource_subtype|body|string|false|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|»» assignee|body|string|false|Gid of an object.|
+|»» assignee_status|body|string|false|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
+|»» completed|body|boolean|false|True if the task is currently marked complete, false if not.|
+|»» completed_at|body|string(date-time)¦null|false|The time at which this task was completed, or null if the task is incomplete.|
+|»» custom_fields|body|[object]|false|Array of custom field values applied to the project. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `string_value` property for custom fields of type `string`, and so on. Please note that the `gid` returned on each custom field value *is identical* to the `gid` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-gid` endpoint.|
+|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
+|»»» resource_type|body|string|false|The base type of this resource.|
+|»»» name|body|string|false|The name of the object.|
+|»»» resource_subtype|body|string|false|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|»»» type|body|string|false|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|»»» enum_options|body|[object]|false|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|»»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
+|»»»» resource_type|body|string|false|The base type of this resource.|
+|»»»» name|body|string|false|The name of the enum option.|
+|»»»» enabled|body|boolean|false|The color of the enum option. Defaults to ‘none’.|
+|»»»» color|body|string|false|Whether or not the enum option is a selectable value for the custom field.|
+|»»» enum_value|body|any|false|none|
+|»»» enabled|body|boolean|false|*Conditional*. Determines if the custom field is enabled or not.|
+|»»» text_value|body|string|false|*Conditional*. This string is the value of a text custom field.|
+|»»» description|body|string|false|[Opt In](#input-output-options). The description of the custom field.|
+|»»» precision|body|integer|false|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|»» dependencies|body|[object]|false|[Opt In](#input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the gid of the dependency.|
+|»»» gid|body|string|false|none|
+|»» dependents|body|[object]|false|[Opt In](#input-output-options). Array of resources referencing tasks that depend on this task. The objects contain only the ID of the dependent.|
+|»»» gid|body|string|false|none|
+|»» due_at|body|string(date)¦null|false|Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
+|»» due_on|body|string(date)¦null|false|Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
+|»» external|body|object|false|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).|
+|»»» gid|body|string|false|none|
+|»»» data|body|string|false|none|
+|»» followers|body|[string]|false|Array of object Gids.|
+|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
+|»»» resource_type|body|string|false|The base type of this resource.|
+|»»» name|body|string|false|*Read-only except when same user as requester*. The user’s name.|
+|»» html_notes|body|string|false|[Opt In](#input-output-options). The notes of the text with formatting as HTML.|
+|»» hearted|body|boolean|false|*Deprecated - please use liked instead* True if the task is hearted by the authorized user, false if not.|
+|»» hearts|body|[object]|false|*Deprecated - please use likes instead* Array of users who have hearted this task.|
+|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
+|»»» resource_type|body|string|false|The base type of this resource.|
+|»»» name|body|string|false|*Read-only except when same user as requester*. The user’s name.|
+|»» is_rendered_as_separator|body|boolean|false|[Opt In](#input-output-options). In some contexts tasks can be rendered as a visual separator; for instance, subtasks can appear similar to [sections](#asana-sections) without being true `section` objects. If a `task` object is rendered this way in any context it will have the property `is_rendered_as_separator` set to `true`.<br /><br />*Note: Until the default behavior for our API changes integrations must [opt in to the `new_sections` change] (https://forum.asana.com/t/sections-are-dead-long-live-sections/33951) to modify the `is_rendered_as_separator` property.*|
+|»» liked|body|boolean|false|True if the task is liked by the authorized user, false if not.|
+|»» likes|body|[object]|false|Array of users who have liked this task.|
+|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
+|»»» resource_type|body|string|false|The base type of this resource.|
+|»»» name|body|string|false|*Read-only except when same user as requester*. The user’s name.|
+|»» memberships|body|[object]|false|*Create-only*. Array of projects this task is associated with and the section it is in. At task creation time, this array can be used to add the task to specific sections. After task creation, these associations can be modified using the `addProject` and `removeProject` endpoints. Note that over time, more types of memberships may be added to this property.|
+|»»» project|body|object|false|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
+|»»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
+|»»»» resource_type|body|string|false|The base type of this resource.|
+|»»»» name|body|string|false|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»»» section|body|object|false|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
+|»»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
+|»»»» resource_type|body|string|false|The base type of this resource.|
+|»»»» name|body|string|false|The name of the section (i.e. the text displayed as the section header).|
+|»» modified_at|body|string(date-time)|false|The time at which this task was last modified.|
+|»» notes|body|string|false|More detailed, free-form textual information associated with the task.|
+|»» num_hearts|body|integer|false|*Deprecated - please use likes instead* The number of users who have hearted this task.|
+|»» num_likes|body|integer|false|The number of users who have liked this task.|
+|»» num_subtasks|body|integer|false|[Opt In](#input-output-options). The number of subtasks on this task.|
+|»» parent|body|any|false|none|
+|»» projects|body|[string]|false|Array of object Gids.|
+|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
+|»»» resource_type|body|string|false|The base type of this resource.|
+|»»» name|body|string|false|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» start_on|body|string(date)¦null|false|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
+|»» tags|body|[string]|false|Array of object Gids.|
+|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
+|»»» resource_type|body|string|false|The base type of this resource.|
+|»»» name|body|string|false|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» workspace|body|string|false|Gid of an object.|
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
+
+#### Detailed descriptions
+
+**external**: *OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).
+The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.
+
+**html_notes**: [Opt In](#input-output-options). The notes of the text with formatting as HTML.
+*Note: This field is under active migration—please see our blog post for more information.*
+
+**modified_at**: The time at which this task was last modified.
+
+*Note: This does not currently reflect any changes in
+associations such as projects or comments that may have been
+added or removed from the task.*
+
+**start_on**: The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.
+*Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+| resource_subtype|default_task|
+| resource_subtype|milestone|
+| resource_subtype|section|
+| assignee_status|today|
+| assignee_status|upcoming|
+| assignee_status|later|
+| assignee_status|new|
+| assignee_status|inbox|
+| type|text|
+| type|enum|
+| type|number|
 
 > 201 Response
 
@@ -7338,12 +7449,12 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/tasks/321654/setParent \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"parent":987654,"insert_after":"null","insert_before":"124816"}}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/setParent \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -7357,7 +7468,7 @@ parent, or no parent task at all. Returns an empty data block. When using `inser
 ```json
 {
   "data": {
-    "parent": 987654,
+    "parent": "987654",
     "insert_after": "null",
     "insert_before": "124816"
   }
@@ -7370,9 +7481,9 @@ parent, or no parent task at all. Returns an empty data block. When using `inser
 |---|---|---|---|---|
 |body|body|object|true|The new parent of the subtask.|
 |» data|body|object|false|none|
-|»» parent|body|integer|true|The new parent of the task, or `null` for no parent.|
-|»» insert_after|body|integer|false|A subtask of the parent to insert the task after, or `null` to insert at the beginning of the list.|
-|»» insert_before|body|integer|false|A subtask of the parent to insert the task before, or `null` to insert at the end of the list.|
+|»» parent|body|string|true|The new parent of the task, or `null` for no parent.|
+|»» insert_after|body|string|false|A subtask of the parent to insert the task after, or `null` to insert at the beginning of the list.|
+|»» insert_before|body|string|false|A subtask of the parent to insert the task before, or `null` to insert at the end of the list.|
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
@@ -7483,10 +7594,11 @@ parent, or no parent task at all. Returns an empty data block. When using `inser
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/tasks/321654/dependencies \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/dependencies \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -7588,12 +7700,12 @@ Returns the compact representations of all of the dependencies of a task.
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/tasks/321654/addDependencies \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"dependencies":[133713,184253]}}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addDependencies \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -7608,8 +7720,8 @@ Marks a set of tasks as dependencies of this task, if they are not already depen
 {
   "data": {
     "dependencies": [
-      133713,
-      184253
+      "133713",
+      "184253"
     ]
   }
 }
@@ -7707,12 +7819,12 @@ Marks a set of tasks as dependencies of this task, if they are not already depen
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/tasks/321654/removeDependencies \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"dependencies":[133713,184253]}}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependencies \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -7727,8 +7839,8 @@ Unlinks a set of dependencies from this task.
 {
   "data": {
     "dependencies": [
-      133713,
-      184253
+      "133713",
+      "184253"
     ]
   }
 }
@@ -7826,10 +7938,11 @@ Unlinks a set of dependencies from this task.
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/tasks/321654/dependents \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/tasks/{task_gid}/dependents \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -7931,12 +8044,12 @@ Returns the compact representations of all of the dependents of a task.
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/tasks/321654/addDependents \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"dependents":[133713,184253]}}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addDependents \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -7951,8 +8064,8 @@ Marks a set of tasks as dependents of this task, if they are not already depende
 {
   "data": {
     "dependents": [
-      133713,
-      184253
+      "133713",
+      "184253"
     ]
   }
 }
@@ -8050,12 +8163,12 @@ Marks a set of tasks as dependents of this task, if they are not already depende
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/tasks/321654/removeDependents \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"dependents":[133713,184253]}}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeDependents \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -8070,8 +8183,8 @@ Unlinks a set of dependents from this task.
 {
   "data": {
     "dependents": [
-      133713,
-      184253
+      "133713",
+      "184253"
     ]
   }
 }
@@ -8169,12 +8282,12 @@ Unlinks a set of dependents from this task.
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/tasks/321654/addProject \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"project":13579,"insert_after":124816,"insert_before":432134,"section":987654}}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addProject \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -8201,10 +8314,10 @@ Returns an empty data block.
 ```json
 {
   "data": {
-    "project": 13579,
-    "insert_after": 124816,
-    "insert_before": 432134,
-    "section": 987654
+    "project": "13579",
+    "insert_after": "124816",
+    "insert_before": "432134",
+    "section": "987654"
   }
 }
 ```
@@ -8215,10 +8328,10 @@ Returns an empty data block.
 |---|---|---|---|---|
 |body|body|object|true|The project to add the task to.|
 |» data|body|object|false|none|
-|»» project|body|integer|true|The project to add the task to.|
-|»» insert_after|body|integer¦null|false|A task in the project to insert the task after, or `null` to insert at the beginning of the list.|
-|»» insert_before|body|integer¦null|false|A task in the project to insert the task before, or `null` to insert at the end of the list.|
-|»» section|body|integer¦null|false|A section in the project to insert the task into. The task will be inserted at the bottom of the section.|
+|»» project|body|string|true|The project to add the task to.|
+|»» insert_after|body|string¦null|false|A task in the project to insert the task after, or `null` to insert at the beginning of the list.|
+|»» insert_before|body|string¦null|false|A task in the project to insert the task before, or `null` to insert at the end of the list.|
+|»» section|body|string¦null|false|A section in the project to insert the task into. The task will be inserted at the bottom of the section.|
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
@@ -8250,12 +8363,12 @@ Returns an empty data block.
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/tasks/321654/removeProject \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"project":13579}}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeProject \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -8272,7 +8385,7 @@ Returns an empty data block.
 ```json
 {
   "data": {
-    "project": 13579
+    "project": "13579"
   }
 }
 ```
@@ -8283,7 +8396,7 @@ Returns an empty data block.
 |---|---|---|---|---|
 |body|body|object|true|The project to remove the task from.|
 |» data|body|object|false|none|
-|»» project|body|integer|true|The project to remove the task from.|
+|»» project|body|string|true|The project to remove the task from.|
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
@@ -8315,12 +8428,12 @@ Returns an empty data block.
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/tasks/321654/addTag \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"tag":13579}}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addTag \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -8334,7 +8447,7 @@ Adds a tag to a task. Returns an empty data block.
 ```json
 {
   "data": {
-    "tag": 13579
+    "tag": "13579"
   }
 }
 ```
@@ -8345,7 +8458,7 @@ Adds a tag to a task. Returns an empty data block.
 |---|---|---|---|---|
 |body|body|object|true|The tag to add to the task.|
 |» data|body|object|false|none|
-|»» tag|body|integer|true|The tag to add to the task.|
+|»» tag|body|string|true|The tag to add to the task.|
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
@@ -8377,12 +8490,12 @@ Adds a tag to a task. Returns an empty data block.
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/tasks/321654/removeTag \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"tag":13579}}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeTag \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -8396,7 +8509,7 @@ Removes a tag from a task. Returns an empty data block.
 ```json
 {
   "data": {
-    "tag": 13579
+    "tag": "13579"
   }
 }
 ```
@@ -8407,7 +8520,7 @@ Removes a tag from a task. Returns an empty data block.
 |---|---|---|---|---|
 |body|body|object|true|The tag to remove from the task.|
 |» data|body|object|false|none|
-|»» tag|body|integer|true|The tag to remove from the task.|
+|»» tag|body|string|true|The tag to remove from the task.|
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
@@ -8439,12 +8552,12 @@ Removes a tag from a task. Returns an empty data block.
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/tasks/321654/addFollowers \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"followers":[13579,321654]}}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/addFollowers \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -8461,8 +8574,8 @@ Requests to add/remove followers, if successful, will return the complete update
 {
   "data": {
     "followers": [
-      13579,
-      321654
+      "13579",
+      "321654"
     ]
   }
 }
@@ -8474,7 +8587,7 @@ Requests to add/remove followers, if successful, will return the complete update
 |---|---|---|---|---|
 |body|body|object|true|The tag to add to the task.|
 |» data|body|object|false|none|
-|»» followers|body|[integer]|true|The tag to add to the task.|
+|»» followers|body|[string]|true|The tag to add to the task.|
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
@@ -8506,12 +8619,12 @@ Requests to add/remove followers, if successful, will return the complete update
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/tasks/321654/removeFollowers \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"followers":[13579,321654]}}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/tasks/{task_gid}/removeFollowers \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -8526,8 +8639,8 @@ Removes each of the specified followers from the task if they are following. Ret
 {
   "data": {
     "followers": [
-      13579,
-      321654
+      "13579",
+      "321654"
     ]
   }
 }
@@ -8539,7 +8652,7 @@ Removes each of the specified followers from the task if they are following. Ret
 |---|---|---|---|---|
 |body|body|object|true|The tag to remove to the task.|
 |» data|body|object|false|none|
-|»» followers|body|[integer]|true|The tag to add to the task.|
+|»» followers|body|[string]|true|The tag to add to the task.|
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
@@ -8571,10 +8684,11 @@ Removes each of the specified followers from the task if they are following. Ret
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/workspaces/12345/tasks/search \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/tasks/search \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -8595,7 +8709,7 @@ To mirror the functionality of the Asana web app's advanced search feature, the 
 | `custom_fields.<id>.less_than` | Number only | Number |
 | `custom_fields.<id>.greater_than` | Number only | Number |
 
-For example, if the ID of the custom field is 12345, these query parameter to find tasks where it is set would be `custom_fields.12345.is_set=true`. To match an exact value for an enum custom field, use the ID of the desired enum option and not the name of the enum option: `custom_fields.12345.value=67890`.
+For example, if the gid of the custom field is 12345, these query parameter to find tasks where it is set would be `custom_fields.12345.is_set=true`. To match an exact value for an enum custom field, use the gid of the desired enum option and not the name of the enum option: `custom_fields.12345.value=67890`.
 
 Searching for multiple exact matches of a custom field is not supported.
 #### Premium access
@@ -8782,10 +8896,11 @@ A *team* is used to group related projects and people together within an organiz
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/teams/14916 \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/teams/{team_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -8798,7 +8913,7 @@ Returns the full record for a single team.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|team_gid|path|integer|true|Globally unique identifier for the team.|
+|team_gid|path|string|true|Globally unique identifier for the team.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 |limit|query|integer|false|Results per page.|
@@ -8838,10 +8953,11 @@ Returns the full record for a single team.
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/organizations/1331/teams \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/organizations/{organization_gid}/teams \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -8854,7 +8970,7 @@ Returns the compact records for all teams in the organization visible to the aut
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|organization_gid|path|integer|true|Globally unique identifier for the workspace or organization.|
+|organization_gid|path|string|true|Globally unique identifier for the workspace or organization.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 |limit|query|integer|false|Results per page.|
@@ -8896,10 +9012,11 @@ Returns the compact records for all teams in the organization visible to the aut
 > Code samples
 
 ```shell
-curl --request GET \
-  --url 'https://app.asana.com/api/1.0/users/user%40example.com/teams?organization_gid=1331' \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/teams?organization_gid=1331 \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -8917,7 +9034,7 @@ Returns the compact records for all teams to which the given user is assigned.
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
 |user_gid|path|string(email)|true|An identifier for the user. Can be one of an email address, the globally unique identifier for the user, or the keyword `me` to indicate the current user making the request.|
-|organization_gid|query|integer|true|The workspace or organization to filter teams on.|
+|organization_gid|query|string|true|The workspace or organization to filter teams on.|
 
 > 200 Response
 
@@ -8955,12 +9072,12 @@ Returns the compact records for all teams to which the given user is assigned.
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/teams/0/addUser \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"user":14641}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/addUser \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -8973,7 +9090,7 @@ The user making this call must be a member of the team in order to add others. T
 
 ```json
 {
-  "user": 14641
+  "user": "14641"
 }
 ```
 
@@ -8982,7 +9099,7 @@ The user making this call must be a member of the team in order to add others. T
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[UserIdObject](#schemauseridobject)|true|The user to add to the team.|
-|team_gid|path|integer|true|A globally unique identifier for the team.|
+|team_gid|path|string|true|A globally unique identifier for the team.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -9026,12 +9143,12 @@ The user making this call must be a member of the team in order to add others. T
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/teams/0/removeUser \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"user":14641}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/teams/{team_gid}/removeUser \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -9044,7 +9161,7 @@ The user making this call must be a member of the team in order to remove themse
 
 ```json
 {
-  "user": 14641
+  "user": "14641"
 }
 ```
 
@@ -9053,7 +9170,7 @@ The user making this call must be a member of the team in order to remove themse
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[UserIdObject](#schemauseridobject)|true|The user to remove from the team.|
-|team_gid|path|integer|true|A globally unique identifier for the team.|
+|team_gid|path|string|true|A globally unique identifier for the team.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -9106,10 +9223,11 @@ The typeahead search API provides search for objects from a single workspace.
 > Code samples
 
 ```shell
-curl --request GET \
-  --url 'https://app.asana.com/api/1.0/workspaces/12345/typeahead?resource_type=user' \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/typeahead?resource_type=user \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -9207,10 +9325,11 @@ Like other objects in the system, users are referred to by numerical IDs. Howeve
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/users \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/users \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -9224,7 +9343,7 @@ Results are sorted by user ID.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|workspace|query|integer|false|The workspace or organization ID to filter users on.|
+|workspace|query|string|false|The workspace or organization ID to filter users on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 |limit|query|integer|false|Results per page.|
@@ -9270,10 +9389,11 @@ Results are sorted by user ID.
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/users/string \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/users/{user_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -9335,10 +9455,11 @@ Results are sorted by user ID.
 > Code samples
 
 ```shell
-curl --request GET \
-  --url 'https://app.asana.com/api/1.0/users/string/favorites?workspace=1234&resource_type=project' \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/favorites?resource_type=project&workspace=1234 \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -9396,10 +9517,11 @@ Results are given in order (The same order as Asana's sidebar).
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/teams/0/users \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/teams/{team_gid}/users \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -9412,7 +9534,7 @@ Returns the compact records for all users that are members of the team.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|team_gid|path|integer|true|A globally unique identifier for the team.|
+|team_gid|path|string|true|A globally unique identifier for the team.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 |limit|query|integer|false|Results per page.|
@@ -9458,10 +9580,11 @@ Returns the compact records for all users that are members of the team.
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/workspaces/12345/users \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/users \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -9532,10 +9655,11 @@ A user’s “My Tasks” represent all of the tasks assigned to that user. It i
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/user_task_lists/12345/tasks \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/user_task_lists/{user_task_list_gid}/tasks \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -9645,10 +9769,11 @@ Returns the compact list of tasks in a user’s My Tasks list. The returned task
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/user_task_list/12345 \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/user_task_list/{user_task_list_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -9698,10 +9823,11 @@ Returns the full record for a user task list.
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/users/string/user_task_list \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/user_task_list \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -9789,10 +9915,11 @@ If we attempt to send a webhook payload and we receive an error status code, or 
 > Code samples
 
 ```shell
-curl --request GET \
-  --url 'https://app.asana.com/api/1.0/webhooks?workspace=1331' \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/webhooks?workspace=1331 \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -9807,8 +9934,8 @@ Get the compact representation of all webhooks your app has registered for the a
 |---|---|---|---|---|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
-|workspace|query|integer|true|The workspace to query for webhooks in.|
-|resource|query|integer|false|Only return webhooks for the given resource.|
+|workspace|query|string|true|The workspace to query for webhooks in.|
+|resource|query|string|false|Only return webhooks for the given resource.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -9851,12 +9978,12 @@ Get the compact representation of all webhooks your app has registered for the a
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/webhooks \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"resource":12345,"target":"https://example.com/receive-webhook/7654"}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/webhooks \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -9904,9 +10031,9 @@ X-Hook-Secret: b537207f20cbfa02357cf448134da559e8bd39d61597dcd5631b8012eae53e81
 HTTP/1.1 201
 {
   "data": {
-    "id": 43214,
+    "gid": "43214",
     "resource": {
-      "id": 8675309,
+      "gid": "8675309",
       "name": "Bugs"
     },
     "target": "https://example.com/receive-webhook/7654",
@@ -9922,7 +10049,7 @@ HTTP/1.1 201
 
 ```json
 {
-  "resource": 12345,
+  "resource": "12345",
   "target": "https://example.com/receive-webhook/7654"
 }
 ```
@@ -9932,7 +10059,7 @@ HTTP/1.1 201
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|object|true|The webhook workspace and target.|
-|» resource|body|integer|true|A resource ID to subscribe to. The resource can be a task or project.|
+|» resource|body|string|true|A resource ID to subscribe to. The resource can be a task or project.|
 |» target|body|string(uri)|true|The URL to receive the HTTP POST.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
@@ -9974,10 +10101,11 @@ HTTP/1.1 201
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/webhooks/95784 \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/webhooks/{webhook_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -9990,7 +10118,7 @@ Returns the full record for the given webhook.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|webhook_gid|path|integer|true|The webhook to affect with the current operation.|
+|webhook_gid|path|string|true|The webhook to affect with the current operation.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -10031,10 +10159,11 @@ Returns the full record for the given webhook.
 > Code samples
 
 ```shell
-curl --request DELETE \
-  --url https://app.asana.com/api/1.0/webhooks/95784 \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X DELETE https://app.asana.com/api/1.0/webhooks/{webhook_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -10047,7 +10176,7 @@ This method *permanently* removes a webhook. Note that it may be possible to rec
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|webhook_gid|path|integer|true|The webhook to affect with the current operation.|
+|webhook_gid|path|string|true|The webhook to affect with the current operation.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -10091,10 +10220,11 @@ Over time, we intend to migrate most workspaces into organizations and to releas
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/workspaces \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/workspaces \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -10149,10 +10279,11 @@ Returns the compact records for all workspaces visible to the authorized user.
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/workspaces/12345 \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -10204,12 +10335,12 @@ Returns the full workspace record for a single workspace.
 > Code samples
 
 ```shell
-curl --request PUT \
-  --url https://app.asana.com/api/1.0/workspaces/12345 \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"data":{"name":"Bug Task","email_domains":["asana.com"],"is_organization":false}}'
+# You can also use wget
+curl -X PUT https://app.asana.com/api/1.0/workspaces/{workspace_gid} \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -10278,12 +10409,12 @@ Returns the complete, updated workspace record.
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/workspaces/12345/addUser \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"user":14641}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/addUser \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -10297,7 +10428,7 @@ The user can be referenced by their globally unique user ID or their email addre
 
 ```json
 {
-  "user": 14641
+  "user": "14641"
 }
 ```
 
@@ -10354,12 +10485,12 @@ The user can be referenced by their globally unique user ID or their email addre
 > Code samples
 
 ```shell
-curl --request POST \
-  --url https://app.asana.com/api/1.0/workspaces/12345/removeUser \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}' \
-  --header 'content-type: application/json' \
-  --data '{"user":14641}'
+# You can also use wget
+curl -X POST https://app.asana.com/api/1.0/workspaces/{workspace_gid}/removeUser \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -10374,7 +10505,7 @@ Returns an empty data record.
 
 ```json
 {
-  "user": 14641
+  "user": "14641"
 }
 ```
 
@@ -10423,10 +10554,11 @@ This object determines if a user is a member of a workspace.
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/workspace_memberships/ \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/workspace_memberships/{workspace_membership_gid} \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -10493,10 +10625,11 @@ Returns the complete workspace record for a single workspace membership.
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/users/string/workspace_memberships \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/users/{user_gid}/workspace_memberships \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -10553,10 +10686,11 @@ Returns the compact workspace membership records for the user.
 > Code samples
 
 ```shell
-curl --request GET \
-  --url https://app.asana.com/api/1.0/workspaces/12345/workspace_memberships \
-  --header 'accept: application/json' \
-  --header 'authorization: Bearer {access-token}'
+# You can also use wget
+curl -X GET https://app.asana.com/api/1.0/workspaces/{workspace_gid}/workspace_memberships \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer {access-token}'
+
 ```
 
 <p>
@@ -10686,7 +10820,7 @@ An *attachment* object represents any file attached to a task in Asana, whether 
   "method": "get",
   "data": {
     "assignee": "me",
-    "workspace": 1337
+    "workspace": "1337"
   },
   "options": {
     "limit": 3,
@@ -10743,7 +10877,7 @@ A request object for use in a batch request.
   },
   "body": {
     "data": {
-      "gid": 1967,
+      "gid": "1967",
       "completed": false,
       "name": "Hello, world!",
       "notes": "How are you today?"
@@ -11097,7 +11231,7 @@ error.
     "name": "Greg Sanchez"
   },
   "resource": {
-    "gid": 12345,
+    "gid": "12345",
     "name": "Bug Task"
   },
   "type": "task",
@@ -11124,7 +11258,7 @@ observed by an event subscription.
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
 |resource|object|false|read-only|The resource the event occurred on.<br><br>*Note: The resource that triggered the event may be different from<br>the one that the events were requested for. For example, a<br>subscription to a project will contain events for tasks contained<br>within the project.*|
-|» gid|integer|false|none|none|
+|» gid|string|false|none|none|
 |» name|string|false|none|none|
 |type|string|false|read-only|*Deprecated: Refer to the resource_type of the resource.*<br>The type of the resource that generated the event.<br><br>*Note: Currently, only tasks, projects and stories generate<br>events.*|
 |action|string|false|read-only|The type of action taken that triggered the event.|
@@ -11303,7 +11437,11 @@ An *organization_export* object represents a request to export the complete data
   "resource_type": "portfolio",
   "name": "Bug Task",
   "created_at": "2012-02-22T02:06:58.147Z",
-  "created_by": null,
+  "created_by": {
+    "gid": "12345",
+    "resource_type": "user",
+    "name": "Greg Sanchez"
+  },
   "color": "light-green",
   "custom_field_settings": [
     {
@@ -11333,7 +11471,10 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the object.|
 |created_at|string(date-time)|false|read-only|The time at which this resource was created.|
-|created_by|any|false|none|none|
+|created_by|object¦null|false|read-only|The user who created this resource.|
+|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+|» resource_type|string|false|read-only|The base type of this resource.|
+|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
 |color|string|false|none|Color of the portfolio.|
 |custom_field_settings|[object]|false|read-only|Array of custom field settings applied to the portfolio.|
 |» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
@@ -11538,7 +11679,7 @@ This is read-only except for a small group of whitelisted apps.
     "color": "green",
     "text": "Everything is great",
     "author": {
-      "gid": 12345,
+      "gid": "12345",
       "name": "Greg Bizarro"
     }
   },
@@ -11644,7 +11785,7 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|modified_at|string(date-time)|false|none|The time at which this project was last modified.<br>*Note: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.*|
+|modified_at|string(date-time)|false|read-only|The time at which this project was last modified.<br>*Note: This does not currently reflect any changes in associations such as tasks or comments that may have been added or removed from the project.*|
 |notes|string|false|none|More detailed, free-form textual information associated with the project.|
 |owner|any|false|none|none|
 |public|boolean|false|none|True if the project is public to the organization. If false, do not share this project with other users in this organization without explicitly checking to see if they have access.|
@@ -11818,7 +11959,11 @@ With the introduction of “comment-only” projects in Asana, a user’s member
   "resource_type": "project_status",
   "title": "Status Update - Jun 15",
   "created_at": "2012-02-22T02:06:58.147Z",
-  "created_by": null,
+  "created_by": {
+    "gid": "12345",
+    "resource_type": "user",
+    "name": "Greg Sanchez"
+  },
   "text": "The project is moving forward according to plan...",
   "html-text": "'&lt;body&gt;The project &lt;strong&gt;is&lt;/strong&gt; moving forward according to plan...&lt;/body&gt;'",
   "color": "green"
@@ -11836,7 +11981,10 @@ A *project status* is an update on the progress of a particular project, and is 
 |resource_type|string|false|read-only|The base type of this resource.|
 |title|string|false|read-only|The title of the project status update.|
 |created_at|string(date-time)|false|read-only|The time at which this resource was created.|
-|created_by|any|false|none|none|
+|created_by|object¦null|false|read-only|The user who created this resource.|
+|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+|» resource_type|string|false|read-only|The base type of this resource.|
+|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
 |text|string|false|read-only|The text content of the status update.|
 |html-text|string|false|read-only|[Opt In](#input-output-options). The text content of the status update with formatting as HTML.|
 |color|string|false|read-only|The color associated with the status update.|
@@ -11961,7 +12109,11 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
   "resource_type": "story",
   "resource_subtype": "milestone",
   "created_at": "2012-02-22T02:06:58.147Z",
-  "created_by": null,
+  "created_by": {
+    "gid": "12345",
+    "resource_type": "user",
+    "name": "Greg Sanchez"
+  },
   "text": "marked today",
   "type": "comment",
   "html_text": "Get whatever Sashimi has.",
@@ -12030,7 +12182,11 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
     "resource_type": "story",
     "resource_subtype": "milestone",
     "created_at": "2012-02-22T02:06:58.147Z",
-    "created_by": null,
+    "created_by": {
+      "gid": "12345",
+      "resource_type": "user",
+      "name": "Greg Sanchez"
+    },
     "text": "marked today",
     "type": "comment"
   },
@@ -12119,7 +12275,7 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
   },
   "source": "web",
   "target": {
-    "gid": 1234,
+    "gid": "1234",
     "name": "Bug Task"
   }
 }
@@ -12136,7 +12292,10 @@ A story represents an activity associated with an object in the Asana system.
 |resource_type|string|false|read-only|The base type of this resource.|
 |resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |created_at|string(date-time)|false|read-only|The time at which this resource was created.|
-|created_by|any|false|none|none|
+|created_by|object¦null|false|read-only|The user who created this resource.|
+|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+|» resource_type|string|false|read-only|The base type of this resource.|
+|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
 |text|any|false|none|*Create-only*. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br>*Note: This is not guaranteed to be stable for a given type of story. For example, text for a reassignment may not always say “assigned to …” as the text for a story can both be edited and change based on the language settings of the user making the request.*<br>Use the `resource_subtype` property to discover the action that created the story.|
 |type|string|false|read-only|*Deprecated: new integrations should prefer the `resource_subtype` field.*|
 |html_text|string|false|none|[Opt In](#input-output-options).<br>HTML formatted text for a comment. This will not include the name<br>of the creator.<br><br>*Note: This field is under active migration—please see our blog<br>post for more information.*|
@@ -12206,7 +12365,10 @@ A story represents an activity associated with an object in the Asana system.
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |» created_at|string(date-time)|false|read-only|The time at which this resource was created.|
-|» created_by|any|false|none|none|
+|» created_by|object¦null|false|read-only|The user who created this resource.|
+|»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+|»» resource_type|string|false|read-only|The base type of this resource.|
+|»» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
 |» text|any|false|none|*Create-only*. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br>*Note: This is not guaranteed to be stable for a given type of story. For example, text for a reassignment may not always say “assigned to …” as the text for a story can both be edited and change based on the language settings of the user making the request.*<br>Use the `resource_subtype` property to discover the action that created the story.|
 |» type|string|false|read-only|*Deprecated: new integrations should prefer the `resource_subtype` field.*|
 |assignee|object|false|none|A *user* object represents an account in Asana that can be given access to various workspaces, projects, and tasks.|
@@ -12282,7 +12444,7 @@ A story represents an activity associated with an object in the Asana system.
 |» name|string|false|none|The name of the object.|
 |source|string|false|read-only|The component of the Asana product the user used to trigger the story.|
 |target|object|false|read-only|The object this story is associated with. Currently may only be a task.|
-|» gid|integer|false|none|none|
+|» gid|string|false|none|none|
 |» name|string|false|none|none|
 
 #### Enumerated Values
@@ -12308,7 +12470,11 @@ A story represents an activity associated with an object in the Asana system.
   "resource_type": "story",
   "resource_subtype": "milestone",
   "created_at": "2012-02-22T02:06:58.147Z",
-  "created_by": null,
+  "created_by": {
+    "gid": "12345",
+    "resource_type": "user",
+    "name": "Greg Sanchez"
+  },
   "text": "marked today",
   "type": "comment"
 }
@@ -12325,7 +12491,10 @@ A story represents an activity associated with an object in the Asana system.
 |resource_type|string|false|read-only|The base type of this resource.|
 |resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
 |created_at|string(date-time)|false|read-only|The time at which this resource was created.|
-|created_by|any|false|none|none|
+|created_by|object¦null|false|read-only|The user who created this resource.|
+|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+|» resource_type|string|false|read-only|The base type of this resource.|
+|» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
 |text|any|false|none|*Create-only*. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br>*Note: This is not guaranteed to be stable for a given type of story. For example, text for a reassignment may not always say “assigned to …” as the text for a story can both be edited and change based on the language settings of the user making the request.*<br>Use the `resource_subtype` property to discover the action that created the story.|
 |type|string|false|read-only|*Deprecated: new integrations should prefer the `resource_subtype` field.*|
 
@@ -12590,7 +12759,7 @@ The *task* is the basic object around which many operations in Asana are centere
 |external|object|false|none|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).<br>The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.|
 |» gid|string|false|none|none|
 |» data|string|false|none|none|
-|followers|[object]|false|none|Array of users following this task.|
+|followers|[object]|false|read-only|Array of users following this task.|
 |» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
@@ -12606,7 +12775,7 @@ The *task* is the basic object around which many operations in Asana are centere
 |» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|memberships|[object]|false|none|*Create-only*. Array of projects this task is associated with and the section it is in. At task creation time, this array can be used to add the task to specific sections. After task creation, these associations can be modified using the `addProject` and `removeProject` endpoints. Note that over time, more types of memberships may be added to this property.|
+|memberships|[object]|false|read-only|*Create-only*. Array of projects this task is associated with and the section it is in. At task creation time, this array can be used to add the task to specific sections. After task creation, these associations can be modified using the `addProject` and `removeProject` endpoints. Note that over time, more types of memberships may be added to this property.|
 |» project|object|false|none|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
 |»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
 |»» resource_type|string|false|read-only|The base type of this resource.|
@@ -12621,24 +12790,15 @@ The *task* is the basic object around which many operations in Asana are centere
 |num_likes|integer|false|read-only|The number of users who have liked this task.|
 |num_subtasks|integer|false|read-only|[Opt In](#input-output-options). The number of subtasks on this task.|
 |parent|any|false|none|none|
-|projects|[object]|false|none|*Create-only.* Array of projects this task is associated with. At task creation time, this array can be used to add the task to many projects at once. After task creation, these associations can be modified using the addProject and removeProject endpoints.|
+|projects|[object]|false|read-only|*Create-only.* Array of projects this task is associated with. At task creation time, this array can be used to add the task to many projects at once. After task creation, these associations can be modified using the addProject and removeProject endpoints.|
 |» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |start_on|string(date)¦null|false|none|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.<br>*Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*|
-|tags|[object]|false|none|*Create-only*. Array of tags associated with this task. This property may be specified on creation using just an array of tag gids.  In order to change tags on an existing task use `addTag` and `removeTag`.|
+|tags|[object]|false|read-only|*Create-only*. Array of tags associated with this task. This property may be specified on creation using just an array of tag gids.  In order to change tags on an existing task use `addTag` and `removeTag`.|
 |» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
-|» followers|[object]|false|read-only|Array of users following this tag.|
-|»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»» resource_type|string|false|read-only|The base type of this resource.|
-|»» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|» color|string|false|none|Color of the tag.|
-|» workspace|object|false|none|A *workspace* is the highest-level organizational unit in Asana. All projects and tasks have an associated workspace.|
-|»» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|»» resource_type|string|false|read-only|The base type of this resource.|
-|»» name|string|false|none|The name of the object.|
 |workspace|any|false|none|none|
 
 #### Enumerated Values
@@ -12656,24 +12816,6 @@ The *task* is the basic object around which many operations in Asana are centere
 |type|text|
 |type|enum|
 |type|number|
-|color|dark-pink|
-|color|dark-green|
-|color|dark-blue|
-|color|dark-red|
-|color|dark-teal|
-|color|dark-brown|
-|color|dark-orange|
-|color|dark-purple|
-|color|dark-warm-gray|
-|color|light-pink|
-|color|light-green|
-|color|light-blue|
-|color|light-red|
-|color|light-teal|
-|color|light-brown|
-|color|light-orange|
-|color|light-purple|
-|color|light-warm-gray|
 
 <hr>
 
@@ -12970,10 +13112,10 @@ In both cases, however, changes are represented as Event objects - refer to the 
 {
   "action": "changed",
   "created_at": "2012-02-22T02:06:58.147Z",
-  "parent": 12345,
-  "resource": 32154,
+  "parent": "12345",
+  "resource": "32154",
   "type": "task",
-  "user": 321654987
+  "user": "321654987"
 }
 
 ```
@@ -12984,10 +13126,10 @@ In both cases, however, changes are represented as Event objects - refer to the 
 |---|---|---|---|---|
 |action|string|false|read-only|The type of action taken that triggered the event.|
 |created_at|string(date-time)|false|read-only|The timestamp when the event occurred.|
-|parent|integer¦null|false|read-only|For added/removed events, the parent gid that resource was added to or removed from. The parent will be `null` for other event types.|
-|resource|integer|false|read-only|The resource gid the event occurred on.<br><br>*Note: The resource that triggered the event may be different from<br>the one that the events were requested for. For example, a<br>subscription to a project will contain events for tasks contained<br>within the project.*|
+|parent|string¦null|false|read-only|For added/removed events, the parent gid that resource was added to or removed from. The parent will be `null` for other event types.|
+|resource|string|false|read-only|The resource gid the event occurred on.<br><br>*Note: The resource that triggered the event may be different from<br>the one that the events were requested for. For example, a<br>subscription to a project will contain events for tasks contained<br>within the project.*|
 |type|string|false|read-only|The type of the resource that generated the event.<br><br>*Note: Currently, only tasks, projects and stories generate<br>events.*|
-|user|integer¦null|false|read-only|The gid of the user who triggered the event.<br><br>*Note: The event may be triggered by a different user than the<br>subscriber. For example, if user A subscribes to a task and user B<br>modified it, the event’s user will be user B. Note: Some events are<br>generated by the system, and will have `null` as the user. API<br>consumers should make sure to handle this case.*|
+|user|string¦null|false|read-only|The gid of the user who triggered the event.<br><br>*Note: The event may be triggered by a different user than the<br>subscriber. For example, if user A subscribes to a task and user B<br>modified it, the event’s user will be user B. Note: Some events are<br>generated by the system, and will have `null` as the user. API<br>consumers should make sure to handle this case.*|
 
 <hr>
 

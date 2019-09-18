@@ -748,6 +748,22 @@ components:
       schema:
         type: string
       example: '12345'
+    body_object_gid_override:
+      type: string
+      readOnly: false
+      description: >-
+        Gid of an object.
+      example: '12345'
+    body_array_gid_override:
+      type: array
+      readOnly: false
+      description: >-
+        Array of object Gids.
+      items:
+        type: string
+        description: >-
+          Gid of an object.
+        example: '74362'
   responses:
     GenericErrorResponse:
       description: >-
@@ -900,18 +916,15 @@ components:
           format: date-time
           readOnly: true
           example: '2012-02-22T02:06:58.147Z'
-    AsanaCreatedByAndAt:
-      allOf:
-        - $ref: '#/components/schemas/AsanaCreatedAt'
-        - type: object
-          properties:
-            created_by:
-              allOf:
-                - $ref: '#/components/schemas/User'
-                - type: object
-                  description: The user who created this resource.
-                  readOnly: true
-                  nullable: true
+    AsanaCreatedBy:
+      properties:
+        created_by:
+          allOf:
+            - $ref: '#/components/schemas/UserCompact'
+            - type: object
+              description: The user who created this resource.
+              readOnly: true
+              nullable: true
     Attachment:
       allOf:
         - $ref: '#/components/schemas/AttachmentCompact'
@@ -1569,7 +1582,8 @@ components:
     Portfolio:
       allOf:
         - $ref: '#/components/schemas/PortfolioCompact'
-        - $ref: '#/components/schemas/AsanaCreatedByAndAt'
+        - $ref: '#/components/schemas/AsanaCreatedAt'
+        - $ref: '#/components/schemas/AsanaCreatedBy'
         - type: object
           properties:
             color:
@@ -1864,6 +1878,7 @@ components:
                 associations such as tasks or comments that may have been added or
                 removed from the project.*
               type: string
+              readOnly: true
               format: date-time
               example: '2012-02-22T02:06:58.147Z'
             notes:
@@ -1918,6 +1933,7 @@ components:
               allOf:
                 - $ref: '#/components/schemas/WorkspaceCompact'
                 - type: object
+                  readOnly: true
                   description: >-
                     *Create-only*. The workspace or organization this project is
                     associated with. Once created, projects cannot be moved to a
@@ -2006,7 +2022,8 @@ components:
     ProjectStatus:
       allOf:
         - $ref: '#/components/schemas/ProjectStatusCompact'
-        - $ref: '#/components/schemas/AsanaCreatedByAndAt'
+        - $ref: '#/components/schemas/AsanaCreatedAt'
+        - $ref: '#/components/schemas/AsanaCreatedBy'
         - type: object
           properties:
             text:
@@ -2369,7 +2386,8 @@ components:
       allOf:
         - $ref: '#/components/schemas/AsanaObject'
         - $ref: '#/components/schemas/AsanaSubtype'
-        - $ref: '#/components/schemas/AsanaCreatedByAndAt'
+        - $ref: '#/components/schemas/AsanaCreatedAt'
+        - $ref: '#/components/schemas/AsanaCreatedBy'
         - type: object
           description: >-
             A story represents an activity associated with an object in the Asana
@@ -2608,6 +2626,7 @@ components:
             followers:
               description: Array of users following this task.
               type: array
+              readOnly: true
               items:
                 $ref: '#/components/schemas/UserCompact'
             html_notes:
@@ -2673,6 +2692,7 @@ components:
                 `removeProject` endpoints. Note that over time, more types of
                 memberships may be added to this property.
               type: array
+              readOnly: true
               items:
                 type: object
                 properties:
@@ -2728,6 +2748,7 @@ components:
               allOf:
                 - $ref: '#/components/schemas/TaskCompact'
                 - type: object
+                  readOnly: true
                   description: >-
                     The parent of this task, or `null` if this is not a subtask.
                     This property cannot be modified using a PUT request but you
@@ -2741,6 +2762,7 @@ components:
                 many projects at once. After task creation, these associations can
                 be modified using the addProject and removeProject endpoints.
               type: array
+              readOnly: true
               items:
                 $ref: '#/components/schemas/ProjectCompact'
             resource_subtype:
@@ -2781,8 +2803,9 @@ components:
                 gids.  In order to change tags on an existing task use `addTag` and
                 `removeTag`.
               type: array
+              readOnly: true
               items:
-                $ref: '#/components/schemas/Tag'
+                $ref: '#/components/schemas/TagCompact'
               example:
                 - gid: '59746'
                   name: Grade A
@@ -6331,6 +6354,25 @@ paths:
             schema:
               allOf:
                 - $ref: '#/components/schemas/TaskObject'
+                - type: object
+                  properties:
+                    data:
+                      type: object
+                      properties:
+                        assignee:
+                          $ref: '#/components/parameters/body_object_gid_override'
+                          nullable: true
+                        followers:
+                          $ref: '#/components/parameters/body_array_gid_override'
+                        tags:
+                          $ref: '#/components/parameters/body_array_gid_override'
+                        parent:
+                          $ref: '#/components/parameters/body_object_gid_override'
+                          nullable: true
+                        projects:
+                          $ref: '#/components/parameters/body_array_gid_override'
+                        workspace:
+                          $ref: '#/components/parameters/body_object_gid_override'
       responses:
         201:
           description: Successfully created a new task.
@@ -6397,7 +6439,18 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TaskObject'
+              - $ref: '#/components/schemas/TaskObject'
+              - type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      assignee:
+                        $ref: '#/components/parameters/body_object_gid_override'
+                        nullable: true
+                      parent:
+                        $ref: '#/components/parameters/body_object_gid_override'
+                        nullable: true
       responses:
         200:
           description: Successfully updated the specified task.
@@ -6711,7 +6764,26 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TaskObject'
+              allOf:
+                - $ref: '#/components/schemas/TaskObject'
+                - type: object
+                  properties:
+                    data:
+                      type: object
+                      properties:
+                        assignee:
+                          $ref: '#/components/parameters/body_object_gid_override'
+                          nullable: true
+                        followers:
+                          $ref: '#/components/parameters/body_array_gid_override'
+                        tags:
+                          $ref: '#/components/parameters/body_array_gid_override'
+                        parent:
+                          readOnly: true
+                        projects:
+                          $ref: '#/components/parameters/body_array_gid_override'
+                        workspace:
+                          $ref: '#/components/parameters/body_object_gid_override'
       responses:
         201:
           description: Successfully created the specified subtask.
