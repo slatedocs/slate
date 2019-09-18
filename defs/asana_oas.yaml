@@ -5,7 +5,7 @@ info:
     This is the interface for interacting with the [Asana
     Platform](https://asana.com/developers/). Our API reference
     is generated from our [OpenAPI spec]
-    (https://github.com/Asana/developer-docs/blob/master/defs/asana_oas.json).
+    (https://raw.githubusercontent.com/Asana/developer-docs/master/defs/asana_oas.yaml).
   title: Asana
   termsOfService: https://asana.com/terms
   contact:
