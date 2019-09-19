@@ -60,12 +60,22 @@ includes:
   - gcp
   - gcp/compute # Compute section
   - gcp/instances
+  - gcp/instance_groups
   - gcp/disks
   - gcp/ssh_keys
+  - gcp/health_checks
   - gcp/networking # Networking section
   - gcp/networks
   - gcp/firewall_rules
-  - gcp/externalips
+  - gcp/external_ips
+  - gcp/routes
+  - gcp/vpn_gateways
+  - gcp/vpn_tunnels
+  - gcp/load_balancing # Load balancing subsection
+  - gcp/backend_services
+  - gcp/forwarding_rules
+  - gcp/ssl_certificates
+  - gcp/target_proxies
   - gcp/kubernetes # Kubernetes section
   - gcp/clusters
   - gcp/images
