@@ -2,11 +2,9 @@
 title: Goji API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
+  - http
   - java
   - csharp
-  - shell
-  - ruby
-  - python
   - javascript
 
 toc_footers:

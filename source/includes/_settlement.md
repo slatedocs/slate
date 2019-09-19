@@ -1,60 +1,45 @@
 # Settlement
-
-
 <a name="overview"></a>
-## Overview
+### Overview
 Settle securities not managed by the Bond management module.
 
-### Version information
-*Version* : 1.0.0
-
-### URI scheme
-*Host* : api-sandbox.goji.investments  
-*BasePath* : /platformApi  
-*Schemes* : HTTPS
-
-### Consumes
-
-* `application/json`
-
-### Produces
-
-* `application/json`
-
-<a name="securityscheme"></a>
-## Security
-
-<a name="basicauth"></a>
-### basicAuth
-HTTP Basic Authentication over HTTPS. Only valid in Sandbox, HMAC should be used in production.
-
-*Type* : basic
-
-
-<a name="paths"></a>
-## Paths
-
 <a name="loadrecordedinvestmentsforinvestor"></a>
-### Lists recorded investments for an investor
-```
-GET /settlement/investors/{clientId}/accounts/{accountType}/investments
-```
+## List investments for an investor
+```http
+GET /settlement/investors/{clientId}/accounts/{accountType}/investments HTTP/1.1
+Host: api-sandbox.goji.investments/platformApi
+Content-Type: application/json
+Authorization: Basic ...
 
+HTTP/1.1 200 OK
+Content-Type: application/json
 
+  {
+      "investments": [
+          {
+              "accountType": "string",
+              "amount": {
+                  "amount": "number",
+                  "currency": "string"
+              },
+              "clientId": "string",
+              "investmentId": "string",
+              "productId": "string",
+              "trancheId": "string"
+          }
+      ]
+  }
+```
 #### Description
 Lists recorded investments for an investor.
 
-
 #### Parameters
-
 |Type|Name|Description|Schema|
 |---|---|---|---|
 |**Path**|**accountType**  <br>*required*|The type of the account|enum (ISA, GOJI_INVESTMENT)|
 |**Path**|**clientId**  <br>*required*|The ID of the investor|string|
 
-
 #### Responses
-
 |HTTP Code|Description|Schema|
 |---|---|---|
 |**200**|Investments.|[ClientMoneyInvestmentsForInvestor](#clientmoneyinvestmentsforinvestor)|
@@ -62,39 +47,31 @@ Lists recorded investments for an investor.
 |**401**|Unauthorised.|[ErrorResponse](#errorresponse)|
 |**500**|Unexpected server error.|[ErrorResponse](#errorresponse)|
 
-
-#### Consumes
-
-* `application/json`
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* settlement
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
 <a name="recordrepaymentdestination"></a>
-### Adds a payment destination (Deprecated)
-```
-POST /settlement/payment-destination
-```
+## Adds a payment destination (Deprecated)
+```http
+POST /settlement/payment-destination HTTP/1.1
+Host: api-sandbox.goji.investments/platformApi
+Content-Type: application/json
+Authorization: Basic ...
 
+  {
+    "accountName": "string",
+    "accountNumber": "string",
+    "sortCode": "string",
+    "reference": "string"
+  }
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+  {
+      "id": "string"
+  }
+```
 
 #### Description
 Adds a payment destination. This has been deprecated to be replaced with https://docs.api.goji.investments/payments/reference/payments/add-bank-account-details
-
 
 #### Parameters
 
@@ -102,59 +79,35 @@ Adds a payment destination. This has been deprecated to be replaced with https:/
 |---|---|---|---|
 |**Body**|**paymentDestination**  <br>*optional*|The payment destination|[PaymentDestination](#paymentdestination)|
 
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Payment Destination Id.|[PaymentDestinationResponse](#paymentdestinationresponse)|
-|**400**|Bad request.|[ErrorResponse](#errorresponse)|
-|**401**|Unauthorised.|[ErrorResponse](#errorresponse)|
-|**500**|Unexpected server error.|[ErrorResponse](#errorresponse)|
-
-
-#### Consumes
-
-* `application/json`
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* settlement
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
 <a name="listrepaymentdestination"></a>
-### Lists payment destinations (Deprecated)
-```
-GET /settlement/payment-destination
-```
+## Lists payment destinations (Deprecated)
+```http
+GET /settlement/payment-destination HTTP/1.1
+Host: api-sandbox.goji.investments/platformApi
+Content-Type: application/json
+Authorization: Basic ...
 
+{
+  "paymentDestinations": [
+    {
+      "accountName": "string",
+      "accountNumber": "string",
+      "sortCode": "string",
+      "reference": "string"
+    }
+  ]
+}
+```
 
 #### Description
 Lists payment destinations. This has been deprecated to be replaced with https://docs.api.goji.investments/payments/reference/payments/bank-account-details
 
-
 #### Parameters
-
 |Type|Name|Description|Schema|
 |---|---|---|---|
 |**Body**|**paymentDestination**  <br>*optional*|The payment destination|[PaymentDestinations](#paymentdestinations)|
 
-
 #### Responses
-
 |HTTP Code|Description|Schema|
 |---|---|---|
 |**200**|Payment Destination Id.|[PaymentDestinationResponse](#paymentdestinationresponse)|
@@ -162,50 +115,38 @@ Lists payment destinations. This has been deprecated to be replaced with https:/
 |**401**|Unauthorised.|[ErrorResponse](#errorresponse)|
 |**500**|Unexpected server error.|[ErrorResponse](#errorresponse)|
 
-
-#### Consumes
-
-* `application/json`
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* settlement
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
 <a name="updaterepaymentdestination"></a>
-### Updates a payment destination (Deprecated)
-```
-PUT /settlement/payment-destination/{id}
-```
+## Updates a payment destination (Deprecated)
+```http
+PUT /settlement/payment-destination/{id} HTTP/1.1
+Host: api-sandbox.goji.investments/platformApi
+Content-Type: application/json
+Authorization: Basic ...
 
+  {
+    "accountName": "string",
+    "accountNumber": "string",
+    "sortCode": "string",
+    "reference": "string"
+  }
 
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+  {
+      "id": "string"
+  }
+```
 #### Description
 Updates a payment destination. This has been deprecated to be replaced with https://docs.api.goji.investments/payments/reference/payments/update-bank-account-details
 
-
 #### Parameters
-
 |Type|Name|Description|Schema|
 |---|---|---|---|
 |**Path**|**id**  <br>*required*|The id of the payment destination to update|string|
 |**Body**|**paymentDestination**  <br>*optional*|The payment destination update|[PaymentDestination](#paymentdestination)|
 
-
 #### Responses
-
 |HTTP Code|Description|Schema|
 |---|---|---|
 |**200**|Payment Destination Id.|[PaymentDestinationResponse](#paymentdestinationresponse)|
@@ -213,49 +154,35 @@ Updates a payment destination. This has been deprecated to be replaced with http
 |**401**|Unauthorised.|[ErrorResponse](#errorresponse)|
 |**500**|Unexpected server error.|[ErrorResponse](#errorresponse)|
 
-
-#### Consumes
-
-* `application/json`
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* settlement
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
 <a name="addclientmoneyregisteredproduct"></a>
-### Adds a registered product
-```
-POST /settlement/product
-```
+## Adds a registered product
+```http
+POST /settlement/product HTTP/1.1
+Host: api-sandbox.goji.investments/platformApi
+Content-Type: application/json
+Authorization: Basic ...
 
+  {
+      "id": "string",
+      "investmentDocument": "string",
+      "isaEligible": "boolean"
+  }
 
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+  "SUCCESS"
+```
 #### Description
 Adds a registered product
 
-
 #### Parameters
-
 |Type|Name|Description|Schema|
 |---|---|---|---|
 |**Body**|**product**  <br>*optional*|Product to add|[RegisteredProduct](#registeredproduct)|
 
 
 #### Responses
-
 |HTTP Code|Description|Schema|
 |---|---|---|
 |**200**|The registered product.|[RegisteredProduct](#registeredproduct)|
@@ -263,37 +190,31 @@ Adds a registered product
 |**401**|Unauthorised.|[ErrorResponse](#errorresponse)|
 |**500**|Unexpected server error.|[ErrorResponse](#errorresponse)|
 
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* settlement
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
 <a name="settlementregisteredproducts"></a>
-### Returns list of registered products
-```
-GET /settlement/product
-```
+## Returns list of registered products
+```http
+GET /settlement/product HTTP/1.1
+Host: api-sandbox.goji.investments/platformApi
+Content-Type: application/json
+Authorization: Basic ...
 
+HTTP/1.1 200 OK
+Content-Type: application/json
 
+ {
+     "products": [
+         {
+             "id": "string",
+             "investmentDocument": "string",
+             "isaEligible": "boolean"
+         }
+     ]
+ }
+```
 #### Description
 Returns list of registered products
 
-
 #### Responses
-
 |HTTP Code|Description|Schema|
 |---|---|---|
 |**200**|List of registered products.|[ListRegisteredProducts](#listregisteredproducts)|
@@ -301,45 +222,34 @@ Returns list of registered products
 |**401**|Unauthorised.|[ErrorResponse](#errorresponse)|
 |**500**|Unexpected server error.|[ErrorResponse](#errorresponse)|
 
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* settlement
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
 <a name="updateclientmoneyregisteredproduct"></a>
-### Updates a registered product
-```
-PUT /settlement/product/{productId}
-```
+## Updates a registered product
+```http
+PUT /settlement/product/{productId} HTTP/1.1
+Host: api-sandbox.goji.investments/platformApi
+Content-Type: application/json
+Authorization: Basic ...
 
+ {
+     "investmentDocument": "string",
+     "isaEligible": "boolean"
+ }
 
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+  "SUCCESS"
+```
 #### Description
 Updates a registered product
 
-
 #### Parameters
-
 |Type|Name|Description|Schema|
 |---|---|---|---|
 |**Path**|**productId**  <br>*required*|The ID of the product.|string|
 |**Body**|**product**  <br>*optional*|Product to add|[RegisteredProductUpdate](#registeredproductupdate)|
 
-
 #### Responses
-
 |HTTP Code|Description|Schema|
 |---|---|---|
 |**200**|The registered product.|[RegisteredProduct](#registeredproduct)|
@@ -347,44 +257,46 @@ Updates a registered product
 |**401**|Unauthorised.|[ErrorResponse](#errorresponse)|
 |**500**|Unexpected server error.|[ErrorResponse](#errorresponse)|
 
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* settlement
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
 <a name="recordrepayment"></a>
-### Adds a repayment to an investment
-```
-POST /settlement/repayment
-```
+## Adds a repayment to an investment
+```http
+POST /settlement/repayment HTTP/1.1
+Host: api-sandbox.goji.investments/platformApi
+Content-Type: application/json
+Authorization: Basic ...
 
+  {
+    "investorRepayments": [
+        {
+            "amount": {
+                "amount": "number",
+                "currency": "string"
+            },
+            "investmentId": "string",
+            "tax": {
+                "amount": "number",
+                "currency": "string"
+            },
+            "type": "string"
+        }
+    ],
+    "reference": "string"
+  }
 
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+  "SUCCESS"
+```
 #### Description
 Adds a repayment to an investment.
 
-
 #### Parameters
-
 |Type|Name|Description|Schema|
 |---|---|---|---|
 |**Body**|**repayment**  <br>*optional*|The repayment|[ClientMoneyRepayment](#clientmoneyrepayment)|
 
-
 #### Responses
-
 |HTTP Code|Description|Schema|
 |---|---|---|
 |**200**|The repayments were registered successfully.|No Content|
@@ -392,42 +304,27 @@ Adds a repayment to an investment.
 |**401**|Unauthorised.|[ErrorResponse](#errorresponse)|
 |**500**|Unexpected server error.|[ErrorResponse](#errorresponse)|
 
-
-#### Consumes
-
-* `application/json`
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* settlement
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
 <a name="repaymentreference"></a>
-### Generate repayment reference
-```
-GET /settlement/repayment/reference
-```
+## Generate repayment reference
+```http
+GET /settlement/repayment/reference HTTP/1.1
+Host: api-sandbox.goji.investments/platformApi
+Content-Type: application/json
+Authorization: Basic ...
 
+HTTP/1.1 200 OK
+Content-Type: application/json
 
+  {
+    "accountNumber": "string",
+    "reference": "string",
+    "sortCode": "string"
+  }
+```
 #### Description
 Generates a repayment reference to be used when depositing repayment funds.
 
-
 #### Responses
-
 |HTTP Code|Description|Schema|
 |---|---|---|
 |**200**|RepaymentReference.|[RepaymentReference](#repaymentreference)|
@@ -435,46 +332,64 @@ Generates a repayment reference to be used when depositing repayment funds.
 |**401**|Unauthorised.|[ErrorResponse](#errorresponse)|
 |**500**|Unexpected server error.|[ErrorResponse](#errorresponse)|
 
-
-#### Consumes
-
-* `application/json`
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* settlement
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
 <a name="settlementsecondarymarket"></a>
-### Records the settlement of a secondary market trade
-```
-POST /settlement/secondary-market
-```
+## Records the settlement of a secondary market trade
+```http
+POST /settlement/secondary-market HTTP/1.1
+Host: api-sandbox.goji.investments/platformApi
+Content-Type: application/json
+Authorization: Basic ...
 
+  {
+    "buySide": {
+        "accountType": "string",
+        "bankAccountId": "string",
+        "clientId": "string",
+        "fee": {
+            "amount": "number",
+            "currency": "string"
+        },
+        "feePaymentDestination (Deprecated)": "string",
+        "newInvestmentId": "string",
+        "reference": "string",
+        "totalPurchaseAmount": {
+            "amount": "number",
+            "currency": "string"
+        }
+    },
+    "sellSide": {
+        "bankAccountId": "string",
+        "clientId": "string",
+        "fee": {
+            "amount": "number",
+            "currency": "string"
+        },
+        "feePaymentDestination (Deprecated)": "string",
+        "investmentId": "string",
+        "premium": {
+            "amount": "number",
+            "currency": "string"
+        },
+        "reference": "string",
+        "remainingCapitalAmount": {
+            "amount": "number",
+            "currency": "string"
+        }
+    }
+  }
 
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+```
 #### Description
 Records the settlement of a secondary market trade.
-
 
 #### Parameters
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
 |**Body**|**secondaryMarketTrade**  <br>*optional*|The secondary market trade|[SettleSecondaryMarketTrade](#settlesecondarymarkettrade)|
-
 
 #### Responses
 
@@ -485,78 +400,62 @@ Records the settlement of a secondary market trade.
 |**401**|Unauthorised.|[ErrorResponse](#errorresponse)|
 |**500**|Unexpected server error.|[ErrorResponse](#errorresponse)|
 
-
-#### Consumes
-
-* `application/json`
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* settlement
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
 <a name="settlementrecordinvestment"></a>
-### Records an investment tranche and triggers a transfer of funds to the Investment Manager
-```
-POST /settlement/tranche
-```
+## Records an investment tranche and triggers a transfer of funds to the Investment Manager
+```http
+POST /settlement/tranche HTTP/1.1
+Host: api-sandbox.goji.investments/platformApi
+Content-Type: application/json
+Authorization: Basic ...
 
+  {
+    "bankAccountId": "string",
+    "id": "string",
+    "investments": [
+        {
+            "accountType": "string",
+            "amount": {
+                "amount": "number",
+                "currency": "string"
+            },
+            "clientId": "string",
+            "id": "string"
+        }
+    ],
+    "paymentDestinationId (Deprecated)": "string",
+    "productId": "string",
+    "reference": "string"
+  }
 
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+  {
+     "accountNumber": "string",
+     "id": "string",
+     "reference": "string",
+     "sortCode": "string",
+     "totalAmount": {
+         "amount": "number",
+         "currency": "string"
+     }
+  }
+```
 #### Description
 Records an investment and triggers a transfer of funds to the Investment Manager.
 
-
 #### Parameters
-
 |Type|Name|Description|Schema|
 |---|---|---|---|
 |**Body**|**investment**  <br>*optional*|Investment to add|[ClientMoneyTranche](#clientmoneytranche)|
 
-
 #### Responses
-
 |HTTP Code|Description|Schema|
 |---|---|---|
 |**200**|Added investment.|[ClientMoneyInvestmentResponse](#clientmoneyinvestmentresponse)|
 |**400**|Bad request.|[ErrorResponse](#errorresponse)|
 |**401**|Unauthorised.|[ErrorResponse](#errorresponse)|
 |**500**|Unexpected server error.|[ErrorResponse](#errorresponse)|
-
-
-#### Consumes
-
-* `application/json`
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* settlement
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
 
 <a name="definitions"></a>
 ## Definitions
