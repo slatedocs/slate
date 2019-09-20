@@ -1,122 +1,137 @@
 # Payments
-
-
-<a name="overview"></a>
-## Overview
-Interact with an investor's cash balance.
-
-
-### Version information
-*Version* : 1.0.0
-
-
-### URI scheme
-*Host* : api-sandbox.goji.investments
-*BasePath* : /platformApi
-*Schemes* : HTTPS
-
-
-### Tags
-
-* payments
-
-
-### Consumes
-
-* `application/json`
-
-
-### Produces
-
-* `application/json`
-
-<a name="securityscheme"></a>
-## Security
-
-<a name="basicauth"></a>
-### basicAuth
-HTTP Basic Authentication over HTTPS. Only valid in Sandbox, HMAC should be used in production.
-
-*Type* : basic
-
-
-<a name="paths"></a>
-## Paths
+Resources for interacting with payment wallets, bank accounts used for settlement and investors cash balances/tranactions.
 
 <a name="addbankaccountdetails"></a>
-### Create a set of bank details.
-```
-POST /bankAccountDetails
-```
+## Create a set of bank details.
+```http
+POST /bankAccountDetails HTTP/1.1
+Host: api-sandbox.goji.investments/platformApi
+Content-Type: application/json
+Authorization: Basic ...
 
+  {
+      "accountName": "string",
+      "accountNumber": "string",
+      "sortCode": "string"
+  }
 
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+  {
+      "id": "string"
+  }
+```
 #### Description
 Create a set of bank details.
 
+#### Request
+|Type|Name|Description|Schema|
+|---|---|---|---|---|
+|**Body**|**accountName**  <br>*required*|The name of the account|string|
+|**Body**|**accountNumber**  <br>*required*|The account number|string|
+|**Body**|**sortCode**  <br>*required*|The sortcode for the account|string|
+
+#### Response
+|Type|Name|Description|Schema|
+|---|---|---|---|---|
+|**Body**|**id**|The id of the newly created account|string|
+
+<a name="updatebankaccountdetails"></a>
+## Update a set of bank details.
+```http
+PUT /bankAccountDetails/{id} HTTP/1.1
+Host: api-sandbox.goji.investments/platformApi
+Content-Type: application/json
+Authorization: Basic ...
+
+  {
+      "accountName": "string",
+      "accountNumber": "string",
+      "sortCode": "string"
+  }
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+```
+#### Description
+Update a set of bank details.
 
 #### Parameters
-
 |Type|Name|Description|Schema|
-|---|---|---|---|
-|**Body**|**bankDetails**  <br>*required*|The new bank account details|[BankDetails](#bankdetails)|
+|---|---|---|---|---|
+|**Body**|**accountName**  <br>*required*|The name of the account|string|
+|**Body**|**accountNumber**  <br>*required*|The account number|string|
+|**Body**|**sortCode**  <br>*required*|The sortcode for the account|string|
 
+<a name="getallbankaccountdetails"></a>
+## Fetch all bank details.
+```http
+GET /bankAccountDetails HTTP/1.1
+Host: api-sandbox.goji.investments/platformApi
+Content-Type: application/json
+Authorization: Basic ...
 
-#### Responses
+HTTP/1.1 200 OK
+Content-Type: application/json
 
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|ID of the created bank account details.|[CreatedBankAccountDetails](#createdbankaccountdetails)|
-|**400**|Bad request.|[ErrorResponse](#errorresponse)|
-|**401**|Unauthorised.|[ErrorResponse](#errorresponse)|
-|**500**|Unexpected server error.|[ErrorResponse](#errorresponse)|
+  [
+    {
+        "accountName": "string",
+        "accountNumber": "string",
+        "id": "string",
+        "sortCode": "string",
+        "status": "string"
+    },
+    {
+        "accountName": "string",
+        "accountNumber": "string",
+        "id": "string",
+        "sortCode": "string",
+        "status": "string"
+     }
+  ]
 
+```
+#### Description
+Fetch a list of bank details.
 
-#### Consumes
+#### Response
+|Type|Name|Description|Schema|
+|---|---|---|---|---|
+|**Body**|**accountName**|The name of the account|string|
+|**Body**|**accountNumber**|The account number|string|
+|**Body**|**sortCode**|The sortcode for the account|string|
+|**Body**|**id**|The id for the account|string|
+|**Body**|**status**|The status for the account (ENABLED, DISABLED).|string|
 
-* `application/json`
+<a name="getbankaccountdetails"></a>
+## Fetch a set of bank details.
+```http
+GET /bankAccountDetails/{id} HTTP/1.1
+Host: api-sandbox.goji.investments/platformApi
+Content-Type: application/json
+Authorization: Basic ...
 
+HTTP/1.1 200 OK
+Content-Type: application/json
 
-#### Produces
+  {
+      "accountName": "string",
+      "accountNumber": "string",
+      "id": "string",
+      "sortCode": "string",
+      "status": "string"
+  }
+```
+#### Description
+Fetch a set of bank details.
 
-* `application/json`
-
-
-#### Tags
-
-* payments
-
-
-#### Security
-
-|Type|Name|
-
-
-
-<a name="definitions"></a>
-## Definitions
-
-<a name="accountbalance"></a>
-### Account Balance
-
-|Name|Description|Schema|
-|---|---|---|
-|**isaRemainingSubscriptionAmount**  <br>*optional*|The remaining amount of new funds that can be added to the ISA this tax year. null if not an ISA balance|[MonetaryAmount](#monetaryamount)|
-|**totalBalance**  <br>*optional*|The total balance. The sum of the invested, queued and cash balances.|[MonetaryAmount](#monetaryamount)|
-|**totalCashBalance**  <br>*optional*|The total cash balance.|[MonetaryAmount](#monetaryamount)|
-|**totalInvestedBalance**  <br>*optional*|The total invested balance.|[MonetaryAmount](#monetaryamount)|
-|**totalQueuedInvestedBalance**  <br>*optional*|The total queued for investment.|[MonetaryAmount](#monetaryamount)|
-
-
-<a name="accountbalances"></a>
-### Account Balances
-
-|Name|Description|Schema|
-|---|---|---|
-|**accounts**  <br>*optional*|A breakdown of the balances by account.|[accounts](#accountbalances-accounts)|
-|**totalBalance**  <br>*optional*|The total balance. The sum of the invested, queued and cash balances.|[MonetaryAmount](#monetaryamount)|
-|**totalCashBalance**  <br>*optional*|The total cash balance.|[MonetaryAmount](#monetaryamount)|
-|**totalInvestedBalance**  <br>*optional*|The total invested balance.|[MonetaryAmount](#monetaryamount)|
-|**totalQueuedInvestedBalance**  <br>*optional*|The total queued for investment.|[MonetaryAmount](#monetaryamount)|
-
-<a name="accountbalances-accounts"></a>
-**accounts**
+#### Response
+|Type|Name|Description|Schema|
+|---|---|---|---|---|
+|**Body**|**accountName**|The name of the account|string|
+|**Body**|**accountNumber**|The account number|string|
+|**Body**|**sortCode**|The sortcode for the account|string|
+|**Body**|**id**|The id for the account|string|
+|**Body**|**status**|The status for the account (ENABLED, DISABLED).|string|
