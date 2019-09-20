@@ -36,7 +36,6 @@ If you'd prefer to use Docker, instructions are available [in the wiki](https://
 Below is an example of a documented API.
 Items in `{}` need to be replaced. E.g `{Title} = Records an investment tranche and triggers a transfer of funds to the Investment Manager`
 
-```
 <a name="{anchor}"></a>
 ## {Title}
 ```http
@@ -64,5 +63,3 @@ Content-Type: application/json
 |Type|Name|Description|Schema|
 |---|---|---|---|
 |**Body**|**{attribute}**|{description}|string|
-
-```
