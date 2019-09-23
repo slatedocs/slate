@@ -53,19 +53,20 @@ Tauros REST API calls will return a JSON Object.
 
 ## Create an API Key
 
-In order to use our platform through API calls you must request and configure as many API keys as you need. You can configure each API key with its own level of permissions. To add, delete or modify your API keys please go to your profile `Profile` > `API Keys`.
+In order to use our platform through API calls you must enable `Developer Mode` in your profile section.
+Once enabled, you can create and configure as many API keys as you need. You can configure each API key with its own level of permissions.
 
 <aside class="notice">
 API key is always needed for accessing private endpoints.
 </aside>
 
-## Login without 2FA
+<!-- ## Login without 2FA
 ```shell
 curl -X POST https://api.tauros.io/api/v1/login/ \
 -H 'Content-Type: application/json' \
 -d '{"email": "example@mail.com", "password": "secure_pass"}'
 ```
-API key can be obtained by log in to tauros if not 2FA enabled.
+API key can be obtained by log in to tauros if not 2FA enabled. But withdrawal permission is disabled.
 
 > The API call will response this:
 
@@ -77,45 +78,91 @@ API key can be obtained by log in to tauros if not 2FA enabled.
       "email": "example@mail.com",
     }
 }
-```
+``` -->
 
-<!-- # Session
-
-## Session information
-
+## Login with 2FA deactivated
 ```shell
-TAUROS_API_KEY='your_api_key'
-
-curl -X GET \
--H "Authorization: Token $TAUROS_API_KEY" \
-https://api.tauros.io/api/v1/user/session
+curl -X POST https://api.tauros.io/api/v2/auth/signin/ \
+-H 'Content-Type: application/json' \
+-d '{"email": "example@mail.com", "password": "secure_pass"}'
 ```
-This API call will response relevant information about the current session associated to your account and the token key used.
+Login in this endpoint returns a Json Web Token (JWT) that expires in 30 minutes, therefore `refresh-token` needs to be executed periodically.
 
-### HTTP Request
 > The API call will response this:
 
 ```json
 {
-  "success": true,
-  "msg": null,
-  "data": {
-    "username": "jhon@mail.com",
-    "ip":"189.200.10.0",
-    "token": {
-      "expires": "date",
-      "permissions": {
-        "withdraw": true,
-        "deposit": true,
-        "trade": false
-      }
+    "success": true,
+    "data": {
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+      "two_factor":false
     }
-  }
 }
 ```
-`GET /api/v1/user/session`
-### Body Parameters
-None -->
+
+## Login with 2FA activated
+```shell
+# First step
+curl -X POST https://api.tauros.io/api/v2/auth/signin/ \
+-H 'Content-Type: application/json' \
+-d '{"email": "example@mail.com", "password": "secure_pass"}'
+```
+Login when the account has two factor authentication enabled is performed in two steps.
+The first step requires `email` and `password` and the endpoint will return a temporal `token` that must be provided in the second step along with your 2FA `code`.  
+
+> The API call will response this:
+
+```json
+{
+    "success": true,
+    "msg": null,
+    "payload": {
+      "token": "cc4be0e5597b0d325765afda9a2d23afe7e0017j",
+      "two_factor":true
+    }
+}
+```
+```shell
+# Second step
+curl -X POST https://api.tauros.io/api/v2/auth/verify-tfa/ \
+-H 'Content-Type: application/json' \
+-d '{"tempToken": "cc4be0e5597b0d325765afda9a2d23afe7e0017j", "code": "123456"}'
+```
+
+> The API call will response this:
+
+```json
+{
+    "success": true,
+    "msg": null,
+    "payload": {
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+      "two_factor":true
+    }
+}
+```
+
+## Refresh JWT
+```sh
+$ curl -X POST https://api.tauros.io/api/v2/auth/refresh-jwt/ \
+  -H 'Content-Type: application/json' \
+  -d '{"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"}'
+```
+Json Web Token (JWT) is configured to expire in 30 minutes, after that time, the token is not valid anymore. Therefore refreshing the token needs to be executed periodically if using JWT for authenticating API calls.
+
+> The API call will response this:
+
+```json
+{
+    "success": true,
+    "msg": null,
+    "payload": {
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+      "two_factor":true
+    }
+}
+```
+
 # Currencies [PUBLIC]
 <aside class="notice">
 You can access the following endpoints freely, API KEY is not required.
