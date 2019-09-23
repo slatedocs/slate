@@ -1,120 +1,376 @@
 # Webhooks
-
-
-<a name="overview"></a>
-## Overview
 Receiving webhook updates for events that take place in the Goji Platform.
 
+## Authentication
 
-### Version information
-*Version* : 1.0.0
+To allow you to verify that the webhook message originated from Goji, HMAC authentication headers will be included with the request.
+`x-nonce` A unique string for every request. This will also be included in the signature string (see below) and is used to prevent replay attacks.
+`x-timestamp` Milliseconds since epoch. This will also be included in the signature string (see below) and is used to prevent replay attacks.
+`Authorization` In the format `<signature-string>` See below for how to build the `signature-string` .
 
+### Building the signature string
 
-### URI scheme
-*Host* : api-sandbox.goji.investments
-*BasePath* : /platformApi
-*Schemes* : HTTPS
+The following details are concatenated together (without spaces):
 
+    `nonce + \n + timestamp`
 
-### Tags
+The string is then encrypted using `HMAC-SHA256` using a secret. This secret will either be shared with you as part of the onboarding process, or is obtained from our API when registering your webhook URL.
+The result is then Base64 encoded to produce a string.
+The encrypted string is then UTF-8 URL encoded.
 
-* webhooks
+### Verifying the signature
 
-
-### Consumes
-
-* `application/json`
-
-
-### Produces
-
-* `application/json`
-
-<a name="securityscheme"></a>
-## Security
-
-<a name="basicauth"></a>
-### basicAuth
-HTTP Basic Authentication over HTTPS. Only valid in Sandbox, HMAC should be used in production.
-
-*Type* : basic
-
-
-<a name="paths"></a>
-## Paths
+<aside class="notice">
+You should verify that the `Authorization` header matches the expected signature string using the secret that was shared with you during onboarding.
+</aside>
 
 <a name="registerwebhook"></a>
-### Register a url to which POSTs can be made when events occur. See the documentation for more information on the hooks that are supported
-```
-POST /webhooks
-```
+## Register a webhook
+```http
+POST /webhooks HTTP/1.1
+Host: api-sandbox.goji.investments/platformApi
+Content-Type: application/json
+Authorization: Basic ...
 
+  {
+      "url": "string"
+  }
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+```
 
 #### Description
 Register a webhook url.
 
-
-#### Parameters
-
+#### Request
 |Type|Name|Description|Schema|
 |---|---|---|---|
-|**Body**|**createWebhook**  <br>*optional*|Url to register for callbacks|[Webhook](#webhook)|
+|**Body**|**url**  <br>*required*|Url to register for callbacks|string|
 
+## Webhook Types
 
-#### Responses
+When certain events are triggered in the Goji system, a call can be made to your system to inform you of this event.
 
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|The url was registered successfully.|No Content|
-|**400**|Bad request.|[ErrorResponse](#errorresponse)|
-|**401**|Unauthorised.|[ErrorResponse](#errorresponse)|
-|**500**|Unexpected server error.|[ErrorResponse](#errorresponse)|
+The URL to be called is configured as part of the onboarding process.
 
+### Format
 
-#### Produces
+```json
+{
+  "id": "uuid",
+  "dateTime": "yyyy-MM-ddTHH:mm:ss",
+  "type": "TYPE",
+  "content": {...}
+}
+```
+The webhook `POST` body will be in the following format.
+The following event `type`s will be supported, along with the content as `JSON`.
 
-* `application/json`
+>INVESTOR_PERSONAL_DETAILS_REGISTERED
+><br>This is fired whenever personal details are registered.
 
+```json
+{
+  "title": "string",
+  "firstName": "string",
+  "lastName": "string",
+  "contactDetails": {
+    "emailAddress": "string",
+    "telephoneNumber": "string"
+  }
+}
+````
 
-#### Tags
+>INVESTOR_CREATED
+><br>This is fired whenever a new investor is registered.
 
-* webhooks
+```json
+{
+  "clientId": "string",
+  "title": "string",
+  "firstName": "string",
+  "middleName": "string",
+  "lastName": "string",
+  "dateOfBirth": "2017-12-12",
+  "contactDetails": {
+    "emailAddress": "string",
+    "telephoneNumber": "string"
+  },
+  "address": {
+    "lineOne": "string",
+    "lineTwo": "string",
+    "lineThree": "string",
+    "townCity": "string",
+    "region": "string",
+    "country": "string",
+    "postcode": "string"
+  }
+}
+```
 
+>INVESTOR_KYC_STATUS_CHANGE
+><br>This is fired whenever an investor's KYC status changes eg from `REFERRED` to `VERIFIED`.
 
-#### Security
+```json
+{
+  "clientId": "string",
+  "newKycStatus": "string"
+}
+```
 
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
+>INVESTOR_FUNDS_RECEIVED
+><br>This is fired whenever investor funds are cleared into their account eg for a bank transfer.
 
+```json
+{
+  "clientId": "string",
+  "reference": "string",
+  "amount": {
+    "amount": 0.00,
+    "currency": "GBP"
+  },
+  "sourceAccount": {
+      "accountName": "string",
+      "accountNumber": "string",
+      "sortCode": "string"
+  },
+  "accountType": "string"
+}
+```
 
+>INVESTOR_FUNDS_WITHDRAWN
+><br>This is fired whenever an investor withdraws funds.
 
-<a name="definitions"></a>
-## Definitions
+```json
+{
+  "clientId": "string",
+  "reference": "string",
+  "account": "string",
+  "amount": {
+    "amount": 0.00,
+    "currency": "GBP"
+  }
+}
+```
 
-<a name="error"></a>
-### Error
+>INVESTMENT_QUEUED
+><br>This is fired whenever an investment is queued. Bond Management API only.
 
-|Name|Description|Schema|
-|---|---|---|
-|**errorCode**  <br>*optional*|The error code.|string|
-|**message**  <br>*optional*|The error message.|string|
+```json
+{
+  "clientId": "string",
+  "investmentId": "string",
+  "amount": {
+    "amount": 0.00,
+    "currency": "GBP"
+  },
+  "productTermId": "string"
+}
+```
 
+>INVESTMENT_FULFILLED
+><br>This is fired whenever an investment is fulfilled. Bond Management API only.
 
-<a name="errorresponse"></a>
-### Error Response
+```json
+{
+  "clientId": "string",
+  "investmentId": "string"
+}
+```
 
-|Name|Schema|
-|---|---|
-|**errors**  <br>*optional*|< [Error](#error) > array|
+>TRANSFER_IN_CREATED
+><br>This is fired whenever a transfer in is created.
 
+```json
+{
+  "clientId": "string",
+  "transferInId": "string"
+}
+```
 
-<a name="webhook"></a>
-### The url for configuring the webhook.
+>TRANSFER_OUT_CREATED
+><br>This is fired whenever a transfer in is requested.
 
-|Name|Description|Schema|
-|---|---|---|
-|**url**  <br>*optional*|The url to dispatch the webhook to.|string|
+```json
+{
+  "transferOut": {
+    "id": "string",
+    "isaId": "string",
+    "originatorId": "string",
+    "originatorName": "string",
+    "clientId": "string",
+    "workflowId": "string",
+    "isaManager": {
+      "name": "string",
+      "address": {
+        "lineOne": "string",
+        "lineTwo": "string",
+        "lineThree": "string",
+        "townCity": "string",
+        "region": "string",
+        "country": "string",
+        "postcode": "string"
+      },
+      "accountNumber": "string",
+      "sortCode": "string",
+      "bankReference": "string"
+    },
+    "transferDetails": {
+      "dateTAFReceived": "2017-12-12",
+      "transferDateFromNewIsaManager": "2017-12-12",
+      "transferAll": "boolean",
+      "transferCurrentYearSubscriptions": "boolean",
+      "transferPriorYearSubscriptions": "boolean",
+      "transferAllPriorYearSubscriptions": "boolean",
+      "priorYearAmountToTransfer": {
+        "amount": 0.00,
+          "currency": "GBP"
+      },
+      "transferOutFee": {
+        "amount": 0.00,
+        "currency": "GBP"
+      }
+    },
+    "transferOutFee: {
+      "id": "string",
+      "transferOutId": "string",
+      "transferOutFee": {
+        "amount": 0.00,
+        "currency": "GBP"
+      },
+      "dateTime": "2017-12-12T14:34:23"
+    },
+    "dateTimeStarted": "2017-12-12T14:34:23",
+    "amountToTransfer": {
+      "amount": 0.00,
+      "currency": "GBP"
+    },
+    "amountSubscribedInCurrentYear": {
+      "amount": 0.00,
+      "currency": "GBP"
+    },
+    "dateOfFirstSubscriptionInCurrentYear": "2017-12-12"
+  }
+```
 
+>TRANSFER_IN_FUNDS_RECEIVED
+><br>This is fired whenever the funds for a transfer in are received.
 
+```json
+{
+  "clientId": "string",
+  "transferInId": "string",
+  "amount": {
+    "amount": 0.00,
+    "currency": "GBP"
+  }
+}
+```
 
+>ISA_PROVISIONALLY_OPENED
+><br>This is fired whenever an ISA is opened.
+
+```json
+{
+  "clientId": "string"
+}
+```
+
+>INVESTMENT_PAYOUT_EVENT
+><br>This is fired whenever a repayment is distributed to an investor's account. Bond Management API only.
+
+```json
+{
+  "investmentPayouts" : [ {
+    "investorId" : "string",
+    "investmentId" : "string",
+    "account" : "string",
+    "amount" : {
+      "amount" : 0.00,
+      "currency" : "GBP"
+    },
+    "type" : "string"
+  }],
+  "dueDate" : "2017-12-12",
+  "type" : "string",
+  "total" : {
+    "amount" : 0.00,
+    "currency" : "GBP"
+  }
+}
+```
+
+>FUNDS_REQUESTED
+><br>This is fired whenever repayment funds are requested from the investment manager. Bond Management API only.
+
+```json
+{
+  "transactions" : [ {
+    "bondId" : "string",
+    "type" : "string",
+    "amount" : {
+      "amount" : 0.0,
+      "currency" : "GBP"
+    }
+  } ],
+  "amount" : {
+    "amount" : 0.0,
+    "currency" : "GBP"
+  },
+  "dueDate" : "string",
+  "accountName" : "string",
+  "accountNumber" : "string",
+  "sortCode" : "string",
+  "bankReference" : "string"
+}
+```
+
+>FUNDS_RECEIVED
+><br>This is fired whenever repayment funds are received from the investment manager. Bond Management API only.
+
+```json
+{
+  "reference" : "string",
+  "amount" : {
+    "amount" : 0.0,
+    "currency" : "GBP"
+  }
+}
+```
+
+>BANK_ACCOUNT_DETAILS_STATUS_CHANGED
+><br>This is fired whenever a set of bank account details are "ENABLED"/"DISABLED", as displayed by their status.
+
+```json
+{
+  "id" : "string",
+  "accountName" : "string",
+  "accountNumber" : "string",
+  "sortCode" : "string",
+  "status" : "string"
+}
+```
+
+>WALLET_CREATED
+><br>This is fired whenever a wallet is created.
+
+```json
+{
+  "walletId" : "string",
+  "bankDetails" : {
+    "accountName" : "string",
+    "accountNumber" : "string",
+    "sortCode" : "string",
+  }
+}
+```
+
+>WALLET_REGISTERED
+><br>This is fired whenever setup management of wallet is done.
+
+```json
+{
+  "companyName" : "string",
+}
+```
