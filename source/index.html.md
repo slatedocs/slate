@@ -1042,7 +1042,117 @@ Returns the trading fees. See [Trading fees](https://tauros.io/fees).
 | market | String | No | Market name (e.g. `btc-mxn`). |
 | user_level | Integer | No | User level (e.g. 1). By default all users are level 1|
 
-#Websockets [PUBLIC]
+#Websocket
+
+## Subscribe
+```javascript
+import io from 'socket.io-client';
+// or
+let io = require('socket.io-client');
+
+const JWT = 'YOUR_JSON_WEB_TOKEN';
+
+
+// connect to your websocket
+const socket = io.connect(`wss://private-ws.coinbtr.com?token=${JWT}`);
+
+socket.on('connect', () => {
+  console.log("connected");
+});
+
+// Manage notifications
+socket.on('notification', (notification) => {
+  console.log(notification);
+  /*
+  Place your code here
+  */
+});
+
+```
+
+
+Tauros uses Web-Sockets in order to notify real-time events that occur in your account. The websocket endpoints are the following:
+
+* `private-ws.coinbtr.com` for production environment.
+* `private-ws-staging.coinbtr.com` for staging environment.
+
+We recommend to use [socket.io](https://socket.io) if using JavaScript. Installation:
+
+If using yarn:
+
+`yarn add socket.io-client`
+
+If using npm:
+
+`npm install --save socket.io-client`
+
+or CDN:
+
+`<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>`
+
+<aside class="notice">
+Note that the private websocket requires your JWT for authentication.
+</aside>
+
+## Notifications
+
+> Messages on this channel look like this:
+
+```javascript
+// Notification standard:
+{
+  "title": "NOTIFICATION_TITLE",
+  "description": "NOTIFICATION_DESCRIPTION"
+  "type": 'TYPE_OF_NOTIFICATION',
+  "date": '2019-02-20T03:05:56.810445Z',
+  "object": OBJECT // Order, Trade or Transfer object
+}
+```
+
+Notifications are sent if some of the following events occur.
+
+Types of notifications:
+
+* Order placed (`OP`)
+* Order filled (`OF`)
+* Order closed (`OC`) ([by the user](#close-an-open-order))
+* New trade (`TD`)
+* New deposit or withdrawal (`TR`)
+
+The `order`, `trade` or `transfer` object is included in the `object` field.
+
+```javascript
+// Order filled  Notification example
+{
+  "title": "Order filled",
+  "description": "Your BUY order has been partially filled"
+  "type": 'OF',
+  "date": '2019-02-20T03:05:56.810445Z',
+  "object": {
+    "amount": "0.0005",
+    "amount_paid": "100",
+    "amount_received": "0.0004995",
+    "closed_at": null,
+    "created_at": "2019-09-23 21:27:06.083978+00:00",
+    "fee_amount_paid": "0.5",
+    "fee_decimal": "0.00100000",
+    "fee_percent": "0.10000000",
+    "filled": "0.0005",
+    "id": 107487,
+    "initial_amount": "0.0010",
+    "initial_value": "200",
+    "is_open": true,
+    "left_coin": "BTC",
+    "market": "BTC-MXN",
+    "price": "200000.00",
+    "right_coin": "MXN",
+    "side": "BUY",
+    "value": "100"
+  }
+}
+```
+
+#Websocket [PUBLIC]
 
 
 ```javascript
@@ -1067,7 +1177,7 @@ socket.on('connect', () => {
 socket.on('message', (msg) => {
   console.log(msg);
   /*
-  your code here
+  Place your code here
   */
 });
 
@@ -1077,9 +1187,12 @@ socket.emit('unsubscribe', market);
 ```
 
 
-Tauros implements Web-Sockets in order to provide real-time market data from our exchange engine. The websocket endpoint is `ws.coinbtr.com`.
+Tauros implements Web-Sockets in order to provide real-time market data from our trading engine. The websocket public endpoints are the following:
 
-We recommend to use [socket.io](https://socket.io). Installation:
+* `ws.coinbtr.com` for production environment.
+* `ws-staging.coinbtr.com` for staging environment.
+
+We recommend to use [socket.io](https://socket.io) JavaScript. Installation:
 
 If using yarn:
 
