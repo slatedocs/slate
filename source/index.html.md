@@ -458,7 +458,46 @@ curl https://api.kardia.com/v1/recordings \
 }
 ```
 
-Responds to `GET` requests to `/v1/recordings` and returns an array of ECG's across all patients.
+Responds to `GET` requests to `/v1/recordings` and returns an array of ECG's across all patients taken in the Kardia Mobile App. This will not include screening station recordings.
+
+**Querystring parameters**
+
+`limit` A limit on the number of objects to be returned. Limit can range between 1 and 500, and the default is 100.
+
+`start` The cursor used to return recordings after the `startCursor` or `endCursor` cursor, and returning at most `limit` recordings.
+
+## Get All Screening Station Recordings
+
+> Example Request
+
+```shell
+curl https://api.kardia.com/v1/screening/recordings \
+ -u 7863674b-1919-432b-90d5-838fb8207d3f:
+```
+
+> Example Response
+
+```shell
+{
+  "totalCount": 200,
+   "recordings": [{
+      "id": "3wde1eem9vy4y1a0rv3y98u2a",
+      "patientID": "wNSEDeLOEPQE5rznkJmwbnjpxfdst93i",
+      "algorithmDetermination": "normal",
+      "duration": 30000,
+      "heartRate": 65,  
+      "note": "Drank coffee, having palpitations."
+      "recordedAt": "2008-09-15T15:53:00+05:00"
+  }],
+  "pageInfo": {
+    "startCursor": "c3RhcnRDdXJzb3I=",
+    "endCursor": "ZW5kQ3Vyc29yc2Rh=",
+    "hasNextPage": true
+  }
+}
+```
+
+Responds to `GET` requests to `/v1/screening/recordings` and returns an array of ECG's taken at Kardia Screening Stations.
 
 **Querystring parameters**
 
