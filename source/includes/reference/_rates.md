@@ -22,7 +22,7 @@ curl -X GET "https://api.sandbox.transferwise.tech/v1/rates?source=EUR&target=US
         "rate": 1.166,
         "source": "EUR",
         "target": "USD",
-        "time": "2018-08-31T10:43:31+00:00"
+        "time": "2018-08-31T10:43:31+0000"
     }
 ]
 ```
@@ -34,19 +34,19 @@ Fetch latest exchange rates of all currencies.<br/>
 
 Fetch latest exchange rate of one currency pair.<br/>
 
-**`GET https://api.sandbox.transferwise.tech/v1/rates?source=EUR&target=USD&time=2017-02-13T14:53:01`**
+**`GET https://api.sandbox.transferwise.tech/v1/rates?source=EUR&target=USD&time=2019-02-13T14:53:01`**
 
 Fetch exchange rate of specific historical timestamp.<br/>
 
-**`GET https://api.sandbox.transferwise.tech/v1/rates?source=EUR&target=USD&from=2017-02-13T14:53:01&to=2017-03-13T14:53:01&group=day`**
+**`GET https://api.sandbox.transferwise.tech/v1/rates?source=EUR&target=USD&from=2019-02-13T14:53:01&to=2019-03-13T14:53:01&group=day`**
 
 Fetch exchange rate history over period of time with daily interval.<br/>
 
-**`GET https://api.sandbox.transferwise.tech/v1/rates?source=EUR&target=USD&from=2017-02-13T14:53:01&to=2017-03-13T14:53:01&group=hour`**
+**`GET https://api.sandbox.transferwise.tech/v1/rates?source=EUR&target=USD&from=2019-02-13T14:53:01&to=2019-03-13T14:53:01&group=hour`**
 
 Fetch exchange rate history over period of time with hourly interval.<br/>
 
-**`GET https://api.sandbox.transferwise.tech/v1/rates?source=EUR&target=USD&from=2017-02-13T14:53:01&to=2017-03-13T14:53:01&group=minute`**
+**`GET https://api.sandbox.transferwise.tech/v1/rates?source=EUR&target=USD&from=2019-02-13T14:53:01&to=2019-03-13T14:53:01&group=minute`**
 
 Fetch exchange rate history over period of time with 10 minute interval.<br/>
 
@@ -89,14 +89,14 @@ The request/response field(s) below support both Timestamp (combined date and ti
 
 Field                  | Sample
 ---------              | ---------
-from                   | 2017-03-13T14:53:01 or 2017-03-13
-to                     | 2017-03-13T14:53:01+01:00 or 2017-03-13+01:00
+from                   | 2019-03-13T14:53:01 or 2019-03-13
+to                     | 2019-03-13T14:53:01+0100 or 2019-03-13+0100
 
 The request/response field(s) below support only Timestamp (combined date and time):
 
 Field                  | Sample
 ---------              | ---------
-time                   | 2017-03-13T14:53:01 or 2017-03-13T14:53:01+01:00
+time                   | 2019-03-13T14:53:01 or 2019-03-13T14:53:01+0100
 
 Timezone offset is supported but optional.
 
