@@ -18,6 +18,12 @@ info:
 servers:
   - url: https://app.asana.com/api/1.0
     description: Main endpoint.
+    variables:
+      version:
+        default: '1.0'
+        enum:
+          - '1.0'
+        description: The version of the API to use.
 security:
   - personalAccessToken: []
   - oauth2: []
@@ -745,7 +751,6 @@ components:
     body_object_gid_override:
       type: string
       readOnly: false
-      x-env-variable: true
       description: >-
         Gid of an object.
       example: '12345'
@@ -902,7 +907,7 @@ components:
             represent resources with different semantic meaning.
           type: string
           readOnly: true
-          default: milestone
+          example: milestone
     AsanaCreatedAt:
       properties:
         created_at:
@@ -973,7 +978,7 @@ components:
             third-party service such as Dropbox or Google Drive.
           properties:
             resource_type:
-              default: attachment
+              example: attachment
             name:
               description: The name of the file.
               type: string
@@ -1049,6 +1054,10 @@ components:
                 - gid
                 - notes
                 - completed
+            expand:
+              description: The expansion path for the request.
+              type: string
+              example: .subtasks
           example:
             limit: 3
             fields:
@@ -1144,7 +1153,7 @@ components:
             `403 Forbidden`.
           properties:
             resource_type:
-              default: custom_field
+              example: custom_field
             type:
               description: >
                 *Deprecated: new integrations should prefer the resource_subtype
@@ -1245,7 +1254,7 @@ components:
             relevant to that particular pairing.
           properties:
             resource_type:
-              default: custom_field_setting
+              example: custom_field_setting
     CustomFieldSettingArray:
       type: object
       properties:
@@ -1336,7 +1345,7 @@ components:
             /custom_fields/custom_field_gid/enum_options/insert` endpoint.
           properties:
             resource_type:
-              default: enum_option
+              example: enum_option
             name:
               description: The name of the enum option.
               type: string
@@ -1672,7 +1681,7 @@ components:
             This object determines if a user is a member of a portfolio.
           properties:
             resource_type:
-              default: portfolio_membership
+              example: portfolio_membership
             user:
               $ref: '#/components/schemas/UserCompact'
     PortfolioMembershipObject:
@@ -1995,7 +2004,7 @@ components:
             endpoints described here.
           properties:
             resource_type:
-              default: project_membership
+              example: project_membership
             user:
               $ref: '#/components/schemas/UserCompact'
     ProjectMembershipObject:
@@ -2053,7 +2062,7 @@ components:
             for projects that are behind.
           properties:
             resource_type:
-              default: project_status
+              example: project_status
             title:
               description: The title of the project status update.
               readOnly: true
@@ -2091,7 +2100,7 @@ components:
             column in a board view of a project.
           properties:
             resource_type:
-              default: section
+              example: section
             name:
               description: >-
                 The name of the section (i.e. the text displayed as the section
@@ -2385,7 +2394,7 @@ components:
             system.
           properties:
             resource_type:
-              default: story
+              example: story
             text:
               description: >-
                 *Create-only*. Human-readable text for the story or comment.
@@ -2464,7 +2473,7 @@ components:
             exists in a single workspace or organization.
           properties:
             resource_type:
-              default: tag
+              example: tag
             name:
               description: >-
                 Name of the tag. This is generally a short sentence fragment that
@@ -2818,7 +2827,7 @@ components:
             are centered.
           properties:
             resource_type:
-              default: task
+              example: task
     TaskObject:
       type: object
       properties:
@@ -2872,7 +2881,7 @@ components:
             team.
           properties:
             resource_type:
-              default: team
+              example: team
     TeamObject:
       type: object
       properties:
@@ -2945,7 +2954,7 @@ components:
             access to various workspaces, projects, and tasks.
           properties:
             resource_type:
-              default: user
+              example: user
             name:
               type: string
               description: >-
@@ -3164,7 +3173,7 @@ components:
             projects and tasks have an associated workspace.
           properties:
             resource_type:
-              default: workspace
+              example: workspace
     WorkspaceObject:
       type: object
       properties:
@@ -5988,7 +5997,7 @@ paths:
             this parameter.
           schema:
             type: boolean
-          default: false
+          example: false
       responses:
         200:
           description: Successfully retrieved the specified set of tags.
@@ -7419,7 +7428,7 @@ paths:
           enum:
             - default_task
             - milestone
-        default: milestone
+        example: milestone
       - name: assignee.any
         in: query
         schema:
@@ -8108,7 +8117,7 @@ paths:
             - tag
             - task
             - user
-        default: user
+        example: user
       - name: type
         in: query
         description: >-
@@ -8123,7 +8132,7 @@ paths:
             - tag
             - task
             - user
-        default: user
+        example: user
       - name: query
         in: query
         description: >-
@@ -8336,7 +8345,7 @@ paths:
             - tag
             - task
             - user
-        default: project
+        example: project
       - name: workspace
         in: query
         required: true

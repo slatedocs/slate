@@ -34,7 +34,19 @@ To get started
       "image_60x60": "https://s3.amazonaws.com/profile_photos/121110987654321.hJGlskahcKA5hdslf4FS_60x60.png",
       "image_128x128": "https://s3.amazonaws.com/profile_photos/121110987654321.hJGlskahcKA5hdslf4FS_128x128.png"
     },
-    "resource_type": "user"
+    "resource_type": "user",
+    "workspaces": [
+      {
+        "gid": "15c43287b6a8",
+        "name": "Castle Black",
+        "resource_type": "workspace"
+      },
+      {
+        "gid": "a1432e1987654d",
+        "name": "Jon's Personal",
+        "resource_type": "workspace"
+      },
+    ]
   }
 }
 ```
@@ -134,12 +146,6 @@ You’re ready to start coding!
 Asana has [client libraries](#official-client-libraries) in several popular coding languages. Using these libraries has several advantages (like managing authorization and retrying errors) that make them a good place to go from here. Let’s take a look at making the same `/users/me` request in Python, JavaScript, and Ruby (feel free to skip ahead to your favorite of the three languages).
 
 <hr class="full-line">
-
-### Accessing the API with Postman
-
-> Download Postman
-
-You can quickly get started on Asana's API with the Postman App. We have a collection that you can pull from 
 
 # Quick Start
 
