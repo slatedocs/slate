@@ -124,6 +124,55 @@ class UsersController < ApplicationController
 
 Prior to storing a span, our agent checks if the span's total execution time is at least 5 ms. If the time spent is under this threshold, the span is thrown away and the time is allocated to the parent span. This decreases the amount of noise that appears in traces (spans consuming < 5ms are unlikely optimization candidates) and decreases the memory usage of the agent. Only autoinstrumented spans are thrown away - spans that are explicity instrumented are retained.
 
+### What do charts look like when autoinstruments is enabled?
+
+When autoinstruments is enabled, a large portion of controller time will shift to autoinstruments:
+
+![autoinstruments before after](autoinstruments_before_after.png)
+
+This is expected.
+
+### How much overhead does autoinstruments add?
+
+When When autoinstruments is enabled, you can estimate the additional overhead by inspecting your overview chart. Measure the mean `controller` time before the deploy then `controller` + `autoinstruments` after. The difference between these numbers is the additional overhead.
+
+### How can the overhead of autoinstruments be reduced?
+
+By default, the Scout agent adds autoinstruments to every controller in your Rails app. You can exclude controllers from instrumentation, which will reduce overhead via the [`autoinstruments_ignore`](#auto_instruments_ignore_config) option. To determine which controllers should be ignored:
+
+1. Ensure you are running version 2.6.1 of `scout_apm` or later.
+2. Adjust the Scout agent log level to `DEBUG`.
+3. Restart your app.
+4. After about 10 minutes run the following command inside your `RAILS_ROOT`:
+
+```
+grep -A20 "AutoInstrument Significant Layer Histograms" log/scout_apm.log
+```
+
+For each controller file, this will display the total number of spans recorded and the ratio of significant to total spans. Look for controllers that have a large `total` and a small percentage of `significant` spans. In the output below, it makes sense to ignore `application_controller` as only 10% of those spans are significant:
+
+```
+[09/23/19 07:27:52 -0600 Dereks-MacBook-Pro.local (87116)] DEBUG : AutoInstrument Significant Layer Histograms: {"/Users/dlite/projects/scout/apm/app/controllers/application_controller.rb"=>
+  {:total=>545, :significant=>0.1},
+ "/Users/dlite/projects/scout/apm/app/controllers/apps_controller.rb"=>
+  {:total=>25, :significant=>0.56},
+ "/Users/dlite/projects/scout/apm/app/controllers/checkin_controller.rb"=>
+  {:total=>31, :significant=>0.39},
+ "/Users/dlite/projects/scout/apm/app/controllers/status_pages_controller.rb"=>
+  {:total=>2, :significant=>0.5},
+ "/Users/dlite/projects/scout/apm/app/controllers/errors_controller.rb"=>
+  {:total=>2, :significant=>1.0},
+ "/Users/dlite/projects/scout/apm/app/controllers/insights_controller.rb"=>
+  {:total=>2, :significant=>1.0}}
+```
+
+Add the following to the `common: &defaults` section of the `config/scout_apm.yml` file to avoid instrumenting `application_controller.rb`:
+
+```yaml
+common: &defaults
+  auto_instruments_ignore: ['application_controller']
+```
+
 ## ScoutProf FAQ
 
 ### Does ScoutProf work with Stackprof?

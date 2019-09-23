@@ -485,6 +485,16 @@ The following configuration settings are available:
        </td>
       <td>No</td>
     </tr>
+    <tr>
+      <th id="auto_instruments_ignore_config">auto_instruments_ignore</th>
+      <td>
+        Excludes the listed files names from being autoinstrumented. Ex: <code>['application_controller']</code>.
+      </td>
+       <td>
+         <code>[]</code>
+       </td>
+      <td>No</td>
+    </tr>
   </tbody>
 </table>
 
