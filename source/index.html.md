@@ -1,11 +1,11 @@
 ---
-title: Coinbtr API Reference
+title: Tauros API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
 
 toc_footers:
-  - <a href='https://coinbtr.com/signup'>Sign Up for a Developer Key</a>
+  - <a href='https://tauros.io/signup'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -16,21 +16,21 @@ search: true
 
 # Introduction
 
-Coinbtr provides a simple and practical REST API to help you to automatically perform nearly all actions you can do in our platform [Coinbtr](https://coinbtr.com).
+Tauros provides a simple and practical REST API to help you to automatically perform nearly all actions you can do in our platform [Tauros](https://tauros.io).
 
 ## General considerations
 
 Before making API calls consider the following:
 
 * All requests use the `application/json` content type and go over `https`.
-* The base url is `https://api.coinbtr.com/api/v1`.
+* The base url is `https://api.tauros.io/api/v1`.
 * All requests are `GET` and `POST` requests methods and responses come in a default response json object with the result in the `data` field.
 * Check the `success` flag to ensure that your API call succeeded.
 * If something goes wrong look at the `msg` field. There you will find the error description.
 
 ## HTTP API Responses
 
-Coinbtr REST API calls will return a JSON Object.
+Tauros REST API calls will return a JSON Object.
 
 * A typical successful API call will response a JSON  object that looks like:
 
@@ -61,11 +61,11 @@ API key is always needed for accessing private endpoints.
 
 ## Login without 2FA
 ```shell
-curl -X POST https://api.coinbtr.com/api/v1/login/ \
+curl -X POST https://api.tauros.io/api/v1/login/ \
 -H 'Content-Type: application/json' \
 -d '{"email": "example@mail.com", "password": "secure_pass"}'
 ```
-API key can be obtained by log in to coinbtr if not 2FA enabled.
+API key can be obtained by log in to tauros if not 2FA enabled.
 
 > The API call will response this:
 
@@ -84,11 +84,11 @@ API key can be obtained by log in to coinbtr if not 2FA enabled.
 ## Session information
 
 ```shell
-COINBTR_API_KEY='your_api_key'
+TAUROS_API_KEY='your_api_key'
 
 curl -X GET \
--H "Authorization: Token $COINBTR_API_KEY" \
-https://api.coinbtr.com/api/v1/user/session
+-H "Authorization: Token $TAUROS_API_KEY" \
+https://api.tauros.io/api/v1/user/session
 ```
 This API call will response relevant information about the current session associated to your account and the token key used.
 
@@ -122,7 +122,7 @@ You can access the following endpoints freely, API KEY is not required.
 </aside>
 ## List available currencies
 ```shell
-curl -X GET "https://api.coinbtr.com/api/v1/data/coins/"
+curl -X GET "https://api.tauros.io/api/v1/data/coins/"
 ```
 > The API call will response this:
 
@@ -186,7 +186,7 @@ curl -X GET "https://api.coinbtr.com/api/v1/data/coins/"
   }
 }
 ```
-This endpoint returns all available currencies in Coinbtr, cryptocurrencies as well as fiat currencies.
+This endpoint returns all available currencies in Tauros, cryptocurrencies as well as fiat currencies.
 
 ### HTTP Request
 `GET /data/coins/`
@@ -200,11 +200,11 @@ None
 ## Get Deposit Address
 
 ```shell
-COINBTR_API_KEY='your_api_key'
+TAUROS_API_KEY='your_api_key'
 COIN=btc
 
-curl -X GET "https://api.coinbtr.com/api/v1/data/getdepositaddress/?coin=$COIN" \
--H "Authorization: Token $COINBTR_API_KEY"
+curl -X GET "https://api.tauros.io/api/v1/data/getdepositaddress/?coin=$COIN" \
+-H "Authorization: Token $TAUROS_API_KEY"
 ```
 This API call will bring you a deposit address for funding your cryptocurrency wallet.
 
@@ -240,14 +240,14 @@ Most of exchanges or wallets allows you to include this information in your tran
 ## Cryptocurrency Withdraw
 
 ```shell
-COINBTR_API_KEY="your_api_key"
+TAUROS_API_KEY="your_api_key"
 ADDRESS="2N9JiEUYgRwKAw6FfnUca54VUeaSYSL9qqG"
 COIN="btc"
 AMOUNT="0.001"
 
-curl -X POST "https://api.coinbtr.com/api/v1/data/withdraw/" \
+curl -X POST "https://api.tauros.io/api/v1/data/withdraw/" \
 -H "Content-Type: application/json" \
--H "Authorization: Token $COINBTR_API_KEY" \
+-H "Authorization: Token $TAUROS_API_KEY" \
 -d "{\"coin\": \"$COIN\", \"address\": \"$ADDRESS\", \"amount\": \"$AMOUNT\"}"
 ```
 This API call allows you to send cryptocurrency to a given destination address.
@@ -288,17 +288,17 @@ Make sure your API key has permission to perform this action.
 ## btr pay®
 
 ```shell
-COINBTR_API_KEY="your_api_key"
+TAUROS_API_KEY="your_api_key"
 EMAIL="jhon@mail.com"
 COIN="mxn"
 AMOUNT="100" # 100 MXN
 
-curl -X POST "https://api.coinbtr.com/api/v1/data/withdraw/" \
+curl -X POST "https://api.tauros.io/api/v1/data/withdraw/" \
 -H "Content-Type: application/json" \
--H "Authorization: Token $COINBTR_API_KEY" \
+-H "Authorization: Token $TAUROS_API_KEY" \
 -d "{\"coin\": \"$COIN\", \"email\": \"$EMAIL\", \"amount\": \"$AMOUNT\"}"
 ```
-*btr pay®* allows you to send funds to another user registered in Coinbtr.
+*btr pay®* allows you to send funds to another user registered in Tauros.
 Funds are transferred instantly with 0 commission fee.
 
 ### HTTP Request
@@ -326,15 +326,15 @@ Funds are transferred instantly with 0 commission fee.
 
 ## Mexican Pesos Withdraw (SPEI)
 ```shell
-COINBTR_API_KEY="your_api_key"
+TAUROS_API_KEY="your_api_key"
 CLABE="002123456789012345"
 RECIPIENT="RAMON SANCHEZ CRUZ"
 COIN="mxn"
 AMOUNT="100" # 100 MXN
 
-curl -X POST "https://api.coinbtr.com/api/v1/data/transfer/" \
+curl -X POST "https://api.tauros.io/api/v1/data/transfer/" \
 -H "Content-Type: application/json" \
--H "Authorization: Token $COINBTR_API_KEY" \
+-H "Authorization: Token $TAUROS_API_KEY" \
 -d "{\"coin\": \"$COIN\", \"clabe\": \"$CLABE\", \"amount\": \"$AMOUNT\", \"recipient\": \"$RECIPIENT\"}"
 ```
 > The API response will look like this:
@@ -360,13 +360,13 @@ This API call is used to withdraw MXN to a given CLABE.
 
 ## List Balances
 ```shell
-COINBTR_API_KEY='your_api_key'
+TAUROS_API_KEY='your_api_key'
 
-curl -X GET "https://api.coinbtr.com/api/v1/data/listbalances/" \
+curl -X GET "https://api.tauros.io/api/v1/data/listbalances/" \
 -H "Content-Type: application/json" \
--H "Authorization: Token $COINBTR_API_KEY"
+-H "Authorization: Token $TAUROS_API_KEY"
 ```
-This API call is used to retrieve your wallets balances, including their deposit addresses. There are three type of balances in coinbtr: `available`, `pending` and `frozen`.
+This API call is used to retrieve your wallets balances, including their deposit addresses. There are three type of balances in tauros: `available`, `pending` and `frozen`.
 
 * `available`: Funds you can spend.
 
@@ -407,11 +407,11 @@ None
 Alternatively you can request your balance for a specific coin.
 
 ```shell
-COINBTR_API_KEY='your_api_key'
+TAUROS_API_KEY='your_api_key'
 
-curl -X GET "https://api.coinbtr.com/api/v1/data/getbalance/?coin=btc" \
+curl -X GET "https://api.tauros.io/api/v1/data/getbalance/?coin=btc" \
 -H "Content-Type: application/json" \
--H "Authorization: Token $COINBTR_API_KEY"
+-H "Authorization: Token $TAUROS_API_KEY"
 ```
 
 > The API response will look like this:
@@ -442,11 +442,11 @@ curl -X GET "https://api.coinbtr.com/api/v1/data/getbalance/?coin=btc" \
 
 ## List transfers
 ```shell
-COINBTR_API_KEY='your_api_key'
+TAUROS_API_KEY='your_api_key'
 
-curl -X GET "https://api.coinbtr.com/api/v1/data/transfershistory/?coin=btc&type=deposits" \   
+curl -X GET "https://api.tauros.io/api/v1/data/transfershistory/?coin=btc&type=deposits" \   
 -H "Content-Type: application/json" \
--H "Authorization: Token $COINBTR_API_KEY"
+-H "Authorization: Token $TAUROS_API_KEY"
 ```
 
 > The API response will look like this:
@@ -496,16 +496,16 @@ Make sure that your API key has permissions to perform these actions.
 
 ## Place a new order
 ```shell
-COINBTR_API_KEY='your_api_key'
+TAUROS_API_KEY='your_api_key'
 MKT="btc-mxn"
 SIDE="sell"
 TYPE="limit"
 AMOUNT="0.001" # 0.001 BTC
 PRICE="100000" # Means 1 BTC = $100,000.00 MXN
 
-curl -X POST "https://api.coinbtr.com/api/v1/trading/placeorder/" \
+curl -X POST "https://api.tauros.io/api/v1/trading/placeorder/" \
 -H "Content-Type: application/json" \
--H "Authorization: Token $COINBTR_API_KEY" \
+-H "Authorization: Token $TAUROS_API_KEY" \
 -d "{ \"market\": \"$MKT\", \"amount\": \"$AMOUNT\", \"type\":\"$TYPE\", \"side\": \"$SIDE\", \"price\": \"$PRICE\"}"
 ```
 > The API response will look like this:
@@ -535,10 +535,10 @@ You can place two types of orders: `limit` and `market`. Orders can be placed on
 
 ## List my open orders
 ```shell
-COINBTR_API_KEY='your_api_key'
+TAUROS_API_KEY='your_api_key'
 
-curl -X GET "https://api.coinbtr.com/api/v1/trading/myopenorders/" \
--H "Authorization: Token $COINBTR_API_KEY"
+curl -X GET "https://api.tauros.io/api/v1/trading/myopenorders/" \
+-H "Authorization: Token $TAUROS_API_KEY"
 ```
 
 > The API response will look like this:
@@ -602,12 +602,12 @@ This endpoint returns your open orders and their status.
 ## Close an open order
 
 ```shell
-COINBTR_API_KEY='your_api_key'
+TAUROS_API_KEY='your_api_key'
 ORDER_ID=3453
 
-curl -X POST "https://api.coinbtr.com/api/v1/trading/closeorder/" \
+curl -X POST "https://api.tauros.io/api/v1/trading/closeorder/" \
 -H "Content-Type: application/json" \
--H "Authorization: Token $COINBTR_API_KEY" \
+-H "Authorization: Token $TAUROS_API_KEY" \
 -d "{\"id\": $ORDER_ID}"
 ```
 
@@ -631,10 +631,10 @@ This API call allows you to close an open order that you have previously placed.
 
 ## List my trading history
 ```shell
-COINBTR_API_KEY='your_api_key'
+TAUROS_API_KEY='your_api_key'
 
-curl -X GET "https://api.coinbtr.com/api/v1/trading/history/" \
--H "Authorization: Token $COINBTR_API_KEY"
+curl -X GET "https://api.tauros.io/api/v1/trading/history/" \
+-H "Authorization: Token $TAUROS_API_KEY"
 ```
 
 > The API response will look like this:
@@ -722,7 +722,7 @@ You can access the following endpoints freely, API KEY is not required.
 
 ## List Markets (Books)
 ```shell
-curl -X GET "https://api.coinbtr.com/api/v1/trading/markets/"
+curl -X GET "https://api.tauros.io/api/v1/trading/markets/"
 ```
 > The API response will look like this:
 
@@ -770,7 +770,7 @@ curl -X GET "https://api.coinbtr.com/api/v1/trading/markets/"
 }
 
 ```
-This API call returns all existing markets (also known as "books") in Coinbtr.
+This API call returns all existing markets (also known as "books") in Tauros.
 
 ### HTTP Request
 `GET /trading/markets/`
@@ -785,7 +785,7 @@ This API call returns all existing markets (also known as "books") in Coinbtr.
 ```shell
 MKT="btc-mxn"
 
-curl -X GET "https://api.coinbtr.com/api/v1/trading/orders/?market=$MKT"
+curl -X GET "https://api.tauros.io/api/v1/trading/orders/?market=$MKT"
 ```
 > The API response will look like this:
 
@@ -868,7 +868,7 @@ This endpoint retrieves the 50 best sell and buy orders (also known as "orderboo
 ```shell
 MKT="ltc-btc"
 
-curl -X GET "https://api.coinbtr.com/api/v1/trading/trades/?market=$MKT"
+curl -X GET "https://api.tauros.io/api/v1/trading/trades/?market=$MKT"
 ```
 > The API response will look like this:
 
@@ -928,7 +928,7 @@ This endpoint returns the last 50 trades for a given market.
 
 ## List trading fees
 ```shell
-curl -X GET "https://api.coinbtr.com/api/v1/trading/fees/?market=ltc-btc&user_level=1"
+curl -X GET "https://api.tauros.io/api/v1/trading/fees/?market=ltc-btc&user_level=1"
 ```
 > The API response will look like this:
 
@@ -984,7 +984,7 @@ curl -X GET "https://api.coinbtr.com/api/v1/trading/fees/?market=ltc-btc&user_le
   }
 ]
 ```
-Returns the trading fees. See [Trading fees](https://coinbtr.com/fees).
+Returns the trading fees. See [Trading fees](https://tauros.io/fees).
 
 ### HTTP Request
 `GET /trading/fees/`
@@ -1001,7 +1001,7 @@ Returns the trading fees. See [Trading fees](https://coinbtr.com/fees).
 ```javascript
 import io from 'socket.io-client';
 // or
-var io = require('socket.io-client');
+let io = require('socket.io-client');
 
 
 // connect to the websocket
@@ -1030,7 +1030,7 @@ socket.emit('unsubscribe', market);
 ```
 
 
-Coinbtr implements Web-Sockets in order to provide real-time market data from our exchange engine. The websocket API endpoint is `ws.coinbtr.com`.
+Tauros implements Web-Sockets in order to provide real-time market data from our exchange engine. The websocket endpoint is `ws.coinbtr.com`.
 
 We recommend to use [socket.io](https://socket.io). Installation:
 
