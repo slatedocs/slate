@@ -17,6 +17,7 @@ product_id| symbol |product_type| description
 45|XRPUSDQ|future|XRP/USD perpetual futures USDC Quanto, quoted in US Dollar and settled & margined in USDC
 46|BTCUSD_27Dec|inverse_future|27th December Bitcoin future quoted in US Dollar
 
+
 ## Symbology
 
 **Contract symbol:** has the following format
@@ -37,4 +38,4 @@ It is important to note that the BTCUSD Index price doesn't follow this conventi
   
 
 ## Data Centers 
-Delta Exchange data centers are in AWS Ireland
+Delta Exchange data centers are in **AWS Ireland**
