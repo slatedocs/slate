@@ -169,7 +169,7 @@ Scout logs internal activity via a configured `Psr\Log\LoggerInterface`. The
 Laravel instruments automatically wire up the framework's logger to the
 agent's logging.
 
-If required, you can override this by calling `$agent->setLogger($logger)`
+If required, you can override this by changing the container service `log`.
 
 
 <h2 id="php-custom-instrumentation">Custom Instrumentation</h2>
