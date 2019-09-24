@@ -464,6 +464,56 @@ Required | &nbsp;
 ------ | -----------
 `username`<br/>*string* | The username
 
+<!-------------------- ADD TO INSTANCE GROUP -------------------->
+
+#### Add to instance group
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/instances/2986056884972096897?operation=add_to_group"
+
+# Request example:
+```
+```json
+{
+    "shortGroups": ["my-group"]
+}
+```
+
+Required | &nbsp;
+------ | -----------
+`shortGroups`<br/>*array[string]* | Array of instance group names to add the instance to
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instancegroups/:id?operation=add_instances</code>
+
+Add instance to existing instance groups
+
+<!-------------------- REMOVE INSTANCES TO INSTANCE GROUP -------------------->
+
+#### Remove instances to instance group
+
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/instances/2986056884972096897?operation=remove_instances"
+
+# Request example:
+```
+```json
+{
+    "shortInstances": ["instance-2"]
+}
+```
+
+Required | &nbsp;
+------ | -----------
+`shortGroups`<br/>*array[string]* | Array of instance group names to remove the instance from
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instancegroups/:id?operation=remove_instances</code>
+
+Remove instance from existing instance groups
+
 <!-------------------- START AN INSTANCE -------------------->
 
 #### Start an instance
