@@ -1094,3 +1094,30 @@ Config.set(revision_sha=os.popen("git rev-parse HEAD").read().strip())  # if the
 
 * Setting a `SCOUT_REVISION_SHA` environment variable equal to the SHA of your latest release.
 * If you are using Heroku, enable [Dyno Metadata](https://devcenter.heroku.com/articles/dyno-metadata). This adds a `HEROKU_SLUG_COMMIT` environment variable to your dynos, which Scout then associates with deploys.
+
+## Ignoring Transactions
+
+You can ignore transactions two ways:
+
+The `ignore` configuration option. This is a list of URI paths that will be ignored if they match the path seen in Django, Flask, Bottle, Pyramid.
+By calling `scout_apm.api.ignore_transaction()` from within your own code.
+from `scout_apm.api` import Config
+Config.set(ignore=["/healthcheck"])
+
+`settings.py`:
+```python
+SCOUT_IGNORE = ["/healthcheck"]
+```
+
+`urls.py`:
+```python
+def healthcheck(request):
+        return HttpResponse()
+
+urlpatterns = [
+    url(r'^healthcheck/?$', healthcheck),
+    ...
+]
+```
+
+
