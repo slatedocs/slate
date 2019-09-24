@@ -254,7 +254,7 @@ It is wrapped with instrumentation:
 
 ```
 // At top, with other imports
-use ScoutApm;
+use Scoutapm\Laravel\Facades\ScoutApm;
 
 // Replacing the above code
 $request = ScoutApm::instrument(
@@ -297,7 +297,7 @@ you can add custom context to answer critical questions like:
 It's simple to add [custom context](#context) to your app:
 
 ```php
-use ScoutApm; // Laravel only: Add near the other use statements
+use Scoutapm\Laravel\Facades\ScoutApm; // Laravel only: Add near the other use statements
 
 ScoutApm::addContext("Key", "Value");
 
