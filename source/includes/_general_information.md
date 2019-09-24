@@ -10,11 +10,12 @@
 
 **Products**: are the derivative contracts listed on Delta Exchange. Each contract can be referred by either its Product ID (e.g. 27 is the Product ID of BTCUSD contract) or Symbol (BTCUSD is the symbol for BTCUSD contract). It is worth noting that Orders, Orderbook APIs expect Product IDs. 
 e.g
-|product_id| symbol |product_type| description|
-|--|--|--|--|
-|27  |BTCUSD|inverse_future|Bitcoin Perpetual futures, quoted in US Dollar and settled & margined in BTC|
-|45|XRPUSDQ|future|XRP/USD perpetual futures USDC Quanto, quoted in US Dollar and settled & margined in USDC|
-|46|BTCUSD_27Dec|inverse_future|27th December Bitcoin future quoted in US Dollar|
+
+product_id| symbol |product_type| description
+--|--|--|--
+27  |BTCUSD|inverse_future|Bitcoin Perpetual futures, quoted in US Dollar and settled & margined in BTC
+45|XRPUSDQ|future|XRP/USD perpetual futures USDC Quanto, quoted in US Dollar and settled & margined in USDC
+46|BTCUSD_27Dec|inverse_future|27th December Bitcoin future quoted in US Dollar
 
 ## Symbology
 
