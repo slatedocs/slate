@@ -6,6 +6,11 @@ info:
     Platform](https://asana.com/developers/). Our API reference
     is generated from our [OpenAPI spec]
     (https://raw.githubusercontent.com/Asana/developer-docs/master/defs/asana_oas.yaml).
+  x-public-description: >-
+    This is the interface for interacting with the [Asana
+    Platform](https://asana.com/developers/). Our API reference
+    is generated from our [OpenAPI spec]
+    (https://raw.githubusercontent.com/Asana/developer-docs/master/defs/asana_oas.yaml).
   title: Asana
   termsOfService: https://asana.com/terms
   contact:
@@ -556,6 +561,7 @@ components:
       schema:
         type: boolean
       style: form
+      example: true
     limit:
       name: limit
       in: query
@@ -592,6 +598,26 @@ components:
       schema:
         type: boolean
       example: false
+    attachment_path_gid:
+      name: attachment_gid
+      in: path
+      description: >-
+        Globally unique identifier for the attachment.
+      required: true
+      schema:
+        type: string
+      example: '12345'
+      x-env-variable: attachment
+    custom_field_path_gid:
+      name: custom_field_gid
+      in: path
+      description: >-
+        Globally unique identifier for the custom field.
+      required: true
+      schema:
+        type: string
+      example: '12345'
+      x-env-variable: custom_field
     job_path_gid:
       name: job_gid
       in: path
@@ -601,6 +627,17 @@ components:
       schema:
         type: string
       example: '12345'
+      x-env-variable: job
+    organization_export_path_gid:
+      name: organization_export_gid
+      in: path
+      description: >-
+        Globally unique identifier for the organization export.
+      required: true
+      schema:
+        type: string
+      example: '12345'
+      x-env-variable: organization_export
     project_path_gid:
       name: project_gid
       in: path
@@ -610,6 +647,7 @@ components:
       schema:
         type: string
       example: '1331'
+      x-env-variable: project
     project_membership_path_gid:
       name: project_membership_path_gid
       in: path
@@ -617,6 +655,7 @@ components:
       schema:
         type: string
       example: '1331'
+      x-env-variable: project_membership
     project_status_path_gid:
       name: project_status_path_gid
       in: path
@@ -625,6 +664,7 @@ components:
       schema:
         type: string
       example: '321654'
+      x-env-variable: project_status
     portfolio_path_gid:
       name: portfolio_gid
       in: path
@@ -634,6 +674,7 @@ components:
       schema:
         type: string
       example: '12345'
+      x-env-variable: portfolio
     portfolio_membership_path_gid:
       name: portfolio_membership_path_gid
       in: path
@@ -641,6 +682,7 @@ components:
       schema:
         type: string
       example: '1331'
+      x-env-variable: portfolio_membership
     portfolio_query_param:
       name: portfolio
       in: query
@@ -648,6 +690,7 @@ components:
       schema:
         type: string
       example: '12345'
+      x-env-variable: portfolio
     section_path_gid:
       name: section_gid
       in: path
@@ -656,6 +699,16 @@ components:
       schema:
         type: string
       example: '321654'
+      x-env-variable: section
+    story_path_gid:
+      name: story_gid
+      in: path
+      description: Globally unique identifier for the story.
+      required: true
+      schema:
+        type: string
+      example: '35678'
+      x-env-variable: story
     tag_path_gid:
       name: tag_gid
       in: path
@@ -664,6 +717,7 @@ components:
       schema:
         type: string
       example: '11235'
+      x-env-variable: tag
     task_path_gid:
       name: task_gid
       in: path
@@ -672,6 +726,7 @@ components:
       schema:
         type: string
       example: '321654'
+      x-env-variable: task
     team_path_gid:
       name: team_gid
       in: path
@@ -680,6 +735,7 @@ components:
       schema:
         type: string
       example: '159874'
+      x-env-variable: team
     user_query_param:
       name: user
       in: query
@@ -687,6 +743,7 @@ components:
       schema:
         type: string
         format: email
+      x-env-variable: user
       examples:
         gid:
           summary: A globally unique identifier for the user
@@ -707,6 +764,7 @@ components:
       required: true
       schema:
         type: string
+      x-env-variable: user
       examples:
         - '12345'
         - me
@@ -719,6 +777,17 @@ components:
       schema:
         type: string
       example: '12345'
+      x-env-variable: user_task_list
+    webhook_path_gid:
+      name: webhook_gid
+      in: path
+      description: >-
+        Globally unique identifier for the webhook.
+      required: true
+      schema:
+        type: string
+      example: '12345'
+      x-env-variable: webhook
     workspace_path_gid:
       name: workspace_gid
       in: path
@@ -728,6 +797,7 @@ components:
       schema:
         type: string
       example: '12345'
+      x-env-variable: workspace
     workspace_query_param:
       name: workspace
       in: query
@@ -735,6 +805,7 @@ components:
       schema:
         type: string
       example: '12345'
+      x-env-variable: workspace
     workspace_membership_path_gid:
       name: workspace_membership_path_gid
       in: path
@@ -742,6 +813,7 @@ components:
       schema:
         type: string
       example: '12345'
+      x-env-variable: workspace_membership
     body_object_gid_override:
       type: string
       readOnly: false
@@ -758,7 +830,8 @@ components:
         type: string
         description: >-
           Gid of an object.
-        example: '74362'
+      example:
+        - '12345'
   responses:
     GenericErrorResponse:
       description: >-
@@ -3259,13 +3332,7 @@ components:
 paths:
   /attachments/{attachment_gid}:
     parameters:
-      - name: attachment_gid
-        in: path
-        description: Globally unique identifier for the attachment.
-        required: true
-        schema:
-          type: string
-        example: '12357'
+      - $ref: '#/components/parameters/attachment_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     get:
@@ -3303,13 +3370,7 @@ paths:
           $ref: '#/components/responses/GatewayTimeout'
   /tasks/{task_gid}/attachments:
     parameters:
-      - name: task_gid
-        in: path
-        description: Globally unique identifier for the task.
-        required: true
-        schema:
-          type: string
-        example: '124816'
+      - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
       - $ref: '#/components/parameters/limit'
@@ -3445,14 +3506,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /projects/{project_gid}/custom_field_settings:
     parameters:
-      - name: project_gid
-        in: path
-        required: true
-        description: >-
-          The ID of the project for which to list custom field settings.
-        schema:
-          type: string
-        example: '13579'
+      - $ref: '#/components/parameters/project_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
       - $ref: '#/components/parameters/limit'
@@ -3490,14 +3544,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /portfolios/{portfolio_gid}/custom_field_settings:
     parameters:
-      - name: portfolio_gid
-        in: path
-        required: true
-        description: >-
-          The ID of the portfolio for which to list custom field settings.
-        schema:
-          type: string
-        example: '13579'
+      - $ref: '#/components/parameters/portfolio_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
       - $ref: '#/components/parameters/limit'
@@ -3586,14 +3633,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /custom_fields/{custom_field_gid}:
     parameters:
-      - name: custom_field_gid
-        in: path
-        required: true
-        description: >-
-          Globally unique identifier for the custom field.
-        schema:
-          type: string
-        example: '124578'
+      - $ref: '#/components/parameters/custom_field_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     get:
@@ -3708,14 +3748,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /workspaces/{workspace_gid}/custom_fields:
     parameters:
-      - name: workspace_gid
-        in: path
-        required: true
-        description: >-
-          The workspace or organization to find custom field definitions in.
-        schema:
-          type: string
-        example: '1331'
+      - $ref: '#/components/parameters/workspace_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
       - $ref: '#/components/parameters/limit'
@@ -3748,14 +3781,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /custom_fields/{custom_field_gid}/enum_options:
     parameters:
-      - name: custom_field_gid
-        in: path
-        required: true
-        description: >-
-          Globally unique identifier for the custom field.
-        schema:
-          type: string
-        example: '124578'
+      - $ref: '#/components/parameters/custom_field_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
       - $ref: '#/components/parameters/limit'
@@ -3823,14 +3849,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /custom_fields/{custom_field_gid}/enum_options/insert:
     parameters:
-      - name: custom_field_gid
-        in: path
-        required: true
-        description: >-
-          Globally unique identifier for the custom field.
-        schema:
-          type: string
-        example: '124578'
+      - $ref: '#/components/parameters/custom_field_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     post:
@@ -4075,13 +4094,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /organization_exports/{organization_export_gid}:
     parameters:
-      - name: organization_export_gid
-        in: path
-        description: Globally unique identifier for the organization export.
-        required: true
-        schema:
-          type: string
-        example: '133549'
+      - $ref: '#/components/parameters/organization_export_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     get:
@@ -5779,13 +5792,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /stories/{story_gid}:
     parameters:
-      - name: story_gid
-        in: path
-        required: true
-        description: The globally unique identifier for the story.
-        schema:
-          type: string
-        example: '1234'
+      - $ref: '#/components/parameters/story_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     get:
@@ -5876,13 +5883,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /tasks/{task_gid}/stories:
     parameters:
-      - name: task_gid
-        in: path
-        required: true
-        description: The task to get stories from.
-        schema:
-          type: string
-        example: '321654'
+      - $ref: '#/components/parameters/task_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     get:
@@ -6139,13 +6140,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /workspaces/{workspace_gid}/tags:
     parameters:
-      - name: workspace_gid
-        in: path
-        description: The workspace to filter tags on.
-        required: true
-        schema:
-          type: string
-        example: '1331'
+      - $ref: '#/components/parameters/workspace_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     get:
@@ -6244,19 +6239,8 @@ paths:
             `workspace` to filter on.*
           schema:
             type: string
-            format: email
-          examples:
-            gid:
-              summary: A globally unique identifier for the user
-              value: '14641'
-            me:
-              summary: >-
-                The keyword 'me' to indicate the current user making the
-                request.
-              value: me
-            email:
-              summary: An email address for a user
-              value: sashimi@asana.com
+          x-env-variable: assignee
+          example: '14641'
         - name: project
           in: query
           description: >-
@@ -6264,6 +6248,7 @@ paths:
           schema:
             type: string
           example: '321654'
+          x-env-variable: project
         - name: section
           in: query
           description: >-
@@ -6273,6 +6258,7 @@ paths:
           schema:
             type: string
           example: '321654'
+          x-env-variable: section
         - name: workspace
           in: query
           description: >-
@@ -6283,6 +6269,7 @@ paths:
           schema:
             type: string
           example: '321654'
+          x-env-variable: workspace
         - name: completed_since
           in: query
           description: >-
@@ -7840,13 +7827,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /teams/{team_gid}:
     parameters:
-      - name: team_gid
-        in: path
-        description: Globally unique identifier for the team.
-        required: true
-        schema:
-          type: string
-        example: '14916'
+      - $ref: '#/components/parameters/team_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
       - $ref: '#/components/parameters/limit'
@@ -7874,15 +7855,9 @@ paths:
           $ref: '#/components/responses/NotFound'
         500:
           $ref: '#/components/responses/InternalServerError'
-  /organizations/{organization_gid}/teams:
+  /organizations/{workspace_gid}/teams:
     parameters:
-      - name: organization_gid
-        in: path
-        description: Globally unique identifier for the workspace or organization.
-        required: true
-        schema:
-          type: string
-        example: '1331'
+      - $ref: '#/components/parameters/workspace_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
       - $ref: '#/components/parameters/limit'
@@ -7916,31 +7891,11 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /users/{user_gid}/teams:
     parameters:
+      - $ref: '#/components/parameters/user_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
       - $ref: '#/components/parameters/limit'
       - $ref: '#/components/parameters/offset'
-      - name: user_gid
-        in: path
-        description: An identifier for the user. Can be one of an email address, the
-          globally unique identifier for the user, or the keyword `me` to indicate the
-          current user making the request.
-        required: true
-        schema:
-          type: string
-          format: email
-        examples:
-          gid:
-            summary: A globally unique identifier for the user
-            value: '14641'
-          me:
-            summary: >-
-              The keyword 'me' to indicate the current user making the
-              request.
-            value: me
-          email:
-            summary: An email address for a user
-            value: sashimi@asana.com
       - name: organization_gid
         in: query
         description: The workspace or organization to filter teams on.
@@ -7976,16 +7931,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /teams/{team_gid}/addUser:
     parameters:
-      - name: team_gid
-        in: path
-        description: A globally unique identifier for the team.
-        required: true
-        schema:
-          type: string
-        examples:
-          gid:
-            summary: A globally unique identifier for the team
-            value: '14916'
+      - $ref: '#/components/parameters/team_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     post:
@@ -8033,16 +7979,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /teams/{team_gid}/removeUser:
     parameters:
-      - name: team_gid
-        in: path
-        description: A globally unique identifier for the team.
-        required: true
-        schema:
-          type: string
-        examples:
-          gid:
-            summary: A globally unique identifier for the team
-            value: '14916'
+      - $ref: '#/components/parameters/team_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     post:
@@ -8373,16 +8310,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /teams/{team_gid}/users:
     parameters:
-      - name: team_gid
-        in: path
-        description: A globally unique identifier for the team.
-        required: true
-        schema:
-          type: string
-        examples:
-          gid:
-            summary: A globally unique identifier for the team
-            value: '14916'
+      - $ref: '#/components/parameters/team_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
       - $ref: '#/components/parameters/limit'
@@ -8597,14 +8525,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
   /webhooks/{webhook_gid}:
     parameters:
-      - name: webhook_gid
-        in: path
-        required: true
-        description: >-
-          The webhook to affect with the current operation.
-        schema:
-          type: string
-          example: '95784'
+      - $ref: '#/components/parameters/webhook_path_gid'
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
     get:

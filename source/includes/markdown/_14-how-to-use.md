@@ -135,11 +135,39 @@ Asana has [client libraries](#official-client-libraries) in several popular codi
 
 <hr class="full-line">
 
-### Accessing the API with Postman
+## Accessing the API with Postman
 
-> Download Postman
+<blockquote>
+  <div class="postman-run-button"
+  data-postman-action="collection/import"
+  data-postman-var-1="574927885441306fec13"></div>
+  <script type="text/javascript">
+    (function (p,o,s,t,m,a,n) {
+      !p[s] && (p[s] = function () { (p[t] || (p[t] = [])).push(arguments); });
+      !o.getElementById(s+t) && o.getElementsByTagName("head")[0].appendChild((
+        (n = o.createElement("script")),
+        (n.id = s+t), (n.async = 1), (n.src = m), n
+      ));
+    }(window, document, "_pm", "PostmanRunObject", "https://run.pstmn.io/button.js"));
+  </script>
+</blockquote>
 
-You can quickly get started on Asana's API with the Postman App. We have a collection that you can pull from 
+You can quickly get started on Asana's API with the [API Explorer](/explorer). However, if you want a more robust experience hitting the API, we recommend using Postman. You can get started with the 'Run in Postman' button!
+
+Once you have the collection, you should [create an environment](https://learning.getpostman.com/docs/postman/environments_and_globals/manage_environments/).
+
+You'll want to set:
+
+1. `authentication_token` to a PAT. If you don't have one yet, visit our [Authentication Quick Start](#authentication-quick-start)
+2. `workspace` to your workspace's gid, you can find via a logged-in browser by going to https://app.asana.com/api/1.0/users/me/workspaces, or you can hit that endpoint using your PAT
+3. any other gids you want to easily access.
+    1. For example, in my Postman. I set `task` to the gid of a task I regularly test with, `project` to a the gid of a private sandbox project, and `user` to the string 'me'.
+    
+No need to edit your environment for requests on different objects, simply navigate to the endpoint you want to use, and change the `{{object}}` to any gid you want.
+
+Importing this collection gives you a snapshot of the API at this time. To stay up to date with API changes, you'll have to re-import the collection by hitting the 'Run in Postman' button, and choosing to override your existing collection. This means if you want to save custom requests, you should do so in a different collection.
+
+<hr class="full-line">
 
 # Quick Start
 
