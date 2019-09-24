@@ -165,4 +165,36 @@ Retrieve a backend service in an [environment](#administration-environments).
 
 ##### Create backend service
 
-TODO
+```shell
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/backendservices"
+
+# Example:
+```
+
+```json
+{
+  "name": "my-instance",
+  "shortRegion": "northamerica-northeast1",
+  "shortZone": "northamerica-northeast1-a",
+  "bootDiskType": "pd-standard",
+  "bootDiskSizeInGb": "10",
+  "cpuCount": "2",
+  "memoryInGB": "4.5",
+  "osImageSelfLink": "https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-9-stretch-v20190514",
+  "externalIp": {
+    "id": "3645738160550100933"
+  }
+}
+```
+
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/backendservices</code>
+
+Create a new backend service
+
+| Required | &nbsp;|
+| --- | --- |
+| `name`<br/>*string* | The display name of the backend service |
+| `shortBackends`<br/>*string* | A short version of the list of backends |
+| `shortHealthChecks`<br/>*string* | A short version of the health checks |
