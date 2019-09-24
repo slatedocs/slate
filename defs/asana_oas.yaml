@@ -1198,6 +1198,20 @@ components:
                 Must be between 0 and 6, inclusive.
               type: integer
               example: 2
+            is_global_to_workspace:
+              description: >-
+                This flag describes whether this custom field is available to
+                every container in the workspace. Before project-specific custom
+                fields, this field was always true.
+              type: boolean
+              example: true
+              readOnly: true
+            has_notifications_enabled:
+              description: >-
+                This flag describes whether a follower of a task with this field
+                should receive inbox notifications from changes to this field.
+              type: boolean
+              example: true
     CustomFieldCompact:
       allOf:
         - $ref: '#/components/schemas/AsanaNamedObject'
