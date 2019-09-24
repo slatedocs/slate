@@ -68,22 +68,21 @@ Retrieve a list of all backend services in an [environment](#administration-envi
 | `backends`<br/>*object*             | The list of backends that serve this BackendService.|
 | `connectionDraining`<br/>*object*   | - |
 | `creationTimestamp`<br/>*string*    | Creation timestamp in RFC3339 text format. |
-| `description`<br/>*string*          | An optional description of this resource. Provide this property when you create the resource.|
+| `description`<br/>*string*          | An optional description of the resource. |
 | `enableCDN`<br/>*boolean*           | If true, enables Cloud CDN for the backend service. Only applicable if the `loadBalancingScheme` is EXTERNAL and the protocol is HTTP or HTTPS. |
 | `fingerprint`<br/>*string*          | Fingerprint of this resource. A hash of the contents stored in this object. |
 | `healthChecks`<br/>*string*         | The list of URLs to the HttpHealthCheck or HttpsHealthCheck resource for health checking this BackendService. Currently at most one health check can be specified. |
-| `id`<br/>*string*                   | The unique identifier for the resource. This identifier is defined by the server. |
-| `kind`<br/>*string*                 | Type of resource. Always compute#backendService for backend services.|
+| `id`<br/>*UUID*                     | The id of the backend service. |
+| `kind`<br/>*string*                 | Type of the resource. Always compute#backendService for backend services.|
 | `loadBalancingScheme`<br/>*enum*    | Indicates whether the backend service will be used with internal or external load balancing. Possible values are INTERNAL and EXTERNAL.|
 | `name`<br/>*string*                 | Name of the resource. |
-| `port`<br/>*number*                 | Deprecated in favor of portName. The TCP port to connect on the backend. The default value is 80. |
 | `portName`<br/>*string*             | A named port on a backend instance group representing the port for communication to the backend VMs in that group. |
-| `protocol`<br/>*enum*               | The protocol this BackendService uses to communicate with backends. Possible values are HTTP, HTTPS, HTTP2, TCP, SSL, or UDP. |
+| `protocol`<br/>*enum*               | The protocol this BackendService uses to communicate with backends. Possible values are HTTP or HTTPS. |
 | `selfLink`<br/>*string*             | Server-defined URL for the resource. |
 | `sessionAffinity`<br/>*enum*        | Type of session affinity to use. The default is NONE. |
 | `shortBackends`<br/>*string*        | A short version of the list of backends. |
 | `shortHealthChecks`<br/>*string*    | A short version of the health checks. |
-| `timeoutSec`<br/>*number*           | This field has a different meaning depending on the type of load balancer. See [here](https://cloud.google.com/load-balancing/docs/backend-service#backend_service_settings) The default is 30 seconds. |
+| `timeoutSec`<br/>*number*           | The default is 30 seconds. |
 
 <!-------------------- RETRIEVE A BACKEND SERVICE -------------------->
 
@@ -146,22 +145,21 @@ Retrieve a backend service in an [environment](#administration-environments).
 | `backends`<br/>*object*             | The list of backends that serve this BackendService.|
 | `connectionDraining`<br/>*object*   | - |
 | `creationTimestamp`<br/>*string*    | Creation timestamp in RFC3339 text format. |
-| `description`<br/>*string*          | An optional description of this resource. Provide this property when you create the resource.|
+| `description`<br/>*string*          | An optional description of the resource. |
 | `enableCDN`<br/>*boolean*           | If true, enables Cloud CDN for the backend service. Only applicable if the `loadBalancingScheme` is EXTERNAL and the protocol is HTTP or HTTPS. |
 | `fingerprint`<br/>*string*          | Fingerprint of this resource. A hash of the contents stored in this object. |
 | `healthChecks`<br/>*string*         | The list of URLs to the HttpHealthCheck or HttpsHealthCheck resource for health checking this BackendService. Currently at most one health check can be specified. |
-| `id`<br/>*string*                   | The unique identifier for the resource. This identifier is defined by the server. |
-| `kind`<br/>*string*                 | Type of resource. Always compute#backendService for backend services.|
+| `id`<br/>*UUID*                     | The id of the backend service. |
+| `kind`<br/>*string*                 | Type of the resource. Always compute#backendService for backend services.|
 | `loadBalancingScheme`<br/>*enum*    | Indicates whether the backend service will be used with internal or external load balancing. Possible values are INTERNAL and EXTERNAL.|
 | `name`<br/>*string*                 | Name of the resource. |
-| `port`<br/>*number*                 | Deprecated in favor of portName. The TCP port to connect on the backend. The default value is 80. |
 | `portName`<br/>*string*             | A named port on a backend instance group representing the port for communication to the backend VMs in that group. |
-| `protocol`<br/>*enum*               | The protocol this BackendService uses to communicate with backends. Possible values are HTTP, HTTPS, HTTP2, TCP, SSL, or UDP. |
+| `protocol`<br/>*enum*               | The protocol this BackendService uses to communicate with backends. Possible values are HTTP or HTTPS. |
 | `selfLink`<br/>*string*             | Server-defined URL for the resource. |
 | `sessionAffinity`<br/>*enum*        | Type of session affinity to use. The default is NONE. |
 | `shortBackends`<br/>*string*        | A short version of the list of backends. |
 | `shortHealthChecks`<br/>*string*    | A short version of the health checks. |
-| `timeoutSec`<br/>*number*           | This field has a different meaning depending on the type of load balancer. See [here](https://cloud.google.com/load-balancing/docs/backend-service#backend_service_settings) The default is 30 seconds. |
+| `timeoutSec`<br/>*number*           | The default is 30 seconds. |
 
 <!-------------------- CREATE A BACKEND SERVICE -------------------->
 
