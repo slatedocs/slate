@@ -338,7 +338,7 @@ specific deploys to changes in performance.
 
 Scout identifies deploys via the following approaches:
 
-* Setting a `SCOUT_REVISION_SHA` environment variable to the SHA of your release.
+* Detecting the current git sha (this is automatically detected when `composer install` is run)
 * If you are using Heroku, enable [Dyno Metadata](https://devcenter.heroku.com/articles/dyno-metadata).
   This adds a `HEROKU_SLUG_COMMIT` environment variable to your dynos, which Scout then
   associates with deploys.
