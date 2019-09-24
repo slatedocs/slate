@@ -16,6 +16,7 @@ Here are some useful links
 * [Component Documentation](https://developers.quintype.com/quintype-node-components)
 * [API Client Documentation](https://developers.quintype.com/quintype-node-backend)
 * [AccessType Documentation](https://developers.quintype.com/access-type)
+* [Quintype SEO Documentation](https://developers.quintype.com/quintype-node-seo)
 * [Metype Documentation](https://developers.quintype.com/metype)
 * [Quintype CMS Swagger Documentation](https://developers.quintype.com/swagger)
 * [End User Help Documentation](https://help.quintype.com)
