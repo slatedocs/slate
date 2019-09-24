@@ -491,7 +491,7 @@ Add instance to existing instance groups
 
 <!-------------------- REMOVE INSTANCES TO INSTANCE GROUP -------------------->
 
-#### Remove instances to instance group
+#### Remove from instance group
 
 ```shell
 curl -X POST \

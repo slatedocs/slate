@@ -199,9 +199,9 @@ Required | &nbsp;
 
 Add instances to an existing instance group
 
-<!-------------------- REMOVE INSTANCES TO INSTANCE GROUP -------------------->
+<!-------------------- REMOVE INSTANCES FROM INSTANCE GROUP -------------------->
 
-#### Remove instances to instance group
+#### Remove instances from instance group
 
 ```shell
 curl -X POST \
