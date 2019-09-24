@@ -34,7 +34,7 @@ You can suggest additional libraries you'd like Scout to instrument
 
 ## Laravel
 
-Scout supports Laravel 5.8+.
+Scout supports Laravel 5.5+.
 
 <table class="help install install_ruby">
   <tbody>
