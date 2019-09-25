@@ -1,5 +1,7 @@
 ## Update Power Zones
 
+Requires the `profile_write` scope
+
 ```shell
 curl --header "Authorization: Bearer users-token-goes-here"
      -X PUT -d power_zone[ftp]=195 https://api.wahooligan.com/v1/power_zone

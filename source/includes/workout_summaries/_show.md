@@ -1,5 +1,7 @@
 ## Get a Workout Summary
 
+Requires the `workouts_read` scope
+
 Returns the workout summary object for a workout. When a workout is created, the workout summary will be empty until it is updated.
 
 ```shell

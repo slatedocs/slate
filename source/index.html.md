@@ -13,6 +13,8 @@ toc_footers:
 
 includes:
 
+  - authorization
+
   - users/overview
   - users/show
   - users/update

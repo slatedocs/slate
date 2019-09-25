@@ -1,5 +1,7 @@
 ## Create a Workout
 
+Requires the `workouts_write` scope
+
 Creates a workout for the authenticated user.
 
 ```shell

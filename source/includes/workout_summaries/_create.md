@@ -1,5 +1,7 @@
 ## Create a Workout Summary
 
+Requires the `workouts_write` scope
+
 Creates a workout summary and associates it with a workout. If a workout summary already exists for the workout then the workout summary is updated.
 
 ```shell

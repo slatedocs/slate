@@ -1,5 +1,7 @@
 ## Get Power Zones
 
+Requires the `profile_read` scope
+
 ```shell
 curl --header "Authorization: Bearer users-token-goes-here" https://api.wahooligan.com/v1/power_zone
 ```

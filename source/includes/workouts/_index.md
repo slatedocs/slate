@@ -1,5 +1,7 @@
 ## Get all Workouts
 
+Requires the `workouts_read` scope
+
 Returns all workouts for the authenticated user. The workout are always sorted by the starts field in descending order. By default the most recent 30 workouts are returned.  The per_page parameter can be used to adjust the number of workouts returned.
 
 In the response the total attribute is the total number of workouts for the current user.

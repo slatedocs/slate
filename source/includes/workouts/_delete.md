@@ -1,5 +1,7 @@
 ## Delete a Workout
 
+Requires the `workouts_write` scope
+
 Deletes a workout that is owned by the authenticated user.
 
 ```shell

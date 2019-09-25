@@ -1,5 +1,7 @@
 ## Get a Workout
 
+Requires the `workouts_read` scope
+
 Returns a workout for the current authenticated user.
 
 ```shell

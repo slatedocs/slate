@@ -1,5 +1,7 @@
 ## Update Heart Rate Zones
 
+Requires the `profile_write` scope
+
 ```shell
 curl --header "Authorization: Bearer users-token-goes-here"
      -X PUT -d heart_rate_zone[resting]=90 https://api.wahooligan.com/v1/heart_rate_zone

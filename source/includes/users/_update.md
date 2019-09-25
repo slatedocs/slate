@@ -1,5 +1,7 @@
 ## Update User
 
+Requires the `profile_write` scope
+
 ```shell
 curl --header "Authorization: Bearer users-token-goes-here"
      -X PUT -d user[mobile]=7704106437 https://api.wahooligan.com/v1/user

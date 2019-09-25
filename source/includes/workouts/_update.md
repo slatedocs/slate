@@ -1,5 +1,7 @@
 ## Update a Workout
 
+Requires the `workouts_write` scope
+
 Updates a workout for the authenticated user.
 
 ```shell
