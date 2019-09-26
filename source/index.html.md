@@ -21,6 +21,7 @@ Here are some useful links
 * [Quintype CMS Swagger Documentation](https://developers.quintype.com/swagger)
 * [End User Help Documentation](https://help.quintype.com)
 * [Quintype Migration Helpers](https://developers.quintype.com/quintype-node-migration-helpers)
+* [Quintype Framework](https://developers.quintype.com/quintype-node-framework)
 
 Some Deprecated Pages
 
