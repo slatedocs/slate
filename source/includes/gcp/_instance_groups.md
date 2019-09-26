@@ -1,5 +1,5 @@
 ### Instance groups
-An instance group is a collection of VM instances that you can manage as a single entity
+An instance group is a collection of VM instances that you can manage as a single entity. Instance groups are used to apply load balancing to groups of heterogeneous instances.
 
 <!-------------------- LIST INSTANCE GROUPS -------------------->
 
@@ -65,9 +65,9 @@ Attributes | &nbsp;
 `shortRegion`<br/>*string* | A short version of the region name
 
 
-<!-------------------- RETRIEVE AN INSTANCE -------------------->
+<!-------------------- RETRIEVE AN INSTANCE GROUP -------------------->
 
-#### Retrieve an instance
+#### Retrieve an instance group
 
 ```shell
 curl -X GET \
