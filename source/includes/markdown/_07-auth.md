@@ -103,7 +103,7 @@ the Asana API, as well as a Client Secret.
 &response_type=code
 &state=thisIsARandomString
 &code_challenge_method=S256
-&code_challenge=qwegFASF7wq96s9a_-313659_ts
+&code_challenge=671608a33392cee13585063953a86d396dffd15222d83ef958f43a2804ac7fb2
 &scope=default">Authenticate with Asana</a>
 ```
 
@@ -181,7 +181,7 @@ The browser should never see your `client_secret`.
   "client_secret": "6572195638271537892521",
   "redirect_uri": "https://my.app.com",
   "code": "325797325",
-  "code_verifier": "asd78sd96g67afsd6sda7fdsg9d67s"
+  "code_verifier": "fdsuiafhjbkewbfnmdxzvbuicxlhkvnemwavx"
 }
 ```
 
