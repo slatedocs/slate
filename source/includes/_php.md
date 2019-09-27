@@ -34,7 +34,7 @@ You can suggest additional libraries you'd like Scout to instrument
 
 ## Laravel
 
-Scout supports Laravel 5.8+.
+Scout supports Laravel 5.5+.
 
 <table class="help install install_ruby">
   <tbody>
@@ -169,7 +169,7 @@ Scout logs internal activity via a configured `Psr\Log\LoggerInterface`. The
 Laravel instruments automatically wire up the framework's logger to the
 agent's logging.
 
-If required, you can override this by calling `$agent->setLogger($logger)`
+If required, you can override this by changing the container service `log`.
 
 
 <h2 id="php-custom-instrumentation">Custom Instrumentation</h2>
@@ -254,7 +254,7 @@ It is wrapped with instrumentation:
 
 ```
 // At top, with other imports
-use ScoutApm;
+use Scoutapm\Laravel\Facades\ScoutApm;
 
 // Replacing the above code
 $request = ScoutApm::instrument(
@@ -297,7 +297,7 @@ you can add custom context to answer critical questions like:
 It's simple to add [custom context](#context) to your app:
 
 ```php
-use ScoutApm; // Laravel only: Add near the other use statements
+use Scoutapm\Laravel\Facades\ScoutApm; // Laravel only: Add near the other use statements
 
 ScoutApm::addContext("Key", "Value");
 
@@ -338,7 +338,4 @@ specific deploys to changes in performance.
 
 Scout identifies deploys via the following approaches:
 
-* Setting a `SCOUT_REVISION_SHA` environment variable to the SHA of your release.
-* If you are using Heroku, enable [Dyno Metadata](https://devcenter.heroku.com/articles/dyno-metadata).
-  This adds a `HEROKU_SLUG_COMMIT` environment variable to your dynos, which Scout then
-  associates with deploys.
+* Detecting the current git sha (this is automatically detected when `composer install` is run)
