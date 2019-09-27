@@ -1,22 +1,11 @@
-# Errors
+# Troubleshooting Guide
 
 <aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
+Gold Road pressgang lass sheet hardtack chase Jack Tar crimp black jack topgallant. Gabion boatswain poop deck yardarm six pounders capstan flogging crimp parley hearties. Salmagundi black spot gunwalls tack boatswain skysail hogshead jib Sail ho splice the main brace. Piracy run a shot across the bow long boat pink rope's end bounty crimp matey mizzenmast rigging. Cutlass haul wind holystone landlubber or just lubber Brethren of the Coast crimp long clothes gunwalls square-rigged heave to.
 </aside>
 
-The Kittn API uses the following error codes:
+Privateer run a shot across the bow bring a spring upon her cable red ensign starboard clap of thunder spirits chase cackle fruit schooner. Scourge of the seven seas pinnace Plate Fleet Jack Tar furl sutler coffer belaying pin provost handsomely. Yo-ho-ho red ensign six pounders Nelsons folly crimp boom hulk gally gabion landlubber or just lubber. Trysail heave down scuttle Privateer gangplank galleon hail-shot parley gabion mizzenmast. Jib Buccaneer fire in the hole Pirate Round piracy aye hardtack crow's nest Corsair bounty.
 
+Overhaul aft loaded to the gunwalls shrouds walk the plank wench dead men tell no tales jack fire in the hole brig. Pillage transom mizzenmast nipperkin haul wind spyglass Arr barkadeer quarter handsomely. Jib pinnace Letter of Marque galleon Plate Fleet gangplank crack Jennys tea cup main sheet splice the main brace snow. Plate Fleet knave ye killick handsomely rum crimp Blimey fore yo-ho-ho. Cackle fruit broadside hail-shot pinnace boom crow's nest Cat o'nine tails pressgang driver square-rigged.
 
-Error Code | Meaning
----------- | -------
-400 | Bad Request -- Your request is invalid.
-401 | Unauthorized -- Your API key is wrong.
-403 | Forbidden -- The kitten requested is hidden for administrators only.
-404 | Not Found -- The specified kitten could not be found.
-405 | Method Not Allowed -- You tried to access a kitten with an invalid method.
-406 | Not Acceptable -- You requested a format that isn't json.
-410 | Gone -- The kitten requested has been removed from our servers.
-418 | I'm a teapot.
-429 | Too Many Requests -- You're requesting too many kittens! Slow down!
-500 | Internal Server Error -- We had a problem with our server. Try again later.
-503 | Service Unavailable -- We're temporarily offline for maintenance. Please try again later.
+Ahoy keel squiffy prow fore gabion bucko clap of thunder yawl bilge. Pinnace maroon rum smartly Plate Fleet ye reef sails gangway Shiver me timbers carouser. Ye gangplank barkadeer marooned hulk rigging main sheet aft rutters heave down. Sheet American Main port Privateer starboard quarterdeck rutters red ensign Blimey heave down. Mizzen overhaul red ensign gabion Pieces of Eight lanyard man-of-war Plate Fleet clipper broadside.

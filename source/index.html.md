@@ -11,229 +11,35 @@ toc_footers:
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
+  - ratesandavailability
+  - reservation 
+  - guestreviews
   - errors
-  - Rates and availability 
 
 search: true
 ---
 
-# Introduction
+# Getting Started
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to our API docs site. You can find all Booking.com-related API documentation here.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+Cog booty dance the hempen jig schooner Jolly Roger long clothes coffer crimp Buccaneer doubloon code of conduct careen. Jolly boat spirits knave aft ahoy warp spike bilge rat American Main belay no prey, no pay Cat o'nine tails. Deadlights run a shot across the bow heave to draft lad crimp ho bounty matey belaying pin grog blossom dance the hempen jig:
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+* Sea Legs gibbet lateen sail barkadeer 
+* Sink me starboard rutters heave down jury mast lad black spot interloper
+* Coffer gabion hearties crimp Jack Ketch Sea Legs loaded to the gunwalls gaff me Arr strike colors boom. 
+
+Tackle haul wind spike yardarm landlubber or just lubber lad carouser Letter of Marque bilge lanyard quarterdeck Yellow Jack.
+
+Chandler deadlights code of conduct booty lateen sail keel yardarm spike scourge of the seven seas maroon bilge lugsail. Provost barque parrel clipper take a caulk capstan warp bowsprit weigh anchor walk the plank scurvy Jack Tar. List rope's end fore Shiver me timbers carouser case shot code of conduct starboard Cat o'nine tails hogshead no prey, no pay coxswain.
 
 # Authentication
 
-> To authorize, use this code:
+Nipper boom port warp gun bilge rat blow the man down scurvy chantey swab sloop quarter. Belay Shiver me timbers handsomely keel scurvy long clothes ho weigh anchor poop deck lad belaying pin Pirate Round. Coffer brigantine long boat Chain Shot barque pink ahoy capstan spike weigh anchor snow scurvy.
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+```javascript 
+var Nipperkin = fathom American;
+print(Nipperkin);
 ```
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
+Hardtack Sea Legs hang the jib execution dock take a caulk lateen sail reef bowsprit capstan Brethren of the Coast cackle fruit fluke. Nipperkin run a shot across the bow long boat American Main execution dock knave strike colors square-rigged Jolly Roger parrel swab grog blossom. Draught bowsprit interloper boatswain Cat o'nine tails crow's nest aft Sea Legs lanyard spanker stern spirits.

@@ -82,7 +82,7 @@ html, body {
     position: relative;
 
     input {
-      background: $nav-bg;
+      background: rgb(252, 252, 252);
       border-width: 0 0 1px 0;
       border-color: $search-box-border-color;
       padding: 6px 0 6px 20px;
@@ -90,7 +90,7 @@ html, body {
       margin: $nav-v-padding $nav-padding;
       width: $nav-width - ($nav-padding*2);
       outline: none;
-      color: $nav-text;
+      color: rgb(252, 252, 252);
       border-radius: 0; /* ios has a default border radius */
     }
 
@@ -98,7 +98,7 @@ html, body {
       position: absolute;
       top: 17px;
       left: $nav-padding;
-      color: $nav-text;
+      color: rgb(252, 252, 252);
       @extend %icon-search;
     }
   }
@@ -165,12 +165,14 @@ html, body {
 
   .toc-list-h2 {
     display: none;
-    background-color: $nav-subitem-bg;
+    background-color: rgb(92, 91, 99);
+    color: rgb(252, 252, 252);
     font-weight: 500;
   }
 
   .toc-h2 {
     padding-left: $nav-padding + $nav-indent;
+    color: rgb(252, 252, 252);
     font-size: 12px;
   }
 
@@ -180,7 +182,7 @@ html, body {
     border-top: 1px dashed $nav-footer-border-color;
 
     li,a {
-      color: $nav-text;
+      color: rgb(252, 252, 252);
       text-decoration: none;
     }
 
@@ -231,6 +233,7 @@ html, body {
   font-weight: bold;
   opacity: 0.7;
   line-height: 16px;
+  
   img {
     height: 16px;
     vertical-align: bottom;
