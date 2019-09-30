@@ -5695,28 +5695,29 @@ paths:
             schema:
               type: object
               properties:
-                task:
-                  description: The task to add to this section.
-                  type: string
-                  example: '123456'
-                insert_before:
-                  description: >-
-                    An existing task within this section before which the added
-                    task should be inserted. Cannot be provided together with
-                    insert_after.
-                  type: string
-                  example: '86420'
-                insert_after:
-                  description: >-
-                    An existing task within this section after which the added
-                    task should be inserted. Cannot be provided together with
-                    insert_before.
-                  type: string
-                  example: '987654'
-              required:
-                - task
-                - insert_before
-                - insert_after
+                data:
+                  type: object
+                  properties:
+                    task:
+                      description: The task to add to this section.
+                      type: string
+                      example: '123456'
+                    insert_before:
+                      description: >-
+                        An existing task within this section before which the added
+                        task should be inserted. Cannot be provided together with
+                        insert_after.
+                      type: string
+                      example: '86420'
+                    insert_after:
+                      description: >-
+                        An existing task within this section after which the added
+                        task should be inserted. Cannot be provided together with
+                        insert_before.
+                      type: string
+                      example: '987654'
+                  required:
+                    - task
       responses:
         200:
           description: Successfully added the task.
@@ -5762,31 +5763,32 @@ paths:
             schema:
               type: object
               properties:
-                project:
-                  description: The project in which to reorder the given section.
-                  type: string
-                  example: '123456'
-                section:
-                  description: The section to reorder.
-                  type: string
-                  example: '321654'
-                before_section:
-                  description: >-
-                    Insert the given section immediately before the section
-                    specified by this parameter.
-                  type: string
-                  example: '86420'
-                after_section:
-                  description: >-
-                    Insert the given section immediately after the section
-                    specified by this parameter.
-                  type: string
-                  example: '987654'
-              required:
-                - project
-                - section
-                - before_section
-                - after_section
+                data:
+                  type: object
+                  properties:
+                    project:
+                      description: The project in which to reorder the given section.
+                      type: string
+                      example: '123456'
+                    section:
+                      description: The section to reorder.
+                      type: string
+                      example: '321654'
+                    before_section:
+                      description: >-
+                        Insert the given section immediately before the section
+                        specified by this parameter.
+                      type: string
+                      example: '86420'
+                    after_section:
+                      description: >-
+                        Insert the given section immediately after the section
+                        specified by this parameter.
+                      type: string
+                      example: '987654'
+                  required:
+                    - project
+                    - section
       responses:
         200:
           description: Successfully moved the specified section.
