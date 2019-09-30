@@ -1,3 +1,4 @@
+
 <h1 id="ApiSection" class="section-header">API</h1>
 The REST API has endpoints for account and order management as well as public market data.
 
@@ -2702,7 +2703,7 @@ headers = {
 }
 
 r = requests.get('https://api.delta.exchange/chart/history', params={
-
+  'symbol': 'string',  'from': '0',  'to': '0',  'resolution': '1'
 }, headers = headers)
 
 print r.json()
@@ -2711,7 +2712,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET https://api.delta.exchange/chart/history \
+curl -X GET https://api.delta.exchange/chart/history?symbol=string&from=0&to=0&resolution=1 \
   -H 'Accept: application/json'
 
 ```
@@ -2726,7 +2727,11 @@ headers = {
 
 result = RestClient.get 'https://api.delta.exchange/chart/history',
   params: {
-  }, headers: headers
+  'symbol' => 'string',
+'from' => 'integer',
+'to' => 'integer',
+'resolution' => 'string'
+}, headers: headers
 
 p JSON.parse(result)
 
@@ -2738,10 +2743,10 @@ p JSON.parse(result)
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
-|symbol|query|string|false|product symbol|
-|from|query|integer|false|start time for the interval ( in seconds )|
-|to|query|integer|false|end time for the interval ( in seconds )|
-|resolution|query|string|false|resolution for the candles|
+|symbol|query|string|true|symbol should be anyone of following  1. product symbol to get OHLC for given product e.g **BTCUSD** 2. Spot index symbol to get spot index price. e.g. **.DEXBTUSD** 3. Mark and symbol to get mark price OHLC data e.g. **MARK:BTCUSD** 4. Funding and product symbol to get Funding data for given product e.g. **FUNDING:BTCUSD**|
+|from|query|integer|true|start time for the interval ( in seconds )|
+|to|query|integer|true|end time for the interval ( in seconds )|
+|resolution|query|string|true|resolution for the candles|
 
 #### Enumerated Values
 

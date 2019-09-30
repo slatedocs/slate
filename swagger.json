@@ -34,7 +34,7 @@
     "description" : "Get balances, Get transaction history"
   }, {
     "name" : "OHLC Candles"
-  } ],
+  }],
   "schemes" : [ "https" ],
   "paths" : {
     "/assets" : {
@@ -885,24 +885,33 @@
         "parameters" : [ {
           "in" : "query",
           "name" : "symbol",
-          "description" : "product symbol",
-          "type" : "string"
+          "description" : "symbol should be anyone of following  1. product symbol to get OHLC for given product e.g **BTCUSD**
+                           2. Spot index symbol to get spot index price. e.g. **.DEXBTUSD**
+                           3. Mark and symbol to get mark price OHLC data e.g. **MARK:BTCUSD**
+                           4. Funding and product symbol to get Funding data for given product e.g. **FUNDING:BTCUSD**",
+          "type" : "string",
+          "required" : true
+
         }, {
           "in" : "query",
           "name" : "from",
           "description" : "start time for the interval ( in seconds )",
-          "type" : "integer"
+          "type" : "integer",
+          "required" : true
         }, {
           "in" : "query",
           "name" : "to",
           "description" : "end time for the interval ( in seconds )",
-          "type" : "integer"
+          "type" : "integer",
+          "required" : true
+          
         }, {
           "in" : "query",
           "name" : "resolution",
           "description" : "resolution for the candles",
           "type" : "string",
-          "enum" : [ "1", "5", "15", "60", "360", "D" ]
+          "enum" : [ "1", "5", "15", "60", "360", "D" ],
+          "required" : true
         } ],
         "responses" : {
           "200" : {
@@ -1093,7 +1102,8 @@
       "description": "A create order object",
       "properties": {
         "product_id": {
-          "type": "integer" 
+          "type": "integer",
+          "required": true
         },
         "limit_price": {
           "type": "string" 
