@@ -316,7 +316,7 @@ This event is triggered once the user clicks on the option to schedule a visit t
 }
 ```
 
-This event is triggered once the user clicks on favorites to view the properties and/or locations previously pinned, or favorited.
+This event is triggered once the user favorites or pins a listing
 
 ### listing_unfavorited
 ```json
