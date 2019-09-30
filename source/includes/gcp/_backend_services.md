@@ -198,3 +198,17 @@ Create a new backend service
 | `name`<br/>*string* | The display name of the backend service |
 | `shortBackends`<br/>*string* | A short version of the list of backends |
 | `shortHealthChecks`<br/>*string* | A short version of the health checks |
+
+<!-------------------- DELETE A BACKEND SERVICE -------------------->
+
+##### Delete a backend service
+
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/backendservices/2570199154720991429"
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/backendservices/:id</code>
+
+Delete an existing backend service. A backend service can only be deleted if it is not used in any [urlMap](#gcp-urlMaps).
