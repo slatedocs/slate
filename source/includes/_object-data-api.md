@@ -37,9 +37,7 @@ Property | Description
 
 ```json
 {
-	"value": {
-        "@odata.nextLink": "https://intelex_url/api/v2/object/IncidentsObject?$skip=500"
-	}
+	"@odata.nextLink": "https://intelex_url/api/v2/object/IncidentsObject?$skip=500"
 }
 ```
 
