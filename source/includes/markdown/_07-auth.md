@@ -194,7 +194,7 @@ passing the parameters as part of a standard form-encoded post body.
 | **client_id** | *required* The Client ID uniquely identifies the application making the request. |
 | **client_secret** | *required* The Client Secret belonging to the app, found in the details pane of the developer console. |
 | **redirect_uri** | *required* Must match the `redirect_uri` specified in the original request. |
-| **code** | *sometimes required* If `grant_type=authorization_code` this is the code you are exchanging for an authorization token. |
+| **code** | *required* This is the code you are exchanging for an authorization token. |
 | **refresh_token** | *sometimes required* If `grant_type=refresh_token` this is the refresh token you are using to be granted a new access token. |
 | **code_verifier** | *PKCE* This is the string previously used to generate the code_challenge. |
 
