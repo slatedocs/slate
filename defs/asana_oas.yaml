@@ -4084,11 +4084,14 @@ paths:
             schema:
               type: object
               properties:
-                organization:
-                  description: >-
-                    Globally unique identifier for the workspace or organization.
-                  type: string
-                  example: '1331'
+                data:
+                  type: object
+                  properties:
+                    organization:
+                      description: >-
+                        Globally unique identifier for the workspace or organization.
+                      type: string
+                      example: '1331'
       responses:
         201:
           description: Successfully created organization export request.
@@ -4882,24 +4885,27 @@ paths:
             schema:
               type: object
               properties:
-                project:
-                  description: Globally unique identifier for the project.
-                  type: string
-                  example: '123456'
-                text:
-                  description: The text of the project status update.
-                  type: string
-                  example: The project is on track to ship next month!
-                color:
-                  description: The color to associate with the status update.
-                  enum:
-                    - green
-                    - yellow
-                    - red
-              required:
-                - project
-                - text
-                - color
+                data:
+                  type: object
+                  properties:
+                    project:
+                      description: Globally unique identifier for the project.
+                      type: string
+                      example: '123456'
+                    text:
+                      description: The text of the project status update.
+                      type: string
+                      example: The project is on track to ship next month!
+                    color:
+                      description: The color to associate with the status update.
+                      enum:
+                        - green
+                        - yellow
+                        - red
+                  required:
+                    - project
+                    - text
+                    - color
       responses:
         201:
           description: Successfully created a new story.
@@ -5641,19 +5647,23 @@ paths:
             schema:
               type: object
               properties:
-                project:
-                  description: The project to create the section in
-                  type: string
-                  example: '13579'
-                name:
-                  description: >-
-                    The text to be displayed as the section name. This cannot be
-                    an empty string.
-                  type: string
-                  example: Next Actions
-              required:
-                - project
-                - name
+                data:
+                  type: object
+                  properties:
+                    project:
+                      description: The project to create the section in
+                      type: string
+                      example: '13579'
+                    name:
+                      description: >-
+                        The text to be displayed as the section name. This cannot
+                        be
+                        an empty string.
+                      type: string
+                      example: Next Actions
+                  required:
+                    - project
+                    - name
       responses:
         201:
           description: Successfully created the specified section.
@@ -5948,17 +5958,20 @@ paths:
             schema:
               type: object
               properties:
-                task:
-                  description: Globally unique identifier for the task.
-                  type: string
-                  example: '123456'
-                text:
-                  description: The plain text of the comment to add.
-                  type: string
-                  example: This is a comment.
-              required:
-                - task
-                - text
+                data:
+                  type: object
+                  properties:
+                    task:
+                      description: Globally unique identifier for the task.
+                      type: string
+                      example: '123456'
+                    text:
+                      description: The plain text of the comment to add.
+                      type: string
+                      example: This is a comment.
+                  required:
+                    - task
+                    - text
       responses:
         201:
           description: Successfully created a new story.
@@ -7966,15 +7979,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UserIdObject'
-            examples:
-              gid:
-                summary: A globally unique identifier for the user
-                value:
-                  user: '14641'
-              email:
-                summary: An email address for a user
-                value:
-                  user: sashimi@asana.com
       responses:
         200:
           description: >-
@@ -8013,15 +8017,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UserIdObject'
-            examples:
-              gid:
-                summary: A globally unique identifier for the user
-                value:
-                  user: '14641'
-              email:
-                summary: An email address for a user
-                value:
-                  user: sashimi@asana.com
       responses:
         200:
           description: >-
@@ -8508,20 +8503,23 @@ paths:
             schema:
               type: object
               properties:
-                resource:
-                  description: >-
-                    A resource ID to subscribe to. The resource can be
-                    a task or project.
-                  type: string
-                  example: '12345'
-                target:
-                  description: The URL to receive the HTTP POST.
-                  type: string
-                  format: uri
-                  example: https://example.com/receive-webhook/7654
-              required:
-                - resource
-                - target
+                data:
+                  type: object
+                  properties:
+                    resource:
+                      description: >-
+                        A resource ID to subscribe to. The resource can be
+                        a task or project.
+                      type: string
+                      example: '12345'
+                    target:
+                      description: The URL to receive the HTTP POST.
+                      type: string
+                      format: uri
+                      example: https://example.com/receive-webhook/7654
+                  required:
+                    - resource
+                    - target
       responses:
         201:
           description: Successfully created the requested webhook.
@@ -8800,21 +8798,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UserIdObject'
-            examples:
-              gid:
-                summary: A globally unique identifier for the user
-                value:
-                  user: '14641'
-              me:
-                summary: >-
-                  The keyword 'me' to indicate the current user making the
-                  request.
-                value:
-                  user: me
-              email:
-                summary: An email address for a user
-                value:
-                  user: sashimi@asana.com
       responses:
         200:
           description: >-
@@ -8857,21 +8840,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UserIdObject'
-            examples:
-              gid:
-                summary: A globally unique identifier for the user
-                value:
-                  user: '14641'
-              me:
-                summary: >-
-                  The keyword 'me' to indicate the current user making the
-                  request.
-                value:
-                  user: me
-              email:
-                summary: An email address for a user
-                value:
-                  user: sashimi@asana.com
       responses:
         200:
           description: >-
