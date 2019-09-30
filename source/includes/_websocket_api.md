@@ -497,8 +497,8 @@ Private channels require clients to authenticate.
     "type": "liquidation",
     "user_id": 1998,
     "timestamp": 1542108684,
-    "side": "buy",
-    "size": 180,
+    "side": "buy",              // side of the position which got liquidated
+    "size": 180,	        // size of the position which got liquidated, always positive
     "liquidation_price": "0.00145791",
     "bankruptcy_price": "0.00145700",
 
