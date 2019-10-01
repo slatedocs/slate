@@ -910,7 +910,7 @@
           "name" : "resolution",
           "description" : "resolution for the candles",
           "type" : "string",
-          "enum" : [ "1", "5", "15", "60", "360", "D" ],
+          "enum" : [ "1", "3", "5", "15", "30", "60", "120", "240", "360", "D", "7D", "30D", "1W", "2W"],
           "required" : true
         } ],
         "responses" : {
@@ -965,51 +965,111 @@
     },
     "Product" : {
       "type" : "object",
-      "properties" : {
-        "id" : {
-          "type" : "integer",
-          "format" : "int64"
+      "properties": {
+        "id": {
+            "type" : "integer",
+            "format" : "int64"
         },
-        "symbol" : {
-          "type" : "string"
+        "symbol": {
+            "type": "string"
         },
-        "description" : {
-          "type" : "string"
+        "description": {
+            "type": "string"
         },
-        "product_type" : {
-          "type" : "string",
-          "enum" : [ "future", "inverse_future" ]
+        "created_at": {
+            "type": "string"
         },
-        "initial_margin" : {
-          "type" : "string"
+        "updated_at": {
+            "type": "string"
         },
-        "maintenance_margin" : {
-          "type" : "string"
+        "settlement_time": {
+            "type": "string"
         },
-        "settlement_time" : {
-          "type" : "string"
+        "product_type": {
+            "type": "string",
+            "enum" : [ "future", "inverse_future" ]
         },
-        "impact_size" : {
+        "pricing_source": {
+            "type": "string"
+        },
+        "impact_size": {
+            "type" : "integer"
+        },
+        "initial_margin": {
           "type" : "integer"
         },
-        "pricing_source" : {
-          "type" : "string"
+        "maintenance_margin": {
+            "type": "string"
         },
-        "tick_size" : {
-          "type" : "string"
+        "contract_value": {
+            "type": "string"
         },
-        "trading_status" : {
-          "type" : "string",
-          "enum" : [ "operational", "disrupted_cancel_only", "disrupted_post_only" ]
+        "contract_unit_currency": {
+            "type": "string"
         },
-        "position_size_limit" : {
-          "type" : "integer"
+        "tick_size": {
+            "type": "string"
         },
-        "commission_rate" : {
-          "type" : "string"
+        "trading_status": {
+            "type": "string",
+            "enum" : [ "operational", "disrupted_cancel_only", "disrupted_post_only" ]
         },
-        "maker_commission_rate" : {
-          "type" : "string"
+        "max_leverage_notional": {
+            "type": "string"
+        },
+        "default_leverage": {
+            "type": "string"
+        },
+        "leverage_slider_values": {
+            "type": "array",
+            "items": {
+                "type": "integer"
+            }
+        },
+        "initial_margin_scaling_factor": {
+            "type": "string"
+        },
+        "maintenance_margin_scaling_factor": {
+            "type": "string"
+        },
+        "commission_rate": {
+            "type": "string"
+        },
+        "maker_commission_rate": {
+            "type": "string"
+        },
+        "liquidation_penalty_factor": {
+            "type": "string"
+        },
+        "sort_priority": {
+            "type": "integer"
+        },
+        "contract_type": {
+            "type": "string"
+        },
+        "position_size_limit": {
+            "type": "integer"
+        },
+        "basis_factor_max_limit": {
+            "type": "string"
+        },
+        "is_quanto": {
+            "type": "boolean"
+        },
+        "funding_method": {
+            "type": "string"
+        },
+        "annualized_funding": {
+            "type": "string"
+        },
+        "price_clubbing_values": {
+            "type": "array",
+            "items": {
+                "type": "number"
+            }
+        },
+        "price_band": {
+            "type": "string"
         },
         "underlying_asset" : {
           "$ref" : "#/definitions/Asset"
@@ -1020,6 +1080,7 @@
         "settling_asset" : {
           "$ref" : "#/definitions/Asset"
         }
+
       }
     },
     "ArrayOfProducts" : {
