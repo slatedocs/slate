@@ -9,6 +9,9 @@ The Kittn API uses the following error codes:
 
 Error Code | Meaning
 ---------- | -------
+200 | OK -- Request successful
+201 | Created -- Your request has been accepted and the resource created
+202 | Accepted -- Your request has been accepted and will be processed
 400 | Bad Request -- Your request is invalid.
 401 | Unauthorized -- Your API key is wrong.
 403 | Forbidden -- The kitten requested is hidden for administrators only.
