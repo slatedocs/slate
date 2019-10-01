@@ -2,13 +2,9 @@ version: 2
 jobs:
   build:
     branches:
-      only:
-        - master
+      only: master
     machine: true
     steps:
       - checkout
-      - run: git clone git@github.com:rossgrambo/widdershins
-      - run: cd widdershins && npm install
-      - run: "node widdershins/widdershins.js --search true --httpsnippet true --language_tabs 'shell: curl' --omitHeader true --resolve --includes markdown/* --summary defs/asana_oas.yaml --maxDepth 3 -o source/includes/api-reference/_index.html.md"
       - run: bundle install
       - run: ./deploy.sh
