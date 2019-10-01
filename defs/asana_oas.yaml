@@ -3,12 +3,12 @@ openapi: 3.0.0
 info:
   description: >-
     This is the interface for interacting with the [Asana
-    Platform](https://asana.com/developers/). Our API reference
+    Platform](https://developers.asana.com). Our API reference
     is generated from our [OpenAPI spec]
     (https://raw.githubusercontent.com/Asana/developer-docs/master/defs/asana_oas.yaml).
   x-public-description: >-
     This is the interface for interacting with the [Asana
-    Platform](https://asana.com/developers/). Our API reference
+    Platform](https://developers.asana.com). Our API reference
     is generated from our [OpenAPI spec]
     (https://raw.githubusercontent.com/Asana/developer-docs/master/defs/asana_oas.yaml).
   title: Asana
@@ -766,8 +766,17 @@ components:
         type: string
       x-env-variable: user
       examples:
-        - '12345'
-        - me
+        id:
+          summary: A globally unique identifier for the user
+          value: 14641
+        me:
+          summary: >-
+            The keyword 'me' to indicate the current user making the
+            request.
+          value: me
+        email:
+          summary: An email address for a user
+          value: sashimi@asana.com
     user_task_list_path_gid:
       name: user_task_list_gid
       in: path
@@ -814,24 +823,6 @@ components:
         type: string
       example: '12345'
       x-env-variable: workspace_membership
-    body_object_gid_override:
-      type: string
-      readOnly: false
-      x-env-variable: true
-      description: >-
-        Gid of an object.
-      example: '12345'
-    body_array_gid_override:
-      type: array
-      readOnly: false
-      description: >-
-        Array of object Gids.
-      items:
-        type: string
-        description: >-
-          Gid of an object.
-      example:
-        - '12345'
   responses:
     GenericErrorResponse:
       description: >-
@@ -891,7 +882,7 @@ components:
       description: >-
         You have exceeded one of the enforced rate limits in the API. See the
         [documentation on rate
-        limiting](https://asana.com/developers/documentation/getting-started/rate-limits)
+        limiting](https://developers.asana.com/docs/#rate-limits)
         for more information.
       content:
         application/json:
@@ -931,6 +922,24 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
+    body_object_gid_override:
+      type: string
+      readOnly: false
+      x-env-variable: true
+      description: >-
+        Gid of an object.
+      example: '12345'
+    body_array_gid_override:
+      type: array
+      readOnly: false
+      description: >-
+        Array of object Gids.
+      items:
+        type: string
+        description: >-
+          Gid of an object.
+      example:
+        - '12345'
     AsanaObject:
       description: >-
         A generic Asana Object, containing a globally unique identifier.
@@ -1046,7 +1055,7 @@ components:
             third-party service such as Dropbox or Google Drive.
           properties:
             resource_type:
-              default: attachment
+              example: attachment
             name:
               description: The name of the file.
               type: string
@@ -1231,7 +1240,7 @@ components:
             `403 Forbidden`.
           properties:
             resource_type:
-              default: custom_field
+              example: custom_field
             type:
               description: >
                 *Deprecated: new integrations should prefer the resource_subtype
@@ -1270,6 +1279,10 @@ components:
                 *Conditional*. This string is the value of a text custom field.
               type: string
               example: Some Value
+    CustomFieldPostRequest:
+      allOf:
+        - $ref: '#/components/schemas/CustomFieldCompact'
+        - type: object
     CustomFieldObject:
       type: object
       properties:
@@ -1332,7 +1345,7 @@ components:
             relevant to that particular pairing.
           properties:
             resource_type:
-              default: custom_field_setting
+              example: custom_field_setting
     CustomFieldSettingArray:
       type: object
       properties:
@@ -1423,7 +1436,7 @@ components:
             /custom_fields/custom_field_gid/enum_options/insert` endpoint.
           properties:
             resource_type:
-              default: enum_option
+              example: enum_option
             name:
               description: The name of the enum option.
               type: string
@@ -1759,7 +1772,7 @@ components:
             This object determines if a user is a member of a portfolio.
           properties:
             resource_type:
-              default: portfolio_membership
+              example: portfolio_membership
             user:
               $ref: '#/components/schemas/UserCompact'
     PortfolioMembershipObject:
@@ -1925,7 +1938,7 @@ components:
                 The notes of the project with formatting as HTML.
 
                 *Note: This field is under active migration—please see our [blog
-                post] (https://asana.com/developers/news/new-rich-text) for more
+                post] (https://developers.asana.com/docs/#rich-text) for more
                 information.*
               type: string
               example: These are things we need to purchase.
@@ -2082,7 +2095,7 @@ components:
             endpoints described here.
           properties:
             resource_type:
-              default: project_membership
+              example: project_membership
             user:
               $ref: '#/components/schemas/UserCompact'
     ProjectMembershipObject:
@@ -2140,7 +2153,7 @@ components:
             for projects that are behind.
           properties:
             resource_type:
-              default: project_status
+              example: project_status
             title:
               description: The title of the project status update.
               readOnly: true
@@ -2178,7 +2191,7 @@ components:
             column in a board view of a project.
           properties:
             resource_type:
-              default: section
+              example: section
             name:
               description: >-
                 The name of the section (i.e. the text displayed as the section
@@ -2472,7 +2485,7 @@ components:
             system.
           properties:
             resource_type:
-              default: story
+              example: story
             text:
               description: >-
                 *Create-only*. Human-readable text for the story or comment.
@@ -2551,7 +2564,7 @@ components:
             exists in a single workspace or organization.
           properties:
             resource_type:
-              default: tag
+              example: tag
             name:
               description: >-
                 Name of the tag. This is generally a short sentence fragment that
@@ -2846,7 +2859,7 @@ components:
             resource_subtype:
               type: string
               readOnly: true
-              descriptions: >-
+              description: >-
                 The subtype of this resource. Different subtypes retain many of
                 the same fields and behavior, but may render differently in Asana
                 or represent resources with different semantic meaning.
@@ -2905,7 +2918,7 @@ components:
             are centered.
           properties:
             resource_type:
-              default: task
+              example: task
     TaskObject:
       type: object
       properties:
@@ -2937,7 +2950,7 @@ components:
                 The description of the team with formatting as HTML.
 
                 *Note: This field is under active migration—please see our [blog
-                post](https://asana.com/developers/news/new-rich-text) for more
+                post](https://developers.asana.com/docs/#rich-text) for more
                 information.*
               type: string
               example: >-
@@ -2959,7 +2972,7 @@ components:
             team.
           properties:
             resource_type:
-              default: team
+              example: team
     TeamObject:
       type: object
       properties:
@@ -3032,7 +3045,7 @@ components:
             access to various workspaces, projects, and tasks.
           properties:
             resource_type:
-              default: user
+              example: user
             name:
               type: string
               description: >-
@@ -3251,7 +3264,7 @@ components:
             projects and tasks have an associated workspace.
           properties:
             resource_type:
-              default: workspace
+              example: workspace
     WorkspaceObject:
       type: object
       properties:
@@ -3343,6 +3356,19 @@ components:
           authorizationUrl: https://app.asana.com/-/oauth_authorize
           tokenUrl: https://app.asana.com/-/oauth_token
           refreshUrl: https://app.asana.com/-/oauth_token
+          scopes:
+            default:
+              description: Provides access to all endpoints documented in our API
+                reference. If no scopes are requested, this scope is assumed by default.
+            openid:
+              description: Provides access to OpenID Connect ID tokens and the OpenID
+                Connect user info endpoint.
+            email:
+              description: "Provides access to the user\u2019s email through the OpenID\
+                \ Connect user info endpoint."
+            profile:
+              description: "Provides access to the user\u2019s name and profile photo\
+                \ through the OpenID Connect user info endpoint."
 paths:
   /attachments/{attachment_gid}:
     parameters:
@@ -3533,7 +3559,7 @@ paths:
         compact representation, `opt_fields` can be used to
         include more data than is returned in the compact representation. See the
         [getting started guide on input/output
-        options](https://asana.com/developers/documentation/getting-started/input-output-options)
+        options](https://developers.asana.com/docs/#input-output-options)
         for more information.
       tags:
         - Custom Field Settings
@@ -3612,7 +3638,6 @@ paths:
       operationId: createCustomField
       requestBody:
         description: The custom field object to create.
-        required: true
         content:
           application/json:
             schema:
@@ -3622,12 +3647,13 @@ paths:
                   allOf:
                     - $ref: '#/components/schemas/CustomField'
                     - type: object
+                      required:
+                        - workspace
                       properties:
                         workspace:
                           type: string
                           description: The workspace to create a custom field in.
                           example: '1331'
-                          required: true
       responses:
         201:
           description: Custom field successfully created.
@@ -3709,7 +3735,6 @@ paths:
       operationId: updateCustomField
       requestBody:
         description: The custom field object with all updated properties.
-        required: true
         content:
           application/json:
             schema:
@@ -3817,7 +3842,6 @@ paths:
       operationId: addEnumOption
       requestBody:
         description: The enum option object to create.
-        required: true
         content:
           application/json:
             schema:
@@ -3878,7 +3902,6 @@ paths:
       operationId: reorderEnumOption
       requestBody:
         description: The enum option object to create.
-        required: true
         content:
           application/json:
             schema:
@@ -3888,6 +3911,8 @@ paths:
                   allOf:
                     - $ref: '#/components/schemas/EnumOption'
                     - type: object
+                      required:
+                        - enum_option
                       properties:
                         enum_option:
                           type: string
@@ -3930,7 +3955,6 @@ paths:
     parameters:
       - name: enum_option_gid
         in: path
-        required: true
         description: >-
           Globally unique identifier for the enum option.
         schema:
@@ -3952,7 +3976,6 @@ paths:
       operationId: updateEnumOption
       requestBody:
         description: The enum option object to update
-        required: true
         content:
           application/json:
             schema:
@@ -5143,7 +5166,6 @@ paths:
       requestBody:
         description: >-
           Describes the duplicate's name and the elements that will be duplicated.
-        required: true
         content:
           application/json:
             schema:
@@ -5151,11 +5173,12 @@ paths:
               properties:
                 data:
                   type: object
+                  required:
+                    - name
                   properties:
                     name:
                       description: The name of the new project.
                       type: string
-                      required: true
                       example: New Project Name
                     team:
                       description: >-
@@ -5190,12 +5213,13 @@ paths:
                         `task_dates` must be included to use this option.
                         Requires either `start_on` or `due_on`, but not both.
                       type: object
+                      required:
+                        - should_skip_weekends
                       properties:
                         should_skip_weekends:
                           description: >-
                             Determines if the auto-shifted dates should skip weekends.
                           type: boolean
-                          required: true
                           example: true
                         due_on:
                           description: >-
@@ -6018,7 +6042,7 @@ paths:
             this parameter.
           schema:
             type: boolean
-          default: false
+            default: false
       responses:
         200:
           description: Successfully retrieved the specified set of tags.
@@ -6367,19 +6391,19 @@ paths:
                       type: object
                       properties:
                         assignee:
-                          $ref: '#/components/parameters/body_object_gid_override'
+                          $ref: '#/components/schemas/body_object_gid_override'
                           nullable: true
                         followers:
-                          $ref: '#/components/parameters/body_array_gid_override'
+                          $ref: '#/components/schemas/body_array_gid_override'
                         tags:
-                          $ref: '#/components/parameters/body_array_gid_override'
+                          $ref: '#/components/schemas/body_array_gid_override'
                         parent:
-                          $ref: '#/components/parameters/body_object_gid_override'
+                          $ref: '#/components/schemas/body_object_gid_override'
                           nullable: true
                         projects:
-                          $ref: '#/components/parameters/body_array_gid_override'
+                          $ref: '#/components/schemas/body_array_gid_override'
                         workspace:
-                          $ref: '#/components/parameters/body_object_gid_override'
+                          $ref: '#/components/schemas/body_object_gid_override'
       responses:
         201:
           description: Successfully created a new task.
@@ -6454,10 +6478,10 @@ paths:
                       type: object
                       properties:
                         assignee:
-                          $ref: '#/components/parameters/body_object_gid_override'
+                          $ref: '#/components/schemas/body_object_gid_override'
                           nullable: true
                         parent:
-                          $ref: '#/components/parameters/body_object_gid_override'
+                          $ref: '#/components/schemas/body_object_gid_override'
                           nullable: true
       responses:
         200:
@@ -6780,18 +6804,18 @@ paths:
                       type: object
                       properties:
                         assignee:
-                          $ref: '#/components/parameters/body_object_gid_override'
+                          $ref: '#/components/schemas/body_object_gid_override'
                           nullable: true
                         followers:
-                          $ref: '#/components/parameters/body_array_gid_override'
+                          $ref: '#/components/schemas/body_array_gid_override'
                         tags:
-                          $ref: '#/components/parameters/body_array_gid_override'
+                          $ref: '#/components/schemas/body_array_gid_override'
                         parent:
                           readOnly: true
                         projects:
-                          $ref: '#/components/parameters/body_array_gid_override'
+                          $ref: '#/components/schemas/body_array_gid_override'
                         workspace:
-                          $ref: '#/components/parameters/body_object_gid_override'
+                          $ref: '#/components/schemas/body_object_gid_override'
       responses:
         201:
           description: Successfully created the specified subtask.
@@ -7422,12 +7446,14 @@ paths:
       - $ref: '#/components/parameters/pretty'
       - $ref: '#/components/parameters/fields'
       - name: text
+        in: query
         description: >-
           Performs full-text search on both task name and description
         schema:
           type: string
         example: Bug
       - name: resource_subtype
+        in: query
         description: >-
           Filters results by the task's resource_subtype
         schema:
@@ -7435,7 +7461,7 @@ paths:
           enum:
             - default_task
             - milestone
-        default: milestone
+          default: milestone
       - name: assignee.any
         in: query
         schema:
@@ -7573,8 +7599,8 @@ paths:
         schema:
           type: string
           format: date
+          nullable: true
         example: '2019-09-15'
-        nullable: true
       - name: due_at.before
         in: query
         schema:
@@ -7604,8 +7630,8 @@ paths:
         schema:
           type: string
           format: date
+          nullable: true
         example: '2019-09-15'
-        nullable: true
       - name: created_on.before
         in: query
         schema:
@@ -7623,8 +7649,8 @@ paths:
         schema:
           type: string
           format: date
+          nullable: true
         example: '2019-09-15'
-        nullable: true
       - name: created_at.before
         in: query
         schema:
@@ -7654,8 +7680,8 @@ paths:
         schema:
           type: string
           format: date
+          nullable: true
         example: '2019-09-15'
-        nullable: true
       - name: completed_at.before
         in: query
         schema:
@@ -7685,8 +7711,8 @@ paths:
         schema:
           type: string
           format: date
+          nullable: true
         example: '2019-09-15'
-        nullable: true
       - name: modified_at.before
         in: query
         schema:
@@ -7724,11 +7750,6 @@ paths:
         schema:
           type: boolean
         example: false
-      - name: is_subtask
-        in: query
-        schema:
-          type: boolean
-        example: false
       - name: sort_by
         in: query
         schema:
@@ -7739,13 +7760,13 @@ paths:
             - completed_at
             - likes
             - modified_at
-        default: modified_at
+          default: modified_at
         example: likes
       - name: sort_ascending
         in: query
         schema:
           type: boolean
-        default: false
+          default: false
         example: true
     get:
       summary: Search tasks in a workspace
@@ -7811,7 +7832,7 @@ paths:
 
         Search results are not stable; repeating the same query multiple times may
         return the data in a different order, even if the data do not change. Because
-        of this, the traditional [pagination](/developers/documentation/getting-started/pagination)
+        of this, the traditional [pagination](https://developers.asana.com/docs/#pagination)
         available elsewhere in the Asana API is not available here. However, you can
         paginate manually by sorting the search results by their creation time and
         then
@@ -7832,7 +7853,7 @@ paths:
         #### Rate limits
 
         You may receive a `429 Too Many Requests` response if you hit any of our
-        [rate limits](/developers/documentation/getting-started/rate-limits).
+        [rate limits](https://developers.asana.com/docs/#rate-limits).
       tags:
         - Tasks
       operationId: getWorkspaceTasksSearch
@@ -8056,7 +8077,7 @@ paths:
             - tag
             - task
             - user
-        default: user
+          default: user
       - name: type
         in: query
         description: >-
@@ -8071,7 +8092,7 @@ paths:
             - tag
             - task
             - user
-        default: user
+          default: user
       - name: query
         in: query
         description: >-
@@ -8284,7 +8305,7 @@ paths:
             - tag
             - task
             - user
-        default: project
+          default: project
       - name: workspace
         in: query
         required: true
