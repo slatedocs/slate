@@ -380,7 +380,7 @@ This evente is triggerend once the user unfavorites or unpins a favorited listin
 ```
 This event is triggered once the user has already perfomed a property search and then saves it.
 
-### search_deleted
+### saved_search_deleted
 ```json
 //DATA EXAMPLE
 {
