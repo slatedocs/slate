@@ -1,244 +1,314 @@
 # ISA administration
 
+## GET /terms
 
-<a name="overview"></a>
-## Overview
-Standalone API for managing the administration of Innovative Finace ISAs. Cannot be used with other modules.
+```http
 
-
-### Version information
-*Version* : 1.0.0
-
-
-### URI scheme
-*Host* : api-sandbox.gojip2p.net
-*BasePath* : /
-*Schemes* : HTTPS
+GET /terms HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
 
 
-### Tags
 
-* cash : Calls related to recording cash movements
-* investment : Calls related to recording investments
-* investor : Calls related to the investor
-* isa : Calls related to retrieving the ISA
-* reconciliation : Calls related to reconciliation
-* registration : Calls related to registering an ISA
-* taxYearBreak : Calls related to managing tax year breaks
-* terms : Calls related to terms and conditions
-* testData : Calls to aid testing
-* transferIn : Calls related to Transfers In
-* transferOut : Calls related to Transfers Out
+HTTP/1.1 200 OK
+Content-Type: application/json
 
-
-### Consumes
-
-* `application/json`
-
-
-### Produces
-
-* `application/json`
-
-
-<a name="paths"></a>
-## Paths
-
-<a name="investoraudit"></a>
-### Audit record of HTTP requests
+{
+  "version" : "version",
+  "termsAndConditions" : "termsAndConditions"
+}
 ```
-GET /audit/investors/{investorId}
+### Description
+Returns the Terms and Conditions to show to the investor.
+#### Investor Lifecycle
+This endpoint should be called to return the Terms and Conditions that the investor must agree to before they can open an IF ISA.
+### Response
+| Name               | Type   | Description                                      |
+| ------------------ | ------ | ------------------------------------------------ |
+| termsAndConditions | string | The terms and conditions                         |
+| version            | string | The version of the terms and conditions eg 1.0.0 |
+## POST /terms
+
+```http
+
+POST /terms HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+{
+  "termsAndConditions" : "termsAndConditions"
+}
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "version" : "version",
+  "termsAndConditions" : "termsAndConditions"
+}
 ```
+### Description
+Creates or updates the Terms and Conditions to show to the investor.
+#### Investor Lifecycle
+This endpoint should be called to create or update the Terms and Conditions that the investor must agree to before they can open an IF ISA.
+### Request
+| Name               | Type   | Description                                | Required |
+| ------------------ | ------ | ------------------------------------------ | -------- |
+| termsAndConditions | string | The new Terms and Conditions HTML content. | required |
+### Response
+| Name               | Type   | Description                                      |
+| ------------------ | ------ | ------------------------------------------------ |
+| termsAndConditions | string | The terms and conditions                         |
+| version            | string | The version of the terms and conditions eg 1.0.0 |
+## POST /terms/agreement
 
+```http
 
-#### Description
-Returns an audit record of HTTP requests relating to the investor.
+POST /terms/agreement HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
 
+{
+  "termsAndConditionsVersion" : "termsAndConditionsVersion",
+  "dateTimeSigned" : "2000-01-23T04:56:07.000+00:00"
+}
 
-#### Parameters
+HTTP/1.1 200 OK
+Content-Type: application/json
 
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Path**|**investorId**  <br>*required*|The ID of the investor assigned by the P2P platform.|string|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|The audit records|[listAuditRecords](#listauditrecords)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* investor
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="getdeclaration"></a>
-### Returns the ISA Declaration to show to the investor
+{
+  "token" : "token"
+}
 ```
-GET /declaration
+### Description
+Issues a token that indicates that the investor has read and agreed to the specified version of the terms and conditions. The returned token can then be used as part of the create investor request or when the investor is signing a new version of the terms and conditions.
+#### Investor Lifecycle
+This endpoint should be called before creating the investor and when the investor signs a new version of the terms and conditions.
+#### Possible Error Codes:
+Please see [sign terms errors](/isa-administration-api/guides/Error%20Codes)
+### Request
+| Name                      | Type   | Description                                                                               | Required |
+| ------------------------- | ------ | ----------------------------------------------------------------------------------------- | -------- |
+| termsAndConditionsVersion | string | The version of the Terms and Conditions the user has signed, as returned in GET response. | required |
+| dateTimeSigned            | string | The date and time the conditions were signed                                              | required |
+### Response
+| Name  | Type   | Description                                                                             |
+| ----- | ------ | --------------------------------------------------------------------------------------- |
+| token | string | A token identifying the signing of the Ts & Cs. To be used on the POST /investors call. |
+## GET /investors/{clientId}/terms/status
+
+```http
+
+GET /investors/{clientId}/terms/status HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "status" : "UNSIGNED"
+}
 ```
+### Description
+Loads the investor's terms and conditions status which can be used to determine if they have signed the latest terms and conditions.
+### Response
+| Name   | Type   | Description |
+| ------ | ------ | ----------- |
+| status | string | The status. |
+## PUT /investors/{clientId}/terms/agreement/token
+
+```http
+
+PUT /investors/{clientId}/terms/agreement/token HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+{
+  "token" : "token"
+}
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "firstName" : "firstName",
+  "lastName" : "lastName",
+  "clientId" : "clientId",
+  "address" : {
+    "country" : "country",
+    "lineTwo" : "lineTwo",
+    "townCity" : "townCity",
+    "postcode" : "postcode",
+    "lineOne" : "lineOne",
+    "lineThree" : "lineThree",
+    "region" : "region"
+  },
+  "nationalInsuranceNumber" : "nationalInsuranceNumber",
+  "middleName" : "middleName",
+  "dateOfBirth" : "2000-01-23",
+  "contactDetails" : {
+    "emailAddress" : "emailAddress",
+    "telephoneNumber" : "telephoneNumber"
+  }
+}
+```
+### Description
+Applicable when the terms and conditions are updated and the investor must accept the latest version. The token is obtained from the 'terms/agreement' request. Note that this should not be called on investor registration, this is only applicable if an existing investor is signing a new version of the terms and conditions.
+### Request
+| Name  | Type   | Description                                                                             | Required |
+| ----- | ------ | --------------------------------------------------------------------------------------- | -------- |
+| token | string | A token identifying the signing of the Ts & Cs. To be used on the POST /investors call. | optional |
+### Response
+| Name                           | Type   | Description                                                                                                                                                                                        |
+| ------------------------------ | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| clientId                       | string | The ID assigned to this investor by the client P2P platform.                                                                                                                                       |
+| firstName                      | string | The investor's first name as it appears on their passport.                                                                                                                                         |
+| middleName                     | string | The investor's middle name as it appears on their passport.                                                                                                                                        |
+| lastName                       | string | The investor's last name as it appears on their passport.                                                                                                                                          |
+| dateOfBirth                    | string | The investor's date of birth.                                                                                                                                                                      |
+| contactDetails                 | ref    |                                                                                                                                                                                                    |
+| contactDetails.emailAddress    | string | The investor's email address.                                                                                                                                                                      |
+| contactDetails.telephoneNumber | string | The investor's telephone number.                                                                                                                                                                   |
+| nationalInsuranceNumber        | string | The investor's National Insurance number.                                                                                                                                                          |
+| address                        | ref    |                                                                                                                                                                                                    |
+| address.lineOne                | string | The first line of the investor's address.                                                                                                                                                          |
+| address.lineTwo                | string | The second line of the investor's address. NOT the town or region.                                                                                                                                 |
+| address.lineThree              | string | The third line of the investor's address. NOT the town or region.                                                                                                                                  |
+| address.townCity               | string | The town of the investor's address.                                                                                                                                                                |
+| address.region                 | string | The region of the investor's address.                                                                                                                                                              |
+| address.country                | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked. |
+| address.postcode               | string | The Post Code of the investor's address.                                                                                                                                                           |
+## GET /declaration
+
+```http
+
+GET /declaration HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
 
 
-#### Description
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "declaration" : "declaration",
+  "version" : "version"
+}
+```
+### Description
 Returns the ISA Declaration to show to the investor.
 #### Investor Lifecycle
 This endpoint should be called to return the ISA Declaration that the investor must agree to before they can open an IF ISA.
+### Response
+| Name        | Type   | Description                                                     |
+| ----------- | ------ | --------------------------------------------------------------- |
+| declaration | string | The declaration                                                 |
+| version     | string | A unique identifier of the version of this declaration eg. 0.11 |
+## POST /declaration/agreement
 
+```http
 
-#### Parameters
+POST /declaration/agreement HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
 
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
+{
+  "declarationVersion" : 2.68,
+  "dateTimeSigned" : "2000-01-23T04:56:07.000+00:00"
+}
 
+HTTP/1.1 200 OK
+Content-Type: application/json
 
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Declaration response|[declarationModel](#declarationmodel)|
-|**400**|Invalid request|[errorModel](#errormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* registration
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="signdeclaration"></a>
-### Records an investor agreeing to the ISA Declaration
+{
+  "token" : "token"
+}
 ```
-POST /declaration/agreement
-```
-
-
-#### Description
+### Description
 Records an investor agreeing to the ISA Declaration.
 #### Investor Lifecycle
 This endpoint should be called before creating the investor.
 #### Possible Error Codes:
 Please see [sign declaration errors](/isa-administration-api/guides/Error%20Codes)
+### Request
+| Name               | Type   | Description                                                                      | Required |
+| ------------------ | ------ | -------------------------------------------------------------------------------- | -------- |
+| declarationVersion | number | The version of the Declaration the user has signed, as returned in GET response. | required |
+| dateTimeSigned     | string | The date and time the conditions were signed                                     | required |
+### Response
+| Name  | Type   | Description                                                                                 |
+| ----- | ------ | ------------------------------------------------------------------------------------------- |
+| token | string | A token identifying the signing of the Declaration. To be used on the POST /investors call. |
+## POST /investors
 
+```http
 
-#### Parameters
+POST /investors HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
 
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Body**|**declaration**  <br>*required*|The Investor agreeing to the Declaration.|[newDeclarationModel](#newdeclarationmodel)|
+{
+  "firstName" : "firstName",
+  "lastName" : "lastName",
+  "clientId" : "clientId",
+  "address" : {
+    "country" : "country",
+    "lineTwo" : "lineTwo",
+    "townCity" : "townCity",
+    "postcode" : "postcode",
+    "lineOne" : "lineOne",
+    "lineThree" : "lineThree",
+    "region" : "region"
+  },
+  "declarationToken" : "declarationToken",
+  "nationalInsuranceNumber" : "nationalInsuranceNumber",
+  "middleName" : "middleName",
+  "dateOfBirth" : "2000-01-23",
+  "termsAndConditionsToken" : "termsAndConditionsToken",
+  "contactDetails" : {
+    "emailAddress" : "emailAddress",
+    "telephoneNumber" : "telephoneNumber"
+  }
+}
 
+HTTP/1.1 200 OK
+Content-Type: application/json
 
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Declaration signed successfully|[declarationTokenModel](#declarationtokenmodel)|
-|**400**|Invalid request|[declarationErrorModel](#declarationerrormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* registration
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="investorreconciliationsummary"></a>
-### A reconciliation summary of investor data
+{
+  "firstName" : "firstName",
+  "lastName" : "lastName",
+  "clientId" : "clientId",
+  "address" : {
+    "country" : "country",
+    "lineTwo" : "lineTwo",
+    "townCity" : "townCity",
+    "postcode" : "postcode",
+    "lineOne" : "lineOne",
+    "lineThree" : "lineThree",
+    "region" : "region"
+  },
+  "nationalInsuranceNumber" : "nationalInsuranceNumber",
+  "middleName" : "middleName",
+  "dateOfBirth" : "2000-01-23",
+  "contactDetails" : {
+    "emailAddress" : "emailAddress",
+    "telephoneNumber" : "telephoneNumber"
+  }
+}
 ```
-GET /investorReconciliation
-```
-
-
-#### Description
-Returns a reconciliation summary of investor name and address data
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Reconciliation summary|[investorReconciliationSummary](#investorreconciliationsummary)|
-|**400**|Invalid request|[errorModel](#errormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* reconciliation
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="addinvestor"></a>
-### Creates a new investor and an accompanying ISA
-```
-POST /investors
-```
-
-
-#### Description
+### Description
 Creates a new investor and an accompanying ISA.
 This creates an investor on the Goji platform and allocates it to the P2P platform that sent the request.
 #### Investor Lifecycle
@@ -250,525 +320,2928 @@ In addition to checking the format of the supplied data, the following validatio
 * ensure the user complies with the ISA UK residency checks
 #### Possible Error Codes
 Please see [create investor errors](/isa-administration-api/guides/Error%20Codes)
+### Request
+| Name                           | Type   | Description                                                                                                                                                                                        | Required |
+| ------------------------------ | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| clientId                       | string | The ID assigned to this investor by the client P2P platform.                                                                                                                                       | required |
+| firstName                      | string | The investor's first name as it appears on their passport.                                                                                                                                         | required |
+| middleName                     | string | The investor's middle name as it appears on their passport.                                                                                                                                        | optional |
+| lastName                       | string | The investor's last name as it appears on their passport.                                                                                                                                          | required |
+| dateOfBirth                    | string | The investor's date of birth.                                                                                                                                                                      | required |
+| contactDetails                 | ref    |                                                                                                                                                                                                    | required |
+| contactDetails.emailAddress    | string | The investor's email address.                                                                                                                                                                      ||
+| contactDetails.telephoneNumber | string | The investor's telephone number.                                                                                                                                                                   ||
+| nationalInsuranceNumber        | string | The investor's National Insurance number.                                                                                                                                                          | required |
+| address                        | ref    |                                                                                                                                                                                                    | required |
+| address.lineOne                | string | The first line of the investor's address.                                                                                                                                                          ||
+| address.lineTwo                | string | The second line of the investor's address. NOT the town or region.                                                                                                                                 ||
+| address.lineThree              | string | The third line of the investor's address. NOT the town or region.                                                                                                                                  ||
+| address.townCity               | string | The town of the investor's address.                                                                                                                                                                ||
+| address.region                 | string | The region of the investor's address.                                                                                                                                                              ||
+| address.country                | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked. ||
+| address.postcode               | string | The Post Code of the investor's address.                                                                                                                                                           ||
+| termsAndConditionsToken        | string | A token returned by POST /terms to identify that the user has signed the Ts & Cs.                                                                                                                  | required |
+| declarationToken               | string | A token returned by POST /declaration to identify that the user has signed the Declaration.                                                                                                        | required |
+### Response
+| Name                           | Type   | Description                                                                                                                                                                                        |
+| ------------------------------ | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| clientId                       | string | The ID assigned to this investor by the client P2P platform.                                                                                                                                       |
+| firstName                      | string | The investor's first name as it appears on their passport.                                                                                                                                         |
+| middleName                     | string | The investor's middle name as it appears on their passport.                                                                                                                                        |
+| lastName                       | string | The investor's last name as it appears on their passport.                                                                                                                                          |
+| dateOfBirth                    | string | The investor's date of birth.                                                                                                                                                                      |
+| contactDetails                 | ref    |                                                                                                                                                                                                    |
+| contactDetails.emailAddress    | string | The investor's email address.                                                                                                                                                                      |
+| contactDetails.telephoneNumber | string | The investor's telephone number.                                                                                                                                                                   |
+| nationalInsuranceNumber        | string | The investor's National Insurance number.                                                                                                                                                          |
+| address                        | ref    |                                                                                                                                                                                                    |
+| address.lineOne                | string | The first line of the investor's address.                                                                                                                                                          |
+| address.lineTwo                | string | The second line of the investor's address. NOT the town or region.                                                                                                                                 |
+| address.lineThree              | string | The third line of the investor's address. NOT the town or region.                                                                                                                                  |
+| address.townCity               | string | The town of the investor's address.                                                                                                                                                                |
+| address.region                 | string | The region of the investor's address.                                                                                                                                                              |
+| address.country                | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked. |
+| address.postcode               | string | The Post Code of the investor's address.                                                                                                                                                           |
+## POST /investors/validIsaApplication
 
+```http
 
-#### Parameters
+POST /investors/validIsaApplication HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
 
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Body**|**investor**  <br>*required*|The new Investor|[newInvestor](#newinvestor)|
+{
+  "address" : {
+    "country" : "country",
+    "lineTwo" : "lineTwo",
+    "townCity" : "townCity",
+    "postcode" : "postcode",
+    "lineOne" : "lineOne",
+    "lineThree" : "lineThree",
+    "region" : "region"
+  },
+  "nationalInsuranceNumber" : "nationalInsuranceNumber",
+  "dateOfBirth" : "2000-01-23"
+}
 
+HTTP/1.1 200 OK
+Content-Type: application/json
 
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Investor response|[investor](#investor)|
-|**400**|Invalid request|[investorErrorModel](#investorerrormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* registration
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="validateinvestor"></a>
-### Validate details of an investor ahead of application
+""
 ```
-POST /investors/validIsaApplication
-```
-
-
-#### Description
+### Description
 Validates the details of an investor to allow a P2PP to verify whether an investor is ellgibile for an ISA.
 Checks performed:
 * UK residency check against the address
 * Age of investor
 #### Possible Error Codes
 Please see [validate investor errors](/isa-administration-api/guides/Error%20Codes)
+### Request
+| Name                    | Type   | Description                                                                                                                                                                                        | Required |
+| ----------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| dateOfBirth             | string | The date of birth of the investor in yyyy-MM-dd format                                                                                                                                             | required |
+| address                 | ref    |                                                                                                                                                                                                    | required |
+| address.lineOne         | string | The first line of the investor's address.                                                                                                                                                          ||
+| address.lineTwo         | string | The second line of the investor's address. NOT the town or region.                                                                                                                                 ||
+| address.lineThree       | string | The third line of the investor's address. NOT the town or region.                                                                                                                                  ||
+| address.townCity        | string | The town of the investor's address.                                                                                                                                                                ||
+| address.region          | string | The region of the investor's address.                                                                                                                                                              ||
+| address.country         | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked. ||
+| address.postcode        | string | The Post Code of the investor's address.                                                                                                                                                           ||
+| nationalInsuranceNumber | string | Optionally check to see if the National Insurance number has already been registered                                                                                                               | required |
+### Response
+| Name | Type | Description || ---- | ---- | ----------- |
+
+## GET /investors/{investorId}
+
+```http
+
+GET /investors/{investorId} HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
 
 
-#### Parameters
 
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Body**|**validateInvestor**  <br>*required*|The investor details to validate|[validateInvestor](#validateinvestor)|
+HTTP/1.1 200 OK
+Content-Type: application/json
 
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Investor is able to open an ISA|No Content|
-|**400**|Invalid request|[errorModel](#errormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `applicaiton/json`
-
-
-#### Tags
-
-* registration
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="retrievesubscriptionstatus"></a>
-### Retrieve the subscription status of an investor's ISA
+{
+  "firstName" : "firstName",
+  "lastName" : "lastName",
+  "clientId" : "clientId",
+  "address" : {
+    "country" : "country",
+    "lineTwo" : "lineTwo",
+    "townCity" : "townCity",
+    "postcode" : "postcode",
+    "lineOne" : "lineOne",
+    "lineThree" : "lineThree",
+    "region" : "region"
+  },
+  "nationalInsuranceNumber" : "nationalInsuranceNumber",
+  "middleName" : "middleName",
+  "dateOfBirth" : "2000-01-23",
+  "contactDetails" : {
+    "emailAddress" : "emailAddress",
+    "telephoneNumber" : "telephoneNumber"
+  }
+}
 ```
-GET /investors/{clientId}/isa/subscriptionStatus
-```
-
-
-#### Description
-Used to retrieve the subscription status of an investor's ISA. Can be used for tax year breaks.
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Path**|**clientId**  <br>*required*|The client ID of the investor assigned by the P2P platform.|string|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|The Status|[isaSubscriptionStatus](#isasubscriptionstatus)|
-|**400**|Invalid request|[investmentErrorModel](#investmenterrormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* isa
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="loadinvestortermsstatus"></a>
-### Records that the investor has agreed to the version of the terms and conditions linked to the provided token
-```
-PUT /investors/{clientId}/terms/agreement/token
-```
-
-
-#### Description
-Applicable when the terms and conditions are updated and the investor must accept the latest version. The token is obtained from the 'terms/agreement' request. Note that this should not be called on investor registration, this is only applicable if an existing investor is signing a new version of the terms and conditions.
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Path**|**clientId**  <br>*required*|The client ID of the investor to load.|string|
-|**Body**|**termsToken**  <br>*required*|The terms and conditions token.|[termsTokenModel](#termstokenmodel)|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Investor response|[investor](#investor)|
-|**400**|Invalid request|[errorModel](#errormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* terms
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="loadinvestortermsstatus"></a>
-### Returns the investor's terms and conditions status
-```
-GET /investors/{clientId}/terms/status
-```
-
-
-#### Description
-Loads the investor's terms and conditions status which can be used to determine if they have signed the latest terms and conditions.
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Path**|**clientId**  <br>*required*|The client ID of the investor to load.|string|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|The terms and conditions status.|[TermsStatus](#termsstatus)|
-|**400**|Invalid request|[errorModel](#errormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* terms
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="investortransferinsummary"></a>
-### Returns summary for the specified transfer in
-```
-GET /investors/{clientId}/transferIn/{transferInId}/summary
-```
-
-
-#### Description
-Returns the in progress transfers in for the specified investor
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Path**|**clientId**  <br>*required*|The ID of the investor assigned by the P2P platform.|string|
-|**Path**|**transferInId**  <br>*required*|The ID of the transfer in.|string|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|The transfer in investor's TransferInSummaries|[transferInSummary](#transferinsummary)|
-|**400**|Invalid request|[errorModel](#errormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* transferIn
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="createtransferhistory"></a>
-### Create the transfer history for an investor's Transfer In
-```
-POST /investors/{clientId}/transferIn/{transferInId}/transferHistory
-```
-
-
-#### Description
-Creates the transfer history for an investor's Transfer In
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Path**|**clientId**  <br>*required*|The ID of the investor assigned by the P2P platform.|string|
-|**Path**|**transferInId**  <br>*required*|The ID of the transfer in taken from the Goji Admin Console|string|
-|**Body**|**createUpdateTransferHistoryTestData**  <br>*required*|Create a transfer history for testing|[createUpdateTransferHistoryTestData](#createupdatetransferhistorytestdata)|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Transfer History|[transferInHistory](#transferinhistory)|
-|**400**|Invalid request|[errorModel](#errormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* testData
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="updatetransferhistory"></a>
-### Update the transfer history for an investor's Transfer In
-```
-PUT /investors/{clientId}/transferIn/{transferInId}/transferHistory
-```
-
-
-#### Description
-Updates the transfer history for an investor's Transfer In
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Path**|**clientId**  <br>*required*|The ID of the investor assigned by the P2P platform.|string|
-|**Path**|**transferInId**  <br>*required*|The ID of the transfer in taken from the Goji Admin Console|string|
-|**Body**|**createUpdateTransferHistoryTestData**  <br>*required*|Update a transfer history for testing|[createUpdateTransferHistoryTestData](#createupdatetransferhistorytestdata)|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Transfer History|[transferInHistory](#transferinhistory)|
-|**400**|Invalid request|[errorModel](#errormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* testData
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="investortransferinsummaries"></a>
-### Returns the in progress transfers in for the specified investor
-```
-GET /investors/{clientId}/transferInSummary
-```
-
-
-#### Description
-Returns the in progress transfers in for the specified investor
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Path**|**clientId**  <br>*required*|The ID of the investor assigned by the P2P platform.|string|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|The transfer in investor's TransferInSummaries|[transferInSummaries](#transferinsummaries)|
-|**400**|Invalid request|[errorModel](#errormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* transferIn
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="getinvestor"></a>
-### Retrieve the details of an investor
-```
-GET /investors/{investorId}
-```
-
-
-#### Description
+### Description
 Retrieves the details of an investor.
 #### Investor Lifecycle
 This endpoint should be called when the non-financial details of an investor need to be accessed.
+### Response
+| Name                           | Type   | Description                                                                                                                                                                                        |
+| ------------------------------ | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| clientId                       | string | The ID assigned to this investor by the client P2P platform.                                                                                                                                       |
+| firstName                      | string | The investor's first name as it appears on their passport.                                                                                                                                         |
+| middleName                     | string | The investor's middle name as it appears on their passport.                                                                                                                                        |
+| lastName                       | string | The investor's last name as it appears on their passport.                                                                                                                                          |
+| dateOfBirth                    | string | The investor's date of birth.                                                                                                                                                                      |
+| contactDetails                 | ref    |                                                                                                                                                                                                    |
+| contactDetails.emailAddress    | string | The investor's email address.                                                                                                                                                                      |
+| contactDetails.telephoneNumber | string | The investor's telephone number.                                                                                                                                                                   |
+| nationalInsuranceNumber        | string | The investor's National Insurance number.                                                                                                                                                          |
+| address                        | ref    |                                                                                                                                                                                                    |
+| address.lineOne                | string | The first line of the investor's address.                                                                                                                                                          |
+| address.lineTwo                | string | The second line of the investor's address. NOT the town or region.                                                                                                                                 |
+| address.lineThree              | string | The third line of the investor's address. NOT the town or region.                                                                                                                                  |
+| address.townCity               | string | The town of the investor's address.                                                                                                                                                                |
+| address.region                 | string | The region of the investor's address.                                                                                                                                                              |
+| address.country                | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked. |
+| address.postcode               | string | The Post Code of the investor's address.                                                                                                                                                           |
+## PUT /investors/{investorId}
 
+```http
 
-#### Parameters
+PUT /investors/{investorId} HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
 
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Path**|**investorId**  <br>*required*|The ID of the investor assigned by the P2P platform.|string|
+{
+  "firstName" : "firstName",
+  "lastName" : "lastName",
+  "address" : {
+    "country" : "country",
+    "lineTwo" : "lineTwo",
+    "townCity" : "townCity",
+    "postcode" : "postcode",
+    "lineOne" : "lineOne",
+    "lineThree" : "lineThree",
+    "region" : "region"
+  },
+  "nationalInsuranceNumber" : "nationalInsuranceNumber",
+  "middleName" : "middleName",
+  "dateOfBirth" : "2000-01-23",
+  "contactDetails" : {
+    "emailAddress" : "emailAddress",
+    "telephoneNumber" : "telephoneNumber"
+  }
+}
 
+HTTP/1.1 200 OK
+Content-Type: application/json
 
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Investor response|[investor](#investor)|
-|**400**|Invalid request|[errorModel](#errormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* investor
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="updateinvestor"></a>
-### Updates the details of an investor
+{
+  "firstName" : "firstName",
+  "lastName" : "lastName",
+  "clientId" : "clientId",
+  "address" : {
+    "country" : "country",
+    "lineTwo" : "lineTwo",
+    "townCity" : "townCity",
+    "postcode" : "postcode",
+    "lineOne" : "lineOne",
+    "lineThree" : "lineThree",
+    "region" : "region"
+  },
+  "nationalInsuranceNumber" : "nationalInsuranceNumber",
+  "middleName" : "middleName",
+  "dateOfBirth" : "2000-01-23",
+  "contactDetails" : {
+    "emailAddress" : "emailAddress",
+    "telephoneNumber" : "telephoneNumber"
+  }
+}
 ```
-PUT /investors/{investorId}
-```
-
-
-#### Description
+### Description
 Updates the details of an investor.
 #### Investor Lifecycle
 This endpoint should be called whenever the details of an investor change.
+### Request
+| Name                           | Type   | Description                                                                                                                                                                                        | Required |
+| ------------------------------ | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| firstName                      | string | The investor's first name as it appears on their passport.                                                                                                                                         | required |
+| middleName                     | string | The investor's middle name as it appears on their passport.                                                                                                                                        | optional |
+| lastName                       | string | The investor's last name as it appears on their passport.                                                                                                                                          | required |
+| dateOfBirth                    | string | The investor's date of birth.                                                                                                                                                                      | required |
+| contactDetails                 | ref    |                                                                                                                                                                                                    | required |
+| contactDetails.emailAddress    | string | The investor's email address.                                                                                                                                                                      ||
+| contactDetails.telephoneNumber | string | The investor's telephone number.                                                                                                                                                                   ||
+| nationalInsuranceNumber        | string | The investor's National Insurance number.                                                                                                                                                          | required |
+| address                        | ref    |                                                                                                                                                                                                    | optional |
+| address.lineOne                | string | The first line of the investor's address.                                                                                                                                                          ||
+| address.lineTwo                | string | The second line of the investor's address. NOT the town or region.                                                                                                                                 ||
+| address.lineThree              | string | The third line of the investor's address. NOT the town or region.                                                                                                                                  ||
+| address.townCity               | string | The town of the investor's address.                                                                                                                                                                ||
+| address.region                 | string | The region of the investor's address.                                                                                                                                                              ||
+| address.country                | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked. ||
+| address.postcode               | string | The Post Code of the investor's address.                                                                                                                                                           ||
+### Response
+| Name                           | Type   | Description                                                                                                                                                                                        |
+| ------------------------------ | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| clientId                       | string | The ID assigned to this investor by the client P2P platform.                                                                                                                                       |
+| firstName                      | string | The investor's first name as it appears on their passport.                                                                                                                                         |
+| middleName                     | string | The investor's middle name as it appears on their passport.                                                                                                                                        |
+| lastName                       | string | The investor's last name as it appears on their passport.                                                                                                                                          |
+| dateOfBirth                    | string | The investor's date of birth.                                                                                                                                                                      |
+| contactDetails                 | ref    |                                                                                                                                                                                                    |
+| contactDetails.emailAddress    | string | The investor's email address.                                                                                                                                                                      |
+| contactDetails.telephoneNumber | string | The investor's telephone number.                                                                                                                                                                   |
+| nationalInsuranceNumber        | string | The investor's National Insurance number.                                                                                                                                                          |
+| address                        | ref    |                                                                                                                                                                                                    |
+| address.lineOne                | string | The first line of the investor's address.                                                                                                                                                          |
+| address.lineTwo                | string | The second line of the investor's address. NOT the town or region.                                                                                                                                 |
+| address.lineThree              | string | The third line of the investor's address. NOT the town or region.                                                                                                                                  |
+| address.townCity               | string | The town of the investor's address.                                                                                                                                                                |
+| address.region                 | string | The region of the investor's address.                                                                                                                                                              |
+| address.country                | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked. |
+| address.postcode               | string | The Post Code of the investor's address.                                                                                                                                                           |
+## GET /investors/{investorId}/isa
+
+```http
+
+GET /investors/{investorId}/isa HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
 
 
-#### Parameters
 
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Path**|**investorId**  <br>*required*|The ID of the investor assigned by the P2P platform.|string|
-|**Body**|**investor**  <br>*required*|The updated Investor|[updateInvestor](#updateinvestor)|
+HTTP/1.1 200 OK
+Content-Type: application/json
 
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Investor response|[investor](#investor)|
-|**400**|Invalid request|[investorErrorModel](#investorerrormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* investor
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="addcash"></a>
-### Records a cash transaction into the ISA
+{
+  "totalInterestReceived" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "remainingSubscriptionAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "dateCreated" : "2000-01-23",
+  "remainingAdditionalPermittedSubscriptions" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "cashTransactions" : [ {
+    "amount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "clientTransactionId" : "clientTransactionId",
+    "type" : { },
+    "dateTimeOfTransaction" : "2000-01-23T04:56:07.000+00:00"
+  }, {
+    "amount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "clientTransactionId" : "clientTransactionId",
+    "type" : { },
+    "dateTimeOfTransaction" : "2000-01-23T04:56:07.000+00:00"
+  } ],
+  "subscriptionStatus" : "VALID",
+  "totalIsaBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalInterestReceivedThisTaxYear" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalCashBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "investments" : [ {
+    "clientInvestmentId" : "clientInvestmentId",
+    "expectedInterest" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "termOfInvestment" : 2.15,
+    "originalAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "reinvestments" : [ {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    }, {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    } ],
+    "id" : "id",
+    "investmentType" : "LOAN",
+    "dateTimeOfInvestment" : "2000-01-23T04:56:07.000+00:00",
+    "repayments" : [ {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    }, {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    } ]
+  }, {
+    "clientInvestmentId" : "clientInvestmentId",
+    "expectedInterest" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "termOfInvestment" : 2.15,
+    "originalAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "reinvestments" : [ {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    }, {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    } ],
+    "id" : "id",
+    "investmentType" : "LOAN",
+    "dateTimeOfInvestment" : "2000-01-23T04:56:07.000+00:00",
+    "repayments" : [ {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    }, {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    } ]
+  } ],
+  "coolingOffPeriodEnds" : "2000-01-23",
+  "totalInvestedBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  }
+}
 ```
-POST /investors/{investorId}/cash
+### Description
+Returns details of the investor's ISA.
+#### Investor Lifecycle
+This endpoint should be called whenever up to date details of the investor's ISA are required eg remaining subscription amount etc.
+### Response
+| Name                                               | Type   | Description                                                                                                   |
+| -------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------- |
+| totalIsaBalance                                    | ref    | The total current balance in the ISA, inclusive of all years.                                                 |
+| totalIsaBalance.amount                             | number | The amount                                                                                                    |
+| totalIsaBalance.currency                           | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| remainingSubscriptionAmount                        | ref    | The amount remaining that can be invested in the ISA in the current tax year.                                 |
+| remainingSubscriptionAmount.amount                 | number | The amount                                                                                                    |
+| remainingSubscriptionAmount.currency               | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalCashBalance                                   | ref    | The total amount of cash in the ISA that is not currently invested.                                           |
+| totalCashBalance.amount                            | number | The amount                                                                                                    |
+| totalCashBalance.currency                          | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| dateCreated                                        | string | Date the ISA was created                                                                                      |
+| coolingOffPeriodEnds                               | string | Date the cooling off period ends                                                                              |
+| investments                                        | array  | The list of investments that make up the ISA                                                                  |
+| investments[].id                                   | string | The ID of the loan defined by Goji                                                                            |
+| investments[].clientInvestmentId                   | string | The ID of the loan defined by the P2P platform                                                                |
+| investments[].investmentType                       | string | The type of the investment. Currently only loans are supported.                                               |
+| investments[].originalAmount                       | ref    | The original capital amount of the investment.                                                                |
+| investments[].expectedInterest                     | ref    | The expected interest to receive over the life of the investment.                                             |
+| investments[].dateTimeOfInvestment                 | string | The date and time the investment started                                                                      |
+| investments[].termOfInvestment                     | number | The term of the investment in months                                                                          |
+| investments[].repayments                           | array  | Repayments that have been made against the investment by the borrower that were not reinvested automatically. |
+| investments[].reinvestments                        | array  | Repayments that have been made against the instruments by the borrower that were reinvested automatically.    |
+| cashTransactions                                   | array  | Cash transactions on the ISA                                                                                  |
+| cashTransactions[].clientTransactionId             | string | The ID of the transaction assigned by the P2P platform                                                        |
+| cashTransactions[].amount                          | ref    | The amount of the cash transaction                                                                            |
+| cashTransactions[].dateTimeOfTransaction           | string | The date and time of the transaction                                                                          |
+| cashTransactions[].type                            | ref    | Indicates the type of the cash transaction.                                                                   |
+| totalInterestReceived                              | ref    |                                                                                                               |
+| totalInterestReceived.amount                       | number | The amount                                                                                                    |
+| totalInterestReceived.currency                     | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalInterestReceivedThisTaxYear                   | ref    |                                                                                                               |
+| totalInterestReceivedThisTaxYear.amount            | number | The amount                                                                                                    |
+| totalInterestReceivedThisTaxYear.currency          | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalInvestedBalance                               | ref    |                                                                                                               |
+| totalInvestedBalance.amount                        | number | The amount                                                                                                    |
+| totalInvestedBalance.currency                      | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| subscriptionStatus                                 | string | Indicates if anything is preventing further subscriptions to this ISA.                                        |
+| remainingAdditionalPermittedSubscriptions          | ref    | The remaining amount that can be subscribed as an Additional Permitted Subscription.                          |
+| remainingAdditionalPermittedSubscriptions.amount   | number | The amount                                                                                                    |
+| remainingAdditionalPermittedSubscriptions.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+## GET /investors/{investorId}/isa/summary
+
+```http
+
+GET /investors/{investorId}/isa/summary HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "remainingSubscriptionAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalIsaBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalCashBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalAmountInvested" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  }
+}
 ```
+### Description
+Returns summary details of the investor's ISA.
+#### Investor Lifecycle
+This endpoint should be called whenever summary details of the investor's ISA are required eg remaining subscription amount etc.
+### Response
+| Name                                 | Type   | Description                                                                   |
+| ------------------------------------ | ------ | ----------------------------------------------------------------------------- |
+| totalCashBalance                     | ref    | The total amount of cash in the ISA that is not currently invested.           |
+| totalCashBalance.amount              | number | The amount                                                                    |
+| totalCashBalance.currency            | string | The currency in ISO 4217 three character codes eg 'GBP'                       |
+| totalAmountInvested                  | ref    | The total amount of the ISA that is currently invested.                       |
+| totalAmountInvested.amount           | number | The amount                                                                    |
+| totalAmountInvested.currency         | string | The currency in ISO 4217 three character codes eg 'GBP'                       |
+| totalIsaBalance                      | ref    | The total current balance in the ISA, inclusive of all years.                 |
+| totalIsaBalance.amount               | number | The amount                                                                    |
+| totalIsaBalance.currency             | string | The currency in ISO 4217 three character codes eg 'GBP'                       |
+| remainingSubscriptionAmount          | ref    | The amount remaining that can be invested in the ISA in the current tax year. |
+| remainingSubscriptionAmount.amount   | number | The amount                                                                    |
+| remainingSubscriptionAmount.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                       |
+## GET /transferIn/investors/{clientId}/open
+
+```http
+
+GET /transferIn/investors/{clientId}/open HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
 
 
-#### Description
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+""
+```
+### Description
+Used to find an overview of all transfer in workflows for a particular investor. It should be understood that the existence of the TransferDate determines whether the transfer history form has been submitted
+### Response
+| Name | Type | Description || ---- | ---- | ----------- |
+
+## GET /investors/{clientId}/isa/subscriptionStatus
+
+```http
+
+GET /investors/{clientId}/isa/subscriptionStatus HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "subscriptionStatus" : "VALID"
+}
+```
+### Description
+Used to retrieve the subscription status of an investor's ISA. Can be used for tax year breaks.
+### Response
+| Name               | Type   | Description                                                            |
+| ------------------ | ------ | ---------------------------------------------------------------------- |
+| subscriptionStatus | string | Indicates if anything is preventing further subscriptions to this ISA. |
+## PUT /investors/{investorId}/isa/status
+
+```http
+
+PUT /investors/{investorId}/isa/status HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+{
+  "dateTime" : "2000-01-23T04:56:07.000+00:00",
+  "isaSubscriptionStatus" : "VALID"
+}
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "remainingSubscriptionAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalIsaBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalCashBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalAmountInvested" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  }
+}
+```
+### Description
+Updates the status of an investor's ISA.  This can aid testing by placing an ISA into an invalid status.
+### Request
+| Name                  | Type   | Description                                             | Required |
+| --------------------- | ------ | ------------------------------------------------------- | -------- |
+| dateTime              | string | The date time the residual income payment was received. | required |
+| isaSubscriptionStatus | string | The status to change this ISA to.                       | required |
+### Response
+| Name                                 | Type   | Description                                                                   |
+| ------------------------------------ | ------ | ----------------------------------------------------------------------------- |
+| totalCashBalance                     | ref    | The total amount of cash in the ISA that is not currently invested.           |
+| totalCashBalance.amount              | number | The amount                                                                    |
+| totalCashBalance.currency            | string | The currency in ISO 4217 three character codes eg 'GBP'                       |
+| totalAmountInvested                  | ref    | The total amount of the ISA that is currently invested.                       |
+| totalAmountInvested.amount           | number | The amount                                                                    |
+| totalAmountInvested.currency         | string | The currency in ISO 4217 three character codes eg 'GBP'                       |
+| totalIsaBalance                      | ref    | The total current balance in the ISA, inclusive of all years.                 |
+| totalIsaBalance.amount               | number | The amount                                                                    |
+| totalIsaBalance.currency             | string | The currency in ISO 4217 three character codes eg 'GBP'                       |
+| remainingSubscriptionAmount          | ref    | The amount remaining that can be invested in the ISA in the current tax year. |
+| remainingSubscriptionAmount.amount   | number | The amount                                                                    |
+| remainingSubscriptionAmount.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                       |
+## PUT /investors/{clientId}/transferIn/{transferInId}/transferHistory
+
+```http
+
+PUT /investors/{clientId}/transferIn/{transferInId}/transferHistory HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+{
+  "transferInDate" : "2000-01-23",
+  "firstSubscriptionDateInCurrentYear" : "2000-01-23",
+  "transferAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "currentYearSubscriptionAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  }
+}
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "transferInDate" : "2000-01-23",
+  "firstSubscriptionDateInCurrentYear" : "2000-01-23",
+  "adjustedAmounts" : {
+    "previousYearsSubscriptionAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "totalIsaTransferAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "repairAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "currentYearSubscriptionAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    }
+  },
+  "transferAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "currentYearSubscriptionAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  }
+}
+```
+### Description
+Updates the transfer history for an investor's Transfer In
+### Request
+| Name                                   | Type   | Description                                                            | Required |
+| -------------------------------------- | ------ | ---------------------------------------------------------------------- | -------- |
+| transferAmount                         | ref    | The total transfer amount                                              | required |
+| transferAmount.amount                  | number | The amount                                                             ||
+| transferAmount.currency                | string | The currency in ISO 4217 three character codes eg 'GBP'                ||
+| currentYearSubscriptionAmount          | ref    | The total amount subscribed within the current tax year                | required |
+| currentYearSubscriptionAmount.amount   | number | The amount                                                             ||
+| currentYearSubscriptionAmount.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                ||
+| transferInDate                         | string | The date specified by the ISA manager for the transfer to be completed | required |
+| firstSubscriptionDateInCurrentYear     | string | The date of the first ISA subscription within the current tax year     | required |
+### Response
+| Name                                     | Type   | Description                                                                      |
+| ---------------------------------------- | ------ | -------------------------------------------------------------------------------- |
+| transferAmount                           | ref    | The total transfer amount                                                        |
+| transferAmount.amount                    | number | The amount                                                                       |
+| transferAmount.currency                  | string | The currency in ISO 4217 three character codes eg 'GBP'                          |
+| currentYearSubscriptionAmount            | ref    | The total amount subscribed within the current tax year                          |
+| currentYearSubscriptionAmount.amount     | number | The amount                                                                       |
+| currentYearSubscriptionAmount.currency   | string | The currency in ISO 4217 three character codes eg 'GBP'                          |
+| transferInDate                           | string | The date specified by the ISA manager for the transfer to be completed           |
+| firstSubscriptionDateInCurrentYear       | string | The date of the first ISA subscription within the current tax year               |
+| adjustedAmounts                          | ref    | The calculated amounts to be used to determine how to allocate the cash received |
+| currentYearSubscriptionAmount.amount     | number | The amount                                                                       |
+| currentYearSubscriptionAmount.currency   | string | The currency in ISO 4217 three character codes eg 'GBP'                          |
+| previousYearsSubscriptionAmount.amount   | number | The amount                                                                       |
+| previousYearsSubscriptionAmount.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                          |
+| repairAmount.amount                      | number | The amount                                                                       |
+| repairAmount.currency                    | string | The currency in ISO 4217 three character codes eg 'GBP'                          |
+| totalIsaTransferAmount.amount            | number | The amount                                                                       |
+| totalIsaTransferAmount.currency          | string | The currency in ISO 4217 three character codes eg 'GBP'                          |
+## POST /investors/{clientId}/transferIn/{transferInId}/transferHistory
+
+```http
+
+POST /investors/{clientId}/transferIn/{transferInId}/transferHistory HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+{
+  "transferInDate" : "2000-01-23",
+  "firstSubscriptionDateInCurrentYear" : "2000-01-23",
+  "transferAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "currentYearSubscriptionAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  }
+}
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "transferInDate" : "2000-01-23",
+  "firstSubscriptionDateInCurrentYear" : "2000-01-23",
+  "adjustedAmounts" : {
+    "previousYearsSubscriptionAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "totalIsaTransferAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "repairAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "currentYearSubscriptionAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    }
+  },
+  "transferAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "currentYearSubscriptionAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  }
+}
+```
+### Description
+Creates the transfer history for an investor's Transfer In
+### Request
+| Name                                   | Type   | Description                                                            | Required |
+| -------------------------------------- | ------ | ---------------------------------------------------------------------- | -------- |
+| transferAmount                         | ref    | The total transfer amount                                              | required |
+| transferAmount.amount                  | number | The amount                                                             ||
+| transferAmount.currency                | string | The currency in ISO 4217 three character codes eg 'GBP'                ||
+| currentYearSubscriptionAmount          | ref    | The total amount subscribed within the current tax year                | required |
+| currentYearSubscriptionAmount.amount   | number | The amount                                                             ||
+| currentYearSubscriptionAmount.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                ||
+| transferInDate                         | string | The date specified by the ISA manager for the transfer to be completed | required |
+| firstSubscriptionDateInCurrentYear     | string | The date of the first ISA subscription within the current tax year     | required |
+### Response
+| Name                                     | Type   | Description                                                                      |
+| ---------------------------------------- | ------ | -------------------------------------------------------------------------------- |
+| transferAmount                           | ref    | The total transfer amount                                                        |
+| transferAmount.amount                    | number | The amount                                                                       |
+| transferAmount.currency                  | string | The currency in ISO 4217 three character codes eg 'GBP'                          |
+| currentYearSubscriptionAmount            | ref    | The total amount subscribed within the current tax year                          |
+| currentYearSubscriptionAmount.amount     | number | The amount                                                                       |
+| currentYearSubscriptionAmount.currency   | string | The currency in ISO 4217 three character codes eg 'GBP'                          |
+| transferInDate                           | string | The date specified by the ISA manager for the transfer to be completed           |
+| firstSubscriptionDateInCurrentYear       | string | The date of the first ISA subscription within the current tax year               |
+| adjustedAmounts                          | ref    | The calculated amounts to be used to determine how to allocate the cash received |
+| currentYearSubscriptionAmount.amount     | number | The amount                                                                       |
+| currentYearSubscriptionAmount.currency   | string | The currency in ISO 4217 three character codes eg 'GBP'                          |
+| previousYearsSubscriptionAmount.amount   | number | The amount                                                                       |
+| previousYearsSubscriptionAmount.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                          |
+| repairAmount.amount                      | number | The amount                                                                       |
+| repairAmount.currency                    | string | The currency in ISO 4217 three character codes eg 'GBP'                          |
+| totalIsaTransferAmount.amount            | number | The amount                                                                       |
+| totalIsaTransferAmount.currency          | string | The currency in ISO 4217 three character codes eg 'GBP'                          |
+## POST /investors/{investorId}/declaration/agreement
+
+```http
+
+POST /investors/{investorId}/declaration/agreement HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+""
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "totalInterestReceived" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "remainingSubscriptionAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "dateCreated" : "2000-01-23",
+  "remainingAdditionalPermittedSubscriptions" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "cashTransactions" : [ {
+    "amount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "clientTransactionId" : "clientTransactionId",
+    "type" : { },
+    "dateTimeOfTransaction" : "2000-01-23T04:56:07.000+00:00"
+  }, {
+    "amount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "clientTransactionId" : "clientTransactionId",
+    "type" : { },
+    "dateTimeOfTransaction" : "2000-01-23T04:56:07.000+00:00"
+  } ],
+  "subscriptionStatus" : "VALID",
+  "totalIsaBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalInterestReceivedThisTaxYear" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalCashBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "investments" : [ {
+    "clientInvestmentId" : "clientInvestmentId",
+    "expectedInterest" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "termOfInvestment" : 2.15,
+    "originalAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "reinvestments" : [ {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    }, {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    } ],
+    "id" : "id",
+    "investmentType" : "LOAN",
+    "dateTimeOfInvestment" : "2000-01-23T04:56:07.000+00:00",
+    "repayments" : [ {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    }, {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    } ]
+  }, {
+    "clientInvestmentId" : "clientInvestmentId",
+    "expectedInterest" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "termOfInvestment" : 2.15,
+    "originalAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "reinvestments" : [ {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    }, {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    } ],
+    "id" : "id",
+    "investmentType" : "LOAN",
+    "dateTimeOfInvestment" : "2000-01-23T04:56:07.000+00:00",
+    "repayments" : [ {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    }, {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    } ]
+  } ],
+  "coolingOffPeriodEnds" : "2000-01-23",
+  "totalInvestedBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  }
+}
+```
+### Description
+Used to record an investor agreeing to the ISA declaration after the ISA has been opened. Can be used for tax year breaks.
+### Request
+| Name | Type | Description | Required || ---- | ---- | ----------- | -------- |
+
+### Response
+| Name                                               | Type   | Description                                                                                                   |
+| -------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------- |
+| totalIsaBalance                                    | ref    | The total current balance in the ISA, inclusive of all years.                                                 |
+| totalIsaBalance.amount                             | number | The amount                                                                                                    |
+| totalIsaBalance.currency                           | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| remainingSubscriptionAmount                        | ref    | The amount remaining that can be invested in the ISA in the current tax year.                                 |
+| remainingSubscriptionAmount.amount                 | number | The amount                                                                                                    |
+| remainingSubscriptionAmount.currency               | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalCashBalance                                   | ref    | The total amount of cash in the ISA that is not currently invested.                                           |
+| totalCashBalance.amount                            | number | The amount                                                                                                    |
+| totalCashBalance.currency                          | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| dateCreated                                        | string | Date the ISA was created                                                                                      |
+| coolingOffPeriodEnds                               | string | Date the cooling off period ends                                                                              |
+| investments                                        | array  | The list of investments that make up the ISA                                                                  |
+| investments[].id                                   | string | The ID of the loan defined by Goji                                                                            |
+| investments[].clientInvestmentId                   | string | The ID of the loan defined by the P2P platform                                                                |
+| investments[].investmentType                       | string | The type of the investment. Currently only loans are supported.                                               |
+| investments[].originalAmount                       | ref    | The original capital amount of the investment.                                                                |
+| investments[].expectedInterest                     | ref    | The expected interest to receive over the life of the investment.                                             |
+| investments[].dateTimeOfInvestment                 | string | The date and time the investment started                                                                      |
+| investments[].termOfInvestment                     | number | The term of the investment in months                                                                          |
+| investments[].repayments                           | array  | Repayments that have been made against the investment by the borrower that were not reinvested automatically. |
+| investments[].reinvestments                        | array  | Repayments that have been made against the instruments by the borrower that were reinvested automatically.    |
+| cashTransactions                                   | array  | Cash transactions on the ISA                                                                                  |
+| cashTransactions[].clientTransactionId             | string | The ID of the transaction assigned by the P2P platform                                                        |
+| cashTransactions[].amount                          | ref    | The amount of the cash transaction                                                                            |
+| cashTransactions[].dateTimeOfTransaction           | string | The date and time of the transaction                                                                          |
+| cashTransactions[].type                            | ref    | Indicates the type of the cash transaction.                                                                   |
+| totalInterestReceived                              | ref    |                                                                                                               |
+| totalInterestReceived.amount                       | number | The amount                                                                                                    |
+| totalInterestReceived.currency                     | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalInterestReceivedThisTaxYear                   | ref    |                                                                                                               |
+| totalInterestReceivedThisTaxYear.amount            | number | The amount                                                                                                    |
+| totalInterestReceivedThisTaxYear.currency          | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalInvestedBalance                               | ref    |                                                                                                               |
+| totalInvestedBalance.amount                        | number | The amount                                                                                                    |
+| totalInvestedBalance.currency                      | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| subscriptionStatus                                 | string | Indicates if anything is preventing further subscriptions to this ISA.                                        |
+| remainingAdditionalPermittedSubscriptions          | ref    | The remaining amount that can be subscribed as an Additional Permitted Subscription.                          |
+| remainingAdditionalPermittedSubscriptions.amount   | number | The amount                                                                                                    |
+| remainingAdditionalPermittedSubscriptions.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+## GET /audit/investors/{investorId}
+
+```http
+
+GET /audit/investors/{investorId} HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+""
+```
+### Description
+Returns an audit record of HTTP requests relating to the investor.
+### Response
+| Name | Type | Description || ---- | ---- | ----------- |
+
+## POST /investors/{investorId}/investment
+
+```http
+
+POST /investors/{investorId}/investment HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+{
+  "clientInvestmentId" : "clientInvestmentId",
+  "expectedInterest" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "termOfInvestment" : 7.54,
+  "originalAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "dateOfInvestment" : "2000-01-23T04:56:07.000+00:00",
+  "investmentType" : "LOAN"
+}
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "totalInterestReceived" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "remainingSubscriptionAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "dateCreated" : "2000-01-23",
+  "remainingAdditionalPermittedSubscriptions" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "cashTransactions" : [ {
+    "amount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "clientTransactionId" : "clientTransactionId",
+    "type" : { },
+    "dateTimeOfTransaction" : "2000-01-23T04:56:07.000+00:00"
+  }, {
+    "amount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "clientTransactionId" : "clientTransactionId",
+    "type" : { },
+    "dateTimeOfTransaction" : "2000-01-23T04:56:07.000+00:00"
+  } ],
+  "subscriptionStatus" : "VALID",
+  "totalIsaBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalInterestReceivedThisTaxYear" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalCashBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "investments" : [ {
+    "clientInvestmentId" : "clientInvestmentId",
+    "expectedInterest" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "termOfInvestment" : 2.15,
+    "originalAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "reinvestments" : [ {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    }, {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    } ],
+    "id" : "id",
+    "investmentType" : "LOAN",
+    "dateTimeOfInvestment" : "2000-01-23T04:56:07.000+00:00",
+    "repayments" : [ {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    }, {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    } ]
+  }, {
+    "clientInvestmentId" : "clientInvestmentId",
+    "expectedInterest" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "termOfInvestment" : 2.15,
+    "originalAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "reinvestments" : [ {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    }, {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    } ],
+    "id" : "id",
+    "investmentType" : "LOAN",
+    "dateTimeOfInvestment" : "2000-01-23T04:56:07.000+00:00",
+    "repayments" : [ {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    }, {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    } ]
+  } ],
+  "coolingOffPeriodEnds" : "2000-01-23",
+  "totalInvestedBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  }
+}
+```
+### Description
+Adds an investment to the investor's ISA.
+#### Investor Lifecycle
+This endpoint should be called whenever monies are drawn down from the investor's account to fund an investment. This creates the investment on the Goji platform and decreases the cash balance of the ISA.
+#### Validation
+The ISA must have a cash balance equal or greater to the amount of the investment.
+#### Possible Error Codes
+Please see [create investment errors](/isa-administration-api/guides/Error%20Codes)
+### Request
+| Name                      | Type   | Description                                                       | Required |
+| ------------------------- | ------ | ----------------------------------------------------------------- | -------- |
+| clientInvestmentId        | string | The ID of the loan defined by the P2P platform                    | required |
+| investmentType            | string | The type of the investment. Currently only loans are supported.   | required |
+| originalAmount            | ref    | The original capital amount of the investment.                    | required |
+| originalAmount.amount     | number | The amount                                                        ||
+| originalAmount.currency   | string | The currency in ISO 4217 three character codes eg 'GBP'           ||
+| dateOfInvestment          | string | The date the investment started                                   | required |
+| termOfInvestment          | number | The term of the investment in months                              | required |
+| expectedInterest          | ref    | The expected interest to receive over the life of the investment. | optional |
+| expectedInterest.amount   | number | The amount                                                        ||
+| expectedInterest.currency | string | The currency in ISO 4217 three character codes eg 'GBP'           ||
+### Response
+| Name                                               | Type   | Description                                                                                                   |
+| -------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------- |
+| totalIsaBalance                                    | ref    | The total current balance in the ISA, inclusive of all years.                                                 |
+| totalIsaBalance.amount                             | number | The amount                                                                                                    |
+| totalIsaBalance.currency                           | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| remainingSubscriptionAmount                        | ref    | The amount remaining that can be invested in the ISA in the current tax year.                                 |
+| remainingSubscriptionAmount.amount                 | number | The amount                                                                                                    |
+| remainingSubscriptionAmount.currency               | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalCashBalance                                   | ref    | The total amount of cash in the ISA that is not currently invested.                                           |
+| totalCashBalance.amount                            | number | The amount                                                                                                    |
+| totalCashBalance.currency                          | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| dateCreated                                        | string | Date the ISA was created                                                                                      |
+| coolingOffPeriodEnds                               | string | Date the cooling off period ends                                                                              |
+| investments                                        | array  | The list of investments that make up the ISA                                                                  |
+| investments[].id                                   | string | The ID of the loan defined by Goji                                                                            |
+| investments[].clientInvestmentId                   | string | The ID of the loan defined by the P2P platform                                                                |
+| investments[].investmentType                       | string | The type of the investment. Currently only loans are supported.                                               |
+| investments[].originalAmount                       | ref    | The original capital amount of the investment.                                                                |
+| investments[].expectedInterest                     | ref    | The expected interest to receive over the life of the investment.                                             |
+| investments[].dateTimeOfInvestment                 | string | The date and time the investment started                                                                      |
+| investments[].termOfInvestment                     | number | The term of the investment in months                                                                          |
+| investments[].repayments                           | array  | Repayments that have been made against the investment by the borrower that were not reinvested automatically. |
+| investments[].reinvestments                        | array  | Repayments that have been made against the instruments by the borrower that were reinvested automatically.    |
+| cashTransactions                                   | array  | Cash transactions on the ISA                                                                                  |
+| cashTransactions[].clientTransactionId             | string | The ID of the transaction assigned by the P2P platform                                                        |
+| cashTransactions[].amount                          | ref    | The amount of the cash transaction                                                                            |
+| cashTransactions[].dateTimeOfTransaction           | string | The date and time of the transaction                                                                          |
+| cashTransactions[].type                            | ref    | Indicates the type of the cash transaction.                                                                   |
+| totalInterestReceived                              | ref    |                                                                                                               |
+| totalInterestReceived.amount                       | number | The amount                                                                                                    |
+| totalInterestReceived.currency                     | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalInterestReceivedThisTaxYear                   | ref    |                                                                                                               |
+| totalInterestReceivedThisTaxYear.amount            | number | The amount                                                                                                    |
+| totalInterestReceivedThisTaxYear.currency          | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalInvestedBalance                               | ref    |                                                                                                               |
+| totalInvestedBalance.amount                        | number | The amount                                                                                                    |
+| totalInvestedBalance.currency                      | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| subscriptionStatus                                 | string | Indicates if anything is preventing further subscriptions to this ISA.                                        |
+| remainingAdditionalPermittedSubscriptions          | ref    | The remaining amount that can be subscribed as an Additional Permitted Subscription.                          |
+| remainingAdditionalPermittedSubscriptions.amount   | number | The amount                                                                                                    |
+| remainingAdditionalPermittedSubscriptions.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+## DELETE /investors/{investorId}/investment
+
+```http
+
+DELETE /investors/{investorId}/investment HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+{
+  "fromDateTime" : "2000-01-23T04:56:07.000+00:00",
+  "toDateTime" : "2000-01-23T04:56:07.000+00:00"
+}
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "totalInterestReceived" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "remainingSubscriptionAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "dateCreated" : "2000-01-23",
+  "remainingAdditionalPermittedSubscriptions" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "cashTransactions" : [ {
+    "amount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "clientTransactionId" : "clientTransactionId",
+    "type" : { },
+    "dateTimeOfTransaction" : "2000-01-23T04:56:07.000+00:00"
+  }, {
+    "amount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "clientTransactionId" : "clientTransactionId",
+    "type" : { },
+    "dateTimeOfTransaction" : "2000-01-23T04:56:07.000+00:00"
+  } ],
+  "subscriptionStatus" : "VALID",
+  "totalIsaBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalInterestReceivedThisTaxYear" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalCashBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "investments" : [ {
+    "clientInvestmentId" : "clientInvestmentId",
+    "expectedInterest" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "termOfInvestment" : 2.15,
+    "originalAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "reinvestments" : [ {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    }, {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    } ],
+    "id" : "id",
+    "investmentType" : "LOAN",
+    "dateTimeOfInvestment" : "2000-01-23T04:56:07.000+00:00",
+    "repayments" : [ {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    }, {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    } ]
+  }, {
+    "clientInvestmentId" : "clientInvestmentId",
+    "expectedInterest" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "termOfInvestment" : 2.15,
+    "originalAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "reinvestments" : [ {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    }, {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    } ],
+    "id" : "id",
+    "investmentType" : "LOAN",
+    "dateTimeOfInvestment" : "2000-01-23T04:56:07.000+00:00",
+    "repayments" : [ {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    }, {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    } ]
+  } ],
+  "coolingOffPeriodEnds" : "2000-01-23",
+  "totalInvestedBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  }
+}
+```
+### Description
+Deletes all, or a matched set of, investments belonging to the ISA.
+
+Currently if the investment has been previously modified this won't work and this test endpoint shouldn't be used.
+
+**For testing use only.**
+### Request
+| Name         | Type   | Description                                                                                                                           | Required |
+| ------------ | ------ | ------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| fromDateTime | string | Investments created on or after this date are considered for deletion. If no date is supplied, no earliest date filtering is applied. | optional |
+| toDateTime   | string | Investments created on or before this date are considered for deletion. If no date is supplied, no latest date filtering is applied.  | optional |
+### Response
+| Name                                               | Type   | Description                                                                                                   |
+| -------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------- |
+| totalIsaBalance                                    | ref    | The total current balance in the ISA, inclusive of all years.                                                 |
+| totalIsaBalance.amount                             | number | The amount                                                                                                    |
+| totalIsaBalance.currency                           | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| remainingSubscriptionAmount                        | ref    | The amount remaining that can be invested in the ISA in the current tax year.                                 |
+| remainingSubscriptionAmount.amount                 | number | The amount                                                                                                    |
+| remainingSubscriptionAmount.currency               | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalCashBalance                                   | ref    | The total amount of cash in the ISA that is not currently invested.                                           |
+| totalCashBalance.amount                            | number | The amount                                                                                                    |
+| totalCashBalance.currency                          | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| dateCreated                                        | string | Date the ISA was created                                                                                      |
+| coolingOffPeriodEnds                               | string | Date the cooling off period ends                                                                              |
+| investments                                        | array  | The list of investments that make up the ISA                                                                  |
+| investments[].id                                   | string | The ID of the loan defined by Goji                                                                            |
+| investments[].clientInvestmentId                   | string | The ID of the loan defined by the P2P platform                                                                |
+| investments[].investmentType                       | string | The type of the investment. Currently only loans are supported.                                               |
+| investments[].originalAmount                       | ref    | The original capital amount of the investment.                                                                |
+| investments[].expectedInterest                     | ref    | The expected interest to receive over the life of the investment.                                             |
+| investments[].dateTimeOfInvestment                 | string | The date and time the investment started                                                                      |
+| investments[].termOfInvestment                     | number | The term of the investment in months                                                                          |
+| investments[].repayments                           | array  | Repayments that have been made against the investment by the borrower that were not reinvested automatically. |
+| investments[].reinvestments                        | array  | Repayments that have been made against the instruments by the borrower that were reinvested automatically.    |
+| cashTransactions                                   | array  | Cash transactions on the ISA                                                                                  |
+| cashTransactions[].clientTransactionId             | string | The ID of the transaction assigned by the P2P platform                                                        |
+| cashTransactions[].amount                          | ref    | The amount of the cash transaction                                                                            |
+| cashTransactions[].dateTimeOfTransaction           | string | The date and time of the transaction                                                                          |
+| cashTransactions[].type                            | ref    | Indicates the type of the cash transaction.                                                                   |
+| totalInterestReceived                              | ref    |                                                                                                               |
+| totalInterestReceived.amount                       | number | The amount                                                                                                    |
+| totalInterestReceived.currency                     | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalInterestReceivedThisTaxYear                   | ref    |                                                                                                               |
+| totalInterestReceivedThisTaxYear.amount            | number | The amount                                                                                                    |
+| totalInterestReceivedThisTaxYear.currency          | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalInvestedBalance                               | ref    |                                                                                                               |
+| totalInvestedBalance.amount                        | number | The amount                                                                                                    |
+| totalInvestedBalance.currency                      | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| subscriptionStatus                                 | string | Indicates if anything is preventing further subscriptions to this ISA.                                        |
+| remainingAdditionalPermittedSubscriptions          | ref    | The remaining amount that can be subscribed as an Additional Permitted Subscription.                          |
+| remainingAdditionalPermittedSubscriptions.amount   | number | The amount                                                                                                    |
+| remainingAdditionalPermittedSubscriptions.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+## PUT /investors/{investorId}/investment/{investmentId}
+
+```http
+
+PUT /investors/{investorId}/investment/{investmentId} HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+{
+  "amount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "dateOfInvestment" : "2000-01-23T04:56:07.000+00:00",
+  "term" : 1.12
+}
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "totalInterestReceived" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "remainingSubscriptionAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "dateCreated" : "2000-01-23",
+  "remainingAdditionalPermittedSubscriptions" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "cashTransactions" : [ {
+    "amount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "clientTransactionId" : "clientTransactionId",
+    "type" : { },
+    "dateTimeOfTransaction" : "2000-01-23T04:56:07.000+00:00"
+  }, {
+    "amount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "clientTransactionId" : "clientTransactionId",
+    "type" : { },
+    "dateTimeOfTransaction" : "2000-01-23T04:56:07.000+00:00"
+  } ],
+  "subscriptionStatus" : "VALID",
+  "totalIsaBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalInterestReceivedThisTaxYear" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalCashBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "investments" : [ {
+    "clientInvestmentId" : "clientInvestmentId",
+    "expectedInterest" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "termOfInvestment" : 2.15,
+    "originalAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "reinvestments" : [ {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    }, {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    } ],
+    "id" : "id",
+    "investmentType" : "LOAN",
+    "dateTimeOfInvestment" : "2000-01-23T04:56:07.000+00:00",
+    "repayments" : [ {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    }, {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    } ]
+  }, {
+    "clientInvestmentId" : "clientInvestmentId",
+    "expectedInterest" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "termOfInvestment" : 2.15,
+    "originalAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "reinvestments" : [ {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    }, {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    } ],
+    "id" : "id",
+    "investmentType" : "LOAN",
+    "dateTimeOfInvestment" : "2000-01-23T04:56:07.000+00:00",
+    "repayments" : [ {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    }, {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    } ]
+  } ],
+  "coolingOffPeriodEnds" : "2000-01-23",
+  "totalInvestedBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  }
+}
+```
+### Description
+Updates an investment in the investor's ISA. This call is normally not required. Please discuss with Goji before using it.
+#### Investor Lifecycle
+This endpoint should be called whenever the captial amount of an investment needs to be updated. It acts in an upsert manner.
+#### Validation
+The ISA must have a cash balance equal or greater to the amount of the investment.
+#### Possible Error Codes
+Please see [create investment errors](/isa-administration-api/guides/Error%20Codes)
+### Request
+| Name             | Type   | Description                                                  | Required |
+| ---------------- | ------ | ------------------------------------------------------------ | -------- |
+| amount           | ref    | The amount to increase the capital amount of the investment. | required |
+| amount.amount    | number | The amount                                                   ||
+| amount.currency  | string | The currency in ISO 4217 three character codes eg 'GBP'      ||
+| dateOfInvestment | string | The date the investment started                              | required |
+| term             | number | The term of the investment in months                         | required |
+### Response
+| Name                                               | Type   | Description                                                                                                   |
+| -------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------- |
+| totalIsaBalance                                    | ref    | The total current balance in the ISA, inclusive of all years.                                                 |
+| totalIsaBalance.amount                             | number | The amount                                                                                                    |
+| totalIsaBalance.currency                           | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| remainingSubscriptionAmount                        | ref    | The amount remaining that can be invested in the ISA in the current tax year.                                 |
+| remainingSubscriptionAmount.amount                 | number | The amount                                                                                                    |
+| remainingSubscriptionAmount.currency               | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalCashBalance                                   | ref    | The total amount of cash in the ISA that is not currently invested.                                           |
+| totalCashBalance.amount                            | number | The amount                                                                                                    |
+| totalCashBalance.currency                          | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| dateCreated                                        | string | Date the ISA was created                                                                                      |
+| coolingOffPeriodEnds                               | string | Date the cooling off period ends                                                                              |
+| investments                                        | array  | The list of investments that make up the ISA                                                                  |
+| investments[].id                                   | string | The ID of the loan defined by Goji                                                                            |
+| investments[].clientInvestmentId                   | string | The ID of the loan defined by the P2P platform                                                                |
+| investments[].investmentType                       | string | The type of the investment. Currently only loans are supported.                                               |
+| investments[].originalAmount                       | ref    | The original capital amount of the investment.                                                                |
+| investments[].expectedInterest                     | ref    | The expected interest to receive over the life of the investment.                                             |
+| investments[].dateTimeOfInvestment                 | string | The date and time the investment started                                                                      |
+| investments[].termOfInvestment                     | number | The term of the investment in months                                                                          |
+| investments[].repayments                           | array  | Repayments that have been made against the investment by the borrower that were not reinvested automatically. |
+| investments[].reinvestments                        | array  | Repayments that have been made against the instruments by the borrower that were reinvested automatically.    |
+| cashTransactions                                   | array  | Cash transactions on the ISA                                                                                  |
+| cashTransactions[].clientTransactionId             | string | The ID of the transaction assigned by the P2P platform                                                        |
+| cashTransactions[].amount                          | ref    | The amount of the cash transaction                                                                            |
+| cashTransactions[].dateTimeOfTransaction           | string | The date and time of the transaction                                                                          |
+| cashTransactions[].type                            | ref    | Indicates the type of the cash transaction.                                                                   |
+| totalInterestReceived                              | ref    |                                                                                                               |
+| totalInterestReceived.amount                       | number | The amount                                                                                                    |
+| totalInterestReceived.currency                     | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalInterestReceivedThisTaxYear                   | ref    |                                                                                                               |
+| totalInterestReceivedThisTaxYear.amount            | number | The amount                                                                                                    |
+| totalInterestReceivedThisTaxYear.currency          | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalInvestedBalance                               | ref    |                                                                                                               |
+| totalInvestedBalance.amount                        | number | The amount                                                                                                    |
+| totalInvestedBalance.currency                      | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| subscriptionStatus                                 | string | Indicates if anything is preventing further subscriptions to this ISA.                                        |
+| remainingAdditionalPermittedSubscriptions          | ref    | The remaining amount that can be subscribed as an Additional Permitted Subscription.                          |
+| remainingAdditionalPermittedSubscriptions.amount   | number | The amount                                                                                                    |
+| remainingAdditionalPermittedSubscriptions.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+## POST /investors/{investorId}/investment/{investmentId}/repayment
+
+```http
+
+POST /investors/{investorId}/investment/{investmentId}/repayment HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+{
+  "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+  "interestAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "clientRepaymentId" : "clientRepaymentId",
+  "capitalAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  }
+}
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+""
+```
+### Description
+Records a repayment against a specific investment.
+#### Investor Lifecycle
+This endpoint should be called whenever a repayment is received from the borrower against an investor's investment. This repayment increases the cash balance of the ISA as it is not automatically reinvested by the P2P Platform.
+#### Possible Error Codes
+Please see [create repayment errors](/isa-administration-api/guides/Error%20Codes)
+### Request
+| Name                    | Type   | Description                                                 | Required |
+| ----------------------- | ------ | ----------------------------------------------------------- | -------- |
+| clientRepaymentId       | string | The P2P platform assigned ID for the repayment transaction. | required |
+| capitalAmount           | ref    | The capital amount being repaid                             | required |
+| capitalAmount.amount    | number | The amount                                                  ||
+| capitalAmount.currency  | string | The currency in ISO 4217 three character codes eg 'GBP'     ||
+| interestAmount          | ref    | The interest amount being repaid                            | required |
+| interestAmount.amount   | number | The amount                                                  ||
+| interestAmount.currency | string | The currency in ISO 4217 three character codes eg 'GBP'     ||
+| dateTimeOfRepayment     | string | The date and time of the repayment                          | required |
+### Response
+| Name | Type | Description || ---- | ---- | ----------- |
+
+## POST /investors/{investorId}/investment/{investmentId}/reinvestment
+
+```http
+
+POST /investors/{investorId}/investment/{investmentId}/reinvestment HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+{
+  "clientReinvestmentId" : "clientReinvestmentId",
+  "interestAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "investments" : [ {
+    "clientInvestmentId" : "clientInvestmentId",
+    "expectedInterest" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "termOfInvestment" : 7.54,
+    "originalAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "dateOfInvestment" : "2000-01-23T04:56:07.000+00:00",
+    "investmentType" : "LOAN"
+  }, {
+    "clientInvestmentId" : "clientInvestmentId",
+    "expectedInterest" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "termOfInvestment" : 7.54,
+    "originalAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "dateOfInvestment" : "2000-01-23T04:56:07.000+00:00",
+    "investmentType" : "LOAN"
+  } ],
+  "capitalAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+}
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "totalInterestReceived" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "remainingSubscriptionAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "dateCreated" : "2000-01-23",
+  "remainingAdditionalPermittedSubscriptions" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "cashTransactions" : [ {
+    "amount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "clientTransactionId" : "clientTransactionId",
+    "type" : { },
+    "dateTimeOfTransaction" : "2000-01-23T04:56:07.000+00:00"
+  }, {
+    "amount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "clientTransactionId" : "clientTransactionId",
+    "type" : { },
+    "dateTimeOfTransaction" : "2000-01-23T04:56:07.000+00:00"
+  } ],
+  "subscriptionStatus" : "VALID",
+  "totalIsaBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalInterestReceivedThisTaxYear" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalCashBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "investments" : [ {
+    "clientInvestmentId" : "clientInvestmentId",
+    "expectedInterest" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "termOfInvestment" : 2.15,
+    "originalAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "reinvestments" : [ {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    }, {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    } ],
+    "id" : "id",
+    "investmentType" : "LOAN",
+    "dateTimeOfInvestment" : "2000-01-23T04:56:07.000+00:00",
+    "repayments" : [ {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    }, {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    } ]
+  }, {
+    "clientInvestmentId" : "clientInvestmentId",
+    "expectedInterest" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "termOfInvestment" : 2.15,
+    "originalAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "reinvestments" : [ {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    }, {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    } ],
+    "id" : "id",
+    "investmentType" : "LOAN",
+    "dateTimeOfInvestment" : "2000-01-23T04:56:07.000+00:00",
+    "repayments" : [ {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    }, {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    } ]
+  } ],
+  "coolingOffPeriodEnds" : "2000-01-23",
+  "totalInvestedBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  }
+}
+```
+### Description
+Records a reinvestment against a specific investment.
+#### Investor Lifecycle
+This endpoint should be called whenever a repayment is received from the borrower against an investor's investment. This amount is automatically reinvested by the P2P Platform and so does not increase the cash balance of the ISA, however the ISA balance is increased by the interest component of the reinvestment.
+This endpoint creates the new investment associated with the reinvestment.
+#### Possible Error Codes
+Please see [create reinvestment errors](/isa-administration-api/guides/Error%20Codes)
+### Request
+| Name                             | Type   | Description                                                       | Required |
+| -------------------------------- | ------ | ----------------------------------------------------------------- | -------- |
+| clientReinvestmentId             | string | The P2P platform assigned ID for the reinvestment transaction.    | required |
+| capitalAmount                    | ref    | The capital amount being repaid that is being reinvested          | required |
+| capitalAmount.amount             | number | The amount                                                        ||
+| capitalAmount.currency           | string | The currency in ISO 4217 three character codes eg 'GBP'           ||
+| interestAmount                   | ref    | The interest amount being repaid that is being reinvested         | required |
+| interestAmount.amount            | number | The amount                                                        ||
+| interestAmount.currency          | string | The currency in ISO 4217 three character codes eg 'GBP'           ||
+| dateTimeOfReinvestment           | string | The date and time of the reinvestment                             | required |
+| investments                      | array  | The new investments to create from this reinvestment              | required |
+| investments[].clientInvestmentId | string | The ID of the loan defined by the P2P platform                    | required |
+| investments[].investmentType     | string | The type of the investment. Currently only loans are supported.   | required |
+| investments[].originalAmount     | ref    | The original capital amount of the investment.                    | required |
+| investments[].dateOfInvestment   | string | The date the investment started                                   | required |
+| investments[].termOfInvestment   | number | The term of the investment in months                              | required |
+| investments[].expectedInterest   | ref    | The expected interest to receive over the life of the investment. | optional |
+### Response
+| Name                                               | Type   | Description                                                                                                   |
+| -------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------- |
+| totalIsaBalance                                    | ref    | The total current balance in the ISA, inclusive of all years.                                                 |
+| totalIsaBalance.amount                             | number | The amount                                                                                                    |
+| totalIsaBalance.currency                           | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| remainingSubscriptionAmount                        | ref    | The amount remaining that can be invested in the ISA in the current tax year.                                 |
+| remainingSubscriptionAmount.amount                 | number | The amount                                                                                                    |
+| remainingSubscriptionAmount.currency               | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalCashBalance                                   | ref    | The total amount of cash in the ISA that is not currently invested.                                           |
+| totalCashBalance.amount                            | number | The amount                                                                                                    |
+| totalCashBalance.currency                          | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| dateCreated                                        | string | Date the ISA was created                                                                                      |
+| coolingOffPeriodEnds                               | string | Date the cooling off period ends                                                                              |
+| investments                                        | array  | The list of investments that make up the ISA                                                                  |
+| investments[].id                                   | string | The ID of the loan defined by Goji                                                                            |
+| investments[].clientInvestmentId                   | string | The ID of the loan defined by the P2P platform                                                                |
+| investments[].investmentType                       | string | The type of the investment. Currently only loans are supported.                                               |
+| investments[].originalAmount                       | ref    | The original capital amount of the investment.                                                                |
+| investments[].expectedInterest                     | ref    | The expected interest to receive over the life of the investment.                                             |
+| investments[].dateTimeOfInvestment                 | string | The date and time the investment started                                                                      |
+| investments[].termOfInvestment                     | number | The term of the investment in months                                                                          |
+| investments[].repayments                           | array  | Repayments that have been made against the investment by the borrower that were not reinvested automatically. |
+| investments[].reinvestments                        | array  | Repayments that have been made against the instruments by the borrower that were reinvested automatically.    |
+| cashTransactions                                   | array  | Cash transactions on the ISA                                                                                  |
+| cashTransactions[].clientTransactionId             | string | The ID of the transaction assigned by the P2P platform                                                        |
+| cashTransactions[].amount                          | ref    | The amount of the cash transaction                                                                            |
+| cashTransactions[].dateTimeOfTransaction           | string | The date and time of the transaction                                                                          |
+| cashTransactions[].type                            | ref    | Indicates the type of the cash transaction.                                                                   |
+| totalInterestReceived                              | ref    |                                                                                                               |
+| totalInterestReceived.amount                       | number | The amount                                                                                                    |
+| totalInterestReceived.currency                     | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalInterestReceivedThisTaxYear                   | ref    |                                                                                                               |
+| totalInterestReceivedThisTaxYear.amount            | number | The amount                                                                                                    |
+| totalInterestReceivedThisTaxYear.currency          | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalInvestedBalance                               | ref    |                                                                                                               |
+| totalInvestedBalance.amount                        | number | The amount                                                                                                    |
+| totalInvestedBalance.currency                      | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| subscriptionStatus                                 | string | Indicates if anything is preventing further subscriptions to this ISA.                                        |
+| remainingAdditionalPermittedSubscriptions          | ref    | The remaining amount that can be subscribed as an Additional Permitted Subscription.                          |
+| remainingAdditionalPermittedSubscriptions.amount   | number | The amount                                                                                                    |
+| remainingAdditionalPermittedSubscriptions.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+## POST /investors/{investorId}/investment/{investmentId}/sale
+
+```http
+
+POST /investors/{investorId}/investment/{investmentId}/sale HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+{
+  "saleAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "repaymentId" : "repaymentId",
+  "dateTimeOfSale" : "2000-01-23T04:56:07.000+00:00"
+}
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "totalInterestReceived" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "remainingSubscriptionAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "dateCreated" : "2000-01-23",
+  "remainingAdditionalPermittedSubscriptions" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "cashTransactions" : [ {
+    "amount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "clientTransactionId" : "clientTransactionId",
+    "type" : { },
+    "dateTimeOfTransaction" : "2000-01-23T04:56:07.000+00:00"
+  }, {
+    "amount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "clientTransactionId" : "clientTransactionId",
+    "type" : { },
+    "dateTimeOfTransaction" : "2000-01-23T04:56:07.000+00:00"
+  } ],
+  "subscriptionStatus" : "VALID",
+  "totalIsaBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalInterestReceivedThisTaxYear" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalCashBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "investments" : [ {
+    "clientInvestmentId" : "clientInvestmentId",
+    "expectedInterest" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "termOfInvestment" : 2.15,
+    "originalAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "reinvestments" : [ {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    }, {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    } ],
+    "id" : "id",
+    "investmentType" : "LOAN",
+    "dateTimeOfInvestment" : "2000-01-23T04:56:07.000+00:00",
+    "repayments" : [ {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    }, {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    } ]
+  }, {
+    "clientInvestmentId" : "clientInvestmentId",
+    "expectedInterest" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "termOfInvestment" : 2.15,
+    "originalAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "reinvestments" : [ {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    }, {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    } ],
+    "id" : "id",
+    "investmentType" : "LOAN",
+    "dateTimeOfInvestment" : "2000-01-23T04:56:07.000+00:00",
+    "repayments" : [ {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    }, {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    } ]
+  } ],
+  "coolingOffPeriodEnds" : "2000-01-23",
+  "totalInvestedBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  }
+}
+```
+### Description
+Records the sale of a specific investment.
+#### Investor Lifecycle
+This endpoint should be called if an investment should be marked as sold. The amount of the sale may be more or less than the remaining capital amount on the investment.
+### Request
+| Name                | Type   | Description                                             | Required |
+| ------------------- | ------ | ------------------------------------------------------- | -------- |
+| repaymentId         | string | A unique reference for the transaction                  | required |
+| saleAmount          | ref    | The total amount the investment is being sold for.      | required |
+| saleAmount.amount   | number | The amount                                              ||
+| saleAmount.currency | string | The currency in ISO 4217 three character codes eg 'GBP' ||
+| dateTimeOfSale      | string |                                                         | required |
+### Response
+| Name                                               | Type   | Description                                                                                                   |
+| -------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------- |
+| totalIsaBalance                                    | ref    | The total current balance in the ISA, inclusive of all years.                                                 |
+| totalIsaBalance.amount                             | number | The amount                                                                                                    |
+| totalIsaBalance.currency                           | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| remainingSubscriptionAmount                        | ref    | The amount remaining that can be invested in the ISA in the current tax year.                                 |
+| remainingSubscriptionAmount.amount                 | number | The amount                                                                                                    |
+| remainingSubscriptionAmount.currency               | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalCashBalance                                   | ref    | The total amount of cash in the ISA that is not currently invested.                                           |
+| totalCashBalance.amount                            | number | The amount                                                                                                    |
+| totalCashBalance.currency                          | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| dateCreated                                        | string | Date the ISA was created                                                                                      |
+| coolingOffPeriodEnds                               | string | Date the cooling off period ends                                                                              |
+| investments                                        | array  | The list of investments that make up the ISA                                                                  |
+| investments[].id                                   | string | The ID of the loan defined by Goji                                                                            |
+| investments[].clientInvestmentId                   | string | The ID of the loan defined by the P2P platform                                                                |
+| investments[].investmentType                       | string | The type of the investment. Currently only loans are supported.                                               |
+| investments[].originalAmount                       | ref    | The original capital amount of the investment.                                                                |
+| investments[].expectedInterest                     | ref    | The expected interest to receive over the life of the investment.                                             |
+| investments[].dateTimeOfInvestment                 | string | The date and time the investment started                                                                      |
+| investments[].termOfInvestment                     | number | The term of the investment in months                                                                          |
+| investments[].repayments                           | array  | Repayments that have been made against the investment by the borrower that were not reinvested automatically. |
+| investments[].reinvestments                        | array  | Repayments that have been made against the instruments by the borrower that were reinvested automatically.    |
+| cashTransactions                                   | array  | Cash transactions on the ISA                                                                                  |
+| cashTransactions[].clientTransactionId             | string | The ID of the transaction assigned by the P2P platform                                                        |
+| cashTransactions[].amount                          | ref    | The amount of the cash transaction                                                                            |
+| cashTransactions[].dateTimeOfTransaction           | string | The date and time of the transaction                                                                          |
+| cashTransactions[].type                            | ref    | Indicates the type of the cash transaction.                                                                   |
+| totalInterestReceived                              | ref    |                                                                                                               |
+| totalInterestReceived.amount                       | number | The amount                                                                                                    |
+| totalInterestReceived.currency                     | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalInterestReceivedThisTaxYear                   | ref    |                                                                                                               |
+| totalInterestReceivedThisTaxYear.amount            | number | The amount                                                                                                    |
+| totalInterestReceivedThisTaxYear.currency          | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalInvestedBalance                               | ref    |                                                                                                               |
+| totalInvestedBalance.amount                        | number | The amount                                                                                                    |
+| totalInvestedBalance.currency                      | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| subscriptionStatus                                 | string | Indicates if anything is preventing further subscriptions to this ISA.                                        |
+| remainingAdditionalPermittedSubscriptions          | ref    | The remaining amount that can be subscribed as an Additional Permitted Subscription.                          |
+| remainingAdditionalPermittedSubscriptions.amount   | number | The amount                                                                                                    |
+| remainingAdditionalPermittedSubscriptions.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+## POST /investors/{investorId}/investment/{investmentId}/writeOff
+
+```http
+
+POST /investors/{investorId}/investment/{investmentId}/writeOff HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+{
+  "writeOffAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "dateTimeOfWriteOff" : "2000-01-23T04:56:07.000+00:00"
+}
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "totalInterestReceived" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "remainingSubscriptionAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "dateCreated" : "2000-01-23",
+  "remainingAdditionalPermittedSubscriptions" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "cashTransactions" : [ {
+    "amount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "clientTransactionId" : "clientTransactionId",
+    "type" : { },
+    "dateTimeOfTransaction" : "2000-01-23T04:56:07.000+00:00"
+  }, {
+    "amount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "clientTransactionId" : "clientTransactionId",
+    "type" : { },
+    "dateTimeOfTransaction" : "2000-01-23T04:56:07.000+00:00"
+  } ],
+  "subscriptionStatus" : "VALID",
+  "totalIsaBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalInterestReceivedThisTaxYear" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalCashBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "investments" : [ {
+    "clientInvestmentId" : "clientInvestmentId",
+    "expectedInterest" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "termOfInvestment" : 2.15,
+    "originalAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "reinvestments" : [ {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    }, {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    } ],
+    "id" : "id",
+    "investmentType" : "LOAN",
+    "dateTimeOfInvestment" : "2000-01-23T04:56:07.000+00:00",
+    "repayments" : [ {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    }, {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    } ]
+  }, {
+    "clientInvestmentId" : "clientInvestmentId",
+    "expectedInterest" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "termOfInvestment" : 2.15,
+    "originalAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "reinvestments" : [ {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    }, {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    } ],
+    "id" : "id",
+    "investmentType" : "LOAN",
+    "dateTimeOfInvestment" : "2000-01-23T04:56:07.000+00:00",
+    "repayments" : [ {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    }, {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    } ]
+  } ],
+  "coolingOffPeriodEnds" : "2000-01-23",
+  "totalInvestedBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  }
+}
+```
+### Description
+Records a write-off amount against a specific investment.
+#### Investor Lifecycle
+This endpoint should be called if an investment is in default and some or all of the remaining capital amount should be written off.
+### Request
+| Name                    | Type   | Description                                             | Required |
+| ----------------------- | ------ | ------------------------------------------------------- | -------- |
+| writeOffAmount          | ref    |                                                         | required |
+| writeOffAmount.amount   | number | The amount                                              ||
+| writeOffAmount.currency | string | The currency in ISO 4217 three character codes eg 'GBP' ||
+| dateTimeOfWriteOff      | string |                                                         | required |
+### Response
+| Name                                               | Type   | Description                                                                                                   |
+| -------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------- |
+| totalIsaBalance                                    | ref    | The total current balance in the ISA, inclusive of all years.                                                 |
+| totalIsaBalance.amount                             | number | The amount                                                                                                    |
+| totalIsaBalance.currency                           | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| remainingSubscriptionAmount                        | ref    | The amount remaining that can be invested in the ISA in the current tax year.                                 |
+| remainingSubscriptionAmount.amount                 | number | The amount                                                                                                    |
+| remainingSubscriptionAmount.currency               | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalCashBalance                                   | ref    | The total amount of cash in the ISA that is not currently invested.                                           |
+| totalCashBalance.amount                            | number | The amount                                                                                                    |
+| totalCashBalance.currency                          | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| dateCreated                                        | string | Date the ISA was created                                                                                      |
+| coolingOffPeriodEnds                               | string | Date the cooling off period ends                                                                              |
+| investments                                        | array  | The list of investments that make up the ISA                                                                  |
+| investments[].id                                   | string | The ID of the loan defined by Goji                                                                            |
+| investments[].clientInvestmentId                   | string | The ID of the loan defined by the P2P platform                                                                |
+| investments[].investmentType                       | string | The type of the investment. Currently only loans are supported.                                               |
+| investments[].originalAmount                       | ref    | The original capital amount of the investment.                                                                |
+| investments[].expectedInterest                     | ref    | The expected interest to receive over the life of the investment.                                             |
+| investments[].dateTimeOfInvestment                 | string | The date and time the investment started                                                                      |
+| investments[].termOfInvestment                     | number | The term of the investment in months                                                                          |
+| investments[].repayments                           | array  | Repayments that have been made against the investment by the borrower that were not reinvested automatically. |
+| investments[].reinvestments                        | array  | Repayments that have been made against the instruments by the borrower that were reinvested automatically.    |
+| cashTransactions                                   | array  | Cash transactions on the ISA                                                                                  |
+| cashTransactions[].clientTransactionId             | string | The ID of the transaction assigned by the P2P platform                                                        |
+| cashTransactions[].amount                          | ref    | The amount of the cash transaction                                                                            |
+| cashTransactions[].dateTimeOfTransaction           | string | The date and time of the transaction                                                                          |
+| cashTransactions[].type                            | ref    | Indicates the type of the cash transaction.                                                                   |
+| totalInterestReceived                              | ref    |                                                                                                               |
+| totalInterestReceived.amount                       | number | The amount                                                                                                    |
+| totalInterestReceived.currency                     | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalInterestReceivedThisTaxYear                   | ref    |                                                                                                               |
+| totalInterestReceivedThisTaxYear.amount            | number | The amount                                                                                                    |
+| totalInterestReceivedThisTaxYear.currency          | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalInvestedBalance                               | ref    |                                                                                                               |
+| totalInvestedBalance.amount                        | number | The amount                                                                                                    |
+| totalInvestedBalance.currency                      | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| subscriptionStatus                                 | string | Indicates if anything is preventing further subscriptions to this ISA.                                        |
+| remainingAdditionalPermittedSubscriptions          | ref    | The remaining amount that can be subscribed as an Additional Permitted Subscription.                          |
+| remainingAdditionalPermittedSubscriptions.amount   | number | The amount                                                                                                    |
+| remainingAdditionalPermittedSubscriptions.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+## POST /investors/{investorId}/cash
+
+```http
+
+POST /investors/{investorId}/cash HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+{
+  "amount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "clientTransactionId" : "clientTransactionId",
+  "type" : "CUSTOMER_DEPOSIT",
+  "dateTimeOfTransaction" : "2000-01-23T04:56:07.000+00:00"
+}
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "totalInterestReceived" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "remainingSubscriptionAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "dateCreated" : "2000-01-23",
+  "remainingAdditionalPermittedSubscriptions" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "cashTransactions" : [ {
+    "amount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "clientTransactionId" : "clientTransactionId",
+    "type" : { },
+    "dateTimeOfTransaction" : "2000-01-23T04:56:07.000+00:00"
+  }, {
+    "amount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "clientTransactionId" : "clientTransactionId",
+    "type" : { },
+    "dateTimeOfTransaction" : "2000-01-23T04:56:07.000+00:00"
+  } ],
+  "subscriptionStatus" : "VALID",
+  "totalIsaBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalInterestReceivedThisTaxYear" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalCashBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "investments" : [ {
+    "clientInvestmentId" : "clientInvestmentId",
+    "expectedInterest" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "termOfInvestment" : 2.15,
+    "originalAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "reinvestments" : [ {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    }, {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    } ],
+    "id" : "id",
+    "investmentType" : "LOAN",
+    "dateTimeOfInvestment" : "2000-01-23T04:56:07.000+00:00",
+    "repayments" : [ {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    }, {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    } ]
+  }, {
+    "clientInvestmentId" : "clientInvestmentId",
+    "expectedInterest" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "termOfInvestment" : 2.15,
+    "originalAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "reinvestments" : [ {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    }, {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    } ],
+    "id" : "id",
+    "investmentType" : "LOAN",
+    "dateTimeOfInvestment" : "2000-01-23T04:56:07.000+00:00",
+    "repayments" : [ {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    }, {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    } ]
+  } ],
+  "coolingOffPeriodEnds" : "2000-01-23",
+  "totalInvestedBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  }
+}
+```
+### Description
 Records a cash transaction into the ISA.
 #### Investor Lifecycle
 This endpoint should be called whenever the user deposits or withdraws cash from the ISA.
@@ -777,2072 +3250,1029 @@ This endpoint should be called whenever the user deposits or withdraws cash from
 * The amount deposited must not exceed the annual subscription amount
 #### Possible Error Codes
 Please see [cash transaction errors](/isa-administration-api/guides/Error%20Codes)
+### Request
+| Name                  | Type   | Description                                             | Required |
+| --------------------- | ------ | ------------------------------------------------------- | -------- |
+| clientTransactionId   | string | The ID of the transaction assigned by the P2P platform  | required |
+| amount                | ref    | The amount of the cash transaction                      | required |
+| amount.amount         | number | The amount                                              ||
+| amount.currency       | string | The currency in ISO 4217 three character codes eg 'GBP' ||
+| dateTimeOfTransaction | string | The date and time of the transaction                    | required |
+| type                  | string | Indicates the type of the cash transaction.             | required |
+### Response
+| Name                                               | Type   | Description                                                                                                   |
+| -------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------- |
+| totalIsaBalance                                    | ref    | The total current balance in the ISA, inclusive of all years.                                                 |
+| totalIsaBalance.amount                             | number | The amount                                                                                                    |
+| totalIsaBalance.currency                           | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| remainingSubscriptionAmount                        | ref    | The amount remaining that can be invested in the ISA in the current tax year.                                 |
+| remainingSubscriptionAmount.amount                 | number | The amount                                                                                                    |
+| remainingSubscriptionAmount.currency               | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalCashBalance                                   | ref    | The total amount of cash in the ISA that is not currently invested.                                           |
+| totalCashBalance.amount                            | number | The amount                                                                                                    |
+| totalCashBalance.currency                          | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| dateCreated                                        | string | Date the ISA was created                                                                                      |
+| coolingOffPeriodEnds                               | string | Date the cooling off period ends                                                                              |
+| investments                                        | array  | The list of investments that make up the ISA                                                                  |
+| investments[].id                                   | string | The ID of the loan defined by Goji                                                                            |
+| investments[].clientInvestmentId                   | string | The ID of the loan defined by the P2P platform                                                                |
+| investments[].investmentType                       | string | The type of the investment. Currently only loans are supported.                                               |
+| investments[].originalAmount                       | ref    | The original capital amount of the investment.                                                                |
+| investments[].expectedInterest                     | ref    | The expected interest to receive over the life of the investment.                                             |
+| investments[].dateTimeOfInvestment                 | string | The date and time the investment started                                                                      |
+| investments[].termOfInvestment                     | number | The term of the investment in months                                                                          |
+| investments[].repayments                           | array  | Repayments that have been made against the investment by the borrower that were not reinvested automatically. |
+| investments[].reinvestments                        | array  | Repayments that have been made against the instruments by the borrower that were reinvested automatically.    |
+| cashTransactions                                   | array  | Cash transactions on the ISA                                                                                  |
+| cashTransactions[].clientTransactionId             | string | The ID of the transaction assigned by the P2P platform                                                        |
+| cashTransactions[].amount                          | ref    | The amount of the cash transaction                                                                            |
+| cashTransactions[].dateTimeOfTransaction           | string | The date and time of the transaction                                                                          |
+| cashTransactions[].type                            | ref    | Indicates the type of the cash transaction.                                                                   |
+| totalInterestReceived                              | ref    |                                                                                                               |
+| totalInterestReceived.amount                       | number | The amount                                                                                                    |
+| totalInterestReceived.currency                     | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalInterestReceivedThisTaxYear                   | ref    |                                                                                                               |
+| totalInterestReceivedThisTaxYear.amount            | number | The amount                                                                                                    |
+| totalInterestReceivedThisTaxYear.currency          | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalInvestedBalance                               | ref    |                                                                                                               |
+| totalInvestedBalance.amount                        | number | The amount                                                                                                    |
+| totalInvestedBalance.currency                      | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| subscriptionStatus                                 | string | Indicates if anything is preventing further subscriptions to this ISA.                                        |
+| remainingAdditionalPermittedSubscriptions          | ref    | The remaining amount that can be subscribed as an Additional Permitted Subscription.                          |
+| remainingAdditionalPermittedSubscriptions.amount   | number | The amount                                                                                                    |
+| remainingAdditionalPermittedSubscriptions.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+## DELETE /investors/{investorId}/cash
 
+```http
 
-#### Parameters
+DELETE /investors/{investorId}/cash HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
 
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Path**|**investorId**  <br>*required*|The ID of the investor assigned by the P2P platform.|string|
-|**Body**|**cash**  <br>*required*|The cash transaction.|[newCashTransaction](#newcashtransaction)|
+{
+  "typesToInclude" : [ { }, { } ],
+  "fromDateTime" : "2000-01-23T04:56:07.000+00:00",
+  "typesToExclude" : [ null, null ],
+  "toDateTime" : "2000-01-23T04:56:07.000+00:00"
+}
 
+HTTP/1.1 200 OK
+Content-Type: application/json
 
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|The ISA|[isaModel](#isamodel)|
-|**400**|Invalid request|[cashErrorModel](#casherrormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* cash
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="deletecash"></a>
-### Deletes ISA cash transactions
+{
+  "totalInterestReceived" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "remainingSubscriptionAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "dateCreated" : "2000-01-23",
+  "remainingAdditionalPermittedSubscriptions" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "cashTransactions" : [ {
+    "amount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "clientTransactionId" : "clientTransactionId",
+    "type" : { },
+    "dateTimeOfTransaction" : "2000-01-23T04:56:07.000+00:00"
+  }, {
+    "amount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "clientTransactionId" : "clientTransactionId",
+    "type" : { },
+    "dateTimeOfTransaction" : "2000-01-23T04:56:07.000+00:00"
+  } ],
+  "subscriptionStatus" : "VALID",
+  "totalIsaBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalInterestReceivedThisTaxYear" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalCashBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "investments" : [ {
+    "clientInvestmentId" : "clientInvestmentId",
+    "expectedInterest" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "termOfInvestment" : 2.15,
+    "originalAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "reinvestments" : [ {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    }, {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    } ],
+    "id" : "id",
+    "investmentType" : "LOAN",
+    "dateTimeOfInvestment" : "2000-01-23T04:56:07.000+00:00",
+    "repayments" : [ {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    }, {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    } ]
+  }, {
+    "clientInvestmentId" : "clientInvestmentId",
+    "expectedInterest" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "termOfInvestment" : 2.15,
+    "originalAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "reinvestments" : [ {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    }, {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    } ],
+    "id" : "id",
+    "investmentType" : "LOAN",
+    "dateTimeOfInvestment" : "2000-01-23T04:56:07.000+00:00",
+    "repayments" : [ {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    }, {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    } ]
+  } ],
+  "coolingOffPeriodEnds" : "2000-01-23",
+  "totalInvestedBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  }
+}
 ```
-DELETE /investors/{investorId}/cash
-```
-
-
-#### Description
+### Description
 Deletes all, or a matched set of, cash transactions belonging to the ISA.
 
 **For testing use only.**
+### Request
+| Name           | Type   | Description                                                                                                                                | Required |
+| -------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------ | -------- |
+| fromDateTime   | string | Transactions created on or after this date are considered for deletion. If no date is supplied, no earliest date filtering is applied.     | optional |
+| toDateTime     | string | Transactions created on or before this date are considered for deletion. If no date is supplied, no latest date filtering is applied.      | optional |
+| typesToInclude | array  | Types for transactions that should be considered for deletion. Defaults to all types if no 'typesToInclude' attribute or null is supplied. | optional |
+| typesToExclude | array  | Types for transactions that should be excluded from the deletion. Defaults to none if no 'typesToExclude' attribute or null is supplied.   | optional |
+### Response
+| Name                                               | Type   | Description                                                                                                   |
+| -------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------- |
+| totalIsaBalance                                    | ref    | The total current balance in the ISA, inclusive of all years.                                                 |
+| totalIsaBalance.amount                             | number | The amount                                                                                                    |
+| totalIsaBalance.currency                           | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| remainingSubscriptionAmount                        | ref    | The amount remaining that can be invested in the ISA in the current tax year.                                 |
+| remainingSubscriptionAmount.amount                 | number | The amount                                                                                                    |
+| remainingSubscriptionAmount.currency               | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalCashBalance                                   | ref    | The total amount of cash in the ISA that is not currently invested.                                           |
+| totalCashBalance.amount                            | number | The amount                                                                                                    |
+| totalCashBalance.currency                          | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| dateCreated                                        | string | Date the ISA was created                                                                                      |
+| coolingOffPeriodEnds                               | string | Date the cooling off period ends                                                                              |
+| investments                                        | array  | The list of investments that make up the ISA                                                                  |
+| investments[].id                                   | string | The ID of the loan defined by Goji                                                                            |
+| investments[].clientInvestmentId                   | string | The ID of the loan defined by the P2P platform                                                                |
+| investments[].investmentType                       | string | The type of the investment. Currently only loans are supported.                                               |
+| investments[].originalAmount                       | ref    | The original capital amount of the investment.                                                                |
+| investments[].expectedInterest                     | ref    | The expected interest to receive over the life of the investment.                                             |
+| investments[].dateTimeOfInvestment                 | string | The date and time the investment started                                                                      |
+| investments[].termOfInvestment                     | number | The term of the investment in months                                                                          |
+| investments[].repayments                           | array  | Repayments that have been made against the investment by the borrower that were not reinvested automatically. |
+| investments[].reinvestments                        | array  | Repayments that have been made against the instruments by the borrower that were reinvested automatically.    |
+| cashTransactions                                   | array  | Cash transactions on the ISA                                                                                  |
+| cashTransactions[].clientTransactionId             | string | The ID of the transaction assigned by the P2P platform                                                        |
+| cashTransactions[].amount                          | ref    | The amount of the cash transaction                                                                            |
+| cashTransactions[].dateTimeOfTransaction           | string | The date and time of the transaction                                                                          |
+| cashTransactions[].type                            | ref    | Indicates the type of the cash transaction.                                                                   |
+| totalInterestReceived                              | ref    |                                                                                                               |
+| totalInterestReceived.amount                       | number | The amount                                                                                                    |
+| totalInterestReceived.currency                     | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalInterestReceivedThisTaxYear                   | ref    |                                                                                                               |
+| totalInterestReceivedThisTaxYear.amount            | number | The amount                                                                                                    |
+| totalInterestReceivedThisTaxYear.currency          | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalInvestedBalance                               | ref    |                                                                                                               |
+| totalInvestedBalance.amount                        | number | The amount                                                                                                    |
+| totalInvestedBalance.currency                      | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| subscriptionStatus                                 | string | Indicates if anything is preventing further subscriptions to this ISA.                                        |
+| remainingAdditionalPermittedSubscriptions          | ref    | The remaining amount that can be subscribed as an Additional Permitted Subscription.                          |
+| remainingAdditionalPermittedSubscriptions.amount   | number | The amount                                                                                                    |
+| remainingAdditionalPermittedSubscriptions.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+## POST /investors/{investorId}/cashCorrection
 
+```http
 
-#### Parameters
+POST /investors/{investorId}/cashCorrection HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
 
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Path**|**investorId**  <br>*required*|The ID of the investor assigned by the platform.|string|
-|**Body**|**transactionFilters**  <br>*optional*|Optional criteria to filter transactions that should be deleted.|[deleteCashTransactionFilterCriteria](#deletecashtransactionfiltercriteria)|
+{
+  "amount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "clientTransactionId" : "clientTransactionId",
+  "type" : "INTEREST_REPAYMENT_CORRECTION",
+  "dateTimeOfTransaction" : "2000-01-23T04:56:07.000+00:00"
+}
 
+HTTP/1.1 200 OK
+Content-Type: application/json
 
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|The ISA|[isaModel](#isamodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* testData
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="addcashcorrection"></a>
-### Records a cash correction transaction into the ISA
+{
+  "totalInterestReceived" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "remainingSubscriptionAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "dateCreated" : "2000-01-23",
+  "remainingAdditionalPermittedSubscriptions" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "cashTransactions" : [ {
+    "amount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "clientTransactionId" : "clientTransactionId",
+    "type" : { },
+    "dateTimeOfTransaction" : "2000-01-23T04:56:07.000+00:00"
+  }, {
+    "amount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "clientTransactionId" : "clientTransactionId",
+    "type" : { },
+    "dateTimeOfTransaction" : "2000-01-23T04:56:07.000+00:00"
+  } ],
+  "subscriptionStatus" : "VALID",
+  "totalIsaBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalInterestReceivedThisTaxYear" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "totalCashBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "investments" : [ {
+    "clientInvestmentId" : "clientInvestmentId",
+    "expectedInterest" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "termOfInvestment" : 2.15,
+    "originalAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "reinvestments" : [ {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    }, {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    } ],
+    "id" : "id",
+    "investmentType" : "LOAN",
+    "dateTimeOfInvestment" : "2000-01-23T04:56:07.000+00:00",
+    "repayments" : [ {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    }, {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    } ]
+  }, {
+    "clientInvestmentId" : "clientInvestmentId",
+    "expectedInterest" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "termOfInvestment" : 2.15,
+    "originalAmount" : {
+      "amount" : 123.45,
+      "currency" : "currency"
+    },
+    "reinvestments" : [ {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    }, {
+      "clientReinvestmentId" : "clientReinvestmentId",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "dateTimeOfReinvestment" : "2000-01-23T04:56:07.000+00:00"
+    } ],
+    "id" : "id",
+    "investmentType" : "LOAN",
+    "dateTimeOfInvestment" : "2000-01-23T04:56:07.000+00:00",
+    "repayments" : [ {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    }, {
+      "dateTimeOfRepayment" : "2000-01-23T04:56:07.000+00:00",
+      "interestAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      },
+      "id" : "id",
+      "clientRepaymentId" : "clientRepaymentId",
+      "capitalAmount" : {
+        "amount" : 123.45,
+        "currency" : "currency"
+      }
+    } ]
+  } ],
+  "coolingOffPeriodEnds" : "2000-01-23",
+  "totalInvestedBalance" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  }
+}
 ```
-POST /investors/{investorId}/cashCorrection
-```
-
-
-#### Description
+### Description
 Records a cash correction transaction into the ISA.
 #### Investor Lifecycle
 This endpoint should be called whenever the Platform needs to manually correct a cash transaction amount. Currently only interest repayment corrections are supported. This call will not be needed if the Originator will not need to alter interest amounts.
+### Request
+| Name                  | Type   | Description                                             | Required |
+| --------------------- | ------ | ------------------------------------------------------- | -------- |
+| clientTransactionId   | string | The ID of the transaction assigned by the P2P platform  | required |
+| amount                | ref    | The amount of the corrective cash transaction           | required |
+| amount.amount         | number | The amount                                              ||
+| amount.currency       | string | The currency in ISO 4217 three character codes eg 'GBP' ||
+| dateTimeOfTransaction | string | The date and time of the transaction                    | required |
+| type                  | string | Indicates the type of the corrective cash transaction.  | required |
+### Response
+| Name                                               | Type   | Description                                                                                                   |
+| -------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------- |
+| totalIsaBalance                                    | ref    | The total current balance in the ISA, inclusive of all years.                                                 |
+| totalIsaBalance.amount                             | number | The amount                                                                                                    |
+| totalIsaBalance.currency                           | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| remainingSubscriptionAmount                        | ref    | The amount remaining that can be invested in the ISA in the current tax year.                                 |
+| remainingSubscriptionAmount.amount                 | number | The amount                                                                                                    |
+| remainingSubscriptionAmount.currency               | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalCashBalance                                   | ref    | The total amount of cash in the ISA that is not currently invested.                                           |
+| totalCashBalance.amount                            | number | The amount                                                                                                    |
+| totalCashBalance.currency                          | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| dateCreated                                        | string | Date the ISA was created                                                                                      |
+| coolingOffPeriodEnds                               | string | Date the cooling off period ends                                                                              |
+| investments                                        | array  | The list of investments that make up the ISA                                                                  |
+| investments[].id                                   | string | The ID of the loan defined by Goji                                                                            |
+| investments[].clientInvestmentId                   | string | The ID of the loan defined by the P2P platform                                                                |
+| investments[].investmentType                       | string | The type of the investment. Currently only loans are supported.                                               |
+| investments[].originalAmount                       | ref    | The original capital amount of the investment.                                                                |
+| investments[].expectedInterest                     | ref    | The expected interest to receive over the life of the investment.                                             |
+| investments[].dateTimeOfInvestment                 | string | The date and time the investment started                                                                      |
+| investments[].termOfInvestment                     | number | The term of the investment in months                                                                          |
+| investments[].repayments                           | array  | Repayments that have been made against the investment by the borrower that were not reinvested automatically. |
+| investments[].reinvestments                        | array  | Repayments that have been made against the instruments by the borrower that were reinvested automatically.    |
+| cashTransactions                                   | array  | Cash transactions on the ISA                                                                                  |
+| cashTransactions[].clientTransactionId             | string | The ID of the transaction assigned by the P2P platform                                                        |
+| cashTransactions[].amount                          | ref    | The amount of the cash transaction                                                                            |
+| cashTransactions[].dateTimeOfTransaction           | string | The date and time of the transaction                                                                          |
+| cashTransactions[].type                            | ref    | Indicates the type of the cash transaction.                                                                   |
+| totalInterestReceived                              | ref    |                                                                                                               |
+| totalInterestReceived.amount                       | number | The amount                                                                                                    |
+| totalInterestReceived.currency                     | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalInterestReceivedThisTaxYear                   | ref    |                                                                                                               |
+| totalInterestReceivedThisTaxYear.amount            | number | The amount                                                                                                    |
+| totalInterestReceivedThisTaxYear.currency          | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| totalInvestedBalance                               | ref    |                                                                                                               |
+| totalInvestedBalance.amount                        | number | The amount                                                                                                    |
+| totalInvestedBalance.currency                      | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+| subscriptionStatus                                 | string | Indicates if anything is preventing further subscriptions to this ISA.                                        |
+| remainingAdditionalPermittedSubscriptions          | ref    | The remaining amount that can be subscribed as an Additional Permitted Subscription.                          |
+| remainingAdditionalPermittedSubscriptions.amount   | number | The amount                                                                                                    |
+| remainingAdditionalPermittedSubscriptions.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
+## POST /investors/{investorId}/transferIn/{transferInId}/cash
 
+```http
 
-#### Parameters
+POST /investors/{investorId}/transferIn/{transferInId}/cash HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
 
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Path**|**investorId**  <br>*required*|The ID of the investor assigned by the P2P platform.|string|
-|**Body**|**cash**  <br>*required*|The cash transaction.|[newCorrectiveCashTransaction](#newcorrectivecashtransaction)|
+{
+  "subscribedAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "repairAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "transferAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "clientTransactionId" : "clientTransactionId"
+}
 
+HTTP/1.1 200 OK
+Content-Type: application/json
 
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|The ISA|[isaModel](#isamodel)|
-|**400**|Invalid request|[cashErrorModel](#casherrormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* cash
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="updatedeclarationagreement"></a>
-### Used to record an investor agreeing to the ISA declaration after the ISA has been opened. Can be used for tax year breaks
+""
 ```
-POST /investors/{investorId}/declaration/agreement
-```
-
-
-#### Description
-Used to record an investor agreeing to the ISA declaration after the ISA has been opened. Can be used for tax year breaks.
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Path**|**investorId**  <br>*required*|The ID of the investor assigned by the P2P platform.|string|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|The ISA|[isaModel](#isamodel)|
-|**400**|Invalid request|[investmentErrorModel](#investmenterrormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* taxYearBreak
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="addinvestment"></a>
-### Adds an investment to the investor's ISA
-```
-POST /investors/{investorId}/investment
-```
-
-
-#### Description
-Adds an investment to the investor's ISA.
-#### Investor Lifecycle
-This endpoint should be called whenever monies are drawn down from the investor's account to fund an investment. This creates the investment on the Goji platform and decreases the cash balance of the ISA.
-#### Validation
-The ISA must have a cash balance equal or greater to the amount of the investment.
-#### Possible Error Codes
-Please see [create investment errors](/isa-administration-api/guides/Error%20Codes)
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Path**|**investorId**  <br>*required*|The ID of the investor assigned by the P2P platform.|string|
-|**Body**|**investment**  <br>*required*|The new investment to add.|[newInvestment](#newinvestment)|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|The ISA|[isaModel](#isamodel)|
-|**400**|Invalid request|[investmentErrorModel](#investmenterrormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* investment
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="deleteinvestments"></a>
-### Deletes ISA investments
-```
-DELETE /investors/{investorId}/investment
-```
-
-
-#### Description
-Deletes all, or a matched set of, investments belonging to the ISA.
-
-Currently if the investment has been previously modified this won't work and this test endpoint shouldn't be used.
-
-**For testing use only.**
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Path**|**investorId**  <br>*required*|The ID of the investor assigned by the platform.|string|
-|**Body**|**investmentFilters**  <br>*optional*|Optional criteria to filter investments that should be deleted.|[deleteInvestmentFilterCriteria](#deleteinvestmentfiltercriteria)|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|The ISA|[isaModel](#isamodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* testData
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="updateinvestment"></a>
-### Updates an investment in the investor's ISA
-```
-PUT /investors/{investorId}/investment/{investmentId}
-```
-
-
-#### Description
-Updates an investment in the investor's ISA. This call is normally not required. Please discuss with Goji before using it.
-#### Investor Lifecycle
-This endpoint should be called whenever the captial amount of an investment needs to be updated. It acts in an upsert manner.
-#### Validation
-The ISA must have a cash balance equal or greater to the amount of the investment.
-#### Possible Error Codes
-Please see [create investment errors](/isa-administration-api/guides/Error%20Codes)
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Path**|**investmentId**  <br>*required*|The ID of the investment to be upserted.|string|
-|**Path**|**investorId**  <br>*required*|The ID of the investor assigned by the P2P platform.|string|
-|**Body**|**updateInvestment**  <br>*required*|The investment to upsert.|[upsertInvestment](#upsertinvestment)|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|The ISA|[isaModel](#isamodel)|
-|**400**|Invalid request|[investmentErrorModel](#investmenterrormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* investment
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="addreinvestment"></a>
-### Records a reinvestment against a specific investment
-```
-POST /investors/{investorId}/investment/{investmentId}/reinvestment
-```
-
-
-#### Description
-Records a reinvestment against a specific investment.
-#### Investor Lifecycle
-This endpoint should be called whenever a repayment is received from the borrower against an investor's investment. This amount is automatically reinvested by the P2P Platform and so does not increase the cash balance of the ISA, however the ISA balance is increased by the interest component of the reinvestment.
-This endpoint creates the new investment associated with the reinvestment.
-#### Possible Error Codes
-Please see [create reinvestment errors](/isa-administration-api/guides/Error%20Codes)
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Path**|**investmentId**  <br>*required*|The ID of the investment assigned by the P2P platform.|string|
-|**Path**|**investorId**  <br>*required*|The ID of the investor assigned by the P2P platform.|string|
-|**Body**|**reinvestment**  <br>*required*|The reinvestment.|[newReinvestment](#newreinvestment)|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|The ISA|[isaModel](#isamodel)|
-|**400**|Invalid request|[errorModel](#errormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* investment
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="addrepaymentv2"></a>
-### Records a repayment against a specific investment. Version 2
-```
-POST /investors/{investorId}/investment/{investmentId}/repayment
-```
-
-
-#### Description
-Records a repayment against a specific investment.
-#### Investor Lifecycle
-This endpoint should be called whenever a repayment is received from the borrower against an investor's investment. This repayment increases the cash balance of the ISA as it is not automatically reinvested by the P2P Platform.
-#### Possible Error Codes
-Please see [create repayment errors](/isa-administration-api/guides/Error%20Codes)
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Header**|**version**  <br>*required*|Must be set to 2.|string|
-|**Path**|**investmentId**  <br>*required*|The ID of the investment assigned by the P2P platform.|string|
-|**Path**|**investorId**  <br>*required*|The ID of the investor assigned by the P2P platform.|string|
-|**Body**|**repayment**  <br>*required*|The repayment.|[newRepayment](#newrepayment)|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Success|No Content|
-|**400**|Invalid request|[errorModel](#errormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* investment
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="saleinvestment"></a>
-### Records the sale of a specific investment
-```
-POST /investors/{investorId}/investment/{investmentId}/sale
-```
-
-
-#### Description
-Records the sale of a specific investment.
-#### Investor Lifecycle
-This endpoint should be called if an investment should be marked as sold. The amount of the sale may be more or less than the remaining capital amount on the investment.
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Path**|**investmentId**  <br>*required*|The ID of the investment assigned by the P2P platform.|string|
-|**Path**|**investorId**  <br>*required*|The ID of the investor assigned by the P2P platform.|string|
-|**Body**|**sale**  <br>*required*|The sale.|[sale](#sale)|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|The ISA|[isaModel](#isamodel)|
-|**400**|Invalid request|[errorModel](#errormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* investment
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="investmentwriteoff"></a>
-### Records a write-off amount against a specific investment
-```
-POST /investors/{investorId}/investment/{investmentId}/writeOff
-```
-
-
-#### Description
-Records a write-off amount against a specific investment.
-#### Investor Lifecycle
-This endpoint should be called if an investment is in default and some or all of the remaining capital amount should be written off.
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Path**|**investmentId**  <br>*required*|The ID of the investment assigned by the P2P platform.|string|
-|**Path**|**investorId**  <br>*required*|The ID of the investor assigned by the P2P platform.|string|
-|**Body**|**sale**  <br>*required*|The sale.|[writeOff](#writeoff)|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|The ISA|[isaModel](#isamodel)|
-|**400**|Invalid request|[errorModel](#errormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* investment
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="loadisa"></a>
-### Returns details of the investor's ISA
-```
-GET /investors/{investorId}/isa
-```
-
-
-#### Description
-Returns details of the investor's ISA.
-#### Investor Lifecycle
-This endpoint should be called whenever up to date details of the investor's ISA are required eg remaining subscription amount etc.
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Path**|**investorId**  <br>*required*|The ID of the investor assigned by the P2P platform.|string|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|The investor's ISA|[isaModel](#isamodel)|
-|**400**|Invalid request|[errorModel](#errormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* isa
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="updateisastatus"></a>
-### Sets the ISA subscription status for an investor
-```
-PUT /investors/{investorId}/isa/status
-```
-
-
-#### Description
-Updates the status of an investor's ISA.  This can aid testing by placing an ISA into an invalid status.
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Path**|**investorId**  <br>*required*|The ID of the investor assigned by the P2P platform.|string|
-|**Body**|**isaStatus**  <br>*required*|The status to set the ISA into, and when the status change happened.|[investorValidForIsa](#investorvalidforisa)|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|The investor's ISA|[isaSummaryModel](#isasummarymodel)|
-|**400**|Invalid request|[errorModel](#errormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* testData
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="loadisasummary"></a>
-### Returns summary details of the investor's ISA
-```
-GET /investors/{investorId}/isa/summary
-```
-
-
-#### Description
-Returns summary details of the investor's ISA.
-#### Investor Lifecycle
-This endpoint should be called whenever summary details of the investor's ISA are required eg remaining subscription amount etc.
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Path**|**investorId**  <br>*required*|The ID of the investor assigned by the P2P platform.|string|
-|**Query**|**date**  <br>*optional*|The date at which the summary should be returned. In yyyy-MM-dd format.|string|
-|**Query**|**highPrecision**  <br>*optional*|Choose whether to receive the ISA summary with values given to eight decimal places. False will return to two decimal places.|boolean|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|The investor's ISA|[isaSummaryModel](#isasummarymodel)|
-|**400**|Invalid request|[errorModel](#errormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* isa
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="uidata"></a>
-### Initialisation data for the Transfer In widget
-```
-GET /investors/{investorId}/transferIn/uiData
-```
-
-
-#### Description
-Initialisation data for the Transfer In widget
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Path**|**investorId**  <br>*required*|The ID of the investor assigned by the P2P platform.|string|
-|**Query**|**version**  <br>*optional*|The version of the assets to retrieve.|string|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Initialisation data for the Transfer In widget|[uiData](#uidata)|
-|**400**|Invalid request|[errorModel](#errormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* transferIn
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="deposittransferin"></a>
-### Record a cash transaction for a transfer in
-```
-POST /investors/{investorId}/transferIn/{transferInId}/cash
-```
-
-
-#### Description
+### Description
 This endpoint should be called by the P2PP when they have received the deposit for a transfer in and have confirmed the split between current/prior year subscriptions. The transfer amount is the value of the total amount received from the previus ISA manager. Either the repair amount or the subscribed amount needs to be specified. The subscribed amount is the portion allocated to the ISA. The repair amount is the amount that had to be credited to the non-ISA account. Please see the integration guide for more details.
 #### Possible Error Codes
 Please see [transfer cash errors](/isa-administration-api/guides/Error%20Codes)
+### Request
+| Name                      | Type   | Description                                                                                                                                                                          | Required |
+| ------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- |
+| clientTransactionId       | string | The transaction ID for the transfer cash                                                                                                                                             | required |
+| transferAmount            | ref    | The total transfer amount                                                                                                                                                            | optional |
+| transferAmount.amount     | number | The amount                                                                                                                                                                           ||
+| transferAmount.currency   | string | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                              ||
+| repairAmount              | ref    | The amount that was transferred that had to be immediately repaired and transferred to their standard investment account. Specify either the repair amount or the subscribed amount. | optional |
+| repairAmount.amount       | number | The amount                                                                                                                                                                           ||
+| repairAmount.currency     | string | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                              ||
+| subscribedAmount          | ref    | The amount that was transferred and was credited to the ISA account. Specify either the repair amount or the subscribed amount.                                                      | optional |
+| subscribedAmount.amount   | number | The amount                                                                                                                                                                           ||
+| subscribedAmount.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                              ||
+### Response
+| Name | Type | Description || ---- | ---- | ----------- |
 
+## POST /investors/{investorId}/transferIn/{transferInId}/residualIncome
 
-#### Parameters
+```http
 
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Path**|**investorId**  <br>*required*|The ID of the investor assigned by the P2P platform.|string|
-|**Path**|**transferInId**  <br>*required*|The ID of the transfer in taken from the Goji Admin Console|string|
-|**Body**|**transferInCash**  <br>*optional*|The amounts being transferred in|[transferInCash](#transferincash)|
+POST /investors/{investorId}/transferIn/{transferInId}/residualIncome HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
 
+{
+  "dateTime" : "2000-01-23T04:56:07.000+00:00",
+  "amount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "clientTransactionId" : "clientTransactionId"
+}
 
-#### Responses
+HTTP/1.1 200 OK
+Content-Type: application/json
 
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|The deposit was successful|No Content|
-|**400**|Invalid request|[errorModel](#errormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* transferIn
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="validatetransferindeposit"></a>
-### Validates a cash transaction for a transfer in
+""
 ```
-POST /investors/{investorId}/transferIn/{transferInId}/cash/validation
-```
-
-
-#### Description
-This endpoint should be called by the P2PP when they want to validate the transfer in cash transaction before processing it.
-#### Possible Error Codes
-Please see [transfer cash errors](/isa-administration-api/guides/Error%20Codes)
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Path**|**investorId**  <br>*required*|The ID of the investor assigned by the P2P platform.|string|
-|**Path**|**transferInId**  <br>*required*|The ID of the transfer in taken from the Goji Admin Console|string|
-|**Body**|**transferInCash**  <br>*optional*|The amounts being transferred in|[transferInCash](#transferincash)|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|The deposit was successful|No Content|
-|**400**|Invalid request|[errorModel](#errormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* transferIn
-
-
-<a name="residualincometransferin"></a>
-### Record a residual income transaction for a transfer in
-```
-POST /investors/{investorId}/transferIn/{transferInId}/residualIncome
-```
-
-
-#### Description
+### Description
 This endpoint should be called by the P2PP when they have received a residual income payment for a transfer in. Please see the integration guide for more details.
 #### Possible Error Codes
 Please see [transfer cash errors](/isa-administration-api/guides/Error%20Codes)
+### Request
+| Name                | Type   | Description                                             | Required |
+| ------------------- | ------ | ------------------------------------------------------- | -------- |
+| clientTransactionId | string | A unique ID for the transaction                         | optional |
+| amount              | ref    | The amount of the residual income payment               | optional |
+| amount.amount       | number | The amount                                              ||
+| amount.currency     | string | The currency in ISO 4217 three character codes eg 'GBP' ||
+| dateTime            | string | The date time the residual income payment was received. | optional |
+### Response
+| Name | Type | Description || ---- | ---- | ----------- |
 
+## POST /investors/{investorId}/transferIn/{transferInId}/cash/validation
 
-#### Parameters
+```http
 
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Path**|**investorId**  <br>*required*|The ID of the investor assigned by the P2P platform.|string|
-|**Path**|**transferInId**  <br>*required*|The ID of the transfer in taken from the Goji Admin Console|string|
-|**Body**|**transferInCash**  <br>*optional*|The amounts being transferred in|[transferInResidualIncome](#transferinresidualincome)|
+POST /investors/{investorId}/transferIn/{transferInId}/cash/validation HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
 
+{
+  "subscribedAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "repairAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "transferAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "clientTransactionId" : "clientTransactionId"
+}
 
-#### Responses
+HTTP/1.1 200 OK
+Content-Type: application/json
 
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|The deposit was successful|No Content|
-|**400**|Invalid request|[errorModel](#errormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* transferIn
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="listtransfersout"></a>
-### Lists transfers out for the investor
+""
 ```
-GET /investors/{investorId}/transferOut
+### Description
+This endpoint should be called by the P2PP when they want to validate the transfer in cash transaction before processing it.
+#### Possible Error Codes
+Please see [transfer cash errors](/isa-administration-api/guides/Error%20Codes)
+### Request
+| Name                      | Type   | Description                                                                                                                                                                          | Required |
+| ------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- |
+| clientTransactionId       | string | The transaction ID for the transfer cash                                                                                                                                             | required |
+| transferAmount            | ref    | The total transfer amount                                                                                                                                                            | optional |
+| transferAmount.amount     | number | The amount                                                                                                                                                                           ||
+| transferAmount.currency   | string | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                              ||
+| repairAmount              | ref    | The amount that was transferred that had to be immediately repaired and transferred to their standard investment account. Specify either the repair amount or the subscribed amount. | optional |
+| repairAmount.amount       | number | The amount                                                                                                                                                                           ||
+| repairAmount.currency     | string | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                              ||
+| subscribedAmount          | ref    | The amount that was transferred and was credited to the ISA account. Specify either the repair amount or the subscribed amount.                                                      | optional |
+| subscribedAmount.amount   | number | The amount                                                                                                                                                                           ||
+| subscribedAmount.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                              ||
+### Response
+| Name | Type | Description || ---- | ---- | ----------- |
+
+## GET /investors/{clientId}/transferInSummary
+
+```http
+
+GET /investors/{clientId}/transferInSummary HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+""
 ```
+### Description
+Returns the in progress transfers in for the specified investor
+### Response
+| Name | Type | Description || ---- | ---- | ----------- |
+
+## GET /investors/{clientId}/transferIn/{transferInId}/summary
+
+```http
+
+GET /investors/{clientId}/transferIn/{transferInId}/summary HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
 
 
-#### Description
-Lists transfers out for the investor.
 
+HTTP/1.1 200 OK
+Content-Type: application/json
 
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Path**|**investorId**  <br>*required*|The ID of the investor assigned by the P2P platform.|string|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|A list of transfers out.|[listTransfersOut](#listtransfersout)|
-|**400**|Invalid request|[errorModel](#errormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* transferOut
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="transferoutcash"></a>
-### Records the funds transfer for a Transfer Out
+{
+  "totalTransferAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "transferInDate" : "2000-01-23",
+  "clientId" : "clientId",
+  "repairAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "bankReference" : "bankReference",
+  "fundsTransferType" : "fundsTransferType",
+  "id" : "id"
+}
 ```
-POST /investors/{investorId}/transferOut/{transferOutId}/cash
+### Description
+Returns the in progress transfers in for the specified investor
+### Response
+| Name                         | Type   | Description                                             |
+| ---------------------------- | ------ | ------------------------------------------------------- |
+| id                           | string | The ID of the transfer in                               |
+| clientId                     | string | The ID of client                                        |
+| totalTransferAmount          | ref    | The total amount being transferred                      |
+| totalTransferAmount.amount   | number | The amount                                              |
+| totalTransferAmount.currency | string | The currency in ISO 4217 three character codes eg 'GBP' |
+| repairAmount                 | ref    | The repair amount                                       |
+| repairAmount.amount          | number | The amount                                              |
+| repairAmount.currency        | string | The currency in ISO 4217 three character codes eg 'GBP' |
+| fundsTransferType            | string | The funds transfer type                                 |
+| bankReference                | string | The bank reference                                      |
+| transferInDate               | string | The date stated on the transfer history form            |
+## GET /transferIn/deposits/{date}
+
+```http
+
+GET /transferIn/deposits/{date} HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "totalValue" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "numberCheques" : 7,
+  "transfersIn" : [ {
+    "clientId" : "clientId",
+    "id" : "id"
+  }, {
+    "clientId" : "clientId",
+    "id" : "id"
+  } ]
+}
 ```
-
-
-#### Description
-Records the funds transfer for a Transfer Out.
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Path**|**investorId**  <br>*required*|The ID of the investor assigned by the P2P platform.|string|
-|**Path**|**transferOutId**  <br>*required*|The ID of the transfer out.|string|
-|**Body**|**transferOutTransaction**  <br>*optional*|The details of the transfer.|[transferOutTransaction](#transferouttransaction)|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|The transfer was recorded successfully.|No Content|
-|**400**|Invalid request|[errorModel](#errormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* transferOut
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="transferoutfee"></a>
-### Records that a fee related to a transfer out has been collected from an Investor's account
-```
-POST /investors/{investorId}/transferOut/{transferOutId}/fee
-```
-
-
-#### Description
-Records that a fee related to a transfer out has been collected from an Investor's account.
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Path**|**investorId**  <br>*required*|The ID of the investor assigned by the P2P platform.|string|
-|**Path**|**transferOutId**  <br>*required*|The ID of the transfer out.|string|
-|**Body**|**transferOutFeeTransaction**  <br>*optional*|The details of the fee.|[transferOutFeeTransaction](#transferoutfeetransaction)|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|The transfer fee was recorded successfully.|[transferOutFee](#transferoutfee)|
-|**400**|Invalid request|[errorModel](#errormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* transferOut
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="isareconciliationsummary"></a>
-### A reconciliation summary for all investors
-```
-GET /isaReconciliation
-```
-
-
-#### Description
-Returns a reconciliation summary for all investors
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Reconciliation summary|[reconciliationSummary](#reconciliationsummary)|
-|**400**|Invalid request|[errorModel](#errormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* reconciliation
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="createtsandcs"></a>
-### Creates or updates the Terms and Conditions to show to the investor
-```
-POST /terms
-```
-
-
-#### Description
-Creates or updates the Terms and Conditions to show to the investor.
-#### Investor Lifecycle
-This endpoint should be called to create or update the Terms and Conditions that the investor must agree to before they can open an IF ISA.
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Body**|**termsAndConditions**  <br>*required*|The investor's to the terms and conditions.|[newTermsContentModel](#newtermscontentmodel)|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Ts and Cs response|[termsModel](#termsmodel)|
-|**400**|Invalid request|[errorModel](#errormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* terms
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="gettsandcs"></a>
-### Returns the Terms and Conditions to show to the investor
-```
-GET /terms
-```
-
-
-#### Description
-Returns the Terms and Conditions to show to the investor.
-#### Investor Lifecycle
-This endpoint should be called to return the Terms and Conditions that the investor must agree to before they can open an IF ISA.
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Ts and Cs response|[termsModel](#termsmodel)|
-|**400**|Invalid request|[errorModel](#errormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* registration
-* terms
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="signtsandcs"></a>
-### Returns a token that is linked to the version of the terms and conditions that the investor is agreeing to.
-```
-POST /terms/agreement
-```
-
-
-#### Description
-Issues a token that indicates that the investor has read and agreed to the specified version of the terms and conditions. The returned token can then be used as part of the create investor request or when the investor is signing a new version of the terms and conditions.
-#### Investor Lifecycle
-This endpoint should be called before creating the investor and when the investor signs a new version of the terms and conditions.
-#### Possible Error Codes:
-Please see [sign terms errors](/isa-administration-api/guides/Error%20Codes)
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Body**|**termsAndConditions**  <br>*required*|The Investor agreeing to the terms and conditions.|[newTermsModel](#newtermsmodel)|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|Ts and Cs signed successfully|[termsTokenModel](#termstokenmodel)|
-|**400**|Invalid request|[termsErrorModel](#termserrormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* registration
-* terms
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="transferinchequedeposits"></a>
-### Returns the transfer in cheque deposits for a given date
-```
-GET /transferIn/deposits/{date}
-```
-
-
-#### Description
+### Description
 Returns the transfer in cheque deposits for a given date.
+### Response
+| Name                   | Type    | Description                                                           |
+| ---------------------- | ------- | --------------------------------------------------------------------- |
+| numberCheques          | integer | The number of cheques included in the batch                           |
+| totalValue             | ref     | The total value of the cheques deposited                              |
+| totalValue.amount      | number  | The amount                                                            |
+| totalValue.currency    | string  | The currency in ISO 4217 three character codes eg 'GBP'               |
+| transfersIn            | array   |                                                                       |
+| transfersIn[].id       | string  | The ID of the transfer in                                             |
+| transfersIn[].clientId | string  | The ID assigned by the platform of the investor for this transfer in. |
+## GET /transferIn/open/summary
+
+```http
+
+GET /transferIn/open/summary HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
 
 
-#### Parameters
 
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Path**|**date**  <br>*required*|The date to return deposits for. In format yyyy-MM-dd.|string|
+HTTP/1.1 200 OK
+Content-Type: application/json
 
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|The transfer in cheque deposits|[transferInChequeDeposit](#transferinchequedeposit)|
-|**400**|Invalid request|[errorModel](#errormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* transferIn
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="allopentransfersin"></a>
-### Retrieve a list of all open transfers in for an investor
+""
 ```
-GET /transferIn/investors/{clientId}/open
-```
-
-
-#### Description
-Used to find an overview of all transfer in workflows for a particular investor. It should be understood that the existence of the TransferDate determines whether the transfer history form has been submitted
-
-
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-|**Path**|**clientId**  <br>*required*|The client ID of the investor assigned by the P2P platform.|string|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|An Overview of the Transfer In|[listTransferInOverview](#listtransferinoverview)|
-|**400**|Invalid request|[investmentErrorModel](#investmenterrormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* transferIn
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="opentransfersin"></a>
-### Returns аll opened transfers in
-```
-GET /transferIn/open/summary
-```
-
-
-#### Description
+### Description
 Returns аll opened transfers in.
+### Response
+| Name | Type | Description || ---- | ---- | ----------- |
+
+## GET /isaReconciliation
+
+```http
+
+GET /isaReconciliation HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
 
 
-#### Parameters
 
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
+HTTP/1.1 200 OK
+Content-Type: application/json
 
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|List of open transfers in summaries|[transferInSummaries](#transferinsummaries)|
-|**400**|Invalid request|[errorModel](#errormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* transferIn
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="listalltransfersout"></a>
-### Lists all transfers out for all investors
+""
 ```
-GET /transfersOut
+### Description
+Returns a reconciliation summary for all investors
+### Response
+| Name | Type | Description || ---- | ---- | ----------- |
+
+## GET /investorReconciliation
+
+```http
+
+GET /investorReconciliation HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+""
 ```
+### Description
+Returns a reconciliation summary of investor name and address data
+### Response
+| Name | Type | Description || ---- | ---- | ----------- |
+
+## GET /investors/{investorId}/transferIn/uiData
+
+```http
+
+GET /investors/{investorId}/transferIn/uiData HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
 
 
-#### Description
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "apiUrl" : "apiUrl",
+  "hostedUrl" : "hostedUrl",
+  "styleSrc" : "styleSrc",
+  "investorId" : "investorId",
+  "scriptSrc" : "scriptSrc",
+  "token" : "token"
+}
+```
+### Description
+Initialisation data for the Transfer In widget
+### Response
+| Name       | Type   | Description |
+| ---------- | ------ | ----------- |
+| apiUrl     | string |             |
+| hostedUrl  | string |             |
+| styleSrc   | string |             |
+| scriptSrc  | string |             |
+| investorId | string |             |
+| token      | string |             |
+## GET /investors/{investorId}/transferOut
+
+```http
+
+GET /investors/{investorId}/transferOut HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+""
+```
+### Description
+Lists transfers out for the investor.
+### Response
+| Name | Type | Description || ---- | ---- | ----------- |
+
+## GET /transfersOut
+
+```http
+
+GET /transfersOut HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+""
+```
+### Description
 Lists all transfers out for all investors.
+### Response
+| Name | Type | Description || ---- | ---- | ----------- |
+
+## POST /investors/{investorId}/transferOut/{transferOutId}/cash
+
+```http
+
+POST /investors/{investorId}/transferOut/{transferOutId}/cash HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+{
+  "dateOfTransfer" : "2000-01-23",
+  "transferAmount" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  }
+}
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+""
+```
+### Description
+Records the funds transfer for a Transfer Out.
+### Request
+| Name                    | Type   | Description                                             | Required |
+| ----------------------- | ------ | ------------------------------------------------------- | -------- |
+| dateOfTransfer          | string | The date the funds were transferred.                    | required |
+| transferAmount          | ref    | The amount transferred.                                 | required |
+| transferAmount.amount   | number | The amount                                              ||
+| transferAmount.currency | string | The currency in ISO 4217 three character codes eg 'GBP' ||
+### Response
+| Name | Type | Description || ---- | ---- | ----------- |
+
+## POST /investors/{investorId}/transferOut/{transferOutId}/fee
+
+```http
+
+POST /investors/{investorId}/transferOut/{transferOutId}/fee HTTP/1.1
+Host: api-sandbox.goji.investments
+Content-Type: application/json
+Authorization: Basic ...
+
+{
+  "dateTime" : "2000-01-23T04:56:07.000+00:00",
+  "transferOutFee" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  }
+}
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "dateTime" : "2000-01-23T04:56:07.000+00:00",
+  "transferOutFee" : {
+    "amount" : 123.45,
+    "currency" : "currency"
+  },
+  "transferOutId" : "transferOutId"
+}
+```
+### Description
+Records that a fee related to a transfer out has been collected from an Investor's account.
+### Request
+| Name                    | Type   | Description                                             | Required |
+| ----------------------- | ------ | ------------------------------------------------------- | -------- |
+| transferOutFee          | ref    | The amount of the fee.                                  | optional |
+| transferOutFee.amount   | number | The amount                                              ||
+| transferOutFee.currency | string | The currency in ISO 4217 three character codes eg 'GBP' ||
+| dateTime                | string | The date time the fee was collected.                    | optional |
+### Response
+| Name                    | Type   | Description                                                     |
+| ----------------------- | ------ | --------------------------------------------------------------- |
+| transferOutId           | string | The ID of the transfer out.                                     |
+| transferOutFee          | ref    | The amount of the fee.                                          |
+| transferOutFee.amount   | number | The amount                                                      |
+| transferOutFee.currency | string | The currency in ISO 4217 three character codes eg 'GBP'         |
+| dateTime                | string | The date time the fee was collected. Null if not collected yet. |
 
-
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Header**|**X-CLIENT-REQUEST-ID**  <br>*optional*|A unique ID provided by the client for the request.|string|
-
-
-#### Responses
-
-|HTTP Code|Description|Schema|
-|---|---|---|
-|**200**|A list of transfers out|[listTransfersOut](#listtransfersout)|
-|**400**|Invalid request|[errorModel](#errormodel)|
-|**401**|Authentication error|[authErrorModel](#autherrormodel)|
-|**500**|Unexpected error|[systemErrorModel](#systemerrormodel)|
-
-
-#### Produces
-
-* `application/json`
-
-
-#### Tags
-
-* transferOut
-
-
-#### Security
-
-|Type|Name|
-|---|---|
-|**basic**|**[basicAuth](#basicauth)**|
-
-
-<a name="definitions"></a>
-## Definitions
-
-<a name="accountbalance"></a>
-### Account Balance
-
-|Name|Description|Schema|
-|---|---|---|
-|**isaRemainingSubscriptionAmount**  <br>*optional*|The remaining amount of new funds that can be added to the ISA this tax year. null if not an ISA balance|[MonetaryAmount](#monetaryamount)|
-|**totalBalance**  <br>*optional*|The total balance. The sum of the invested, queued and cash balances.|[MonetaryAmount](#monetaryamount)|
-|**totalCashBalance**  <br>*optional*|The total cash balance.|[MonetaryAmount](#monetaryamount)|
-|**totalInvestedBalance**  <br>*optional*|The total invested balance.|[MonetaryAmount](#monetaryamount)|
-|**totalQueuedInvestedBalance**  <br>*optional*|The total queued for investment.|[MonetaryAmount](#monetaryamount)|
-
-
-<a name="accountbalances"></a>
-### Account Balances
-
-|Name|Description|Schema|
-|---|---|---|
-|**accounts**  <br>*optional*|A breakdown of the balances by account.|[accounts](#accountbalances-accounts)|
-|**totalBalance**  <br>*optional*|The total balance. The sum of the invested, queued and cash balances.|[MonetaryAmount](#monetaryamount)|
-|**totalCashBalance**  <br>*optional*|The total cash balance.|[MonetaryAmount](#monetaryamount)|
-|**totalInvestedBalance**  <br>*optional*|The total invested balance.|[MonetaryAmount](#monetaryamount)|
-|**totalQueuedInvestedBalance**  <br>*optional*|The total queued for investment.|[MonetaryAmount](#monetaryamount)|
-
-<a name="accountbalances-accounts"></a>
-**accounts**
-
-|Name|Schema|
-|---|---|
-|**GOJI_INVESTMENT**  <br>*optional*|[AccountBalance](#accountbalance)|
-|**ISA**  <br>*optional*|[AccountBalance](#accountbalance)|
-
-
-<a name="accounttype"></a>
-### Account Type
-*Type* : enum (GOJI_INVESTMENT, ISA)
-
-
-<a name="accounts"></a>
-### Accounts
-
-|Name|Schema|
-|---|---|
-|**accounts**  <br>*optional*|< enum (GOJI_INVESTMENT, ISA) > array|
-
-
-<a name="addisa"></a>
-### Add ISA
-
-|Name|Description|Schema|
-|---|---|---|
-|**nationalInsuranceNumber**  <br>*required*|The national insurance number of the investor.|string|
-
-
-<a name="address"></a>
-### Address
-
-|Name|Description|Schema|
-|---|---|---|
-|**country**  <br>*required*|The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked.|string|
-|**lineOne**  <br>*required*|Line one of the address.|string|
-|**lineThree**  <br>*optional*|Line three of the address.|string|
-|**lineTwo**  <br>*optional*|Line two of the address.|string|
-|**postcode**  <br>*required*|The post code of the address.|string|
-|**region**  <br>*required*|The region of the address eg county.|string|
-|**townCity**  <br>*required*|The town/city of the address.|string|
-
-
-<a name="bankdetails"></a>
-### Bank Details
-
-|Name|Description|Schema|
-|---|---|---|
-|**accountName**  <br>*required*|The account name.|string|
-|**accountNumber**  <br>*required*|The account number.|string|
-|**sortCode**  <br>*required*|The sort code.|string|
-
-
-<a name="banktransferdetails"></a>
-### Bank Transfer Details
-
-|Name|Description|Schema|
-|---|---|---|
-|**accountNumber**  <br>*optional*|The account number.|string|
-|**bankReference**  <br>*optional*|The reference to use for the transfer.|string|
-|**sortCode**  <br>*optional*|The sort code.|string|
-
-
-<a name="bond"></a>
-### Bond
-
-|Name|Description|Schema|
-|---|---|---|
-|**id**  <br>*optional*|The ID of the Bond.|string|
-|**initialInvestmentAmount**  <br>*optional*|The initial investment amount.|[MonetaryAmount](#monetaryamount)|
-|**maturity**  <br>*optional*|The maturity of the bond.|[Maturity](#maturity)|
-|**nextRepaymentDate**  <br>*optional*|The date of the next repayment event.|string (date)|
-|**productTermId**  <br>*optional*|The product term id of the bond.|string|
-|**startDate**  <br>*optional*|The start date of the bond.|string (date)|
-|**status**  <br>*optional*|The status of the bond.|enum (QUEUED, LIVE, MATURED)|
-|**totalAmount**  <br>*optional*|The total current invested amount. This can increase up to the start date of the bond.|[MonetaryAmount](#monetaryamount)|
-|**totalInterestAmount**  <br>*optional*|The total amount of interest accrued. This also includes any interest that has been accrued but not yet repaid.|[MonetaryAmount](#monetaryamount)|
-
-
-<a name="clientmoneyinvestmentitem"></a>
-### Investment for a specific investor
-
-|Name|Description|Schema|
-|---|---|---|
-|**accountType**  <br>*optional*|The account making the investment.|enum (GOJI_INVESTMENT, ISA)|
-|**amount**  <br>*optional*|The amount being invested|[MonetaryAmount](#monetaryamount)|
-|**clientId**  <br>*optional*|The ID of the investor|string|
-|**investmentId**  <br>*optional*|The ID of the investment. This is the ID of the overall investment and so will be shared by multiple investors.|string|
-|**productId**  <br>*optional*|The ID of the investment product as preciously registered in the system|string|
-|**trancheId**  <br>*optional*|The ID of the investment tranche of a particular product|string|
-
-
-<a name="clientmoneyinvestmentresponse"></a>
-### An investment response
-
-|Name|Description|Schema|
-|---|---|---|
-|**accountNumber**  <br>*optional*|The account number the funds will be sent to|string|
-|**id**  <br>*optional*|The unique ID for this investment|string|
-|**reference**  <br>*optional*|The bank reference for the funds transfer|string|
-|**sortCode**  <br>*optional*|The sort code the funds will be sent to|string|
-|**totalAmount**  <br>*optional*|The total amount being invested|[MonetaryAmount](#monetaryamount)|
-
-
-<a name="clientmoneyinvestmentsforinvestor"></a>
-### Investments for the investor
-
-|Name|Schema|
-|---|---|
-|**investments**  <br>*optional*|< [ClientMoneyInvestmentItem](#clientmoneyinvestmentitem) > array|
-
-
-<a name="clientmoneyrepayment"></a>
-### The repayment to be added to the investment.
-
-|Name|Description|Schema|
-|---|---|---|
-|**investorRepayments**  <br>*required*|The repayments per investor.|< [ClientMoneyRepaymentItem](#clientmoneyrepaymentitem) > array|
-|**reference**  <br>*required*|The payment reference used for the repayment of funds.|string|
-
-
-<a name="clientmoneyrepaymentitem"></a>
-### The repayment for a specific investor
-
-|Name|Description|Schema|
-|---|---|---|
-|**amount**  <br>*required*|The amount being repaid|[MonetaryAmount](#monetaryamount)|
-|**investmentId**  <br>*required*|The ID of the of the investment|string|
-|**tax**  <br>*optional*|The amount of tax being withheld from this repayment|[MonetaryAmount](#monetaryamount)|
-|**type**  <br>*required*|The type of the repayment|enum (CAPITAL, INTEREST)|
-
-
-<a name="clientmoneyrepaymentresponse"></a>
-### The details for sending the repayment.
-
-|Name|Description|Schema|
-|---|---|---|
-|**accountNumber**  <br>*optional*|The account number to end the funds to.|string|
-|**reference**  <br>*optional*|The bank reference for the funds transfer.|string|
-|**sortCode**  <br>*optional*|The sort code to send the funds to.|string|
-|**totalAmount**  <br>*optional*|The total amount to send.|[MonetaryAmount](#monetaryamount)|
-
-
-<a name="clientmoneytranche"></a>
-### A recorded investment tranche
-
-|Name|Description|Schema|
-|---|---|---|
-|**id**  <br>*required*|The unique ID for this tranche of investment|string|
-|**investments**  <br>*required*||< [CreateClientMoneyInvestmentItem](#createclientmoneyinvestmentitem) > array|
-|**paymentDestinationId**  <br>*required*|The ID of the payment destination to be used for this tranche.|string|
-|**productId**  <br>*required*|The ID of the investment product as preciously registered in the system|string|
-
-
-<a name="contactdetails"></a>
-### Contact Details
-
-|Name|Description|Schema|
-|---|---|---|
-|**emailAddress**  <br>*required*|The email address.|string|
-|**telephoneNumber**  <br>*required*|The telephone number.|string|
-
-
-<a name="corporatedetails"></a>
-### Corporate Details
-
-|Name|Description|Schema|
-|---|---|---|
-|**companyName**  <br>*required*|The company name.|string|
-|**companyType**  <br>*required*|The company type.|string|
-|**registrationNumber**  <br>*required*|The company registration number.|string|
-
-
-<a name="createclientmoneyinvestmentitem"></a>
-### Investment for a specific investor
-
-|Name|Description|Schema|
-|---|---|---|
-|**accountType**  <br>*required*|The account making the investment.|enum (GOJI_INVESTMENT, ISA)|
-|**amount**  <br>*required*|The amount being invested|[MonetaryAmount](#monetaryamount)|
-|**clientId**  <br>*required*|The ID of the investor|string|
-|**id**  <br>*required*|The unique ID for this clients investment|string|
-
-
-<a name="createinvestment"></a>
-### Create Investment
-
-|Name|Description|Schema|
-|---|---|---|
-|**amount**  <br>*required*|The amount invested.|[MonetaryAmount](#monetaryamount)|
-|**productTermId**  <br>*required*|The product code for the investment.|string|
-|**repaymentProfileId**  <br>*required*|The repayment profile ID.|integer|
-
-
-<a name="createinvestor"></a>
-### Create Investor
-
-|Name|Description|Schema|
-|---|---|---|
-|**accountTypes**  <br>*optional*|defaults to [GOJI_INVESTMENT, ISA] if not provided for a INDIVIDUAL entityType. Defaults to [GOJI_INVESTMENT] for CORPORATE entityType. ISA invalid for CORPORATE entityType|< [AccountType](#accounttype) > array|
-|**address**  <br>*required*||[Address](#address)|
-|**contactDetails**  <br>*required*||[ContactDetails](#contactdetails)|
-|**corporateDetails**  <br>*optional*|only required for CORPORATE entityType.|[CorporateDetails](#corporatedetails)|
-|**dateOfBirth**  <br>*required*|The date of birth of the investor.|string (date)|
-|**employmentDetails**  <br>*optional*||[EmploymentDetails](#employmentdetails)|
-|**entityType**  <br>*required*||enum (INDIVIDUAL, CORPORATE)|
-|**firstName**  <br>*required*|The first name of the investor.|string|
-|**investorDeclarationType**  <br>*required*|All investors must complete a declaration to confirm the kind of investor they are.|enum (RESTRICTED, HIGH_NET_WORTH, INVESTMENT_PROFESSIONAL, SOPHISTICATED)|
-|**lastName**  <br>*required*|The last name of the investor.|string|
-|**migrationDetails**  <br>*optional*|Optional. Only required if migrating an investor.|[MigrationDetails](#migrationdetails)|
-|**nationalInsuranceNumber**  <br>*optional*|The national insurance number of the investor. Only required if opening an ISA.|string|
-|**nationality**  <br>*required*|The nationality of the investor in 2 character ISO country code eg. GB for British.|string|
-|**title**  <br>*required*|The title of the investor.|enum (MISS, MR, MRS, MS, DR)|
-
-
-<a name="currentbonds"></a>
-### Current Bonds
-
-|Name|Schema|
-|---|---|
-|**bonds**  <br>*optional*|< [Bond](#bond) > array|
-
-
-<a name="documentupload"></a>
-### Document Upload
-
-|Name|Description|Schema|
-|---|---|---|
-|**data**  <br>*required*|The file to upload Base64 encoded.|string|
-|**fileName**  <br>*required*|The file name eg passport.pdf.|string|
-
-
-<a name="employmentdetails"></a>
-### Employment Details
-
-|Name|Description|Schema|
-|---|---|---|
-|**employmentStatus**  <br>*required*|The employment status.|enum (EMPLOYED_FULL_TIME, EMPLOYED_PART_TIME, SELF_EMPLOYED, UNEMPLOYED, HOUSE_PERSON, EDUCATION, RETIRED, NOT_WORKING_ILLNESS_DISABILITY)|
-|**jobTitle**  <br>*required*|The job title.|string|
-
-
-<a name="error"></a>
-### Error
-
-|Name|Description|Schema|
-|---|---|---|
-|**errorCode**  <br>*optional*|The error code.|string|
-|**message**  <br>*optional*|The error message.|string|
-
-
-<a name="errorresponse"></a>
-### Error Response
-
-|Name|Schema|
-|---|---|
-|**errors**  <br>*optional*|< [Error](#error) > array|
-
-
-<a name="isadeclaration"></a>
-### ISA Declaration
-
-|Name|Description|Schema|
-|---|---|---|
-|**declaration**  <br>*optional*|The ISA declaration in HTML format.|string|
-|**version**  <br>*optional*|The version of the ISA declaration.|string|
-
-
-<a name="interaccounttransfer"></a>
-### Inter Account Transfer
-
-|Name|Schema|
-|---|---|
-|**amount**  <br>*optional*|[MonetaryAmount](#monetaryamount)|
-|**toAccount**  <br>*optional*|enum (GOJI_INVESTMENT, ISA)|
-
-
-<a name="investment"></a>
-### Investment
-
-|Name|Description|Schema|
-|---|---|---|
-|**amountInvested**  <br>*optional*|The amount invested.|[MonetaryAmount](#monetaryamount)|
-|**bondId**  <br>*optional*|The id of the bond this investment is in. Not present if status is PENDING.|string (uuid)|
-|**creationDate**  <br>*optional*|The creation date of the investment.|string (date)|
-|**endDate**  <br>*optional*|The end date of the investment.|string (date)|
-|**gainToDate**  <br>*optional*|The gain to date. Can be negative if the investment has decreased in value.|[MonetaryAmount](#monetaryamount)|
-|**gainToDateAsPercentage**  <br>*optional*|The gain to date as a percentage.|number|
-|**id**  <br>*optional*|A unique ID for the investment.|string (uuid)|
-|**productTermId**  <br>*optional*|The product code for the investment.|string|
-|**startDate**  <br>*optional*|The start date of the investment.|string (date)|
-|**status**  <br>*optional*|The status of the investment.|enum (PENDING, PROCESSING, COMPLETED, MATURED, REDEEMED, CANCELLED)|
-
-
-<a name="investmentdocument"></a>
-### The documents related to a given product.
-
-|Name|Description|Schema|
-|---|---|---|
-|**fileName**  <br>*required*|The name of the file.|string|
-|**fileUrl**  <br>*required*|The url of the document.|string|
-|**investmentDocumentType**  <br>*required*|The type of document|enum (INVESTMENT_BROCHURE, KEY_INFORMATION_DOCUMENT, INVESTMENT_MEMORANDUM, COMPLIANCE_NOTE)|
-
-
-<a name="investmentproduct"></a>
-### Product
-
-|Name|Description|Schema|
-|---|---|---|
-|**availableTerms**  <br>*optional*|The available terms, in months.|< [InvestmentProductTerm](#investmentproductterm) > array|
-|**id**  <br>*optional*|The product code.|string|
-|**name**  <br>*optional*|The name of the product.|string|
-
-
-<a name="investmentproductterm"></a>
-### A product term for a given product.
-
-|Name|Description|Schema|
-|---|---|---|
-|**fixedLiveDate**  <br>*optional*|A fixed date in the future when the product goes live. If this is not set, and the maximum funding limit is not specified, the bond will run according to the schedule you agree with Goji.|string (date)|
-|**fixedMaturityDate**  <br>*optional*|A fixed date at which point the product matures. <b>Note: fixedMaturityDate or term must be specified</b>|string (date)|
-|**id**  <br>*optional*|The ID of the Product Term|string|
-|**interestRate**  <br>*optional*|The interest rate of the product.|number|
-|**interestType**  <br>*optional*|The type of interest to be returned.|enum (FIXED)|
-|**investmentDocuments**  <br>*optional*|The investment documents relating to the product.|< [InvestmentDocument](#investmentdocument) > array|
-|**maturityDateType**  <br>*optional*||enum (FIXED, DURATION)|
-|**maximumFundingLimit**  <br>*optional*|The maximum amount allowed for the product before it goes live. <b>Note: The bond will NOT run until this limit is reached. ie. this is both a maximum limt and also the amount that must be filled for the bond to run.</>|[MonetaryAmount](#monetaryamount)|
-|**minimumInvestment**  <br>*optional*|The minimum individual investment allowed for the product.|[MonetaryAmount](#monetaryamount)|
-|**repaymentProfiles**  <br>*optional*|The available repayment profiles.|< [InvestmentRepaymentProfile](#investmentrepaymentprofile) > array|
-|**term**  <br>*optional*|The term length of the product in months. <b>Note: term or fixedMaturityDate must be specified</b>|integer|
-
-
-<a name="investmentproductslist"></a>
-### Investment Products
-
-|Name|Schema|
-|---|---|
-|**availableProducts**  <br>*optional*|< [InvestmentProduct](#investmentproduct) > array|
-
-
-<a name="investmentrepaymentprofile"></a>
-### InvestmentRepaymentProfile
-The repayment profile
-
-
-|Name|Description|Schema|
-|---|---|---|
-|**id**  <br>*optional*|The ID of the Repayment Profile|string|
-|**interestPayoutDescription**  <br>*optional*|The description for the Repayment Profile|string|
-|**interestPayoutLabel**  <br>*optional*|The label for the Repayment Profile|string|
-
-
-<a name="investor"></a>
-### Investor
-
-|Name|Description|Schema|
-|---|---|---|
-|**accountTypes**  <br>*optional*|Investor's account types|enum (GOJI_INVESTMENT, ISA)|
-|**address**  <br>*optional*||[Address](#address)|
-|**clientId**  <br>*optional*|The ID of the investor assigned by the platform.|string|
-|**contactDetails**  <br>*optional*||[ContactDetails](#contactdetails)|
-|**corporateDetails**  <br>*optional*|only required for CORPORATE entityType.|[CorporateDetails](#corporatedetails)|
-|**dateOfBirth**  <br>*optional*|The date of birth of the investor.|string (date)|
-|**employmentDetails**  <br>*optional*||[EmploymentDetails](#employmentdetails)|
-|**entityType**  <br>*optional*||enum (INDIVIDUAL, CORPORATE)|
-|**firstName**  <br>*optional*|The first name of the investor.|string|
-|**lastName**  <br>*optional*|The last name of the investor.|string|
-|**nationalInsuranceNumber**  <br>*optional*|The national insurance number of the investor.|string|
-|**title**  <br>*optional*|The title of the investor.|enum (MISS, MR, MRS, MS, DR)|
-
-
-<a name="investorrepayment"></a>
-### The repayment to be added to the investment for the investor.
-
-|Name|Description|Schema|
-|---|---|---|
-|**capitalAmount**  <br>*required*|The capital amount being repaid. May be zero.|[MonetaryAmount](#monetaryamount)|
-|**clientId**  <br>*required*|The ID of the client|string|
-|**interestAmount**  <br>*required*|The interest amount being repaid. May be zero.|[MonetaryAmount](#monetaryamount)|
-
-
-<a name="kycdocuments"></a>
-### KYC Documents
-
-|Name|Description|Schema|
-|---|---|---|
-|**documents**  <br>*required*|The documents.|< [DocumentUpload](#documentupload) > array|
-
-
-<a name="kycstatus"></a>
-### KYC Status
-
-|Name|Description|Schema|
-|---|---|---|
-|**status**  <br>*optional*|The KYC status of the investor|enum (IN_PROGRESS, DOCUMENTS_REQUIRED, VERIFIED)|
-
-
-<a name="listinvestments"></a>
-### Investments
-
-|Name|Description|Schema|
-|---|---|---|
-|**investments**  <br>*optional*|The investments.|< [Investment](#investment) > array|
-
-
-<a name="listregisteredproducts"></a>
-### List of registered products
-
-|Name|Schema|
-|---|---|
-|**products**  <br>*optional*|< [RegisteredProduct](#registeredproduct) > array|
-
-
-<a name="maturity"></a>
-### Maturity Details
-
-|Name|Description|Schema|
-|---|---|---|
-|**date**  <br>*optional*|The maturity date if type FIXED|string (date)|
-|**maturityType**  <br>*optional*|The type of bond maturity|enum (FIXED, DURATION)|
-|**months**  <br>*optional*|The number of months until maturity if type DURATION|integer|
-
-
-<a name="migrationdetails"></a>
-### Optional details to migrate an existing investor.
-
-|Name|Description|Schema|
-|---|---|---|
-|**existingClientId**  <br>*optional*|The existing client ID for the investor to be migrated|string|
-
-
-<a name="monetaryamount"></a>
-### Monetary Amount
-
-|Name|Description|Schema|
-|---|---|---|
-|**amount**  <br>*required*|The amount.|number|
-|**currency**  <br>*required*|The ISO 4217 three character codes eg 'GBP'|string|
-
-
-<a name="paymentdestination"></a>
-### The payment destination.
-
-|Name|Description|Schema|
-|---|---|---|
-|**accountName**  <br>*optional*|The bank account name.|string|
-|**accountNumber**  <br>*required*|The bank account number.|string|
-|**reference**  <br>*required*|The reference to be used when transferring funds.|string|
-|**sortCode**  <br>*required*|The bank account sort code.|string|
-
-
-<a name="paymentdestinationitem"></a>
-### The payment destination.
-
-|Name|Description|Schema|
-|---|---|---|
-|**accountNumber**  <br>*optional*|The bank account number.|string|
-|**id**  <br>*optional*|The id of the payment destination|string|
-|**reference**  <br>*optional*|The reference to be used when transferring funds.|string|
-|**sortCode**  <br>*optional*|The bank account sort code.|string|
-
-
-<a name="paymentdestinationresponse"></a>
-### The id of the payment destination.
-
-|Name|Description|Schema|
-|---|---|---|
-|**id**  <br>*optional*|The unique id of the payment destination|string|
-
-
-<a name="paymentdestinations"></a>
-### The list of the payment destinations.
-
-|Name|Description|Schema|
-|---|---|---|
-|**paymentDestinations**  <br>*optional*|The payment destinations|< [PaymentDestinationItem](#paymentdestinationitem) > array|
-
-
-<a name="product"></a>
-### Create Product.
-
-|Name|Description|Schema|
-|---|---|---|
-|**name**  <br>*required*|The name of the product.|string|
-|**terms**  <br>*required*|The product terms.|< [ProductTerm](#productterm) > array|
-
-
-<a name="productresponse"></a>
-### The ids related to a given product.
-
-|Name|Description|Schema|
-|---|---|---|
-|**id**  <br>*optional*|The unique id of the product|string|
-
-
-<a name="productterm"></a>
-### The product terms used to configure the product.
-
-|Name|Description|Schema|
-|---|---|---|
-|**fixedLiveDate**  <br>*optional*|A fixed date in the future when the product goes live. If this is not set, and the maximum funding limit is not specified, the bond will run according to the schedule you agree with Goji.|string (date)|
-|**fixedMaturityDate**  <br>*optional*|A fixed date at which point the product matures. <b>Note: fixedMaturityDate or term must be specified</b>|string (date)|
-|**interestRate**  <br>*required*|The interest rate of the product.|number|
-|**interestType**  <br>*required*|The type of interest to be returned.|enum (FIXED)|
-|**investmentDocuments**  <br>*required*|The investment documents relating to the product.|< [InvestmentDocument](#investmentdocument) > array|
-|**maximumFundingLimit**  <br>*optional*|The maximum amount allowed for the product before it goes live. <b>Note: The bond will NOT run until this limit is reached. ie. this is both a maximum limit and also the amount that must be filled for the bond to run.</>|[MonetaryAmount](#monetaryamount)|
-|**minimumInvestment**  <br>*required*|The minimum individual investment allowed for the product.|[MonetaryAmount](#monetaryamount)|
-|**repaymentProfiles**  <br>*required*|The investment documents relating to the product.|< enum (STANDARD_ANNUALLY_REINVESTMENT, STANDARD_ON_MATURITY, STANDARD_QUARTERLY_BLENDED, STANDARD_QUARTERLY_PAYOUT, STANDARD_QUARTERLY_PAYOUT_OFFSET_BY_1MTH, STANDARD_QUARTERLY_REINVESTMENT, STANDARD_SIX_MTH_PAYOUT, STANDARD_SIX_MTH_PAYOUT_OFFSET_BY_3MTH, STANDARD_SIX_MTH_REINVESTMENT) > array|
-|**term**  <br>*optional*|The term length of the product in months. <b>Note: term or fixedMaturityDate must be specified</b>|integer|
-
-
-<a name="registeredproduct"></a>
-### Registered product
-
-|Name|Description|Schema|
-|---|---|---|
-|**id**  <br>*required*|The unique ID of the product|string|
-|**investmentDocument**  <br>*required*|A URL to a KID, investment memorandum or similar. This is used to track investments and their ISA suitability.|string|
-|**isaEligible**  <br>*required*|True if the investment can be included in an IF ISA.|boolean|
-
-
-<a name="registeredproductupdate"></a>
-### Registered product
-
-|Name|Description|Schema|
-|---|---|---|
-|**investmentDocument**  <br>*required*|A URL to a KID, investment memorandum or similar. This is used to track investments and their ISA suitability.|string|
-|**isaEligible**  <br>*required*|True if the investment can be included in an IF ISA.|boolean|
-
-
-<a name="repaymentreference"></a>
-### The repayment reference.
-
-|Name|Description|Schema|
-|---|---|---|
-|**accountNumber**  <br>*optional*|The account number for the repayment deposit.|string|
-|**reference**  <br>*optional*|The bank reference to be used when depositing the repayment.|string|
-|**sortCode**  <br>*optional*|The sort code for the repayment deposit.|string|
-
-
-<a name="repaymentsaccrual"></a>
-### The details for configuring the repayment accruals.
-
-|Name|Description|Schema|
-|---|---|---|
-|**accrualDate**  <br>*optional*|The date up to which accruals will be generated|string (date)|
-
-
-<a name="settlesecondarymarkettrade"></a>
-### Record the settlement of a secondary market trade.
-
-|Name|Description|Schema|
-|---|---|---|
-|**buySide**  <br>*required*|Details of the buy side.|[SettleSecondaryMarketTradeBuySide](#settlesecondarymarkettradebuyside)|
-|**sellSide**  <br>*required*|Details of the sell side.|[SettleSecondaryMarketTradeSellSide](#settlesecondarymarkettradesellside)|
-
-
-<a name="settlesecondarymarkettradebuyside"></a>
-### Details of the secondary market buy side
-
-|Name|Description|Schema|
-|---|---|---|
-|**accountType**  <br>*required*|The account purchasing the investment|enum (GOJI_INVESTMENT, ISA, SIPP)|
-|**clientId**  <br>*required*|The client ID of the buyer|string|
-|**fee**  <br>*optional*|The fee being paid by the buyer. In addition to the totalPurchaseAmount.|[MonetaryAmount](#monetaryamount)|
-|**feePaymentDestination**  <br>*optional*|The ID of the payment destination to send fees to|string|
-|**newInvestmentId**  <br>*required*|The ID for the investment being held by the buy side investor|string|
-|**totalPurchaseAmount**  <br>*required*|The total amount being paid for the investment. This must equal the sum of the remainingCapitalAmount plus premium on the sell side.|[MonetaryAmount](#monetaryamount)|
-
-
-<a name="settlesecondarymarkettradesellside"></a>
-### Details of the secondary market sell side
-
-|Name|Description|Schema|
-|---|---|---|
-|**clientId**  <br>*required*|The client ID of the seller|string|
-|**fee**  <br>*optional*|The fee being paid by the seller. Deducted from the total sales price.|[MonetaryAmount](#monetaryamount)|
-|**feePaymentDestination**  <br>*optional*|The ID of the payment destination to send fees to|string|
-|**investmentId**  <br>*required*|The ID of the investment being sold|string|
-|**premium**  <br>*optional*|The premium (positive or negative) added to the remaining capital amount to get the total sales price.|[MonetaryAmount](#monetaryamount)|
-|**remainingCapitalAmount**  <br>*required*|The remaining capital amount of the investment being sold.|[MonetaryAmount](#monetaryamount)|
-
-
-<a name="terms"></a>
-### Terms and Conditions
-
-|Name|Description|Schema|
-|---|---|---|
-|**termsAndConditions**  <br>*optional*|The terms and conditions in HTML format.|string|
-|**version**  <br>*optional*|The version of the terms and conditions.|string|
-
-
-<a name="testdeposit"></a>
-### A test deposit
-
-|Name|Description|Schema|
-|---|---|---|
-|**amount**  <br>*required*|The amount to deposit.|[MonetaryAmount](#monetaryamount)|
-|**clientId**  <br>*required*|The client ID|string|
-|**paymentReference**  <br>*required*|The reference. Set to ISA if the funds should be credited to the ISA account.|string|
-|**paymentType**  <br>*required*|Should be set to DEPOSIT|string|
-
-
-<a name="testinvestmentcycle"></a>
-### The details for configuring the investment cycle run.
-
-|Name|Description|Schema|
-|---|---|---|
-|**minimumRequiredForNewBond**  <br>*optional*|The minimum amount required for the new bond.|[MonetaryAmount](#monetaryamount)|
-
-
-<a name="transferinui"></a>
-### Transfer In UI
-
-|Name|Schema|
-|---|---|
-|**apiUrl**  <br>*optional*|string|
-|**scriptSrc**  <br>*optional*|string|
-|**styleSrc**  <br>*optional*|string|
-|**token**  <br>*optional*|string|
-
-
-<a name="updateinvestor"></a>
-### Update Investor
-
-|Name|Description|Schema|
-|---|---|---|
-|**address**  <br>*required*||[Address](#address)|
-|**contactDetails**  <br>*required*||[ContactDetails](#contactdetails)|
-|**corporateDetails**  <br>*optional*|only required for CORPORATE entityType.|[CorporateDetails](#corporatedetails)|
-|**dateOfBirth**  <br>*required*|The date of birth of the investor.|string (date)|
-|**employmentDetails**  <br>*optional*||[EmploymentDetails](#employmentdetails)|
-|**entityType**  <br>*optional*||enum (INDIVIDUAL, CORPORATE)|
-|**firstName**  <br>*required*|The first name of the investor.|string|
-|**investorDeclarationType**  <br>*optional*|must be SOPHISTICATED for an investor with entityType CORPORATE|enum (RESTRICTED, HIGH_NET_WORTH, INVESTMENT_PROFESSIONAL, SOPHISTICATED)|
-|**lastName**  <br>*required*|The last name of the investor.|string|
-|**nationalInsuranceNumber**  <br>*optional*|The national insurance number of the investor. Only required if opening an ISA.|string|
-|**title**  <br>*required*|The title of the investor.|enum (MISS, MR, MRS, MS, DR)|
-
-
-<a name="webhook"></a>
-### The url for configuring the webhook.
-
-|Name|Description|Schema|
-|---|---|---|
-|**url**  <br>*optional*|The url to dispatch the webhook to.|string|
-
-
-<a name="withdrawal"></a>
-### The amount to withdraw.
-
-|Name|Description|Schema|
-|---|---|---|
-|**amount**  <br>*optional*|The amount of the residual income payment|[MonetaryAmount](#monetaryamount)|
-|**reference**  <br>*optional*|An optional reference to be used when withdrawing funds.|string|

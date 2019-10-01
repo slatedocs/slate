@@ -1,464 +1,496 @@
 # Settlement
-Settle securities not managed by the Bond management module.
 
-<a name="loadrecordedinvestmentsforinvestor"></a>
-## List investments for an investor
+##   GET /settlement/payment-destination
+
 ```http
-GET /settlement/investors/{clientId}/accounts/{accountType}/investments HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
-Content-Type: application/json
-Authorization: Basic ...
 
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-  {
-      "investments": [
-          {
-              "accountType": "string",
-              "amount": {
-                  "amount": "number",
-                  "currency": "string"
-              },
-              "clientId": "string",
-              "investmentId": "string",
-              "productId": "string",
-              "trancheId": "string"
-          }
-      ]
-  }
-```
-#### Description
-Lists recorded investments for an investor.
-
-#### Request
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Path**|**accountType**  <br>*required*|The type of the account|enum (ISA, GOJI_INVESTMENT)|
-|**Path**|**clientId**  <br>*required*|The ID of the investor|string|
-
-#### Response
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Body**|**accountType**|The type of the account|enum (ISA, GOJI_INVESTMENT)|
-|**Body**|**amount**|The amount of the investment|string|
-|**Body**|**clientId**|The id of the client|string|
-|**Body**|**investmentId**|The unique id of the investment|string|
-|**Body**|**productId**|The product id|string|
-|**Body**|**trancheId**|The tranche id|string|
-
-
-<a name="recordrepaymentdestination"></a>
-## Adds a payment destination (Deprecated)
-```http
-POST /settlement/payment-destination HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
-Content-Type: application/json
-Authorization: Basic ...
-
-  {
-    "accountName": "string",
-    "accountNumber": "string",
-    "sortCode": "string",
-    "reference": "string"
-  }
-
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-  {
-      "id": "string"
-  }
-```
-
-#### Description
-Adds a payment destination. This has been deprecated to be replaced with https://docs.api.goji.investments/payments/reference/payments/add-bank-account-details
-
-#### Request
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Body**|**accountName**|The name of the account|string|
-|**Body**|**accountNumber**|The account number|string|
-|**Body**|**sortCode**|The sortcode for the account|string|
-|**Body**|**reference**|The bank account reference|string|
-
-#### Response
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Body**|**id**|The id of the payment destination|string|
-
-<a name="listrepaymentdestination"></a>
-## Lists payment destinations (Deprecated)
-```http
 GET /settlement/payment-destination HTTP/1.1
 Host: api-sandbox.goji.investments/platformApi
 Content-Type: application/json
 Authorization: Basic ...
 
+
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
 {
-  "paymentDestinations": [
-    {
-      "accountName": "string",
-      "accountNumber": "string",
-      "sortCode": "string",
-      "reference": "string"
-    }
-  ]
+  "id" : "id"
 }
 ```
-
-#### Description
+### Description
 Lists payment destinations. This has been deprecated to be replaced with https://docs.api.goji.investments/payments/reference/payments/bank-account-details
+### Response
+| Name | Type   | Description                              |
+| ---- | ------ | ---------------------------------------- |
+| id   | string | The unique id of the payment destination |
+##  POST /settlement/payment-destination
 
-#### Response
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Body**|**accountName**|The name of the account|string|
-|**Body**|**accountNumber**|The account number|string|
-|**Body**|**sortCode**|The sort code|string|
-|**Body**|**reference**|The bank reference|string|
-
-<a name="updaterepaymentdestination"></a>
-## Updates a payment destination (Deprecated)
 ```http
+
+POST /settlement/payment-destination HTTP/1.1
+Host: api-sandbox.goji.investments/platformApi
+Content-Type: application/json
+Authorization: Basic ...
+
+{
+  "reference" : "reference",
+  "accountName" : "accountName",
+  "accountNumber" : "accountNumber",
+  "sortCode" : "sortCode"
+}
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "id" : "id"
+}
+```
+### Description
+Adds a payment destination. This has been deprecated to be replaced with https://docs.api.goji.investments/payments/reference/payments/add-bank-account-details
+### Request
+| Name          | Type   | Description                                       | Required |
+| ------------- | ------ | ------------------------------------------------- | -------- |
+| accountName   | string | The bank account name.                            | optional |
+| accountNumber | string | The bank account number.                          | required |
+| sortCode      | string | The bank account sort code.                       | required |
+| reference     | string | The reference to be used when transferring funds. | required |
+### Response
+| Name | Type   | Description                              |
+| ---- | ------ | ---------------------------------------- |
+| id   | string | The unique id of the payment destination |
+##   PUT /settlement/payment-destination/{id}
+
+```http
+
 PUT /settlement/payment-destination/{id} HTTP/1.1
 Host: api-sandbox.goji.investments/platformApi
 Content-Type: application/json
 Authorization: Basic ...
 
-  {
-    "accountName": "string",
-    "accountNumber": "string",
-    "sortCode": "string",
-    "reference": "string"
-  }
+{
+  "reference" : "reference",
+  "accountName" : "accountName",
+  "accountNumber" : "accountNumber",
+  "sortCode" : "sortCode"
+}
 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-  {
-      "id": "string"
-  }
+{
+  "id" : "id"
+}
 ```
-#### Description
+### Description
 Updates a payment destination. This has been deprecated to be replaced with https://docs.api.goji.investments/payments/reference/payments/update-bank-account-details
+### Request
+| Name          | Type   | Description                                       | Required |
+| ------------- | ------ | ------------------------------------------------- | -------- |
+| accountName   | string | The bank account name.                            | optional |
+| accountNumber | string | The bank account number.                          | required |
+| sortCode      | string | The bank account sort code.                       | required |
+| reference     | string | The reference to be used when transferring funds. | required |
+### Response
+| Name | Type   | Description                              |
+| ---- | ------ | ---------------------------------------- |
+| id   | string | The unique id of the payment destination |
+##  POST /settlement/repayment
 
-#### Request
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Path**|**id**  <br>*required*|The id of the payment destination to update|string|
-|**Body**|**accountName**  <br>*required*|The account name|string|
-|**Body**|**accountNumber**  <br>*required*|The accountNumber|string|
-|**Body**|**sortCode**  <br>*required*|The sort code|string|
-|**Body**|**reference**  <br>*required*|The payment reference|string|
-
-#### Response
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Body**|**id**|The id of the updated bank account details|string|
-
-<a name="addclientmoneyregisteredproduct"></a>
-## Adds a registered product
 ```http
-POST /settlement/product HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
-Content-Type: application/json
-Authorization: Basic ...
 
-  {
-      "id": "string",
-      "investmentDocument": "string",
-      "isaEligible": boolean
-  }
-
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-  "SUCCESS"
-```
-#### Description
-Adds a registered product
-
-#### Request
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Body**|**id**  <br>*required*|The unique id for the product|string|
-|**Body**|**investmentDocument**  <br>*required*|A link to the investment document / memorandum|string|
-|**Body**|**isaEligible**  <br>*required*|If the product is suitable for an ISA|boolean|
-
-<a name="settlementregisteredproducts"></a>
-## Returns list of registered products
-```http
-GET /settlement/product HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
-Content-Type: application/json
-Authorization: Basic ...
-
-HTTP/1.1 200 OK
-Content-Type: application/json
-
- {
-     "products": [
-         {
-             "id": "string",
-             "investmentDocument": "string",
-             "isaEligible": boolean
-         }
-     ]
- }
-```
-#### Description
-Returns list of registered products
-
-#### Response
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Body**|**products[].id**|The unique id for the product|string|
-|**Body**|**products[].investmentDocument**|A link to the investment document / memorandum|string|
-|**Body**|**products[].isaEligible**|If the product is suitable for an ISA|boolean|
-
-<a name="updateclientmoneyregisteredproduct"></a>
-## Updates a registered product
-```http
-PUT /settlement/product/{productId} HTTP/1.1
-Host: api-sandbox.goji.investments/platformApi
-Content-Type: application/json
-Authorization: Basic ...
-
- {
-     "investmentDocument": "string",
-     "isaEligible": "boolean"
- }
-
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-  "SUCCESS"
-```
-#### Description
-Updates a registered product
-
-#### Request
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Body**|**investmentDocument**|A link to the investment document / memorandum|string|
-|**Body**|**isaEligible**|If the product is suitable for an ISA|boolean|
-
-<a name="recordrepayment"></a>
-## Adds a repayment to an investment
-```http
 POST /settlement/repayment HTTP/1.1
 Host: api-sandbox.goji.investments/platformApi
 Content-Type: application/json
 Authorization: Basic ...
 
-  {
-    "investorRepayments": [
-        {
-            "amount": {
-                "amount": "number",
-                "currency": "string"
-            },
-            "investmentId": "string",
-            "tax": {
-                "amount": "number",
-                "currency": "string"
-            },
-            "type": "string"
-        }
-    ],
-    "reference": "string"
-  }
+{
+  "reference" : "reference",
+  "investorRepayments" : [ {
+    "amount" : {
+      "amount" : 2.68,
+      "currency" : "currency"
+    },
+    "investmentId" : "investmentId",
+    "tax" : {
+      "amount" : 2.68,
+      "currency" : "currency"
+    },
+    "type" : "CAPITAL"
+  }, {
+    "amount" : {
+      "amount" : 2.68,
+      "currency" : "currency"
+    },
+    "investmentId" : "investmentId",
+    "tax" : {
+      "amount" : 2.68,
+      "currency" : "currency"
+    },
+    "type" : "CAPITAL"
+  } ]
+}
 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-  "SUCCESS"
+""
 ```
-#### Description
+### Description
 Adds a repayment to an investment.
+### Request
+| Name                              | Type   | Description                                            | Required |
+| --------------------------------- | ------ | ------------------------------------------------------ | -------- |
+| reference                         | string | The payment reference used for the repayment of funds. | required |
+| investorRepayments                | array  | The repayments per investor.                           | required |
+| investorRepayments[].investmentId | string | The ID of the of the investment                        | required |
+| investorRepayments[].type         | string | The type of the repayment                              | required |
+| investorRepayments[].amount       | ref    | The amount being repaid                                | required |
+| investorRepayments[].tax          | ref    | The amount of tax being withheld from this repayment   | optional |
+### Response
+| Name | Type | Description || ---- | ---- | ----------- |
 
-#### Request
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Body**|**investorRepayments[].amount.amount**  <br>*required*|The amount |number|
-|**Body**|**investorRepayments[].amount.currency**  <br>*required*|The ISO currency code|string|
-|**Body**|**investorRepayments[].investmentId**  <br>*required*|The investmentId related to this repayment|string|
-|**Body**|**investorRepayments[].tax.amount**  <br>*optional*|The amount of tax if any to be withheld|string|
-|**Body**|**investorRepayments[].tax.currency**  <br>*optional*|The ISO currency code for the tax|string|
-|**Body**|**investorRepayments[].type**  <br>*required*|The type of repayment. enum(CAPITAL, INTEREST)|string|
-|**Body**|**reference**  <br>*required*|The repayment reference to validate the monies received|string|
+##   GET /settlement/repayment/reference
 
-<a name="repaymentreference"></a>
-## Generate repayment reference
 ```http
+
 GET /settlement/repayment/reference HTTP/1.1
 Host: api-sandbox.goji.investments/platformApi
 Content-Type: application/json
 Authorization: Basic ...
 
+
+
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-  {
-    "accountNumber": "string",
-    "reference": "string",
-    "sortCode": "string"
-  }
+{
+  "reference" : "reference",
+  "accountNumber" : "accountNumber",
+  "sortCode" : "sortCode"
+}
 ```
-#### Description
+### Description
 Generates a repayment reference to be used when depositing repayment funds.
+### Response
+| Name          | Type   | Description                                                  |
+| ------------- | ------ | ------------------------------------------------------------ |
+| reference     | string | The bank reference to be used when depositing the repayment. |
+| accountNumber | string | The account number for the repayment deposit.                |
+| sortCode      | string | The sort code for the repayment deposit.                     |
+##   GET /settlement/investors/{clientId}/accounts/{accountType}/investments
 
-#### Response
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Body**|**accountNumber**|The accountNumber|string|
-|**Body**|**sortCode**|The sort code|string|
-|**Body**|**reference**|The payment reference|string|
-
-<a name="settlementsecondarymarket"></a>
-## Records the settlement of a secondary market trade
 ```http
-POST /settlement/secondary-market HTTP/1.1
+
+GET /settlement/investors/{clientId}/accounts/{accountType}/investments HTTP/1.1
 Host: api-sandbox.goji.investments/platformApi
 Content-Type: application/json
 Authorization: Basic ...
 
-  {
-    "buySide": {
-        "accountType": "string",
-        "bankAccountId": "string",
-        "clientId": "string",
-        "fee": {
-            "amount": "number",
-            "currency": "string"
-        },
-        "feePaymentDestination (Deprecated)": "string",
-        "newInvestmentId": "string",
-        "reference": "string",
-        "totalPurchaseAmount": {
-            "amount": "number",
-            "currency": "string"
-        }
-    },
-    "sellSide": {
-        "bankAccountId": "string",
-        "clientId": "string",
-        "fee": {
-            "amount": "number",
-            "currency": "string"
-        },
-        "feePaymentDestination (Deprecated)": "string",
-        "investmentId": "string",
-        "premium": {
-            "amount": "number",
-            "currency": "string"
-        },
-        "reference": "string",
-        "remainingCapitalAmount": {
-            "amount": "number",
-            "currency": "string"
-        }
-    }
-  }
+
 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
+{
+  "investments" : [ {
+    "amount" : {
+      "amount" : 2.68,
+      "currency" : "currency"
+    },
+    "clientId" : "clientId",
+    "productId" : "productId",
+    "investmentId" : "investmentId",
+    "accountType" : "GOJI_INVESTMENT",
+    "trancheId" : "trancheId"
+  }, {
+    "amount" : {
+      "amount" : 2.68,
+      "currency" : "currency"
+    },
+    "clientId" : "clientId",
+    "productId" : "productId",
+    "investmentId" : "investmentId",
+    "accountType" : "GOJI_INVESTMENT",
+    "trancheId" : "trancheId"
+  } ]
+}
 ```
-#### Description
-Records the settlement of a secondary market trade.
+### Description
+Lists recorded investments for an investor.
+### Response
+| Name                       | Type   | Description                                                                                                     |
+| -------------------------- | ------ | --------------------------------------------------------------------------------------------------------------- |
+| investments                | array  |                                                                                                                 |
+| investments[].investmentId | string | The ID of the investment. This is the ID of the overall investment and so will be shared by multiple investors. |
+| investments[].clientId     | string | The ID of the investor                                                                                          |
+| investments[].productId    | string | The ID of the investment product as preciously registered in the system                                         |
+| investments[].trancheId    | string | The ID of the investment tranche of a particular product                                                        |
+| investments[].amount       | ref    | The amount being invested                                                                                       |
+| investments[].accountType  | string | The account making the investment.                                                                              |
+##  POST /settlement/tranche
 
-#### Request
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Body**|**buySide.accountType**  <br>*required*|The account purchasing the investment|enum (GOJI_INVESTMENT, ISA, SIPP)|
-|**Body**|**buySide.bankAccountId**  <br>*optional*|The ID of the bank account details to send fees to|string|
-|**Body**|**buySide.clientId**  <br>*required*|The client ID of the buyer|string|
-|**Body**|**buySide.fee.amount**  <br>*optional*|The fee amount being paid by the buyer. In addition to the totalPurchaseAmount.|number|
-|**Body**|**buySide.fee.currency**  <br>*optional*|The ISO Currency code|string|
-|**Body**|**buySide.feePaymentDestination (Deprecated)**  <br>*optional*|The ID of the payment destination to send fees to. This has been deprecated, please use the bankAccountId field|string|
-|**Body**|**buySide.newInvestmentId**  <br>*required*|The ID for the investment being held by the buy side investor|string|
-|**Body**|**buySide.reference**  <br>*required*|The bank reference for the funds transfer|string|
-|**Body**|**buySide.totalPurchaseAmount.amount**  <br>*required*|The total amount being paid for the investment. This must equal the sum of the remainingCapitalAmount plus premium on the sell side.|number|
-|**Body**|**buySide.totalPurchaseAmount.currency**  <br>*required*|The ISO Currency code|string|
-|**Body**|**sellSide.bankAccountId**  <br>*optional*|The ID of the bank account details to send fees to|string|
-|**Body**|**sellSide.clientId**  <br>*required*|The client ID of the seller|string|
-|**Body**|**sellSide.fee.amount**  <br>*optional*|The fee being paid by the seller. Deducted from the total sales price.|number|
-|**Body**|**sellSide.fee.currency**  <br>*optional*|The ISO Currency code|string|
-|**Body**|**sellSide.feePaymentDestination (Deprecated)**  <br>*optional*|The ID of the payment destination to send fees to. This has been deprecated, please use the bankAccountId field|string|
-|**Body**|**sellSide.investmentId**  <br>*required*|The ID of the investment being sold|string|
-|**Body**|**sellSide.premium.amount**  <br>*optional*|The premium (positive or negative) added to the remaining capital amount to get the total sales price.|number|
-|**Body**|**sellSide.premium.currency**  <br>*optional*|The ISO Currency code|string|
-|**Body**|**sellSide.reference**  <br>*required*|The bank reference for the funds transfer|string|
-|**Body**|**sellSide.remainingCapitalAmount.amount**  <br>*required*|The remaining capital amount of the investment being sold.|number|
-|**Body**|**sellSide.remainingCapitalAmount.currency**  <br>*required*|The ISO Currency code|string|
-
-<a name="settlementrecordinvestment"></a>
-## Records an investment tranche and triggers a transfer of funds to the Investment Manager
 ```http
+
 POST /settlement/tranche HTTP/1.1
 Host: api-sandbox.goji.investments/platformApi
 Content-Type: application/json
 Authorization: Basic ...
 
-  {
-    "bankAccountId": "string",
-    "id": "string",
-    "investments": [
-        {
-            "accountType": "string",
-            "amount": {
-                "amount": "number",
-                "currency": "string"
-            },
-            "clientId": "string",
-            "id": "string"
-        }
-    ],
-    "paymentDestinationId (Deprecated)": "string",
-    "productId": "string",
-    "reference": "string"
-  }
+{
+  "reference" : "reference",
+  "paymentDestinationId (Deprecated)" : "paymentDestinationId (Deprecated)",
+  "productId" : "productId",
+  "bankAccountId" : "bankAccountId",
+  "id" : "id",
+  "investments" : [ {
+    "amount" : {
+      "amount" : 2.68,
+      "currency" : "currency"
+    },
+    "clientId" : "clientId",
+    "accountType" : "GOJI_INVESTMENT",
+    "id" : "id"
+  }, {
+    "amount" : {
+      "amount" : 2.68,
+      "currency" : "currency"
+    },
+    "clientId" : "clientId",
+    "accountType" : "GOJI_INVESTMENT",
+    "id" : "id"
+  } ]
+}
 
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-  {
-     "accountNumber": "string",
-     "id": "string",
-     "reference": "string",
-     "sortCode": "string",
-     "totalAmount": {
-         "amount": "number",
-         "currency": "string"
-     }
-  }
+{
+  "reference" : "reference",
+  "totalAmount" : {
+    "amount" : 2.68,
+    "currency" : "currency"
+  },
+  "id" : "id",
+  "accountNumber" : "accountNumber",
+  "sortCode" : "sortCode"
+}
 ```
-#### Description
+### Description
 Records an investment and triggers a transfer of funds to the Investment Manager.
+### Request
+| Name                              | Type   | Description                                                                                                                 | Required |
+| --------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------- | -------- |
+| id                                | string | The unique ID for this tranche of investment                                                                                | required |
+| productId                         | string | The ID of the investment product as preciously registered in the system                                                     | required |
+| paymentDestinationId (Deprecated) | string | The ID of the payment destination to be used for this tranche. This has been deprecated, please use the bankAccountId field | optional |
+| bankAccountId                     | string | The ID of the bank account details to be used for this tranche.                                                             | required |
+| reference                         | string | The bank reference for the funds transfer                                                                                   | required |
+| investments                       | array  |                                                                                                                             | required |
+| investments[].id                  | string | The unique ID for this clients investment                                                                                   | required |
+| investments[].clientId            | string | The ID of the investor                                                                                                      | required |
+| investments[].amount              | ref    | The amount being invested                                                                                                   | required |
+| investments[].accountType         | string | The account making the investment.                                                                                          | required |
+### Response
+| Name                 | Type   | Description                                  |
+| -------------------- | ------ | -------------------------------------------- |
+| id                   | string | The unique ID for this investment            |
+| totalAmount          | ref    | The total amount being invested              |
+| totalAmount.amount   | number | The amount.                                  |
+| totalAmount.currency | string | The ISO 4217 three character codes eg 'GBP'  |
+| sortCode             | string | The sort code the funds will be sent to      |
+| accountNumber        | string | The account number the funds will be sent to |
+| reference            | string | The bank reference for the funds transfer    |
+##  POST /settlement/secondary-market
 
-#### Request
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Body**|**bankAccountId**  <br>*required*|The ID of the bank account details to be used for this tranche.|string|
-|**Body**|**id**  <br>*required*|The unique ID for this tranche of investment|string|
-|**Body**|**investments[].amount.amount**  <br>*required*|The amount for the investment|number|
-|**Body**|**investments[].amount.currency**  <br>*required*|The ISO currency code for the investment amount|string|
-|**Body**|**investments[].clientId**  <br>*required*|The clientId for the investment|string|
-|**Body**|**investments[].accountType**  <br>*required*|The clients accountType (ISA, GOJI_INVESTMENTS)|string|
-|**Body**|**investments[].id**  <br>*required*|The unique id for the investment|string|
-|**Body**|**paymentDestinationId (Deprecated)**  <br>*optional*|The ID of the payment destination to be used for this tranche. This has been deprecated, please use the bankAccountId field|string|
-|**Body**|**productId**  <br>*required*|The ID of the investment product as preciously registered in the system|string|
-|**Body**|**reference**  <br>*required*|The bank reference for the funds transfer|string|
+```http
 
-#### Response
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Body**|**id**|The unique ID for this investment tranche|string|
-|**Body**|**accountNumber**|The account number the funds will be sent to|string|
-|**Body**|**sortCode**|The sort code the funds will be sent to|string|
-|**Body**|**reference**|The bank reference for the funds transfer|string|
-|**Body**|**totalAmount.amount**|The total amount being invested|number|
-|**Body**|**totalAmount.currency**|The ISO currency code for the investment amount|string|
+POST /settlement/secondary-market HTTP/1.1
+Host: api-sandbox.goji.investments/platformApi
+Content-Type: application/json
+Authorization: Basic ...
 
+{
+  "buySide" : {
+    "reference" : "reference",
+    "clientId" : "clientId",
+    "accountType" : "GOJI_INVESTMENT",
+    "fee" : {
+      "amount" : 2.68,
+      "currency" : "currency"
+    },
+    "bankAccountId" : "bankAccountId",
+    "feePaymentDestination (Deprecated)" : "feePaymentDestination (Deprecated)",
+    "newInvestmentId" : "newInvestmentId",
+    "totalPurchaseAmount" : {
+      "amount" : 2.68,
+      "currency" : "currency"
+    }
+  },
+  "sellSide" : {
+    "reference" : "reference",
+    "clientId" : "clientId",
+    "premium" : {
+      "amount" : 2.68,
+      "currency" : "currency"
+    },
+    "investmentId" : "investmentId",
+    "fee" : {
+      "amount" : 2.68,
+      "currency" : "currency"
+    },
+    "bankAccountId" : "bankAccountId",
+    "feePaymentDestination (Deprecated)" : "feePaymentDestination (Deprecated)",
+    "capitalAmount" : {
+      "amount" : 2.68,
+      "currency" : "currency"
+    }
+  }
+}
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+""
+```
+### Description
+Records the settlement of a secondary market trade.
+### Request
+| Name                                        | Type   | Description                                                                                                     | Required |
+| ------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------- | -------- |
+| sellSide                                    | ref    | Details of the sell side.                                                                                       | required |
+| sellSide.clientId                           | string | The client ID of the seller                                                                                     ||
+| sellSide.investmentId                       | string | The ID of the investment being sold                                                                             ||
+| capitalAmount.amount                        | number | The amount.                                                                                                     ||
+| capitalAmount.currency                      | string | The ISO 4217 three character codes eg 'GBP'                                                                     ||
+| premium.amount                              | number | The amount.                                                                                                     ||
+| premium.currency                            | string | The ISO 4217 three character codes eg 'GBP'                                                                     ||
+| fee.amount                                  | number | The amount.                                                                                                     ||
+| fee.currency                                | string | The ISO 4217 three character codes eg 'GBP'                                                                     ||
+| sellSide.feePaymentDestination (Deprecated) | string | The ID of the payment destination to send fees to. This has been deprecated, please use the bankAccountId field ||
+| sellSide.bankAccountId                      | string | The ID of the bank account details to send fees to                                                              ||
+| sellSide.reference                          | string | The bank reference for the funds transfer                                                                       ||
+| buySide                                     | ref    | Details of the buy side.                                                                                        | required |
+| buySide.clientId                            | string | The client ID of the buyer                                                                                      ||
+| buySide.accountType                         | string | The account purchasing the investment                                                                           ||
+| totalPurchaseAmount.amount                  | number | The amount.                                                                                                     ||
+| totalPurchaseAmount.currency                | string | The ISO 4217 three character codes eg 'GBP'                                                                     ||
+| fee.amount                                  | number | The amount.                                                                                                     ||
+| fee.currency                                | string | The ISO 4217 three character codes eg 'GBP'                                                                     ||
+| buySide.feePaymentDestination (Deprecated)  | string | The ID of the payment destination to send fees to. This has been deprecated, please use the bankAccountId field ||
+| buySide.bankAccountId                       | string | The ID of the bank account details to send fees to                                                              ||
+| buySide.reference                           | string | The bank reference for the funds transfer                                                                       ||
+| buySide.newInvestmentId                     | string | The ID for the investment being held by the buy side investor                                                   ||
+### Response
+| Name | Type | Description || ---- | ---- | ----------- |
+
+##   GET /settlement/product
+
+```http
+
+GET /settlement/product HTTP/1.1
+Host: api-sandbox.goji.investments/platformApi
+Content-Type: application/json
+Authorization: Basic ...
+
+
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "products" : [ {
+    "investmentDocument" : "investmentDocument",
+    "isaEligible" : true,
+    "id" : "id"
+  }, {
+    "investmentDocument" : "investmentDocument",
+    "isaEligible" : true,
+    "id" : "id"
+  } ]
+}
+```
+### Description
+Returns list of registered products
+### Response
+| Name                          | Type    | Description                                                                                                    |
+| ----------------------------- | ------- | -------------------------------------------------------------------------------------------------------------- |
+| products                      | array   |                                                                                                                |
+| products[].id                 | string  | The unique ID of the product                                                                                   |
+| products[].investmentDocument | string  | A URL to a KID, investment memorandum or similar. This is used to track investments and their ISA suitability. |
+| products[].isaEligible        | boolean | True if the investment can be included in an IF ISA.                                                           |
+##  POST /settlement/product
+
+```http
+
+POST /settlement/product HTTP/1.1
+Host: api-sandbox.goji.investments/platformApi
+Content-Type: application/json
+Authorization: Basic ...
+
+{
+  "investmentDocument" : "investmentDocument",
+  "isaEligible" : true,
+  "id" : "id"
+}
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "investmentDocument" : "investmentDocument",
+  "isaEligible" : true,
+  "id" : "id"
+}
+```
+### Description
+Adds a registered product
+### Request
+| Name               | Type    | Description                                                                                                    | Required |
+| ------------------ | ------- | -------------------------------------------------------------------------------------------------------------- | -------- |
+| id                 | string  | The unique ID of the product                                                                                   | required |
+| investmentDocument | string  | A URL to a KID, investment memorandum or similar. This is used to track investments and their ISA suitability. | required |
+| isaEligible        | boolean | True if the investment can be included in an IF ISA.                                                           | required |
+### Response
+| Name               | Type    | Description                                                                                                    |
+| ------------------ | ------- | -------------------------------------------------------------------------------------------------------------- |
+| id                 | string  | The unique ID of the product                                                                                   |
+| investmentDocument | string  | A URL to a KID, investment memorandum or similar. This is used to track investments and their ISA suitability. |
+| isaEligible        | boolean | True if the investment can be included in an IF ISA.                                                           |
+##   PUT /settlement/product/{productId}
+
+```http
+
+PUT /settlement/product/{productId} HTTP/1.1
+Host: api-sandbox.goji.investments/platformApi
+Content-Type: application/json
+Authorization: Basic ...
+
+{
+  "investmentDocument" : "investmentDocument",
+  "isaEligible" : true
+}
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "investmentDocument" : "investmentDocument",
+  "isaEligible" : true,
+  "id" : "id"
+}
+```
+### Description
+Updates a registered product
+### Request
+| Name               | Type    | Description                                                                                                    | Required |
+| ------------------ | ------- | -------------------------------------------------------------------------------------------------------------- | -------- |
+| investmentDocument | string  | A URL to a KID, investment memorandum or similar. This is used to track investments and their ISA suitability. | required |
+| isaEligible        | boolean | True if the investment can be included in an IF ISA.                                                           | required |
+### Response
+| Name               | Type    | Description                                                                                                    |
+| ------------------ | ------- | -------------------------------------------------------------------------------------------------------------- |
+| id                 | string  | The unique ID of the product                                                                                   |
+| investmentDocument | string  | A URL to a KID, investment memorandum or similar. This is used to track investments and their ISA suitability. |
+| isaEligible        | boolean | True if the investment can be included in an IF ISA.                                                           |

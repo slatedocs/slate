@@ -24,29 +24,32 @@ The encrypted string is then UTF-8 URL encoded.
 You should verify that the `Authorization` header matches the expected signature string using the secret that was shared with you during onboarding.
 </aside>
 
-<a name="registerwebhook"></a>
-## Register a webhook
+## POST /webhooks
+
 ```http
+
 POST /webhooks HTTP/1.1
 Host: api-sandbox.goji.investments/platformApi
 Content-Type: application/json
 Authorization: Basic ...
 
-  {
-      "url": "string"
-  }
+{
+  "url" : "url"
+}
 
 HTTP/1.1 200 OK
 Content-Type: application/json
+
+""
 ```
-
-#### Description
+### Description
 Register a webhook url.
-
-#### Request
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Body**|**url**  <br>*required*|Url to register for callbacks|string|
+### Request
+| Name | Type   | Description                         | Required |
+| ---- | ------ | ----------------------------------- | -------- |
+| url  | string | The url to dispatch the webhook to. | optional |
+### Response
+| Name | Type | Description || ---- | ---- | ----------- |
 
 ## Webhook Types
 
