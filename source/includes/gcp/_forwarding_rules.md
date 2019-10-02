@@ -12,4 +12,4 @@ curl -X DELETE \
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/forwardingrules/:id</code>
 
-Delete an existing global forwarding rule.
+Destroy an existing global forwarding rule.
