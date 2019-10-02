@@ -113,7 +113,8 @@ STATUS | status can be "pending", "synced", or "error"
   "code": 1234,
   "description": "Test Account",
   "account_type": 2,
-  "external_id": 4321
+  "external_id": 4321,
+  "parent": null
 }
 ```
 
@@ -177,7 +178,8 @@ ID of the integration object.
   "code": 1234,
   "description": "Test Account",
   "account_type": 2,
-  "external_id": 4321
+  "external_id": 4321,
+  "parent": null
 }
 ```
 
