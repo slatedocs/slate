@@ -140,9 +140,9 @@ curl -X POST \
 	"name": "my-group",
 	"shortRegion": "northamerica-northeast1",
 	"shortZone": "northamerica-northeast1-b",
-    "shortNetwork": "default",
-    "shortSubnetwork": "default",
-    "shortInstances": ["instance-1"]
+  "shortNetwork": "default",
+  "shortSubnetwork": "default",
+  "shortInstances": ["instance-1"]
 }
 ```
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instancegroups</code>
@@ -153,10 +153,10 @@ Required | &nbsp;
 ------- | -----------
 `name`<br/>*string* | The display name of the instance group
 `shortZone`<br/>*string* | A short version of the zone name
-`shortRegion`<br/>*string* | A short version of the region name
 
 Optional | &nbsp;
 ------- | -----------
+`shortRegion`<br/>*string* | A short version of the region name
 `shortNetwork`<br/>*string* | The network to which the instance group is connected to
 `shortSubnetwork`<br/>*string* | The sub-network within the network the instance group is connected to
 `shortInstances`<br/>*array[string]* | Array of instance names to add to the instance group upon creation
@@ -175,14 +175,14 @@ curl -X DELETE \
 
 Delete an existing instance group
 
-<!-------------------- ADD INSTANCES TO INSTANCE GROUP -------------------->
+<!-------------------- MANAGE INSTANCE MEMBERS IN AN INSTANCE GROUP -------------------->
 
-#### Add instances to instance group
+#### Manage instance members in an instance group
 
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/instancegroups/2986056884972096897?operation=add_instances"
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/instancegroups/2986056884972096897?operation=manage_instance_members"
 
 # Request example:
 ```
@@ -193,33 +193,8 @@ curl -X POST \
 ```
 Required | &nbsp;
 ------ | -----------
-`shortInstances`<br/>*array[string]* | Array of instance names to add to the instance group
+`shortInstances`<br/>*array[string]* | Array of instance names to become or keep as memebers of the instance group. If an existing instance is not in the list, it will be removed from the group. If the array is empty, all the instance members will be removed.
 
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instancegroups/:id?operation=add_instances</code>
+<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instancegroups/:id?operation=manage_instance_members</code>
 
-Add instances to an existing instance group
-
-<!-------------------- REMOVE INSTANCES FROM INSTANCE GROUP -------------------->
-
-#### Remove instances from instance group
-
-```shell
-curl -X POST \
-   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/instancegroups/2986056884972096897?operation=remove_instances"
-
-# Request example:
-```
-```json
-{
-    "shortInstances": ["instance-2"]
-}
-```
-
-Required | &nbsp;
------- | -----------
-`shortInstances`<br/>*array[string]* | Array of instance names to remove from the instance group
-
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instancegroups/:id?operation=remove_instances</code>
-
-Remove instances from an existing instance group
+Manage instance members in an existing instance group
