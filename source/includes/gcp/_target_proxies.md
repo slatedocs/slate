@@ -51,7 +51,7 @@ Retrieve a list of all target proxies in an [environment](#administration-enviro
 
 <!-------------------- RETRIEVE A TARGET PROXY -------------------->
 
-##### Retrieve a targer proxy
+##### Retrieve a target proxy
 
 ```shell
 curl -X GET \
