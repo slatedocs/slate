@@ -1531,15 +1531,25 @@ OBJECT_MAP_ID | ID of the object map being deleted
         }],
         "vendor": {
             "id": 2,
-            "name": "Vendor Preferred",
-            "active": True,
-            "address_line_one": "",
-            "address_line_two": "",
-            "postal_code": "",
-            "city": "",
-            "state_province": "",
-            "country": "",
-            "external_id": 'EX_VENDOR_2',
+            "name": "Staples",
+            "active": true,
+            "address_line_one": "1852 24th Ave",
+            "address_line_two": "Unit 123",
+            "postal_code": "72715",
+            "city": "New York",
+            "state_province": "NY",
+            "country": "US",
+            "email": "vendoremail@test.com",
+            "alt_email": "vendoraltemail@test.com",
+            "contact": "Joe Smith",
+            "phone": "479-195-8789",
+            "alt_phone": "479-696-4781",
+            "fax": "479-222-5688",
+            "comments": "Please call AR when placing PO to confirm receipt.",
+            "url": "http://www.staples.com/",
+            "payment_term": "Due on Receipt",
+            "shipping_term": "FOB",
+            "external_id": "EX_VENDOR_2",
             "custom_field": {}
         },
         "shipping_address": {
@@ -1551,11 +1561,11 @@ OBJECT_MAP_ID | ID of the object map being deleted
             "postal_code": "V6V 1J2"
         },
         "shipping_method": {
-                    "id": 2,
-                    "name": "Canada Post",
-                    "description": "Canada Post",
-                    "external_id": null,
-                    "custom_fields": {}
+            "id": 2,
+            "name": "Canada Post",
+            "description": "Canada Post",
+            "external_id": null,
+            "custom_fields": {}
         },
         "shipping_term": {
             "id": 2,
@@ -1620,17 +1630,27 @@ STATUS | status can be "pending", "synced", or "error"
 {
     "data": [
         {
-          "id": 1,
-          "name": "Procurify",
-          "active": 1,
-          "address_line_one": "455 Granville St",
-          "address_line_two": "300",
-          "postal_code": "V6C 1T1",
-          "city": "Vancouver",
-          "state_province": "British Columbia",
-          "country": "Canada",
-          "external_id": "1234",
-          "custom_fields": {}
+            "id": 2,
+            "name": "Staples",
+            "active": true,
+            "address_line_one": "1852 24th Ave",
+            "address_line_two": "Unit 123",
+            "postal_code": "72715",
+            "city": "New York",
+            "state_province": "NY",
+            "country": "US",
+            "email": "vendoremail@test.com",
+            "alt_email": "vendoraltemail@test.com",
+            "contact": "Joe Smith",
+            "phone": "479-195-8789",
+            "alt_phone": "479-696-4781",
+            "fax": "479-222-5688",
+            "comments": "Please call AR when placing PO to confirm receipt.",
+            "url": "http://www.staples.com/",
+            "payment_term": "Due on Receipt",
+            "shipping_term": "FOB",
+            "external_id": "EX_VENDOR_2",
+            "custom_field": {}
         }
     ],
     "metadata": {
@@ -1668,14 +1688,24 @@ STATUS | status can be "pending", "synced", or "error"
 
 ```json
 {
-  "name": "Procurify",
-  "address_line_one": "455 Granville St",
-  "address_line_two": "300",
-  "postal_code": "V6C 1T1",
-  "city": "Vancouver",
-  "state_province": "British Columbia",
-  "country": "Canada",
-  "external_id": "1234"
+    "name": "Procurify",
+    "address_line_one": "455 Granville St",
+    "address_line_two": "300",
+    "postal_code": "V6C 1T1",
+    "city": "Vancouver",
+    "state_province": "British Columbia",
+    "country": "Canada",
+    "email": "vendoremail@test.com",
+    "alt_email": "vendoraltemail@test.com",
+    "contact": "Joe Smith",
+    "phone": "479-195-8789",
+    "alt_phone": "479-696-4781",
+    "fax": "479-222-5688",
+    "comments": "Please call AR when placing PO to confirm receipt.",
+    "url": "http://www.staples.com/",
+    "payment_term": "Due on Receipt",
+    "shipping_term": "FOB",
+    "external_id": "1234"
 }
 ```
 
@@ -1693,6 +1723,16 @@ STATUS | status can be "pending", "synced", or "error"
         "city": "Vancouver",
         "state_province": "British Columbia",
         "country": "Canada",
+        "email": "vendoremail@test.com",
+        "alt_email": "vendoraltemail@test.com",
+        "contact": "Joe Smith",
+        "phone": "479-195-8789",
+        "alt_phone": "479-696-4781",
+        "fax": "479-222-5688",
+        "comments": "Please call AR when placing PO to confirm receipt.",
+        "url": "http://www.staples.com/",
+        "payment_term": "Due on Receipt",
+        "shipping_term": "FOB",
         "external_id": "1234",
         "custom_fields": {}
     },
@@ -1733,6 +1773,36 @@ Vendor state or province.
 <code>country</code><br />
 Vendor country.
 
+<code>email</code><br />
+Vendor email.
+
+<code>alt_email</code><br />
+Vendor alternate email.
+
+<code>contact</code><br />
+Vendor contact.
+
+<code>phone</code><br />
+Vendor phone number.
+
+<code>alt_phone</code><br />
+Vendor alternate phone number.
+
+<code>fax</code><br />
+Vendor fax number.
+
+<code>comments</code><br />
+Vendor comments.
+
+<code>url</code><br />
+Vendor URL.
+
+<code>payment_term</code><br />
+Vendor payment term.
+
+<code>shipping_term</code><br />
+Vendor shipping term.
+
 <code>external_id</code><span class="required-tag">required</span><br />
 ID of the integration object.
 
@@ -1742,14 +1812,24 @@ ID of the integration object.
 
 ```json
 {
-  "name": "Procurify",
-  "address_line_one": "455 Granville St",
-  "address_line_two": "300",
-  "postal_code": "V6C 1T1",
-  "city": "Vancouver",
-  "state_province": "British Columbia",
-  "country": "Canada",
-  "external_id": "1234"
+    "name": "Procurify",
+    "address_line_one": "455 Granville St",
+    "address_line_two": "300",
+    "postal_code": "V6C 1T1",
+    "city": "Vancouver",
+    "state_province": "British Columbia",
+    "country": "Canada",
+    "email": "vendoremail@test.com",
+    "alt_email": "vendoraltemail@test.com",
+    "contact": "Joe Smith",
+    "phone": "479-195-8789",
+    "alt_phone": "479-696-4781",
+    "fax": "479-222-5688",
+    "comments": "Please call AR when placing PO to confirm receipt.",
+    "url": "http://www.staples.com/",
+    "payment_term": "Due on Receipt",
+    "shipping_term": "FOB",
+    "external_id": "1234"
 }
 ```
 
@@ -1767,6 +1847,16 @@ ID of the integration object.
         "city": "Vancouver",
         "state_province": "British Columbia",
         "country": "Canada",
+        "email": "vendoremail@test.com",
+        "alt_email": "vendoraltemail@test.com",
+        "contact": "Joe Smith",
+        "phone": "479-195-8789",
+        "alt_phone": "479-696-4781",
+        "fax": "479-222-5688",
+        "comments": "Please call AR when placing PO to confirm receipt.",
+        "url": "http://www.staples.com/",
+        "payment_term": "Due on Receipt",
+        "shipping_term": "FOB",
         "external_id": "1234",
         "custom_fields": {}
     },
@@ -1812,6 +1902,36 @@ Vendor state or province.
 
 <code>country</code><br />
 Vendor country.
+
+<code>email</code><br />
+Vendor email.
+
+<code>alt_email</code><br />
+Vendor alternate email.
+
+<code>contact</code><br />
+Vendor contact.
+
+<code>phone</code><br />
+Vendor phone number.
+
+<code>alt_phone</code><br />
+Vendor alternate phone number.
+
+<code>fax</code><br />
+Vendor fax number.
+
+<code>comments</code><br />
+Vendor comments.
+
+<code>url</code><br />
+Vendor URL.
+
+<code>payment_term</code><br />
+Vendor payment term.
+
+<code>shipping_term</code><br />
+Vendor shipping term.
 
 <code>external_id</code><span class="required-tag">required</span><br />
 ID of the integration object.
