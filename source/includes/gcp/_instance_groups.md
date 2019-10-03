@@ -52,18 +52,17 @@ Attributes | &nbsp;
 `creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format
 `description`<br/>*string* | An optional description of this resource
 `fingerprint`<br/>*string* | A short sequence of bytes used to identify the named ports
+`id`<br/>*UUID* | The id of the instance group
 `kind`<br/>*string* | Type of the resource
+`name`<br/>*string* | The display name of the instance group
 `namedPorts`<br/>*object* | Assigns a name to a port number. This allows the system to reference ports by the assigned name instead of a port number. Named ports apply to all instances in this instance group.
 `network`<br/>*string* | The network to which the instance group is connected to
 `selfLink`<br/>*string* | Server-defined URL for this resource
+`shortRegion`<br/>*string* | A short version of the region name
+`shortZone`<br/>*string* | A short version of the zone name
 `size`<br/>*integer* | The number of instances in the group
 `subnetwork`<br/>*string* | The sub-network within the network the instance group is connected to
 `zone`<br/>*string* | URL of the zone where the instance group resides
-`id`<br/>*UUID* | The id of the instance group
-`name`<br/>*string* | The display name of the instance group
-`shortZone`<br/>*string* | A short version of the zone name
-`shortRegion`<br/>*string* | A short version of the region name
-
 
 <!-------------------- RETRIEVE AN INSTANCE GROUP -------------------->
 
@@ -110,17 +109,17 @@ Attributes | &nbsp;
 `creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format
 `description`<br/>*string* | An optional description of this resource
 `fingerprint`<br/>*string* | A short sequence of bytes used to identify the named ports
+`id`<br/>*UUID* | The id of the instance group
 `kind`<br/>*string* | Type of the resource
+`name`<br/>*string* | The display name of the instance group
 `namedPorts`<br/>*object* | Assigns a name to a port number. This allows the system to reference ports by the assigned name instead of a port number. Named ports apply to all instances in this instance group.
 `network`<br/>*string* | The network to which the instance group is connected to
 `selfLink`<br/>*string* | Server-defined URL for this resource
+`shortRegion`<br/>*string* | A short version of the region name
+`shortZone`<br/>*string* | A short version of the zone name
 `size`<br/>*integer* | The number of instances in the group
 `subnetwork`<br/>*string* | The sub-network within the network the instance group is connected to
 `zone`<br/>*string* | URL of the zone where the instance group resides
-`id`<br/>*UUID* | The id of the instance group
-`name`<br/>*string* | The display name of the instance group
-`shortZone`<br/>*string* | A short version of the zone name
-`shortRegion`<br/>*string* | A short version of the region name
 
 <!-------------------- CREATE AN INSTANCE GROUP -------------------->
 
@@ -156,10 +155,10 @@ Required | &nbsp;
 
 Optional | &nbsp;
 ------- | -----------
-`shortRegion`<br/>*string* | A short version of the region name
-`shortNetwork`<br/>*string* | The network to which the instance group is connected to
-`shortSubnetwork`<br/>*string* | The sub-network within the network the instance group is connected to
 `shortInstances`<br/>*array[string]* | Array of instance names to add to the instance group upon creation
+`shortNetwork`<br/>*string* | The network to which the instance group is connected to
+`shortRegion`<br/>*string* | A short version of the region name
+`shortSubnetwork`<br/>*string* | The sub-network within the network the instance group is connected to
 
 <!-------------------- DELETE AN INSTANCE GROUP -------------------->
 
@@ -193,7 +192,7 @@ curl -X POST \
 ```
 Required | &nbsp;
 ------ | -----------
-`shortInstances`<br/>*array[string]* | Array of instance names to become or keep as memebers of the instance group. If an existing instance is not in the list, it will be removed from the group. If the array is empty, all the instance members will be removed.
+`shortInstances`<br/>*array[string]* | Array of instance names to become or keep as members of the instance group. If an existing instance is not in the list, it will be removed from the group. If the array is empty, all the instance members will be removed.
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instancegroups/:id?operation=manage_instance_members</code>
 
