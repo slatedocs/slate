@@ -61,8 +61,63 @@ Attributes | &nbsp;
 `unhealthyThreshold`<br/>*int* | A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
 `portNumber`<br/>*string* | The port number for health check
 
+<!-------------------- RETRIEVE A HEALTH CHECK -------------------->
+
+#### Retrieve a health check
+
+```shell
+curl -X GET \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/healthchecks/5930212998788364011"
+
+# The above command returns JSON structured like this:
+```
+```json
+{
+  "data": {
+    "checkIntervalSec": 10,
+    "creationTimestamp": "2019-09-18T12:39:48.982-07:00",
+    "description": "",
+    "healthyThreshold": 2,
+    "id": "5930212998788364011",
+    "kind": "compute#healthCheck",
+    "name": "firsthealthcheck",
+    "selfLink": "https://www.googleapis.com/compute/v1/projects/cmc-gcp-env-jamie-hvh/global/healthChecks/firsthealthcheck",
+    "tcpHealthCheck": {
+      "port": 80,
+      "proxyHeader": "NONE",
+      "request": "",
+      "response": ""
+    },
+    "timeoutSec": 5,
+    "type": "TCP",
+    "unhealthyThreshold": 3,
+    "portNumber": "80"
+  }
+}
+```
+
+<code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/healthchecks/:id</code>
+
+Retrieve a healthcheck in a given [environment](#administration-environments)
+
+Attributes | &nbsp;
+------- | -----------
+`checkIntervalSec`<br/>*int* | How often (in seconds) to send a health check. The default value is 5 seconds
+`creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format
+`description` <br/>*string* | An optional description of this resource. Provide this property when you create the resource.
+`healthyThreshold`<br/>*int* | A so-far unhealthy instance will be marked healthy after this many consecutive successes. The default value is 2.
+`id`<br/>*string* | The unique identifier for the resource. This identifier is defined by the server.
+`kind`<br/>*string* | Type of the resource.
+`name`<br/>*string* | Name of the resource. Provided by the client when the resource is created.
+`selfLink`<br/>*string* | Server-defined URL for this resource.
+`timeoutSec`<br/>*int* | How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for timeoutSec to have greater value than checkIntervalSec.
+`type`<br/>*string* | Specifies the type of the healthCheck, either TCP, SSL, HTTP, HTTPS or HTTP2. If not specified, the default is Http. Exactly one of the protocol-specific health check field must be specified, which must match type field.
+`unhealthyThreshold`<br/>*int* | A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
+`portNumber`<br/>*string* | The port number for health check
+
 <!-------------------- CREATE A HEALTH CHECK -------------------->
-#### Create a health Check
+#### Create a health check
 ```shell
 curl -X POST \
   -H 'MC-Api-Key: your_api_key' \
@@ -82,7 +137,7 @@ Required | &nbsp;
 
 Optional | &nbsp;
 ------- | -----------
-`description`<br/>*string* | Decription of the health check
+`description`<br/>*string* | Description of the health check
 
 
 <!-------------------- DELETE A HEALTH CHECK -------------------->
