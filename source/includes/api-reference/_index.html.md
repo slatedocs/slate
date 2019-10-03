@@ -10917,50 +10917,6 @@ Returns the compact workspace membership records for the workspace.
 
 <hr>
 
-<h2 id="tocS_body_object_gid_override">body_object_gid_override</h2>
-<!-- backwards compatibility -->
-<a id="schemabody_object_gid_override"></a>
-<a id="schema_body_object_gid_override"></a>
-<a id="tocSbody_object_gid_override"></a>
-<a id="tocsbody_object_gid_override"></a>
-
-```json
-"12345"
-
-```
-
-Gid of an object.
-
-### Properties
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|*anonymous*|string|false|none|Gid of an object.|
-
-<hr>
-
-<h2 id="tocS_body_array_gid_override">body_array_gid_override</h2>
-<!-- backwards compatibility -->
-<a id="schemabody_array_gid_override"></a>
-<a id="schema_body_array_gid_override"></a>
-<a id="tocSbody_array_gid_override"></a>
-<a id="tocsbody_array_gid_override"></a>
-
-```json
-[
-  "12345"
-]
-
-```
-
-Array of object Gids.
-
-### Properties
-
-*None*
-
-<hr>
-
 <h2 id="tocS_Attachment">Attachment</h2>
 <!-- backwards compatibility -->
 <a id="schemaattachment"></a>
