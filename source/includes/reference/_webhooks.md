@@ -186,7 +186,7 @@ url              | URL of your server                          | String
 profile_id                | ID of the profile you want to receive notifications from | Integer
 enabled_notifications     | List of resources you would like to receive notifications about | [String]
 
-## Deactivate
+## Delete
 
 > Example Request:
 
@@ -202,7 +202,7 @@ curl -X DELETE https://api.transferwise.com/v1/subscriptions/{subscriptionId}/ \
 }
 ```
 
-Deactivate a subscription.
+Delete a subscription.
 
 ## Events
 
