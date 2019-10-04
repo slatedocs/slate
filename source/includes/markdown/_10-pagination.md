@@ -22,6 +22,33 @@ integrations from breaking, pagination is not enabled by default on
 providing the optional **limit** parameter in your query. We will be working to
 deprecate requests to these endpoints in the future.
 
+> Request
+
+```shell
+curl "https://app.asana.com/api/1.0/tasks?project=1337&limit=5&offset=eyJ0eXAiOJiKV1iQLCJhbGciOiJIUzI1NiJ9" \
+  -H "Authorization: Bearer <personal_access_token>"
+```
+
+> Response
+
+```json
+{
+  "data": [
+    {
+      "id": 1000,
+      "name": "Task 1",
+      ...
+    },
+    ...
+  ],
+  "next_page": {
+    "offset": "yJ0eXAiOiJKV1QiLCJhbGciOiJIRzI1NiJ9",
+    "path": "/tasks?project=1337&limit=5&offset=yJ0eXAiOiJKV1QiLCJhbGciOiJIRzI1NiJ9",
+    "uri": "https://app.asana.com/api/1.0/tasks?project=1337&limit=5&offset=yJ0eXAiOiJKV1QiLCJhbGciOiJIRzI1NiJ9"
+  }
+}
+```
+
 Note that all of Asana's official [client
 libraries](#official-client-libraries) support
 pagination by default.
@@ -42,24 +69,3 @@ you paginate all requests to the API.
 | Offset | `eyJ0eXAiOJiKV1iQLCJhbGciOiJIUzI1NiJ9` An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results. <br><br><strong>Note:</strong> You can only pass in an offset that was returned to you via a previously paginated request. |
 
 **This method returns paginated results for tasks from a project.**
-
-    # Request
-    curl "https://app.asana.com/api/1.0/tasks?project=1337&limit=5&offset=eyJ0eXAiOJiKV1iQLCJhbGciOiJIUzI1NiJ9" \
-      -H "Authorization: Bearer <personal_access_token>"
-
-    # Response
-    {
-      "data": [
-        {
-          "id": 1000,
-          "name": "Task 1",
-          ...
-        },
-        ...
-      ],
-      "next_page": {
-        "offset": "yJ0eXAiOiJKV1QiLCJhbGciOiJIRzI1NiJ9",
-        "path": "/tasks?project=1337&limit=5&offset=yJ0eXAiOiJKV1QiLCJhbGciOiJIRzI1NiJ9",
-        "uri": "https://app.asana.com/api/1.0/tasks?project=1337&limit=5&offset=yJ0eXAiOiJKV1QiLCJhbGciOiJIRzI1NiJ9"
-      }
-    }

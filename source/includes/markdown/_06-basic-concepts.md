@@ -41,7 +41,7 @@ requests and responses.
 
 **Notes on Pagination**
 
-<a href="/developers/documentation/getting-started/pagination">Pagination</a> is an important concept when working
+<a href="#pagination">Pagination</a> is an important concept when working
 with queries for multiple objects. Requests with large result sets may timeout or be truncated; therefore,
 pagination is strongly encouraged to ensure both you and your users have the best experience when using the Asana API.
 

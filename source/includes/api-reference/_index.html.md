@@ -5,15 +5,11 @@
 
 > Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
 
-This is the interface for interacting with the [Asana Platform](https://asana.com/developers/). Our API reference is generated from our [OpenAPI spec] (https://raw.githubusercontent.com/Asana/developer-docs/master/defs/asana_oas.yaml).
+This is the interface for interacting with the [Asana Platform](https://developers.asana.com). Our API reference is generated from our [OpenAPI spec] (https://raw.githubusercontent.com/Asana/developer-docs/master/defs/asana_oas.yaml).
 
 Base URLs:
 
 * <a href="https://app.asana.com/api/1.0">https://app.asana.com/api/1.0</a>
-
-    * **version** - The version of the API to use. Default: 1.0
-
-        * 1.0
 
 <a href="https://asana.com/terms">Terms of service</a>
 Web: <a href="https://asana.com/support">Asana Support</a> 
@@ -84,7 +80,7 @@ Get the full record for a single attachment.
 |402|[Payment Required](https://tools.ietf.org/html/rfc7231#section-6.5.2)|The request was valid, but the queried object or object mutation specified in the request is above your current premium level.|None|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
-|424|[Failed Dependency](https://tools.ietf.org/html/rfc2518#section-10.5)|You have exceeded one of the enforced rate limits in the API. See the [documentation on rate limiting](https://asana.com/developers/documentation/getting-started/rate-limits) for more information.|[Error](#schemaerror)|
+|424|[Failed Dependency](https://tools.ietf.org/html/rfc2518#section-10.5)|You have exceeded one of the enforced rate limits in the API. See the [documentation on rate limiting](https://developers.asana.com/docs/#rate-limits) for more information.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 |501|[Not Implemented](https://tools.ietf.org/html/rfc7231#section-6.6.2)|There is an issue between the load balancers and Asana's API.|[Error](#schemaerror)|
 |503|[Service Unavailable](https://tools.ietf.org/html/rfc7231#section-6.6.4)|Either the upstream service is unavailable to the API, or he API has been intentionally shut off.|[Error](#schemaerror)|
@@ -115,7 +111,7 @@ Returns the compact records for all attachments on the task.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|task_gid|path|string|true|Globally unique identifier for the task.|
+|task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 |limit|query|integer|false|Results per page.|
@@ -196,7 +192,7 @@ file: string
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|object|true|The file you want to upload.|
-|task_gid|path|string|true|Globally unique identifier for the task.|
+|task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 |limit|query|integer|false|Results per page.|
@@ -347,7 +343,6 @@ Make multiple requests in parallel to Asana's API.
 |»»»» limit|body|integer|false|Pagination limit for the request.|
 |»»»» offset|body|integer|false|Pagination offset for the request.|
 |»»»» fields|body|[string]|false|The fields to retrieve in the request.|
-|»»»» expand|body|string|false|The expansion path for the request.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -477,6 +472,7 @@ Returns the full record of the newly created custom field.
     "text_value": "Some Value",
     "description": "Development team priority",
     "precision": 2,
+    "has_notifications_enabled": true,
     "workspace": "1331"
   }
 }
@@ -486,7 +482,7 @@ Returns the full record of the newly created custom field.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|object|true|The custom field object to create.|
+|body|body|object|false|The custom field object to create.|
 |» data|body|object|false|Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](#asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.|
 |»» gid|body|string|false|Globally unique identifier of the object, as a string.|
 |»» resource_type|body|string|false|The base type of this resource.|
@@ -504,7 +500,9 @@ Returns the full record of the newly created custom field.
 |»» text_value|body|string|false|*Conditional*. This string is the value of a text custom field.|
 |»» description|body|string|false|[Opt In](#input-output-options). The description of the custom field.|
 |»» precision|body|integer|false|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
-|»» workspace|body|string|false|The workspace to create a custom field in.|
+|»» is_global_to_workspace|body|boolean|false|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
+|»» has_notifications_enabled|body|boolean|false|This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
+|»» workspace|body|string|true|The workspace to create a custom field in.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 |limit|query|integer|false|Results per page.|
@@ -537,7 +535,9 @@ Returns the full record of the newly created custom field.
     "enabled": true,
     "text_value": "Some Value",
     "description": "Development team priority",
-    "precision": 2
+    "precision": 2,
+    "is_global_to_workspace": true,
+    "has_notifications_enabled": true
   }
 }
 ```
@@ -608,7 +608,9 @@ type-specific custom field definitions.
     "enabled": true,
     "text_value": "Some Value",
     "description": "Development team priority",
-    "precision": 2
+    "precision": 2,
+    "is_global_to_workspace": true,
+    "has_notifications_enabled": true
   }
 }
 ```
@@ -667,7 +669,8 @@ Returns the complete updated custom field record.
     "enabled": true,
     "text_value": "Some Value",
     "description": "Development team priority",
-    "precision": 2
+    "precision": 2,
+    "has_notifications_enabled": true
   }
 }
 ```
@@ -676,7 +679,7 @@ Returns the complete updated custom field record.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|[CustomFieldObject](#schemacustomfieldobject)|true|The custom field object with all updated properties.|
+|body|body|[CustomFieldObject](#schemacustomfieldobject)|false|The custom field object with all updated properties.|
 |custom_field_gid|path|string|true|Globally unique identifier for the custom field.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
@@ -700,7 +703,9 @@ Returns the complete updated custom field record.
     "enabled": true,
     "text_value": "Some Value",
     "description": "Development team priority",
-    "precision": 2
+    "precision": 2,
+    "is_global_to_workspace": true,
+    "has_notifications_enabled": true
   }
 }
 ```
@@ -791,7 +796,7 @@ Returns a list of the compact representation of all of the custom fields in a wo
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|workspace_gid|path|string|true|The workspace or organization to find custom field definitions in.|
+|workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 |limit|query|integer|false|Results per page.|
@@ -872,7 +877,7 @@ Returns the full record of the newly created enum option.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|object|true|The enum option object to create.|
+|body|body|object|false|The enum option object to create.|
 |» data|body|object|false|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.|
 |»» gid|body|string|false|Globally unique identifier of the object, as a string.|
 |»» resource_type|body|string|false|The base type of this resource.|
@@ -954,14 +959,14 @@ Locked custom fields can only be reordered by the user who locked the field.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|object|true|The enum option object to create.|
+|body|body|object|false|The enum option object to create.|
 |» data|body|object|false|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.|
 |»» gid|body|string|false|Globally unique identifier of the object, as a string.|
 |»» resource_type|body|string|false|The base type of this resource.|
 |»» name|body|string|false|The name of the enum option.|
 |»» enabled|body|boolean|false|The color of the enum option. Defaults to ‘none’.|
 |»» color|body|string|false|Whether or not the enum option is a selectable value for the custom field.|
-|»» enum_option|body|string|false|The gid of the enum option to relocate.|
+|»» enum_option|body|string|true|The gid of the enum option to relocate.|
 |»» before_enum_option|body|string|false|An existing enum option within this custom field before which the new enum option should be inserted. Cannot be provided together with after_enum_option.|
 |»» after_enum_option|body|string|false|An existing enum option within this custom field after which the new enum option should be inserted. Cannot be provided together with before_enum_option.|
 |custom_field_gid|path|string|true|Globally unique identifier for the custom field.|
@@ -1033,14 +1038,14 @@ Returns the full record of the updated enum option.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|object|true|The enum option object to update|
+|body|body|object|false|The enum option object to update|
 |» data|body|[EnumOption](#schemaenumoption)|false|Enum options are the possible values which an enum custom field can adopt. An enum custom field must contain at least 1 enum option but no more than 50.|
 |»» gid|body|string|false|Globally unique identifier of the object, as a string.|
 |»» resource_type|body|string|false|The base type of this resource.|
 |»» name|body|string|false|The name of the enum option.|
 |»» enabled|body|boolean|false|The color of the enum option. Defaults to ‘none’.|
 |»» color|body|string|false|Whether or not the enum option is a selectable value for the custom field.|
-|enum_option_gid|path|string|true|Globally unique identifier for the enum option.|
+|enum_option_gid|path|string|false|Globally unique identifier for the enum option.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -1097,13 +1102,13 @@ curl -X GET https://app.asana.com/api/1.0/projects/{project_gid}/custom_field_se
 <code> <span class="get-verb">GET</span> /projects/{project_gid}/custom_field_settings</code>
 </p>
 
-Returns a list of all of the custom fields settings on a project, in compact form. Note that, as in all queries to collections which return compact representation, `opt_fields` can be used to include more data than is returned in the compact representation. See the [getting started guide on input/output options](https://asana.com/developers/documentation/getting-started/input-output-options) for more information.
+Returns a list of all of the custom fields settings on a project, in compact form. Note that, as in all queries to collections which return compact representation, `opt_fields` can be used to include more data than is returned in the compact representation. See the [getting started guide on input/output options](https://developers.asana.com/docs/#input-output-options) for more information.
 
 <h3 id="get-a-project's-custom-fields-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|project_gid|path|string|true|The ID of the project for which to list custom field settings.|
+|project_gid|path|string|true|Globally unique identifier for the project.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 |limit|query|integer|false|Results per page.|
@@ -1162,7 +1167,7 @@ Returns a list of all of the custom fields settings on a portfolio, in compact f
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|portfolio_gid|path|string|true|The ID of the portfolio for which to list custom field settings.|
+|portfolio_gid|path|string|true|Globally unique identifier for the portfolio.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 |limit|query|integer|false|Results per page.|
@@ -1412,7 +1417,9 @@ This method creates a request to export an Organization. Asana will complete the
 
 ```json
 {
-  "organization": "1331"
+  "data": {
+    "organization": "1331"
+  }
 }
 ```
 
@@ -1421,7 +1428,8 @@ This method creates a request to export an Organization. Asana will complete the
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|object|true|The organization to export.|
-|» organization|body|string|false|Globally unique identifier for the workspace or organization.|
+|» data|body|object|false|none|
+|»» organization|body|string|false|Globally unique identifier for the workspace or organization.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 |limit|query|integer|false|Results per page.|
@@ -2981,13 +2989,13 @@ Creates and returns a job that will asynchronously handle the duplication.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|object|true|Describes the duplicate's name and the elements that will be duplicated.|
+|body|body|object|false|Describes the duplicate's name and the elements that will be duplicated.|
 |» data|body|object|false|none|
-|»» name|body|string|false|The name of the new project.|
+|»» name|body|string|true|The name of the new project.|
 |»» team|body|string|false|Sets the team of the new project. If team is not defined, the new project will be in the same team as the the original project.|
 |»» include|body|string|false|The elements that will be duplicated to the new project. Tasks are always included.|
 |»» schedule_dates|body|object|false|A dictionary of options to auto-shift dates. `task_dates` must be included to use this option. Requires either `start_on` or `due_on`, but not both.|
-|»»» should_skip_weekends|body|boolean|false|Determines if the auto-shifted dates should skip weekends.|
+|»»» should_skip_weekends|body|boolean|true|Determines if the auto-shifted dates should skip weekends.|
 |»»» due_on|body|string|false|Sets the last due date in the duplicated project to the given date. The rest of the due dates will be offset by the same amount as the due dates in the original project.|
 |»»» start_on|body|string|false|Sets the first start date in the duplicated project to the given date. The rest of the start dates will be offset by the same amount as the start dates in the original project.|
 |project_gid|path|string|true|Globally unique identifier for the project.|
@@ -3989,9 +3997,11 @@ Returns the full record of the newly created project status update.
 
 ```json
 {
-  "project": "123456",
-  "text": "The project is on track to ship next month!",
-  "color": "green"
+  "data": {
+    "project": "123456",
+    "text": "The project is on track to ship next month!",
+    "color": "green"
+  }
 }
 ```
 
@@ -4000,9 +4010,10 @@ Returns the full record of the newly created project status update.
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|object|true|The project status to create.|
-|» project|body|string|true|Globally unique identifier for the project.|
-|» text|body|string|true|The text of the project status update.|
-|» color|body|any|true|The color to associate with the status update.|
+|» data|body|object|false|none|
+|»» project|body|string|true|Globally unique identifier for the project.|
+|»» text|body|string|true|The text of the project status update.|
+|»» color|body|any|true|The color to associate with the status update.|
 |project_gid|path|string|true|Globally unique identifier for the project.|
 
 #### Enumerated Values
@@ -4342,8 +4353,10 @@ Returns the full record of the newly created section.
 
 ```json
 {
-  "project": "13579",
-  "name": "Next Actions"
+  "data": {
+    "project": "13579",
+    "name": "Next Actions"
+  }
 }
 ```
 
@@ -4352,8 +4365,9 @@ Returns the full record of the newly created section.
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|object|true|The section to create.|
-|» project|body|string|true|The project to create the section in|
-|» name|body|string|true|The text to be displayed as the section name. This cannot be an empty string.|
+|» data|body|object|false|none|
+|»» project|body|string|true|The project to create the section in|
+|»» name|body|string|true|The text to be displayed as the section name. This cannot be an empty string.|
 |project_gid|path|string|true|Globally unique identifier for the project.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
@@ -4417,9 +4431,11 @@ This does not work for separators (tasks with the resource_subtype of section).
 
 ```json
 {
-  "task": "123456",
-  "insert_before": "86420",
-  "insert_after": "987654"
+  "data": {
+    "task": "123456",
+    "insert_before": "86420",
+    "insert_after": "987654"
+  }
 }
 ```
 
@@ -4428,9 +4444,10 @@ This does not work for separators (tasks with the resource_subtype of section).
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|object|true|The task and optionally the insert location.|
-|» task|body|string|true|The task to add to this section.|
-|» insert_before|body|string|true|An existing task within this section before which the added task should be inserted. Cannot be provided together with insert_after.|
-|» insert_after|body|string|true|An existing task within this section after which the added task should be inserted. Cannot be provided together with insert_before.|
+|» data|body|object|false|none|
+|»» task|body|string|true|The task to add to this section.|
+|»» insert_before|body|string|false|An existing task within this section before which the added task should be inserted. Cannot be provided together with insert_after.|
+|»» insert_after|body|string|false|An existing task within this section after which the added task should be inserted. Cannot be provided together with insert_before.|
 |section_gid|path|string|true|The globally unique identified for the section.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
@@ -4488,10 +4505,12 @@ Returns an empty data block.
 
 ```json
 {
-  "project": "123456",
-  "section": "321654",
-  "before_section": "86420",
-  "after_section": "987654"
+  "data": {
+    "project": "123456",
+    "section": "321654",
+    "before_section": "86420",
+    "after_section": "987654"
+  }
 }
 ```
 
@@ -4500,10 +4519,11 @@ Returns an empty data block.
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|object|true|The section's move action.|
-|» project|body|string|true|The project in which to reorder the given section.|
-|» section|body|string|true|The section to reorder.|
-|» before_section|body|string|true|Insert the given section immediately before the section specified by this parameter.|
-|» after_section|body|string|true|Insert the given section immediately after the section specified by this parameter.|
+|» data|body|object|false|none|
+|»» project|body|string|true|The project in which to reorder the given section.|
+|»» section|body|string|true|The section to reorder.|
+|»» before_section|body|string|false|Insert the given section immediately before the section specified by this parameter.|
+|»» after_section|body|string|false|Insert the given section immediately after the section specified by this parameter.|
 |project_gid|path|string|true|Globally unique identifier for the project.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
@@ -4565,7 +4585,7 @@ Returns the full record for a single story.
 |---|---|---|---|---|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
-|story_gid|path|string|true|The globally unique identifier for the story.|
+|story_gid|path|string|true|Globally unique identifier for the story.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -4826,7 +4846,7 @@ Updates the story and returns the full record for the updated story. Only commen
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[StoryObject](#schemastoryobject)|true|The comment story to update.|
-|story_gid|path|string|true|The globally unique identifier for the story.|
+|story_gid|path|string|true|Globally unique identifier for the story.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -5021,7 +5041,7 @@ Returns an empty data record.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|story_gid|path|string|true|The globally unique identifier for the story.|
+|story_gid|path|string|true|Globally unique identifier for the story.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -5071,7 +5091,7 @@ Returns the compact records for all stories on the task.
 |---|---|---|---|---|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
-|task_gid|path|string|true|The task to get stories from.|
+|task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -5212,8 +5232,10 @@ Returns the full record for the new story added to the task.
 
 ```json
 {
-  "task": "123456",
-  "text": "This is a comment."
+  "data": {
+    "task": "123456",
+    "text": "This is a comment."
+  }
 }
 ```
 
@@ -5222,9 +5244,10 @@ Returns the full record for the new story added to the task.
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|object|true|The comment story to create.|
-|» task|body|string|true|Globally unique identifier for the task.|
-|» text|body|string|true|The plain text of the comment to add.|
-|task_gid|path|string|true|The task to get stories from.|
+|» data|body|object|false|none|
+|»» task|body|string|true|Globally unique identifier for the task.|
+|»» text|body|string|true|The plain text of the comment to add.|
+|task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -5779,7 +5802,7 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
 |---|---|---|---|---|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
-|workspace_gid|path|string|true|The workspace to filter tags on.|
+|workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -5863,7 +5886,7 @@ Returns the full record of the newly created tag.
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[TagObject](#schematagobject)|true|The tag to create.|
-|workspace_gid|path|string|true|The workspace to filter tags on.|
+|workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -5941,7 +5964,7 @@ For more complex task retrieval, use [workspaces/{workspace_gid}/tasks/search](#
 |---|---|---|---|---|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
-|assignee|query|string(email)|false|The assignee to filter tasks on.|
+|assignee|query|string|false|The assignee to filter tasks on.|
 |project|query|string|false|The project to filter tasks on.|
 |section|query|string|false|The section to filter tasks on.|
 |workspace|query|string|false|The workspace to filter tasks on.|
@@ -6089,19 +6112,17 @@ explicitly if you specify `projects` or a `parent` task instead.
       "data": "A blob of information"
     },
     "followers": [
-      "74362"
+      "12345"
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "notes": "Mittens really likes the stuff from Humboldt.",
     "parent": "12345",
     "projects": [
-      "74362"
+      "12345"
     ],
     "start_on": "2012-03-26",
     "tags": [
-      {
-        ...
-      }
+      "12345"
     ],
     "workspace": "12345"
   }
@@ -6140,6 +6161,8 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»»» text_value|body|string|false|*Conditional*. This string is the value of a text custom field.|
 |»»» description|body|string|false|[Opt In](#input-output-options). The description of the custom field.|
 |»»» precision|body|integer|false|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|»»» is_global_to_workspace|body|boolean|false|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
+|»»» has_notifications_enabled|body|boolean|false|This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 |»» dependencies|body|[object]|false|[Opt In](#input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the gid of the dependency.|
 |»»» gid|body|string|false|none|
 |»» dependents|body|[object]|false|[Opt In](#input-output-options). Array of resources referencing tasks that depend on this task. The objects contain only the ID of the dependent.|
@@ -6194,6 +6217,10 @@ explicitly if you specify `projects` or a `parent` task instead.
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
 #### Detailed descriptions
+
+**resource_subtype**: The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.
+The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.
+*Note: The resource_subtype of `section` is under active migration—please see our [forum post](https://forum.asana.com/t/sections-are-dead-long-live-sections) for more information.*
 
 **external**: *OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).
 The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.
@@ -6484,17 +6511,151 @@ Returns the complete updated task record.
 > Body parameter
 
 ```json
-null
+{
+  "data": {
+    "name": "Buy catnip",
+    "assignee": "12345",
+    "assignee_status": "upcoming",
+    "completed": false,
+    "due_at": "2012-02-22T02:06:58.147Z",
+    "due_on": "2012-03-26",
+    "external": {
+      "gid": "my_gid",
+      "data": "A blob of information"
+    },
+    "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
+    "notes": "Mittens really likes the stuff from Humboldt.",
+    "parent": "12345",
+    "start_on": "2012-03-26",
+    "workspace": null
+  }
+}
 ```
 
 <h3 id="update-a-task-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|body|body|any|true|The task to update.|
+|body|body|object|true|The task to update.|
+|» data|body|object|false|The *task* is the basic object around which many operations in Asana are centered.|
+|»» gid|body|string|false|Globally unique identifier of the object, as a string.|
+|»» resource_type|body|string|false|The base type of this resource.|
+|»» name|body|string|false|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» created_at|body|string(date-time)|false|The time at which this resource was created.|
+|»» resource_subtype|body|string|false|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|»» assignee|body|string|false|Gid of an object.|
+|»» assignee_status|body|string|false|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
+|»» completed|body|boolean|false|True if the task is currently marked complete, false if not.|
+|»» completed_at|body|string(date-time)¦null|false|The time at which this task was completed, or null if the task is incomplete.|
+|»» custom_fields|body|[object]|false|Array of custom field values applied to the project. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `string_value` property for custom fields of type `string`, and so on. Please note that the `gid` returned on each custom field value *is identical* to the `gid` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-gid` endpoint.|
+|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
+|»»» resource_type|body|string|false|The base type of this resource.|
+|»»» name|body|string|false|The name of the object.|
+|»»» resource_subtype|body|string|false|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|»»» type|body|string|false|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|»»» enum_options|body|[object]|false|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|»»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
+|»»»» resource_type|body|string|false|The base type of this resource.|
+|»»»» name|body|string|false|The name of the enum option.|
+|»»»» enabled|body|boolean|false|The color of the enum option. Defaults to ‘none’.|
+|»»»» color|body|string|false|Whether or not the enum option is a selectable value for the custom field.|
+|»»» enum_value|body|any|false|none|
+|»»» enabled|body|boolean|false|*Conditional*. Determines if the custom field is enabled or not.|
+|»»» text_value|body|string|false|*Conditional*. This string is the value of a text custom field.|
+|»»» description|body|string|false|[Opt In](#input-output-options). The description of the custom field.|
+|»»» precision|body|integer|false|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|»»» is_global_to_workspace|body|boolean|false|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
+|»»» has_notifications_enabled|body|boolean|false|This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
+|»» dependencies|body|[object]|false|[Opt In](#input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the gid of the dependency.|
+|»»» gid|body|string|false|none|
+|»» dependents|body|[object]|false|[Opt In](#input-output-options). Array of resources referencing tasks that depend on this task. The objects contain only the ID of the dependent.|
+|»»» gid|body|string|false|none|
+|»» due_at|body|string(date)¦null|false|Date and time on which this task is due, or null if the task has no due time. This takes a UTC timestamp and should not be used together with `due_on`.|
+|»» due_on|body|string(date)¦null|false|Date on which this task is due, or null if the task has no due date.  This takes a date with `YYYY-MM-DD` format and should not be used together with due_at.|
+|»» external|body|object|false|*OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).|
+|»»» gid|body|string|false|none|
+|»»» data|body|string|false|none|
+|»» followers|body|[object]|false|Array of users following this task.|
+|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
+|»»» resource_type|body|string|false|The base type of this resource.|
+|»»» name|body|string|false|*Read-only except when same user as requester*. The user’s name.|
+|»» html_notes|body|string|false|[Opt In](#input-output-options). The notes of the text with formatting as HTML.|
+|»» hearted|body|boolean|false|*Deprecated - please use liked instead* True if the task is hearted by the authorized user, false if not.|
+|»» hearts|body|[object]|false|*Deprecated - please use likes instead* Array of users who have hearted this task.|
+|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
+|»»» resource_type|body|string|false|The base type of this resource.|
+|»»» name|body|string|false|*Read-only except when same user as requester*. The user’s name.|
+|»» is_rendered_as_separator|body|boolean|false|[Opt In](#input-output-options). In some contexts tasks can be rendered as a visual separator; for instance, subtasks can appear similar to [sections](#asana-sections) without being true `section` objects. If a `task` object is rendered this way in any context it will have the property `is_rendered_as_separator` set to `true`.<br /><br />*Note: Until the default behavior for our API changes integrations must [opt in to the `new_sections` change] (https://forum.asana.com/t/sections-are-dead-long-live-sections/33951) to modify the `is_rendered_as_separator` property.*|
+|»» liked|body|boolean|false|True if the task is liked by the authorized user, false if not.|
+|»» likes|body|[object]|false|Array of users who have liked this task.|
+|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
+|»»» resource_type|body|string|false|The base type of this resource.|
+|»»» name|body|string|false|*Read-only except when same user as requester*. The user’s name.|
+|»» memberships|body|[object]|false|*Create-only*. Array of projects this task is associated with and the section it is in. At task creation time, this array can be used to add the task to specific sections. After task creation, these associations can be modified using the `addProject` and `removeProject` endpoints. Note that over time, more types of memberships may be added to this property.|
+|»»» project|body|object|false|A *project* represents a prioritized list of tasks in Asana or a board with columns of tasks represented as cards. It exists in a single workspace or organization and is accessible to a subset of users in that workspace or organization, depending on its permissions.|
+|»»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
+|»»»» resource_type|body|string|false|The base type of this resource.|
+|»»»» name|body|string|false|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»»» section|body|object|false|A *section* is a subdivision of a project that groups tasks together. It can either be a header above a list of tasks in a list view or a column in a board view of a project.|
+|»»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
+|»»»» resource_type|body|string|false|The base type of this resource.|
+|»»»» name|body|string|false|The name of the section (i.e. the text displayed as the section header).|
+|»» modified_at|body|string(date-time)|false|The time at which this task was last modified.|
+|»» notes|body|string|false|More detailed, free-form textual information associated with the task.|
+|»» num_hearts|body|integer|false|*Deprecated - please use likes instead* The number of users who have hearted this task.|
+|»» num_likes|body|integer|false|The number of users who have liked this task.|
+|»» num_subtasks|body|integer|false|[Opt In](#input-output-options). The number of subtasks on this task.|
+|»» parent|body|string|false|Gid of an object.|
+|»» projects|body|[object]|false|*Create-only.* Array of projects this task is associated with. At task creation time, this array can be used to add the task to many projects at once. After task creation, these associations can be modified using the addProject and removeProject endpoints.|
+|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
+|»»» resource_type|body|string|false|The base type of this resource.|
+|»»» name|body|string|false|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» start_on|body|string(date)¦null|false|The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.|
+|»» tags|body|[object]|false|*Create-only*. Array of tags associated with this task. This property may be specified on creation using just an array of tag gids.  In order to change tags on an existing task use `addTag` and `removeTag`.|
+|»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
+|»»» resource_type|body|string|false|The base type of this resource.|
+|»»» name|body|string|false|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
+|»» workspace|body|any|false|none|
 |task_gid|path|string|true|The task to operate on.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
+
+#### Detailed descriptions
+
+**resource_subtype**: The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.
+The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.
+*Note: The resource_subtype of `section` is under active migration—please see our [forum post](https://forum.asana.com/t/sections-are-dead-long-live-sections) for more information.*
+
+**external**: *OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).
+The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.
+
+**html_notes**: [Opt In](#input-output-options). The notes of the text with formatting as HTML.
+*Note: This field is under active migration—please see our blog post for more information.*
+
+**modified_at**: The time at which this task was last modified.
+
+*Note: This does not currently reflect any changes in
+associations such as projects or comments that may have been
+added or removed from the task.*
+
+**start_on**: The day on which work begins for the task , or null if the task has no start date. This takes a date with `YYYY-MM-DD` format.
+*Note: `due_on` or `due_at` must be present in the request when setting or unsetting the `start_on` parameter.*
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+| resource_subtype|default_task|
+| resource_subtype|milestone|
+| resource_subtype|section|
+| assignee_status|today|
+| assignee_status|upcoming|
+| assignee_status|later|
+| assignee_status|new|
+| assignee_status|inbox|
+| type|text|
+| type|enum|
+| type|number|
 
 > 200 Response
 
@@ -7206,18 +7367,16 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
       "data": "A blob of information"
     },
     "followers": [
-      "74362"
+      "12345"
     ],
     "html_notes": "<body>Mittens <em>really</em> likes the stuff from Humboldt.</body>",
     "notes": "Mittens really likes the stuff from Humboldt.",
     "projects": [
-      "74362"
+      "12345"
     ],
     "start_on": "2012-03-26",
     "tags": [
-      {
-        ...
-      }
+      "12345"
     ],
     "workspace": "12345"
   }
@@ -7256,6 +7415,8 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 |»»» text_value|body|string|false|*Conditional*. This string is the value of a text custom field.|
 |»»» description|body|string|false|[Opt In](#input-output-options). The description of the custom field.|
 |»»» precision|body|integer|false|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|»»» is_global_to_workspace|body|boolean|false|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
+|»»» has_notifications_enabled|body|boolean|false|This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 |»» dependencies|body|[object]|false|[Opt In](#input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the gid of the dependency.|
 |»»» gid|body|string|false|none|
 |»» dependents|body|[object]|false|[Opt In](#input-output-options). Array of resources referencing tasks that depend on this task. The objects contain only the ID of the dependent.|
@@ -7311,6 +7472,10 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
 #### Detailed descriptions
+
+**resource_subtype**: The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.
+The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.
+*Note: The resource_subtype of `section` is under active migration—please see our [forum post](https://forum.asana.com/t/sections-are-dead-long-live-sections) for more information.*
 
 **external**: *OAuth Required*. *Conditional*. This field is returned only if external values are set or included by using [Opt In] (#input-output-options).
 The external field allows you to store app-specific metadata on tasks, including a gid that can be used to retrieve tasks and a data blob that can store app-specific character strings. Note that you will need to authenticate with Oauth to access or modify this data. Once an external gid is set, you can use the notation `external:custom_gid` to reference your object anywhere in the API where you may use the original object gid. See the page on Custom External Data for more details.
@@ -8719,11 +8884,11 @@ Like the Asana web product's advance search feature, this search endpoint will o
 
 Even if a user is only a member of a premium team inside a non-premium workspace, search will allow them to find data anywhere in the workspace, not just inside the premium team. Making a search request using credentials of a non-premium user will result in a `402 Payment Required` error.
 #### Pagination
-Search results are not stable; repeating the same query multiple times may return the data in a different order, even if the data do not change. Because of this, the traditional [pagination](/developers/documentation/getting-started/pagination) available elsewhere in the Asana API is not available here. However, you can paginate manually by sorting the search results by their creation time and then modifying each subsequent query to exclude data you have already seen. Page sizes are limited to a maximum of 100 items, and can be specified by the `limit` query parameter.
+Search results are not stable; repeating the same query multiple times may return the data in a different order, even if the data do not change. Because of this, the traditional [pagination](https://developers.asana.com/docs/#pagination) available elsewhere in the Asana API is not available here. However, you can paginate manually by sorting the search results by their creation time and then modifying each subsequent query to exclude data you have already seen. Page sizes are limited to a maximum of 100 items, and can be specified by the `limit` query parameter.
 #### Eventual consistency
 Changes in Asana (regardless of whether they’re made though the web product or the API) are forwarded to our search infrastructure to be indexed. This process can take between 10 and 60 seconds to complete under normal operation, and longer during some production incidents. Making a change to a task that would alter its presence in a particular search query will not be reflected immediately. This is also true of the advanced search feature in the web product.
 #### Rate limits
-You may receive a `429 Too Many Requests` response if you hit any of our [rate limits](/developers/documentation/getting-started/rate-limits).
+You may receive a `429 Too Many Requests` response if you hit any of our [rate limits](https://developers.asana.com/docs/#rate-limits).
 
 <h3 id="search-tasks-in-a-workspace-parameters">Parameters</h3>
 
@@ -8732,8 +8897,8 @@ You may receive a `429 Too Many Requests` response if you hit any of our [rate l
 |workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
-|text|undefined|string|false|Performs full-text search on both task name and description|
-|resource_subtype|undefined|string|false|Filters results by the task's resource_subtype|
+|text|query|string|false|Performs full-text search on both task name and description|
+|resource_subtype|query|string|false|Filters results by the task's resource_subtype|
 |assignee.any|query|string|false|none|
 |assignee.not|query|string|false|none|
 |assignee_status|query|string|false|none|
@@ -8883,7 +9048,7 @@ You may receive a `429 Too Many Requests` response if you hit any of our [rate l
 <h1 id="asana-teams">Teams</h1>
 
 <pre class="highlight http tab-http">
-<code><a href="#get-a-team"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}</span></a><br><a href="#get-teams-in-an-organization"><span class="get-verb">GET</span> <span class=""nn>/organizations/{organization_gid}/teams</span></a><br><a href="#get-teams-for-a-user"><span class="get-verb">GET</span> <span class=""nn>/users/{user_gid}/teams</span></a><br><a href="#add-a-user-to-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/addUser</span></a><br><a href="#remove-a-user-from-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/removeUser</span></a></code>
+<code><a href="#get-a-team"><span class="get-verb">GET</span> <span class=""nn>/teams/{team_gid}</span></a><br><a href="#get-teams-in-an-organization"><span class="get-verb">GET</span> <span class=""nn>/organizations/{workspace_gid}/teams</span></a><br><a href="#get-teams-for-a-user"><span class="get-verb">GET</span> <span class=""nn>/users/{user_gid}/teams</span></a><br><a href="#add-a-user-to-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/addUser</span></a><br><a href="#remove-a-user-from-a-team"><span class="post-verb">POST</span> <span class=""nn>/teams/{team_gid}/removeUser</span></a></code>
 </pre>
 
 A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.
@@ -8954,14 +9119,14 @@ Returns the full record for a single team.
 
 ```shell
 # You can also use wget
-curl -X GET https://app.asana.com/api/1.0/organizations/{organization_gid}/teams \
+curl -X GET https://app.asana.com/api/1.0/organizations/{workspace_gid}/teams \
   -H 'Accept: application/json' \
   -H 'Authorization: Bearer {access-token}'
 
 ```
 
 <p>
-<code> <span class="get-verb">GET</span> /organizations/{organization_gid}/teams</code>
+<code> <span class="get-verb">GET</span> /organizations/{workspace_gid}/teams</code>
 </p>
 
 Returns the compact records for all teams in the organization visible to the authorized user.
@@ -8970,7 +9135,7 @@ Returns the compact records for all teams in the organization visible to the aut
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|organization_gid|path|string|true|Globally unique identifier for the workspace or organization.|
+|workspace_gid|path|string|true|Globally unique identifier for the workspace or organization.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 |limit|query|integer|false|Results per page.|
@@ -9029,11 +9194,11 @@ Returns the compact records for all teams to which the given user is assigned.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
+|user_gid|path|string|true|Globally unique identifier for the user.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 |limit|query|integer|false|Results per page.|
 |offset|query|string|false|Offset token.|
-|user_gid|path|string(email)|true|An identifier for the user. Can be one of an email address, the globally unique identifier for the user, or the keyword `me` to indicate the current user making the request.|
 |organization_gid|query|string|true|The workspace or organization to filter teams on.|
 
 > 200 Response
@@ -9090,7 +9255,9 @@ The user making this call must be a member of the team in order to add others. T
 
 ```json
 {
-  "user": "14641"
+  "data": {
+    "user": "12345"
+  }
 }
 ```
 
@@ -9099,7 +9266,7 @@ The user making this call must be a member of the team in order to add others. T
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[UserIdObject](#schemauseridobject)|true|The user to add to the team.|
-|team_gid|path|string|true|A globally unique identifier for the team.|
+|team_gid|path|string|true|Globally unique identifier for the team.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -9161,7 +9328,9 @@ The user making this call must be a member of the team in order to remove themse
 
 ```json
 {
-  "user": "14641"
+  "data": {
+    "user": "12345"
+  }
 }
 ```
 
@@ -9170,7 +9339,7 @@ The user making this call must be a member of the team in order to remove themse
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|[UserIdObject](#schemauseridobject)|true|The user to remove from the team.|
-|team_gid|path|string|true|A globally unique identifier for the team.|
+|team_gid|path|string|true|Globally unique identifier for the team.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -9534,7 +9703,7 @@ Returns the compact records for all users that are members of the team.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|team_gid|path|string|true|A globally unique identifier for the team.|
+|team_gid|path|string|true|Globally unique identifier for the team.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 |limit|query|integer|false|Results per page.|
@@ -10049,8 +10218,10 @@ HTTP/1.1 201
 
 ```json
 {
-  "resource": "12345",
-  "target": "https://example.com/receive-webhook/7654"
+  "data": {
+    "resource": "12345",
+    "target": "https://example.com/receive-webhook/7654"
+  }
 }
 ```
 
@@ -10059,8 +10230,9 @@ HTTP/1.1 201
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
 |body|body|object|true|The webhook workspace and target.|
-|» resource|body|string|true|A resource ID to subscribe to. The resource can be a task or project.|
-|» target|body|string(uri)|true|The URL to receive the HTTP POST.|
+|» data|body|object|false|none|
+|»» resource|body|string|true|A resource ID to subscribe to. The resource can be a task or project.|
+|»» target|body|string(uri)|true|The URL to receive the HTTP POST.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -10118,7 +10290,7 @@ Returns the full record for the given webhook.
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|webhook_gid|path|string|true|The webhook to affect with the current operation.|
+|webhook_gid|path|string|true|Globally unique identifier for the webhook.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -10176,7 +10348,7 @@ This method *permanently* removes a webhook. Note that it may be possible to rec
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
-|webhook_gid|path|string|true|The webhook to affect with the current operation.|
+|webhook_gid|path|string|true|Globally unique identifier for the webhook.|
 |opt_pretty|query|boolean|false|Provides “pretty” output.|
 |opt_fields|query|array[string]|false|Defines fields to return.|
 
@@ -10428,7 +10600,9 @@ The user can be referenced by their globally unique user ID or their email addre
 
 ```json
 {
-  "user": "14641"
+  "data": {
+    "user": "12345"
+  }
 }
 ```
 
@@ -10505,7 +10679,9 @@ Returns an empty data record.
 
 ```json
 {
-  "user": "14641"
+  "data": {
+    "user": "12345"
+  }
 }
 ```
 
@@ -10847,7 +11023,6 @@ A request object for use in a batch request.
 |» limit|integer|false|none|Pagination limit for the request.|
 |» offset|integer|false|none|Pagination offset for the request.|
 |» fields|[string]|false|none|The fields to retrieve in the request.|
-|» expand|string|false|none|The expansion path for the request.|
 
 #### Enumerated Values
 
@@ -10926,7 +11101,9 @@ A response object returned from a batch request.
   "enabled": true,
   "text_value": "Some Value",
   "description": "Development team priority",
-  "precision": 2
+  "precision": 2,
+  "is_global_to_workspace": true,
+  "has_notifications_enabled": true
 }
 
 ```
@@ -10955,6 +11132,8 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 |text_value|string|false|none|*Conditional*. This string is the value of a text custom field.|
 |description|string|false|none|[Opt In](#input-output-options). The description of the custom field.|
 |precision|integer|false|none|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|is_global_to_workspace|boolean|false|read-only|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
+|has_notifications_enabled|boolean|false|none|This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 
 #### Enumerated Values
 
@@ -10972,6 +11151,69 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 <a id="schema_CustomFieldCompact"></a>
 <a id="tocScustomfieldcompact"></a>
 <a id="tocscustomfieldcompact"></a>
+
+```json
+{
+  "gid": "12345",
+  "resource_type": "custom_field",
+  "name": "Bug Task",
+  "resource_subtype": "milestone",
+  "type": "text",
+  "enum_options": [
+    {
+      "gid": "12345",
+      "resource_type": "enum_option",
+      "name": "Low",
+      "enabled": true,
+      "color": "blue"
+    }
+  ],
+  "enum_value": null,
+  "enabled": true,
+  "text_value": "Some Value"
+}
+
+```
+
+Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](#asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.
+
+Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/custom-fields#gl-lock-fields), which will make them read-only when accessed by other users. Attempting to edit a locked custom field will return HTTP error code `403 Forbidden`.
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+|resource_type|string|false|read-only|The base type of this resource.|
+|name|string|false|none|The name of the object.|
+|resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|type|string|false|none|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
+|enum_options|[object]|false|none|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
+|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+|» resource_type|string|false|read-only|The base type of this resource.|
+|» name|string|false|none|The name of the enum option.|
+|» enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
+|» color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
+|enum_value|any|false|none|none|
+|enabled|boolean|false|none|*Conditional*. Determines if the custom field is enabled or not.|
+|text_value|string|false|none|*Conditional*. This string is the value of a text custom field.|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|type|text|
+|type|enum|
+|type|number|
+
+<hr>
+
+<h2 id="tocS_CustomFieldPostRequest">CustomFieldPostRequest</h2>
+<!-- backwards compatibility -->
+<a id="schemacustomfieldpostrequest"></a>
+<a id="schema_CustomFieldPostRequest"></a>
+<a id="tocScustomfieldpostrequest"></a>
+<a id="tocscustomfieldpostrequest"></a>
 
 ```json
 {
@@ -11778,7 +12020,7 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
-|html_notes|string|false|none|[Opt In](#input-output-options). The notes of the project with formatting as HTML.<br>*Note: This field is under active migration—please see our [blog post] (https://asana.com/developers/news/new-rich-text) for more information.*|
+|html_notes|string|false|none|[Opt In](#input-output-options). The notes of the project with formatting as HTML.<br>*Note: This field is under active migration—please see our [blog post] (https://developers.asana.com/docs/#rich-text) for more information.*|
 |is_template|boolean|false|none|[Opt In](#input-output-options). Determines if the project is a template.|
 |layout|string|false|read-only|The layout (board or list view) of a project|
 |members|[object]|false|read-only|Array of users who are members of this project.|
@@ -12633,7 +12875,9 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
       "enabled": true,
       "text_value": "Some Value",
       "description": "Development team priority",
-      "precision": 2
+      "precision": 2,
+      "is_global_to_workspace": true,
+      "has_notifications_enabled": true
     }
   ],
   "dependencies": [
@@ -12728,7 +12972,7 @@ The *task* is the basic object around which many operations in Asana are centere
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|Name of the task. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 |created_at|string(date-time)|false|read-only|The time at which this resource was created.|
-|resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
+|resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.<br>The resource_subtype `milestone` represent a single moment in time. This means tasks with this subtype cannot have a start_date.<br>*Note: The resource_subtype of `section` is under active migration—please see our [forum post](https://forum.asana.com/t/sections-are-dead-long-live-sections) for more information.*|
 |assignee|any|false|none|none|
 |assignee_status|string|false|none|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
 |completed|boolean|false|none|True if the task is currently marked complete, false if not.|
@@ -12750,6 +12994,8 @@ The *task* is the basic object around which many operations in Asana are centere
 |» text_value|string|false|none|*Conditional*. This string is the value of a text custom field.|
 |» description|string|false|none|[Opt In](#input-output-options). The description of the custom field.|
 |» precision|integer|false|none|Only relevant for custom fields of type ‘Number’. This field dictates the number of places after the decimal to round to, i.e. 0 is integer values, 1 rounds to the nearest tenth, and so on. Must be between 0 and 6, inclusive.|
+|» is_global_to_workspace|boolean|false|read-only|This flag describes whether this custom field is available to every container in the workspace. Before project-specific custom fields, this field was always true.|
+|» has_notifications_enabled|boolean|false|none|This flag describes whether a follower of a task with this field should receive inbox notifications from changes to this field.|
 |dependencies|[object]|false|read-only|[Opt In](#input-output-options). Array of resources referencing tasks that this task depends on. The objects contain only the gid of the dependency.|
 |» gid|string|false|none|none|
 |dependents|[object]|false|read-only|[Opt In](#input-output-options). Array of resources referencing tasks that depend on this task. The objects contain only the ID of the dependent.|
@@ -12876,7 +13122,7 @@ A *team* is used to group related projects and people together within an organiz
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the object.|
 |description|string|false|none|[Opt In](#input-output-options). The description of the team.|
-|html_description|string|false|none|[Opt In](#input-output-options). The description of the team with formatting as HTML.<br>*Note: This field is under active migration—please see our [blog post](https://asana.com/developers/news/new-rich-text) for more information.*|
+|html_description|string|false|none|[Opt In](#input-output-options). The description of the team with formatting as HTML.<br>*Note: This field is under active migration—please see our [blog post](https://developers.asana.com/docs/#rich-text) for more information.*|
 |organization|any|false|none|none|
 
 <hr>

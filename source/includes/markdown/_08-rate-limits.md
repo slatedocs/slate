@@ -41,7 +41,7 @@ Our standard rate limiter imposes a quota on how many requests can be made in a 
 | Free | 150 |
 | Premium | 1500 |
 
-In addition, calls to the [search API](#search-api) are limited to 60 requests per minute.
+In addition, calls to the [search API](#search-api) are limited to 60 requests per minute. The [duplication endpoints](#duplicate-a-task) are limited to 5 concurrent jobs.
 
 Although the quota is defined per minute, it is evaluated more frequently than once per minute, so you may not need to wait for a full minute before retrying your request. For requests rejected by this limiter, the `Retry-After` header has the result of this calculation.
 
