@@ -43,7 +43,7 @@ curl -X POST https://api.transferwise.com/v1/subscriptions/ \
 }
 ```
 
-Webhook subscription is a mechanism that will allow you to receive notifications to your servers whenever your transfers and/or balance get updated.
+Webhook subscription is a mechanism that will allow you to receive notifications to your servers whenever your transfers and/or balance get topped up.
 
 Before proceeding, make sure the endpoint where you intend to receive webhooks satisfies the following requirements:
 
