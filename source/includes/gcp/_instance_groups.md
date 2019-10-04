@@ -192,7 +192,7 @@ curl -X POST \
 ```
 Required | &nbsp;
 ------ | -----------
-`shortInstances`<br/>*array[string]* | Array of instance names to become or keep as members of the instance group. If an existing instance is not in the list, it will be removed from the group. If the array is empty, all the instance members will be removed.
+`shortInstances`<br/>*array[string]* | Array of instance names representing the current members of the instance group. If a current instance member is not kept in the list, it will be removed from the group. If the array is empty, all the instance members will be removed.
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instancegroups/:id?operation=manage_instance_members</code>
 

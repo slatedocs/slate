@@ -464,14 +464,14 @@ Required | &nbsp;
 ------ | -----------
 `username`<br/>*string* | The username
 
-<!-------------------- ADD TO INSTANCE GROUP -------------------->
+<!-------------------- MANAGE GROUP MEMBERSHIP -------------------->
 
-#### Add to instance group
+#### Manage group membership
 
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/instances/2986056884972096897?operation=add_to_group"
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/instances/2986056884972096897?operation=manage_group_membership"
 
 # Request example:
 ```
@@ -483,36 +483,11 @@ curl -X POST \
 
 Required | &nbsp;
 ------ | -----------
-`shortGroups`<br/>*array[string]* | Array of instance group names to add the instance to
+`shortGroups`<br/>*array[string]* | Array of group names representing the current groups the instance belongs to. If a group, which the instance currently belongs to, is not kept in the list, the instance will be removed from the group. If the array is empty, the instance will be removed from all the groups it currently belongs to.
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instancegroups/:id?operation=add_instances</code>
 
-Add instance to existing instance groups
-
-<!-------------------- REMOVE INSTANCES TO INSTANCE GROUP -------------------->
-
-#### Remove from instance group
-
-```shell
-curl -X POST \
-   -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/instances/2986056884972096897?operation=remove_instances"
-
-# Request example:
-```
-```json
-{
-    "shortInstances": ["instance-2"]
-}
-```
-
-Required | &nbsp;
------- | -----------
-`shortGroups`<br/>*array[string]* | Array of instance group names to remove the instance from
-
-<code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instancegroups/:id?operation=remove_instances</code>
-
-Remove instance from existing instance groups
+Manage an instance's membership to groups
 
 <!-------------------- START AN INSTANCE -------------------->
 
