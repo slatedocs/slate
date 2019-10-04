@@ -122,3 +122,122 @@ For example, if page metadata is
   sections: ["sports", "health"]
 }` and count of reactions on pages that belong to sports section is required,
 `page_metadata_key` could be `section` and `page_metadata_value` could be `sports`
+
+## Bookmarks
+
+Bookmarks allow users to mark URLs to be read later. All Bookmark APIs operate on bookmarks for a single user, and all Bookmark APIs must be authenticated. See [Single Sign On](#single-sign-on-sso) for information on how to create an access token.
+
+All Bookmark APIs follow the [json:api](https://jsonapi.org) specification.
+
+### Create or Update a Boomark
+
+```shell--request
+curl --request POST \
+  --url https://www.metype.com/api/v1/accounts/:account_id/pages/aHR0cDovL3Rlc3QuaG9zdC8/bookmark \
+  -H 'Content-Type: application/json' \
+  --data-binary '{
+    "data": {
+      "type": "bookmark",
+      "attributes": {
+        "read_at": "2019-09-02",
+        "metadata": {
+          "any": "value"
+        }
+      }
+    }
+  }'
+```
+
+This endpoint can be used to create or update a bookmark. This API returns a 201 if the operation was sucessful. The parameters that can be passed in are as follows:
+
+| key | type | use|
+|--|--|--|
+|account_id|integer|Metype account id|
+|page_id|string|Base64 encoded url of the page, encoded with [Web Safe Base 64](http://www.base64url.com)|
+|read_at|timestamp or null|Timestamp the bookmark was read at. This can be set to null if the bookmark is unread|
+|metadata|object|Any additional parameters to be stored|
+
+Please see the 'request' tab on the right for a sample request
+
+### Fetch a Bookmark by URL
+
+```shell--request
+curl --request GET \
+  --url https://www.metype.com/api/v1/accounts/:account_id/pages/aHR0cDovL3Rlc3QuaG9zdC8/bookmark
+```
+
+```shell--response
+{
+   "data" : {
+      "type" : "bookmark",
+      "attributes" : {
+        "url" : "http://test.host/",
+        "headline" "This is a sample page",
+        "hero_image_url" : "https://developers.quintype.com/images/logo.svg",
+        "metadata" : {},
+        "created_at" : "2019-10-04T10:15:13.719Z",
+        "updated_at" : "2019-10-04T10:15:13.719Z",
+        "read_at" : null
+      }
+   }
+}
+```
+
+This endpoint can be used to fetch the bookmark on a given page. This endpoint will return a 200 if the bookmark is found, and a 404 otherwise. The parameters that can be passed in are as follows:
+
+| key | type | use|
+|--|--|--|
+|account_id|integer|Metype account id|
+|page_id|string|Base64 encoded url of the page, encoded with [Web Safe Base 64](http://www.base64url.com)|
+
+Please see the 'request' and 'response' tabs on the right for a sample request
+
+### Delete a Bookmark
+
+```shell--request
+curl --request DELETE \
+  --url https://www.metype.com/api/v1/accounts/:account_id/pages/aHR0cDovL3Rlc3QuaG9zdC8/bookmark
+```
+
+This endpoint can be used to delete a bookmark on a given page. This endpoint will return a 204. The parameters that can be passed in are as follows:
+
+| key | type | use|
+|--|--|--|
+|account_id|integer|Metype account id|
+|page_id|string|Base64 encoded url of the page, encoded with [Web Safe Base 64](http://www.base64url.com)|
+
+Please see the 'request' tab on the right for a sample request
+
+### Get All Bookmarks for a User
+
+```shell--request
+curl --request GET \
+  --url https://www.metype.com/api/v1/accounts/:account_id/bookmarks
+```
+
+```shell--response
+{
+   "data" : [{
+      "type" : "bookmark",
+      "attributes" : {
+        "url" : "http://test.host/",
+        "headline" "This is a sample page",
+        "hero_image_url" : "https://developers.quintype.com/images/logo.svg",
+        "metadata" : {},
+        "created_at" : "2019-10-04T10:15:13.719Z",
+        "updated_at" : "2019-10-04T10:15:13.719Z",
+        "read_at" : null
+      }
+   }]
+}
+```
+
+This endpoint can be used to fetch all bookmark for a given user. The parameters that can be passed in are as follows:
+
+| key | type | use|
+|--|--|--|
+|account_id|integer|Metype account id|
+|status|string|If set to 'read', then only return bookmarks that have been read. If set to 'unread', then only return unread bookmarks. By default, all bookmarks are returned|
+|page|integer|Page of Bookmarks to return|
+
+Please see the 'request' and 'response' tabs on the right for a sample request

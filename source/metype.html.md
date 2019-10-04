@@ -36,6 +36,7 @@ A summation of all these tools will help you funnel your user's engagement.
 * User Generated Content (UGC) - An iframe/widget for users to submit their user generated content.
 * Single Sign On (SSO) - A service for users to login universally on a website.
 * Story Reactions - An iframe/widget for users to respond/react to contents on a page.
+* Bookmarks - An API for users to save urls to be read later
 
 ## Vision
 
