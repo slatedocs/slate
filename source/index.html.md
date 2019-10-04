@@ -48,6 +48,7 @@ curl --location --request GET "https://api.roboticcrowd.com/v1/path/to/endpoint"
 ```shell
 curl --location --request POST "https://api.roboticcrowd.com/v1/session_queues" \
   --header "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwczovL2FwaS5yb2JvdGljY3Jvd2QuY29tLyIsImlzcyI6ImNvbnNvbGUucm9ib3RpY2Nyb3dkLmNvbSIsInN1YiI6Iklqb2lJaXdpWjNKaGJuUnpJanA3SW0iLCJuYmYiOjE0NTA0NzExNDcsImV4cCI6MTQ1MDQ3Mzc0Nywic2NvcGVzIjpbInNlc3Npb25fcXVldWUud3JpdGUiLCJzZXNzaW9uX3F1ZXVlLnJlYWQiLCJ0b2tlbiJdfQ.fpJ-Ho1IvdRdDdBD-ncp7Xkbijj6UmcboUODi_XtMJk" \
+  --header "content-type: application/json" \
   --data "{
   \"workflow_id\": 6391
 }" 
@@ -276,6 +277,7 @@ JWT は、header と payload が base64 で誰でもデコードできてしま�
 
 ```shell
 curl --location --request POST "https://api.roboticcrowd.com/v1/token" \
+  --header "content-type: application/json" \
   --data "{
   \"access_key_id\": \"your_key_id\",
   \"secret_access_key\": \"your_secret_access_key\",
@@ -353,6 +355,7 @@ params 内のオブジェクトとして設定した key と value は、ワー�
 ```shell
 curl --location --request POST "https://api.roboticcrowd.com/v1/session_queues" \
   --header "Authorization: Bearer [jwt_token]" \
+  --header "content-type: application/json" \
   --data "{
   \"workflow_id\": [workflow_id],
   \"params\": {
@@ -532,6 +535,7 @@ curl --location --request GET "https://api.roboticcrowd.com/v1/session_queues?pa
 **説明**
 
 取得するページあたりの件数です。
+1ページあたりの最大数は50件です。
 
 #### page
 
@@ -586,6 +590,9 @@ Session Queue のオブジェクトの返却は、
 
 #### workflow
 ワークフローの詳細が記述されている JSON オブジェクトです。返却される項目は、ID とワークフロー名 (name) だけです。
+
+#### params
+実行キュー作成時に渡された変数が記述されている JSON オブジェクトです。
 
 #### robot
 ロボットの詳細が記述されている JSON オブジェクトです。返却される項目は、ID とロボット名 (name) だけです。
