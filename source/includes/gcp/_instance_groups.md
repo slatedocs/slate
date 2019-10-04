@@ -174,9 +174,9 @@ curl -X DELETE \
 
 Delete an existing instance group
 
-<!-------------------- MANAGE INSTANCE MEMBERS IN AN INSTANCE GROUP -------------------->
+<!-------------------- MANAGE INSTANCE MEMBERS -------------------->
 
-#### Manage instance members in an instance group
+#### Manage instance members
 
 ```shell
 curl -X POST \
