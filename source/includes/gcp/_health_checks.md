@@ -22,14 +22,14 @@ curl -X GET \
       "kind": "compute#healthCheck",
       "name": "healthcheckname",
       "selfLink": "https://www.googleapis.com/compute/v1/projects/test-area/global/healthChecks/healthcheckname",
-      "tcpHealthCheck": {
+      "httpHealthCheck": {
         "port": 80,
         "proxyHeader": "NONE",
         "request": "",
         "response": ""
       },
       "timeoutSec": 5,
-      "type": "TCP",
+      "type": "HTTP",
       "unhealthyThreshold": 3,
       "portNumber": "80"
     }
@@ -57,7 +57,7 @@ Attributes | &nbsp;
 `name`<br/>*string* | Name of the resource. Provided by the client when the resource is created.
 `selfLink`<br/>*string* | Server-defined URL for this resource.
 `timeoutSec`<br/>*int* | How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for timeoutSec to have greater value than checkIntervalSec.
-`type`<br/>*string* | Specifies the type of the healthCheck, either TCP, SSL, HTTP, HTTPS or HTTP2. If not specified, the default is Http. Exactly one of the protocol-specific health check field must be specified, which must match type field.
+`type`<br/>*string* | Specifies the type of the healthCheck, either HTTP or HTTPS. If not specified, the default is Http. Exactly one of the protocol-specific health check field must be specified, which must match type field.
 `unhealthyThreshold`<br/>*int* | A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
 `portNumber`<br/>*string* | The port number for health check
 
@@ -82,15 +82,15 @@ curl -X GET \
     "id": "5930212998788364011",
     "kind": "compute#healthCheck",
     "name": "firsthealthcheck",
-    "selfLink": "https://www.googleapis.com/compute/v1/projects/cmc-gcp-env-jamie-hvh/global/healthChecks/firsthealthcheck",
-    "tcpHealthCheck": {
+    "selfLink": "https://www.googleapis.com/compute/v1/projects/test-area/global/healthChecks/firsthealthcheck",
+    "httpHealthCheck": {
       "port": 80,
       "proxyHeader": "NONE",
       "request": "",
       "response": ""
     },
     "timeoutSec": 5,
-    "type": "TCP",
+    "type": "HTTP",
     "unhealthyThreshold": 3,
     "portNumber": "80"
   }
@@ -112,7 +112,7 @@ Attributes | &nbsp;
 `name`<br/>*string* | Name of the resource. Provided by the client when the resource is created.
 `selfLink`<br/>*string* | Server-defined URL for this resource.
 `timeoutSec`<br/>*int* | How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for timeoutSec to have greater value than checkIntervalSec.
-`type`<br/>*string* | Specifies the type of the healthCheck, either TCP, SSL, HTTP, HTTPS or HTTP2. If not specified, the default is Http. Exactly one of the protocol-specific health check field must be specified, which must match type field.
+`type`<br/>*string* | Specifies the type of the healthCheck, either HTTP or HTTPS. If not specified, the default is Http. Exactly one of the protocol-specific health check field must be specified, which must match type field.
 `unhealthyThreshold`<br/>*int* | A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
 `portNumber`<br/>*string* | The port number for health check
 
@@ -132,11 +132,11 @@ Create a new health check
 Required | &nbsp;
 ------- | -----------
 `name`<br/>*string* | The display name of the health check
-`type`<br/>*string* | Specifies the type of the healthCheck, either HTTP or HTTPS. If not specified, the default is HTTP. 
-`portNumber`<br/>*string* | The port number for the health check. The default is 80 for HTTP, 443 for HTTPS.
 
 Optional | &nbsp;
 ------- | -----------
+`type`<br/>*string* | Specifies the type of the healthCheck, either HTTP or HTTPS. If not specified, the default is HTTP. 
+`portNumber`<br/>*string* | The port number for the health check. The default is 80 for HTTP, 443 for HTTPS.
 `description`<br/>*string* | Description of the health check
 
 
