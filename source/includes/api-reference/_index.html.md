@@ -1457,12 +1457,37 @@ This method creates a request to export an Organization. Asana will complete the
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Successfully created organization export request.|[OrganizationExportResponse](#schemaorganizationexportresponse)|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Successfully created organization export request.|Inline|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+
+<h3 id="create-an-organization-export-request-responseschema">Response Schema</h3>
+
+Status Code **201**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+| data|[OrganizationExport](#schemaorganizationexport)|false|none|An *organization_export* object represents a request to export the complete data of an Organization in JSON format.|
+| gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+| resource_type|string|false|read-only|The base type of this resource.|
+| created_at|string(date-time)|false|read-only|The time at which this resource was created.|
+| download_url|string(uri)¦null|false|read-only|Download this URL to retreive the full export of the organization<br>in JSON format. It will be compressed in a gzip (.gz) container.<br><br>*Note: May be null if the export is still in progress or<br>failed.  If present, this URL may only be valid for 1 hour from<br>the time of retrieval. You should avoid persisting this URL<br>somewhere and rather refresh on demand to ensure you do not keep<br>stale URLs.*|
+| state|string|false|read-only|The current state of the export.|
+| organization|object|false|none|*Create-only*: The Organization that is being exported. This can only be specified at create time.|
+| gid|string|false|none|none|
+| name|string|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|state|pending|
+|state|started|
+|state|finished|
+|state|error|
 
 <hr class="half-line">
 ## Get details on an org export request
@@ -1515,12 +1540,37 @@ Returns details of a previously-requested Organization export.
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved organization export object.|[OrganizationExportResponse](#schemaorganizationexportresponse)|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved organization export object.|Inline|
 |400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|This usually occurs because of a missing or malformed parameter. Check the documentation and the syntax of your request and try again.|[Error](#schemaerror)|
 |401|[Unauthorized](https://tools.ietf.org/html/rfc7235#section-3.1)|A valid authentication token was not provided with the request, so the API could not associate a user with the request.|[Error](#schemaerror)|
 |403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|The authentication and request syntax was valid but the server is refusing to complete the request. This can happen if you try to read or write to objects or properties that the user does not have access to.|[Error](#schemaerror)|
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
+
+<h3 id="get-details-on-an-org-export-request-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+| data|[OrganizationExport](#schemaorganizationexport)|false|none|An *organization_export* object represents a request to export the complete data of an Organization in JSON format.|
+| gid|string|false|read-only|Globally unique identifier of the object, as a string.|
+| resource_type|string|false|read-only|The base type of this resource.|
+| created_at|string(date-time)|false|read-only|The time at which this resource was created.|
+| download_url|string(uri)¦null|false|read-only|Download this URL to retreive the full export of the organization<br>in JSON format. It will be compressed in a gzip (.gz) container.<br><br>*Note: May be null if the export is still in progress or<br>failed.  If present, this URL may only be valid for 1 hour from<br>the time of retrieval. You should avoid persisting this URL<br>somewhere and rather refresh on demand to ensure you do not keep<br>stale URLs.*|
+| state|string|false|read-only|The current state of the export.|
+| organization|object|false|none|*Create-only*: The Organization that is being exported. This can only be specified at create time.|
+| gid|string|false|none|none|
+| name|string|false|none|none|
+
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|state|pending|
+|state|started|
+|state|finished|
+|state|error|
 
 <hr class="full-line">
 <h1 id="asana-portfolios">Portfolios</h1>
@@ -1921,6 +1971,7 @@ Get a list of the items in compact form in a portfolio.
       "custom_field_settings": [
         ...
       ],
+      "default_view": "calendar",
       "due_date": "2012-03-26",
       "due_on": "2012-03-26",
       "followers": [
@@ -2511,6 +2562,7 @@ Returns the compact project records for some filtered set of projects. Use one o
       "custom_field_settings": [
         ...
       ],
+      "default_view": "calendar",
       "due_date": "2012-03-26",
       "due_on": "2012-03-26",
       "followers": [
@@ -2632,6 +2684,7 @@ Returns the full record of the newly created project.
         ...
       }
     ],
+    "default_view": "calendar",
     "due_date": "2012-03-26",
     "due_on": "2012-03-26",
     "followers": [
@@ -2727,6 +2780,7 @@ Returns the complete project record for a single project.
         ...
       }
     ],
+    "default_view": "calendar",
     "due_date": "2012-03-26",
     "due_on": "2012-03-26",
     "followers": [
@@ -2803,6 +2857,7 @@ Returns the complete updated project record.
     "name": "Stuff to buy",
     "archived": false,
     "color": "light-green",
+    "default_view": "calendar",
     "due_date": "2012-03-26",
     "due_on": "2012-03-26",
     "html_notes": "These are things we need to purchase.",
@@ -2854,6 +2909,7 @@ Returns the complete updated project record.
         ...
       }
     ],
+    "default_view": "calendar",
     "due_date": "2012-03-26",
     "due_on": "2012-03-26",
     "followers": [
@@ -3104,6 +3160,7 @@ Returns a compact representation of all of the projects the task is in.
       "custom_field_settings": [
         ...
       ],
+      "default_view": "calendar",
       "due_date": "2012-03-26",
       "due_on": "2012-03-26",
       "followers": [
@@ -3192,6 +3249,7 @@ Returns the compact project records for all projects in the team.
       "custom_field_settings": [
         ...
       ],
+      "default_view": "calendar",
       "due_date": "2012-03-26",
       "due_on": "2012-03-26",
       "followers": [
@@ -3259,6 +3317,7 @@ Returns the full record of the newly created project.
     "name": "Stuff to buy",
     "archived": false,
     "color": "light-green",
+    "default_view": "calendar",
     "due_date": "2012-03-26",
     "due_on": "2012-03-26",
     "html_notes": "These are things we need to purchase.",
@@ -3310,6 +3369,7 @@ Returns the full record of the newly created project.
         ...
       }
     ],
+    "default_view": "calendar",
     "due_date": "2012-03-26",
     "due_on": "2012-03-26",
     "followers": [
@@ -3401,6 +3461,7 @@ Returns the compact project records for all projects in the workspace.
       "custom_field_settings": [
         ...
       ],
+      "default_view": "calendar",
       "due_date": "2012-03-26",
       "due_on": "2012-03-26",
       "followers": [
@@ -3471,6 +3532,7 @@ Returns the full record of the newly created project.
     "name": "Stuff to buy",
     "archived": false,
     "color": "light-green",
+    "default_view": "calendar",
     "due_date": "2012-03-26",
     "due_on": "2012-03-26",
     "html_notes": "These are things we need to purchase.",
@@ -3522,6 +3584,7 @@ Returns the full record of the newly created project.
         ...
       }
     ],
+    "default_view": "calendar",
     "due_date": "2012-03-26",
     "due_on": "2012-03-26",
     "followers": [
@@ -11208,69 +11271,6 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 
 <hr>
 
-<h2 id="tocS_CustomFieldPostRequest">CustomFieldPostRequest</h2>
-<!-- backwards compatibility -->
-<a id="schemacustomfieldpostrequest"></a>
-<a id="schema_CustomFieldPostRequest"></a>
-<a id="tocScustomfieldpostrequest"></a>
-<a id="tocscustomfieldpostrequest"></a>
-
-```json
-{
-  "gid": "12345",
-  "resource_type": "custom_field",
-  "name": "Bug Task",
-  "resource_subtype": "milestone",
-  "type": "text",
-  "enum_options": [
-    {
-      "gid": "12345",
-      "resource_type": "enum_option",
-      "name": "Low",
-      "enabled": true,
-      "color": "blue"
-    }
-  ],
-  "enum_value": null,
-  "enabled": true,
-  "text_value": "Some Value"
-}
-
-```
-
-Custom Fields store the metadata that is used in order to add user-specified information to tasks in Asana. Be sure to reference the [Custom Fields](#asana-custom-fields) developer documentation for more information about how custom fields relate to various resources in Asana.
-
-Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/custom-fields#gl-lock-fields), which will make them read-only when accessed by other users. Attempting to edit a locked custom field will return HTTP error code `403 Forbidden`.
-
-### Properties
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|resource_type|string|false|read-only|The base type of this resource.|
-|name|string|false|none|The name of the object.|
-|resource_subtype|string|false|read-only|The subtype of this resource. Different subtypes retain many of the same fields and behavior, but may render differently in Asana or represent resources with different semantic meaning.|
-|type|string|false|none|*Deprecated: new integrations should prefer the resource_subtype field.* The type of the custom field. Must be one of the given values.|
-|enum_options|[object]|false|none|*Conditional*. Only relevant for custom fields of type `enum`. This array specifies the possible values which an `enum` custom field can adopt. To modify the enum options, refer to [working with enum options](#create-an-enum-option).|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» name|string|false|none|The name of the enum option.|
-|» enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
-|» color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
-|enum_value|any|false|none|none|
-|enabled|boolean|false|none|*Conditional*. Determines if the custom field is enabled or not.|
-|text_value|string|false|none|*Conditional*. This string is the value of a text custom field.|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|type|text|
-|type|enum|
-|type|number|
-
-<hr>
-
 <h2 id="tocS_CustomFieldSetting">CustomFieldSetting</h2>
 <!-- backwards compatibility -->
 <a id="schemacustomfieldsetting"></a>
@@ -11617,55 +11617,6 @@ An *organization_export* object represents a request to export the complete data
 
 <hr>
 
-<h2 id="tocS_OrganizationExportObjectResponse">OrganizationExportObjectResponse</h2>
-<!-- backwards compatibility -->
-<a id="schemaorganizationexportobjectresponse"></a>
-<a id="schema_OrganizationExportObjectResponse"></a>
-<a id="tocSorganizationexportobjectresponse"></a>
-<a id="tocsorganizationexportobjectresponse"></a>
-
-```json
-{
-  "data": {
-    "gid": "12345",
-    "resource_type": "task",
-    "created_at": "2012-02-22T02:06:58.147Z",
-    "download_url": "https://asana-export.s3.amazonaws.com/export-4632784536274-20170127-43246.json.gz?AWSAccessKeyId=xxxxxxxx",
-    "state": "started",
-    "organization": {
-      "gid": "14916",
-      "name": "My Workspace"
-    }
-  }
-}
-
-```
-
-### Properties
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|data|object|false|none|An *organization_export* object represents a request to export the complete data of an Organization in JSON format.|
-|» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
-|» resource_type|string|false|read-only|The base type of this resource.|
-|» created_at|string(date-time)|false|read-only|The time at which this resource was created.|
-|» download_url|string(uri)¦null|false|read-only|Download this URL to retreive the full export of the organization<br>in JSON format. It will be compressed in a gzip (.gz) container.<br><br>*Note: May be null if the export is still in progress or<br>failed.  If present, this URL may only be valid for 1 hour from<br>the time of retrieval. You should avoid persisting this URL<br>somewhere and rather refresh on demand to ensure you do not keep<br>stale URLs.*|
-|» state|string|false|read-only|The current state of the export.|
-|» organization|object|false|none|*Create-only*: The Organization that is being exported. This can only be specified at create time.|
-|»» gid|string|false|none|none|
-|»» name|string|false|none|none|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|state|pending|
-|state|started|
-|state|finished|
-|state|error|
-
-<hr>
-
 <h2 id="tocS_Portfolio">Portfolio</h2>
 <!-- backwards compatibility -->
 <a id="schemaportfolio"></a>
@@ -11946,6 +11897,7 @@ This is read-only except for a small group of whitelisted apps.
       "resource_type": "custom_field_setting"
     }
   ],
+  "default_view": "calendar",
   "due_date": "2012-03-26",
   "due_on": "2012-03-26",
   "followers": [
@@ -12014,6 +11966,7 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |custom_field_settings|[object]|false|read-only|Array of Custom Field Settings (in compact form).|
 |» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
+|default_view|string|false|none|The default view (list, board, calendar, or timeline) of a project.|
 |due_date|string(date-time)¦null|false|none|*Deprecated: new integrations should prefer the due_on field.*|
 |due_on|string(date-time)¦null|false|none|The day on which this project is due. This takes a date with format YYYY-MM-DD.|
 |followers|[object]|false|read-only|Array of users following this project. Followers are a subset of members who receive all notifications for a project, the default notification setting when adding members to a project in-product.|
@@ -12064,6 +12017,10 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |type|text|
 |type|enum|
 |type|number|
+|default_view|list|
+|default_view|board|
+|default_view|calendar|
+|default_view|timeline|
 |layout|list|
 |layout|board|
 |section_migration_status|not_migrated|

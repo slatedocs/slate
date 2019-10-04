@@ -1279,10 +1279,6 @@ components:
                 *Conditional*. This string is the value of a text custom field.
               type: string
               example: Some Value
-    CustomFieldPostRequest:
-      allOf:
-        - $ref: '#/components/schemas/CustomFieldCompact'
-        - type: object
     CustomFieldObject:
       type: object
       properties:
@@ -1665,11 +1661,6 @@ components:
                 name:
                   type: string
                   example: My Workspace
-    OrganizationExportObjectResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/OrganizationExport'
     Portfolio:
       allOf:
         - $ref: '#/components/schemas/PortfolioCompact'
@@ -1908,6 +1899,16 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/CustomFieldSettingCompact'
+            default_view:
+              description: The default view (list, board, calendar, or timeline) of
+                a project.
+              type: string
+              enum:
+                - list
+                - board
+                - calendar
+                - timeline
+              example: calendar
             due_date:
               description: >-
                 *Deprecated: new integrations should prefer the due_on field.*
@@ -4121,7 +4122,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OrganizationExportObjectResponse'
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/OrganizationExport'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -4150,7 +4154,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OrganizationExportObjectResponse'
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/OrganizationExport'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
