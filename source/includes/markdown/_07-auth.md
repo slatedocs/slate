@@ -102,6 +102,8 @@ the Asana API, as well as a Client Secret.
 &redirect_uri=https://my.app.com
 &response_type=code
 &state=thisIsARandomString
+&code_challenge_method=S256
+&code_challenge=671608a33392cee13585063953a86d396dffd15222d83ef958f43a2804ac7fb2
 &scope=default">Authenticate with Asana</a>
 ```
 
@@ -111,17 +113,14 @@ Your app redirects the user to `https://app.asana.com/-/oauth_authorize`, passin
 |---|---|
 | **client_id** |  *required* The Client ID uniquely identifies the application making the request. |
 | **redirect_uri** | *required* The URI to redirect to on success or error. This *must* match the Redirect URL specified in the application settings. |
-| **response_type** | *required* Must be one of `code`, `token`, `id_token`, or the space-delimited combination `token id_token`. |
-| **state** | *required* Encodes state of the app, which will be returned verbatim in the response and can be used to match the response up to a given request. |
-| **scope** | *optional* A space-delimited set of one or more [scopes](#scopes) to get the user's permission to access. Defauts to the `default` OAuth scope if no scopes are specified. |
+| **response_type** | *required* Must be either `code` or `id_token`, or the space-delimited combination `code id_token`. |
+| **state** | *optional* Encodes state of the app, which will be returned verbatim in the response and can be used to match the response up to a given request. |
+| **code_challenge_method** | *PKCE* The hash method used to generate the challenge. Typically `S256`. |
+| **code_challenge** | *PKCE* The code challenge used for [PKCE](#PKCE). |
+| **scope** | *optional* A space-delimited set of one or more [scopes](#scopes) to get the user's permission to access. Defaults to the `default` OAuth scope if no scopes are specified. |
+
 
 #### Response
-
-> User is redirected to the redirect_uri
-
-```
-https://my.app.com?code=325797325&state=thisIsARandomString
-```
 
 If either the `client_id` or `redirect_uri` do not match, the user will simply see a plain-text error. Otherwise,
 all errors will be sent back to the `redirect_uri` specified.
@@ -129,13 +128,17 @@ all errors will be sent back to the `redirect_uri` specified.
 The user then sees a screen giving them the opportunity to accept or reject the request for authorization. In either
 case, the user will be redirected back to the `redirect_uri`.
 
-If using the `response_type=code`, your app will receive the following parameters in the query string on successful authorization.
-If using the `response_type=token`, these parameters will appear in the URL fragment (the bit following the `#`):
+> User is redirected to the redirect_uri
+
+```
+https://my.app.com?code=325797325&state=thisIsARandomString
+```
+
+When using the `response_type=code`, your app will receive the following parameters in the query string on successful authorization.
 
 | Parameter | Description |
 |---|---|
 | **code** | If response_type=code in the request, this is the code your app can exchange for a token |
-| **token** | If response_type=token in the request, this is the token your app can use to make requests of the API |
 | **state** | The state parameter that was sent with the authorizing request |
 
 You should check that the state is the same in this response as it was in the request. You can read more about the `state`
@@ -161,10 +164,13 @@ scopes. An exhaustive list of the supported scopes is provided here:
 
 #### Request
 
-If your app received a code from the authorization endpoint, it can now be
-exchanged for a proper token, optionally including a *refresh_token*, which can
-be used to request new tokens when the current one expires without needing to
-redirect or reauthorize the user.
+When your app receives a code from the authorization endpoint, it can now be
+exchanged for a proper token.
+
+If you have a `client_secret`, this request should be sent from your secure server.
+The browser should never see your `client_secret`.
+
+> App sends request to oauth_token
 
 ```json
 {
@@ -172,7 +178,8 @@ redirect or reauthorize the user.
   "client_id": "753482910",
   "client_secret": "6572195638271537892521",
   "redirect_uri": "https://my.app.com",
-  "code": "325797325"
+  "code": "325797325",
+  "code_verifier": "fdsuiafhjbkewbfnmdxzvbuicxlhkvnemwavx"
 }
 ```
 
@@ -185,8 +192,9 @@ passing the parameters as part of a standard form-encoded post body.
 | **client_id** | *required* The Client ID uniquely identifies the application making the request. |
 | **client_secret** | *required* The Client Secret belonging to the app, found in the details pane of the developer console. |
 | **redirect_uri** | *required* Must match the `redirect_uri` specified in the original request. |
-| **code** | *sometimes required* If `grant_type=authorization_code` this is the code you are exchanging for an authorization token. |
+| **code** | *required* This is the code you are exchanging for an authorization token. |
 | **refresh_token** | *sometimes required* If `grant_type=refresh_token` this is the refresh token you are using to be granted a new access token. |
+| **code_verifier** | *PKCE* This is the string previously used to generate the code_challenge. |
 
 The token exchange endpoint is used to exchange a code or refresh token for an access token.
 
@@ -225,9 +233,57 @@ To implement the Authorization Code Grant flow (the most typical flow for most a
 
 2. Receive a redirect back from the authorization endpoint with a **code** embedded in the parameters
 
-3. Exchange the code for a **token** via the token exchange endpoint
+3. Exchange the code via the token exchange endpoint for a `**refresh_token**` and, for convenience, an initial 
+   `access_token`.
+
+4. When the short-lived `access_token` expires, the `**refresh_token**` can be used with the token exchange endpoint, 
+   without user intervention, to get a fresh `access_token`.
 
 The token that you have at the end can be used to make calls to the Asana API on the user's behalf.
+
+### Proof Key for Code Exchange (PKCE) OAuth Extension
+
+> User Authorization Endpoint
+
+```json
+{
+  ...
+  "code_challenge": "671608a33392cee13585063953a86d396dffd15222d83ef958f43a2804ac7fb2",
+  "code_challenge_method": "S256"
+}
+```
+
+> Token Exchange Endpoint
+
+```json
+{
+  ...
+  "code_verifier": "fdsuiafhjbkewbfnmdxzvbuicxlhkvnemwavx"
+}
+```
+
+PKCE proves the app that started the authorization flow is the same app that finishes the flow. You can read more about 
+it [here](https://www.oauth.com/oauth2-servers/pkce/).
+
+Here's what you need to know:
+
+1. Whenever a user wants to oauth with Asana, your app server should generate a random string called the 
+   `code_verifier`. This string should be saved to the user (as every `code_verifier` should be unique per user). This
+   should stay on the app server and only be sent to the [Token Exchange Endpoint](#token-exchange-endpoint).
+   
+2. Your app server will hash the `code_verifier` with SHA256 to get a string called the `code_challenge`. Your server
+   will give the browser **only** the `code_challenge` & `code_challenge_method`. The `code_challenge_method` should be
+   the string "S256" to tell Asana we hashed with SHA256.
+   
+3. The browser includes `code_challenge` & `code_challenge_method` when redirecting to the 
+   [User Authorization Endpoint](#user-authorization-endpoint).
+   
+4. The app server should include the `code_verifier` in it's request to the 
+   [Token Exchange Endpoint](#token-exchange-endpoint).
+   
+Asana confirms that hashing the `code_verifier` with the `code_challenge_method` results in the `code_challenge`. This 
+proves to Asana the app that hit the User Authorization Endpoint is the same app that hit the Token Exchange 
+Endpoint.
 
 <a name="secure-redirect" class="jump-anchor"></a>
 ### Secure Redirect Endpoint
