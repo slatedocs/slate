@@ -165,9 +165,7 @@ scopes. An exhaustive list of the supported scopes is provided here:
 #### Request
 
 When your app receives a code from the authorization endpoint, it can now be
-exchanged for a proper token. You may also get a `refresh_token`, which can 
-be used to request new tokens when the current one expires without needing to
-redirect or reauthorize the user.
+exchanged for a proper token.
 
 If you have a `client_secret`, this request should be sent from your secure server.
 The browser should never see your `client_secret`.
@@ -235,11 +233,15 @@ To implement the Authorization Code Grant flow (the most typical flow for most a
 
 2. Receive a redirect back from the authorization endpoint with a **code** embedded in the parameters
 
-3. Exchange the code for a **token** via the token exchange endpoint
+3. Exchange the code via the token exchange endpoint for a `**refresh_token**` and, for convenience, an initial 
+   `access_token`.
+
+4. When the short-lived `access_token` expires, the `**refresh_token**` can be used with the token exchange endpoint, 
+   without user intervention, to get a fresh `access_token`.
 
 The token that you have at the end can be used to make calls to the Asana API on the user's behalf.
 
-### Proof Key for Code Exchange (PKCE)
+### Proof Key for Code Exchange (PKCE) OAuth Extension
 
 > User Authorization Endpoint
 
