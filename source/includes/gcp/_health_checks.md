@@ -23,10 +23,11 @@ curl -X GET \
       "name": "healthcheckname",
       "selfLink": "https://www.googleapis.com/compute/v1/projects/test-area/global/healthChecks/healthcheckname",
       "httpHealthCheck": {
+        "host": "",
         "port": 80,
+        "portName": "http",
         "proxyHeader": "NONE",
-        "request": "",
-        "response": ""
+        "requestPath": "/"
       },
       "timeoutSec": 5,
       "type": "HTTP",
@@ -51,13 +52,15 @@ Attributes | &nbsp;
 `checkIntervalSec`<br/>*int* | How often (in seconds) to send a health check. The default value is 5 seconds
 `creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format
 `description` <br/>*string* | An optional description of this resource. Provide this property when you create the resource.
-`healthyThreshold`<br/>*int* | A so-far unhealthy instance will be marked healthy after this many consecutive successes. The default value is 2.
+`healthyThreshold`ç | A so-far unhealthy instance will be marked healthy after this many consecutive successes. The default value is 2.
+`httpHealthCheck` <br/>*object* | object
+`httpSHealthCheck` <br/>*object* | object
 `id`<br/>*string* | The unique identifier for the resource. This identifier is defined by the server.
 `kind`<br/>*string* | Type of the resource.
 `name`<br/>*string* | Name of the resource. Provided by the client when the resource is created.
 `selfLink`<br/>*string* | Server-defined URL for this resource.
 `timeoutSec`<br/>*int* | How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for timeoutSec to have greater value than checkIntervalSec.
-`type`<br/>*string* | Specifies the type of the healthCheck, either HTTP or HTTPS. If not specified, the default is Http. Exactly one of the protocol-specific health check field must be specified, which must match type field.
+`type`<br/>*string* | Specifies the type of the healthCheck, either  HTTP or HTTPS. If not specified, the default is Http. Exactly one of the protocol-specific health check field must be specified, which must match type field.
 `unhealthyThreshold`<br/>*int* | A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
 `portNumber`<br/>*string* | The port number for health check
 
@@ -84,11 +87,12 @@ curl -X GET \
     "name": "firsthealthcheck",
     "selfLink": "https://www.googleapis.com/compute/v1/projects/test-area/global/healthChecks/firsthealthcheck",
     "httpHealthCheck": {
-      "port": 80,
-      "proxyHeader": "NONE",
-      "request": "",
-      "response": ""
-    },
+        "host": "",
+        "port": 80,
+        "portName": "http",
+        "proxyHeader": "NONE",
+        "requestPath": "/"
+      },
     "timeoutSec": 5,
     "type": "HTTP",
     "unhealthyThreshold": 3,
@@ -107,6 +111,8 @@ Attributes | &nbsp;
 `creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format
 `description` <br/>*string* | An optional description of this resource. Provide this property when you create the resource.
 `healthyThreshold`<br/>*int* | A so-far unhealthy instance will be marked healthy after this many consecutive successes. The default value is 2.
+`httpHealthCheck` <br/>*object* | object
+`httpSHealthCheck` <br/>*object* | object
 `id`<br/>*string* | The unique identifier for the resource. This identifier is defined by the server.
 `kind`<br/>*string* | Type of the resource.
 `name`<br/>*string* | Name of the resource. Provided by the client when the resource is created.
