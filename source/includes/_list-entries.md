@@ -95,19 +95,71 @@ curl "https://api.affinity.co/lists/450/list-entries" -u :<API-KEY>
 ]
 ```
 
+> Example Response with Pagingation
+
+```json
+{
+  "list_entries": [
+    {
+      "id": 64608,
+      "list_id": 222,
+      "creator_id": 287843,
+      "entity_id": 62034,
+      "created_at": "2017-05-04 10:44:31 -0700",
+      "entity": {
+        "type": 0,
+        "first_name": "Affinity",
+        "last_name": "Team",
+        "primary_email": "team@affinity.co",
+        "emails": [
+          "team@affinity.co"
+        ],
+      },
+    },
+    {
+      "id": 53510,
+      "list_id": 222,
+      "creator_id": 38596,
+      "entity_id": 241576,
+      "created_at": "2017-02-22 15:22:21 -0800",
+      "entity": {
+        "type": 0,
+        "first_name": "John",
+        "last_name": "Doe",
+        "primary_email": "jdoe@stanford.edu",
+        "emails": [
+          "jdoe@stanford.edu"
+        ],
+      },
+    },
+    ...
+  ],
+  "next_page_token": "eyJwYXJhbXMiOnsidGVybSI6IiJ9LCJwYWdlX3NpemUiOjUsIm9mZnNldCI6MTB9"
+}
+```
+
 `GET /lists/{list_id}/list-entries`
 
-Fetches all the list entries in the list with the supplied list id.
+If no page size is specified, fetches all the list entries in the list with the supplied 
+list id. If a page size is specified, fetches up to that number of list entries in the 
+list with the supplied list id.
 
 ### Path Parameters
 
 Parameter | Type | Required | Description
 --------- | ------- | ---------- | -----------
 list_id | integer | true | The unique id of the list whose list entries are to be retrieved.
+page_size | integer | false | How many results to return per page. (Default is to return all results.)
+page_token | string | false | The `next_page_token` from the previous response required to retrieve the next page of results.
 
 ### Returns
-An array of all the list entry resources corresponding to the provided list.
-Each list entry in the array includes all the attributes as specified in the
+If the `page_size` is not passed in as a parameter, an array of all the list entry 
+resources corresponding to the provided list will be returned.
+If the `page_size` is passed in as a parameter, an object with two fields: `list_entries` 
+and `next_page_token` are returned. `list_entries` maps to an array of up to `page_size` 
+list entries. `next_page_token` includes a token to be sent along with the next request 
+as the `page_token` parameter to fetch the next page of results.
+Each list entry in the both cases includes all the attributes as specified in the
 [list entry resource](#the-list-entry-resource) section above.
 
 ## Get a specific list entry
