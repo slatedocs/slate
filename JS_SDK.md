@@ -197,6 +197,19 @@ Working example can be seen here. https://marketing.anarock.com/static/test.html
 
 e.g. `window.onLeadSuccess(78642, {name: 'Test' .....})` or `window.onLeadFailure(null, {name: 'Test' .....})`
 
+`window.onOTPSubmit` is triggered with data as shown below when OTP is requested while form submition. 
+
+```json
+  {
+      campaign_id: string,
+      channel: string,
+      country_code: string,
+      phone: string,
+      hash: string,
+      current_time: string,
+  }
+```
+
 ### Enable DNC checkbox by default
 
 You can pass `dnc_checked` as `true` in the options to set the checkbox by default as selected.
