@@ -201,12 +201,12 @@ e.g. `window.onLeadSuccess(78642, {name: 'Test' .....})` or `window.onLeadFailur
 
 ```json
   {
-      "campaign_id": string,
-      "channel": string,
-      "country_code": string,
-      "phone": string,
-      "hash": string,
-      "current_time": string,
+      "campaign_id": "string",
+      "channel": "string",
+      "country_code": "string",
+      "phone": "string",
+      "hash": "string",
+      "current_time": "string"
   }
 ```
 
