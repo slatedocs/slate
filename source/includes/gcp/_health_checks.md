@@ -1,6 +1,6 @@
 ### Health checks
 
-<!-------------------- List HEALTH CHECK -------------------->
+<!-------------------- LIST HEALTH CHECK -------------------->
 #### List health checks
 
 ```shell
@@ -20,7 +20,7 @@ curl -X GET \
       "healthyThreshold": 2,
       "id": "5930212998788364011",
       "kind": "compute#healthCheck",
-      "name": "healthcheckname",
+      "name": "hc-name-xxx",
       "selfLink": "https://www.googleapis.com/compute/v1/projects/test-area/global/healthChecks/healthcheckname",
       "httpHealthCheck": {
         "host": "",
@@ -53,14 +53,14 @@ Attributes | &nbsp;
 `creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format
 `description` <br/>*string* | An optional description of this resource. Provide this property when you create the resource.
 `healthyThreshold`ç | A so-far unhealthy instance will be marked healthy after this many consecutive successes. The default value is 2.
-`httpHealthCheck` <br/>*object* | object
-`httpSHealthCheck` <br/>*object* | object
+`httpHealthCheck` <br/>*object* | When the type is set to HTTP, this object represents the health check
+`httpSHealthCheck` <br/>*object* | When the type is set to HTTPS, this object represents the health check
 `id`<br/>*string* | The unique identifier for the resource. This identifier is defined by the server.
 `kind`<br/>*string* | Type of the resource.
 `name`<br/>*string* | Name of the resource. Provided by the client when the resource is created.
 `selfLink`<br/>*string* | Server-defined URL for this resource.
 `timeoutSec`<br/>*int* | How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for timeoutSec to have greater value than checkIntervalSec.
-`type`<br/>*string* | Specifies the type of the healthCheck, either  HTTP or HTTPS. If not specified, the default is Http. Exactly one of the protocol-specific health check field must be specified, which must match type field.
+`type`<br/>*string* | Specifies the type of the health check, either HTTP or HTTPS. If not specified, the default is HTTP. Exactly one of the protocol-specific health check field must be specified, which must match type field.
 `unhealthyThreshold`<br/>*int* | A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
 `portNumber`<br/>*string* | The port number for health check
 
@@ -84,7 +84,7 @@ curl -X GET \
     "healthyThreshold": 2,
     "id": "5930212998788364011",
     "kind": "compute#healthCheck",
-    "name": "firsthealthcheck",
+    "name": "hc-name-xxx",
     "selfLink": "https://www.googleapis.com/compute/v1/projects/test-area/global/healthChecks/firsthealthcheck",
     "httpHealthCheck": {
         "host": "",
@@ -111,14 +111,14 @@ Attributes | &nbsp;
 `creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format
 `description` <br/>*string* | An optional description of this resource. Provide this property when you create the resource.
 `healthyThreshold`<br/>*int* | A so-far unhealthy instance will be marked healthy after this many consecutive successes. The default value is 2.
-`httpHealthCheck` <br/>*object* | object
-`httpSHealthCheck` <br/>*object* | object
+`httpHealthCheck` <br/>*object* | When the type is set to HTTP, this object represents the health check
+`httpSHealthCheck` <br/>*object* | When the type is set to HTTPS, this object represents the health check
 `id`<br/>*string* | The unique identifier for the resource. This identifier is defined by the server.
 `kind`<br/>*string* | Type of the resource.
 `name`<br/>*string* | Name of the resource. Provided by the client when the resource is created.
 `selfLink`<br/>*string* | Server-defined URL for this resource.
 `timeoutSec`<br/>*int* | How long (in seconds) to wait before claiming failure. The default value is 5 seconds. It is invalid for timeoutSec to have greater value than checkIntervalSec.
-`type`<br/>*string* | Specifies the type of the healthCheck, either HTTP or HTTPS. If not specified, the default is Http. Exactly one of the protocol-specific health check field must be specified, which must match type field.
+`type`<br/>*string* | Specifies the type of the health check, either HTTP or HTTPS. If not specified, the default is HTTP. Exactly one of the protocol-specific health check field must be specified, which must match type field.
 `unhealthyThreshold`<br/>*int* | A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.
 `portNumber`<br/>*string* | The port number for health check
 
@@ -141,7 +141,7 @@ Required | &nbsp;
 
 Optional | &nbsp;
 ------- | -----------
-`type`<br/>*string* | Specifies the type of the healthCheck, either HTTP or HTTPS. If not specified, the default is HTTP. 
+`type`<br/>*string* | Specifies the type of the health check, either HTTP or HTTPS. If not specified, the default is HTTP. 
 `portNumber`<br/>*string* | The port number for the health check. The default is 80 for HTTP, 443 for HTTPS.
 `description`<br/>*string* | Description of the health check
 
