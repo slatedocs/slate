@@ -273,7 +273,8 @@ Here's what you need to know:
    
 2. Your app server will hash the `code_verifier` with SHA256 to get a string called the `code_challenge`. Your server
    will give the browser **only** the `code_challenge` & `code_challenge_method`. The `code_challenge_method` should be
-   the string "S256" to tell Asana we hashed with SHA256.
+   the string "S256" to tell Asana we hashed with SHA256. More specifically, code_challenge = 
+   BASE64URL-ENCODE(SHA256(ASCII(code_verifier))).
    
 3. The browser includes `code_challenge` & `code_challenge_method` when redirecting to the 
    [User Authorization Endpoint](#user-authorization-endpoint).
