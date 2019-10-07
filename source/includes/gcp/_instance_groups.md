@@ -1,5 +1,5 @@
 ### Instance groups
-An instance group is a collection of VM instances that you can manage as a single entity. Instance groups are used to apply load balancing to groups of heterogeneous instances.
+An instance group is a collection of [VM instances](#gcp-instances) that you can manage as a single entity. Instance groups are used to apply [load balancing](#gcp-load-balancing) to groups of heterogeneous instances. In a load balancer setup, an instance group can be used as part of a [backend service](#gcp-backend-service).
 
 <!-------------------- LIST INSTANCE GROUPS -------------------->
 

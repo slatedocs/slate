@@ -72,10 +72,12 @@ includes:
   - gcp/vpn_gateways
   - gcp/vpn_tunnels
   - gcp/load_balancing # Load balancing subsection
-  - gcp/backend_services
+  - gcp/load_balancer
   - gcp/forwarding_rules
-  - gcp/ssl_certificates
   - gcp/target_proxies
+  - gcp/backend_services
+  - gcp/instance_groups
+  - gcp/ssl_certificates
   - gcp/kubernetes # Kubernetes section
   - gcp/clusters
   - gcp/images
