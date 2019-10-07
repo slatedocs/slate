@@ -1,5 +1,6 @@
 ### Instance groups
-An instance group is a collection of [VM instances](#gcp-instances) that you can manage as a single entity. Instance groups are used to apply [load balancing](#gcp-load-balancing) to groups of heterogeneous instances. In a load balancer setup, an instance group can be used as part of a [backend service](#gcp-backend-service).
+
+An instance group is a collection of [VM instances](#gcp-instances) that you can manage as a single entity. Instance groups are used to apply [load balancing](#gcp-load-balancer) to groups of heterogeneous instances. In a load balancer setup, an instance group can be used as part of a [backend service](#gcp-backend-service).
 
 <!-------------------- LIST INSTANCE GROUPS -------------------->
 
@@ -12,6 +13,7 @@ curl -X GET \
 
 # The above command returns JSON structured like this:
 ```
+
 ```json
 {
   "data": [
@@ -42,10 +44,10 @@ curl -X GET \
   }
 }
 ```
+
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instancegroups</code>
 
 Retrieve a list of all instance groups in a given [environment](#administration-environments)
-
 
 Attributes | &nbsp;
 ------- | -----------
@@ -75,6 +77,7 @@ curl -X GET \
 
 # The above command returns JSON structured like this:
 ```
+
 ```json
 {
   "data": {
@@ -100,6 +103,7 @@ curl -X GET \
   }
 }
 ```
+
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instancegroups/:id</code>
 
 Retrieve an instance group in a given [environment](#administration-environments)
@@ -134,16 +138,18 @@ curl -X POST \
 
 # Request example:
 ```
+
 ```json
 {
-	"name": "my-group",
-	"shortRegion": "northamerica-northeast1",
-	"shortZone": "northamerica-northeast1-b",
+  "name": "my-group",
+  "shortRegion": "northamerica-northeast1",
+  "shortZone": "northamerica-northeast1-b",
   "shortNetwork": "default",
   "shortSubnetwork": "default",
   "shortInstances": ["instance-1"]
 }
 ```
+
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instancegroups</code>
 
 Create a new instance group
@@ -185,11 +191,13 @@ curl -X POST \
 
 # Request example:
 ```
+
 ```json
 {
     "shortInstances": ["instance-2"]
 }
 ```
+
 Required | &nbsp;
 ------ | -----------
 `shortInstances`<br/>*array[string]* | Array of instance names representing the current members of the instance group. If a current instance member is not kept in the list, it will be removed from the group. If the array is empty, all the instance members will be removed.
