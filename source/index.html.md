@@ -76,7 +76,6 @@ includes:
   - gcp/forwarding_rules
   - gcp/target_proxies
   - gcp/backend_services
-  - gcp/instance_groups
   - gcp/ssl_certificates
   - gcp/kubernetes # Kubernetes section
   - gcp/clusters
