@@ -18,13 +18,14 @@ curl -X GET \
 {
   "data": [
     {
-      "certificate": "-----BEGIN CERTIFICATE-----MIIDnDCCAoQCCQDQz2lClG3ipTANBgkqhkiG9w0BAQsFADCBjzELMAkGA1UEBhMCQ0ExDzANBgNVBAgMBlF1ZWJlYzERMA8GA1UEBwwITW9udHJlYWwxEzARBgNVBAoMCkV4YW1wbGVPcmcxFDASBgNVBAsMC0V4YW1wbGVVbml0MQ8wDQYDVQQDDAZZb2dlc2gxIDAeBgkqhkiG9w0BCQEWEWV4YW1wbGVAZ21haWwuY29tMB4XDTE5MTAwMTE3NDgxNFoXDTIwMDkzMDE3NDQBatUVaR88KgmSt8B1vPS0BRyN06jAzzwaJU79yF62qh5mdXXz4dm3mwncrL4vNxdDo+4HREsmdePwmcMT1f7f7gNRMe2OQfnntIYjkuDvuzxhBgdfqXEr2s
+      "certificate": "-----BEGIN CERTIFICATE-----
+      (encoded certificate body in here)
       -----END CERTIFICATE-----",
       "creationTimestamp": "2019-10-02T10:36:39.138-07:00",
       "id": "6911678730387654321",
       "kind": "compute#sslCertificate",
       "name": "ssl-root-ozv",
-      "selfLink": "https://www.googleapis.com/compute/v1/projects/cmc-gcpenvironment-rjb/global/sslCertificates/ssl-root-ozv",
+      "selfLink": "https://www.googleapis.com/compute/v1/projects/test-area/global/sslCertificates/ssl-root-ozv",
       "domain": "ApiDocsDomain",
       "organization": "ApiDocsOrg",
       "validUntil": "2020-09-30",
@@ -33,13 +34,14 @@ curl -X GET \
       "uploadDate": "2019-10-02"
     },
     {
-      "certificate": "-----BEGIN CERTIFICATE-----MIIDnDCCAoQCCQDQz2lClG3ipTANBgkqhkiG9w0BAQsFAELMAkGA1UEBhMCIL6BLzjFCyeJ6nMLGwC0v/ptdkT+N4XvfjRjrO1t7B8jOzZy7gqfxElXA5XLpwrWT6AASg9M5IWd87r8Cor/hCuJ25bZbHECAwEAATANBgkqhkiG9w0BAQsFAAOCAQEAFoe0Y8qU0nTBMexn/QBatUVaR88KgmSt8B1vPS0BRyN06jAzzwaJU79yF62qh5mdXXz4dm3mwncrL4v+4HREsmdePwmcMT1f7f7gNRMe2OQfnntIYjkuDvuzxhBgdfqXEr2s
+      "certificate": "-----BEGIN CERTIFICATE-----
+      (encoded certificate body in here)
       -----END CERTIFICATE-----",
       "creationTimestamp": "2019-10-01T13:33:36.409-07:00",
       "id": "2973924929495238351",
       "kind": "compute#sslCertificate",
       "name": "ssl-root-tcs",
-      "selfLink": "https://www.googleapis.com/compute/v1/projects/cmc-gcpenvironment-rjb/global/sslCertificates/ssl-root-tcs",
+      "selfLink": "https://www.googleapis.com/compute/v1/projects/test-area/global/sslCertificates/ssl-root-tcs",
       "domain": "ApiDocsDomain",
       "organization": "ApiDocsOrg",
       "validUntil": "2020-09-30",
@@ -88,13 +90,14 @@ curl -X GET \
 ```json
 {
   "data": {
-    "certificate": "-----BEGIN CERTIFICATE-----MIIDnDCCAoQCCQDQz2lClG3ipTANBgkqhkiG9w0BAQsFADCBjzELMAkGA1UEBhMCQ0ExDzANBgNVBAgMBlF1ZWJlYzERMA8GA1UEBwwITW9udHJlYWwxEzARBgNVBAoMCkV4YW1wbGVPcmcxFDASBgNVBAsMC0V4YW1wbGVVbml0MQ8wDQYDVQQDDAZZb2dlc2gxIDAeBgkqhkiG9w0BCQEWEWV4YW1wbGVAZ21haWwuY29tMB4XDTE5MTAwMTE3NDgxNFoXDTIwMDkzMDE3NDgxNFowgY8xCzAJBgNVBAYTAkNBMQ8wDQYDVQQIDAZRdWViZWMxETAPBgNVBAcMCE1vbnRyZWFsMRMwEQYDVQQKDApFeGFtcGxlT3JnMRQwEgYDVQQLDAtFeGFtcGxlVW5pdDEPMA0GA1UEAwwGWW9nZXNoMSAwHgYJKoZIhvcNAQkBFhFleGFtcGxlQGdtYWlsLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMi44rlaD/Lu0Zq8FjD8elGWIBJMB99AZ
+    "certificate": "-----BEGIN CERTIFICATE-----
+    (encoded certificate body in here)
     -----END CERTIFICATE-----",
     "creationTimestamp": "2019-10-02T10:36:39.138-07:00",
     "id": "6911678730334723784",
     "kind": "compute#sslCertificate",
     "name": "ssl-root-ozv",
-    "selfLink": "https://www.googleapis.com/compute/v1/projects/cmc-gcpenvironment-rjb/global/sslCertificates/ssl-root-ozv",
+    "selfLink": "https://www.googleapis.com/compute/v1/projects/test-area/global/sslCertificates/ssl-root-ozv",
     "domain": "ApiDocsDomain",
     "organization": "ApiDocsOrg",
     "validUntil": "2020-09-30",
@@ -139,9 +142,15 @@ curl -X POST \
 ```json
 {
 	"name":"ssl-root-rny",
-	"privateKey":"-----BEGIN RSA PRIVATE KEY-----MIIEpAIBAAKCAQEAyLjiuVoP8u7RmrwWMPx6UZYgEkwH30Bk137ldEfeV66QuHPW1NZYhthfEw8e8/q/zpVy80mcKmUVRWKYwjKo9t3NQRzDwKFoQB7GGEiqPRztuA24Q6dFoXrWkS/wb8GVVepcjx/n5vgqq3redENRyNXVzz/XfrqYImLydL2izOqdthjw2ksvn7q9LvoKpkKczqJpUzYGggBYL3H0C2kLQ0166nPE0pel34voE6KYGya6oFBRzknIIJwgvoEvOMULJ4nqcwsbALS/+m12RP43he9+NGOs7W3sHyM7NnLuCp/ESVcDlcunCtZPoABKD0zkhZ3zuvwKiv+EK4nbltlscQIDAQABAoIBAQC3O-----END RSA PRIVATE KEY-----",
-	"certificate":"-----BEGIN CERTIFICATE-----hCuJ25bZbHECAwEAATANBgkqhkiG9w0BAQsFAAOCAQEAFoe0Y8qU0nTBMexn/QBatUVaR88KgmSt8B1vPS0BRyN06jAzzwaJU79yF62qh5mdXXz4dm3mwncrL4vNxdDo+4HREsmdePwmcMT1f7f7gNRMe2OQfnntIYjkuDvuzxhBgdfqXEr2s+ZLHRCtMbn41KH1aNQ33XA0oJR9ou6dPFQ34YOyKcFwdBB8OouUA8KyDYZnKAn6yYcsXSCDD1/x9Sw0+P/-----END CERTIFICATE-----",
-	"chainCertificate":"-----BEGIN CERTIFICATE-----MIIDnDCCAoQCCQDQz2lClG3ipTANBgkqhkiG9w0BAQsFADCBjzELMAkGA1UEBhMCQ0ExDzANBgNVBAgMBlF1ZWJlYzERMA8GA1UEBwwITW9udHJlYWwxEzARBgNVBAoMCkV4YW1wbGVPcmcxFDASBgNVBAsMC0V4YW1wbGVVbml0MQ8wDQYDVQQDDAZZb2dlc2gxIDAeBgkqhkiG9w0BCQEWEWV4YW1wbGVAZ21haWwuY29tMB4XDTE5MTAwMTE3NDgxNFoXDTIwMDkzMDE3NDgxNFowgY8xCzAJBgNVBAYTAkNBMQ8wDQYDVQQIDAZRdWViZWMxETAPBgNVBAcMCE1vbnRyZWFsMRMwEQYDVQQKDApFeGFtcGxlT3JnMRQwEgYDVQQLDAtFeGFtcGxlVW5pdDEPMA0GA1UEAwwGWW9nZXNoMSAwHgYJKoZIhvcNAQkBFhFleGF-----END CERTIFICATE-----",
+	"privateKey":"-----BEGIN RSA PRIVATE KEY-----
+  (encoded private key body in here)
+  -----END RSA PRIVATE KEY-----",
+	"certificate":"-----BEGIN CERTIFICATE-----
+  (encoded certificate body in here)
+  -----END CERTIFICATE-----",
+	"chainCertificate":"-----BEGIN CERTIFICATE-----
+  (encoded chain certificate body in here)
+  -----END CERTIFICATE-----",
 	"description":"Api docs demo certificate"
 }
 ```
