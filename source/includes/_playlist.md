@@ -139,7 +139,7 @@ Returns a user’s playlists (competency, group, favourite, bifrost) in order.
 
 Parameter | Type | Description
 --------- | ------- | -----------
-limit (optional) | integer | number of playlists (default limit is 10| maximum limit is 25)
+limit (optional) | integer | number of playlists (default limit is 20| maximum limit is 50)
 offset (optional) | integer | starting from
 
 <aside class="success">
@@ -384,7 +384,7 @@ Retrieve a user’s list of competency playlists.
 
 Parameter | Type | Description
 --------- | ------- | -----------
-limit (optional) | integer | number of playlists (default limit is 10| maximum limit is 25)
+limit (optional) | integer | number of playlists (default limit is 20| maximum limit is 50)
 offset (optional) | integer | starting from
 
 <aside class="success">
@@ -659,7 +659,7 @@ Retrieve a user’s list of group playlists.
 
 Parameter | Type | Description
 --------- | ------- | -----------
-limit (optional) | integer | number of playlists (default limit is 10| maximum limit is 25)
+limit (optional) | integer | number of playlists (default limit is 20| maximum limit is 50)
 offset (optional) | integer | starting from
 
 <aside class="success">
@@ -814,7 +814,7 @@ Retrieve a user’s list of nexrex playlists.
 
 Parameter | Type | Description
 --------- | ------- | -----------
-limit (optional) | integer | number of playlists (default limit is 10| maximum limit is 25)
+limit (optional) | integer | number of playlists (default limit is 20| maximum limit is 50)
 offset (optional) | integer | starting from
 
 <aside class="success">
@@ -970,7 +970,7 @@ Retrieve a user’s list of bifrost playlists.
 
 Parameter | Type | Description
 --------- | ------- | -----------
-limit (optional) | integer | number of playlists (default limit is 10| maximum limit is 25)
+limit (optional) | integer | number of playlists (default limit is 20| maximum limit is 50)
 offset (optional) | integer | starting from
 
 <aside class="success">
@@ -1124,7 +1124,7 @@ curl --data-binary '{"id":"5", "method":"playlist.FetchPlaylistsByTypes", "param
 Parameter | Type | Description
 --------- | ------- | -----------
 types | array of strings | the types for the desired playlists(competency, group, user, algorithm, nexRex)
-limit (optional) | integer | number of playlists (default limit is 10| maximum limit is 25)
+limit (optional) | integer | number of playlists (default limit is 20| maximum limit is 50)
 offset (optional) | integer | starting from
 
 <aside class="success">
