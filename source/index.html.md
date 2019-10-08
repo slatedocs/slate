@@ -55,7 +55,7 @@ We expect you to send this information in a field called 'X-Token' inside header
     "id": 1,
     "metadata": "user_1",
     "delivery_url": "https://api.your_url.com/nestready/events",
-    "events": ['listing_favorited'],
+    "events": ["listing_favorited"],
     "home_buyer_email": "home_buyer@email.com"
 }
 ```
