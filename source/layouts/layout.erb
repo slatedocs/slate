@@ -99,6 +99,14 @@ under the License.
     <title><%= current_page.data.title || "API Documentation" %></title>
     <%= favicon_tag 'favicon.ico' %>
 
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-58LRF8N');</script>
+    <!-- End Google Tag Manager -->
+
     <style>
       <%= AsanaHighlight.render(:scope => '.highlight') %>
     </style>
@@ -112,6 +120,10 @@ under the License.
   </head>
 
   <body class="<%= page_classes %>" data-languages="<%=h language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-58LRF8N"
+                      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <a href="#" id="nav-button">
       <span>
         <svg id="icon--hamburger" role="img" fill="currentColor" preserveAspectRatio="xMinYMin" width="24px" height="24px" viewBox="0 0 34 34">
