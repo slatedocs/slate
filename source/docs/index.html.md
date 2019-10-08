@@ -4,7 +4,8 @@ language_tabs:
   - shell: ' curl'
 toc_footers: []
 includes:
-  - markdown/06-basic-concepts
+  - markdown/05-basic-concepts
+  - markdown/06-object-hierarchy
   - markdown/07-auth
   - markdown/07-errors
   - markdown/08-rate-limits
