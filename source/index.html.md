@@ -41,18 +41,28 @@ We expect you to send this information in a field called 'X-Token' inside header
 {
     "home_buyer": {
         "id": "1234",
-        "email": "something@somewhere.co",
+        "email": "home_buyer@email.com",
         "phone": "(123)12341234"
     },
     "events": ["listing_favorited"],
     "delivery_url": "https://api.your_url.com/nestready/events",
     "metadata": "user_id_in_your_system"
 }
+
+//RESPONSE EXAMPLE
+
+{
+    "id": 1,
+    "metadata": "user_1",
+    "delivery_url": "https://api.your_url.com/nestready/events",
+    "events": ['listing_favorited'],
+    "home_buyer_email": "home_buyer@email.com"
+}
 ```
 Subscribe to events for the given home_buyers.
 
 Everytime you subscribe to an event, we will send you a notification with
-the just created webhook information to the defined `delivery_url`.
+the just created webhook information to the defined `delivery_url`. The subscription will be serialized and the response will return the ID of that subscription as the first field.
 
 #### HTTP Request
 `POST /home_buyers/webhooks/subscriptions`
@@ -66,9 +76,21 @@ events | yes| array with the list of target events. [supported_events](http://lo
 metadata | yes | anything that you need to recognize this user in your system, or query in our API, we recommend that to be the user_id inside your system.
 
 ### Unsubscribing
+```json
+//RESPONSE EXAMPLE
+{
+    "deleted_count": 1,
+    "conditions": {
+        "metadata": "user_id_in_your_system", // provide either metadata
+        "id": "1" // or subscription id
+    }
+}
 
-Destroy a subscription, so that your system won't receive events for the given
-user.
+```
+
+
+Destroy a subscription providing either metadata or id retuned when subscribing, so that your system won't receive events for the given user.
+
 #### HTTP Request
 
 `DELETE /home_buyers/webhooks/subscriptions`
@@ -77,7 +99,8 @@ user.
 
 Name | Required? | Description
 --------- | ------- | -----------
-metadata | yes | -
+metadata | either or | -
+id | either or | -
 
 <aside class="success">It will delete all matched subscriptions.</aside>
 
@@ -178,7 +201,7 @@ The follow schema is used for every event payload, the example of data is availa
             },
             "home_buyer": {
                 "id": "1234",
-                "email": "something@somewhere.co",
+                "email": "home_buyer@email.com",
                 "phone": "(123)12341234"
             },
             "metadata": "user_id_in_your_system"
@@ -198,7 +221,7 @@ The follow schema is used for every event payload, the example of data is availa
 {
     "home_buyer": {
         "id": "1234",
-        "email": "something@somewhere.co",
+        "email": "home_buyer@email.com",
         "phone": "(123)12341234"
     },
     "events": ["listing_favorited"],
@@ -214,7 +237,7 @@ This event is triggered once a user sends a request by any listed event.
 {
     "home_buyer": {
         "id": "1234",
-        "email": "something@somewhere.co",
+        "email": "home_buyer@email.com",
         "phone": "(123)12341234"
     },
     "data": {
@@ -239,7 +262,7 @@ This event is triggered once the user "pins" or favorites a location either from
 {
     "home_buyer": {
         "id": "1234",
-        "email": "something@somewhere.co",
+        "email": "home_buyer@email.com",
         "phone": "(123)12341234"
     },
     "data": {
@@ -263,7 +286,7 @@ This event is triggered once the user unfavorites or unpins a previously favorit
 {
     "home_buyer": {
         "id": "1234",
-        "email": "something@somewhere.co",
+        "email": "home_buyer@email.com",
         "phone": "(123)12341234"
     },
     "data": {
@@ -294,7 +317,7 @@ This event is triggered once the user clicks on the option to schedule a visit t
 {
     "home_buyer": {
         "id": "1234",
-        "email": "something@somewhere.co",
+        "email": "home_buyer@email.com",
         "phone": "(123)12341234"
     },
     "data": {
@@ -324,7 +347,7 @@ This event is triggered once the user favorites or pins a listing
 {
     "home_buyer": {
         "id": "1234",
-        "email": "something@somewhere.co",
+        "email": "home_buyer@email.com",
         "phone": "(123)12341234"
     },
     "data": {
@@ -354,7 +377,7 @@ This evente is triggerend once the user unfavorites or unpins a favorited listin
 {
     "home_buyer": {
         "id": "1234",
-        "email": "something@somewhere.co",
+        "email": "home_buyer@email.com",
         "phone": "(123)12341234"
     },
     "data": {
@@ -386,7 +409,7 @@ This event is triggered once the user has already perfomed a property search and
 {
     "home_buyer": {
         "id": "1234",
-        "email": "something@somewhere.co",
+        "email": "home_buyer@email.com",
         "phone": "(123)12341234"
     },
     "data": {
@@ -418,7 +441,7 @@ This event is triggered when the user deletes a previously saved search.
 {
     "home_buyer": {
         "id": "1234",
-        "email": "something@somewhere.co",
+        "email": "home_buyer@email.com",
         "phone": "(123)12341234"
     },
     "data": {
@@ -450,7 +473,7 @@ This event is triggered once the user has already perfomed a property search, sa
 {
     "home_buyer": {
       "id": "1234",
-        "email": "something@somewhere.co",
+        "email": "home_buyer@email.com",
         "phone": "(123)12341234"
     },
     "data": { "timestamp": "2019-09-09 21:09:23 UTC" },
