@@ -568,205 +568,196 @@ curl -X GET https://api.sandbox.transferwise.tech/v1/quotes/{quoteId}/account-re
 
 ```json
 [
-  {
-    "type": "aba",
-     "title": "Local bank account",
-     "fields": [
-          {
-            "name": "Legal type",
-            "group": [
-              {
-                "key": "legalType",
-                "type": "select",
-                "refreshRequirementsOnChange": false,
-                "required": true,
-                "displayFormat": null,
-                "example": "",
-                "minLength": null,
-                "maxLength": null,
-                "validationRegexp": null,
-                "validationAsync": null,
-                "valuesAllowed": [
-                  {
-                    "key": "PRIVATE",
-                    "name": "Private"
-                  },
-                  {
-                    "key": "BUSINESS",
-                    "name": "Business"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "name": "Routing Number",
-            "group": [
-              {
-                "key": "abartn",
-                "type": "text",
-                "refreshRequirementsOnChange": false,
-                "required": true,
-                "displayFormat": null,
-                "example": "111000025",
-                "minLength": 9,
-                "maxLength": 9,
-                "validationRegexp": "\\d{9}",
-                "validationAsync": {
-                  "url": "https://test-restgw.transferwise.com/v1/validators/abartn",
-                  "params": [
+    {
+        "type": "aba",
+        "title": "Local bank account",
+        "fields": [
+            {
+                "name": "Recipient type",
+                "group": [
                     {
-                      "key": "abartn",
-                      "parameterName": "abartn",
-                      "required": true
+                        "key": "legalType",
+                        "name": "Recipient type",
+                        "type": "select",
+                        "refreshRequirementsOnChange": false,
+                        "required": true,
+                        "displayFormat": null,
+                        "example": "",
+                        "minLength": null,
+                        "maxLength": null,
+                        "validationRegexp": null,
+                        "validationAsync": null,
+                        "valuesAllowed": [
+                            {
+                                "key": "PRIVATE",
+                                "name": "Person"
+                            },
+                            {
+                                "key": "BUSINESS",
+                                "name": "Business"
+                            }
+                        ]
                     }
-                  ]
-                },
-                "valuesAllowed": null
-              }
-            ]
-          },
-          {
-            "name": "Account number",
-            "group": [
-              {
-                "key": "accountNumber",
-                "type": "text",
-                "refreshRequirementsOnChange": false,
-                "required": true,
-                "displayFormat": null,
-                "example": "12345678",
-                "minLength": 4,
-                "maxLength": null,
-                "validationRegexp": "\\d{4,17}",
-                "validationAsync": {
-                  "url": "https://test-restgw.transferwise.com/v1/validators/aba-account-number",
-                  "params": [
+                ]
+            },
+            {
+                "name": "ACH routing number",
+                "group": [
                     {
-                      "key": "accountNumber",
-                      "parameterName": "accountNumber",
-                      "required": true
+                        "key": "abartn",
+                        "name": "ACH routing number",
+                        "type": "text",
+                        "refreshRequirementsOnChange": false,
+                        "required": true,
+                        "displayFormat": null,
+                        "example": "026009593",
+                        "minLength": 9,
+                        "maxLength": 9,
+                        "validationRegexp": "^\\d{9}$",
+                        "validationAsync": null,
+                        "valuesAllowed": null
                     }
-                  ]
-                },
-                "valuesAllowed": null
-              }
-            ]
-          },
-          {
-            "name": "Account type",
-            "group": [
-              {
-                "key": "accountType",
-                "type": "radio",
-                "refreshRequirementsOnChange": false,
-                "required": true,
-                "displayFormat": null,
-                "example": "",
-                "minLength": null,
-                "maxLength": null,
-                "validationRegexp": null,
-                "validationAsync": null,
-                "valuesAllowed": [
-                  {
-                    "key": "CHECKING",
-                    "name": "Checking"
-                  },
-                  {
-                    "key": "SAVINGS",
-                    "name": "Savings"
-                  }
                 ]
-              }
-            ]
-          },
-          {
-            "name": "Country",
-            "group": [
-              {
-                "key": "address.country",
-                "type": "select",
-                "refreshRequirementsOnChange": true,
-                "required": true,
-                "displayFormat": null,
-                "example": "Germany",
-                "minLength": null,
-                "maxLength": null,
-                "validationRegexp": null,
-                "validationAsync": null,
-                "valuesAllowed": [
-                  {
-                    "key": "AX",
-                    "name": "Åland Islands"
-                  },
-                  {
-                    "key": "AL",
-                    "name": "Albania"
-                  },
-                  {
-                  ...
-                  }
+            },
+            {
+                "name": "Account number",
+                "group": [
+                    {
+                        "key": "accountNumber",
+                        "name": "Account number",
+                        "type": "text",
+                        "refreshRequirementsOnChange": false,
+                        "required": true,
+                        "displayFormat": null,
+                        "example": "12345678",
+                        "minLength": 4,
+                        "maxLength": 17,
+                        "validationRegexp": "^\\d{4,17}$",
+                        "validationAsync": null,
+                        "valuesAllowed": null
+                    }
                 ]
-              }
-            ]
-          },
-          {
-            "name": "City",
-            "group": [
-              {
-                "key": "address.city",
-                "type": "text",
-                "refreshRequirementsOnChange": false,
-                "required": true,
-                "displayFormat": null,
-                "example": "London",
-                "minLength": null,
-                "maxLength": null,
-                "validationRegexp": null,
-                "validationAsync": null,
-                "valuesAllowed": null
-              }
-            ]
-          },
-          {
-            "name": "Postal code",
-            "group": [
-              {
-                "key": "address.postCode",
-                "type": "text",
-                "refreshRequirementsOnChange": false,
-                "required": true,
-                "displayFormat": null,
-                "example": "10025",
-                "minLength": null,
-                "maxLength": null,
-                "validationRegexp": null,
-                "validationAsync": null,
-                "valuesAllowed": null
-              }
-            ]
-          },
-          {
-            "name": "Address",
-            "group": [
-              {
-                "key": "address.firstLine",
-                "type": "text",
-                "refreshRequirementsOnChange": false,
-                "required": true,
-                "displayFormat": null,
-                "example": "50 Branson Ave",
-                "minLength": null,
-                "maxLength": null,
-                "validationRegexp": null,
-                "validationAsync": null,
-                "valuesAllowed": null
-              }
-            ]
-          }
+            },
+            {
+                "name": "Account type",
+                "group": [
+                    {
+                        "key": "accountType",
+                        "name": "Account type",
+                        "type": "radio",
+                        "refreshRequirementsOnChange": false,
+                        "required": true,
+                        "displayFormat": null,
+                        "example": "CHECKING",
+                        "minLength": null,
+                        "maxLength": null,
+                        "validationRegexp": null,
+                        "validationAsync": null,
+                        "valuesAllowed": [
+                            {
+                                "key": "CHECKING",
+                                "name": "Checking"
+                            },
+                            {
+                                "key": "SAVINGS",
+                                "name": "Savings"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Country",
+                "group": [
+                    {
+                        "key": "address.country",
+                        "name": "Country",
+                        "type": "select",
+                        "refreshRequirementsOnChange": true,
+                        "required": true,
+                        "displayFormat": null,
+                        "example": "",
+                        "minLength": null,
+                        "maxLength": null,
+                        "validationRegexp": null,
+                        "validationAsync": null,
+                        "valuesAllowed": [
+                            {
+                                "key": "AF",
+                                "name": "Afghanistan"
+                            },
+                            {
+                                "key": "AL",
+                                "name": "Albania"
+                            },
+                            {
+                            ...
+                            }
+
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "City",
+                "group": [
+                    {
+                        "key": "address.city",
+                        "name": "City",
+                        "type": "text",
+                        "refreshRequirementsOnChange": false,
+                        "required": true,
+                        "displayFormat": null,
+                        "example": "",
+                        "minLength": null,
+                        "maxLength": null,
+                        "validationRegexp": null,
+                        "validationAsync": null,
+                        "valuesAllowed": null
+                    }
+                ]
+            },
+            {
+                "name": "Address",
+                "group": [
+                    {
+                        "key": "address.firstLine",
+                        "name": "Address",
+                        "type": "text",
+                        "refreshRequirementsOnChange": false,
+                        "required": true,
+                        "displayFormat": null,
+                        "example": "",
+                        "minLength": null,
+                        "maxLength": null,
+                        "validationRegexp": null,
+                        "validationAsync": null,
+                        "valuesAllowed": null
+                    }
+                ]
+            },
+            {
+                "name": "Post Code",
+                "group": [
+                    {
+                        "key": "address.postCode",
+                        "name": "Post Code",
+                        "type": "text",
+                        "refreshRequirementsOnChange": false,
+                        "required": true,
+                        "displayFormat": null,
+                        "example": "",
+                        "minLength": null,
+                        "maxLength": null,
+                        "validationRegexp": null,
+                        "validationAsync": null,
+                        "valuesAllowed": null
+                    }
+                ]
+            }
         ]
-    }
-]
+    },
+
 ```
 ### Request
 **` GET https://api.sandbox.transferwise.tech/v1/quotes/{quoteId}/account-requirements`**<br/>
