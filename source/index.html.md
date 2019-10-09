@@ -403,6 +403,32 @@ This evente is triggerend once the user unfavorites or unpins a favorited listin
 ```
 This event is triggered once the user has already perfomed a property search and then saves it.
 
+### new_listings_form_saved_search
+```json
+//DATA EXAMPLE 
+{
+    "home_buyer": {
+        "id": "1234",
+        "email": "home_buyer@email.com",
+        "phone": "(123)12341234"
+    },
+    "saved_search_id": 1,
+    "new_listings": ["listing": {
+        "id": "listing_1",
+        "bathrooms_count": "1",
+        "bedrooms_count": "1",
+        "description": "description",
+        "listing_image_cover_url": "https://listing-images.nestready.net/dArboFrG37bMhDjHxWUMBZ3vs",
+        "mls_number": "1234mls",
+        "price_cents": "100_000",
+        "property_address": "full_address",
+        "year_built": "1990"
+    }]
+}
+```
+
+This event is triggered by listings recently created that matches a saved search's criteria.
+
 ### saved_search_deleted
 ```json
 //DATA EXAMPLE
