@@ -403,7 +403,7 @@ This evente is triggerend once the user unfavorites or unpins a favorited listin
 ```
 This event is triggered once the user has already perfomed a property search and then saves it.
 
-### new_listings_form_saved_search
+### new_listings_from_saved_search
 ```json
 //DATA EXAMPLE 
 {
