@@ -161,3 +161,37 @@ curl -X DELETE \
 Destroy an existing health check. A health check can only be deleted if it's not used by a [backend service](#gcp-backend-services).
 
 
+<!-------------------- EDIT A HEALTH CHECK -------------------->
+
+#### Edit a health check
+
+```shell
+curl -X PUT \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/healthchecks/6938691570659391640"
+```
+```json
+{
+  "portNumber": 80,
+  "type": "HTTP",
+  "description": "it is for test"
+}
+```
+
+<code>PUT /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/healthchecks/:id</code>
+
+Edit an existing health check.
+
+Required | &nbsp;
+------- | -----------
+`portNumber`<br/>*integer* | The port number of the health check
+
+Optional | &nbsp;
+------- | -----------
+`type`<br/>*string* | Specifies the type of the health check, either HTTP or HTTPS. The type should be valided (If not specified, the default is HTTP). 
+`description`<br/>*string* | Description of the health check
+
+
+
+
+
