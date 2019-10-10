@@ -11,7 +11,7 @@ TransferWise uses standard OAuth 2.0 protocol for authentication and authorizati
 Once our partnership begins, we’ll send you API access credentials for the sandbox environment consisting of a Client ID and a Client Secret.
 The credentials are needed to complete the authorisation_code grant type of OAuth 2.0 through which the customer will allow your application to be able to act on their behalf.
 We also need *redirect_url* from your technical team so that we can limit our callbacks to only that URL, this is URL that we will forward users to after successfully granting your application access to their TransferWise account. Specifying this explicitly makes the integration more secure.
-[OAuth 2.0: The Complete Guide](https://auth0.com/blog/oauth2-the-complete-guide/) is a great way to refresh your knowledge about the protocol itself.
+<a href="https://auth0.com/docs/protocols/oauth2" target="_blank" rel="noopener noreferrer">This article about OAuth 2.0 framework</a> is a great way to refresh your knowledge about the protocol itself.
 
 ### SANDBOX and LIVE environments
 
@@ -40,11 +40,11 @@ Your website or app opens the following url in the user's browser.
 
 Sandbox:  
 `
-https://sandbox.transferwise.tech/oauth/authorize?response_type=code&client_id=<your api client id>&redirect_uri=https://www.yourapp.com
+https://sandbox.transferwise.tech/oauth/authorize/?response_type=code&client_id=<your api client id>&redirect_uri=https://www.yourapp.com
 ` <br/>
 Live:  
 `
-https://transferwise.com/oauth/authorize?response_type=code&client_id=<your api client id>&redirect_uri=https://www.yourapp.com
+https://transferwise.com/oauth/authorize/?response_type=code&client_id=<your api client id>&redirect_uri=https://www.yourapp.com
 `
 
 Replace *your-api-client-id* and *redirect-uri* with your specific values. 
