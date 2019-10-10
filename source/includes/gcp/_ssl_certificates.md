@@ -174,9 +174,9 @@ Create a new ssl certificate
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/sslcertificates/ssl-root-rnx"
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/sslcertificates/2973924929495212345"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sslcertificates/:id</code>
 
-Delete an existing SSL certificate. SSL certificate can only be deleted if it is not used in any [targetProxy](#gcp-targetProxy).
+Delete an existing SSL certificate. SSL certificate can only be deleted if it is not used in any [target proxy](#gcp-targetproxy).
