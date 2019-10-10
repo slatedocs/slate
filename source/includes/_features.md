@@ -115,20 +115,29 @@ AutoInstruments is a BETA feature and available to apps using Ruby 2.3.1+. To en
 <table class="help install">
   <tbody>
     <tr>
-      <td>
-        <span class="step">1</span>
-      </td>
-      <td>
-        <p>Modify your <code>Gemfile</code> entry for <code>scout_apm</code>,
-          changing it to:</p>
-          <pre>gem 'scout_apm', git: 'https://github.com/scoutapp/scout_apm_ruby.git', branch: 'auto_instruments'
-</pre>
+      <td><span class="step">1</span></td>
+      <td><p>Within your Rails app's directory, run:</p><pre>bundle update scout_apm</pre>
+<p>AutoInstruments was released in <code>scout_apm</code> version 2.6.0.</p>
       </td>
     </tr>
     <tr>
       <td><span class="step">2</span></td>
-      <td><p>Within your Rails app's directory, run:</p><pre>bundle update scout_apm</pre></td>
+      <td><p>Set the <code>auto_instruments</code> <a href="auto_instruments_config">config option</a> to <code>true</code>.</p>
+
+      If you are using a config file:
+<pre>
+# config/scout_apm.yml
+production:
+  auto_instruments: true</pre>
+
+        If you are using environment variables:
+<pre>
+SCOUT_AUTO_INSTRUMENTS=true</pre>
+      </td>
+
+
     </tr>
+
       <tr>
       <td><span class="step">3</span></td>
       <td><p>Deploy</p></td>

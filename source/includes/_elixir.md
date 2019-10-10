@@ -19,9 +19,9 @@ Tailored instructions are provided within our user interface. General instructio
     <pre class="terminal"># mix.exs
 
  def deps do
-   [{:phoenix, "~> 1.2.0"},
+   [{:phoenix, "~> 1.4.0"},
     ...
-    <span>{:scout_apm, "~> 0.0"}</span>]
+    <span>{:scout_apm, "~> 1.0"}</span>]
  end</pre>
     <p class="smaller">If your Mixfile manually specifies <code>applications</code>, <code>:scout_apm</code> must be added:</p>
     <pre class="terminal"># mix.exs
@@ -103,7 +103,7 @@ end
     <p class="instruct">
       <span class="step">E</span>Restart your app.
       <div class="terminal">
-        mix phoenix.server
+        mix phx.server
       </div>
     </p>
 
@@ -140,6 +140,14 @@ Not seeing data?
         <span class="step">2</span>
       </td>
       <td>
+      <p>Run <code>mix scout.test_config</code> in your terminal to check for any configuration issues</p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <span class="step">3</span>
+      </td>
+      <td>
         <p>Is <code>use ScoutApm.Instrumentation</code> specified in <em>every</em> controller module you wish to instrument?</p>
 
         <p>
@@ -149,7 +157,7 @@ Not seeing data?
     </tr>
     <tr>
       <td>
-        <span class="step">3</span>
+        <span class="step">4</span>
       </td>
       <td>
         <p>Still stuck? Email us.</p>
@@ -319,6 +327,103 @@ The following configuration settings are available:
         No
       </td>
     </tr>
+    <tr>
+      <th>
+        core_agent_dir
+      </th>
+      <td>
+        Path to create the directory which will store the <a href="#core-agent">Core Agent</a>.
+      </td>
+      <td>
+        <code>/tmp/scout_apm_core</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        core_agent_download
+      </th>
+      <td>
+        Whether to download the <a href="#core-agent">Core Agent</a> automatically, if needed.
+      </td>
+      <td>
+        <code>True</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        core_agent_launch
+      </th>
+      <td>
+        Whether to start the <a href="#core-agent">Core Agent</a> automatically, if needed.
+      </td>
+      <td>
+        <code>True</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        core_agent_tcp_ip
+      </th>
+      <td>
+        The TCP IP address the <a href="#core-agent">Core Agent</a> uses to communicate with your application.
+      </td>
+      <td>
+        <code>{127, 0, 0, 1}</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        core_agent_tcp_port
+      </th>
+      <td>
+        The TCP port the <a href="#core-agent">Core Agent</a> uses to communicate with your application.
+      </td>
+      <td>
+        <code>9000</code>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        core_agent_triple
+      </th>
+      <td>
+        If you are running a MUSL based Linux (such as ArchLinux), you may need to explicitly specify the platform triple. E.g. <code>x86_64-unknown-linux-musl</code>
+      </td>
+      <td>
+        Auto detected
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
+    <tr>
+      <th>
+        hostname
+      </th>
+      <td>
+        The host registered with the <a href="#core-agent">.
+      </td>
+      <td>
+      </td>
+      <td>
+        No
+      </td>
+    </tr>
   </tbody>
 </table>
 
@@ -398,13 +503,14 @@ An example:
 ```elixir
 defmodule FirestormWeb.Web.PostsChannel do
   use FirestormWeb.Web, :channel
-  use ScoutApm.Tracing
+  import ScoutApm.Tracing
 
   # Will appear under "Web" in the UI, named "PostsChannel.update"
-  @transaction(type: "web", name: "PostsChannel.update")
-  def handle_out("update", msg, socket) do
+  @transaction_opts [type: "web", name: "PostsChannel.update"]
+  deftransaction handle_out("update", msg, socket) do
     push socket, "update", FetchView.render("index.json", msg)
   end
+end
 ```
 
 ### Plug Chunked Response (HTTP Streaming)
@@ -468,13 +574,14 @@ An example:
 ```elixir
 defmodule Flight.Checker do
   use GenServer
-  use ScoutApm.Tracing
+  import ScoutApm.Tracing
 
   # Will appear under "Background Jobs" in the UI, named "Flight.handle_check".
-  @transaction(type: "background", name: "check")
+  @transaction_opts [type: "background", name: "check"]
   def handle_call({:check, flight}, _from, state) do
     # Do work...
   end
+end
 ```
 
 ### Task.start
@@ -505,15 +612,15 @@ end)
 
 ### Exq
 
-To instrument [Exq](https://github.com/akira/exq) background jobs, `use ScoutApm.Tracing`, and add a `@transaction` module attribute to each worker's `perform` function:
+To instrument [Exq](https://github.com/akira/exq) background jobs, `import ScoutApm.Tracing`, use `deftransaction` to define the function, and add a `@transaction_opts` module attribute to optionally override the name and type:
 
 ```elixir
 defmodule MyWorker do
-  use ScoutApm.Tracing
+  import ScoutApm.Tracing
 
   # Will appear under "Background Jobs" in the UI, named "MyWorker.perform".
-  @transaction(type: "background")
-  def perform(arg1, arg2) do
+  @transaction_opts [type: "background"]
+  deftransaction perform(arg1, arg2) do
     # do work
   end
 end
@@ -577,7 +684,7 @@ Replace your function `def` with `deftransaction` to instrument it. You can over
 ```elixir
 defmodule YourApp.Web.RoomChannel do
   use Phoenix.Channel
-  use ScoutApm.Tracing
+  import ScoutApm.Tracing
 
   # Will appear under "Web" in the UI, named "YourApp.Web.RoomChannel.join".
   @transaction_opts [type: "web"]
@@ -621,7 +728,7 @@ Replace your function `def` with `deftiming` to instrument it. You can override 
 
 ```elixir
 defmodule Searcher do
-  use ScoutApm.Tracing
+  import ScoutApm.Tracing
 
   # Time associated with this function will appear under "Hound" in timeseries charts.
   # The function will appear as `Hound/open_search` in transaction traces.
