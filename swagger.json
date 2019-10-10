@@ -395,7 +395,8 @@
           "required" : true,
           "schema" : {
             "$ref" : "#/definitions/ArrayOfCreateOrderRequest"
-          }
+          },
+          "description" : "Does not support time_in_force flag for orders, All orders in batch create are assumed to be gtc orders. batch create does not support stop orders, it support only limit orders"
         } ],
         "responses" : {
           "200" : {
@@ -966,63 +967,72 @@
       "properties": {
         "id": {
             "type" : "integer",
-            "format" : "int64"
+            "format" : "int64",
+            "description" : "id of a product or a contract"
         },
         "symbol": {
-            "type": "string"
+            "type": "string",
+            "description" : "symbol of a product or a contract e.g. LINKBTC, XRPUSDQ"
         },
         "description": {
-            "type": "string"
+            "type": "string",
+            "description" : "description of a product or a contract"
         },
         "created_at": {
-            "type": "string"
+            "type": "string",
+            "description" : "product/contract creation date and time"
         },
         "updated_at": {
-            "type": "string"
+            "type": "string",
+            "description" : "product/contract update date and time"
         },
         "settlement_time": {
-            "type": "string"
+            "type": "string",
+            "description" : "settlement Timestamp of futures contract"
         },
         "product_type": {
             "type": "string",
-            "enum" : [ "future", "inverse_future" ]
+            "enum" : [ "future", "inverse_future" ],
+            "description" : "contract type 'future' or 'inverse_future'"
         },
         "pricing_source": {
-            "type": "string"
+            "type": "string",
+            "description" : "source and method of contract pricing"
         },
         "impact_size": {
-            "type" : "integer"
+            "type" : "integer",
+            "description" : "size of a typical trade. Used in the computation of mark price"
         },
         "initial_margin": {
-          "type" : "integer"
+          "type" : "integer",
+          "description" : "The amount required to enter into a new position"
         },
         "maintenance_margin": {
-            "type": "string"
+            "type": "string",
+            "description" : "The amount necessary when a loss on a futures position requires you to allocate more funds to return the margin to the initial margin level. "
         },
         "contract_value": {
-            "type": "string"
+            "type": "string",
+            "description" : "The notional value of a futures contract is simply the spot price of the asset multiplied by the amount of the asset specified in the contract"
         },
         "contract_unit_currency": {
-            "type": "string"
+            "type": "string",
+            "description": "This is the unit of  1 contract, for vanilla futures, its underlying asset. for inverse, it is settling asset. for quanto, its settling asset / quoting asset"
         },
         "tick_size": {
-            "type": "string"
+            "type": "string",
+            "description" : "The minimum gap between 2 consecutive prices."
         },
         "trading_status": {
             "type": "string",
-            "enum" : [ "operational", "disrupted_cancel_only", "disrupted_post_only" ]
+            "enum" : [ "operational", "disrupted_cancel_only", "disrupted_post_only" ],
+            "description" : "trading status of the contract e.g. 'operational','disrupted_cancel_only' or 'disrupted_post_only' "
         },
         "max_leverage_notional": {
             "type": "string"
         },
         "default_leverage": {
             "type": "string"
-        },
-        "leverage_slider_values": {
-            "type": "array",
-            "items": {
-                "type": "integer"
-            }
         },
         "initial_margin_scaling_factor": {
             "type": "string"
