@@ -86,21 +86,24 @@ Your website or app opens the following url in the user's browser.
 
 Sandbox:  
 `
-https://sandbox.transferwise.tech/oauth/authorize/?response_type=code&client_id=<your api client id>&redirect_uri=https://www.yourbank.com
+https://sandbox.transferwise.tech/oauth/authorize/?client_id={clientId}&redirect_uri={redirectUri}
 ` <br/>
 Live:  
 `
-https://transferwise.com/oauth/authorize/?response_type=code&client_id=<your api client id>&redirect_uri=https://www.yourbank.com
+https://transferwise.com/oauth/authorize/?client_id={clientId}&redirect_uri={redirectUri}
 `
 
-Replace *your-api-client-id* and *redirect-uri* with your specific values. 
-The redirect URL should be the address you want the user to return to after the authorization flow, which will have been pre-configured when you requested your API access tokens. This can be different across the sandbox and production environments and we can update it for you upon request.
+List of available parameters:
 
-On mobiles apps you should not use `WebView` components to show the authorization page to the users because they are not secure and will not allow users to log in to TransferWise with Google, which is an option used by some of our users. Your app should instead open the device's full browser app.
+Parameter | Description
+--------- | -----------
+client_id (required) | The client ID you received from us.
+redirect_uri (required) | The preconfigured URL in your application where users will be sent after authorization.
+state | An opaque value, used for security purposes. If this parameter is set in the request, then it is returned to the application as part of the redirect_uri. <a href="https://auth0.com/docs/protocols/oauth2/oauth-state" target="_blank" rel="noopener noreferrer">More about state parameter</a>.
 
-*Please note that the URL for the authorization page in sandbox is different than URL for API calls.  
-In the live environment the api.transferwise.com URL works for the authorization page as well as API calls.
-Please also note that provided `[CODE]` expires within 30 minutes and is one time use only.*
+*On mobiles apps you should not use `WebView` components to show the authorization page to the users because they are not secure and will not allow users to log in to TransferWise with Google, which is an option used by some of our users. Your app should instead open the device's full browser app.*
+
+*Please also note that provided `[CODE]` expires within 30 minutes and is one time use only.*
 
 ### 2. The user logs in to TransferWise
 
