@@ -1198,3 +1198,81 @@ Method not yet implemented
 <aside class="success">
 Returns - Boolean - flag if any playlists of any type have been generated for the user
 </aside>
+
+## GetAsset
+
+```shell
+curl --data-binary '{"id":"5","method":"playlist.GetAsset","params":{"id":319},"jsonrpc": "2.0"}'
+  -H 'Authorization: Bearer jwt_access_token'
+  -H 'content-type:application/json;'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+	"jsonrpc": "2.0",
+	"result": {
+		"id": 319,
+		"hashID": "48abb63828ef165a3c95913c3e106e78a1aa6b97",
+		"title": "To-Do Lists Don't Work",
+		"description": "\u003cp\u003eMarkovitz uses research to explain why to-do lists don’t work and presents a case for using our calendars - the best measure of our capacity - as a means for project management and becoming more productive. He proposes “living in your calendar” as a solution.\u003c/p\u003e\n",
+		"mainImage": "",
+		"screenshotImage": "",
+		"screenshotImageMobile": "",
+		"typeLabel": "Article",
+		"lengthSeconds": "18000",
+		"lengthLabel": "5 hours ",
+		"summaryUrl": "10-to-do-lists-dont-work",
+		"directUrl": "https://hbr.org/2012/01/to-do-lists-dont-work",
+		"isFavourite": true,
+		"launched": false,
+		"dismissed": false,
+		"completed": false,
+		"notes": {
+			"String": "",
+			"Valid": false
+		},
+		"restrictionCode": "free",
+		"restrictionLabel": "Free",
+		"provider": {
+			"id": 31,
+			"name": "",
+			"image": ""
+		},
+		"competencyList": [{
+			"id": 1,
+			"name": "Planning \u0026 Organizing"
+		}, {
+			"id": 4,
+			"name": "Productivity"
+		}]
+	},
+	"id": "5"
+}
+```
+
+Retrieve a given asset
+
+### HTTP Request
+
+`POST https://api.test.filtered.com/v2/jsonrpc/mgp`
+
+### Parameters
+
+Parameter | Type | Description
+--------- | ------- | -----------
+id | string | the asset's identifier
+
+<aside class="success">
+Returns — Learning Asset Model - specific asset
+</aside>
+
+### Errors
+
+Error Code | Meaning
+---------- | -------
+-32603 | Internal Server Error
+-32003 | Mandatory JWT Claim missing
+-32600 | The JSON sent is not a valid Request object
+-32014 | Unsupported asset
