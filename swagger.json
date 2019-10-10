@@ -708,62 +708,6 @@
         }
       }
     },
-    "/positions/close" : {
-      "post" : {
-        "tags" : [ "Positions" ],
-        "operationId" : "closePosition",
-        "summary" : "Close position",
-        "produces" : [ "application/json" ],
-        "security" : [ {
-          "api-key" : [ ],
-          "signature" : [ ],
-          "timestamp" : [ ]
-        } ],
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "position",
-          "required" : true,
-          "schema" : {
-            "type" : "object",
-            "required" : [ "product_id", "cancel_orders_accepted" ],
-            "properties" : {
-              "product_id" : {
-                "type" : "integer"
-              },
-              "cancel_orders_accepted" : {
-                "type" : "string",
-                "description" : "Flag to choose whether to cancel open orders in case they end up with insufficient margin after closing position",
-                "enum" : [ "true", "false" ]
-              }
-            }
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "returns the order that was placed for closing position",
-            "schema" : {
-              "$ref" : "#/definitions/Order"
-            }
-          },
-          "400" : {
-            "description" : "Returns error if position could not be closed",
-            "schema" : {
-              "type" : "object",
-              "properties" : {
-                "error" : {
-                  "type" : "string",
-                  "enum" : [ "PositionNotSet", "InsufficientMargin", "InsufficientCommission", "OrderSizeExceededAvailable", "OrderLeverageNotSet", "InvalidProduct", "LowerthanBankruptcy" ]
-                },
-                "message" : {
-                  "type" : "string",
-                  "description" : "A more verbose error message"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/orderbook/{product_id}/l2" : {
       "get" : {
         "tags" : [ "Orderbook" ],
@@ -828,7 +772,8 @@
           "in" : "query",
           "name" : "asset_id",
           "description" : "asset_id for that particular Wallet",
-          "type" : "integer"
+          "type" : "integer",
+          "required": true
         }, {
           "in" : "query",
           "name" : "product_id",
@@ -869,6 +814,59 @@
         "responses" : {
           "200" : {
             "description" : "list of transactions for that wallet",
+            "schema" : {
+              "$ref" : "#/definitions/ArrayOfTransactions"
+            }
+          }
+        }
+      }
+    },
+    "/wallet/download/transactions" : {
+      "get" : {
+        "tags" : [ "Wallet" ],
+        "summary" : "Download Wallet transactions",
+        "operationId" : "downloadWalletTransactions",
+        "produces" : [ "application/json" ],
+        "consumes" : [ "application/json" ],
+        "security" : [ {
+          "api-key" : [ ],
+          "signature" : [ ],
+          "timestamp" : [ ]
+        } ],
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "asset_id",
+          "description" : "asset_id for that particular Wallet",
+          "type" : "integer",
+          "required": true
+        }, {
+          "in" : "query",
+          "name" : "product_id",
+          "description" : "product_id filter for the transaction query",
+          "type" : "integer",
+          "required": false
+        }, {
+          "in" : "query",
+          "name" : "transaction_type",
+          "description" : "transaction_type filter for the transaction query",
+          "type" : "integer",
+          "required": false
+        }, {
+          "in" : "query",
+          "name" : "start_time",
+          "description" : "Start time for the transaction query",
+          "type" : "integer",
+          "required": false
+        }, {
+          "in" : "query",
+          "name" : "end_time",
+          "description" : "End time for the transaction query",
+          "type" : "integer",
+          "required": false
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "csv of transactions for that wallet",
             "schema" : {
               "$ref" : "#/definitions/ArrayOfTransactions"
             }

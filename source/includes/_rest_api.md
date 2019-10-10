@@ -1,4 +1,3 @@
-
 <h1 id="ApiSection" class="section-header">API</h1>
 The REST API has endpoints for account and order management as well as public market data.
 
@@ -389,7 +388,7 @@ p JSON.parse(result)
     "created_at": "string",
     "updated_at": "string",
     "settlement_time": "string",
-    "product_type": "string",
+    "product_type": "future",
     "pricing_source": "string",
     "impact_size": 0,
     "initial_margin": 0,
@@ -397,7 +396,7 @@ p JSON.parse(result)
     "contract_value": "string",
     "contract_unit_currency": "string",
     "tick_size": "string",
-    "trading_status": "string",
+    "trading_status": "operational",
     "max_leverage_notional": "string",
     "default_leverage": "string",
     "leverage_slider_values": [
@@ -571,7 +570,7 @@ p JSON.parse(result)
     "created_at": "string",
     "updated_at": "string",
     "settlement_time": "string",
-    "product_type": "string",
+    "product_type": "future",
     "pricing_source": "string",
     "impact_size": 0,
     "initial_margin": 0,
@@ -579,7 +578,7 @@ p JSON.parse(result)
     "contract_value": "string",
     "contract_unit_currency": "string",
     "tick_size": "string",
-    "trading_status": "string",
+    "trading_status": "operational",
     "max_leverage_notional": "string",
     "default_leverage": "string",
     "leverage_slider_values": [
@@ -747,7 +746,7 @@ p JSON.parse(result)
       "created_at": "string",
       "updated_at": "string",
       "settlement_time": "string",
-      "product_type": "string",
+      "product_type": "future",
       "pricing_source": "string",
       "impact_size": 0,
       "initial_margin": 0,
@@ -755,7 +754,7 @@ p JSON.parse(result)
       "contract_value": "string",
       "contract_unit_currency": "string",
       "tick_size": "string",
-      "trading_status": "string",
+      "trading_status": "operational",
       "max_leverage_notional": "string",
       "default_leverage": "string",
       "leverage_slider_values": [
@@ -906,7 +905,7 @@ p JSON.parse(result)
     "created_at": "string",
     "updated_at": "string",
     "settlement_time": "string",
-    "product_type": "string",
+    "product_type": "future",
     "pricing_source": "string",
     "impact_size": 0,
     "initial_margin": 0,
@@ -914,7 +913,7 @@ p JSON.parse(result)
     "contract_value": "string",
     "contract_unit_currency": "string",
     "tick_size": "string",
-    "trading_status": "string",
+    "trading_status": "operational",
     "max_leverage_notional": "string",
     "default_leverage": "string",
     "leverage_slider_values": [
@@ -1201,7 +1200,7 @@ p JSON.parse(result)
       "created_at": "string",
       "updated_at": "string",
       "settlement_time": "string",
-      "product_type": "string",
+      "product_type": "future",
       "pricing_source": "string",
       "impact_size": 0,
       "initial_margin": 0,
@@ -1209,7 +1208,7 @@ p JSON.parse(result)
       "contract_value": "string",
       "contract_unit_currency": "string",
       "tick_size": "string",
-      "trading_status": "string",
+      "trading_status": "operational",
       "max_leverage_notional": "string",
       "default_leverage": "string",
       "leverage_slider_values": [
@@ -1268,7 +1267,7 @@ p JSON.parse(result)
       "created_at": "string",
       "updated_at": "string",
       "settlement_time": "string",
-      "product_type": "string",
+      "product_type": "future",
       "pricing_source": "string",
       "impact_size": 0,
       "initial_margin": 0,
@@ -1276,7 +1275,7 @@ p JSON.parse(result)
       "contract_value": "string",
       "contract_unit_currency": "string",
       "tick_size": "string",
-      "trading_status": "string",
+      "trading_status": "operational",
       "max_leverage_notional": "string",
       "default_leverage": "string",
       "leverage_slider_values": [
@@ -1454,7 +1453,7 @@ p JSON.parse(result)
     "created_at": "string",
     "updated_at": "string",
     "settlement_time": "string",
-    "product_type": "string",
+    "product_type": "future",
     "pricing_source": "string",
     "impact_size": 0,
     "initial_margin": 0,
@@ -1462,7 +1461,7 @@ p JSON.parse(result)
     "contract_value": "string",
     "contract_unit_currency": "string",
     "tick_size": "string",
-    "trading_status": "string",
+    "trading_status": "operational",
     "max_leverage_notional": "string",
     "default_leverage": "string",
     "leverage_slider_values": [
@@ -1634,7 +1633,7 @@ p JSON.parse(result)
     "created_at": "string",
     "updated_at": "string",
     "settlement_time": "string",
-    "product_type": "string",
+    "product_type": "future",
     "pricing_source": "string",
     "impact_size": 0,
     "initial_margin": 0,
@@ -1642,7 +1641,7 @@ p JSON.parse(result)
     "contract_value": "string",
     "contract_unit_currency": "string",
     "tick_size": "string",
-    "trading_status": "string",
+    "trading_status": "operational",
     "max_leverage_notional": "string",
     "default_leverage": "string",
     "leverage_slider_values": [
@@ -1970,7 +1969,7 @@ p JSON.parse(result)
       "created_at": "string",
       "updated_at": "string",
       "settlement_time": "string",
-      "product_type": "string",
+      "product_type": "future",
       "pricing_source": "string",
       "impact_size": 0,
       "initial_margin": 0,
@@ -1978,7 +1977,7 @@ p JSON.parse(result)
       "contract_value": "string",
       "contract_unit_currency": "string",
       "tick_size": "string",
-      "trading_status": "string",
+      "trading_status": "operational",
       "max_leverage_notional": "string",
       "default_leverage": "string",
       "leverage_slider_values": [
@@ -2124,7 +2123,7 @@ p JSON.parse(result)
     "created_at": "string",
     "updated_at": "string",
     "settlement_time": "string",
-    "product_type": "string",
+    "product_type": "future",
     "pricing_source": "string",
     "impact_size": 0,
     "initial_margin": 0,
@@ -2132,7 +2131,7 @@ p JSON.parse(result)
     "contract_value": "string",
     "contract_unit_currency": "string",
     "tick_size": "string",
-    "trading_status": "string",
+    "trading_status": "operational",
     "max_leverage_notional": "string",
     "default_leverage": "string",
     "leverage_slider_values": [
@@ -2197,193 +2196,6 @@ Status Code **400**
 |error|LeverageLimitExceeded|
 |error|InsufficientMargin|
 |error|ExistingOrderWithLowerThanBankruptcy|
-
-<aside class="warning">
-To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
-</aside>
-
-## Close position
-
-<a id="opIdclosePosition"></a>
-
-> Code samples
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'api-key': '****',
-  'signature': '****',
-  'timestamp': '****'
-}
-
-r = requests.post('https://api.delta.exchange/positions/close', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-```shell
-# You can also use wget
-curl -X POST https://api.delta.exchange/positions/close \
-  -H 'Content-Type: application/json' \
-  -H 'Accept: application/json' \
-  -H 'api-key: ****' \
-  -H 'signature: ****' \
-  -H 'timestamp: ****'
-
-```
-
-```ruby
-require 'rest-client'
-require 'json'
-
-headers = {
-  'Content-Type' => 'application/json',
-  'Accept' => 'application/json',
-  'api-key' => '****',
-  'signature' => '****',
-  'timestamp' => '****'
-}
-
-result = RestClient.post 'https://api.delta.exchange/positions/close',
-  params: {
-  }, headers: headers
-
-p JSON.parse(result)
-
-```
-
-`POST /positions/close`
-
-> Body parameter
-
-```json
-{
-  "product_id": 0,
-  "cancel_orders_accepted": "true"
-}
-```
-
-<h3 id="close-position-parameters">Parameters</h3>
-
-|Parameter|In|Type|Required|Description|
-|---|---|---|---|---|
-|body|body|object|true|none|
-|» product_id|body|integer|true|none|
-|» cancel_orders_accepted|body|string|true|Flag to choose whether to cancel open orders in case they end up with insufficient margin after closing position|
-
-#### Enumerated Values
-
-|Parameter|Value|
-|---|---|
-|» cancel_orders_accepted|true|
-|» cancel_orders_accepted|false|
-
-> Example responses
-
-> 200 Response
-
-```json
-{
-  "id": 0,
-  "user_id": 0,
-  "size": 0,
-  "unfilled_size": 0,
-  "side": "buy",
-  "order_type": "limit_order",
-  "limit_price": "string",
-  "stop_order_type": "stop_loss_order",
-  "stop_price": "string",
-  "close_on_trigger": "false",
-  "state": "open",
-  "created_at": "string",
-  "product": {
-    "id": 0,
-    "symbol": "string",
-    "description": "string",
-    "created_at": "string",
-    "updated_at": "string",
-    "settlement_time": "string",
-    "product_type": "string",
-    "pricing_source": "string",
-    "impact_size": 0,
-    "initial_margin": 0,
-    "maintenance_margin": "string",
-    "contract_value": "string",
-    "contract_unit_currency": "string",
-    "tick_size": "string",
-    "trading_status": "string",
-    "max_leverage_notional": "string",
-    "default_leverage": "string",
-    "leverage_slider_values": [
-      0
-    ],
-    "initial_margin_scaling_factor": "string",
-    "maintenance_margin_scaling_factor": "string",
-    "commission_rate": "string",
-    "maker_commission_rate": "string",
-    "liquidation_penalty_factor": "string",
-    "sort_priority": 0,
-    "contract_type": "string",
-    "position_size_limit": 0,
-    "basis_factor_max_limit": "string",
-    "is_quanto": true,
-    "funding_method": "string",
-    "annualized_funding": "string",
-    "price_clubbing_values": [
-      0
-    ],
-    "price_band": "string",
-    "underlying_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    },
-    "quoting_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    },
-    "settling_asset": {
-      "id": 0,
-      "symbol": "string",
-      "precision": 0
-    }
-  }
-}
-```
-
-<h3 id="close-position-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|returns the order that was placed for closing position|[Order](#schemaorder)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|Returns error if position could not be closed|Inline|
-
-<h3 id="close-position-responseschema">Response Schema</h3>
-
-Status Code **400**
-
-|Name|Type|Required|Restrictions|Description|
-|---|---|---|---|---|
-|» error|string|false|none|none|
-|» message|string|false|none|A more verbose error message|
-
-#### Enumerated Values
-
-|Property|Value|
-|---|---|
-|error|PositionNotSet|
-|error|InsufficientMargin|
-|error|InsufficientCommission|
-|error|OrderSizeExceededAvailable|
-|error|OrderLeverageNotSet|
-|error|InvalidProduct|
-|error|LowerthanBankruptcy|
 
 <aside class="warning">
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
@@ -2480,7 +2292,7 @@ p JSON.parse(result)
       "created_at": "string",
       "updated_at": "string",
       "settlement_time": "string",
-      "product_type": "string",
+      "product_type": "future",
       "pricing_source": "string",
       "impact_size": 0,
       "initial_margin": 0,
@@ -2488,7 +2300,7 @@ p JSON.parse(result)
       "contract_value": "string",
       "contract_unit_currency": "string",
       "tick_size": "string",
-      "trading_status": "string",
+      "trading_status": "operational",
       "max_leverage_notional": "string",
       "default_leverage": "string",
       "leverage_slider_values": [
@@ -2625,7 +2437,7 @@ p JSON.parse(result)
       "created_at": "string",
       "updated_at": "string",
       "settlement_time": "string",
-      "product_type": "string",
+      "product_type": "future",
       "pricing_source": "string",
       "impact_size": 0,
       "initial_margin": 0,
@@ -2633,7 +2445,7 @@ p JSON.parse(result)
       "contract_value": "string",
       "contract_unit_currency": "string",
       "tick_size": "string",
-      "trading_status": "string",
+      "trading_status": "operational",
       "max_leverage_notional": "string",
       "default_leverage": "string",
       "leverage_slider_values": [
@@ -2888,7 +2700,7 @@ headers = {
 }
 
 r = requests.get('https://api.delta.exchange/wallet/transactions', params={
-
+  'asset_id': '0'
 }, headers = headers)
 
 print r.json()
@@ -2897,7 +2709,7 @@ print r.json()
 
 ```shell
 # You can also use wget
-curl -X GET https://api.delta.exchange/wallet/transactions \
+curl -X GET https://api.delta.exchange/wallet/transactions?asset_id=0 \
   -H 'Accept: application/json' \
   -H 'api-key: ****' \
   -H 'signature: ****' \
@@ -2918,7 +2730,8 @@ headers = {
 
 result = RestClient.get 'https://api.delta.exchange/wallet/transactions',
   params: {
-  }, headers: headers
+  'asset_id' => 'integer'
+}, headers: headers
 
 p JSON.parse(result)
 
@@ -2930,7 +2743,7 @@ p JSON.parse(result)
 
 |Parameter|In|Type|Required|Description|
 |---|---|---|---|---|
-|asset_id|query|integer|false|asset_id for that particular Wallet|
+|asset_id|query|integer|true|asset_id for that particular Wallet|
 |product_id|query|integer|false|product_id filter for the transaction query|
 |transaction_type|query|integer|false|transaction_type filter for the transaction query|
 |start_time|query|integer|false|Start time for the transaction query|
@@ -2957,7 +2770,7 @@ p JSON.parse(result)
       "created_at": "string",
       "updated_at": "string",
       "settlement_time": "string",
-      "product_type": "string",
+      "product_type": "future",
       "pricing_source": "string",
       "impact_size": 0,
       "initial_margin": 0,
@@ -2965,7 +2778,7 @@ p JSON.parse(result)
       "contract_value": "string",
       "contract_unit_currency": "string",
       "tick_size": "string",
-      "trading_status": "string",
+      "trading_status": "operational",
       "max_leverage_notional": "string",
       "default_leverage": "string",
       "leverage_slider_values": [
@@ -3013,6 +2826,151 @@ p JSON.parse(result)
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|list of transactions for that wallet|[ArrayOfTransactions](#schemaarrayoftransactions)|
+
+<aside class="warning">
+To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
+</aside>
+
+## Download Wallet transactions
+
+<a id="opIddownloadWalletTransactions"></a>
+
+> Code samples
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json',
+  'api-key': '****',
+  'signature': '****',
+  'timestamp': '****'
+}
+
+r = requests.get('https://api.delta.exchange/wallet/download/transactions', params={
+  'asset_id': '0'
+}, headers = headers)
+
+print r.json()
+
+```
+
+```shell
+# You can also use wget
+curl -X GET https://api.delta.exchange/wallet/download/transactions?asset_id=0 \
+  -H 'Accept: application/json' \
+  -H 'api-key: ****' \
+  -H 'signature: ****' \
+  -H 'timestamp: ****'
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json',
+  'api-key' => '****',
+  'signature' => '****',
+  'timestamp' => '****'
+}
+
+result = RestClient.get 'https://api.delta.exchange/wallet/download/transactions',
+  params: {
+  'asset_id' => 'integer'
+}, headers: headers
+
+p JSON.parse(result)
+
+```
+
+`GET /wallet/download/transactions`
+
+<h3 id="download-wallet-transactions-parameters">Parameters</h3>
+
+|Parameter|In|Type|Required|Description|
+|---|---|---|---|---|
+|asset_id|query|integer|true|asset_id for that particular Wallet|
+|product_id|query|integer|false|product_id filter for the transaction query|
+|transaction_type|query|integer|false|transaction_type filter for the transaction query|
+|start_time|query|integer|false|Start time for the transaction query|
+|end_time|query|integer|false|End time for the transaction query|
+
+> Example responses
+
+> 200 Response
+
+```json
+[
+  {
+    "id": 0,
+    "amount": "string",
+    "balance": "string",
+    "transaction_type": "pnl",
+    "meta_data": {},
+    "product": {
+      "id": 0,
+      "symbol": "string",
+      "description": "string",
+      "created_at": "string",
+      "updated_at": "string",
+      "settlement_time": "string",
+      "product_type": "future",
+      "pricing_source": "string",
+      "impact_size": 0,
+      "initial_margin": 0,
+      "maintenance_margin": "string",
+      "contract_value": "string",
+      "contract_unit_currency": "string",
+      "tick_size": "string",
+      "trading_status": "operational",
+      "max_leverage_notional": "string",
+      "default_leverage": "string",
+      "leverage_slider_values": [
+        0
+      ],
+      "initial_margin_scaling_factor": "string",
+      "maintenance_margin_scaling_factor": "string",
+      "commission_rate": "string",
+      "maker_commission_rate": "string",
+      "liquidation_penalty_factor": "string",
+      "sort_priority": 0,
+      "contract_type": "string",
+      "position_size_limit": 0,
+      "basis_factor_max_limit": "string",
+      "is_quanto": true,
+      "funding_method": "string",
+      "annualized_funding": "string",
+      "price_clubbing_values": [
+        0
+      ],
+      "price_band": "string",
+      "underlying_asset": {
+        "id": 0,
+        "symbol": "string",
+        "precision": 0
+      },
+      "quoting_asset": {
+        "id": 0,
+        "symbol": "string",
+        "precision": 0
+      },
+      "settling_asset": {
+        "id": 0,
+        "symbol": "string",
+        "precision": 0
+      }
+    },
+    "created_at": "string"
+  }
+]
+```
+
+<h3 id="download-wallet-transactions-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|csv of transactions for that wallet|[ArrayOfTransactions](#schemaarrayoftransactions)|
 
 <aside class="warning">
 To perform this operation, you must be sign the request using your api key and secret. See Authentication section for more details.
@@ -3190,7 +3148,7 @@ This operation does not require authentication.
   "created_at": "string",
   "updated_at": "string",
   "settlement_time": "string",
-  "product_type": "string",
+  "product_type": "future",
   "pricing_source": "string",
   "impact_size": 0,
   "initial_margin": 0,
@@ -3198,7 +3156,7 @@ This operation does not require authentication.
   "contract_value": "string",
   "contract_unit_currency": "string",
   "tick_size": "string",
-  "trading_status": "string",
+  "trading_status": "operational",
   "max_leverage_notional": "string",
   "default_leverage": "string",
   "leverage_slider_values": [
@@ -3279,6 +3237,16 @@ This operation does not require authentication.
 |quoting_asset|[Asset](#schemaasset)|false|none|none|
 |settling_asset|[Asset](#schemaasset)|false|none|none|
 
+#### Enumerated Values
+
+|Property|Value|
+|---|---|
+|product_type|future|
+|product_type|inverse_future|
+|trading_status|operational|
+|trading_status|disrupted_cancel_only|
+|trading_status|disrupted_post_only|
+
 <h2 id="tocSarrayofproducts">ArrayOfProducts</h2>
 
 <a id="schemaarrayofproducts"></a>
@@ -3292,7 +3260,7 @@ This operation does not require authentication.
     "created_at": "string",
     "updated_at": "string",
     "settlement_time": "string",
-    "product_type": "string",
+    "product_type": "future",
     "pricing_source": "string",
     "impact_size": 0,
     "initial_margin": 0,
@@ -3300,7 +3268,7 @@ This operation does not require authentication.
     "contract_value": "string",
     "contract_unit_currency": "string",
     "tick_size": "string",
-    "trading_status": "string",
+    "trading_status": "operational",
     "max_leverage_notional": "string",
     "default_leverage": "string",
     "leverage_slider_values": [
@@ -3373,7 +3341,7 @@ This operation does not require authentication.
     "created_at": "string",
     "updated_at": "string",
     "settlement_time": "string",
-    "product_type": "string",
+    "product_type": "future",
     "pricing_source": "string",
     "impact_size": 0,
     "initial_margin": 0,
@@ -3381,7 +3349,7 @@ This operation does not require authentication.
     "contract_value": "string",
     "contract_unit_currency": "string",
     "tick_size": "string",
-    "trading_status": "string",
+    "trading_status": "operational",
     "max_leverage_notional": "string",
     "default_leverage": "string",
     "leverage_slider_values": [
@@ -3485,7 +3453,7 @@ This operation does not require authentication.
       "created_at": "string",
       "updated_at": "string",
       "settlement_time": "string",
-      "product_type": "string",
+      "product_type": "future",
       "pricing_source": "string",
       "impact_size": 0,
       "initial_margin": 0,
@@ -3493,7 +3461,7 @@ This operation does not require authentication.
       "contract_value": "string",
       "contract_unit_currency": "string",
       "tick_size": "string",
-      "trading_status": "string",
+      "trading_status": "operational",
       "max_leverage_notional": "string",
       "default_leverage": "string",
       "leverage_slider_values": [
@@ -3568,7 +3536,7 @@ This operation does not require authentication.
       "created_at": "string",
       "updated_at": "string",
       "settlement_time": "string",
-      "product_type": "string",
+      "product_type": "future",
       "pricing_source": "string",
       "impact_size": 0,
       "initial_margin": 0,
@@ -3576,7 +3544,7 @@ This operation does not require authentication.
       "contract_value": "string",
       "contract_unit_currency": "string",
       "tick_size": "string",
-      "trading_status": "string",
+      "trading_status": "operational",
       "max_leverage_notional": "string",
       "default_leverage": "string",
       "leverage_slider_values": [
@@ -3635,7 +3603,7 @@ This operation does not require authentication.
       "created_at": "string",
       "updated_at": "string",
       "settlement_time": "string",
-      "product_type": "string",
+      "product_type": "future",
       "pricing_source": "string",
       "impact_size": 0,
       "initial_margin": 0,
@@ -3643,7 +3611,7 @@ This operation does not require authentication.
       "contract_value": "string",
       "contract_unit_currency": "string",
       "tick_size": "string",
-      "trading_status": "string",
+      "trading_status": "operational",
       "max_leverage_notional": "string",
       "default_leverage": "string",
       "leverage_slider_values": [
@@ -3952,7 +3920,7 @@ This operation does not require authentication.
     "created_at": "string",
     "updated_at": "string",
     "settlement_time": "string",
-    "product_type": "string",
+    "product_type": "future",
     "pricing_source": "string",
     "impact_size": 0,
     "initial_margin": 0,
@@ -3960,7 +3928,7 @@ This operation does not require authentication.
     "contract_value": "string",
     "contract_unit_currency": "string",
     "tick_size": "string",
-    "trading_status": "string",
+    "trading_status": "operational",
     "max_leverage_notional": "string",
     "default_leverage": "string",
     "leverage_slider_values": [
@@ -4038,7 +4006,7 @@ This operation does not require authentication.
       "created_at": "string",
       "updated_at": "string",
       "settlement_time": "string",
-      "product_type": "string",
+      "product_type": "future",
       "pricing_source": "string",
       "impact_size": 0,
       "initial_margin": 0,
@@ -4046,7 +4014,7 @@ This operation does not require authentication.
       "contract_value": "string",
       "contract_unit_currency": "string",
       "tick_size": "string",
-      "trading_status": "string",
+      "trading_status": "operational",
       "max_leverage_notional": "string",
       "default_leverage": "string",
       "leverage_slider_values": [
@@ -4115,7 +4083,7 @@ This operation does not require authentication.
     "created_at": "string",
     "updated_at": "string",
     "settlement_time": "string",
-    "product_type": "string",
+    "product_type": "future",
     "pricing_source": "string",
     "impact_size": 0,
     "initial_margin": 0,
@@ -4123,7 +4091,7 @@ This operation does not require authentication.
     "contract_value": "string",
     "contract_unit_currency": "string",
     "tick_size": "string",
-    "trading_status": "string",
+    "trading_status": "operational",
     "max_leverage_notional": "string",
     "default_leverage": "string",
     "leverage_slider_values": [
@@ -4210,7 +4178,7 @@ This operation does not require authentication.
       "created_at": "string",
       "updated_at": "string",
       "settlement_time": "string",
-      "product_type": "string",
+      "product_type": "future",
       "pricing_source": "string",
       "impact_size": 0,
       "initial_margin": 0,
@@ -4218,7 +4186,7 @@ This operation does not require authentication.
       "contract_value": "string",
       "contract_unit_currency": "string",
       "tick_size": "string",
-      "trading_status": "string",
+      "trading_status": "operational",
       "max_leverage_notional": "string",
       "default_leverage": "string",
       "leverage_slider_values": [
@@ -4428,7 +4396,7 @@ This operation does not require authentication.
     "created_at": "string",
     "updated_at": "string",
     "settlement_time": "string",
-    "product_type": "string",
+    "product_type": "future",
     "pricing_source": "string",
     "impact_size": 0,
     "initial_margin": 0,
@@ -4436,7 +4404,7 @@ This operation does not require authentication.
     "contract_value": "string",
     "contract_unit_currency": "string",
     "tick_size": "string",
-    "trading_status": "string",
+    "trading_status": "operational",
     "max_leverage_notional": "string",
     "default_leverage": "string",
     "leverage_slider_values": [
@@ -4525,7 +4493,7 @@ This operation does not require authentication.
       "created_at": "string",
       "updated_at": "string",
       "settlement_time": "string",
-      "product_type": "string",
+      "product_type": "future",
       "pricing_source": "string",
       "impact_size": 0,
       "initial_margin": 0,
@@ -4533,7 +4501,7 @@ This operation does not require authentication.
       "contract_value": "string",
       "contract_unit_currency": "string",
       "tick_size": "string",
-      "trading_status": "string",
+      "trading_status": "operational",
       "max_leverage_notional": "string",
       "default_leverage": "string",
       "leverage_slider_values": [
