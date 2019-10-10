@@ -17,7 +17,8 @@ Source code and issues can be found on our [scout-apm-php](https://github.com/sc
 
 Scout provides instrumentation for Laravel.
 
-### Some configuration required
+### 
+<h3 id="php-some-configuration-required">Some configuration required</h3>
 
 The libraries below require a small number of configuration updates. Click on
 the respective library for instructions.
@@ -81,7 +82,7 @@ If you've installed Scout via the Heroku Addon, the provisioning process automat
   </tbody>
 </table>
 
-### Middleware
+<h3 id="php-middleware">Middleware</h3>
 
 Scout automatically inserts its middleware into your application on Laravel startup.
 
@@ -178,7 +179,7 @@ You can extend Scout to trace transactions outside our officially supported
 libraries (e.g. Cron jobs and other web frameworks) and time the execution of
 sections of code that falls outside our provided instrumentation.
 
-### Transactions & Timing
+<h3 id="php-transactions-timing">Transactions & Timing</h3>
 
 Scout’s instrumentation is divided into 2 areas:
 
@@ -188,7 +189,7 @@ Scout’s instrumentation is divided into 2 areas:
    transaction, like an HTTP request to an outside service, or a database call.
    This is displayed within a transaction trace in the UI.
 
-### Instrumenting Transactions
+<h3 id="php-instrumenting-transactions">Instrumenting Transactions</h3>
 
 A transaction groups a sequence of work under in the Scout UI. These are used
 to generate transaction traces. For example, you may create a transaction that
@@ -222,7 +223,7 @@ $agent->webTransaction("GET Users", function() { ... your code ... });
 $agent->send();
 ```
 
-### Timing functions and blocks of code
+<h3 id="php-timing-blocks">Timing functions and blocks of code</h3>
 
 In existing transactions, both automatically created with Laravel instruments,
 and also manually created, you can time sections of code that are interesting
@@ -307,7 +308,7 @@ $agent->addContext("Key", "Value");
 
 
 
-### Context Key Restrictions
+<h3 id="php-context-key-restrictions">Context Key Restrictions</h3>
 
 The Context `key` must be a `String` with only printable characters. Custom
 context keys may contain alphanumeric characters, dashes, and underscores.
@@ -315,7 +316,7 @@ Spaces are not allowed.
 
 Attempts to add invalid context will be ignored.
 
-### Context Value Types
+<h3 id="php-context-value-types">Context Value Types</h3>
 
 Context values can be any json-serializable type. Examples:
 
