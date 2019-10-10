@@ -1094,7 +1094,7 @@ Config.set(revision_sha=os.popen("git rev-parse HEAD").read().strip())  # if the
 
 * Setting a `SCOUT_REVISION_SHA` environment variable equal to the SHA of your latest release.
 * If you are using Heroku, enable [Dyno Metadata](https://devcenter.heroku.com/articles/dyno-metadata). This adds a `HEROKU_SLUG_COMMIT` environment variable to your dynos, which Scout then associates with deploys.
-
+œ
 ## Ignoring Transactions
 
 You can ignore transactions two ways:
