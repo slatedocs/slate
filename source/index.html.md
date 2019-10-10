@@ -9,8 +9,6 @@ toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
-includes:
-  - errors
 
 search: true
 ---
@@ -28,12 +26,6 @@ Factmata API is authorized using API Key. If you don't have a key please contact
 The API_KEY is accepted as a request header `x-api-key`.
 
 Do not share you API Key in publicly accessible platforms.
-
-```shell
-
-curl https://www.factmata.com \
--H "x-api-key: API_KEY"
-```
 
 # Scoring URLs
 
@@ -55,15 +47,17 @@ Scoring URLs using Factmata API works in two steps:
     the user has the option to fetch the partial scores.
 
 
-## Submit a URL for scoring
+## Submit an URL for scoring
 
-To score a URL, it needs first needs to be submitted.
+To score a URL, it first needs to be submitted.
 
 ```python
 import requests
 
+url = "https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1/score/url"
+
 data = {
-  'url': 'www.example.com'
+  'url': 'www.example.com/some-page'
 }
 headers = {
   'x-api-key': API_KEY
@@ -72,11 +66,10 @@ res = requests.post("URL", headers=headers, json=data)
 ```
 
 ```shell
-curl https://www.factmata.com 
-  -X POST 
-  -H "Content-Type: application/json" 
-  -H "x-api-key: API_KEY"
-  -d '{"url": "www.example.com"}'
+curl 'https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1/score/url?url=https://example.com/page' \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: API_KEY" 
 ```
 
 > When the URL is successfully submitted for processing, the following response is returned
@@ -99,20 +92,24 @@ STATUS: 299
 
 ### HTTP Request
 
-`POST https://www.factmata.com`
+`POST https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1/score/url/?url=www.example.com/some-page`
 
 ### Request Payload
 
 Parameter | Description
 --------- | -----------
-url | A valid URL string. This parameter is `required`. In case the URL is malformed or absent, request is abortd with status `422`. If the URL has already been submitted for scoring, status `299` is returned.
+url | A valid URL string. This parameter is `required`. In case the URL is malformed or absent, request is aborted with status `422`. If the URL has already been submitted for scoring, status `299` is returned.
 
 <aside class="notice">
 URL once submitted once, does not need to be submitted again
 </aside>
 
 <aside class="notice">
-After submitting the URL, the average time before it is fully processed is `x ms`
+Currently only English web-pages are scored.
+</aside>
+
+<aside class="warning">
+URL must contain a path along with the domain/subdomain name. 
 </aside>
 
 ## Fetch the scores of a URL
@@ -121,26 +118,27 @@ After a URL has been submitted for scoring, you can fetch the scores
 using this API.
 
 
-
-
 ```python
 import requests
 
+url = "https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1/score/url/"
+
 data = {
-  'url': 'www.example.com'
+  'url': 'www.example.com/some-page'
 }
 
 headers = {
   'x-api-key': API_KEY
 }
 
-res = requests.get("URL", headers=headers, params=data)
+res = requests.get(url, headers=headers, params=data)
 ```
 
 ```shell
-curl "URL?url=www.example.com"
-  - H "x-api-key: API_KEY"
-  -X GET
+curl 'https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1/score/url?url=https://example.com/page' \
+  -X GET \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: API_KEY" 
 ```
 
 
@@ -190,7 +188,7 @@ STATUS: 202
 
 ### HTTP Request
 
-`GET http://www.example.com?url=www.example.com&partial_results=False`
+`GET https://t7zcyk5xx0.execute-api.eu-west-1.amazonaws.com/production/api/v0.1/score/url/?url=www.example.com/some-page&partial_results=False`
 
 Fetching the scores has the following use cases:
 
