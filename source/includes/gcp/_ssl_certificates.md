@@ -179,4 +179,4 @@ curl -X DELETE \
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sslcertificates/:id</code>
 
-Delete an existing SSL certificate. SSL certificate can only be deleted if it is not used in any [target proxy](#gcp-targetproxy).
+Delete an existing SSL certificate. SSL certificate can only be deleted if it is not used in any [target proxy](#gcp-target-proxies).
