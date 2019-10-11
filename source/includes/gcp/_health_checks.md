@@ -1,5 +1,6 @@
 ### Health checks
 
+Health checking mechanisms determine whether VM instances respond properly to traffic.
 <!-------------------- LIST HEALTH CHECK -------------------->
 #### List health checks
 

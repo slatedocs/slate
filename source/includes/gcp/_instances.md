@@ -481,13 +481,17 @@ curl -X POST \
 }
 ```
 
-Required | &nbsp;
------- | -----------
-`shortGroups`<br/>*array[string]* | Array of group names representing the current groups the instance belongs to. If a group, which the instance currently belongs to, is not kept in the list, the instance will be removed from the group. If the array is empty, the instance will be removed from all the groups it currently belongs to.
-
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instancegroups/:id?operation=manage_group_membership</code>
 
 Manage an instance's membership to groups
+
+<aside class="notice">
+An instance can only belong to one load balanced instance group. But you can add an instance to multiple non-load balanced instance groups
+</aside>
+
+Required | &nbsp;
+------ | -----------
+`shortGroups`<br/>*array[string]* | Array of group names representing the current groups the instance belongs to. If a group, which the instance currently belongs to, is not kept in the list, the instance will be removed from the group. If the array is empty, the instance will be removed from all the groups it currently belongs to.
 
 <!-------------------- START AN INSTANCE -------------------->
 
