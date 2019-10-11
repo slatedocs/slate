@@ -121,6 +121,10 @@ If you are building your TransferWise integration as a native mobile phone app t
 
 At the point you gain access to a user account you should double check it is the one you were expecting to be given access to - sometimes users can get confused and log in to a different account. Together we want to avoid TransferWise accounts being linked to bank accounts of a different person or business, therefore you should check the user's details once the link is created. Currently you should do this sanity check based on the date of birth of the user but are working on a more robust solution. If the DoB exists but doesn't match then you should not allow the link to be made and inform the user we do not think the accounts match and to get in touch with customer service.
 
+### Error handling
+
+When authorization request returns an error response, we display the message on our webpage. The user may also see a link back to your application, with `error` and `error_description` parameters in the url instead of `code`.
+
 ## Sign up new users via API
 
 If the user doesn't already have a TransferWise account then you can create one for them. The [sign up with registration code](#users-sign-up-with-registration-code) feature lets you create new users directly via an API call, without the need to redirect new users to the TransferWise authorization page. This way new users can complete everything without ever leaving your banking app, making a very streamlined flow.

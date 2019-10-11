@@ -73,6 +73,10 @@ If you are building your TransferWise integration as a native mobile phone app t
 
 *Please note that provided `[CODE]` expires within 30 minutes and is one time use only.*
 
+### Error handling
+
+When authorization request returns an error response, we display the message on our webpage. The user may also see a link back to your application, with `error` and `error_description` parameters in the url instead of `code`.
+
 ## Get user tokens
 You can now use authorization code returned to you as a query string parameter to obtain user access and refresh tokens. So that you can make calls on behalf of TransferWise user.
 
