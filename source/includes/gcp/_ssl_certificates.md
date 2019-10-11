@@ -166,3 +166,17 @@ Create a new ssl certificate
 | `description`<br/>*string* | A short description of this certificate. |
 | `name`<br/>*string* | The display name of the ssl certificate |
 | `privateKey`<br/>*string* | The privateKey associated to certificate in PEM format. |
+
+<!-------------------- DELETE A SSL CERTIFICATE -------------------->
+
+##### Delete a ssl certificate
+
+```shell
+curl -X DELETE \
+   -H "MC-Api-Key: your_api_key" \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/sslcertificates/2973924929495212345"
+```
+
+<code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/sslcertificates/:id</code>
+
+Delete an existing SSL certificate. SSL certificate can only be deleted if it is not used in any [target proxy](#gcp-target-proxies).
