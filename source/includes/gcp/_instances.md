@@ -1,4 +1,5 @@
 ### Instances
+
 Deploy and manage your instances.
 
 <!-------------------- LIST INSTANCES -------------------->
@@ -12,6 +13,7 @@ curl -X GET \
 
 # The above command returns JSON structured like this:
 ```
+
 ```json
 {
   "data": [
@@ -102,14 +104,15 @@ curl -X GET \
   }
 }
 ```
+
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances</code>
 
 Retrieve a list of all instances in a given [environment](#administration-environments)
 
 Attributes | &nbsp;
 ------- | -----------
-`status`<br/>*string* | The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, STOPPED, SUSPENDING, SUSPENDED, and TERMINATED.
-`zone`<br/>*string* | URL of the zone where the instance resides. 
+`status`<br/>*string* | The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, STOPPED, SUSPENDING, SUSPENDED, and TERMINATED
+`zone`<br/>*string* | URL of the zone where the instance resides
 `machineType`<br/>*string* | URL of the machine type resource used by this instance
 `cpuPlatform`<br/>*string* | The CPU platform used by this instance
 `creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format
@@ -151,6 +154,7 @@ curl -X GET \
 
 # The above command returns JSON structured like this:
 ```
+
 ```json
 {
   "data": {
@@ -236,14 +240,15 @@ curl -X GET \
   }
 }
 ```
+
 <code>GET /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instances/:id</code>
 
 Retrieve an instance in a given [environment](#administration-environments)
 
 Attributes | &nbsp;
 ------- | -----------
-`status`<br/>*string* | The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, STOPPED, SUSPENDING, SUSPENDED, and TERMINATED.
-`zone`<br/>*string* | URL of the zone where the instance resides. 
+`status`<br/>*string* | The status of the instance. One of the following values: PROVISIONING, STAGING, RUNNING, STOPPING, STOPPED, SUSPENDING, SUSPENDED, and TERMINATED
+`zone`<br/>*string* | URL of the zone where the instance resides
 `machineType`<br/>*string* | URL of the machine type resource used by this instance
 `cpuPlatform`<br/>*string* | The CPU platform used by this instance
 `creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format
@@ -287,6 +292,7 @@ curl -X POST \
 
 # Request example:
 ```
+
 ```json
 {
   "name": "my-instance",
@@ -339,6 +345,7 @@ Delete an existing instance
 <!-------------------- CHANGE MACHINE TYPE -------------------->
 
 #### Change machine type
+
 A machine type determines the number of vCPUs and the size of the memory allocated to new [instances](#gcp-instances).
 
 ```shell
@@ -350,6 +357,7 @@ curl -X POST \
 
 # Request example:
 ```
+
 ```json
 {
   "cpuCount": "2",
@@ -393,6 +401,7 @@ curl -X POST \
 
 # Request example:
 ```
+
 ```json
 {
   "id": "6564997542943928188",
@@ -423,6 +432,7 @@ curl -X POST \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/instances/6564997542943928188?operation=get_ssh"
 # Request example:
 ```
+
 ```json
 {
   "sshKeyId": "my-ssh-key"
@@ -450,6 +460,7 @@ curl -X POST \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/instances/6564997542943928188?operation=set_windows_password"
 # Request example:
 ```
+
 ```json
 {
 	"username": "my-user"
@@ -475,19 +486,24 @@ curl -X POST \
 
 # Request example:
 ```
+
 ```json
 {
     "shortGroups": ["my-group"]
 }
 ```
 
-Required | &nbsp;
------- | -----------
-`shortGroups`<br/>*array[string]* | Array of group names representing the current groups the instance belongs to. If a group, which the instance currently belongs to, is not kept in the list, the instance will be removed from the group. If the array is empty, the instance will be removed from all the groups it currently belongs to.
-
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/instancegroups/:id?operation=manage_group_membership</code>
 
 Manage an instance's membership to groups
+
+<aside class="notice">
+An instance can only belong to one load balanced instance group. But you can add an instance to multiple non-load balanced instance groups
+</aside>
+
+Required | &nbsp;
+------ | -----------
+`shortGroups`<br/>*array[string]* | Array of group names representing the current groups the instance belongs to. If a group, which the instance currently belongs to, is not kept in the list, the instance will be removed from the group. If the array is empty, the instance will be removed from all the groups it currently belongs to.
 
 <!-------------------- START AN INSTANCE -------------------->
 

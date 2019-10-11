@@ -1,5 +1,6 @@
 #### Forwarding rules
 
+A forwarding rule and its corresponding IP address represent the frontend configuration of a load balancer.
 <!-------------------- DELETE A FORWARDING RULE -------------------->
 
 #### Delete a forwarding rule
