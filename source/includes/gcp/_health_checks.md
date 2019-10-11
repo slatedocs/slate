@@ -76,6 +76,7 @@ curl -X GET \
 
 # The above command returns JSON structured like this:
 ```
+
 ```json
 {
   "data": {
@@ -125,6 +126,7 @@ Attributes | &nbsp;
 
 <!-------------------- CREATE A HEALTH CHECK -------------------->
 #### Create a health check
+
 ```shell
 curl -X POST \
   -H 'MC-Api-Key: your_api_key' \
@@ -132,6 +134,7 @@ curl -X POST \
   -d "request _body" \
   "https://cloudmc_endpoint/v1/services/gcp/test-area/healthchecks"
 ```
+
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/healthchecks</code>
 
 Create a new health check
@@ -142,10 +145,9 @@ Required | &nbsp;
 
 Optional | &nbsp;
 ------- | -----------
-`type`<br/>*string* | Specifies the type of the health check, either HTTP or HTTPS. If not specified, the default is HTTP. 
+`type`<br/>*string* | Specifies the type of the health check, either HTTP or HTTPS. If not specified, the default is HTTP.
 `portNumber`<br/>*string* | The port number for the health check. The default is 80 for HTTP, 443 for HTTPS.
 `description`<br/>*string* | Description of the health check
-
 
 <!-------------------- DELETE A HEALTH CHECK -------------------->
 
@@ -161,7 +163,6 @@ curl -X DELETE \
 
 Destroy an existing health check. A health check can only be deleted if it's not used by a [backend service](#gcp-backend-services).
 
-
 <!-------------------- EDIT A HEALTH CHECK -------------------->
 
 #### Edit a health check
@@ -171,6 +172,7 @@ curl -X PUT \
    -H "MC-Api-Key: your_api_key" \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/healthchecks/6938691570659391640"
 ```
+
 ```json
 {
   "portNumber": 80,
@@ -189,10 +191,5 @@ Required | &nbsp;
 
 Optional | &nbsp;
 ------- | -----------
-`type`<br/>*string* | Specifies the type of the health check, either HTTP or HTTPS. The type should be valided (If not specified, the default is HTTP). 
+`type`<br/>*string* | Specifies the type of the health check, either HTTP or HTTPS. The type should be valided (If not specified, the default is HTTP).
 `description`<br/>*string* | Description of the health check
-
-
-
-
-
