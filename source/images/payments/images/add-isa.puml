@@ -1,0 +1,10 @@
+@startuml
+Investor --> "Investment Manager": add ISA
+"Investment Manager" --> "Goji Platform": Load ISA declaration
+"Goji Platform" --> "Investment Manager": ISA declaration
+"Investment Manager" --> Investor: Display declaration
+Investor --> "Investment Manager": agree to declaration and send National Insurance Number
+"Investment Manager" --> "Goji Platform": Open ISA
+"Goji Platform" --> "Investment Manager": Success
+"Investment Manager" --> Investor: Success
+@enduml

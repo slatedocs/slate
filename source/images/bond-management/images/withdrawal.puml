@@ -1,0 +1,8 @@
+@startuml
+Investor --> "Investment Manager": Make withdrawal
+"Investment Manager" --> "Goji Platform": Make withdrawal
+"Goji Platform" --> "Goji Platform": Verify withdrawal request
+"Goji Platform" --> Bank: Process withdrawal transaction
+"Goji Platform" --> "Investment Manager": Success
+"Investment Manager" --> Investor: Success
+@enduml

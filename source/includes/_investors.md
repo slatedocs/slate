@@ -1,51 +1,203 @@
 # Investors
-The Investors API allows you to onboard, conduct KYC checks, open general/ISA accounts for your investors. You can also retrieve and update investor data.
+The Investors API allows you to onboard investors, run KYC/AML checks and open an ISA account.
 
-## Creating an investor
-To create an investor, the investor must first agree to the terms and conditions and optionally the ISA declaration if the investor is opening an ISA.
+## Introduction to the Investors API
 
-The terms and conditions can be hosted by Goji, in which case they can be retrieved by calling [GET https://api-sandbox.goji.investments/platformApi/terms](/#get-terms).
+When onboarding a new investor, they need to pass through the usual registration flow on your platform to capture name,
+address etc as well as complete any investor declarations that may be appropriate and sign Ts and Cs etc.
 
-The ISA Declaration can be retrieved by calling [GET https://api-sandbox.goji.investments/platformApi/isaDeclaration](/#get-isadeclaration)
+Once this is complete, the investor can be onboarded onto the Goji Platform. The investor's details are validated and subject to Goji's KYC checks.
+This is initially an automated process and only requires manual involvement if the automated checks are inconclusive or the investor is deemed high risk.
+If the KYC checks pass, a unique bank account number is created for the investor and a success message returned.
 
-> Create investor
+![](/images/investors/images/onboarding-investors-success.png "")
 
-```
-{
-    "title": "MS",
-    "firstName": "Jane",
-    "lastName": "Doe",
-    "accountTypes": [
-        "GOJI_INVESTMENT", "ISA"
-    ],
-    "address": {
-        "country": "GBR",
-        "lineOne": "1 The High Street",
-        "lineTwo": "",
-        "lineThree": "",
-        "postcode": "AA1 1AA",
-        "region": "County",
-        "townCity": "Town"
-    },
-    "contactDetails": {
-        "emailAddress": "me@email.com",
-        "telephoneNumber": "01234567890"
-    },
-    "dateOfBirth": "1970-01-01",
-    "entityType": "INDIVIDUAL",
-    "investorDeclarationType": "RESTRICTED",
-    "nationalInsuranceNumber": "JT123456D"
-}
-```
+If the KYC for a customer cannot be successfully completed immediately, a member of the Goji operations team will review
+the workflow case and perform whatever additional checks may be necessary.
 
-An investor is created by posting to [https://api-sandbox.goji.investments/platformApi/investors](/#post-investors) with example `POST` body:
+If further information is required from the customer, Goji will contact the customer directly via email (in your branding)
+or over the phone. A full audit of all emails are kept in the admin console.
 
-The Goji Platform will generate a `clientId` which should be persisted as this is used for subsequent calls.
+Once the customer has been approved , a unique account number is created for the investor and a success email is sent.
 
-## Checking the KYC details
-Once the investor has been created, a KYC check is done in the background and the status can be checked by calling [GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/kyc](/#get-investors-clientid-kyc)
+Until the customer has been approved, they cannot deposit funds and invest.
 
-In the sandbox environment, all investors are considered verified unless the `lastName` contains `referred`.
+![](/images/investors/images/onboarding-investors-refer.png "")
+
+## Opening an Innovative Finance ISA
+
+An Investor can open an ISA either as part of their initial registration, or as a second step later on.
+
+To open an ISA, the investor has to provide their National Insurance Number and agree to an ISA declaration.
+Once this is completed, Goji will validate the data and check that the investor is eligible for an ISA.
+If these checks are successful, the ISA is opened immediately and isavailable to deposit funds into.
+
+![](/images/investors/images/add-isa.png "")
+
+## Onboarding investors
+
+### Registration
+
+To register an investor, `POST /investors` is called.
+
+The investor must have previously agreed to the terms and conditions which can be accessed by calling `GET /platformApi/terms`.
+
+An ISA account can be opened at this stage by providing the National Insurance Number and ensuring they have agreed to the ISA declaration which can be accessed by calling `GET /platformApi/isaDeclaration`.
+
+Alternatively, the ISA account can be added later by calling `POST /investors/{clientId}/accounts/ISA`.
+
+### KYC process
+
+Once the investor has been registered, the KYC process will be initiated asynchronously.
+
+You can verify the KYC details by calling `GET /investors/{clientId}/kyc`. Alternatively, you can register a webhook and a call will be made to your system when the KYC status changes.
+
+When there are documents required, identity documents must be uploaded. Supported formats are pdf, png and jpeg. The documents are uploaded as `Base64` encoded strings (maximum size 10MB) using `POST /investors/{clientId}/kyc/documents`.
+
+The supported documents are:
+
+* Passport
+* Driving licence (front side only)
+* Bank statement less than three months old 
+* Utility bill less than three months old
+
+If the KYC documents are rejected (eg low quality, wrong address) then a webhook will be fired and a member of the Goji Platform Support team will contact you. The KYC status will remain as `ENHANCED_VERIFICATION_REQUIRED`.
+
+The customer is restricted from performing certain actions until they have completed the KYC process.
+
+These restricted actions include:
+
+* Accessing the bank transfer details for making deposits
+* Making investments
+
+#### KYC details
+
+An investor can be one of the following statuses:
+
+`AWAITING_CREDIT_AGENCY_CHECK` Investor is still being electronically verified.
+
+`ELECTRONICALLY_VERIFIED` The investor has been verified.
+
+`ENHANCED_VERIFICATION_REQUIRED` The investor is undergoing enhanced verification .
+
+`ENHANCED_VERIFIED` The investor has passed enhanced verification. All corporate and international investors are subject to enhanced verification.
+
+To simulate different KYC statuses in sandbox create an investor with last name that contains:
+ - By default all investors will get `ELECTRONICALLY_VERIFIED` status.
+ - `REFERRED` or `DECLINED` for `ENHANCED_VERIFICATION_REQUIRED` status
+ - `INPROGRESS` for `AWAITING_CREDIT_AGENCY_CHECK` status
+
+For `ENHANCED_VERIFIED` are required intervention from goji admin. After uploading the documents, goji admin will to approve the uploaded documents.
+
+A detailed target operating model will be shared with you as part of the operational onboarding.
+
+## ISA Transfers In
+
+Investors can request to transfer funds from other ISAs they hold with other providers to their Goji ISA.
+
+Investment Managers can embed a javascript widget into their web platform to guide investors through completing the form.
+Once the form is complete, they download and sign the form and return it to Goji. Goji liaises with the existing
+manager to arrange transfer of the funds.
+
+Once the funds are received, they are credited to the investor's accounts and can be invested as normal.
+
+![](/images/investors/images/isa-transfers.png "")
+
+The Goji Transfer In application exposes an ISA transfer in form intended for an investor to complete.
+
+It supports ISA transfers of the following types:
+
+- Cash
+- Stocks and Shares
+- Innovative Finance
+
+### Workflow
+
+1. The investor creates a transfer in request by using the widget that we provide. You should embed this in your site according to the instructions below.
+
+2. Once the form has been completed the investor will download and print the form (or optionally receive it in the mail) and return it to Goji via a PO Box.
+
+3. Goji will liaise with the existing ISA manager to arrange the transfer.
+
+4. Once the funds have been received they will be credited to the investor's ISA balance. An email is sent to the investor and a webhook fired.
+
+5. In the case where the received funds would exceed the current year's allowance, then the surplus will be credited to their standard account.
+
+### Embedding the Transfer In Widget
+
+The Goji Transfer In application is a JavaScript component which can be integrated in a number of ways.
+For each possible way of integrating with the application, you will need to first obtain a one time security token.
+
+#### Obtaining the _uiData_ and the security token
+
+To obtain the application's asset URLs one time security token, make an authenticated request to the following URL:
+
+   `/investors/{clientId}/accounts/ISA/transferIn/uiData`
+
+   The response will be structured like so:
+
+   _(Please note that you should never hard-code the URLs returned since they are subject to change)_
+
+               {
+                 "apiUrl": "https://api.gojip2p.net",
+                 "styleSrc": "https://goji-assets-domain/transfer-in/assets/goji-transfer-in-123456.css",
+                 "scriptSrc": "https://goji-assets-domain/transfer-in/assets/goji-transfer-in-123456.js",
+                 "investorId": "<investorId>",
+                 "token": "<oneTimeToken>"
+               }
+
+   With this data you are then able to bootstrap the application using any of the methods outlined below.
+
+  If your front-end application uses Ember, using as an Ember Addon makes sense. Alternatively, the suggested approach would be to
+  embed as a standalone JavaScript component on your existing pages - this enables full control over the application's styling.
+
+#### Application Arguments
+
+Four arguments are required for the application to function fully, these are described below:
+
+- `apiUrl`: [Specified in the _uiData_ response] The API URL the front-end application should use when interacting with the Goji service
+- `investorId`: [Specified in the _uiData_ response] The ID of the active investor
+- `token`: [Specified in the _uiData_ response] The security token used to authenticate the active investor's requests
+- `accountUrl`: The URL used when an investor chooses to return to their account page having successfully completed a transfer in request
+
+#### Using as a Standalone JavaScript Component
+
+To include the application in your existing page as a JavaScript component, you will need to do the following:
+
+1). In the body of your HTML include the following:
+
+    `<div id="goji-application">`
+      `<div data-component="goji-transfer-in"`
+                             `data-attrs='{ "apiUrl": "<uiData.apiUrl>", "accountUrl": "<platform-manage-account-url>",`
+                                           `"investorId": "<uiData.investorId>", "token": "<uiData.token>" }'>`
+      `</div>`
+    `</div>`
+
+2). Extract the JavaScript asset's URL from the request above and include it in your page.
+
+   _Please note: The inclusion of the script import must be made after inclusion of the HTML in the previous step._
+
+   e.g `<script src="{{uiData.scriptSrc}}"></script>`
+
+   Optionally do the same for the CSS file if you wish to have a basic layout.
+
+   e.g `<link rel="stylesheet" href="{{uiData.styleSrc}}">`
+
+3). The component will then render when the document's body has fully loaded.
+
+## Migrating Investors
+If you are upgrading from using the Goji ISA Administration API to the Goji Platform API, then you need to
+migrate existing investors.
+
+This can be performed by onboarding an investor in the usual way and specifying the `migrationDetails`.
+
+If `migrationDetails` is specified, then the system looks for an investor with the `existingClientId` and upgrades the investor. This involves:
+
+* Generating a new client ID
+* Performing a KYC check
+* Generating an account number for depositing funds
+
+Any existing ISA data is preserved.
 
 ## GET /terms
 
@@ -195,13 +347,13 @@ Creates an investor and triggers a KYC check.
 | lastName                            | string | The last name of the investor.                                                                                                                                                                     | required |
 | dateOfBirth                         | string | The date of birth of the investor.                                                                                                                                                                 | required |
 | address                             | ref    |                                                                                                                                                                                                    | required |
-| address.lineOne                     | string | Line one of the address.                                                                                                                                                                           ||
+| address.lineOne                     | string | Line one of the address.                                                                                                                                                                           | required |
 | address.lineTwo                     | string | Line two of the address.                                                                                                                                                                           ||
 | address.lineThree                   | string | Line three of the address.                                                                                                                                                                         ||
-| address.townCity                    | string | The town/city of the address.                                                                                                                                                                      ||
-| address.region                      | string | The region of the address eg county.                                                                                                                                                               ||
-| address.postcode                    | string | The post code of the address.                                                                                                                                                                      ||
-| address.country                     | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked. ||
+| address.townCity                    | string | The town/city of the address.                                                                                                                                                                      | required |
+| address.region                      | string | The region of the address eg county.                                                                                                                                                               | required |
+| address.postcode                    | string | The post code of the address.                                                                                                                                                                      | required |
+| address.country                     | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked. | required |
 | contactDetails                      | ref    |                                                                                                                                                                                                    | required |
 | contactDetails.telephoneNumber      | string | The telephone number.                                                                                                                                                                              ||
 | contactDetails.emailAddress         | string | The email address.                                                                                                                                                                                 ||
@@ -489,7 +641,7 @@ Retrieves an investor's KYC status.
 ### Response
 | Name   | Type   | Description                    |
 | ------ | ------ | ------------------------------ |
-| status | string | The KYC status of the investor |
+| status | string | The KYC status of the investor. |
 ## GET /investors/{clientId}/kyb
 
 ```http
@@ -513,7 +665,7 @@ Retrieves an investor's KYB status - this is only applicable for corporates.
 ### Response
 | Name   | Type   | Description                            |
 | ------ | ------ | -------------------------------------- |
-| status | string | The KYB status of a corporate investor |
+| status | string | The KYB status of a corporate investor.|
 ## POST /investors/{clientId}/kyc/documents
 
 ```http

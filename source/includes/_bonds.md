@@ -1,5 +1,59 @@
 # Bond management
 
+The Goji Platform supports issuing bonds both via the API and whitelabel web platform.
+
+Goji accumulates invested funds and send them to you in accordance with the frequency of the product. For example, if the bonds are issued monthly, the funds will be sent on a monthly basis.
+
+The process flow is as follows:
+
+1. Investors deposit funds
+2. Investors make investments throughout month
+3. On frequency configured against the bond product, invested funds are scooped up and sent to you. Bond certificates are issued to investors.
+4. Goji calculates accrued interest on bonds.
+5. On repayment events, Goji emails you to indicate the amount of interest/capital that must be repaid and the account this should be sent to.
+6. You repay funds to a Goji account
+7. Goji distributes funds to investor's Goji accounts.
+
+The current funds that are due to be sent can be retrieved by calling `GET /bondManagement/current`.
+
+When a repayment event (either capital or interest or both), an email will be sent to a preconfigured address. When these funds are sent to the specified Goji account, they will be automatically distributed to the investor's Goji account and an email sent to them.
+
+## Making an investment
+
+Once an investor has a positive account balance, they can invest in one of the available products.
+The Goji Platform returns a list of available products.
+
+Once an order is executed this is stored against the investor's
+account.
+
+Orders are settled per the configuration of the product at which point the invested funds are sent to the
+Investment Manager for deployment and a bond certificate is issued to the investor.
+
+![](/images/bond-management/images/make-investment.png "")
+
+## Bond repayments
+
+Depending on the configuration of the product, repayments may be made during the lifetime of the
+bond eg quarterly interest repayments.
+
+The Goji Platform calculates the funds that will be required for each repayment and will email the Investment Manager
+to request payment to a specified account and reference. These details are also available via the API.
+
+Once this payment is received, the funds are allocated to the investors' accounts and they are emailed to inform them
+that their account has been credited.
+
+![](/images/bond-management/images/bond-repayment.png "")
+
+## Bond maturity
+
+The Goji Platform calculates the funds that will be required at maturity of the bond and will email the Investment Manager
+to request payment to a specified account and reference. These details are also available via the API.
+
+Once this payment is received, the funds are allocated to the investors' accounts and they are emailed to inform them
+that their account has been credited.
+
+![](/images/bond-management/images/bond-maturity.png "")
+
 ## GET /bondManagement/current
 
 ```http

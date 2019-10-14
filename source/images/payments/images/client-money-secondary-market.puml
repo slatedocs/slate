@@ -1,0 +1,7 @@
+@startuml
+"Investment Manager" --> "Goji Platform": Record secondary market sale
+"Goji Platform" --> "Goji Platform": Validate sale
+"Goji Platform" --> "Goji Platform": Update investor records
+"Goji Platform" --> Bank: Transfer funds from buyer to seller
+"Goji Platform" --> "Investment Manager": Success
+@enduml

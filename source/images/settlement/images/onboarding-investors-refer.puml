@@ -1,0 +1,11 @@
+@startuml
+Investor --> "Investment Manager" : Registration flow
+"Investment Manager" --> "Goji Platform": Register investor
+"Goji Platform" --> "Goji Platform": KYC investor - refer for further checks
+"Goji Platform" --> "Investment Manager": KYC referred
+"Investment Manager" --> Investor : KYC referred
+"Goji Platform" --> "Goji Platform": Perform additional KYC checks
+"Goji Platform" --> "Banking platform": Create unique account number
+"Goji Platform" --> "Investment Manager": Webhook: Investor approved
+"Goji Platform" --> "Investor": Success email
+@enduml

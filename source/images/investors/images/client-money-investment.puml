@@ -1,0 +1,7 @@
+@startuml
+"Investment Manager" --> "Goji Platform": record investments
+"Goji Platform" --> "Goji Platform": update investor records
+"Goji Platform" --> "Bank": send funds to investment manager
+"Bank" --> "Investment Manager": send funds
+"Goji Platform" --> "Investment Manager": success
+@enduml

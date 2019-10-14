@@ -1,0 +1,11 @@
+@startuml
+Investor --> "Investment Manager": Request bank details
+"Investment Manager" --> "Goji Platform": Load bank details
+"Goji Platform" --> "Investment Manager": Bank details
+"Investment Manager" --> Investor: Bank details
+"Investor" --> "Bank": Bank transfer
+"Bank" --> "Goji Platform": Incoming payment
+"Goji Platform" --> "Goji Platform": Credit investor's account
+"Goji Platform" --> "Investment Manager": Webhook: deposit received
+"Goji Platform" --> Investor: Email: deposit received
+@enduml

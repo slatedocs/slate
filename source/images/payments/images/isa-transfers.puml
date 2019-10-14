@@ -1,0 +1,13 @@
+@startuml
+Investor --> "Investment Manager": Transfer ISA
+"Investment Manager" --> Investor: Display Transfer In widget
+Investor --> "Investment Manager": Complete form in widget
+Investor --> "Goji Platform": Post downloaded form
+"Goji Platform" --> "Old ISA Manager": Request transfer
+"Old ISA Manager" --> "Goji Platform": Details of ISA being transferred
+"Old ISA Manager" --> Bank: Transfer funds
+Bank --> "Goji Platform": Funds arrived
+"Goji Platform" --> "Goji Platform": Credit investor's ISA
+"Goji Platform" --> "Investment Manager": Webhook: Transfer in complete
+"Goji Platform" --> Investor: Email: Transfer in complete
+@enduml

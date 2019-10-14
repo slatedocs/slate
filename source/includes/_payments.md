@@ -1,5 +1,43 @@
 # Payments
 
+## Depositing funds
+
+Once an investor has completed the KYC checks and has optionally opened an ISA, they can deposit funds.
+The Goji Platform creates a unique account number investor and they can distinguish between their general investment and
+ISA account with the reference number.
+
+Deposits sent via Faster Payments will be credited to their account within 90 seconds of the payment reaching our banking partner.
+
+![](/images/payments/images/deposit-funds.png "")
+
+## Withdrawals
+
+An investor can withdraw cash to their personal account.
+Withdrawal requests are typically processed immediately and funds should clear straight away.
+
+The Goji Platform performs a series of checks to guard against potential money laundering   . On occasion a
+withdrawal may be delayed until manual approval is given to process the transaction.
+
+![](/images/payments/images/withdrawal.png "")
+
+### Testing withdrawals
+
+When testing withdrawals in the sandbox environment please make sure you use valid sort codes &
+account numbers as these are validated to ensure they accept faster payments prior to being sent.
+
+Below are some valid sample details you can use:
+
+
+|Sort Code |   Account Number|
+|-|-|
+|203002  |  00004588|
+|203002  |  00027944|
+|204514  |  58110244|
+|204514  |  60282377|
+|166051  |  99993193|
+|166051  |  87889196|
+
+
 ## GET /investors/{clientId}/bankTransferDetails
 
 ```http

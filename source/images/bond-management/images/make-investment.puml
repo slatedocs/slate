@@ -1,0 +1,20 @@
+@startuml
+Investor --> "Investment Manager": List available investments
+"Investment Manager" --> "Goji Platform": List available investments
+"Goji Platform" --> "Investment Manager": Available Investments
+"Investment Manager" --> Investor: Available Investments
+"Investor" --> "Investment Manager": Investment order
+"Investment Manager" --> "Goji Platform": Investment order
+"Goji Platform" --> "Investment Manager": Order confirmation
+"Investment Manager" --> Investor: Order confirmation
+"Goji Platform" --> "Investment Manager": Webhook: Order confirmation
+"Goji Platform" --> Investor: Email: Order confirmation
+
+== Settlement ==
+"Goji Platform" --> "Goji Platform": Collect investments for bond
+"Goji Platform" --> Bank: Send invested funds to Investment Manager
+"Goji Platform" --> "Goji Platform": Mark orders as settled
+"Goji Platform" --> Investor: Email: Bond certificate
+"Goji Platform" --> "Investment Manager": Webhook: order settled
+
+@enduml

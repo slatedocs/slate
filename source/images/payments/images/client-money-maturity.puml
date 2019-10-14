@@ -1,0 +1,8 @@
+@startuml
+"Investment Manager" --> Bank: Send funds
+Bank --> "Goji Platform": Funds arrived
+"Investment Manager" --> "Goji Platform": Record bond maturity
+"Goji Platform" --> "Investment Manager": Success
+"Goji Platform" --> "Goji Platform": Update investor records and mark bond as matured
+"Goji Platform" --> "Investment Manager": Tax & Fees returned to payment destination
+@enduml

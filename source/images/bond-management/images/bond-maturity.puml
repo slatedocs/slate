@@ -1,0 +1,8 @@
+@startuml
+"Goji Platform" --> "Goji Platform": Calculate amount to be repaid
+"Goji Platform" --> "Investment Manager" : Email: Amount to be repaid
+"Investment Manager" --> Bank: Bank transfer
+Bank --> "Goji Platform": Payment received
+"Goji Platform" --> "Goji Platform": Credit investor accounts
+"Goji Platform" --> Investor: Email: bond has matured
+@enduml
