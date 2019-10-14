@@ -9,6 +9,7 @@
   "person_ids":[38706,89734],
   "organization_ids":[64779194],
   "opportunity_ids":[117],
+  "parent_id": null,
   "content":"Had a lunch meeting with Jane and John today. They are looking to invest.",
   "created_at":"2017-03-28 00:38:41 -0700"
 }
@@ -30,6 +31,7 @@ creator_id | integer | The unique identifier of the person object who created th
 person_ids | integer[] | An array of unique identifiers of person objects that are associated with the note.
 organization_ids | integer[] | An array of unique identifiers of organization objects that are associated with the note.
 opportunity_ids | integer[] | An array of unique identifiers of opportunity objects that are associated with the note.
+parent_id | integer | The unique identifier of the note that this note is a reply to. If this field is `null`, the note is not a reply. Note replies will never have values for `opportunity_ids`, `person_ids`, and `organization_ids`. Only the parent note is associated with an entity. You can fetch the parent note resource to identify the root entity.
 content | string | The string containing the content of the note.
 created_at | datetime | The string representing the time when the note was created.
 
@@ -50,6 +52,7 @@ curl "https://api.affinity.co/notes" -u :<API-KEY>
     "person_ids":[38706,89734],
     "organization_ids":[64779194],
     "opportunity_ids":[117],
+    "parent_id": null,
     "content":"Had a lunch meeting with Jane ... ",
     "created_at":"2017-03-28 00:38:41 -0700"
   },
@@ -59,6 +62,7 @@ curl "https://api.affinity.co/notes" -u :<API-KEY>
     "person_ids":[],
     "organization_ids":[64779194],
     "opportunity_ids":[115],
+    "parent_id": null,
     "content":"Had a lunch meeting @ Google ... ",
     "created_at":"2018-03-28 00:38:41 -0700"
   },
@@ -100,6 +104,7 @@ curl "https://api.affinity.co/notes/22984" -u :<API-KEY>
   "person_ids":[38706,89734],
   "organization_ids":[64779194],
   "opportunity_ids":[117],
+  "parent_id": null,
   "content":"Had a lunch meeting with Jane ... ",
   "created_at":"2017-03-28 00:38:41 -0700"
 },
@@ -143,6 +148,7 @@ curl "https://api.affinity.co/notes" \
   "person_ids":[38706,89734],
   "organization_ids":[64779194],
   "opportunity_ids":[117],
+  "parent_id": null,
   "content":"Had a lunch meeting with Jane ... ",
   "created_at":"2017-03-28 00:38:41 -0700"
 }
