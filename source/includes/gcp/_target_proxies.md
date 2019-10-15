@@ -42,12 +42,12 @@ Retrieve a list of all target proxies in an [environment](#administration-enviro
 | -------------------------------- | ------ |
 | `creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format. |
 | `id`<br/>*UUID*                  | The id of the backend service. |
-| `kind`<br/>*string*              | Type of the resource. Either compute#targetHttpProxy, compute#targetHttpsProxy, compute#targetSslProxy or compute#TargetTcpProxy for target proxies. |
+| `kind`<br/>*string*              | Type of the resource. Either compute#targetHttpProxy or compute#targetHttpsProxy for target proxies. |
 | `name`<br/>*string*              | Name of the resource. |
 | `selfLink`<br/>*string*          | Server-defined URL for the resource. |
-| `shortUrlMap`<br/>*string*       | A short version of the URL map. |
-| `shortCertificates`<br/>*string* | A short version of the SSL certificates. |
-| `type`<br/>*enum*                | A short version of the kind of resource. Either HTTP, HTTPS, SSL or TCP. |
+| `shortUrlMap`<br/>*string*       | A short version of the URL map name. |
+| `shortCertificates`<br/>*string* | A short version of the SSL certificate name. |
+| `type`<br/>*enum*                | A short version of the kind of resource. Either HTTP or HTTPS. |
 | `urlMap`<br/>*string*            | URL to the UrlMap resource that defines the mapping from URL to the BackendService. |
 
 <!-------------------- RETRIEVE A TARGET PROXY -------------------->
@@ -92,9 +92,9 @@ Retrieve a target proxy in an [environment](#administration-environments).
 | `kind`<br/>*string*              | Type of the resource. Either compute#targetHttpProxy, compute#targetHttpsProxy, compute#targetSslProxy or compute#TargetTcpProxy for target proxies. |
 | `name`<br/>*string*              | Name of the resource. |
 | `selfLink`<br/>*string*          | Server-defined URL for the resource. |
-| `shortUrlMap`<br/>*string*       | A short version of the URL map. |
-| `shortCertificates`<br/>*string* | A short version of the SSL certificates. |
-| `type`<br/>*enum*                | A short version of the kind of resource. Either HTTP, HTTPS, SSL or TCP. |
+| `shortUrlMap`<br/>*string*       | A short version of the URL map name. |
+| `shortCertificates`<br/>*string* | A short version of the SSL certificate name. |
+| `type`<br/>*enum*                | A short version of the kind of resource. Either HTTP or HTTPS. |
 | `urlMap`<br/>*string*            | URL to the UrlMap resource that defines the mapping from URL to the BackendService. |
 
 <!-------------------- CREATE A TARGET PROXY -------------------->
@@ -129,21 +129,13 @@ curl -X POST \
 
 Create a new target proxy
 
-| Attributes | &nbsp;|
-| --- | --- |
+| Required                         | &nbsp; |
+| -------------------------------- | ------ |
 | `name`<br/>*string*              | Name of the resource. |
-| `shortBackend`<br/>*string*      | A short version of the backend service. |
-| `shortCertificates`<br/>*string* | A short version of the SSL certificates. |
-| `shortUrlMap`<br/>*string*       | A short version of the URL map. |
-| `type`<br/>*enum*                | A short version of the kind of resource. Either HTTP, HTTPS, SSL or TCP. |
-
-<aside class="notice">
-A SSL certificate is required when creating an HTTPS target proxy.
-</aside>
-
-<aside class="notice">
-A backend service or URL map is required, but not both. A URL map will be created when passing a backend service.
-</aside>
+| `type`<br/>*enum*                | A short version of the kind of resource. |
+| `shortBackend`<br/>*string*      | A short version of the backend service name. The `shortBackend` and `shortUrlMap` attributes are mutually exclusive. |
+| `shortCertificates`<br/>*string* | A short version of the SSL certificate name. Specifying an SSL certificate is only required when creating an HTTPS target proxy.|
+| `shortUrlMap`<br/>*string*       | A short version of the URL map name. The `shortBackend` and `shortUrlMap` attributes are mutually exclusive. |
 
 <!-------------------- DELETE A TARGET PROXY -------------------->
 
