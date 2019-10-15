@@ -9,7 +9,7 @@ Target proxies route incoming request to either a URL map (HTTP(S) load balancin
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/targetproxies"
+   "https://cloudmc_endpoint/v1/services/gcp/test-area-oox/targetproxies"
 
 # Example:
 ```
@@ -22,8 +22,8 @@ curl -X GET \
        "id": "2137054791002409126",
        "kind": "compute#targetHttpProxy",
        "name": "targetProxyName",
-       "selfLink": "https://www.googleapis.com/compute/v1/projects/testAreaName/global/targetHttpProxies/targetProxyName",
-       "urlMap": "https://www.googleapis.com/compute/v1/projects/testAreaName/global/urlMaps/urlMapName",
+       "selfLink": "https://www.googleapis.com/compute/v1/projects/test-area-oox/global/targetHttpProxies/targetProxyName",
+       "urlMap": "https://www.googleapis.com/compute/v1/projects/test-area-oox/global/urlMaps/urlMapName",
        "type": "HTTP",
        "shortUrlMap": "urlMapName"
     }
@@ -57,7 +57,7 @@ Retrieve a list of all target proxies in an [environment](#administration-enviro
 ```shell
 curl -X GET \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/targetproxies/2137054791002409126"
+   "https://cloudmc_endpoint/v1/services/gcp/test-area-oox/targetproxies/2137054791002409126"
 
 # Example:
 ```
@@ -69,12 +69,12 @@ curl -X GET \
          "id": "2137054791002409126",
          "kind": "compute#targetHttpsProxy",
          "name": "targetProxyName",
-         "selfLink": "https://www.googleapis.com/compute/v1/projects/testAreaName/global/targetHttpsProxies/targetProxyName",
+         "selfLink": "https://www.googleapis.com/compute/v1/projects/test-area-oox/global/targetHttpsProxies/targetProxyName",
          "sslCertificates": [
-           "https://www.googleapis.com/compute/v1/projects/testAreaName/global/sslCertificates/sslCertificateName1"
+           "https://www.googleapis.com/compute/v1/projects/test-area-oox/global/sslCertificates/sslCertificateName1"
          ],
          "type": "HTTPS",
-         "urlMap": "https://www.googleapis.com/compute/v1/projects/testAreaName/global/urlMaps/urlMapName",
+         "urlMap": "https://www.googleapis.com/compute/v1/projects/test-area-oox/global/urlMaps/urlMapName",
          "shortUrlMap": "urlMapName",
          "shortCertificates": "sslCertificateName"
     }
@@ -102,7 +102,7 @@ Retrieve a target proxy in an [environment](#administration-environments).
 ```shell
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/targetProxies"
+   "https://cloudmc_endpoint/v1/services/gcp/test-area-oox/targetProxies"
 
 # Examples:
 ```
@@ -152,7 +152,7 @@ A backend service or URL map is required, but not both. A URL map will be create
 ```shell
 curl -X DELETE \
    -H "MC-Api-Key: your_api_key" \
-   "https://cloudmc_endpoint/v1/services/gcp/test-area/targetproxies/2137054791002409126"
+   "https://cloudmc_endpoint/v1/services/gcp/test-area-oox/targetproxies/2137054791002409126"
 ```
 
 <code>DELETE /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/targetproxies/:id</code>
