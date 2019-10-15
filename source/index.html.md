@@ -14,9 +14,9 @@ Welcome to the FalconX API documentation. The APIs provide developers programmat
 RFQ process involves the client sending details about the token pair they want to trade along with the quantity. FalconX RFQ API returns the price at which client can buy or sell the requested quantity in the requested token pair. The quote is valid only for a short period of time. If the client accepts the quote before it expires and FalconX sends a confirmation then the trade is considered closed.
 
 # Trading Fees
-FalconX has the following fee tiers based on 30 day trading volume.
+Your taker fees are based upon total USD trading volume over the trailing 30-day period across all order books with FalconX. Fees are divided into the following tiers.
 
-| 30 Day Trading Volume | Fee Tier |
+| 30 Day Trailing Trade Volume | Fee Tier |
 | ----------- | ------ |
 | $0 - $5M         | 0.15%|
 | $5M - $10M         | 0.12%|
