@@ -71,7 +71,7 @@ curl -X GET \
          "name": "targetProxyName",
          "selfLink": "https://www.googleapis.com/compute/v1/projects/test-area-oox/global/targetHttpsProxies/targetProxyName",
          "sslCertificates": [
-           "https://www.googleapis.com/compute/v1/projects/test-area-oox/global/sslCertificates/sslCertificateName1"
+           "https://www.googleapis.com/compute/v1/projects/test-area-oox/global/sslCertificates/sslCertificateName"
          ],
          "type": "HTTPS",
          "urlMap": "https://www.googleapis.com/compute/v1/projects/test-area-oox/global/urlMaps/urlMapName",
@@ -89,7 +89,7 @@ Retrieve a target proxy in an [environment](#administration-environments).
 | -------------------------------- | ------ |
 | `creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format. |
 | `id`<br/>*UUID*                  | The id of the backend service. |
-| `kind`<br/>*string*              | Type of the resource. Either compute#targetHttpProxy, compute#targetHttpsProxy, compute#targetSslProxy or compute#TargetTcpProxy for target proxies. |
+| `kind`<br/>*string*              | Type of the resource. Either compute#targetHttpProxy or compute#targetHttpsProxy for target proxies. |
 | `name`<br/>*string*              | Name of the resource. |
 | `selfLink`<br/>*string*          | Server-defined URL for the resource. |
 | `shortUrlMap`<br/>*string*       | A short version of the URL map name. |
