@@ -200,22 +200,20 @@ In order to complete the email integration you will need to:
 In order to permission our email provider (Mandrill) to send emails using your domain you will be required to make the following DNS changes:
 
 ###DKIM
-```
-v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCrLHiExVd55zd/IQ/J/mRwSRMAocV/hMB3jXwaHH36d9NaVynQFYV8NaWi69c1veUtRzGt7yAioXqLj7Z4TeEUoOLgrKsn8YnckGs9i3B3tVFB+Ch/4mPhXWiNfNdynHWBcPcbJ8kjEQ2U8y78dHZj1YeRXXVvWob2OaKynO8/lQIDAQAB;
-```
 
-```
-v=DKIM1\; k=rsa\; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCrLHiExVd55zd/IQ/J/mRwSRMAocV/hMB3jXwaHH36d9NaVynQFYV8NaWi69c1veUtRzGt7yAioXqLj7Z4TeEUoOLgrKsn8YnckGs9i3B3tVFB+Ch/4mPhXWiNfNdynHWBcPcbJ8kjEQ2U8y78dHZj1YeRXXVvWob2OaKynO8/lQIDAQAB\;
-```
+`v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCrLHiExVd55zd/IQ/J/mRwSRMAocV/hMB3jXwaHH36d9NaVynQFYV8NaWi69c1veUtRzGt7yAioXqLj7Z4TeEUoOLgrKsn8YnckGs9i3B3tVFB+Ch/4mPhXWiNfNdynHWBcPcbJ8kjEQ2U8y78dHZj1YeRXXVvWob2OaKynO8/lQIDAQAB;
+
+`v=DKIM1\; k=rsa\; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCrLHiExVd55zd/IQ/J/mRwSRMAocV/hMB3jXwaHH36d9NaVynQFYV8NaWi69c1veUtRzGt7yAioXqLj7Z4TeEUoOLgrKsn8YnckGs9i3B3tVFB+Ch/4mPhXWiNfNdynHWBcPcbJ8kjEQ2U8y78dHZj1YeRXXVvWob2OaKynO8/lQIDAQAB\;`
+
 DKIM is a DNS-based email authentication mechanism that helps Mandrill more effectively send mail on your behalf by allowing receivers to verify that we have permission to send your email. To enable DKIM, create a TXT record for mandrill._domainkey.yourdomain.com (just replace yourdomain.com with the domain you're setting up) with the following value.
 
 Some DNS providers require that semicolons be escaped. If your provider requires escaping, use this value instead.
 
 
 ###SPF
-```
-v=spf1 include:spf.mandrillapp.com ?all
-```
+
+`v=spf1 include:spf.mandrillapp.com ?all`
+
 SPF is another DNS-based email authentication mechanism. If you don't yet have an SPF record, you'll want to add one for your domain. At a minimum, the value should be the following if you're only sending mail through Mandrill for that domain.
 
 If you already have a TXT record with SPF information, you'll need to add Mandrill's servers to that record by adding include:spf.mandrillapp.com in the record (before the last operator, which is usually ?all, ~all, or -all).

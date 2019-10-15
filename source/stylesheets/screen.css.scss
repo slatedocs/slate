@@ -510,6 +510,9 @@ html, body {
 // This is all the stuff that appears in the right half of the page
 
 .content {
+  a {
+    color: $nav-text;
+  }
   pre, blockquote {
     background-color: $code-bg;
     color: #fff;
