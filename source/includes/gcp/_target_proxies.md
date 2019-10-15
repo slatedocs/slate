@@ -100,29 +100,19 @@ Retrieve a target proxy in an [environment](#administration-environments).
 <!-------------------- CREATE A TARGET PROXY -------------------->
 
 ```shell
+# Example request: Specifying an existing URL map
 curl -X POST \
    -H "MC-Api-Key: your_api_key" \
+   -d '{ "name": "targetProxyName", "type": "HTTPS", "shortUrlMap": "urlMapName", "shortCertificates": "sslCertificateName" }' \
    "https://cloudmc_endpoint/v1/services/gcp/test-area/targetProxies"
-
-# Examples:
 ```
 
-```json
-{
-   "name": "targetProxyName",
-   "type": "HTTPS",
-   "shortUrlMap": "urlMapName",
-   "shortCertificates": "sslCertificateName"
-}
-```
-
-```json
-{
-   "name": "targetProxyName",
-   "type": "HTTPS",
-   "shortBackend": "backendServicesName",
-   "shortCertificates": "sslCertificateName"
-}
+```shell
+# Example request: Specifying a backend service. A default URL map will be created automatically.
+curl -X POST \
+   -H "MC-Api-Key: your_api_key" \
+   -d '{ "name": "targetProxyName", "type": "HTTPS", "shortBackend": "backendServicesName", "shortCertificates": "sslCertificateName" }' \
+   "https://cloudmc_endpoint/v1/services/gcp/test-area/targetProxies"
 ```
 
 <code>POST /services/<a href="#administration-service-connections">:service_code</a>/<a href="#administration-environments">:environment_name</a>/targetProxies</code>
