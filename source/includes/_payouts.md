@@ -845,7 +845,7 @@ balances[n].bankDetails              | Your borderless account bank details     
 > Example Request:
 
 ```shell
-curl -X GET https://api.sandbox.transferwise.tech/v1/borderless-accounts/{borderlessAccountId}/statement.json?
+curl -X GET https://api.sandbox.transferwise.tech/v3/profiles/{profileId}/borderless-accounts/{borderlessAccountId}/statement.json?
 currency=EUR&intervalStart=2018-03-01T00:00:00.000Z&intervalEnd=2018-03-15T23:59:59.999Z \
      -H "Authorization: Bearer <your api token>" 
 ```
@@ -997,7 +997,7 @@ The period between intervalStart and intervalEnd cannot exceed 469 days (around 
 
 ### Request
 
-**`GET https://api.sandbox.transferwise.tech/v1/borderless-accounts/{borderlessAccountId}/statement.json?`**
+**`GET https://api.sandbox.transferwise.tech/v3/profiles/{profileId}/borderless-accounts/{borderlessAccountId}/statement.json?`**
 
 **`currency=EUR&intervalStart=2018-03-01T00:00:00.000Z&intervalEnd=2018-03-15T23:59:59.999Z`**
 
