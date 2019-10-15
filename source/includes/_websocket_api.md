@@ -179,13 +179,51 @@ ws.send(json.dumps({
 
 ```
 
+# Detecting Connection Drops
+Some client libraries might not detect connection drops properly. We provide two methods for the clients to ensure they are connected and getting subscribed data.
+
+## Heartbeat (Recommended)
+The client can enable heartbeat on the socket. If heartbeat is enabled, the server is expected to periodically send a heartbeat message to the client. Right now, the heartbeat time is set to 30 seconds. 
+
+### How to Implement on client side
+
+- Enable heartbeat (check sample code) after each successful socket connection
+- Set a timer with duration of 35 seconds (We take 5 seconds buffer for heartbeat to arrive).
+- When you receive a new heartbeat message, you reset the timer
+- If the timer is called, that means the client didn't receive any heartbeat in last 35 seconds. In this case, the client should exit the existing connection and try to reconnect. 
+
+```
+// Enable Heartbeat on successful connection
+ws.send({
+    "type": "enable_heartbeat"
+})
+
+// Disable Heartbeat
+ws.send({
+    "type": "disable_heartbeat"
+})
+
+// Sample Heartbeat message received periodically by client
+{
+    "type": "heartbeat"
+}
+```
 
 
-## Heartbeats
+## Ping/Pong
+The client can periodically (~ every 30 seconds) send a ping frame or a raw ping message and the server will respond back with a pong frame or a raw pong response. If the client doesn't receive a pong response in next 5 seconds, the client should exit the existing connection and try to reconnect. 
 
-Delta websocket server sends ping frame every 30 secs, to which it expects a pong frame.
-In case no pong frame is returned, the client will be disconnected in 1 minute.
+```
+// Ping Request
+ws.send({
+    "type": "ping"
+})
 
+// Pong Response
+ws.send({
+    "type": "pong"
+})
+```
 
 # Public Channels
 
