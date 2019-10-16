@@ -48,7 +48,8 @@ html, body {
 }
 
 .toc-wrapper {
-  transition: left 0.3s ease-in-out;
+  transition: left 0.2s ease-in-out;
+  border-right: 1px solid #E8ECEE;
 
   overflow-y: auto;
   overflow-x: hidden;
@@ -59,7 +60,6 @@ html, body {
   bottom: 0;
   width: $nav-width;
   background-color: $nav-bg;
-  border-right: 1px solid #ccc;
 
   @include text-all($text-body);
 
@@ -74,7 +74,7 @@ html, body {
 
   // This is the logo at the top of the ToC
   .logo {
-    padding: 16px;
+    padding: 20px 15px 15px 15px;
     display: block;
     max-width: 100%;
     box-sizing: border-box;
@@ -82,12 +82,13 @@ html, body {
   }
 
   &>.search {
+    padding: 0 15px;
     position: relative;
 
     input {
       background: $nav-bg;
       margin: $nav-v-padding $nav-padding;
-      width: $nav-width - ($nav-padding*2);
+      width: 100%;
       outline: none;
       color: $nav-text;
 
@@ -100,7 +101,7 @@ html, body {
       font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
       font-size: 13px;
       line-height: 20px;
-      border: 1px solid $gray-2;
+      border: 1px solid #cbd4db;
       -moz-box-sizing: border-box;
       box-sizing: border-box;
 
@@ -108,8 +109,8 @@ html, body {
 
       &:not(:focus) {
         &:not(.visible) {
-          background-color: #edf1f2;
-          border-color: #edf1f2;
+          background-color: $nav-bg;
+          border-color: #cbd4db;
         }
       }
     }
@@ -118,8 +119,9 @@ html, body {
       position: absolute;
       z-index: 1;
       top: 8px;
-      left: $nav-padding + 10px;
-      color: $gray-7;
+      left: 25px;
+      color: #6f7782;
+      fill: #6f7782;
       @extend %icon-search;
     }
   }
@@ -133,7 +135,7 @@ html, body {
     transition-duration: 180ms;
     transition-timing-function: ease-in-out;
     background: $nav-subitem-bg;
-    margin: -10px $nav-padding 1em $nav-padding;
+    margin: -10px 15px 1em 15px;
 
     &.visible {
       height: 70%;
@@ -171,7 +173,7 @@ html, body {
   }
 
   li {
-    color: $nav-text;
+    color: #6F7782;
     transition-property: background;
     transition-timing-function: linear;
     transition-duration: 200ms;
@@ -186,7 +188,11 @@ html, body {
   // this is parent links of the currently selected ToC entry
   .toc-link.active-parent {
     background-color: $nav-active-parent-bg;
-    color: $nav-active-parent-text;
+    color: #6F7782;
+
+    &:hover {
+      background-color: #f6f8f9;
+    }
   }
 
   .toc-list-h2 {
@@ -195,12 +201,13 @@ html, body {
   }
 
   .toc-h2 {
-    padding-left: $nav-padding + $nav-indent;
-    padding-top: $spacing-buffer;
-    padding-bottom: $spacing-buffer;
-
     @include text-all($text-body);
-    color: $gray-8;
+
+    padding-left: 30px;
+    padding-bottom: 0;
+    padding-top: 0;
+    line-height: 28px;
+    color: #6F7782;
   }
 
   .toc-footer {
@@ -223,19 +230,26 @@ html, body {
       text-decoration: none;
     }
   }
+
+  hr {
+    height: 1px;
+    border-width: 0;
+    margin: 15px 0;
+  }
 }
 
 .toc-link, .toc-footer li {
-  padding: 0 $nav-padding 0 $nav-padding;
+  transition-duration: 0s;
+  font-weight: 500;
+  color: #6F7782;
+  padding: 0 10px 0 15px;
   display: block;
   overflow-x: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   text-decoration: none;
-  color: $nav-text;
   transition-property: background;
   transition-timing-function: linear;
-  transition-duration: 130ms;
 }
 
 // button to show navigation on mobile devices
@@ -378,7 +392,8 @@ html, body {
   }
 
   &>ul, &>ol {
-    padding-left: $main-padding + 15px;
+    margin-left: 20px;
+    padding-left: 60px;
   }
 
   // the div is the tocify hidden div for placeholding stuff
@@ -388,11 +403,31 @@ html, body {
 
   h1 {
     @extend %header-font;
-    font-size: 25px;
-    padding-bottom: 0.5em;
+    font-size: 24px;
+    line-height: 32px;
+    padding-bottom: 0;
     margin-bottom: $h1-margin-bottom;
-    padding-top: $line-separator-padding-v;
+    padding-top: 80px;
     // border-top: 1px solid $line-color;
+  }
+
+  h2 {
+    @extend %header-font;
+    font-size: 20px;
+    line-height: 28px;
+    padding: 0;
+    margin-bottom: 20px;
+    margin-left: $main-padding;
+    // border-top: 1px solid $line-color;
+  }
+
+  h3 {
+    font-size: 16px;
+    line-height: 21px;
+  }
+
+  h4 {
+    font-size: 14px;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -400,42 +435,36 @@ html, body {
     margin-top: 0;
   }
 
-  h2 {
-    @extend %header-font;
-    font-size: 19px;
-    padding: $line-separator-padding-v 0 $h2-padding 0;
-    margin-left: $main-padding;
-    // border-top: 1px solid $line-color;
-  }
-
   // h2s right after h1s should bump right up
   // against the h1s.
   h1 + h2, h1 + div + h2 {
-    margin-top: $line-separator-padding-v * -1;
+    margin-top: 40px;
     border-top: none;
   }
 
   h3, h4, h5, h6 {
     @extend %header-font;
-    font-size: 15px;
-    margin-top: 2.5em;
-    margin-bottom: 0.8em;
+    margin-top: 40px;
+    margin-bottom: 20px;
   }
 
   hr {
     display: block;
+    background-color: #e8ecee;
     height: 1px;
     border: 0;
-    background-color: $line-color;
     background-clip: content-box;
     margin: 0;
 
     &:not(.full-line) {
-      padding: $line-separator-padding-v $line-separator-padding-h 0 $line-separator-padding-h;
-      width: 100% - $line-separator-padding-h - $line-separator-padding-h;
+      padding: 80px 60px;
+      width: auto;
+      max-width: 100%;
+      clear: both;
     }
 
     &.full-line {
+      max-width: 100%;
       padding: $full-line-separator-padding-v 0 0 0;
       width: 100%;
     }
@@ -544,6 +573,7 @@ html, body {
 
   p {
     overflow-wrap: break-word;
+    margin-bottom: 20px;
   }
 }
 
@@ -692,32 +722,53 @@ code {
 
 .content {
 
-  #asana ~ h3 {
-    margin-top: 64px;
-  }
-
   blockquote {
     background-color: transparent;
 
     p {
       background-color: transparent;
-      padding-left: 8px;
+      padding: 0;
     }
   }
 
+  pre, blockquote {
+    color: #6F7782;
+    margin: 0 $spacing-xl;
+    width: 35%;
+  }
+
+  code, pre {
+    line-height: 1.6;
+    color: #6F7782;
+  }
+
   pre {
-    margin-bottom: $spacing-s;
+    padding: 20px;
+    max-height: 500px;
+    font-size: 12px;
+    margin: 15px 60px;
+
+    &>code {
+      font-size: 12px;
+    }
+  }
+
+  code {
+    padding: 2px 5px;
+    font-size: 13px;
   }
 
   pre,table {
-    border-radius: 4px;
+    border-radius: 8px;
+    box-shadow: none;
   }
 
   .table-holder {
-    width: 100% - $examples-width - $table-padding - $table-padding - $table-padding;
-    overflow-x: scroll;
-    clear: none;
-    margin-right: 0;
+    margin-left: 60px;
+    border: 1px solid #e8ecee;
+    border-radius: 8px;
+    width: 45%;
+    margin-bottom: 20px;
   }
 
   table {
@@ -734,24 +785,19 @@ code {
       width: 100%;
 
       td:nth-child(2) {
-        padding-left: 0;
+        padding-left: 10px;
       }
 
       font-weight: 500;
-      color: #777777;
+      color: #6F7782;
+      font-size: 12px;
+      border-bottom: 1px solid #E8ECEE;
+      background-color: #f6f8f9;
     }
 
     tbody {
-      tr:hover {
-        background-color: $table-hover-color;
-      }
-
       .chevron {
         text-align: center;
-      }
-
-      tr:not(.has-children) .chevron {
-        visibility: hidden;
       }
 
       .has-children.expanded .chevron {
@@ -765,14 +811,37 @@ code {
 
       .common-item {
         background-color: $common-item-color;
+
+        &:hover {
+          background-color: $common-item-color;
+        }
       }
 
       .common-items-toggle {
         cursor: pointer;
+        transition-duration: .2s;
+        transition-property: background;
 
         td {
-          padding: 8px 32px;
+          font-weight: 500;
+          color: #6F7782;
+          font-size: 12px;
+          padding: 8px 20px;
           text-align: center;
+
+          &:first-child {
+            width: auto;
+          }
+        }
+
+        &:hover {
+          background-color: #f6f8f9;
+
+          td {
+            transition-duration: .2s;
+            transition-property: color;
+            color: #273240;
+          }
         }
       }
 
@@ -830,16 +899,37 @@ code {
       }
 
       tr {
-        border-bottom: 1px solid #e0e6e8;
+        border-bottom: 1px solid #E8ECEE;
 
-        td:nth-child(2) {
-          font-weight: 500;
+        &:hover {
+          background-color: transparent;
+        }
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        &:not(.has-children) .chevron {
+          visibility: hidden;
         }
 
         td:last-child, th:last-child {
-          padding-right: 32px;
+          padding-right: 20px;
+        }
+
+        td:nth-child(2) {
+          font-family: Consolas, Menlo, monospace;
+          color: #FF5263;
+          font-size: 13px;
+          line-height: 22px;
+          font-weight: 400;
         }
       }
+    }
+
+    th:first-child, td:first-child {
+      width: 20px;
+      padding-right: 0;
     }
   }
 }
@@ -848,6 +938,7 @@ hr {
   color: $line-color;
   background-color: $line-color;
 }
+
 a {
   color: $teal;
   text-decoration: none;
@@ -914,11 +1005,13 @@ pre {
 .beta-feedback-holder {
   @include text-all($text-body);
 
+  font-size: 11px;
+  margin-top: 0;
   padding: 0 $spacing-s;
   text-align: center;
-  margin-top: -$spacing-xxs;
 
   .beta-indicator {
+    font-weight: 500;
     color: $purple;
     text-transform: uppercase;
     padding-right: $spacing-xs;

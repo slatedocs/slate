@@ -5,17 +5,14 @@
 {{~}}
 
 {{? data.responseSchemas }}
-> Example responses
-
-{{= data.utils.getResponseExamples(data) }}
+{{= data.utils.getResponseExamples(data).replaceAll('"...": "..."', '...').replaceAll('"..."', '...') }}
 {{?}}
 
-<section>
 <h3 id="{{=data.operationUniqueSlug}}-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
-{{~ data.responses :r}}|{{=r.status}}|{{=r.meaning}}|{{=r.description || 'none'}}|{{=r.schema}}|
+{{~ data.responses :r}}|{{=r.status}}|{{=r.meaning}}|{{=r.description || 'none'}}|{{= r.schema.replaceAll(/object/ig, "").replaceAll(/array/ig, "")}}|
 {{~}}
 
 {{ data.responseSchemas = false; }}
@@ -49,7 +46,7 @@ Status Code **{{=response.status}}**
 {{?}}
 |Name|Type|Required|Restrictions|Description|
 |---|---|---|---|---|
-{{~block.rows :p}}|{{=p.displayName}}|{{=p.safeType}}|{{=p.required}}|{{=p.restrictions||'none'}}|{{=p.description||'none'}}|
+{{~block.rows :p}}|{{= p.displayName.replaceAll('»', '') }}|{{=p.safeType}}|{{=p.required}}|{{=p.restrictions||'none'}}|{{=p.description||'none'}}|
 {{~}}
 {{~}}
 {{?}}
@@ -59,7 +56,7 @@ Status Code **{{=response.status}}**
 
 |Property|Value|
 |---|---|
-{{~ enums :e}}|{{=e.name}}|{{=data.utils.toPrimitive(e.value)}}|
+{{~ enums :e}}|{{= e.name.replaceAll('»', '') }}|{{=data.utils.toPrimitive(e.value)}}|
 {{~}}
 
 {{?}}
@@ -82,4 +79,3 @@ Status Code **{{=response.status}}**
 {{~}}
 
 {{?}}
-</section>

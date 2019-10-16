@@ -2,8 +2,6 @@
 
 ### Callbacks
 
-<div class="content well">
-
 {{ data.operationStack.push(data.operation); }}
 
 {{ for (var c of Object.keys(data.operation.callbacks)) { }}
@@ -33,7 +31,5 @@
 
 {{ data.operation = data.operationStack.pop(); }}
 {{ data.method.operation = data.operation; }}
-
-</div>
 
 {{?}}

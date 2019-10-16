@@ -1,5 +1,4 @@
-<section>
-
+<hr class="half-line">
 ## {{= data.operationUniqueName}}
 
 {{? data.operation.operationId}}
@@ -21,7 +20,9 @@
 {{= data.utils.getCodeSamples(data) }}
 {{?}}
 
-`{{= data.methodUpper}} {{=data.method.path}}`
+<p>
+<code> <span class="{{=data.method.verb.toLowerCase()}}-verb">{{= data.methodUpper}}</span> {{=data.method.path}}</code>
+</p>
 
 {{? data.operation.summary && !data.options.tocSummary}}*{{= data.operation.summary }}*{{?}}
 
@@ -34,7 +35,7 @@
 > {{= data.bodyParameter.exampleValues.description }}
 {{?}}
 
-{{= data.utils.getBodyParameterExamples(data) }}
+{{= data.utils.getBodyParameterExamples(data).replaceAll('"...": "..."', '...').replaceAll('"..."', '...') }}
 {{?}}
 
 {{? data.parameters && data.parameters.length }}
@@ -45,10 +46,3 @@
 
 {{#def.callbacks}}
 
-{{ data.security = data.operation.security ? data.operation.security : data.api.security; }}
-{{? data.security && data.security.length }}
-{{#def.authentication}}
-{{??}}
-{{#def.authentication_none}}
-{{?}}
-</section>

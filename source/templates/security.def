@@ -1,5 +1,4 @@
-<section>
-
+<hr class="full-line">
 # Authentication
 
 {{ for (var s in data.api.components.securitySchemes) { }}
@@ -27,5 +26,3 @@
 {{ } /* of flows */ }}
 {{?}}
 {{ } /* of securitySchemes */ }}
-
-</section>

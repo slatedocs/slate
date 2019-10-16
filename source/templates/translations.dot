@@ -13,4 +13,7 @@ data.translations.continued = 'continued';
 data.translations.indent = '»';
 data.translations.readOnly = 'read-only';
 data.translations.writeOnly = 'write-only';
+data.tags = {};
+data.tags.section = data.options.respec ? '<section>' : '';
+data.tags.endSection = data.options.respec ? '</section>' : '';
 }}
