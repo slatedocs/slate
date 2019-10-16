@@ -26,7 +26,7 @@ body {
   box-sizing: border-box;
   max-width: var(--container-width);
   margin: auto;
-  padding: 0 12px;
+  padding: 0 1em;
 }
 
 .cards {
@@ -94,7 +94,7 @@ header {
 }
 
 .header-link {
-  margin: 12px;
+  margin: 1em;
   line-height: var(--header-height);
   height: var(--header-height);
 }
@@ -119,8 +119,13 @@ footer {
   margin: 0 auto 36px;
 }
 
-.center {
+.large-para {
+  font-size: 24px;
   text-align: center;
+}
+
+.large-para a {
+  text-decoration: underline;
 }
 
 .logo {
