@@ -1,0 +1,93 @@
+h1, h2, h3, h4, li, ul {
+  all: inherit;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+body {
+  background: #EEE;
+  margin: 0;
+}
+
+.container {
+  max-width: 960px;
+  margin: auto;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 1em;
+  grid-row-gap: 1em;
+}
+
+@media screen and (min-width: 768px) {
+  .cards {
+    grid-template-columns: repeat(12, 1fr);
+  }
+}
+
+.card {
+  background: white;
+  border: 1px solid black;
+  text-align: center;
+  min-height: 5em;
+  padding: 24px
+}
+
+.malibu-feature {
+  grid-column: 3 span;
+}
+
+.tech-stack {
+  grid-column: 4 span;
+}
+
+.headline {
+  font-weight: bold;
+  font-size: 36px;
+  text-align: center;
+  margin: 12px auto;
+}
+
+.subheadline {
+  font-size: 24px;
+  text-align: center;
+  margin: 12px auto;
+}
+
+header {
+  background-color: white;
+}
+
+header li {
+  display: inline;
+}
+
+footer {
+  background-color: #0a0a0a;
+  color: white;
+  text-align: center;
+  padding: 12px;
+}
+
+.large-image {
+  background: green;
+  color: white;
+  padding: 80px 0;
+  margin: 0 auto 36px;
+}
+
+.center {
+  text-align: center;
+}
+
+.logo {
+  width: 100%;
+}
