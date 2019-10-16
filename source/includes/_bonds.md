@@ -332,12 +332,18 @@ Content-Type: application/json
 ```
 ### Description
 Simulates interest repayment accruals.
+
+<aside class="notice">
+This is a test endpoint and only works in the sandbox environment.
+</aside>
+
 ### Request
 | Name        | Type   | Description                                     | Required |
 | ----------- | ------ | ----------------------------------------------- | -------- |
 | accrualDate | string | The date up to which accruals will be generated | optional |
 ### Response
-| Name | Type | Description || ---- | ---- | ----------- |
+The response body is empty.
+
 
 ## GET /investors/{clientId}/accounts/{accountType}/investments
 
@@ -428,6 +434,10 @@ Authorization: Basic ...
 HTTP/1.1 200 OK
 Content-Type: application/json
 
+{
+  "id": "id"
+}
+
 ""
 ```
 ### Description
@@ -438,10 +448,13 @@ Adds an investment to the account.
 | productTermId      | string  | The product code for the investment.        | required |
 | repaymentProfileId | integer | The repayment profile ID.                   | required |
 | amount             | ref     | The amount invested.                        | required |
-| amount.amount      | number  | The amount.                                 ||
-| amount.currency    | string  | The ISO 4217 three character codes eg 'GBP' ||
+| amount.amount      | number  | The amount.                                 | required |
+| amount.currency    | string  | The ISO 4217 three character codes eg 'GBP' | required |
 ### Response
-| Name | Type | Description || ---- | ---- | ----------- |
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| id   | string | The ID of the created investment |
+
 
 ## GET /investments/products
 

@@ -688,6 +688,27 @@ Authorization: Basic ...
 HTTP/1.1 200 OK
 Content-Type: application/json
 
+{
+  "overallStatus":"overallStatus",
+  "documentsRequired":["documentsRequired"],
+  "documentsPendingApproval":["documentsPendingApproval"],
+  "documentsApproved":["documentsApproved"],
+  "lastFailure": {
+    "failureDate":"failureDate",
+    "rejectedDocuments": [{
+      "type":"type",
+      "reason":"reason",
+      "notes":"notes"
+    }]
+  },
+  "requirements":[{
+    "requirementType":"requirementType",
+    "status":"status",
+    "checkType":"checkType",
+    "workflowId":"workflowId"
+  }]
+}
+
 ""
 ```
 ### Description
@@ -699,7 +720,23 @@ Add an investor's KYC documents.
 | documents[].fileName | string | The file name eg passport.pdf.     | required |
 | documents[].data     | string | The file to upload Base64 encoded. | required |
 ### Response
-| Name | Type | Description || ---- | ---- | ----------- |
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| overallStatus | string | The overall status of the KYC status of the investor |
+| documentsRequired | array | The documents that are required |
+| documentsPendingApproval | array | The documents that have been uploaded and are pending approval. |
+| documentsApproved | array | The documents that have been approved. |
+| lastFailure | ref | The most recent failed document upload |
+| lastFailure.failureDate | string | The date of the failed upload |
+| lastFailure.rejectedDocuments | array | List of rejected documents |
+| lastFailure.rejectedDocuments[].type | string | The type of document that was rejected |
+| lastFailure.rejectedDocuments[].reason | string | The reason for the rejection |
+| lastFailure.rejectedDocuments[].notes | string | Accompanying notes to the rejection reason |
+| requirements | array | The documents that are required |
+| requirements[].requirementType | string | The type of the requirement |
+| requirements[].status | string | The status of this requirement |
+| requirements[].checkType | string | The type of the check |
+| requirements[].workflowId | string | The ID of the attached workflow |
 
 ## POST /investors/{clientId}/accounts/ISA
 
