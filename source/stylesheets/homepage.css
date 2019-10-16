@@ -122,6 +122,7 @@ footer {
 .large-para {
   font-size: 24px;
   text-align: center;
+  margin-top: 48px;
 }
 
 .large-para a {
