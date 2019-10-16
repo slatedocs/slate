@@ -271,9 +271,21 @@ html, body {
   }
 
   .lang-selector {
-    position: fixed;
+    position: sticky;
     z-index: 50;
+    overflow-x: scroll;
+    display: flex;
     border-bottom: 5px solid $lang-select-active-bg;
+
+    &::-webkit-scrollbar {
+      background: lightgray;
+      height: 0.5em;
+    }
+    &::-webkit-scrollbar-thumb {
+      -webkit-box-shadow: inset 0 0 6px #2e3336;
+      border-radius: 10px;
+      background-color: #555;
+    }
   }
 }
 
