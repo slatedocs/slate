@@ -1,8 +1,14 @@
+:root {
+  --container-width: 960px;
+  --header-height: 48px;
+}
+
 h1, h2, h3, h4, li, ul {
   all: inherit;
   display: block;
   margin: 0;
   padding: 0;
+  background: transparent;
 }
 
 a {
@@ -17,8 +23,10 @@ body {
 }
 
 .container {
-  max-width: 960px;
+  box-sizing: border-box;
+  max-width: var(--container-width);
   margin: auto;
+  padding: 0 12px;
 }
 
 .cards {
@@ -62,7 +70,7 @@ body {
   font-weight: bold;
   font-size: 36px;
   text-align: center;
-  margin: 12px auto;
+  margin: 12px auto 36px;
 }
 
 .subheadline {
@@ -75,8 +83,24 @@ header {
   background-color: white;
 }
 
-header li {
-  display: inline;
+.qt-logo {
+  height: var(--header-height);
+}
+
+.header-links {
+  max-width: var(--container-width);
+  margin: auto;
+  display: flex;
+}
+
+.header-link {
+  margin: 12px;
+  line-height: var(--header-height);
+  height: var(--header-height);
+}
+
+.header-link:last-child {
+  margin-left: auto;
 }
 
 footer {
@@ -87,9 +111,11 @@ footer {
 }
 
 .large-image {
-  background: green;
+  background: url("/code-background.webp");
+  background-position-y: 50%;
+  background-size: cover;
   color: white;
-  padding: 80px 0;
+  padding: 160px 0;
   margin: 0 auto 36px;
 }
 
