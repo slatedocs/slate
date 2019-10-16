@@ -162,7 +162,7 @@ Name | Data Type(Required) | Description
 -------------- | -------------- | --------------
 name | String(Required) | Name of the Manifest. Example: 04-17-2019.
 supplier_id | String(Optional) | Supplier ID. Example: '59e0f41007b6205968000016'.
-ship_from_address_id | String(Optional) | ID of ship from address Example: '59e0d31f07b6204cc8000000'.
+ship_from_address_id | String(Required) | ID of ship from address Example: '59e0d31f07b6204cc8000000'.
 marketplace_account_id | String(Required) | ID of Marketplace Account. Example: '5c1902f207b620090a000026'.
 template_id | String(Optional) | Template ID. Example: '5c1902f207b620090a00003e'
 
