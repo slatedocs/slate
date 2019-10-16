@@ -1,88 +1,13 @@
 # Webhooks
 
+**NB! Please note this version of webhooks is now **_deprecated_**. You can use (profile webhooks) or (application webhooks) instead.
+
 There's two ways you can manage webhooks:
 
 * via API (read more below)
 * via user interface (go to your <a href="https://transferwise.com/user/settings#webhooks" target="_blank">settings page</a>)
 
 For the data that will be sent to your server see [events section.](#webhooks-events)
-
-## Create
-
-> Example Request:
-
-```shell
-curl -X POST https://api.transferwise.com/v1/subscriptions/ \
-  -H "Authorization: Bearer <your api token>" \
-  -H "Content-Type: application/json" \
-  -d '{
-       "name": "Webhook Subscription #1",
-       "channel_id": "WEBHOOK",
-       "callback_url": "<URL of your server>",
-       "profile_id": <ID of the profile you want to receive notifications from>,
-       "enabled_notifications": ["transfers", "balance"]
-      }'
-```
-
-> Example Response:
-
-```json
-{
-  "id": "abcde123-abcd-abcd-abcd-abcde1234567",
-  "name": "Webhook Subscription #1",
-  "channel_id": "WEBHOOK",
-  "user_id": "TW::<your user ID>",
-  "status": "ENABLED",
-  "created_on": "2019-03-10T09:32:15.663Z",
-  "url": "<URL of your server>",
-  "profile_id": <ID of the profile you want to receive notifications from>,
-  "enabled_notifications": [
-    "balance",
-    "transfers"
-  ]
-}
-```
-
-Webhook subscription is a mechanism that will allow you to receive notifications to your servers whenever your transfers and/or balance gets topped up.
-
-Before proceeding, make sure the endpoint where you intend to receive webhooks satisfies the following requirements:
-
-* Has a valid domain name (IP-s are not allowed)
-* Listens to HTTPS requests on port `443`
-* Has a valid HTTPS certificate signed by a trusted CA (self-signed or expired certificates are not accepted)
-* Does not include any query arguments in the URI
-
-`https://webhooks.example.com/balance-change` is a valid URL; `http://webhooks.example.com:8080/hook.php?type=balance` is not.
-
-Currently we are delivering all notifications and `enabled_notifications` criteria will not be taken into account.
-
-**NB! Please note this feature is not available in sandbox environment.**
-
-### Request
-
-**`POST https://api.transferwise.com/v1/subscriptions`**
-
-Field                     | Description                                   | Format
----------                 | -------                                       | -----------
-name                      | Custom name of your webhook                   | String
-channel_id                | ID of the channel through which you're receiving notifications, always equal to `WEBHOOK`                                  | String
-callback_url              | URL of your server                          | String
-profile_id                | ID of the profile you want to receive notifications from | Integer
-enabled_notifications     | List of resources you would like to receive notifications about  | [String]
-
-### Response
-
-Field                     | Description                                   | Format
----------                 | -------                                       | -----------
-id                        | Subscription ID                               | UUID
-name                      | Custom name of your webhook                   | String
-channel_id                | ID of the channel through which you're receiving notifications, always equal to `WEBHOOK`                                  | String
-user_id                   | Your user ID                                  | Integer
-status                    | Status of the subscription                    | String
-created_on                | Timestamp when subscription was created       | Timestamp
-url              | URL of your server                          | String
-profile_id                | ID of the profile you want to receive notifications from | Integer
-enabled_notifications     | List of resources you would like to receive notifications about | [String]
 
 ## List
 
