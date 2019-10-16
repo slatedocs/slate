@@ -13,6 +13,7 @@ a {
 body {
   background: #EEE;
   margin: 0;
+  font-family: usual,sans-serif;
 }
 
 .container {
@@ -22,14 +23,30 @@ body {
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 1em;
   grid-row-gap: 1em;
+}
+
+.malibu-feature {
+  grid-column: 2 span;
+}
+
+.tech-stack {
+  grid-column: 4 span;
 }
 
 @media screen and (min-width: 768px) {
   .cards {
     grid-template-columns: repeat(12, 1fr);
+  }
+
+  .malibu-feature {
+    grid-column: 3 span;
+  }
+
+  .tech-stack {
+    grid-column: 4 span;
   }
 }
 
@@ -39,14 +56,6 @@ body {
   text-align: center;
   min-height: 5em;
   padding: 24px
-}
-
-.malibu-feature {
-  grid-column: 3 span;
-}
-
-.tech-stack {
-  grid-column: 4 span;
 }
 
 .headline {
