@@ -66,16 +66,20 @@ body {
   padding: 24px
 }
 
+.headline, .subheadline {
+  text-align: center;
+  padding: 0 24px;
+}
+
 .headline {
   font-weight: bold;
   font-size: 36px;
-  text-align: center;
+
   margin: 12px auto 36px;
 }
 
 .subheadline {
   font-size: 24px;
-  text-align: center;
   margin: 12px auto;
 }
 
