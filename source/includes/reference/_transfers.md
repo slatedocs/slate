@@ -109,7 +109,7 @@ This way we can treat subsequent retry messages as **repeat messages** and will 
 > Example Request:
 
 ```shell
-curl -X POST https://api.sandbox.transferwise.tech/v1/transfers/{transferId}/payments \
+curl -X POST https://api.sandbox.transferwise.tech/v3/profiles/{profileId}/transfers/{transferId}/payments \
      -H "Authorization: Bearer <your api token>" \
      -H "Content-Type: application/json" \
      -d '{ 
@@ -132,7 +132,7 @@ If your borderless balance is short of funds then this call will fail with "insu
 
 ### Request
 
-**`POST https://api.sandbox.transferwise.tech/v1/transfers/{transferId}/payments`**
+**`POST https://api.sandbox.transferwise.tech/v3/profiles/{profileId}/transfers/{transferId}/payments`**
 
 Use transfer id that you obtained in previous step. 
 
