@@ -2,10 +2,11 @@
 
 Api endpoints that place orders or fetch account related information needs to authenticated using api key and api secret.
 
-**Note**
-You should use ntp timestamp to sync local clocks inorder to avoid following issue:
+
 
 ## Common Errors
+**Note**
+You should use ntp timestamp to sync local clocks inorder to avoid following issue:
 
 * ```{ "error: "SignatureExpired", message:"your signature has expired" }```
 
