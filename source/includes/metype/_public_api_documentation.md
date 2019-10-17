@@ -241,3 +241,40 @@ This endpoint can be used to fetch all bookmark for a given user. The parameters
 |page|integer|Page of Bookmarks to return|
 
 Please see the 'request' and 'response' tabs on the right for a sample request
+
+## Contributions
+
+Contributions allow metype users to create user generated content, which is pushed to the account's CMS. There is currently no public API to create a contribution.
+
+All Contributions APIs follow the [json:api](https://jsonapi.org) specification.
+
+
+### Get All Contributions for a User
+
+```shell--request
+curl --request GET \
+  --url https://www.metype.com/api/v1/accounts/:account_id/contributions
+```
+
+```shell--response
+{
+   "data" : [{
+      "type" : "contribution",
+      "attributes" : {
+        "id": 42,
+        "headline": "This is a sample headline",
+        "story": "<p>This is the body</p>",
+        "created_at" : "2019-10-04T10:15:13.719Z",
+        "external_id": "metype-42"
+      }
+   }]
+}
+```
+
+This endpoint can be used to fetch all contributions for a given user. The parameters that can be passed in are as follows:
+
+| key | type | use|
+|--|--|--|
+|page|integer|Page of Contributions to return (50 per page)|
+
+Please see the 'request' and 'response' tabs on the right for a sample request
