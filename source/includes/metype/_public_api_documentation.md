@@ -244,10 +244,170 @@ Please see the 'request' and 'response' tabs on the right for a sample request
 
 ## Contributions
 
-Contributions allow metype users to create user generated content, which is pushed to the account's CMS. There is currently no public API to create a contribution.
+Contributions allow metype users to create user generated content, which is pushed to the account's CMS.
 
 All Contributions APIs follow the [json:api](https://jsonapi.org) specification.
 
+
+### Contribution Terminology
+
+* When you want to create a contribution there are two things expected
+  1. Base64 URI encoded string of html
+  2. A JSON object a particular format
+
+Example of encoding strigified html is available on the right:
+
+```js
+let html = "<p>sample text</p>";
+let encodedHtml = btoa(encodeURIComponent(html))
+```
+
+Example of json object is shown on the right
+
+```json
+//JSON object
+{
+    "ops": [
+        {//bold text
+            "attributes": {
+                "bold": true
+            },
+            "insert": "bold "
+        },
+        {// italic text
+            "attributes": {
+                "italic": true
+            },
+            "insert": "italic "
+        },
+        {// underlined text
+            "attributes": {
+                "underline": true
+            },
+            "insert": "underlined "
+        },
+        {//regular text
+            "insert": "quote"
+        },
+        {//block quote
+            "attributes": {
+                "blockquote": true
+            },
+            "insert": "quote\n"
+        },
+        {// heading
+            "attributes": {
+                "header": 2
+            },
+            "insert": "heading\n"
+        },
+        {// ordered list
+            "insert": "ol1"
+        },
+        {
+            "attributes": {
+                "list": "ordered"
+            },
+            "insert": "\n"
+        },
+        {
+            "insert": "ol2"
+        },
+        {
+            "attributes": {
+                "list": "ordered"
+            },
+            "insert": "\n"
+        },
+        {// unordered list
+            "insert": "uorl1"
+        },
+        {
+            "attributes": {
+                "list": "bullet"
+            },
+            "insert": "\n"
+        },
+        {
+            "insert": "uorl2"
+        },
+        {
+            "attributes": {
+                "list": "bullet"
+            },
+            "insert": "\n"
+        },
+        {// link
+            "attributes": {
+                "link": "https://www.youtube.com/watch?v=nPezCIqTZ-k"
+            },
+            "insert": "ka"
+        },
+        {
+            "insert": "\n\n"
+        },
+        {// video
+            "insert": {
+                "video": "https://www.youtube.com/embed/nPezCIqTZ-k?showinfo=0"
+            }
+        },
+        {
+            "insert": "\n\n"
+        },
+        {// image
+            "insert": {
+                "image": "https://stg-quintype-dropbox.s3-accelerate.amazonaws.com/localhost-1571302176958-a.png"
+            }
+        }
+    ]
+}
+```
+
+### Create contribution
+
+
+
+```shell-request
+curl 'https://www.metype.com/api/v1/accounts/<account_id>/contributions?jwt=jwt' -H 'Origin: <Whitelisted url>'
+ '{"contribution": {
+      "headline":"title",
+      "html":"encoded_html",
+      "body":{"ops":[{"insert":"story"}]},
+      "contributor_details": {
+        "name":"name",
+        "email":"a@b.com",
+        "phone":"929292022",
+        "bio":"bio"
+  }}}'
+```
+
+```shell--response
+{
+    "contribution": {
+        "id": 11,
+        "story": "<p>story</p>",
+        "user_id": 161,
+        "account_id": 2,
+        "body": {
+            "ops": [
+                {
+                    "insert": "story"
+                }
+            ]
+        },
+        "headline": "title",
+        "created_at": "2019-10-17T09:41:42.624Z",
+        "updated_at": "2019-10-17T09:41:42.624Z",
+        "contributor_details": {
+            "name": "name",
+            "email": "a@b.com",
+            "phone": "929292022",
+            "bio": "profile"
+        }
+    },
+    "message": "Success"
+}
+```
 
 ### Get All Contributions for a User
 
