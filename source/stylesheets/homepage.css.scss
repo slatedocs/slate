@@ -75,18 +75,18 @@ body {
   padding: 24px
 }
 
-.headline {
+.headline, .subheadline {
   text-align: center;
   padding: 0 var(--content-padding);
 }
 
-h1.headline {
+.headline {
   font-weight: bold;
   font-size: 36px;
   margin: 12px auto 36px;
 }
 
-h2.headline {
+.subheadline {
   font-size: 24px;
   margin: 12px auto;
 }
