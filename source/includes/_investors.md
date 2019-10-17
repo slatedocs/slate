@@ -52,7 +52,7 @@ Once the investor has been registered, the KYC process will be initiated asynchr
 
 You can verify the KYC details by calling `GET /investors/{clientId}/kyc`. Alternatively, you can register a webhook and a call will be made to your system when the KYC status changes.
 
-When there are documents required, identity documents must be uploaded. Supported formats are pdf, png and jpeg. The documents are uploaded as `Base64` encoded strings (maximum size 10MB) using `POST /investors/{clientId}/kyc/documents`.
+When documents are required, identity documents must be uploaded. Supported formats are pdf, png and jpeg. The documents are uploaded as `Base64` encoded strings (maximum size 10MB) using `POST /investors/{clientId}/kyc/documents`.
 
 The supported documents are:
 
@@ -295,6 +295,10 @@ Authorization: Basic ...
   },
   "firstName" : "firstName",
   "nationality" : "nationality",
+  "nationalities":[
+    {
+      "nationality":"nationality"
+    }]
   "nationalInsuranceNumber" : "nationalInsuranceNumber",
   "accountTypes" : [ { }, { } ]
 }
@@ -342,7 +346,9 @@ Creates an investor and triggers a KYC check.
 | Name                                | Type   | Description                                                                                                                                                                                        | Required |
 | ----------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
 | title                               | string | The title of the investor. Possible values are: `MISS` `MR` `MRS` `MS` `DR`                                                                                                                        | optional |
-| nationality                         | string | The nationality of the investor in 2 character ISO country code eg. GB for British.                                                                                                                | required |
+| nationality(deprecated)                         | string | The nationality of the investor in 2 character ISO country code eg. GB for British. This has been deprecated and replaced by the nationalities field.                                                                                                                | required |
+| nationalities                       | array  | The list of nationalities associated with an investor. More than one nationality can be specified for a given investor i.e. if they are dual-nationality. | required |
+| nationalities[].nationality | string | The ISO country code. e.g GB. | required |
 | firstName                           | string | The first name of the investor.                                                                                                                                                                    | required |
 | lastName                            | string | The last name of the investor.                                                                                                                                                                     | required |
 | dateOfBirth                         | string | The date of birth of the investor.                                                                                                                                                                 | required |
@@ -364,7 +370,7 @@ Creates an investor and triggers a KYC check.
 | entityType                          | string | The entity type. Possible values are: `INDIVIDUAL` `CORPORATE`                                                                                                                                                                                                    | required |
 | investorDeclarationType             | string | All investors must complete a declaration to confirm the kind of investor they are. Possible values are: `RESTRICTED` `HIGH_NET_WORTH` `INVESTMENT_PROFESSIONAL` `SOPHISTICATED`                    required |
 | accountTypes                        | array  | Possible values are: `GOJI_INVESTMENT` `ISA` Defaults to `[GOJI_INVESTMENT, ISA]` if not provided for a INDIVIDUAL entityType. Defaults to [GOJI_INVESTMENT] for CORPORATE entityType. ISA invalid for CORPORATE entityType                       | optional |
-| corporateDetails                    | ref    | Only required for CORPORATE entityType.                                                                                                                                                            | optional |
+| corporateDetails                    | ref    | Required for CORPORATE entityType.                                                                                                                                                            | optional |
 | corporateDetails.companyName        | string | The company name.                                                                                                                                                                                  ||
 | corporateDetails.companyType        | string | The company type.                                                                                                                                                                                  ||
 | corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                   ||
@@ -1028,4 +1034,69 @@ Lists all transfers out for all investors.
 ### Response
 | Name | Type | Description |
 | ---- | ---- | ----------- |
+
+## GET /investors/{clientId}/transactions
+
+```http
+
+GET /investors/{clientId}/transactions HTTP/1.1
+Host: api-sandbox.goji.investments/platformApi
+Content-Type: application/json
+Authorization: Basic ...
+
+
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  [
+    {
+      "id":"id",
+      "dateTime":"dateTime",
+      "amount": {
+                  "amount":123.45,
+                  "currency":"currency"
+      },
+      "type":"type",
+      "cashBalance": {
+                  "amount":123.45,
+                  "currency":"currency"
+      },
+      "investedBalance": {
+                  "amount":123.45,
+                  "currency":"currency"
+      },
+      "totalBalance": {
+                  "amount":123.45,
+                  "currency":"currency"
+      },
+      "account":"account"
+      "status":"status"
+    }
+  ]
+}
+```
+### Description
+Lists the cash transactions for the investor.
+### Response
+| Name                | Type   | Description                                             |
+| ------------------- | ------ | ------------------------------------------------------- |
+| id | string | The ID of the transaction |
+| dateTime | string | The date-time of the transaction |
+| amount | ref | The amount of the transaction |
+| amount.amount | number | The amount |
+| amount.currency | string | The currency in ISO 4217 three character codes eg 'GBP' |
+| type | string | The type of the cash transaction. |
+| cashBalance | ref | The running total cash balance |
+| cashBalance.amount | number | The amount |
+| cashBalance.currency | string | The currency in ISO 4217 three character codes eg 'GBP' |
+| investedBalance | ref | The running total invested balance |
+| investedBalance.amount | number | The amount |
+| investedBalance.currency | string | The currency in ISO 4217 three character codes eg 'GBP' |
+| totalBalance | ref | The running total balance |
+| totalBalance.amount | number | The amount |
+| totalBalance.currency | string | The currency in ISO 4217 three character codes eg 'GBP' |
+| account | string | The account |
+| status | string | The status of the transaction |
 
