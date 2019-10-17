@@ -1,6 +1,7 @@
 :root {
   --container-width: 960px;
   --header-height: 48px;
+  --content-padding: 1em;
 }
 
 h1, h2, h3, h4, li, ul {
@@ -22,15 +23,11 @@ body {
   font-family: usual,sans-serif;
 }
 
-.desktop-only {
-  display: none;
-}
-
 .container {
   box-sizing: border-box;
   max-width: var(--container-width);
+  padding: 0 var(--content-padding);
   margin: auto;
-  padding: 0 1em;
 }
 
 .cards {
@@ -46,6 +43,10 @@ body {
 
 .tech-stack {
   grid-column: 4 span;
+}
+
+.desktop-only {
+  display: none;
 }
 
 @media screen and (min-width: 768px) {
@@ -75,18 +76,19 @@ body {
 }
 
 .headline {
+  text-align: center;
+  padding: 0 var(--content-padding);
+}
+
+h1.headline {
   font-weight: bold;
   font-size: 36px;
-  text-align: center;
-  padding: 0 24px;
   margin: 12px auto 36px;
 }
 
-.subheadline {
+h2.headline {
   font-size: 24px;
   margin: 12px auto;
-  text-align: center;
-  padding: 0 24px;
 }
 
 header {
@@ -104,7 +106,7 @@ header {
 }
 
 .header-link {
-  margin: 1em;
+  margin: var(--content-padding);
   line-height: var(--header-height);
   height: var(--header-height);
 }
@@ -117,7 +119,7 @@ footer {
   background-color: #0a0a0a;
   color: white;
   text-align: center;
-  padding: 12px;
+  padding: 12px 0;
 }
 
 .large-image {
@@ -133,6 +135,7 @@ footer {
   font-size: 24px;
   text-align: center;
   margin-top: 48px;
+  padding: var(--content-padding);
 }
 
 .large-para a {
