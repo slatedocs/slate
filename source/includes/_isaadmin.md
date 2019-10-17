@@ -1425,6 +1425,11 @@ Content-Type: application/json
 }
 ```
 ### Description
+
+<aside class="notice">
+Please note this is a test endpoint and is only available in the sandbox environment.
+</aside>
+
 Updates the status of an investor's ISA.  This can aid testing by placing an ISA into an invalid status.
 ### Request
 | Name                  | Type   | Description                                             | Required |
@@ -1503,6 +1508,11 @@ Content-Type: application/json
 }
 ```
 ### Description
+
+<aside class="notice">
+Please note this is a test endpoint and is only available in the sandbox environment.
+</aside>
+
 Updates the transfer history for an investor's Transfer In
 ### Request
 | Name                                   | Type   | Description                                                            | Required |
@@ -1592,6 +1602,12 @@ Content-Type: application/json
 }
 ```
 ### Description
+
+<aside class="notice">
+Please note this is a test endpoint and is only available in the sandbox environment.
+</aside>
+
+
 Creates the transfer history for an investor's Transfer In
 ### Request
 | Name                                   | Type   | Description                                                            | Required |
