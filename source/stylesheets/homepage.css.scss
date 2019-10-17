@@ -30,6 +30,14 @@ body {
   margin: auto;
 }
 
+.desktop-only {
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: block;
+  }
+}
+
 .cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -45,10 +53,6 @@ body {
   grid-column: 4 span;
 }
 
-.desktop-only {
-  display: none;
-}
-
 @media screen and (min-width: 768px) {
   .cards {
     grid-template-columns: repeat(12, 1fr);
@@ -60,10 +64,6 @@ body {
 
   .tech-stack {
     grid-column: 4 span;
-  }
-
-  .desktop-only {
-    display: block;
   }
 }
 
