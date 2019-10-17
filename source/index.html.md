@@ -37,6 +37,11 @@ The Investors API allows you to onboard, conduct KYC checks, open general/ISA ac
 The Payments API allows you to retrieve bank details and balance information for investors who have passed KYC. You can also transfer funds between accounts and execute withdrawals.
 
 ###[Bond management API](#bond-management)
+
+<aside class="notice">
+Most platforms do not require this module. Please speak to the Goji integrations team before using this API.
+</aside>
+
 The Goji Platform can be used to issue fixed term, fixed rate bonds (debt based securities). The Bond management API allows you to configure these products and determine who has invested in each bond and when repayments are due.
 
 ###[Settlement API](#settlement)
@@ -46,7 +51,11 @@ The Settlement API allows you to settle investments in securities that are not b
 Many events in the Goji platform publish events which can be consumed as a webhook.
 
 ###[ISA administration API](#isa-administration)
-The ISA administration API is a standalone API and is not used in conjunction with any of the other APIs detailed above. The ISA administration API allows you to interact with the Goji platform for the purpose of administering an IF ISA.
+
+<aside class="notice">
+The ISA administration API is a standalone API and is not used in conjunction with any of the other APIs detailed above.
+</aside>
+The ISA administration API allows you to interact with the Goji platform for the purpose of administering an IF ISA.
 
 ### Error handling and retry policy
 

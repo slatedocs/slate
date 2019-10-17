@@ -2354,11 +2354,15 @@ Content-Type: application/json
 }
 ```
 ### Description
+
+<aside class="notice">
+Please note this is a test endpoint and is only available in the sandbox environment.
+</aside>
+
 Deletes all, or a matched set of, investments belonging to the ISA.
 
 Currently if the investment has been previously modified this won't work and this test endpoint shouldn't be used.
 
-**For testing use only.**
 ### Request
 | Name         | Type   | Description                                                                                                                           | Required |
 | ------------ | ------ | ------------------------------------------------------------------------------------------------------------------------------------- | -------- |
@@ -3981,9 +3985,13 @@ Content-Type: application/json
 }
 ```
 ### Description
+
+<aside class="notice">
+Please note this is a test endpoint and is only available in the sandbox environment.
+</aside>
+
 Deletes all, or a matched set of, cash transactions belonging to the ISA.
 
-**For testing use only.**
 ### Request
 | Name           | Type   | Description                                                                                                                                | Required |
 | -------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------ | -------- |

@@ -772,6 +772,11 @@ Content-Type: application/json
 ```
 ### Description
 Simulate depositing cash in an investor's account.
+
+<aside class="notice">
+Please note this is a test endpoint and is only available in the sandbox environment.
+</aside>
+
 ### Request
 | Name             | Type   | Description                                                                   | Required |
 | ---------------- | ------ | ----------------------------------------------------------------------------- | -------- |

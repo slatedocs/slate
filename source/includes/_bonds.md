@@ -292,6 +292,11 @@ Content-Type: application/json
 }
 ```
 ### Description
+
+<aside class="notice">
+Please note this is a test endpoint and is only available in the sandbox environment.
+</aside>
+
 Runs a simulated investment cycle. This simulates funds being invested and being sent to the investment manager.
 ### Request
 | Name                               | Type   | Description                                   | Required |
@@ -331,11 +336,12 @@ Content-Type: application/json
 ""
 ```
 ### Description
-Simulates interest repayment accruals.
 
 <aside class="notice">
-This is a test endpoint and only works in the sandbox environment.
+Please note this is a test endpoint and is only available in the sandbox environment.
 </aside>
+
+Simulates interest repayment accruals.
 
 ### Request
 | Name        | Type   | Description                                     | Required |
