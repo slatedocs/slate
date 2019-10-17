@@ -4,7 +4,7 @@
 Please note this version of webhooks is now DEPRECATED.
 </aside>
 
-You can use [profile webhooks](#profile-webhooks) or [application webhooks](#app-webhooks) instead.
+You can use [profile webhooks](#profile-webhooks) or [application webhooks](#application-webhooks) instead.
 
 ## List
 
