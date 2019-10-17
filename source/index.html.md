@@ -114,6 +114,9 @@ The encrypted string is then UTF-8 URL encoded.
 
 #### Examples
 
+> Java and C# examples provided - click on the tabs above
+
+
 ```java
   public String hashSignature(String signatureToHash, String apiSecret) {
     try {
