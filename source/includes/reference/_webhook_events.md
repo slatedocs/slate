@@ -74,7 +74,7 @@ event_type      | Type of event, which defines `data` object      | Integer
 schema_version  | The event representation semantic version       | String
 sent_at         | Timestamp when update happened                  | Timestamp
 
-## Transfer status change event - 
+## Transfer status change event 
 
 > Example event:
 

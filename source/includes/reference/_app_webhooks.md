@@ -13,7 +13,9 @@ Before proceeding, make sure the endpoint where you intend to receive webhooks s
 
 You can have multiple subscriptions per event type though be mindful you will receive duplicate callbacks, one for each subscription. Find out more about webhook events [here](#webhook-events).
 
-> **Please note that you have to use a client level token to access application subscription resources.**
+<aside class="notice">
+Please note that you have to use a client level token to access application subscription resources.
+</aside>
 
 ## Client token
 

@@ -13,7 +13,7 @@ Before proceeding, make sure the endpoint where you intend to receive webhooks s
 
 You can have multiple subscriptions per event type though be mindful you will receive duplicate callbacks, one for each subscription. Find out more about webhook events [here](#webhook-events).
 
-If you will be dealing with multiple profiles in your integration, check out [***application webhooks***](#app-webhooks). You will have to subscribe only once and you will receive updates concerning all resources that were created in your application.
+If you will be dealing with multiple profiles in your integration, check out [***application webhooks***](#application-webhooks). You will have to subscribe only once and you will receive updates concerning all resources that were created in your application.
 
 ## Create
 

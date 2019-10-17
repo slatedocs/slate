@@ -1,13 +1,10 @@
-# Webhooks
+# Webhooks (v1)
 
-**NB! Please note this version of webhooks is now **_deprecated_**. You can use (profile webhooks) or (application webhooks) instead.
+<aside class="warning">
+Please note this version of webhooks is now DEPRECATED.
+</aside>
 
-There's two ways you can manage webhooks:
-
-* via API (read more below)
-* via user interface (go to your <a href="https://transferwise.com/user/settings#webhooks" target="_blank">settings page</a>)
-
-For the data that will be sent to your server see [events section.](#webhooks-events)
+You can use [profile webhooks](#profile-webhooks) or [application webhooks](#app-webhooks) instead.
 
 ## List
 

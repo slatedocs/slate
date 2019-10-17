@@ -26,6 +26,9 @@ includes:
   - reference/users
   - reference/profiles
   - reference/language
+  - reference/app_webhooks
+  - reference/profile_webhooks
+  - reference/webhook_events
   - reference/webhooks
   - reference/errors
 
