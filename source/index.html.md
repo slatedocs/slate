@@ -5,7 +5,6 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
   - java
   - swift
-  - json
 
 toc_footers:
   - <a href='https://business.oyindonesia.com/oybayar'>Sign Up for Trial</a>
@@ -91,6 +90,12 @@ params += (send_notif !== null) ? '&send_notif='+send_notif : '';
 window.open("https://pay.oyindonesia.com/username?" + params, "_blank"); 
 ```
 
+> Sample curl command:
+
+```shell
+curl -X GET http://pay.oyindonesia.com/username -H 'content-type: application/json' -d '{"txid": "partner000001", "amount": 10000, "description": "Mohon dikirim segera", "show_contact": "true", "show_account": "true", "send_notif": "true", "enable_payment_cc": "false", "enable_payment_va": "false"}'
+```
+
 Open this URL as webview to open OY! Bayar Checkout page, optionally with additional parameters.
 
 ### Open Webview
@@ -116,6 +121,8 @@ enable_payment_va | false | Whether OY! should enable payment using Bank Virtual
 
 ## Payment Result Callback
 
+> The above command returns JSON structured similar like this:
+
 ```json
 {
   "txid": "partner000001",
@@ -137,12 +144,12 @@ Non-trial Account can register specific end point URL (web hook) to receive call
 The data on the callback will be sent using JSON format via POST data to your web hook.
 Check here for example: [example](/?json#payment-result-callback)
 
-Parameter | Description
---------- | -----------
-txid | (Optional) TransactionID which partner set on the initial OY! Bayar URL
-oy_txid | Internal TransactionID from OY! system
-nominal | Amount of payment by the Buyer
-name | Name of Buyer
-phone_number | Phone Number of Buyer
-note | (Optional) This is note from the Buyer
-result | Payment Status of Buyer. Can be either "success" or "failed"
+Parameter | Type | Description
+--------- | ---- | -----------
+txid | String | (Optional) TransactionID which partner set on the initial OY! Bayar URL
+oy_txid | String | Internal TransactionID from OY! system
+nominal | BigDecimal | Amount of payment by the Buyer
+name | String | Name of Buyer
+phone_number | String | Phone Number of Buyer
+note | String | (Optional) This is note from the Buyer
+result | String | Payment Status of Buyer. Can be either "success" or "failed"
