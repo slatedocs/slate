@@ -2374,7 +2374,7 @@ curl -X GET https://app.asana.com/api/1.0/portfolio_memberships \
 <code> <span class="get-verb">GET</span> /portfolio_memberships</code>
 </p>
 
-Returns a list of portfolio memberships in compact representation. You must specify `portolio`, `portfolio` and `user`, or `workspace` and `user`.
+Returns a list of portfolio memberships in compact representation. You must specify `portfolio`, `portfolio` and `user`, or `workspace` and `user`.
 
 <h3 id="get-multiple-portfolio-memberships-parameters">Parameters</h3>
 
@@ -6458,7 +6458,7 @@ explicitly if you specify `projects` or a `parent` task instead.
 |»» assignee_status|body|string|false|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
 |»» completed|body|boolean|false|True if the task is currently marked complete, false if not.|
 |»» completed_at|body|string(date-time)¦null|false|The time at which this task was completed, or null if the task is incomplete.|
-|»» custom_fields|body|[object]|false|Array of custom field values applied to the project. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `string_value` property for custom fields of type `string`, and so on. Please note that the `gid` returned on each custom field value *is identical* to the `gid` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-gid` endpoint.|
+|»» custom_fields|body|[object]|false|Array of custom field values applied to the project. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `text_value` property for custom fields of type `text`, and so on. Please note that the `gid` returned on each custom field value *is identical* to the `gid` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-gid` endpoint.|
 |»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
 |»»» resource_type|body|string|false|The base type of this resource.|
@@ -6878,7 +6878,7 @@ Returns the complete updated task record.
 |»» assignee_status|body|string|false|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
 |»» completed|body|boolean|false|True if the task is currently marked complete, false if not.|
 |»» completed_at|body|string(date-time)¦null|false|The time at which this task was completed, or null if the task is incomplete.|
-|»» custom_fields|body|[object]|false|Array of custom field values applied to the project. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `string_value` property for custom fields of type `string`, and so on. Please note that the `gid` returned on each custom field value *is identical* to the `gid` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-gid` endpoint.|
+|»» custom_fields|body|[object]|false|Array of custom field values applied to the project. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `text_value` property for custom fields of type `text`, and so on. Please note that the `gid` returned on each custom field value *is identical* to the `gid` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-gid` endpoint.|
 |»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
 |»»» resource_type|body|string|false|The base type of this resource.|
@@ -7757,7 +7757,7 @@ Creates a new subtask and adds it to the parent task. Returns the full record fo
 |»» assignee_status|body|string|false|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
 |»» completed|body|boolean|false|True if the task is currently marked complete, false if not.|
 |»» completed_at|body|string(date-time)¦null|false|The time at which this task was completed, or null if the task is incomplete.|
-|»» custom_fields|body|[object]|false|Array of custom field values applied to the project. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `string_value` property for custom fields of type `string`, and so on. Please note that the `gid` returned on each custom field value *is identical* to the `gid` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-gid` endpoint.|
+|»» custom_fields|body|[object]|false|Array of custom field values applied to the project. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `text_value` property for custom fields of type `text`, and so on. Please note that the `gid` returned on each custom field value *is identical* to the `gid` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-gid` endpoint.|
 |»»» id|body|integer(int64)|false|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |»»» gid|body|string|false|Globally unique identifier of the object, as a string.|
 |»»» resource_type|body|string|false|The base type of this resource.|
@@ -13395,7 +13395,7 @@ The *task* is the basic object around which many operations in Asana are centere
 |assignee_status|string|false|none|Scheduling status of this task for the user it is assigned to. This field can only be set if the assignee is non-null.|
 |completed|boolean|false|none|True if the task is currently marked complete, false if not.|
 |completed_at|string(date-time)¦null|false|read-only|The time at which this task was completed, or null if the task is incomplete.|
-|custom_fields|[object]|false|read-only|Array of custom field values applied to the project. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `string_value` property for custom fields of type `string`, and so on. Please note that the `gid` returned on each custom field value *is identical* to the `gid` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-gid` endpoint.|
+|custom_fields|[object]|false|read-only|Array of custom field values applied to the project. These represent the custom field values recorded on this project for a particular custom field. For example, these custom field values will contain an `enum_value` property for custom fields of type `enum`, a `text_value` property for custom fields of type `text`, and so on. Please note that the `gid` returned on each custom field value *is identical* to the `gid` of the custom field, which allows referencing the custom field metadata through the `/custom_fields/custom_field-gid` endpoint.|
 |» id|integer(int64)|false|read-only|Globally unique ID of the attachment, as an integer. *Note: This field is under active migration to the gid field—please see our blog post for more information.*|
 |» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|

@@ -2652,8 +2652,8 @@ components:
                 represent the custom field values recorded on this project for a
                 particular custom field. For example, these custom field values
                 will contain an `enum_value` property for custom fields of type
-                `enum`, a `string_value` property for custom fields of type
-                `string`, and so on. Please note that the `gid` returned on each
+                `enum`, a `text_value` property for custom fields of type
+                `text`, and so on. Please note that the `gid` returned on each
                 custom field value *is identical* to the `gid` of the custom field,
                 which allows referencing the custom field metadata through the
                 `/custom_fields/custom_field-gid` endpoint.
@@ -4198,7 +4198,7 @@ paths:
       summary: Get multiple portfolio memberships
       description: >-
         Returns a list of portfolio memberships in compact representation. You must
-        specify `portolio`, `portfolio` and `user`, or `workspace` and `user`.
+        specify `portfolio`, `portfolio` and `user`, or `workspace` and `user`.
       tags:
         - Portfolio Memberships
       operationId: getPortfolioMemberships
