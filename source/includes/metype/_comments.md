@@ -76,10 +76,10 @@ Please find the script on the right in the Scripts tab.
 ## Comments Count API
 
 * The total comments count can be fetched for a page or multiple pages using the api call on the shell.
-The page ids should be comma seperated and base64 encoded. A maximum of 10 page urls can be passed.
+The page ids should be comma seperated and base64URI encoded(first uri encode followed by base64 encoding the uri encoded url). A maximum of 10 page urls can be passed.
 
 ```shell--request
-GET https://www.metype.com/api/v1/accounts/:account_id/pages?page_ids=base_64_enc_string1,base_64_enc_string2
+GET https://www.metype.com/api/v1/accounts/:account_id/pages?page_ids=base_64_uri_enc_string1,base_64_uri_enc_string2
 ```
 ```shell--response
 [
