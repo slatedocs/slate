@@ -1,5 +1,9 @@
 # Bond management
 
+<aside class="notice">
+Most platforms do not require this module. Please speak to the Goji integrations team before using this API.
+</aside>
+
 The Goji Platform supports issuing bonds both via the API and whitelabel web platform.
 
 Goji accumulates invested funds and send them to you in accordance with the frequency of the product. For example, if the bonds are issued monthly, the funds will be sent on a monthly basis.
