@@ -4,7 +4,7 @@ HTTP(S) load balancing can balance HTTP and HTTPS traffic across multiple backen
 
 <!-------------------- LIST LOAD BALANCERS -------------------->
 
-#### List instance groups
+#### List load balancers
 
 ```shell
 curl -X GET \
@@ -19,21 +19,21 @@ curl -X GET \
     "data": [
         {
             "id": "5538770461112637304",
-            "forwardingRule": "https://www.googleapis.com/compute/v1/projects/cmc-gcp-htu/global/forwardingRules/forward123",
-            "targetProxy": "https://www.googleapis.com/compute/v1/projects/cmc-gcp-htu/global/targetHttpsProxies/hellowrold-target-proxy",
-            "urlMap": "https://www.googleapis.com/compute/v1/projects/cmc-gcp-htu/global/urlMaps/hellowrold",
-            "backendService": "https://www.googleapis.com/compute/v1/projects/cmc-gcp-htu/global/backendServices/tes1",
+            "forwardingRule": "https://www.googleapis.com/compute/v1/projects/test-project/global/forwardingRules/my-forwarding-rule",
+            "targetProxy": "https://www.googleapis.com/compute/v1/projects/test-project/global/targetHttpsProxies/my-target-proxy",
+            "urlMap": "https://www.googleapis.com/compute/v1/projects/test-project/global/urlMaps/my-url",
+            "backendService": "https://www.googleapis.com/compute/v1/projects/test-project/global/backendServices/my-backendServices",
             "sslCertificates": [
-                "https://www.googleapis.com/compute/v1/projects/cmc-gcp-htu/global/sslCertificates/ssl-root-frx"
+                "https://www.googleapis.com/compute/v1/projects/test-project/global/sslCertificates/my-ssl-cert"
             ],
-            "name": "hellowrold",
+            "name": "my-loadbalancer",
             "protocol": "HTTPS",
-            "publicAddress": "*.fadam.products.cloudops.net",
+            "publicAddress": "*.random.net",
             "backends": [
                 "instance-group-1",
-                "instance-group-test"
+                "instance-group-2"
             ],
-            "shortBackends": "instance-group-1, instance-group-test"
+            "shortBackends": "instance-group-1, instance-group-2"
         }
     ],
     "metadata": {
@@ -48,12 +48,18 @@ Retrieve a list of all load balancers in a given [environment](#administration-e
 
 Attributes | &nbsp;
 ------- | -----------
-`id`<br/>*String* | The id of this resource, which should be the same id as corresponding forwarding rule
-`forwardingRule`<br/>*String* | Server-defined URL for corresponding forwarding rule
-`targetProxy`<br/>*String* | Server-defined URL for corresponding target proxy
-`urlMap`<br/>*String* | Server-defined URL for corresponding url map
+`backends`<br/>*List<String>* | The list of backends for this resource
 `backendService`<br/>*String* | Server-defined URL for corresponding backend service
+`forwardingRule`<br/>*String* | Server-defined URL for corresponding forwarding rule
+`id`<br/>*String* | The id of this resource, which should be the same id as corresponding forwarding rule
 `name`<br/>*String* | The name of this resource
 `protocol`<br/>*String* | The protocol of this resource
 `publicAddress`<br/>*String* | The public address which allow user access their service quickly
-`backends`<br/>*List<String>* | The list of backends for this resource
+`shortBackends`<br/>*String* | The list of backends for this resource in string format 
+`targetProxy`<br/>*String* | Server-defined URL for corresponding target proxy
+`urlMap`<br/>*String* | Server-defined URL for corresponding url map
+
+
+
+
+
