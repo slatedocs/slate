@@ -1,0 +1,86 @@
+/*!
+ * Legal Disclaimer
+ *
+ * These Fonts are licensed only for use on these domains and their subdomains:
+ * timelyapp.com
+ * memory.ai
+ *
+ * It is illegal to download or use them on other websites.
+ *
+ * While the @font-face statements below may be modified by the client, this
+ * disclaimer may not be removed.
+ *
+ * Lineto.com, 2019
+ */
+
+@font-face {
+  font-family: "Circular";
+  font-display: swap;
+  src: url("../fonts/circular/lineto-circular-bold.eot");
+  src: url("../fonts/circular/lineto-circular-bold.eot?#iefix")
+      format("embedded-opentype"),
+    url("../fonts/circular/lineto-circular-bold.woff2") format("woff2"),
+    url("../fonts/circular/lineto-circular-bold.woff") format("woff");
+  font-weight: 900; // was 700
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Circular";
+  font-display: swap;
+  src: url("../fonts/circular/lineto-circular-bolditalic.eot");
+  src: url("../fonts/circular/lineto-circular-bolditalic.eot?#iefix")
+      format("embedded-opentype"),
+    url("../fonts/circular/lineto-circular-bolditalic.woff2") format("woff2"),
+    url("../fonts/circular/lineto-circular-bolditalic.woff") format("woff");
+  font-weight: 900; // was 700
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Circular";
+  font-display: swap;
+  src: url("../fonts/circular/lineto-circular-book.eot");
+  src: url("../fonts/circular/lineto-circular-book.eot?#iefix")
+      format("embedded-opentype"),
+    url("../fonts/circular/lineto-circular-book.woff2") format("woff2"),
+    url("../fonts/circular/lineto-circular-book.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Circular";
+  font-display: swap;
+  src: url("../fonts/circular/lineto-circular-bookitalic.eot");
+  src: url("../fonts/circular/lineto-circular-bookitalic.eot?#iefix")
+      format("embedded-opentype"),
+    url("../fonts/circular/lineto-circular-bookitalic.woff2") format("woff2"),
+    url("../fonts/circular/lineto-circular-bookitalic.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Circular";
+  font-display: swap;
+  src: url("../fonts/circular/lineto-circular-medium.eot");
+  src: url("../fonts/circular/lineto-circular-medium.eot?#iefix")
+      format("embedded-opentype"),
+    url("../fonts/circular/lineto-circular-medium.woff2") format("woff2"),
+    url("../fonts/circular/lineto-circular-medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Circular";
+  font-display: swap;
+  src: url("../fonts/circular/lineto-circular-mediumitalic.eot");
+  src: url("../fonts/circular/lineto-circular-mediumitalic.eot?#iefix")
+      format("embedded-opentype"),
+    url("../fonts/circular/lineto-circular-mediumitalic.woff2") format("woff2"),
+    url("../fonts/circular/lineto-circular-mediumitalic.woff") format("woff");
+  font-weight: 500;
+  font-style: italic;
+}
