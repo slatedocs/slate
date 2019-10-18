@@ -18,6 +18,7 @@ curl -X GET \
 {
     "data": [
         {
+            "id": "5538770461112637304",
             "forwardingRule": "https://www.googleapis.com/compute/v1/projects/cmc-gcp-htu/global/forwardingRules/forward123",
             "targetProxy": "https://www.googleapis.com/compute/v1/projects/cmc-gcp-htu/global/targetHttpsProxies/hellowrold-target-proxy",
             "urlMap": "https://www.googleapis.com/compute/v1/projects/cmc-gcp-htu/global/urlMaps/hellowrold",
