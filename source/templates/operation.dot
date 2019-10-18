@@ -1,4 +1,6 @@
 <hr class="half-line">
+{{= data.tags.section }}
+
 ## {{= data.operationUniqueName}}
 
 {{? data.operation.operationId}}
@@ -20,14 +22,6 @@
 {{= data.utils.getCodeSamples(data) }}
 {{?}}
 
-<p>
-<code> <span class="{{=data.method.verb.toLowerCase()}}-verb">{{= data.methodUpper}}</span> {{=data.method.path}}</code>
-</p>
-
-{{? data.operation.summary && !data.options.tocSummary}}*{{= data.operation.summary }}*{{?}}
-
-{{? data.operation.description}}{{= data.operation.description }}{{?}}
-
 {{? data.operation.requestBody}}
 > Body parameter
 
@@ -37,6 +31,24 @@
 
 {{= data.utils.getBodyParameterExamples(data).replaceAll('"...": "..."', '...').replaceAll('"..."', '...') }}
 {{?}}
+
+{{ data.responses = data.utils.getResponses(data); }}
+{{ data.responseSchemas = false; }}
+{{~ data.responses :response }}
+{{ if (response.content) data.responseSchemas = true; }}
+{{~}}
+
+{{? data.responseSchemas }}
+{{= data.utils.getResponseExamples(data).replaceAll('"...": "..."', '...').replaceAll('"..."', '...') }}
+{{?}}
+
+<p>
+<code> <span class="{{=data.method.verb.toLowerCase()}}-verb">{{= data.methodUpper}}</span> {{=data.method.path}}</code>
+</p>
+
+{{? data.operation.summary && !data.options.tocSummary}}*{{= data.operation.summary }}*{{?}}
+
+{{? data.operation.description}}{{= data.operation.description }}{{?}}
 
 {{? data.parameters && data.parameters.length }}
 {{#def.parameters}}

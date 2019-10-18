@@ -14,8 +14,9 @@ Tasks are the basic unit of action in Asana.  Tasks have many fields including a
 
 In addition to standard Create / Read / Update / Delete operations, there are a few things to watch out for when working with tasks:
 
-* Tasks can be orphaned and belong to no projects, they can belong to one project, or they can be multi-homed across two or more projects. The `memberships` field is a collection of the projects with which the task is associated.    
-* Tasks can be multi-homed as subtasks.  For example, task A can be in project B and the same task A can also be a subtask of task C. 
+1. Tasks can be orphaned and belong to no projects, they can belong to one project, or they can be multi-homed across two or more projects. The `memberships` field is a collection of the projects with which the task is associated.    
+2. Tasks can be multi-homed as subtasks.  For example, task A can be in project B and the same task A can also be a subtask of task C. 
+
 * [Tasks API documentation](/developers/api-reference/tasks)
 * [Tasks in the Asana Product Guide](/guide/help/tasks/actions)
 
@@ -40,9 +41,10 @@ A subtask is exactly the same as tasks in a project except that one (and only on
 
 Things to note when working with subtasks:
 
-* Subtasks do not inherit the projects of their parent tasks.  
-* There can be up to 5 levels of subtasks below a task. We do not recommend making sub-subtasks. 
-* There is no way to fetch all subtasks of all tasks in a project in a single request. 
+1. Subtasks do not inherit the projects of their parent tasks.  
+2. There can be up to 5 levels of subtasks below a task. We do not recommend making sub-subtasks. 
+3. There is no way to fetch all subtasks of all tasks in a project in a single request. 
+
 * [Subtasks API documentation](/developers/api-reference/tasks#subtasks)
 * [Subtasks in the Asana Product Guide](/guide/help/tasks/subtasks)
 

@@ -1,3 +1,4 @@
+{{= data.tags.section }}
 <h3 id="{{=data.operationUniqueSlug}}-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
@@ -47,3 +48,4 @@ p.name !== 'opt_expand' && p.name !== 'limit' && p.name !== 'offset' && p.name.r
 {{~ data.enums :e}}|{{= e.name.replaceAll("»", "") }}|{{=data.utils.toPrimitive(e.value)}}|
 {{~}}
 {{?}}
+{{= data.tags.endSection }}

@@ -472,6 +472,7 @@ html, body {
 
   .table-holder {
     margin: 0 $table-padding 0 $table-padding;
+    display: inline-block;
   }
 
   table {

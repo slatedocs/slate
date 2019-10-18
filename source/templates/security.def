@@ -1,4 +1,6 @@
 <hr class="full-line">
+{{= data.tags.section }}
+
 # Authentication
 
 {{ for (var s in data.api.components.securitySchemes) { }}
@@ -26,3 +28,5 @@
 {{ } /* of flows */ }}
 {{?}}
 {{ } /* of securitySchemes */ }}
+
+{{= data.tags.endSection }}

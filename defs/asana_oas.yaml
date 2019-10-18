@@ -766,7 +766,7 @@ components:
         type: string
       x-env-variable: user
       examples:
-        id:
+        gid:
           summary: A globally unique identifier for the user
           value: 14641
         me:
@@ -945,6 +945,15 @@ components:
         A generic Asana Object, containing a globally unique identifier.
       type: object
       properties:
+        id:
+          description: >
+            Globally unique ID of the attachment, as an integer. *Note: This
+            field is under active migration to the gid field—please see our blog
+            post for more information.*
+          type: integer
+          format: int64
+          readOnly: true
+          example: 12345
         gid:
           description: >-
             Globally unique identifier of the object, as a string.
@@ -986,6 +995,7 @@ components:
           readOnly: true
           default: milestone
     AsanaCreatedAt:
+      type: object
       properties:
         created_at:
           description: The time at which this resource was created.
@@ -1661,6 +1671,11 @@ components:
                 name:
                   type: string
                   example: My Workspace
+    OrganizationExportObject:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/OrganizationExport'
     Portfolio:
       allOf:
         - $ref: '#/components/schemas/PortfolioCompact'
@@ -4122,10 +4137,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  data:
-                    $ref: '#/components/schemas/OrganizationExport'
+                $ref: '#/components/schemas/OrganizationExportObject'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -4154,10 +4166,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  data:
-                    $ref: '#/components/schemas/OrganizationExport'
+                $ref: '#/components/schemas/OrganizationExportObject'
         400:
           $ref: '#/components/responses/BadRequest'
         401:
@@ -6398,15 +6407,19 @@ paths:
                       type: object
                       properties:
                         assignee:
-                          $ref: '#/components/schemas/body_object_gid_override'
-                          nullable: true
+                          allOf:
+                            - $ref: '#/components/schemas/body_object_gid_override'
+                            - type: object
+                              nullable: true
                         followers:
                           $ref: '#/components/schemas/body_array_gid_override'
                         tags:
                           $ref: '#/components/schemas/body_array_gid_override'
                         parent:
-                          $ref: '#/components/schemas/body_object_gid_override'
-                          nullable: true
+                          allOf:
+                            - $ref: '#/components/schemas/body_object_gid_override'
+                            - type: object
+                              nullable: true
                         projects:
                           $ref: '#/components/schemas/body_array_gid_override'
                         workspace:
