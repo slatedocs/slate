@@ -535,6 +535,61 @@ API will return a list of the following structure:
 | **balance**   | DECIMAL                           | Balance for that token
 
 
+# Get Transfers
+
+Get deposits / withdrawals between the given time range. Time range should be provided in ISO 8601 date format.
+
+
+## HTTP Request
+`GET https://api.falconx.io/v1/transfers`
+
+## Query Parameters
+
+> Request Sample
+
+```shell
+# substitute placeholders with correct authorization header values
+curl -X GET "https://api.falconx.io/v1/transfers?t_start=2019-06-20T00:00:00+00:00&t_end=2019-06-21T00:00:00+00:00" \
+      -H "FX-ACCESS-SIGN: <signature>" \
+      -H "FX-ACCESS-TIMESTAMP: <timestamp>" \
+      -H "FX-ACCESS-KEY: <api_key>" \
+      -H "FX-ACCESS-PASSPHRASE: <passphrase>" \
+      -H "Content-Type: application/json"
+```
+
+
+| Parameter         | Type                                | Description
+| ---------         | ----------------------------------- | ------------
+| **t_start**   | STRING                         | Start of time range in ISO 8601 date format
+| **t_end**   | STRING                         | End of time range in ISO 8601 date format
+
+
+## Response Parameters
+
+> Response Sample
+
+```json
+[
+  {
+    "type": "deposit",
+    "platform": "midas",
+    "token": "BTC",
+    "quantity": 1.0,
+    "t_create": "2019-06-20T01:01:01+00:00"
+  }
+]
+```
+API will return a list of the following structure:
+
+| Parameter     | Type                              | Description |
+| ---------     | ------------------------------    | ------------|
+| **type**        | STRING                            | Type of transfer. Possible values: `deposit` or `withdrawal`|
+| **platform**   | STRING                            | Platform for transfer. Possible values: `api`, `midas` or `margin`
+| **token**   | DECIMAL                            | Token symbol
+| **quantity**   | DECIMAL                            | Quantity
+| **t_create**    | JSON                              | Time of creation |
+
+
 # JSON Structures
 
 ## Token Pair
