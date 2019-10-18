@@ -478,6 +478,7 @@ html, body {
   table {
     margin-bottom: 1em;
     overflow: auto;
+
     th,td {
       text-align: left;
       vertical-align: top;
@@ -496,6 +497,12 @@ html, body {
 
     tr:last-child {
       border-bottom: 1px solid #ccc;
+    }
+
+    tr:not(:last-child) {
+      th, td {
+        border-bottom: 1px solid #ddd;
+      }
     }
   }
 
@@ -797,12 +804,13 @@ code {
     }
 
     tbody {
-      .chevron {
-        text-align: center;
-      }
-
       .has-children.expanded .chevron {
         transform: rotate(90deg);
+        transition: transform 0.2s ease;
+      }
+
+      .has-children:not(.expanded) .chevron {
+        transform: rotate(0deg);
         transition: transform 0.2s ease;
       }
 
@@ -868,35 +876,35 @@ code {
         }
       }
 
-      .c1 {
+      .c1 td:first-child {
+        border-left: 4px solid #e0e6e8;
+      }
+      .c2 td:first-child {
         border-left: 8px solid #e0e6e8;
       }
-      .c2 {
+      .c3 td:first-child {
+        border-left: 12px solid #e0e6e8;
+      }
+      .c4 td:first-child {
         border-left: 16px solid #e0e6e8;
       }
-      .c3 {
+      .c5 td:first-child {
+        border-left: 20px solid #e0e6e8;
+      }
+      .c6 td:first-child {
         border-left: 24px solid #e0e6e8;
       }
-      .c4 {
+      .c7 td:first-child {
+        border-left: 28px solid #e0e6e8;
+      }
+      .c8 td:first-child {
         border-left: 32px solid #e0e6e8;
       }
-      .c5 {
+      .c9 td:first-child {
+        border-left: 36px solid #e0e6e8;
+      }
+      .c10 td:first-child {
         border-left: 40px solid #e0e6e8;
-      }
-      .c6 {
-        border-left: 48px solid #e0e6e8;
-      }
-      .c7 {
-        border-left: 56px solid #e0e6e8;
-      }
-      .c8 {
-        border-left: 64px solid #e0e6e8;
-      }
-      .c9 {
-        border-left: 72px solid #e0e6e8;
-      }
-      .c10 {
-        border-left: 80px solid #e0e6e8;
       }
 
       tr {
@@ -918,12 +926,14 @@ code {
           padding-right: 20px;
         }
 
-        td:nth-child(2) {
-          font-family: Consolas, Menlo, monospace;
-          color: #FF5263;
-          font-size: 13px;
-          line-height: 22px;
-          font-weight: 400;
+        &:not(.common-items-toggle) {
+          td:nth-child(2) {
+            font-family: Consolas, Menlo, monospace;
+            color: #FF5263;
+            font-size: 13px;
+            line-height: 22px;
+            font-weight: 400;
+          }
         }
       }
     }
@@ -986,9 +996,8 @@ pre {
   cursor: pointer;
 
   .chevron {
-    text-align: center;
+    vertical-align: middle;
     display: inline-block;
-    padding: $spacing-xs;
   }
 
   &.expanded {
@@ -998,9 +1007,23 @@ pre {
     }
   }
 
+  &:not(.expanded) {
+    .chevron {
+      transform: rotate(0deg);
+      transition: transform 0.2s ease;
+    }
+  }
+
   & + .table-holder {
     display: none;
   }
+}
+
+.chevron {
+  width: 14px;
+  display: block;
+  padding: $spacing-xxs;
+  margin: auto;
 }
 
 .beta-feedback-holder {

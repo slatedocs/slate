@@ -133,7 +133,7 @@ You’re ready to start coding!
 
 Asana has [client libraries](#official-client-libraries) in several popular coding languages. Using these libraries has several advantages (like managing authorization and retrying errors) that make them a good place to go from here. Let’s take a look at making the same `/users/me` request in Python, JavaScript, and Ruby (feel free to skip ahead to your favorite of the three languages).
 
-<hr class="full-line">
+---
 
 ## Accessing the API with Postman
 

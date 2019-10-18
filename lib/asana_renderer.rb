@@ -25,7 +25,7 @@ class AsanaRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
     if friendly_text.match(/^enumerated-values/)
       classes = 'class="enumerated-values"'
       on_click = 'onclick="$(this).next().toggle(); $(this).toggleClass(\'expanded\');"'
-      text = text + "<div class='chevron'>&rarr;</div>"
+      text = text + "<svg class='chevron' viewBox='0 0 40 40'><path d='M23.2,16c0,0.3-0.1,0.7-0.3,0.9l-9,11c-0.5,0.6-1.5,0.7-2.1,0.2s-0.7-1.5-0.2-2.1l8.2-10L11.6,6c-0.5-0.6-0.4-1.6,0.2-2.1s1.6-0.4,2.1,0.2l9,11C23.1,15.3,23.2,15.7,23.2,16z'></path></svg>"
     end
 
     "<h#{header_level} id='#{friendly_text}' #{classes} #{on_click}>#{text}</h#{header_level}>"
@@ -56,7 +56,7 @@ class AsanaRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
 
       result_classes[i] = classes
 
-      result_rows[i] = "<tr class=''><td><div class='chevron'>&rarr;</div></td>" + content + "</tr>"
+      result_rows[i] = "<tr class=''><td><svg class='chevron' viewBox='0 0 40 40'><path d='M23.2,16c0,0.3-0.1,0.7-0.3,0.9l-9,11c-0.5,0.6-1.5,0.7-2.1,0.2s-0.7-1.5-0.2-2.1l8.2-10L11.6,6c-0.5-0.6-0.4-1.6,0.2-2.1s1.6-0.4,2.1,0.2l9,11C23.1,15.3,23.2,15.7,23.2,16z'></path></svg></td>" + content + "</tr>"
 
       if previous_depth < chevrons && i > 0
         result_classes[i-1] += " has-children"

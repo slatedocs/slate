@@ -1251,6 +1251,14 @@ components:
           properties:
             resource_type:
               example: custom_field
+            resource_subtype:
+              description: >
+                The type of the custom field. Must be one of the given values.
+              type: string
+              enum:
+                - text
+                - enum
+                - number
             type:
               description: >
                 *Deprecated: new integrations should prefer the resource_subtype
