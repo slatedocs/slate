@@ -76,10 +76,10 @@ GEM
     middleman-syntax (3.0.0)
       middleman-core (>= 3.2)
       rouge (~> 2.0)
-    mini_portile2 (2.3.0)
+    mini_portile2 (2.4.0)
     minitest (5.11.3)
-    nokogiri (1.8.5)
-      mini_portile2 (~> 2.3.0)
+    nokogiri (1.10.4)
+      mini_portile2 (~> 2.4.0)
     padrino-helpers (0.13.3.4)
       i18n (~> 0.6, >= 0.6.7)
       padrino-support (= 0.13.3.4)
@@ -124,7 +124,7 @@ DEPENDENCIES
   middleman-autoprefixer (~> 2.7)
   middleman-sprockets (~> 4.1)
   middleman-syntax (~> 3.0)
-  nokogiri (~> 1.8.5)
+  nokogiri (~> 1.10.4)
   redcarpet (~> 3.4.0)
   rouge (~> 2.0.5)
   sass
@@ -133,4 +133,4 @@ RUBY VERSION
    ruby 2.3.3p222
 
 BUNDLED WITH
-   2.0.1
+   2.0.2
