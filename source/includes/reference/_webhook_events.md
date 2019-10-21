@@ -100,7 +100,7 @@ sent_at         | Timestamp when update happened                  | Timestamp
 
 ### Event
 
-Event will be triggered every time transfer status is updated. Each event contains a timestamp. As we do not guarantee the order of events, please use `eventTime` to reconcile the order. 
+Event will be triggered every time transfer status is updated. Each event contains a timestamp. As we do not guarantee the order of events, please use `data.occured_at` to reconcile the order. 
 
 If you would like to subscribe to transfer state change events, please use `transfers#state-change` when creating your subscription.
 
