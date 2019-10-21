@@ -562,7 +562,7 @@ curl -X GET "https://api.falconx.io/v1/transfers?t_start=2019-06-20T00:00:00+00:
 | ---------         | ----------------------------------- | ------------
 | **t_start**   | STRING                         | Start of time range in ISO 8601 date format
 | **t_end**   | STRING                         | End of time range in ISO 8601 date format
-| **platform** | STRING | Platform for transfer. Possible values: `api`, `browser` or `margin`
+| **platform** | STRING | Platform for transfer. Possible values: `api`, `browser` or `margin`. If not present transfers from all platforms are returned
 
 ## Response Parameters
 
