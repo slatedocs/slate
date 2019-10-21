@@ -1,5 +1,40 @@
 # API Documentation
 
+## User
+
+* Right now APIs support only third login.
+* To understand how to generate JWT supported by metype check [this](#generating-jwt)
+
+### GET User info
+
+This endpoint returns the information of a user.
+
+```shell--request
+curl -X GET \
+  'https://www.metype.com/api/v1/accounts/<account_id>/current_user?jwt=<jwt>'
+```
+
+```shell--response
+{
+    "signed_in": true,
+    "current_user": {
+        "name": "name",
+        "avatar": "http://avata.com/avatar",
+        "id": 109,
+        "slug": "name-2",
+        "guest": false,
+        "bio": "",
+        "accounts": []
+    },
+    "is_guest": false,
+    "provider": null
+}
+```
+
+### Logout
+
+For third party login any API on metype will avoid user's state when JWT is not present.
+
 ## GET Account Config
 ```shell--request
 curl --request GET \
@@ -57,6 +92,7 @@ The important data inside this response is the data refering `attributes` key. B
 | font_color |string| font colour of the widget|
 | third_party_login |boolean| indicates if the account uses own(true) login or metype(false) login|
 | prohibited_words |array| words that will determine a profane comment according to account configuration|
+| guest_contributions |string| indicates if guest contributions are allowed in feed/widget|
 
 Key points that needs your attention:
 
