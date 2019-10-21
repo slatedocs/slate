@@ -117,37 +117,62 @@ Nota de Débito           | 05
 Guía de Remisión         | 06
 Comprobante de Retención | 07
 
-## Tipos de forma de pago
+## Formas de pago
 
 Forma de pago            | Código
 ------------------------ | ------
-Efectivo | efectivo
-Cheque | cheque
-Débito de cuenta bancaria | debito_cuenta_bancaria
-Transferencia bancaria | transferencia
-Depósito en cuenta (Corriente / Ahorros) | deposito_cuenta_bancaria
-Tarjeta de débito | tarjeta_debito
-Dinero electrónico Ecuador | dinero_electronico_ec
-Tarjeta prepago | tarjeta_prepago
-Tarjeta de crédito | tarjeta_credito
-Otros | otros
-Endoso de títulos | endoso_titulos
+Alia | alia
+American Express | american_express
+Cheque | check
+Cheque certificado | certified_check
+Cheque de gerencia | cashiers_check
+Cheque del exterior | outside_check
+Compensación de deudas | debt_compensation
+Débito de cuenta bancaria | bank_account_debit
+Depósito Banco Bolivariano | banco_bolivariano
+Depósito Banco Pacífico | banco_pacifico
+Depósito Banco Pichincha | banco_pichincha
+Depósito en cuenta (Corriente / Ahorros) | bank_account_deposit
+Dinero electrónico | dinero_electronico_ec
+Diners Club | diners_club
+Discover | discover
+Efectivo | cash
+Endoso de inversión | investment_endorsement
+Endoso de títulos | certificate_endorsement
+Giro | money_order
+MasterCard | mastercard
+Nota de Crédito | credit_note
+Orden de Pago Banco Pichincha | banco_pichincha_payment_order
+Otros | others
+PayPal | paypal
+PayPhone | payphone
+Retención | retention
+Tarjeta de crédito | credit_card
+Tarjeta de crédito internacional | international_credit_card
+Tarjeta de crédito nacional | local_credit_card
+Tarjeta de débito | debit_card
+Tarjeta prepago | prepaid_card
+Transferencia | wire_transfer
+Transferencia banco exterior | international_bank_transfer
+Transferencia en el mismo banco | same_bank_transfer
+Transferencia otro banco nacional | other_bank_transfer
+Visa | visa
 
 ## Equivalencia entre formas de pago Dátil y formas de pago del SRI
 
-Forma de pago Dátil      | Código | Forma de pago SRI      | Código
------------------------- | ------ | -----------------------|-------
-Efectivo | efectivo | Sin utilización del sistema financiero | 01
-Cheque | cheque | Otros con utilización del sistema financiero | 20
-Débito bancario | debito_cuenta_bancaria | Otros con utilización del sistema financiero| 20
-Transferencia bancaria | transferencia | Otros con utilización del sistema financiero | 20
-Tarjeta de crédito | tarjeta_credito | Tarjeta de crédito nacional | 19
-Depósito en cuenta (Corriente / Ahorros) | deposito_cuenta_bancaria | Otros con utilización del sistema financiero | 20
-Tarjeta de débito | tarjeta_debito | Tarjeta de débito | 16
-Dinero electrónico Ecuador | dinero_electronico_ec | Dinero electrónico | 17
-Tarjeta prepago | tarjeta_prepago | Tarjeta prepago | 18
-Otros | otros | Otros con utilización del sistema financiero | 20
-Endoso de títulos | endoso_titulos | Endoso de títulos | 21
+Forma de pago Dátil      | Forma de pago SRI      | Código
+------------------------ | -----------------------|-------
+Efectivo | Sin utilización del sistema financiero | 01
+Cheque | Otros con utilización del sistema financiero | 20
+Débito bancario | Otros con utilización del sistema financiero| 20
+Transferencia bancaria | Otros con utilización del sistema financiero | 20
+Tarjeta de crédito | Tarjeta de crédito nacional | 19
+Depósito en cuenta (Corriente / Ahorros) | Otros con utilización del sistema financiero | 20
+Tarjeta de débito | Tarjeta de débito | 16
+Dinero electrónico Ecuador | Dinero electrónico | 17
+Tarjeta prepago | Tarjeta prepago | 18
+Otros | Otros con utilización del sistema financiero | 20
+Endoso de títulos | Endoso de títulos | 21
 
 Debido a que el Servicio de Rentas Internas exige incluir información del pago,
 las facturas a crédito se enviarán al SRI con forma de pago "Otros con utilización del sistema financiero".
