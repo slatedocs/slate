@@ -1,5 +1,49 @@
 # API Documentation
 
+## Comment structure
+```json
+{
+  "ops": [
+      { // mentions starts
+          "attributes": {
+              "mention": {
+                  "name": "batman",
+                  "slug": "batman",
+                  "avatar": "null",
+                  "id": "420",
+                  "target": "_blank",
+                  "class": "custom-em"
+              },
+              "link": "karthik-2"
+          },
+          "insert": {
+              "mentions": true
+          }
+      },// mnetions end here
+      { // plaing text starts here
+          "insert": "hey 😀"
+      }, // plain text ends here
+      {//link type starts here
+          "attributes": { // this is the link/URL
+              "link": "https://www.metype.com"
+          },
+          "insert": "https://www.metype.com" // This is the display text of the link
+      },
+      {//Image type starts here
+          "insert": {
+              "image": "https://stg-quintype-dropbox.s3-accelerate.amazonaws.com/localhost-1571654905860-a.png" // Url of the uploaded image
+          }
+      }// Image type ends here
+  ]
+}
+```
+* Comment structure is the structure that needs to be followed while creating a comment or perceived for displaying a comment.
+* Comment is nothing but an object with `ops` as key and array of objects. The text part of each of the object will eventually become the displayed text but with some styling and functionality.
+* Currently supported types are plain text(emoji is part of plain text), links, mentions, image upload.
+* An example is shown here to illustrate the comment structure.
+* To fetch mentions there is an API available and will be documented.
+* To upload images there is an API available and will be documented.
+
 ## User
 
 * Right now APIs support only third login.
