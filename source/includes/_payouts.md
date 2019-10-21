@@ -587,7 +587,7 @@ This way we can treat subsequent retry messages as **repeat messages** and will 
 > Example Request:
 
 ```shell
-curl -X POST https://api.sandbox.transferwise.tech/v1/transfers/{transferId}/payments \
+curl -X POST https://api.sandbox.transferwise.tech/v3/profiles/{profileId}/transfers/{transferId}/payments \
      -H "Authorization: Bearer <your api token>" \
      -H "Content-Type: application/json" \
      -d '{ 
@@ -626,7 +626,7 @@ You can then top up your new currencies by converting funds from other currencie
 
 ### Request
 
-**`POST https://api.sandbox.transferwise.tech/v1/transfers/{transferId}/payments`**
+**`POST https://api.sandbox.transferwise.tech/v3/profiles/{profileId}/transfers/{transferId}/payments`**
 
 Use transfer id that you obtained in previous step. 
 
