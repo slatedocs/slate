@@ -562,7 +562,7 @@ curl -X GET "https://api.falconx.io/v1/transfers?t_start=2019-06-20T00:00:00+00:
 | ---------         | ----------------------------------- | ------------
 | **t_start**   | STRING                         | Start of time range in ISO 8601 date format
 | **t_end**   | STRING                         | End of time range in ISO 8601 date format
-
+| **platform** | STRING | Platform for transfer. Possible values: `api`, `browser` or `margin`
 
 ## Response Parameters
 
@@ -572,7 +572,7 @@ curl -X GET "https://api.falconx.io/v1/transfers?t_start=2019-06-20T00:00:00+00:
 [
   {
     "type": "deposit",
-    "platform": "midas",
+    "platform": "browser",
     "token": "BTC",
     "quantity": 1.0,
     "t_create": "2019-06-20T01:01:01+00:00"
@@ -584,7 +584,7 @@ API will return a list of the following structure:
 | Parameter     | Type                              | Description |
 | ---------     | ------------------------------    | ------------|
 | **type**        | STRING                            | Type of transfer. Possible values: `deposit` or `withdrawal`|
-| **platform**   | STRING                            | Platform for transfer. Possible values: `api`, `midas` or `margin`
+| **platform**   | STRING                            | Platform for transfer. Possible values: `api`, `browser` or `margin`
 | **token**   | DECIMAL                            | Token symbol
 | **quantity**   | DECIMAL                            | Quantity
 | **t_create**    | JSON                              | Time of creation |
