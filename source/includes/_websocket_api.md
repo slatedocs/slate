@@ -317,6 +317,21 @@ Please note that the product symbol is prepended with a "MARK:" to subscribe for
 }
 ```
 
+## funding_rate
+
+**funding_rate** channel provides a real time feed of funding rates for perpetual contracts.
+
+```
+// Mark Price Response
+{
+    symbol: "BNBBTC_30Nov",
+    product_id: 7,
+    type: "funding_rate",
+    funding_rate: "-0.00401010",  // in %
+    timestamp: 1561634049751430   // in us
+}
+```
+
 ## product_updates
 This channel provides updates when markets are disrupted and resumed. On opening, we conduct a single price auction and auction starting and finish events are also published on this channel. To subscribe, you dont need to pass the symbol list. This channel automatically subscribes to all markets by default.
 
