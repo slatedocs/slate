@@ -322,7 +322,7 @@ Please note that the product symbol is prepended with a "MARK:" to subscribe for
 **funding_rate** channel provides a real time feed of funding rates for perpetual contracts.
 
 ```
-// Mark Price Response
+// Funding Rate Response
 {
     symbol: "BNBBTC_30Nov",
     product_id: 7,
