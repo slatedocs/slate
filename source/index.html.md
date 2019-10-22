@@ -125,3 +125,52 @@ Parameter | Default | Description
 --------- | ------- | -----------
 enum | null | If set to `translate` attributes are translated if possible (eg. gender will be `male` or `männlich` instead of `m`).
 locale | en | Translates attributes with closed lists, free text fields are only available in the entry language. Possible values are: `en`, `de`
+
+# Talent agencies
+
+## Get talent agency data
+
+```shell
+curl "https://www.castupload.com/api/v1/talent_agencies/123"
+  -H "Authorization: Token token=API_KEY"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": 1,
+  "name": "Example agency",
+  "homepage_url": "https://www.example.com",
+  "imdb_link": "https://pro.imdb.com/company/co0000001",
+  "showreel_url": "https://www.example.com/showreel",
+  "twitter_handle": "@example_agency",
+  "public_email": "info@example.com",
+  "picture_url": "https://static.castupload.com/example.png",
+  "address": {
+    "city": "Mainz",
+    "country": "DE",
+    "fax": null,
+    "line1": "Wallstr. 11",
+    "line2": "",
+    "phone": "49613163691950",
+    "zipcode": "55122"
+  }
+}
+```
+
+This endpoint retrieves a specific talent agency.
+
+### HTTP Request
+
+`GET https://www.castupload.com/api/v1/talent_agencies/<ID>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the talent agency to retrieve
+
+### Response fields
+
+See example response to the right for an overview of included fields.
