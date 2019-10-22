@@ -3,96 +3,39 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
-  - python
-  - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
-
-includes:
-  - errors
+  - <a href='https://www.castupload.com'>&larr; back to Castupload</a>
 
 search: true
 ---
-
-# Introduction
-
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
-
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
 # Authentication
 
 > To authorize, use this code:
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
 ```shell
-# With shell, you can just pass the correct header with each request
 curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+  -H "Authorization: Token token=API_KEY"
 ```
 
-```javascript
-const kittn = require('kittn');
+Castupload uses API keys to allow access to the API. You can request an API key with [our support](http://www.castupload.com/contact/new).
 
-let api = kittn.authorize('meowmeowmeow');
-```
+Castupload expects the API key to be included in all API requests to the server in a header that looks like the following:
 
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+`Authorization: Token token=API_KEY`
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>API_KEY</code> with your personal API key.
 </aside>
 
-# Kittens
+# Actor profiles
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+## Get all actor profiles
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+curl "https://www.castupload.com/api/v1/actor_profiles"
+  -H "Authorization: Token token=API_KEY"
 ```
 
 > The above command returns JSON structured like this:
@@ -101,139 +44,84 @@ let kittens = api.kittens.get();
 [
   {
     "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
+    "name": "John Doe",
+    "gender": "m"
   },
   {
     "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+    "name": "Jane Doe",
+    "gender": "f"
   }
 ]
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves all actor profiles available with the access rights of the API key. Most of the time it is scoped to a talent agency.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET https://www.castupload.com/api/v1/actor_profiles`
 
 ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+include_picture | false | If set to true, the result will include the profile picture thumbnail in a field named `main_picture_url_tile`.
+picture_version | null | Can be set to `original`, `large` or `thumb` to change the included picture version. The picture will be included in a field named `picture_url`. _(Only applies if `include_picture` if true)_
+fields | name,gender | Can be used to modify the fields included in the response. Possible values are: `age`, `gender`, `first_name`, `last_name`, `name`, `professions`.
+order | id | Changes the order of returned results. Possible values are: `id`, `name`, `last_name`
+gender | null | Allows filtering by gender. Possible values are: `m`, `f`, `i`.
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+### Response fields
 
-## Get a Specific Kitten
+Field | Type | Description
+--------- | ------- | -----------
+id | number | Unique ID of the actor profile
+age | number |
+gender | string | `f` for female, `m` for male, `i` for intersex
+name | string | Full name (ie. first & last name) _name can be retrieved separately by using the fields parameter_
+first_name | string |
+last_name | string |
+professions | array of strings | list of professions, eg. `["schauspieler", "synchronsprecher"]`
+main_picture_url_tile | string | profile picture url (thumbnail version)
+picture_url | string | profile picture url of specified version
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+## Get a specific actor profile
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+curl "https://www.castupload.com/api/v1/actor_profiles/123"
+  -H "Authorization: Token token=API_KEY"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "id": 268,
+  "first_name": "John",
+  "last_name": "Doe",
+  "castupload_url": "https://www.castupload.com/actors/john-doe",
+  "acting_age_from": 32,
+  "acting_age_to": 38,
+  "year_of_birth": 1985,
+  // ...
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+This endpoint retrieves a specific actor profile.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET https://www.castupload.com/api/v1/actor_profiles/<ID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
+ID | The ID of the actor profile to retrieve
 
-## Delete a Specific Kitten
+### Query Parameters
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
+Parameter | Default | Description
+--------- | ------- | -----------
+enum | null | If set to `translate` attributes are translated if possible (eg. gender will be `male` or `männlich` instead of `m`).
+locale | en | Translates attributes with closed lists, free text fields are only available in the entry language. Possible values are: `en`, `de`
