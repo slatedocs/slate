@@ -27,6 +27,11 @@ the respective library for instructions.
     * Middleware
     * Controllers
     * SQL queries
+* PHP Functions (requires scoutapm extension installed)
+    * libcurl
+    * file\_get\_contents / file\_put\_contents
+    * fread / fwrite
+    * PDO exec / query / execute
 
 You can instrument your own code or other libraries via [custom instrumentation](#php-custom-instrumentation).
 You can suggest additional libraries you'd like Scout to instrument
