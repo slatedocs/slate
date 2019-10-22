@@ -573,3 +573,32 @@ curl -H "X-SUBAUTH: <auth-token>" -X POST -H "Content-Type: application/json" ht
 `attempt_token` is optional param and must be sent if the external subscription is not to start immediately.
 
 **NOTE**:- This API will soon be deprecated, as the same can now be achieved by [preview API](#post-preview-a-subscription).
+
+## Trial period for a recurring subscription
+
+Trial period is available for a recurring subscription. In order to create a subscription with trial, you need to enable trial period in the subscription plan.
+
+![Accesstype Subscription Plan Enable Trial Period](../../images/trial_period.png "Accesstype Subscription Plan Enable Trial Period")
+
+If you create a subscription with trial period, only authorization amount of 5 rs will be charged to the customer, which will be refunded. And at the end of trial period duration, first subscription charge will occur.
+
+
+For creating a subscription with trial period.
+
+In the subscription object, the following key has to be sent
+
+`"trial_period": true`
+
+The trial period duration of subscription plan will be applied to the subscription.
+
+However you can customize the trial period. You need to send the following keys in the subscription object, if you don't want the default trial period of the subscription plan
+
+
+`"trial_period": true,
+"trial_period_length": 2,
+"trial_period_unit": "weeks"`
+
+The valid trial period units are `days, weeks, months, years`
+
+Note: The trial period duration in the subscription should be less than or equal to
+trial period configured in the subscription plan
