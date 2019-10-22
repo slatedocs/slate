@@ -1,7 +1,7 @@
 <!-- Generator: Widdershins v{{=data.widdershins.version}} -->
 
 <hr class="full-line">
-{{= data.tags.section }}
+<section class="full-section">
 <h1 id="{{=data.title_prefix}}">API Reference</h1>
 
 > Scroll down for {{? data.header.language_tabs.length}}code samples, {{?}}example requests and responses.{{? data.header.language_tabs.length}} Select a language for code samples from the tabs above or the mobile navigation menu.{{?}}
@@ -26,13 +26,13 @@ Base URLs:
 {{? data.api.info && data.api.info.termsOfService}}<a href="{{=data.api.info.termsOfService}}">Terms of service</a>{{?}}
 {{? data.api.info && data.api.info.contact}}{{? data.api.info.contact.email}}Email: <a href="mailto:{{=data.api.info.contact.email}}">{{=data.api.info.contact.name || 'Support'}}</a> {{?}}{{? data.api.info.contact.url}}Web: <a href="{{=data.api.info.contact.url}}">{{= data.api.info.contact.name || 'Support'}}</a> {{?}}{{?}}
 {{? data.api.info && data.api.info.license}}{{? data.api.info.license.url}}License: <a href="{{=data.api.info.license.url}}">{{=data.api.info.license.name}}</a>{{??}} License: {{=data.api.info.license.name}}{{?}}{{?}}
-{{= data.tags.endSection }}
+</section>
 
 {{ for (var r in data.resources) { }}
 {{ data.resource = data.resources[r]; }}
 
 <hr class="full-line">
-{{= data.tags.section }}
+<section class="full-section">
 <h1 id="{{=data.title_prefix+'-'+data.utils.slugify(r)}}">{{= r}}</h1>
 
 {{ var first = true; }}
@@ -45,22 +45,24 @@ Base URLs:
 {{? data.resource.externalDocs}}
 <a href="{{=data.resource.externalDocs.url}}">{{=data.resource.externalDocs.description||'External documentation'}}</a>
 {{?}}
+</section>
 
 {{ for (var m in data.resource.methods) { }}
 {{ data.operationUniqueName = m; }}
 {{ data.method = data.resource.methods[m]; }}
 {{ data.operationUniqueSlug = data.method.slug; }}
 {{ data.operation = data.method.operation; }}
+<hr class="half-line">
+<section>
 {{= data.templates.operation(data) }}
+</section>
 {{ } /* of methods */ }}
-
-{{= data.tags.endSection }}
 {{ } /* of resources */ }}
 
 {{? data.api.components && data.api.components.schemas }}
-{{= data.tags.section }}
 
 <hr class="full-line">
+<section class="full-section">
 
 # Schemas
 
@@ -70,7 +72,7 @@ Base URLs:
 {{ var schema = data.api.components.schemas[s]; }}
 
 <hr>
-{{= data.tags.section }}
+<section>
 <h2 id="tocS_{{=s}}">{{=s}}</h2>
 <!-- backwards compatibility -->
 <a id="schema{{=s.toLowerCase()}}"></a>
@@ -107,7 +109,6 @@ Base URLs:
 {{?}}
 
 {{? block===blocks[0] }}
-{{= data.tags.section }}
 
 ### Properties
 {{?}}
@@ -122,7 +123,6 @@ Base URLs:
 {{?}}
 
 {{? enums.length > 0 }}
-{{= data.tags.section }}
 
 #### Enumerated Values
 
@@ -131,13 +131,13 @@ Base URLs:
 {{~ enums :e}}|{{=e.name}}|{{=data.utils.toPrimitive(e.value)}}|
 {{~}}
 
-{{= data.tags.endSection }}
 {{?}}
 
-{{= data.tags.endSection }}
-{{= data.tags.endSection }}
+</section>
 
 {{ } /* of schemas */ }}
+
+</section>
 
 {{?}}
 

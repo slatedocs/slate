@@ -383,7 +383,7 @@ $boxShadow-marketing: 0 14px 80px 0 rgba($gray-10, .06);
 $nav-bg: $white !default;
 $examples-bg: $white !default;
 $code-bg: $gray-1 !default;
-$code-annotation-bg: #191D1F !default;
+$code-annotation-bg: transparent !default;
 $nav-subitem-bg: $white !default;
 $nav-active-bg: $gray-2 !default;
 $nav-active-parent-bg: $white !default; // parent links of the current section
@@ -415,13 +415,16 @@ $code-text: $gray-10 !default;
 ////////////////////
 $nav-width: 244px !default; // width of the navbar
 $examples-width: 40% !default; // portion of the screen taken up by code examples
+$examples-padding-left: 8% !default; // portion of the screen taken up by code examples
+$examples-padding-vert: $spacing-s !default; // portion of the screen taken up by code examples
 $logo-margin: 0px !default; // margin below logo
 $main-padding: $spacing-xl !default; // padding to left and right of content & examples
 $nav-padding: 0 !default; // padding to left and right of navbar
 $nav-v-padding: $spacing-s !default; // padding used vertically around search boxes and results
 $nav-indent: $spacing-xs !default; // extra padding for ToC subitems
-$code-annotation-padding: $spacing-xxs !default; // padding inside code annotations
+$code-annotation-padding: 0 !default; // padding inside code annotations
 $h1-margin-bottom: $spacing-ms !default; // padding under the largest header tags
+$h2-margin-bottom: $spacing-ms !default; // padding under the largest header tags
 $h1-padding-top: 80px !default;
 $tablet-width: 930px !default; // min width before reverting to tablet size
 $phone-width: $tablet-width - $nav-width !default; // min width before reverting to mobile size
@@ -431,7 +434,7 @@ $line-separator-padding-v: $spacing-xxl * 2;
 $full-line-separator-padding-v: 80px;
 $line-color: #E8ECEE;
 $h2-padding: $spacing-l;
-$page-wrapper-width: 1500px;
+$full-section-width: 1400px;
 $common-item-color: $gray-1;
 $table-hover-color: $gray-2;
 
@@ -450,8 +453,9 @@ $table-hover-color: $gray-2;
 
 %code-font {
   font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
-  font-size: 14px;
-  line-height: 1.5;
+
+  line-height: 1.6;
+  color: #6F7782;
 }
 
 

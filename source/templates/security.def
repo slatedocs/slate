@@ -1,5 +1,5 @@
 <hr class="full-line">
-{{= data.tags.section }}
+<section class="full-section">
 
 # Authentication
 
@@ -29,4 +29,4 @@
 {{?}}
 {{ } /* of securitySchemes */ }}
 
-{{= data.tags.endSection }}
+</section>

@@ -1,4 +1,5 @@
 <hr class="full-line">
+<section class="full-section">
 
 # Official Client Libraries
 
@@ -92,3 +93,5 @@ gem install asana
 
 **Installation:** If you use [Composer](https://getcomposer.org/) to manage dependencies you can include the
 "asana/asana" package as a dependency.
+
+</section>

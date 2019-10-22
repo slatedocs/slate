@@ -1,4 +1,5 @@
 <hr class="full-line">
+<section class="full-section">
 
 # Why use Asana's API?
 
@@ -136,3 +137,5 @@ Once candidates have submitted their coding test, a bot uses the Asana API to as
 Our engineering teams handle triaging bug reports by creating a task in a "Bugs" project. A bot then adds the project manager of the relevant team in Asana as a follower, moves the task into a "needs triage" section, and requests assistance. The project manager can then evaluate the bug and triage it.
 
 Since the evaluation of the severity of the bug is important for understanding how urgent the fix is, Bugs Bot will remain persistent, commenting every few days until the task has been moved out of the triage section and into a section of the relevant priority. This process ensures that we're aware of the impact of bugs and helps us avoid severe bugs slipping through the cracks.
+
+</section>

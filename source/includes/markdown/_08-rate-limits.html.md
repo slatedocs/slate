@@ -1,4 +1,5 @@
----
+<hr>
+<section class="full-section">
 
 ## Rate Limits
 
@@ -81,3 +82,5 @@ The cost we associate with a request isn't equivalent to the number of links in 
 When a request is received, if the remaining quota is not positive, the new request is rejected with a `429 Too Many Requests`. As with the standard rate limits, this quota is defined per-minute but is updated on a more frequent interval. The `Retry-After` header will specify how long you must wait for the quota to become positive again.
 
 The **vast** majority of developers will be unaffected by the cost limit, and the quota is set sufficiently high that it only affects users making requests that would compromise the stability of the API. Rather than unconditionally blocking their token from the API, this cost limiter will permit them to continue operation at a slower but safe and stable rate.
+
+</section>

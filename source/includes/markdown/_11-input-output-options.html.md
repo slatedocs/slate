@@ -1,4 +1,5 @@
----
+<hr>
+<section class="full-section">
 
 ## Input/Output Options
 
@@ -84,3 +85,5 @@ There are also some advanced operators you can use for shorter syntax in selecti
 The **group** operator can be used in place of any whole term in a path, and will match any of a group of terms.
 
 `this.(followers|assignee).email` will match the `email` field of the `assignee` object or any of the `followers`.
+
+</section>

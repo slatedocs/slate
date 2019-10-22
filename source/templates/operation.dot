@@ -1,6 +1,3 @@
-<hr class="half-line">
-{{= data.tags.section }}
-
 ## {{= data.operationUniqueName}}
 
 {{? data.operation.operationId}}

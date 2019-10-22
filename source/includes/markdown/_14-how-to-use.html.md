@@ -1,4 +1,5 @@
 <hr class="full-line">
+<section class="full-section">
 
 # How to use the API
 
@@ -167,7 +168,10 @@ No need to edit your environment for requests on different objects, simply navig
 
 Importing this collection gives you a snapshot of the API at this time. To stay up to date with API changes, you'll have to re-import the collection by hitting the 'Run in Postman' button, and choosing to override your existing collection. This means if you want to save custom requests, you should do so in a different collection.
 
+</section>
+
 <hr class="full-line">
+<section class="full-section">
 
 # Quick Start
 
@@ -492,3 +496,5 @@ To run this script in your console, pass it as an argument to the ruby interpret
 All of the built-in methods can be found in the [/resources folder of the client library](https://github.com/Asana/ruby-asana/tree/master/lib/asana/resources). 
 
 You can see a variant of this script, and other useful Asana API scripts, in our open-source <a href="https://github.com/Asana/DevRel-Examples/tree/master/ruby" target="_blank">Github examples repository</a>
+
+</section>

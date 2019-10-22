@@ -1,4 +1,5 @@
----
+<hr>
+<section>
 
 ## Custom External Data
 
@@ -25,3 +26,5 @@ so this should not be used for private user data.
 |---|---|
 | id | `contractor_name` 	The external id. Max size is 1024 characters. Can be a URI. |
 | data | `{ "time_estimate": 3600, "time_spent": 1482 }` The external data blob. Max size is 32,786 characters. |
+
+</section>

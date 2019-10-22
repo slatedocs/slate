@@ -1,4 +1,5 @@
----
+<hr>
+<section class="full-section">
 
 ## Authentication Basics
 
@@ -360,3 +361,5 @@ implementation necessary for you to use OpenID Connect with Asana's API.
 [client libraries]: ./client-libraries
 [omniauth]: https://github.com/intridea/omniauth
 [oauth-spec]: http://tools.ietf.org/html/draft-ietf-oauth-v2-31
+
+</section>

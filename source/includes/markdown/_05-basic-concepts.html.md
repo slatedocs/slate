@@ -1,6 +1,7 @@
-# Overview
-
-## Basics
+<span></span>
+<section class="full-section">
+<h1 id="overview">Overview</h1>
+<h2 id="basics">Basics</h1>
 
 > Helpful code snippets will show up in this column. You can choose your language in the navigation above!
 
@@ -47,4 +48,4 @@ pagination is strongly encouraged to ensure both you and your users have the bes
 
 Happy coding!
 
-
+</section>

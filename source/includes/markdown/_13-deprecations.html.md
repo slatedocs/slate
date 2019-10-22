@@ -1,4 +1,5 @@
----
+<hr>
+<section>
 
 ## Deprecations
 
@@ -91,3 +92,5 @@ Here is a table of recent, ongoing, and upcoming deprecations, including their h
 **[1]** The activation date for this change will be one month after the public launch of the new task subtype. The end date for this change will be two months after the public launch.
 
 **[2]** This migration is happening simultaneously with the rollout of a change to the Asana web app, and so the timeline for it is subject to change with ongoing development of the web app. Refer to the [deprecation details](https://asa.na/api-sections) for the most current information.
+
+</section>

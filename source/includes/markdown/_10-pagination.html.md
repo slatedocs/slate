@@ -1,4 +1,5 @@
----
+<hr>
+<section class="full-section">
 
 ## Pagination
 
@@ -69,3 +70,5 @@ you paginate all requests to the API.
 | Offset | `eyJ0eXAiOJiKV1iQLCJhbGciOiJIUzI1NiJ9` An offset to the next page returned by the API. A pagination request will return an offset token, which can be used as an input parameter to the next request. If an offset is not passed in, the API will return the first page of results. <br><br><strong>Note:</strong> You can only pass in an offset that was returned to you via a previously paginated request. |
 
 **This method returns paginated results for tasks from a project.**
+
+</section>

@@ -1,7 +1,7 @@
 <!-- Generator: Widdershins v3.6.6 -->
 
 <hr class="full-line">
-
+<section class="full-section">
 <h1 id="asana">API Reference</h1>
 
 > Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
@@ -15,9 +15,10 @@ Base URLs:
 <a href="https://asana.com/terms">Terms of service</a>
 Web: <a href="https://asana.com/support">Asana Support</a> 
 License: <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a>
+</section>
 
 <hr class="full-line">
-
+<section class="full-section">
 <h1 id="asana-attachments">Attachments</h1>
 
 <pre class="highlight http tab-http">
@@ -26,8 +27,10 @@ License: <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a>
 
 An *attachment* object represents any file attached to a task in Asana, whether it’s an uploaded file or one associated via a third-party service such as Dropbox or Google Drive.
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get an attachment
 
 <a id="opIdgetAttachment"></a>
@@ -90,8 +93,10 @@ Get the full record for a single attachment.
 |503|[Service Unavailable](https://tools.ietf.org/html/rfc7231#section-6.6.4)|Either the upstream service is unavailable to the API, or he API has been intentionally shut off.|[Error](#schemaerror)|
 |504|[Gateway Time-out](https://tools.ietf.org/html/rfc7231#section-6.6.5)|This request took too long to complete.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get attachments for a task
 
 <a id="opIdgetAttachmentsForTask"></a>
@@ -148,8 +153,10 @@ Returns the compact records for all attachments on the task.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Upload an attachment
 
 <a id="opIduploadAttachmentToTask"></a>
@@ -247,8 +254,10 @@ appending the content type to the file path: `—form
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="full-line">
+</section>
 
+<hr class="full-line">
+<section class="full-section">
 <h1 id="asana-batch-api">Batch API</h1>
 
 <pre class="highlight http tab-http">
@@ -295,8 +304,10 @@ Not every endpoint can be accessed through the batch API. Specifically, the foll
 * Any SCIM operations
 * Nested calls to the batch API
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Submit parallel requests
 
 <a id="opIdbatchRequest"></a>
@@ -398,8 +409,10 @@ Make multiple requests in parallel to Asana's API.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="full-line">
+</section>
 
+<hr class="full-line">
+<section class="full-section">
 <h1 id="asana-custom-fields">Custom Fields</h1>
 
 <pre class="highlight http tab-http">
@@ -436,8 +449,10 @@ Enum fields represent a selection from a list of options. On the metadata, they 
 
 On the Task's Custom Field value, the enum will have an `enum_value` property which will be the same as one of the choices from the list defined in the Custom Field metadata.
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Create a custom field
 
 <a id="opIdcreateCustomField"></a>
@@ -571,8 +586,10 @@ Returns the full record of the newly created custom field.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get a custom field
 
 <a id="opIdgetCustomField"></a>
@@ -646,8 +663,10 @@ type-specific custom field definitions.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Update a custom field
 
 <a id="opIdupdateCustomField"></a>
@@ -743,8 +762,10 @@ Returns the complete updated custom field record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Delete a custom field
 
 <a id="opIddeleteCustomField"></a>
@@ -794,8 +815,10 @@ Returns an empty data record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get a workspace's custom fields
 
 <a id="opIdgetCustomFieldsInWorkspace"></a>
@@ -860,8 +883,10 @@ Returns a list of the compact representation of all of the custom fields in a wo
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Create an enum option
 
 <a id="opIdaddEnumOption"></a>
@@ -945,8 +970,10 @@ Returns the full record of the newly created enum option.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Reorder a custom field's enum
 
 <a id="opIdreorderEnumOption"></a>
@@ -1029,8 +1056,10 @@ Locked custom fields can only be reordered by the user who locked the field.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Update an enum option
 
 <a id="opIdupdateEnumOption"></a>
@@ -1108,8 +1137,10 @@ Returns the full record of the updated enum option.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="full-line">
+</section>
 
+<hr class="full-line">
+<section class="full-section">
 <h1 id="asana-custom-field-settings">Custom Field Settings</h1>
 
 <pre class="highlight http tab-http">
@@ -1118,8 +1149,10 @@ Returns the full record of the updated enum option.
 
 Custom fields are attached to a particular project with the Custom Field Settings resource. This resource both represents the many-to-many join of the Custom Field and Project as well as stores information that is relevant to that particular pairing; for instance, the `is_important` property determines some possible application-specific handling of that custom field.
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get a project's custom fields
 
 <a id="opIdgetCustomFieldSettingsForProject"></a>
@@ -1179,8 +1212,10 @@ Returns a list of all of the custom fields settings on a project, in compact for
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get a portfolio's custom fields
 
 <a id="opIdgetCustomFieldSettingsForPortfolio"></a>
@@ -1240,8 +1275,10 @@ Returns a list of all of the custom fields settings on a portfolio, in compact f
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="full-line">
+</section>
 
+<hr class="full-line">
+<section class="full-section">
 <h1 id="asana-events">Events</h1>
 
 <pre class="highlight http tab-http">
@@ -1262,8 +1299,10 @@ When you receive a `412 Precondition Failed` error, it means that the sync token
 
 Sync tokens always expire after 24 hours, but may expire sooner, depending on load on the service.
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get events on a resource
 
 <a id="opIdgetEvents"></a>
@@ -1337,8 +1376,10 @@ lieu of including the resource ID in the data for the request.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="full-line">
+</section>
 
+<hr class="full-line">
+<section class="full-section">
 <h1 id="asana-jobs">Jobs</h1>
 
 <pre class="highlight http tab-http">
@@ -1349,8 +1390,10 @@ Jobs represent processes that handle asynchronous work.
 Jobs are created when an endpoint requests an action that will be handled asynchronously. Such as project or task duplication.
 Only the creator of the duplication process can access the duplication status of the new object.
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get a job by id
 
 <a id="opIdgetJob"></a>
@@ -1416,8 +1459,10 @@ Returns the full record for a job.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="full-line">
+</section>
 
+<hr class="full-line">
+<section class="full-section">
 <h1 id="asana-organization-exports">Organization Exports</h1>
 
 <pre class="highlight http tab-http">
@@ -1438,8 +1483,10 @@ To export an Organization using this API:
 
 *Note: These endpoints are only available to [Service Accounts](https://asana.com/guide/help/premium/service-accounts) of an [Enterprise](https://asana.com/enterprise) Organization.*
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Create an organization export request
 
 <a id="opIdcreateOrganizationExport"></a>
@@ -1513,8 +1560,10 @@ This method creates a request to export an Organization. Asana will complete the
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get details on an org export request
 
 <a id="opIdgetOrganizationExport"></a>
@@ -1573,8 +1622,10 @@ Returns details of a previously-requested Organization export.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="full-line">
+</section>
 
+<hr class="full-line">
+<section class="full-section">
 <h1 id="asana-portfolios">Portfolios</h1>
 
 <pre class="highlight http tab-http">
@@ -1584,8 +1635,10 @@ Returns details of a previously-requested Organization export.
 A 'portfolio' gives a high-level overview of the status of multiple initiatives in Asana. Portfolios provide a dashboard overview of the state of multiple projects, including a progress report and the most recent [project status](#asana-project-statuses) update.
 Portfolios have some restrictions on size. Each portfolio has a max of 250 items and, like projects, a max of 20 custom fields.
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get multiple portfolios
 
 <a id="opIdgetPortfolios"></a>
@@ -1643,8 +1696,10 @@ Returns a list of the portfolios in compact representation that are owned by the
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Create a portfolio
 
 <a id="opIdcreatePortfolio"></a>
@@ -1720,8 +1775,10 @@ integrations to create their own starting state on a portfolio.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get a portfolio
 
 <a id="opIdgetPortfolio"></a>
@@ -1790,8 +1847,10 @@ Returns the complete portfolio record for a single portfolio.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Update a portfolio
 
 <a id="opIdupdateportfolio"></a>
@@ -1880,8 +1939,10 @@ Returns the complete updated portfolio record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Delete a portfolio
 
 <a id="opIddeletePortfolio"></a>
@@ -1932,8 +1993,10 @@ Returns an empty data record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get portfolio items
 
 <a id="opIdgetPortfolioItems"></a>
@@ -2022,8 +2085,10 @@ Get a list of the items in compact form in a portfolio.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Add a portfolio item
 
 <a id="opIdaddPortfolioItem"></a>
@@ -2075,8 +2140,10 @@ Returns an empty data block.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Remove a portfolio item
 
 <a id="opIdremovePortfolioItem"></a>
@@ -2126,8 +2193,10 @@ Returns an empty data block.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Add users to a portfolio
 
 <a id="opIdaddPortfolioMembers"></a>
@@ -2177,8 +2246,10 @@ Returns the updated portfolio record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Remove users from a portfolio
 
 <a id="opIdremovePortfolioMembers"></a>
@@ -2228,8 +2299,10 @@ Returns the updated portfolio record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Add a custom field to a portfolio
 
 <a id="opIdportfolio.addCustomFieldSetting"></a>
@@ -2280,8 +2353,10 @@ Custom fields are associated with portfolios by way of custom field settings.  T
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Remove a custom field from a portfolio
 
 <a id="opIdportfolio.removeCustomFieldSetting"></a>
@@ -2329,8 +2404,10 @@ Removes a custom field setting from a portfolio.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="full-line">
+</section>
 
+<hr class="full-line">
+<section class="full-section">
 <h1 id="asana-portfolio-memberships">Portfolio Memberships</h1>
 
 <pre class="highlight http tab-http">
@@ -2339,8 +2416,10 @@ Removes a custom field setting from a portfolio.
 
 This object determines if a user is a member of a portfolio.
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get multiple portfolio memberships
 
 <a id="opIdgetPortfolioMemberships"></a>
@@ -2399,8 +2478,10 @@ Returns a list of portfolio memberships in compact representation. You must spec
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get a portfolio membership
 
 <a id="opIdgetPortfolioMembership"></a>
@@ -2464,8 +2545,10 @@ Returns the complete portfolio record for a single portfolio membership.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get memberships from a portfolio
 
 <a id="opIdgetPortfolioMembershipsForPortfolio"></a>
@@ -2525,8 +2608,10 @@ Returns the compact portfolio membership records for the portfolio.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="full-line">
+</section>
 
+<hr class="full-line">
+<section class="full-section">
 <h1 id="asana-projects">Projects</h1>
 
 <pre class="highlight http tab-http">
@@ -2539,8 +2624,10 @@ Projects in organizations are shared with a single team. You cannot currently ch
 
 Followers of a project are a subset of the members of that project. Followers of a project will receive all updates including tasks created, added and removed from that project. Members of the project have access to and will receive status updates of the project. Adding followers to a project will add them as members if they are not already, removing followers from a project will not affect membership.
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get multiple projects
 
 <a id="opIdgetProjects"></a>
@@ -2631,8 +2718,10 @@ Returns the compact project records for some filtered set of projects. Use one o
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Create a project
 
 <a id="opIdcreateProject"></a>
@@ -2758,8 +2847,10 @@ Returns the full record of the newly created project.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get a project
 
 <a id="opIdgetProject"></a>
@@ -2856,8 +2947,10 @@ Returns the complete project record for a single project.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Update a project
 
 <a id="opIdupdateProject"></a>
@@ -2987,8 +3080,10 @@ Returns the complete updated project record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Delete a project
 
 <a id="opIddeleteProject"></a>
@@ -3039,8 +3134,10 @@ Returns an empty data record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Duplicate a project
 
 <a id="opIdduplicateProject"></a>
@@ -3152,8 +3249,10 @@ Creates and returns a job that will asynchronously handle the duplication.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get projects a task is in
 
 <a id="opIdgetTaskProjects"></a>
@@ -3242,8 +3341,10 @@ Returns a compact representation of all of the projects the task is in.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get a team's projects
 
 <a id="opIdgetProjectsInTeam"></a>
@@ -3333,8 +3434,10 @@ Returns the compact project records for all projects in the team.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Create a project in a team
 
 <a id="opIdcreateProjectsWithTeam"></a>
@@ -3458,8 +3561,10 @@ Returns the full record of the newly created project.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get all projects in a workspace
 
 <a id="opIdgetProjectsInWorkspace"></a>
@@ -3549,8 +3654,10 @@ Returns the compact project records for all projects in the workspace.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Create a project in a workspace
 
 <a id="opIdcreateProjectsInWorkspace"></a>
@@ -3677,8 +3784,10 @@ Returns the full record of the newly created project.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Add a custom field to a project
 
 <a id="opIdproject.addCustomFieldSetting"></a>
@@ -3729,8 +3838,10 @@ Custom fields are associated with projects by way of custom field settings.  Thi
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Remove a custom field from a project
 
 <a id="opIdproject.removeCustomFieldSetting"></a>
@@ -3778,8 +3889,10 @@ Removes a custom field setting from a project.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="full-line">
+</section>
 
+<hr class="full-line">
+<section class="full-section">
 <h1 id="asana-project-memberships">Project Memberships</h1>
 
 <pre class="highlight http tab-http">
@@ -3788,8 +3901,10 @@ Removes a custom field setting from a project.
 
 With the introduction of “comment-only” projects in Asana, a user’s membership in a project comes with associated permissions. These permissions (whether a user has full access to the project or comment-only access) are accessible through the project memberships endpoints described here.
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get a project membership
 
 <a id="opIdgetProjectMembership"></a>
@@ -3854,8 +3969,10 @@ Returns the complete project record for a single project membership.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get memberships from a project
 
 <a id="opIdgetProjectMembershipsForProject"></a>
@@ -3915,8 +4032,10 @@ Returns the compact project membership records for the project.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="full-line">
+</section>
 
+<hr class="full-line">
+<section class="full-section">
 <h1 id="asana-project-statuses">Project Statuses</h1>
 
 <pre class="highlight http tab-http">
@@ -3927,8 +4046,10 @@ A *project status* is an update on the progress of a particular project, and is 
 
 Project statuses can be created and deleted, but not modified.
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get a project status
 
 <a id="opIdgetProductStatus"></a>
@@ -3989,8 +4110,10 @@ Returns the complete record for a single status update.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Delete a project status
 
 <a id="opIddeleteProductStatus"></a>
@@ -4038,8 +4161,10 @@ Returns an empty data record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get statuses from a project
 
 <a id="opIdgetProductStatuses"></a>
@@ -4103,8 +4228,10 @@ Returns the compact project status update records for all updates on the project
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Create a project status
 
 <a id="opIdcreateProjectStatus"></a>
@@ -4192,8 +4319,10 @@ Returns the full record of the newly created project status update.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="full-line">
+</section>
 
+<hr class="full-line">
+<section class="full-section">
 <h1 id="asana-sections">Sections</h1>
 
 <pre class="highlight http tab-http">
@@ -4206,8 +4335,10 @@ Sections are largely a shared idiom in Asana’s API for both list and board vie
 
 The ‘memberships’ property when [getting a task](#get-a-task) will return the information for the section or the column under ‘section’ in the response.
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get a section
 
 <a id="opIdgetSection"></a>
@@ -4266,8 +4397,10 @@ Returns the complete record for a single section.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Update a section
 
 <a id="opIdupdateSection"></a>
@@ -4352,8 +4485,10 @@ Returns the complete updated section record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Delete a section
 
 <a id="opIddeleteSection"></a>
@@ -4408,8 +4543,10 @@ Returns an empty data block.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get sections in a project
 
 <a id="opIdgetSectionsInProject"></a>
@@ -4470,8 +4607,10 @@ Returns the compact records for all sections in the specified project.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Create a section in a project
 
 <a id="opIdcreateSectionInProject"></a>
@@ -4547,8 +4686,10 @@ Returns the full record of the newly created section.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Add task to section
 
 <a id="opIdaddTaskToSection"></a>
@@ -4618,8 +4759,10 @@ This does not work for separators (tasks with the resource_subtype of section).
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Move sections
 
 <a id="opIdmoveSection"></a>
@@ -4695,8 +4838,10 @@ Returns an empty data block.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="full-line">
+</section>
 
+<hr class="full-line">
+<section class="full-section">
 <h1 id="asana-stories">Stories</h1>
 
 <pre class="highlight http tab-http">
@@ -4707,8 +4852,10 @@ Returns an empty data block.
 
 A *story* represents an activity associated with an object in the Asana system. Stories are generated by the system whenever users take actions such as creating or assigning tasks, or moving tasks between projects. *Comments* are also a form of user-generated story.
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get a story
 
 <a id="opIdgetStory"></a>
@@ -4919,8 +5066,10 @@ Returns the full record for a single story.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Update a story
 
 <a id="opIdupdateStory"></a>
@@ -5197,8 +5346,10 @@ Updates the story and returns the full record for the updated story. Only commen
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Delete a story
 
 <a id="opIddeleteStory"></a>
@@ -5248,8 +5399,10 @@ Returns an empty data record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get stories from a task
 
 <a id="opIdgetTaskStories"></a>
@@ -5388,8 +5541,10 @@ Returns the compact records for all stories on the task.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Create a comment on a task
 
 <a id="opIdcreateCommentStory"></a>
@@ -5618,8 +5773,10 @@ Returns the full record for the new story added to the task.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="full-line">
+</section>
 
+<hr class="full-line">
+<section class="full-section">
 <h1 id="asana-tags">Tags</h1>
 
 <pre class="highlight http tab-http">
@@ -5630,8 +5787,10 @@ A tag is a label that can be attached to any task in Asana. It exists in a singl
 
 Tags have some metadata associated with them, but it is possible that we will simplify them in the future so it is not encouraged to rely too heavily on it. Unlike projects, tags do not provide any ordering on the tasks they are associated with.
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get multiple tags
 
 <a id="opIdqueryTags"></a>
@@ -5696,8 +5855,10 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Create a tag
 
 <a id="opIdcreateTag"></a>
@@ -5784,8 +5945,10 @@ Returns the full record of the newly created tag.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get a tag
 
 <a id="opIdgetTag"></a>
@@ -5852,8 +6015,10 @@ Returns the complete tag record for a single tag.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Update a tag
 
 <a id="opIdupdateTag"></a>
@@ -5927,8 +6092,10 @@ Returns the complete updated tag record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get a task's tags
 
 <a id="opIdgetTaskTags"></a>
@@ -5992,8 +6159,10 @@ Get a compact representation of all of the tags the task has.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get tags in a workspace
 
 <a id="opIdqueryAllTagsInWorkspace"></a>
@@ -6057,8 +6226,10 @@ Returns the compact tag records for some filtered set of tags. Use one or more o
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Create a tag in a workspace
 
 <a id="opIdcreateTagInWorkspace"></a>
@@ -6143,8 +6314,10 @@ Returns the full record of the newly created tag.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="full-line">
+</section>
 
+<hr class="full-line">
+<section class="full-section">
 <h1 id="asana-tasks">Tasks</h1>
 
 <pre class="highlight http tab-http">
@@ -6157,8 +6330,10 @@ Sections are unique in that they will be included in the *memberships* field of 
 
 [Queries](#get-a-set-of-tasks) return a compact representation of each object which is typically the id and name fields. Interested in a specific set of fields or all of the fields? Use [field selectors](#input-output-options) to manipulate what data is included in a response.
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get multiple tasks
 
 <a id="opIdqueryTasks"></a>
@@ -6292,8 +6467,10 @@ include assigning, renaming, completing, and adding stories.*
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Create a task
 
 <a id="opIdcreateTask"></a>
@@ -6590,8 +6767,10 @@ added or removed from the task.*
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get a task
 
 <a id="opIdgetTask"></a>
@@ -6719,8 +6898,10 @@ Returns the complete task record for a single task.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Update a task
 
 <a id="opIdupdateTask"></a>
@@ -7011,8 +7192,10 @@ added or removed from the task.*
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Delete a task
 
 <a id="opIddeleteTask"></a>
@@ -7065,8 +7248,10 @@ Returns an empty data record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Duplicate a task
 
 <a id="opIdduplicateTask"></a>
@@ -7166,8 +7351,10 @@ Creates and returns a job that will asynchronously handle the duplication.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get tasks from a project
 
 <a id="opIdgetProjectTasks"></a>
@@ -7274,8 +7461,10 @@ Returns the compact task records for all tasks within the given project, ordered
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get tasks from a section
 
 <a id="opIdgetSectionTasks"></a>
@@ -7382,8 +7571,10 @@ curl -X GET https://app.asana.com/api/1.0/sections/{section_gid}/tasks \
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get tasks from a tag
 
 <a id="opIdgetTagTasks"></a>
@@ -7490,8 +7681,10 @@ Returns the compact task records for all tasks with the given tag. Tasks can hav
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get subtasks from a task
 
 <a id="opIdgetSubTasks"></a>
@@ -7598,8 +7791,10 @@ Returns a compact representation of all of the subtasks of a task.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Create a subtask
 
 <a id="opIdcreateSubtask"></a>
@@ -7890,8 +8085,10 @@ added or removed from the task.*
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Change the parent of a task
 
 <a id="opIdchangeSubtaskParent"></a>
@@ -8037,8 +8234,10 @@ parent, or no parent task at all. Returns an empty data block. When using `inser
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get dependencies from a task
 
 <a id="opIdgetTaskDependencies"></a>
@@ -8145,8 +8344,10 @@ Returns the compact representations of all of the dependencies of a task.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Set dependencies for a task
 
 <a id="opIdaddTaskDependencies"></a>
@@ -8266,8 +8467,10 @@ Marks a set of tasks as dependencies of this task, if they are not already depen
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Unlink dependencies from a task
 
 <a id="opIdremoveTaskDependencies"></a>
@@ -8387,8 +8590,10 @@ Unlinks a set of dependencies from this task.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get dependents from a task
 
 <a id="opIdgetTaskDependents"></a>
@@ -8495,8 +8700,10 @@ Returns the compact representations of all of the dependents of a task.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Set dependents for a task
 
 <a id="opIdaddTaskDependents"></a>
@@ -8616,8 +8823,10 @@ Marks a set of tasks as dependents of this task, if they are not already depende
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Unlink dependents from a task
 
 <a id="opIdremoveTaskDependents"></a>
@@ -8737,8 +8946,10 @@ Unlinks a set of dependents from this task.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Add a project to a task
 
 <a id="opIdaddProjectToTask"></a>
@@ -8819,8 +9030,10 @@ Returns an empty data block.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Remove a project from a task
 
 <a id="opIdremoveProjectFromTask"></a>
@@ -8885,8 +9098,10 @@ Returns an empty data block.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Add a tag to a task
 
 <a id="opIdaddTagToTask"></a>
@@ -8948,8 +9163,10 @@ Adds a tag to a task. Returns an empty data block.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Remove a tag from a task
 
 <a id="opIdremoveTagFromTask"></a>
@@ -9011,8 +9228,10 @@ Removes a tag from a task. Returns an empty data block.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Add followers to a task
 
 <a id="opIdaddFollowerToTask"></a>
@@ -9079,8 +9298,10 @@ Requests to add/remove followers, if successful, will return the complete update
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Remove followers from a task
 
 <a id="opIdremoveFollowerToTask"></a>
@@ -9145,8 +9366,10 @@ Removes each of the specified followers from the task if they are following. Ret
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Search tasks in a workspace
 
 <a id="opIdgetWorkspaceTasksSearch"></a>
@@ -9350,8 +9573,10 @@ You may receive a `429 Too Many Requests` response if you hit any of our [rate l
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="full-line">
+</section>
 
+<hr class="full-line">
+<section class="full-section">
 <h1 id="asana-teams">Teams</h1>
 
 <pre class="highlight http tab-http">
@@ -9360,8 +9585,10 @@ You may receive a `429 Too Many Requests` response if you hit any of our [rate l
 
 A *team* is used to group related projects and people together within an organization. Each project in an organization is associated with a team.
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get a team
 
 <a id="opIdgetTeam"></a>
@@ -9419,8 +9646,10 @@ Returns the full record for a single team.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get teams in an organization
 
 <a id="opIdgetAllTeams"></a>
@@ -9480,8 +9709,10 @@ Returns the compact records for all teams in the organization visible to the aut
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get teams for a user
 
 <a id="opIdgetTeamsForUser"></a>
@@ -9542,8 +9773,10 @@ Returns the compact records for all teams to which the given user is assigned.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Add a user to a team
 
 <a id="opIdaddUserToTeam"></a>
@@ -9617,8 +9850,10 @@ The user making this call must be a member of the team in order to add others. T
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Remove a user from a team
 
 <a id="opIdremoveUserFromTeam"></a>
@@ -9692,8 +9927,10 @@ The user making this call must be a member of the team in order to remove themse
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="full-line">
+</section>
 
+<hr class="full-line">
+<section class="full-section">
 <h1 id="asana-typeahead">Typeahead</h1>
 
 <pre class="highlight http tab-http">
@@ -9702,8 +9939,10 @@ The user making this call must be a member of the team in order to remove themse
 
 The typeahead search API provides search for objects from a single workspace.
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get objects via typeahead
 
 <a id="opIdgetTypeahead"></a>
@@ -9795,8 +10034,10 @@ data is included in a response.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="full-line">
+</section>
 
+<hr class="full-line">
+<section class="full-section">
 <h1 id="asana-users">Users</h1>
 
 <pre class="highlight http tab-http">
@@ -9807,8 +10048,10 @@ A user object represents an account in Asana that can be given access to various
 
 Like other objects in the system, users are referred to by numerical IDs. However, the special string identifier `me` can be used anywhere a user ID is accepted, to refer to the current authenticated user.
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get multiple users
 
 <a id="opIdgetAllUsers"></a>
@@ -9873,8 +10116,10 @@ Results are sorted by user ID.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get a user
 
 <a id="opIdgetUser"></a>
@@ -9941,8 +10186,10 @@ Results are sorted by user ID.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get a user's favorites
 
 <a id="opIdgetUserFavorites"></a>
@@ -10005,8 +10252,10 @@ Results are given in order (The same order as Asana's sidebar).
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get users in a team
 
 <a id="opIdgetUsersForTeam"></a>
@@ -10070,8 +10319,10 @@ Returns the compact records for all users that are members of the team.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get users in a workspace or organization
 
 <a id="opIdgetUsersInWorkspace"></a>
@@ -10136,8 +10387,10 @@ Results are sorted alphabetically by user names.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="full-line">
+</section>
 
+<hr class="full-line">
+<section class="full-section">
 <h1 id="asana-user-task-lists">User Task Lists</h1>
 
 <pre class="highlight http tab-http">
@@ -10148,8 +10401,10 @@ A user task list represents the tasks assigned to a particular user.
 
 A user’s “My Tasks” represent all of the tasks assigned to that user. It is visually divided into regions based on the task’s [`assignee_status`](#tocS_Task) for Asana users to triage their tasks based on when they can address them. When building an integration it’s worth noting that tasks with due dates will automatically move through `assignee_status` states as their due dates approach; read up on [task auto-promotion](https://asana.com/guide/help/fundamentals/my-tasks#gl-auto-promote) for more information.
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get tasks from a user task list
 
 <a id="opIdgetUserTaskListTasks"></a>
@@ -10264,8 +10519,10 @@ Returns the compact list of tasks in a user’s My Tasks list. The returned task
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get a user task list
 
 <a id="opIdgetUserTaskList"></a>
@@ -10320,8 +10577,10 @@ Returns the full record for a user task list.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get a user's task list
 
 <a id="opIdgetUsersTaskList"></a>
@@ -10376,8 +10635,10 @@ Returns the full record for a user's task list.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="full-line">
+</section>
 
+<hr class="full-line">
+<section class="full-section">
 <h1 id="asana-webhooks">Webhooks</h1>
 
 <pre class="highlight http tab-http">
@@ -10415,8 +10676,10 @@ Note that events are "skinny" - we expect consumers who desire syncing data to m
 
 If we attempt to send a webhook payload and we receive an error status code, or the request times out, we will retry delivery with exponential backoff. In general, if your servers are not available for an hour, you can expect it to take no longer than approximately an hour after they come back before the paused delivery resumes. However, if we are unable to deliver a message for 24 hours the webhook will be deactivated.
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get multiple webhooks
 
 <a id="opIdgetWebhooks"></a>
@@ -10480,8 +10743,10 @@ Get the compact representation of all webhooks your app has registered for the a
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Establish a webhook
 
 <a id="opIdcreateWebhook"></a>
@@ -10608,8 +10873,10 @@ HTTP/1.1 201
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get a webhook
 
 <a id="opIdgetWebhook"></a>
@@ -10668,8 +10935,10 @@ Returns the full record for the given webhook.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Delete a webhook
 
 <a id="opIddeleteWebhook"></a>
@@ -10717,8 +10986,10 @@ This method *permanently* removes a webhook. Note that it may be possible to rec
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="full-line">
+</section>
 
+<hr class="full-line">
+<section class="full-section">
 <h1 id="asana-workspaces">Workspaces</h1>
 
 <pre class="highlight http tab-http">
@@ -10731,8 +11002,10 @@ An *organization* is a special kind of workspace that represents a company. In a
 
 Over time, we intend to migrate most workspaces into organizations and to release more organization-specific functionality. We may eventually deprecate using workspace-based APIs for organizations. Currently, and until after some reasonable grace period following any further announcements, you can still reference organizations in any `workspace` parameter.
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get multiple workspaces
 
 <a id="opIdgetAllWorkspaces"></a>
@@ -10792,8 +11065,10 @@ Returns the compact records for all workspaces visible to the authorized user.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get a workspace
 
 <a id="opIdgetWorkspace"></a>
@@ -10850,8 +11125,10 @@ Returns the full workspace record for a single workspace.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Update a workspace
 
 <a id="opIdupdateWorkspace"></a>
@@ -10926,8 +11203,10 @@ Returns the complete, updated workspace record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Add a user to a workspace or organization
 
 <a id="opIdaddUserToWorkspace"></a>
@@ -11006,8 +11285,10 @@ The user can be referenced by their globally unique user ID or their email addre
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Remove a user from a workspace or organization
 
 <a id="opIdremoveUserToWorkspace"></a>
@@ -11069,8 +11350,10 @@ Returns an empty data record.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="full-line">
+</section>
 
+<hr class="full-line">
+<section class="full-section">
 <h1 id="asana-workspace-memberships">Workspace Memberships</h1>
 
 <pre class="highlight http tab-http">
@@ -11079,8 +11362,10 @@ Returns an empty data record.
 
 This object determines if a user is a member of a workspace.
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get a workspace membership
 
 <a id="opIdgetWorkspaceMembership"></a>
@@ -11155,8 +11440,10 @@ Returns the complete workspace record for a single workspace membership.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get workspace memberships for a user
 
 <a id="opIdgetWorkspaceMembershipsForUser"></a>
@@ -11218,8 +11505,10 @@ Returns the compact workspace membership records for the user.
 |404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|Either the request method and path supplied do not specify a known action in the API, or the object specified by the request does not exist.|[Error](#schemaerror)|
 |500|[Internal Server Error](https://tools.ietf.org/html/rfc7231#section-6.6.1)|There was a problem on Asana’s end. In the event of a server error the response body should contain an error phrase. These phrases can be used by Asana support to quickly look up the incident that caused the server error. Some errors are due to server load, and will not supply an error phrase.|[Error](#schemaerror)|
 
-<hr class="half-line">
+</section>
 
+<hr class="half-line">
+<section>
 ## Get the workspace memberships for a workspace
 
 <a id="opIdgetWorkspaceMembershipsForWorkspace"></a>
@@ -11277,12 +11566,15 @@ Returns the compact workspace membership records for the workspace.
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Successfully retrieved the requested workspace's memberships.|[WorkspaceMembership](#schemaworkspacemembership)|
 
+</section>
+
 <hr class="full-line">
+<section class="full-section">
 
 # Schemas
 
 <hr>
-
+<section>
 <h2 id="tocS_Attachment">Attachment</h2>
 <!-- backwards compatibility -->
 <a id="schemaattachment"></a>
@@ -11321,8 +11613,10 @@ An *attachment* object represents any file attached to a task in Asana, whether 
 |parent|any|false|none|none|
 |view_url|string(uri)¦null|false|read-only|The URL where the attachment can be viewed, which may be friendlier to users in a browser than just directing them to a raw file. May be null if no view URL exists for the service.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_AttachmentCompact">AttachmentCompact</h2>
 <!-- backwards compatibility -->
 <a id="schemaattachmentcompact"></a>
@@ -11351,8 +11645,10 @@ An *attachment* object represents any file attached to a task in Asana, whether 
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|read-only|The name of the file.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_BatchRequest">BatchRequest</h2>
 <!-- backwards compatibility -->
 <a id="schemabatchrequest"></a>
@@ -11405,8 +11701,10 @@ A request object for use in a batch request.
 |method|patch|
 |method|head|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_BatchResult">BatchResult</h2>
 <!-- backwards compatibility -->
 <a id="schemabatchresult"></a>
@@ -11442,8 +11740,10 @@ A response object returned from a batch request.
 |headers|object|false|none|A map of HTTP headers specific to this result. This is primarily used for returning a `Location` header to accompany a `201 Created` result.  The parent HTTP response will contain all common headers.|
 |body|object|false|none|The JSON body that the invoked endpoint returned.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_CustomField">CustomField</h2>
 <!-- backwards compatibility -->
 <a id="schemacustomfield"></a>
@@ -11520,8 +11820,10 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 |type|enum|
 |type|number|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_CustomFieldCompact">CustomFieldCompact</h2>
 <!-- backwards compatibility -->
 <a id="schemacustomfieldcompact"></a>
@@ -11590,8 +11892,10 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 |type|enum|
 |type|number|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_CustomFieldSetting">CustomFieldSetting</h2>
 <!-- backwards compatibility -->
 <a id="schemacustomfieldsetting"></a>
@@ -11626,8 +11930,10 @@ Custom Fields Settings objects represent the many-to-many join of the Custom Fie
 |parent|any|false|none|none|
 |custom_field|any|false|none|none|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_CustomFieldSettingCompact">CustomFieldSettingCompact</h2>
 <!-- backwards compatibility -->
 <a id="schemacustomfieldsettingcompact"></a>
@@ -11654,8 +11960,10 @@ Custom Fields Settings objects represent the many-to-many join of the Custom Fie
 |gid|string|false|read-only|Globally unique identifier of the object, as a string.|
 |resource_type|string|false|read-only|The base type of this resource.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_EnumOption">EnumOption</h2>
 <!-- backwards compatibility -->
 <a id="schemaenumoption"></a>
@@ -11698,8 +12006,10 @@ An enum options list can be reordered with the `POST /custom_fields/custom_field
 |enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
 |color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_EnumOptionCompact">EnumOptionCompact</h2>
 <!-- backwards compatibility -->
 <a id="schemaenumoptioncompact"></a>
@@ -11742,8 +12052,10 @@ An enum options list can be reordered with the `POST /custom_fields/custom_field
 |enabled|boolean|false|none|The color of the enum option. Defaults to ‘none’.|
 |color|string|false|none|Whether or not the enum option is a selectable value for the custom field.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_Error">Error</h2>
 <!-- backwards compatibility -->
 <a id="schemaerror"></a>
@@ -11785,8 +12097,10 @@ error.
 |» help|string|false|read-only|Additional information directing developers to resources on how to address and fix the problem, if available.|
 |» phrase|string|false|read-only|*500 errors only*. A unique error phrase which can be used when contacting developer support to help identify the exact occurrence of the problem in Asana’s logs.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_Event">Event</h2>
 <!-- backwards compatibility -->
 <a id="schemaevent"></a>
@@ -11843,8 +12157,10 @@ observed by an event subscription.
 |» name|string|false|none|The name of the object.|
 |created_at|string(date-time)|false|read-only|The timestamp when the event occurred.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_Job">Job</h2>
 <!-- backwards compatibility -->
 <a id="schemajob"></a>
@@ -11906,8 +12222,10 @@ A *job* is an object representing a process that handles asynchronous work.
 |status|completed|
 |status|failed|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_OrganizationExport">OrganizationExport</h2>
 <!-- backwards compatibility -->
 <a id="schemaorganizationexport"></a>
@@ -11956,8 +12274,10 @@ An *organization_export* object represents a request to export the complete data
 |state|finished|
 |state|error|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_Portfolio">Portfolio</h2>
 <!-- backwards compatibility -->
 <a id="schemaportfolio"></a>
@@ -12050,8 +12370,10 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |color|light-purple|
 |color|light-warm-gray|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_PortfolioCompact">PortfolioCompact</h2>
 <!-- backwards compatibility -->
 <a id="schemaportfoliocompact"></a>
@@ -12081,8 +12403,10 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the object.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_PortfolioMembership">PortfolioMembership</h2>
 <!-- backwards compatibility -->
 <a id="schemaportfoliomembership"></a>
@@ -12131,8 +12455,10 @@ This object determines if a user is a member of a portfolio.
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|The name of the object.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_PortfolioMembershipCompact">PortfolioMembershipCompact</h2>
 <!-- backwards compatibility -->
 <a id="schemaportfoliomembershipcompact"></a>
@@ -12170,8 +12496,10 @@ This object determines if a user is a member of a portfolio.
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_Preview">Preview</h2>
 <!-- backwards compatibility -->
 <a id="schemapreview"></a>
@@ -12210,8 +12538,10 @@ This is read-only except for a small group of whitelisted apps.
 |title|string|false|none|Text to display as the title.|
 |title_link|string|false|none|Where to title will link to.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_Project">Project</h2>
 <!-- backwards compatibility -->
 <a id="schemaproject"></a>
@@ -12401,8 +12731,10 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |section_migration_status|in_progress|
 |section_migration_status|completed|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_ProjectCompact">ProjectCompact</h2>
 <!-- backwards compatibility -->
 <a id="schemaprojectcompact"></a>
@@ -12431,8 +12763,10 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_ProjectMembership">ProjectMembership</h2>
 <!-- backwards compatibility -->
 <a id="schemaprojectmembership"></a>
@@ -12490,8 +12824,10 @@ With the introduction of “comment-only” projects in Asana, a user’s member
 |write_access|full_write|
 |write_access|comment_only|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_ProjectMembershipCompact">ProjectMembershipCompact</h2>
 <!-- backwards compatibility -->
 <a id="schemaprojectmembershipcompact"></a>
@@ -12529,8 +12865,10 @@ With the introduction of “comment-only” projects in Asana, a user’s member
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_ProjectStatus">ProjectStatus</h2>
 <!-- backwards compatibility -->
 <a id="schemaprojectstatus"></a>
@@ -12586,8 +12924,10 @@ A *project status* is an update on the progress of a particular project, and is 
 |color|yellow|
 |color|red|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_ProjectStatusCompact">ProjectStatusCompact</h2>
 <!-- backwards compatibility -->
 <a id="schemaprojectstatuscompact"></a>
@@ -12616,8 +12956,10 @@ A *project status* is an update on the progress of a particular project, and is 
 |resource_type|string|false|read-only|The base type of this resource.|
 |title|string|false|read-only|The title of the project status update.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_Section">Section</h2>
 <!-- backwards compatibility -->
 <a id="schemasection"></a>
@@ -12661,8 +13003,10 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|Name of the project. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_SectionCompact">SectionCompact</h2>
 <!-- backwards compatibility -->
 <a id="schemasectioncompact"></a>
@@ -12691,8 +13035,10 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the section (i.e. the text displayed as the section header).|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_Story">Story</h2>
 <!-- backwards compatibility -->
 <a id="schemastory"></a>
@@ -13096,8 +13442,10 @@ A story represents an activity associated with an object in the Asana system.
 |type|enum|
 |type|number|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_StoryCompact">StoryCompact</h2>
 <!-- backwards compatibility -->
 <a id="schemastorycompact"></a>
@@ -13143,8 +13491,10 @@ A story represents an activity associated with an object in the Asana system.
 |text|any|false|none|*Create-only*. Human-readable text for the story or comment.<br>This will not include the name of the creator.<br>*Note: This is not guaranteed to be stable for a given type of story. For example, text for a reassignment may not always say “assigned to …” as the text for a story can both be edited and change based on the language settings of the user making the request.*<br>Use the `resource_subtype` property to discover the action that created the story.|
 |type|string|false|read-only|*Deprecated: new integrations should prefer the `resource_subtype` field.*|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_Tag">Tag</h2>
 <!-- backwards compatibility -->
 <a id="schematag"></a>
@@ -13222,8 +13572,10 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
 |color|light-purple|
 |color|light-warm-gray|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_TagCompact">TagCompact</h2>
 <!-- backwards compatibility -->
 <a id="schematagcompact"></a>
@@ -13252,8 +13604,10 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|Name of the tag. This is generally a short sentence fragment that fits on a line in the UI for maximum readability. However, it can be longer.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_Task">Task</h2>
 <!-- backwards compatibility -->
 <a id="schematask"></a>
@@ -13493,8 +13847,10 @@ The *task* is the basic object around which many operations in Asana are centere
 |type|enum|
 |type|number|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_TaskCompact">TaskCompact</h2>
 <!-- backwards compatibility -->
 <a id="schemataskcompact"></a>
@@ -13523,8 +13879,10 @@ The *task* is the basic object around which many operations in Asana are centere
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the object.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_Team">Team</h2>
 <!-- backwards compatibility -->
 <a id="schemateam"></a>
@@ -13559,8 +13917,10 @@ A *team* is used to group related projects and people together within an organiz
 |html_description|string|false|none|[Opt In](#input-output-options). The description of the team with formatting as HTML.<br>*Note: This field is under active migration—please see our [blog post](https://developers.asana.com/docs/#rich-text) for more information.*|
 |organization|any|false|none|none|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_TeamCompact">TeamCompact</h2>
 <!-- backwards compatibility -->
 <a id="schemateamcompact"></a>
@@ -13589,8 +13949,10 @@ A *team* is used to group related projects and people together within an organiz
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the object.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_User">User</h2>
 <!-- backwards compatibility -->
 <a id="schemauser"></a>
@@ -13653,8 +14015,10 @@ A *user* object represents an account in Asana that can be given access to vario
 |» email_domains|[string]|false|none|The email domains that are associated with this workspace.|
 |» is_organization|boolean|false|none|Whether the workspace is an *organization*.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_UserCompact">UserCompact</h2>
 <!-- backwards compatibility -->
 <a id="schemausercompact"></a>
@@ -13683,8 +14047,10 @@ A *user* object represents an account in Asana that can be given access to vario
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|*Read-only except when same user as requester*. The user’s name.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_UserTaskList">UserTaskList</h2>
 <!-- backwards compatibility -->
 <a id="schemausertasklist"></a>
@@ -13717,8 +14083,10 @@ A user task list represents the tasks assigned to a particular user. It provides
 |owner|any|false|none|none|
 |workspace|any|false|none|none|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_UserTaskListCompact">UserTaskListCompact</h2>
 <!-- backwards compatibility -->
 <a id="schemausertasklistcompact"></a>
@@ -13747,8 +14115,10 @@ A generic Asana Object, containing a globally unique identifier.
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the object.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_Webhook">Webhook</h2>
 <!-- backwards compatibility -->
 <a id="schemawebhook"></a>
@@ -13793,8 +14163,10 @@ In both cases, however, changes are represented as Event objects - refer to the 
 |resource|any|false|none|none|
 |target|string(uri)|false|read-only|The URL to receive the HTTP POST.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_WebhookEvent">WebhookEvent</h2>
 <!-- backwards compatibility -->
 <a id="schemawebhookevent"></a>
@@ -13825,8 +14197,10 @@ In both cases, however, changes are represented as Event objects - refer to the 
 |type|string|false|read-only|The type of the resource that generated the event.<br><br>*Note: Currently, only tasks, projects and stories generate<br>events.*|
 |user|string¦null|false|read-only|The gid of the user who triggered the event.<br><br>*Note: The event may be triggered by a different user than the<br>subscriber. For example, if user A subscribes to a task and user B<br>modified it, the event’s user will be user B. Note: Some events are<br>generated by the system, and will have `null` as the user. API<br>consumers should make sure to handle this case.*|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_Workspace">Workspace</h2>
 <!-- backwards compatibility -->
 <a id="schemaworkspace"></a>
@@ -13861,8 +14235,10 @@ A generic Asana Object, containing a globally unique identifier.
 |email_domains|[string]|false|none|The email domains that are associated with this workspace.|
 |is_organization|boolean|false|none|Whether the workspace is an *organization*.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_WorkspaceCompact">WorkspaceCompact</h2>
 <!-- backwards compatibility -->
 <a id="schemaworkspacecompact"></a>
@@ -13891,8 +14267,10 @@ A *workspace* is the highest-level organizational unit in Asana. All projects an
 |resource_type|string|false|read-only|The base type of this resource.|
 |name|string|false|none|The name of the object.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_WorkspaceMembership">WorkspaceMembership</h2>
 <!-- backwards compatibility -->
 <a id="schemaworkspacemembership"></a>
@@ -13962,8 +14340,10 @@ This object determines if a user is a member of a workspace.
 |is_admin|boolean|false|read-only|Reflects if this user is an admin of the workspace.|
 |is_guest|boolean|false|read-only|Reflects if this user is a guest of the workspace.|
 
-<hr>
+</section>
 
+<hr>
+<section>
 <h2 id="tocS_WorkspaceMembershipCompact">WorkspaceMembershipCompact</h2>
 <!-- backwards compatibility -->
 <a id="schemaworkspacemembershipcompact"></a>
@@ -14011,4 +14391,8 @@ This object determines if a user is a member of a workspace.
 |» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|The name of the object.|
+
+</section>
+
+</section>
 

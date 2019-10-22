@@ -4,7 +4,6 @@
 {{ if (response.content) data.responseSchemas = true; }}
 {{~}}
 
-{{= data.tags.section }}
 <h3 id="{{=data.operationUniqueSlug}}-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
@@ -76,4 +75,3 @@ Status Code **{{=response.status}}**
 {{~}}
 
 {{?}}
-{{= data.tags.endSection }}

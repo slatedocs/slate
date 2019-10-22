@@ -1,4 +1,5 @@
----
+<hr>
+<section class="full-section">
 
 ## Object Hierarchy
 
@@ -87,3 +88,4 @@ Note: it can be advantageous to use guests to create bot accounts. Due to the ac
 * [Users API documentation](/developers/api-reference/users)
 * [Users & Guests in the Asana Product Guide](/guide/help/organizations/basics#gl-people)
 
+</section>

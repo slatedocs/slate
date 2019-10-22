@@ -1,4 +1,5 @@
----
+<hr>
+<section class="full-section">
 
 ## Rich Text
 
@@ -126,3 +127,5 @@ When writing rich text to the API, you must provide similarly structured, valid 
 For `<a>` tags specifically, to make it easier to create @-mentions through the API, we only require that you provide the GID of the object you wish to reference. If you have access to that object, the API will automatically generate the appropriate `href` and other attributes for you. For example, to create a link to a task with GID `"123"`, you can send the tag `<a data-asana-gid="123"/>` which will then be expanded to `<a href="https://app.asana.com/0/0/123/f" data-asana-accessible="true" data-asana-type="task" data-asana-gid="123">Task Name</a>`. You can also generate a link to a task in a specific project or tag by including a `data-asana-project` or `data-asana-tag` attribute in the `<a>` tag. All other attributes, as well as the contents of the tag, are ignored.
 
 If you do not have access to the referenced object when you try to create a link, the API will not generate an `href` for you, but will instead look for an `href` you provide. This allows you to write back `<a>` tags unmodified even if you do not have access to the resource. If you do not have access to the referenced object and no `href` is provided, your request will be rejected with a `400 Bad Request` error. Similarly, if you provide neither a GID nor a valid `href`, the request will be rejected with the same error.
+
+</section>
