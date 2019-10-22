@@ -66,6 +66,9 @@ Base URLs:
 
 # Schemas
 
+
+</section>
+
 {{ for (var s in data.components.schemas) { }}
 {{ if (s.startsWith('Asana') || s.endsWith('Object') || s.endsWith('Array') || s.endsWith('override')) { continue; } }}
 {{ var origSchema = data.components.schemas[s]; }}
@@ -74,7 +77,6 @@ Base URLs:
 <hr>
 <section>
 <h2 id="tocS_{{=s}}">{{=s}}</h2>
-<!-- backwards compatibility -->
 <a id="schema{{=s.toLowerCase()}}"></a>
 <a id="schema_{{=s}}"></a>
 <a id="tocS{{=s.toLowerCase()}}"></a>
@@ -136,8 +138,6 @@ Base URLs:
 </section>
 
 {{ } /* of schemas */ }}
-
-</section>
 
 {{?}}
 

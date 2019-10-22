@@ -11573,10 +11573,11 @@ Returns the compact workspace membership records for the workspace.
 
 # Schemas
 
+</section>
+
 <hr>
 <section>
 <h2 id="tocS_Attachment">Attachment</h2>
-<!-- backwards compatibility -->
 <a id="schemaattachment"></a>
 <a id="schema_Attachment"></a>
 <a id="tocSattachment"></a>
@@ -11618,7 +11619,6 @@ An *attachment* object represents any file attached to a task in Asana, whether 
 <hr>
 <section>
 <h2 id="tocS_AttachmentCompact">AttachmentCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemaattachmentcompact"></a>
 <a id="schema_AttachmentCompact"></a>
 <a id="tocSattachmentcompact"></a>
@@ -11650,7 +11650,6 @@ An *attachment* object represents any file attached to a task in Asana, whether 
 <hr>
 <section>
 <h2 id="tocS_BatchRequest">BatchRequest</h2>
-<!-- backwards compatibility -->
 <a id="schemabatchrequest"></a>
 <a id="schema_BatchRequest"></a>
 <a id="tocSbatchrequest"></a>
@@ -11706,7 +11705,6 @@ A request object for use in a batch request.
 <hr>
 <section>
 <h2 id="tocS_BatchResult">BatchResult</h2>
-<!-- backwards compatibility -->
 <a id="schemabatchresult"></a>
 <a id="schema_BatchResult"></a>
 <a id="tocSbatchresult"></a>
@@ -11745,7 +11743,6 @@ A response object returned from a batch request.
 <hr>
 <section>
 <h2 id="tocS_CustomField">CustomField</h2>
-<!-- backwards compatibility -->
 <a id="schemacustomfield"></a>
 <a id="schema_CustomField"></a>
 <a id="tocScustomfield"></a>
@@ -11825,7 +11822,6 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 <hr>
 <section>
 <h2 id="tocS_CustomFieldCompact">CustomFieldCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemacustomfieldcompact"></a>
 <a id="schema_CustomFieldCompact"></a>
 <a id="tocScustomfieldcompact"></a>
@@ -11897,7 +11893,6 @@ Users in Asana can [lock custom fields](https://asana.com/guide/help/premium/cus
 <hr>
 <section>
 <h2 id="tocS_CustomFieldSetting">CustomFieldSetting</h2>
-<!-- backwards compatibility -->
 <a id="schemacustomfieldsetting"></a>
 <a id="schema_CustomFieldSetting"></a>
 <a id="tocScustomfieldsetting"></a>
@@ -11935,7 +11930,6 @@ Custom Fields Settings objects represent the many-to-many join of the Custom Fie
 <hr>
 <section>
 <h2 id="tocS_CustomFieldSettingCompact">CustomFieldSettingCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemacustomfieldsettingcompact"></a>
 <a id="schema_CustomFieldSettingCompact"></a>
 <a id="tocScustomfieldsettingcompact"></a>
@@ -11965,7 +11959,6 @@ Custom Fields Settings objects represent the many-to-many join of the Custom Fie
 <hr>
 <section>
 <h2 id="tocS_EnumOption">EnumOption</h2>
-<!-- backwards compatibility -->
 <a id="schemaenumoption"></a>
 <a id="schema_EnumOption"></a>
 <a id="tocSenumoption"></a>
@@ -12011,7 +12004,6 @@ An enum options list can be reordered with the `POST /custom_fields/custom_field
 <hr>
 <section>
 <h2 id="tocS_EnumOptionCompact">EnumOptionCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemaenumoptioncompact"></a>
 <a id="schema_EnumOptionCompact"></a>
 <a id="tocSenumoptioncompact"></a>
@@ -12057,7 +12049,6 @@ An enum options list can be reordered with the `POST /custom_fields/custom_field
 <hr>
 <section>
 <h2 id="tocS_Error">Error</h2>
-<!-- backwards compatibility -->
 <a id="schemaerror"></a>
 <a id="schema_Error"></a>
 <a id="tocSerror"></a>
@@ -12102,7 +12093,6 @@ error.
 <hr>
 <section>
 <h2 id="tocS_Event">Event</h2>
-<!-- backwards compatibility -->
 <a id="schemaevent"></a>
 <a id="schema_Event"></a>
 <a id="tocSevent"></a>
@@ -12162,7 +12152,6 @@ observed by an event subscription.
 <hr>
 <section>
 <h2 id="tocS_Job">Job</h2>
-<!-- backwards compatibility -->
 <a id="schemajob"></a>
 <a id="schema_Job"></a>
 <a id="tocSjob"></a>
@@ -12227,7 +12216,6 @@ A *job* is an object representing a process that handles asynchronous work.
 <hr>
 <section>
 <h2 id="tocS_OrganizationExport">OrganizationExport</h2>
-<!-- backwards compatibility -->
 <a id="schemaorganizationexport"></a>
 <a id="schema_OrganizationExport"></a>
 <a id="tocSorganizationexport"></a>
@@ -12279,7 +12267,6 @@ An *organization_export* object represents a request to export the complete data
 <hr>
 <section>
 <h2 id="tocS_Portfolio">Portfolio</h2>
-<!-- backwards compatibility -->
 <a id="schemaportfolio"></a>
 <a id="schema_Portfolio"></a>
 <a id="tocSportfolio"></a>
@@ -12375,7 +12362,6 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 <hr>
 <section>
 <h2 id="tocS_PortfolioCompact">PortfolioCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemaportfoliocompact"></a>
 <a id="schema_PortfolioCompact"></a>
 <a id="tocSportfoliocompact"></a>
@@ -12408,7 +12394,6 @@ Portfolios have some restrictions on size. Each portfolio has a max of 250 items
 <hr>
 <section>
 <h2 id="tocS_PortfolioMembership">PortfolioMembership</h2>
-<!-- backwards compatibility -->
 <a id="schemaportfoliomembership"></a>
 <a id="schema_PortfolioMembership"></a>
 <a id="tocSportfoliomembership"></a>
@@ -12460,7 +12445,6 @@ This object determines if a user is a member of a portfolio.
 <hr>
 <section>
 <h2 id="tocS_PortfolioMembershipCompact">PortfolioMembershipCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemaportfoliomembershipcompact"></a>
 <a id="schema_PortfolioMembershipCompact"></a>
 <a id="tocSportfoliomembershipcompact"></a>
@@ -12501,7 +12485,6 @@ This object determines if a user is a member of a portfolio.
 <hr>
 <section>
 <h2 id="tocS_Preview">Preview</h2>
-<!-- backwards compatibility -->
 <a id="schemapreview"></a>
 <a id="schema_Preview"></a>
 <a id="tocSpreview"></a>
@@ -12543,7 +12526,6 @@ This is read-only except for a small group of whitelisted apps.
 <hr>
 <section>
 <h2 id="tocS_Project">Project</h2>
-<!-- backwards compatibility -->
 <a id="schemaproject"></a>
 <a id="schema_Project"></a>
 <a id="tocSproject"></a>
@@ -12736,7 +12718,6 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 <hr>
 <section>
 <h2 id="tocS_ProjectCompact">ProjectCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemaprojectcompact"></a>
 <a id="schema_ProjectCompact"></a>
 <a id="tocSprojectcompact"></a>
@@ -12768,7 +12749,6 @@ A *project* represents a prioritized list of tasks in Asana or a board with colu
 <hr>
 <section>
 <h2 id="tocS_ProjectMembership">ProjectMembership</h2>
-<!-- backwards compatibility -->
 <a id="schemaprojectmembership"></a>
 <a id="schema_ProjectMembership"></a>
 <a id="tocSprojectmembership"></a>
@@ -12829,7 +12809,6 @@ With the introduction of “comment-only” projects in Asana, a user’s member
 <hr>
 <section>
 <h2 id="tocS_ProjectMembershipCompact">ProjectMembershipCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemaprojectmembershipcompact"></a>
 <a id="schema_ProjectMembershipCompact"></a>
 <a id="tocSprojectmembershipcompact"></a>
@@ -12870,7 +12849,6 @@ With the introduction of “comment-only” projects in Asana, a user’s member
 <hr>
 <section>
 <h2 id="tocS_ProjectStatus">ProjectStatus</h2>
-<!-- backwards compatibility -->
 <a id="schemaprojectstatus"></a>
 <a id="schema_ProjectStatus"></a>
 <a id="tocSprojectstatus"></a>
@@ -12929,7 +12907,6 @@ A *project status* is an update on the progress of a particular project, and is 
 <hr>
 <section>
 <h2 id="tocS_ProjectStatusCompact">ProjectStatusCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemaprojectstatuscompact"></a>
 <a id="schema_ProjectStatusCompact"></a>
 <a id="tocSprojectstatuscompact"></a>
@@ -12961,7 +12938,6 @@ A *project status* is an update on the progress of a particular project, and is 
 <hr>
 <section>
 <h2 id="tocS_Section">Section</h2>
-<!-- backwards compatibility -->
 <a id="schemasection"></a>
 <a id="schema_Section"></a>
 <a id="tocSsection"></a>
@@ -13008,7 +12984,6 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
 <hr>
 <section>
 <h2 id="tocS_SectionCompact">SectionCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemasectioncompact"></a>
 <a id="schema_SectionCompact"></a>
 <a id="tocSsectioncompact"></a>
@@ -13040,7 +13015,6 @@ A *section* is a subdivision of a project that groups tasks together. It can eit
 <hr>
 <section>
 <h2 id="tocS_Story">Story</h2>
-<!-- backwards compatibility -->
 <a id="schemastory"></a>
 <a id="schema_Story"></a>
 <a id="tocSstory"></a>
@@ -13447,7 +13421,6 @@ A story represents an activity associated with an object in the Asana system.
 <hr>
 <section>
 <h2 id="tocS_StoryCompact">StoryCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemastorycompact"></a>
 <a id="schema_StoryCompact"></a>
 <a id="tocSstorycompact"></a>
@@ -13496,7 +13469,6 @@ A story represents an activity associated with an object in the Asana system.
 <hr>
 <section>
 <h2 id="tocS_Tag">Tag</h2>
-<!-- backwards compatibility -->
 <a id="schematag"></a>
 <a id="schema_Tag"></a>
 <a id="tocStag"></a>
@@ -13577,7 +13549,6 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
 <hr>
 <section>
 <h2 id="tocS_TagCompact">TagCompact</h2>
-<!-- backwards compatibility -->
 <a id="schematagcompact"></a>
 <a id="schema_TagCompact"></a>
 <a id="tocStagcompact"></a>
@@ -13609,7 +13580,6 @@ A *tag* is a label that can be attached to any task in Asana. It exists in a sin
 <hr>
 <section>
 <h2 id="tocS_Task">Task</h2>
-<!-- backwards compatibility -->
 <a id="schematask"></a>
 <a id="schema_Task"></a>
 <a id="tocStask"></a>
@@ -13852,7 +13822,6 @@ The *task* is the basic object around which many operations in Asana are centere
 <hr>
 <section>
 <h2 id="tocS_TaskCompact">TaskCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemataskcompact"></a>
 <a id="schema_TaskCompact"></a>
 <a id="tocStaskcompact"></a>
@@ -13884,7 +13853,6 @@ The *task* is the basic object around which many operations in Asana are centere
 <hr>
 <section>
 <h2 id="tocS_Team">Team</h2>
-<!-- backwards compatibility -->
 <a id="schemateam"></a>
 <a id="schema_Team"></a>
 <a id="tocSteam"></a>
@@ -13922,7 +13890,6 @@ A *team* is used to group related projects and people together within an organiz
 <hr>
 <section>
 <h2 id="tocS_TeamCompact">TeamCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemateamcompact"></a>
 <a id="schema_TeamCompact"></a>
 <a id="tocSteamcompact"></a>
@@ -13954,7 +13921,6 @@ A *team* is used to group related projects and people together within an organiz
 <hr>
 <section>
 <h2 id="tocS_User">User</h2>
-<!-- backwards compatibility -->
 <a id="schemauser"></a>
 <a id="schema_User"></a>
 <a id="tocSuser"></a>
@@ -14020,7 +13986,6 @@ A *user* object represents an account in Asana that can be given access to vario
 <hr>
 <section>
 <h2 id="tocS_UserCompact">UserCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemausercompact"></a>
 <a id="schema_UserCompact"></a>
 <a id="tocSusercompact"></a>
@@ -14052,7 +14017,6 @@ A *user* object represents an account in Asana that can be given access to vario
 <hr>
 <section>
 <h2 id="tocS_UserTaskList">UserTaskList</h2>
-<!-- backwards compatibility -->
 <a id="schemausertasklist"></a>
 <a id="schema_UserTaskList"></a>
 <a id="tocSusertasklist"></a>
@@ -14088,7 +14052,6 @@ A user task list represents the tasks assigned to a particular user. It provides
 <hr>
 <section>
 <h2 id="tocS_UserTaskListCompact">UserTaskListCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemausertasklistcompact"></a>
 <a id="schema_UserTaskListCompact"></a>
 <a id="tocSusertasklistcompact"></a>
@@ -14120,7 +14083,6 @@ A generic Asana Object, containing a globally unique identifier.
 <hr>
 <section>
 <h2 id="tocS_Webhook">Webhook</h2>
-<!-- backwards compatibility -->
 <a id="schemawebhook"></a>
 <a id="schema_Webhook"></a>
 <a id="tocSwebhook"></a>
@@ -14168,7 +14130,6 @@ In both cases, however, changes are represented as Event objects - refer to the 
 <hr>
 <section>
 <h2 id="tocS_WebhookEvent">WebhookEvent</h2>
-<!-- backwards compatibility -->
 <a id="schemawebhookevent"></a>
 <a id="schema_WebhookEvent"></a>
 <a id="tocSwebhookevent"></a>
@@ -14202,7 +14163,6 @@ In both cases, however, changes are represented as Event objects - refer to the 
 <hr>
 <section>
 <h2 id="tocS_Workspace">Workspace</h2>
-<!-- backwards compatibility -->
 <a id="schemaworkspace"></a>
 <a id="schema_Workspace"></a>
 <a id="tocSworkspace"></a>
@@ -14240,7 +14200,6 @@ A generic Asana Object, containing a globally unique identifier.
 <hr>
 <section>
 <h2 id="tocS_WorkspaceCompact">WorkspaceCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemaworkspacecompact"></a>
 <a id="schema_WorkspaceCompact"></a>
 <a id="tocSworkspacecompact"></a>
@@ -14272,7 +14231,6 @@ A *workspace* is the highest-level organizational unit in Asana. All projects an
 <hr>
 <section>
 <h2 id="tocS_WorkspaceMembership">WorkspaceMembership</h2>
-<!-- backwards compatibility -->
 <a id="schemaworkspacemembership"></a>
 <a id="schema_WorkspaceMembership"></a>
 <a id="tocSworkspacemembership"></a>
@@ -14345,7 +14303,6 @@ This object determines if a user is a member of a workspace.
 <hr>
 <section>
 <h2 id="tocS_WorkspaceMembershipCompact">WorkspaceMembershipCompact</h2>
-<!-- backwards compatibility -->
 <a id="schemaworkspacemembershipcompact"></a>
 <a id="schema_WorkspaceMembershipCompact"></a>
 <a id="tocSworkspacemembershipcompact"></a>
@@ -14391,8 +14348,6 @@ This object determines if a user is a member of a workspace.
 |» gid|string|false|read-only|Globally unique identifier of the object, as a string.|
 |» resource_type|string|false|read-only|The base type of this resource.|
 |» name|string|false|none|The name of the object.|
-
-</section>
 
 </section>
 
