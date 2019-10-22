@@ -732,8 +732,8 @@ Content-Type: application/json
             "quantity": 2
         }
     ],
-    <!-- "service_name": "expedited", -->
-    "cod": 500000
+    "cod": 500000,
+    "value" : 600000
 }
 ```
 
@@ -801,7 +801,8 @@ Content-Type: application/json
                 }
             ],
             "snippet": "2 x 100g sp 1",
-            "total_weight": 200
+            "total_weight": 200,
+            "value": 600000
         },
         "services": {
             "cod_service": {
@@ -870,7 +871,8 @@ receiver_district_id | true | string | | Id of receiver's district. Get in api [
 receiver_commune_id | false | string | | Id of receiver's commune. Get in api [GET /geo/communes](#get-communes)
 items | true | array | | List of items in tracking package
 service_name | false | string | | Name of service. Get in api [GET /snappy/trackings/get_services](#get-services)
-cod | true | integer | | Amount of cod or values of all items in package
+cod | false | integer | | Amount of cod or values of all items in package
+value | false | integer | | Insurance premium value, which is the basis for calculating insurance premiums and compensation when an incident occurs
 note | false | string | `Khởi tạo vận đơn` | Note of each status in tracking
 customer_tracking_id | false | string |  | The custom id of customer
 is_receiver_pay | false | boolean | false | If `true` all cost of the tracking will be paid by the receiver
