@@ -50,13 +50,13 @@ Attributes | &nbsp;
 `description` <br/>*string* | An optional description of this resource.
 `IPAddress`<br/>*string* | The IP address that this forwarding rule serves. 
 `IPProtocol`<br/>*enum* | The IP protocol to which this rule applies. The default protocol is TCP.
-`ipVersion`<br/>*enum* | The IP version that will be used by this forwarding rule. The default IP version is IPV4. Possible values are IPV4 and IPV6.
+`ipVersion`<br/>*enum* | The IP version that will be used by this forwarding rule. The default IP version is IPV4.
 `kind`<br/>*string* | Type of the resource.
 `loadBalancingScheme`<br/>*enum* | Specifies the forwarding rule type. Possible values are INTERNAL and EXTERNAL.
 `networkTier`<br/>*enum* | This signifies the networking tier used for configuring this load balancer.
 `portRange`<br/>*string* | The destination ports that this forwarding rule forwards packets with.
 `selfLink`<br/>*string* | Server-defined URL for this resource.
-`target`<br/>*string* |  The URL of the target resource to receive the matched traffic.
+`target`<br/>*string* | The URL of the target resource to receive the matched traffic.
 `shortTarget`<br/>*string* | The name of the target resource.
 `id`<br/>*string* | The unique identifier for the resource. This identifier is defined by the server.
 `name`<br/>*string* | Name of the resource. Provided by the client when the resource is created.
@@ -104,7 +104,7 @@ Attributes | &nbsp;
 `description` <br/>*string* | An optional description of this resource.
 `IPAddress`<br/>*string* | The IP address that this forwarding rule serves. 
 `IPProtocol`<br/>*enum* | The IP protocol to which this rule applies. The default protocol is TCP.
-`ipVersion`<br/>*enum* | The IP version that will be used by this forwarding rule. The default IP version is IPV4. Possible values are IPV4 and IPV6.
+`ipVersion`<br/>*enum* | The IP version that will be used by this forwarding rule. The default IP version is IPV4.
 `kind`<br/>*string* | Type of the resource.
 `loadBalancingScheme`<br/>*enum* | Specifies the forwarding rule type. Possible values are INTERNAL and EXTERNAL.
 `networkTier`<br/>*enum* | This signifies the networking tier used for configuring this load balancer.
