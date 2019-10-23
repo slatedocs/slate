@@ -138,7 +138,7 @@ data.occured_at             | Timestamp when the update happened            | Ti
 
 ### Event
 
-Event will be triggered every time transfer status is updated. Each event contains a timestamp. As we do not guarantee the order of events, please use that `eventTime` to reconcile the order. 
+Event will be triggered every time transfer's list of active issues is updated.
 
 If you would like to subscribe to transfer active issue events, please use `transfers#active-cases` when creating your subscription.
 
