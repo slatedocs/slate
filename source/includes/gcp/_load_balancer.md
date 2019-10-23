@@ -4,7 +4,7 @@ HTTP(S) load balancing can balance HTTP and HTTPS traffic across multiple backen
 
 <!-------------------- LIST LOAD BALANCERS -------------------->
 
-#### List load balancers
+##### List load balancers
 
 ```shell
 curl -X GET \
