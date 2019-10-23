@@ -270,7 +270,7 @@ respuesta = requests.post(
     data = json.dumps(factura))
 ```
 
-```c#
+```csharp
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -489,7 +489,7 @@ Parámetro           | Tipo    | Descripción
 incoterm   | Objeto de tipo [incoterm](#incoterm)  | Información del Incoterm . __Requerido__
 origen   | Objeto de tipo [origen de exportación](#origen-de-exportaci-n)  | Origen de la exportación . __Requerido__
 destino   | Objeto de tipo [destino de exportación](#destino-de-exportaci-n)  | Destino de la exportación. __Requerido__
-codigo_pais_adquisicion   | string  | Código de dos caracteres del país de adquisición según [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) 
+codigo_pais_adquisicion   | string  | Código de dos caracteres del país de adquisición según [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
 totales | Objecto de tipo [totales de exportación](#totales-de-exportaci-n) | Totales de la exportación
 
 #### Incoterm
@@ -554,7 +554,7 @@ xml   | string  | Contenido del archivo xml. __Requerido__
 ```python
 import requests, json
 
-factura = { 
+factura = {
     "xml" : "<?xml ... "
 }
 
@@ -568,7 +568,7 @@ respuesta = requests.post(
     data = json.dumps(factura))
 ```
 
-```c#
+```csharp
 ```
 
 ### Respuesta
@@ -737,7 +737,7 @@ respuesta = requests.get(
     headers = cabeceras)
 ```
 
-```c#
+```csharp
 using RestSharp;
 using System;
 using System.Collections.Generic;

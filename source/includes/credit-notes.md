@@ -182,7 +182,7 @@ respuesta = requests.post(
     data = json.dumps(nota_credito))
 ```
 
-```c#
+```csharp
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -193,7 +193,7 @@ namespace DatilClient {
   class InvoicingServiceClient {
     static void Main(string[] args) {
 
-      // Este ejemplo utiliza RestSharp 
+      // Este ejemplo utiliza RestSharp
       // Para instalar anda al menú: tools > Library Package Manager > Package Manager Console
       // copia y pega y presiona enter: Install-Package RestSharp
 
@@ -400,17 +400,17 @@ Remember — a happy kitten is an authenticated kitten!
 ```
 
 Retorna un objeto tipo **[nota de crédito](#requerimiento-nota-credito)** que incluye un nuevo parámetro `id`,
-el cual identifica de manera única a la nota de crédito. El campo `clave_acceso` 
+el cual identifica de manera única a la nota de crédito. El campo `clave_acceso`
 generado también se incluirá como parte de la respuesta.
 
 ## Consulta de una nota de crédito
 
 Consulta una nota de crédito para obtener toda la información del comprobante, incluyendo
 el estado del mismo.
-El parámetro `estado` de la respuesta obtenida al invocar esta operación, indica 
+El parámetro `estado` de la respuesta obtenida al invocar esta operación, indica
 el estado actual del comprobante.
 
-Si es necesario conocer en detalle, en que estado del [proceso de emisión](#proceso-de-emisión), 
+Si es necesario conocer en detalle, en que estado del [proceso de emisión](#proceso-de-emisión),
 se debe examinar los parámetros `envio_sri` y `autorizacion_sri` de la respuesta.
 
 ### Operación
@@ -436,7 +436,7 @@ respuesta = requests.get(
     headers = cabeceras)
 ```
 
-```c#
+```csharp
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -571,10 +571,10 @@ fecha_emision | string | Fecha de emisión en formato AAAA-MM-DDHoraZonaHoraria,
 clave_acceso | string | La clave de acceso representa un identificador único del comprobante. Si esta información no es provista, Dátil la generará.<br>¿Cómo [generar](#clave-de-acceso) la clave de acceso?
 envio_sri | objeto tipo [envio sri](#envío-sri) | Información luego de enviar el comprobante.
 autorizacion | objeto tipo [autorizacion sri](#autorización-sri) | Información de la autorización.org/html/rfc3339#section-5.6).
-emisor | objeto tipo [emisor](#emisor) | Información completa del emisor. 
-moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda. 
+emisor | objeto tipo [emisor](#emisor) | Información completa del emisor.
+moneda | string | Código [ISO](https://en.wikipedia.org/wiki/ISO_4217) de la moneda.
 ambiente | integer | Pruebas: `1`.<br>Producción `2`.<br>
-totales | objeto tipo [totales](#totales-nota-de-crédito) | Listado de totales. 
+totales | objeto tipo [totales](#totales-nota-de-crédito) | Listado de totales.
 comprador | objeto tipo [persona](#persona) | Información del comprador.
 tipo_emision | integer | Emisión normal: `1`.<br>Emisión por indisponibilidad: `2`<br>
 items | listado de objetos tipo [item](#item-de-factura) | Items incluídos en la nota de crédito.

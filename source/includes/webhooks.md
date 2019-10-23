@@ -40,7 +40,7 @@ respuesta = requests.post(
     data = json.dumps(suscripcion))
 ```
 
-```c#
+```csharp
 using RestSharp;
 using System;
 using System.Collections.Generic;
