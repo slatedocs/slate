@@ -19,10 +19,10 @@ curl -v https://link.datil.co/invoices/issue \
   "ambiente":1,
   "tipo_emision":1,
   "secuencial":148,
-  "fecha_emision":"2015-02-28T11:28:56.782Z",
+  "fecha_emision":"2019-09-28T11:28:56.782Z",
   "emisor":{
     "ruc":"0910000000001",
-    "obligado_contabilidad":true,
+    "obligado_contabilidad": true,
     "contribuyente_especial":"12345",
     "nombre_comercial":"XYZ Corp",
     "razon_social":"XYZ Corporación S.A.",
@@ -71,6 +71,7 @@ curl -v https://link.datil.co/invoices/issue \
       "codigo_principal": "ZNC",
       "codigo_auxiliar": "050",
       "precio_unitario": 7.01,
+      "descuento": 0,
       "descripcion": "Zanahoria granel  50 Kg.",
       "precio_total_sin_impuestos": 4360.22,
       "impuestos": [
@@ -144,10 +145,10 @@ factura = {
   "ambiente":1,
   "tipo_emision":1,
   "secuencial":148,
-  "fecha_emision":"2015-02-28T11:28:56.782Z",
+  "fecha_emision":"2019-09-28T11:28:56.782Z",
   "emisor":{
     "ruc":"0910000000001",
-    "obligado_contabilidad":true,
+    "obligado_contabilidad":True,
     "contribuyente_especial":"12345",
     "nombre_comercial":"XYZ Corp",
     "razon_social":"XYZ Corporación S.A.",
@@ -196,6 +197,7 @@ factura = {
       "codigo_principal":"ZNC",
       "codigo_auxiliar": "050",
       "precio_unitario": 7.01,
+      "descuento":0,
       "descripcion": "Zanahoria granel  50 Kg.",
       "precio_total_sin_impuestos": 4360.22,
       "impuestos": [
@@ -296,7 +298,7 @@ namespace DatilClient {
         ""ambiente"":1,
         ""tipo_emision"":1,
         ""secuencial"":148,
-        ""fecha_emision"":""2015-02-28T11:28:56.782Z"",
+        ""fecha_emision"":""2019-09-28T11:28:56.782Z"",
         ""emisor"":{
           ""ruc"":""0910000000001"",
           ""obligado_contabilidad"":true,
@@ -348,6 +350,7 @@ namespace DatilClient {
             ""codigo_principal"":""ZNC"",
             ""codigo_auxiliar"": ""050"",
             ""precio_unitario"": 7.01,
+            ""descuento"": 0,
             ""descripcion"": ""Zanahoria granel  50 Kg."",
             ""precio_total_sin_impuestos"": 4360.22,
             ""impuestos"": [
@@ -581,7 +584,7 @@ respuesta = requests.post(
   "ambiente":1,
   "tipo_emision":1,
   "secuencial":148,
-  "fecha_emision":"2015-02-28T11:28:56.782Z",
+  "fecha_emision":"2019-09-28T11:28:56.782Z",
   "clave_acceso": "2802201501091000000000120010010000100451993736618",
   "emisor":{
     "ruc": "0910000000001",
