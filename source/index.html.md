@@ -378,6 +378,7 @@ curl -X GET "https://api.falconx.io/v1/quotes/00c884b056f949338788dfb59e495377" 
   "fx_quote_id": "00c884b056f949338788dfb59e495377",
   "buy_price": 12650,
   "sell_price": null,
+  "platform": "api",
   "token_pair": {
     "base_token": "BTC",
     "quote_token": "USD"
@@ -391,6 +392,7 @@ curl -X GET "https://api.falconx.io/v1/quotes/00c884b056f949338788dfb59e495377" 
   "t_expiry": "2019-06-27T11:59:22.875725+00:00",  
   "is_filled": true,
   "side_executed": "buy",
+  "user_email": "trader@company.com",
   "error": null
 }
 ```
@@ -401,6 +403,7 @@ curl -X GET "https://api.falconx.io/v1/quotes/00c884b056f949338788dfb59e495377" 
 | **fx_quote_id**   | STRING                            | FalconX Quote ID
 | **buy_price**   | DECIMAL                            | Buy price in quote token
 | **sell_price**   | DECIMAL                            | Sell price in quote token
+| **platform** | STRING | Platform for quote. Possible values: `api`, `browser` or `margin`
 | **token_pair**    | JSON                              | Token pair for which the client is requesting quote (See [Token Pair](#token-pair)) |
 | **quantity_requested**      | JSON                              | Requested quantity (See [Quantity](#quantity)) |
 | **side_requested**       | STRING                              | Side of quote. Possible values: `buy`, `sell` or `two_way`
@@ -408,6 +411,7 @@ curl -X GET "https://api.falconx.io/v1/quotes/00c884b056f949338788dfb59e495377" 
 | **t_expiry**      | STRING                            | Quote expiry time in ISO 8601 date format
 | **is_filled**      | BOOLEAN | `true` if quote has been executed successfully else `false`
 | **side_executed**       | STRING                              | Side of quote executed. `null` if not executed
+| **user_email**       | STRING                              | Email of user who requested the quote
 | **error**       | JSON                                | Error info. `null` if no error (see [Error](#error))
 
 
@@ -425,7 +429,7 @@ Get executed quotes between the given time range. Time range should be provided 
 
 ```shell
 # substitute placeholders with correct authorization header values
-curl -X GET "https://api.falconx.io/v1/quotes?t_start=2019-06-20T00:00:00+00:00&t_end=2019-06-28T00:00:00+00:00" \
+curl -X GET "https://api.falconx.io/v1/quotes?t_start=2019-06-20T00:00:00+00:00&t_end=2019-06-28T00:00:00+00:00&platform=api" \
       -H "FX-ACCESS-SIGN: <signature>" \
       -H "FX-ACCESS-TIMESTAMP: <timestamp>" \
       -H "FX-ACCESS-KEY: <api_key>" \
@@ -438,7 +442,7 @@ curl -X GET "https://api.falconx.io/v1/quotes?t_start=2019-06-20T00:00:00+00:00&
 | ---------         | ----------------------------------- | ------------
 | **t_start**   | STRING                         | Start of time range in ISO 8601 date format
 | **t_end**   | STRING                         | End of time range in ISO 8601 date format
-
+| **platform** | STRING | Platform for quote. Possible values: `api`, `browser` or `margin`. If not present quotes from all platforms are returned
 
 ## Response Parameters
 
@@ -451,6 +455,7 @@ curl -X GET "https://api.falconx.io/v1/quotes?t_start=2019-06-20T00:00:00+00:00&
     "fx_quote_id": "00c884b056f949338788dfb59e495377",
     "buy_price": 12650,
     "sell_price": null,
+    "platform": "api",
     "token_pair": {
       "base_token": "BTC",
       "quote_token": "USD"
@@ -464,6 +469,7 @@ curl -X GET "https://api.falconx.io/v1/quotes?t_start=2019-06-20T00:00:00+00:00&
     "t_expiry": "2019-06-27T11:59:22.875725+00:00",
     "is_filled": true,
     "side_executed": "buy",
+    "user_email": "trader@company.com",
     "error": null
   }
 ]
@@ -476,6 +482,7 @@ API will return a list of the following structure:
 | **fx_quote_id**   | STRING                            | FalconX Quote ID
 | **buy_price**   | DECIMAL                            | Buy price in quote token
 | **sell_price**   | DECIMAL                            | Sell price in quote token
+| **platform** | STRING | Platform for quote. Possible values: `api`, `browser` or `margin`
 | **token_pair**    | JSON                              | Token pair for which the client is requesting quote (See [Token Pair](#token-pair)) |
 | **quantity_requested**      | JSON                              | Requested quantity (See [Quantity](#quantity)) |
 | **side_requested**       | STRING                              | Side of quote. Possible values: `buy`, `sell` or `two_way`
@@ -483,6 +490,7 @@ API will return a list of the following structure:
 | **t_expiry**      | STRING                            | Quote expiry time in ISO 8601 date format
 | **is_filled**      | BOOLEAN | `true` if quote has been executed successfully else `false`
 | **side_executed**       | STRING                              | Side of quote executed
+| **user_email**       | STRING                              | Email of user who requested the quote
 | **error**       | JSON                                | Error info. `null` if no error (see [Error](#error))
 
 
@@ -493,11 +501,15 @@ Fetches balances for all tokens.
 
 ## HTTP Request
 
+`GET https://api.falconx.io/v1/balances`
+
+## Query Parameters
+
 > Request Sample
 
 ```shell
 # substitute placeholders with correct authorization header values
-curl -X GET "https://api.falconx.io/v1/balances" \
+curl -X GET "https://api.falconx.io/v1/balances?platform=api" \
       -H "FX-ACCESS-SIGN: <signature>" \
       -H "FX-ACCESS-TIMESTAMP: <timestamp>" \
       -H "FX-ACCESS-KEY: <api_key>" \
@@ -505,7 +517,9 @@ curl -X GET "https://api.falconx.io/v1/balances" \
       -H "Content-Type: application/json"
 ```
 
-`GET https://api.falconx.io/v1/balances`
+| Parameter         | Type                                | Description
+| ---------         | ----------------------------------- | ------------
+| **platform** | STRING | Platform for balance. Possible values: `api`, `browser` or `margin`. If not present balances from all platforms are returned
 
 
 ## Response Parameters
@@ -516,11 +530,13 @@ curl -X GET "https://api.falconx.io/v1/balances" \
 [
   {
     "token": "BTC",
-    "balance": 10
+    "balance": 10,
+    "platform": "api"
   },
   {
     "token": "ETH",
-    "balance": 100
+    "balance": 100,
+    "platform": "api"
   }
 ]
 
@@ -533,6 +549,7 @@ API will return a list of the following structure:
 | ---------     | ------------------------------    | ------------|
 | **token**     | STRING                            | Token symbol  
 | **balance**   | DECIMAL                           | Balance for that token
+| **platform** | STRING | Platform for balance. Possible values: `api`, `browser` or `margin`
 
 
 # Get Transfers
@@ -549,7 +566,7 @@ Get deposits / withdrawals between the given time range. Time range should be pr
 
 ```shell
 # substitute placeholders with correct authorization header values
-curl -X GET "https://api.falconx.io/v1/transfers?t_start=2019-06-20T00:00:00+00:00&t_end=2019-06-21T00:00:00+00:00" \
+curl -X GET "https://api.falconx.io/v1/transfers?t_start=2019-06-20T00:00:00+00:00&t_end=2019-06-21T00:00:00+00:00&platform=browser" \
       -H "FX-ACCESS-SIGN: <signature>" \
       -H "FX-ACCESS-TIMESTAMP: <timestamp>" \
       -H "FX-ACCESS-KEY: <api_key>" \
