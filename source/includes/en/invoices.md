@@ -198,7 +198,7 @@ respuesta = requests.post(
     data = json.dumps(factura))
 ```
 
-```c#
+```csharp
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -490,7 +490,7 @@ respuesta = requests.get(
     headers = cabeceras)
 ```
 
-```c#
+```csharp
 using RestSharp;
 using System;
 using System.Collections.Generic;

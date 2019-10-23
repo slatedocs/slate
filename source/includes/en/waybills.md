@@ -148,7 +148,7 @@ respuesta = requests.post(
     data = json.dumps(guia_remision))
 ```
 
-```c#
+```csharp
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -393,7 +393,7 @@ respuesta = requests.get(
     headers = cabeceras)
 ```
 
-```c#
+```csharp
 using RestSharp;
 using System;
 using System.Collections.Generic;
