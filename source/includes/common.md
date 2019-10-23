@@ -55,6 +55,16 @@ codigo | string | Código numérico de 3 caracteres que representa al establecim
 direccion | string | Dirección registrada en el SRI. Máximo 300 caracteres
 punto_emision | string | Código numérico de 3 caracteres que representa al punto de emisión, o punto de venta. Ejemplo: `001`
 
+## Máquina fiscal
+
+Datos de una máquina fiscal.
+
+Parámetro | Tipo | Descripción
+--------- | ---- |-----------
+marca | string | Máximo 300 caracteres. __Requerido__
+modelo | string | Máximo 300 caracteres. __Requerido__
+serie | string | Máximo 300 caracteres. __Requerido__
+
 ## Persona
 
 Datos de una persona. Utilizado como __comprador__ en facturas y notas de crédito, como __sujeto__ en retenciones
@@ -133,7 +143,7 @@ mensaje               | string | Descripción del error, información o adverten
 tipo                  | string | Posibles valores: `INFORMATIVO`, `ADVERTENCIA`, `ERROR`
 informacion_adicional | string | Información adicional del mensaje.
 
-<h2 id="item-de-factura">Item de factura y nota de crédito</h2>
+<h2 id="item-de-factura">Item de factura, nota de crédito y liquidación de compras</h2>
 
 Representa un producto o servicio del comercio.
 
