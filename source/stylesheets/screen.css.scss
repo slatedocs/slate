@@ -135,7 +135,7 @@ html, body {
     transition-duration: 180ms;
     transition-timing-function: ease-in-out;
     background: $nav-subitem-bg;
-    margin: -10px 15px 1em 15px;
+    margin: -15px 15px 1em 15px;
 
     &.visible {
       height: 70%;
@@ -148,7 +148,7 @@ html, body {
     }
 
     a {
-      padding: 0.5em $nav-padding;
+      padding: 0.5em 8px;
       color: $nav-text;
       text-decoration: none;
       display: block;
