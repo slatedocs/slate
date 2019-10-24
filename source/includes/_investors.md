@@ -199,7 +199,7 @@ If `migrationDetails` is specified, then the system looks for an investor with t
 
 Any existing ISA data is preserved.
 
-## GET /terms
+## `GET /terms`
 
 ```http
 
@@ -225,7 +225,7 @@ Loads the current set of terms and conditions.
 | ------------------ | ------ | ---------------------------------------- |
 | termsAndConditions | string | The terms and conditions in HTML format. |
 | version            | string | The version of the terms and conditions. |
-## GET /isaDeclaration
+## `GET /isaDeclaration`
 
 ```http
 
@@ -253,7 +253,7 @@ Loads the current ISA declaration.
 | declaration | string | The ISA declaration in HTML format. |
 | version     | string | The version of the ISA declaration. |
 
-## POST /investors
+## `POST /investors`
 
 ```http
 
@@ -406,7 +406,7 @@ Creates an investor and triggers a KYC check.
 | corporateDetails.companyType        | string | The company type.                                                                                                                                                                                  |
 | corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                   |
 | investmentDeclarationType           | string | The investor type declared by the investor                                                                                                                                                         |
-## GET /investors/{clientId}
+## `GET /investors/{clientId}`
 
 ```http
 
@@ -486,7 +486,7 @@ Retrieves an investor.
 | corporateDetails.companyType        | string | The company type.                                                                                                                                                                                  |
 | corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                   |
 | investmentDeclarationType           | string | The investor type declared by the investor                                                                                                                                                         |
-## PUT /investors/{clientId}
+## `PUT /investors/{clientId}`
 
 ```http
 
@@ -624,7 +624,7 @@ Updates an investor.
 | corporateDetails.companyType        | string | The company type.                                                                                                                                                                                  |
 | corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                   |
 | investmentDeclarationType           | string | The investor type declared by the investor                                                                                                                                                         |
-## GET /investors/{clientId}/kyc
+## `GET /investors/{clientId}/kyc`
 
 ```http
 
@@ -648,7 +648,7 @@ Retrieves an investor's KYC status.
 | Name   | Type   | Description                    |
 | ------ | ------ | ------------------------------ |
 | status | string | The KYC status of the investor. |
-## GET /investors/{clientId}/kyb
+## `GET /investors/{clientId}/kyb`
 
 ```http
 
@@ -672,7 +672,7 @@ Retrieves an investor's KYB status - this is only applicable for corporates.
 | Name   | Type   | Description                            |
 | ------ | ------ | -------------------------------------- |
 | status | string | The KYB status of a corporate investor.|
-## POST /investors/{clientId}/kyc/documents
+## `POST /investors/{clientId}/kyc/documents`
 
 ```http
 
@@ -744,7 +744,7 @@ Add an investor's KYC documents.
 | requirements[].checkType | string | The type of the check |
 | requirements[].workflowId | string | The ID of the attached workflow |
 
-## POST /investors/{clientId}/accounts/ISA
+## `POST /investors/{clientId}/accounts/ISA`
 
 ```http
 
@@ -830,7 +830,7 @@ Add an ISA account.
 | corporateDetails.companyType        | string | The company type.                                                                                                                                                                                  |
 | corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                   |
 | investmentDeclarationType           | string | The investor type declared by the investor                                                                                                                                                         |
-## GET /investors/{clientId}/accounts/ISA/transferIn/UI
+## `GET /investors/{clientId}/accounts/ISA/transferIn/UI`
 
 ```http
 
@@ -860,7 +860,7 @@ Retrieve data to initialise the transfer in widget. See the documentation for de
 | styleSrc  | string |             |
 | scriptSrc | string |             |
 | token     | string |             |
-## GET /transferIn/open/summary
+## `GET /transferIn/open/summary`
 
 ```http
 
@@ -882,7 +882,7 @@ Returns аll opened transfers in.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 
-## GET /investors/{clientId}/transferOut
+## `GET /investors/{clientId}/transferOut`
 
 ```http
 
@@ -904,7 +904,7 @@ Lists transfers out for the investor.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 
-## GET /investors/{clientId}/transferIn
+## `GET /investors/{clientId}/transferIn`
 
 ```http
 
@@ -926,7 +926,7 @@ Lists transfers in for the investor.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 
-## GET /investors/{clientId}/transferIn/{transferInId}
+## `GET /investors/{clientId}/transferIn/{transferInId}`
 
 ```http
 
@@ -972,7 +972,7 @@ Gets a specific transfer in for the investor.
 | fundsTransferType            | string | The funds transfer type                                 |
 | bankReference                | string | The bank reference                                      |
 | transferInDate               | string | The date stated on the transfer history form            |
-## GET /transferIn/deposits/{date}
+## `GET /transferIn/deposits/{date}`
 
 ```http
 
@@ -1013,7 +1013,7 @@ Lists deposits for transfer in for a given date
 | products            | array  |                                                         |
 | products[].id       | string | The transfer in ID                                      |
 | products[].clientId | string | The ID of the investor for the transfer in              |
-## GET /transfersOut
+## `GET /transfersOut`
 
 ```http
 
@@ -1035,7 +1035,7 @@ Lists all transfers out for all investors.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 
-## GET /investors/{clientId}/transactions
+## `GET /investors/{clientId}/transactions`
 
 ```http
 

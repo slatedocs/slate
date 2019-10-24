@@ -24,7 +24,7 @@ The encrypted string is then UTF-8 URL encoded.
 You should verify that the `Authorization` header matches the expected signature string using the secret that was shared with you during onboarding.
 </aside>
 
-## POST /webhooks
+## `POST /webhooks`
 
 ```http
 
@@ -49,7 +49,8 @@ Register a webhook url.
 | ---- | ------ | ----------------------------------- | -------- |
 | url  | string | The url to dispatch the webhook to. | optional |
 ### Response
-| Name | Type | Description || ---- | ---- | ----------- |
+| Name | Type | Description |
+| ---- | ---- | ----------- |
 
 ## Webhook Types
 

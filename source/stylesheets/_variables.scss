@@ -81,6 +81,11 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 
 %code-font {
   font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
+  line-height: 1.5;
+}
+
+%code-sample-font {
+  font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
   font-size: 12px;
   line-height: 1.5;
 }

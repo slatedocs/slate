@@ -480,7 +480,7 @@ The steps to repair the ISA will be as follows:
  * Once this process is complete, Goji will email the investor with details of the taxable income that needs to be declared in their tax return.
 
 
-## GET /terms
+## `GET /terms`
 
 ```http
 
@@ -508,7 +508,7 @@ This endpoint should be called to return the Terms and Conditions that the inves
 | ------------------ | ------ | ------------------------------------------------ |
 | termsAndConditions | string | The terms and conditions                         |
 | version            | string | The version of the terms and conditions eg 1.0.0 |
-## POST /terms
+## `POST /terms`
 
 ```http
 
@@ -542,7 +542,7 @@ This endpoint should be called to create or update the Terms and Conditions that
 | ------------------ | ------ | ------------------------------------------------ |
 | termsAndConditions | string | The terms and conditions                         |
 | version            | string | The version of the terms and conditions eg 1.0.0 |
-## POST /terms/agreement
+## `POST /terms/agreement`
 
 ```http
 
@@ -578,7 +578,7 @@ Please see [sign terms errors](/isa-administration-api/guides/Error%20Codes)
 | Name  | Type   | Description                                                                             |
 | ----- | ------ | --------------------------------------------------------------------------------------- |
 | token | string | A token identifying the signing of the Ts & Cs. To be used on the POST /investors call. |
-## GET /investors/{clientId}/terms/status
+## `GET /investors/{clientId}/terms/status`
 
 ```http
 
@@ -602,7 +602,7 @@ Loads the investor's terms and conditions status which can be used to determine 
 | Name   | Type   | Description |
 | ------ | ------ | ----------- |
 | status | string | The status. |
-## PUT /investors/{clientId}/terms/agreement/token
+## `PUT /investors/{clientId}/terms/agreement/token`
 
 ```http
 
@@ -666,7 +666,7 @@ Applicable when the terms and conditions are updated and the investor must accep
 | address.region                 | string | The region of the investor's address.                                                                                                                                                              |
 | address.country                | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked. |
 | address.postcode               | string | The Post Code of the investor's address.                                                                                                                                                           |
-## GET /declaration
+## `GET /declaration`
 
 ```http
 
@@ -694,7 +694,7 @@ This endpoint should be called to return the ISA Declaration that the investor m
 | ----------- | ------ | --------------------------------------------------------------- |
 | declaration | string | The declaration                                                 |
 | version     | string | A unique identifier of the version of this declaration eg. 0.11 |
-## POST /declaration/agreement
+## `POST /declaration/agreement`
 
 ```http
 
@@ -730,7 +730,7 @@ Please see [sign declaration errors](/isa-administration-api/guides/Error%20Code
 | Name  | Type   | Description                                                                                 |
 | ----- | ------ | ------------------------------------------------------------------------------------------- |
 | token | string | A token identifying the signing of the Declaration. To be used on the POST /investors call. |
-## POST /investors
+## `POST /investors`
 
 ```http
 
@@ -842,7 +842,7 @@ Please see [create investor errors](/isa-administration-api/guides/Error%20Codes
 | address.region                 | string | The region of the investor's address.                                                                                                                                                              |
 | address.country                | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked. |
 | address.postcode               | string | The Post Code of the investor's address.                                                                                                                                                           |
-## POST /investors/validIsaApplication
+## `POST /investors/validIsaApplication`
 
 ```http
 
@@ -891,9 +891,10 @@ Please see [validate investor errors](/isa-administration-api/guides/Error%20Cod
 | address.postcode        | string | The Post Code of the investor's address.                                                                                                                                                           ||
 | nationalInsuranceNumber | string | Optionally check to see if the National Insurance number has already been registered                                                                                                               | required |
 ### Response
-| Name | Type | Description || ---- | ---- | ----------- |
+| Name | Type | Description |
+| ---- | ---- | ----------- |
 
-## GET /investors/{investorId}
+## `GET /investors/{investorId}`
 
 ```http
 
@@ -953,7 +954,7 @@ This endpoint should be called when the non-financial details of an investor nee
 | address.region                 | string | The region of the investor's address.                                                                                                                                                              |
 | address.country                | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked. |
 | address.postcode               | string | The Post Code of the investor's address.                                                                                                                                                           |
-## PUT /investors/{investorId}
+## `PUT /investors/{investorId}`
 
 ```http
 
@@ -1051,7 +1052,7 @@ This endpoint should be called whenever the details of an investor change.
 | address.region                 | string | The region of the investor's address.                                                                                                                                                              |
 | address.country                | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked. |
 | address.postcode               | string | The Post Code of the investor's address.                                                                                                                                                           |
-## GET /investors/{investorId}/isa
+## `GET /investors/{investorId}/isa`
 
 ```http
 
@@ -1291,7 +1292,7 @@ This endpoint should be called whenever up to date details of the investor's ISA
 | remainingAdditionalPermittedSubscriptions          | ref    | The remaining amount that can be subscribed as an Additional Permitted Subscription.                          |
 | remainingAdditionalPermittedSubscriptions.amount   | number | The amount                                                                                                    |
 | remainingAdditionalPermittedSubscriptions.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
-## GET /investors/{investorId}/isa/summary
+## `GET /investors/{investorId}/isa/summary`
 
 ```http
 
@@ -1343,7 +1344,7 @@ This endpoint should be called whenever summary details of the investor's ISA ar
 | remainingSubscriptionAmount          | ref    | The amount remaining that can be invested in the ISA in the current tax year. |
 | remainingSubscriptionAmount.amount   | number | The amount                                                                    |
 | remainingSubscriptionAmount.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                       |
-## GET /transferIn/investors/{clientId}/open
+## `GET /transferIn/investors/{clientId}/open`
 
 ```http
 
@@ -1362,9 +1363,10 @@ Content-Type: application/json
 ### Description
 Used to find an overview of all transfer in workflows for a particular investor. It should be understood that the existence of the TransferDate determines whether the transfer history form has been submitted
 ### Response
-| Name | Type | Description || ---- | ---- | ----------- |
+| Name | Type | Description |
+| ---- | ---- | ----------- |
 
-## GET /investors/{clientId}/isa/subscriptionStatus
+## `GET /investors/{clientId}/isa/subscriptionStatus`
 
 ```http
 
@@ -1388,7 +1390,7 @@ Used to retrieve the subscription status of an investor's ISA. Can be used for t
 | Name               | Type   | Description                                                            |
 | ------------------ | ------ | ---------------------------------------------------------------------- |
 | subscriptionStatus | string | Indicates if anything is preventing further subscriptions to this ISA. |
-## PUT /investors/{investorId}/isa/status
+## `PUT /investors/{investorId}/isa/status`
 
 ```http
 
@@ -1451,7 +1453,7 @@ Updates the status of an investor's ISA.  This can aid testing by placing an ISA
 | remainingSubscriptionAmount          | ref    | The amount remaining that can be invested in the ISA in the current tax year. |
 | remainingSubscriptionAmount.amount   | number | The amount                                                                    |
 | remainingSubscriptionAmount.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                       |
-## PUT /investors/{clientId}/transferIn/{transferInId}/transferHistory
+## `PUT /investors/{clientId}/transferIn/{transferInId}/transferHistory`
 
 ```http
 
@@ -1545,7 +1547,7 @@ Updates the transfer history for an investor's Transfer In
 | repairAmount.currency                    | string | The currency in ISO 4217 three character codes eg 'GBP'                          |
 | totalIsaTransferAmount.amount            | number | The amount                                                                       |
 | totalIsaTransferAmount.currency          | string | The currency in ISO 4217 three character codes eg 'GBP'                          |
-## POST /investors/{clientId}/transferIn/{transferInId}/transferHistory
+## `POST /investors/{clientId}/transferIn/{transferInId}/transferHistory`
 
 ```http
 
@@ -1640,7 +1642,7 @@ Creates the transfer history for an investor's Transfer In
 | repairAmount.currency                    | string | The currency in ISO 4217 three character codes eg 'GBP'                          |
 | totalIsaTransferAmount.amount            | number | The amount                                                                       |
 | totalIsaTransferAmount.currency          | string | The currency in ISO 4217 three character codes eg 'GBP'                          |
-## POST /investors/{investorId}/declaration/agreement
+## `POST /investors/{investorId}/declaration/agreement`
 
 ```http
 
@@ -1881,7 +1883,7 @@ Used to record an investor agreeing to the ISA declaration after the ISA has bee
 | remainingAdditionalPermittedSubscriptions          | ref    | The remaining amount that can be subscribed as an Additional Permitted Subscription.                          |
 | remainingAdditionalPermittedSubscriptions.amount   | number | The amount                                                                                                    |
 | remainingAdditionalPermittedSubscriptions.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
-## GET /audit/investors/{investorId}
+## `GET /audit/investors/{investorId}`
 
 ```http
 
@@ -1900,9 +1902,10 @@ Content-Type: application/json
 ### Description
 Returns an audit record of HTTP requests relating to the investor.
 ### Response
-| Name | Type | Description || ---- | ---- | ----------- |
+| Name | Type | Description |
+| ---- | ---- | ----------- |
 
-## POST /investors/{investorId}/investment
+## `POST /investors/{investorId}/investment`
 
 ```http
 
@@ -2172,7 +2175,7 @@ Please see [create investment errors](/isa-administration-api/guides/Error%20Cod
 | remainingAdditionalPermittedSubscriptions          | ref    | The remaining amount that can be subscribed as an Additional Permitted Subscription.                          |
 | remainingAdditionalPermittedSubscriptions.amount   | number | The amount                                                                                                    |
 | remainingAdditionalPermittedSubscriptions.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
-## DELETE /investors/{investorId}/investment
+## `DELETE /investors/{investorId}/investment`
 
 ```http
 
@@ -2426,7 +2429,7 @@ Currently if the investment has been previously modified this won't work and thi
 | remainingAdditionalPermittedSubscriptions          | ref    | The remaining amount that can be subscribed as an Additional Permitted Subscription.                          |
 | remainingAdditionalPermittedSubscriptions.amount   | number | The amount                                                                                                    |
 | remainingAdditionalPermittedSubscriptions.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
-## PUT /investors/{investorId}/investment/{investmentId}
+## `PUT /investors/{investorId}/investment/{investmentId}`
 
 ```http
 
@@ -2685,7 +2688,7 @@ Please see [create investment errors](/isa-administration-api/guides/Error%20Cod
 | remainingAdditionalPermittedSubscriptions          | ref    | The remaining amount that can be subscribed as an Additional Permitted Subscription.                          |
 | remainingAdditionalPermittedSubscriptions.amount   | number | The amount                                                                                                    |
 | remainingAdditionalPermittedSubscriptions.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
-## POST /investors/{investorId}/investment/{investmentId}/repayment
+## `POST /investors/{investorId}/investment/{investmentId}/repayment`
 
 ```http
 
@@ -2730,9 +2733,10 @@ Please see [create repayment errors](/isa-administration-api/guides/Error%20Code
 | interestAmount.currency | string | The currency in ISO 4217 three character codes eg 'GBP'     ||
 | dateTimeOfRepayment     | string | The date and time of the repayment                          | required |
 ### Response
-| Name | Type | Description || ---- | ---- | ----------- |
+| Name | Type | Description |
+| ---- | ---- | ----------- |
 
-## POST /investors/{investorId}/investment/{investmentId}/reinvestment
+## `POST /investors/{investorId}/investment/{investmentId}/reinvestment`
 
 ```http
 
@@ -3031,7 +3035,7 @@ Please see [create reinvestment errors](/isa-administration-api/guides/Error%20C
 | remainingAdditionalPermittedSubscriptions          | ref    | The remaining amount that can be subscribed as an Additional Permitted Subscription.                          |
 | remainingAdditionalPermittedSubscriptions.amount   | number | The amount                                                                                                    |
 | remainingAdditionalPermittedSubscriptions.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
-## POST /investors/{investorId}/investment/{investmentId}/sale
+## `POST /investors/{investorId}/investment/{investmentId}/sale`
 
 ```http
 
@@ -3286,7 +3290,7 @@ This endpoint should be called if an investment should be marked as sold. The am
 | remainingAdditionalPermittedSubscriptions          | ref    | The remaining amount that can be subscribed as an Additional Permitted Subscription.                          |
 | remainingAdditionalPermittedSubscriptions.amount   | number | The amount                                                                                                    |
 | remainingAdditionalPermittedSubscriptions.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
-## POST /investors/{investorId}/investment/{investmentId}/writeOff
+## `POST /investors/{investorId}/investment/{investmentId}/writeOff`
 
 ```http
 
@@ -3539,7 +3543,7 @@ This endpoint should be called if an investment is in default and some or all of
 | remainingAdditionalPermittedSubscriptions          | ref    | The remaining amount that can be subscribed as an Additional Permitted Subscription.                          |
 | remainingAdditionalPermittedSubscriptions.amount   | number | The amount                                                                                                    |
 | remainingAdditionalPermittedSubscriptions.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
-## POST /investors/{investorId}/cash
+## `POST /investors/{investorId}/cash`
 
 ```http
 
@@ -3801,7 +3805,7 @@ Please see [cash transaction errors](/isa-administration-api/guides/Error%20Code
 | remainingAdditionalPermittedSubscriptions          | ref    | The remaining amount that can be subscribed as an Additional Permitted Subscription.                          |
 | remainingAdditionalPermittedSubscriptions.amount   | number | The amount                                                                                                    |
 | remainingAdditionalPermittedSubscriptions.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
-## DELETE /investors/{investorId}/cash
+## `DELETE /investors/{investorId}/cash`
 
 ```http
 
@@ -4057,7 +4061,7 @@ Deletes all, or a matched set of, cash transactions belonging to the ISA.
 | remainingAdditionalPermittedSubscriptions          | ref    | The remaining amount that can be subscribed as an Additional Permitted Subscription.                          |
 | remainingAdditionalPermittedSubscriptions.amount   | number | The amount                                                                                                    |
 | remainingAdditionalPermittedSubscriptions.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
-## POST /investors/{investorId}/cashCorrection
+## `POST /investors/{investorId}/cashCorrection`
 
 ```http
 
@@ -4314,7 +4318,7 @@ This endpoint should be called whenever the Platform needs to manually correct a
 | remainingAdditionalPermittedSubscriptions          | ref    | The remaining amount that can be subscribed as an Additional Permitted Subscription.                          |
 | remainingAdditionalPermittedSubscriptions.amount   | number | The amount                                                                                                    |
 | remainingAdditionalPermittedSubscriptions.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                       |
-## POST /investors/{investorId}/transferIn/{transferInId}/cash
+## `POST /investors/{investorId}/transferIn/{transferInId}/cash`
 
 ```http
 
@@ -4362,9 +4366,10 @@ Please see [transfer cash errors](/isa-administration-api/guides/Error%20Codes)
 | subscribedAmount.amount   | number | The amount                                                                                                                                                                           ||
 | subscribedAmount.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                              ||
 ### Response
-| Name | Type | Description || ---- | ---- | ----------- |
+| Name | Type | Description |
+| ---- | ---- | ----------- |
 
-## POST /investors/{investorId}/transferIn/{transferInId}/residualIncome
+## `POST /investors/{investorId}/transferIn/{transferInId}/residualIncome`
 
 ```http
 
@@ -4400,9 +4405,10 @@ Please see [transfer cash errors](/isa-administration-api/guides/Error%20Codes)
 | amount.currency     | string | The currency in ISO 4217 three character codes eg 'GBP' ||
 | dateTime            | string | The date time the residual income payment was received. | optional |
 ### Response
-| Name | Type | Description || ---- | ---- | ----------- |
+| Name | Type | Description |
+| ---- | ---- | ----------- |
 
-## POST /investors/{investorId}/transferIn/{transferInId}/cash/validation
+## `POST /investors/{investorId}/transferIn/{transferInId}/cash/validation`
 
 ```http
 
@@ -4450,9 +4456,10 @@ Please see [transfer cash errors](/isa-administration-api/guides/Error%20Codes)
 | subscribedAmount.amount   | number | The amount                                                                                                                                                                           ||
 | subscribedAmount.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                              ||
 ### Response
-| Name | Type | Description || ---- | ---- | ----------- |
+| Name | Type | Description |
+| ---- | ---- | ----------- |
 
-## GET /investors/{clientId}/transferInSummary
+## `GET /investors/{clientId}/transferInSummary`
 
 ```http
 
@@ -4471,9 +4478,10 @@ Content-Type: application/json
 ### Description
 Returns the in progress transfers in for the specified investor
 ### Response
-| Name | Type | Description || ---- | ---- | ----------- |
+| Name | Type | Description |
+| ---- | ---- | ----------- |
 
-## GET /investors/{clientId}/transferIn/{transferInId}/summary
+## `GET /investors/{clientId}/transferIn/{transferInId}/summary`
 
 ```http
 
@@ -4519,7 +4527,7 @@ Returns the in progress transfers in for the specified investor
 | fundsTransferType            | string | The funds transfer type                                 |
 | bankReference                | string | The bank reference                                      |
 | transferInDate               | string | The date stated on the transfer history form            |
-## GET /transferIn/deposits/{date}
+## `GET /transferIn/deposits/{date}`
 
 ```http
 
@@ -4560,7 +4568,7 @@ Returns the transfer in cheque deposits for a given date.
 | transfersIn            | array   |                                                                       |
 | transfersIn[].id       | string  | The ID of the transfer in                                             |
 | transfersIn[].clientId | string  | The ID assigned by the platform of the investor for this transfer in. |
-## GET /transferIn/open/summary
+## `GET /transferIn/open/summary`
 
 ```http
 
@@ -4579,9 +4587,10 @@ Content-Type: application/json
 ### Description
 Returns аll opened transfers in.
 ### Response
-| Name | Type | Description || ---- | ---- | ----------- |
+| Name | Type | Description |
+| ---- | ---- | ----------- |
 
-## GET /isaReconciliation
+## `GET /isaReconciliation`
 
 ```http
 
@@ -4600,9 +4609,10 @@ Content-Type: application/json
 ### Description
 Returns a reconciliation summary for all investors
 ### Response
-| Name | Type | Description || ---- | ---- | ----------- |
+| Name | Type | Description |
+| ---- | ---- | ----------- |
 
-## GET /investorReconciliation
+## `GET /investorReconciliation`
 
 ```http
 
@@ -4621,9 +4631,10 @@ Content-Type: application/json
 ### Description
 Returns a reconciliation summary of investor name and address data
 ### Response
-| Name | Type | Description || ---- | ---- | ----------- |
+| Name | Type | Description |
+| ---- | ---- | ----------- |
 
-## GET /investors/{investorId}/transferIn/uiData
+## `GET /investors/{investorId}/transferIn/uiData`
 
 ```http
 
@@ -4657,7 +4668,7 @@ Initialisation data for the Transfer In widget
 | scriptSrc  | string |             |
 | investorId | string |             |
 | token      | string |             |
-## GET /investors/{investorId}/transferOut
+## `GET /investors/{investorId}/transferOut`
 
 ```http
 
@@ -4676,9 +4687,10 @@ Content-Type: application/json
 ### Description
 Lists transfers out for the investor.
 ### Response
-| Name | Type | Description || ---- | ---- | ----------- |
+| Name | Type | Description |
+| ---- | ---- | ----------- |
 
-## GET /transfersOut
+## `GET /transfersOut`
 
 ```http
 
@@ -4697,9 +4709,10 @@ Content-Type: application/json
 ### Description
 Lists all transfers out for all investors.
 ### Response
-| Name | Type | Description || ---- | ---- | ----------- |
+| Name | Type | Description |
+| ---- | ---- | ----------- |
 
-## POST /investors/{investorId}/transferOut/{transferOutId}/cash
+## `POST /investors/{investorId}/transferOut/{transferOutId}/cash`
 
 ```http
 
@@ -4731,9 +4744,10 @@ Records the funds transfer for a Transfer Out.
 | transferAmount.amount   | number | The amount                                              ||
 | transferAmount.currency | string | The currency in ISO 4217 three character codes eg 'GBP' ||
 ### Response
-| Name | Type | Description || ---- | ---- | ----------- |
+| Name | Type | Description |
+| ---- | ---- | ----------- |
 
-## POST /investors/{investorId}/transferOut/{transferOutId}/fee
+## `POST /investors/{investorId}/transferOut/{transferOutId}/fee`
 
 ```http
 
