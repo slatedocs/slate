@@ -250,7 +250,7 @@ curl \
 ```
 
 
-This feature is related to [Bank Integrations](#bank-integrations-guide) product. 
+This feature is related to [Bank Integrations](#bank-integrations-guide-legacy) product. 
 It enables onboarding new users to TransferWise via backend API calls only. 
 To get authorization from Transferwise existing users you still need to redirect them to our authorization webpage.
 
@@ -286,7 +286,7 @@ TransferWise uses email address as unique identifier for users.
 If email is new (there is no active user already) then new user will be created.
 
 When you are submitting an email which already exists amongst our users then you will get a warning that
-"You’re already a member. Please login".  If user already exists then you need to redirect to [Get user authorization](#bank-integrations-guide-get-user-authorization) webpage.
+"You’re already a member. Please login".  If user already exists then you need to redirect to [Get user authorization](#bank-integrations-guide-legacy-get-user-authorization) webpage.
 
 ### Request
 
@@ -311,9 +311,9 @@ details                 | User details. Empty.      | Group
 ### 3) Get User Tokens
 You can now use registration code to obtain user access token and refresh token. 
 This step can be repeated as long as user does not reclaim their TransferWise account. 
-If user has reclaimed the account, then redirect to [Get user authorization](#bank-integrations-guide-get-user-authorization) flow should be used instead.
+If user has reclaimed the account, then redirect to [Get user authorization](#bank-integrations-guide-legacy-get-user-authorization) flow should be used instead.
 
-[Refresh user access token](#bank-integrations-guide-refresh-user-access-token) works same way for this flow as well.
+[Refresh user access token](#bank-integrations-guide-legacy-refresh-user-access-token) works same way for this flow as well.
 
 ### Request
 **`POST https://api.sandbox.transferwise.tech/oauth/token`**

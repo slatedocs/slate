@@ -1,4 +1,5 @@
 # TransferWise API
+
 > Base URL Sandbox
 
 ```shell
@@ -11,17 +12,18 @@ https://api.sandbox.transferwise.tech
 https://api.transferwise.com
 ```
 
-Welcome to the TransferWise API documentation. You can explore the different ways to use our API and choose the right one for you below. 
+Welcome to the TransferWise API documentation. You can explore the different ways to use our API and choose the right one for you below.
 
-* [Payouts and Account Automation](#transferwise-api-payouts-and-account-automation) 
-* [Third-Party Payouts](#transferwise-api-third-party-payouts) 
-* [Banks](#transferwise-api-banks) 
-* [Affiliates](#transferwise-api-affiliates) 
-* [Connected Applications](#transferwise-api-connected-applications) 
+* [Payouts and Account Automation](#transferwise-api-payouts-and-account-automation)
+* [Third-Party Payouts](#transferwise-api-third-party-payouts)
+* [Banks](#transferwise-api-banks)
+* [Affiliates](#transferwise-api-affiliates)
+* [Connected Applications](#transferwise-api-connected-applications)
 * [Receive Money](#transferwise-api-receive-money)
 
 ## Payouts and Account Automation
-This lets you to automate how you use your TransferWise account. You can automate payments, connect your business tools, and create ways to manage your finances. 
+
+This lets you to automate how you use your TransferWise account. You can automate payments, connect your business tools, and create ways to manage your finances.
 
 You can:
 <ul> 
@@ -36,25 +38,24 @@ You can:
 
 Our [Payouts Guide](#payouts-guide) will help you get started with the technical integration.
 
-
 ## Third-Party Payouts
+
 Third-Party Payouts allows marketplaces and financial institutions (banks and payment service providers) to use TransferWise as a payout option for their customers.
-It’s different from Payouts since it doesn’t require your company to be the originator of payments. 
+It’s different from Payouts since it doesn’t require your company to be the originator of payments.
 Instead, TransferWise will act as a third-party to your customers when they initiate a payment through your site.  
 
-All the above listed payouts and account automation benefits are also true for third-party payouts service. 
-You can build payment services to your customers on top of TransferWise payment platform that enables your customers to send cross-border payouts to 40+ currencies in 70+ countries. 
+All the above listed payouts and account automation benefits are also true for third-party payouts service. You can build payment services to your customers on top of TransferWise payment platform that enables your customers to send cross-border payouts to 40+ currencies in 70+ countries.
 
-In addition there will also be a dedicated account manager who will be your primary contact 
-to solve all questions and support issues should these arise. 
+In addition there will also be a dedicated account manager who will be your primary contact
+to solve all questions and support issues should these arise.
 
-Please note that subscribing to third party payouts service requires your company to complete enhanced due diligence process performed by TransferWise compliance team. 
+Please note that subscribing to third party payouts service requires your company to complete enhanced due diligence process performed by TransferWise compliance team.
 Please contact [bizdev@transferwise.com](mailto:bizdev@transferwise.com) for more info how to get started.
 
 Our [Third-Party Payouts Guide](#third-party-payouts-guide) will help you get started with the technical integration.
 
-
 ## Banks
+
 Our bank integration lets banks build TransferWise payments seamlessly into their own desktop and mobile apps. Banks can also build their own native user experience directly onto our API, co-branded with TransferWise.
 
 **What are the benefits for my bank?**
@@ -80,19 +81,20 @@ Our bank integration lets banks build TransferWise payments seamlessly into thei
 
 **See what some of our bank partners have to say**
 
-* [Monzo and TransferWise](https://monzo.com/blog/2018/06/25/monzo-international-transfers) in United Kingdom 
+* [Monzo and TransferWise](https://monzo.com/blog/2018/06/25/monzo-international-transfers) in the United Kingdom
 * [N26 and TransferWise](https://n26.com/en-eu/transferwise) in Germany
 * [LHV and TransferWise](https://www.lhv.ee/en/transferwise) in Estonia
 * [BPCE and TransferWise](https://www.bankingtech.com/2018/06/bpce-natixis-and-transferwise-team-for-affordable-cross-border-remittances) in France
 
 <br/>
+
 **Example: the N26 native user experience using TransferWise API**
 
 ![alt text](https://image.ibb.co/m8kXTv/tw_n26_example.png "N26 User Experience")
 
 Please contact [banks@transferwise.com](mailto:banks@transferwise.com) to get started.
 
-Take a look at our technical integration here – [Bank Integration Guide](#bank-integrations-guide).
+Take a look at our technical integration here – [Bank Integration Guide](https://transferwise.github.io/api-docs-banks/).
 
 ## Affiliates
 
@@ -102,19 +104,23 @@ The TransferWise API lets you to:
 <ul>
     <li>Get the real-time mid-market exchange rates for any currency route.</li>
     <li>Get up to 30 days of historical mid-market exchange rates for any currency route.</li>
-    <li>Get a Transferwise quote for any supported currency route, which includes our fees and estimated delivery time.</li>
+    <li>Get a TransferWise quote for any supported currency route, which includes our fees and estimated delivery time.</li>
 </ul>
 
 The [Affiliates Integration Guide](#affiliates-integration-guide) helps you get started with the technical integration.
 
 ## Connected Applications
-With Connected Applications, you can let your customers connect their TransferWise accounts to your product. Say you’re an accounting software – doing this could let your customers automate reconciliation. If you’re a payroll company, you could push customer payments right into TransferWise. Or you could push TransferWise notifications through your app. Whatever you want to build, you likely could! 
 
-We will to take a deeper look into your application use case and the added value it will bring to our joint customers. So before starting the technical integration please contact [bizdev@transferwise.com](mailto:bizdev@transferwise.com) for more info how to get started.
+With Connected Applications, you can let your customers connect their TransferWise accounts to your product. Say you’re an accounting software – doing this could let your customers automate reconciliation. If you’re a payroll company, you could push customer payments right into TransferWise. You could even push TransferWise notifications through your app. Whatever you want to build, you likely could!
+
+We need to take a deeper look into your application use case and the added value it will bring to our joint customers in order to authorise such an integration. So before starting the technical work please contact [bizdev@transferwise.com](mailto:bizdev@transferwise.com) for more info on how to get started.
 
 Our [Connected Apps Guide](#connected-apps-guide) gives you an overview of required technical integration work.
 
 ## Receive Money
-You can receive money to the local bank details that come with your TransferWise account (AUD, EUR, GBP, NZD and USD) and reconcile these incoming payments via the API. 
 
-We currently don’t offer the option to build TransferWise into your checkout flow as a payment option to receive money. Note though that TransferWise can be added as a payout option on your site for beneficiaries to choose to receive their payout through (to an email or straight to bank account).
+You can receive money to the local bank details that come with your TransferWise account (AUD, EUR, GBP, NZD and USD) and reconcile these incoming payments via the API.
+
+## Checkout flows
+
+We currently don’t offer the option to build TransferWise into your checkout flow as a payment option to receive money. Note though that TransferWise can be added as a payout option on your site for beneficiaries to choose to receive their payout through to an email address, directly to a bank account or any other mechanism we support in our standard product.

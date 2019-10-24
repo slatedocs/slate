@@ -1,4 +1,8 @@
-# Bank Integrations Guide
+# Bank Integrations Guide (LEGACY)
+
+## New documentation available
+For any banks who are beginning their integration now please use the new version of the [TransferWise for Banks API documentation](https://transferwise.github.io/api-docs-banks/) which has been updated and improved with he latest API endpoints and use cases for banks. This documentation remains only as a reference for older integrations.
+
 ## API access
 
 TransferWise uses standard OAuth 2.0 protocol for authentication and authorization. 
@@ -41,27 +45,27 @@ We have plenty of examples to show you how this has been done by our current par
 The user onboarding flow consists of these building blocks.  
 You need to go through this flow only once for each customer before they can set up their first transfer.
 
-* [Get user authorization for existing accounts](#bank-integrations-guide-get-user-authorization-for-existing-accounts) or  [sign up a new user via API](#bank-integrations-guide-sign-up-new-users-via-api)
-* [Get user tokens](#bank-integrations-guide-get-user-tokens)
-* [Create personal user profile](#bank-integrations-guide-create-personal-user-profile)
-* [Create business user profile](#bank-integrations-guide-create-business-user-profile) - this is an optional step only to be used if your bank is providing business customers access to TransferWise.
+* [Get user authorization for existing accounts](#bank-integrations-guide-legacy-get-user-authorization-for-existing-accounts) or  [sign up a new user via API](#bank-integrations-guide-legacy-sign-up-new-users-via-api)
+* [Get user tokens](#bank-integrations-guide-legacy-get-user-tokens)
+* [Create personal user profile](#bank-integrations-guide-legacy-create-personal-user-profile)
+* [Create business user profile](#bank-integrations-guide-legacy-create-business-user-profile) - this is an optional step only to be used if your bank is providing business customers access to TransferWise.
 
 ### Transfer flow
 
 To create transfers on behalf of users you need these building blocks:
 
-* [Refresh user's access token](#bank-integrations-guide-refresh-user-access-token)
-* [Create quote](#bank-integrations-guide-create-quote)
-* [Create recipient account](#bank-integrations-guide-create-recipient-account)
-* [Create transfer](#bank-integrations-guide-create-transfer)
-* [Fund transfer](#bank-integrations-guide-fund-transfer)
+* [Refresh user's access token](#bank-integrations-guide-legacy-refresh-user-access-token)
+* [Create quote](#bank-integrations-guide-legacy-create-quote)
+* [Create recipient account](#bank-integrations-guide-legacy-create-recipient-account)
+* [Create transfer](#bank-integrations-guide-legacy-create-transfer)
+* [Fund transfer](#bank-integrations-guide-legacy-fund-transfer)
 
 ### Transfer update polling
 
 To keep your users informed of the status and estimated time of arrival of their transfer:
 
-* [Transfer status](#bank-integrations-guide-track-transfer-status)
-* [Delivery estimate](#bank-integrations-guide-get-updated-transfer-delivery-time-estimate)
+* [Transfer status](#bank-integrations-guide-legacy-track-transfer-status)
+* [Delivery estimate](#bank-integrations-guide-legacy-get-updated-transfer-delivery-time-estimate)
 
 ## Get user authorization for existing accounts
 
@@ -115,7 +119,7 @@ Once a user gives your banking app authorization to connect to TransferWise and 
 
 `https://www.yourbank.com/?code=[CODE]`
 
-Your website or service can then use this code to obtain the access token to act on behalf of the user account described in the [get user tokens](#bank-integrations-guide-get-user-tokens) section.
+Your website or service can then use this code to obtain the access token to act on behalf of the user account described in the [get user tokens](#bank-integrations-guide-legacy-get-user-tokens) section.
 
 If you are building your TransferWise integration as a native mobile phone app then the redirect URL should be able to handle returning the user to the correct place in the app.
 
@@ -137,7 +141,7 @@ Existing TransferWise users will always need to be redirected to authorization p
 
 ## Get user tokens
 
-When using the first option to ([get user authorization for existing accounts ](#bank-integrations-guide-get-user-authorization-for-existing-accounts)) then this step is to generate user-level tokens so you can call API endpoints on behalf of the user who authorized your banking app. You do this using the access code that was returned to you as a query string parameter in the *redirect_uri* you provided us.
+When using the first option to ([get user authorization for existing accounts ](#bank-integrations-guide-legacy-get-user-authorization-for-existing-accounts)) then this step is to generate user-level tokens so you can call API endpoints on behalf of the user who authorized your banking app. You do this using the access code that was returned to you as a query string parameter in the *redirect_uri* you provided us.
 
 > Example Request:
 
@@ -179,7 +183,7 @@ Field                 | Description                                   | Format
 ---------             | -------                                       | -----------
 grant_type            | "authorization_code"                          | Text
 client_id             | your api_client_id                            | Text
-code                  | Code  provided to you upon redirect back from authorization flow. See step [Get user authorization](#bank-integrations-guide-get-user-authorization).  | Text
+code                  | Code  provided to you upon redirect back from authorization flow. See step [Get user authorization](#bank-integrations-guide-legacy-get-user-authorization).  | Text
 redirect_uri          | Redirect page associated with your api client credentials   | Text
 
 ### Response
@@ -230,7 +234,7 @@ Use Basic Authentication with your api-client-id/api-client-secret as username/p
 Field                 | Description                                   | Format
 ---------             | -------                                       | -----------
 grant_type            | "refresh_token"                               | Text
-refresh_token         | User's refresh_token obtained in [Get user tokens](#bank-integrations-guide-get-user-tokens) step. | uuid
+refresh_token         | User's refresh_token obtained in [Get user tokens](#bank-integrations-guide-legacy-get-user-tokens) step. | uuid
 
 ### Response
 
@@ -253,10 +257,10 @@ It is possible that a user's refresh token will become invalid. This could happe
 Due to this possibility your application should handle a failing refresh token scenario - to do this depends on how you originally gained access to the user.
 
 ### 1. An existing user granted your application access to the account
-If you were granted access by an existing user then you should send the user through the same flow as you initially did to generate tokens described in [get user authorization for existing accounts](#bank-integrations-guide-get-user-authorization-for-existing-accounts).
+If you were granted access by an existing user then you should send the user through the same flow as you initially did to generate tokens described in [get user authorization for existing accounts](#bank-integrations-guide-legacy-get-user-authorization-for-existing-accounts).
 
 ### 2. Your application created the user
-In the case you created the user using the [sign up new users via API](#bank-integrations-guide-sign-up-new-users-via-api) flow then the mechanism for regenerating tokens is dependent on whether the user you created has "reclaimed" their TransferWise account and used our website or apps directly.
+In the case you created the user using the [sign up new users via API](#bank-integrations-guide-legacy-sign-up-new-users-via-api) flow then the mechanism for regenerating tokens is dependent on whether the user you created has "reclaimed" their TransferWise account and used our website or apps directly.
 
 If the user has not reclaimed their account then the original `registrationCode` you generated should still be able to generate new tokens for the user. Because of this you should store this code alongside the created user ID in your database at the point of user generation.
 
@@ -268,7 +272,7 @@ If the previously stored token fails with an error code 400 and error:
   "error_description": "Invalid user credentials."
 }
 ```
-In this case you can assume the user has reclaimed the account and push them through the [get user authorization for existing accounts](#bank-integrations-guide-get-user-authorization-for-existing-accounts) flow.
+In this case you can assume the user has reclaimed the account and push them through the [get user authorization for existing accounts](#bank-integrations-guide-legacy-get-user-authorization-for-existing-accounts) flow.
 
 ## Create personal user profile
 When you first get access to a user's TransferWise user account you cannot predict if they already have submitted their profile data or not.
@@ -276,7 +280,7 @@ When you first get access to a user's TransferWise user account you cannot predi
 The [User Profiles.List](#user-profiles-list) endpoint will give you data for both personal and business profiles, if they exist. This makes it easy to
 figure out if a user has already set up this data with TransferWise or not. If the user already has a personal profile set up, then you can skip this creation step.
 
-If you are using the [sign up new users via API](#bank-integrations-guide-sign-up-new-users-via-api) feature then you absolutely need to create personal profile for the user, however it is possible you will also need to do it when getting access to an existing user account.
+If you are using the [sign up new users via API](#bank-integrations-guide-legacy-sign-up-new-users-via-api) feature then you absolutely need to create personal profile for the user, however it is possible you will also need to do it when getting access to an existing user account.
 
 There are three steps to creating a new personal user profile:
 
@@ -379,7 +383,7 @@ It is possible to change a user’s email address both at TransferWise and poten
 
 ### Email changed at TransferWise
 
-If a user changes their email address all tokens to the user account are revoked. In this case the bank will receive a 400 when attempting to generate an access_token and as such should follow the same process as described in the [token expiry](#bank-integrations-guide-token-expiry) section above and start the sign up flow from the beginning.
+If a user changes their email address all tokens to the user account are revoked. In this case the bank will receive a 400 when attempting to generate an access_token and as such should follow the same process as described in the [token expiry](#bank-integrations-guide-legacy-token-expiry) section above and start the sign up flow from the beginning.
 
 In this case, if the user has changed their email address at TransferWise, it is possible the user will end up with a new TransferWise account using their old email address still held by the bank, or they might link their bank account to a different already existing TransferWise account under the old email address.
 
@@ -388,7 +392,7 @@ In this case the tokens will remain valid for the TransferWise account, however,
 
 If the bank created the account originally they will be unable to generate tokens using the registration_code they have as the endpoint requires the email address which will now no longer match. To mitigate this it is recommended that the bank store the email that was originally used for sign up alongside the registration code and use this rather than the most up to date email address they store for the user.
 
-If the token expires for a user not created by the bank and the user has a new email address at the bank then they can be pushed through the sign up flow with this new email address and either have a new account created or link an existing against the new email, as described in [token expiry](#bank-integrations-guide-token-expiry).
+If the token expires for a user not created by the bank and the user has a new email address at the bank then they can be pushed through the sign up flow with this new email address and either have a new account created or link an existing against the new email, as described in [token expiry](#bank-integrations-guide-legacy-token-expiry).
 
 The result of many of these flows is that the user may end up with more than one TransferWise account, which is undesirable. Currently we monitor this behaviour for abuse but we are working on a more robust user creation scenario to prevent this occurring.
 
@@ -403,7 +407,7 @@ In the event a user is not happy at losing access to their older data or having 
   * Implement duplicate prevention mechanism to avoid duplicate payments. Verify that UUID is uniquely generated for each individual payment and its value is kept same in case of retrying.
   * Implement basic logging to help out in debugging and problem solving, if needed.
   * Check that you can handle all possible transfer states during polling of transfer info.
-  * Handle the potential issues described in [edge case handling](#bank-integrations-guide-edge-case-handling).
+  * Handle the potential issues described in [edge case handling](#bank-integrations-guide-legacy-edge-case-handling).
   * Required data fields for user profile addresses, recipients, and transfers vary for different currencies. Please explore [Recipient Accounts.Requirements](#recipient-accounts-requirements), [Transfers.Requirements](#transfer-requirements) and [Addresses.Requirements](#addresses-requirements).
 
 ### 2. Set up security for LIVE environment
