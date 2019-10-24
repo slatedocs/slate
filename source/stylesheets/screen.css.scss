@@ -273,7 +273,7 @@ html, body {
   .lang-selector {
     position: sticky;
     z-index: 50;
-    overflow-x: scroll;
+    overflow-x: auto;
     display: flex;
     border-bottom: 5px solid $lang-select-active-bg;
 
