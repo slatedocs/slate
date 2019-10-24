@@ -58,7 +58,7 @@ that their account has been credited.
 
 ![](/images/bond-management/images/bond-maturity.png "")
 
-## GET /bondManagement/current
+## `GET /bondManagement/current`
 
 ```http
 
@@ -137,7 +137,7 @@ Returns details of the current bonds
 | bonds[].initialInvestmentAmount | ref    | The initial investment amount.                                                                                  |
 | bonds[].totalInterestAmount     | ref    | The total amount of interest accrued. This also includes any interest that has been accrued but not yet repaid. |
 | bonds[].nextRepaymentDate       | string | The date of the next repayment event.                                                                           |
-## POST /bondManagement/product
+## `POST /bondManagement/product`
 
 ```http
 
@@ -226,7 +226,7 @@ Creates an investment product.
 | Name | Type   | Description                  |
 | ---- | ------ | ---------------------------- |
 | id   | string | The unique id of the product |
-## POST /test/bondManagement/investmentCycle
+## `POST /test/bondManagement/investmentCycle`
 
 ```http
 
@@ -321,7 +321,7 @@ Runs a simulated investment cycle. This simulates funds being invested and being
 | bonds[].initialInvestmentAmount | ref    | The initial investment amount.                                                                                  |
 | bonds[].totalInterestAmount     | ref    | The total amount of interest accrued. This also includes any interest that has been accrued but not yet repaid. |
 | bonds[].nextRepaymentDate       | string | The date of the next repayment event.                                                                           |
-## POST /test/bondManagement/investmentCycle/repaymentsAccrual
+## `POST /test/bondManagement/investmentCycle/repaymentsAccrual`
 
 ```http
 
@@ -355,7 +355,7 @@ Simulates interest repayment accruals.
 The response body is empty.
 
 
-## GET /investors/{clientId}/accounts/{accountType}/investments
+## `GET /investors/{clientId}/accounts/{accountType}/investments`
 
 ```http
 
@@ -423,7 +423,7 @@ Lists the investments for the account.
 | investments[].endDate                | string | The end date of the investment.                                             |
 | investments[].amountInvested         | ref    | The amount invested.                                                        |
 | investments[].gainToDate             | ref    | The gain to date. Can be negative if the investment has decreased in value. |
-## POST /investors/{clientId}/accounts/{accountType}/investments
+## `POST /investors/{clientId}/accounts/{accountType}/investments`
 
 ```http
 
@@ -466,7 +466,7 @@ Adds an investment to the account.
 | id   | string | The ID of the created investment |
 
 
-## GET /investments/products
+## `GET /investments/products`
 
 ```http
 

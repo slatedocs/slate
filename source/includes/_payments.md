@@ -38,7 +38,7 @@ Below are some valid sample details you can use:
 |166051  |  87889196|
 
 
-## GET /investors/{clientId}/bankTransferDetails
+## `GET /investors/{clientId}/bankTransferDetails`
 
 ```http
 
@@ -66,7 +66,7 @@ Retrieve the bank details for depositing funds to the general investments accoun
 | accountNumber | string | The account number.                    |
 | sortCode      | string | The sort code.                         |
 | bankReference | string | The reference to use for the transfer. |
-## GET /investors/{clientId}/bankTransferDetails/isa
+## `GET /investors/{clientId}/bankTransferDetails/isa`
 
 ```http
 
@@ -94,7 +94,7 @@ Retrieve the bank details for depositing funds to the ISA account.
 | accountNumber | string | The account number.                    |
 | sortCode      | string | The sort code.                         |
 | bankReference | string | The reference to use for the transfer. |
-## GET /investors/{clientId}/bankDetails
+## `GET /investors/{clientId}/bankDetails`
 
 ```http
 
@@ -122,7 +122,7 @@ Retrieve the investor's bank details.
 | accountNumber | string | The account number. |
 | sortCode      | string | The sort code.      |
 | accountName   | string | The account name.   |
-## PUT /investors/{clientId}/bankDetails
+## `PUT /investors/{clientId}/bankDetails`
 
 ```http
 
@@ -160,7 +160,7 @@ Replaces the investor's bank details.
 | accountNumber | string | The account number. |
 | sortCode      | string | The sort code.      |
 | accountName   | string | The account name.   |
-## POST /investors/{clientId}/bankDetails
+## `POST /investors/{clientId}/bankDetails`
 
 ```http
 
@@ -198,7 +198,7 @@ Adds the investor's bank details.
 | accountNumber | string | The account number. |
 | sortCode      | string | The sort code.      |
 | accountName   | string | The account name.   |
-## GET /investors/{clientId}/accounts/balances
+## `GET /investors/{clientId}/accounts/balances`
 
 ```http
 
@@ -250,7 +250,7 @@ Returns the investor's account balances.
 | totalInvestedBalance.amount         | number | The amount.                                                           |
 | totalInvestedBalance.currency       | string | The ISO 4217 three character codes eg 'GBP'                           |
 | accounts                            | object | A breakdown of the balances by account.                               |
-## GET /investors/{clientId}/accounts/balances/{accountType}
+## `GET /investors/{clientId}/accounts/balances/{accountType}`
 
 ```http
 
@@ -307,7 +307,7 @@ Returns the specified account balance.
 | isaRemainingSubscriptionAmount          | ref    | The remaining amount of new funds that can be added to the ISA this tax year. null if not an ISA balance |
 | isaRemainingSubscriptionAmount.amount   | number | The amount.                                                                                              |
 | isaRemainingSubscriptionAmount.currency | string | The ISO 4217 three character codes eg 'GBP'                                                              |
-## POST /investors/{clientId}/accounts/{accountType}/withdrawal
+## `POST /investors/{clientId}/accounts/{accountType}/withdrawal`
 
 ```http
 
@@ -377,7 +377,7 @@ Withdraw cash from the specified account to the registered investor bank details
 | isaRemainingSubscriptionAmount          | ref    | The remaining amount of new funds that can be added to the ISA this tax year. null if not an ISA balance |
 | isaRemainingSubscriptionAmount.amount   | number | The amount.                                                                                              |
 | isaRemainingSubscriptionAmount.currency | string | The ISO 4217 three character codes eg 'GBP'                                                              |
-## POST /investors/{clientId}/accounts/{accountType}/transfer
+## `POST /investors/{clientId}/accounts/{accountType}/transfer`
 
 ```http
 
@@ -447,7 +447,7 @@ Transfer cash to another account.
 | isaRemainingSubscriptionAmount          | ref    | The remaining amount of new funds that can be added to the ISA this tax year. null if not an ISA balance |
 | isaRemainingSubscriptionAmount.amount   | number | The amount.                                                                                              |
 | isaRemainingSubscriptionAmount.currency | string | The ISO 4217 three character codes eg 'GBP'                                                              |
-## POST /wallet
+## `POST /wallet`
 
 ```http
 
@@ -472,9 +472,10 @@ Create a wallet
 | ---------- | ------ | --------------- | -------- |
 | walletName | string | New wallet name | required |
 ### Response
-| Name | Type | Description || ---- | ---- | ----------- |
+| Name | Type | Description |
+| ---- | ---- | ----------- |
 
-## GET /wallet/{id}
+## `GET /wallet/{id}`
 
 ```http
 
@@ -500,7 +501,7 @@ Wallet Details
 | -------------------- | ------ | --------------------------------------------- |
 | originatorId         | string | The originator ID registered for the wallet . |
 | bankAccountDetailsId | string | The bank account details ID                   |
-## DELETE /wallet/{id}
+## `DELETE /wallet/{id}`
 
 ```http
 
@@ -529,7 +530,7 @@ Delete wallet
 | -------------------- | ------ | --------------------------------------------- |
 | originatorId         | string | The originator ID registered for the wallet . |
 | bankAccountDetailsId | string | The bank account details ID                   |
-## POST /wallet/company/registration
+## `POST /wallet/company/registration`
 
 ```http
 
@@ -626,9 +627,10 @@ Register a corporate for wallet management
 | officerList                  | ref    |                                                | required |
 | officerList.officers         | array  | Officers                                       ||
 ### Response
-| Name | Type | Description || ---- | ---- | ----------- |
+| Name | Type | Description |
+| ---- | ---- | ----------- |
 
-## GET /bankAccountDetails
+## `GET /bankAccountDetails`
 
 ```http
 
@@ -647,9 +649,10 @@ Content-Type: application/json
 ### Description
 List of bank accounts we hold in the system for sending money to.
 ### Response
-| Name | Type | Description || ---- | ---- | ----------- |
+| Name | Type | Description |
+| ---- | ---- | ----------- |
 
-## POST /bankAccountDetails
+## `POST /bankAccountDetails`
 
 ```http
 
@@ -683,7 +686,7 @@ Create a set of bank details.
 | Name | Type   | Description          |
 | ---- | ------ | -------------------- |
 | id   | string | The bank account ID. |
-## GET /bankAccountDetails/{id}
+## `GET /bankAccountDetails/{id}`
 
 ```http
 
@@ -715,7 +718,7 @@ Get a specific bank account we hold in the system for sending money to.
 | sortCode      | string | The sort code.                             |
 | accountName   | string | The account name.                          |
 | status        | string | Whether or not the account has passed AML. |
-## PUT /bankAccountDetails/{id}
+## `PUT /bankAccountDetails/{id}`
 
 ```http
 
@@ -744,9 +747,10 @@ Updates a specific set of stored account details. This will trigger an AML check
 | sortCode      | string | The sort code.      | required |
 | accountName   | string | The account name.   | required |
 ### Response
-| Name | Type | Description || ---- | ---- | ----------- |
+| Name | Type | Description |
+| ---- | ---- | ----------- |
 
-## POST /test/payment
+## `POST /test/payment`
 
 ```http
 
@@ -787,4 +791,5 @@ Please note this is a test endpoint and is only available in the sandbox environ
 | paymentType      | string | Should be set to DEPOSIT                                                      | required |
 | clientId         | string | The client ID                                                                 | required |
 ### Response
-| Name | Type | Description || ---- | ---- | ----------- |
+| Name | Type | Description |
+| ---- | ---- | ----------- |
