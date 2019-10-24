@@ -361,6 +361,7 @@ The following event `type`s will be supported, along with the content as `JSON`.
 {
   "walletId" : "string",
   "bankDetails" : {
+    "id" : "f5d57a4a-a6cc-4b5f-8ef0-09e09b02de28",
     "accountName" : "string",
     "accountNumber" : "string",
     "sortCode" : "string",
