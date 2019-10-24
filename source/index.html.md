@@ -17,6 +17,7 @@ includes:
   - full-reference-separator
   - reference/addresses
   - reference/borderless
+  - reference/comparison
   - reference/rates
   - reference/quotes
   - reference/recipients
