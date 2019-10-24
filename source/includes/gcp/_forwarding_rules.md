@@ -2,7 +2,7 @@
 
 A forwarding rule and its corresponding IP address represent the frontend configuration of a load balancer.
 
-<!-------------------- LIST FORWARDING RULE -------------------->
+<!-------------------- LIST FORWARDING RULES -------------------->
 ##### List forwarding rules
 
 ```shell
@@ -48,18 +48,18 @@ Attributes | &nbsp;
 ------- | -----------
 `creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
 `description` <br/>*string* | An optional description of this resource.
+`id`<br/>*string* | The unique identifier for the resource. This identifier is defined by the server.
 `IPAddress`<br/>*string* | The IP address that this forwarding rule serves. 
-`IPProtocol`<br/>*enum* | The IP protocol to which this rule applies. The default protocol is TCP.
+`IPProtocol`<br/>*string* | The IP protocol to which this rule applies. The default protocol is TCP.
 `ipVersion`<br/>*enum* | The IP version that will be used by this forwarding rule. The default IP version is IPV4.
 `kind`<br/>*string* | Type of the resource.
-`loadBalancingScheme`<br/>*enum* | Specifies the forwarding rule type. Possible values are INTERNAL and EXTERNAL.
+`loadBalancingScheme`<br/>*enum* | Specifies the forwarding rule type. The default value is EXTERNAL.
+`name`<br/>*string* | Name of the resource. Provided by the client when the resource is created.
 `networkTier`<br/>*enum* | This signifies the networking tier used for configuring this load balancer.
 `portRange`<br/>*string* | The destination ports that this forwarding rule forwards packets with.
 `selfLink`<br/>*string* | Server-defined URL for this resource.
-`target`<br/>*string* | The URL of the target resource to receive the matched traffic.
 `shortTarget`<br/>*string* | The name of the target resource.
-`id`<br/>*string* | The unique identifier for the resource. This identifier is defined by the server.
-`name`<br/>*string* | Name of the resource. Provided by the client when the resource is created.
+`target`<br/>*string* | The URL of the target resource to receive the matched traffic.
 
 <!-------------------- RETRIEVE A FORWARDING RULE -------------------->
 
@@ -102,18 +102,18 @@ Attributes | &nbsp;
 ------- | -----------
 `creationTimestamp`<br/>*string* | Creation timestamp in RFC3339 text format.
 `description` <br/>*string* | An optional description of this resource.
+`id`<br/>*string* | The unique identifier for the resource. This identifier is defined by the server.
 `IPAddress`<br/>*string* | The IP address that this forwarding rule serves. 
-`IPProtocol`<br/>*enum* | The IP protocol to which this rule applies. The default protocol is TCP.
+`IPProtocol`<br/>*string* | The IP protocol to which this rule applies. The default protocol is TCP.
 `ipVersion`<br/>*enum* | The IP version that will be used by this forwarding rule. The default IP version is IPV4.
 `kind`<br/>*string* | Type of the resource.
-`loadBalancingScheme`<br/>*enum* | Specifies the forwarding rule type. Possible values are INTERNAL and EXTERNAL.
+`loadBalancingScheme`<br/>*enum* | Specifies the forwarding rule type. The default value is EXTERNAL.
+`name`<br/>*string* | Name of the resource. Provided by the client when the resource is created.
 `networkTier`<br/>*enum* | This signifies the networking tier used for configuring this load balancer.
 `portRange`<br/>*string* | The destination ports that this forwarding rule forwards packets with.
 `selfLink`<br/>*string* | Server-defined URL for this resource.
-`target`<br/>*string* |  The URL of the target resource to receive the matched traffic.
 `shortTarget`<br/>*string* | The name of the target resource.
-`id`<br/>*string* | The unique identifier for the resource. This identifier is defined by the server.
-`name`<br/>*string* | Name of the resource. Provided by the client when the resource is created.
+`target`<br/>*string* |  The URL of the target resource to receive the matched traffic.
 
 <!-------------------- CREATE A FORWARDING RULE -------------------->
 ##### Create a forwarding rule
@@ -139,8 +139,8 @@ Required | &nbsp;
 Optional | &nbsp;
 ------- | -----------
 `description`<br/>*string* | Description of the forwarding rule.
-`reserveStatic`<br/>*boolean* | Whether the operation reserves a new static IP or not. The default value is false.
-`shortIPAddress`<br/>*string* | The name of a existing IP address.
+`reserveStaticIP`<br/>*boolean* | If the value is false and if no shortIPAddress is provided, an ephemeral external IP address will be assigned. 
+`shortIPAddress`<br/>*string* | The name of an existing global external IP address assigned to the rule. This argument is only valid in conjunction with *reserveStaticIP* being false. If the value is false and shortIPAddress is provided, then the existing external IP address will be assigned. If the value is true, a new external static IP will be reserved and assigned.
 
 <!-------------------- DELETE A FORWARDING RULE -------------------->
 
