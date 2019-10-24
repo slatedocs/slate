@@ -2,7 +2,7 @@
 
 ## HIPAA
 
-While Scout itself is not HIPAA compliant, our agent can be installed safely in HIPAA compliant environments. To ensure user data is properly de-identified:
+Our agent can be installed safely in HIPAA compliant environments. To ensure user data is properly de-identified:
 
 1. Disable sending HTTP query params if these contain sensitive data via the `uri_reporting` config option.
 2. Do not add custom context (like reporting the current user in the session).
