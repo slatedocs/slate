@@ -890,9 +890,7 @@ Please see [validate investor errors](/isa-administration-api/guides/Error%20Cod
 | address.country         | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked. ||
 | address.postcode        | string | The Post Code of the investor's address.                                                                                                                                                           ||
 | nationalInsuranceNumber | string | Optionally check to see if the National Insurance number has already been registered                                                                                                               | required |
-### Response
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+
 
 ## `GET /investors/{investorId}`
 
@@ -1362,9 +1360,7 @@ Content-Type: application/json
 ```
 ### Description
 Used to find an overview of all transfer in workflows for a particular investor. It should be understood that the existence of the TransferDate determines whether the transfer history form has been submitted
-### Response
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+
 
 ## `GET /investors/{clientId}/isa/subscriptionStatus`
 
@@ -1901,9 +1897,7 @@ Content-Type: application/json
 ```
 ### Description
 Returns an audit record of HTTP requests relating to the investor.
-### Response
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+
 
 ## `POST /investors/{investorId}/investment`
 
@@ -2732,9 +2726,7 @@ Please see [create repayment errors](/isa-administration-api/guides/Error%20Code
 | interestAmount.amount   | number | The amount                                                  ||
 | interestAmount.currency | string | The currency in ISO 4217 three character codes eg 'GBP'     ||
 | dateTimeOfRepayment     | string | The date and time of the repayment                          | required |
-### Response
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+
 
 ## `POST /investors/{investorId}/investment/{investmentId}/reinvestment`
 
@@ -4365,9 +4357,7 @@ Please see [transfer cash errors](/isa-administration-api/guides/Error%20Codes)
 | subscribedAmount          | ref    | The amount that was transferred and was credited to the ISA account. Specify either the repair amount or the subscribed amount.                                                      | optional |
 | subscribedAmount.amount   | number | The amount                                                                                                                                                                           ||
 | subscribedAmount.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                              ||
-### Response
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+
 
 ## `POST /investors/{investorId}/transferIn/{transferInId}/residualIncome`
 
@@ -4404,9 +4394,7 @@ Please see [transfer cash errors](/isa-administration-api/guides/Error%20Codes)
 | amount.amount       | number | The amount                                              ||
 | amount.currency     | string | The currency in ISO 4217 three character codes eg 'GBP' ||
 | dateTime            | string | The date time the residual income payment was received. | optional |
-### Response
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+
 
 ## `POST /investors/{investorId}/transferIn/{transferInId}/cash/validation`
 
@@ -4455,9 +4443,7 @@ Please see [transfer cash errors](/isa-administration-api/guides/Error%20Codes)
 | subscribedAmount          | ref    | The amount that was transferred and was credited to the ISA account. Specify either the repair amount or the subscribed amount.                                                      | optional |
 | subscribedAmount.amount   | number | The amount                                                                                                                                                                           ||
 | subscribedAmount.currency | string | The currency in ISO 4217 three character codes eg 'GBP'                                                                                                                              ||
-### Response
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+
 
 ## `GET /investors/{clientId}/transferInSummary`
 
@@ -4477,9 +4463,7 @@ Content-Type: application/json
 ```
 ### Description
 Returns the in progress transfers in for the specified investor
-### Response
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+
 
 ## `GET /investors/{clientId}/transferIn/{transferInId}/summary`
 
@@ -4586,9 +4570,7 @@ Content-Type: application/json
 ```
 ### Description
 Returns аll opened transfers in.
-### Response
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+
 
 ## `GET /isaReconciliation`
 
@@ -4608,9 +4590,7 @@ Content-Type: application/json
 ```
 ### Description
 Returns a reconciliation summary for all investors
-### Response
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+
 
 ## `GET /investorReconciliation`
 
@@ -4630,9 +4610,7 @@ Content-Type: application/json
 ```
 ### Description
 Returns a reconciliation summary of investor name and address data
-### Response
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+
 
 ## `GET /investors/{investorId}/transferIn/uiData`
 
@@ -4686,9 +4664,7 @@ Content-Type: application/json
 ```
 ### Description
 Lists transfers out for the investor.
-### Response
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+
 
 ## `GET /transfersOut`
 
@@ -4708,9 +4684,7 @@ Content-Type: application/json
 ```
 ### Description
 Lists all transfers out for all investors.
-### Response
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+
 
 ## `POST /investors/{investorId}/transferOut/{transferOutId}/cash`
 
@@ -4743,9 +4717,7 @@ Records the funds transfer for a Transfer Out.
 | transferAmount          | ref    | The amount transferred.                                 | required |
 | transferAmount.amount   | number | The amount                                              ||
 | transferAmount.currency | string | The currency in ISO 4217 three character codes eg 'GBP' ||
-### Response
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+
 
 ## `POST /investors/{investorId}/transferOut/{transferOutId}/fee`
 

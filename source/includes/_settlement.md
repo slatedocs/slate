@@ -198,9 +198,7 @@ Adds a repayment to an investment.
 | investorRepayments[].type         | string | The type of the repayment                              | required |
 | investorRepayments[].amount       | ref    | The amount being repaid                                | required |
 | investorRepayments[].tax          | ref    | The amount of tax being withheld from this repayment   | optional |
-### Response
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+
 
 ## `GET /settlement/repayment/reference`
 
@@ -433,9 +431,7 @@ Records the settlement of a secondary market trade.
 | buySide.bankAccountId                       | string | The ID of the bank account details to send fees to                                                              ||
 | buySide.reference                           | string | The bank reference for the funds transfer                                                                       ||
 | buySide.newInvestmentId                     | string | The ID for the investment being held by the buy side investor                                                   ||
-### Response
-| Name | Type | Description |
-| ---- | ---- | ----------- |
+
 
 ## `GET /settlement/product`
 
