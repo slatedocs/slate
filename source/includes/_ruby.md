@@ -1014,6 +1014,21 @@ staging:
   <<: *defaults
 ```
 
+## GraphQL <img src="images/graphql_logo.png" style="float:right;width: 110px;margin-bottom: 10px" />
+In order to rename your transaction name, you can use the following code example.
+
+```ruby
+ScoutApm::Transaction.rename("posts/foobar")
+```
+
+This will give you names like `GraphqlController#profile` and `GraphqlController#delete_user` in Scout view.
+
+```ruby
+[query.operation_name, field_name].compact.join(" ")
+```
+
+This part is an example from us, so please change based on how you would like to rename your transaction.
+
 <h2 id="ruby-instrumented-libs">Instrumented Libraries</h2>
 
 The following libraries are currently instrumented:
