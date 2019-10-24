@@ -176,3 +176,36 @@ Endoso de títulos | Endoso de títulos | 21
 
 Debido a que el Servicio de Rentas Internas exige incluir información del pago,
 las facturas a crédito se enviarán al SRI con forma de pago "Otros con utilización del sistema financiero".
+
+<h2 id="document-status">Estado de un documento</h2>
+
+Estado            | Descripción
+----------------- | ------------------------------
+Anulado           | El documento fue marcado como anulado
+Autorizado        | Autorización confirmada por la autoridad tributaria
+Firmado           | El documento fue firmado correctamente. Este es un estado transitorio que puede verse durante el proceso de emisión
+Procesando        | El documento está siendo autorizado.
+No Autorizado     | Rechazado por la autoridad tributaria
+En Proceso        | Está en espera de ser procesado por la autoridad tributaria.
+Error             | Este estado aparece para documentos que se registraron pero no cumplieron con requisitos de validación, o la clave del certificado está incorrecta
+Enviado al SRI    | Estado transitorio mientras es procesado.
+Borrador          | El documento fue creado en Datil y no ha sido autorizado.
+
+<h2 id="document-status-code">Código del estado de un documento</h2>
+
+Estado            | Descripción
+----------------- | ------------------------------
+approved          | Autorizado
+rejected          | No autorizado
+cancelled         | Anulado
+processing        | Procesando
+signed            | Firmado
+draft             | Borrador
+
+<h2 id="document-payment-status-code">Código del estado de pago</h2>
+
+Estado            | Descripción
+----------------- | ------------------------------
+payed             | Pagado
+due               | Pendiente de pago y vencido (la fecha máxima de pago es menor a la fecha actual)
+pending           | Pendiente de pago

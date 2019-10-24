@@ -21,6 +21,9 @@ payment_methods<p class="dt-data-type">lista de [payment_methods](#payment-metho
 electronic_document<p class="dt-data-type">string</p> | Documento electrónico, el XML que representa a esta factura ante el SRI.
 electronic_document_url<p class="dt-data-type">string</p> | URL de descarga del documento electrónico, el XML.
 printable_version_url<p class="dt-data-type">string</p> | URL de descarga del RIDE.
+status<p class="dt-data-type">string</p> | [Estado](#document-status) del comprobante.
+status_code<p class="dt-data-type">string</p> | [Código del estado](#document-status-code) del comprobante. Útil para programación.
+payment_status<p class="dt-data-type">string</p> | [Código del estado de pago](#document-payment-status-code).
 
 
 <h4 id="invoice-totals">Totals</h4>
