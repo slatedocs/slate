@@ -3,7 +3,22 @@
 
 Integra Dátil a tu sistema en minutos.
 
-### Más reciente (5.0.1)
+### Más reciente (6.1.0)
+
+- [Windows 32 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.1.0_64bit_generic.exe)
+- [Windows 64 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_6.1.0_32bit_generic.exe)
+
+#### Notas de la versión
+
+#### <strong>6.1.0</strong><br><small><strong>Octubre 24, 2019</strong></small>
+
+##### Nuevo
+Soporte para poder liquidaciones de compra
+
+##### Corregido
+Corrige error de regresión en la tarea `sync_company_resources`
+
+#### 5.0.1
 
 - [Windows 32 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_5.0.1_32bit.exe)
 - [Windows 64 bits](https://s3-us-west-2.amazonaws.com/linkapp-installers/Datil+LinkApp_5.0.1_64bit.exe)
