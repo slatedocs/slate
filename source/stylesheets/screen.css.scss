@@ -87,7 +87,7 @@ html, body {
       padding: 6px 0 6px 20px;
       box-sizing: border-box;
       margin: $nav-v-padding $nav-padding;
-      width: $nav-width - ($nav-padding*2);
+      width: calc(#{$nav-width} - (#{$nav-padding}*2));
       outline: none;
       color: $nav-text;
       border-radius: 0; /* ios has a default border radius */
@@ -252,6 +252,7 @@ html, body {
   z-index: 10;
   background-color: $main-bg;
   min-height: 100%;
+  overflow-x: hidden;
 
   padding-bottom: 1px; // prevent margin overflow
 
@@ -277,26 +278,41 @@ html, body {
 }
 
 .lang-selector {
-  background-color: $lang-select-bg;
-  width: 100%;
+
+  margin: 0 5px;
+  width: calc(#{$examples-width} - 10px);
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  background-color: darken($lang-select-bg, 3%);
   font-weight: bold;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  line-height: 25px;
+  padding-top: 15px;
+
+  .lang-selector-title {
+    position: absolute;
+    opacity: 0.7;
+    font-size: 70%;
+    line-height: 15px;
+    margin-top: -15px;
+  }
+
   a {
-    display: block;
-    float:left;
     color: $lang-select-text;
     text-decoration: none;
-    padding: 0 10px;
-    line-height: 30px;
     outline: 0;
+    padding: 0 10px;
 
-    &:active, &:focus {
-      background-color: $lang-select-pressed-bg;
-      color: $lang-select-pressed-text;
+    &:hover {
+  background-color: darken($lang-select-bg, 5%);
     }
 
     &.active {
       background-color: $lang-select-active-bg;
       color: $lang-select-active-text;
+      text-decoration: underline;
     }
   }
 
@@ -353,6 +369,7 @@ html, body {
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     background-color: #fdfdfd;
+    margin-right: 0;
   }
 
   h1:first-child, div:first-child + h1 {
@@ -365,10 +382,18 @@ html, body {
     font-size: 19px;
     margin-top: 4em;
     margin-bottom: 0;
-    border-top: 1px solid #ccc;
     padding-top: 1.2em;
     padding-bottom: 1.2em;
     background-image: linear-gradient(to bottom, rgba(#fff, 0.2), rgba(#fff, 0));
+
+    &:before {
+      position: absolute;
+      content: "";
+      border-top: 1px solid #ccc;
+      left: 0;
+      right: 0;
+      margin-top: -0.6em;
+    }
   }
 
   // h2s right after h1s should bump right up
@@ -517,8 +542,9 @@ html, body {
     background-color: $code-bg;
     color: #fff;
 
-    margin: 0;
-    width: $examples-width;
+    width: calc(#{$examples-width} - 10px);
+    margin: 0 5px 15px;
+    border-radius: 3px;
 
     float:right;
     clear:right;
@@ -545,7 +571,6 @@ html, body {
 
   blockquote {
     &>p {
-      background-color: $code-annotation-bg;
       padding: $code-annotation-padding 2em;
       color: #eee;
     }
