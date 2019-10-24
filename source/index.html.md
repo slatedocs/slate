@@ -392,7 +392,7 @@ curl -X GET "https://api.falconx.io/v1/quotes/00c884b056f949338788dfb59e495377" 
   "t_expiry": "2019-06-27T11:59:22.875725+00:00",  
   "is_filled": true,
   "side_executed": "buy",
-  "user_email": "trader@company.com",
+  "trader_email": "trader@company.com",
   "error": null
 }
 ```
@@ -411,7 +411,7 @@ curl -X GET "https://api.falconx.io/v1/quotes/00c884b056f949338788dfb59e495377" 
 | **t_expiry**      | STRING                            | Quote expiry time in ISO 8601 date format
 | **is_filled**      | BOOLEAN | `true` if quote has been executed successfully else `false`
 | **side_executed**       | STRING                              | Side of quote executed. `null` if not executed
-| **user_email**       | STRING                              | Email of user who requested the quote
+| **trader_email**       | STRING                              | Email of trader who requested the quote
 | **error**       | JSON                                | Error info. `null` if no error (see [Error](#error))
 
 
@@ -469,7 +469,7 @@ curl -X GET "https://api.falconx.io/v1/quotes?t_start=2019-06-20T00:00:00+00:00&
     "t_expiry": "2019-06-27T11:59:22.875725+00:00",
     "is_filled": true,
     "side_executed": "buy",
-    "user_email": "trader@company.com",
+    "trader_email": "trader@company.com",
     "error": null
   }
 ]
@@ -490,7 +490,7 @@ API will return a list of the following structure:
 | **t_expiry**      | STRING                            | Quote expiry time in ISO 8601 date format
 | **is_filled**      | BOOLEAN | `true` if quote has been executed successfully else `false`
 | **side_executed**       | STRING                              | Side of quote executed
-| **user_email**       | STRING                              | Email of user who requested the quote
+| **trader_email**       | STRING                              | Email of trader who requested the quote
 | **error**       | JSON                                | Error info. `null` if no error (see [Error](#error))
 
 
