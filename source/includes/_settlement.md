@@ -86,24 +86,18 @@ Content-Type: application/json
 }
 ```
 ### Description
-
 Adds a payment destination. This has been deprecated to be replaced with https://docs.api.goji.investments/payments/reference/payments/add-bank-account-details
-
 ### Request
-
 | Name          | Type   | Description                                       | Required |
 | ------------- | ------ | ------------------------------------------------- | -------- |
 | accountName   | string | The bank account name.                            | optional |
 | accountNumber | string | The bank account number.                          | required |
 | sortCode      | string | The bank account sort code.                       | required |
 | reference     | string | The reference to be used when transferring funds. | required |
-
 ### Response
-
 | Name | Type   | Description                              |
 | ---- | ------ | ---------------------------------------- |
 | id   | string | The unique id of the payment destination |
-
 ## `PUT /settlement/payment-destination/{id}`
 
 ```http
@@ -128,24 +122,18 @@ Content-Type: application/json
 }
 ```
 ### Description
-
 Updates a payment destination. This has been deprecated to be replaced with https://docs.api.goji.investments/payments/reference/payments/update-bank-account-details
-
 ### Request
-
 | Name          | Type   | Description                                       | Required |
 | ------------- | ------ | ------------------------------------------------- | -------- |
 | accountName   | string | The bank account name.                            | optional |
 | accountNumber | string | The bank account number.                          | required |
 | sortCode      | string | The bank account sort code.                       | required |
 | reference     | string | The reference to be used when transferring funds. | required |
-
 ### Response
-
 | Name | Type   | Description                              |
 | ---- | ------ | ---------------------------------------- |
 | id   | string | The unique id of the payment destination |
-
 ## `POST /settlement/repayment`
 
 ```http
@@ -190,14 +178,14 @@ Content-Type: application/json
 ### Description
 Adds a repayment to an investment.
 ### Request
-| Name                              | Type   | Description                                            | Required |
-| --------------------------------- | ------ | ------------------------------------------------------ | -------- |
-| reference                         | string | The payment reference used for the repayment of funds. | required |
-| investorRepayments                | array  | The repayments per investor.                           | required |
-| investorRepayments[].investmentId | string | The ID of the of the investment                        | required |
-| investorRepayments[].type         | string | The type of the repayment                              | required |
-| investorRepayments[].amount       | ref    | The amount being repaid                                | required |
-| investorRepayments[].tax          | ref    | The amount of tax being withheld from this repayment   | optional |
+| Name                              | Type   | Description                                                                    | Required |
+| --------------------------------- | ------ | ------------------------------------------------------------------------------ | -------- |
+| reference                         | string | The payment reference used for the repayment of funds.                         | required |
+| investorRepayments                | array  | The repayments per investor.                                                   | required |
+| investorRepayments[].investmentId | string | The ID of the of the investment                                                | required |
+| investorRepayments[].type         | string | The type of the repayment Possible values are: <br>`CAPITAL`<br>`INTEREST`<br> | required |
+| investorRepayments[].amount       | ref    | The amount being repaid                                                        | required |
+| investorRepayments[].tax          | ref    | The amount of tax being withheld from this repayment                           | optional |
 
 
 ## `GET /settlement/repayment/reference`
@@ -277,7 +265,7 @@ Lists recorded investments for an investor.
 | investments[].productId    | string | The ID of the investment product as preciously registered in the system                                         |
 | investments[].trancheId    | string | The ID of the investment tranche of a particular product                                                        |
 | investments[].amount       | ref    | The amount being invested                                                                                       |
-| investments[].accountType  | string | The account making the investment.                                                                              |
+| investments[].accountType  | string | The account making the investment. Possible values are: <br>`GOJI_INVESTMENT`<br>`ISA`<br>                      |
 ## `POST /settlement/tranche`
 
 ```http
@@ -340,7 +328,7 @@ Records an investment and triggers a transfer of funds to the Investment Manager
 | investments[].id                  | string | The unique ID for this clients investment                                                                                   | required |
 | investments[].clientId            | string | The ID of the investor                                                                                                      | required |
 | investments[].amount              | ref    | The amount being invested                                                                                                   | required |
-| investments[].accountType         | string | The account making the investment.                                                                                          | required |
+| investments[].accountType         | string | The account making the investment. Possible values are: <br>`GOJI_INVESTMENT`<br>`ISA`<br>                                  | required |
 ### Response
 | Name                 | Type   | Description                                  |
 | -------------------- | ------ | -------------------------------------------- |
@@ -422,7 +410,7 @@ Records the settlement of a secondary market trade.
 | sellSide.reference                          | string | The bank reference for the funds transfer                                                                       ||
 | buySide                                     | ref    | Details of the buy side.                                                                                        | required |
 | buySide.clientId                            | string | The client ID of the buyer                                                                                      ||
-| buySide.accountType                         | string | The account purchasing the investment                                                                           ||
+| buySide.accountType                         | string | The account purchasing the investment Possible values are: <br>`GOJI_INVESTMENT`<br>`ISA`<br>`SIPP`<br>         ||
 | totalPurchaseAmount.amount                  | number | The amount.                                                                                                     ||
 | totalPurchaseAmount.currency                | string | The ISO 4217 three character codes eg 'GBP'                                                                     ||
 | fee.amount                                  | number | The amount.                                                                                                     ||
@@ -460,18 +448,14 @@ Content-Type: application/json
 }
 ```
 ### Description
-
 Returns list of registered products
-
 ### Response
-
 | Name                          | Type    | Description                                                                                                    |
 | ----------------------------- | ------- | -------------------------------------------------------------------------------------------------------------- |
 | products                      | array   |                                                                                                                |
 | products[].id                 | string  | The unique ID of the product                                                                                   |
 | products[].investmentDocument | string  | A URL to a KID, investment memorandum or similar. This is used to track investments and their ISA suitability. |
 | products[].isaEligible        | boolean | True if the investment can be included in an IF ISA.                                                           |
-
 ## `POST /settlement/product`
 
 ```http
@@ -497,25 +481,19 @@ Content-Type: application/json
 }
 ```
 ### Description
-
 Adds a registered product
-
 ### Request
-
 | Name               | Type    | Description                                                                                                    | Required |
 | ------------------ | ------- | -------------------------------------------------------------------------------------------------------------- | -------- |
 | id                 | string  | The unique ID of the product                                                                                   | required |
 | investmentDocument | string  | A URL to a KID, investment memorandum or similar. This is used to track investments and their ISA suitability. | required |
 | isaEligible        | boolean | True if the investment can be included in an IF ISA.                                                           | required |
-
 ### Response
-
 | Name               | Type    | Description                                                                                                    |
 | ------------------ | ------- | -------------------------------------------------------------------------------------------------------------- |
 | id                 | string  | The unique ID of the product                                                                                   |
 | investmentDocument | string  | A URL to a KID, investment memorandum or similar. This is used to track investments and their ISA suitability. |
 | isaEligible        | boolean | True if the investment can be included in an IF ISA.                                                           |
-
 ## `PUT /settlement/product/{productId}`
 
 ```http
@@ -540,18 +518,13 @@ Content-Type: application/json
 }
 ```
 ### Description
-
 Updates a registered product
-
 ### Request
-
 | Name               | Type    | Description                                                                                                    | Required |
 | ------------------ | ------- | -------------------------------------------------------------------------------------------------------------- | -------- |
 | investmentDocument | string  | A URL to a KID, investment memorandum or similar. This is used to track investments and their ISA suitability. | required |
 | isaEligible        | boolean | True if the investment can be included in an IF ISA.                                                           | required |
-
 ### Response
-
 | Name               | Type    | Description                                                                                                    |
 | ------------------ | ------- | -------------------------------------------------------------------------------------------------------------- |
 | id                 | string  | The unique ID of the product                                                                                   |
