@@ -130,7 +130,7 @@ Returns details of the current bonds
 | bonds                           | array  |                                                                                                                 |
 | bonds[].id                      | string | The ID of the Bond.                                                                                             |
 | bonds[].productTermId           | string | The product term id of the bond.                                                                                |
-| bonds[].status                  | string | The status of the bond.                                                                                         |
+| bonds[].status                  | string | The status of the bond. Possible values are: <br>`QUEUED`<br>`LIVE`<br>`MATURED`<br>                            |
 | bonds[].startDate               | string | The start date of the bond.                                                                                     |
 | bonds[].maturity                | ref    | The maturity of the bond.                                                                                       |
 | bonds[].totalAmount             | ref    | The total current invested amount. This can increase up to the start date of the bond.                          |
@@ -217,7 +217,7 @@ Creates an investment product.
 | terms[].fixedMaturityDate   | string  | A fixed date at which point the product matures. <b>Note: fixedMaturityDate or term must be specified</b>                                                                                                                    | optional |
 | terms[].fixedLiveDate       | string  | A fixed date in the future when the product goes live. If this is not set, and the maximum funding limit is not specified, the bond will run according to the schedule you agree with Goji.                                  | optional |
 | terms[].maximumFundingLimit | ref     | The maximum amount allowed for the product before it goes live. <b>Note: The bond will NOT run until this limit is reached. ie. this is both a maximum limit and also the amount that must be filled for the bond to run.</> | optional |
-| terms[].interestType        | string  | The type of interest to be returned.                                                                                                                                                                                         | required |
+| terms[].interestType        | string  | The type of interest to be returned. Possible values are: <br>`FIXED`<br>                                                                                                                                                    | required |
 | terms[].interestRate        | number  | The interest rate of the product.                                                                                                                                                                                            | required |
 | terms[].minimumInvestment   | ref     | The minimum individual investment allowed for the product.                                                                                                                                                                   | required |
 | terms[].investmentDocuments | array   | The investment documents relating to the product.                                                                                                                                                                            | required |
@@ -296,11 +296,9 @@ Content-Type: application/json
 }
 ```
 ### Description
-
 <aside class="notice">
 Please note this is a test endpoint and is only available in the sandbox environment.
 </aside>
-
 Runs a simulated investment cycle. This simulates funds being invested and being sent to the investment manager.
 ### Request
 | Name                               | Type   | Description                                   | Required |
@@ -314,7 +312,7 @@ Runs a simulated investment cycle. This simulates funds being invested and being
 | bonds                           | array  |                                                                                                                 |
 | bonds[].id                      | string | The ID of the Bond.                                                                                             |
 | bonds[].productTermId           | string | The product term id of the bond.                                                                                |
-| bonds[].status                  | string | The status of the bond.                                                                                         |
+| bonds[].status                  | string | The status of the bond. Possible values are: <br>`QUEUED`<br>`LIVE`<br>`MATURED`<br>                            |
 | bonds[].startDate               | string | The start date of the bond.                                                                                     |
 | bonds[].maturity                | ref    | The maturity of the bond.                                                                                       |
 | bonds[].totalAmount             | ref    | The total current invested amount. This can increase up to the start date of the bond.                          |
@@ -340,20 +338,15 @@ Content-Type: application/json
 ""
 ```
 ### Description
-
 <aside class="notice">
 Please note this is a test endpoint and is only available in the sandbox environment.
 </aside>
-
 Simulates interest repayment accruals.
-
 ### Request
 | Name        | Type   | Description                                     | Required |
 | ----------- | ------ | ----------------------------------------------- | -------- |
 | accrualDate | string | The date up to which accruals will be generated | optional |
-### Response
-The response body is empty.
-
+api-sandbox.goji.investments
 
 ## `GET /investors/{clientId}/accounts/{accountType}/investments`
 
@@ -410,19 +403,19 @@ Content-Type: application/json
 ### Description
 Lists the investments for the account.
 ### Response
-| Name                                 | Type   | Description                                                                 |
-| ------------------------------------ | ------ | --------------------------------------------------------------------------- |
-| investments                          | array  | The investments.                                                            |
-| investments[].id                     | string | A unique ID for the investment.                                             |
-| investments[].bondId                 | string | The id of the bond this investment is in. Not present if status is PENDING. |
-| investments[].productTermId          | string | The product code for the investment.                                        |
-| investments[].status                 | string | The status of the investment.                                               |
-| investments[].gainToDateAsPercentage | number | The gain to date as a percentage.                                           |
-| investments[].creationDate           | string | The creation date of the investment.                                        |
-| investments[].startDate              | string | The start date of the investment.                                           |
-| investments[].endDate                | string | The end date of the investment.                                             |
-| investments[].amountInvested         | ref    | The amount invested.                                                        |
-| investments[].gainToDate             | ref    | The gain to date. Can be negative if the investment has decreased in value. |
+| Name                                 | Type   | Description                                                                                                                                   |
+| ------------------------------------ | ------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| investments                          | array  | The investments.                                                                                                                              |
+| investments[].id                     | string | A unique ID for the investment.                                                                                                               |
+| investments[].bondId                 | string | The id of the bond this investment is in. Not present if status is PENDING.                                                                   |
+| investments[].productTermId          | string | The product code for the investment.                                                                                                          |
+| investments[].status                 | string | The status of the investment. Possible values are: <br>`PENDING`<br>`PROCESSING`<br>`COMPLETED`<br>`MATURED`<br>`REDEEMED`<br>`CANCELLED`<br> |
+| investments[].gainToDateAsPercentage | number | The gain to date as a percentage.                                                                                                             |
+| investments[].creationDate           | string | The creation date of the investment.                                                                                                          |
+| investments[].startDate              | string | The start date of the investment.                                                                                                             |
+| investments[].endDate                | string | The end date of the investment.                                                                                                               |
+| investments[].amountInvested         | ref    | The amount invested.                                                                                                                          |
+| investments[].gainToDate             | ref    | The gain to date. Can be negative if the investment has decreased in value.                                                                   |
 ## `POST /investors/{clientId}/accounts/{accountType}/investments`
 
 ```http
@@ -447,8 +440,6 @@ Content-Type: application/json
 {
   "id": "id"
 }
-
-""
 ```
 ### Description
 Adds an investment to the account.
@@ -464,8 +455,6 @@ Adds an investment to the account.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | id   | string | The ID of the created investment |
-
-
 ## `GET /investments/products`
 
 ```http
