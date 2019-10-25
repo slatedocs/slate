@@ -1,5 +1,5 @@
 # Quickstart (Settlement)
-This guide gives a brief overview to how to:
+This guide gives a brief overview on how to:
 
 * Onboard an Investor
 * Deposit funds
@@ -19,7 +19,7 @@ In Sandbox, `Basic Auth` can be used to help you prototype integrations.
 
 ## Registering a Webhook
 
-> Create webhook
+> Create Webhook
 
 ```
 {
@@ -33,13 +33,8 @@ You can register a URL to receive webhooks by calling [POST https://api-sandbox.
 [//]: # (Example is missing)
 
 ## Creating an Investor
-To create an investor, the investor must first agree to the Terms and Conditions, and optionally the ISA declaration if the Investor is opening an ISA.
 
-Goji supports hosting the Terms and Conditions, retrieved by calling [GET https://api-sandbox.goji.investments/platformApi/terms](/#get-terms).
-
-The ISA Declaration can be retrieved by calling [GET https://api-sandbox.goji.investments/platformApi/isaDeclaration](/#get-isadeclaration)
-
-> Create investor
+> Create Investor
 
 ```
 {
@@ -69,27 +64,24 @@ The ISA Declaration can be retrieved by calling [GET https://api-sandbox.goji.in
 }
 ```
 
-An investor is created by posting to [https://api-sandbox.goji.investments/platformApi/investors](/#post-investors) with example `POST` body:
+To create an Investor, the Investor must first agree to the Terms and Conditions, and optionally the ISA declaration if the Investor is opening an ISA.
+
+Goji supports hosting the Terms and Conditions, retrieved by calling [GET https://api-sandbox.goji.investments/platformApi/terms](/#get-terms).
+
+The ISA Declaration can be retrieved by calling [GET https://api-sandbox.goji.investments/platformApi/isaDeclaration](/#get-isadeclaration)
+
+An Investor is created by posting to [https://api-sandbox.goji.investments/platformApi/investors](/#post-investors) with example `POST` body:
 
 The Goji Platform will generate a `clientId` which should be saved as this is used for subsequent calls.
 
 ## Checking the KYC details
-Once the investor has been created, a KYC check is done in the background and the status can be checked by calling [GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/kyc](/#get-investors-clientid-kyc)
+Once the Investor has been created, a KYC check is done in the background and the status can be checked by calling [GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/kyc](/#get-investors-clientid-kyc)
 
-In the sandbox environment, all investors are considered verified unless the `lastName` contains `referred`.
+In the sandbox environment, all Investors are considered verified unless the `lastName` contains `referred`.
 
 ## Depositing Test Funds
-Once an investor is KYC approved, funds can be deposited.
 
-The investor's unique bank details for depositing funds can be retrieved by calling
-
-[GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/bankTransferDetails](/#get-investors-clientid-banktransferdetails)
-
-For an ISA account, use
-
-[GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/bankTransferDetails/isa](/#get-investors-clientid-banktransferdetails-isa)
-
-> Bank transfer details
+> Bank Transfer Details
 
 ```
 {
@@ -103,21 +95,32 @@ For an ISA account, use
 }
 ```
 
+Once an Investor is KYC approved, funds can be deposited.
+
+### An Investor's Bank Details
+The Investor's unique bank details for depositing funds can be retrieved by calling: [GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/bankTransferDetails](/#get-investors-clientid-banktransferdetails)
+
+### An ISA Investor's Bank Details
+For an ISA account, use: [GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/bankTransferDetails/isa](/#get-investors-clientid-banktransferdetails-isa)
+
+### Testing
 You can simulate depositing funds by calling [POST https://api-sandbox.goji.investments/platformApi/test/payment](/#post-test-payment) with a example `POST` body:
 
 The payment reference must start with `ISA` if the funds are to be deposited to the ISA account.
 
 Once funds are deposited, a webhook will be fired with type `INVESTOR_FUNDS_RECEIVED`.
 
-An investor's balance can be queried by calling:
+### An Investor's Balance
+An Investor's balance can be queried by calling:
 
 [GET https://api-sandbox.goji.investments/platformApi/investors/{clientId}/accounts/balances](/#get-investors-clientid-accounts-balances)
 
 ## Settling an Investment
-Once an investor has a cash balance, the funds can be invested by calling the settlement API. This will move the funds from one or more investors to a predetermined account. This account may be with the investment manager, a solicitors or the borrower directly.
+Once an Investor has a cash balance, the funds can be invested by calling the settlement API. This will move the funds from one or more investors to a predetermined account. This account may be with the Investment Manager, a Solicitor or the borrower directly.
 
 ## Register the Investment Product
-> Investment product
+
+> Investment Product
 
 ```
 {
@@ -127,12 +130,15 @@ Once an investor has a cash balance, the funds can be invested by calling the se
 }
 ```
 
-First register the investment product. This can be reused multiple times:
+First register the investment product:
 
 [POST https://api-sandbox.goji.investments/platformApi/settlement/product](/#post-settlement-product)
 
+*This can be reused multiple times.*
+
 ## Register a Payment Destination
-> Payment destination
+
+> Payment Destination
 
 ```
 {
@@ -143,19 +149,22 @@ First register the investment product. This can be reused multiple times:
 }
 ```
 
-Then register a payment destination - this is where the funds will be sent to.
+Next, register a payment destination. This is where the funds will be sent.
 
 [POST https://api-sandbox.goji.investments/platformApi/settlement/payment-destination](/#post-settlement-payment-destination)
 
 This returns a payment destination ID which must be saved and used for the subsequent call.
 
-To ensure the payment is processed correctly, please the following test account number/sort code:
+To ensure the payment is processed correctly, please the following test account number and sort code:
 
-`00004588/203002`
+`accountNumber: 00004588`
+`sortCode: 203002`
 
-Then settle the investment. The following example includes a single investment from a single investor:
+Then settle the investment.
 
-> Settle investment
+The following example includes a single investment from a single Investor:
+
+> Settle Investment
 
 ```
 {
@@ -183,11 +192,9 @@ The investor's investment can be queried by calling:
 [https://api-sandbox.goji.investments/platformApi/settlement/investors/{clientId}/accounts/{accountType}/investments](/#get-settlement-investors-clientid-accounts-accounttype-investments)
 
 ## Repaying the Investment
-To record a repayment against an investment, firstly generate a unique reference that will be used when sending the funds to the Goji Platform.
 
-[GET https://api-sandbox.goji.investments/platformApi/settlement/repayment/reference](/#get-settlement-repayment-reference)
+> Repaying Investment
 
-> Repaying investment
 ```
 {
     "accountNumber": "123456",
@@ -196,11 +203,16 @@ To record a repayment against an investment, firstly generate a unique reference
 }
 ```
 
+To record a repayment against an investment, firstly generate a unique reference that will be used when sending the funds to the Goji Platform.
+
+[GET https://api-sandbox.goji.investments/platformApi/settlement/repayment/reference](/#get-settlement-repayment-reference)
+
 This will return the account details to use when sending the funds to repay:
 
 Once the funds have been sent to this destination and the funds have cleared, call the Settlement API to distribute the funds.
 
-> Record repayment
+> Record Repayment
+
 ```
 {
     "investorRepayments": [
@@ -223,13 +235,14 @@ Once the funds have been sent to this destination and the funds have cleared, ca
 
 [POST https://api-sandbox.goji.investments/platformApi/settlement/repayment](/#post-settlement-repayment)
 
-This will ensure that £123.45 has been deposited with reference `some-ref` which was generated by the previous call. If this check passes, the funds will be credited to the investor and recorded as an interest repayment against `client-investment-1`.  
+This will ensure that `£123.45` has been deposited with reference `some-ref` which was generated by the previous call. If this check passes, the funds will be credited to the Investor and recorded as an interest repayment against `client-investment-1`.  
 
 ## Withdrawing Funds
-An investor can withdraw funds by firstly registering bank account details:
+An Investor can withdraw funds by firstly registering bank account details:
 
-## Register Withdrawal Bank Details
-> Register bank details
+### Register Withdrawal Bank Details
+
+> Register Bank Details
 
 ```
 {
@@ -241,10 +254,10 @@ An investor can withdraw funds by firstly registering bank account details:
 
 [POST https://api-sandbox.goji.investments/platformApi/investors/{clientId}/bankDetails](/#post-investors-clientid-bankdetails)
 
-## Process Withdrawal
+### Process Withdrawal
 Then the funds can be withdrawn:
 
-> Withdraw funds
+> Withdraw Funds
 
 ```
 {
