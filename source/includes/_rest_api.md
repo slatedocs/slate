@@ -1,3 +1,16 @@
+---
+title: Delta Exchange Api
+language_tabs:
+  - python: Python
+  - shell: Shell
+  - ruby: Ruby
+toc_footers: []
+includes: []
+search: true
+highlight_theme: darkula
+headingLevel: 2
+
+---
 
 <h1 id="ApiSection" class="section-header">API</h1>
 The REST API has endpoints for account and order management as well as public market data.
@@ -152,7 +165,7 @@ p JSON.parse(result)
     "tick_size": "string",
     "trading_status": "operational",
     "max_leverage_notional": "string",
-    "default_leverage": null,
+    "default_leverage": "string",
     "initial_margin_scaling_factor": "string",
     "maintenance_margin_scaling_factor": "string",
     "commission_rate": null,
@@ -395,7 +408,7 @@ p JSON.parse(result)
     "tick_size": "string",
     "trading_status": "operational",
     "max_leverage_notional": "string",
-    "default_leverage": null,
+    "default_leverage": "string",
     "initial_margin_scaling_factor": "string",
     "maintenance_margin_scaling_factor": "string",
     "commission_rate": null,
@@ -573,7 +586,7 @@ p JSON.parse(result)
     "tick_size": "string",
     "trading_status": "operational",
     "max_leverage_notional": "string",
-    "default_leverage": null,
+    "default_leverage": "string",
     "initial_margin_scaling_factor": "string",
     "maintenance_margin_scaling_factor": "string",
     "commission_rate": null,
@@ -745,7 +758,7 @@ p JSON.parse(result)
       "tick_size": "string",
       "trading_status": "operational",
       "max_leverage_notional": "string",
-      "default_leverage": null,
+      "default_leverage": "string",
       "initial_margin_scaling_factor": "string",
       "maintenance_margin_scaling_factor": "string",
       "commission_rate": null,
@@ -900,7 +913,7 @@ p JSON.parse(result)
     "tick_size": "string",
     "trading_status": "operational",
     "max_leverage_notional": "string",
-    "default_leverage": null,
+    "default_leverage": "string",
     "initial_margin_scaling_factor": "string",
     "maintenance_margin_scaling_factor": "string",
     "commission_rate": null,
@@ -1191,7 +1204,7 @@ p JSON.parse(result)
       "tick_size": "string",
       "trading_status": "operational",
       "max_leverage_notional": "string",
-      "default_leverage": null,
+      "default_leverage": "string",
       "initial_margin_scaling_factor": "string",
       "maintenance_margin_scaling_factor": "string",
       "commission_rate": null,
@@ -1254,7 +1267,7 @@ p JSON.parse(result)
       "tick_size": "string",
       "trading_status": "operational",
       "max_leverage_notional": "string",
-      "default_leverage": null,
+      "default_leverage": "string",
       "initial_margin_scaling_factor": "string",
       "maintenance_margin_scaling_factor": "string",
       "commission_rate": null,
@@ -1436,7 +1449,7 @@ p JSON.parse(result)
     "tick_size": "string",
     "trading_status": "operational",
     "max_leverage_notional": "string",
-    "default_leverage": null,
+    "default_leverage": "string",
     "initial_margin_scaling_factor": "string",
     "maintenance_margin_scaling_factor": "string",
     "commission_rate": null,
@@ -1612,7 +1625,7 @@ p JSON.parse(result)
     "tick_size": "string",
     "trading_status": "operational",
     "max_leverage_notional": "string",
-    "default_leverage": null,
+    "default_leverage": "string",
     "initial_margin_scaling_factor": "string",
     "maintenance_margin_scaling_factor": "string",
     "commission_rate": null,
@@ -1944,7 +1957,7 @@ p JSON.parse(result)
       "tick_size": "string",
       "trading_status": "operational",
       "max_leverage_notional": "string",
-      "default_leverage": null,
+      "default_leverage": "string",
       "initial_margin_scaling_factor": "string",
       "maintenance_margin_scaling_factor": "string",
       "commission_rate": null,
@@ -2094,7 +2107,7 @@ p JSON.parse(result)
     "tick_size": "string",
     "trading_status": "operational",
     "max_leverage_notional": "string",
-    "default_leverage": null,
+    "default_leverage": "string",
     "initial_margin_scaling_factor": "string",
     "maintenance_margin_scaling_factor": "string",
     "commission_rate": null,
@@ -2259,7 +2272,7 @@ p JSON.parse(result)
       "tick_size": "string",
       "trading_status": "operational",
       "max_leverage_notional": "string",
-      "default_leverage": null,
+      "default_leverage": "string",
       "initial_margin_scaling_factor": "string",
       "maintenance_margin_scaling_factor": "string",
       "commission_rate": null,
@@ -2400,7 +2413,7 @@ p JSON.parse(result)
       "tick_size": "string",
       "trading_status": "operational",
       "max_leverage_notional": "string",
-      "default_leverage": null,
+      "default_leverage": "string",
       "initial_margin_scaling_factor": "string",
       "maintenance_margin_scaling_factor": "string",
       "commission_rate": null,
@@ -2729,7 +2742,7 @@ p JSON.parse(result)
       "tick_size": "string",
       "trading_status": "operational",
       "max_leverage_notional": "string",
-      "default_leverage": null,
+      "default_leverage": "string",
       "initial_margin_scaling_factor": "string",
       "maintenance_margin_scaling_factor": "string",
       "commission_rate": null,
@@ -2870,7 +2883,7 @@ p JSON.parse(result)
       "tick_size": "string",
       "trading_status": "operational",
       "max_leverage_notional": "string",
-      "default_leverage": null,
+      "default_leverage": "string",
       "initial_margin_scaling_factor": "string",
       "maintenance_margin_scaling_factor": "string",
       "commission_rate": null,
@@ -3099,7 +3112,7 @@ This operation does not require authentication.
   "tick_size": "string",
   "trading_status": "operational",
   "max_leverage_notional": "string",
-  "default_leverage": null,
+  "default_leverage": "string",
   "initial_margin_scaling_factor": "string",
   "maintenance_margin_scaling_factor": "string",
   "commission_rate": null,
@@ -3154,7 +3167,7 @@ This operation does not require authentication.
 |tick_size|string|false|none|The minimum gap between 2 consecutive prices.|
 |trading_status|string|false|none|trading status of the contract e.g. 'operational','disrupted_cancel_only' or 'disrupted_post_only'|
 |max_leverage_notional|string|false|none|maximum notional position size (in settling asset terms) that can be acquired at highest allowed leverage for a given contract.|
-|default_leverage|default leverage|false|none|none|
+|default_leverage|string|false|none|default leverage|
 |initial_margin_scaling_factor|string|false|none|none|
 |maintenance_margin_scaling_factor|string|false|none|none|
 |commission_rate|rate at which commission fee will be calculated for a trade in given contract|false|none|none|
@@ -3205,7 +3218,7 @@ This operation does not require authentication.
     "tick_size": "string",
     "trading_status": "operational",
     "max_leverage_notional": "string",
-    "default_leverage": null,
+    "default_leverage": "string",
     "initial_margin_scaling_factor": "string",
     "maintenance_margin_scaling_factor": "string",
     "commission_rate": null,
@@ -3282,7 +3295,7 @@ This operation does not require authentication.
     "tick_size": "string",
     "trading_status": "operational",
     "max_leverage_notional": "string",
-    "default_leverage": null,
+    "default_leverage": "string",
     "initial_margin_scaling_factor": "string",
     "maintenance_margin_scaling_factor": "string",
     "commission_rate": null,
@@ -3390,7 +3403,7 @@ This operation does not require authentication.
       "tick_size": "string",
       "trading_status": "operational",
       "max_leverage_notional": "string",
-      "default_leverage": null,
+      "default_leverage": "string",
       "initial_margin_scaling_factor": "string",
       "maintenance_margin_scaling_factor": "string",
       "commission_rate": null,
@@ -3469,7 +3482,7 @@ This operation does not require authentication.
       "tick_size": "string",
       "trading_status": "operational",
       "max_leverage_notional": "string",
-      "default_leverage": null,
+      "default_leverage": "string",
       "initial_margin_scaling_factor": "string",
       "maintenance_margin_scaling_factor": "string",
       "commission_rate": null,
@@ -3532,7 +3545,7 @@ This operation does not require authentication.
       "tick_size": "string",
       "trading_status": "operational",
       "max_leverage_notional": "string",
-      "default_leverage": null,
+      "default_leverage": "string",
       "initial_margin_scaling_factor": "string",
       "maintenance_margin_scaling_factor": "string",
       "commission_rate": null,
@@ -3845,7 +3858,7 @@ This operation does not require authentication.
     "tick_size": "string",
     "trading_status": "operational",
     "max_leverage_notional": "string",
-    "default_leverage": null,
+    "default_leverage": "string",
     "initial_margin_scaling_factor": "string",
     "maintenance_margin_scaling_factor": "string",
     "commission_rate": null,
@@ -3927,7 +3940,7 @@ This operation does not require authentication.
       "tick_size": "string",
       "trading_status": "operational",
       "max_leverage_notional": "string",
-      "default_leverage": null,
+      "default_leverage": "string",
       "initial_margin_scaling_factor": "string",
       "maintenance_margin_scaling_factor": "string",
       "commission_rate": null,
@@ -4000,7 +4013,7 @@ This operation does not require authentication.
     "tick_size": "string",
     "trading_status": "operational",
     "max_leverage_notional": "string",
-    "default_leverage": null,
+    "default_leverage": "string",
     "initial_margin_scaling_factor": "string",
     "maintenance_margin_scaling_factor": "string",
     "commission_rate": null,
@@ -4091,7 +4104,7 @@ This operation does not require authentication.
       "tick_size": "string",
       "trading_status": "operational",
       "max_leverage_notional": "string",
-      "default_leverage": null,
+      "default_leverage": "string",
       "initial_margin_scaling_factor": "string",
       "maintenance_margin_scaling_factor": "string",
       "commission_rate": null,
@@ -4305,7 +4318,7 @@ This operation does not require authentication.
     "tick_size": "string",
     "trading_status": "operational",
     "max_leverage_notional": "string",
-    "default_leverage": null,
+    "default_leverage": "string",
     "initial_margin_scaling_factor": "string",
     "maintenance_margin_scaling_factor": "string",
     "commission_rate": null,
@@ -4398,7 +4411,7 @@ This operation does not require authentication.
       "tick_size": "string",
       "trading_status": "operational",
       "max_leverage_notional": "string",
-      "default_leverage": null,
+      "default_leverage": "string",
       "initial_margin_scaling_factor": "string",
       "maintenance_margin_scaling_factor": "string",
       "commission_rate": null,

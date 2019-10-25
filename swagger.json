@@ -1033,7 +1033,8 @@
             "description" : "maximum notional position size (in settling asset terms) that can be acquired at highest allowed leverage for a given contract."
         },
         "default_leverage": {
-            "type": "default leverage"
+            "type": "string",
+            "description" : "default leverage"
         },
         "initial_margin_scaling_factor": {
             "type": "string"
