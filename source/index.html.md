@@ -69,6 +69,7 @@ The Settlement API supports settling investments in securities that are not bein
 * P2P loans
 * Bonds
 * etc.
+
 This API can be used where the securitiy itself is being controlled by your platform and the Goji platform is being used to control the movement of client money.
 
 ###[Webhooks API](#webhooks)
@@ -95,7 +96,7 @@ All responses include a header `X-GOJI-REQUEST-ID`. When requesting support, ple
 
 Goji supports a Sandbox environment which can be used for integration testing.
 
-The URL for the sandbox environment is `https://api-sandbox.goji.investment`.
+The URL for the sandbox environment is `https://api-sandbox.goji.investments`.
 
 ### Dates
 
@@ -180,16 +181,18 @@ public class HmacExample
 
 `GET https://api.gojip2p.com/user/session/valid`
 
-With a nonce = 67681625-d7f9-43e3-859a-25e634c203c2
+With a nonce = `67681625-d7f9-43e3-859a-25e634c203c2`
 
-and timestamp = 1474982268271
+and timestamp = `1474982268271`
 
 The signature string would be as follows:
 
     `67681625-d7f9-43e3-859a-25e634c203c2`
     `1474982268271`
 
-Assuming a secret key of `abcd1234`, this will produce a signature equal to: `q0AdIAm6SphhgN/VxjMiE9UEd3uZRca9gjJXQ5+dyNI=` which is then URL encoded to `q0AdIAm6SphhgN%2FVxjMiE9UEd3uZRca9gjJXQ5%2BdyNI%3D`
+Assuming a secret key of `abcd1234`, this will produce a signature equal to:
+`q0AdIAm6SphhgN/VxjMiE9UEd3uZRca9gjJXQ5+dyNI=`
+which is then URL encoded to `q0AdIAm6SphhgN%2FVxjMiE9UEd3uZRca9gjJXQ5%2BdyNI%3D`
 
 ##Versioning
 ```java
@@ -205,7 +208,7 @@ Whenever a breaking change needs to be made to any of the following, a new versi
 
 The version of the endpoint to use is specified in a header named version e.g. `version : 2`
 If no version header is specified, version one of the endpoint will be used.
-If an invalid version header is specified, a 404 response code will be returned.
+If an invalid version header is specified, a `404` response code will be returned.
 
 A breaking change to the request or response body is defined as the following:
 
