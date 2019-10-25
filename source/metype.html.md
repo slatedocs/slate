@@ -2,9 +2,10 @@
 title: Metype API Documentation
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - javascript
+  - javascript: JS
   - shell--request: Request
   - shell--response: Response
+  - json: JSON
 
 toc_footers:
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
