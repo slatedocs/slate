@@ -1029,10 +1029,11 @@
             "description" : "trading status of the contract e.g. 'operational','disrupted_cancel_only' or 'disrupted_post_only' "
         },
         "max_leverage_notional": {
-            "type": "string"
+            "type": "string",
+            "description" : "maximum notional position size (in settling asset terms) that can be acquired at highest allowed leverage for a given contract."
         },
         "default_leverage": {
-            "type": "string"
+            "type": "default leverage"
         },
         "initial_margin_scaling_factor": {
             "type": "string"
@@ -1041,16 +1042,13 @@
             "type": "string"
         },
         "commission_rate": {
-            "type": "string"
+            "type": "rate at which commission fee will be calculated for a trade in given contract"
         },
         "maker_commission_rate": {
-            "type": "string"
+            "type": "rate at which maker rebate will be calculated"
         },
         "liquidation_penalty_factor": {
             "type": "string"
-        },
-        "sort_priority": {
-            "type": "integer"
         },
         "contract_type": {
             "type": "string"
