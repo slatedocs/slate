@@ -25,12 +25,12 @@ curl -X GET \
       "loadBalancingScheme": "EXTERNAL",
       "networkTier": "PREMIUM",
       "portRange": "80-80",
-      "selfLink": "https://www.googleapis.com/compute/v1/projects/test-area/global/forwardingRules/forwardingrulename",
-      "target": "https://www.googleapis.com/compute/v1/projects/test-area/global/targetHttpProxies/targetproxyname",
-      "shortTarget": "targetproxyname",
+      "selfLink": "https://www.googleapis.com/compute/v1/projects/test-area/global/forwardingRules/my-forwarding-rule",
+      "target": "https://www.googleapis.com/compute/v1/projects/test-area/global/targetHttpProxies/my-target-proxy",
+      "shortTarget": "my-target-proxy",
       "id": "4724455712741277576",
-      "name": "gfr-user-name"
-    }
+      "name": "my-forwarding-rule"
+   }
   ],
   "metadata": {
     "recordCount": 1
@@ -51,11 +51,11 @@ Attributes | &nbsp;
 `id`<br/>*string* | The unique identifier for the resource. This identifier is defined by the server.
 `IPAddress`<br/>*string* | The IP address that this forwarding rule serves. 
 `IPProtocol`<br/>*string* | The IP protocol to which this rule applies. The default protocol is TCP.
-`ipVersion`<br/>*enum* | The IP version that will be used by this forwarding rule. The default IP version is IPV4.
+`ipVersion`<br/>*string* | The IP version that will be used by this forwarding rule. The default IP version is IPV4.
 `kind`<br/>*string* | Type of the resource.
-`loadBalancingScheme`<br/>*enum* | Specifies the forwarding rule type. The default value is EXTERNAL.
+`loadBalancingScheme`<br/>*string* | Specifies the forwarding rule type. The default value is EXTERNAL.
 `name`<br/>*string* | Name of the resource. Provided by the client when the resource is created.
-`networkTier`<br/>*enum* | This signifies the networking tier used for configuring this load balancer.
+`networkTier`<br/>*string* | This signifies the networking tier used for configuring this load balancer.
 `portRange`<br/>*string* | The destination ports that this forwarding rule forwards packets with.
 `selfLink`<br/>*string* | Server-defined URL for this resource.
 `shortTarget`<br/>*string* | The name of the target resource.
@@ -85,11 +85,11 @@ curl -X GET \
       "loadBalancingScheme": "EXTERNAL",
       "networkTier": "PREMIUM",
       "portRange": "80-80",
-      "selfLink": "https://www.googleapis.com/compute/v1/projects/test-area/global/forwardingRules/forwardingrulename",
-      "target": "https://www.googleapis.com/compute/v1/projects/test-area/global/targetHttpProxies/targetproxyname",
-      "shortTarget": "targetproxyname",
+      "selfLink": "https://www.googleapis.com/compute/v1/projects/test-area/global/forwardingRules/my-forwarding-rule",
+      "target": "https://www.googleapis.com/compute/v1/projects/test-area/global/targetHttpProxies/my-target-proxy",
+      "shortTarget": "my-target-proxy",
       "id": "4724455712741277576",
-      "name": "gfr-user-name"
+      "name": "my-forwarding-rule"
    }
 }
 ```
@@ -105,15 +105,15 @@ Attributes | &nbsp;
 `id`<br/>*string* | The unique identifier for the resource. This identifier is defined by the server.
 `IPAddress`<br/>*string* | The IP address that this forwarding rule serves. 
 `IPProtocol`<br/>*string* | The IP protocol to which this rule applies. The default protocol is TCP.
-`ipVersion`<br/>*enum* | The IP version that will be used by this forwarding rule. The default IP version is IPV4.
+`ipVersion`<br/>*string* | The IP version that will be used by this forwarding rule. The default IP version is IPV4.
 `kind`<br/>*string* | Type of the resource.
-`loadBalancingScheme`<br/>*enum* | Specifies the forwarding rule type. The default value is EXTERNAL.
+`loadBalancingScheme`<br/>*string* | Specifies the forwarding rule type. The default value is EXTERNAL.
 `name`<br/>*string* | Name of the resource. Provided by the client when the resource is created.
-`networkTier`<br/>*enum* | This signifies the networking tier used for configuring this load balancer.
+`networkTier`<br/>*string* | This signifies the networking tier used for configuring this load balancer.
 `portRange`<br/>*string* | The destination ports that this forwarding rule forwards packets with.
 `selfLink`<br/>*string* | Server-defined URL for this resource.
 `shortTarget`<br/>*string* | The name of the target resource.
-`target`<br/>*string* |  The URL of the target resource to receive the matched traffic.
+`target`<br/>*string* | The URL of the target resource to receive the matched traffic.
 
 <!-------------------- CREATE A FORWARDING RULE -------------------->
 ##### Create a forwarding rule
@@ -140,7 +140,7 @@ Optional | &nbsp;
 ------- | -----------
 `description`<br/>*string* | Description of the forwarding rule.
 `reserveStaticIP`<br/>*boolean* | If the value is false and if no shortIPAddress is provided, an ephemeral external IP address will be assigned. 
-`shortIPAddress`<br/>*string* | The name of an existing global external IP address assigned to the rule. This argument is only valid in conjunction with *reserveStaticIP* being false. If the value is false and shortIPAddress is provided, then the existing external IP address will be assigned. If the value is true, a new external static IP will be reserved and assigned.
+`shortIPAddress`<br/>*string* | The name of an existing global external IP address assigned to the rule. This argument is only valid in conjunction with reserveStaticIP being false. If the value is false and shortIPAddress is provided, then the existing external IP address will be assigned. If the value is true, a new external static IP will be reserved and assigned.
 
 <!-------------------- DELETE A FORWARDING RULE -------------------->
 
