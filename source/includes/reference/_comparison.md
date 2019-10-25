@@ -95,20 +95,14 @@ curl -X GET https://api.transferwise.com/v3/comparisons/?sourceCurrency=GBP&targ
 }
 ```
 
-The comparison API can be used to request price and speed information about various money transfer providers. This
-includes not only TransferWise but other providers in the market.
+The comparison API can be used to request price and speed information about various money transfer providers. This includes not only TransferWise but other providers in the market.
 
 
 ### Price Estimation
 
-The quotes (price / speed) provided by this API are based off of real quotes collected from 3rd party websites. We collect both
-the advertised exchange rate and fee for each provider for various amounts. When a comparison is requested we calculate the markup %
-on the collected exchange rate on the mid-market rate at the time of collection, we then apply this markup % on the current 
-mid-market rate to provide a realistic estimate of what each provider offers. We collect data for all providers ~ once per hour to 
-ensure we provide as accurate and up to date information as possible.
+The quotes (price / speed) provided by this API are based off of real quotes collected from 3rd party websites. We collect both the advertised exchange rate and fee for each provider for various amounts. When a comparison is requested we calculate the markup % on the collected exchange rate on the mid-market rate at the time of collection, we then apply this markup % on the current mid-market rate to provide a realistic estimate of what each provider offers. We collect data for all providers ~ once per hour to ensure we provide as accurate and up to date information as possible.
 
-Note: Today, we only provide estimations for FX transactions with a Bank Transfer pay-in / pay-out option. This is important to stress
-as many providers offer significantly different fees / exchange rates when used debit / credit card, cash etc.
+Note: Today, we only provide estimations for FX transactions with a Bank Transfer pay-in / pay-out option. This is important to stress as many providers offer significantly different fees / exchange rates when used debit / credit card, cash etc.
 
 For more details on the data collection process please see the following page:
 
@@ -121,8 +115,7 @@ If you have questions or suspect any data to be inaccurate or incomplete please 
 
 ### Delivery Estimation
 
-Similar to price, we collect speed data for most (if not all) providers which we have price information for. Many providers
-display speed estimates to their customers in a number of different ways. 
+Similar to price, we collect speed data for most (if not all) providers which we have price information for. Many providers display speed estimates to their customers in a number of different ways. 
 
 Some examples:
 
@@ -131,19 +124,14 @@ Some examples:
 - "Should arrive by 26th Aug"
 - "Could take up to 4 working days"
 
-The below API intends to model these in a consistent format by providing a min / max range for all delivery estimations.
-An estimate that states "up to X" will have "max" set to a duration but "min" as null, a "from X" will have "min" set to a
-duration and "max" as null. Finally for those providers who offer a specific, point in time estimation (like TransferWise), 
-the API will surface a duration where min/max are equal. 
+The below API intends to model these in a consistent format by providing a min / max range for all delivery estimations. An estimate that states "up to X" will have "max" set to a duration but "min" as null, a "from X" will have "min" set to a duration and "max" as null. Finally for those providers who offer a specific, point in time estimation (like TransferWise), the API will surface a duration where min/max are equal. 
 
 
 ### Quotes structure
 
-In order to provide the most flexible and accurate data for clients, we surface a denormalised list of quotes per provider 
-where each quote represents a unique collection of comparison "dimensions". 
+In order to provide the most flexible and accurate data for clients, we surface a denormalised list of quotes per provider where each quote represents a unique collection of comparison "dimensions". 
 
-A single given provider may expose multiple quotes for the same currency route. The most common example is where a provider 
-offers different pricing for one country vs another country which uses the same currency. e.g:
+A single given provider may expose multiple quotes for the same currency route. The most common example is where a provider offers different pricing for one country vs another country which uses the same currency. e.g:
 
 Provider X:
 
@@ -151,16 +139,11 @@ Provider X:
 - GBP EUR 1000 [GB -> DE] fee: 8, rate: 1.5
 - GBP EUR 1000 [GB -> FR] fee: 10, rate: 1.35
 
-The same principle applies for speed. I.e a provider may have different speed estimates for different target countries and hence
-we expose these as discrete quotes - where a quote is a unique combination of route / country / speed / price factors.
+The same principle applies for speed. I.e a provider may have different speed estimates for different target countries and hence we expose these as discrete quotes - where a quote is a unique combination of route / country / speed / price factors.
 
-A client may choose to reduce this set of quotes down to a single or several quotes in order to display a relevant quote to a 
-given user. An example where we take the cheapest quote for a given currency route (and also surface the target country) can be seen
-at the below link:
+A client may choose to reduce this set of quotes down to a single or several quotes in order to display a relevant quote to a given user. An example where we take the cheapest quote for a given currency route (and also surface the target country) can be seen at the below link:
 
 [https://transferwise.com/gb/compare/?sourceCurrency=GBP&targetCurrency=EUR&sendAmount=1000](https://transferwise.com/gb/compare/?sourceCurrency=GBP&targetCurrency=EUR&sendAmount=1000)
-
-
 
 
 ### Request
@@ -192,8 +175,8 @@ quotes.rate                                     | The live estimated exchange fo
 quotes.fee                                      | The estimated fee for the provider for this quote                  | Integer
 quotes.receivedAmount                           | The total estimated receive amount for the provider for this quote | Integer
 quotes.dateCollected                            | The date of collection for the original quote                      | Text
-quotes.sourceCountry                            | source country (ISO 3166-1 Alpha-2 code)                           | Timestamp
-quotes.targetCountry                            | target country (ISO 3166-1 Alpha-2 code)                           | Decimal
+quotes.sourceCountry                            | Source country (ISO 3166-1 Alpha-2 code)                           | Timestamp
+quotes.targetCountry                            | Target country (ISO 3166-1 Alpha-2 code)                           | Decimal
 quotes.deliveryEstimation                       | Delivery estimation details - i.e a speed estimate                 | Object
 quotes.deliveryEstimation.duration              | Duration range                                                     | Object
 quotes.deliveryEstimation.duration.min          | Minimum quoted time for transaction delivery                       | ISO 8601 duration format
