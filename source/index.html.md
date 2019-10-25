@@ -37,6 +37,7 @@ To make use of the Goji platform you will want to use one or more of the APIs de
 
 ###[Investors API](#investors)
 The Investors API can:
+
 * Onboard Investors
 * Conduct KYC checks (normally automatically)
 * Open general/ISA accounts for your Investors
@@ -44,6 +45,7 @@ The Investors API can:
 
 ###[Payments API](#payments)
 For Investors who have passed KYC checks, the Payments API can:
+
 * Retrieve Investors bank details
 * Retrieve Investors balance information
 * Transfer funds between accounts
@@ -56,12 +58,14 @@ Most platforms do not require this module. Please speak to the Goji integrations
 </aside>
 
 The Goji Platform supports issuing:
+
 * Fixed term bonds
 * Fixed rate bonds (debt based securities)
 The Bond management API allows you to configure these products, determine who has invested in each bond and when repayments are due.
 
 ###[Settlement API](#settlement)
 The Settlement API supports settling investments in securities that are not being managed by the Bond management module. Examples include:
+
 * P2P loans
 * Bonds
 * etc.
@@ -224,6 +228,7 @@ It is therefore important that clients of the API are liberal in the way they pa
 Goji can send a emails on behalf of the Platform at various points in the ISA lifecycle. When you completed the onboarding questionnaire, you will have specified which emails you want Goji to send.
 
 In order to complete the email integration you will need to:
+
 1. Specify the email address emails should be sent from e.g. `isa@platform.com`
 2. Create a forwarding rule, so that emails sent to the address specified above are forwarded to `platformsupport@gojip2p.com`
 3. Specify the email address Goji should send notifications of inound transfer in funds to e.g. `isa-transfer-notifications@platform.com`
