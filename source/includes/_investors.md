@@ -283,6 +283,11 @@ Authorization: Basic ...
     "jobTitle" : "jobTitle",
     "employmentStatus" : "EMPLOYED_FULL_TIME"
   },
+  "nationalities" : [ {
+    "nationality" : "GB"
+  }, {
+    "nationality" : "CH"
+  } ],
   "dateOfBirth" : "2000-01-23",
   "migrationDetails" : {
     "existingClientId" : "existingClientId"
@@ -294,11 +299,7 @@ Authorization: Basic ...
     "telephoneNumber" : "telephoneNumber"
   },
   "firstName" : "firstName",
-  "nationality" : "nationality",
-  "nationalities":[
-    {
-      "nationality":"nationality"
-    }]
+  "nationality (DEPRECATED)" : "nationality (DEPRECATED)",
   "nationalInsuranceNumber" : "nationalInsuranceNumber",
   "accountTypes" : [ { }, { } ]
 }
@@ -343,69 +344,69 @@ Content-Type: application/json
 ### Description
 Creates an investor and triggers a KYC check.
 ### Request
-| Name                                | Type   | Description                                                                                                                                                                                        | Required |
-| ----------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| title                               | string | The title of the investor. Possible values are: `MISS` `MR` `MRS` `MS` `DR`                                                                                                                        | optional |
-| nationality(deprecated)                         | string | The nationality of the investor in 2 character ISO country code eg. GB for British. This has been deprecated and replaced by the nationalities field.                                                                                                                | required |
-| nationalities                       | array  | The list of nationalities associated with an investor. More than one nationality can be specified for a given investor i.e. if they are dual-nationality. | required |
-| nationalities[].nationality | string | The ISO country code. e.g GB. | required |
-| firstName                           | string | The first name of the investor.                                                                                                                                                                    | required |
-| lastName                            | string | The last name of the investor.                                                                                                                                                                     | required |
-| dateOfBirth                         | string | The date of birth of the investor.                                                                                                                                                                 | required |
-| address                             | ref    |                                                                                                                                                                                                    | required |
-| address.lineOne                     | string | Line one of the address.                                                                                                                                                                           | required |
-| address.lineTwo                     | string | Line two of the address.                                                                                                                                                                           ||
-| address.lineThree                   | string | Line three of the address.                                                                                                                                                                         ||
-| address.townCity                    | string | The town/city of the address.                                                                                                                                                                      | required |
-| address.region                      | string | The region of the address eg county.                                                                                                                                                               | required |
-| address.postcode                    | string | The post code of the address.                                                                                                                                                                      | required |
-| address.country                     | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked. | required |
-| contactDetails                      | ref    |                                                                                                                                                                                                    | required |
-| contactDetails.telephoneNumber      | string | The telephone number.                                                                                                                                                                              ||
-| contactDetails.emailAddress         | string | The email address.                                                                                                                                                                                 ||
-| nationalInsuranceNumber             | string | The national insurance number of the investor. Only required if opening an ISA.                                                                                                                    | optional |
-| employmentDetails                   | ref    |                                                                                                                                                                                                    | optional |
-| employmentDetails.jobTitle          | string | The job title.                                                                                                                                                                                     ||
-| employmentDetails.employmentStatus  | string | The employment status. Possible values are: `EMPLOYED_FULL_TIME` `EMPLOYED_PART_TIME` `SELF_EMPLOYED` `UNEMPLOYED` `HOUSE_PERSON` `EDUCATION` `RETIRED` `NOT_WORKING_ILLNESS_DISABILITY`           ||
-| entityType                          | string | The entity type. Possible values are: `INDIVIDUAL` `CORPORATE`                                                                                                                                                                                                    | required |
-| investorDeclarationType             | string | All investors must complete a declaration to confirm the kind of investor they are. Possible values are: `RESTRICTED` `HIGH_NET_WORTH` `INVESTMENT_PROFESSIONAL` `SOPHISTICATED`                    required |
-| accountTypes                        | array  | Possible values are: `GOJI_INVESTMENT` `ISA` Defaults to `[GOJI_INVESTMENT, ISA]` if not provided for a INDIVIDUAL entityType. Defaults to [GOJI_INVESTMENT] for CORPORATE entityType. ISA invalid for CORPORATE entityType                       | optional |
-| corporateDetails                    | ref    | Required for CORPORATE entityType.                                                                                                                                                            | optional |
-| corporateDetails.companyName        | string | The company name.                                                                                                                                                                                  ||
-| corporateDetails.companyType        | string | The company type.                                                                                                                                                                                  ||
-| corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                   ||
-| migrationDetails                    | ref    | Optional. Only required if migrating an investor.                                                                                                                                                  | optional |
-| migrationDetails.existingClientId   | string | The existing client ID for the investor to be migrated                                                                                                                                             ||
+| Name                                | Type   | Description                                                                                                                                                                                                           | Required |
+| ----------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| title                               | string | The title of the investor. Possible values are: <br>`MISS`<br>`MR`<br>`MRS`<br>`MS`<br>`DR`<br>                                                                                                                       | optional |
+| nationality (DEPRECATED)            | string | The nationality of the investor in 2 character ISO country code eg. GB for British. This has been deprecated and replaced by the nationalities field.                                                                 | optional |
+| nationalities                       | array  | The list of nationalities associated with an investor. More than one nationality can be specified for a given investor i.e. if they are dual-nationality.                                                             | optional |
+| nationalities[].nationality         | string | The ISO country code. e.g GB.                                                                                                                                                                                         | optional |
+| firstName                           | string | The first name of the investor.                                                                                                                                                                                       | required |
+| lastName                            | string | The last name of the investor.                                                                                                                                                                                        | required |
+| dateOfBirth                         | string | The date of birth of the investor.                                                                                                                                                                                    | required |
+| address                             | ref    |                                                                                                                                                                                                                       | required |
+| address.lineOne                     | string | Line one of the address.                                                                                                                                                                                              ||
+| address.lineTwo                     | string | Line two of the address.                                                                                                                                                                                              ||
+| address.lineThree                   | string | Line three of the address.                                                                                                                                                                                            ||
+| address.townCity                    | string | The town/city of the address.                                                                                                                                                                                         ||
+| address.region                      | string | The region of the address eg county.                                                                                                                                                                                  ||
+| address.postcode                    | string | The post code of the address.                                                                                                                                                                                         ||
+| address.country                     | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked.                    ||
+| contactDetails                      | ref    |                                                                                                                                                                                                                       | required |
+| contactDetails.telephoneNumber      | string | The telephone number.                                                                                                                                                                                                 ||
+| contactDetails.emailAddress         | string | The email address.                                                                                                                                                                                                    ||
+| nationalInsuranceNumber             | string | The national insurance number of the investor. Only required if opening an ISA.                                                                                                                                       | optional |
+| employmentDetails                   | ref    |                                                                                                                                                                                                                       | optional |
+| employmentDetails.jobTitle          | string | The job title.                                                                                                                                                                                                        ||
+| employmentDetails.employmentStatus  | string | The employment status. Possible values are: <br>`EMPLOYED_FULL_TIME`<br>`EMPLOYED_PART_TIME`<br>`SELF_EMPLOYED`<br>`UNEMPLOYED`<br>`HOUSE_PERSON`<br>`EDUCATION`<br>`RETIRED`<br>`NOT_WORKING_ILLNESS_DISABILITY`<br> ||
+| entityType                          | string |  Possible values are: <br>`INDIVIDUAL`<br>`CORPORATE`<br>                                                                                                                                                             | required |
+| investorDeclarationType             | string | All investors must complete a declaration to confirm the kind of investor they are. Possible values are: <br>`RESTRICTED`<br>`HIGH_NET_WORTH`<br>`INVESTMENT_PROFESSIONAL`<br>`SOPHISTICATED`<br>                     | required |
+| accountTypes                        | array  | defaults to [GOJI_INVESTMENT, ISA] if not provided for a INDIVIDUAL entityType. Defaults to [GOJI_INVESTMENT] for CORPORATE entityType. ISA invalid for CORPORATE entityType                                          | optional |
+| corporateDetails                    | ref    | only required for CORPORATE entityType.                                                                                                                                                                               | optional |
+| corporateDetails.companyName        | string | The company name.                                                                                                                                                                                                     ||
+| corporateDetails.companyType        | string | The company type.                                                                                                                                                                                                     ||
+| corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                                      ||
+| migrationDetails                    | ref    | Optional. Only required if migrating an investor.                                                                                                                                                                     | optional |
+| migrationDetails.existingClientId   | string | The existing client ID for the investor to be migrated                                                                                                                                                                ||
 ### Response
-| Name                                | Type   | Description                                                                                                                                                                                        |
-| ----------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| clientId                            | string | The ID of the investor assigned by the platform.                                                                                                                                                   |
-| title                               | string | The title of the investor.                                                                                                                                                                         |
-| firstName                           | string | The first name of the investor.                                                                                                                                                                    |
-| lastName                            | string | The last name of the investor.                                                                                                                                                                     |
-| dateOfBirth                         | string | The date of birth of the investor.                                                                                                                                                                 |
-| address                             | ref    |                                                                                                                                                                                                    |
-| address.lineOne                     | string | Line one of the address.                                                                                                                                                                           |
-| address.lineTwo                     | string | Line two of the address.                                                                                                                                                                           |
-| address.lineThree                   | string | Line three of the address.                                                                                                                                                                         |
-| address.townCity                    | string | The town/city of the address.                                                                                                                                                                      |
-| address.region                      | string | The region of the address eg county.                                                                                                                                                               |
-| address.postcode                    | string | The post code of the address.                                                                                                                                                                      |
-| address.country                     | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked. |
-| contactDetails                      | ref    |                                                                                                                                                                                                    |
-| contactDetails.telephoneNumber      | string | The telephone number.                                                                                                                                                                              |
-| contactDetails.emailAddress         | string | The email address.                                                                                                                                                                                 |
-| nationalInsuranceNumber             | string | The national insurance number of the investor.                                                                                                                                                     |
-| employmentDetails                   | ref    |                                                                                                                                                                                                    |
-| employmentDetails.jobTitle          | string | The job title.                                                                                                                                                                                     |
-| employmentDetails.employmentStatus  | string | The employment status.                                                                                                                                                                             |
-| entityType                          | string |                                                                                                                                                                                                    |
-| accountTypes                        | string | Investor's account types                                                                                                                                                                           |
-| corporateDetails                    | ref    | only required for CORPORATE entityType.                                                                                                                                                            |
-| corporateDetails.companyName        | string | The company name.                                                                                                                                                                                  |
-| corporateDetails.companyType        | string | The company type.                                                                                                                                                                                  |
-| corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                   |
-| investmentDeclarationType           | string | The investor type declared by the investor                                                                                                                                                         |
+| Name                                | Type   | Description                                                                                                                                                                                                           |
+| ----------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| clientId                            | string | The ID of the investor assigned by the platform.                                                                                                                                                                      |
+| title                               | string | The title of the investor. Possible values are: <br>`MISS`<br>`MR`<br>`MRS`<br>`MS`<br>`DR`<br>                                                                                                                       |
+| firstName                           | string | The first name of the investor.                                                                                                                                                                                       |
+| lastName                            | string | The last name of the investor.                                                                                                                                                                                        |
+| dateOfBirth                         | string | The date of birth of the investor.                                                                                                                                                                                    |
+| address                             | ref    |                                                                                                                                                                                                                       |
+| address.lineOne                     | string | Line one of the address.                                                                                                                                                                                              |
+| address.lineTwo                     | string | Line two of the address.                                                                                                                                                                                              |
+| address.lineThree                   | string | Line three of the address.                                                                                                                                                                                            |
+| address.townCity                    | string | The town/city of the address.                                                                                                                                                                                         |
+| address.region                      | string | The region of the address eg county.                                                                                                                                                                                  |
+| address.postcode                    | string | The post code of the address.                                                                                                                                                                                         |
+| address.country                     | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked.                    |
+| contactDetails                      | ref    |                                                                                                                                                                                                                       |
+| contactDetails.telephoneNumber      | string | The telephone number.                                                                                                                                                                                                 |
+| contactDetails.emailAddress         | string | The email address.                                                                                                                                                                                                    |
+| nationalInsuranceNumber             | string | The national insurance number of the investor.                                                                                                                                                                        |
+| employmentDetails                   | ref    |                                                                                                                                                                                                                       |
+| employmentDetails.jobTitle          | string | The job title.                                                                                                                                                                                                        |
+| employmentDetails.employmentStatus  | string | The employment status. Possible values are: <br>`EMPLOYED_FULL_TIME`<br>`EMPLOYED_PART_TIME`<br>`SELF_EMPLOYED`<br>`UNEMPLOYED`<br>`HOUSE_PERSON`<br>`EDUCATION`<br>`RETIRED`<br>`NOT_WORKING_ILLNESS_DISABILITY`<br> |
+| entityType                          | string |  Possible values are: <br>`INDIVIDUAL`<br>`CORPORATE`<br>                                                                                                                                                             |
+| accountTypes                        | string | Investor's account types Possible values are: <br>`GOJI_INVESTMENT`<br>`ISA`<br>                                                                                                                                      |
+| corporateDetails                    | ref    | only required for CORPORATE entityType.                                                                                                                                                                               |
+| corporateDetails.companyName        | string | The company name.                                                                                                                                                                                                     |
+| corporateDetails.companyType        | string | The company type.                                                                                                                                                                                                     |
+| corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                                      |
+| investmentDeclarationType           | string | The investor type declared by the investor Possible values are: <br>`RESTRICTED`<br>`HIGH_NET_WORTH`<br>`INVESTMENT_PROFESSIONAL`<br>`SOPHISTICATED`<br>                                                              |
 ## `GET /investors/{clientId}`
 
 ```http
@@ -457,35 +458,35 @@ Content-Type: application/json
 ### Description
 Retrieves an investor.
 ### Response
-| Name                                | Type   | Description                                                                                                                                                                                        |
-| ----------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| clientId                            | string | The ID of the investor assigned by the platform.                                                                                                                                                   |
-| title                               | string | The title of the investor.                                                                                                                                                                         |
-| firstName                           | string | The first name of the investor.                                                                                                                                                                    |
-| lastName                            | string | The last name of the investor.                                                                                                                                                                     |
-| dateOfBirth                         | string | The date of birth of the investor.                                                                                                                                                                 |
-| address                             | ref    |                                                                                                                                                                                                    |
-| address.lineOne                     | string | Line one of the address.                                                                                                                                                                           |
-| address.lineTwo                     | string | Line two of the address.                                                                                                                                                                           |
-| address.lineThree                   | string | Line three of the address.                                                                                                                                                                         |
-| address.townCity                    | string | The town/city of the address.                                                                                                                                                                      |
-| address.region                      | string | The region of the address eg county.                                                                                                                                                               |
-| address.postcode                    | string | The post code of the address.                                                                                                                                                                      |
-| address.country                     | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked. |
-| contactDetails                      | ref    |                                                                                                                                                                                                    |
-| contactDetails.telephoneNumber      | string | The telephone number.                                                                                                                                                                              |
-| contactDetails.emailAddress         | string | The email address.                                                                                                                                                                                 |
-| nationalInsuranceNumber             | string | The national insurance number of the investor.                                                                                                                                                     |
-| employmentDetails                   | ref    |                                                                                                                                                                                                    |
-| employmentDetails.jobTitle          | string | The job title.                                                                                                                                                                                     |
-| employmentDetails.employmentStatus  | string | The employment status.                                                                                                                                                                             |
-| entityType                          | string |                                                                                                                                                                                                    |
-| accountTypes                        | string | Investor's account types                                                                                                                                                                           |
-| corporateDetails                    | ref    | only required for CORPORATE entityType.                                                                                                                                                            |
-| corporateDetails.companyName        | string | The company name.                                                                                                                                                                                  |
-| corporateDetails.companyType        | string | The company type.                                                                                                                                                                                  |
-| corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                   |
-| investmentDeclarationType           | string | The investor type declared by the investor                                                                                                                                                         |
+| Name                                | Type   | Description                                                                                                                                                                                                           |
+| ----------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| clientId                            | string | The ID of the investor assigned by the platform.                                                                                                                                                                      |
+| title                               | string | The title of the investor. Possible values are: <br>`MISS`<br>`MR`<br>`MRS`<br>`MS`<br>`DR`<br>                                                                                                                       |
+| firstName                           | string | The first name of the investor.                                                                                                                                                                                       |
+| lastName                            | string | The last name of the investor.                                                                                                                                                                                        |
+| dateOfBirth                         | string | The date of birth of the investor.                                                                                                                                                                                    |
+| address                             | ref    |                                                                                                                                                                                                                       |
+| address.lineOne                     | string | Line one of the address.                                                                                                                                                                                              |
+| address.lineTwo                     | string | Line two of the address.                                                                                                                                                                                              |
+| address.lineThree                   | string | Line three of the address.                                                                                                                                                                                            |
+| address.townCity                    | string | The town/city of the address.                                                                                                                                                                                         |
+| address.region                      | string | The region of the address eg county.                                                                                                                                                                                  |
+| address.postcode                    | string | The post code of the address.                                                                                                                                                                                         |
+| address.country                     | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked.                    |
+| contactDetails                      | ref    |                                                                                                                                                                                                                       |
+| contactDetails.telephoneNumber      | string | The telephone number.                                                                                                                                                                                                 |
+| contactDetails.emailAddress         | string | The email address.                                                                                                                                                                                                    |
+| nationalInsuranceNumber             | string | The national insurance number of the investor.                                                                                                                                                                        |
+| employmentDetails                   | ref    |                                                                                                                                                                                                                       |
+| employmentDetails.jobTitle          | string | The job title.                                                                                                                                                                                                        |
+| employmentDetails.employmentStatus  | string | The employment status. Possible values are: <br>`EMPLOYED_FULL_TIME`<br>`EMPLOYED_PART_TIME`<br>`SELF_EMPLOYED`<br>`UNEMPLOYED`<br>`HOUSE_PERSON`<br>`EDUCATION`<br>`RETIRED`<br>`NOT_WORKING_ILLNESS_DISABILITY`<br> |
+| entityType                          | string |  Possible values are: <br>`INDIVIDUAL`<br>`CORPORATE`<br>                                                                                                                                                             |
+| accountTypes                        | string | Investor's account types Possible values are: <br>`GOJI_INVESTMENT`<br>`ISA`<br>                                                                                                                                      |
+| corporateDetails                    | ref    | only required for CORPORATE entityType.                                                                                                                                                                               |
+| corporateDetails.companyName        | string | The company name.                                                                                                                                                                                                     |
+| corporateDetails.companyType        | string | The company type.                                                                                                                                                                                                     |
+| corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                                      |
+| investmentDeclarationType           | string | The investor type declared by the investor Possible values are: <br>`RESTRICTED`<br>`HIGH_NET_WORTH`<br>`INVESTMENT_PROFESSIONAL`<br>`SOPHISTICATED`<br>                                                              |
 ## `PUT /investors/{clientId}`
 
 ```http
@@ -567,63 +568,63 @@ Content-Type: application/json
 ### Description
 Updates an investor.
 ### Request
-| Name                                | Type   | Description                                                                                                                                                                                        | Required |
-| ----------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| title                               | string | The title of the investor.                                                                                                                                                                         | required |
-| firstName                           | string | The first name of the investor.                                                                                                                                                                    | required |
-| lastName                            | string | The last name of the investor.                                                                                                                                                                     | required |
-| dateOfBirth                         | string | The date of birth of the investor.                                                                                                                                                                 | required |
-| address                             | ref    |                                                                                                                                                                                                    | required |
-| address.lineOne                     | string | Line one of the address.                                                                                                                                                                           ||
-| address.lineTwo                     | string | Line two of the address.                                                                                                                                                                           ||
-| address.lineThree                   | string | Line three of the address.                                                                                                                                                                         ||
-| address.townCity                    | string | The town/city of the address.                                                                                                                                                                      ||
-| address.region                      | string | The region of the address eg county.                                                                                                                                                               ||
-| address.postcode                    | string | The post code of the address.                                                                                                                                                                      ||
-| address.country                     | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked. ||
-| contactDetails                      | ref    |                                                                                                                                                                                                    | required |
-| contactDetails.telephoneNumber      | string | The telephone number.                                                                                                                                                                              ||
-| contactDetails.emailAddress         | string | The email address.                                                                                                                                                                                 ||
-| nationalInsuranceNumber             | string | The national insurance number of the investor. Only required if opening an ISA.                                                                                                                    | optional |
-| employmentDetails                   | ref    |                                                                                                                                                                                                    | optional |
-| employmentDetails.jobTitle          | string | The job title.                                                                                                                                                                                     ||
-| employmentDetails.employmentStatus  | string | The employment status.                                                                                                                                                                             ||
-| entityType                          | string |                                                                                                                                                                                                    | optional |
-| investorDeclarationType             | string | must be SOPHISTICATED for an investor with entityType CORPORATE                                                                                                                                    | optional |
-| corporateDetails                    | ref    | only required for CORPORATE entityType.                                                                                                                                                            | optional |
-| corporateDetails.companyName        | string | The company name.                                                                                                                                                                                  ||
-| corporateDetails.companyType        | string | The company type.                                                                                                                                                                                  ||
-| corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                   ||
+| Name                                | Type   | Description                                                                                                                                                                                                           | Required |
+| ----------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| title                               | string | The title of the investor. Possible values are: <br>`MISS`<br>`MR`<br>`MRS`<br>`MS`<br>`DR`<br>                                                                                                                       | required |
+| firstName                           | string | The first name of the investor.                                                                                                                                                                                       | required |
+| lastName                            | string | The last name of the investor.                                                                                                                                                                                        | required |
+| dateOfBirth                         | string | The date of birth of the investor.                                                                                                                                                                                    | required |
+| address                             | ref    |                                                                                                                                                                                                                       | required |
+| address.lineOne                     | string | Line one of the address.                                                                                                                                                                                              ||
+| address.lineTwo                     | string | Line two of the address.                                                                                                                                                                                              ||
+| address.lineThree                   | string | Line three of the address.                                                                                                                                                                                            ||
+| address.townCity                    | string | The town/city of the address.                                                                                                                                                                                         ||
+| address.region                      | string | The region of the address eg county.                                                                                                                                                                                  ||
+| address.postcode                    | string | The post code of the address.                                                                                                                                                                                         ||
+| address.country                     | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked.                    ||
+| contactDetails                      | ref    |                                                                                                                                                                                                                       | required |
+| contactDetails.telephoneNumber      | string | The telephone number.                                                                                                                                                                                                 ||
+| contactDetails.emailAddress         | string | The email address.                                                                                                                                                                                                    ||
+| nationalInsuranceNumber             | string | The national insurance number of the investor. Only required if opening an ISA.                                                                                                                                       | optional |
+| employmentDetails                   | ref    |                                                                                                                                                                                                                       | optional |
+| employmentDetails.jobTitle          | string | The job title.                                                                                                                                                                                                        ||
+| employmentDetails.employmentStatus  | string | The employment status. Possible values are: <br>`EMPLOYED_FULL_TIME`<br>`EMPLOYED_PART_TIME`<br>`SELF_EMPLOYED`<br>`UNEMPLOYED`<br>`HOUSE_PERSON`<br>`EDUCATION`<br>`RETIRED`<br>`NOT_WORKING_ILLNESS_DISABILITY`<br> ||
+| entityType                          | string |  Possible values are: <br>`INDIVIDUAL`<br>`CORPORATE`<br>                                                                                                                                                             | optional |
+| investorDeclarationType             | string | must be SOPHISTICATED for an investor with entityType CORPORATE Possible values are: <br>`RESTRICTED`<br>`HIGH_NET_WORTH`<br>`INVESTMENT_PROFESSIONAL`<br>`SOPHISTICATED`<br>                                         | optional |
+| corporateDetails                    | ref    | only required for CORPORATE entityType.                                                                                                                                                                               | optional |
+| corporateDetails.companyName        | string | The company name.                                                                                                                                                                                                     ||
+| corporateDetails.companyType        | string | The company type.                                                                                                                                                                                                     ||
+| corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                                      ||
 ### Response
-| Name                                | Type   | Description                                                                                                                                                                                        |
-| ----------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| clientId                            | string | The ID of the investor assigned by the platform.                                                                                                                                                   |
-| title                               | string | The title of the investor.                                                                                                                                                                         |
-| firstName                           | string | The first name of the investor.                                                                                                                                                                    |
-| lastName                            | string | The last name of the investor.                                                                                                                                                                     |
-| dateOfBirth                         | string | The date of birth of the investor.                                                                                                                                                                 |
-| address                             | ref    |                                                                                                                                                                                                    |
-| address.lineOne                     | string | Line one of the address.                                                                                                                                                                           |
-| address.lineTwo                     | string | Line two of the address.                                                                                                                                                                           |
-| address.lineThree                   | string | Line three of the address.                                                                                                                                                                         |
-| address.townCity                    | string | The town/city of the address.                                                                                                                                                                      |
-| address.region                      | string | The region of the address eg county.                                                                                                                                                               |
-| address.postcode                    | string | The post code of the address.                                                                                                                                                                      |
-| address.country                     | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked. |
-| contactDetails                      | ref    |                                                                                                                                                                                                    |
-| contactDetails.telephoneNumber      | string | The telephone number.                                                                                                                                                                              |
-| contactDetails.emailAddress         | string | The email address.                                                                                                                                                                                 |
-| nationalInsuranceNumber             | string | The national insurance number of the investor.                                                                                                                                                     |
-| employmentDetails                   | ref    |                                                                                                                                                                                                    |
-| employmentDetails.jobTitle          | string | The job title.                                                                                                                                                                                     |
-| employmentDetails.employmentStatus  | string | The employment status.                                                                                                                                                                             |
-| entityType                          | string |                                                                                                                                                                                                    |
-| accountTypes                        | string | Investor's account types                                                                                                                                                                           |
-| corporateDetails                    | ref    | only required for CORPORATE entityType.                                                                                                                                                            |
-| corporateDetails.companyName        | string | The company name.                                                                                                                                                                                  |
-| corporateDetails.companyType        | string | The company type.                                                                                                                                                                                  |
-| corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                   |
-| investmentDeclarationType           | string | The investor type declared by the investor                                                                                                                                                         |
+| Name                                | Type   | Description                                                                                                                                                                                                           |
+| ----------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| clientId                            | string | The ID of the investor assigned by the platform.                                                                                                                                                                      |
+| title                               | string | The title of the investor. Possible values are: <br>`MISS`<br>`MR`<br>`MRS`<br>`MS`<br>`DR`<br>                                                                                                                       |
+| firstName                           | string | The first name of the investor.                                                                                                                                                                                       |
+| lastName                            | string | The last name of the investor.                                                                                                                                                                                        |
+| dateOfBirth                         | string | The date of birth of the investor.                                                                                                                                                                                    |
+| address                             | ref    |                                                                                                                                                                                                                       |
+| address.lineOne                     | string | Line one of the address.                                                                                                                                                                                              |
+| address.lineTwo                     | string | Line two of the address.                                                                                                                                                                                              |
+| address.lineThree                   | string | Line three of the address.                                                                                                                                                                                            |
+| address.townCity                    | string | The town/city of the address.                                                                                                                                                                                         |
+| address.region                      | string | The region of the address eg county.                                                                                                                                                                                  |
+| address.postcode                    | string | The post code of the address.                                                                                                                                                                                         |
+| address.country                     | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked.                    |
+| contactDetails                      | ref    |                                                                                                                                                                                                                       |
+| contactDetails.telephoneNumber      | string | The telephone number.                                                                                                                                                                                                 |
+| contactDetails.emailAddress         | string | The email address.                                                                                                                                                                                                    |
+| nationalInsuranceNumber             | string | The national insurance number of the investor.                                                                                                                                                                        |
+| employmentDetails                   | ref    |                                                                                                                                                                                                                       |
+| employmentDetails.jobTitle          | string | The job title.                                                                                                                                                                                                        |
+| employmentDetails.employmentStatus  | string | The employment status. Possible values are: <br>`EMPLOYED_FULL_TIME`<br>`EMPLOYED_PART_TIME`<br>`SELF_EMPLOYED`<br>`UNEMPLOYED`<br>`HOUSE_PERSON`<br>`EDUCATION`<br>`RETIRED`<br>`NOT_WORKING_ILLNESS_DISABILITY`<br> |
+| entityType                          | string |  Possible values are: <br>`INDIVIDUAL`<br>`CORPORATE`<br>                                                                                                                                                             |
+| accountTypes                        | string | Investor's account types Possible values are: <br>`GOJI_INVESTMENT`<br>`ISA`<br>                                                                                                                                      |
+| corporateDetails                    | ref    | only required for CORPORATE entityType.                                                                                                                                                                               |
+| corporateDetails.companyName        | string | The company name.                                                                                                                                                                                                     |
+| corporateDetails.companyType        | string | The company type.                                                                                                                                                                                                     |
+| corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                                      |
+| investmentDeclarationType           | string | The investor type declared by the investor Possible values are: <br>`RESTRICTED`<br>`HIGH_NET_WORTH`<br>`INVESTMENT_PROFESSIONAL`<br>`SOPHISTICATED`<br>                                                              |
 ## `GET /investors/{clientId}/kyc`
 
 ```http
@@ -639,15 +640,39 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "status" : "IN_PROGRESS"
+  "documentsRequired" : [ "PROOF_OF_ADDRESS", "PROOF_OF_IDENTITY" ],
+  "documentsPendingApproval" : [ "PROOF_OF_ADDRESS", "PROOF_OF_IDENTITY" ],
+  "documentsApproved" : [ "PROOF_OF_ADDRESS", "PROOF_OF_IDENTITY" ],
+  "lastFailure" : {
+    "rejectedDocuments" : [ {
+      "reason" : "reason",
+      "notes" : "notes",
+      "type" : "type"
+    }, {
+      "reason" : "reason",
+      "notes" : "notes",
+      "type" : "type"
+    } ],
+    "failureDate" : "failureDate"
+  },
+  "status" : "AWAITING_CREDIT_AGENCY_CHECK"
 }
 ```
 ### Description
-Retrieves an investor's KYC status.
+Retrieves an investor's KYC details.
 ### Response
-| Name   | Type   | Description                    |
-| ------ | ------ | ------------------------------ |
-| status | string | The KYC status of the investor. |
+| Name                                                | Type   | Description                                                                                                                                                                         |
+| --------------------------------------------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| status                                              | string | The KYC details of the investor Possible values are: <br>`AWAITING_CREDIT_AGENCY_CHECK`<br>`ELECTRONICALLY_VERIFIED`<br>`ENHANCED_VERIFICATION_REQUIRED`<br>`ENHANCED_VERIFIED`<br> |
+| documentsRequired                                   | array  | Required documents for upload                                                                                                                                                       |
+| documentsRequired[].documentsRequired               | array  |  Possible values are: <br>`PROOF_OF_ADDRESS`<br>`PROOF_OF_IDENTITY`<br>`COVI`<br>`PASS_CERTIFICATE`<br>`RISK_ASSESSMENT`<br>`CLIENT_QUESTIONNAIRE`<br>`KYB_DOCUMENT`<br>            |
+| documentsPendingApproval                            | array  | Uploaded documents that require approving                                                                                                                                           |
+| documentsPendingApproval[].documentsPendingApproval | array  |  Possible values are: <br>`PROOF_OF_ADDRESS`<br>`PROOF_OF_IDENTITY`<br>`COVI`<br>`PASS_CERTIFICATE`<br>`RISK_ASSESSMENT`<br>`CLIENT_QUESTIONNAIRE`<br>`KYB_DOCUMENT`<br>            |
+| documentsApproved                                   | array  | Approved documents                                                                                                                                                                  |
+| documentsApproved[].documentsApproved               | array  |  Possible values are: <br>`PROOF_OF_ADDRESS`<br>`PROOF_OF_IDENTITY`<br>`COVI`<br>`PASS_CERTIFICATE`<br>`RISK_ASSESSMENT`<br>`CLIENT_QUESTIONNAIRE`<br>`KYB_DOCUMENT`<br>            |
+| lastFailure                                         | ref    |                                                                                                                                                                                     |
+| lastFailure.failureDate                             | string | Date of rejection                                                                                                                                                                   |
+| lastFailure.rejectedDocuments                       | array  | The rejected documents.                                                                                                                                                             |
 ## `GET /investors/{clientId}/kyb`
 
 ```http
@@ -669,9 +694,9 @@ Content-Type: application/json
 ### Description
 Retrieves an investor's KYB status - this is only applicable for corporates.
 ### Response
-| Name   | Type   | Description                            |
-| ------ | ------ | -------------------------------------- |
-| status | string | The KYB status of a corporate investor.|
+| Name   | Type   | Description                                                                                            |
+| ------ | ------ | ------------------------------------------------------------------------------------------------------ |
+| status | string | The KYB status of a corporate investor Possible values are: <br>`DOCUMENTS_REQUIRED`<br>`VERIFIED`<br> |
 ## `POST /investors/{clientId}/kyc/documents`
 
 ```http
@@ -694,27 +719,6 @@ Authorization: Basic ...
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-{
-  "overallStatus":"overallStatus",
-  "documentsRequired":["documentsRequired"],
-  "documentsPendingApproval":["documentsPendingApproval"],
-  "documentsApproved":["documentsApproved"],
-  "lastFailure": {
-    "failureDate":"failureDate",
-    "rejectedDocuments": [{
-      "type":"type",
-      "reason":"reason",
-      "notes":"notes"
-    }]
-  },
-  "requirements":[{
-    "requirementType":"requirementType",
-    "status":"status",
-    "checkType":"checkType",
-    "workflowId":"workflowId"
-  }]
-}
-
 ""
 ```
 ### Description
@@ -725,24 +729,25 @@ Add an investor's KYC documents.
 | documents            | array  | The documents.                     | required |
 | documents[].fileName | string | The file name eg passport.pdf.     | required |
 | documents[].data     | string | The file to upload Base64 encoded. | required |
-### Response
-| Name | Type | Description |
-| ---- | ---- | ----------- |
-| overallStatus | string | The overall status of the KYC status of the investor |
-| documentsRequired | array | The documents that are required |
-| documentsPendingApproval | array | The documents that have been uploaded and are pending approval. |
-| documentsApproved | array | The documents that have been approved. |
-| lastFailure | ref | The most recent failed document upload |
-| lastFailure.failureDate | string | The date of the failed upload |
-| lastFailure.rejectedDocuments | array | List of rejected documents |
-| lastFailure.rejectedDocuments[].type | string | The type of document that was rejected |
-| lastFailure.rejectedDocuments[].reason | string | The reason for the rejection |
-| lastFailure.rejectedDocuments[].notes | string | Accompanying notes to the rejection reason |
-| requirements | array | The documents that are required |
-| requirements[].requirementType | string | The type of the requirement |
-| requirements[].status | string | The status of this requirement |
-| requirements[].checkType | string | The type of the check |
-| requirements[].workflowId | string | The ID of the attached workflow |
+
+## `GET /investors/{clientId}/transactions`
+
+```http
+
+GET /investors/{clientId}/transactions HTTP/1.1
+Host: api-sandbox.goji.investments/platformApi
+Content-Type: application/json
+Authorization: Basic ...
+
+
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+""
+```
+### Description
+Retrieves a list of cash transactions associated with a given investor.
 
 ## `POST /investors/{clientId}/accounts/ISA`
 
@@ -801,35 +806,35 @@ Add an ISA account.
 | ----------------------- | ------ | ---------------------------------------------- | -------- |
 | nationalInsuranceNumber | string | The national insurance number of the investor. | required |
 ### Response
-| Name                                | Type   | Description                                                                                                                                                                                        |
-| ----------------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| clientId                            | string | The ID of the investor assigned by the platform.                                                                                                                                                   |
-| title                               | string | The title of the investor.                                                                                                                                                                         |
-| firstName                           | string | The first name of the investor.                                                                                                                                                                    |
-| lastName                            | string | The last name of the investor.                                                                                                                                                                     |
-| dateOfBirth                         | string | The date of birth of the investor.                                                                                                                                                                 |
-| address                             | ref    |                                                                                                                                                                                                    |
-| address.lineOne                     | string | Line one of the address.                                                                                                                                                                           |
-| address.lineTwo                     | string | Line two of the address.                                                                                                                                                                           |
-| address.lineThree                   | string | Line three of the address.                                                                                                                                                                         |
-| address.townCity                    | string | The town/city of the address.                                                                                                                                                                      |
-| address.region                      | string | The region of the address eg county.                                                                                                                                                               |
-| address.postcode                    | string | The post code of the address.                                                                                                                                                                      |
-| address.country                     | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked. |
-| contactDetails                      | ref    |                                                                                                                                                                                                    |
-| contactDetails.telephoneNumber      | string | The telephone number.                                                                                                                                                                              |
-| contactDetails.emailAddress         | string | The email address.                                                                                                                                                                                 |
-| nationalInsuranceNumber             | string | The national insurance number of the investor.                                                                                                                                                     |
-| employmentDetails                   | ref    |                                                                                                                                                                                                    |
-| employmentDetails.jobTitle          | string | The job title.                                                                                                                                                                                     |
-| employmentDetails.employmentStatus  | string | The employment status.                                                                                                                                                                             |
-| entityType                          | string |                                                                                                                                                                                                    |
-| accountTypes                        | string | Investor's account types                                                                                                                                                                           |
-| corporateDetails                    | ref    | only required for CORPORATE entityType.                                                                                                                                                            |
-| corporateDetails.companyName        | string | The company name.                                                                                                                                                                                  |
-| corporateDetails.companyType        | string | The company type.                                                                                                                                                                                  |
-| corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                   |
-| investmentDeclarationType           | string | The investor type declared by the investor                                                                                                                                                         |
+| Name                                | Type   | Description                                                                                                                                                                                                           |
+| ----------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| clientId                            | string | The ID of the investor assigned by the platform.                                                                                                                                                                      |
+| title                               | string | The title of the investor. Possible values are: <br>`MISS`<br>`MR`<br>`MRS`<br>`MS`<br>`DR`<br>                                                                                                                       |
+| firstName                           | string | The first name of the investor.                                                                                                                                                                                       |
+| lastName                            | string | The last name of the investor.                                                                                                                                                                                        |
+| dateOfBirth                         | string | The date of birth of the investor.                                                                                                                                                                                    |
+| address                             | ref    |                                                                                                                                                                                                                       |
+| address.lineOne                     | string | Line one of the address.                                                                                                                                                                                              |
+| address.lineTwo                     | string | Line two of the address.                                                                                                                                                                                              |
+| address.lineThree                   | string | Line three of the address.                                                                                                                                                                                            |
+| address.townCity                    | string | The town/city of the address.                                                                                                                                                                                         |
+| address.region                      | string | The region of the address eg county.                                                                                                                                                                                  |
+| address.postcode                    | string | The post code of the address.                                                                                                                                                                                         |
+| address.country                     | string | The country of the investor's address in 3 character ISO code. Must be GBR to be valid for ISA subscriptions. If a different country code is supplied, current year subscriptions will be blocked.                    |
+| contactDetails                      | ref    |                                                                                                                                                                                                                       |
+| contactDetails.telephoneNumber      | string | The telephone number.                                                                                                                                                                                                 |
+| contactDetails.emailAddress         | string | The email address.                                                                                                                                                                                                    |
+| nationalInsuranceNumber             | string | The national insurance number of the investor.                                                                                                                                                                        |
+| employmentDetails                   | ref    |                                                                                                                                                                                                                       |
+| employmentDetails.jobTitle          | string | The job title.                                                                                                                                                                                                        |
+| employmentDetails.employmentStatus  | string | The employment status. Possible values are: <br>`EMPLOYED_FULL_TIME`<br>`EMPLOYED_PART_TIME`<br>`SELF_EMPLOYED`<br>`UNEMPLOYED`<br>`HOUSE_PERSON`<br>`EDUCATION`<br>`RETIRED`<br>`NOT_WORKING_ILLNESS_DISABILITY`<br> |
+| entityType                          | string |  Possible values are: <br>`INDIVIDUAL`<br>`CORPORATE`<br>                                                                                                                                                             |
+| accountTypes                        | string | Investor's account types Possible values are: <br>`GOJI_INVESTMENT`<br>`ISA`<br>                                                                                                                                      |
+| corporateDetails                    | ref    | only required for CORPORATE entityType.                                                                                                                                                                               |
+| corporateDetails.companyName        | string | The company name.                                                                                                                                                                                                     |
+| corporateDetails.companyType        | string | The company type.                                                                                                                                                                                                     |
+| corporateDetails.registrationNumber | string | The company registration number.                                                                                                                                                                                      |
+| investmentDeclarationType           | string | The investor type declared by the investor Possible values are: <br>`RESTRICTED`<br>`HIGH_NET_WORTH`<br>`INVESTMENT_PROFESSIONAL`<br>`SOPHISTICATED`<br>                                                              |
 ## `GET /investors/{clientId}/accounts/ISA/transferIn/UI`
 
 ```http
@@ -878,9 +883,6 @@ Content-Type: application/json
 ```
 ### Description
 Returns аll opened transfers in.
-### Response
-| Name | Type | Description |
-| ---- | ---- | ----------- |
 
 ## `GET /investors/{clientId}/transferOut`
 
@@ -900,9 +902,6 @@ Content-Type: application/json
 ```
 ### Description
 Lists transfers out for the investor.
-### Response
-| Name | Type | Description |
-| ---- | ---- | ----------- |
 
 ## `GET /investors/{clientId}/transferIn`
 
@@ -922,9 +921,6 @@ Content-Type: application/json
 ```
 ### Description
 Lists transfers in for the investor.
-### Response
-| Name | Type | Description |
-| ---- | ---- | ----------- |
 
 ## `GET /investors/{clientId}/transferIn/{transferInId}`
 
@@ -1032,7 +1028,7 @@ Content-Type: application/json
 ### Description
 Lists all transfers out for all investors.
 ### Response
-| Name | Type | Description |
+| Name                | Type   | Description                                             |
 | ---- | ---- | ----------- |
 
 ## `GET /investors/{clientId}/transactions`
@@ -1099,4 +1095,3 @@ Lists the cash transactions for the investor.
 | totalBalance.currency | string | The currency in ISO 4217 three character codes eg 'GBP' |
 | account | string | The account |
 | status | string | The status of the transaction |
-
