@@ -351,7 +351,7 @@ Creates an investor and triggers a KYC check.
 | nationalities[].nationality | string | The ISO country code. e.g GB. | required |
 | firstName                           | string | The first name of the investor.                                                                                                                                                                    | required |
 | lastName                            | string | The last name of the investor.                                                                                                                                                                     | required |
-| dateOfBirth                         | string | The date of birth of the investor.                                                                                                                                                                 | required |
+| dateOfBirth                         | date | The date of birth of the investor.  [Date/Time format](/#introduction-dates)                                                                                                                                                               | required |
 | address                             | ref    |                                                                                                                                                                                                    | required |
 | address.lineOne                     | string | Line one of the address.                                                                                                                                                                           | required |
 | address.lineTwo                     | string | Line two of the address.                                                                                                                                                                           ||
@@ -383,7 +383,7 @@ Creates an investor and triggers a KYC check.
 | title                               | string | The title of the investor.                                                                                                                                                                         |
 | firstName                           | string | The first name of the investor.                                                                                                                                                                    |
 | lastName                            | string | The last name of the investor.                                                                                                                                                                     |
-| dateOfBirth                         | string | The date of birth of the investor.                                                                                                                                                                 |
+| dateOfBirth                         | date | The date of birth of the investor. [Date/Time format](/#introduction-dates)                                                                                                                                                                |
 | address                             | ref    |                                                                                                                                                                                                    |
 | address.lineOne                     | string | Line one of the address.                                                                                                                                                                           |
 | address.lineTwo                     | string | Line two of the address.                                                                                                                                                                           |
@@ -463,7 +463,7 @@ Retrieves an investor.
 | title                               | string | The title of the investor.                                                                                                                                                                         |
 | firstName                           | string | The first name of the investor.                                                                                                                                                                    |
 | lastName                            | string | The last name of the investor.                                                                                                                                                                     |
-| dateOfBirth                         | string | The date of birth of the investor.                                                                                                                                                                 |
+| dateOfBirth                         | date | The date of birth of the investor. [Date/Time format](/#introduction-dates)                                                                                                                                                               |
 | address                             | ref    |                                                                                                                                                                                                    |
 | address.lineOne                     | string | Line one of the address.                                                                                                                                                                           |
 | address.lineTwo                     | string | Line two of the address.                                                                                                                                                                           |
@@ -572,7 +572,7 @@ Updates an investor.
 | title                               | string | The title of the investor.                                                                                                                                                                         | required |
 | firstName                           | string | The first name of the investor.                                                                                                                                                                    | required |
 | lastName                            | string | The last name of the investor.                                                                                                                                                                     | required |
-| dateOfBirth                         | string | The date of birth of the investor.                                                                                                                                                                 | required |
+| dateOfBirth                         | date | The date of birth of the investor. [Date/Time format](/#introduction-dates)                                                                                                                                                                 | required |
 | address                             | ref    |                                                                                                                                                                                                    | required |
 | address.lineOne                     | string | Line one of the address.                                                                                                                                                                           ||
 | address.lineTwo                     | string | Line two of the address.                                                                                                                                                                           ||
@@ -601,7 +601,7 @@ Updates an investor.
 | title                               | string | The title of the investor.                                                                                                                                                                         |
 | firstName                           | string | The first name of the investor.                                                                                                                                                                    |
 | lastName                            | string | The last name of the investor.                                                                                                                                                                     |
-| dateOfBirth                         | string | The date of birth of the investor.                                                                                                                                                                 |
+| dateOfBirth                         | date | The date of birth of the investor. [Date/Time format](/#introduction-dates)                                                                                                                                                                 |
 | address                             | ref    |                                                                                                                                                                                                    |
 | address.lineOne                     | string | Line one of the address.                                                                                                                                                                           |
 | address.lineTwo                     | string | Line two of the address.                                                                                                                                                                           |
@@ -733,7 +733,7 @@ Add an investor's KYC documents.
 | documentsPendingApproval | array | The documents that have been uploaded and are pending approval. |
 | documentsApproved | array | The documents that have been approved. |
 | lastFailure | ref | The most recent failed document upload |
-| lastFailure.failureDate | string | The date of the failed upload |
+| lastFailure.failureDate | date | The date of the failed upload. [Date/Time format](/#introduction-dates)  |
 | lastFailure.rejectedDocuments | array | List of rejected documents |
 | lastFailure.rejectedDocuments[].type | string | The type of document that was rejected |
 | lastFailure.rejectedDocuments[].reason | string | The reason for the rejection |
@@ -807,7 +807,7 @@ Add an ISA account.
 | title                               | string | The title of the investor.                                                                                                                                                                         |
 | firstName                           | string | The first name of the investor.                                                                                                                                                                    |
 | lastName                            | string | The last name of the investor.                                                                                                                                                                     |
-| dateOfBirth                         | string | The date of birth of the investor.                                                                                                                                                                 |
+| dateOfBirth                         | date | The date of birth of the investor. [Date/Time format](/#introduction-dates)                                                                                                                                                                 |
 | address                             | ref    |                                                                                                                                                                                                    |
 | address.lineOne                     | string | Line one of the address.                                                                                                                                                                           |
 | address.lineTwo                     | string | Line two of the address.                                                                                                                                                                           |
@@ -971,7 +971,7 @@ Gets a specific transfer in for the investor.
 | repairAmount.currency        | string | The currency in ISO 4217 three character codes eg 'GBP' |
 | fundsTransferType            | string | The funds transfer type                                 |
 | bankReference                | string | The bank reference                                      |
-| transferInDate               | string | The date stated on the transfer history form            |
+| transferInDate               | date | The date stated on the transfer history form. [Date/Time format](/#introduction-dates)             |
 ## `GET /transferIn/deposits/{date}`
 
 ```http
@@ -1083,7 +1083,7 @@ Lists the cash transactions for the investor.
 | Name                | Type   | Description                                             |
 | ------------------- | ------ | ------------------------------------------------------- |
 | id | string | The ID of the transaction |
-| dateTime | string | The date-time of the transaction |
+| dateTime | date | The date-time of the transaction. [Date/Time format](/#introduction-dates)  |
 | amount | ref | The amount of the transaction |
 | amount.amount | number | The amount |
 | amount.currency | string | The currency in ISO 4217 three character codes eg 'GBP' |

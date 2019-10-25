@@ -701,8 +701,8 @@ Retrieve a list of transactions for a given wallet.
 | status                        | string | The status of the wallet transfer. PENDING, CLEARED |
 | reference                     | string | The bank reference used for the transfer    |
 | narrative                     | string | The reason for the wallet transfer          |
-| createdDateTime               | date/time | The date / time the transaction was created          |
-| clearedDateTime               | date/time | The date / time the transaction was cleared          |
+| createdDateTime               | dateTime | The date / time the transaction was created. [Date/Time format](/#introduction-dates)            |
+| clearedDateTime               | dateTime | The date / time the transaction was cleared. [Date/Time format](/#introduction-dates)            |
 ## `GET /bankAccountDetails`
 ```http
 

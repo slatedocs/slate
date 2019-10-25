@@ -78,7 +78,7 @@ Goji supports a Sandbox environment which can be used for integration testing.
 
 The url for the sandbox environment is `https://api-sandbox.goji.investment`.
 
-### Dates
+## Dates
 
 Dates and time are in ISO 8601 format eg 2015-02-18 or 2015-02-18T04:57:56Z
 
