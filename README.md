@@ -6,7 +6,7 @@
   <a href="https://travis-ci.org/lord/slate"><img src="https://travis-ci.org/lord/slate.svg?branch=master" alt="Build Status"></a>
 </p>
 
-These docs are live at: https://asana.github.io/developer-docs/
+These docs are live at: https://developers.asana.com/
 
 OpenAPI Spec
 ------------
@@ -26,7 +26,7 @@ The OpenAPI spec is located at /defs/asana_oas.json
 
 To generate the markdown from the spec, we use a forked version of [widdershins](https://github.com/rossgrambo/widdershins)
 ```shell
-node ../widdershins/widdershins.js --search true --language_tabs 'shell: curl' 'javascript--nodejs:Node.JS' 'php:PHP' 'python:Python' 'java: Java' 'ruby:Ruby' --omitHeader true --resolve --includes markdown/* --summary defs/asana_oas.yaml --maxDepth 3 -o source/includes/api-reference/_index.html.md
+node ../widdershins/widdershins.js --search true --language_tabs 'shell: curl' --omitHeader true --truncationText '"..."' --includes markdown/* --summary defs/asana_oas.yaml --user_templates ./source/templates --maxDepth 3 -o source/includes/api-reference/_index.html.md
 ```
 
 Then to generate the html from the markdown, we use [slate](https://github.com/lord/slate)
